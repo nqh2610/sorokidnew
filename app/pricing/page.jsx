@@ -242,44 +242,40 @@ export default function PricingPage() {
       <TopBar showStats={false} />
       
       {/* Header */}
-      <div className="relative pt-8 pb-12 px-4">
-        <div className="max-w-7xl mx-auto text-center">
+      <div className="relative pt-6 pb-10 px-4">
+        <div className="max-w-4xl mx-auto text-center">
           {/* Floating badge */}
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/80 backdrop-blur-sm border border-violet-200 rounded-full mb-8 shadow-lg shadow-violet-100/50">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-sm text-violet-700 font-medium">
+          <div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white/90 backdrop-blur-sm border border-green-200 rounded-full mb-6 shadow-md">
+            <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="text-sm text-slate-700 font-semibold">
               Thanh toán 1 lần • Sử dụng trọn đời
             </span>
-            <Sparkles size={14} className="text-amber-500" />
+            <Sparkles size={16} className="text-amber-500" />
           </div>
           
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-slate-800 via-violet-800 to-fuchsia-700 bg-clip-text text-transparent">
-              Chọn gói phù hợp
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-fuchsia-600 via-pink-500 to-rose-500 bg-clip-text text-transparent">
-              với bé nhà bạn
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+            <span className="bg-gradient-to-r from-slate-800 via-violet-700 to-fuchsia-600 bg-clip-text text-transparent">
+              Chọn gói phù hợp với bé
             </span>
           </h1>
           
-          <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Đầu tư cho tư duy toán học của con - Nền tảng vững chắc cho tương lai
+          <p className="text-base md:text-lg text-slate-600 max-w-xl mx-auto mb-6">
+            Đầu tư cho tư duy toán học - Nền tảng vững chắc cho tương lai
           </p>
 
           {/* Trust indicators */}
-          <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
-            <div className="flex items-center gap-2 text-sm text-slate-500">
-              <Shield size={16} className="text-green-500" />
-              <span>Bảo mật thanh toán</span>
+          <div className="inline-flex flex-wrap items-center justify-center gap-2 md:gap-3">
+            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/80 rounded-full border border-slate-200 text-sm">
+              <Shield size={14} className="text-green-500" />
+              <span className="text-slate-600 font-medium">Bảo mật</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-slate-500">
-              <Timer size={16} className="text-blue-500" />
-              <span>Kích hoạt ngay lập tức</span>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/80 rounded-full border border-slate-200 text-sm">
+              <Zap size={14} className="text-amber-500" />
+              <span className="text-slate-600 font-medium">Kích hoạt ngay</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-slate-500">
-              <Rocket size={16} className="text-fuchsia-500" />
-              <span>10,000+ học sinh tin dùng</span>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/80 rounded-full border border-slate-200 text-sm">
+              <Rocket size={14} className="text-fuchsia-500" />
+              <span className="text-slate-600 font-medium">10K+ học sinh</span>
             </div>
           </div>
         </div>
