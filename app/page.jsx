@@ -80,13 +80,13 @@ export default function HomePage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50">
       {/* Navigation */}
       <nav className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
           <Logo size="md" />
           <div className="flex gap-2 sm:gap-3">
-            <Link href="/login" className="px-4 sm:px-6 py-2 text-sm sm:text-base text-violet-600 font-bold hover:bg-violet-50 rounded-full transition-all">
+            <Link href="/login" className="px-3 sm:px-6 py-2 text-sm sm:text-base text-violet-600 font-bold hover:bg-violet-50 rounded-full transition-all">
               Đăng nhập
             </Link>
-            <Link href="/register" className="px-4 sm:px-6 py-2 text-sm sm:text-base bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white font-bold rounded-full hover:scale-105 transition-all shadow-lg">
+            <Link href="/register" className="px-3 sm:px-6 py-2 text-sm sm:text-base bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white font-bold rounded-full hover:scale-105 transition-all shadow-lg">
               Đăng ký
             </Link>
           </div>
@@ -96,14 +96,17 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 via-violet-400/10 to-pink-400/10" />
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-20">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 lg:py-20">
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm mb-6">
               <Sparkles className="w-4 h-4 text-amber-500" />
-              <span className="text-sm font-medium text-gray-600">Phương pháp Soroban từ Nhật Bản 🇯🇵</span>
+              <span className="text-sm font-medium text-gray-600">Phương pháp Soroban từ Nhật Bản</span>
+              <span className="w-6 h-4 bg-white border border-gray-300 rounded flex items-center justify-center shadow-sm">
+                <span className="w-3 h-3 bg-red-600 rounded-full"></span>
+              </span>
             </div>
             
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black mb-4 sm:mb-6 leading-tight">
+            <h1 className="text-2xl sm:text-4xl lg:text-6xl font-black mb-4 sm:mb-6 leading-tight">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500">
                 Học Soroban
               </span>
@@ -111,7 +114,7 @@ export default function HomePage() {
               <span className="text-gray-800">Vui như chơi Game!</span>
             </h1>
             
-            <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto px-4">
+            <p className="text-base sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
               Ứng dụng học tính nhẩm Soroban dành cho học sinh tiểu học. 
               <strong className="text-violet-600"> Chơi mà học, học mà chơi!</strong>
             </p>
@@ -165,13 +168,13 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <section className="py-12 sm:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
               ✨ Tính năng nổi bật
             </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-600 text-base sm:text-lg max-w-3xl mx-auto">
               Sorokid được thiết kế đặc biệt cho học sinh tiểu học với giao diện đơn giản, bắt mắt
             </p>
           </div>
@@ -194,8 +197,8 @@ export default function HomePage() {
       </section>
 
       {/* How it works */}
-      <section className="py-16 sm:py-20 bg-gradient-to-br from-violet-50 to-pink-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <section className="py-12 sm:py-20 bg-gradient-to-br from-violet-50 to-pink-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
               📈 Lộ trình học tập khoa học
@@ -229,8 +232,8 @@ export default function HomePage() {
       </section>
 
       {/* Measurement System */}
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <section className="py-12 sm:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-6">
@@ -280,8 +283,8 @@ export default function HomePage() {
       </section>
 
       {/* User Types */}
-      <section className="py-16 sm:py-20 bg-gradient-to-br from-blue-50 to-violet-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <section className="py-12 sm:py-20 bg-gradient-to-br from-blue-50 to-violet-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
               👥 Dành cho ai?
@@ -306,8 +309,8 @@ export default function HomePage() {
       </section>
 
       {/* Highlights */}
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <section className="py-12 sm:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
               💡 Điểm nổi bật
@@ -332,19 +335,19 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 sm:py-20 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center text-white">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6">
+      <section className="py-12 sm:py-20 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center text-white">
+          <h2 className="text-xl sm:text-3xl lg:text-4xl font-black mb-4 sm:mb-6">
             🚀 Bắt đầu hành trình Soroban ngay hôm nay!
           </h2>
-          <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
             Đăng ký và khám phá thế giới tính nhẩm thú vị cùng Sorokid
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/register" className="px-8 py-4 bg-white text-violet-600 rounded-full text-lg font-bold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+            <Link href="/register" className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-violet-600 rounded-full text-base sm:text-lg font-bold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
               Đăng ký ngay
             </Link>
-            <Link href="/login" className="px-8 py-4 bg-white/20 backdrop-blur text-white rounded-full text-lg font-bold hover:bg-white/30 transition-all border-2 border-white/50">
+            <Link href="/login" className="px-6 sm:px-8 py-3 sm:py-4 bg-white/20 backdrop-blur text-white rounded-full text-base sm:text-lg font-bold hover:bg-white/30 transition-all border-2 border-white/50">
               Đã có tài khoản? Đăng nhập
             </Link>
           </div>
@@ -352,8 +355,8 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <footer className="bg-gray-900 text-white py-8 sm:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
               <Logo size="md" />

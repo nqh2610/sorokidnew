@@ -52,18 +52,22 @@ export default function TopBar({ showStats = true }) {
       case 'premium':
       case 'advanced':
         return (
-          <span className="px-2 py-0.5 bg-gradient-to-r from-blue-400 to-purple-500 text-white text-xs font-bold rounded-full">
-            ⭐ Premium
+          <span className="px-2 py-0.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white text-xs font-bold rounded-full">
+            ⭐ Nâng Cao
           </span>
         );
       case 'basic':
         return (
-          <span className="px-2 py-0.5 bg-gradient-to-r from-green-400 to-teal-500 text-white text-xs font-bold rounded-full">
-            ✓ Basic
+          <span className="px-2 py-0.5 bg-gradient-to-r from-blue-400 to-cyan-500 text-white text-xs font-bold rounded-full">
+            ✓ Cơ Bản
           </span>
         );
       default:
-        return null;
+        return (
+          <span className="px-2 py-0.5 bg-gray-200 text-gray-600 text-xs font-bold rounded-full">
+            Miễn Phí
+          </span>
+        );
     }
   };
 
@@ -100,6 +104,14 @@ export default function TopBar({ showStats = true }) {
             {/* Stats bar - chỉ hiện khi showStats = true */}
             {showStats && (
               <div className="hidden md:flex items-center gap-3">
+                {/* Tier Badge Desktop */}
+                <Link 
+                  href="/pricing"
+                  className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-violet-50 to-pink-50 rounded-xl border border-violet-100 hover:shadow-md transition-all"
+                >
+                  {getTierBadge()}
+                </Link>
+
                 {/* Streak */}
                 <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl border border-orange-100">
                   <span className="text-lg">🔥</span>
@@ -142,18 +154,18 @@ export default function TopBar({ showStats = true }) {
 
             {/* Mobile Stats */}
             {showStats && (
-              <div className="flex md:hidden items-center gap-2">
-                <div className="flex items-center gap-1 px-2 py-1 bg-orange-50 rounded-lg">
-                  <span className="text-sm">🔥</span>
-                  <span className="font-semibold text-orange-600 text-sm">{userStats?.streak || 0}</span>
+              <div className="flex md:hidden items-center gap-1.5 overflow-x-auto">
+                {/* Tier Badge Mobile */}
+                <Link href="/pricing" className="flex-shrink-0">
+                  {getTierBadge()}
+                </Link>
+                <div className="flex items-center gap-1 px-2 py-1 bg-orange-50 rounded-lg flex-shrink-0">
+                  <span className="text-xs">🔥</span>
+                  <span className="font-semibold text-orange-600 text-xs">{userStats?.streak || 0}</span>
                 </div>
-                <div className="flex items-center gap-1 px-2 py-1 bg-yellow-50 rounded-lg">
-                  <span className="text-sm">⭐</span>
-                  <span className="font-semibold text-yellow-600 text-sm">{userStats?.totalStars || 0}</span>
-                </div>
-                <div className="flex items-center gap-1 px-2 py-1 bg-blue-50 rounded-lg">
-                  <span className="text-sm">💎</span>
-                  <span className="font-semibold text-blue-600 text-sm">{userStats?.diamonds || 0}</span>
+                <div className="flex items-center gap-1 px-2 py-1 bg-yellow-50 rounded-lg flex-shrink-0">
+                  <span className="text-xs">⭐</span>
+                  <span className="font-semibold text-yellow-600 text-xs">{(userStats?.totalStars || 0).toLocaleString()}</span>
                 </div>
               </div>
             )}
@@ -177,12 +189,9 @@ export default function TopBar({ showStats = true }) {
                     </div>
                   )}
                   <div className="hidden sm:block text-left">
-                    <div className="flex items-center gap-1">
-                      <span className="text-sm font-semibold text-gray-800">
-                        {userStats?.name || session.user?.name || 'User'}
-                      </span>
-                      {getTierBadge()}
-                    </div>
+                    <span className="text-sm font-semibold text-gray-800">
+                      {userStats?.name || session.user?.name || 'User'}
+                    </span>
                     <div className="text-xs text-gray-500">
                       Cấp {userStats?.level || 1}
                     </div>

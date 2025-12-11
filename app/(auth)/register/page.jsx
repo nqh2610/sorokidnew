@@ -110,7 +110,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-violet-500 to-pink-500 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-violet-500 to-pink-500 flex items-center justify-center p-3 sm:p-4 py-8 relative overflow-hidden">
       {/* Floating decorations */}
       <div className="absolute top-20 left-10 w-20 h-20 bg-blue-400 rounded-full opacity-30 animate-bounce" style={{ animationDuration: '3s' }}></div>
       <div className="absolute top-40 right-20 w-16 h-16 bg-violet-400 rounded-full opacity-30 animate-bounce" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }}></div>
@@ -130,18 +130,18 @@ export default function RegisterPage() {
       </div>
 
       <div className="max-w-md w-full relative z-10">
-        <div className="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-8 border border-white/20">
+        <div className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-8 border border-white/20 max-h-[90vh] overflow-y-auto">
           {/* Header */}
-          <div className="text-center mb-6">
-            <Link href="/" className="flex items-center justify-center gap-3 mb-4 cursor-pointer">
+          <div className="text-center mb-4 sm:mb-6">
+            <Link href="/" className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4 cursor-pointer">
               <div className="transform hover:scale-110 transition-transform duration-300">
-                <Logo size="xl" showText={false} />
+                <Logo size="lg" showText={false} />
               </div>
-              <span className="text-4xl font-bold bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
+              <span className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
                 SoroKid
               </span>
             </Link>
-            <p className="text-gray-600 flex items-center justify-center gap-2 mb-4">
+            <p className="text-gray-600 flex items-center justify-center gap-2 mb-3 sm:mb-4 text-sm sm:text-base">
               <span className="text-xl">🎮</span> 
               <span className="font-medium">Học Soroban vui như chơi Game!</span>
             </p>
