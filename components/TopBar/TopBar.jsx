@@ -93,12 +93,9 @@ export default function TopBar({ showStats = true }) {
             {/* Logo - Click để về Dashboard */}
             <Link href="/dashboard" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
               <Logo size="md" showText={false} />
-              <div className="hidden sm:block">
-                <h1 className="text-xl font-bold bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
-                  SoroKid
-                </h1>
-                <p className="text-xs text-gray-500">Học Soroban vui vẻ</p>
-              </div>
+              <h1 className="hidden sm:block text-xl font-bold bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
+                SoroKid
+              </h1>
             </Link>
 
             {/* Stats bar - chỉ hiện khi showStats = true */}

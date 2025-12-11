@@ -94,7 +94,18 @@ export default function RegisterPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        toast.error(data.error || 'Đăng ký thất bại!');
+        // Chuyển thông báo lỗi thành thân thiện với người dùng
+        let friendlyError = 'Đăng ký thất bại. Vui lòng thử lại!';
+        if (data.error?.includes('email') && data.error?.includes('exist')) {
+          friendlyError = 'Email này đã được sử dụng!';
+        } else if (data.error?.includes('username') && data.error?.includes('exist')) {
+          friendlyError = 'Tên đăng nhập này đã được sử dụng!';
+        } else if (data.error?.includes('email')) {
+          friendlyError = 'Email không hợp lệ!';
+        } else if (data.error?.includes('password')) {
+          friendlyError = 'Mật khẩu không hợp lệ!';
+        }
+        toast.error(friendlyError);
         return;
       }
 

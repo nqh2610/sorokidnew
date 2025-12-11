@@ -47,7 +47,11 @@ export default function LoginPage() {
         password,
       });
       if (result?.error) {
-        toast.error(result.error || 'Đăng nhập thất bại!');
+        // Chuyển thông báo lỗi thành thân thiện với người dùng
+        const friendlyError = result.error.includes('credentials') || result.error.includes('password') || result.error.includes('email')
+          ? 'Email hoặc mật khẩu không đúng!'
+          : 'Đăng nhập thất bại. Vui lòng thử lại!';
+        toast.error(friendlyError);
       } else {
         toast.success('Đăng nhập thành công! 🎉');
         setTimeout(() => {
