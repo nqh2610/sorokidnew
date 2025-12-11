@@ -4,7 +4,8 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { ArrowLeft, PlayCircle, Lock, CheckCircle, Star, Clock, ChevronRight, BookOpen } from 'lucide-react';
+import { PlayCircle, Lock, CheckCircle, Star, Clock, ChevronRight, BookOpen } from 'lucide-react';
+import TopBar from '@/components/TopBar/TopBar';
 import StarBadge from '@/components/Rewards/StarBadge';
 
 // Thông tin các Level - 18 levels đầy đủ
@@ -78,24 +79,11 @@ export default function LearnPage() {
   const totalStars = Math.min(rawTotalStars, maxStars);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 p-4 sm:p-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <Link
-            href="/dashboard"
-            prefetch={true}
-            className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-lg hover:shadow-xl transition-all"
-          >
-            <ArrowLeft size={18} />
-            <span className="text-sm font-bold hidden sm:inline">Dashboard</span>
-          </Link>
-          <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-lg">
-            <Star className="text-yellow-500" size={18} />
-            <span className="font-bold text-gray-700">{totalStars}</span>
-          </div>
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50">
+      {/* Unified TopBar */}
+      <TopBar showStats={true} />
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Title */}
         <div className="bg-white rounded-2xl p-6 shadow-xl mb-6">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">🎮 Hành trình chinh phục Soroban</h1>
@@ -256,16 +244,6 @@ export default function LearnPage() {
               })}
             </div>
           )}
-        </div>
-
-        {/* Tips */}
-        <div className="mt-6 bg-gradient-to-r from-amber-100 to-orange-100 border-2 border-amber-300 rounded-2xl p-6 text-center">
-          <div className="text-4xl mb-2">💡</div>
-          <h3 className="font-bold text-gray-800 mb-1">Mẹo nhỏ cho em!</h3>
-          <p className="text-sm text-gray-600">
-            Hoàn thành từng nhiệm vụ theo thứ tự để mở khóa nhiệm vụ mới nhé! 
-            Nhấn vào bàn tính ở góc dưới màn hình để luyện tập thêm! 🧮
-          </p>
         </div>
       </div>
     </div>

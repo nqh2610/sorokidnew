@@ -219,22 +219,22 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 via-white to-fuchsia-50">
-      {/* TopBar */}
-      <TopBar />
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-violet-50 to-pink-50">
+      {/* Unified TopBar */}
+      <TopBar showStats={false} />
       
       {/* Header */}
       <div className="pt-8 pb-8 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 rounded-full mb-6">
-            <Sparkles size={16} className="text-fuchsia-600" />
-            <span className="text-sm text-fuchsia-700 font-medium">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 via-violet-100 to-pink-100 rounded-full mb-6">
+            <Sparkles size={16} className="text-violet-600" />
+            <span className="text-sm text-violet-700 font-medium">
               Học Soroban - Đầu tư cho tương lai
             </span>
           </div>
           
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-purple-700 via-fuchsia-600 to-pink-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
               Chọn gói phù hợp với bạn
             </span>
           </h1>
@@ -247,7 +247,7 @@ export default function PricingPage() {
 
       {/* Pricing Cards */}
       <div className="px-4 pb-16">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             {PRICING_PLANS.map((plan) => {
               const IconComponent = plan.icon;
@@ -341,7 +341,7 @@ export default function PricingPage() {
 
       {/* Comparison Table */}
       <div className="px-4 pb-16">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
             <div className="p-6 lg:p-8 border-b border-gray-100">
               <h2 className="text-2xl font-bold text-center text-gray-800">
@@ -393,7 +393,7 @@ export default function PricingPage() {
 
       {/* FAQ Section */}
       <div className="px-4 pb-16">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">
             Câu hỏi thường gặp
           </h2>
@@ -424,7 +424,7 @@ export default function PricingPage() {
 
       {/* CTA Section */}
       <div className="px-4 pb-16">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="bg-gradient-to-r from-purple-600 via-fuchsia-600 to-pink-500 rounded-3xl p-8 lg:p-12 text-center text-white relative overflow-hidden">
             {/* Decorative elements */}
             <div className="absolute top-4 left-4 w-20 h-20 bg-white/10 rounded-full blur-2xl"></div>

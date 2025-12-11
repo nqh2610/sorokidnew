@@ -1,13 +1,12 @@
 'use client';
 
-import { useSession, signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { LogOut, Star, Zap, Trophy, ChevronRight, Play, Clock, ChevronDown, ChevronUp } from 'lucide-react';
-import ConfirmDialog from '@/components/ConfirmDialog/ConfirmDialog';
+import { Star, Zap, Trophy, ChevronRight, Play, Clock, ChevronDown, ChevronUp } from 'lucide-react';
 import LevelBadge from '@/components/LevelBadge/LevelBadge';
-import Logo from '@/components/Logo/Logo';
+import TopBar from '@/components/TopBar/TopBar';
 import ActivityChart from '@/components/Dashboard/ActivityChart';
 import StatsCards from '@/components/Dashboard/StatsCards';
 import QuestList from '@/components/Dashboard/QuestList';
@@ -20,7 +19,6 @@ export default function DashboardPage() {
   const router = useRouter();
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [showLogoutDialog, setShowLogoutDialog] = useState(false);
   const [showDetailedStats, setShowDetailedStats] = useState(false);
   
   // Hook hiệu ứng nhận thưởng
@@ -88,113 +86,11 @@ export default function DashboardPage() {
   const { user, nextLesson, progress, exercise, compete, quests, achievements, leaderboard, activityChart } = dashboardData || {};
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
-      {/* Logout Confirmation Dialog */}
-      <ConfirmDialog
-        isOpen={showLogoutDialog}
-        onClose={() => setShowLogoutDialog(false)}
-        onConfirm={() => signOut({ callbackUrl: '/' })}
-        title="Đăng xuất?"
-        message="Bạn có chắc chắn muốn đăng xuất khỏi tài khoản?"
-        confirmText="Đăng xuất"
-        cancelText="Hủy"
-        type="warning"
-      />
-
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-lg shadow-lg sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
-          <div className="flex items-center justify-between">
-            {/* Logo & User */}
-            <div className="flex items-center gap-3 sm:gap-4">
-              <Logo size="md" showText={false} />
-              <div>
-                <h1 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  Sorokid
-                </h1>
-                <p className="text-xs sm:text-sm text-gray-600">Xin chào, {user?.name}!</p>
-              </div>
-            </div>
-
-            {/* Quick Stats */}
-            <div className="hidden md:flex items-center gap-3">
-              {/* Stars */}
-              <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-yellow-100 to-orange-100 rounded-xl">
-                <Star size={16} className="text-yellow-500 fill-yellow-500" />
-                <div className="text-right">
-                  <span className="font-bold text-yellow-700">{(user?.totalStars || 0).toLocaleString()}</span>
-                  <span className="text-xs text-yellow-600 ml-1">sao</span>
-                </div>
-              </div>
-
-              {/* Diamonds */}
-              <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-xl">
-                <span className="text-base">💎</span>
-                <div className="text-right">
-                  <span className="font-bold text-cyan-700">{(user?.diamonds || 0).toLocaleString()}</span>
-                  <span className="text-xs text-cyan-600 ml-1">kim cương</span>
-                </div>
-              </div>
-
-              {/* Streak */}
-              <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-red-100 to-orange-100 rounded-xl" title="Số ngày liên tiếp có hoạt động">
-                <span className="text-base">🔥</span>
-                <div className="text-right">
-                  <span className="font-bold text-red-700">{user?.streak || 0}</span>
-                  <span className="text-xs text-red-600 ml-1">ngày liên tiếp</span>
-                </div>
-              </div>
-
-              {/* Leaderboard Rank */}
-              {leaderboard?.rank && (
-                <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-xl">
-                  <Trophy size={16} className="text-blue-500" />
-                  <div className="text-right">
-                    <span className="font-bold text-blue-700">#{leaderboard.rank}</span>
-                    <span className="text-xs text-blue-600 ml-1">hạng</span>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Logout Button */}
-            <button
-              onClick={() => setShowLogoutDialog(true)}
-              className="flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-red-500 text-white rounded-xl text-sm font-bold hover:bg-red-600 transition-all focus:outline-none focus:ring-2 focus:ring-red-400 shadow-lg shadow-red-200"
-              aria-label="Đăng xuất"
-            >
-              <LogOut size={18} />
-              <span className="hidden sm:inline">Đăng xuất</span>
-            </button>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50">
+      {/* Unified TopBar */}
+      <TopBar showStats={true} />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8">
-        {/* Mobile Stats Row */}
-        <div className="md:hidden grid grid-cols-4 gap-2">
-          <div className="bg-white rounded-xl p-3 shadow-md text-center">
-            <div className="text-lg mb-1">⭐</div>
-            <div className="font-bold text-sm text-yellow-700">{(user?.totalStars || 0).toLocaleString()}</div>
-            <div className="text-xs text-gray-500">sao</div>
-          </div>
-          <div className="bg-white rounded-xl p-3 shadow-md text-center">
-            <div className="text-lg mb-1">💎</div>
-            <div className="font-bold text-sm text-cyan-700">{(user?.diamonds || 0).toLocaleString()}</div>
-            <div className="text-xs text-gray-500">kim cương</div>
-          </div>
-          <div className="bg-white rounded-xl p-3 shadow-md text-center" title="Số ngày liên tiếp có hoạt động">
-            <div className="text-lg mb-1">🔥</div>
-            <div className="font-bold text-sm text-red-700">{user?.streak || 0}</div>
-            <div className="text-xs text-gray-500">liên tiếp</div>
-          </div>
-          <div className="bg-white rounded-xl p-3 shadow-md text-center">
-            <div className="text-lg mb-1">🏆</div>
-            <div className="font-bold text-sm text-blue-700">#{leaderboard?.rank || '-'}</div>
-            <div className="text-xs text-gray-500">hạng</div>
-          </div>
-        </div>
-
         {/* 🎯 TIẾP TỤC HỌC - CTA CHÍNH */}
         {nextLesson && !nextLesson.isCompleted && (
           <button
@@ -261,22 +157,22 @@ export default function DashboardPage() {
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
             <LevelBadge totalStars={user?.totalStars || 0} size="xl" showProgress={true} />
             <div className="flex-1 text-center sm:text-left">
-              <div className="text-sm text-gray-500 mb-1">Cấp độ hiện tại</div>
+              <div className="text-sm text-gray-600 mb-1">Cấp độ hiện tại</div>
               <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 {user?.levelInfo?.name}
               </div>
               <div className="mt-3">
-                <div className="flex justify-between text-sm text-gray-500 mb-1">
+                <div className="flex justify-between text-sm text-gray-600 mb-1">
                   <span>Tiến độ lên level</span>
                   <span>{user?.levelInfo?.progressPercent || 0}%</span>
                 </div>
-                <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
+                <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-700"
                     style={{ width: `${user?.levelInfo?.progressPercent || 0}%` }}
                   />
                 </div>
-                <div className="text-xs text-gray-400 mt-1">
+                <div className="text-xs text-gray-600 mt-1">
                   Còn {(user?.levelInfo?.starsNeededForNext || 0).toLocaleString()} ⭐ để lên level tiếp theo
                 </div>
               </div>
