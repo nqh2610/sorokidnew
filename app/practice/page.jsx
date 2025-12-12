@@ -4,8 +4,9 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
-import { ArrowLeft, Trophy, Zap, Clock, SkipForward, Home, RotateCcw } from 'lucide-react';
+import { ArrowLeft, Trophy, Zap, Clock, SkipForward, RotateCcw } from 'lucide-react';
 import { useToast } from '@/components/Toast/ToastContext';
+import Logo from '@/components/Logo/Logo';
 import SorobanBoard from '@/components/Soroban/SorobanBoard';
 import { calculatePracticeStars } from '@/lib/gamification';
 
@@ -102,14 +103,15 @@ const flashLevels = [
     glowColor: 'shadow-amber-400/50',
     numbers: [3, 4], 
     digits: 1, 
-    speed: [2, 2.5], 
+    speed: [2, 2], 
     stars: 2, 
     difficultyLevel: 1, 
     tagline: 'Khởi đầu ấm áp',
     rank: '⭐',
     rankLabel: 'Tập Sự',
     rankColor: 'from-amber-500 to-orange-600',
-    bonusMultiplier: 1
+    bonusMultiplier: 1,
+    additionOnly: true
   },
   { 
     id: 'anhTrang', 
@@ -121,7 +123,7 @@ const flashLevels = [
     glowColor: 'shadow-blue-300/50',
     numbers: [5, 6], 
     digits: 1, 
-    speed: [1.5, 1.8], 
+    speed: [1.5, 1.5], 
     stars: 4, 
     difficultyLevel: 2, 
     tagline: 'Bước tiếp vững chắc',
@@ -138,9 +140,9 @@ const flashLevels = [
     color: 'from-yellow-400 to-amber-500', 
     bgColor: 'from-yellow-50 to-amber-50',
     glowColor: 'shadow-yellow-400/50',
-    numbers: [7, 8], 
+    numbers: [5, 6], 
     digits: 2, 
-    speed: [1, 1.3], 
+    speed: [2, 2], 
     stars: 6, 
     difficultyLevel: 3, 
     tagline: 'Nhanh như chớp!',
@@ -157,9 +159,9 @@ const flashLevels = [
     color: 'from-purple-500 to-pink-600', 
     bgColor: 'from-purple-50 to-pink-50',
     glowColor: 'shadow-purple-400/50',
-    numbers: [10, 12], 
+    numbers: [8, 9], 
     digits: 2, 
-    speed: [0.6, 0.8], 
+    speed: [1.5, 1.5], 
     stars: 8, 
     difficultyLevel: 4, 
     tagline: '🔥 SIÊU TỐC 🔥',
@@ -176,9 +178,9 @@ const flashLevels = [
     color: 'from-red-500 via-orange-500 to-yellow-400', 
     bgColor: 'from-red-50 to-yellow-50',
     glowColor: 'shadow-red-500/50',
-    numbers: [13, 15], 
+    numbers: [5, 6], 
     digits: 3, 
-    speed: [0.5, 0.7], 
+    speed: [2, 2], 
     stars: 10, 
     difficultyLevel: 5, 
     tagline: '💥 VỤ NỔ VŨ TRỤ 💥',
@@ -251,17 +253,17 @@ export default function PracticePage() {
   
   // Danh sách lời khen và động viên
   const praiseMessages = [
-    { emoji: '🎉', title: 'XUẤT SẮC!', msg: 'Con giỏi quá! Đáp án hoàn toàn chính xác!' },
-    { emoji: '🌟', title: 'TUYỆT VỜI!', msg: 'Trí nhớ của con thật phi thường!' },
-    { emoji: '🏆', title: 'SIÊU ĐỈNH!', msg: 'Con tính nhẩm nhanh như máy tính!' },
-    { emoji: '👏', title: 'GIỎI LẮM!', msg: 'Con làm đúng rồi! Tiếp tục phát huy nhé!' },
-    { emoji: '🚀', title: 'THẦN TỐC!', msg: 'Tốc độ tính toán của con thật ấn tượng!' },
+    { emoji: '🎉', title: 'XUẤT SẮC!', msg: 'Bạn giỏi quá! Đáp án hoàn toàn chính xác!' },
+    { emoji: '🌟', title: 'TUYỆT VỜI!', msg: 'Trí nhớ của bạn thật phi thường!' },
+    { emoji: '🏆', title: 'SIÊU ĐỈNH!', msg: 'Bạn tính nhẩm nhanh như máy tính!' },
+    { emoji: '👏', title: 'GIỎI LẮM!', msg: 'Bạn làm đúng rồi! Tiếp tục phát huy nhé!' },
+    { emoji: '🚀', title: 'THẦN TỐC!', msg: 'Tốc độ tính toán của bạn thật ấn tượng!' },
   ];
   const encourageMessages = [
     { emoji: '💪', title: 'CỐ LÊN NÀO!', msg: 'Đừng lo, sai là cách học tốt nhất!' },
     { emoji: '🌈', title: 'ĐỪNG BỎ CUỘC!', msg: 'Mỗi lần thử là một bước tiến bộ!' },
-    { emoji: '⭐', title: 'GẦN ĐÚNG RỒI!', msg: 'Con cần luyện tập thêm một chút!' },
-    { emoji: '🎯', title: 'THỬ LẠI NHÉ!', msg: 'Tập trung hơn, con sẽ làm được!' },
+    { emoji: '⭐', title: 'GẦN ĐÚNG RỒI!', msg: 'Bạn cần luyện tập thêm một chút!' },
+    { emoji: '🎯', title: 'THỬ LẠI NHÉ!', msg: 'Tập trung hơn, bạn sẽ làm được!' },
   ];
 
   useEffect(() => {
@@ -1011,83 +1013,240 @@ export default function PracticePage() {
   // Màn hình chọn sub-mode cho Siêu Trí Tuệ
   if (mode === 'mentalMath' && !mentalSubMode) {
     return (
-      <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-violet-900 via-purple-900 to-fuchsia-900">
-        {/* Header */}
-        <div className="flex-shrink-0 px-4 py-3 flex items-center justify-between">
-          <button
-            onClick={() => setMode(null)}
-            className="flex items-center gap-2 px-3 py-2 bg-white/10 backdrop-blur rounded-xl text-white hover:bg-white/20 transition-all"
-          >
-            <ArrowLeft size={18} />
-            <span className="font-medium text-sm">Quay lại</span>
-          </button>
-          <h1 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
-            <span className="text-2xl">🧠</span> Siêu Trí Tuệ
-          </h1>
-          <div className="w-20"></div>
+      <div className="w-[100vw] min-h-[100dvh] bg-gradient-to-br from-violet-900 via-purple-900 to-fuchsia-900 flex flex-col overflow-x-hidden relative">
+        {/* Animated brain waves background */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Floating neurons */}
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={`neuron-${i}`}
+              className="absolute rounded-full bg-gradient-to-br from-pink-500/20 to-purple-500/20 animate-ping"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                width: `clamp(10px, ${2 + Math.random() * 3}vh, 40px)`,
+                height: `clamp(10px, ${2 + Math.random() * 3}vh, 40px)`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${3 + Math.random() * 4}s`
+              }}
+            />
+          ))}
+          {/* Brain emojis floating */}
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={`brain-${i}`}
+              className="absolute animate-bounce opacity-30"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                fontSize: 'clamp(16px, 3vh, 40px)',
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${3 + Math.random() * 3}s`
+              }}
+            >
+              {['🧠', '💭', '✨', '💡', '⚡'][Math.floor(Math.random() * 5)]}
+            </div>
+          ))}
+          {/* Glowing orbs */}
+          <div className="absolute top-1/3 left-1/4 w-[25vh] h-[25vh] bg-fuchsia-500/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-[20vh] h-[20vh] bg-violet-500/30 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
+        </div>
+
+        {/* Header - Back trái, Logo phải */}
+        <div 
+          className="relative z-10 flex-shrink-0"
+          style={{ padding: 'clamp(6px, 1.2vh, 14px) clamp(10px, 2vw, 24px)' }}
+        >
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
+            <button
+              onClick={() => setMode(null)}
+              className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg"
+              style={{ 
+                padding: 'clamp(6px, 1vh, 12px)',
+                borderRadius: 'clamp(10px, 1.5vh, 20px)'
+              }}
+            >
+              <ArrowLeft style={{ width: 'clamp(16px, 2.5vh, 24px)', height: 'clamp(16px, 2.5vh, 24px)' }} />
+            </button>
+            <div 
+              className="font-black text-white flex items-center bg-gradient-to-r from-fuchsia-500/30 to-violet-500/30 backdrop-blur-md border border-white/20 shadow-lg"
+              style={{ 
+                fontSize: 'clamp(13px, 2.8vh, 26px)', 
+                gap: 'clamp(6px, 1vw, 14px)',
+                padding: 'clamp(6px, 1vh, 12px) clamp(12px, 2vw, 24px)',
+                borderRadius: 'clamp(16px, 2.5vh, 32px)'
+              }}
+            >
+              <span className="animate-pulse" style={{ fontSize: 'clamp(16px, 3.5vh, 34px)' }}>🧠</span> 
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-200 via-fuchsia-200 to-violet-200 whitespace-nowrap">
+                Siêu Trí Tuệ
+              </span>
+            </div>
+            <Link
+              href="/dashboard"
+              prefetch={true}
+              className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg"
+              style={{ 
+                padding: 'clamp(4px, 0.8vh, 10px)',
+                borderRadius: 'clamp(12px, 2vh, 24px)'
+              }}
+            >
+              <Logo size="xs" showText={false} />
+            </Link>
+          </div>
         </div>
 
         {/* Main content */}
-        <div className="flex-1 flex flex-col px-4 pb-4 min-h-0">
-          {/* Difficulty selector */}
-          <div className="flex-shrink-0 bg-white/10 backdrop-blur rounded-2xl p-3 mb-3">
-            <h3 className="text-sm font-bold text-white/80 mb-2 text-center">🎯 Cấp Độ</h3>
-            <div className="flex justify-center gap-2">
-              {[
-                { level: 1, label: 'Tập Sự', emoji: '🐣', color: 'from-green-400 to-emerald-500' },
-                { level: 2, label: 'Chiến Binh', emoji: '⚔️', color: 'from-blue-400 to-cyan-500' },
-                { level: 3, label: 'Dũng Sĩ', emoji: '🛡️', color: 'from-yellow-400 to-orange-500' },
-                { level: 4, label: 'Cao Thủ', emoji: '🔥', color: 'from-orange-400 to-red-500' },
-                { level: 5, label: 'Huyền Thoại', emoji: '👑', color: 'from-purple-400 to-pink-500' }
-              ].map(item => (
+        <div 
+          className="relative z-10 flex-1 flex flex-col overflow-y-auto" 
+          style={{ padding: 'clamp(6px, 1.2vh, 18px) clamp(10px, 2.5vw, 24px)' }}
+        >
+          <div className="max-w-7xl mx-auto w-full flex flex-col">
+            
+            {/* Difficulty selector - Pill shaped */}
+            <div 
+              className="bg-white/5 backdrop-blur-md border border-white/10 flex-shrink-0 shadow-xl"
+              style={{ 
+                padding: 'clamp(8px, 1.5vh, 20px)', 
+                marginBottom: 'clamp(8px, 1.5vh, 20px)',
+                borderRadius: 'clamp(16px, 3vh, 40px)'
+              }}
+            >
+              <div className="flex justify-center flex-wrap" style={{ gap: 'clamp(6px, 1vh, 14px)' }}>
+                {[
+                  { level: 1, label: 'Tập Sự', emoji: '🐣', color: 'from-green-400 to-emerald-500' },
+                  { level: 2, label: 'Chiến Binh', emoji: '⚔️', color: 'from-blue-400 to-cyan-500' },
+                  { level: 3, label: 'Dũng Sĩ', emoji: '🛡️', color: 'from-yellow-400 to-orange-500' },
+                  { level: 4, label: 'Cao Thủ', emoji: '🔥', color: 'from-orange-400 to-red-500' },
+                  { level: 5, label: 'Huyền Thoại', emoji: '👑', color: 'from-purple-400 to-pink-500' }
+                ].map(item => (
+                  <button
+                    key={item.level}
+                    onClick={() => setDifficulty(item.level)}
+                    className={`relative font-bold transition-all transform hover:scale-110 active:scale-95 flex items-center ${
+                      difficulty === item.level
+                        ? `bg-gradient-to-r ${item.color} text-white shadow-lg ring-2 ring-white/50`
+                        : 'bg-white/10 text-white/80 hover:bg-white/20 border border-white/10'
+                    }`}
+                    style={{
+                      padding: 'clamp(6px, 1vh, 14px) clamp(12px, 2vw, 24px)',
+                      borderRadius: 'clamp(20px, 4vh, 50px)',
+                      gap: 'clamp(4px, 0.8vh, 10px)'
+                    }}
+                  >
+                    <span style={{ fontSize: 'clamp(18px, 3.5vh, 38px)' }}>{item.emoji}</span>
+                    <span 
+                      className="font-bold hidden sm:inline"
+                      style={{ fontSize: 'clamp(10px, 1.5vh, 16px)' }}
+                    >
+                      {item.label}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Section title */}
+            <div 
+              className="text-center flex-shrink-0"
+              style={{ marginBottom: 'clamp(8px, 1.5vh, 20px)' }}
+            >
+              <h3 
+                className="font-black text-white/90 flex items-center justify-center"
+                style={{ fontSize: 'clamp(12px, 2vh, 20px)', gap: 'clamp(6px, 1vh, 12px)' }}
+              >
+                <span>🧮</span> Chọn Phép Tính <span>🎯</span>
+              </h3>
+            </div>
+
+            {/* Sub-mode grid - Responsive cards */}
+            <div 
+              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4"
+              style={{ 
+                gap: 'clamp(6px, 1.2vmin, 16px)',
+                paddingBottom: 'clamp(20px, 5vh, 60px)'
+              }}
+            >
+              {mentalSubModes.map((item, index) => (
                 <button
-                  key={item.level}
-                  onClick={() => setDifficulty(item.level)}
-                  className={`relative px-3 py-2 rounded-xl font-bold transition-all transform hover:scale-105 ${
-                    difficulty === item.level
-                      ? `bg-gradient-to-br ${item.color} text-white shadow-lg scale-110 ring-2 ring-white`
-                      : 'bg-white/20 text-white/80 hover:bg-white/30'
+                  key={item.id}
+                  onClick={() => startMentalMode(item.id)}
+                  className={`bg-gradient-to-br ${item.color} text-white flex flex-col items-center justify-center relative overflow-hidden group hover:scale-[1.05] active:scale-95 transition-all duration-300 ${
+                    item.id === 'mixed' ? 'col-span-2 sm:col-span-1 animate-pulse ring-2 ring-yellow-400/50' : ''
                   }`}
+                  style={{
+                    borderRadius: 'clamp(16px, 3vh, 40px)',
+                    padding: 'clamp(8px, 1.5vh, 20px)',
+                    boxShadow: `0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`,
+                    animationDuration: item.id === 'mixed' ? '2s' : undefined
+                  }}
                 >
-                  <div className="text-2xl">{item.emoji}</div>
-                  <div className="text-xs font-semibold mt-1">{item.label}</div>
+                  {/* Animated shine effect */}
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%)',
+                      animation: 'shine 1.5s infinite'
+                    }}
+                  ></div>
+                  
+                  {/* Inner glow */}
+                  <div className="absolute inset-2 bg-white/10 rounded-[inherit] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  
+                  {/* Icon with effects */}
+                  <div 
+                    className="drop-shadow-2xl z-10 group-hover:scale-125 group-hover:rotate-12 transition-all duration-300"
+                    style={{ fontSize: 'clamp(36px, 9vh, 80px)', marginBottom: 'clamp(4px, 1vh, 12px)' }}
+                  >
+                    {item.icon}
+                  </div>
+                  
+                  {/* Title */}
+                  <div 
+                    className="font-black z-10 text-center leading-tight drop-shadow-lg"
+                    style={{ fontSize: 'clamp(12px, 2.5vh, 24px)' }}
+                  >
+                    {item.title}
+                  </div>
+                  
+                  {/* Special badge for mixed */}
+                  {item.id === 'mixed' && (
+                    <div 
+                      className="absolute top-2 right-2 bg-yellow-400 text-yellow-900 font-black rounded-full animate-bounce"
+                      style={{ 
+                        fontSize: 'clamp(7px, 1.2vh, 12px)',
+                        padding: 'clamp(2px, 0.5vh, 8px) clamp(6px, 1vh, 12px)'
+                      }}
+                    >
+                      RANDOM!
+                    </div>
+                  )}
                 </button>
               ))}
             </div>
-          </div>
 
-          {/* Sub-mode selection */}
-          <div className="flex-shrink-0 mb-3">
-            <h3 className="text-sm font-bold text-white/80 mb-2 text-center">🧮 Chọn Phép Tính</h3>
-          </div>
-
-          {/* Sub-mode grid */}
-          <div className="flex-1 grid grid-cols-3 sm:grid-cols-4 gap-3 auto-rows-fr">
-            {mentalSubModes.map(item => (
-              <button
-                key={item.id}
-                onClick={() => startMentalMode(item.id)}
-                className={`bg-gradient-to-br ${item.color} rounded-2xl p-3 shadow-xl hover:shadow-2xl transform hover:scale-[1.02] active:scale-95 transition-all text-white flex flex-col items-center justify-center relative overflow-hidden group ${
-                  item.id === 'mixed' ? 'col-span-3 sm:col-span-1 ring-2 ring-yellow-400' : ''
-                }`}
+            {/* Hint */}
+            <div 
+              className="flex-shrink-0 text-center"
+              style={{ marginTop: 'clamp(8px, 1.5vh, 20px)' }}
+            >
+              <p 
+                className="text-white/60 font-medium"
+                style={{ fontSize: 'clamp(10px, 1.6vh, 16px)' }}
               >
-                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all"></div>
-                <div className="text-4xl sm:text-5xl mb-2 drop-shadow-lg z-10">{item.icon}</div>
-                <div className="text-base sm:text-lg font-black z-10">{item.title}</div>
-                {item.id === 'mixed' && (
-                  <div className="text-xs opacity-80 z-10">Random!</div>
-                )}
-              </button>
-            ))}
-          </div>
-
-          {/* Hint */}
-          <div className="flex-shrink-0 mt-3 text-center">
-            <p className="text-white/60 text-sm">
-              💡 Tính nhẩm không cần bàn tính - Thử thách trí não của bạn!
-            </p>
+                💡 Tính nhẩm không cần bàn tính - Thử thách trí não của bạn!
+              </p>
+            </div>
           </div>
         </div>
+        
+        {/* CSS for shine animation */}
+        <style jsx>{`
+          @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(200%) rotate(45deg); }
+          }
+        `}</style>
       </div>
     );
   }
@@ -1133,32 +1292,39 @@ export default function PracticePage() {
           ))}
         </div>
 
-        {/* Header - EPIC GAMING */}
+        {/* Header - Back trái, Logo phải */}
         <div className="relative z-10 flex-shrink-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-lg shadow-purple-500/30">
-          <div className="max-w-6xl mx-auto px-3 py-2 flex items-center justify-between">
+          <div className="max-w-7xl mx-auto px-3 py-2 flex items-center justify-between">
             <button
               onClick={() => setMode(null)}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-black/30 rounded-lg text-white hover:bg-black/50 hover:scale-105 transition-all text-sm backdrop-blur"
+              className="flex items-center bg-black/30 rounded-lg text-white hover:bg-black/50 hover:scale-105 transition-all backdrop-blur"
+              style={{ padding: 'clamp(6px, 1vh, 12px)' }}
             >
-              <ArrowLeft size={16} />
-              <span className="font-bold">Thoát</span>
+              <ArrowLeft style={{ width: 'clamp(16px, 2.5vh, 24px)', height: 'clamp(16px, 2.5vh, 24px)' }} />
             </button>
             <div className="text-center">
               <h1 className="text-lg sm:text-xl font-black text-white flex items-center gap-2 leading-relaxed">
                 <span className="text-2xl animate-pulse">⚡</span> 
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-white to-cyan-200">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-white to-cyan-200 whitespace-nowrap">
                   TỐC ĐỘ ÁNH SÁNG
                 </span>
                 <span className="text-2xl animate-pulse">💫</span>
               </h1>
               <p className="text-white/80 text-[10px]">Từ Ánh Nến đến Big Bang!</p>
             </div>
-            <div className="w-20"></div>
+            <Link
+              href="/dashboard"
+              prefetch={true}
+              className="flex items-center bg-black/30 rounded-lg text-white hover:bg-black/50 hover:scale-105 transition-all backdrop-blur"
+              style={{ padding: 'clamp(4px, 0.8vh, 10px)' }}
+            >
+              <Logo size="xs" showText={false} />
+            </Link>
           </div>
         </div>
 
         {/* Main content - FLEX GROW to fill space */}
-        <div className="relative z-10 flex-1 flex flex-col max-w-6xl mx-auto px-3 py-3 w-full">
+        <div className="relative z-10 flex-1 flex flex-col max-w-7xl mx-auto px-3 py-3 w-full">
           
           {/* Hero + Steps Row - EPIC */}
           <div className="flex flex-col lg:flex-row items-center justify-center gap-4 mb-3">
@@ -1381,7 +1547,7 @@ export default function PracticePage() {
         <div className="relative z-10 flex-shrink-0">
           <div className={`bg-gradient-to-r ${config?.color || 'from-yellow-500 to-orange-600'}`}>
             <div className="max-w-7xl mx-auto px-2 py-1 flex items-center justify-between">
-              {/* Left: Thoát */}
+              {/* Left: Back */}
               <button 
                 onClick={() => {
                   if (flashTimeoutRef.current) clearTimeout(flashTimeoutRef.current);
@@ -1402,7 +1568,7 @@ export default function PracticePage() {
                 <span>{config?.emoji}</span>
               </div>
               
-              {/* Right: Stars + Progress */}
+              {/* Right: Stats + Logo */}
               <div className="flex items-center gap-2">
                 <div className="bg-black/20 px-2 py-0.5 rounded text-yellow-300 font-bold text-sm flex items-center gap-0.5">
                   ⭐ {sessionStats.stars}
@@ -1410,6 +1576,14 @@ export default function PracticePage() {
                 <div className="bg-black/20 px-2 py-0.5 rounded text-white font-bold text-sm">
                   {currentChallenge}/{TOTAL_CHALLENGES}
                 </div>
+                <Link 
+                  href="/dashboard"
+                  prefetch={true}
+                  className="p-1 bg-black/20 rounded-lg text-white hover:bg-black/30 transition-colors"
+                  title="Về trang chủ"
+                >
+                  <Logo size="xs" showText={false} />
+                </Link>
               </div>
             </div>
           </div>
@@ -1571,7 +1745,7 @@ export default function PracticePage() {
               <div className="mb-2">
                 <div className="text-3xl sm:text-4xl mb-1 animate-bounce">🧠</div>
                 <h2 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-400 animate-pulse leading-relaxed pt-1">TỔNG LÀ BAO NHIÊU?</h2>
-                <p className="text-white/70 text-xs">Nhập kết quả của con</p>
+                <p className="text-white/70 text-xs">Nhập kết quả của bạn</p>
               </div>
               
               {/* Info badges - Compact inline */}
@@ -1662,7 +1836,7 @@ export default function PracticePage() {
                       <h2 className={`text-2xl sm:text-3xl font-black leading-relaxed pt-1 ${streak >= 5 ? 'animate-rainbow bg-clip-text text-transparent' : 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400'}`}>
                         {flashResultMessage?.title || 'XUẤT SẮC!'}
                       </h2>
-                      <p className="text-white/80 text-xs sm:text-sm leading-normal">{flashResultMessage?.msg || 'Con giỏi quá!'}</p>
+                      <p className="text-white/80 text-xs sm:text-sm leading-normal">{flashResultMessage?.msg || 'Bạn giỏi quá!'}</p>
                     </div>
                     {streak >= 3 && (
                       <div className={`bg-gradient-to-r ${streak >= 5 ? 'from-red-500 to-orange-500 animate-pulse' : 'from-orange-500 to-yellow-500'} text-white px-3 py-1.5 rounded-xl font-black text-sm shadow-lg`}>
@@ -1729,7 +1903,7 @@ export default function PracticePage() {
                       <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-500 leading-relaxed pt-1">
                         {flashResultMessage?.title || 'CỐ LÊN NÀO!'}
                       </h2>
-                      <p className="text-white/70 text-[10px] sm:text-xs leading-normal">{flashResultMessage?.msg || 'Tập trung hơn, con sẽ làm được!'}</p>
+                      <p className="text-white/70 text-[10px] sm:text-xs leading-normal">{flashResultMessage?.msg || 'Tập trung hơn, bạn sẽ làm được!'}</p>
                     </div>
                   </div>
                   
@@ -1804,11 +1978,11 @@ export default function PracticePage() {
     
     // Grading system - More detailed
     const getGrade = (acc) => {
-      if (acc >= 100) return { grade: 'S+', color: 'from-rose-400 via-pink-500 to-purple-500', emoji: '💎', text: 'HUYỀN THOẠI!', msg: 'Hoàn hảo 100%! Con là thiên tài!', stars: 5 };
-      if (acc >= 90) return { grade: 'S', color: 'from-yellow-400 to-amber-500', emoji: '👑', text: 'XUẤT SẮC!', msg: 'Con thật tuyệt vời! Gần như hoàn hảo!', stars: 4 };
-      if (acc >= 80) return { grade: 'A', color: 'from-green-400 to-emerald-500', emoji: '🌟', text: 'GIỎI LẮM!', msg: 'Con làm rất tốt! Cố thêm chút nữa!', stars: 3 };
+      if (acc >= 100) return { grade: 'S+', color: 'from-rose-400 via-pink-500 to-purple-500', emoji: '💎', text: 'HUYỀN THOẠI!', msg: 'Hoàn hảo 100%! Bạn là thiên tài!', stars: 5 };
+      if (acc >= 90) return { grade: 'S', color: 'from-yellow-400 to-amber-500', emoji: '👑', text: 'XUẤT SẮC!', msg: 'Bạn thật tuyệt vời! Gần như hoàn hảo!', stars: 4 };
+      if (acc >= 80) return { grade: 'A', color: 'from-green-400 to-emerald-500', emoji: '🌟', text: 'GIỎI LẮM!', msg: 'Bạn làm rất tốt! Cố thêm chút nữa!', stars: 3 };
       if (acc >= 70) return { grade: 'B+', color: 'from-cyan-400 to-blue-500', emoji: '✨', text: 'KHÁ GIỎI!', msg: 'Tiến bộ rõ rệt! Tiếp tục luyện tập!', stars: 3 };
-      if (acc >= 60) return { grade: 'B', color: 'from-blue-400 to-indigo-500', emoji: '⭐', text: 'KHÁ TỐT!', msg: 'Con đang tiến bộ! Cố gắng thêm nhé!', stars: 2 };
+      if (acc >= 60) return { grade: 'B', color: 'from-blue-400 to-indigo-500', emoji: '⭐', text: 'KHÁ TỐT!', msg: 'Bạn đang tiến bộ! Cố gắng thêm nhé!', stars: 2 };
       if (acc >= 50) return { grade: 'C', color: 'from-purple-400 to-violet-500', emoji: '💪', text: 'CỐ GẮNG!', msg: 'Đừng nản lòng! Mỗi lần thử là một bước tiến!', stars: 2 };
       return { grade: 'D', color: 'from-gray-400 to-gray-500', emoji: '🎯', text: 'LUYỆN TẬP!', msg: 'Thử lại nhé! Mỗi lần sai là một bài học!', stars: 1 };
     };
@@ -1824,72 +1998,100 @@ export default function PracticePage() {
     if (sessionStats.stars >= 30) badges.push({ icon: '⭐', label: 'STAR COLLECTOR', color: 'from-yellow-400 to-amber-500' });
     
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4 relative overflow-hidden">
+      <div className="min-h-[100dvh] h-[100dvh] flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-[2vmin] relative overflow-auto">
         {/* Epic Victory particles */}
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(40)].map((_, i) => (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[...Array(15)].map((_, i) => (
             <div
               key={i}
-              className="absolute animate-confetti text-2xl"
+              className="absolute animate-confetti"
               style={{
                 left: `${Math.random() * 100}%`,
+                fontSize: 'clamp(12px, 2vmin, 24px)',
                 animationDelay: `${Math.random() * 2}s`,
                 animationDuration: `${2 + Math.random() * 2}s`
               }}
             >
-              {['⭐', '🌟', '✨', '💫', '🎉', '🎊', '🏆', '💎', '🌈', '❤️'][Math.floor(Math.random() * 10)]}
+              {['⭐', '🌟', '✨'][Math.floor(Math.random() * 3)]}
             </div>
           ))}
         </div>
         
         {/* Glow effects */}
-        <div className={`absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-r ${gradeInfo.color} rounded-full blur-3xl opacity-30 animate-pulse`}></div>
+        <div className={`absolute top-1/4 left-1/2 -translate-x-1/2 w-[30vmin] h-[30vmin] bg-gradient-to-r ${gradeInfo.color} rounded-full blur-3xl opacity-20`}></div>
 
-        <div className="relative z-10 w-full max-w-lg">
+        {/* Main content wrapper - scales with viewport */}
+        <div className="relative z-10 w-full max-w-[min(95vw,500px)] min-w-[280px]">
+          
           {/* Level completed badge */}
-          <div className="text-center mb-4">
-            <div className={`inline-block px-4 py-1 rounded-full bg-gradient-to-r ${config?.color || 'from-yellow-500 to-orange-500'} text-white text-sm font-bold shadow-lg`}>
-              {config?.emoji} {config?.name} - {config?.desc}
+          <div className="text-center mb-[1vmin]">
+            <div 
+              className={`inline-block px-[2vmin] py-[0.5vmin] rounded-full bg-gradient-to-r ${config?.color || 'from-yellow-500 to-orange-500'} text-white font-bold shadow-lg`}
+              style={{ fontSize: 'clamp(10px, 1.5vmin, 14px)' }}
+            >
+              {config?.emoji} {config?.name}
             </div>
           </div>
 
           {/* Giant Grade badge */}
-          <div className="text-center mb-6">
+          <div className="text-center mb-[1.5vmin]">
             <div className="inline-block relative">
-              {/* Glow ring */}
-              <div className={`absolute inset-0 bg-gradient-to-r ${gradeInfo.color} rounded-full blur-2xl opacity-50 animate-pulse scale-150`}></div>
-              
               {/* Main emoji */}
-              <div className="relative text-9xl animate-star-burst filter drop-shadow-2xl">
+              <div 
+                className="relative filter drop-shadow-xl"
+                style={{ fontSize: 'clamp(48px, 12vmin, 120px)' }}
+              >
                 {gradeInfo.emoji}
               </div>
               
               {/* Grade letter */}
-              <div className={`absolute -bottom-4 left-1/2 transform -translate-x-1/2 text-7xl font-black bg-gradient-to-r ${gradeInfo.color} bg-clip-text text-transparent drop-shadow-lg`}>
+              <div 
+                className={`absolute -bottom-[1vmin] left-1/2 transform -translate-x-1/2 font-black bg-gradient-to-r ${gradeInfo.color} bg-clip-text text-transparent`}
+                style={{ fontSize: 'clamp(32px, 8vmin, 80px)' }}
+              >
                 {gradeInfo.grade}
               </div>
             </div>
           </div>
 
           {/* Main card */}
-          <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 text-center shadow-2xl">
+          <div 
+            className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-[2vmin] text-center shadow-2xl"
+            style={{ padding: 'clamp(12px, 3vmin, 28px)' }}
+          >
             {/* Title */}
-            <h1 className="text-4xl font-black text-white mb-1">🏆 HOÀN THÀNH!</h1>
+            <h1 
+              className="font-black text-white leading-relaxed"
+              style={{ fontSize: 'clamp(18px, 4vmin, 36px)', marginBottom: '0.5vmin' }}
+            >
+              🏆 HOÀN THÀNH!
+            </h1>
             
             {/* Grade text */}
-            <div className={`text-4xl font-black bg-gradient-to-r ${gradeInfo.color} bg-clip-text text-transparent mb-2 animate-pulse`}>
+            <div 
+              className={`font-black bg-gradient-to-r ${gradeInfo.color} bg-clip-text text-transparent leading-relaxed`}
+              style={{ fontSize: 'clamp(16px, 3.5vmin, 32px)' }}
+            >
               {gradeInfo.text}
             </div>
-            <p className="text-white/70 text-sm mb-4">{gradeInfo.msg}</p>
+            <p 
+              className="text-white/70"
+              style={{ fontSize: 'clamp(10px, 1.8vmin, 16px)', marginBottom: 'clamp(8px, 2vmin, 20px)' }}
+            >
+              {gradeInfo.msg}
+            </p>
             
             {/* Performance badges */}
             {badges.length > 0 && (
-              <div className="flex justify-center gap-2 mb-4 flex-wrap">
+              <div className="flex justify-center flex-wrap mb-[2vmin]" style={{ gap: 'clamp(4px, 1vmin, 10px)' }}>
                 {badges.map((badge, i) => (
                   <div 
                     key={i} 
-                    className={`bg-gradient-to-r ${badge.color} px-3 py-1 rounded-full text-white text-xs font-bold flex items-center gap-1 shadow-lg animate-bounce`}
-                    style={{ animationDelay: `${i * 0.1}s` }}
+                    className={`bg-gradient-to-r ${badge.color} rounded-full text-white font-bold flex items-center shadow`}
+                    style={{ 
+                      fontSize: 'clamp(8px, 1.3vmin, 12px)',
+                      padding: 'clamp(2px, 0.5vmin, 6px) clamp(6px, 1.5vmin, 14px)'
+                    }}
                   >
                     <span>{badge.icon}</span> {badge.label}
                   </div>
@@ -1897,70 +2099,75 @@ export default function PracticePage() {
               </div>
             )}
             
-            {/* Stats grid - Gaming HUD style */}
-            <div className="grid grid-cols-4 gap-2 mb-4">
-              <div className="bg-yellow-500/20 border border-yellow-400/30 rounded-2xl p-3">
-                <div className="text-2xl mb-0.5">⭐</div>
-                <div className="text-2xl font-black text-yellow-400">{sessionStats.stars}</div>
-                <div className="text-[10px] text-white/50">Sao</div>
-              </div>
-              <div className="bg-green-500/20 border border-green-400/30 rounded-2xl p-3">
-                <div className="text-2xl mb-0.5">✅</div>
-                <div className="text-2xl font-black text-green-400">{sessionStats.correct}</div>
-                <div className="text-[10px] text-white/50">Đúng</div>
-              </div>
-              <div className="bg-red-500/20 border border-red-400/30 rounded-2xl p-3">
-                <div className="text-2xl mb-0.5">❌</div>
-                <div className="text-2xl font-black text-red-400">{sessionStats.total - sessionStats.correct}</div>
-                <div className="text-[10px] text-white/50">Sai</div>
-              </div>
-              <div className="bg-orange-500/20 border border-orange-400/30 rounded-2xl p-3">
-                <div className="text-2xl mb-0.5">🔥</div>
-                <div className="text-2xl font-black text-orange-400">{maxStreak}</div>
-                <div className="text-[10px] text-white/50">Max Combo</div>
-              </div>
+            {/* Stats grid */}
+            <div className="grid grid-cols-4 mb-[2vmin]" style={{ gap: 'clamp(4px, 1vmin, 12px)' }}>
+              {[
+                { icon: '⭐', value: sessionStats.stars, label: 'Sao', color: 'yellow' },
+                { icon: '✅', value: sessionStats.correct, label: 'Đúng', color: 'green' },
+                { icon: '❌', value: sessionStats.total - sessionStats.correct, label: 'Sai', color: 'red' },
+                { icon: '🔥', value: maxStreak, label: 'Combo', color: 'orange' }
+              ].map((stat, i) => (
+                <div 
+                  key={i}
+                  className={`bg-${stat.color}-500/20 border border-${stat.color}-400/30 rounded-[1vmin]`}
+                  style={{ padding: 'clamp(6px, 1.5vmin, 16px)' }}
+                >
+                  <div style={{ fontSize: 'clamp(14px, 2.5vmin, 28px)' }}>{stat.icon}</div>
+                  <div 
+                    className={`font-black text-${stat.color}-400`}
+                    style={{ fontSize: 'clamp(14px, 2.5vmin, 28px)' }}
+                  >
+                    {stat.value}
+                  </div>
+                  <div 
+                    className="text-white/50"
+                    style={{ fontSize: 'clamp(7px, 1.2vmin, 12px)' }}
+                  >
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </div>
 
-            {/* Accuracy meter - Epic style */}
-            <div className="mb-4">
-              <div className="flex justify-between text-sm text-white/60 mb-2">
-                <span className="flex items-center gap-1">🎯 Độ chính xác</span>
-                <span className={`font-black text-lg bg-gradient-to-r ${gradeInfo.color} bg-clip-text text-transparent`}>
+            {/* Accuracy meter */}
+            <div style={{ marginBottom: 'clamp(8px, 2vmin, 20px)' }}>
+              <div className="flex justify-between text-white/60" style={{ fontSize: 'clamp(9px, 1.5vmin, 14px)', marginBottom: 'clamp(2px, 0.5vmin, 6px)' }}>
+                <span>🎯 Độ chính xác</span>
+                <span className={`font-black bg-gradient-to-r ${gradeInfo.color} bg-clip-text text-transparent`} style={{ fontSize: 'clamp(12px, 2vmin, 20px)' }}>
                   {accuracy}%
                 </span>
               </div>
-              <div className="h-4 bg-white/10 rounded-full overflow-hidden relative">
+              <div 
+                className="bg-white/10 rounded-full overflow-hidden relative"
+                style={{ height: 'clamp(8px, 1.5vmin, 16px)' }}
+              >
                 <div 
-                  className={`h-full bg-gradient-to-r ${gradeInfo.color} transition-all duration-1000 relative`}
+                  className={`h-full bg-gradient-to-r ${gradeInfo.color} transition-all duration-1000`}
                   style={{ width: `${accuracy}%` }}
-                >
-                  {/* Shine effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shine"></div>
-                </div>
-                {/* Markers */}
+                />
                 <div className="absolute top-0 left-1/2 w-0.5 h-full bg-white/20"></div>
-                <div className="absolute top-0 left-[90%] w-0.5 h-full bg-yellow-400/50"></div>
-              </div>
-              <div className="flex justify-between text-[10px] text-white/40 mt-1">
-                <span>0%</span>
-                <span>50%</span>
-                <span className="text-yellow-400">S</span>
               </div>
             </div>
             
-            {/* Challenge results visualization */}
-            <div className="mb-4">
-              <div className="text-white/60 text-xs mb-2">📊 Kết quả từng câu:</div>
-              <div className="flex gap-1 justify-center flex-wrap">
+            {/* Challenge results */}
+            <div style={{ marginBottom: 'clamp(8px, 2vmin, 20px)' }}>
+              <div className="text-white/60" style={{ fontSize: 'clamp(8px, 1.3vmin, 12px)', marginBottom: 'clamp(4px, 0.8vmin, 10px)' }}>
+                📊 Kết quả từng câu:
+              </div>
+              <div className="flex justify-center flex-wrap" style={{ gap: 'clamp(2px, 0.5vmin, 6px)' }}>
                 {challengeResults.map((result, i) => (
                   <div 
                     key={i} 
-                    className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold transition-all ${
+                    className={`rounded flex items-center justify-center font-bold ${
                       result === 'correct' 
-                        ? 'bg-gradient-to-br from-green-400 to-emerald-500 text-white shadow-lg shadow-green-500/30' 
-                        : 'bg-gradient-to-br from-red-400 to-red-500 text-white shadow-lg shadow-red-500/30'
+                        ? 'bg-gradient-to-br from-green-400 to-emerald-500 text-white' 
+                        : 'bg-gradient-to-br from-red-400 to-red-500 text-white'
                     }`}
-                    style={{ animationDelay: `${i * 0.05}s` }}
+                    style={{ 
+                      width: 'clamp(20px, 4vmin, 36px)', 
+                      height: 'clamp(20px, 4vmin, 36px)',
+                      fontSize: 'clamp(10px, 1.8vmin, 16px)'
+                    }}
                   >
                     {result === 'correct' ? '✓' : '✗'}
                   </div>
@@ -1969,14 +2176,13 @@ export default function PracticePage() {
             </div>
             
             {/* Rating stars */}
-            <div className="mb-4">
-              <div className="text-white/60 text-xs mb-2">⭐ Đánh giá:</div>
-              <div className="flex justify-center gap-1">
+            <div style={{ marginBottom: 'clamp(8px, 2vmin, 20px)' }}>
+              <div className="flex justify-center" style={{ gap: 'clamp(2px, 0.5vmin, 8px)' }}>
                 {[1, 2, 3, 4, 5].map((star) => (
                   <span 
                     key={star} 
-                    className={`text-3xl transition-all ${star <= gradeInfo.stars ? 'text-yellow-400 animate-wiggle drop-shadow-lg' : 'text-white/20'}`}
-                    style={{ animationDelay: `${star * 0.1}s` }}
+                    className={star <= gradeInfo.stars ? 'text-yellow-400' : 'text-white/20'}
+                    style={{ fontSize: 'clamp(16px, 3vmin, 32px)' }}
                   >
                     {star <= gradeInfo.stars ? '⭐' : '☆'}
                   </span>
@@ -1985,12 +2191,17 @@ export default function PracticePage() {
             </div>
             
             {/* Action buttons */}
-            <div className="flex gap-3">
+            <div className="flex" style={{ gap: 'clamp(6px, 1.5vmin, 16px)' }}>
               <button
                 onClick={restartFlashGame}
-                className="flex-1 py-4 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-black text-lg rounded-2xl hover:brightness-110 hover:scale-[1.02] active:scale-98 transition-all shadow-2xl shadow-green-500/30 flex items-center justify-center gap-2"
+                className="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-[1.5vmin] hover:brightness-110 active:scale-95 transition-all shadow-lg flex items-center justify-center"
+                style={{ 
+                  padding: 'clamp(8px, 2vmin, 16px) clamp(12px, 2vmin, 20px)',
+                  fontSize: 'clamp(12px, 2vmin, 18px)',
+                  gap: 'clamp(4px, 1vmin, 10px)'
+                }}
               >
-                <RotateCcw size={20} /> Chơi lại
+                <RotateCcw style={{ width: 'clamp(14px, 2.5vmin, 22px)', height: 'clamp(14px, 2.5vmin, 22px)' }} /> Chơi lại
               </button>
               <button
                 onClick={() => {
@@ -1998,29 +2209,39 @@ export default function PracticePage() {
                   setFlashPhase('idle');
                   setGameComplete(false);
                 }}
-                className="flex-1 py-4 px-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-black text-lg rounded-2xl hover:brightness-110 hover:scale-[1.02] active:scale-98 transition-all shadow-2xl shadow-blue-500/30 flex items-center justify-center gap-2"
+                className="flex-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold rounded-[1.5vmin] hover:brightness-110 active:scale-95 transition-all shadow-lg flex items-center justify-center"
+                style={{ 
+                  padding: 'clamp(8px, 2vmin, 16px) clamp(12px, 2vmin, 20px)',
+                  fontSize: 'clamp(12px, 2vmin, 18px)',
+                  gap: 'clamp(4px, 1vmin, 10px)'
+                }}
               >
                 📋 Đổi cấp
               </button>
             </div>
             
             {/* Next level suggestion */}
-            {accuracy >= 70 && flashLevel !== 'thanSam' && (
-              <div className="mt-4 p-3 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/30 rounded-2xl">
-                <p className="text-purple-300 text-sm font-medium flex items-center justify-center gap-2">
-                  <span className="animate-bounce">🚀</span>
-                  Sẵn sàng thử thách cao hơn?
-                  <span className="animate-bounce">🚀</span>
+            {accuracy >= 70 && flashLevel !== 'bigBang' && (
+              <div 
+                className="bg-purple-500/20 border border-purple-400/30 rounded-[1vmin]"
+                style={{ marginTop: 'clamp(8px, 1.5vmin, 16px)', padding: 'clamp(6px, 1vmin, 12px)' }}
+              >
+                <p className="text-purple-300 font-medium text-center" style={{ fontSize: 'clamp(9px, 1.5vmin, 14px)' }}>
+                  🚀 Sẵn sàng thử thách cao hơn? 🚀
                 </p>
               </div>
             )}
           </div>
           
           {/* Home button */}
-          <div className="mt-4 text-center">
+          <div className="text-center" style={{ marginTop: 'clamp(8px, 2vmin, 20px)', paddingBottom: 'clamp(8px, 2vmin, 20px)' }}>
             <button
               onClick={() => setMode(null)}
-              className="px-6 py-2 bg-white/10 backdrop-blur border border-white/20 text-white font-medium rounded-xl hover:bg-white/20 transition-all"
+              className="bg-white/10 border border-white/20 text-white font-medium rounded-[1vmin] hover:bg-white/20 transition-all"
+              style={{ 
+                padding: 'clamp(6px, 1.2vmin, 12px) clamp(12px, 2.5vmin, 28px)',
+                fontSize: 'clamp(11px, 1.8vmin, 16px)'
+              }}
             >
               🏠 Về trang luyện tập
             </button>
@@ -2030,158 +2251,325 @@ export default function PracticePage() {
     );
   }
 
-  // Mode selection screen - Game hóa, vừa đủ màn hình
+  // Mode selection screen - EPIC GAMING with dynamic shapes and animations
   if (!mode) {
+    const difficultyLevels = [
+      { level: 1, label: 'Tập Sự', emoji: '🐣', color: 'from-green-400 to-emerald-500', desc: 'Số 1 chữ số' },
+      { level: 2, label: 'Chiến Binh', emoji: '⚔️', color: 'from-blue-400 to-cyan-500', desc: 'Số 2 chữ số' },
+      { level: 3, label: 'Dũng Sĩ', emoji: '🛡️', color: 'from-yellow-400 to-orange-500', desc: 'Số 3 chữ số' },
+      { level: 4, label: 'Cao Thủ', emoji: '🔥', color: 'from-orange-400 to-red-500', desc: 'Số 4 chữ số' },
+      { level: 5, label: 'Huyền Thoại', emoji: '👑', color: 'from-purple-400 to-pink-500', desc: 'Số 5 chữ số' }
+    ];
+    
+    const gameModes = [
+      { mode: 'addition', title: 'Siêu Cộng', icon: '🌟', symbol: '+', color: 'from-emerald-400 via-green-500 to-teal-500', desc: 'Gom sao!', tier: 'free' },
+      { mode: 'subtraction', title: 'Siêu Trừ', icon: '👾', symbol: '-', color: 'from-blue-400 via-cyan-500 to-sky-500', desc: 'Diệt quái!', tier: 'free' },
+      { mode: 'addSubMixed', title: 'Cộng Trừ Mix', icon: '⚔️', symbol: '±', color: 'from-teal-400 via-emerald-500 to-green-500', desc: 'Hỗn chiến!', tier: 'basic' },
+      { mode: 'multiplication', title: 'Siêu Nhân', icon: '✨', symbol: '×', color: 'from-purple-400 via-pink-500 to-rose-500', desc: 'Nhân bội!', tier: 'advanced' },
+      { mode: 'division', title: 'Siêu Chia', icon: '🍕', symbol: '÷', color: 'from-rose-400 via-red-500 to-orange-500', desc: 'Chia đều!', tier: 'advanced' },
+      { mode: 'mulDiv', title: 'Nhân Chia Mix', icon: '🎩', symbol: '×÷', color: 'from-amber-400 via-orange-500 to-yellow-500', desc: 'Phép thuật!', tier: 'advanced' },
+      { mode: 'mixed', title: 'Tứ Phép Thần', icon: '👑', symbol: '∞', color: 'from-indigo-500 via-purple-600 to-violet-600', desc: 'Boss cuối!', tier: 'advanced' },
+      { mode: 'mentalMath', title: 'Siêu Trí Tuệ', icon: '🧠', symbol: '💭', color: 'from-violet-500 via-fuchsia-600 to-pink-600', desc: 'Không bàn tính!', tier: 'advanced', special: true },
+      { mode: 'flashAnzan', title: 'Tia Chớp', icon: '⚡', symbol: '💫', color: 'from-yellow-400 via-orange-500 to-red-500', desc: 'Flash Anzan!', tier: 'advanced', special: true },
+    ];
+
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          {/* Header - compact */}
-          <div className="flex items-center justify-between mb-4">
+      <div className="w-[100vw] min-h-[100dvh] bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 flex flex-col overflow-x-hidden relative">
+        {/* Animated floating shapes background */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Floating bubbles */}
+          {[...Array(15)].map((_, i) => (
+            <div
+              key={`bubble-${i}`}
+              className="absolute rounded-full bg-gradient-to-br from-white/10 to-white/5 animate-bounce"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                width: `clamp(20px, ${3 + Math.random() * 5}vh, 80px)`,
+                height: `clamp(20px, ${3 + Math.random() * 5}vh, 80px)`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${4 + Math.random() * 4}s`
+              }}
+            />
+          ))}
+          {/* Floating emojis */}
+          {[...Array(12)].map((_, i) => (
+            <div
+              key={`emoji-${i}`}
+              className="absolute animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                fontSize: 'clamp(12px, 2.5vh, 32px)',
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${2 + Math.random() * 3}s`,
+                opacity: 0.4,
+                transform: `rotate(${Math.random() * 360}deg)`
+              }}
+            >
+              {['⭐', '✨', '💫', '🌟', '⚡', '🔥', '💎', '🎮'][Math.floor(Math.random() * 8)]}
+            </div>
+          ))}
+          {/* Glowing orbs */}
+          <div className="absolute top-1/4 left-1/4 w-[30vh] h-[30vh] bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-[25vh] h-[25vh] bg-pink-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-1/2 right-1/3 w-[20vh] h-[20vh] bg-cyan-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        </div>
+
+        {/* Header - Back trái, Logo phải */}
+        <div 
+          className="relative z-10 flex-shrink-0"
+          style={{ padding: 'clamp(6px, 1.2vh, 14px) clamp(10px, 2vw, 24px)' }}
+        >
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
             <Link
               href="/dashboard"
               prefetch={true}
-              className="flex items-center gap-2 px-3 py-2 bg-white/10 backdrop-blur rounded-xl text-white hover:bg-white/20 transition-all"
+              className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg shadow-purple-500/20"
+              style={{ 
+                padding: 'clamp(6px, 1vh, 12px)',
+                borderRadius: 'clamp(10px, 1.5vh, 20px)'
+              }}
             >
-              <Home size={18} />
-              <span className="font-medium text-sm">Trang chủ</span>
+              <ArrowLeft style={{ width: 'clamp(16px, 2.5vh, 24px)', height: 'clamp(16px, 2.5vh, 24px)' }} />
             </Link>
-            <h1 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
-              <span className="text-2xl">⚔️</span> Đấu Trường Luyện Tập
-            </h1>
-            <div className="w-20"></div>
+            <div 
+              className="font-black text-white flex items-center bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-md border border-white/20 shadow-lg shadow-pink-500/20"
+              style={{ 
+                fontSize: 'clamp(13px, 2.8vh, 26px)', 
+                gap: 'clamp(6px, 1vw, 14px)',
+                padding: 'clamp(6px, 1vh, 12px) clamp(12px, 2vw, 24px)',
+                borderRadius: 'clamp(16px, 2.5vh, 32px)'
+              }}
+            >
+              <span className="animate-bounce" style={{ fontSize: 'clamp(16px, 3.5vh, 34px)' }}>🎮</span> 
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-pink-200 to-cyan-200 whitespace-nowrap">
+                Luyện Tập
+              </span>
+            </div>
+            <Link
+              href="/dashboard"
+              prefetch={true}
+              className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg shadow-purple-500/20"
+              style={{ 
+                padding: 'clamp(4px, 0.8vh, 10px)',
+                borderRadius: 'clamp(12px, 2vh, 24px)'
+              }}
+            >
+              <Logo size="xs" showText={false} />
+            </Link>
           </div>
+        </div>
 
-          {/* Difficulty selector with descriptions */}
-          <div className="bg-white/10 backdrop-blur rounded-2xl p-4 mb-4">
-            <h3 className="text-sm font-bold text-white/80 mb-3 text-center">🎯 Chọn Cấp Độ</h3>
-            <div className="flex justify-center gap-2 sm:gap-3 flex-wrap">
-              {[
-                { level: 1, label: 'Tập Sự', emoji: '🐣', color: 'from-green-400 to-emerald-500', desc: 'Số 1-9, 2 số hạng' },
-                { level: 2, label: 'Chiến Binh', emoji: '⚔️', color: 'from-blue-400 to-cyan-500', desc: 'Số 1-50, 3 số hạng' },
-                { level: 3, label: 'Dũng Sĩ', emoji: '🛡️', color: 'from-yellow-400 to-orange-500', desc: 'Số 1-100, 4 số hạng' },
-                { level: 4, label: 'Cao Thủ', emoji: '🔥', color: 'from-orange-400 to-red-500', desc: 'Số 1-500, 5 số hạng' },
-                { level: 5, label: 'Huyền Thoại', emoji: '👑', color: 'from-purple-400 to-pink-500', desc: 'Số 1-999, 6 số hạng' }
-              ].map(item => {
-                // Kiểm tra cấp độ có bị khóa không
+        {/* Main content */}
+        <div 
+          className="relative z-10 flex-1 flex flex-col overflow-y-auto" 
+          style={{ padding: 'clamp(6px, 1.2vh, 18px) clamp(10px, 2.5vw, 24px)' }}
+        >
+          <div className="max-w-7xl mx-auto w-full flex flex-col">
+            
+            {/* Difficulty selector - Pill shaped buttons */}
+            <div 
+              className="bg-white/5 backdrop-blur-md border border-white/10 flex-shrink-0 shadow-xl"
+              style={{ 
+                padding: 'clamp(8px, 1.5vh, 20px)', 
+                marginBottom: 'clamp(8px, 1.5vh, 20px)',
+                borderRadius: 'clamp(16px, 3vh, 40px)'
+              }}
+            >
+              <div className="flex justify-center flex-wrap" style={{ gap: 'clamp(6px, 1vh, 14px)' }}>
+                {difficultyLevels.map(item => {
+                  const maxDifficulty = userTier === 'free' ? 2 : userTier === 'basic' ? 3 : 5;
+                  const isDifficultyLocked = item.level > maxDifficulty;
+                  const isSelected = difficulty === item.level;
+                  
+                  return (
+                    <button
+                      key={item.level}
+                      onClick={() => {
+                        if (isDifficultyLocked) {
+                          toast.warning(`Cấp độ ${item.level} cần nâng cấp gói để mở khóa`);
+                          router.push('/pricing');
+                          return;
+                        }
+                        setDifficulty(item.level);
+                      }}
+                      className={`relative font-bold transition-all transform hover:scale-110 active:scale-95 flex items-center ${
+                        isSelected
+                          ? `bg-gradient-to-r ${item.color} text-white shadow-lg shadow-${item.color.split('-')[1]}-500/50 ring-2 ring-white/50`
+                          : 'bg-white/10 text-white/80 hover:bg-white/20 border border-white/10'
+                      }`}
+                      style={{
+                        padding: 'clamp(6px, 1vh, 14px) clamp(12px, 2vw, 24px)',
+                        borderRadius: 'clamp(20px, 4vh, 50px)',
+                        gap: 'clamp(4px, 0.8vh, 10px)'
+                      }}
+                    >
+                      {isDifficultyLocked && (
+                        <div 
+                          className="absolute bg-black/70 rounded-full flex items-center justify-center z-20 border border-white/30"
+                          style={{ 
+                            top: '-5px', right: '-5px',
+                            width: 'clamp(16px, 2.5vh, 24px)', 
+                            height: 'clamp(16px, 2.5vh, 24px)',
+                            fontSize: 'clamp(8px, 1.2vh, 12px)'
+                          }}
+                        >
+                          🔒
+                        </div>
+                      )}
+                      <span 
+                        className={isDifficultyLocked ? 'opacity-50' : ''}
+                        style={{ fontSize: 'clamp(18px, 3.5vh, 38px)' }}
+                      >
+                        {item.emoji}
+                      </span>
+                      <span 
+                        className={`font-bold hidden sm:inline ${isDifficultyLocked ? 'opacity-50' : ''}`}
+                        style={{ fontSize: 'clamp(10px, 1.5vh, 16px)' }}
+                      >
+                        {isDifficultyLocked ? '???' : item.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Mode grid - Responsive cards */}
+            <div 
+              className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5"
+              style={{ 
+                gap: 'clamp(6px, 1.2vmin, 16px)',
+                paddingBottom: 'clamp(20px, 5vh, 60px)'
+              }}
+            >
+              {gameModes.map((item, index) => {
+                const tierLevels = { free: 0, basic: 1, advanced: 2, vip: 3 };
+                const userTierLevel = tierLevels[userTier] || 0;
+                const requiredTierLevel = tierLevels[item.tier] || 0;
+                const isLocked = userTierLevel < requiredTierLevel;
                 const maxDifficulty = userTier === 'free' ? 2 : userTier === 'basic' ? 3 : 5;
-                const isDifficultyLocked = item.level > maxDifficulty;
+                const isDifficultyLocked = difficulty > maxDifficulty && !isLocked;
                 
                 return (
                   <button
-                    key={item.level}
+                    key={item.mode}
                     onClick={() => {
-                      if (isDifficultyLocked) {
-                        toast.warning(`Cấp độ ${item.level} cần nâng cấp gói để mở khóa`);
+                      if (isLocked) {
+                        toast.warning(`Cần nâng cấp lên gói ${item.tier === 'basic' ? 'Cơ Bản' : 'Nâng Cao'} để mở khóa`);
                         router.push('/pricing');
                         return;
                       }
-                      setDifficulty(item.level);
+                      if (isDifficultyLocked) {
+                        toast.warning(`Cấp độ ${difficulty} cần nâng cấp gói để mở khóa`);
+                        router.push('/pricing');
+                        return;
+                      }
+                      startMode(item.mode);
                     }}
-                    className={`relative px-3 py-2 rounded-xl font-bold transition-all transform hover:scale-105 min-w-[80px] ${
-                      difficulty === item.level
-                        ? `bg-gradient-to-br ${item.color} text-white shadow-lg scale-110 ring-2 ring-white`
-                        : 'bg-white/20 text-white/80 hover:bg-white/30'
+                    className={`bg-gradient-to-br ${item.color} text-white flex flex-col items-center justify-center relative overflow-hidden group hover:scale-[1.05] active:scale-95 transition-all duration-300 ${
+                      item.special ? 'animate-pulse ring-2 ring-yellow-400/50' : ''
                     }`}
+                    style={{
+                      borderRadius: 'clamp(16px, 3vh, 40px)',
+                      padding: 'clamp(8px, 1.5vh, 20px)',
+                      boxShadow: `0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`,
+                      animationDuration: item.special ? '2s' : undefined
+                    }}
                   >
+                    {/* Animated shine effect */}
+                    <div 
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%)',
+                        animation: 'shine 1.5s infinite'
+                      }}
+                    ></div>
+                    
+                    {/* Inner glow */}
+                    <div className="absolute inset-2 bg-white/10 rounded-[inherit] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    
                     {/* Lock icon */}
-                    {isDifficultyLocked && (
-                      <div className="absolute -top-1 -left-1 bg-black/60 rounded-full w-5 h-5 flex items-center justify-center z-20">
-                        <span className="text-white text-xs">🔒</span>
+                    {isLocked && (
+                      <div 
+                        className="absolute bg-black/60 backdrop-blur rounded-full flex items-center justify-center z-20 border-2 border-white/30"
+                        style={{ 
+                          top: 'clamp(6px, 1vh, 14px)', 
+                          left: 'clamp(6px, 1vh, 14px)',
+                          width: 'clamp(20px, 3.5vh, 36px)', 
+                          height: 'clamp(20px, 3.5vh, 36px)',
+                          fontSize: 'clamp(10px, 1.8vh, 18px)'
+                        }}
+                      >
+                        🔒
                       </div>
                     )}
-                    <div className={`text-2xl ${isDifficultyLocked ? 'opacity-50' : ''}`}>{item.emoji}</div>
-                    <div className={`text-xs font-semibold mt-1 ${isDifficultyLocked ? 'opacity-50' : ''}`}>
-                      {isDifficultyLocked ? 'Khóa' : item.label}
+                    
+                    {/* Symbol badge - floating */}
+                    <div 
+                      className="absolute bg-white/20 backdrop-blur rounded-full flex items-center justify-center font-black border border-white/30 group-hover:scale-110 transition-transform"
+                      style={{ 
+                        top: 'clamp(6px, 1vh, 14px)', 
+                        right: 'clamp(6px, 1vh, 14px)',
+                        width: 'clamp(24px, 4vh, 44px)', 
+                        height: 'clamp(24px, 4vh, 44px)',
+                        fontSize: 'clamp(10px, 1.8vh, 18px)'
+                      }}
+                    >
+                      {item.symbol}
                     </div>
+                    
+                    {/* Icon with bounce */}
+                    <div 
+                      className={`drop-shadow-2xl z-10 group-hover:scale-125 group-hover:rotate-12 transition-all duration-300 ${isLocked ? 'opacity-50 grayscale' : ''}`}
+                      style={{ fontSize: 'clamp(32px, 8vh, 72px)', marginBottom: 'clamp(4px, 1vh, 12px)' }}
+                    >
+                      {item.icon}
+                    </div>
+                    
+                    {/* Title with gradient text */}
+                    <div 
+                      className={`font-black z-10 text-center leading-tight drop-shadow-lg ${isLocked ? 'opacity-50' : ''}`}
+                      style={{ fontSize: 'clamp(11px, 2.2vh, 22px)' }}
+                    >
+                      {item.title}
+                    </div>
+                    
+                    {/* Desc */}
+                    <div 
+                      className={`z-10 text-center font-medium ${isLocked ? 'opacity-30' : 'opacity-90'}`}
+                      style={{ fontSize: 'clamp(8px, 1.5vh, 14px)', marginTop: 'clamp(2px, 0.5vh, 6px)' }}
+                    >
+                      {isLocked ? '🔐 Mở khóa' : item.desc}
+                    </div>
+                    
+                    {/* Special badge */}
+                    {item.special && !isLocked && (
+                      <div 
+                        className="absolute bottom-1 right-1 bg-yellow-400 text-yellow-900 font-black rounded-full animate-bounce"
+                        style={{ 
+                          fontSize: 'clamp(6px, 1vh, 10px)',
+                          padding: 'clamp(2px, 0.4vh, 6px) clamp(4px, 0.8vh, 10px)'
+                        }}
+                      >
+                        HOT
+                      </div>
+                    )}
                   </button>
                 );
               })}
             </div>
-            {/* Mô tả cấp độ đang chọn */}
-            <div className="mt-3 text-center">
-              <p className="text-white/70 text-sm">
-                {difficulty === 1 && '🐣 Tập Sự: Luyện tập với số có 1 chữ số'}
-                {difficulty === 2 && '⚔️ Chiến Binh: Luyện tập với số có 2 chữ số'}
-                {difficulty === 3 && '🛡️ Dũng Sĩ: Luyện tập với số có 3 chữ số'}
-                {difficulty === 4 && '🔥 Cao Thủ: Luyện tập với số có 4 chữ số'}
-                {difficulty === 5 && '👑 Huyền Thoại: Luyện tập với số có 5 chữ số'}
-              </p>
-            </div>
-          </div>
-
-          {/* Mode grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {[
-              { mode: 'addition', title: 'Siêu Cộng', icon: '🌟', symbol: '+', color: 'from-emerald-400 to-green-500', desc: 'Gom sao!', tier: 'free' },
-              { mode: 'subtraction', title: 'Siêu Trừ', icon: '👾', symbol: '-', color: 'from-blue-400 to-cyan-500', desc: 'Diệt quái!', tier: 'free' },
-              { mode: 'addSubMixed', title: 'Cộng Trừ Mix', icon: '⚔️', symbol: '±', color: 'from-teal-400 to-emerald-500', desc: 'Hỗn chiến!', tier: 'basic' },
-              { mode: 'multiplication', title: 'Siêu Nhân', icon: '✨', symbol: '×', color: 'from-purple-400 to-pink-500', desc: 'Nhân bội!', tier: 'advanced' },
-              { mode: 'division', title: 'Siêu Chia', icon: '🍕', symbol: '÷', color: 'from-rose-400 to-red-500', desc: 'Chia đều!', tier: 'advanced' },
-              { mode: 'mulDiv', title: 'Nhân Chia Mix', icon: '🎩', symbol: '×÷', color: 'from-amber-400 to-orange-500', desc: 'Phép thuật!', tier: 'advanced' },
-              { mode: 'mixed', title: 'Tứ Phép Thần', icon: '👑', symbol: '∞', color: 'from-indigo-500 to-purple-600', desc: 'Boss cuối!', tier: 'advanced' },
-              { mode: 'mentalMath', title: 'Siêu Trí Tuệ', icon: '🧠', symbol: '💭', color: 'from-violet-500 to-fuchsia-600', desc: 'Không bàn tính!', tier: 'advanced', special: true },
-              { mode: 'flashAnzan', title: 'Tia Chớp', icon: '⚡', symbol: '💫', color: 'from-yellow-500 to-orange-600', desc: 'Flash Anzan!', tier: 'advanced', special: true },
-            ].map(item => {
-              // Kiểm tra mode có bị khóa không
-              const tierLevels = { free: 0, basic: 1, advanced: 2, vip: 3 };
-              const userTierLevel = tierLevels[userTier] || 0;
-              const requiredTierLevel = tierLevels[item.tier] || 0;
-              const isLocked = userTierLevel < requiredTierLevel;
-              
-              // Kiểm tra cấp độ có bị khóa không (dựa trên tier và difficulty)
-              const maxDifficulty = userTier === 'free' ? 2 : userTier === 'basic' ? 3 : 5;
-              const isDifficultyLocked = difficulty > maxDifficulty && !isLocked;
-              
-              return (
-                <button
-                  key={item.mode}
-                  onClick={() => {
-                    if (isLocked) {
-                      toast.warning(`Cần nâng cấp lên gói ${item.tier === 'basic' ? 'Cơ Bản' : 'Nâng Cao'} để mở khóa`);
-                      router.push('/pricing');
-                      return;
-                    }
-                    if (isDifficultyLocked) {
-                      toast.warning(`Cấp độ ${difficulty} cần nâng cấp gói để mở khóa`);
-                      router.push('/pricing');
-                      return;
-                    }
-                    startMode(item.mode);
-                  }}
-                  className={`bg-gradient-to-br ${item.color} rounded-2xl p-4 sm:p-6 shadow-xl hover:shadow-2xl transform hover:scale-[1.02] active:scale-95 transition-all text-white flex flex-col items-center justify-center relative overflow-hidden group min-h-[140px] ${
-                    item.special ? 'ring-2 ring-yellow-400 ring-offset-2 ring-offset-purple-900' : ''
-                  }`}
-                >
-                  {/* Lock icon */}
-                  {isLocked && (
-                    <div className="absolute top-2 left-2 bg-black/40 rounded-full w-7 h-7 flex items-center justify-center z-20">
-                      <span className="text-white text-sm">🔒</span>
-                    </div>
-                  )}
-                  
-                  {/* Glow effect on hover */}
-                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all"></div>
-                  
-                  {/* Icon */}
-                  <div className={`text-4xl sm:text-5xl mb-2 drop-shadow-lg z-10 ${isLocked ? 'opacity-60' : ''}`}>{item.icon}</div>
-                  
-                  {/* Symbol badge */}
-                  <div className="absolute top-2 right-2 bg-white/30 rounded-full w-7 h-7 flex items-center justify-center font-bold text-sm">
-                    {item.symbol}
-                  </div>
-                
-                  {/* Title */}
-                  <div className={`text-base sm:text-lg font-black z-10 ${isLocked ? 'opacity-60' : ''}`}>{item.title}</div>
-                
-                  {/* Desc */}
-                  <div className={`text-xs z-10 ${isLocked ? 'opacity-50' : 'opacity-80'}`}>
-                    {isLocked ? 'Cần nâng cấp' : item.desc}
-                  </div>
-                </button>
-              );
-            })}
           </div>
         </div>
+        
+        {/* CSS for shine animation */}
+        <style jsx>{`
+          @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(200%) rotate(45deg); }
+          }
+        `}</style>
       </div>
     );
   }
@@ -2353,30 +2741,20 @@ export default function PracticePage() {
       {/* Top bar - Compact Game style */}
       <div className={`bg-gradient-to-r ${currentModeInfo?.color || 'from-violet-500 to-purple-600'} shadow-lg flex-shrink-0`}>
         <div className="max-w-6xl mx-auto px-3 py-2 flex items-center gap-3">
-          {/* Left: Navigation */}
-          <div className="flex items-center gap-1 flex-shrink-0">
-            <Link 
-              href="/dashboard"
-              prefetch={true}
-              className="p-1.5 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors"
-              title="Về trang chủ"
-            >
-              <Home size={16} />
-            </Link>
-            <button 
-              onClick={() => {
-                if (isMentalMode) {
-                  setMentalSubMode(null); // Về màn chọn sub-mode
-                } else {
-                  setMode(null); // Về màn chọn mode
-                }
-              }} 
-              className="p-1.5 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors"
-              title="Chọn chế độ khác"
-            >
-              <ArrowLeft size={16} />
-            </button>
-          </div>
+          {/* Left: Back */}
+          <button 
+            onClick={() => {
+              if (isMentalMode) {
+                setMentalSubMode(null); // Về màn chọn sub-mode
+              } else {
+                setMode(null); // Về màn chọn mode
+              }
+            }} 
+            className="p-1.5 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors flex-shrink-0"
+            title="Quay lại"
+          >
+            <ArrowLeft size={16} />
+          </button>
           
           {/* Center: Progress bar with status */}
           <div className="flex-1 flex items-center gap-2">
@@ -2438,6 +2816,15 @@ export default function PracticePage() {
                 🔥{streak}
               </div>
             )}
+            {/* Right: Logo */}
+            <Link 
+              href="/dashboard"
+              prefetch={true}
+              className="p-1 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors"
+              title="Về trang chủ"
+            >
+              <Logo size="xs" showText={false} />
+            </Link>
           </div>
         </div>
       </div>

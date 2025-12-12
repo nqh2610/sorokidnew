@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
 import { ArrowLeft, Trophy, Clock, Home, RotateCcw, Medal, Users, TrendingUp } from 'lucide-react';
 import { useToast } from '@/components/Toast/ToastContext';
+import Logo from '@/components/Logo/Logo';
 import SorobanBoard from '@/components/Soroban/SorobanBoard';
 import { calculateCompeteStars } from '@/lib/gamification';
 
@@ -99,6 +100,7 @@ const modeInfo = {
   mulDiv: { title: 'Nhân Chia Mix', subtitle: 'Phép thuật!', icon: '🎩', symbol: '×÷', color: 'from-fuchsia-400 to-purple-500' },
   mixed: { title: 'Tứ Phép Thần', subtitle: 'Boss cuối!', icon: '👑', symbol: '∞', color: 'from-indigo-400 to-purple-500' },
   mentalMath: { title: 'Siêu Trí Tuệ', subtitle: 'Không bàn tính!', icon: '🧠', symbol: '💭', color: 'from-violet-400 to-fuchsia-500', isMental: true },
+  flashAnzan: { title: 'Tia Chớp', subtitle: 'Tốc độ ánh sáng!', icon: '⚡', symbol: '💫', color: 'from-yellow-400 to-orange-500', isFlash: true },
 };
 
 // Danh sách tên đấu trường theo mode và cấp độ
@@ -159,7 +161,104 @@ const arenaNames = {
     4: { title: 'Einstein Nhí', icon: '👨‍🔬' },
     5: { title: 'Thiên Tài Vũ Trụ', icon: '🚀' },
   },
+  flashAnzan: {
+    1: { title: 'Ánh Nến', icon: '🕯️' },
+    2: { title: 'Ánh Trăng', icon: '🌙' },
+    3: { title: 'Tia Chớp', icon: '⚡' },
+    4: { title: 'Sao Băng', icon: '☄️' },
+    5: { title: 'BIG BANG', icon: '💥' },
+  },
 };
+
+// Cấu hình Flash Anzan levels cho thi đấu - giống practice
+const flashLevelsCompete = [
+  { 
+    id: 'anhNen', 
+    level: 1,
+    name: 'Ánh Nến', 
+    subtitle: 'Lung linh dịu dàng',
+    emoji: '🕯️', 
+    color: 'from-amber-400 to-orange-500', 
+    glowColor: 'shadow-amber-400/50',
+    numbers: [3, 4], 
+    digits: 1, 
+    speed: 2, 
+    stars: 2, 
+    tagline: 'Khởi đầu ấm áp',
+    rank: '⭐',
+    rankLabel: 'Tập Sự',
+    bonusMultiplier: 1,
+    additionOnly: true
+  },
+  { 
+    id: 'anhTrang', 
+    level: 2,
+    name: 'Ánh Trăng', 
+    subtitle: 'Huyền ảo đêm thanh',
+    emoji: '🌙', 
+    color: 'from-slate-300 to-blue-400', 
+    glowColor: 'shadow-blue-300/50',
+    numbers: [5, 6], 
+    digits: 1, 
+    speed: 1.5, 
+    stars: 4, 
+    tagline: 'Bước tiếp vững chắc',
+    rank: '⭐⭐',
+    rankLabel: 'Chiến Binh',
+    bonusMultiplier: 1.5
+  },
+  { 
+    id: 'tiaChop', 
+    level: 3,
+    name: 'Tia Chớp', 
+    subtitle: 'Lóe sáng chớp nhoáng',
+    emoji: '⚡', 
+    color: 'from-yellow-400 to-amber-500', 
+    glowColor: 'shadow-yellow-400/50',
+    numbers: [5, 6], 
+    digits: 2, 
+    speed: 2, 
+    stars: 6, 
+    tagline: 'Nhanh như chớp!',
+    rank: '⭐⭐⭐',
+    rankLabel: 'Dũng Sĩ',
+    bonusMultiplier: 2
+  },
+  { 
+    id: 'saoBang', 
+    level: 4,
+    name: 'Sao Băng', 
+    subtitle: 'Vụt sáng khoảnh khắc',
+    emoji: '☄️', 
+    color: 'from-purple-500 to-pink-600', 
+    glowColor: 'shadow-purple-400/50',
+    numbers: [8, 9], 
+    digits: 2, 
+    speed: 1.5, 
+    stars: 8, 
+    tagline: '🔥 SIÊU TỐC 🔥',
+    rank: '⭐⭐⭐⭐',
+    rankLabel: 'Huyền Thoại',
+    bonusMultiplier: 3
+  },
+  { 
+    id: 'bigBang', 
+    level: 5,
+    name: 'BIG BANG', 
+    subtitle: 'Vụ nổ khai sinh vũ trụ',
+    emoji: '💥', 
+    color: 'from-red-500 via-orange-500 to-yellow-400', 
+    glowColor: 'shadow-red-500/50',
+    numbers: [5, 6], 
+    digits: 3, 
+    speed: 2, 
+    stars: 10, 
+    tagline: '💥 VỤ NỔ VŨ TRỤ 💥',
+    rank: '👑',
+    rankLabel: 'THẦN',
+    bonusMultiplier: 5
+  },
+];
 
 // Tạo arena từ mode, difficulty và số câu
 const createArena = (mode, difficulty, questionCount = 10) => {
@@ -663,81 +762,107 @@ export default function CompetePage() {
   };
 
   const isMentalMode = selectedArena?.mode === 'mentalMath';
+  const isFlashMode = selectedArena?.mode === 'flashAnzan';
   const currentModeInfo = selectedArena ? modeInfo[selectedArena.mode] : null;
 
-  // Màn hình chọn MODE
+  // Màn hình chọn MODE - EPIC GAMING STYLE
   if (!selectedMode) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 pb-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="px-4 py-3 flex items-center justify-between">
-            <Link
-              href="/dashboard"
-              prefetch={true}
-              className="flex items-center gap-2 px-3 py-2 bg-white/10 backdrop-blur rounded-xl text-white hover:bg-white/20 transition-all"
+      <div className="min-h-[100dvh] bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 overflow-x-hidden relative">
+        {/* Animated Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Floating bubbles */}
+          {[...Array(15)].map((_, i) => (
+            <div
+              key={`bubble-${i}`}
+              className="absolute rounded-full bg-gradient-to-br from-purple-500/10 to-pink-500/10 animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                width: `clamp(20px, ${3 + Math.random() * 5}vh, 80px)`,
+                height: `clamp(20px, ${3 + Math.random() * 5}vh, 80px)`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${3 + Math.random() * 4}s`
+              }}
+            />
+          ))}
+          {/* Floating emojis */}
+          {[...Array(10)].map((_, i) => (
+            <div
+              key={`emoji-${i}`}
+              className="absolute animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                fontSize: 'clamp(12px, 2.5vh, 32px)',
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${2 + Math.random() * 3}s`,
+                opacity: 0.4
+              }}
             >
-              <Home size={18} />
-              <span className="font-medium text-sm">Trang chủ</span>
-            </Link>
-            <h1 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
-              <span className="text-2xl">🏆</span> Đấu Trường Thi Đấu
-            </h1>
-            <div className="w-20"></div>
+              {['🏆', '⭐', '💫', '🔥', '⚡', '💎', '🎮', '👑'][Math.floor(Math.random() * 8)]}
+            </div>
+          ))}
+          {/* Glowing orbs */}
+          <div className="absolute top-1/4 left-1/4 w-[30vh] h-[30vh] bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-[25vh] h-[25vh] bg-pink-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-1/2 right-1/3 w-[20vh] h-[20vh] bg-cyan-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Header - Back trái, Logo phải */}
+          <div 
+            className="flex-shrink-0"
+            style={{ padding: 'clamp(8px, 1.5vh, 16px) clamp(12px, 2.5vw, 28px)' }}
+          >
+            <div className="flex items-center justify-between">
+              <Link
+                href="/dashboard"
+                prefetch={true}
+                className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg shadow-purple-500/20"
+                style={{ 
+                  padding: 'clamp(6px, 1vh, 12px)',
+                  borderRadius: 'clamp(10px, 1.5vh, 20px)'
+                }}
+              >
+                <ArrowLeft style={{ width: 'clamp(16px, 2.5vh, 24px)', height: 'clamp(16px, 2.5vh, 24px)' }} />
+              </Link>
+              <div 
+                className="font-black text-white flex items-center bg-gradient-to-r from-amber-500/30 to-orange-500/30 backdrop-blur-md border border-white/20 shadow-lg shadow-orange-500/20"
+                style={{ 
+                  fontSize: 'clamp(13px, 2.8vh, 26px)', 
+                  gap: 'clamp(6px, 1vw, 14px)',
+                  padding: 'clamp(6px, 1vh, 12px) clamp(12px, 2vw, 24px)',
+                  borderRadius: 'clamp(16px, 2.5vh, 32px)'
+                }}
+              >
+                <span className="animate-bounce" style={{ fontSize: 'clamp(16px, 3.5vh, 34px)' }}>🏆</span> 
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-amber-200 to-orange-200 whitespace-nowrap">
+                  Thi Đấu
+                </span>
+              </div>
+              <Link
+                href="/dashboard"
+                prefetch={true}
+                className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg shadow-purple-500/20"
+                style={{ 
+                  padding: 'clamp(4px, 0.8vh, 10px)',
+                  borderRadius: 'clamp(12px, 2vh, 24px)'
+                }}
+              >
+                <Logo size="xs" showText={false} />
+              </Link>
+            </div>
           </div>
 
           {/* Chọn mode */}
-          <div className="px-4">
+          <div style={{ padding: '0 clamp(12px, 2.5vw, 28px)' }}>
             <div className="text-center mb-4">
-              <h2 className="text-white text-lg sm:text-xl font-bold mb-2">🎯 Chọn Chế Độ Thi Đấu</h2>
-              <p className="text-white/60 text-sm">Chọn loại phép tính bạn muốn thử sức!</p>
-            </div>
-
-          {/* Gợi ý theo loại phép tính */}
-            <div className="mb-4 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 backdrop-blur rounded-2xl p-3 border border-yellow-500/30">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-xl">💡</span>
-                <span className="text-yellow-300 font-bold text-sm">Chọn chế độ theo phép tính bạn muốn luyện!</span>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-                <div className="bg-yellow-500/30 rounded-lg p-2 text-center">
-                  <div className="text-yellow-200 font-bold mb-1">⭐ Siêu Cộng</div>
-                  <div className="text-white/80">Chỉ phép cộng (+)</div>
-                </div>
-                <div className="bg-cyan-500/30 rounded-lg p-2 text-center">
-                  <div className="text-cyan-200 font-bold mb-1">👾 Siêu Trừ</div>
-                  <div className="text-white/80">Chỉ phép trừ (−)</div>
-                </div>
-                <div className="bg-purple-500/30 rounded-lg p-2 text-center">
-                  <div className="text-purple-200 font-bold mb-1">✨ Siêu Nhân</div>
-                  <div className="text-white/80">Chỉ phép nhân (×)</div>
-                </div>
-                <div className="bg-rose-500/30 rounded-lg p-2 text-center">
-                  <div className="text-rose-200 font-bold mb-1">🍕 Siêu Chia</div>
-                  <div className="text-white/80">Chỉ phép chia (÷)</div>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs mt-2">
-                <div className="bg-teal-500/30 rounded-lg p-2 text-center">
-                  <div className="text-teal-200 font-bold mb-1">⚔️ Cộng Trừ Mix</div>
-                  <div className="text-white/80">Kết hợp + và −</div>
-                </div>
-                <div className="bg-fuchsia-500/30 rounded-lg p-2 text-center">
-                  <div className="text-fuchsia-200 font-bold mb-1">🎩 Nhân Chia Mix</div>
-                  <div className="text-white/80">Kết hợp × và ÷</div>
-                </div>
-                <div className="bg-indigo-500/30 rounded-lg p-2 text-center">
-                  <div className="text-indigo-200 font-bold mb-1">👑 Tứ Phép Thần</div>
-                  <div className="text-white/80">Tất cả 4 phép tính</div>
-                </div>
-                <div className="bg-violet-500/30 rounded-lg p-2 text-center">
-                  <div className="text-violet-200 font-bold mb-1">🧠 Siêu Trí Tuệ</div>
-                  <div className="text-white/80">Tính nhẩm, không bàn tính</div>
-                </div>
-              </div>
+              <h2 className="text-white text-lg sm:text-xl font-bold mb-1">🎯 Chọn Chế Độ Thi Đấu</h2>
+              <p className="text-white/60 text-sm">Chọn phép tính bạn muốn thử sức!</p>
             </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-3" style={{ paddingBottom: 'clamp(20px, 5vh, 60px)' }}>
               {Object.entries(modeInfo).map(([modeKey, info]) => {
                 // Định nghĩa tier yêu cầu cho từng mode
                 const modeTiers = {
@@ -748,7 +873,8 @@ export default function CompetePage() {
                   division: 'advanced',
                   mulDiv: 'advanced',
                   mixed: 'advanced',
-                  mentalMath: 'advanced'
+                  mentalMath: 'advanced',
+                  flashAnzan: 'basic'
                 };
                 
                 const recommendLevel = {
@@ -759,7 +885,8 @@ export default function CompetePage() {
                   division: 'Chia đều!',
                   mulDiv: 'Phép thuật!',
                   mixed: 'Boss cuối!',
-                  mentalMath: 'Không bàn tính!'
+                  mentalMath: 'Không bàn tính!',
+                  flashAnzan: 'Tốc độ ánh sáng!'
                 };
                 
                 // Kiểm tra mode có bị khóa không
@@ -805,29 +932,301 @@ export default function CompetePage() {
     );
   }
 
-  // Màn hình chọn CẤP ĐỘ
+  // Màn hình chọn CẤP ĐỘ FLASH ANZAN - Giống practice
+  if (selectedMode === 'flashAnzan' && !selectedDifficulty) {
+    return (
+      <div className="min-h-[100dvh] bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 overflow-y-auto overflow-x-hidden relative">
+        {/* Animated starfield background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Stars */}
+          {[...Array(40)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full bg-white animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                width: `${1 + Math.random() * 3}px`,
+                height: `${1 + Math.random() * 3}px`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${1 + Math.random() * 2}s`,
+                opacity: 0.3 + Math.random() * 0.7
+              }}
+            />
+          ))}
+          {/* Floating light orbs */}
+          {[...Array(12)].map((_, i) => (
+            <div
+              key={`orb-${i}`}
+              className="absolute animate-bounce opacity-40"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                fontSize: `clamp(16px, ${2 + Math.random() * 2}vh, 36px)`,
+                animationDelay: `${Math.random() * 2}s`,
+                animationDuration: `${3 + Math.random() * 3}s`
+              }}
+            >
+              {['🌟', '✨', '💫', '⚡', '🔥', '💥'][Math.floor(Math.random() * 6)]}
+            </div>
+          ))}
+          {/* Epic glowing orbs */}
+          <div className="absolute top-1/4 left-1/4 w-[30vh] h-[30vh] bg-yellow-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-[25vh] h-[25vh] bg-orange-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-1/2 right-1/3 w-[20vh] h-[20vh] bg-red-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Header - Back trái, Logo phải */}
+          <div className="flex-shrink-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-lg shadow-purple-500/30">
+            <div className="max-w-7xl mx-auto px-3 py-2 flex items-center justify-between">
+              <button
+                onClick={backToModeSelect}
+                className="flex items-center bg-black/30 rounded-lg text-white hover:bg-black/50 hover:scale-105 transition-all backdrop-blur"
+                style={{ padding: 'clamp(6px, 1vh, 12px)' }}
+              >
+                <ArrowLeft style={{ width: 'clamp(16px, 2.5vh, 24px)', height: 'clamp(16px, 2.5vh, 24px)' }} />
+              </button>
+              <div className="text-center">
+                <h1 className="text-lg sm:text-xl font-black text-white flex items-center gap-2">
+                  <span className="text-2xl animate-pulse">⚡</span> 
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-white to-cyan-200 whitespace-nowrap">
+                    TỐC ĐỘ ÁNH SÁNG
+                  </span>
+                  <span className="text-2xl animate-pulse">💫</span>
+                </h1>
+                <p className="text-white/80 text-[10px]">Chọn cấp độ thi đấu!</p>
+              </div>
+              <Link
+                href="/dashboard"
+                prefetch={true}
+                className="flex items-center bg-black/30 rounded-lg text-white hover:bg-black/50 hover:scale-105 transition-all backdrop-blur"
+                style={{ padding: 'clamp(4px, 0.8vh, 10px)' }}
+              >
+                <Logo size="xs" showText={false} />
+              </Link>
+            </div>
+          </div>
+
+          {/* Steps indicator */}
+          <div style={{ padding: 'clamp(12px, 2vh, 20px) clamp(12px, 2.5vw, 28px)' }}>
+            <div className="flex items-center justify-center gap-2 text-xs">
+              <div className="flex items-center gap-1 text-green-400">
+                <span className="w-5 h-5 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">✓</span>
+                <span>Chế độ</span>
+              </div>
+              <div className="w-8 h-0.5 bg-white/30"></div>
+              <div className="flex items-center gap-1 text-white">
+                <span className="w-5 h-5 rounded-full bg-white text-purple-900 flex items-center justify-center text-[10px] font-bold">2</span>
+                <span>Cấp độ</span>
+              </div>
+              <div className="w-8 h-0.5 bg-white/30"></div>
+              <div className="flex items-center gap-1 text-white/50">
+                <span className="w-5 h-5 rounded-full bg-white/30 flex items-center justify-center text-[10px] font-bold">3</span>
+                <span>Số câu</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Flash Anzan Level Cards - Gaming Style */}
+          <div style={{ padding: '0 clamp(12px, 2.5vw, 28px)', paddingBottom: 'clamp(20px, 5vh, 60px)' }}>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+              {flashLevelsCompete.map((level, index) => {
+                const maxLevel = userTier === 'free' ? 1 : userTier === 'basic' ? 3 : 5;
+                const isLocked = level.level > maxLevel;
+                
+                return (
+                  <button
+                    key={level.id}
+                    onClick={() => {
+                      if (isLocked) {
+                        toast.warning(`Cấp ${level.name} cần nâng cấp gói để mở khóa`);
+                        router.push('/pricing');
+                        return;
+                      }
+                      selectDifficultyAndContinue(level.level);
+                    }}
+                    className={`relative bg-gradient-to-br ${level.color} rounded-2xl overflow-hidden group hover:scale-[1.03] active:scale-95 transition-all duration-300 ${level.level === 5 ? 'col-span-2 sm:col-span-1' : ''}`}
+                    style={{
+                      padding: 'clamp(12px, 2vh, 24px)',
+                      boxShadow: `0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`,
+                    }}
+                  >
+                    {/* Animated shine effect */}
+                    <div 
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%)',
+                        animation: 'shine 1.5s infinite'
+                      }}
+                    ></div>
+                    
+                    {/* Lock overlay */}
+                    {isLocked && (
+                      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-20 flex items-center justify-center">
+                        <div className="text-4xl">🔒</div>
+                      </div>
+                    )}
+                    
+                    {/* Rank badge */}
+                    {!isLocked && (
+                      <div 
+                        className="absolute top-2 right-2 bg-black/30 backdrop-blur rounded-full px-2 py-1 text-white/90 font-bold z-10"
+                        style={{ fontSize: 'clamp(8px, 1.2vh, 12px)' }}
+                      >
+                        {level.rank}
+                      </div>
+                    )}
+                    
+                    {/* Main emoji */}
+                    <div 
+                      className={`text-center mb-2 drop-shadow-2xl group-hover:scale-110 transition-transform ${isLocked ? 'opacity-50' : ''}`}
+                      style={{ fontSize: 'clamp(40px, 8vh, 80px)' }}
+                    >
+                      {level.emoji}
+                    </div>
+                    
+                    {/* Level name */}
+                    <div 
+                      className={`text-white font-black text-center mb-1 drop-shadow-lg ${isLocked ? 'opacity-50' : ''}`}
+                      style={{ fontSize: 'clamp(14px, 2.5vh, 24px)' }}
+                    >
+                      {level.name}
+                    </div>
+                    
+                    {/* Rank label */}
+                    <div 
+                      className={`text-white/80 text-center mb-2 ${isLocked ? 'opacity-50' : ''}`}
+                      style={{ fontSize: 'clamp(10px, 1.5vh, 14px)' }}
+                    >
+                      {level.rankLabel}
+                    </div>
+                    
+                    {/* Stats */}
+                    <div className={`space-y-1 ${isLocked ? 'opacity-50' : ''}`}>
+                      <div 
+                        className="flex items-center justify-center gap-1 text-white/90 bg-black/20 rounded-full px-2 py-0.5"
+                        style={{ fontSize: 'clamp(9px, 1.3vh, 13px)' }}
+                      >
+                        <span>⚡</span>
+                        <span className="font-bold">{level.speed}s</span>
+                      </div>
+                      <div 
+                        className="flex items-center justify-center gap-1 text-white/90 bg-black/20 rounded-full px-2 py-0.5"
+                        style={{ fontSize: 'clamp(9px, 1.3vh, 13px)' }}
+                      >
+                        <span>🔢</span>
+                        <span>{level.digits} chữ số</span>
+                      </div>
+                      <div 
+                        className="flex items-center justify-center gap-1 text-white/90 bg-black/20 rounded-full px-2 py-0.5"
+                        style={{ fontSize: 'clamp(9px, 1.3vh, 13px)' }}
+                      >
+                        <span>📊</span>
+                        <span>{level.numbers[0]}-{level.numbers[1]} số</span>
+                      </div>
+                    </div>
+                    
+                    {/* Bonus multiplier */}
+                    {!isLocked && (
+                      <div 
+                        className="mt-2 bg-yellow-400/30 text-yellow-100 font-bold rounded-full text-center"
+                        style={{ 
+                          fontSize: 'clamp(9px, 1.2vh, 12px)',
+                          padding: 'clamp(2px, 0.4vh, 6px) clamp(6px, 1vh, 12px)'
+                        }}
+                      >
+                        ⭐ x{level.bonusMultiplier * 2} điểm
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+        
+        {/* CSS for shine animation */}
+        <style jsx>{`
+          @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(200%) rotate(45deg); }
+          }
+        `}</style>
+      </div>
+    );
+  }
+
+  // Màn hình chọn CẤP ĐỘ - GAMING STYLE (cho các mode khác)
   if (selectedMode && !selectedDifficulty) {
     const modeData = modeInfo[selectedMode];
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 pb-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="px-4 py-3 flex items-center justify-between">
-            <button
-              onClick={backToModeSelect}
-              className="flex items-center gap-2 px-3 py-2 bg-white/10 backdrop-blur rounded-xl text-white hover:bg-white/20 transition-all"
-            >
-              <ArrowLeft size={18} />
-              <span className="font-medium text-sm">Chọn lại</span>
-            </button>
-            <h1 className="text-lg sm:text-xl font-black text-white flex items-center gap-2">
-              <span className="text-xl">{modeData.icon}</span> {modeData.title}
-            </h1>
-            <div className="w-20"></div>
+      <div className="min-h-[100dvh] bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 overflow-x-hidden relative">
+        {/* Animated Background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(10)].map((_, i) => (
+            <div
+              key={`particle-${i}`}
+              className="absolute rounded-full bg-gradient-to-br from-purple-500/10 to-pink-500/10 animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                width: `clamp(15px, ${2 + Math.random() * 4}vh, 60px)`,
+                height: `clamp(15px, ${2 + Math.random() * 4}vh, 60px)`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${3 + Math.random() * 3}s`
+              }}
+            />
+          ))}
+          <div className="absolute top-1/3 left-1/4 w-[25vh] h-[25vh] bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-[20vh] h-[20vh] bg-cyan-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Header - Back trái, Logo phải */}
+          <div 
+            className="flex-shrink-0"
+            style={{ padding: 'clamp(8px, 1.5vh, 16px) clamp(12px, 2.5vw, 28px)' }}
+          >
+            <div className="flex items-center justify-between">
+              <button
+                onClick={backToModeSelect}
+                className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg"
+                style={{ 
+                  padding: 'clamp(6px, 1vh, 12px)',
+                  borderRadius: 'clamp(10px, 1.5vh, 20px)'
+                }}
+              >
+                <ArrowLeft style={{ width: 'clamp(16px, 2.5vh, 24px)', height: 'clamp(16px, 2.5vh, 24px)' }} />
+              </button>
+              <div 
+                className="font-black text-white flex items-center bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-md border border-white/20 shadow-lg"
+                style={{ 
+                  fontSize: 'clamp(12px, 2.5vh, 24px)', 
+                  gap: 'clamp(4px, 0.8vw, 12px)',
+                  padding: 'clamp(4px, 0.8vh, 10px) clamp(10px, 1.5vw, 20px)',
+                  borderRadius: 'clamp(14px, 2vh, 28px)'
+                }}
+              >
+                <span style={{ fontSize: 'clamp(14px, 3vh, 30px)' }}>{modeData.icon}</span> 
+                <span className="whitespace-nowrap">{modeData.title}</span>
+              </div>
+              <Link
+                href="/dashboard"
+                prefetch={true}
+                className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg"
+                style={{ 
+                  padding: 'clamp(4px, 0.8vh, 10px)',
+                  borderRadius: 'clamp(12px, 2vh, 24px)'
+                }}
+              >
+                <Logo size="xs" showText={false} />
+              </Link>
+            </div>
           </div>
 
           {/* Bước hiện tại */}
-          <div className="px-4 mb-4">
+          <div style={{ padding: '0 clamp(12px, 2.5vw, 28px)', marginBottom: 'clamp(12px, 2vh, 24px)' }}>
             <div className="flex items-center justify-center gap-2 text-xs">
               <div className="flex items-center gap-1 text-green-400">
                 <span className="w-5 h-5 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">✓</span>
@@ -847,51 +1246,13 @@ export default function CompetePage() {
           </div>
 
           {/* Chọn cấp độ */}
-          <div className="px-4">
+          <div style={{ padding: '0 clamp(12px, 2.5vw, 28px)' }}>
             <div className="text-center mb-4">
               <h2 className="text-white text-lg sm:text-xl font-bold mb-1">⚔️ Chọn Cấp Độ</h2>
-              <p className="text-white/60 text-sm">Cấp độ càng cao, số càng lớn, phần thưởng càng nhiều!</p>
+              <p className="text-white/60 text-sm">Cấp độ càng cao, số càng lớn!</p>
             </div>
-
-            {/* Gợi ý chọn cấp độ */}
-            <div className="mb-4 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 backdrop-blur rounded-2xl p-3 border border-cyan-500/30">
-              <div className="flex items-center gap-2 mb-2">
-              <span className="text-xl">🎯</span>
-              <span className="text-cyan-300 font-bold text-sm">Cấp độ = Độ lớn của số!</span>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-5 gap-2 text-xs">
-              <div className="bg-green-500/30 rounded-lg p-2 text-center">
-                <div className="text-green-200 font-bold">🐣 Tập Sự</div>
-                <div className="text-white/80">Số 1 chữ số</div>
-                <div className="text-white/60 text-[10px]">VD: 5 + 3</div>
-              </div>
-              <div className="bg-blue-500/30 rounded-lg p-2 text-center">
-                <div className="text-blue-200 font-bold">⚔️ Chiến Binh</div>
-                <div className="text-white/80">Số 2 chữ số</div>
-                <div className="text-white/60 text-[10px]">VD: 25 + 47</div>
-              </div>
-              <div className="bg-yellow-500/30 rounded-lg p-2 text-center">
-                <div className="text-yellow-200 font-bold">🛡️ Dũng Sĩ</div>
-                <div className="text-white/80">Số 3 chữ số</div>
-                <div className="text-white/60 text-[10px]">VD: 234 + 567</div>
-              </div>
-              <div className="bg-red-500/30 rounded-lg p-2 text-center">
-                <div className="text-red-200 font-bold">🔥 Cao Thủ</div>
-                <div className="text-white/80">Số 4 chữ số</div>
-                <div className="text-white/60 text-[10px]">VD: 1234 + 5678</div>
-              </div>
-              <div className="bg-purple-500/30 rounded-lg p-2 text-center">
-                <div className="text-purple-200 font-bold">👑 Huyền Thoại</div>
-                <div className="text-white/80">Số 5 chữ số</div>
-                <div className="text-white/60 text-[10px]">VD: 12345 + 67890</div>
-              </div>
-            </div>
-            <div className="mt-2 text-center text-white/70 text-[10px]">
-              💡 <strong>Mẹo:</strong> Bắt đầu với <span className="text-green-200">Tập Sự</span>, khi thấy dễ thì tăng lên <span className="text-blue-200">Chiến Binh</span>!
-            </div>
-          </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3" style={{ paddingBottom: 'clamp(20px, 5vh, 60px)' }}>
             {[1, 2, 3, 4, 5].map((diff) => {
               const diffData = difficultyInfo[diff];
               const arenaName = arenaNames[selectedMode]?.[diff] || { title: diffData.label, icon: '🎯' };
@@ -901,6 +1262,13 @@ export default function CompetePage() {
                 3: 'from-yellow-400 to-orange-500',
                 4: 'from-red-400 to-rose-500',
                 5: 'from-purple-500 to-pink-600'
+              };
+              const diffGlows = {
+                1: 'shadow-green-500/50',
+                2: 'shadow-blue-500/50',
+                3: 'shadow-yellow-500/50',
+                4: 'shadow-red-500/50',
+                5: 'shadow-purple-500/50'
               };
               const diffDesc = {
                 1: 'Số 1 chữ số',
@@ -939,22 +1307,40 @@ export default function CompetePage() {
                     }
                     selectDifficultyAndContinue(diff);
                   }}
-                  className={`bg-gradient-to-br ${diffColors[diff]} rounded-2xl p-4 shadow-xl hover:shadow-2xl transform hover:scale-[1.03] active:scale-95 transition-all text-white text-center relative overflow-hidden group`}
+                  className={`bg-gradient-to-br ${diffColors[diff]} rounded-2xl shadow-xl ${diffGlows[diff]} hover:shadow-2xl transform hover:scale-[1.05] active:scale-95 transition-all text-white text-center relative overflow-hidden group ${diff === 5 ? 'animate-pulse' : ''}`}
+                  style={{
+                    padding: 'clamp(12px, 2vh, 24px)',
+                    boxShadow: `0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`,
+                  }}
                 >
+                  {/* Animated shine effect */}
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%)',
+                      animation: 'shine 1.5s infinite'
+                    }}
+                  ></div>
+                  
                   {/* Lock icon */}
                   {isDifficultyLocked && (
-                    <div className="absolute top-2 left-2 bg-black/40 rounded-full w-7 h-7 flex items-center justify-center z-20">
-                      <span className="text-white text-sm">🔒</span>
+                    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-20 flex items-center justify-center">
+                      <div className="text-3xl">🔒</div>
                     </div>
                   )}
                   
                   <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all"></div>
                   {diff === 1 && !isDifficultyLocked && (
-                    <div className="absolute -top-1 -right-1 bg-green-400 text-green-900 text-[8px] font-bold px-1.5 py-0.5 rounded-bl-lg rounded-tr-xl z-20">
+                    <div className="absolute -top-1 -right-1 bg-green-400 text-green-900 text-[8px] font-bold px-1.5 py-0.5 rounded-bl-lg rounded-tr-xl z-20 animate-bounce">
                       GỢI Ý
                     </div>
                   )}
-                  <div className={`text-3xl sm:text-4xl mb-1 z-10 relative drop-shadow-md ${isDifficultyLocked ? 'opacity-60' : ''}`}>{arenaName.icon}</div>
+                  <div 
+                    className={`z-10 relative drop-shadow-2xl group-hover:scale-110 transition-transform ${isDifficultyLocked ? 'opacity-60' : ''}`}
+                    style={{ fontSize: 'clamp(36px, 7vh, 64px)', marginBottom: 'clamp(4px, 1vh, 12px)' }}
+                  >
+                    {arenaName.icon}
+                  </div>
                   <div className={`text-sm sm:text-base font-black z-10 relative drop-shadow-sm ${isDifficultyLocked ? 'opacity-60' : ''}`}>{arenaName.title}</div>
                   <div className={`text-[10px] sm:text-xs z-10 relative flex items-center justify-center gap-1 mt-1 ${isDifficultyLocked ? 'opacity-50' : 'text-white/95'}`}>
                     <span>{diffData.emoji}</span>
@@ -975,36 +1361,91 @@ export default function CompetePage() {
             </div>
           </div>
         </div>
+        
+        {/* CSS for shine animation */}
+        <style jsx>{`
+          @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(200%) rotate(45deg); }
+          }
+        `}</style>
       </div>
     );
   }
 
-  // Màn hình chọn SỐ CÂU HỎI
+  // Màn hình chọn SỐ CÂU HỎI - GAMING STYLE
   if (selectedMode && selectedDifficulty && !selectedQuestionCount) {
     const modeData = modeInfo[selectedMode];
     const diffData = difficultyInfo[selectedDifficulty];
     const arenaName = arenaNames[selectedMode]?.[selectedDifficulty] || { title: diffData.label, icon: '🎯' };
     
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 pb-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="px-4 py-3 flex items-center justify-between">
-            <button
-              onClick={backToDifficultySelect}
-              className="flex items-center gap-2 px-3 py-2 bg-white/10 backdrop-blur rounded-xl text-white hover:bg-white/20 transition-all"
-            >
-              <ArrowLeft size={18} />
-              <span className="font-medium text-sm">Chọn lại</span>
-            </button>
-            <h1 className="text-lg sm:text-xl font-black text-white flex items-center gap-2">
-              <span className="text-xl">{arenaName.icon}</span> {arenaName.title}
-            </h1>
-            <div className="w-20"></div>
+      <div className="min-h-[100dvh] bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 overflow-x-hidden relative">
+        {/* Animated Background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(10)].map((_, i) => (
+            <div
+              key={`particle-${i}`}
+              className="absolute rounded-full bg-gradient-to-br from-cyan-500/10 to-blue-500/10 animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                width: `clamp(15px, ${2 + Math.random() * 4}vh, 60px)`,
+                height: `clamp(15px, ${2 + Math.random() * 4}vh, 60px)`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${3 + Math.random() * 3}s`
+              }}
+            />
+          ))}
+          <div className="absolute top-1/3 left-1/4 w-[25vh] h-[25vh] bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-[20vh] h-[20vh] bg-blue-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Header - Back trái, Logo phải */}
+          <div 
+            className="flex-shrink-0"
+            style={{ padding: 'clamp(8px, 1.5vh, 16px) clamp(12px, 2.5vw, 28px)' }}
+          >
+            <div className="flex items-center justify-between">
+              <button
+                onClick={backToDifficultySelect}
+                className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg"
+                style={{ 
+                  padding: 'clamp(6px, 1vh, 12px)',
+                  borderRadius: 'clamp(10px, 1.5vh, 20px)'
+                }}
+              >
+                <ArrowLeft style={{ width: 'clamp(16px, 2.5vh, 24px)', height: 'clamp(16px, 2.5vh, 24px)' }} />
+              </button>
+              <div 
+                className="font-black text-white flex items-center bg-gradient-to-r from-cyan-500/30 to-blue-500/30 backdrop-blur-md border border-white/20 shadow-lg"
+                style={{ 
+                  fontSize: 'clamp(12px, 2.5vh, 24px)', 
+                  gap: 'clamp(4px, 0.8vw, 12px)',
+                  padding: 'clamp(4px, 0.8vh, 10px) clamp(10px, 1.5vw, 20px)',
+                  borderRadius: 'clamp(14px, 2vh, 28px)'
+                }}
+              >
+                <span style={{ fontSize: 'clamp(14px, 3vh, 30px)' }}>{arenaName.icon}</span> 
+                <span className="whitespace-nowrap">{arenaName.title}</span>
+              </div>
+              <Link
+                href="/dashboard"
+                prefetch={true}
+                className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg"
+                style={{ 
+                  padding: 'clamp(4px, 0.8vh, 10px)',
+                  borderRadius: 'clamp(12px, 2vh, 24px)'
+                }}
+              >
+                <Logo size="xs" showText={false} />
+              </Link>
+            </div>
           </div>
 
           {/* Bước hiện tại */}
-          <div className="px-4 mb-4">
+          <div style={{ padding: '0 clamp(12px, 2.5vw, 28px)', marginBottom: 'clamp(12px, 2vh, 24px)' }}>
             <div className="flex items-center justify-center gap-2 text-xs">
               <div className="flex items-center gap-1 text-green-400">
                 <span className="w-5 h-5 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">✓</span>
@@ -1042,51 +1483,64 @@ export default function CompetePage() {
           <div className="px-4">
             <div className="text-center mb-4">
               <h2 className="text-white text-lg sm:text-xl font-bold mb-1">📝 Chọn Số Câu Hỏi</h2>
-              <p className="text-white/60 text-sm">Càng nhiều câu, càng thử thách, càng vinh quang!</p>
-              <p className="text-yellow-400/80 text-xs mt-1">⏱️ Làm đúng + Làm nhanh = Xếp hạng cao!</p>
+              <p className="text-white/60 text-sm">Càng nhiều câu, càng thử thách!</p>
             </div>
-
-            {/* Gợi ý chọn số câu */}
-            <div className="mb-4 bg-gradient-to-r from-pink-500/20 to-purple-500/20 backdrop-blur rounded-2xl p-3 border border-pink-500/30">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-xl">💡</span>
-                <span className="text-pink-300 font-bold text-sm">Số câu = Độ dài trận đấu!</span>
-            </div>
-            <div className="grid grid-cols-3 gap-2 text-xs">
-              <div className="bg-green-500/30 rounded-lg p-2 text-center">
-                <div className="text-green-200 font-bold">⚡ 5-10 câu</div>
-                <div className="text-white/80">Trận ngắn</div>
-                <div className="text-white/60 text-[10px]">Khởi động nhanh</div>
-              </div>
-              <div className="bg-yellow-500/30 rounded-lg p-2 text-center">
-                <div className="text-yellow-200 font-bold">💪 15-25 câu</div>
-                <div className="text-white/80">Trận vừa</div>
-                <div className="text-white/60 text-[10px]">Luyện tập hiệu quả</div>
-              </div>
-              <div className="bg-purple-500/30 rounded-lg p-2 text-center">
-                <div className="text-purple-200 font-bold">🏆 30-50 câu</div>
-                <div className="text-white/80">Trận dài</div>
-                <div className="text-white/60 text-[10px]">Rèn sức bền</div>
-              </div>
-            </div>
-            <div className="mt-2 text-center text-white/70 text-[10px]">
-              ⏱️ Thời gian được ghi nhận để xếp hạng - Hãy làm nhanh và chính xác!
-            </div>
-          </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3" style={{ paddingBottom: 'clamp(20px, 5vh, 60px)' }}>
             {questionCounts.map((q, index) => {
+              const isRecommended = q.value === 10;
               return (
                 <button
                   key={q.value}
                   onClick={() => selectQuestionCountAndContinue(q.value)}
-                  className={`bg-gradient-to-br ${q.color} rounded-2xl p-4 shadow-xl hover:shadow-2xl transform hover:scale-[1.03] active:scale-95 transition-all text-white text-center relative overflow-hidden group`}
+                  className={`bg-gradient-to-br ${q.color} rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-[1.05] active:scale-95 transition-all text-white text-center relative overflow-hidden group ${index === questionCounts.length - 1 ? 'animate-pulse' : ''}`}
+                  style={{
+                    padding: 'clamp(12px, 2vh, 24px)',
+                    boxShadow: `0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`,
+                  }}
                 >
+                  {/* Animated shine effect */}
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%)',
+                      animation: 'shine 1.5s infinite'
+                    }}
+                  ></div>
+                  
                   <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all"></div>
-                  <div className="text-3xl mb-1 z-10 relative drop-shadow-md">{q.emoji}</div>
-                  <div className="text-lg sm:text-xl font-black z-10 relative drop-shadow-sm">{q.label}</div>
-                  <div className="text-xs z-10 relative mt-1 text-white/90">{q.desc}</div>
-                  <div className="text-xs mt-1 z-10 relative text-white/80">
+                  
+                  {isRecommended && (
+                    <div className="absolute -top-1 -right-1 bg-yellow-400 text-yellow-900 text-[8px] font-bold px-1.5 py-0.5 rounded-bl-lg rounded-tr-xl z-20 animate-bounce">
+                      GỢI Ý
+                    </div>
+                  )}
+                  
+                  <div 
+                    className="z-10 relative drop-shadow-2xl group-hover:scale-110 transition-transform"
+                    style={{ fontSize: 'clamp(28px, 5vh, 48px)', marginBottom: 'clamp(4px, 1vh, 12px)' }}
+                  >
+                    {q.emoji}
+                  </div>
+                  <div 
+                    className="font-black z-10 relative drop-shadow-sm"
+                    style={{ fontSize: 'clamp(14px, 2.2vh, 20px)' }}
+                  >
+                    {q.label}
+                  </div>
+                  <div 
+                    className="z-10 relative mt-1 text-white/90"
+                    style={{ fontSize: 'clamp(10px, 1.5vh, 14px)' }}
+                  >
+                    {q.desc}
+                  </div>
+                  <div 
+                    className="mt-2 z-10 relative bg-yellow-400/30 text-yellow-100 font-bold rounded-full"
+                    style={{ 
+                      fontSize: 'clamp(9px, 1.2vh, 12px)',
+                      padding: 'clamp(2px, 0.4vh, 6px) clamp(6px, 1vh, 12px)'
+                    }}
+                  >
                     ⭐ {q.value * selectedDifficulty * 2} max
                   </div>
                 </button>
@@ -1113,6 +1567,14 @@ export default function CompetePage() {
             </div>
           </div>
         </div>
+        
+        {/* CSS for shine animation */}
+        <style jsx>{`
+          @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(200%) rotate(45deg); }
+          }
+        `}</style>
       </div>
     );
   }
@@ -1122,19 +1584,32 @@ export default function CompetePage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
         <div className="max-w-6xl mx-auto">
-          {/* Header */}
+          {/* Header - Back trái, Logo phải */}
           <div className="px-4 py-3 flex items-center justify-between">
             <button
               onClick={backToQuestionCountSelect}
-              className="flex items-center gap-2 px-3 py-2 bg-white/10 backdrop-blur rounded-xl text-white hover:bg-white/20 transition-all"
+              className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg"
+              style={{ 
+                padding: 'clamp(6px, 1vh, 12px)',
+                borderRadius: 'clamp(10px, 1.5vh, 20px)'
+              }}
             >
-              <ArrowLeft size={18} />
-              <span className="font-medium text-sm">Chọn lại</span>
+              <ArrowLeft style={{ width: 'clamp(16px, 2.5vh, 24px)', height: 'clamp(16px, 2.5vh, 24px)' }} />
             </button>
             <h1 className="text-lg sm:text-xl font-black text-white flex items-center gap-2">
               <span className="text-xl">{selectedArena.icon}</span> {selectedArena.title}
             </h1>
-            <div className="w-20"></div>
+            <Link
+              href="/dashboard"
+              prefetch={true}
+              className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg"
+              style={{ 
+                padding: 'clamp(4px, 0.8vh, 10px)',
+                borderRadius: 'clamp(12px, 2vh, 24px)'
+              }}
+            >
+              <Logo size="xs" showText={false} />
+            </Link>
           </div>
 
           <div className="px-4 pb-8">
@@ -1482,21 +1957,13 @@ export default function CompetePage() {
       {/* Top bar */}
       <div className={`bg-gradient-to-r ${selectedArena.color} shadow-lg flex-shrink-0`}>
         <div className="max-w-6xl mx-auto px-3 py-2 flex items-center gap-3">
-          <div className="flex items-center gap-1 flex-shrink-0">
-            <Link 
-              href="/dashboard"
-              prefetch={true}
-              className="p-1.5 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors"
-            >
-              <Home size={16} />
-            </Link>
-            <button 
-              onClick={backToArenaDetail}
-              className="p-1.5 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors"
-            >
-              <ArrowLeft size={16} />
-            </button>
-          </div>
+          {/* Left: Back */}
+          <button 
+            onClick={backToArenaDetail}
+            className="p-1.5 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors flex-shrink-0"
+          >
+            <ArrowLeft size={16} />
+          </button>
           
           <div className="flex-1 flex items-center gap-2">
             <div className="flex gap-0.5 flex-1">
@@ -1534,6 +2001,15 @@ export default function CompetePage() {
                 🔥{streak}
               </div>
             )}
+            {/* Right: Logo */}
+            <Link 
+              href="/dashboard"
+              prefetch={true}
+              className="p-1 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors"
+              title="Về trang chủ"
+            >
+              <Logo size="xs" showText={false} />
+            </Link>
           </div>
         </div>
       </div>
