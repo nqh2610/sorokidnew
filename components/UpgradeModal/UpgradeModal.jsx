@@ -75,28 +75,35 @@ export default function UpgradeModal({
             {feature}
           </p>
 
-          {/* 3 Benefits - Compact */}
+          {/* 4 Benefits - Compact */}
           <div className="bg-white/10 backdrop-blur rounded-2xl p-4 mb-5 text-left">
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               <div className="flex items-center gap-3">
-                <span className="text-2xl">🎮</span>
+                <span className="text-xl">🧒</span>
                 <div>
-                  <div className="text-white font-semibold text-sm">18 Level</div>
-                  <div className="text-white/60 text-xs">Tất cả bài học</div>
+                  <div className="text-white font-semibold text-sm">Thần đồng toán học</div>
+                  <div className="text-white/60 text-xs">18 cấp độ chinh phục</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-2xl">⚡</span>
+                <span className="text-xl">🧠</span>
+                <div>
+                  <div className="text-white font-semibold text-sm">Siêu Trí Tuệ</div>
+                  <div className="text-white/60 text-xs">Tính nhẩm siêu nhanh</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-xl">⚡</span>
                 <div>
                   <div className="text-white font-semibold text-sm">Flash Anzan</div>
-                  <div className="text-white/60 text-xs">Phản xạ thần tốc</div>
+                  <div className="text-white/60 text-xs">Phát triển não phải</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-2xl">🏆</span>
+                <span className="text-xl">📜</span>
                 <div>
-                  <div className="text-white font-semibold text-sm">Thi đấu Pro</div>
-                  <div className="text-white/60 text-xs">Không giới hạn</div>
+                  <div className="text-white font-semibold text-sm">Chứng chỉ Sorokid</div>
+                  <div className="text-white/60 text-xs">Công nhận năng lực</div>
                 </div>
               </div>
             </div>

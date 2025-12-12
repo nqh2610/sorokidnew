@@ -1530,7 +1530,7 @@ export default function PracticePage() {
     return (
       <div className="min-h-screen min-h-[100dvh] h-screen flex flex-col bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 overflow-hidden">
         {/* Animated background particles */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
@@ -1618,7 +1618,7 @@ export default function PracticePage() {
         </div>
 
         {/* Main content - FULLY RESPONSIVE */}
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-2 sm:p-4 overflow-auto">
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-2 sm:p-4 overflow-visible">
           
           {/* Countdown phase - RESPONSIVE */}
           {flashPhase === 'countdown' && (
@@ -1805,10 +1805,10 @@ export default function PracticePage() {
 
           {/* Result phase - FULLY RESPONSIVE - NO SCROLL */}
           {flashPhase === 'result' && (
-            <div className="text-center w-full max-w-lg px-2 sm:px-4 relative">
+            <div className="text-center w-full max-w-lg px-2 sm:px-4 relative z-20">
               {/* Confetti effect khi đúng - giảm số lượng trên mobile */}
               {result && (
-                <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
                   {[...Array(12)].map((_, i) => (
                     <div
                       key={i}
@@ -1827,12 +1827,12 @@ export default function PracticePage() {
 
               {result ? (
                 // ========== ĐÚNG - EPIC VICTORY WITH EFFECTS ==========
-                <div className="animate-celebrate relative z-10">
+                <div className="animate-celebrate relative z-30">
                   {/* Glow effect behind - pointer-events-none để không block button */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-500/30 to-emerald-500/30 rounded-3xl blur-2xl animate-pulse pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-500/30 to-emerald-500/30 rounded-3xl blur-2xl animate-pulse pointer-events-none -z-10"></div>
                   
                   {/* Header: Emoji + Title + Combo */}
-                  <div className="relative flex items-center justify-center gap-3 mb-3">
+                  <div className="relative flex items-center justify-center gap-3 mb-3 z-10">
                     <div className="text-5xl sm:text-6xl animate-bounce drop-shadow-lg">{flashResultMessage?.emoji || '🎉'}</div>
                     <div className="text-left">
                       <h2 className={`text-2xl sm:text-3xl font-black leading-relaxed pt-1 ${streak >= 5 ? 'animate-rainbow bg-clip-text text-transparent' : 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400'}`}>
@@ -1897,9 +1897,9 @@ export default function PracticePage() {
                 </div>
               ) : (
                 // ========== SAI - SUPER COMPACT ENCOURAGE ==========
-                <div className="animate-shake relative z-10">
+                <div className="animate-shake relative z-30">
                   {/* Header: Emoji + Title */}
-                  <div className="flex items-center justify-center gap-2 mb-2">
+                  <div className="flex items-center justify-center gap-2 mb-2 z-10">
                     <div className="text-4xl sm:text-5xl animate-wiggle">{flashResultMessage?.emoji || '💪'}</div>
                     <div>
                       <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-500 leading-relaxed pt-1">
@@ -2480,13 +2480,14 @@ export default function PracticePage() {
                       startMode(item.mode);
                     }}
                     className={`bg-gradient-to-br ${item.color} text-white flex flex-col items-center justify-center relative overflow-hidden group hover:scale-[1.05] active:scale-95 transition-all duration-300 ${
-                      item.special ? 'animate-pulse ring-2 ring-yellow-400/50' : ''
+                      item.special ? 'ring-2 ring-yellow-400/70 special-glow' : ''
                     }`}
                     style={{
                       borderRadius: 'clamp(16px, 3vh, 40px)',
                       padding: 'clamp(8px, 1.5vh, 20px)',
-                      boxShadow: `0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`,
-                      animationDuration: item.special ? '2s' : undefined
+                      boxShadow: item.special 
+                        ? `0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2), 0 0 20px rgba(255,200,50,0.4)` 
+                        : `0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`
                     }}
                   >
                     {/* Animated shine effect */}
@@ -2574,11 +2575,24 @@ export default function PracticePage() {
           </div>
         </div>
         
-        {/* CSS for shine animation */}
+        {/* CSS for shine animation and special glow */}
         <style jsx>{`
           @keyframes shine {
             0% { transform: translateX(-100%) rotate(45deg); }
             100% { transform: translateX(200%) rotate(45deg); }
+          }
+          @keyframes special-pulse {
+            0%, 100% { 
+              box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2), 0 0 20px rgba(255,200,50,0.4);
+              filter: brightness(1);
+            }
+            50% { 
+              box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2), 0 0 35px rgba(255,200,50,0.6);
+              filter: brightness(1.15);
+            }
+          }
+          :global(.special-glow) {
+            animation: special-pulse 2s ease-in-out infinite;
           }
         `}</style>
         
