@@ -64,4 +64,47 @@
   .animate-pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite;
   }
+
+  @keyframes scale-up {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .animate-scale-up {
+    animation: scale-up 0.4s ease-out forwards;
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 3s linear infinite;
+  }
+
+  @keyframes confetti-fall {
+    0% {
+      transform: translateY(-100%) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  .animate-confetti {
+    animation: confetti-fall 2s ease-in forwards;
+  }
 }

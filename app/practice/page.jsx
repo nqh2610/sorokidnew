@@ -187,14 +187,14 @@ export default function PracticePage() {
       const timer = setTimeout(() => {
         setCelebration(null);
         setCelebrationData(null);
-        // Auto chuyển câu sau khi ăn mừng
-        if (celebration === 'correct') {
+        // Auto chuyển câu sau khi ăn mừng - CHỈ cho mode thường, KHÔNG áp dụng cho Flash Anzan
+        if (celebration === 'correct' && mode !== 'flashAnzan') {
           goToNextChallenge();
         }
       }, 1800);
       return () => clearTimeout(timer);
     }
-  }, [celebration]);
+  }, [celebration, mode]);
 
   // Auto-focus input cho mode Siêu Trí Tuệ và bắt phím số toàn cục
   useEffect(() => {
@@ -459,7 +459,9 @@ export default function PracticePage() {
     
     const numbers = generateFlashNumbers(levelId);
     setFlashNumbers(numbers);
-    setFlashCorrectAnswer(numbers.reduce((a, b) => a + b, 0));
+    const correctAnswer = numbers.reduce((a, b) => a + b, 0);
+    console.log('Generated Flash:', { numbers, correctAnswer, sum: numbers.join('+') });
+    setFlashCorrectAnswer(correctAnswer);
     
     // Reset session stats cho round mới
     if (currentChallenge === 1 && challengeResults.length === 0) {
@@ -514,6 +516,15 @@ export default function PracticePage() {
     const userAnswer = parseInt(flashAnswer, 10);
     if (isNaN(userAnswer)) return;
     
+    // Debug log
+    console.log('Flash Submit:', { 
+      userAnswer, 
+      flashCorrectAnswer, 
+      flashAnswerRaw: flashAnswer,
+      isEqual: userAnswer === flashCorrectAnswer,
+      types: { user: typeof userAnswer, correct: typeof flashCorrectAnswer }
+    });
+    
     const isCorrect = userAnswer === flashCorrectAnswer;
     const config = flashLevels.find(l => l.id === flashLevel);
     const starsEarned = isCorrect ? (config?.stars || 2) : 0;
@@ -534,19 +545,8 @@ export default function PracticePage() {
       totalTime: prev.totalTime + (flashNumbers.length * 2) // Ước tính thời gian
     }));
     
-    // Hiệu ứng celebration
-    if (isCorrect) {
-      setCelebrationData({
-        text: 'XUẤT SẮC!',
-        emoji: '⚡',
-        starsEarned,
-        multiplier: 1,
-        tierColor: 'from-yellow-400 to-orange-500',
-        tierTextColor: 'text-yellow-400',
-        timeRatio: 0.5
-      });
-      setCelebration('correct');
-    }
+    // KHÔNG dùng celebration popup chung cho Flash Anzan
+    // Hiệu ứng sẽ được hiển thị trực tiếp trong result phase
     
     // Lưu kết quả
     try {
@@ -1148,34 +1148,151 @@ export default function PracticePage() {
 
           {/* Result phase */}
           {flashPhase === 'result' && (
-            <div className="text-center">
-              <div className="text-6xl mb-4">
-                {result ? '🎉' : '😅'}
-              </div>
-              <div className={`text-3xl font-black mb-2 ${result ? 'text-green-400' : 'text-red-400'}`}>
-                {result ? 'CHÍNH XÁC!' : 'SAI RỒI!'}
-              </div>
-              
-              <div className="bg-white/10 rounded-2xl p-4 mb-4 inline-block">
-                <div className="text-white/70 text-sm mb-1">Đáp án đúng</div>
-                <div className="text-4xl font-black text-yellow-400">{flashCorrectAnswer}</div>
-                {!result && (
-                  <div className="text-white/50 text-sm mt-1">
-                    Bạn trả lời: {flashAnswer}
+            <div className="text-center w-full max-w-lg">
+              {result ? (
+                // ========== ĐÚNG - Màn hình chúc mừng ==========
+                <div className="animate-scale-up">
+                  {/* Confetti effect */}
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    {[...Array(20)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="absolute animate-bounce"
+                        style={{
+                          left: `${Math.random() * 100}%`,
+                          top: `${Math.random() * 60}%`,
+                          animationDelay: `${Math.random() * 0.5}s`,
+                          animationDuration: `${0.5 + Math.random()}s`
+                        }}
+                      >
+                        {['⭐', '✨', '🌟', '💫', '⚡'][Math.floor(Math.random() * 5)]}
+                      </div>
+                    ))}
                   </div>
-                )}
-              </div>
-              
-              <div className="text-white/60 text-sm mb-4">
-                Các số: {flashNumbers.join(' + ')}
-              </div>
-              
-              <button
-                onClick={nextFlashChallenge}
-                className="px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:scale-105 active:scale-95 transition-transform shadow-lg"
-              >
-                {currentChallenge >= TOTAL_CHALLENGES ? '🏆 Xem kết quả' : '⚡ Câu tiếp theo'}
-              </button>
+                  
+                  <div className="text-8xl mb-4 animate-bounce drop-shadow-2xl">🎉</div>
+                  <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-green-400 to-cyan-400 mb-3 animate-pulse">
+                    TUYỆT VỜI!
+                  </div>
+                  
+                  {/* Stars earned */}
+                  <div className="flex justify-center gap-1 mb-4">
+                    {[...Array(Math.min(5, flashLevels.find(l => l.id === flashLevel)?.stars || 2))].map((_, i) => (
+                      <span key={i} className="text-4xl animate-spin-slow" style={{ animationDelay: `${i * 0.1}s` }}>
+                        ⭐
+                      </span>
+                    ))}
+                  </div>
+                  <div className="text-2xl font-bold text-yellow-400 mb-4">
+                    +{flashLevels.find(l => l.id === flashLevel)?.stars || 2} sao
+                  </div>
+                  
+                  {/* Correct answer display */}
+                  <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-2 border-green-400/50 rounded-2xl p-4 mb-4">
+                    <div className="text-white/70 text-sm mb-1">Đáp án của bạn</div>
+                    <div className="text-5xl font-black text-green-400">{flashAnswer}</div>
+                    <div className="text-green-400 text-lg mt-1">✓ Chính xác!</div>
+                  </div>
+                  
+                  {/* Show numbers */}
+                  <div className="bg-white/5 rounded-xl p-3 mb-4">
+                    <div className="text-white/60 text-sm mb-2">Các số đã hiện:</div>
+                    <div className="flex flex-wrap justify-center gap-2">
+                      {flashNumbers.map((num, i) => (
+                        <span key={i} className="bg-yellow-500/30 text-yellow-200 px-3 py-1 rounded-lg font-bold">
+                          {num}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="text-white/50 text-xs mt-2">
+                      {flashNumbers.join(' + ')} = {flashCorrectAnswer}
+                    </div>
+                  </div>
+                  
+                  {/* Streak bonus */}
+                  {streak > 1 && (
+                    <div className="text-xl text-orange-400 font-bold mb-4 animate-pulse">
+                      🔥 Combo x{streak}!
+                    </div>
+                  )}
+                  
+                  <button
+                    onClick={nextFlashChallenge}
+                    className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-xl rounded-2xl hover:scale-105 active:scale-95 transition-transform shadow-lg shadow-green-500/30"
+                  >
+                    {currentChallenge >= TOTAL_CHALLENGES ? '🏆 Xem kết quả' : '⚡ Câu tiếp theo'}
+                  </button>
+                </div>
+              ) : (
+                // ========== SAI - Màn hình hiện đáp án và replay ==========
+                <div className="animate-scale-up">
+                  <div className="text-7xl mb-3">😢</div>
+                  <div className="text-3xl font-black text-red-400 mb-4">
+                    CHƯA ĐÚNG RỒI!
+                  </div>
+                  
+                  {/* So sánh đáp án */}
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className="bg-red-500/20 border-2 border-red-400/50 rounded-2xl p-4">
+                      <div className="text-white/70 text-sm mb-1">Bạn trả lời</div>
+                      <div className="text-4xl font-black text-red-400">{flashAnswer}</div>
+                      <div className="text-red-400 text-sm mt-1">✗ Sai</div>
+                    </div>
+                    <div className="bg-green-500/20 border-2 border-green-400/50 rounded-2xl p-4">
+                      <div className="text-white/70 text-sm mb-1">Đáp án đúng</div>
+                      <div className="text-4xl font-black text-green-400">{flashCorrectAnswer}</div>
+                      <div className="text-green-400 text-sm mt-1">✓ Chính xác</div>
+                    </div>
+                  </div>
+                  
+                  {/* Replay các số */}
+                  <div className="bg-white/10 rounded-2xl p-4 mb-4">
+                    <div className="text-white/80 font-bold mb-3 flex items-center justify-center gap-2">
+                      <span>📺</span> Các số vừa hiện:
+                    </div>
+                    
+                    {/* Hiển thị từng số với animation */}
+                    <div className="flex flex-wrap justify-center gap-2 mb-3">
+                      {flashNumbers.map((num, i) => (
+                        <div 
+                          key={i} 
+                          className="bg-gradient-to-br from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-xl font-black text-2xl shadow-lg animate-scale-up"
+                          style={{ animationDelay: `${i * 0.15}s` }}
+                        >
+                          {num}
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {/* Phép tính đầy đủ */}
+                    <div className="bg-black/30 rounded-xl p-3 mt-3">
+                      <div className="text-white/60 text-sm mb-2">Phép tính:</div>
+                      <div className="text-xl text-white font-mono flex items-center justify-center flex-wrap gap-1">
+                        {flashNumbers.map((num, i) => (
+                          <span key={i}>
+                            <span className="text-yellow-400">{num}</span>
+                            {i < flashNumbers.length - 1 && <span className="text-white/60 mx-1">+</span>}
+                          </span>
+                        ))}
+                        <span className="text-white/60 mx-2">=</span>
+                        <span className="text-green-400 font-black">{flashCorrectAnswer}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Lời động viên */}
+                  <div className="text-white/70 text-sm mb-4">
+                    💪 Đừng nản chí! Luyện tập nhiều sẽ giỏi hơn!
+                  </div>
+                  
+                  <button
+                    onClick={nextFlashChallenge}
+                    className="px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-xl rounded-2xl hover:scale-105 active:scale-95 transition-transform shadow-lg"
+                  >
+                    {currentChallenge >= TOTAL_CHALLENGES ? '🏆 Xem kết quả' : '💪 Thử câu tiếp'}
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>
