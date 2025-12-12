@@ -196,6 +196,20 @@ export default function PracticePage() {
     }
   }, [celebration, mode]);
 
+  // Bắt phím Enter cho Flash Anzan result phase
+  useEffect(() => {
+    if (mode === 'flashAnzan' && flashPhase === 'result') {
+      const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          nextFlashChallenge();
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [mode, flashPhase]);
+
   // Auto-focus input cho mode Siêu Trí Tuệ và bắt phím số toàn cục
   useEffect(() => {
     if (mode === 'mentalMath' && mentalSubMode && result === null) {
@@ -486,7 +500,7 @@ export default function PracticePage() {
     }, 1000);
   };
   
-  // Hiện số từng cái một
+  // Hiện số từng cái một - TỐC ĐỘ CỐ ĐỊNH
   const showFlashNumber = (index, numbers, config) => {
     if (index >= numbers.length) {
       // Đã hiện hết số, chuyển sang phase trả lời
@@ -499,15 +513,15 @@ export default function PracticePage() {
     setFlashCurrentIndex(index);
     setFlashShowingNumber(numbers[index]);
     
-    // Tính speed (giây/số)
-    const speed = config.speed[0] + Math.random() * (config.speed[1] - config.speed[0]);
+    // Tốc độ CỐ ĐỊNH - dùng giá trị trung bình của range
+    const speed = (config.speed[0] + config.speed[1]) / 2;
     
     flashTimeoutRef.current = setTimeout(() => {
       setFlashShowingNumber(null);
-      // Hiện số tiếp theo sau khoảng trống nhỏ
+      // Hiện số tiếp theo sau khoảng trống nhỏ (cố định 150ms)
       flashTimeoutRef.current = setTimeout(() => {
         showFlashNumber(index + 1, numbers, config);
-      }, 100);
+      }, 150);
     }, speed * 1000);
   };
   
@@ -1082,33 +1096,56 @@ export default function PracticePage() {
             </div>
           )}
 
-          {/* Showing numbers phase */}
+          {/* Showing numbers phase - GIAO DIỆN RÕ RÀNG */}
           {flashPhase === 'showing' && (
-            <div className="text-center">
-              {flashShowingNumber !== null ? (
-                <div className="text-8xl sm:text-9xl font-black text-white animate-pulse drop-shadow-2xl">
-                  {flashShowingNumber}
+            <div className="text-center w-full max-w-md">
+              {/* Progress bar - hiện rõ đang ở số mấy */}
+              <div className="mb-6">
+                <div className="flex justify-center gap-2 mb-2">
+                  {flashNumbers.map((_, i) => (
+                    <div 
+                      key={i} 
+                      className={`w-4 h-4 rounded-full transition-all duration-200 ${
+                        i < flashCurrentIndex ? 'bg-green-400' : 
+                        i === flashCurrentIndex ? 'bg-yellow-400 scale-125 animate-pulse' : 
+                        'bg-white/30'
+                      }`}
+                    />
+                  ))}
                 </div>
-              ) : (
-                <div className="text-6xl text-white/30">...</div>
-              )}
+                <div className="text-white/80 text-lg font-bold">
+                  Số {flashCurrentIndex + 1} / {flashNumbers.length}
+                </div>
+              </div>
+              
+              {/* Khung hiển thị số - nổi bật */}
+              <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 shadow-2xl border-4 border-yellow-400/50">
+                {flashShowingNumber !== null ? (
+                  <div className="text-8xl sm:text-9xl font-black text-yellow-400 drop-shadow-lg" style={{textShadow: '0 0 30px rgba(250,204,21,0.5)'}}>
+                    {flashShowingNumber}
+                  </div>
+                ) : (
+                  <div className="text-8xl sm:text-9xl font-black text-white/20">
+                    •
+                  </div>
+                )}
+              </div>
+              
+              {/* Hướng dẫn */}
               <div className="mt-4 text-white/60 text-sm">
-                Số {flashCurrentIndex + 1}/{flashNumbers.length}
+                👁️ Tập trung nhìn và ghi nhớ!
               </div>
             </div>
           )}
 
           {/* Answer phase */}
           {flashPhase === 'answer' && (
-            <div className="text-center w-full max-w-md">
-              <div className="text-5xl mb-4">🧠</div>
-              <h2 className="text-2xl font-bold text-white mb-2">Tổng là bao nhiêu?</h2>
-              <div className="flex items-center justify-center gap-4 mb-6 text-white/70 text-sm">
-                <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full">
-                  <span>📊</span>
-                  <span>{flashNumbers.length} số đã hiện</span>
-                </div>
-              </div>
+            <div className="text-center w-full max-w-md px-4">
+              <div className="text-4xl mb-2">🧠</div>
+              <h2 className="text-xl font-bold text-white mb-1">Tổng là bao nhiêu?</h2>
+              <p className="text-white/60 text-sm mb-4">
+                Đã hiện {flashNumbers.length} số • Nhấn Enter để trả lời
+              </p>
               
               {/* Input */}
               <input
@@ -1202,6 +1239,7 @@ export default function PracticePage() {
                   >
                     {currentChallenge >= TOTAL_CHALLENGES ? '🏆 Xem kết quả' : '⚡ Câu tiếp theo'}
                   </button>
+                  <p className="text-white/50 text-xs mt-2">Nhấn Enter ↵</p>
                 </div>
               ) : (
                 // ========== SAI - Màn hình compact ==========
@@ -1256,6 +1294,7 @@ export default function PracticePage() {
                   >
                     {currentChallenge >= TOTAL_CHALLENGES ? '🏆 Xem kết quả' : '💪 Thử câu tiếp'}
                   </button>
+                  <p className="text-white/50 text-xs mt-2">Nhấn Enter ↵</p>
                 </div>
               )}
             </div>
