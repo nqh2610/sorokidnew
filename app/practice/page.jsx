@@ -1148,146 +1148,111 @@ export default function PracticePage() {
 
           {/* Result phase */}
           {flashPhase === 'result' && (
-            <div className="text-center w-full max-w-lg">
+            <div className="text-center w-full max-w-md px-4">
               {result ? (
-                // ========== ĐÚNG - Màn hình chúc mừng ==========
+                // ========== ĐÚNG - Màn hình chúc mừng compact ==========
                 <div className="animate-scale-up">
-                  {/* Confetti effect */}
-                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    {[...Array(20)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="absolute animate-bounce"
-                        style={{
-                          left: `${Math.random() * 100}%`,
-                          top: `${Math.random() * 60}%`,
-                          animationDelay: `${Math.random() * 0.5}s`,
-                          animationDuration: `${0.5 + Math.random()}s`
-                        }}
-                      >
-                        {['⭐', '✨', '🌟', '💫', '⚡'][Math.floor(Math.random() * 5)]}
+                  {/* Header với emoji và text */}
+                  <div className="flex items-center justify-center gap-3 mb-3">
+                    <span className="text-5xl">🎉</span>
+                    <div>
+                      <div className="text-2xl sm:text-3xl font-black text-green-400">
+                        CHÍNH XÁC!
                       </div>
-                    ))}
+                      <div className="text-yellow-400 font-bold text-lg">
+                        +{flashLevels.find(l => l.id === flashLevel)?.stars || 2} ⭐
+                      </div>
+                    </div>
                   </div>
                   
-                  <div className="text-8xl mb-4 animate-bounce drop-shadow-2xl">🎉</div>
-                  <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-green-400 to-cyan-400 mb-3 animate-pulse">
-                    TUYỆT VỜI!
+                  {/* Đáp án */}
+                  <div className="bg-green-500/20 border-2 border-green-500 rounded-2xl p-3 mb-3">
+                    <div className="text-white/80 text-sm">Đáp án của bạn</div>
+                    <div className="text-4xl font-black text-green-400">{flashAnswer}</div>
                   </div>
                   
-                  {/* Stars earned */}
-                  <div className="flex justify-center gap-1 mb-4">
-                    {[...Array(Math.min(5, flashLevels.find(l => l.id === flashLevel)?.stars || 2))].map((_, i) => (
-                      <span key={i} className="text-4xl animate-spin-slow" style={{ animationDelay: `${i * 0.1}s` }}>
-                        ⭐
-                      </span>
-                    ))}
-                  </div>
-                  <div className="text-2xl font-bold text-yellow-400 mb-4">
-                    +{flashLevels.find(l => l.id === flashLevel)?.stars || 2} sao
-                  </div>
-                  
-                  {/* Correct answer display */}
-                  <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-2 border-green-400/50 rounded-2xl p-4 mb-4">
-                    <div className="text-white/70 text-sm mb-1">Đáp án của bạn</div>
-                    <div className="text-5xl font-black text-green-400">{flashAnswer}</div>
-                    <div className="text-green-400 text-lg mt-1">✓ Chính xác!</div>
-                  </div>
-                  
-                  {/* Show numbers */}
-                  <div className="bg-white/5 rounded-xl p-3 mb-4">
-                    <div className="text-white/60 text-sm mb-2">Các số đã hiện:</div>
-                    <div className="flex flex-wrap justify-center gap-2">
+                  {/* Phép tính compact */}
+                  <div className="bg-white/10 rounded-xl p-3 mb-3">
+                    <div className="flex flex-wrap justify-center items-center gap-1 text-lg">
                       {flashNumbers.map((num, i) => (
-                        <span key={i} className="bg-yellow-500/30 text-yellow-200 px-3 py-1 rounded-lg font-bold">
-                          {num}
+                        <span key={i} className="flex items-center">
+                          <span className="bg-amber-500 text-white px-2 py-1 rounded-lg font-bold text-xl">
+                            {num}
+                          </span>
+                          {i < flashNumbers.length - 1 && (
+                            <span className="text-white/70 mx-1 font-bold">+</span>
+                          )}
                         </span>
                       ))}
-                    </div>
-                    <div className="text-white/50 text-xs mt-2">
-                      {flashNumbers.join(' + ')} = {flashCorrectAnswer}
+                      <span className="text-white/70 mx-2">=</span>
+                      <span className="text-green-400 font-black text-2xl">{flashCorrectAnswer}</span>
                     </div>
                   </div>
                   
-                  {/* Streak bonus */}
+                  {/* Streak */}
                   {streak > 1 && (
-                    <div className="text-xl text-orange-400 font-bold mb-4 animate-pulse">
+                    <div className="text-orange-400 font-bold mb-3">
                       🔥 Combo x{streak}!
                     </div>
                   )}
                   
                   <button
                     onClick={nextFlashChallenge}
-                    className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-xl rounded-2xl hover:scale-105 active:scale-95 transition-transform shadow-lg shadow-green-500/30"
+                    className="w-full py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-lg rounded-xl hover:brightness-110 active:scale-98 transition-all shadow-lg"
                   >
                     {currentChallenge >= TOTAL_CHALLENGES ? '🏆 Xem kết quả' : '⚡ Câu tiếp theo'}
                   </button>
                 </div>
               ) : (
-                // ========== SAI - Màn hình hiện đáp án và replay ==========
+                // ========== SAI - Màn hình compact ==========
                 <div className="animate-scale-up">
-                  <div className="text-7xl mb-3">😢</div>
-                  <div className="text-3xl font-black text-red-400 mb-4">
-                    CHƯA ĐÚNG RỒI!
-                  </div>
-                  
-                  {/* So sánh đáp án */}
-                  <div className="grid grid-cols-2 gap-3 mb-4">
-                    <div className="bg-red-500/20 border-2 border-red-400/50 rounded-2xl p-4">
-                      <div className="text-white/70 text-sm mb-1">Bạn trả lời</div>
-                      <div className="text-4xl font-black text-red-400">{flashAnswer}</div>
-                      <div className="text-red-400 text-sm mt-1">✗ Sai</div>
-                    </div>
-                    <div className="bg-green-500/20 border-2 border-green-400/50 rounded-2xl p-4">
-                      <div className="text-white/70 text-sm mb-1">Đáp án đúng</div>
-                      <div className="text-4xl font-black text-green-400">{flashCorrectAnswer}</div>
-                      <div className="text-green-400 text-sm mt-1">✓ Chính xác</div>
+                  {/* Header */}
+                  <div className="flex items-center justify-center gap-3 mb-3">
+                    <span className="text-5xl">😔</span>
+                    <div className="text-2xl sm:text-3xl font-black text-orange-400">
+                      CHƯA ĐÚNG!
                     </div>
                   </div>
                   
-                  {/* Replay các số */}
-                  <div className="bg-white/10 rounded-2xl p-4 mb-4">
-                    <div className="text-white/80 font-bold mb-3 flex items-center justify-center gap-2">
-                      <span>📺</span> Các số vừa hiện:
+                  {/* So sánh đáp án - 2 cột compact */}
+                  <div className="grid grid-cols-2 gap-2 mb-3">
+                    <div className="bg-red-500/20 border-2 border-red-400 rounded-xl p-2">
+                      <div className="text-white/70 text-xs">Bạn trả lời</div>
+                      <div className="text-3xl font-black text-red-400">{flashAnswer}</div>
                     </div>
-                    
-                    {/* Hiển thị từng số với animation */}
-                    <div className="flex flex-wrap justify-center gap-2 mb-3">
+                    <div className="bg-green-500/20 border-2 border-green-500 rounded-xl p-2">
+                      <div className="text-white/70 text-xs">Đáp án đúng</div>
+                      <div className="text-3xl font-black text-green-400">{flashCorrectAnswer}</div>
+                    </div>
+                  </div>
+                  
+                  {/* Phép tính với các số */}
+                  <div className="bg-white/10 rounded-xl p-3 mb-3">
+                    <div className="text-white/70 text-sm mb-2 font-medium">📺 Các số vừa hiện:</div>
+                    <div className="flex flex-wrap justify-center items-center gap-1">
                       {flashNumbers.map((num, i) => (
-                        <div 
-                          key={i} 
-                          className="bg-gradient-to-br from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-xl font-black text-2xl shadow-lg animate-scale-up"
-                          style={{ animationDelay: `${i * 0.15}s` }}
-                        >
-                          {num}
-                        </div>
-                      ))}
-                    </div>
-                    
-                    {/* Phép tính đầy đủ */}
-                    <div className="bg-black/30 rounded-xl p-3 mt-3">
-                      <div className="text-white/60 text-sm mb-2">Phép tính:</div>
-                      <div className="text-xl text-white font-mono flex items-center justify-center flex-wrap gap-1">
-                        {flashNumbers.map((num, i) => (
-                          <span key={i}>
-                            <span className="text-yellow-400">{num}</span>
-                            {i < flashNumbers.length - 1 && <span className="text-white/60 mx-1">+</span>}
+                        <span key={i} className="flex items-center">
+                          <span className="bg-gradient-to-br from-amber-500 to-orange-500 text-white px-3 py-1.5 rounded-lg font-black text-xl shadow-md">
+                            {num}
                           </span>
-                        ))}
-                        <span className="text-white/60 mx-2">=</span>
-                        <span className="text-green-400 font-black">{flashCorrectAnswer}</span>
-                      </div>
+                          {i < flashNumbers.length - 1 && (
+                            <span className="text-white/60 mx-1 font-bold">+</span>
+                          )}
+                        </span>
+                      ))}
+                      <span className="text-white/60 mx-2">=</span>
+                      <span className="text-green-400 font-black text-2xl">{flashCorrectAnswer}</span>
                     </div>
                   </div>
                   
-                  {/* Lời động viên */}
-                  <div className="text-white/70 text-sm mb-4">
-                    💪 Đừng nản chí! Luyện tập nhiều sẽ giỏi hơn!
-                  </div>
+                  {/* Động viên ngắn gọn */}
+                  <p className="text-white/60 text-sm mb-3">
+                    💪 Cố gắng lên! Bạn làm được!
+                  </p>
                   
                   <button
                     onClick={nextFlashChallenge}
-                    className="px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-xl rounded-2xl hover:scale-105 active:scale-95 transition-transform shadow-lg"
+                    className="w-full py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-lg rounded-xl hover:brightness-110 active:scale-98 transition-all shadow-lg"
                   >
                     {currentChallenge >= TOTAL_CHALLENGES ? '🏆 Xem kết quả' : '💪 Thử câu tiếp'}
                   </button>
