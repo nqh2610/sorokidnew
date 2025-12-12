@@ -212,10 +212,29 @@ export default function CompetePage() {
   const [celebrationData, setCelebrationData] = useState(null);
   const [mentalAnswer, setMentalAnswer] = useState('');
   const mentalInputRef = useRef(null);
+  
+  // User tier state
+  const [userTier, setUserTier] = useState('free');
 
   useEffect(() => {
     if (status === 'unauthenticated') router.push('/login');
   }, [status, router]);
+  
+  // Fetch user tier
+  useEffect(() => {
+    const fetchTier = async () => {
+      try {
+        const res = await fetch('/api/tier');
+        const data = await res.json();
+        if (data.tier) {
+          setUserTier(data.tier);
+        }
+      } catch (error) {
+        console.error('Error fetching tier:', error);
+      }
+    };
+    fetchTier();
+  }, []);
 
   useEffect(() => {
     if (problem && result === null && gameStarted) {
@@ -720,6 +739,18 @@ export default function CompetePage() {
           
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
               {Object.entries(modeInfo).map(([modeKey, info]) => {
+                // Định nghĩa tier yêu cầu cho từng mode
+                const modeTiers = {
+                  addition: 'free',
+                  subtraction: 'free',
+                  addSubMixed: 'basic',
+                  multiplication: 'advanced',
+                  division: 'advanced',
+                  mulDiv: 'advanced',
+                  mixed: 'advanced',
+                  mentalMath: 'advanced'
+                };
+                
                 const recommendLevel = {
                   addition: 'Gom sao!',
                   subtraction: 'Diệt quái!',
@@ -731,18 +762,38 @@ export default function CompetePage() {
                   mentalMath: 'Không bàn tính!'
                 };
                 
+                // Kiểm tra mode có bị khóa không
+                const tierLevels = { free: 0, basic: 1, advanced: 2, vip: 3 };
+                const userTierLevel = tierLevels[userTier] || 0;
+                const requiredTierLevel = tierLevels[modeTiers[modeKey]] || 0;
+                const isLocked = userTierLevel < requiredTierLevel;
+                
                 return (
                   <button
                     key={modeKey}
-                    onClick={() => selectModeAndContinue(modeKey)}
+                    onClick={() => {
+                      if (isLocked) {
+                        toast.warning(`Cần nâng cấp lên gói ${modeTiers[modeKey] === 'basic' ? 'Cơ Bản' : 'Nâng Cao'} để mở khóa`);
+                        router.push('/pricing');
+                        return;
+                      }
+                      selectModeAndContinue(modeKey);
+                    }}
                     className={`bg-gradient-to-br ${info.color} rounded-2xl p-4 sm:p-5 shadow-xl hover:shadow-2xl transform hover:scale-[1.03] active:scale-95 transition-all text-white text-center relative overflow-hidden group`}
                   >
+                    {/* Lock icon */}
+                    {isLocked && (
+                      <div className="absolute top-2 left-2 bg-black/40 rounded-full w-7 h-7 flex items-center justify-center z-20">
+                        <span className="text-white text-sm">🔒</span>
+                      </div>
+                    )}
+                    
                     <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all"></div>
-                    <div className="text-4xl sm:text-5xl mb-2 z-10 relative drop-shadow-md">{info.icon}</div>
-                    <div className="text-sm sm:text-base font-black z-10 relative drop-shadow-sm">{info.title}</div>
-                    <div className="text-xs z-10 relative mt-0.5 text-white/95">{info.subtitle}</div>
-                    <div className="text-[10px] mt-2 z-10 relative bg-black/30 rounded-full px-2 py-0.5 text-white/90">
-                      {recommendLevel[modeKey]}
+                    <div className={`text-4xl sm:text-5xl mb-2 z-10 relative drop-shadow-md ${isLocked ? 'opacity-60' : ''}`}>{info.icon}</div>
+                    <div className={`text-sm sm:text-base font-black z-10 relative drop-shadow-sm ${isLocked ? 'opacity-60' : ''}`}>{info.title}</div>
+                    <div className={`text-xs z-10 relative mt-0.5 ${isLocked ? 'opacity-50' : 'text-white/95'}`}>{info.subtitle}</div>
+                    <div className={`text-[10px] mt-2 z-10 relative bg-black/30 rounded-full px-2 py-0.5 ${isLocked ? 'opacity-50' : 'text-white/90'}`}>
+                      {isLocked ? 'Cần nâng cấp' : recommendLevel[modeKey]}
                     </div>
                   </button>
                 );
@@ -873,27 +924,49 @@ export default function CompetePage() {
                 5: '👑 Đỉnh cao'
               };
               
+              // Kiểm tra cấp độ có bị khóa không
+              const maxDifficulty = userTier === 'free' ? 2 : userTier === 'basic' ? 3 : 5;
+              const isDifficultyLocked = diff > maxDifficulty;
+              
               return (
                 <button
                   key={diff}
-                  onClick={() => selectDifficultyAndContinue(diff)}
+                  onClick={() => {
+                    if (isDifficultyLocked) {
+                      toast.warning(`Cấp độ ${diff} cần nâng cấp gói để mở khóa`);
+                      router.push('/pricing');
+                      return;
+                    }
+                    selectDifficultyAndContinue(diff);
+                  }}
                   className={`bg-gradient-to-br ${diffColors[diff]} rounded-2xl p-4 shadow-xl hover:shadow-2xl transform hover:scale-[1.03] active:scale-95 transition-all text-white text-center relative overflow-hidden group`}
                 >
+                  {/* Lock icon */}
+                  {isDifficultyLocked && (
+                    <div className="absolute top-2 left-2 bg-black/40 rounded-full w-7 h-7 flex items-center justify-center z-20">
+                      <span className="text-white text-sm">🔒</span>
+                    </div>
+                  )}
+                  
                   <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all"></div>
-                  {diff === 1 && (
+                  {diff === 1 && !isDifficultyLocked && (
                     <div className="absolute -top-1 -right-1 bg-green-400 text-green-900 text-[8px] font-bold px-1.5 py-0.5 rounded-bl-lg rounded-tr-xl z-20">
                       GỢI Ý
                     </div>
                   )}
-                  <div className="text-3xl sm:text-4xl mb-1 z-10 relative drop-shadow-md">{arenaName.icon}</div>
-                  <div className="text-sm sm:text-base font-black z-10 relative drop-shadow-sm">{arenaName.title}</div>
-                  <div className="text-[10px] sm:text-xs z-10 relative flex items-center justify-center gap-1 mt-1 text-white/95">
+                  <div className={`text-3xl sm:text-4xl mb-1 z-10 relative drop-shadow-md ${isDifficultyLocked ? 'opacity-60' : ''}`}>{arenaName.icon}</div>
+                  <div className={`text-sm sm:text-base font-black z-10 relative drop-shadow-sm ${isDifficultyLocked ? 'opacity-60' : ''}`}>{arenaName.title}</div>
+                  <div className={`text-[10px] sm:text-xs z-10 relative flex items-center justify-center gap-1 mt-1 ${isDifficultyLocked ? 'opacity-50' : 'text-white/95'}`}>
                     <span>{diffData.emoji}</span>
                     <span>{diffData.label}</span>
                   </div>
-                  <div className="text-[10px] mt-1 z-10 relative text-white/85">{diffDesc[diff]}</div>
-                  <div className="text-[9px] mt-0.5 z-10 relative text-white/75">{diffExample[diff]}</div>
-                  <div className="text-[10px] mt-1 z-10 relative bg-black/30 rounded-full px-2 py-0.5 text-white/90">
+                  <div className={`text-[10px] mt-1 z-10 relative ${isDifficultyLocked ? 'opacity-50' : 'text-white/85'}`}>
+                    {isDifficultyLocked ? 'Cần nâng cấp' : diffDesc[diff]}
+                  </div>
+                  <div className={`text-[9px] mt-0.5 z-10 relative ${isDifficultyLocked ? 'opacity-40' : 'text-white/75'}`}>
+                    {!isDifficultyLocked && diffExample[diff]}
+                  </div>
+                  <div className={`text-[10px] mt-1 z-10 relative bg-black/30 rounded-full px-2 py-0.5 ${isDifficultyLocked ? 'opacity-50' : 'text-white/90'}`}>
                     {diffRecommend[diff]} • ⭐x{diff * 2}
                   </div>
                 </button>

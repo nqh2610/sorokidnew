@@ -125,6 +125,9 @@ export default function PracticePage() {
   const [mentalSubMode, setMentalSubMode] = useState(null); // Sub-mode cho Siêu Trí Tuệ
   const mentalInputRef = useRef(null);
   
+  // User tier state
+  const [userTier, setUserTier] = useState('free');
+  
   // Flash Anzan states
   const [flashLevel, setFlashLevel] = useState(null); // Cấp độ Flash Anzan đã chọn
   const [flashPhase, setFlashPhase] = useState('idle'); // 'idle' | 'countdown' | 'showing' | 'answer' | 'result'
@@ -140,6 +143,22 @@ export default function PracticePage() {
   useEffect(() => {
     if (status === 'unauthenticated') router.push('/login');
   }, [status, router]);
+
+  // Fetch user tier
+  useEffect(() => {
+    const fetchTier = async () => {
+      try {
+        const res = await fetch('/api/tier');
+        const data = await res.json();
+        if (data.tier) {
+          setUserTier(data.tier);
+        }
+      } catch (error) {
+        console.error('Error fetching tier:', error);
+      }
+    };
+    fetchTier();
+  }, []);
 
   // Cleanup Flash Anzan timeouts
   useEffect(() => {
@@ -1273,20 +1292,41 @@ export default function PracticePage() {
                 { level: 3, label: 'Dũng Sĩ', emoji: '🛡️', color: 'from-yellow-400 to-orange-500', desc: 'Số 1-100, 4 số hạng' },
                 { level: 4, label: 'Cao Thủ', emoji: '🔥', color: 'from-orange-400 to-red-500', desc: 'Số 1-500, 5 số hạng' },
                 { level: 5, label: 'Huyền Thoại', emoji: '👑', color: 'from-purple-400 to-pink-500', desc: 'Số 1-999, 6 số hạng' }
-              ].map(item => (
-                <button
-                  key={item.level}
-                  onClick={() => setDifficulty(item.level)}
-                  className={`relative px-3 py-2 rounded-xl font-bold transition-all transform hover:scale-105 min-w-[80px] ${
-                    difficulty === item.level
-                      ? `bg-gradient-to-br ${item.color} text-white shadow-lg scale-110 ring-2 ring-white`
-                      : 'bg-white/20 text-white/80 hover:bg-white/30'
-                  }`}
-                >
-                  <div className="text-2xl">{item.emoji}</div>
-                  <div className="text-xs font-semibold mt-1">{item.label}</div>
-                </button>
-              ))}
+              ].map(item => {
+                // Kiểm tra cấp độ có bị khóa không
+                const maxDifficulty = userTier === 'free' ? 2 : userTier === 'basic' ? 3 : 5;
+                const isDifficultyLocked = item.level > maxDifficulty;
+                
+                return (
+                  <button
+                    key={item.level}
+                    onClick={() => {
+                      if (isDifficultyLocked) {
+                        toast.warning(`Cấp độ ${item.level} cần nâng cấp gói để mở khóa`);
+                        router.push('/pricing');
+                        return;
+                      }
+                      setDifficulty(item.level);
+                    }}
+                    className={`relative px-3 py-2 rounded-xl font-bold transition-all transform hover:scale-105 min-w-[80px] ${
+                      difficulty === item.level
+                        ? `bg-gradient-to-br ${item.color} text-white shadow-lg scale-110 ring-2 ring-white`
+                        : 'bg-white/20 text-white/80 hover:bg-white/30'
+                    }`}
+                  >
+                    {/* Lock icon */}
+                    {isDifficultyLocked && (
+                      <div className="absolute -top-1 -left-1 bg-black/60 rounded-full w-5 h-5 flex items-center justify-center z-20">
+                        <span className="text-white text-xs">🔒</span>
+                      </div>
+                    )}
+                    <div className={`text-2xl ${isDifficultyLocked ? 'opacity-50' : ''}`}>{item.emoji}</div>
+                    <div className={`text-xs font-semibold mt-1 ${isDifficultyLocked ? 'opacity-50' : ''}`}>
+                      {isDifficultyLocked ? 'Khóa' : item.label}
+                    </div>
+                  </button>
+                );
+              })}
             </div>
             {/* Mô tả cấp độ đang chọn */}
             <div className="mt-3 text-center">
@@ -1303,41 +1343,74 @@ export default function PracticePage() {
           {/* Mode grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {[
-              { mode: 'addition', title: 'Siêu Cộng', icon: '🌟', symbol: '+', color: 'from-emerald-400 to-green-500', desc: 'Gom sao!' },
-              { mode: 'subtraction', title: 'Siêu Trừ', icon: '👾', symbol: '-', color: 'from-blue-400 to-cyan-500', desc: 'Diệt quái!' },
-              { mode: 'addSubMixed', title: 'Cộng Trừ Mix', icon: '⚔️', symbol: '±', color: 'from-teal-400 to-emerald-500', desc: 'Hỗn chiến!' },
-              { mode: 'multiplication', title: 'Siêu Nhân', icon: '✨', symbol: '×', color: 'from-purple-400 to-pink-500', desc: 'Nhân bội!' },
-              { mode: 'division', title: 'Siêu Chia', icon: '🍕', symbol: '÷', color: 'from-rose-400 to-red-500', desc: 'Chia đều!' },
-              { mode: 'mulDiv', title: 'Nhân Chia Mix', icon: '🎩', symbol: '×÷', color: 'from-amber-400 to-orange-500', desc: 'Phép thuật!' },
-              { mode: 'mixed', title: 'Tứ Phép Thần', icon: '👑', symbol: '∞', color: 'from-indigo-500 to-purple-600', desc: 'Boss cuối!' },
-              { mode: 'mentalMath', title: 'Siêu Trí Tuệ', icon: '🧠', symbol: '💭', color: 'from-violet-500 to-fuchsia-600', desc: 'Không bàn tính!', special: true },
-              { mode: 'flashAnzan', title: 'Tia Chớp', icon: '⚡', symbol: '💫', color: 'from-yellow-500 to-orange-600', desc: 'Flash Anzan!', special: true },
-            ].map(item => (
-              <button
-                key={item.mode}
-                onClick={() => startMode(item.mode)}
-                className={`bg-gradient-to-br ${item.color} rounded-2xl p-4 sm:p-6 shadow-xl hover:shadow-2xl transform hover:scale-[1.02] active:scale-95 transition-all text-white flex flex-col items-center justify-center relative overflow-hidden group min-h-[140px] ${
-                  item.special ? 'ring-2 ring-yellow-400 ring-offset-2 ring-offset-purple-900' : ''
-                }`}
-              >
-                {/* Glow effect on hover */}
-                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all"></div>
+              { mode: 'addition', title: 'Siêu Cộng', icon: '🌟', symbol: '+', color: 'from-emerald-400 to-green-500', desc: 'Gom sao!', tier: 'free' },
+              { mode: 'subtraction', title: 'Siêu Trừ', icon: '👾', symbol: '-', color: 'from-blue-400 to-cyan-500', desc: 'Diệt quái!', tier: 'free' },
+              { mode: 'addSubMixed', title: 'Cộng Trừ Mix', icon: '⚔️', symbol: '±', color: 'from-teal-400 to-emerald-500', desc: 'Hỗn chiến!', tier: 'basic' },
+              { mode: 'multiplication', title: 'Siêu Nhân', icon: '✨', symbol: '×', color: 'from-purple-400 to-pink-500', desc: 'Nhân bội!', tier: 'advanced' },
+              { mode: 'division', title: 'Siêu Chia', icon: '🍕', symbol: '÷', color: 'from-rose-400 to-red-500', desc: 'Chia đều!', tier: 'advanced' },
+              { mode: 'mulDiv', title: 'Nhân Chia Mix', icon: '🎩', symbol: '×÷', color: 'from-amber-400 to-orange-500', desc: 'Phép thuật!', tier: 'advanced' },
+              { mode: 'mixed', title: 'Tứ Phép Thần', icon: '👑', symbol: '∞', color: 'from-indigo-500 to-purple-600', desc: 'Boss cuối!', tier: 'advanced' },
+              { mode: 'mentalMath', title: 'Siêu Trí Tuệ', icon: '🧠', symbol: '💭', color: 'from-violet-500 to-fuchsia-600', desc: 'Không bàn tính!', tier: 'advanced', special: true },
+              { mode: 'flashAnzan', title: 'Tia Chớp', icon: '⚡', symbol: '💫', color: 'from-yellow-500 to-orange-600', desc: 'Flash Anzan!', tier: 'advanced', special: true },
+            ].map(item => {
+              // Kiểm tra mode có bị khóa không
+              const tierLevels = { free: 0, basic: 1, advanced: 2, vip: 3 };
+              const userTierLevel = tierLevels[userTier] || 0;
+              const requiredTierLevel = tierLevels[item.tier] || 0;
+              const isLocked = userTierLevel < requiredTierLevel;
+              
+              // Kiểm tra cấp độ có bị khóa không (dựa trên tier và difficulty)
+              const maxDifficulty = userTier === 'free' ? 2 : userTier === 'basic' ? 3 : 5;
+              const isDifficultyLocked = difficulty > maxDifficulty && !isLocked;
+              
+              return (
+                <button
+                  key={item.mode}
+                  onClick={() => {
+                    if (isLocked) {
+                      toast.warning(`Cần nâng cấp lên gói ${item.tier === 'basic' ? 'Cơ Bản' : 'Nâng Cao'} để mở khóa`);
+                      router.push('/pricing');
+                      return;
+                    }
+                    if (isDifficultyLocked) {
+                      toast.warning(`Cấp độ ${difficulty} cần nâng cấp gói để mở khóa`);
+                      router.push('/pricing');
+                      return;
+                    }
+                    startMode(item.mode);
+                  }}
+                  className={`bg-gradient-to-br ${item.color} rounded-2xl p-4 sm:p-6 shadow-xl hover:shadow-2xl transform hover:scale-[1.02] active:scale-95 transition-all text-white flex flex-col items-center justify-center relative overflow-hidden group min-h-[140px] ${
+                    item.special ? 'ring-2 ring-yellow-400 ring-offset-2 ring-offset-purple-900' : ''
+                  }`}
+                >
+                  {/* Lock icon */}
+                  {isLocked && (
+                    <div className="absolute top-2 left-2 bg-black/40 rounded-full w-7 h-7 flex items-center justify-center z-20">
+                      <span className="text-white text-sm">🔒</span>
+                    </div>
+                  )}
+                  
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all"></div>
+                  
+                  {/* Icon */}
+                  <div className={`text-4xl sm:text-5xl mb-2 drop-shadow-lg z-10 ${isLocked ? 'opacity-60' : ''}`}>{item.icon}</div>
+                  
+                  {/* Symbol badge */}
+                  <div className="absolute top-2 right-2 bg-white/30 rounded-full w-7 h-7 flex items-center justify-center font-bold text-sm">
+                    {item.symbol}
+                  </div>
                 
-                {/* Icon */}
-                <div className="text-4xl sm:text-5xl mb-2 drop-shadow-lg z-10">{item.icon}</div>
+                  {/* Title */}
+                  <div className={`text-base sm:text-lg font-black z-10 ${isLocked ? 'opacity-60' : ''}`}>{item.title}</div>
                 
-                {/* Symbol badge */}
-                <div className="absolute top-2 right-2 bg-white/30 rounded-full w-7 h-7 flex items-center justify-center font-bold text-sm">
-                  {item.symbol}
-                </div>
-                
-                {/* Title */}
-                <div className="text-base sm:text-lg font-black z-10">{item.title}</div>
-                
-                {/* Desc */}
-                <div className="text-xs opacity-80 z-10">{item.desc}</div>
-              </button>
-            ))}
+                  {/* Desc */}
+                  <div className={`text-xs z-10 ${isLocked ? 'opacity-50' : 'opacity-80'}`}>
+                    {isLocked ? 'Cần nâng cấp' : item.desc}
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>

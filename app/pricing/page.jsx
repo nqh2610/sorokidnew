@@ -419,56 +419,63 @@ export default function PricingPage() {
             </h2>
           </div>
 
+          {/* Mobile hint */}
+          <p className="text-center text-sm text-slate-500 mb-3 md:hidden">👉 Vuốt ngang để xem thêm</p>
+          
           <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
-            {/* Table Header */}
-            <div className="grid grid-cols-4 bg-gradient-to-r from-slate-50 via-slate-100/50 to-slate-50 border-b border-slate-200">
-              <div className="p-5 font-bold text-slate-700 text-lg">Tính năng</div>
-              <div className="p-5 text-center">
-                <span className="font-bold text-slate-500">Miễn Phí</span>
-              </div>
-              <div className="p-5 text-center">
-                <span className="font-bold text-blue-600">Cơ Bản</span>
-              </div>
-              <div className="p-5 text-center">
-                <span className="inline-flex items-center gap-1.5 font-bold text-fuchsia-600">
-                  <Crown size={16} className="text-amber-500" />
-                  Nâng Cao
-                </span>
+            <div className="overflow-x-auto">
+              <div className="min-w-[600px]">
+                {/* Table Header */}
+                <div className="grid grid-cols-4 bg-gradient-to-r from-slate-50 via-slate-100/50 to-slate-50 border-b border-slate-200">
+                  <div className="p-4 md:p-5 font-bold text-slate-700 text-sm md:text-lg sticky left-0 bg-slate-50">Tính năng</div>
+                  <div className="p-4 md:p-5 text-center">
+                    <span className="font-bold text-slate-500 text-xs md:text-base">Miễn Phí</span>
+                  </div>
+                  <div className="p-4 md:p-5 text-center">
+                    <span className="font-bold text-blue-600 text-xs md:text-base">Cơ Bản</span>
+                  </div>
+                  <div className="p-4 md:p-5 text-center bg-fuchsia-50/50">
+                    <span className="inline-flex items-center gap-1 font-bold text-fuchsia-600 text-xs md:text-base">
+                      <Crown size={14} className="text-amber-500" />
+                      Nâng Cao
+                    </span>
+                  </div>
+                </div>
+
+                {/* Table Body */}
+                {COMPARISON_DATA.categories.map((category, catIdx) => {
+                  const CategoryIcon = category.icon;
+                  return (
+                    <div key={catIdx}>
+                      {/* Category Header */}
+                      <div className="grid grid-cols-4 bg-gradient-to-r from-violet-50/50 via-fuchsia-50/30 to-pink-50/50 border-b border-slate-100">
+                        <div className="p-3 md:p-4 col-span-4">
+                          <div className="flex items-center gap-2 md:gap-3 font-bold text-slate-700 text-sm md:text-base">
+                            <div className="w-6 h-6 md:w-8 md:h-8 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
+                              <CategoryIcon size={14} className="text-white" />
+                            </div>
+                            {category.name}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Features */}
+                      {category.features.map((feature, featIdx) => (
+                        <div
+                          key={featIdx}
+                          className="grid grid-cols-4 border-b border-slate-100 hover:bg-slate-50/50 transition-colors group"
+                        >
+                          <div className="p-3 md:p-4 text-xs md:text-sm text-slate-600 group-hover:text-slate-800 transition-colors">{feature.name}</div>
+                          <div className="p-3 md:p-4 text-center">{renderFeatureValue(feature.free)}</div>
+                          <div className="p-3 md:p-4 text-center">{renderFeatureValue(feature.basic)}</div>
+                          <div className="p-3 md:p-4 text-center bg-fuchsia-50/30">{renderFeatureValue(feature.advanced)}</div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })}
               </div>
             </div>
-
-            {/* Table Body */}
-            {COMPARISON_DATA.categories.map((category, catIdx) => {
-              const CategoryIcon = category.icon;
-              return (
-                <div key={catIdx}>
-                  {/* Category Header */}
-                  <div className="grid grid-cols-4 bg-gradient-to-r from-violet-50/50 via-fuchsia-50/30 to-pink-50/50 border-b border-slate-100">
-                    <div className="p-4 col-span-4">
-                      <div className="flex items-center gap-3 font-bold text-slate-700">
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
-                          <CategoryIcon size={16} className="text-white" />
-                        </div>
-                        {category.name}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Features */}
-                  {category.features.map((feature, featIdx) => (
-                    <div
-                      key={featIdx}
-                      className="grid grid-cols-4 border-b border-slate-100 hover:bg-slate-50/50 transition-colors group"
-                    >
-                      <div className="p-4 text-sm text-slate-600 group-hover:text-slate-800 transition-colors">{feature.name}</div>
-                      <div className="p-4 text-center">{renderFeatureValue(feature.free)}</div>
-                      <div className="p-4 text-center">{renderFeatureValue(feature.basic)}</div>
-                      <div className="p-4 text-center bg-fuchsia-50/30">{renderFeatureValue(feature.advanced)}</div>
-                    </div>
-                  ))}
-                </div>
-              );
-            })}
           </div>
         </div>
       </div>

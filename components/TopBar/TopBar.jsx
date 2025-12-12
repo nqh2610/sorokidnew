@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { LogOut, Star, ChevronDown } from 'lucide-react';
@@ -13,6 +13,26 @@ export default function TopBar({ showStats = true }) {
   const [userTier, setUserTier] = useState('free');
   const [showDropdown, setShowDropdown] = useState(false);
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    if (showDropdown) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [showDropdown]);
 
   useEffect(() => {
     if (session?.user) {
@@ -88,19 +108,19 @@ export default function TopBar({ showStats = true }) {
       />
 
       <header className="bg-white/90 backdrop-blur-lg shadow-lg sticky top-0 z-50 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3">
+          <div className="flex items-center justify-between gap-2">
             {/* Logo - Click để về Dashboard */}
-            <Link href="/dashboard" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <Link href="/dashboard" className="flex items-center gap-2 hover:opacity-80 transition-opacity flex-shrink-0">
               <Logo size="md" showText={false} />
               <h1 className="hidden sm:block text-xl font-bold bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
                 SoroKid
               </h1>
             </Link>
 
-            {/* Stats bar - chỉ hiện khi showStats = true */}
+            {/* Desktop Stats bar */}
             {showStats && (
-              <div className="hidden md:flex items-center gap-3">
+              <div className="hidden md:flex items-center gap-2 lg:gap-3">
                 {/* Tier Badge Desktop */}
                 <Link 
                   href="/pricing"
@@ -149,27 +169,59 @@ export default function TopBar({ showStats = true }) {
               </div>
             )}
 
-            {/* Mobile Stats */}
+            {/* Mobile: Compact Stats Pill + Avatar + Logout */}
             {showStats && (
-              <div className="flex md:hidden items-center gap-1.5 overflow-x-auto">
-                {/* Tier Badge Mobile */}
-                <Link href="/pricing" className="flex-shrink-0">
-                  {getTierBadge()}
+              <div className="flex md:hidden items-center gap-1.5 flex-1 justify-end">
+                {/* Compact stats in one pill */}
+                <div className="flex items-center bg-gray-50 rounded-full px-2 py-1 gap-2">
+                  <span className="flex items-center gap-0.5 text-xs">
+                    <span>🔥</span>
+                    <span className="font-semibold text-orange-600">{userStats?.streak || 0}</span>
+                  </span>
+                  <span className="w-px h-3 bg-gray-300"></span>
+                  <span className="flex items-center gap-0.5 text-xs">
+                    <span>⭐</span>
+                    <span className="font-semibold text-yellow-600">{(userStats?.totalStars || 0).toLocaleString()}</span>
+                  </span>
+                  <span className="w-px h-3 bg-gray-300"></span>
+                  <span className="flex items-center gap-0.5 text-xs">
+                    <span>💎</span>
+                    <span className="font-semibold text-cyan-600">{(userStats?.diamonds || 0).toLocaleString()}</span>
+                  </span>
+                </div>
+
+                {/* Avatar - direct link to profile page */}
+                <Link 
+                  href="/profile"
+                  className="flex-shrink-0 active:scale-95 transition-transform"
+                >
+                  {session.user?.image ? (
+                    <img 
+                      src={session.user.image} 
+                      alt="Avatar" 
+                      className="w-9 h-9 rounded-full object-cover border-2 border-violet-200"
+                    />
+                  ) : (
+                    <div className="w-9 h-9 bg-gradient-to-br from-blue-400 via-violet-400 to-pink-400 rounded-full flex items-center justify-center text-white text-sm font-bold border-2 border-violet-200">
+                      {(userStats?.name || session.user?.name || 'U')[0].toUpperCase()}
+                    </div>
+                  )}
                 </Link>
-                <div className="flex items-center gap-1 px-2 py-1 bg-orange-50 rounded-lg flex-shrink-0">
-                  <span className="text-xs">🔥</span>
-                  <span className="font-semibold text-orange-600 text-xs">{userStats?.streak || 0}</span>
-                </div>
-                <div className="flex items-center gap-1 px-2 py-1 bg-yellow-50 rounded-lg flex-shrink-0">
-                  <span className="text-xs">⭐</span>
-                  <span className="font-semibold text-yellow-600 text-xs">{(userStats?.totalStars || 0).toLocaleString()}</span>
-                </div>
+
+                {/* Logout shortcut button */}
+                <button
+                  onClick={() => setShowLogoutDialog(true)}
+                  className="flex-shrink-0 w-9 h-9 flex items-center justify-center bg-red-50 hover:bg-red-100 active:bg-red-200 rounded-full transition-colors"
+                  title="Đăng xuất"
+                >
+                  <LogOut size={16} className="text-red-500" />
+                </button>
               </div>
             )}
 
-            {/* User dropdown */}
-            <div className="flex items-center gap-3">
-              <div className="relative">
+            {/* Desktop: User dropdown */}
+            <div className="hidden md:flex items-center gap-3">
+              <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setShowDropdown(!showDropdown)}
                   className="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-gray-100 transition-colors"
@@ -185,25 +237,20 @@ export default function TopBar({ showStats = true }) {
                       {(userStats?.name || session.user?.name || 'U')[0].toUpperCase()}
                     </div>
                   )}
-                  <div className="hidden sm:block text-left">
+                  <div className="text-left">
                     <span className="text-sm font-semibold text-gray-800">
                       {userStats?.name || session.user?.name || 'User'}
                     </span>
                     <div className="text-xs text-gray-500">
-                      Cấp {userStats?.level || 1}
+                      {userStats?.levelInfo?.icon} {userStats?.levelInfo?.name || `Cấp ${userStats?.level || 1}`}
                     </div>
                   </div>
-                  <ChevronDown size={16} className="text-gray-400" />
+                  <ChevronDown size={16} className={`text-gray-400 transition-transform ${showDropdown ? 'rotate-180' : ''}`} />
                 </button>
 
-                {/* Dropdown menu */}
+                {/* Desktop: Dropdown menu */}
                 {showDropdown && (
-                  <>
-                    <div 
-                      className="fixed inset-0 z-10" 
-                      onClick={() => setShowDropdown(false)}
-                    />
-                    <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-20">
+                    <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
                       <Link
                         href="/dashboard"
                         onClick={() => setShowDropdown(false)}
@@ -238,7 +285,7 @@ export default function TopBar({ showStats = true }) {
                       </Link>
                       <hr className="my-2" />
                       <Link
-                        href="/complete-profile"
+                        href="/profile"
                         onClick={() => setShowDropdown(false)}
                         className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
                       >
@@ -285,7 +332,6 @@ export default function TopBar({ showStats = true }) {
                         <span>Đăng xuất</span>
                       </button>
                     </div>
-                  </>
                 )}
               </div>
             </div>

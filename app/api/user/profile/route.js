@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { getLevelInfo } from '@/lib/gamification';
 
 // GET /api/user/profile - Lấy thông tin profile
 export async function GET(request) {
@@ -20,7 +21,6 @@ export async function GET(request) {
         username: true,
         name: true,
         avatar: true,
-        level: true,
         totalStars: true,
         diamonds: true,
         streak: true,
@@ -32,6 +32,9 @@ export async function GET(request) {
     if (!user) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
+
+    // Tính level từ totalStars (thống nhất với gamification system)
+    const levelInfo = getLevelInfo(user.totalStars || 0);
 
     // Get tier info
     let tier = 'free';
@@ -47,7 +50,18 @@ export async function GET(request) {
     }
 
     return NextResponse.json({ 
-      user: { ...user, tier }
+      user: { 
+        ...user, 
+        tier,
+        // Level tính từ totalStars (thống nhất)
+        level: levelInfo.level,
+        levelInfo: {
+          level: levelInfo.level,
+          name: levelInfo.name,
+          icon: levelInfo.icon,
+          progressPercent: levelInfo.progressPercent
+        }
+      }
     });
   } catch (error) {
     console.error('Error fetching profile:', error);
