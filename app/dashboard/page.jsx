@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Star, Zap, Trophy, ChevronRight, Play, Clock, ChevronDown, ChevronUp } from 'lucide-react';
+import { Star, Zap, Trophy, ChevronRight, Play, Clock, ChevronDown, ChevronUp, Sparkles, Gift } from 'lucide-react';
 import LevelBadge from '@/components/LevelBadge/LevelBadge';
 import TopBar from '@/components/TopBar/TopBar';
 import ActivityChart from '@/components/Dashboard/ActivityChart';
@@ -179,6 +179,32 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
+
+        {/* Banner gợi ý tinh tế - chỉ hiển cho user free/basic */}
+        {user?.tier !== 'advanced' && user?.tier !== 'vip' && (
+          <Link 
+            href="/pricing"
+            className="block bg-gradient-to-r from-purple-50 via-pink-50 to-orange-50 rounded-2xl p-4 shadow-sm border border-purple-100 hover:shadow-md hover:border-purple-200 transition-all group"
+          >
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl text-white shadow-lg group-hover:scale-110 transition-transform">
+                <Gift size={20} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-sm font-bold text-gray-800">Khám phá nhiều hơn</span>
+                  <Sparkles size={14} className="text-purple-500" />
+                </div>
+                <p className="text-xs text-gray-500 truncate">
+                  {user?.tier === 'free' 
+                    ? 'Mở khóa 18 level và các chế độ chơi đặc biệt' 
+                    : 'Nâng cấp để trải nghiệm trọn vẹn'}
+                </p>
+              </div>
+              <ChevronRight size={18} className="text-purple-400 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
+        )}
 
         {/* Quick Actions */}
         <div className="grid grid-cols-3 gap-2 sm:gap-4">

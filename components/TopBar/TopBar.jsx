@@ -155,17 +155,6 @@ export default function TopBar({ showStats = true }) {
                     <span className="text-xs text-cyan-500 ml-1">kim cương</span>
                   </div>
                 </div>
-
-                {/* Upgrade button for free users */}
-                {userTier === 'free' && (
-                  <Link
-                    href="/pricing"
-                    className="flex items-center gap-1 px-4 py-2 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white text-sm font-bold rounded-xl hover:shadow-lg hover:scale-105 transition-all"
-                  >
-                    <span>⚡</span>
-                    <span>Nâng cấp</span>
-                  </Link>
-                )}
               </div>
             )}
 
@@ -302,14 +291,6 @@ export default function TopBar({ showStats = true }) {
                           <span className="text-gray-700">Chứng chỉ</span>
                         </Link>
                       )}
-                      <Link
-                        href="/pricing"
-                        onClick={() => setShowDropdown(false)}
-                        className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
-                      >
-                        <span>💎</span>
-                        <span className="text-gray-700">Nâng cấp</span>
-                      </Link>
                       <hr className="my-2" />
                       {session.user?.role === 'admin' && (
                         <Link

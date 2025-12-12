@@ -39,7 +39,8 @@ export async function GET(request) {
           level: true,
           diamonds: true,
           streak: true,
-          lastLoginDate: true
+          lastLoginDate: true,
+          tier: true
         }
       }),
 

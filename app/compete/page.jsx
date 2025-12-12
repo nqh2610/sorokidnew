@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
 import { ArrowLeft, Trophy, Clock, Home, RotateCcw, Medal, Users, TrendingUp } from 'lucide-react';
 import { useToast } from '@/components/Toast/ToastContext';
+import { useUpgradeModal } from '@/components/UpgradeModal';
 import Logo from '@/components/Logo/Logo';
 import SorobanBoard from '@/components/Soroban/SorobanBoard';
 import { calculateCompeteStars } from '@/lib/gamification';
@@ -278,6 +279,7 @@ export default function CompetePage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const toast = useToast();
+  const { showUpgradeModal, UpgradeModalComponent } = useUpgradeModal();
 
   // States cho chọn đấu trường
   const [selectedMode, setSelectedMode] = useState(null);
@@ -900,8 +902,11 @@ export default function CompetePage() {
                     key={modeKey}
                     onClick={() => {
                       if (isLocked) {
-                        toast.warning(`Cần nâng cấp lên gói ${modeTiers[modeKey] === 'basic' ? 'Cơ Bản' : 'Nâng Cao'} để mở khóa`);
-                        router.push('/pricing');
+                        showUpgradeModal({
+                          requiredTier: 'advanced',
+                          feature: info.title,
+                          currentTier: userTier
+                        });
                         return;
                       }
                       selectModeAndContinue(modeKey);
@@ -910,17 +915,17 @@ export default function CompetePage() {
                   >
                     {/* Lock icon */}
                     {isLocked && (
-                      <div className="absolute top-2 left-2 bg-black/40 rounded-full w-7 h-7 flex items-center justify-center z-20">
-                        <span className="text-white text-sm">🔒</span>
+                      <div className="absolute top-2 left-2 bg-black/50 rounded-full w-6 h-6 flex items-center justify-center z-20">
+                        <span className="text-white text-xs">🔒</span>
                       </div>
                     )}
                     
                     <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all"></div>
-                    <div className={`text-4xl sm:text-5xl mb-2 z-10 relative drop-shadow-md ${isLocked ? 'opacity-60' : ''}`}>{info.icon}</div>
-                    <div className={`text-sm sm:text-base font-black z-10 relative drop-shadow-sm ${isLocked ? 'opacity-60' : ''}`}>{info.title}</div>
-                    <div className={`text-xs z-10 relative mt-0.5 ${isLocked ? 'opacity-50' : 'text-white/95'}`}>{info.subtitle}</div>
-                    <div className={`text-[10px] mt-2 z-10 relative bg-black/30 rounded-full px-2 py-0.5 ${isLocked ? 'opacity-50' : 'text-white/90'}`}>
-                      {isLocked ? 'Cần nâng cấp' : recommendLevel[modeKey]}
+                    <div className="text-4xl sm:text-5xl mb-2 z-10 relative drop-shadow-md">{info.icon}</div>
+                    <div className="text-sm sm:text-base font-black z-10 relative drop-shadow-sm">{info.title}</div>
+                    <div className="text-xs z-10 relative mt-0.5 text-white/95">{info.subtitle}</div>
+                    <div className="text-[10px] mt-2 z-10 relative bg-black/30 rounded-full px-2 py-0.5 text-white/90">
+                      {recommendLevel[modeKey]}
                     </div>
                   </button>
                 );
@@ -928,6 +933,9 @@ export default function CompetePage() {
             </div>
           </div>
         </div>
+        
+        {/* Modal nâng cấp tinh tế */}
+        <UpgradeModalComponent />
       </div>
     );
   }
@@ -1040,8 +1048,11 @@ export default function CompetePage() {
                     key={level.id}
                     onClick={() => {
                       if (isLocked) {
-                        toast.warning(`Cấp ${level.name} cần nâng cấp gói để mở khóa`);
-                        router.push('/pricing');
+                        showUpgradeModal({
+                          requiredTier: 'advanced',
+                          feature: `Cấp ${level.name}`,
+                          currentTier: userTier
+                        });
                         return;
                       }
                       selectDifficultyAndContinue(level.level);
@@ -1061,26 +1072,24 @@ export default function CompetePage() {
                       }}
                     ></div>
                     
-                    {/* Lock overlay */}
+                    {/* Lock icon - nhỏ gọn */}
                     {isLocked && (
-                      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-20 flex items-center justify-center">
-                        <div className="text-4xl">🔒</div>
+                      <div className="absolute top-2 left-2 bg-black/50 rounded-full w-6 h-6 flex items-center justify-center z-20">
+                        <span className="text-white text-xs">🔒</span>
                       </div>
                     )}
                     
                     {/* Rank badge */}
-                    {!isLocked && (
-                      <div 
-                        className="absolute top-2 right-2 bg-black/30 backdrop-blur rounded-full px-2 py-1 text-white/90 font-bold z-10"
-                        style={{ fontSize: 'clamp(8px, 1.2vh, 12px)' }}
-                      >
-                        {level.rank}
-                      </div>
-                    )}
+                    <div 
+                      className="absolute top-2 right-2 bg-black/30 backdrop-blur rounded-full px-2 py-1 text-white/90 font-bold z-10"
+                      style={{ fontSize: 'clamp(8px, 1.2vh, 12px)' }}
+                    >
+                      {level.rank}
+                    </div>
                     
                     {/* Main emoji */}
                     <div 
-                      className={`text-center mb-2 drop-shadow-2xl group-hover:scale-110 transition-transform ${isLocked ? 'opacity-50' : ''}`}
+                      className="text-center mb-2 drop-shadow-2xl group-hover:scale-110 transition-transform"
                       style={{ fontSize: 'clamp(40px, 8vh, 80px)' }}
                     >
                       {level.emoji}
@@ -1088,7 +1097,7 @@ export default function CompetePage() {
                     
                     {/* Level name */}
                     <div 
-                      className={`text-white font-black text-center mb-1 drop-shadow-lg ${isLocked ? 'opacity-50' : ''}`}
+                      className="text-white font-black text-center mb-1 drop-shadow-lg"
                       style={{ fontSize: 'clamp(14px, 2.5vh, 24px)' }}
                     >
                       {level.name}
@@ -1096,14 +1105,14 @@ export default function CompetePage() {
                     
                     {/* Rank label */}
                     <div 
-                      className={`text-white/80 text-center mb-2 ${isLocked ? 'opacity-50' : ''}`}
+                      className="text-white/80 text-center mb-2"
                       style={{ fontSize: 'clamp(10px, 1.5vh, 14px)' }}
                     >
                       {level.rankLabel}
                     </div>
                     
                     {/* Stats */}
-                    <div className={`space-y-1 ${isLocked ? 'opacity-50' : ''}`}>
+                    <div className="space-y-1">
                       <div 
                         className="flex items-center justify-center gap-1 text-white/90 bg-black/20 rounded-full px-2 py-0.5"
                         style={{ fontSize: 'clamp(9px, 1.3vh, 13px)' }}
@@ -1153,6 +1162,9 @@ export default function CompetePage() {
             100% { transform: translateX(200%) rotate(45deg); }
           }
         `}</style>
+        
+        {/* Modal nâng cấp tinh tế */}
+        <UpgradeModalComponent />
       </div>
     );
   }
@@ -1301,8 +1313,11 @@ export default function CompetePage() {
                   key={diff}
                   onClick={() => {
                     if (isDifficultyLocked) {
-                      toast.warning(`Cấp độ ${diff} cần nâng cấp gói để mở khóa`);
-                      router.push('/pricing');
+                      showUpgradeModal({
+                        requiredTier: 'advanced',
+                        feature: `Cấp độ ${diffLevels[diff]}`,
+                        currentTier: userTier
+                      });
                       return;
                     }
                     selectDifficultyAndContinue(diff);
@@ -1322,37 +1337,37 @@ export default function CompetePage() {
                     }}
                   ></div>
                   
-                  {/* Lock icon */}
+                  {/* Lock icon - nhỏ gọn */}
                   {isDifficultyLocked && (
-                    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-20 flex items-center justify-center">
-                      <div className="text-3xl">🔒</div>
+                    <div className="absolute top-2 left-2 bg-black/50 rounded-full w-6 h-6 flex items-center justify-center z-20">
+                      <span className="text-white text-xs">🔒</span>
                     </div>
                   )}
                   
                   <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all"></div>
-                  {diff === 1 && !isDifficultyLocked && (
+                  {diff === 1 && (
                     <div className="absolute -top-1 -right-1 bg-green-400 text-green-900 text-[8px] font-bold px-1.5 py-0.5 rounded-bl-lg rounded-tr-xl z-20 animate-bounce">
                       GỢI Ý
                     </div>
                   )}
                   <div 
-                    className={`z-10 relative drop-shadow-2xl group-hover:scale-110 transition-transform ${isDifficultyLocked ? 'opacity-60' : ''}`}
+                    className="z-10 relative drop-shadow-2xl group-hover:scale-110 transition-transform"
                     style={{ fontSize: 'clamp(36px, 7vh, 64px)', marginBottom: 'clamp(4px, 1vh, 12px)' }}
                   >
                     {arenaName.icon}
                   </div>
-                  <div className={`text-sm sm:text-base font-black z-10 relative drop-shadow-sm ${isDifficultyLocked ? 'opacity-60' : ''}`}>{arenaName.title}</div>
-                  <div className={`text-[10px] sm:text-xs z-10 relative flex items-center justify-center gap-1 mt-1 ${isDifficultyLocked ? 'opacity-50' : 'text-white/95'}`}>
+                  <div className="text-sm sm:text-base font-black z-10 relative drop-shadow-sm">{arenaName.title}</div>
+                  <div className="text-[10px] sm:text-xs z-10 relative flex items-center justify-center gap-1 mt-1 text-white/95">
                     <span>{diffData.emoji}</span>
                     <span>{diffData.label}</span>
                   </div>
-                  <div className={`text-[10px] mt-1 z-10 relative ${isDifficultyLocked ? 'opacity-50' : 'text-white/85'}`}>
-                    {isDifficultyLocked ? 'Cần nâng cấp' : diffDesc[diff]}
+                  <div className="text-[10px] mt-1 z-10 relative text-white/85">
+                    {diffDesc[diff]}
                   </div>
-                  <div className={`text-[9px] mt-0.5 z-10 relative ${isDifficultyLocked ? 'opacity-40' : 'text-white/75'}`}>
-                    {!isDifficultyLocked && diffExample[diff]}
+                  <div className="text-[9px] mt-0.5 z-10 relative text-white/75">
+                    {diffExample[diff]}
                   </div>
-                  <div className={`text-[10px] mt-1 z-10 relative bg-black/30 rounded-full px-2 py-0.5 ${isDifficultyLocked ? 'opacity-50' : 'text-white/90'}`}>
+                  <div className="text-[10px] mt-1 z-10 relative bg-black/30 rounded-full px-2 py-0.5 text-white/90">
                     {diffRecommend[diff]} • ⭐x{diff * 2}
                   </div>
                 </button>
@@ -1369,6 +1384,9 @@ export default function CompetePage() {
             100% { transform: translateX(200%) rotate(45deg); }
           }
         `}</style>
+        
+        {/* Modal nâng cấp tinh tế */}
+        <UpgradeModalComponent />
       </div>
     );
   }
@@ -2199,6 +2217,9 @@ export default function CompetePage() {
         }
         .animate-spin-slow { animation: spin-slow 1s ease-in-out infinite; }
       `}</style>
+      
+      {/* Modal nâng cấp tinh tế */}
+      <UpgradeModalComponent />
     </div>
   );
 }

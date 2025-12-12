@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
 import { ArrowLeft, Trophy, Zap, Clock, SkipForward, RotateCcw } from 'lucide-react';
 import { useToast } from '@/components/Toast/ToastContext';
+import { useUpgradeModal } from '@/components/UpgradeModal';
 import Logo from '@/components/Logo/Logo';
 import SorobanBoard from '@/components/Soroban/SorobanBoard';
 import { calculatePracticeStars } from '@/lib/gamification';
@@ -211,6 +212,7 @@ export default function PracticePage() {
   const { status } = useSession();
   const router = useRouter();
   const toast = useToast();
+  const { showUpgradeModal, UpgradeModalComponent } = useUpgradeModal();
 
   const [mode, setMode] = useState(null);
   const [difficulty, setDifficulty] = useState(1);
@@ -2388,8 +2390,11 @@ export default function PracticePage() {
                       key={item.level}
                       onClick={() => {
                         if (isDifficultyLocked) {
-                          toast.warning(`Cấp độ ${item.level} cần nâng cấp gói để mở khóa`);
-                          router.push('/pricing');
+                          showUpgradeModal({
+                            requiredTier: 'advanced',
+                            feature: `Cấp độ ${item.label}`,
+                            currentTier: userTier
+                          });
                           return;
                         }
                         setDifficulty(item.level);
@@ -2457,13 +2462,19 @@ export default function PracticePage() {
                     key={item.mode}
                     onClick={() => {
                       if (isLocked) {
-                        toast.warning(`Cần nâng cấp lên gói ${item.tier === 'basic' ? 'Cơ Bản' : 'Nâng Cao'} để mở khóa`);
-                        router.push('/pricing');
+                        showUpgradeModal({
+                          requiredTier: 'advanced',
+                          feature: item.title,
+                          currentTier: userTier
+                        });
                         return;
                       }
                       if (isDifficultyLocked) {
-                        toast.warning(`Cấp độ ${difficulty} cần nâng cấp gói để mở khóa`);
-                        router.push('/pricing');
+                        showUpgradeModal({
+                          requiredTier: 'advanced',
+                          feature: `Cấp độ ${difficulty}`,
+                          currentTier: userTier
+                        });
                         return;
                       }
                       startMode(item.mode);
@@ -2522,7 +2533,7 @@ export default function PracticePage() {
                     
                     {/* Icon with bounce */}
                     <div 
-                      className={`drop-shadow-2xl z-10 group-hover:scale-125 group-hover:rotate-12 transition-all duration-300 ${isLocked ? 'opacity-50 grayscale' : ''}`}
+                      className="drop-shadow-2xl z-10 group-hover:scale-125 group-hover:rotate-12 transition-all duration-300"
                       style={{ fontSize: 'clamp(32px, 8vh, 72px)', marginBottom: 'clamp(4px, 1vh, 12px)' }}
                     >
                       {item.icon}
@@ -2530,7 +2541,7 @@ export default function PracticePage() {
                     
                     {/* Title with gradient text */}
                     <div 
-                      className={`font-black z-10 text-center leading-tight drop-shadow-lg ${isLocked ? 'opacity-50' : ''}`}
+                      className="font-black z-10 text-center leading-tight drop-shadow-lg"
                       style={{ fontSize: 'clamp(11px, 2.2vh, 22px)' }}
                     >
                       {item.title}
@@ -2538,10 +2549,10 @@ export default function PracticePage() {
                     
                     {/* Desc */}
                     <div 
-                      className={`z-10 text-center font-medium ${isLocked ? 'opacity-30' : 'opacity-90'}`}
+                      className="z-10 text-center font-medium opacity-90"
                       style={{ fontSize: 'clamp(8px, 1.5vh, 14px)', marginTop: 'clamp(2px, 0.5vh, 6px)' }}
                     >
-                      {isLocked ? '🔐 Mở khóa' : item.desc}
+                      {item.desc}
                     </div>
                     
                     {/* Special badge */}
@@ -2570,6 +2581,9 @@ export default function PracticePage() {
             100% { transform: translateX(200%) rotate(45deg); }
           }
         `}</style>
+        
+        {/* Modal nâng cấp tinh tế */}
+        <UpgradeModalComponent />
       </div>
     );
   }
@@ -3066,6 +3080,9 @@ export default function PracticePage() {
           -moz-appearance: textfield;
         }
       `}</style>
+      
+      {/* Modal nâng cấp tinh tế */}
+      <UpgradeModalComponent />
     </div>
   );
 }
