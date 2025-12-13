@@ -2,9 +2,18 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(request) {
   try {
+    // 🔒 Rate limiting MODERATE cho admin
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.MODERATE);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const session = await getServerSession(authOptions);
     
     if (!session || session.user?.role !== 'admin') {
@@ -22,62 +31,83 @@ export async function GET(request) {
     if (packageType && packageType !== 'all') where.tierName = packageType;
     if (transactionType && transactionType !== 'all') where.transactionType = transactionType;
 
-    // Get transactions from PaymentOrder table
-    let transactions = [];
-    let stats = {
-      totalOrders: 0,
-      completedOrders: 0,
-      pendingOrders: 0,
-      totalRevenue: 0
-    };
-
     try {
-      const orders = await prisma.paymentOrder.findMany({
-        where,
-        orderBy: { createdAt: 'desc' }
-      });
+      // 🔧 TỐI ƯU: Parallel queries + Include user để tránh N+1
+      const [orders, statsResult] = await Promise.all([
+        // Get orders với user info trong cùng 1 query
+        prisma.paymentOrder.findMany({
+          where,
+          select: {
+            id: true,
+            orderCode: true,
+            transactionType: true,
+            previousTier: true,
+            tierName: true,
+            tier: true,
+            amount: true,
+            paidAmount: true,
+            status: true,
+            note: true,
+            createdAt: true,
+            paidAt: true,
+            userId: true,
+            user: {
+              select: { id: true, name: true, email: true, avatar: true }
+            }
+          },
+          orderBy: { createdAt: 'desc' },
+          take: 100 // Limit để tránh quá tải
+        }),
+        // Stats với groupBy (1 query thay vì 2)
+        prisma.paymentOrder.groupBy({
+          by: ['status'],
+          _count: { id: true },
+          _sum: { amount: true }
+        })
+      ]);
 
-      // Get user info for each order
-      transactions = await Promise.all(orders.map(async (order) => {
-        let user = null;
-        try {
-          user = await prisma.user.findUnique({
-            where: { id: order.userId },
-            select: { id: true, name: true, email: true, avatar: true }
-          });
-        } catch (e) {}
-        
-        return {
-          id: order.id,
-          orderId: order.orderCode,
-          transactionType: order.transactionType || 'new',
-          previousTier: order.previousTier,
-          packageType: order.tierName,
-          amount: order.amount,
-          paidAmount: order.paidAmount,
-          status: order.status,
-          note: order.note,
-          createdAt: order.createdAt,
-          completedAt: order.paidAt,
-          user
-        };
+      // Format transactions
+      const transactions = orders.map(order => ({
+        id: order.id,
+        orderId: order.orderCode,
+        transactionType: order.transactionType || 'new',
+        previousTier: order.previousTier,
+        packageType: order.tierName || order.tier,
+        amount: order.amount,
+        paidAmount: order.paidAmount,
+        status: order.status,
+        note: order.note,
+        createdAt: order.createdAt,
+        completedAt: order.paidAt,
+        user: order.user
       }));
 
-      // Calculate stats
-      const allOrders = await prisma.paymentOrder.findMany();
-      stats = {
-        totalOrders: allOrders.length,
-        completedOrders: allOrders.filter(o => o.status === 'completed').length,
-        pendingOrders: allOrders.filter(o => o.status === 'pending').length,
-        totalRevenue: allOrders
-          .filter(o => o.status === 'completed')
-          .reduce((sum, o) => sum + (o.amount || 0), 0)
-      };
-    } catch (e) {
-      console.log('PaymentOrder table might not exist:', e.message);
-    }
+      // Process stats
+      let totalOrders = 0;
+      let completedOrders = 0;
+      let pendingOrders = 0;
+      let totalRevenue = 0;
+      
+      statsResult.forEach(s => {
+        totalOrders += s._count.id;
+        if (s.status === 'completed') {
+          completedOrders = s._count.id;
+          totalRevenue = s._sum.amount || 0;
+        }
+        if (s.status === 'pending') pendingOrders = s._count.id;
+      });
 
-    return NextResponse.json({ transactions, stats });
+      const stats = { totalOrders, completedOrders, pendingOrders, totalRevenue };
+
+      return NextResponse.json({ transactions, stats });
+
+    } catch (e) {
+      console.log('PaymentOrder error:', e.message);
+      return NextResponse.json({ 
+        transactions: [], 
+        stats: { totalOrders: 0, completedOrders: 0, pendingOrders: 0, totalRevenue: 0 }
+      });
+    }
 
   } catch (error) {
     console.error('Error fetching transactions:', error);

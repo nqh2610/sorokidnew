@@ -2,41 +2,69 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import { getOrSet, CACHE_TTL } from '@/lib/cache';
+
+export const dynamic = 'force-dynamic';
 
 // GET /api/certificate - Lấy chứng chỉ của user
 export async function GET(request) {
   try {
+    // 🔒 Rate limiting
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.NORMAL);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const { searchParams } = new URL(request.url);
     const certificateId = searchParams.get('id');
 
     if (certificateId) {
-      // Lấy chứng chỉ cụ thể - tìm theo id hoặc code
-      let certificate = await prisma.certificate.findUnique({
-        where: { id: certificateId },
-        include: {
-          user: {
+      // 🔧 TỐI ƯU: Cache certificate (immutable)
+      const certificate = await getOrSet(
+        `cert_${certificateId}`,
+        async () => {
+          // Tìm theo id trước
+          let cert = await prisma.certificate.findUnique({
+            where: { id: certificateId },
             select: {
-              name: true,
-              email: true
-            }
-          }
-        }
-      });
-
-      // Nếu không tìm thấy theo id, thử tìm theo code
-      if (!certificate) {
-        certificate = await prisma.certificate.findUnique({
-          where: { code: certificateId },
-          include: {
-            user: {
-              select: {
-                name: true,
-                email: true
+              id: true,
+              code: true,
+              userId: true,
+              userName: true,
+              level: true,
+              score: true,
+              type: true,
+              issuedAt: true,
+              user: {
+                select: { name: true, email: true }
               }
             }
+          });
+
+          // Nếu không tìm thấy theo id, thử tìm theo code
+          if (!cert) {
+            cert = await prisma.certificate.findUnique({
+              where: { code: certificateId },
+              select: {
+                id: true,
+                code: true,
+                userId: true,
+                userName: true,
+                level: true,
+                score: true,
+                type: true,
+                issuedAt: true,
+                user: {
+                  select: { name: true, email: true }
+                }
+              }
+            });
           }
-        });
-      }
+          return cert;
+        },
+        CACHE_TTL.STATIC // 1 hour - certificates don't change
+      );
 
       if (!certificate) {
         return NextResponse.json({ error: 'Certificate not found' }, { status: 404 });
@@ -51,9 +79,18 @@ export async function GET(request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Lấy tất cả chứng chỉ của user
+    // 🔧 TỐI ƯU: Select only needed fields
     const certificates = await prisma.certificate.findMany({
       where: { userId: session.user.id },
+      select: {
+        id: true,
+        code: true,
+        userName: true,
+        level: true,
+        score: true,
+        type: true,
+        issuedAt: true
+      },
       orderBy: { issuedAt: 'desc' }
     });
 
@@ -67,6 +104,12 @@ export async function GET(request) {
 // POST /api/certificate - Tạo chứng chỉ mới (khi hoàn thành level)
 export async function POST(request) {
   try {
+    // 🔒 Rate limiting STRICT cho tạo chứng chỉ
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.STRICT);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const session = await getServerSession(authOptions);
     
     if (!session) {
@@ -74,35 +117,33 @@ export async function POST(request) {
     }
 
     const { level, score, certificateType = 'completion' } = await request.json();
+    const userId = session.user.id;
 
-    // Kiểm tra user tier (chỉ VIP mới có chứng chỉ)
-    let userTier = null;
-    try {
-      userTier = await prisma.userTier.findUnique({
-        where: { userId: session.user.id }
-      });
-    } catch (e) {
-      // Table might not exist
-    }
+    // 🔧 TỐI ƯU: Parallel queries cho user tier check + existing cert + user info
+    const [user, existingCert] = await Promise.all([
+      prisma.user.findUnique({
+        where: { id: userId },
+        select: { id: true, name: true, email: true, tier: true }
+      }),
+      prisma.certificate.findFirst({
+        where: {
+          userId: userId,
+          level,
+          type: certificateType
+        },
+        select: { id: true, code: true, level: true }
+      })
+    ]);
 
-    const isVip = userTier?.tierName === 'vip' && 
-                  (!userTier.expiresAt || new Date(userTier.expiresAt) > new Date());
+    // Kiểm tra user tier từ User model
+    const isVip = user?.tier === 'vip' || user?.tier === 'advanced';
 
     if (!isVip) {
       return NextResponse.json({ 
-        error: 'Chứng chỉ chỉ dành cho thành viên VIP',
+        error: 'Chứng chỉ chỉ dành cho thành viên VIP hoặc Advanced',
         requiresVip: true 
       }, { status: 403 });
     }
-
-    // Kiểm tra xem đã có chứng chỉ cho level này chưa
-    const existingCert = await prisma.certificate.findFirst({
-      where: {
-        userId: session.user.id,
-        level,
-        type: certificateType
-      }
-    });
 
     if (existingCert) {
       return NextResponse.json({ 
@@ -110,11 +151,6 @@ export async function POST(request) {
         certificate: existingCert 
       }, { status: 400 });
     }
-
-    // Lấy thông tin user
-    const user = await prisma.user.findUnique({
-      where: { id: session.user.id }
-    });
 
     // Tạo certificate ID
     const certId = `CERT-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;

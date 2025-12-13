@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import { getOrSet, CACHE_TTL } from '@/lib/cache';
 
 // Default pricing plans nếu chưa có trong DB
 const DEFAULT_PLANS = [
@@ -66,28 +68,37 @@ const DEFAULT_PLANS = [
 ];
 
 // GET /api/pricing - Lấy danh sách gói (public)
-export async function GET() {
+export async function GET(request) {
   try {
-    // Đọc từ database
-    const pricingSettings = await prisma.systemSettings.findUnique({
-      where: { key: 'pricing_plans' }
-    });
-
-    let plans = DEFAULT_PLANS;
-    
-    if (pricingSettings?.value) {
-      try {
-        const parsed = JSON.parse(pricingSettings.value);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          plans = parsed;
-        }
-      } catch (e) {
-        console.log('Error parsing pricing plans:', e.message);
-      }
+    // 🔒 Rate limiting RELAXED cho public endpoint
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.RELAXED);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
     }
 
-    // Sort theo order
-    plans.sort((a, b) => (a.order || 0) - (b.order || 0));
+    // 🔧 TỐI ƯU: Cache pricing plans (5 phút)
+    const plans = await getOrSet(
+      'pricing_plans_public',
+      async () => {
+        const pricingSettings = await prisma.systemSettings.findUnique({
+          where: { key: 'pricing_plans' },
+          select: { value: true }
+        });
+
+        if (pricingSettings?.value) {
+          try {
+            const parsed = JSON.parse(pricingSettings.value);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              return parsed.sort((a, b) => (a.order || 0) - (b.order || 0));
+            }
+          } catch (e) {
+            console.log('Error parsing pricing plans:', e.message);
+          }
+        }
+        return DEFAULT_PLANS;
+      },
+      CACHE_TTL.VERY_LONG // 5 minutes
+    );
 
     return NextResponse.json({ 
       success: true,

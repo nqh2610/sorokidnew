@@ -2,10 +2,20 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import { invalidateUserCache } from '@/lib/cache';
+
+export const dynamic = 'force-dynamic';
 
 // GET /api/tier - Lấy thông tin tier của user hiện tại
 export async function GET(request) {
   try {
+    // 🔒 Rate limiting
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.NORMAL);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const session = await getServerSession(authOptions);
     
     if (!session) {
@@ -41,6 +51,12 @@ export async function GET(request) {
 // POST /api/tier - Nâng cấp tier (admin hoặc sau khi thanh toán thành công)
 export async function POST(request) {
   try {
+    // 🔒 Rate limiting STRICT cho tier upgrade
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.STRICT);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const session = await getServerSession(authOptions);
     
     if (!session) {
@@ -72,6 +88,9 @@ export async function POST(request) {
         tierPurchasedAt: new Date()
       }
     });
+
+    // 🔧 Invalidate user cache after tier update
+    invalidateUserCache(userId);
 
     return NextResponse.json({
       success: true,

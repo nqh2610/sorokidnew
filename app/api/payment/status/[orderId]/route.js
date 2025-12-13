@@ -2,10 +2,19 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+
+export const dynamic = 'force-dynamic';
 
 // GET /api/payment/status/[orderId] - Kiểm tra trạng thái đơn hàng
 export async function GET(request, { params }) {
   try {
+    // 🔒 Rate limiting (frequently polled endpoint)
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.NORMAL);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const session = await getServerSession(authOptions);
     
     if (!session) {
@@ -14,8 +23,22 @@ export async function GET(request, { params }) {
 
     const { orderId } = params;
 
+    // 🔧 TỐI ƯU: Select only needed fields
     const order = await prisma.paymentOrder.findFirst({
-      where: { orderCode: orderId }
+      where: { orderCode: orderId },
+      select: {
+        orderCode: true,
+        userId: true,
+        status: true,
+        amount: true,
+        tier: true,
+        previousTier: true,
+        transactionType: true,
+        paidAmount: true,
+        paidAt: true,
+        createdAt: true,
+        expiresAt: true
+      }
     });
 
     if (!order) {
