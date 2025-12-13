@@ -40,7 +40,6 @@ export async function GET(request) {
           ],
           select: {
             id: true,
-            oderId: true,
             userId: true,
             correct: true,
             totalTime: true,
@@ -62,7 +61,7 @@ export async function GET(request) {
             seenUsers.add(result.userId);
             bestResultsList.push({
               id: result.id,
-              oderId: result.oderId,
+              oderId: result.id,
               userId: result.userId,
               userName: result.user.name,
               correct: result.correct,

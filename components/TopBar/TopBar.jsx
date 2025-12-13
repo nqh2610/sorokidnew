@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { LogOut, Star, ChevronDown } from 'lucide-react';
 import Logo from '@/components/Logo/Logo';
 import ConfirmDialog from '@/components/ConfirmDialog/ConfirmDialog';
+import { MonsterAvatar } from '@/components/MonsterAvatar';
 
 export default function TopBar({ showStats = true }) {
   const { data: session } = useSession();
@@ -184,17 +185,12 @@ export default function TopBar({ showStats = true }) {
                   href="/profile"
                   className="flex-shrink-0 active:scale-95 transition-transform"
                 >
-                  {session.user?.image ? (
-                    <img 
-                      src={session.user.image} 
-                      alt="Avatar" 
-                      className="w-9 h-9 rounded-full object-cover border-2 border-violet-200"
-                    />
-                  ) : (
-                    <div className="w-9 h-9 bg-gradient-to-br from-blue-400 via-violet-400 to-pink-400 rounded-full flex items-center justify-center text-white text-sm font-bold border-2 border-violet-200">
-                      {(userStats?.name || session.user?.name || 'U')[0].toUpperCase()}
-                    </div>
-                  )}
+                  <MonsterAvatar 
+                    seed={session.user?.id || session.user?.email || 'default'}
+                    size={36}
+                    className="border-2 border-violet-200"
+                    showBorder={false}
+                  />
                 </Link>
 
                 {/* Logout shortcut button */}
@@ -215,17 +211,12 @@ export default function TopBar({ showStats = true }) {
                   onClick={() => setShowDropdown(!showDropdown)}
                   className="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-gray-100 transition-colors"
                 >
-                  {session.user?.image ? (
-                    <img 
-                      src={session.user.image} 
-                      alt="Avatar" 
-                      className="w-9 h-9 rounded-full object-cover border-2 border-violet-200"
-                    />
-                  ) : (
-                    <div className="w-9 h-9 bg-gradient-to-br from-blue-400 via-violet-400 to-pink-400 rounded-full flex items-center justify-center text-white text-sm font-bold border-2 border-violet-200">
-                      {(userStats?.name || session.user?.name || 'U')[0].toUpperCase()}
-                    </div>
-                  )}
+                  <MonsterAvatar 
+                    seed={session.user?.id || session.user?.email || 'default'}
+                    size={36}
+                    className="border-2 border-violet-200"
+                    showBorder={false}
+                  />
                   <div className="text-left">
                     <span className="text-sm font-semibold text-gray-800">
                       {userStats?.name || session.user?.name || 'User'}

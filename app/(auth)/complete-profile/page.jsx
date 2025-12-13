@@ -3,11 +3,7 @@
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-
-const AVATARS = [
-  '🐱', '🐶', '🐰', '🦊', '🐼', '🐨', '🦁', '🐯',
-  '🐸', '🐵', '🐷', '🐮', '🦄', '🐲', '🦋', '🐝'
-];
+import { MonsterAvatar } from '@/components/MonsterAvatar';
 
 export default function CompleteProfilePage() {
   const { data: session, update } = useSession();
@@ -15,7 +11,6 @@ export default function CompleteProfilePage() {
   const [formData, setFormData] = useState({
     name: session?.user?.name || '',
     username: '',
-    avatar: '🐱',
     age: ''
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -26,10 +21,6 @@ export default function CompleteProfilePage() {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     setError('');
-  };
-
-  const selectAvatar = (avatar) => {
-    setFormData(prev => ({ ...prev, avatar }));
   };
 
   const handleSubmit = async (e) => {
@@ -75,8 +66,7 @@ export default function CompleteProfilePage() {
         user: {
           ...session.user,
           name: formData.name,
-          username: formData.username,
-          avatar: formData.avatar
+          username: formData.username
         }
       });
 
@@ -94,7 +84,7 @@ export default function CompleteProfilePage() {
       <div className="bg-white rounded-3xl shadow-xl p-8 max-w-md w-full">
         {/* Progress indicator */}
         <div className="flex justify-center gap-2 mb-8">
-          {[1, 2, 3].map((s) => (
+          {[1, 2].map((s) => (
             <div
               key={s}
               className={`w-3 h-3 rounded-full transition-all ${
@@ -164,6 +154,24 @@ export default function CompleteProfilePage() {
               Chỉ dùng chữ, số và dấu gạch dưới (_)
             </p>
 
+            {/* Monster Avatar Preview */}
+            <div className="mt-6 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl">
+              <p className="text-sm text-gray-500 mb-3 text-center">Avatar quái vật của bạn:</p>
+              <div className="flex items-center justify-center gap-4 bg-white rounded-lg p-4 shadow-sm">
+                <MonsterAvatar 
+                  seed={session?.user?.id || session?.user?.email || formData.username || 'preview'}
+                  size={64}
+                  className="border-2 border-purple-300"
+                  showBorder={false}
+                />
+                <div className="text-left">
+                  <div className="font-semibold text-gray-800">{formData.name || 'Tên của bạn'}</div>
+                  <div className="text-sm text-gray-500">@{formData.username || 'username'}</div>
+                </div>
+              </div>
+              <p className="text-xs text-gray-400 mt-2 text-center">🎨 Avatar được tạo ngẫu nhiên và cố định cho bạn!</p>
+            </div>
+
             <div className="flex gap-3 mt-6">
               <button
                 onClick={() => setStep(1)}
@@ -172,58 +180,8 @@ export default function CompleteProfilePage() {
                 ← Quay lại
               </button>
               <button
-                onClick={() => {
-                  if (formData.username.trim() && formData.username.length >= 3) {
-                    setStep(3);
-                  } else {
-                    setError('Username phải có ít nhất 3 ký tự');
-                  }
-                }}
-                className="flex-1 py-3 bg-purple-600 text-white font-semibold rounded-xl hover:bg-purple-700 transition-colors"
-              >
-                Tiếp tục →
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Step 3: Avatar */}
-        {step === 3 && (
-          <div className="text-center">
-            <div className="text-6xl mb-4">{formData.avatar}</div>
-            <h1 className="text-2xl font-bold text-gray-800 mb-2">
-              Chọn avatar yêu thích
-            </h1>
-            <p className="text-gray-600 mb-6">
-              Đây là hình đại diện của bạn
-            </p>
-            
-            <div className="grid grid-cols-4 gap-3 mb-6">
-              {AVATARS.map((avatar) => (
-                <button
-                  key={avatar}
-                  onClick={() => selectAvatar(avatar)}
-                  className={`text-3xl p-3 rounded-xl transition-all ${
-                    formData.avatar === avatar
-                      ? 'bg-purple-100 ring-2 ring-purple-500 scale-110'
-                      : 'bg-gray-100 hover:bg-gray-200'
-                  }`}
-                >
-                  {avatar}
-                </button>
-              ))}
-            </div>
-
-            <div className="flex gap-3">
-              <button
-                onClick={() => setStep(2)}
-                className="flex-1 py-3 bg-gray-200 text-gray-700 font-semibold rounded-xl hover:bg-gray-300 transition-colors"
-              >
-                ← Quay lại
-              </button>
-              <button
                 onClick={handleSubmit}
-                disabled={isLoading}
+                disabled={isLoading || !formData.username.trim() || formData.username.length < 3}
                 className="flex-1 py-3 bg-purple-600 text-white font-semibold rounded-xl hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? 'Đang lưu...' : 'Hoàn tất ✓'}
@@ -237,20 +195,6 @@ export default function CompleteProfilePage() {
           <p className="text-red-500 text-center mt-4 text-sm">
             {error}
           </p>
-        )}
-
-        {/* Preview card */}
-        {step === 3 && (
-          <div className="mt-6 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl">
-            <p className="text-sm text-gray-500 mb-2 text-center">Thẻ của bạn sẽ như này:</p>
-            <div className="flex items-center gap-3 bg-white rounded-lg p-3 shadow-sm">
-              <div className="text-3xl">{formData.avatar}</div>
-              <div>
-                <div className="font-semibold text-gray-800">{formData.name}</div>
-                <div className="text-sm text-gray-500">@{formData.username}</div>
-              </div>
-            </div>
-          </div>
         )}
       </div>
     </div>

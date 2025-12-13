@@ -31,10 +31,10 @@ export async function GET(request) {
               id: true,
               code: true,
               userId: true,
-              userName: true,
-              level: true,
-              score: true,
-              type: true,
+              certType: true,
+              recipientName: true,
+              honorTitle: true,
+              isExcellent: true,
               issuedAt: true,
               user: {
                 select: { name: true, email: true }
@@ -50,10 +50,10 @@ export async function GET(request) {
                 id: true,
                 code: true,
                 userId: true,
-                userName: true,
-                level: true,
-                score: true,
-                type: true,
+                certType: true,
+                recipientName: true,
+                honorTitle: true,
+                isExcellent: true,
                 issuedAt: true,
                 user: {
                   select: { name: true, email: true }
@@ -85,10 +85,10 @@ export async function GET(request) {
       select: {
         id: true,
         code: true,
-        userName: true,
-        level: true,
-        score: true,
-        type: true,
+        certType: true,
+        recipientName: true,
+        honorTitle: true,
+        isExcellent: true,
         issuedAt: true
       },
       orderBy: { issuedAt: 'desc' }
@@ -116,7 +116,7 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { level, score, certificateType = 'completion' } = await request.json();
+    const { certType, recipientName, honorTitle = 'Chứng chỉ hoàn thành', isExcellent = false } = await request.json();
     const userId = session.user.id;
 
     // 🔧 TỐI ƯU: Parallel queries cho user tier check + existing cert + user info
@@ -128,10 +128,9 @@ export async function POST(request) {
       prisma.certificate.findFirst({
         where: {
           userId: userId,
-          level,
-          type: certificateType
+          certType: certType
         },
-        select: { id: true, code: true, level: true }
+        select: { id: true, code: true, certType: true }
       })
     ]);
 
@@ -147,24 +146,23 @@ export async function POST(request) {
 
     if (existingCert) {
       return NextResponse.json({ 
-        error: 'Bạn đã có chứng chỉ cho cấp độ này',
+        error: 'Bạn đã có chứng chỉ cho loại này',
         certificate: existingCert 
       }, { status: 400 });
     }
 
-    // Tạo certificate ID
-    const certId = `CERT-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+    // Tạo certificate code (unique)
+    const certCode = `SK-${certType.toUpperCase()}-${Math.random().toString(36).substr(2, 8).toUpperCase()}`;
 
     // Tạo chứng chỉ
     const certificate = await prisma.certificate.create({
       data: {
-        id: certId,
         userId: session.user.id,
-        userName: user.name || user.email,
-        level,
-        score,
-        type: certificateType,
-        issuedAt: new Date()
+        certType: certType,
+        recipientName: recipientName || user.name || user.email,
+        honorTitle: honorTitle,
+        isExcellent: isExcellent,
+        code: certCode
       }
     });
 

@@ -18,6 +18,7 @@ import {
 import TopBar from '@/components/TopBar/TopBar';
 import BottomNav from '@/components/Navigation/BottomNav';
 import ConfirmDialog from '@/components/ConfirmDialog/ConfirmDialog';
+import { MonsterAvatar } from '@/components/MonsterAvatar';
 
 export default function ProfilePage() {
   const { data: session, status } = useSession();
@@ -137,19 +138,14 @@ export default function ProfilePage() {
           {/* Profile Card */}
           <div className="bg-white rounded-3xl shadow-lg p-6 mb-6">
             <div className="flex items-center gap-4">
-              {/* Avatar */}
+              {/* Monster Avatar */}
               <div className="relative">
-                {session.user?.image ? (
-                  <img 
-                    src={session.user.image} 
-                    alt="Avatar" 
-                    className="w-20 h-20 rounded-full object-cover border-4 border-violet-200"
-                  />
-                ) : (
-                  <div className="w-20 h-20 bg-gradient-to-br from-blue-400 via-violet-400 to-pink-400 rounded-full flex items-center justify-center text-white text-3xl font-bold border-4 border-violet-200">
-                    {(userStats?.name || session.user?.name || 'U')[0].toUpperCase()}
-                  </div>
-                )}
+                <MonsterAvatar 
+                  seed={session.user?.id || session.user?.email || 'default'}
+                  size={80}
+                  className="border-4 border-violet-200"
+                  showBorder={false}
+                />
                 {/* Level badge */}
                 <div className="absolute -bottom-1 -right-1 bg-gradient-to-r from-violet-500 to-pink-500 text-white text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-0.5">
                   <span>{userStats?.levelInfo?.icon || '🌱'}</span>

@@ -8,7 +8,7 @@
  */
 const nextConfig = {
   images: {
-    domains: ['localhost', 'api.dicebear.com'],
+    domains: ['localhost', 'api.dicebear.com', 'robohash.org'],
     // Tối ưu images
     minimumCacheTTL: 60 * 60 * 24, // 24 hours
     deviceSizes: [640, 750, 828, 1080], // Giảm sizes để tiết kiệm disk
@@ -46,6 +46,14 @@ const nextConfig = {
   // Giảm powered by header (security + nhỏ hơn)
   poweredByHeader: false,
   
+  // 🔧 FIX: onDemandEntries để giảm lỗi chunk mismatch trong dev
+  onDemandEntries: {
+    // Giữ pages trong memory lâu hơn (ms)
+    maxInactiveAge: 60 * 1000,
+    // Số pages giữ trong memory
+    pagesBufferLength: 5,
+  },
+  
   // Caching headers cho static assets
   async headers() {
     return [
@@ -60,12 +68,14 @@ const nextConfig = {
         ],
       },
       {
-        // JS/CSS bundles - cache với revalidation
+        // JS/CSS bundles - cache với revalidation (ngắn hơn trong dev)
         source: '/_next/static/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: process.env.NODE_ENV === 'production' 
+              ? 'public, max-age=31536000, immutable'
+              : 'public, max-age=0, must-revalidate',
           },
         ],
       },

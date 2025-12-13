@@ -144,24 +144,39 @@ export async function POST(request) {
         data: { claimedAt: new Date() }
       });
 
-      // Award rewards
-    await prisma.user.update({
-      where: { id: session.user.id },
-      data: {
-        totalStars: { increment: userQuest.quest.stars },
-        diamonds: { increment: userQuest.quest.diamonds }
-      }
+      // Award rewards - PHẢI DÙNG tx TRONG transaction
+      await tx.user.update({
+        where: { id: session.user.id },
+        data: {
+          totalStars: { increment: userQuest.quest.stars },
+          diamonds: { increment: userQuest.quest.diamonds }
+        }
+      });
+
+      return {
+        stars: userQuest.quest.stars,
+        diamonds: userQuest.quest.diamonds
+      };
     });
 
     return NextResponse.json({
       success: true,
-      rewards: {
-        stars: userQuest.quest.stars,
-        diamonds: userQuest.quest.diamonds
-      }
+      rewards: result
     });
   } catch (error) {
     console.error('Error claiming quest:', error);
+    
+    // Return proper error status based on error type
+    if (error.message === 'Quest not found') {
+      return NextResponse.json({ error: 'Quest not found' }, { status: 404 });
+    }
+    if (error.message === 'Quest not completed') {
+      return NextResponse.json({ error: 'Quest not completed yet' }, { status: 400 });
+    }
+    if (error.message === 'Quest already claimed') {
+      return NextResponse.json({ error: 'Quest reward already claimed' }, { status: 400 });
+    }
+    
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

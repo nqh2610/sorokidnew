@@ -8,6 +8,7 @@ import { ArrowLeft, Trophy, Clock, Home, RotateCcw, Medal, Users, TrendingUp } f
 import { useToast } from '@/components/Toast/ToastContext';
 import { useUpgradeModal } from '@/components/UpgradeModal';
 import Logo from '@/components/Logo/Logo';
+import { MonsterAvatar } from '@/components/MonsterAvatar';
 import SorobanBoard from '@/components/Soroban/SorobanBoard';
 import { calculateCompeteStars } from '@/lib/gamification';
 
@@ -2226,6 +2227,9 @@ export default function CompetePage() {
                         <div className="text-3xl sm:text-4xl mb-1">🥈</div>
                         <div className="bg-gray-500/20 rounded-full w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center text-white font-bold text-xs mb-1">2</div>
                         <div className={`bg-gray-400/30 rounded-xl p-2 sm:p-3 text-center min-w-[80px] sm:min-w-[100px] max-w-[100px] sm:max-w-[120px] ${leaderboard[1].isCurrentUser ? 'ring-2 ring-cyan-400' : ''}`}>
+                          <div className="flex justify-center mb-1">
+                            <MonsterAvatar seed={leaderboard[1].userId} size={36} showBorder={false} />
+                          </div>
                           <div className="text-white font-bold text-xs sm:text-sm break-words leading-tight min-h-[32px] flex items-center justify-center" title={leaderboard[1].userName}>{leaderboard[1].userName}</div>
                           <div className="text-white/70 text-[10px] sm:text-xs">✓ {Math.min(leaderboard[1].correct, totalChallenges)} đúng</div>
                           <div className="text-gray-300 text-[10px]">⏱ {leaderboard[1].totalTime}s</div>
@@ -2238,6 +2242,9 @@ export default function CompetePage() {
                       <div className="text-4xl sm:text-5xl mb-1 animate-bounce">🥇</div>
                       <div className="bg-yellow-500/30 rounded-full w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-white font-bold text-sm mb-1">1</div>
                       <div className={`bg-yellow-500/30 rounded-xl p-3 sm:p-4 text-center min-w-[96px] sm:min-w-[112px] max-w-[110px] sm:max-w-[130px] border-2 border-yellow-400/50 ${leaderboard[0].isCurrentUser ? 'ring-2 ring-cyan-400' : ''}`}>
+                        <div className="flex justify-center mb-1">
+                          <MonsterAvatar seed={leaderboard[0].userId} size={44} showBorder={false} className="border-2 border-yellow-400" />
+                        </div>
                         <div className="text-white font-black text-sm sm:text-base break-words leading-tight min-h-[40px] flex items-center justify-center" title={leaderboard[0].userName}>{leaderboard[0].userName}</div>
                         <div className="text-yellow-200 text-xs sm:text-sm font-bold">✓ {Math.min(leaderboard[0].correct, totalChallenges)} đúng</div>
                         <div className="text-yellow-300 text-[10px] sm:text-xs">⏱ {leaderboard[0].totalTime}s</div>
@@ -2251,6 +2258,9 @@ export default function CompetePage() {
                         <div className="text-3xl sm:text-4xl mb-1">🥉</div>
                         <div className="bg-orange-500/20 rounded-full w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center text-white font-bold text-xs mb-1">3</div>
                         <div className={`bg-orange-500/30 rounded-xl p-2 sm:p-3 text-center min-w-[80px] sm:min-w-[100px] max-w-[100px] sm:max-w-[120px] ${leaderboard[2].isCurrentUser ? 'ring-2 ring-cyan-400' : ''}`}>
+                          <div className="flex justify-center mb-1">
+                            <MonsterAvatar seed={leaderboard[2].userId} size={36} showBorder={false} />
+                          </div>
                           <div className="text-white font-bold text-xs sm:text-sm break-words leading-tight min-h-[32px] flex items-center justify-center" title={leaderboard[2].userName}>{leaderboard[2].userName}</div>
                           <div className="text-white/70 text-[10px] sm:text-xs">✓ {Math.min(leaderboard[2].correct, totalChallenges)} đúng</div>
                           <div className="text-orange-300 text-[10px]">⏱ {leaderboard[2].totalTime}s</div>
@@ -2276,6 +2286,7 @@ export default function CompetePage() {
                         <div className="w-7 sm:w-8 text-center font-bold text-sm text-white/70">
                           #{index + 4}
                         </div>
+                        <MonsterAvatar seed={entry.userId} size={28} showBorder={false} />
                         <div className="flex-1 min-w-0">
                           <div className={`font-bold text-xs sm:text-sm truncate ${entry.isCurrentUser ? 'text-cyan-300' : 'text-white'}`}>
                             {entry.userName} {entry.isCurrentUser && '(Bạn)'}
@@ -2301,6 +2312,7 @@ export default function CompetePage() {
                         <div className="font-black text-lg text-cyan-300">#{currentUserRank}</div>
                         <div className="text-[10px] text-white/50">/{totalPlayers}</div>
                       </div>
+                      <MonsterAvatar seed={currentUserData.userId} size={36} showBorder={false} />
                       <div className="flex-1">
                         <div className="text-cyan-300 font-bold text-sm">{currentUserData.userName} (Bạn)</div>
                         <div className="text-white/60 text-xs">

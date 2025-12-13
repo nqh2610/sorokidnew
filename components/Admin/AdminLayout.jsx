@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { MonsterAvatar } from '@/components/MonsterAvatar';
+import { LogoIcon } from '@/components/Logo/Logo';
 
 // Menu items cho sidebar
 const menuItems = [
@@ -134,12 +136,10 @@ export default function AdminLayout({ children }) {
       `}>
         {/* Logo */}
         <div className="h-16 flex items-center px-6 border-b border-slate-700">
-          <Link href="/dashboard" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 via-pink-500 to-rose-500 flex items-center justify-center text-white font-black text-lg shadow-lg shadow-purple-500/30 group-hover:shadow-purple-500/50 transition-shadow">
-              S
-            </div>
+          <Link href="/admin" className="flex items-center gap-3 group">
+            <LogoIcon size={40} />
             <div>
-              <span className="text-white font-bold text-lg">Sorokid</span>
+              <span className="text-white font-bold text-lg">SoroKid</span>
               <span className="block text-purple-400 text-xs font-medium -mt-0.5">Admin Panel</span>
             </div>
           </Link>
@@ -190,29 +190,29 @@ export default function AdminLayout({ children }) {
               )}
             </div>
           ))}
-        </nav>
 
-        {/* Bottom section */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-700">
-          <Link
-            href="/dashboard"
-            className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-700/50 transition-all"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 17l-5-5m0 0l5-5m-5 5h12" />
-            </svg>
-            <span className="font-medium">Về trang học</span>
-          </Link>
-          <button
-            onClick={() => signOut({ callbackUrl: '/login' })}
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all mt-1"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-            </svg>
-            <span className="font-medium">Đăng xuất</span>
-          </button>
-        </div>
+          {/* Quick Links - ngay sau menu */}
+          <div className="mt-4 pt-4 border-t border-slate-700 space-y-1">
+            <Link
+              href="/dashboard"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-700/50 transition-all"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+              </svg>
+              <span className="font-medium">Về trang học</span>
+            </Link>
+            <button
+              onClick={() => signOut({ callbackUrl: '/login' })}
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              <span className="font-medium">Đăng xuất</span>
+            </button>
+          </div>
+        </nav>
       </aside>
 
       {/* Main content */}
@@ -242,9 +242,12 @@ export default function AdminLayout({ children }) {
               <div className="text-white text-sm font-medium">{session?.user?.name || 'Admin'}</div>
               <div className="text-slate-400 text-xs">{session?.user?.email}</div>
             </div>
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
-              {session?.user?.name?.[0]?.toUpperCase() || 'A'}
-            </div>
+            <MonsterAvatar 
+              seed={session?.user?.id || session?.user?.email || 'admin'}
+              size={40}
+              className="border-2 border-purple-400"
+              showBorder={false}
+            />
           </div>
         </header>
 

@@ -52,19 +52,66 @@ export async function GET(request) {
         tier: true,
         tierPurchasedAt: true,
         lastLoginDate: true,
-        createdAt: true
+        createdAt: true,
+        totalEXP: true,
+        // Đếm số bài học hoàn thành
+        progress: {
+          where: { completed: true },
+          select: { id: true, timeSpent: true }
+        },
+        // Đếm số thành tích
+        achievements: {
+          select: { id: true }
+        },
+        // Đếm số nhiệm vụ hoàn thành
+        quests: {
+          where: { completed: true },
+          select: { id: true }
+        },
+        // Đếm số trận thi đấu
+        competeResults: {
+          select: { id: true, correct: true }
+        }
       },
       orderBy: { createdAt: 'desc' },
       skip: (page - 1) * limit,
       take: limit
     });
 
-    // Format users với tier info
-    const usersWithTier = users.map(user => ({
-      ...user,
-      tier: user.tier || 'free',
-      activatedAt: user.tierPurchasedAt
-    }));
+    // Format users với tier info và thống kê
+    const usersWithTier = users.map(user => {
+      const completedLessons = user.progress?.length || 0;
+      const totalTimeSpent = user.progress?.reduce((sum, p) => sum + (p.timeSpent || 0), 0) || 0;
+      const totalAchievements = user.achievements?.length || 0;
+      const completedQuests = user.quests?.length || 0;
+      const totalMatches = user.competeResults?.length || 0;
+      const totalCorrect = user.competeResults?.reduce((sum, r) => sum + (r.correct || 0), 0) || 0;
+      
+      return {
+        id: user.id,
+        email: user.email,
+        username: user.username,
+        name: user.name,
+        avatar: user.avatar,
+        level: user.level,
+        totalStars: user.totalStars,
+        diamonds: user.diamonds,
+        streak: user.streak,
+        role: user.role,
+        tier: user.tier || 'free',
+        tierPurchasedAt: user.tierPurchasedAt,
+        lastLoginDate: user.lastLoginDate,
+        createdAt: user.createdAt,
+        totalEXP: user.totalEXP || 0,
+        completedLessons,
+        totalTimeSpent,
+        totalAchievements,
+        completedQuests,
+        totalMatches,
+        totalCorrect,
+        activatedAt: user.tierPurchasedAt
+      };
+    });
 
     const total = await prisma.user.count({ where });
 

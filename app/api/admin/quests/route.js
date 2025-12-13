@@ -30,7 +30,21 @@ export async function GET(request) {
 
     const where = {};
     if (type) where.type = type;
-    if (category) where.category = category;
+    
+    // 🔧 FIX: Map category filter để hỗ trợ cả tên cũ và mới
+    if (category) {
+      // Map "learn" sang các categories liên quan trong DB
+      const categoryMapping = {
+        'learn': ['learn', 'lesson', 'mastery'],
+        'practice': ['practice', 'accuracy'],
+        'compete': ['compete'],
+        'social': ['social'],
+        'streak': ['streak']
+      };
+      
+      const mappedCategories = categoryMapping[category] || [category];
+      where.category = { in: mappedCategories };
+    }
 
     // 🔧 FIX N+1: Dùng groupBy thay vì query từng quest
     const [quests, completedStats, claimedStats] = await Promise.all([

@@ -18,7 +18,9 @@ const protectedRoutes = [
   '/compete',
   '/leaderboard',
   '/admin',
-  '/certificate'
+  '/certificate',
+  '/profile',
+  '/edit-profile'
 ];
 
 // Các route chỉ dành cho guest

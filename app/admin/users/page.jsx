@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
+import { MonsterAvatar } from '@/components/MonsterAvatar';
 
 // =============================================
 // CONSTANTS
@@ -625,9 +626,12 @@ export default function UsersPage() {
                       <td className="px-4 py-4">
                         <div className="flex items-center gap-3">
                           <div className="relative">
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-semibold">
-                              {user.name?.charAt(0)?.toUpperCase() || user.email?.charAt(0)?.toUpperCase() || 'U'}
-                            </div>
+                            <MonsterAvatar 
+                              seed={user.id || user.email}
+                              size={40}
+                              className="border-2 border-slate-600"
+                              showBorder={false}
+                            />
                             {user.role === 'admin' && (
                               <span className="absolute -top-1 -right-1 text-xs">🛡️</span>
                             )}
@@ -708,9 +712,12 @@ export default function UsersPage() {
                       className="w-4 h-4 rounded"
                     />
                     <div className="relative">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg">
-                        {user.name?.charAt(0)?.toUpperCase() || 'U'}
-                      </div>
+                      <MonsterAvatar 
+                        seed={user.id || user.email}
+                        size={48}
+                        className="border-2 border-slate-600"
+                        showBorder={false}
+                      />
                       {user.role === 'admin' && (
                         <span className="absolute -top-1 -right-1 text-sm">🛡️</span>
                       )}
@@ -918,9 +925,12 @@ export default function UsersPage() {
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-md border border-slate-700">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
-                {editModal.name?.charAt(0)?.toUpperCase() || 'U'}
-              </div>
+              <MonsterAvatar 
+                seed={editModal.id || editModal.email}
+                size={48}
+                className="border-2 border-slate-600"
+                showBorder={false}
+              />
               <div>
                 <h3 className="text-lg font-bold text-white">Sửa thông tin</h3>
                 <p className="text-slate-400 text-sm">{editModal.email}</p>
@@ -1027,106 +1037,153 @@ export default function UsersPage() {
       {/* Detail Modal */}
       {detailModal && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl w-full max-w-lg border border-slate-700 max-h-[90vh] overflow-y-auto">
-            {/* Header */}
-            <div className="sticky top-0 bg-slate-800 p-6 border-b border-slate-700 flex items-center justify-between">
+          <div className="bg-slate-800 rounded-2xl w-full max-w-lg border border-slate-700 max-h-[90vh] flex flex-col">
+            {/* Header - Fixed */}
+            <div className="shrink-0 bg-slate-800 p-5 border-b border-slate-700 flex items-center justify-between rounded-t-2xl">
               <h3 className="text-lg font-bold text-white">Chi tiết người dùng</h3>
               <button onClick={() => setDetailModal(null)} className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg">✕</button>
             </div>
             
-            <div className="p-6">
+            {/* Scrollable Content */}
+            <div className="flex-1 overflow-y-auto p-5">
               {/* Avatar & Name */}
-              <div className="flex items-center gap-4 mb-6">
+              <div className="flex items-center gap-4 mb-5">
                 <div className="relative">
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-3xl">
-                    {detailModal.name?.charAt(0)?.toUpperCase() || 'U'}
-                  </div>
+                  <MonsterAvatar 
+                    seed={detailModal.id || detailModal.email}
+                    size={72}
+                    className="border-2 border-slate-600"
+                    showBorder={false}
+                  />
                   {detailModal.role === 'admin' && (
-                    <span className="absolute -top-1 -right-1 text-xl">🛡️</span>
+                    <span className="absolute -top-1 -right-1 text-lg">🛡️</span>
                   )}
                 </div>
-                <div>
-                  <div className="text-xl font-bold text-white">{detailModal.name || 'Chưa đặt tên'}</div>
-                  <div className="text-slate-400">@{detailModal.username || 'no-username'}</div>
-                  <div className="mt-1">{getTierBadge(detailModal.tier)}</div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-lg font-bold text-white truncate">{detailModal.name || 'Chưa đặt tên'}</div>
+                  <div className="text-slate-400 text-sm">@{detailModal.username || 'no-username'}</div>
+                  <div className="mt-1 flex items-center gap-2">
+                    {getTierBadge(detailModal.tier)}
+                    {detailModal.role === 'admin' && (
+                      <span className="px-2 py-0.5 bg-red-500/20 text-red-400 text-xs rounded-full">Admin</span>
+                    )}
+                  </div>
                 </div>
               </div>
               
-              {/* Stats Grid */}
-              <div className="grid grid-cols-3 gap-3 mb-6">
-                <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl p-4 text-center border border-purple-500/30">
-                  <div className="text-2xl font-bold text-white">Lv.{detailModal.level || 1}</div>
-                  <div className="text-purple-400 text-sm">Level</div>
+              {/* Main Stats Grid */}
+              <div className="grid grid-cols-4 gap-2 mb-4">
+                <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl p-3 text-center border border-purple-500/30">
+                  <div className="text-xl font-bold text-white">Lv.{detailModal.level || 1}</div>
+                  <div className="text-purple-400 text-xs">Level</div>
                 </div>
-                <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-xl p-4 text-center border border-amber-500/30">
-                  <div className="text-2xl font-bold text-amber-400">⭐{detailModal.totalStars || 0}</div>
-                  <div className="text-amber-400/70 text-sm">Tổng sao</div>
+                <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-xl p-3 text-center border border-amber-500/30">
+                  <div className="text-xl font-bold text-amber-400">⭐ {(detailModal.totalStars || 0).toLocaleString()}</div>
+                  <div className="text-amber-400/70 text-xs">Sao</div>
                 </div>
-                <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-xl p-4 text-center border border-cyan-500/30">
-                  <div className="text-2xl font-bold text-cyan-400">💎{detailModal.diamonds || 0}</div>
-                  <div className="text-cyan-400/70 text-sm">Kim cương</div>
+                <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-xl p-3 text-center border border-cyan-500/30">
+                  <div className="text-xl font-bold text-cyan-400">💎 {detailModal.diamonds || 0}</div>
+                  <div className="text-cyan-400/70 text-xs">Kim cương</div>
+                </div>
+                <div className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl p-3 text-center border border-green-500/30">
+                  <div className="text-xl font-bold text-green-400">✨ {(detailModal.totalEXP || 0).toLocaleString()}</div>
+                  <div className="text-green-400/70 text-xs">EXP</div>
                 </div>
               </div>
 
-              {/* More Stats */}
-              <div className="grid grid-cols-2 gap-3 mb-6">
-                <div className="bg-slate-700/50 rounded-xl p-4">
-                  <div className="text-orange-400 text-2xl font-bold">🔥 {detailModal.streak || 0}</div>
-                  <div className="text-slate-400 text-sm">Streak ngày</div>
+              {/* Activity Stats */}
+              <div className="grid grid-cols-2 gap-2 mb-4">
+                <div className="bg-slate-700/50 rounded-xl p-3 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center text-lg">🔥</div>
+                  <div>
+                    <div className="text-white font-bold">{detailModal.streak || 0} ngày</div>
+                    <div className="text-slate-400 text-xs">Streak liên tiếp</div>
+                  </div>
                 </div>
-                <div className="bg-slate-700/50 rounded-xl p-4">
-                  <div className="text-green-400 text-2xl font-bold">✅ {detailModal.completedLessons || 0}</div>
-                  <div className="text-slate-400 text-sm">Bài hoàn thành</div>
+                <div className="bg-slate-700/50 rounded-xl p-3 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center text-lg">📚</div>
+                  <div>
+                    <div className="text-white font-bold">{detailModal.completedLessons || 0} bài</div>
+                    <div className="text-slate-400 text-xs">Đã hoàn thành</div>
+                  </div>
+                </div>
+                <div className="bg-slate-700/50 rounded-xl p-3 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center text-lg">🏆</div>
+                  <div>
+                    <div className="text-white font-bold">{detailModal.totalAchievements || 0}</div>
+                    <div className="text-slate-400 text-xs">Thành tích</div>
+                  </div>
+                </div>
+                <div className="bg-slate-700/50 rounded-xl p-3 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center text-lg">🎯</div>
+                  <div>
+                    <div className="text-white font-bold">{detailModal.completedQuests || 0}</div>
+                    <div className="text-slate-400 text-xs">Nhiệm vụ</div>
+                  </div>
+                </div>
+                <div className="bg-slate-700/50 rounded-xl p-3 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center text-lg">⚔️</div>
+                  <div>
+                    <div className="text-white font-bold">{detailModal.totalMatches || 0} trận</div>
+                    <div className="text-slate-400 text-xs">Thi đấu</div>
+                  </div>
+                </div>
+                <div className="bg-slate-700/50 rounded-xl p-3 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center text-lg">⏱️</div>
+                  <div>
+                    <div className="text-white font-bold">{Math.round((detailModal.totalTimeSpent || 0) / 60)} phút</div>
+                    <div className="text-slate-400 text-xs">Thời gian học</div>
+                  </div>
                 </div>
               </div>
               
-              {/* Info */}
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg">
-                  <span className="text-slate-400">📧 Email</span>
-                  <span className="text-white font-medium truncate ml-2">{detailModal.email}</span>
+              {/* Info Details */}
+              <div className="space-y-2 mb-4">
+                <div className="flex items-center justify-between p-2.5 bg-slate-700/30 rounded-lg">
+                  <span className="text-slate-400 text-sm">📧 Email</span>
+                  <span className="text-white text-sm font-medium truncate ml-2 max-w-[200px]">{detailModal.email}</span>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg">
-                  <span className="text-slate-400">📅 Ngày đăng ký</span>
-                  <span className="text-white">{formatDate(detailModal.createdAt)}</span>
+                <div className="flex items-center justify-between p-2.5 bg-slate-700/30 rounded-lg">
+                  <span className="text-slate-400 text-sm">📅 Ngày đăng ký</span>
+                  <span className="text-white text-sm">{formatDate(detailModal.createdAt)}</span>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg">
-                  <span className="text-slate-400">💳 Kích hoạt gói</span>
-                  <span className="text-white">{formatDate(detailModal.tierPurchasedAt) || '-'}</span>
+                <div className="flex items-center justify-between p-2.5 bg-slate-700/30 rounded-lg">
+                  <span className="text-slate-400 text-sm">💳 Kích hoạt gói</span>
+                  <span className="text-white text-sm">{formatDate(detailModal.tierPurchasedAt) || 'Chưa kích hoạt'}</span>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg">
-                  <span className="text-slate-400">🕐 Lần đăng nhập cuối</span>
-                  <span className="text-white">{formatRelativeTime(detailModal.lastLoginDate)}</span>
+                <div className="flex items-center justify-between p-2.5 bg-slate-700/30 rounded-lg">
+                  <span className="text-slate-400 text-sm">🕐 Hoạt động cuối</span>
+                  <span className="text-white text-sm">{formatRelativeTime(detailModal.lastLoginDate)}</span>
                 </div>
               </div>
+            </div>
               
-              {/* Quick Actions */}
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  onClick={() => { setDetailModal(null); handleOpenEdit(detailModal); }}
-                  className="p-3 bg-slate-700 text-white rounded-xl hover:bg-slate-600 transition-colors flex items-center justify-center gap-2"
-                >
-                  ✏️ Sửa thông tin
-                </button>
-                <button
-                  onClick={() => { setDetailModal(null); handleOpenPackage(detailModal); }}
-                  className="p-3 bg-purple-500 text-white rounded-xl hover:bg-purple-600 transition-colors flex items-center justify-center gap-2"
-                >
-                  📦 Kích hoạt gói
-                </button>
-                <button
-                  onClick={() => { handleResetPassword(detailModal.id); }}
-                  className="p-3 bg-amber-500/20 text-amber-400 rounded-xl hover:bg-amber-500/30 transition-colors flex items-center justify-center gap-2"
-                >
-                  🔑 Reset mật khẩu
-                </button>
-                <button
-                  onClick={() => { setDetailModal(null); setDeleteConfirm(detailModal); }}
-                  className="p-3 bg-red-500/20 text-red-400 rounded-xl hover:bg-red-500/30 transition-colors flex items-center justify-center gap-2"
-                >
-                  🗑️ Xóa tài khoản
-                </button>
-              </div>
+            {/* Quick Actions - Fixed at bottom */}
+            <div className="shrink-0 p-4 border-t border-slate-700 grid grid-cols-2 gap-2">
+              <button
+                onClick={() => { setDetailModal(null); handleOpenEdit(detailModal); }}
+                className="p-2.5 bg-slate-700 text-white rounded-xl hover:bg-slate-600 transition-colors flex items-center justify-center gap-2 text-sm"
+              >
+                ✏️ Sửa thông tin
+              </button>
+              <button
+                onClick={() => { setDetailModal(null); handleOpenPackage(detailModal); }}
+                className="p-2.5 bg-purple-500 text-white rounded-xl hover:bg-purple-600 transition-colors flex items-center justify-center gap-2 text-sm"
+              >
+                📦 Kích hoạt gói
+              </button>
+              <button
+                onClick={() => { handleResetPassword(detailModal.id); }}
+                className="p-2.5 bg-amber-500/20 text-amber-400 rounded-xl hover:bg-amber-500/30 transition-colors flex items-center justify-center gap-2 text-sm"
+              >
+                🔑 Reset mật khẩu
+              </button>
+              <button
+                onClick={() => { setDetailModal(null); setDeleteConfirm(detailModal); }}
+                className="p-2.5 bg-red-500/20 text-red-400 rounded-xl hover:bg-red-500/30 transition-colors flex items-center justify-center gap-2 text-sm"
+              >
+                🗑️ Xóa tài khoản
+              </button>
             </div>
           </div>
         </div>

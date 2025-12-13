@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import TopBar from '@/components/TopBar/TopBar';
 import { LevelBadgeInline } from '@/components/LevelBadge/LevelBadge';
+import { MonsterAvatar } from '@/components/MonsterAvatar';
 
 export default function LeaderboardPage() {
   const { status } = useSession();
@@ -83,6 +84,14 @@ export default function LeaderboardPage() {
             <div className="flex-1 max-w-xs">
               <div className="bg-gradient-to-br from-gray-200 to-gray-400 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center shadow-xl">
                 <div className="text-4xl sm:text-6xl mb-2 sm:mb-3">🥈</div>
+                <div className="flex justify-center mb-2">
+                  <MonsterAvatar 
+                    seed={top3[1].id || top3[1].email}
+                    size={56}
+                    className="border-2 border-gray-500"
+                    showBorder={false}
+                  />
+                </div>
                 <div className="text-lg sm:text-xl font-bold text-gray-800 truncate" title={top3[1].name}>
                   {top3[1].name}
                 </div>
@@ -103,6 +112,14 @@ export default function LeaderboardPage() {
                   👑
                 </div>
                 <div className="text-5xl sm:text-7xl mb-2 sm:mb-3">🏆</div>
+                <div className="flex justify-center mb-2">
+                  <MonsterAvatar 
+                    seed={top3[0].id || top3[0].email}
+                    size={64}
+                    className="border-2 border-yellow-600"
+                    showBorder={false}
+                  />
+                </div>
                 <div className="text-xl sm:text-2xl font-bold text-gray-800 truncate" title={top3[0].name}>
                   {top3[0].name}
                 </div>
@@ -120,6 +137,14 @@ export default function LeaderboardPage() {
             <div className="flex-1 max-w-xs">
               <div className="bg-gradient-to-br from-orange-200 to-orange-400 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center shadow-xl">
                 <div className="text-4xl sm:text-6xl mb-2 sm:mb-3">🥉</div>
+                <div className="flex justify-center mb-2">
+                  <MonsterAvatar 
+                    seed={top3[2].id || top3[2].email}
+                    size={56}
+                    className="border-2 border-orange-500"
+                    showBorder={false}
+                  />
+                </div>
                 <div className="text-lg sm:text-xl font-bold text-gray-800 truncate" title={top3[2].name}>
                   {top3[2].name}
                 </div>
@@ -149,6 +174,12 @@ export default function LeaderboardPage() {
                     <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
                       {i + 4}
                     </div>
+                    <MonsterAvatar 
+                      seed={player.id || player.email}
+                      size={44}
+                      className="border-2 border-blue-200 flex-shrink-0"
+                      showBorder={false}
+                    />
                     <div className="min-w-0 flex-1">
                       <div className="font-bold text-base sm:text-lg text-gray-800 truncate" title={player.name}>
                         {player.name}

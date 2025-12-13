@@ -8,22 +8,71 @@ const TYPES = [
   { value: 'special', label: 'Đặc biệt', color: 'bg-amber-500/20 text-amber-400' }
 ];
 
+// Categories thực tế trong database
 const CATEGORIES = [
+  { value: 'learn', label: 'Học tập', icon: '📚' },
+  { value: 'lesson', label: 'Học tập', icon: '📚' },
+  { value: 'practice', label: 'Luyện tập', icon: '🎯' },
+  { value: 'compete', label: 'Thi đấu', icon: '⚔️' },
+  { value: 'social', label: 'Xã hội', icon: '👥' },
+  { value: 'streak', label: 'Chuỗi ngày', icon: '🔥' },
+  { value: 'accuracy', label: 'Độ chính xác', icon: '🎯' },
+  { value: 'mastery', label: 'Thành thạo', icon: '🏆' }
+];
+
+// Categories đơn giản cho filter dropdown (nhóm lại)
+const FILTER_CATEGORIES = [
   { value: 'learn', label: 'Học tập', icon: '📚' },
   { value: 'practice', label: 'Luyện tập', icon: '🎯' },
   { value: 'compete', label: 'Thi đấu', icon: '⚔️' },
+  { value: 'streak', label: 'Chuỗi ngày', icon: '🔥' },
   { value: 'social', label: 'Xã hội', icon: '👥' }
 ];
 
+// Tất cả requirement types có trong database
 const REQUIREMENT_TYPES = [
+  // === BÀI HỌC ===
   { value: 'complete_lessons', label: 'Hoàn thành bài học', icon: '📚', unit: 'bài', hasTarget: true },
-  { value: 'complete_exercises', label: 'Hoàn thành bài tập', icon: '✏️', unit: 'bài', hasTarget: true },
-  { value: 'total_practice', label: 'Tổng lần luyện tập', icon: '🎯', unit: 'lần', hasTarget: true },
-  { value: 'win_compete', label: 'Thắng thi đấu', icon: '🏆', unit: 'trận', hasTarget: true },
+  { value: 'complete_all_lessons', label: 'Hoàn thành tất cả bài học', icon: '📖', unit: '', hasTarget: false },
+  { value: 'three_star_lessons', label: 'Đạt 3 sao bài học', icon: '⭐', unit: 'bài', hasTarget: true },
+  { value: 'three_star_all_lessons', label: 'Đạt 3 sao tất cả bài học', icon: '🌟', unit: '', hasTarget: false },
+  { value: 'complete_levels', label: 'Hoàn thành màn', icon: '🎮', unit: 'màn', hasTarget: true },
+  
+  // === LUYỆN TẬP ===
+  { value: 'complete_exercises', label: 'Hoàn thành lượt luyện tập', icon: '✏️', unit: 'lượt', hasTarget: true },
+  { value: 'accurate_exercises', label: 'Trả lời đúng', icon: '✅', unit: 'câu', hasTarget: true },
+  { value: 'accuracy_streak', label: 'Chuỗi trả lời đúng liên tiếp', icon: '🎯', unit: 'câu', hasTarget: true },
+  { value: 'perfect_exercises', label: 'Đạt điểm tối đa', icon: '💯', unit: 'lượt', hasTarget: true },
+  { value: 'perfect_exercise', label: 'Đạt điểm tối đa', icon: '💯', unit: 'lượt', hasTarget: true },
+  { value: 'total_practice', label: 'Tổng lượt luyện tập', icon: '🎯', unit: 'lượt', hasTarget: true },
+  
+  // === TỐC ĐỘ ===
+  { value: 'fast_exercise', label: 'Trả lời nhanh', icon: '⚡', unit: 'giây', hasTarget: true },
+  { value: 'fast_streak', label: 'Chuỗi trả lời nhanh liên tiếp', icon: '🏃', unit: 'câu', hasTarget: true },
+  { value: 'speed_master', label: 'Bậc thầy tốc độ', icon: '🚀', unit: '', hasTarget: false },
+  { value: 'speed_rush', label: 'Tia chớp', icon: '💨', unit: '', hasTarget: false },
+  
+  // === THI ĐẤU ===
+  { value: 'win_compete', label: 'Chiến thắng trận thi đấu', icon: '🏆', unit: 'trận', hasTarget: true },
+  { value: 'compete_matches', label: 'Tham gia thi đấu', icon: '⚔️', unit: 'trận', hasTarget: true },
+  { value: 'compete_first_place', label: 'Đạt hạng nhất thi đấu', icon: '🥇', unit: 'lần', hasTarget: true },
+  
+  // === CHUỖI NGÀY ===
   { value: 'login_streak', label: 'Đăng nhập liên tiếp', icon: '🔥', unit: 'ngày', hasTarget: true },
-  { value: 'earn_stars', label: 'Kiếm sao', icon: '⭐', unit: 'sao', hasTarget: true },
-  { value: 'earn_diamonds', label: 'Kiếm kim cương', icon: '💎', unit: 'kim cương', hasTarget: true },
-  { value: 'reach_level', label: 'Đạt cấp độ', icon: '📈', unit: '', hasTarget: true, isLevel: true },
+  { value: 'streak', label: 'Chuỗi ngày hoạt động', icon: '🔥', unit: 'ngày', hasTarget: true },
+  
+  // === THÀNH TÍCH ===
+  { value: 'unlock_achievements', label: 'Mở khóa thành tích', icon: '🏅', unit: 'thành tích', hasTarget: true },
+  { value: 'unlock_all_achievements', label: 'Mở tất cả thành tích', icon: '👑', unit: '', hasTarget: false },
+  
+  // === ĐẶC BIỆT ===
+  { value: 'birthday_login', label: 'Đăng nhập ngày sinh nhật', icon: '🎂', unit: '', hasTarget: false },
+  { value: 'early_adopter', label: 'Người dùng đầu tiên', icon: '🌅', unit: '', hasTarget: false },
+  
+  // === PHẦN THƯỞNG ===
+  { value: 'earn_stars', label: 'Tích lũy sao', icon: '⭐', unit: 'sao', hasTarget: true },
+  { value: 'earn_diamonds', label: 'Tích lũy kim cương', icon: '💎', unit: 'viên', hasTarget: true },
+  { value: 'reach_level', label: 'Đạt màn', icon: '📈', unit: 'màn', hasTarget: true, isLevel: true },
   { value: 'perfect_score', label: 'Điểm tuyệt đối', icon: '💯', unit: 'lần', hasTarget: true },
   { value: 'play_time', label: 'Thời gian chơi', icon: '⏱️', unit: 'phút', hasTarget: true }
 ];
@@ -374,7 +423,7 @@ export default function AdminQuestsPage() {
                 className="px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
               >
                 <option value="">Tất cả</option>
-                {CATEGORIES.map((cat) => (
+                {FILTER_CATEGORIES.map((cat) => (
                   <option key={cat.value} value={cat.value}>{cat.icon} {cat.label}</option>
                 ))}
               </select>

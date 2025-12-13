@@ -25,7 +25,12 @@ const DIFFICULTY_LEVELS = [
   { value: 5, label: 'Thử thách', color: 'bg-purple-500/20 text-purple-400', icon: '💎' }
 ];
 
-const LEVEL_ICONS = ['📚', '🧮', '🎯', '🔥', '⭐', '💎', '🏆', '🚀', '🌟', '👑', '🎮', '🧠', '💡', '📖', '✨'];
+const LEVEL_ICONS = [
+  '🌱', '📚', '🧮', '🎯', '🔥', '⭐', '💎', '🏆', 
+  '🚀', '🌟', '👑', '🎮', '🧠', '💡', '📖', '✨',
+  '🖐️', '🤝', '💪', '🎪', '🎨', '🌈', '🎭', '🎲',
+  '🔢', '➕', '➖', '✖️', '➗', '🔟', '💯', '🎓'
+];
 
 // =============================================
 // HELPER COMPONENTS
@@ -202,7 +207,7 @@ function TheoryBuilder({ items, onChange }) {
       {lines.length === 0 ? (
         <div className="text-center py-4 text-slate-500 bg-slate-700/30 rounded-lg">Chưa có nội dung. Nhấn các nút ở trên để thêm.</div>
       ) : (
-        <div className="space-y-2 max-h-60 overflow-y-auto">
+        <div className="space-y-2">
           {lines.map((line, index) => (
             <div key={index} className="flex items-start gap-2">
               <div className="flex flex-col gap-1">
@@ -293,7 +298,7 @@ function PracticeBuilder({ items: initialItems, onChange }) {
       {items.length === 0 ? (
         <div className="text-center py-6 text-slate-500 bg-slate-700/30 rounded-lg">Chưa có bài tập. Nhấn các nút ở trên để thêm câu hỏi.</div>
       ) : (
-        <div className="space-y-3 max-h-96 overflow-y-auto pr-2">
+        <div className="space-y-3">
           {items.map((item, index) => (
             <PracticeItemEditor key={index} item={item} index={index} onChange={(newItem) => updateItem(index, newItem)} onRemove={() => removeItem(index)} onMoveUp={() => moveItem(index, -1)} onMoveDown={() => moveItem(index, 1)} isFirst={index === 0} isLast={index === items.length - 1} />
           ))}
@@ -851,50 +856,133 @@ export default function AdminLessonsPage() {
         )}
       </div>
 
-      {/* Level Modal */}
+      {/* Level Modal - Redesigned */}
       {showLevelModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl w-full max-w-lg">
-            <div className="p-6 border-b border-slate-700">
-              <h2 className="text-xl font-bold text-white">{editingLevel ? 'Sửa Level' : 'Thêm Level mới'}</h2>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-2xl w-full max-w-md max-h-[90vh] shadow-2xl border border-slate-700/50 flex flex-col">
+            {/* Header - Fixed */}
+            <div className="p-5 border-b border-slate-700/50 flex items-center gap-3 shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-xl">
+                {editingLevel ? '✏️' : '🎮'}
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-white">{editingLevel ? 'Chỉnh sửa Level' : 'Tạo Level mới'}</h2>
+                <p className="text-slate-400 text-sm">Màn chơi trong hành trình học tập</p>
+              </div>
             </div>
-            <form onSubmit={handleLevelSubmit} className="p-6 space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+
+            {/* Scrollable Content */}
+            <div className="flex-1 overflow-y-auto p-5 space-y-5">
+              {/* Level ID & Name Row */}
+              <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Level ID *</label>
-                  <input type="number" value={levelForm.id} onChange={(e) => setLevelForm({...levelForm, id: parseInt(e.target.value) || ''})} className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white" required disabled={!!editingLevel} />
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Level ID</label>
+                  <input 
+                    type="number" 
+                    value={levelForm.id} 
+                    onChange={(e) => setLevelForm({...levelForm, id: parseInt(e.target.value) || ''})} 
+                    className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white text-center text-lg font-bold focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all" 
+                    required 
+                    disabled={!!editingLevel} 
+                  />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Icon</label>
-                  <div className="flex items-center gap-2">
-                    <input type="text" value={levelForm.icon} onChange={(e) => setLevelForm({...levelForm, icon: e.target.value})} className="w-20 px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-center text-2xl" maxLength={2} />
-                    <div className="flex flex-wrap gap-1">
-                      {LEVEL_ICONS.map(icon => (
-                        <button key={icon} type="button" onClick={() => setLevelForm({...levelForm, icon})} className={`p-1 text-lg rounded ${levelForm.icon === icon ? 'bg-purple-500' : 'hover:bg-slate-600'}`}>{icon}</button>
-                      ))}
+                <div className="col-span-2">
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Tên Level</label>
+                  <input 
+                    type="text" 
+                    value={levelForm.name} 
+                    onChange={(e) => setLevelForm({...levelForm, name: e.target.value})} 
+                    className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all" 
+                    placeholder="VD: Làm quen với Soroban" 
+                    required 
+                  />
+                </div>
+              </div>
+
+              {/* Icon Picker */}
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Chọn Icon</label>
+                <div className="bg-slate-700/30 rounded-xl p-3 border border-slate-600/50">
+                  {/* Selected Icon Preview */}
+                  <div className="flex items-center gap-3 mb-3 pb-3 border-b border-slate-600/50">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 border-2 border-purple-500 flex items-center justify-center">
+                      <span className="text-2xl">{levelForm.icon}</span>
                     </div>
+                    <div>
+                      <div className="text-white font-medium text-sm">Icon đã chọn</div>
+                      <div className="text-slate-400 text-xs">Click icon bên dưới để thay đổi</div>
+                    </div>
+                  </div>
+                  {/* Icon Grid */}
+                  <div className="grid grid-cols-8 gap-1.5">
+                    {LEVEL_ICONS.map(icon => (
+                      <button 
+                        key={icon} 
+                        type="button" 
+                        onClick={() => setLevelForm({...levelForm, icon})} 
+                        className={`w-8 h-8 text-base rounded-lg transition-all flex items-center justify-center ${
+                          levelForm.icon === icon 
+                            ? 'bg-purple-500 shadow-lg shadow-purple-500/30 scale-110' 
+                            : 'bg-slate-600/50 hover:bg-slate-500/50 hover:scale-105'
+                        }`}
+                      >
+                        {icon}
+                      </button>
+                    ))}
                   </div>
                 </div>
               </div>
+
+              {/* Description */}
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Tên Level *</label>
-                <input type="text" value={levelForm.name} onChange={(e) => setLevelForm({...levelForm, name: e.target.value})} className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white" placeholder="VD: Làm quen với Soroban" required />
+                <label className="block text-sm font-medium text-slate-300 mb-2">Mô tả</label>
+                <textarea 
+                  value={levelForm.description} 
+                  onChange={(e) => setLevelForm({...levelForm, description: e.target.value})} 
+                  className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all resize-none" 
+                  rows={2} 
+                  placeholder="Mô tả ngắn về level này..." 
+                />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Mô tả</label>
-                <textarea value={levelForm.description} onChange={(e) => setLevelForm({...levelForm, description: e.target.value})} className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white" rows={2} placeholder="Mô tả ngắn về level này..." />
+
+              {/* Active Toggle */}
+              <div className="flex items-center justify-between p-3 bg-slate-700/30 rounded-xl border border-slate-600/50">
+                <div className="flex items-center gap-3">
+                  <div className={`w-9 h-9 rounded-lg flex items-center justify-center text-sm ${levelForm.isActive ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
+                    {levelForm.isActive ? '✓' : '✗'}
+                  </div>
+                  <div>
+                    <div className="text-white font-medium text-sm">Trạng thái</div>
+                    <div className="text-slate-400 text-xs">{levelForm.isActive ? 'Level đang hoạt động' : 'Level đã tắt'}</div>
+                  </div>
+                </div>
+                <button 
+                  type="button"
+                  onClick={() => setLevelForm({...levelForm, isActive: !levelForm.isActive})}
+                  className={`w-12 h-6 rounded-full transition-all relative ${levelForm.isActive ? 'bg-green-500' : 'bg-slate-600'}`}
+                >
+                  <div className={`w-4 h-4 rounded-full bg-white absolute top-1 transition-all shadow ${levelForm.isActive ? 'right-1' : 'left-1'}`}></div>
+                </button>
               </div>
-              <div className="flex items-center gap-4">
-                <label className="flex items-center gap-2 text-white">
-                  <input type="checkbox" checked={levelForm.isActive} onChange={(e) => setLevelForm({...levelForm, isActive: e.target.checked})} className="w-4 h-4 rounded" />
-                  Level đang hoạt động
-                </label>
-              </div>
-              <div className="flex justify-end gap-3 pt-4 border-t border-slate-700">
-                <button type="button" onClick={() => setShowLevelModal(false)} className="px-4 py-2 text-slate-400 hover:text-white">Hủy</button>
-                <button type="submit" className="px-6 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl font-medium">{editingLevel ? 'Cập nhật' : 'Tạo mới'}</button>
-              </div>
-            </form>
+            </div>
+
+            {/* Actions - Fixed at bottom */}
+            <div className="p-5 border-t border-slate-700/50 flex gap-3 shrink-0">
+              <button 
+                type="button" 
+                onClick={() => setShowLevelModal(false)} 
+                className="flex-1 px-4 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-xl font-medium transition-all"
+              >
+                Hủy
+              </button>
+              <button 
+                type="button"
+                onClick={handleLevelSubmit}
+                className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-xl font-medium shadow-lg shadow-blue-500/25 transition-all"
+              >
+                {editingLevel ? '💾 Cập nhật' : '✨ Tạo mới'}
+              </button>
+            </div>
           </div>
         </div>
       )}

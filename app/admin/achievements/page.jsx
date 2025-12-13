@@ -12,19 +12,54 @@ const CATEGORIES = [
 
 const ICONS = ['🏆', '⭐', '🎯', '🔥', '💎', '🎮', '📚', '✨', '🚀', '💪', '🌟', '👑', '🎪', '🎨', '🎭', '🎪', '🎲', '🧠', '💡', '📖'];
 
+// Tất cả requirement types có trong database
 const REQUIREMENT_TYPES = [
+  // === BÀI HỌC ===
   { value: 'complete_lessons', label: 'Hoàn thành bài học', icon: '📚', unit: 'bài', hasTarget: true },
-  { value: 'complete_exercises', label: 'Hoàn thành bài tập', icon: '✏️', unit: 'bài', hasTarget: true },
-  { value: 'total_practice', label: 'Tổng lần luyện tập', icon: '🎯', unit: 'lần', hasTarget: true },
-  { value: 'win_compete', label: 'Thắng thi đấu', icon: '🏆', unit: 'trận', hasTarget: true },
+  { value: 'complete_all_lessons', label: 'Hoàn thành tất cả bài học', icon: '📖', unit: '', hasTarget: false },
+  { value: 'three_star_lessons', label: 'Đạt 3 sao bài học', icon: '⭐', unit: 'bài', hasTarget: true },
+  { value: 'three_star_all_lessons', label: 'Đạt 3 sao tất cả bài học', icon: '🌟', unit: '', hasTarget: false },
+  { value: 'complete_levels', label: 'Hoàn thành màn', icon: '🎮', unit: 'màn', hasTarget: true },
+  
+  // === LUYỆN TẬP ===
+  { value: 'complete_exercises', label: 'Hoàn thành lượt luyện tập', icon: '✏️', unit: 'lượt', hasTarget: true },
+  { value: 'accurate_exercises', label: 'Trả lời đúng', icon: '✅', unit: 'câu', hasTarget: true },
+  { value: 'accuracy_streak', label: 'Chuỗi trả lời đúng liên tiếp', icon: '🎯', unit: 'câu', hasTarget: true },
+  { value: 'perfect_exercises', label: 'Đạt điểm tối đa', icon: '💯', unit: 'lượt', hasTarget: true },
+  { value: 'perfect_exercise', label: 'Đạt điểm tối đa', icon: '💯', unit: 'lượt', hasTarget: true },
+  { value: 'total_practice', label: 'Tổng lượt luyện tập', icon: '🎯', unit: 'lượt', hasTarget: true },
+  
+  // === TỐC ĐỘ ===
+  { value: 'fast_exercise', label: 'Trả lời nhanh', icon: '⚡', unit: 'giây', hasTarget: true },
+  { value: 'fast_streak', label: 'Chuỗi trả lời nhanh liên tiếp', icon: '🏃', unit: 'câu', hasTarget: true },
+  { value: 'speed_master', label: 'Bậc thầy tốc độ', icon: '🚀', unit: '', hasTarget: false },
+  { value: 'speed_rush', label: 'Tia chớp', icon: '💨', unit: '', hasTarget: false },
+  
+  // === THI ĐẤU ===
+  { value: 'win_compete', label: 'Chiến thắng trận thi đấu', icon: '🏆', unit: 'trận', hasTarget: true },
+  { value: 'compete_matches', label: 'Tham gia thi đấu', icon: '⚔️', unit: 'trận', hasTarget: true },
+  { value: 'compete_first_place', label: 'Đạt hạng nhất thi đấu', icon: '🥇', unit: 'lần', hasTarget: true },
+  { value: 'first_compete', label: 'Lần thi đấu đầu tiên', icon: '⚔️', unit: '', hasTarget: false },
+  
+  // === CHUỖI NGÀY ===
   { value: 'login_streak', label: 'Đăng nhập liên tiếp', icon: '🔥', unit: 'ngày', hasTarget: true },
-  { value: 'earn_stars', label: 'Tổng sao kiếm được', icon: '⭐', unit: 'sao', hasTarget: true },
-  { value: 'earn_diamonds', label: 'Tổng kim cương kiếm được', icon: '💎', unit: 'kim cương', hasTarget: true },
+  { value: 'streak', label: 'Chuỗi ngày hoạt động', icon: '🔥', unit: 'ngày', hasTarget: true },
+  
+  // === THÀNH TÍCH ===
+  { value: 'unlock_achievements', label: 'Mở khóa thành tích', icon: '🏅', unit: 'thành tích', hasTarget: true },
+  { value: 'unlock_all_achievements', label: 'Mở tất cả thành tích', icon: '👑', unit: '', hasTarget: false },
+  
+  // === ĐẶC BIỆT ===
+  { value: 'birthday_login', label: 'Đăng nhập ngày sinh nhật', icon: '🎂', unit: '', hasTarget: false },
+  { value: 'early_adopter', label: 'Người dùng đầu tiên', icon: '🌅', unit: '', hasTarget: false },
+  { value: 'first_lesson', label: 'Hoàn thành bài học đầu tiên', icon: '🎉', unit: '', hasTarget: false },
+  
+  // === PHẦN THƯỞNG ===
+  { value: 'earn_stars', label: 'Tích lũy sao', icon: '⭐', unit: 'sao', hasTarget: true },
+  { value: 'earn_diamonds', label: 'Tích lũy kim cương', icon: '💎', unit: 'viên', hasTarget: true },
   { value: 'reach_tier', label: 'Đạt hạng', icon: '🏅', unit: '', hasTarget: false, hasTier: true },
-  { value: 'reach_level', label: 'Hoàn thành cấp độ', icon: '📈', unit: 'cấp', hasTarget: true },
-  { value: 'perfect_score', label: 'Điểm tuyệt đối', icon: '💯', unit: 'lần', hasTarget: true },
-  { value: 'first_lesson', label: 'Bài học đầu tiên', icon: '🎉', unit: '', hasTarget: false },
-  { value: 'first_compete', label: 'Trận đấu đầu tiên', icon: '⚔️', unit: '', hasTarget: false }
+  { value: 'reach_level', label: 'Đạt màn', icon: '📈', unit: 'màn', hasTarget: true },
+  { value: 'perfect_score', label: 'Điểm tuyệt đối', icon: '💯', unit: 'lần', hasTarget: true }
 ];
 
 const TIER_OPTIONS = [
