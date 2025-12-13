@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import prisma from '@/lib/prisma';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import cache, { CACHE_TTL } from '@/lib/cache';
 
 export const dynamic = 'force-dynamic';
 
@@ -94,12 +96,21 @@ const CERT_REQUIREMENTS = {
  */
 export async function GET(request) {
   try {
+    // 🔧 Rate limiting cho endpoint tính toán nặng
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.NORMAL);
+    if (rateLimitError) return rateLimitError;
+
     const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const userId = session.user.id;
+
+    // 🔧 Cache kết quả tính toán (60s - cho phép update nhanh)
+    const cacheKey = `cert_progress_${userId}`;
+    const cached = cache.get(cacheKey);
+    if (cached) return NextResponse.json(cached);
 
     // Lấy user tier và streak
     const user = await prisma.user.findUnique({
@@ -158,13 +169,18 @@ export async function GET(request) {
       };
     }
 
-    return NextResponse.json({
+    const result = {
       success: true,
       userTier,
       userName: user?.name,
       certificates: existingCertificates,
       progress: certificateProgress
-    });
+    };
+
+    // 🔧 Cache kết quả 60s
+    cache.set(cacheKey, result, CACHE_TTL.SHORT * 2);
+
+    return NextResponse.json(result);
 
   } catch (error) {
     console.error('Error calculating certificate progress:', error);

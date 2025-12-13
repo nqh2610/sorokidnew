@@ -187,6 +187,9 @@ model UserQuest {
 
   @@unique([userId, questId])
   @@index([questId], map: "user_quests_questId_fkey")
+  // 🔧 INDEX BỔ SUNG cho groupBy queries
+  @@index([questId, completed])
+  @@index([questId, claimedAt])
   @@map("user_quests")
 }
 
@@ -301,6 +304,8 @@ model CompeteResult {
 
   @@unique([userId, arenaId])
   @@index([arenaId, correct, totalTime])
+  // 🔧 INDEX BỔ SUNG cho leaderboard queries
+  @@index([arenaId, userId])
   @@map("compete_results")
 }
 
@@ -327,6 +332,9 @@ model PaymentOrder {
   @@index([userId])
   @@index([orderCode])
   @@index([status])
+  // 🔧 INDEX BỔ SUNG cho admin queries
+  @@index([status, paidAt])
+  @@index([createdAt])
   @@map("payment_orders")
 }
 

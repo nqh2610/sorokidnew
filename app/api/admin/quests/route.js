@@ -2,12 +2,18 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import cache, { CACHE_TTL } from '@/lib/cache';
 
 export const dynamic = 'force-dynamic';
 
 // GET /api/admin/quests - Lấy danh sách nhiệm vụ
 export async function GET(request) {
   try {
+    // 🔧 Rate limiting cho admin endpoint
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.MODERATE);
+    if (rateLimitError) return rateLimitError;
+
     const session = await getServerSession(authOptions);
     if (!session || session.user?.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -17,36 +23,47 @@ export async function GET(request) {
     const type = searchParams.get('type');
     const category = searchParams.get('category');
 
+    // 🔧 Cache cho kết quả (30s - admin data cần fresh)
+    const cacheKey = `admin_quests_${type || 'all'}_${category || 'all'}`;
+    const cached = cache.get(cacheKey);
+    if (cached) return NextResponse.json(cached);
+
     const where = {};
     if (type) where.type = type;
     if (category) where.category = category;
 
-    const quests = await prisma.quest.findMany({
-      where,
-      orderBy: { createdAt: 'desc' },
-      include: {
-        _count: {
-          select: { users: true }
-        }
-      }
-    });
+    // 🔧 FIX N+1: Dùng groupBy thay vì query từng quest
+    const [quests, completedStats, claimedStats] = await Promise.all([
+      prisma.quest.findMany({
+        where,
+        orderBy: { createdAt: 'desc' },
+        include: { _count: { select: { users: true } } }
+      }),
+      // GroupBy cho completed counts - 1 query thay vì N queries
+      prisma.userQuest.groupBy({
+        by: ['questId'],
+        _count: { id: true },
+        where: { completed: true }
+      }),
+      // GroupBy cho claimed counts - 1 query thay vì N queries
+      prisma.userQuest.groupBy({
+        by: ['questId'],
+        _count: { id: true },
+        where: { claimedAt: { not: null } }
+      })
+    ]);
 
-    // Lấy thống kê hoàn thành
-    const questsWithStats = await Promise.all(quests.map(async (quest) => {
-      const completedCount = await prisma.userQuest.count({
-        where: { questId: quest.id, completed: true }
-      });
-      const claimedCount = await prisma.userQuest.count({
-        where: { questId: quest.id, claimedAt: { not: null } }
-      });
+    // 🔧 Tạo Map để lookup O(1) thay vì O(n)
+    const completedMap = new Map(completedStats.map(s => [s.questId, s._count.id]));
+    const claimedMap = new Map(claimedStats.map(s => [s.questId, s._count.id]));
 
-      return {
-        ...quest,
-        requirement: JSON.parse(quest.requirement || '{}'),
-        totalUsers: quest._count.users,
-        completedCount,
-        claimedCount
-      };
+    // Map quests với stats
+    const questsWithStats = quests.map(quest => ({
+      ...quest,
+      requirement: JSON.parse(quest.requirement || '{}'),
+      totalUsers: quest._count.users,
+      completedCount: completedMap.get(quest.id) || 0,
+      claimedCount: claimedMap.get(quest.id) || 0
     }));
 
     // Thống kê tổng
@@ -58,7 +75,10 @@ export async function GET(request) {
       special: quests.filter(q => q.type === 'special').length
     };
 
-    return NextResponse.json({ quests: questsWithStats, stats });
+    const result = { quests: questsWithStats, stats };
+    cache.set(cacheKey, result, CACHE_TTL.SHORT); // 30s cache
+
+    return NextResponse.json(result);
   } catch (error) {
     console.error('Error fetching quests:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
@@ -68,10 +88,17 @@ export async function GET(request) {
 // POST /api/admin/quests - Tạo nhiệm vụ mới
 export async function POST(request) {
   try {
+    // 🔧 Rate limiting cho admin write
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.STRICT);
+    if (rateLimitError) return rateLimitError;
+
     const session = await getServerSession(authOptions);
     if (!session || session.user?.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
+
+    // 🔧 Invalidate cache khi tạo mới
+    cache.deleteByPrefix('admin_quests_');
 
     const data = await request.json();
     const { title, description, type, category, requirement, stars, diamonds, expiresAt, isActive } = data;

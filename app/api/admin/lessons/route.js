@@ -2,12 +2,18 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import cache, { CACHE_TTL } from '@/lib/cache';
 
 export const dynamic = 'force-dynamic';
 
 // GET /api/admin/lessons - Lấy danh sách bài học
 export async function GET(request) {
   try {
+    // 🔧 Rate limiting
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.MODERATE);
+    if (rateLimitError) return rateLimitError;
+
     const session = await getServerSession(authOptions);
     if (!session || session.user?.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -18,16 +24,14 @@ export async function GET(request) {
 
     const where = levelId ? { levelId: parseInt(levelId) } : {};
 
-    // Lấy danh sách levels
-    const levels = await prisma.level.findMany({
-      orderBy: { id: 'asc' }
-    });
-
-    // Lấy danh sách lessons
-    const lessons = await prisma.lesson.findMany({
-      where,
-      orderBy: [{ levelId: 'asc' }, { order: 'asc' }]
-    });
+    // 🔧 Parallel queries
+    const [levels, lessons] = await Promise.all([
+      prisma.level.findMany({ orderBy: { id: 'asc' } }),
+      prisma.lesson.findMany({
+        where,
+        orderBy: [{ levelId: 'asc' }, { order: 'asc' }]
+      })
+    ]);
 
     // Thống kê
     const stats = {
@@ -53,6 +57,10 @@ export async function GET(request) {
 // POST /api/admin/lessons - Tạo bài học mới
 export async function POST(request) {
   try {
+    // 🔧 Rate limiting cho admin write
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.STRICT);
+    if (rateLimitError) return rateLimitError;
+
     const session = await getServerSession(authOptions);
     if (!session || session.user?.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

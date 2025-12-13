@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import prisma from '@/lib/prisma';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import cache, { CACHE_TTL } from '@/lib/cache';
 
 export const dynamic = 'force-dynamic';
 
@@ -25,24 +27,30 @@ async function checkAdmin() {
 // GET /api/admin/levels - Lấy tất cả levels (kể cả inactive)
 export async function GET(request) {
   try {
+    // 🔧 Rate limiting
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.MODERATE);
+    if (rateLimitError) return rateLimitError;
+
     const auth = await checkAdmin();
     if (auth.error) {
       return NextResponse.json({ error: auth.error }, { status: auth.status });
     }
 
-    const levels = await prisma.level.findMany({
-      orderBy: { order: 'asc' }
-    });
+    // 🔧 Parallel queries
+    const [levels, lessonCounts] = await Promise.all([
+      prisma.level.findMany({ orderBy: { order: 'asc' } }),
+      prisma.lesson.groupBy({
+        by: ['levelId'],
+        _count: { id: true }
+      })
+    ]);
 
-    // Lấy số lessons cho mỗi level
-    const lessonCounts = await prisma.lesson.groupBy({
-      by: ['levelId'],
-      _count: { id: true }
-    });
+    // 🔧 Map để lookup O(1)
+    const countMap = new Map(lessonCounts.map(lc => [lc.levelId, lc._count.id]));
 
     const levelsWithStats = levels.map(level => ({
       ...level,
-      lessonCount: lessonCounts.find(lc => lc.levelId === level.id)?._count?.id || 0
+      lessonCount: countMap.get(level.id) || 0
     }));
 
     return NextResponse.json({ 
@@ -61,6 +69,10 @@ export async function GET(request) {
 // POST /api/admin/levels - Tạo level mới
 export async function POST(request) {
   try {
+    // 🔧 Rate limiting cho admin write
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.STRICT);
+    if (rateLimitError) return rateLimitError;
+
     const auth = await checkAdmin();
     if (auth.error) {
       return NextResponse.json({ error: auth.error }, { status: auth.status });

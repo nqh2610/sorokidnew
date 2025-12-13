@@ -2,12 +2,18 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import cache, { CACHE_TTL } from '@/lib/cache';
 
 export const dynamic = 'force-dynamic';
 
 // GET /api/admin/achievements - Lấy danh sách thành tích
 export async function GET(request) {
   try {
+    // 🔧 Rate limiting cho admin endpoint
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.MODERATE);
+    if (rateLimitError) return rateLimitError;
+
     const session = await getServerSession(authOptions);
     if (!session || session.user?.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -18,18 +24,15 @@ export async function GET(request) {
 
     const where = category ? { category } : {};
 
-    const achievements = await prisma.achievement.findMany({
-      where,
-      orderBy: { createdAt: 'asc' },
-      include: {
-        _count: {
-          select: { users: true }
-        }
-      }
-    });
-
-    // Lấy tổng số users
-    const totalUsers = await prisma.user.count();
+    // 🔧 Parallel queries thay vì sequential
+    const [achievements, totalUsers] = await Promise.all([
+      prisma.achievement.findMany({
+        where,
+        orderBy: { createdAt: 'asc' },
+        include: { _count: { select: { users: true } } }
+      }),
+      prisma.user.count()
+    ]);
 
     const achievementsWithStats = achievements.map(achievement => ({
       ...achievement,
@@ -61,6 +64,10 @@ export async function GET(request) {
 // POST /api/admin/achievements - Tạo thành tích mới
 export async function POST(request) {
   try {
+    // 🔧 Rate limiting cho admin write
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.STRICT);
+    if (rateLimitError) return rateLimitError;
+
     const session = await getServerSession(authOptions);
     if (!session || session.user?.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

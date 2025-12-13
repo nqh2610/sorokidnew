@@ -5,9 +5,28 @@ import { compare } from 'bcryptjs';
 // 🔧 SỬ DỤNG PRISMA SINGLETON thay vì tạo mới
 import prisma from '@/lib/prisma';
 
-// Cache user role trong memory để giảm DB queries
+// 🔧 Cache user role trong memory với giới hạn kích thước
 const userRoleCache = new Map();
 const ROLE_CACHE_TTL = 300000; // 5 minutes
+const MAX_CACHE_SIZE = 10000; // Giới hạn 10k entries để tránh memory leak
+
+// 🔧 Cleanup routine chạy mỗi 5 phút
+setInterval(() => {
+  const now = Date.now();
+  let deletedCount = 0;
+  for (const [key, value] of userRoleCache.entries()) {
+    if (now >= value.expiresAt) {
+      userRoleCache.delete(key);
+      deletedCount++;
+    }
+  }
+  // Nếu vẫn quá size, xóa entries cũ nhất
+  if (userRoleCache.size > MAX_CACHE_SIZE) {
+    const entriesToDelete = userRoleCache.size - MAX_CACHE_SIZE;
+    const keys = Array.from(userRoleCache.keys()).slice(0, entriesToDelete);
+    keys.forEach(k => userRoleCache.delete(k));
+  }
+}, 300000); // 5 phút
 
 export const authOptions = {
   session: {
