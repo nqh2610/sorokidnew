@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import bcrypt from 'bcryptjs';
 
 // GET /api/admin/users - Lấy danh sách người dùng
 export async function GET(request) {
@@ -73,7 +74,7 @@ export async function GET(request) {
       _count: { id: true }
     });
     
-    let stats = { total: 0, free: 0, basic: 0, advanced: 0 };
+    let stats = { total: 0, free: 0, basic: 0, advanced: 0, activeToday: 0, newThisWeek: 0 };
     for (const s of statsData) {
       // tier null được coi là free
       const tierName = s.tier || 'free';
@@ -82,6 +83,20 @@ export async function GET(request) {
       }
       stats.total += s._count.id;
     }
+
+    // Count active today
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    stats.activeToday = await prisma.user.count({
+      where: { lastLoginDate: { gte: today } }
+    });
+
+    // Count new this week
+    const weekAgo = new Date();
+    weekAgo.setDate(weekAgo.getDate() - 7);
+    stats.newThisWeek = await prisma.user.count({
+      where: { createdAt: { gte: weekAgo } }
+    });
 
     return NextResponse.json({
       users: usersWithTier,
@@ -95,6 +110,76 @@ export async function GET(request) {
     });
   } catch (error) {
     console.error('Error fetching users:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+
+// POST /api/admin/users - Tạo user mới
+export async function POST(request) {
+  try {
+    const session = await getServerSession(authOptions);
+    
+    if (!session || session.user.role !== 'admin') {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const { name, email, username, password, tier } = await request.json();
+
+    if (!email || !password) {
+      return NextResponse.json({ error: 'Email và mật khẩu là bắt buộc' }, { status: 400 });
+    }
+
+    // Check if email exists
+    const existingUser = await prisma.user.findUnique({
+      where: { email }
+    });
+
+    if (existingUser) {
+      return NextResponse.json({ error: 'Email đã được sử dụng' }, { status: 400 });
+    }
+
+    // Check if username exists (if provided)
+    if (username) {
+      const existingUsername = await prisma.user.findUnique({
+        where: { username }
+      });
+      if (existingUsername) {
+        return NextResponse.json({ error: 'Username đã được sử dụng' }, { status: 400 });
+      }
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create user
+    const newUser = await prisma.user.create({
+      data: {
+        email,
+        password: hashedPassword,
+        name: name || null,
+        username: username || null,
+        tier: tier || 'free',
+        tierPurchasedAt: tier && tier !== 'free' ? new Date() : null,
+        level: 1,
+        totalStars: 0,
+        diamonds: 0,
+        streak: 0,
+        role: 'user'
+      }
+    });
+
+    return NextResponse.json({ 
+      success: true, 
+      user: {
+        id: newUser.id,
+        email: newUser.email,
+        name: newUser.name,
+        username: newUser.username,
+        tier: newUser.tier
+      }
+    });
+  } catch (error) {
+    console.error('Error creating user:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

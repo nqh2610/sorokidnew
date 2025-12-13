@@ -4,24 +4,50 @@ import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import crypto from 'crypto';
 
-// Cấu hình payment gateway (có thể thay đổi theo provider)
-const PAYMENT_CONFIG = {
-  bankCode: 'MB',
-  accountNumber: '0839969966',
-  accountName: 'NGUYEN QUANG HUY',
-  // Template nội dung chuyển khoản
-  contentTemplate: 'SOROKIDS {orderId}'
+// Thứ tự tier (dùng để so sánh)
+const TIER_ORDER = {
+  free: 0,
+  basic: 1,
+  advanced: 2,
+  vip: 3
 };
 
-// Các gói thanh toán
-const PRICING = {
-  premium_1: { tier: 'premium', months: 1, price: 49000, name: 'Premium 1 tháng' },
-  premium_3: { tier: 'premium', months: 3, price: 129000, name: 'Premium 3 tháng', save: '12%' },
-  premium_12: { tier: 'premium', months: 12, price: 399000, name: 'Premium 1 năm', save: '32%' },
-  vip_1: { tier: 'vip', months: 1, price: 99000, name: 'VIP 1 tháng' },
-  vip_3: { tier: 'vip', months: 3, price: 259000, name: 'VIP 3 tháng', save: '13%' },
-  vip_12: { tier: 'vip', months: 12, price: 799000, name: 'VIP 1 năm', save: '33%' }
-};
+// Lấy pricing plans từ database
+async function getPricingPlans() {
+  try {
+    const settings = await prisma.systemSettings.findUnique({
+      where: { key: 'pricing_plans' }
+    });
+    if (settings?.value) {
+      const plans = JSON.parse(settings.value);
+      return Array.isArray(plans) ? plans : [];
+    }
+  } catch (e) {
+    console.error('Error loading pricing plans:', e);
+  }
+  return [];
+}
+
+// Lấy payment settings từ database
+async function getPaymentSettings() {
+  try {
+    const settings = await prisma.systemSettings.findUnique({
+      where: { key: 'payment_settings' }
+    });
+    if (settings?.value) {
+      return JSON.parse(settings.value);
+    }
+  } catch (e) {
+    console.error('Error loading payment settings:', e);
+  }
+  // Default settings
+  return {
+    bankCode: 'MB',
+    accountNumber: '0839969966',
+    accountName: 'NGUYEN QUANG HUY',
+    contentTemplate: 'SOROKID {orderId}'
+  };
+}
 
 // GET /api/payment - Lấy thông tin thanh toán
 export async function GET(request) {
@@ -31,8 +57,8 @@ export async function GET(request) {
 
     if (orderId) {
       // Lấy thông tin đơn hàng cụ thể
-      const order = await prisma.paymentOrder.findUnique({
-        where: { orderId }
+      const order = await prisma.paymentOrder.findFirst({
+        where: { orderCode: orderId }
       });
 
       if (!order) {
@@ -43,12 +69,15 @@ export async function GET(request) {
     }
 
     // Trả về thông tin pricing
+    const plans = await getPricingPlans();
+    const paymentSettings = await getPaymentSettings();
+    
     return NextResponse.json({
-      pricing: PRICING,
+      plans,
       paymentInfo: {
-        bankCode: PAYMENT_CONFIG.bankCode,
-        accountNumber: PAYMENT_CONFIG.accountNumber,
-        accountName: PAYMENT_CONFIG.accountName
+        bankCode: paymentSettings.bankCode,
+        accountNumber: paymentSettings.accountNumber,
+        accountName: paymentSettings.accountName
       }
     });
   } catch (error) {
@@ -63,59 +92,101 @@ export async function POST(request) {
     const session = await getServerSession(authOptions);
     
     if (!session) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ error: 'Vui lòng đăng nhập' }, { status: 401 });
     }
 
-    const { packageId } = await request.json();
+    const { packageId, currentTier } = await request.json();
 
-    // Validate package
-    const packageInfo = PRICING[packageId];
-    if (!packageInfo) {
-      return NextResponse.json({ error: 'Invalid package' }, { status: 400 });
+    // Lấy pricing plans
+    const plans = await getPricingPlans();
+    const targetPlan = plans.find(p => p.id === packageId);
+    
+    if (!targetPlan) {
+      return NextResponse.json({ error: 'Gói không hợp lệ' }, { status: 400 });
     }
 
-    // Generate order ID
-    const orderId = `SK${Date.now()}${crypto.randomBytes(3).toString('hex').toUpperCase()}`;
+    // Lấy user để kiểm tra tier hiện tại
+    const user = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { tier: true }
+    });
+
+    const userCurrentTier = user?.tier || 'free';
+
+    // Validate: chỉ cho phép nâng cấp lên gói cao hơn
+    const currentTierOrder = TIER_ORDER[userCurrentTier] || 0;
+    const targetTierOrder = TIER_ORDER[packageId] || 0;
+
+    if (targetTierOrder <= currentTierOrder) {
+      return NextResponse.json({ 
+        error: 'Bạn chỉ có thể nâng cấp lên gói cao hơn' 
+      }, { status: 400 });
+    }
+
+    // Tính số tiền cần thanh toán
+    let amount = targetPlan.price;
+    let transactionType = 'new';
+    
+    if (userCurrentTier !== 'free') {
+      // Tìm gói hiện tại để tính chênh lệch
+      const currentPlan = plans.find(p => p.id === userCurrentTier);
+      if (currentPlan) {
+        const difference = targetPlan.price - currentPlan.price;
+        if (difference > 0) {
+          amount = difference;
+          transactionType = 'upgrade';
+        }
+      }
+    }
+
+    // Lấy payment settings
+    const paymentSettings = await getPaymentSettings();
+
+    // Generate order code
+    const orderCode = `SK${Date.now()}${crypto.randomBytes(3).toString('hex').toUpperCase()}`;
     
     // Nội dung chuyển khoản
-    const content = PAYMENT_CONFIG.contentTemplate.replace('{orderId}', orderId);
+    const content = (paymentSettings.contentTemplate || 'SOROKID {orderId}').replace('{orderId}', orderCode);
 
     // Tạo QR URL (VietQR format)
-    const qrUrl = `https://img.vietqr.io/image/${PAYMENT_CONFIG.bankCode}-${PAYMENT_CONFIG.accountNumber}-compact2.png?amount=${packageInfo.price}&addInfo=${encodeURIComponent(content)}&accountName=${encodeURIComponent(PAYMENT_CONFIG.accountName)}`;
+    const qrUrl = `https://img.vietqr.io/image/${paymentSettings.bankCode}-${paymentSettings.accountNumber}-compact2.png?amount=${amount}&addInfo=${encodeURIComponent(content)}&accountName=${encodeURIComponent(paymentSettings.accountName)}`;
 
     // Lưu đơn hàng vào database
     const order = await prisma.paymentOrder.create({
       data: {
-        orderId,
+        orderCode,
         userId: session.user.id,
-        packageId,
-        tierName: packageInfo.tier,
-        months: packageInfo.months,
-        amount: packageInfo.price,
+        tier: packageId,
+        amount: amount,
         status: 'pending',
-        paymentContent: content,
-        expiresAt: new Date(Date.now() + 30 * 60 * 1000) // 30 phút
+        previousTier: userCurrentTier,
+        transactionType,
+        expiresAt: new Date(Date.now() + 30 * 60 * 1000), // 30 phút
+        note: content
       }
     });
 
     return NextResponse.json({
       success: true,
       order: {
-        orderId: order.orderId,
+        orderId: order.orderCode,
         amount: order.amount,
-        packageName: packageInfo.name,
+        packageName: targetPlan.name,
+        targetTier: packageId,
+        previousTier: userCurrentTier,
+        transactionType,
         content,
         qrUrl,
         expiresAt: order.expiresAt,
         paymentInfo: {
-          bankCode: PAYMENT_CONFIG.bankCode,
-          accountNumber: PAYMENT_CONFIG.accountNumber,
-          accountName: PAYMENT_CONFIG.accountName
+          bankCode: paymentSettings.bankCode,
+          accountNumber: paymentSettings.accountNumber,
+          accountName: paymentSettings.accountName
         }
       }
     });
   } catch (error) {
     console.error('Error creating order:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return NextResponse.json({ error: 'Lỗi hệ thống' }, { status: 500 });
   }
 }

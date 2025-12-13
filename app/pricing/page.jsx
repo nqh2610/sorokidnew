@@ -1,87 +1,65 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { 
   Check, X, Sparkles, Crown, Gift, Shield, 
   Zap, HelpCircle, ChevronRight, Star,
   BookOpen, Gamepad2, Trophy, Award, Brain,
-  ArrowLeft, Rocket, Timer
+  ArrowLeft, Rocket, Timer, Lock
 } from 'lucide-react';
 import TopBar from '@/components/TopBar/TopBar';
 
-// Định nghĩa các gói
-const PRICING_PLANS = [
-  {
-    id: 'free',
-    name: 'Miễn Phí',
-    description: 'Bắt đầu học Soroban cơ bản',
-    price: 0,
-    originalPrice: null,
-    icon: Gift,
-    iconBg: 'bg-gradient-to-br from-slate-100 to-slate-200',
-    iconColor: 'text-slate-600',
-    badge: null,
-    buttonText: 'Gói miễn phí',
-    buttonStyle: 'bg-slate-100 text-slate-700 hover:bg-slate-200',
-    cardStyle: 'border-slate-200 bg-white hover:border-slate-300',
-    glowColor: 'group-hover:shadow-slate-200/50',
-    features: [
-      { text: '5 Level cơ bản', included: true },
-      { text: 'Luyện Cộng/Trừ Sơ cấp', included: true },
-      { text: 'Thi đấu Sơ cấp', included: true },
-      { text: 'Không có chứng nhận', included: false },
-    ],
-    disabled: true,
+// Thứ tự tier (dùng để so sánh)
+const TIER_ORDER = {
+  free: 0,
+  basic: 1,
+  advanced: 2,
+  vip: 3
+};
+
+// Icon mapping
+const ICON_MAP = {
+  Gift, Star, Crown, Zap, Shield, Award, Rocket, 
+  Check, X, Sparkles, BookOpen, Gamepad2, Trophy, Brain, Timer, Lock
+};
+
+// Style mapping cho các gói
+const PLAN_STYLES = {
+  free: {
+    iconBg: 'bg-gradient-to-br from-slate-400 to-slate-500',
+    iconColor: 'text-white',
+    buttonStyle: 'bg-slate-200 text-slate-600 hover:bg-slate-300 border-2 border-transparent',
+    cardBg: 'bg-white',
+    borderColor: 'border-slate-200 hover:border-slate-300',
+    priceColor: 'text-slate-700',
   },
-  {
-    id: 'basic',
-    name: 'Cơ Bản',
-    description: 'Học Cộng Trừ thành thạo',
-    price: 199000,
-    originalPrice: 299000,
-    icon: Star,
+  basic: {
     iconBg: 'bg-gradient-to-br from-blue-500 to-indigo-600',
     iconColor: 'text-white',
-    badge: null,
-    buttonText: 'Đã có gói cao hơn',
-    buttonStyle: 'bg-blue-50 text-blue-600 hover:bg-blue-100',
-    cardStyle: 'border-blue-200 bg-gradient-to-b from-blue-50/50 to-white hover:border-blue-300',
-    glowColor: 'group-hover:shadow-blue-200/50',
-    features: [
-      { text: '10 Level Cộng Trừ', included: true, highlight: true },
-      { text: 'Luyện tập Sơ - Trung cấp', included: true },
-      { text: 'Thi đấu Sơ - Trung cấp', included: true },
-      { text: 'Chứng nhận Sorokid Cộng Trừ', included: true, highlight: true },
-    ],
-    disabled: true,
+    buttonStyle: 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:shadow-lg hover:shadow-blue-500/25 hover:-translate-y-0.5',
+    cardBg: 'bg-white',
+    borderColor: 'border-blue-200 hover:border-blue-400',
+    priceColor: 'text-blue-600',
   },
-  {
-    id: 'advanced',
-    name: 'Nâng Cao',
-    description: 'Full tính năng + 2 Chứng nhận Sorokid',
-    price: 299000,
-    originalPrice: 499000,
-    icon: Crown,
-    iconBg: 'bg-gradient-to-br from-amber-400 via-orange-500 to-pink-500',
+  advanced: {
+    iconBg: 'bg-gradient-to-br from-amber-400 via-orange-500 to-rose-500',
     iconColor: 'text-white',
-    badge: '🔥 Phổ biến nhất',
-    badgeStyle: 'bg-gradient-to-r from-pink-500 via-rose-500 to-orange-500 animate-pulse',
-    buttonText: 'Gói hiện tại',
-    buttonStyle: 'bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 text-white hover:shadow-xl hover:shadow-fuchsia-300/30 hover:scale-[1.02]',
-    cardStyle: 'border-fuchsia-300 bg-gradient-to-b from-fuchsia-50 via-white to-pink-50/30 hover:border-fuchsia-400',
-    glowColor: 'group-hover:shadow-fuchsia-300/50',
-    popular: true,
-    features: [
-      { text: 'Full 18 Level - Không giới hạn', included: true, highlight: true },
-      { text: 'Tất cả chế độ luyện tập & thi đấu', included: true },
-      { text: 'Anzan - Tính nhẩm siêu tốc', included: true, highlight: true },
-      { text: '2 Chứng nhận Sorokid', included: true, highlight: true },
-    ],
-    savings: '200,000đ',
+    buttonStyle: 'bg-gradient-to-r from-fuchsia-500 via-purple-500 to-indigo-500 text-white hover:shadow-xl hover:shadow-purple-500/30 hover:-translate-y-1',
+    cardBg: 'bg-gradient-to-br from-fuchsia-50/80 via-white to-amber-50/50',
+    borderColor: 'border-fuchsia-300 hover:border-fuchsia-400',
+    priceColor: 'bg-gradient-to-r from-fuchsia-600 to-purple-600 bg-clip-text text-transparent',
   },
-];
+  default: {
+    iconBg: 'bg-gradient-to-br from-purple-500 to-indigo-600',
+    iconColor: 'text-white',
+    buttonStyle: 'bg-purple-500 text-white hover:bg-purple-600',
+    cardBg: 'bg-white',
+    borderColor: 'border-purple-200 hover:border-purple-300',
+    priceColor: 'text-purple-600',
+  }
+};
 
 // So sánh chi tiết các gói
 const COMPARISON_DATA = {
@@ -161,18 +139,101 @@ const FAQ_DATA = [
 
 export default function PricingPage() {
   const router = useRouter();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [isLoading, setIsLoading] = useState(false);
   const [showQR, setShowQR] = useState(false);
   const [orderInfo, setOrderInfo] = useState(null);
   const [selectedPlan, setSelectedPlan] = useState(null);
+  const [pricingPlans, setPricingPlans] = useState([]);
+  const [isLoadingPlans, setIsLoadingPlans] = useState(true);
+  const [userTier, setUserTier] = useState('free');
+
+  // Load pricing plans and user tier
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch plans
+        const plansRes = await fetch('/api/pricing');
+        if (plansRes.ok) {
+          const data = await plansRes.json();
+          setPricingPlans(data.plans || []);
+        }
+
+        // Fetch user tier if logged in
+        if (session?.user?.id) {
+          const userRes = await fetch('/api/user/tier');
+          if (userRes.ok) {
+            const userData = await userRes.json();
+            setUserTier(userData.tier || 'free');
+          }
+        }
+      } catch (error) {
+        console.error('Error loading data:', error);
+      } finally {
+        setIsLoadingPlans(false);
+      }
+    };
+    
+    if (status !== 'loading') {
+      fetchData();
+    }
+  }, [session, status]);
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('vi-VN').format(price);
   };
 
+  // Get style for plan
+  const getPlanStyle = (planId) => {
+    return PLAN_STYLES[planId] || PLAN_STYLES.default;
+  };
+
+  // Get icon component
+  const getIconComponent = (iconName) => {
+    return ICON_MAP[iconName] || Star;
+  };
+
+  // Kiểm tra xem gói có thể mua được không
+  const canPurchasePlan = (planId) => {
+    if (planId === 'free') return false;
+    const currentTierOrder = TIER_ORDER[userTier] || 0;
+    const targetTierOrder = TIER_ORDER[planId] || 0;
+    return targetTierOrder > currentTierOrder;
+  };
+
+  // Tính giá cần thanh toán (chênh lệch nếu đang có gói)
+  const getPayableAmount = (plan) => {
+    if (!session || userTier === 'free') return plan.price;
+    
+    // Tìm giá gói hiện tại
+    const currentPlan = pricingPlans.find(p => p.id === userTier);
+    if (!currentPlan) return plan.price;
+    
+    // Tính chênh lệch
+    const difference = plan.price - currentPlan.price;
+    return difference > 0 ? difference : plan.price;
+  };
+
+  // Lấy text cho nút
+  const getButtonText = (plan) => {
+    if (plan.id === 'free') return 'Miễn phí';
+    if (plan.id === userTier) return 'Đang sử dụng';
+    
+    const currentTierOrder = TIER_ORDER[userTier] || 0;
+    const targetTierOrder = TIER_ORDER[plan.id] || 0;
+    
+    if (targetTierOrder <= currentTierOrder) return 'Gói thấp hơn';
+    
+    if (userTier !== 'free') {
+      const payable = getPayableAmount(plan);
+      return `Nâng cấp ${formatPrice(payable)}đ`;
+    }
+    
+    return 'Mua ngay';
+  };
+
   const handleSelectPlan = async (plan) => {
-    if (plan.disabled || plan.id === 'free') return;
+    if (!canPurchasePlan(plan.id)) return;
     
     if (!session) {
       router.push('/login?redirect=/pricing');
@@ -186,7 +247,10 @@ export default function PricingPage() {
       const res = await fetch('/api/payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ packageId: plan.id })
+        body: JSON.stringify({ 
+          packageId: plan.id,
+          currentTier: userTier
+        })
       });
 
       const data = await res.json();
@@ -194,6 +258,8 @@ export default function PricingPage() {
       if (data.success) {
         setOrderInfo(data.order);
         setShowQR(true);
+        // Bắt đầu polling kiểm tra trạng thái
+        startPaymentPolling(data.order.orderId);
       } else {
         alert(data.error || 'Có lỗi xảy ra');
       }
@@ -205,6 +271,42 @@ export default function PricingPage() {
     }
   };
 
+  // Polling kiểm tra trạng thái thanh toán
+  const startPaymentPolling = (orderId) => {
+    const pollInterval = setInterval(async () => {
+      try {
+        const res = await fetch(`/api/payment/status/${orderId}`);
+        const data = await res.json();
+        
+        if (data.status === 'completed') {
+          clearInterval(pollInterval);
+          setShowQR(false);
+          setOrderInfo(null);
+          setSelectedPlan(null);
+          // Cập nhật tier mới
+          setUserTier(data.tier);
+          // Hiển thị thông báo thành công
+          alert('🎉 Thanh toán thành công! Gói của bạn đã được kích hoạt.');
+          // Refresh trang để cập nhật UI
+          router.refresh();
+        } else if (data.status === 'expired') {
+          clearInterval(pollInterval);
+          alert('⏰ Đơn hàng đã hết hạn. Vui lòng tạo đơn mới.');
+          setShowQR(false);
+          setOrderInfo(null);
+          setSelectedPlan(null);
+        }
+      } catch (error) {
+        console.error('Polling error:', error);
+      }
+    }, 5000); // Check mỗi 5 giây
+
+    // Tự động dừng sau 30 phút
+    setTimeout(() => {
+      clearInterval(pollInterval);
+    }, 30 * 60 * 1000);
+  };
+
   const closeQRModal = () => {
     setShowQR(false);
     setOrderInfo(null);
@@ -214,229 +316,271 @@ export default function PricingPage() {
   const renderFeatureValue = (value) => {
     if (value === true) {
       return (
-        <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-fuchsia-500 to-pink-500">
+        <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-600 shadow-lg shadow-fuchsia-500/20">
           <Check className="w-3.5 h-3.5 text-white" />
         </div>
       );
     }
     if (value === false) {
       return (
-        <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-slate-100">
-          <X className="w-3.5 h-3.5 text-slate-400" />
+        <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white/10">
+          <X className="w-3.5 h-3.5 text-slate-600" />
         </div>
       );
     }
-    return <span className="text-sm font-medium text-slate-700 bg-slate-100 px-2.5 py-1 rounded-full">{value}</span>;
+    return <span className="text-sm font-medium text-slate-300 bg-white/10 px-2.5 py-1 rounded-full">{value}</span>;
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-violet-50/30 to-pink-50/30">
-      {/* Background decorations */}
+    <div className="min-h-screen bg-slate-950">
+      {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-40 right-20 w-96 h-96 bg-fuchsia-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-violet-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-500/15 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-fuchsia-500/10 rounded-full blur-[150px]"></div>
+        {/* Grid overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
       </div>
 
       {/* Unified TopBar */}
       <TopBar showStats={false} />
       
-      {/* Header */}
-      <div className="relative pt-6 pb-10 px-4">
+      {/* Hero Header */}
+      <div className="relative pt-8 pb-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           {/* Floating badge */}
-          <div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white/90 backdrop-blur-sm border border-green-200 rounded-full mb-6 shadow-md">
-            <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-sm text-slate-700 font-semibold">
+          <div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-emerald-500/10 backdrop-blur-sm border border-emerald-500/30 rounded-full mb-8 animate-bounce-slow">
+            <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+            <span className="text-sm text-emerald-400 font-medium">
               Thanh toán 1 lần • Sử dụng trọn đời
             </span>
-            <Sparkles size={16} className="text-amber-500" />
+            <Sparkles size={14} className="text-emerald-400" />
           </div>
           
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-            <span className="bg-gradient-to-r from-slate-800 via-violet-700 to-fuchsia-600 bg-clip-text text-transparent">
-              Chọn gói phù hợp với bé
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight tracking-tight">
+            <span className="text-white">Chọn gói </span>
+            <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+              phù hợp
             </span>
+            <span className="text-white"> với bé</span>
           </h1>
           
-          <p className="text-base md:text-lg text-slate-600 max-w-xl mx-auto mb-6">
+          <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
             Đầu tư cho tư duy toán học - Nền tảng vững chắc cho tương lai
           </p>
 
           {/* Trust indicators */}
-          <div className="inline-flex flex-wrap items-center justify-center gap-2 md:gap-3">
-            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/80 rounded-full border border-slate-200 text-sm">
-              <Shield size={14} className="text-green-500" />
-              <span className="text-slate-600 font-medium">Bảo mật</span>
+          <div className="inline-flex flex-wrap items-center justify-center gap-3 md:gap-4">
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur rounded-full border border-white/10">
+              <Shield size={16} className="text-emerald-400" />
+              <span className="text-slate-300 text-sm font-medium">Bảo mật</span>
             </div>
-            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/80 rounded-full border border-slate-200 text-sm">
-              <Zap size={14} className="text-amber-500" />
-              <span className="text-slate-600 font-medium">Kích hoạt ngay</span>
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur rounded-full border border-white/10">
+              <Zap size={16} className="text-amber-400" />
+              <span className="text-slate-300 text-sm font-medium">Kích hoạt ngay</span>
             </div>
-            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/80 rounded-full border border-slate-200 text-sm">
-              <Rocket size={14} className="text-fuchsia-500" />
-              <span className="text-slate-600 font-medium">10K+ học sinh</span>
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur rounded-full border border-white/10">
+              <Rocket size={16} className="text-fuchsia-400" />
+              <span className="text-slate-300 text-sm font-medium">10K+ học sinh</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Pricing Cards */}
-      <div className="relative px-4 pb-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-            {PRICING_PLANS.map((plan, index) => {
-              const IconComponent = plan.icon;
+      <div className="relative px-4 pb-24">
+        <div className="max-w-6xl mx-auto">
+          {isLoadingPlans ? (
+            <div className="flex items-center justify-center py-20">
+              <div className="w-12 h-12 border-4 border-fuchsia-500 border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          ) : (
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-start">
+            {pricingPlans.map((plan, index) => {
+              const style = getPlanStyle(plan.id);
+              const IconComponent = getIconComponent(plan.icon);
+              const discountPercent = plan.originalPrice > plan.price 
+                ? Math.round((1 - plan.price / plan.originalPrice) * 100)
+                : 0;
+              
               return (
                 <div
                   key={plan.id}
-                  className={`group relative border-2 rounded-3xl p-6 lg:p-8 transition-all duration-500 hover:shadow-2xl ${plan.cardStyle} ${plan.glowColor} ${
-                    plan.popular ? 'md:-mt-6 md:mb-6 scale-[1.02] md:scale-105' : ''
+                  className={`group relative transition-all duration-500 ${
+                    plan.popular ? 'md:-mt-4 md:scale-105 z-10' : 'z-0'
                   }`}
-                  style={{
-                    animationDelay: `${index * 100}ms`
-                  }}
+                  style={{ animationDelay: `${index * 150}ms` }}
                 >
-                  {/* Popular glow effect */}
+                  {/* Glow effect for popular */}
                   {plan.popular && (
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-fuchsia-500 via-pink-500 to-rose-500 rounded-3xl blur opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-fuchsia-500 via-purple-500 to-cyan-500 rounded-3xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity animate-pulse"></div>
                   )}
-
-                  <div className={`relative ${plan.popular ? 'bg-white rounded-[22px] p-6 lg:p-8 -m-6 lg:-m-8' : ''}`}>
-                    {/* Badge */}
-                    {plan.badge && (
-                      <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-2 rounded-full text-white text-sm font-bold shadow-lg ${plan.badgeStyle}`}>
-                        {plan.badge}
+                  
+                  {/* Card */}
+                  <div className={`relative rounded-3xl border-2 ${style.borderColor} ${style.cardBg} overflow-hidden transition-all duration-300 group-hover:shadow-2xl`}>
+                    
+                    {/* Top Badge */}
+                    {(plan.badge || plan.popular) && (
+                      <div className={`absolute top-0 right-0 px-4 py-2 rounded-bl-2xl text-xs font-bold text-white ${
+                        plan.popular 
+                          ? 'bg-gradient-to-r from-amber-500 to-orange-500' 
+                          : 'bg-gradient-to-r from-rose-500 to-pink-500'
+                      }`}>
+                        {plan.popular ? '🔥 Phổ biến nhất' : plan.badge}
                       </div>
                     )}
 
-                    {/* Icon with ring effect */}
-                    <div className="flex justify-center mb-6">
-                      <div className="relative">
-                        {plan.popular && (
-                          <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-pink-500 rounded-2xl blur-lg opacity-40 animate-pulse"></div>
+                    <div className="p-8">
+                      {/* Icon */}
+                      <div className="mb-6">
+                        <div className={`w-16 h-16 rounded-2xl ${style.iconBg} flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                          <IconComponent className={`w-8 h-8 ${style.iconColor}`} />
+                        </div>
+                      </div>
+
+                      {/* Plan Info */}
+                      <div className="mb-6">
+                        <h3 className="text-2xl font-bold text-slate-800 mb-1">{plan.name}</h3>
+                        <p className="text-slate-500 text-sm">{plan.description}</p>
+                      </div>
+
+                      {/* Price */}
+                      <div className="mb-8">
+                        {plan.originalPrice > plan.price && (
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-slate-400 line-through text-lg">
+                              {formatPrice(plan.originalPrice)}đ
+                            </span>
+                            <span className="px-2 py-0.5 bg-rose-100 text-rose-600 text-xs font-bold rounded-full">
+                              -{discountPercent}%
+                            </span>
+                          </div>
                         )}
-                        <div className={`relative w-16 h-16 lg:w-20 lg:h-20 rounded-2xl flex items-center justify-center ${plan.iconBg} shadow-lg`}>
-                          <IconComponent className={`w-8 h-8 lg:w-10 lg:h-10 ${plan.iconColor}`} />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Plan Name & Description */}
-                    <div className="text-center mb-6">
-                      <h3 className="text-2xl lg:text-3xl font-bold text-slate-800 mb-2">{plan.name}</h3>
-                      <p className="text-sm text-slate-500">{plan.description}</p>
-                    </div>
-
-                    {/* Price */}
-                    <div className="text-center mb-8">
-                      {plan.originalPrice && (
-                        <div className="inline-flex items-center gap-2 mb-2">
-                          <span className="text-slate-400 line-through text-lg">
-                            {formatPrice(plan.originalPrice)}đ
+                        <div className="flex items-baseline gap-1">
+                          <span className={`text-5xl font-black ${style.priceColor}`}>
+                            {plan.price === 0 ? '0' : formatPrice(plan.price)}
                           </span>
-                          <span className="px-2 py-0.5 bg-red-100 text-red-600 text-xs font-semibold rounded-full">
-                            -{Math.round((1 - plan.price / plan.originalPrice) * 100)}%
-                          </span>
+                          <span className="text-2xl font-bold text-slate-400">đ</span>
                         </div>
-                      )}
-                      <div className={`text-4xl lg:text-5xl font-extrabold ${plan.popular ? 'bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent' : 'text-slate-800'}`}>
-                        {plan.price === 0 ? '0đ' : `${formatPrice(plan.price)}đ`}
+                        <p className="text-slate-500 text-sm mt-2">
+                          {plan.price === 0 ? 'Miễn phí mãi mãi' : 'Thanh toán một lần'}
+                        </p>
                       </div>
-                      <div className="text-sm text-slate-500 mt-2 font-medium">
-                        {plan.price === 0 ? 'Mãi mãi miễn phí' : 'Một lần • Trọn đời'}
-                      </div>
-                      {plan.savings && (
-                        <div className="inline-flex items-center gap-1.5 mt-3 px-4 py-2 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 text-green-700 text-sm rounded-full font-semibold">
-                          <Sparkles size={14} className="text-green-500" />
-                          Tiết kiệm {plan.savings}
-                        </div>
-                      )}
-                    </div>
 
-                    {/* Divider */}
-                    <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent mb-6"></div>
+                      {/* Divider */}
+                      <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent mb-6"></div>
 
-                    {/* Features */}
-                    <div className="space-y-4 mb-8">
-                      {plan.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-start gap-3 group/item">
-                          {feature.included ? (
-                            <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${feature.highlight ? 'bg-gradient-to-br from-fuchsia-500 to-pink-500' : 'bg-green-500'}`}>
-                              <Check className="w-3.5 h-3.5 text-white" />
+                      {/* Features */}
+                      <div className="space-y-4 mb-8">
+                        {plan.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-start gap-3">
+                            <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                              feature.included 
+                                ? feature.highlight 
+                                  ? 'bg-gradient-to-br from-fuchsia-500 to-purple-500' 
+                                  : 'bg-emerald-500'
+                                : 'bg-slate-200'
+                            }`}>
+                              {feature.included ? (
+                                <Check className="w-3 h-3 text-white" />
+                              ) : (
+                                <X className="w-3 h-3 text-slate-400" />
+                              )}
                             </div>
-                          ) : (
-                            <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-slate-100">
-                              <X className="w-3.5 h-3.5 text-slate-400" />
-                            </div>
-                          )}
-                          <span className={`text-sm ${feature.included ? (feature.highlight ? 'text-slate-800 font-semibold' : 'text-slate-700') : 'text-slate-400'}`}>
-                            {feature.text}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                            <span className={`text-sm leading-tight ${
+                              feature.included 
+                                ? feature.highlight 
+                                  ? 'text-fuchsia-700 font-semibold' 
+                                  : 'text-slate-700'
+                                : 'text-slate-400 line-through'
+                            }`}>
+                              {feature.text}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
 
-                    {/* Button */}
-                    <button
-                      onClick={() => handleSelectPlan(plan)}
-                      disabled={plan.disabled || isLoading}
-                      className={`w-full py-4 rounded-2xl font-bold text-base transition-all duration-300 ${plan.buttonStyle} ${
-                        plan.disabled ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'
-                      }`}
-                    >
-                      {isLoading && selectedPlan === plan.id ? (
-                        <div className="flex items-center justify-center gap-2">
-                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                          Đang xử lý...
+                      {/* Current Plan Badge */}
+                      {plan.id === userTier && (
+                        <div className="mb-4 py-2 px-4 bg-emerald-100 text-emerald-700 rounded-lg text-center text-sm font-semibold">
+                          ✓ Gói hiện tại của bạn
                         </div>
-                      ) : (
-                        <span className="flex items-center justify-center gap-2">
-                          {plan.buttonText}
-                          {!plan.disabled && <ChevronRight size={18} />}
-                        </span>
                       )}
-                    </button>
+
+                      {/* Upgrade Price Info */}
+                      {session && userTier !== 'free' && canPurchasePlan(plan.id) && (
+                        <div className="mb-4 py-2 px-4 bg-fuchsia-100 text-fuchsia-700 rounded-lg text-center text-sm">
+                          Chênh lệch: <span className="font-bold">{formatPrice(getPayableAmount(plan))}đ</span>
+                        </div>
+                      )}
+
+                      {/* CTA Button */}
+                      <button
+                        onClick={() => handleSelectPlan(plan)}
+                        disabled={!canPurchasePlan(plan.id) || isLoading}
+                        className={`w-full py-4 rounded-xl font-bold text-base transition-all duration-300 ${
+                          canPurchasePlan(plan.id) 
+                            ? style.buttonStyle 
+                            : 'bg-slate-200 text-slate-500 cursor-not-allowed'
+                        }`}
+                      >
+                        {isLoading && selectedPlan === plan.id ? (
+                          <div className="flex items-center justify-center gap-2">
+                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                            Đang xử lý...
+                          </div>
+                        ) : (
+                          <span className="flex items-center justify-center gap-2">
+                            {!canPurchasePlan(plan.id) && plan.id !== userTier && plan.id !== 'free' && (
+                              <Lock size={16} />
+                            )}
+                            {getButtonText(plan)}
+                            {canPurchasePlan(plan.id) && <ChevronRight size={18} />}
+                          </span>
+                        )}
+                      </button>
+                    </div>
                   </div>
                 </div>
               );
             })}
           </div>
+          )}
         </div>
       </div>
 
       {/* Comparison Table */}
-      <div className="relative px-4 pb-20">
-        <div className="max-w-7xl mx-auto">
+      <div className="relative px-4 pb-24">
+        <div className="max-w-5xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full mb-4">
-              <BookOpen size={16} className="text-violet-600" />
-              <span className="text-sm text-slate-600 font-medium">Chi tiết tính năng</span>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur border border-white/10 rounded-full mb-4">
+              <BookOpen size={16} className="text-fuchsia-400" />
+              <span className="text-sm text-slate-300 font-medium">Chi tiết tính năng</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
               So sánh các gói
             </h2>
           </div>
 
           {/* Mobile hint */}
-          <p className="text-center text-sm text-slate-500 mb-3 md:hidden">👉 Vuốt ngang để xem thêm</p>
+          <p className="text-center text-sm text-slate-500 mb-4 md:hidden">👉 Vuốt ngang để xem thêm</p>
           
-          <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
+          <div className="bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden">
             <div className="overflow-x-auto">
               <div className="min-w-[600px]">
                 {/* Table Header */}
-                <div className="grid grid-cols-4 bg-gradient-to-r from-slate-50 via-slate-100/50 to-slate-50 border-b border-slate-200">
-                  <div className="p-4 md:p-5 font-bold text-slate-700 text-sm md:text-lg sticky left-0 bg-slate-50">Tính năng</div>
-                  <div className="p-4 md:p-5 text-center">
-                    <span className="font-bold text-slate-500 text-xs md:text-base">Miễn Phí</span>
+                <div className="grid grid-cols-4 bg-white/5 border-b border-white/10">
+                  <div className="p-5 font-bold text-slate-300 text-sm md:text-base">Tính năng</div>
+                  <div className="p-5 text-center">
+                    <span className="font-bold text-slate-400 text-xs md:text-sm">Miễn Phí</span>
                   </div>
-                  <div className="p-4 md:p-5 text-center">
-                    <span className="font-bold text-blue-600 text-xs md:text-base">Cơ Bản</span>
+                  <div className="p-5 text-center">
+                    <span className="font-bold text-blue-400 text-xs md:text-sm">Cơ Bản</span>
                   </div>
-                  <div className="p-4 md:p-5 text-center bg-fuchsia-50/50">
-                    <span className="inline-flex items-center gap-1 font-bold text-fuchsia-600 text-xs md:text-base">
-                      <Crown size={14} className="text-amber-500" />
+                  <div className="p-5 text-center bg-fuchsia-500/10">
+                    <span className="inline-flex items-center gap-1 font-bold text-fuchsia-400 text-xs md:text-sm">
+                      <Crown size={14} className="text-amber-400" />
                       Nâng Cao
                     </span>
                   </div>
@@ -448,11 +592,11 @@ export default function PricingPage() {
                   return (
                     <div key={catIdx}>
                       {/* Category Header */}
-                      <div className="grid grid-cols-4 bg-gradient-to-r from-violet-50/50 via-fuchsia-50/30 to-pink-50/50 border-b border-slate-100">
-                        <div className="p-3 md:p-4 col-span-4">
-                          <div className="flex items-center gap-2 md:gap-3 font-bold text-slate-700 text-sm md:text-base">
-                            <div className="w-6 h-6 md:w-8 md:h-8 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
-                              <CategoryIcon size={14} className="text-white" />
+                      <div className="grid grid-cols-4 bg-gradient-to-r from-fuchsia-500/10 via-purple-500/5 to-transparent border-b border-white/5">
+                        <div className="p-4 col-span-4">
+                          <div className="flex items-center gap-3 font-bold text-white text-sm md:text-base">
+                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-fuchsia-500 to-purple-600 flex items-center justify-center">
+                              <CategoryIcon size={16} className="text-white" />
                             </div>
                             {category.name}
                           </div>
@@ -463,12 +607,12 @@ export default function PricingPage() {
                       {category.features.map((feature, featIdx) => (
                         <div
                           key={featIdx}
-                          className="grid grid-cols-4 border-b border-slate-100 hover:bg-slate-50/50 transition-colors group"
+                          className="grid grid-cols-4 border-b border-white/5 hover:bg-white/5 transition-colors"
                         >
-                          <div className="p-3 md:p-4 text-xs md:text-sm text-slate-600 group-hover:text-slate-800 transition-colors">{feature.name}</div>
-                          <div className="p-3 md:p-4 text-center">{renderFeatureValue(feature.free)}</div>
-                          <div className="p-3 md:p-4 text-center">{renderFeatureValue(feature.basic)}</div>
-                          <div className="p-3 md:p-4 text-center bg-fuchsia-50/30">{renderFeatureValue(feature.advanced)}</div>
+                          <div className="p-4 text-xs md:text-sm text-slate-400">{feature.name}</div>
+                          <div className="p-4 text-center">{renderFeatureValue(feature.free)}</div>
+                          <div className="p-4 text-center">{renderFeatureValue(feature.basic)}</div>
+                          <div className="p-4 text-center bg-fuchsia-500/5">{renderFeatureValue(feature.advanced)}</div>
                         </div>
                       ))}
                     </div>
@@ -481,34 +625,34 @@ export default function PricingPage() {
       </div>
 
       {/* FAQ Section */}
-      <div className="relative px-4 pb-20">
-        <div className="max-w-7xl mx-auto">
+      <div className="relative px-4 pb-24">
+        <div className="max-w-4xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full mb-4">
-              <HelpCircle size={16} className="text-violet-600" />
-              <span className="text-sm text-slate-600 font-medium">FAQ</span>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur border border-white/10 rounded-full mb-4">
+              <HelpCircle size={16} className="text-cyan-400" />
+              <span className="text-sm text-slate-300 font-medium">FAQ</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
               Câu hỏi thường gặp
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-5">
+          <div className="space-y-4">
             {FAQ_DATA.map((faq, idx) => {
               const FaqIcon = faq.icon;
               return (
                 <div
                   key={idx}
-                  className="group bg-white rounded-2xl p-6 border border-slate-100 hover:border-violet-200 hover:shadow-xl hover:shadow-violet-100/50 transition-all duration-300"
+                  className="group bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-fuchsia-500/30 hover:bg-white/10 transition-all duration-300"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-100 via-fuchsia-100 to-pink-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                      <FaqIcon size={22} className="text-fuchsia-600" />
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-fuchsia-500/20 to-purple-500/20 border border-fuchsia-500/30 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:border-fuchsia-500/50 transition-all">
+                      <FaqIcon size={22} className="text-fuchsia-400" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-slate-800 mb-2 text-lg">{faq.question}</h3>
-                      <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
+                      <h3 className="font-bold text-white mb-2 text-lg">{faq.question}</h3>
+                      <p className="text-slate-400 leading-relaxed">{faq.answer}</p>
                     </div>
                   </div>
                 </div>
@@ -519,70 +663,84 @@ export default function PricingPage() {
       </div>
 
       {/* CTA Section */}
-      <div className="relative px-4 pb-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="relative bg-gradient-to-br from-violet-600 via-fuchsia-600 to-pink-500 rounded-3xl p-8 lg:p-16 text-center text-white overflow-hidden">
-            {/* Decorative elements */}
-            <div className="absolute top-0 left-0 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-0 w-60 h-60 bg-white/10 rounded-full blur-3xl"></div>
-            <div className="absolute top-1/2 left-1/4 w-20 h-20 bg-amber-400/20 rounded-full blur-2xl"></div>
+      <div className="relative px-4 pb-24">
+        <div className="max-w-5xl mx-auto">
+          <div className="relative overflow-hidden">
+            {/* Glow effects */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-fuchsia-500 via-purple-500 to-cyan-500 rounded-[2.5rem] blur-xl opacity-30"></div>
             
-            {/* Floating particles */}
-            <div className="absolute top-10 right-10 w-3 h-3 bg-white/30 rounded-full animate-bounce"></div>
-            <div className="absolute bottom-20 left-20 w-2 h-2 bg-white/40 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
-            <div className="absolute top-1/3 right-1/4 w-4 h-4 bg-amber-400/40 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
-            
-            <div className="relative z-10">
-              <div className="w-20 h-20 mx-auto mb-6 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
-                <Rocket className="w-10 h-10 text-white" />
-              </div>
+            <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-[2rem] p-8 lg:p-16 text-center border border-white/10 overflow-hidden">
+              {/* Decorative elements */}
+              <div className="absolute top-0 left-0 w-40 h-40 bg-fuchsia-500/20 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 right-0 w-60 h-60 bg-purple-500/20 rounded-full blur-3xl"></div>
+              <div className="absolute top-1/2 left-1/4 w-20 h-20 bg-cyan-500/20 rounded-full blur-2xl"></div>
               
-              <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-tight">
-                Sẵn sàng bắt đầu
-                <br />
-                hành trình Soroban?
-              </h2>
-              <p className="text-white/80 mb-10 max-w-2xl mx-auto text-lg leading-relaxed">
-                Học Soroban không chỉ giúp tính toán nhanh mà còn phát triển tư duy logic,
-                trí nhớ và sự tập trung cho con bạn.
-              </p>
-              <button
-                onClick={() => router.push('/learn')}
-                className="inline-flex items-center gap-3 px-10 py-5 bg-white text-fuchsia-600 rounded-2xl font-bold text-lg hover:shadow-2xl hover:shadow-white/30 hover:scale-105 transition-all duration-300"
-              >
-                <span>Vào học ngay</span>
-                <div className="w-8 h-8 bg-fuchsia-100 rounded-lg flex items-center justify-center">
-                  <ChevronRight size={20} className="text-fuchsia-600" />
+              {/* Grid pattern overlay */}
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNMzAgMzBtLTEgMGExIDEgMCAxIDAgMiAwYTEgMSAwIDEgMCAtMiAwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9nPjwvc3ZnPg==')] opacity-50"></div>
+              
+              {/* Floating particles */}
+              <div className="absolute top-10 right-10 w-3 h-3 bg-fuchsia-400/50 rounded-full animate-bounce"></div>
+              <div className="absolute bottom-20 left-20 w-2 h-2 bg-cyan-400/50 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
+              <div className="absolute top-1/3 right-1/4 w-4 h-4 bg-purple-400/40 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
+              
+              <div className="relative z-10">
+                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-fuchsia-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl shadow-fuchsia-500/30">
+                  <Rocket className="w-10 h-10 text-white" />
                 </div>
-              </button>
+                
+                <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-tight text-white">
+                  Sẵn sàng bắt đầu
+                  <br />
+                  <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                    hành trình Soroban?
+                  </span>
+                </h2>
+                <p className="text-slate-400 mb-10 max-w-2xl mx-auto text-lg leading-relaxed">
+                  Học Soroban không chỉ giúp tính toán nhanh mà còn phát triển tư duy logic,
+                  trí nhớ và sự tập trung cho con bạn.
+                </p>
+                <button
+                  onClick={() => router.push('/learn')}
+                  className="group inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white rounded-2xl font-bold text-lg hover:shadow-2xl hover:shadow-fuchsia-500/30 hover:scale-105 transition-all duration-300"
+                >
+                  <span>Vào học ngay</span>
+                  <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                    <ChevronRight size={20} className="text-white" />
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="relative text-center py-10 text-slate-500 text-sm border-t border-slate-100">
+      <div className="relative text-center py-10 text-slate-500 text-sm border-t border-white/5">
         <p>© 2025 SoroKid - Học Soroban vui như chơi Game! 🎮</p>
       </div>
 
       {/* QR Modal */}
       {showQR && orderInfo && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-md flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-3xl p-6 lg:p-8 max-w-md w-full shadow-2xl animate-in fade-in zoom-in duration-300">
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-violet-500 via-fuchsia-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg shadow-fuchsia-200">
+        <div className="fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center z-50 p-4">
+          <div className="relative bg-slate-900 rounded-3xl p-6 lg:p-8 max-w-md w-full shadow-2xl animate-in fade-in zoom-in duration-300 border border-white/10 overflow-hidden">
+            {/* Background glow */}
+            <div className="absolute top-0 right-0 w-40 h-40 bg-fuchsia-500/20 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl"></div>
+            
+            <div className="relative text-center">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-fuchsia-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-fuchsia-500/30">
                 <Sparkles className="w-8 h-8 text-white" />
               </div>
               
-              <h3 className="text-xl font-bold text-slate-800 mb-2">
+              <h3 className="text-xl font-bold text-white mb-2">
                 Quét mã QR để thanh toán
               </h3>
-              <p className="text-slate-600 mb-4">
+              <p className="text-slate-400 mb-4">
                 {orderInfo.packageName} - {formatPrice(orderInfo.amount)}đ
               </p>
 
               {/* QR Code */}
-              <div className="bg-gradient-to-br from-violet-50 via-fuchsia-50 to-pink-50 p-5 rounded-2xl mb-4 border border-fuchsia-100">
+              <div className="bg-white/5 backdrop-blur p-5 rounded-2xl mb-4 border border-white/10">
                 <img
                   src={orderInfo.qrUrl}
                   alt="QR Code"
@@ -591,27 +749,27 @@ export default function PricingPage() {
               </div>
 
               {/* Payment Info */}
-              <div className="text-left bg-slate-50 rounded-xl p-4 mb-4 text-sm space-y-2.5 border border-slate-100">
+              <div className="text-left bg-white/5 backdrop-blur rounded-xl p-4 mb-4 text-sm space-y-2.5 border border-white/10">
                 <div className="flex justify-between">
                   <span className="text-slate-500">Ngân hàng:</span>
-                  <span className="font-semibold text-slate-800">{orderInfo.paymentInfo.bankCode}</span>
+                  <span className="font-semibold text-white">{orderInfo.paymentInfo.bankCode}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-500">Số tài khoản:</span>
-                  <span className="font-semibold text-slate-800">{orderInfo.paymentInfo.accountNumber}</span>
+                  <span className="font-semibold text-white">{orderInfo.paymentInfo.accountNumber}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-500">Chủ tài khoản:</span>
-                  <span className="font-semibold text-slate-800">{orderInfo.paymentInfo.accountName}</span>
+                  <span className="font-semibold text-white">{orderInfo.paymentInfo.accountName}</span>
                 </div>
-                <div className="h-px bg-slate-200 my-1"></div>
+                <div className="h-px bg-white/10 my-1"></div>
                 <div className="flex justify-between">
                   <span className="text-slate-500">Số tiền:</span>
-                  <span className="font-bold text-green-600">{formatPrice(orderInfo.amount)}đ</span>
+                  <span className="font-bold text-emerald-400">{formatPrice(orderInfo.amount)}đ</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-500">Nội dung CK:</span>
-                  <span className="font-bold text-fuchsia-600">{orderInfo.content}</span>
+                  <span className="font-bold text-fuchsia-400">{orderInfo.content}</span>
                 </div>
               </div>
 
@@ -621,7 +779,7 @@ export default function PricingPage() {
 
               <button
                 onClick={closeQRModal}
-                className="w-full py-3.5 bg-slate-100 text-slate-700 rounded-xl font-semibold hover:bg-slate-200 transition-colors"
+                className="w-full py-3.5 bg-white/10 text-slate-300 rounded-xl font-semibold hover:bg-white/20 transition-colors border border-white/10"
               >
                 Đóng
               </button>

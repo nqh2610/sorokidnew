@@ -14,8 +14,8 @@ export async function GET(request, { params }) {
 
     const { orderId } = params;
 
-    const order = await prisma.paymentOrder.findUnique({
-      where: { orderId }
+    const order = await prisma.paymentOrder.findFirst({
+      where: { orderCode: orderId }
     });
 
     if (!order) {
@@ -31,14 +31,15 @@ export async function GET(request, { params }) {
     const isExpired = order.expiresAt && new Date(order.expiresAt) < new Date();
     
     return NextResponse.json({
-      orderId: order.orderId,
+      orderId: order.orderCode,
       status: isExpired && order.status === 'pending' ? 'expired' : order.status,
       amount: order.amount,
-      packageId: order.packageId,
-      tierName: order.tierName,
-      months: order.months,
+      tier: order.tier,
+      previousTier: order.previousTier,
+      transactionType: order.transactionType,
+      paidAmount: order.paidAmount,
+      paidAt: order.paidAt,
       createdAt: order.createdAt,
-      completedAt: order.completedAt,
       expiresAt: order.expiresAt,
       isExpired
     });

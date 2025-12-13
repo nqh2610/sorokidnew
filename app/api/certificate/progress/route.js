@@ -32,13 +32,8 @@ const CERT_REQUIREMENTS = {
         modes: ['addition', 'subtraction', 'addSubMixed'],
         minDifficulty: 2,
         minCorrect: 6, // Tăng từ 5 lên 6/10 câu đúng
-        weight: 20,
+        weight: 25,
         description: 'Thi đấu: 3 mode (Cộng, Trừ, Cộng Trừ) đạt 6+ câu đúng'
-      },
-      streak: {
-        minDays: 7, // Ít nhất 7 ngày học liên tục
-        weight: 5,
-        description: 'Streak: Duy trì 7 ngày học liên tục'
       },
       accuracy: {
         minAccuracy: 70,
@@ -82,13 +77,8 @@ const CERT_REQUIREMENTS = {
         modes: ['addition', 'subtraction', 'multiplication', 'division'],
         minDifficulty: 2,
         minCorrect: 6, // Tăng từ 5 lên 6
-        weight: 15,
+        weight: 25,
         description: 'Thi đấu: 4 mode (Cộng, Trừ, Nhân, Chia) đạt 6+ câu đúng'
-      },
-      streak: {
-        minDays: 14, // Ít nhất 14 ngày học liên tục
-        weight: 10,
-        description: 'Streak: Duy trì 14 ngày học liên tục'
       },
       accuracy: {
         minAccuracy: 75,

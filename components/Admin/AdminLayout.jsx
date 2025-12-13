@@ -28,6 +28,36 @@ const menuItems = [
     )
   },
   {
+    id: 'lessons',
+    label: 'Bài học',
+    href: '/admin/lessons',
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+      </svg>
+    )
+  },
+  {
+    id: 'quests',
+    label: 'Nhiệm vụ',
+    href: '/admin/quests',
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+      </svg>
+    )
+  },
+  {
+    id: 'achievements',
+    label: 'Thành tích',
+    href: '/admin/achievements',
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+      </svg>
+    )
+  },
+  {
     id: 'transactions',
     label: 'Giao dịch',
     href: '/admin/transactions',
@@ -45,7 +75,10 @@ const menuItems = [
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
       </svg>
-    )
+    ),
+    children: [
+      { id: 'pricing', label: 'Quản lý gói dịch vụ', href: '/admin/pricing' }
+    ]
   }
 ];
 
@@ -115,24 +148,47 @@ export default function AdminLayout({ children }) {
         {/* Navigation */}
         <nav className="p-4 space-y-1">
           {menuItems.map((item) => (
-            <Link
-              key={item.id}
-              href={item.href}
-              onClick={() => setSidebarOpen(false)}
-              className={`
-                flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200
-                ${isActive(item.href)
-                  ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-white border border-purple-500/30'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-700/50'
-                }
-              `}
-            >
-              <span className={isActive(item.href) ? 'text-purple-400' : ''}>{item.icon}</span>
-              <span className="font-medium">{item.label}</span>
-              {isActive(item.href) && (
-                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+            <div key={item.id}>
+              <Link
+                href={item.href}
+                onClick={() => setSidebarOpen(false)}
+                className={`
+                  flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200
+                  ${isActive(item.href)
+                    ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-white border border-purple-500/30'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-700/50'
+                  }
+                `}
+              >
+                <span className={isActive(item.href) ? 'text-purple-400' : ''}>{item.icon}</span>
+                <span className="font-medium">{item.label}</span>
+                {isActive(item.href) && (
+                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+                )}
+              </Link>
+              {/* Submenu */}
+              {item.children && (isActive(item.href) || item.children.some(c => pathname === c.href)) && (
+                <div className="ml-8 mt-1 space-y-1">
+                  {item.children.map((child) => (
+                    <Link
+                      key={child.id}
+                      href={child.href}
+                      onClick={() => setSidebarOpen(false)}
+                      className={`
+                        flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all duration-200
+                        ${pathname === child.href
+                          ? 'bg-purple-500/20 text-purple-400'
+                          : 'text-slate-500 hover:text-white hover:bg-slate-700/50'
+                        }
+                      `}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-current"></span>
+                      <span>{child.label}</span>
+                    </Link>
+                  ))}
+                </div>
               )}
-            </Link>
+            </div>
           ))}
         </nav>
 

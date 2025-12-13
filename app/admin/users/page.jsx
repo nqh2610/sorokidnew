@@ -1,6 +1,38 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+
+// =============================================
+// CONSTANTS
+// =============================================
+const TIER_CONFIG = {
+  free: { label: 'Miễn phí', icon: '🆓', color: 'text-slate-400', bgColor: 'bg-slate-500/20', borderColor: 'border-slate-500' },
+  basic: { label: 'Cơ Bản', icon: '⭐', color: 'text-blue-400', bgColor: 'bg-blue-500/20', borderColor: 'border-blue-500' },
+  advanced: { label: 'Nâng Cao', icon: '👑', color: 'text-amber-400', bgColor: 'bg-amber-500/20', borderColor: 'border-amber-500' },
+  vip: { label: 'VIP', icon: '💎', color: 'text-purple-400', bgColor: 'bg-purple-500/20', borderColor: 'border-purple-500' }
+};
+
+const ROLE_CONFIG = {
+  user: { label: 'Người dùng', icon: '👤', color: 'text-slate-400' },
+  admin: { label: 'Quản trị', icon: '🛡️', color: 'text-red-400' }
+};
+
+const SORT_OPTIONS = [
+  { value: 'newest', label: '🆕 Mới nhất' },
+  { value: 'oldest', label: '📅 Cũ nhất' },
+  { value: 'name', label: '🔤 Theo tên' },
+  { value: 'level', label: '📊 Theo level' },
+  { value: 'stars', label: '⭐ Theo sao' },
+  { value: 'lastActive', label: '🕐 Hoạt động gần đây' }
+];
+
+const BULK_ACTIONS = [
+  { value: '', label: 'Chọn hành động...' },
+  { value: 'activate_basic', label: '⭐ Kích hoạt gói Cơ Bản' },
+  { value: 'activate_advanced', label: '👑 Kích hoạt gói Nâng Cao' },
+  { value: 'deactivate', label: '🆓 Chuyển về Miễn phí' },
+  { value: 'export', label: '📥 Xuất danh sách' }
+];
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
@@ -8,18 +40,37 @@ export default function UsersPage() {
     total: 0,
     free: 0,
     basic: 0,
-    advanced: 0
+    advanced: 0,
+    activeToday: 0,
+    newThisWeek: 0
   });
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [filterTier, setFilterTier] = useState('all');
+  const [filterRole, setFilterRole] = useState('all');
+  const [sortBy, setSortBy] = useState('newest');
+  const [viewMode, setViewMode] = useState('table'); // 'table' | 'grid'
+  
+  // Selection for bulk actions
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [bulkAction, setBulkAction] = useState('');
+  
+  // Modals
   const [editModal, setEditModal] = useState(null);
   const [packageModal, setPackageModal] = useState(null);
   const [detailModal, setDetailModal] = useState(null);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
+  const [addUserModal, setAddUserModal] = useState(false);
+  
+  // Form states
   const [selectedPackage, setSelectedPackage] = useState('');
-  const [editForm, setEditForm] = useState({ name: '', email: '', username: '' });
+  const [editForm, setEditForm] = useState({ name: '', email: '', username: '', role: 'user' });
+  const [newUserForm, setNewUserForm] = useState({ name: '', email: '', username: '', password: '', tier: 'free' });
   const [toast, setToast] = useState(null);
+  
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   useEffect(() => {
     fetchUsers();
@@ -34,17 +85,14 @@ export default function UsersPage() {
   const fetchUsers = async () => {
     try {
       const res = await fetch('/api/admin/users');
-      console.log('API Response status:', res.status);
       const data = await res.json();
-      console.log('API Response data:', data);
       if (res.ok) {
         setUsers(data.users || []);
         setStats(data.stats || stats);
-      } else {
-        console.error('API Error:', data.error);
       }
     } catch (error) {
       console.error('Error fetching users:', error);
+      showToast('Không thể tải danh sách người dùng', 'error');
     } finally {
       setIsLoading(false);
     }
@@ -60,37 +108,160 @@ export default function UsersPage() {
     });
   };
 
+  const formatRelativeTime = (dateString) => {
+    if (!dateString) return 'Chưa có';
+    const date = new Date(dateString);
+    const now = new Date();
+    const diff = now - date;
+    const minutes = Math.floor(diff / 60000);
+    const hours = Math.floor(diff / 3600000);
+    const days = Math.floor(diff / 86400000);
+    
+    if (minutes < 60) return `${minutes} phút trước`;
+    if (hours < 24) return `${hours} giờ trước`;
+    if (days < 7) return `${days} ngày trước`;
+    return formatDate(dateString);
+  };
+
   const getTierBadge = (tier) => {
-    switch (tier) {
-      case 'free':
-        return <span className="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">Miễn phí</span>;
-      case 'basic':
-        return <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm flex items-center gap-1">⭐ Cơ Bản</span>;
-      case 'advanced':
-        return <span className="px-3 py-1 bg-amber-500/20 text-amber-400 rounded-full text-sm flex items-center gap-1">👑 Nâng Cao</span>;
-      default:
-        return <span className="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">{tier}</span>;
+    const config = TIER_CONFIG[tier] || TIER_CONFIG.free;
+    return (
+      <span className={`px-3 py-1 ${config.bgColor} ${config.color} rounded-full text-sm flex items-center gap-1 w-fit`}>
+        {config.icon} {config.label}
+      </span>
+    );
+  };
+
+  // Filtering and Sorting
+  const filteredAndSortedUsers = useMemo(() => {
+    let result = [...users];
+    
+    // Filter by search
+    if (search) {
+      const searchLower = search.toLowerCase();
+      result = result.filter(u => 
+        u.name?.toLowerCase().includes(searchLower) ||
+        u.email?.toLowerCase().includes(searchLower) ||
+        u.username?.toLowerCase().includes(searchLower)
+      );
+    }
+    
+    // Filter by tier
+    if (filterTier !== 'all') {
+      result = result.filter(u => u.tier === filterTier);
+    }
+    
+    // Filter by role
+    if (filterRole !== 'all') {
+      result = result.filter(u => u.role === filterRole);
+    }
+    
+    // Sorting
+    switch (sortBy) {
+      case 'newest':
+        result.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        break;
+      case 'oldest':
+        result.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+        break;
+      case 'name':
+        result.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+        break;
+      case 'level':
+        result.sort((a, b) => (b.level || 1) - (a.level || 1));
+        break;
+      case 'stars':
+        result.sort((a, b) => (b.totalStars || 0) - (a.totalStars || 0));
+        break;
+      case 'lastActive':
+        result.sort((a, b) => new Date(b.lastLoginDate || 0) - new Date(a.lastLoginDate || 0));
+        break;
+    }
+    
+    return result;
+  }, [users, search, filterTier, filterRole, sortBy]);
+
+  // Pagination
+  const paginatedUsers = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredAndSortedUsers.slice(start, start + itemsPerPage);
+  }, [filteredAndSortedUsers, currentPage, itemsPerPage]);
+
+  const totalPages = Math.ceil(filteredAndSortedUsers.length / itemsPerPage);
+
+  // Selection handlers
+  const toggleSelectAll = () => {
+    if (selectedUsers.length === paginatedUsers.length) {
+      setSelectedUsers([]);
+    } else {
+      setSelectedUsers(paginatedUsers.map(u => u.id));
     }
   };
 
-  const filteredUsers = users.filter(u => {
-    if (search) {
-      const searchLower = search.toLowerCase();
-      if (!u.name?.toLowerCase().includes(searchLower) && 
-          !u.email?.toLowerCase().includes(searchLower) &&
-          !u.username?.toLowerCase().includes(searchLower)) {
-        return false;
-      }
+  const toggleSelectUser = (userId) => {
+    setSelectedUsers(prev => 
+      prev.includes(userId) ? prev.filter(id => id !== userId) : [...prev, userId]
+    );
+  };
+
+  // Bulk actions
+  const handleBulkAction = async () => {
+    if (!bulkAction || selectedUsers.length === 0) return;
+    
+    if (bulkAction === 'export') {
+      // Export to CSV
+      const selectedData = users.filter(u => selectedUsers.includes(u.id));
+      const csv = [
+        ['Tên', 'Email', 'Username', 'Gói', 'Level', 'Sao', 'Ngày đăng ký'].join(','),
+        ...selectedData.map(u => [
+          u.name || '', u.email, u.username || '', u.tier, u.level || 1, u.totalStars || 0, formatDate(u.createdAt)
+        ].join(','))
+      ].join('\n');
+      
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `users_${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+      showToast(`Đã xuất ${selectedUsers.length} người dùng`);
+      setSelectedUsers([]);
+      setBulkAction('');
+      return;
     }
-    if (filterTier !== 'all' && u.tier !== filterTier) return false;
-    return true;
-  });
+    
+    const tierMap = {
+      'activate_basic': 'basic',
+      'activate_advanced': 'advanced',
+      'deactivate': 'free'
+    };
+    
+    if (!confirm(`Bạn có chắc muốn thực hiện hành động này cho ${selectedUsers.length} người dùng?`)) return;
+    
+    try {
+      const tier = tierMap[bulkAction];
+      await Promise.all(selectedUsers.map(userId => 
+        fetch(`/api/admin/users/${userId}/activate`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tier })
+        })
+      ));
+      fetchUsers();
+      showToast(`Đã cập nhật ${selectedUsers.length} người dùng`);
+      setSelectedUsers([]);
+      setBulkAction('');
+    } catch (error) {
+      showToast('Có lỗi xảy ra', 'error');
+    }
+  };
 
   const handleOpenEdit = (user) => {
     setEditForm({
       name: user.name || '',
       email: user.email || '',
-      username: user.username || ''
+      username: user.username || '',
+      role: user.role || 'user'
     });
     setEditModal(user);
   };
@@ -107,10 +278,36 @@ export default function UsersPage() {
         setEditModal(null);
         showToast('Đã cập nhật thông tin người dùng!');
       } else {
-        showToast('Có lỗi xảy ra', 'error');
+        const data = await res.json();
+        showToast(data.error || 'Có lỗi xảy ra', 'error');
       }
     } catch (error) {
       console.error('Error updating user:', error);
+      showToast('Có lỗi xảy ra', 'error');
+    }
+  };
+
+  const handleAddUser = async () => {
+    if (!newUserForm.email || !newUserForm.password) {
+      showToast('Email và mật khẩu là bắt buộc', 'error');
+      return;
+    }
+    try {
+      const res = await fetch('/api/admin/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newUserForm)
+      });
+      const data = await res.json();
+      if (res.ok) {
+        fetchUsers();
+        setAddUserModal(false);
+        setNewUserForm({ name: '', email: '', username: '', password: '', tier: 'free' });
+        showToast('Đã tạo người dùng mới!');
+      } else {
+        showToast(data.error || 'Có lỗi xảy ra', 'error');
+      }
+    } catch (error) {
       showToast('Có lỗi xảy ra', 'error');
     }
   };
@@ -183,7 +380,10 @@ export default function UsersPage() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-slate-400">Đang tải dữ liệu...</p>
+        </div>
       </div>
     );
   }
@@ -195,198 +395,540 @@ export default function UsersPage() {
         <div className={`fixed top-4 right-4 z-[100] px-4 py-3 rounded-xl shadow-lg flex items-center gap-2 animate-fade-in ${
           toast.type === 'error' ? 'bg-red-500 text-white' : 'bg-emerald-500 text-white'
         }`}>
-          {toast.type === 'error' ? (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-          )}
-          {toast.message}
+          {toast.type === 'error' ? '❌' : '✅'} {toast.message}
         </div>
       )}
 
-      {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-slate-800 rounded-2xl p-5 border border-slate-700">
-          <div className="text-slate-400 text-sm mb-1">Tổng người dùng</div>
-          <div className="text-2xl font-bold text-white">{stats.total}</div>
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-white flex items-center gap-2">👥 Quản lí Người dùng</h1>
+          <p className="text-slate-400 mt-1">Quản lí tài khoản, gói dịch vụ và phân quyền</p>
         </div>
-        <div className="bg-slate-800 rounded-2xl p-5 border border-slate-700">
-          <div className="text-slate-400 text-sm mb-1">Miễn phí</div>
-          <div className="text-2xl font-bold text-slate-300">{stats.free}</div>
-        </div>
-        <div className="bg-slate-800 rounded-2xl p-5 border border-slate-700">
-          <div className="text-slate-400 text-sm flex items-center gap-1 mb-1">
-            <span>⭐</span> Cơ Bản
+        <button
+          onClick={() => setAddUserModal(true)}
+          className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:shadow-lg transition-all flex items-center gap-2"
+        >
+          ➕ Thêm người dùng
+        </button>
+      </div>
+
+      {/* Enhanced Stats */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700 hover:border-purple-500/50 transition-colors">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center text-xl">👥</div>
+            <div>
+              <div className="text-2xl font-bold text-white">{stats.total}</div>
+              <div className="text-slate-400 text-xs">Tổng cộng</div>
+            </div>
           </div>
-          <div className="text-2xl font-bold text-blue-400">{stats.basic}</div>
         </div>
-        <div className="bg-slate-800 rounded-2xl p-5 border border-slate-700">
-          <div className="text-slate-400 text-sm flex items-center gap-1 mb-1">
-            <span>👑</span> Nâng Cao
+        <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700 hover:border-slate-500/50 transition-colors">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-slate-500/20 flex items-center justify-center text-xl">🆓</div>
+            <div>
+              <div className="text-2xl font-bold text-slate-300">{stats.free}</div>
+              <div className="text-slate-400 text-xs">Miễn phí</div>
+            </div>
           </div>
-          <div className="text-2xl font-bold text-amber-400">{stats.advanced}</div>
+        </div>
+        <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700 hover:border-blue-500/50 transition-colors">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center text-xl">⭐</div>
+            <div>
+              <div className="text-2xl font-bold text-blue-400">{stats.basic}</div>
+              <div className="text-slate-400 text-xs">Cơ Bản</div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700 hover:border-amber-500/50 transition-colors">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center text-xl">👑</div>
+            <div>
+              <div className="text-2xl font-bold text-amber-400">{stats.advanced}</div>
+              <div className="text-slate-400 text-xs">Nâng Cao</div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700 hover:border-green-500/50 transition-colors">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center text-xl">🟢</div>
+            <div>
+              <div className="text-2xl font-bold text-green-400">{stats.activeToday || 0}</div>
+              <div className="text-slate-400 text-xs">Online hôm nay</div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700 hover:border-cyan-500/50 transition-colors">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-cyan-500/20 flex items-center justify-center text-xl">🆕</div>
+            <div>
+              <div className="text-2xl font-bold text-cyan-400">{stats.newThisWeek || 0}</div>
+              <div className="text-slate-400 text-xs">Mới tuần này</div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Filters */}
-      <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700">
+      {/* Filters & Actions Bar */}
+      <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700 space-y-4">
+        {/* Search & View Toggle */}
         <div className="flex flex-wrap gap-4 items-center">
-          <div className="flex-1 min-w-[200px]">
+          <div className="flex-1 min-w-[250px]">
             <div className="relative">
-              <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">🔍</span>
               <input
                 type="text"
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
                 placeholder="Tìm theo tên, email, username..."
                 className="w-full pl-10 pr-4 py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               />
+              {search && (
+                <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">✕</button>
+              )}
             </div>
           </div>
+          
+          <div className="flex items-center gap-2 bg-slate-700 rounded-xl p-1">
+            <button
+              onClick={() => setViewMode('table')}
+              className={`px-3 py-1.5 rounded-lg transition-all ${viewMode === 'table' ? 'bg-purple-500 text-white' : 'text-slate-400 hover:text-white'}`}
+              title="Dạng bảng"
+            >
+              📋
+            </button>
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`px-3 py-1.5 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-purple-500 text-white' : 'text-slate-400 hover:text-white'}`}
+              title="Dạng lưới"
+            >
+              📱
+            </button>
+          </div>
+          
+          <button onClick={fetchUsers} className="p-2.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-xl transition-colors" title="Làm mới">🔄</button>
+        </div>
+
+        {/* Filters Row */}
+        <div className="flex flex-wrap gap-3 items-center">
           <select
             value={filterTier}
-            onChange={(e) => setFilterTier(e.target.value)}
-            className="px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white focus:ring-2 focus:ring-purple-500"
+            onChange={(e) => { setFilterTier(e.target.value); setCurrentPage(1); }}
+            className="px-4 py-2 bg-slate-700 border border-slate-600 rounded-xl text-white focus:ring-2 focus:ring-purple-500"
           >
-            <option value="all">Tất cả gói</option>
-            <option value="free">Miễn phí</option>
-            <option value="basic">Cơ Bản</option>
-            <option value="advanced">Nâng Cao</option>
+            <option value="all">🎫 Tất cả gói</option>
+            <option value="free">🆓 Miễn phí</option>
+            <option value="basic">⭐ Cơ Bản</option>
+            <option value="advanced">👑 Nâng Cao</option>
           </select>
-          <button
-            onClick={fetchUsers}
-            className="p-2.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-xl transition-colors"
+          
+          <select
+            value={filterRole}
+            onChange={(e) => { setFilterRole(e.target.value); setCurrentPage(1); }}
+            className="px-4 py-2 bg-slate-700 border border-slate-600 rounded-xl text-white focus:ring-2 focus:ring-purple-500"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-            </svg>
-          </button>
+            <option value="all">👤 Tất cả vai trò</option>
+            <option value="user">👤 Người dùng</option>
+            <option value="admin">🛡️ Quản trị</option>
+          </select>
+          
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="px-4 py-2 bg-slate-700 border border-slate-600 rounded-xl text-white focus:ring-2 focus:ring-purple-500"
+          >
+            {SORT_OPTIONS.map(opt => (
+              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+          
+          <div className="flex-1"></div>
+          
+          <span className="text-slate-400 text-sm">
+            Hiển thị {paginatedUsers.length} / {filteredAndSortedUsers.length} người dùng
+          </span>
         </div>
+
+        {/* Bulk Actions */}
+        {selectedUsers.length > 0 && (
+          <div className="flex items-center gap-3 p-3 bg-purple-500/10 border border-purple-500/30 rounded-xl">
+            <span className="text-purple-400 font-medium">✓ Đã chọn {selectedUsers.length} người dùng</span>
+            <select
+              value={bulkAction}
+              onChange={(e) => setBulkAction(e.target.value)}
+              className="px-3 py-1.5 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm"
+            >
+              {BULK_ACTIONS.map(action => (
+                <option key={action.value} value={action.value}>{action.label}</option>
+              ))}
+            </select>
+            <button
+              onClick={handleBulkAction}
+              disabled={!bulkAction}
+              className="px-3 py-1.5 bg-purple-500 text-white rounded-lg text-sm hover:bg-purple-600 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Thực hiện
+            </button>
+            <button
+              onClick={() => setSelectedUsers([])}
+              className="px-3 py-1.5 text-slate-400 hover:text-white text-sm"
+            >
+              Bỏ chọn
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* Table */}
-      <div className="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-slate-700/50 border-b border-slate-700">
-              <tr>
-                <th className="text-left px-6 py-4 text-sm font-medium text-slate-300">Người dùng</th>
-                <th className="text-left px-6 py-4 text-sm font-medium text-slate-300">Email</th>
-                <th className="text-left px-6 py-4 text-sm font-medium text-slate-300">Gói</th>
-                <th className="text-left px-6 py-4 text-sm font-medium text-slate-300">Level</th>
-                <th className="text-left px-6 py-4 text-sm font-medium text-slate-300">Ngày đăng ký</th>
-                <th className="text-center px-6 py-4 text-sm font-medium text-slate-300">Thao tác</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredUsers.length === 0 ? (
+      {/* Table View */}
+      {viewMode === 'table' && (
+        <div className="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-slate-700/50 border-b border-slate-700">
                 <tr>
-                  <td colSpan={6} className="px-6 py-12 text-center text-slate-400">
-                    Không tìm thấy người dùng nào
-                  </td>
+                  <th className="text-left px-4 py-4 w-10">
+                    <input
+                      type="checkbox"
+                      checked={selectedUsers.length === paginatedUsers.length && paginatedUsers.length > 0}
+                      onChange={toggleSelectAll}
+                      className="w-4 h-4 rounded"
+                    />
+                  </th>
+                  <th className="text-left px-4 py-4 text-sm font-medium text-slate-300">Người dùng</th>
+                  <th className="text-left px-4 py-4 text-sm font-medium text-slate-300">Gói & Vai trò</th>
+                  <th className="text-left px-4 py-4 text-sm font-medium text-slate-300">Tiến độ</th>
+                  <th className="text-left px-4 py-4 text-sm font-medium text-slate-300">Hoạt động</th>
+                  <th className="text-center px-4 py-4 text-sm font-medium text-slate-300">Thao tác</th>
                 </tr>
-              ) : (
-                filteredUsers.map((user) => (
-                  <tr key={user.id} className="border-b border-slate-700 hover:bg-slate-700/30">
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-semibold">
-                          {user.name?.charAt(0)?.toUpperCase() || 'U'}
-                        </div>
-                        <div>
-                          <div className="font-medium text-white">{user.name || 'Chưa đặt tên'}</div>
-                          <div className="text-sm text-slate-400">@{user.username || 'no-username'}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 text-slate-300">{user.email}</td>
-                    <td className="px-6 py-4">{getTierBadge(user.tier)}</td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-2">
-                        <span className="text-white font-medium">Lv.{user.level || 1}</span>
-                        <span className="text-amber-400 text-sm">⭐ {user.totalStars || 0}</span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 text-slate-300">{formatDate(user.createdAt)}</td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center justify-center gap-1">
-                        <button
-                          onClick={() => setDetailModal(user)}
-                          className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors"
-                          title="Xem chi tiết"
-                        >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                          </svg>
-                        </button>
-                        <button
-                          onClick={() => handleOpenEdit(user)}
-                          className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors"
-                          title="Sửa thông tin"
-                        >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                          </svg>
-                        </button>
-                        <button
-                          onClick={() => handleOpenPackage(user)}
-                          className="p-2 text-blue-400 hover:text-blue-300 hover:bg-blue-500/20 rounded-lg transition-colors"
-                          title="Kích hoạt gói"
-                        >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                          </svg>
-                        </button>
-                        <button
-                          onClick={() => handleResetPassword(user.id)}
-                          className="p-2 text-amber-400 hover:text-amber-300 hover:bg-amber-500/20 rounded-lg transition-colors"
-                          title="Reset mật khẩu"
-                        >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-                          </svg>
-                        </button>
-                        <button
-                          onClick={() => setDeleteConfirm(user)}
-                          className="p-2 text-red-400 hover:text-red-300 hover:bg-red-500/20 rounded-lg transition-colors"
-                          title="Xóa người dùng"
-                        >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                          </svg>
-                        </button>
-                      </div>
+              </thead>
+              <tbody>
+                {paginatedUsers.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className="px-6 py-12 text-center text-slate-400">
+                      <div className="text-4xl mb-2">🔍</div>
+                      Không tìm thấy người dùng nào
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                ) : (
+                  paginatedUsers.map((user) => (
+                    <tr key={user.id} className={`border-b border-slate-700 hover:bg-slate-700/30 transition-colors ${selectedUsers.includes(user.id) ? 'bg-purple-500/10' : ''}`}>
+                      <td className="px-4 py-4">
+                        <input
+                          type="checkbox"
+                          checked={selectedUsers.includes(user.id)}
+                          onChange={() => toggleSelectUser(user.id)}
+                          className="w-4 h-4 rounded"
+                        />
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className="relative">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-semibold">
+                              {user.name?.charAt(0)?.toUpperCase() || user.email?.charAt(0)?.toUpperCase() || 'U'}
+                            </div>
+                            {user.role === 'admin' && (
+                              <span className="absolute -top-1 -right-1 text-xs">🛡️</span>
+                            )}
+                          </div>
+                          <div>
+                            <div className="font-medium text-white">{user.name || 'Chưa đặt tên'}</div>
+                            <div className="text-sm text-slate-400">{user.email}</div>
+                            {user.username && <div className="text-xs text-slate-500">@{user.username}</div>}
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="space-y-1">
+                          {getTierBadge(user.tier)}
+                          {user.role === 'admin' && (
+                            <span className="px-2 py-0.5 bg-red-500/20 text-red-400 rounded text-xs">🛡️ Admin</span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2">
+                            <span className="text-white font-medium">Lv.{user.level || 1}</span>
+                            <span className="text-amber-400 text-sm">⭐ {user.totalStars || 0}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-xs">
+                            <span className="text-cyan-400">💎 {user.diamonds || 0}</span>
+                            <span className="text-orange-400">🔥 {user.streak || 0}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="space-y-1 text-sm">
+                          <div className="text-slate-400">📅 {formatDate(user.createdAt)}</div>
+                          <div className="text-slate-500 text-xs">🕐 {formatRelativeTime(user.lastLoginDate)}</div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="flex items-center justify-center gap-1">
+                          <button onClick={() => setDetailModal(user)} className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors" title="Xem chi tiết">👁️</button>
+                          <button onClick={() => handleOpenEdit(user)} className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors" title="Sửa">✏️</button>
+                          <button onClick={() => handleOpenPackage(user)} className="p-2 text-blue-400 hover:bg-blue-500/20 rounded-lg transition-colors" title="Kích hoạt gói">📦</button>
+                          <button onClick={() => handleResetPassword(user.id)} className="p-2 text-amber-400 hover:bg-amber-500/20 rounded-lg transition-colors" title="Reset mật khẩu">🔑</button>
+                          <button onClick={() => setDeleteConfirm(user)} className="p-2 text-red-400 hover:bg-red-500/20 rounded-lg transition-colors" title="Xóa">🗑️</button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* Instructions */}
-      <div className="bg-slate-800 rounded-2xl p-6 border border-slate-700 text-sm text-slate-300 space-y-2">
-        <p><strong className="text-white">📝 Sửa thông tin:</strong> Click &quot;Sửa&quot; → Cập nhật tên, email, username</p>
-        <p><strong className="text-white">📦 Kích hoạt gói:</strong> Click &quot;Gói&quot; → Chọn gói muốn kích hoạt (dùng khi khách chuyển khoản thủ công)</p>
-        <p><strong className="text-white">🔑 Reset mật khẩu:</strong> Click icon 🔑 → Sao chép mật khẩu mới gửi cho người dùng</p>
-      </div>
+      {/* Grid View */}
+      {viewMode === 'grid' && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {paginatedUsers.length === 0 ? (
+            <div className="col-span-full text-center py-12 text-slate-400 bg-slate-800 rounded-2xl">
+              <div className="text-4xl mb-2">🔍</div>
+              Không tìm thấy người dùng nào
+            </div>
+          ) : (
+            paginatedUsers.map((user) => (
+              <div
+                key={user.id}
+                className={`bg-slate-800 rounded-2xl border-2 p-4 transition-all hover:border-purple-500/50 ${
+                  selectedUsers.includes(user.id) ? 'border-purple-500 bg-purple-500/10' : 'border-slate-700'
+                }`}
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="checkbox"
+                      checked={selectedUsers.includes(user.id)}
+                      onChange={() => toggleSelectUser(user.id)}
+                      className="w-4 h-4 rounded"
+                    />
+                    <div className="relative">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg">
+                        {user.name?.charAt(0)?.toUpperCase() || 'U'}
+                      </div>
+                      {user.role === 'admin' && (
+                        <span className="absolute -top-1 -right-1 text-sm">🛡️</span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex gap-1">
+                    <button onClick={() => setDetailModal(user)} className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg">👁️</button>
+                    <button onClick={() => handleOpenEdit(user)} className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg">✏️</button>
+                  </div>
+                </div>
+                
+                <div className="mb-3">
+                  <div className="font-bold text-white truncate">{user.name || 'Chưa đặt tên'}</div>
+                  <div className="text-sm text-slate-400 truncate">{user.email}</div>
+                </div>
+                
+                <div className="flex items-center gap-2 mb-3">
+                  {getTierBadge(user.tier)}
+                </div>
+                
+                <div className="grid grid-cols-3 gap-2 text-center text-sm mb-3">
+                  <div className="bg-slate-700/50 rounded-lg py-2">
+                    <div className="text-white font-bold">Lv.{user.level || 1}</div>
+                    <div className="text-slate-500 text-xs">Level</div>
+                  </div>
+                  <div className="bg-slate-700/50 rounded-lg py-2">
+                    <div className="text-amber-400 font-bold">⭐{user.totalStars || 0}</div>
+                    <div className="text-slate-500 text-xs">Sao</div>
+                  </div>
+                  <div className="bg-slate-700/50 rounded-lg py-2">
+                    <div className="text-orange-400 font-bold">🔥{user.streak || 0}</div>
+                    <div className="text-slate-500 text-xs">Streak</div>
+                  </div>
+                </div>
+                
+                <div className="flex gap-2">
+                  <button onClick={() => handleOpenPackage(user)} className="flex-1 py-2 bg-blue-500/20 text-blue-400 rounded-lg text-sm hover:bg-blue-500/30">📦 Gói</button>
+                  <button onClick={() => setDeleteConfirm(user)} className="py-2 px-3 bg-red-500/20 text-red-400 rounded-lg text-sm hover:bg-red-500/30">🗑️</button>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      )}
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-between bg-slate-800 rounded-2xl p-4 border border-slate-700">
+          <div className="flex items-center gap-2">
+            <span className="text-slate-400 text-sm">Hiển thị</span>
+            <select
+              value={itemsPerPage}
+              onChange={(e) => { setItemsPerPage(Number(e.target.value)); setCurrentPage(1); }}
+              className="px-2 py-1 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm"
+            >
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+            </select>
+            <span className="text-slate-400 text-sm">/ trang</span>
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setCurrentPage(1)}
+              disabled={currentPage === 1}
+              className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              ⏮️
+            </button>
+            <button
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              ◀️
+            </button>
+            
+            <div className="flex items-center gap-1">
+              {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                let pageNum;
+                if (totalPages <= 5) {
+                  pageNum = i + 1;
+                } else if (currentPage <= 3) {
+                  pageNum = i + 1;
+                } else if (currentPage >= totalPages - 2) {
+                  pageNum = totalPages - 4 + i;
+                } else {
+                  pageNum = currentPage - 2 + i;
+                }
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => setCurrentPage(pageNum)}
+                    className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${
+                      currentPage === pageNum ? 'bg-purple-500 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-700'
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+            </div>
+            
+            <button
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+              className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              ▶️
+            </button>
+            <button
+              onClick={() => setCurrentPage(totalPages)}
+              disabled={currentPage === totalPages}
+              className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              ⏭️
+            </button>
+          </div>
+          
+          <div className="text-slate-400 text-sm">
+            Trang {currentPage} / {totalPages}
+          </div>
+        </div>
+      )}
+
+      {/* Add User Modal */}
+      {addUserModal && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-md border border-slate-700">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-2xl">➕</div>
+              <div>
+                <h3 className="text-lg font-bold text-white">Thêm người dùng mới</h3>
+                <p className="text-slate-400 text-sm">Tạo tài khoản cho người dùng</p>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Họ tên</label>
+                <input
+                  type="text"
+                  value={newUserForm.name}
+                  onChange={(e) => setNewUserForm({ ...newUserForm, name: e.target.value })}
+                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+                  placeholder="Nguyễn Văn A"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Email *</label>
+                <input
+                  type="email"
+                  value={newUserForm.email}
+                  onChange={(e) => setNewUserForm({ ...newUserForm, email: e.target.value })}
+                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+                  placeholder="email@example.com"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Username</label>
+                <input
+                  type="text"
+                  value={newUserForm.username}
+                  onChange={(e) => setNewUserForm({ ...newUserForm, username: e.target.value })}
+                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+                  placeholder="username"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Mật khẩu *</label>
+                <input
+                  type="text"
+                  value={newUserForm.password}
+                  onChange={(e) => setNewUserForm({ ...newUserForm, password: e.target.value })}
+                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+                  placeholder="Nhập mật khẩu"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Gói dịch vụ</label>
+                <select
+                  value={newUserForm.tier}
+                  onChange={(e) => setNewUserForm({ ...newUserForm, tier: e.target.value })}
+                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+                >
+                  <option value="free">🆓 Miễn phí</option>
+                  <option value="basic">⭐ Cơ Bản</option>
+                  <option value="advanced">👑 Nâng Cao</option>
+                </select>
+              </div>
+            </div>
+            <div className="flex justify-end gap-3 mt-6">
+              <button onClick={() => setAddUserModal(false)} className="px-4 py-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors">Hủy</button>
+              <button onClick={handleAddUser} className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors">Tạo người dùng</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Edit Modal */}
       {editModal && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-md border border-slate-700">
-            <h3 className="text-lg font-bold mb-4 text-white">Sửa thông tin người dùng</h3>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
+                {editModal.name?.charAt(0)?.toUpperCase() || 'U'}
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white">Sửa thông tin</h3>
+                <p className="text-slate-400 text-sm">{editModal.email}</p>
+              </div>
+            </div>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Tên</label>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Họ tên</label>
                 <input
                   type="text"
                   value={editForm.name}
@@ -412,20 +954,21 @@ export default function UsersPage() {
                   className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
                 />
               </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Vai trò</label>
+                <select
+                  value={editForm.role}
+                  onChange={(e) => setEditForm({ ...editForm, role: e.target.value })}
+                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+                >
+                  <option value="user">👤 Người dùng</option>
+                  <option value="admin">🛡️ Quản trị viên</option>
+                </select>
+              </div>
             </div>
             <div className="flex justify-end gap-3 mt-6">
-              <button
-                onClick={() => setEditModal(null)}
-                className="px-4 py-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors"
-              >
-                Hủy
-              </button>
-              <button
-                onClick={handleSaveEdit}
-                className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors"
-              >
-                Lưu thay đổi
-              </button>
+              <button onClick={() => setEditModal(null)} className="px-4 py-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors">Hủy</button>
+              <button onClick={handleSaveEdit} className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors">Lưu thay đổi</button>
             </div>
           </div>
         </div>
@@ -433,67 +976,49 @@ export default function UsersPage() {
 
       {/* Package Modal */}
       {packageModal && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-md border border-slate-700">
-            <h3 className="text-lg font-bold mb-2 text-white">Kích hoạt gói cho {packageModal.name || packageModal.email}</h3>
-            <p className="text-sm text-slate-400 mb-4">Chọn gói để kích hoạt (áp dụng khi khách chuyển khoản thủ công)</p>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-2xl">📦</div>
+              <div>
+                <h3 className="text-lg font-bold text-white">Kích hoạt gói</h3>
+                <p className="text-slate-400 text-sm">{packageModal.name || packageModal.email}</p>
+              </div>
+            </div>
+            <p className="text-sm text-slate-400 mb-4 p-3 bg-slate-700/50 rounded-lg">
+              💡 Chọn gói để kích hoạt (áp dụng khi khách chuyển khoản thủ công)
+            </p>
             <div className="space-y-3">
-              <label className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${selectedPackage === 'free' ? 'border-slate-500 bg-slate-700' : 'border-slate-600 hover:border-slate-500'}`}>
-                <input
-                  type="radio"
-                  name="package"
-                  value="free"
-                  checked={selectedPackage === 'free'}
-                  onChange={(e) => setSelectedPackage(e.target.value)}
-                  className="w-5 h-5"
-                />
-                <div>
-                  <div className="font-medium text-white">Miễn phí</div>
-                  <div className="text-sm text-slate-400">3 bài học đầu tiên</div>
-                </div>
-              </label>
-              <label className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${selectedPackage === 'basic' ? 'border-blue-500 bg-blue-500/10' : 'border-slate-600 hover:border-slate-500'}`}>
-                <input
-                  type="radio"
-                  name="package"
-                  value="basic"
-                  checked={selectedPackage === 'basic'}
-                  onChange={(e) => setSelectedPackage(e.target.value)}
-                  className="w-5 h-5"
-                />
-                <div className="flex-1">
-                  <div className="font-medium flex items-center gap-2 text-white">⭐ Cơ Bản <span className="text-blue-400">199.000đ</span></div>
-                  <div className="text-sm text-slate-400">Level 1-9 • Trọn đời</div>
-                </div>
-              </label>
-              <label className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${selectedPackage === 'advanced' ? 'border-amber-500 bg-amber-500/10' : 'border-slate-600 hover:border-slate-500'}`}>
-                <input
-                  type="radio"
-                  name="package"
-                  value="advanced"
-                  checked={selectedPackage === 'advanced'}
-                  onChange={(e) => setSelectedPackage(e.target.value)}
-                  className="w-5 h-5"
-                />
-                <div className="flex-1">
-                  <div className="font-medium flex items-center gap-2 text-white">👑 Nâng Cao <span className="text-amber-400">299.000đ</span></div>
-                  <div className="text-sm text-slate-400">Full 18 Level • Trọn đời</div>
-                </div>
-              </label>
+              {Object.entries(TIER_CONFIG).filter(([key]) => key !== 'vip').map(([key, config]) => (
+                <label
+                  key={key}
+                  className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                    selectedPackage === key ? `${config.borderColor} ${config.bgColor}` : 'border-slate-600 hover:border-slate-500'
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="package"
+                    value={key}
+                    checked={selectedPackage === key}
+                    onChange={(e) => setSelectedPackage(e.target.value)}
+                    className="w-5 h-5"
+                  />
+                  <span className="text-2xl">{config.icon}</span>
+                  <div className="flex-1">
+                    <div className={`font-medium ${config.color}`}>{config.label}</div>
+                    <div className="text-sm text-slate-400">
+                      {key === 'free' && '3 bài học đầu tiên'}
+                      {key === 'basic' && 'Level 1-10 • 199.000đ'}
+                      {key === 'advanced' && 'Full 18 Level • 299.000đ'}
+                    </div>
+                  </div>
+                </label>
+              ))}
             </div>
             <div className="flex justify-end gap-3 mt-6">
-              <button
-                onClick={() => setPackageModal(null)}
-                className="px-4 py-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors"
-              >
-                Hủy
-              </button>
-              <button
-                onClick={handleActivatePackage}
-                className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors"
-              >
-                Kích hoạt gói
-              </button>
+              <button onClick={() => setPackageModal(null)} className="px-4 py-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors">Hủy</button>
+              <button onClick={handleActivatePackage} className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">Kích hoạt gói</button>
             </div>
           </div>
         </div>
@@ -502,88 +1027,106 @@ export default function UsersPage() {
       {/* Detail Modal */}
       {detailModal && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-lg border border-slate-700">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-slate-800 rounded-2xl w-full max-w-lg border border-slate-700 max-h-[90vh] overflow-y-auto">
+            {/* Header */}
+            <div className="sticky top-0 bg-slate-800 p-6 border-b border-slate-700 flex items-center justify-between">
               <h3 className="text-lg font-bold text-white">Chi tiết người dùng</h3>
-              <button
-                onClick={() => setDetailModal(null)}
-                className="p-1 text-slate-400 hover:text-white rounded-lg transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+              <button onClick={() => setDetailModal(null)} className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg">✕</button>
             </div>
             
-            {/* Avatar & Name */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-2xl">
-                {detailModal.name?.charAt(0)?.toUpperCase() || 'U'}
+            <div className="p-6">
+              {/* Avatar & Name */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className="relative">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-3xl">
+                    {detailModal.name?.charAt(0)?.toUpperCase() || 'U'}
+                  </div>
+                  {detailModal.role === 'admin' && (
+                    <span className="absolute -top-1 -right-1 text-xl">🛡️</span>
+                  )}
+                </div>
+                <div>
+                  <div className="text-xl font-bold text-white">{detailModal.name || 'Chưa đặt tên'}</div>
+                  <div className="text-slate-400">@{detailModal.username || 'no-username'}</div>
+                  <div className="mt-1">{getTierBadge(detailModal.tier)}</div>
+                </div>
               </div>
-              <div>
-                <div className="text-xl font-bold text-white">{detailModal.name || 'Chưa đặt tên'}</div>
-                <div className="text-slate-400">@{detailModal.username || 'no-username'}</div>
+              
+              {/* Stats Grid */}
+              <div className="grid grid-cols-3 gap-3 mb-6">
+                <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl p-4 text-center border border-purple-500/30">
+                  <div className="text-2xl font-bold text-white">Lv.{detailModal.level || 1}</div>
+                  <div className="text-purple-400 text-sm">Level</div>
+                </div>
+                <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-xl p-4 text-center border border-amber-500/30">
+                  <div className="text-2xl font-bold text-amber-400">⭐{detailModal.totalStars || 0}</div>
+                  <div className="text-amber-400/70 text-sm">Tổng sao</div>
+                </div>
+                <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-xl p-4 text-center border border-cyan-500/30">
+                  <div className="text-2xl font-bold text-cyan-400">💎{detailModal.diamonds || 0}</div>
+                  <div className="text-cyan-400/70 text-sm">Kim cương</div>
+                </div>
               </div>
-            </div>
-            
-            {/* Info Grid */}
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="bg-slate-700/50 rounded-xl p-4">
-                <div className="text-slate-400 text-sm mb-1">Email</div>
-                <div className="text-white font-medium truncate">{detailModal.email}</div>
+
+              {/* More Stats */}
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                <div className="bg-slate-700/50 rounded-xl p-4">
+                  <div className="text-orange-400 text-2xl font-bold">🔥 {detailModal.streak || 0}</div>
+                  <div className="text-slate-400 text-sm">Streak ngày</div>
+                </div>
+                <div className="bg-slate-700/50 rounded-xl p-4">
+                  <div className="text-green-400 text-2xl font-bold">✅ {detailModal.completedLessons || 0}</div>
+                  <div className="text-slate-400 text-sm">Bài hoàn thành</div>
+                </div>
               </div>
-              <div className="bg-slate-700/50 rounded-xl p-4">
-                <div className="text-slate-400 text-sm mb-1">Gói hiện tại</div>
-                <div>{getTierBadge(detailModal.tier)}</div>
+              
+              {/* Info */}
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg">
+                  <span className="text-slate-400">📧 Email</span>
+                  <span className="text-white font-medium truncate ml-2">{detailModal.email}</span>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg">
+                  <span className="text-slate-400">📅 Ngày đăng ký</span>
+                  <span className="text-white">{formatDate(detailModal.createdAt)}</span>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg">
+                  <span className="text-slate-400">💳 Kích hoạt gói</span>
+                  <span className="text-white">{formatDate(detailModal.tierPurchasedAt) || '-'}</span>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg">
+                  <span className="text-slate-400">🕐 Lần đăng nhập cuối</span>
+                  <span className="text-white">{formatRelativeTime(detailModal.lastLoginDate)}</span>
+                </div>
               </div>
-              <div className="bg-slate-700/50 rounded-xl p-4">
-                <div className="text-slate-400 text-sm mb-1">Level</div>
-                <div className="text-white font-bold text-xl">Level {detailModal.level || 1}</div>
+              
+              {/* Quick Actions */}
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  onClick={() => { setDetailModal(null); handleOpenEdit(detailModal); }}
+                  className="p-3 bg-slate-700 text-white rounded-xl hover:bg-slate-600 transition-colors flex items-center justify-center gap-2"
+                >
+                  ✏️ Sửa thông tin
+                </button>
+                <button
+                  onClick={() => { setDetailModal(null); handleOpenPackage(detailModal); }}
+                  className="p-3 bg-purple-500 text-white rounded-xl hover:bg-purple-600 transition-colors flex items-center justify-center gap-2"
+                >
+                  📦 Kích hoạt gói
+                </button>
+                <button
+                  onClick={() => { handleResetPassword(detailModal.id); }}
+                  className="p-3 bg-amber-500/20 text-amber-400 rounded-xl hover:bg-amber-500/30 transition-colors flex items-center justify-center gap-2"
+                >
+                  🔑 Reset mật khẩu
+                </button>
+                <button
+                  onClick={() => { setDetailModal(null); setDeleteConfirm(detailModal); }}
+                  className="p-3 bg-red-500/20 text-red-400 rounded-xl hover:bg-red-500/30 transition-colors flex items-center justify-center gap-2"
+                >
+                  🗑️ Xóa tài khoản
+                </button>
               </div>
-              <div className="bg-slate-700/50 rounded-xl p-4">
-                <div className="text-slate-400 text-sm mb-1">Tổng sao</div>
-                <div className="text-amber-400 font-bold text-xl">⭐ {detailModal.totalStars || 0}</div>
-              </div>
-              <div className="bg-slate-700/50 rounded-xl p-4">
-                <div className="text-slate-400 text-sm mb-1">Kim cương</div>
-                <div className="text-cyan-400 font-bold text-xl">💎 {detailModal.diamonds || 0}</div>
-              </div>
-              <div className="bg-slate-700/50 rounded-xl p-4">
-                <div className="text-slate-400 text-sm mb-1">Streak</div>
-                <div className="text-orange-400 font-bold text-xl">🔥 {detailModal.streak || 0} ngày</div>
-              </div>
-            </div>
-            
-            {/* Dates */}
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between text-slate-400">
-                <span>Ngày đăng ký:</span>
-                <span className="text-white">{formatDate(detailModal.createdAt)}</span>
-              </div>
-              <div className="flex justify-between text-slate-400">
-                <span>Ngày kích hoạt gói:</span>
-                <span className="text-white">{formatDate(detailModal.activatedAt)}</span>
-              </div>
-              <div className="flex justify-between text-slate-400">
-                <span>Lần đăng nhập cuối:</span>
-                <span className="text-white">{formatDate(detailModal.lastLoginDate)}</span>
-              </div>
-            </div>
-            
-            {/* Actions */}
-            <div className="flex gap-2 mt-6 pt-4 border-t border-slate-700">
-              <button
-                onClick={() => { setDetailModal(null); handleOpenEdit(detailModal); }}
-                className="flex-1 px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition-colors"
-              >
-                Sửa thông tin
-              </button>
-              <button
-                onClick={() => { setDetailModal(null); handleOpenPackage(detailModal); }}
-                className="flex-1 px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors"
-              >
-                Kích hoạt gói
-              </button>
             </div>
           </div>
         </div>

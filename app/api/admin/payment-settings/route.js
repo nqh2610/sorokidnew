@@ -12,9 +12,10 @@ export async function GET(request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Get settings from SystemSettings table (key-value pairs)
+    // Default settings
     let settings = {
       bankCode: 'BIDV',
+      bankName: 'BIDV',
       accountNumber: '',
       accountName: '',
       webhookProvider: 'sepay',
@@ -25,28 +26,38 @@ export async function GET(request) {
     };
 
     try {
-      const allSettings = await prisma.systemSettings.findMany();
-      for (const s of allSettings) {
-        if (s.settingKey === 'bankCode') settings.bankCode = s.settingValue;
-        if (s.settingKey === 'accountNumber') settings.accountNumber = s.settingValue;
-        if (s.settingKey === 'accountName') settings.accountName = s.settingValue;
-        if (s.settingKey === 'webhookProvider') settings.webhookProvider = s.settingValue;
-        if (s.settingKey === 'apiKey') settings.apiKey = s.settingValue;
-        if (s.settingKey === 'isActive') settings.isActive = s.settingValue === 'true';
-        if (s.settingKey === 'basicPrice') settings.basicPrice = parseInt(s.settingValue) || 199000;
-        if (s.settingKey === 'advancedPrice') settings.advancedPrice = parseInt(s.settingValue) || 299000;
+      // Đọc từ record payment_settings (JSON format)
+      const paymentSettings = await prisma.systemSettings.findUnique({
+        where: { key: 'payment_settings' }
+      });
+
+      if (paymentSettings?.value) {
+        const parsed = JSON.parse(paymentSettings.value);
+        settings = {
+          bankCode: parsed.bankCode || 'BIDV',
+          bankName: parsed.bankName || 'BIDV',
+          accountNumber: parsed.accountNumber || '',
+          accountName: parsed.accountName || '',
+          webhookProvider: parsed.webhookProvider || 'sepay',
+          apiKey: parsed.apiKey || '',
+          isActive: parsed.isActive || false,
+          basicPrice: parsed.basicPrice || 199000,
+          advancedPrice: parsed.advancedPrice || 299000
+        };
       }
     } catch (e) {
-      console.log('SystemSettings table error:', e.message);
+      console.log('SystemSettings parse error:', e.message);
     }
 
     return NextResponse.json({
       settings: {
         bankCode: settings.bankCode,
+        bankName: settings.bankName,
         accountNumber: settings.accountNumber,
         accountName: settings.accountName,
         webhookProvider: settings.webhookProvider,
         apiKey: settings.apiKey ? '**********' : '',
+        hasApiKey: !!settings.apiKey,
         isActive: settings.isActive,
         basicPrice: settings.basicPrice,
         advancedPrice: settings.advancedPrice,
@@ -76,33 +87,58 @@ export async function POST(request) {
       webhookProvider, 
       apiKey,
       basicPrice,
-      advancedPrice
+      advancedPrice,
+      isActive
     } = await request.json();
 
-    // Save settings as key-value pairs in SystemSettings
-    const settingsToSave = [
-      { key: 'bankCode', value: bankCode || 'BIDV' },
-      { key: 'accountNumber', value: accountNumber || '' },
-      { key: 'accountName', value: accountName || '' },
-      { key: 'webhookProvider', value: webhookProvider || 'sepay' },
-      { key: 'isActive', value: (accountNumber && apiKey && apiKey !== '**********') ? 'true' : 'false' },
-      { key: 'basicPrice', value: String(basicPrice || 199000) },
-      { key: 'advancedPrice', value: String(advancedPrice || 299000) }
-    ];
-
-    // Only update apiKey if it's not masked
-    if (apiKey && apiKey !== '**********') {
-      settingsToSave.push({ key: 'apiKey', value: apiKey });
-    }
-
     try {
-      for (const setting of settingsToSave) {
-        await prisma.systemSettings.upsert({
-          where: { settingKey: setting.key },
-          update: { settingValue: setting.value, updatedAt: new Date() },
-          create: { settingKey: setting.key, settingValue: setting.value }
-        });
+      // Đọc settings hiện tại
+      const existingSettings = await prisma.systemSettings.findUnique({
+        where: { key: 'payment_settings' }
+      });
+
+      let currentSettings = {};
+      if (existingSettings?.value) {
+        try {
+          currentSettings = JSON.parse(existingSettings.value);
+        } catch (e) {
+          currentSettings = {};
+        }
       }
+
+      // Merge với settings mới
+      const newSettings = {
+        ...currentSettings,
+        bankCode: bankCode || currentSettings.bankCode || 'BIDV',
+        bankName: bankCode || currentSettings.bankName || 'BIDV', // bankName = bankCode
+        accountNumber: accountNumber || currentSettings.accountNumber || '',
+        accountName: accountName || currentSettings.accountName || '',
+        webhookProvider: webhookProvider || currentSettings.webhookProvider || 'sepay',
+        basicPrice: basicPrice ?? currentSettings.basicPrice ?? 199000,
+        advancedPrice: advancedPrice ?? currentSettings.advancedPrice ?? 299000,
+        isActive: isActive ?? currentSettings.isActive ?? false
+      };
+
+      // Chỉ update apiKey nếu không phải masked value
+      if (apiKey && apiKey !== '**********') {
+        newSettings.apiKey = apiKey;
+      } else if (currentSettings.apiKey) {
+        newSettings.apiKey = currentSettings.apiKey;
+      }
+
+      // Lưu vào database
+      await prisma.systemSettings.upsert({
+        where: { key: 'payment_settings' },
+        update: { 
+          value: JSON.stringify(newSettings), 
+          updatedAt: new Date() 
+        },
+        create: { 
+          key: 'payment_settings', 
+          value: JSON.stringify(newSettings), 
+          updatedAt: new Date() 
+        }
+      });
 
       return NextResponse.json({ 
         success: true, 
