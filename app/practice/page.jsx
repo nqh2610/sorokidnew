@@ -10,6 +10,12 @@ import { useUpgradeModal } from '@/components/UpgradeModal';
 import Logo from '@/components/Logo/Logo';
 import SorobanBoard from '@/components/Soroban/SorobanBoard';
 import { calculatePracticeStars } from '@/lib/gamification';
+import { 
+  MilestoneCelebration, 
+  SoftNudgeBanner, 
+  SubtleFloatingHint,
+  useSmartUpgradeTrigger 
+} from '@/components/SoftUpgradeTrigger';
 
 const TOTAL_CHALLENGES = 10; // Mỗi màn có 10 thử thách
 
@@ -237,6 +243,12 @@ export default function PracticePage() {
   
   // User tier state
   const [userTier, setUserTier] = useState('free');
+  
+  // Soft upgrade triggers state
+  const [showMilestoneCelebration, setShowMilestoneCelebration] = useState(false);
+  const [milestoneData, setMilestoneData] = useState(null);
+  const [completedSessions, setCompletedSessions] = useState(0);
+  const { shouldShowTrigger, triggerType, dismissTrigger } = useSmartUpgradeTrigger(userTier, completedSessions);
   
   // Flash Anzan states
   const [flashLevel, setFlashLevel] = useState(null); // Cấp độ Flash Anzan đã chọn
@@ -911,6 +923,19 @@ export default function PracticePage() {
     if (currentChallenge >= TOTAL_CHALLENGES) {
       // Hoàn thành màn chơi
       setGameComplete(true);
+      setCompletedSessions(prev => prev + 1);
+      
+      // Trigger milestone celebration cho free users với hiệu suất tốt
+      if (userTier === 'free' && sessionStats.correct >= 7) {
+        setTimeout(() => {
+          setMilestoneData({
+            type: 'session',
+            message: 'Bạn làm rất tốt! 🎉',
+            starsEarned: sessionStats.correct * 2
+          });
+          setShowMilestoneCelebration(true);
+        }, 2000);
+      }
       return;
     }
     
@@ -3097,6 +3122,38 @@ export default function PracticePage() {
       
       {/* Modal nâng cấp tinh tế */}
       <UpgradeModalComponent />
+      
+      {/* Soft upgrade triggers - tinh tế, không phiền */}
+      {userTier === 'free' && (
+        <>
+          {/* Milestone celebration sau khi hoàn thành tốt */}
+          <MilestoneCelebration 
+            show={showMilestoneCelebration}
+            onClose={() => setShowMilestoneCelebration(false)}
+            milestoneType={milestoneData?.type || 'session'}
+            message={milestoneData?.message}
+            starsEarned={milestoneData?.starsEarned || 0}
+          />
+          
+          {/* Soft nudge banner sau nhiều sessions */}
+          {shouldShowTrigger && triggerType === 'banner' && completedSessions >= 3 && (
+            <SoftNudgeBanner 
+              show={true}
+              onClose={dismissTrigger}
+              message="Bạn đang tiến bộ rất tốt!"
+              subMessage="Mở khóa thêm cấp độ khó để thử thách bản thân"
+            />
+          )}
+          
+          {/* Floating hint tinh tế */}
+          {shouldShowTrigger && triggerType === 'floating' && (
+            <SubtleFloatingHint 
+              show={true}
+              onClick={showUpgradeModal}
+            />
+          )}
+        </>
+      )}
     </div>
   );
 }

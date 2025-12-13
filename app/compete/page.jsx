@@ -11,6 +11,7 @@ import Logo from '@/components/Logo/Logo';
 import { MonsterAvatar } from '@/components/MonsterAvatar';
 import SorobanBoard from '@/components/Soroban/SorobanBoard';
 import { calculateCompeteStars } from '@/lib/gamification';
+import { MilestoneCelebration, SoftNudgeBanner, useSmartUpgradeTrigger } from '@/components/SoftUpgradeTrigger';
 
 const TOTAL_CHALLENGES = 10;
 
@@ -325,6 +326,12 @@ export default function CompetePage() {
   
   // User tier state
   const [userTier, setUserTier] = useState('free');
+  
+  // Soft upgrade triggers state
+  const [showMilestoneCelebration, setShowMilestoneCelebration] = useState(false);
+  const [milestoneData, setMilestoneData] = useState(null);
+  const [completedBattles, setCompletedBattles] = useState(0);
+  const { shouldShowTrigger, triggerType, dismissTrigger } = useSmartUpgradeTrigger(userTier, completedBattles);
   
   // Flash Anzan states
   const [flashPhase, setFlashPhase] = useState('idle'); // 'idle' | 'countdown' | 'showing' | 'answer' | 'result'
@@ -898,6 +905,20 @@ export default function CompetePage() {
   const goToNextChallenge = () => {
     if (currentChallenge >= totalChallenges) {
       setGameComplete(true);
+      setCompletedBattles(prev => prev + 1);
+      
+      // Trigger milestone celebration cho free users với hiệu suất tốt (>70%)
+      if (userTier === 'free' && sessionStats.correct >= Math.floor(totalChallenges * 0.7)) {
+        setTimeout(() => {
+          setMilestoneData({
+            type: 'battle',
+            message: 'Trận đấu tuyệt vời! 🏆',
+            starsEarned: sessionStats.correct * 3
+          });
+          setShowMilestoneCelebration(true);
+        }, 2500);
+      }
+      
       // Gửi kết quả lên server
       submitResult();
       return;
@@ -3282,6 +3303,30 @@ export default function CompetePage() {
       
       {/* Modal nâng cấp tinh tế */}
       <UpgradeModalComponent />
+      
+      {/* Soft upgrade triggers - tinh tế */}
+      {userTier === 'free' && (
+        <>
+          {/* Milestone celebration sau trận đấu tốt */}
+          <MilestoneCelebration 
+            show={showMilestoneCelebration}
+            onClose={() => setShowMilestoneCelebration(false)}
+            milestoneType={milestoneData?.type || 'battle'}
+            message={milestoneData?.message}
+            starsEarned={milestoneData?.starsEarned || 0}
+          />
+          
+          {/* Soft banner sau nhiều trận */}
+          {shouldShowTrigger && triggerType === 'banner' && completedBattles >= 2 && (
+            <SoftNudgeBanner 
+              show={true}
+              onClose={dismissTrigger}
+              message="Bạn đang thi đấu rất tốt!"
+              subMessage="Nâng cấp để mở khóa thêm đấu trường mạnh hơn"
+            />
+          )}
+        </>
+      )}
     </div>
   );
 }
