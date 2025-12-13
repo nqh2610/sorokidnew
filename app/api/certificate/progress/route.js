@@ -9,81 +9,91 @@ export const dynamic = 'force-dynamic';
  * Cấu hình yêu cầu cho từng loại chứng chỉ
  */
 const CERT_REQUIREMENTS = {
-  // Chứng chỉ Cộng Trừ (Basic+)
+  // Chứng chỉ Tính nhẩm Cộng Trừ (Basic+)
   addSub: {
-    name: 'Chứng chỉ Cộng Trừ',
-    description: 'Chứng nhận năng lực tính toán cộng trừ trên bàn tính Soroban',
+    name: 'Chứng chỉ Tính nhẩm Cộng Trừ',
+    description: 'Chứng nhận năng lực tính nhẩm cộng trừ trên bàn tính Soroban',
     icon: '📜',
     requiredTier: 'basic',
     requirements: {
       lessons: {
         levels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], // Level 1-10
-        weight: 40, // 40% tổng điểm
-        description: 'Hoàn thành 10 Level cộng trừ'
+        weight: 35, // 35% tổng điểm
+        description: 'Học: Hoàn thành 10 Level cộng trừ'
       },
       practice: {
         modes: ['addition', 'subtraction', 'addSubMixed'],
         minDifficulty: 2,
-        minCorrect: 5, // Ít nhất 5 bài đúng mỗi mode
+        minCorrect: 10, // Tăng từ 5 lên 10 bài đúng mỗi mode
         weight: 30,
-        description: 'Luyện tập 3 mode ở cấp độ 2+'
+        description: 'Luyện tập: 3 mode (Cộng, Trừ, Cộng Trừ) cấp độ 2+, mỗi mode 10 bài đúng'
       },
       compete: {
         modes: ['addition', 'subtraction', 'addSubMixed'],
         minDifficulty: 2,
-        minCorrect: 5, // Ít nhất 5/10 câu đúng
+        minCorrect: 6, // Tăng từ 5 lên 6/10 câu đúng
         weight: 20,
-        description: 'Thi đấu 3 mode đạt 5+ câu đúng'
+        description: 'Thi đấu: 3 mode (Cộng, Trừ, Cộng Trừ) đạt 6+ câu đúng'
+      },
+      streak: {
+        minDays: 7, // Ít nhất 7 ngày học liên tục
+        weight: 5,
+        description: 'Streak: Duy trì 7 ngày học liên tục'
       },
       accuracy: {
         minAccuracy: 70,
         weight: 10,
-        description: 'Độ chính xác tổng >= 70%'
+        description: 'Độ chính xác tổng từ 70% trở lên'
       }
     }
   },
   
-  // Chứng chỉ Toàn Diện (Advanced+)
+  // Chứng chỉ Soroban Toàn Diện (Advanced+)
   complete: {
-    name: 'Chứng chỉ Toàn Diện',
-    description: 'Chứng nhận năng lực Soroban toàn diện: Cộng Trừ Nhân Chia + Siêu Trí Tuệ + Flash Anzan',
+    name: 'Chứng chỉ Soroban Toàn Diện',
+    description: 'Chứng nhận năng lực Soroban toàn diện: Cộng Trừ Nhân Chia + Siêu Trí Tuệ + Tia Chớp',
     icon: '🏆',
     requiredTier: 'advanced',
     requirements: {
       lessons: {
         levels: Array.from({ length: 18 }, (_, i) => i + 1), // Level 1-18
-        weight: 30,
-        description: 'Hoàn thành 18 Level bài học'
+        weight: 25,
+        description: 'Học: Hoàn thành 18 Level bài học'
       },
       practice: {
         modes: ['addition', 'subtraction', 'addSubMixed', 'multiplication', 'division', 'mulDiv', 'mixed'],
         minDifficulty: 2,
-        minCorrect: 5,
-        weight: 25,
-        description: 'Luyện tập 7 mode ở cấp độ 2+'
+        minCorrect: 10, // Tăng từ 5 lên 10 bài đúng mỗi mode
+        weight: 20,
+        description: 'Luyện tập: 7 mode cấp độ 2+, mỗi mode 10 bài đúng'
       },
       mentalMath: {
-        minCorrect: 5,
+        minCorrect: 10, // Tăng từ 5 lên 10
         weight: 10,
-        description: 'Siêu Trí Tuệ: 5 bài đúng'
+        description: 'Siêu Trí Tuệ: 10 bài đúng'
       },
       flashAnzan: {
         minLevel: 2, // Ánh Trăng
-        minCorrect: 3,
+        minCorrect: 5, // Tăng từ 3 lên 5
         weight: 10,
-        description: 'Flash Anzan level 2+: 3 bài đúng'
+        description: 'Tia Chớp: cấp độ Ánh Trăng trở lên, 5 bài đúng'
       },
       compete: {
         modes: ['addition', 'subtraction', 'multiplication', 'division'],
         minDifficulty: 2,
-        minCorrect: 5,
-        weight: 20,
-        description: 'Thi đấu 4 mode đạt 5+ câu đúng'
+        minCorrect: 6, // Tăng từ 5 lên 6
+        weight: 15,
+        description: 'Thi đấu: 4 mode (Cộng, Trừ, Nhân, Chia) đạt 6+ câu đúng'
+      },
+      streak: {
+        minDays: 14, // Ít nhất 14 ngày học liên tục
+        weight: 10,
+        description: 'Streak: Duy trì 14 ngày học liên tục'
       },
       accuracy: {
         minAccuracy: 75,
-        weight: 5,
-        description: 'Độ chính xác tổng >= 75%'
+        weight: 10,
+        description: 'Độ chính xác tổng từ 75% trở lên'
       }
     }
   }
@@ -101,13 +111,14 @@ export async function GET(request) {
 
     const userId = session.user.id;
 
-    // Lấy user tier
+    // Lấy user tier và streak
     const user = await prisma.user.findUnique({
       where: { id: userId },
-      select: { tier: true, name: true }
+      select: { tier: true, name: true, streak: true }
     });
 
     const userTier = user?.tier || 'free';
+    const userStreak = user?.streak || 0;
 
     // Lấy tất cả dữ liệu cần thiết
     const [progress, exerciseResults, competeResults, existingCertificates] = await Promise.all([
@@ -143,7 +154,8 @@ export async function GET(request) {
         config,
         progress,
         exerciseResults,
-        competeResults
+        competeResults,
+        userStreak
       );
 
       certificateProgress[certType] = {
@@ -173,7 +185,7 @@ export async function GET(request) {
 /**
  * Tính toán tiến độ chi tiết
  */
-function calculateProgress(config, progressData, exerciseData, competeData) {
+function calculateProgress(config, progressData, exerciseData, competeData, userStreak = 0) {
   const req = config.requirements;
   const details = {};
   let totalPercent = 0;
@@ -390,6 +402,31 @@ function calculateProgress(config, progressData, exerciseData, competeData) {
     }
   }
 
+  // 7. Tính Streak (nếu có yêu cầu)
+  if (req.streak) {
+    const currentStreak = userStreak || 0;
+    const isComplete = currentStreak >= req.streak.minDays;
+    const percent = isComplete ? req.streak.weight : (currentStreak / req.streak.minDays) * req.streak.weight;
+
+    details.streak = {
+      current: currentStreak,
+      required: req.streak.minDays,
+      percent: Math.round(percent * 10) / 10,
+      maxPercent: req.streak.weight,
+      description: req.streak.description,
+      isComplete
+    };
+    totalPercent += percent;
+
+    if (!isComplete) {
+      todoList.push({
+        type: 'streak',
+        icon: '🔥',
+        text: `Duy trì streak ${req.streak.minDays} ngày (hiện tại: ${currentStreak} ngày)`
+      });
+    }
+  }
+
   // Tổng kết
   const isEligible = Object.values(details).every(d => d.isComplete);
 
@@ -431,14 +468,18 @@ export async function POST(request) {
     }
 
     // Tính lại tiến độ để xác nhận đủ điều kiện
-    const [progress, exerciseResults, competeResults] = await Promise.all([
+    const [progress, exerciseResults, competeResults, user] = await Promise.all([
       prisma.progress.findMany({ where: { userId, completed: true } }),
       prisma.exerciseResult.findMany({ where: { userId } }),
-      prisma.competeResult.findMany({ where: { userId } })
+      prisma.competeResult.findMany({ where: { userId } }),
+      prisma.user.findUnique({ 
+        where: { id: userId }, 
+        select: { name: true, tier: true, streak: true } 
+      })
     ]);
 
     const config = CERT_REQUIREMENTS[certType];
-    const { isEligible, totalPercent } = calculateProgress(config, progress, exerciseResults, competeResults);
+    const { isEligible, totalPercent } = calculateProgress(config, progress, exerciseResults, competeResults, user?.streak || 0);
 
     if (!isEligible) {
       return NextResponse.json({ 
@@ -446,12 +487,6 @@ export async function POST(request) {
         progress: totalPercent 
       }, { status: 400 });
     }
-
-    // Lấy thông tin user
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      select: { name: true, tier: true }
-    });
 
     // Kiểm tra tier
     const tierOrder = { free: 0, basic: 1, advanced: 2, vip: 3 };

@@ -6,18 +6,12 @@ import prisma from '@/lib/prisma';
 // GET /api/certificate - Lấy chứng chỉ của user
 export async function GET(request) {
   try {
-    const session = await getServerSession(authOptions);
-    
-    if (!session) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
     const { searchParams } = new URL(request.url);
     const certificateId = searchParams.get('id');
 
     if (certificateId) {
-      // Lấy chứng chỉ cụ thể
-      const certificate = await prisma.certificate.findUnique({
+      // Lấy chứng chỉ cụ thể - tìm theo id hoặc code
+      let certificate = await prisma.certificate.findUnique({
         where: { id: certificateId },
         include: {
           user: {
@@ -29,11 +23,32 @@ export async function GET(request) {
         }
       });
 
+      // Nếu không tìm thấy theo id, thử tìm theo code
+      if (!certificate) {
+        certificate = await prisma.certificate.findUnique({
+          where: { code: certificateId },
+          include: {
+            user: {
+              select: {
+                name: true,
+                email: true
+              }
+            }
+          }
+        });
+      }
+
       if (!certificate) {
         return NextResponse.json({ error: 'Certificate not found' }, { status: 404 });
       }
 
       return NextResponse.json({ certificate });
+    }
+
+    // Cần session để lấy tất cả chứng chỉ của user
+    const session = await getServerSession(authOptions);
+    if (!session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     // Lấy tất cả chứng chỉ của user

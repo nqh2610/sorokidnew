@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Star, Zap, Trophy, ChevronRight, Play, Clock, ChevronDown, ChevronUp, Sparkles, Gift } from 'lucide-react';
+import { Star, Zap, Trophy, ChevronRight, Play, Clock, ChevronDown, ChevronUp, Sparkles, Gift, Award } from 'lucide-react';
 import LevelBadge from '@/components/LevelBadge/LevelBadge';
 import TopBar from '@/components/TopBar/TopBar';
 import ActivityChart from '@/components/Dashboard/ActivityChart';
@@ -12,6 +12,7 @@ import StatsCards from '@/components/Dashboard/StatsCards';
 import QuestList from '@/components/Dashboard/QuestList';
 import AchievementList from '@/components/Dashboard/AchievementList';
 import ProgressByLevel from '@/components/Dashboard/ProgressByLevel';
+import CertificateProgress from '@/components/Dashboard/CertificateProgress';
 import RewardPopup, { useRewardPopup } from '@/components/RewardPopup/RewardPopup';
 
 export default function DashboardPage() {
@@ -83,7 +84,7 @@ export default function DashboardPage() {
     );
   }
 
-  const { user, nextLesson, progress, exercise, compete, quests, achievements, leaderboard, activityChart } = dashboardData || {};
+  const { user, nextLesson, progress, exercise, compete, quests, achievements, leaderboard, activityChart, certificates } = dashboardData || {};
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50">
@@ -247,6 +248,9 @@ export default function DashboardPage() {
 
         {/* Nhiệm vụ hôm nay */}
         <QuestList quests={quests} onClaimReward={handleClaimReward} />
+
+        {/* Tiến độ chứng chỉ */}
+        <CertificateProgress certificates={certificates} />
 
         {/* Thành tích */}
         <AchievementList achievements={achievements} allAchievements={achievements?.all} />

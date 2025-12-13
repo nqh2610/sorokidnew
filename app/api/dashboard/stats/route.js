@@ -27,7 +27,8 @@ export async function GET(request) {
       questData,
       achievementData,
       leaderboardData,
-      activityData
+      activityData,
+      certificateData
     ] = await Promise.all([
       // 1. User info
       prisma.user.findUnique({
@@ -63,7 +64,10 @@ export async function GET(request) {
       getLeaderboardRank(userId),
 
       // 8. Activity chart (7 ngày)
-      getActivityChart(userId)
+      getActivityChart(userId),
+
+      // 9. Certificate progress
+      getCertificateProgress(userId)
     ]);
 
     // Tính level info
@@ -89,7 +93,8 @@ export async function GET(request) {
       quests: questData,
       achievements: achievementData,
       leaderboard: leaderboardData,
-      activityChart: activityData
+      activityChart: activityData,
+      certificates: certificateData
     });
   } catch (error) {
     console.error('Error fetching dashboard stats:', error);
@@ -764,4 +769,140 @@ async function getNextLesson(userId, progressData) {
   }
 
   return null;
+}
+
+// Lấy tiến độ chứng chỉ
+async function getCertificateProgress(userId) {
+  try {
+    // Lấy user tier và certificates đã có
+    const [user, existingCerts, progressData, exerciseData, competeData] = await Promise.all([
+      prisma.user.findUnique({ where: { id: userId }, select: { tier: true } }),
+      prisma.certificate.findMany({ where: { userId } }),
+      prisma.progress.findMany({ where: { userId, completed: true } }),
+      prisma.exerciseResult.findMany({ where: { userId } }),
+      prisma.competeResult.findMany({ where: { userId } })
+    ]);
+
+    const userTier = user?.tier || 'free';
+    const tierOrder = { free: 0, basic: 1, advanced: 2, vip: 3 };
+
+    // Cấu hình chứng chỉ (đơn giản hóa)
+    const certConfigs = {
+      addSub: {
+        name: 'Chứng chỉ Cộng Trừ',
+        requiredTier: 'basic',
+        requirements: {
+          lessons: { levels: [1,2,3,4,5,6,7,8,9,10], weight: 40 },
+          practice: { modes: ['addition', 'subtraction', 'addSubMixed'], minCorrect: 5, weight: 30 },
+          compete: { modes: ['addition', 'subtraction', 'addSubMixed'], minCorrect: 5, weight: 20 },
+          accuracy: { minAccuracy: 70, weight: 10 }
+        }
+      },
+      complete: {
+        name: 'Chứng chỉ Toàn Diện',
+        requiredTier: 'advanced',
+        requirements: {
+          lessons: { levels: Array.from({length: 18}, (_, i) => i + 1), weight: 30 },
+          practice: { modes: ['addition', 'subtraction', 'addSubMixed', 'multiplication', 'division', 'mulDiv', 'mixed'], minCorrect: 5, weight: 25 },
+          mentalMath: { minCorrect: 5, weight: 10 },
+          flashAnzan: { minLevel: 2, minCorrect: 3, weight: 10 },
+          compete: { modes: ['addition', 'subtraction', 'multiplication', 'division'], minCorrect: 5, weight: 20 },
+          accuracy: { minAccuracy: 75, weight: 5 }
+        }
+      }
+    };
+
+    const result = {};
+
+    for (const [certType, config] of Object.entries(certConfigs)) {
+      const hasCertificate = existingCerts.some(c => c.certType === certType);
+      const hasRequiredTier = tierOrder[userTier] >= tierOrder[config.requiredTier];
+
+      // Tính tiến độ từng requirement
+      const details = {};
+      let totalPercent = 0;
+      const req = config.requirements;
+
+      // Lessons
+      if (req.lessons) {
+        const completedLevels = new Set(progressData.map(p => p.levelId));
+        const completed = req.lessons.levels.filter(l => completedLevels.has(l)).length;
+        const total = req.lessons.levels.length;
+        const percent = (completed / total) * req.lessons.weight;
+        details.lessons = { completed, total, isComplete: completed >= total };
+        totalPercent += percent;
+      }
+
+      // Practice
+      if (req.practice) {
+        let completedModes = 0;
+        req.practice.modes.forEach(mode => {
+          const correct = exerciseData.filter(e => e.exerciseType === mode && e.difficulty >= 2 && e.isCorrect).length;
+          if (correct >= req.practice.minCorrect) completedModes++;
+        });
+        const percent = (completedModes / req.practice.modes.length) * req.practice.weight;
+        details.practice = { completed: completedModes, total: req.practice.modes.length, isComplete: completedModes >= req.practice.modes.length };
+        totalPercent += percent;
+      }
+
+      // Compete
+      if (req.compete) {
+        let completedModes = 0;
+        req.compete.modes.forEach(mode => {
+          const hasGoodResult = competeData.some(c => {
+            const [arenaMode, diff] = c.arenaId.split('-');
+            return arenaMode === mode && parseInt(diff) >= 2 && c.correct >= req.compete.minCorrect;
+          });
+          if (hasGoodResult) completedModes++;
+        });
+        const percent = (completedModes / req.compete.modes.length) * req.compete.weight;
+        details.compete = { completed: completedModes, total: req.compete.modes.length, isComplete: completedModes >= req.compete.modes.length };
+        totalPercent += percent;
+      }
+
+      // Mental Math
+      if (req.mentalMath) {
+        const correct = exerciseData.filter(e => e.exerciseType === 'mentalMath' && e.isCorrect).length;
+        const isComplete = correct >= req.mentalMath.minCorrect;
+        const percent = isComplete ? req.mentalMath.weight : (correct / req.mentalMath.minCorrect) * req.mentalMath.weight;
+        details.mentalMath = { correct, required: req.mentalMath.minCorrect, isComplete };
+        totalPercent += percent;
+      }
+
+      // Flash Anzan
+      if (req.flashAnzan) {
+        const correct = exerciseData.filter(e => e.exerciseType === 'flashAnzan' && e.difficulty >= req.flashAnzan.minLevel && e.isCorrect).length;
+        const isComplete = correct >= req.flashAnzan.minCorrect;
+        const percent = isComplete ? req.flashAnzan.weight : (correct / req.flashAnzan.minCorrect) * req.flashAnzan.weight;
+        details.flashAnzan = { correct, required: req.flashAnzan.minCorrect, isComplete };
+        totalPercent += percent;
+      }
+
+      // Accuracy
+      if (req.accuracy) {
+        const totalEx = exerciseData.length;
+        const correctEx = exerciseData.filter(e => e.isCorrect).length;
+        const accuracy = totalEx > 0 ? Math.round((correctEx / totalEx) * 100) : 0;
+        const isComplete = accuracy >= req.accuracy.minAccuracy;
+        const percent = isComplete ? req.accuracy.weight : 0;
+        details.accuracy = { current: accuracy, required: req.accuracy.minAccuracy, isComplete };
+        totalPercent += percent;
+      }
+
+      const isEligible = Object.values(details).every(d => d.isComplete);
+
+      result[certType] = {
+        hasCertificate,
+        hasRequiredTier,
+        totalPercent: Math.round(totalPercent),
+        isEligible,
+        details
+      };
+    }
+
+    return result;
+  } catch (error) {
+    console.error('Error getting certificate progress:', error);
+    return null;
+  }
 }
