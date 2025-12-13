@@ -2,11 +2,19 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import { getOrSet } from '@/lib/cache';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(request) {
   try {
+    // 🔒 Rate limiting
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.NORMAL);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -19,50 +27,71 @@ export async function GET(request) {
       return NextResponse.json({ error: 'Arena ID required' }, { status: 400 });
     }
 
-    // Lấy kết quả tốt nhất của mỗi người chơi trong đấu trường này
-    // Sắp xếp theo: số câu đúng (giảm dần), sau đó tổng thời gian (tăng dần)
-    const results = await prisma.competeResult.findMany({
-      where: { arenaId },
-      orderBy: [
-        { correct: 'desc' },
-        { totalTime: 'asc' }
-      ],
-      include: {
-        user: {
-          select: { name: true }
-        }
-      },
-      take: 50
-    });
-
-    // Lọc để chỉ lấy kết quả tốt nhất của mỗi user
-    const bestResults = [];
-    const seenUsers = new Set();
-    
-    for (const result of results) {
-      if (!seenUsers.has(result.userId)) {
-        seenUsers.add(result.userId);
-        bestResults.push({
-          id: result.id,
-          oderId: result.oderId,
-          userName: result.user.name,
-          correct: result.correct,
-          totalTime: result.totalTime,
-          stars: result.stars,
-          createdAt: result.createdAt,
-          isCurrentUser: result.userId === session.user.id
+    // 🔧 TỐI ƯU: Cache leaderboard 10s
+    const bestResults = await getOrSet(
+      `compete_leaderboard_${arenaId}`,
+      async () => {
+        // 🔧 TỐI ƯU: Chỉ select các field cần thiết
+        const results = await prisma.competeResult.findMany({
+          where: { arenaId },
+          orderBy: [
+            { correct: 'desc' },
+            { totalTime: 'asc' }
+          ],
+          select: {
+            id: true,
+            oderId: true,
+            userId: true,
+            correct: true,
+            totalTime: true,
+            stars: true,
+            createdAt: true,
+            user: {
+              select: { name: true }
+            }
+          },
+          take: 100 // Giới hạn 100 kết quả
         });
-      }
-    }
+
+        // Lọc để chỉ lấy kết quả tốt nhất của mỗi user
+        const bestResultsList = [];
+        const seenUsers = new Set();
+        
+        for (const result of results) {
+          if (!seenUsers.has(result.userId)) {
+            seenUsers.add(result.userId);
+            bestResultsList.push({
+              id: result.id,
+              oderId: result.oderId,
+              userId: result.userId,
+              userName: result.user.name,
+              correct: result.correct,
+              totalTime: result.totalTime,
+              stars: result.stars,
+              createdAt: result.createdAt
+            });
+          }
+        }
+        return bestResultsList;
+      },
+      10 // Cache 10s
+    );
+
+    const userId = session.user.id;
+
+    // Thêm isCurrentUser flag
+    const resultsWithFlag = bestResults.map(r => ({
+      ...r,
+      isCurrentUser: r.userId === userId
+    }));
 
     // Tìm thứ hạng của user hiện tại
-    const currentUserRank = bestResults.findIndex(r => r.isCurrentUser) + 1;
-    const currentUserData = bestResults.find(r => r.isCurrentUser);
+    const currentUserRank = resultsWithFlag.findIndex(r => r.isCurrentUser) + 1;
+    const currentUserData = resultsWithFlag.find(r => r.isCurrentUser);
 
-    // Trả về Top 20 và thông tin user hiện tại
     return NextResponse.json({ 
-      leaderboard: bestResults.slice(0, 20),
-      totalPlayers: bestResults.length,
+      leaderboard: resultsWithFlag.slice(0, 20),
+      totalPlayers: resultsWithFlag.length,
       currentUserRank: currentUserRank > 0 ? currentUserRank : null,
       currentUserData: currentUserData || null
     });

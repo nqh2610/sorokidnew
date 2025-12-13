@@ -1,5 +1,47 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
+import crypto from 'crypto';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+
+/**
+ * 🔐 BẢO MẬT WEBHOOK PAYMENT
+ * 
+ * 1. Verify webhook signature (nếu provider hỗ trợ)
+ * 2. Rate limiting để chống spam
+ * 3. Validate dữ liệu đầu vào
+ * 4. Idempotency check (không xử lý trùng)
+ */
+
+// Verify SePay webhook signature (nếu có)
+function verifyWebhookSignature(body, signature, secret) {
+  if (!secret || !signature) return true; // Skip nếu không có secret
+  
+  const expectedSignature = crypto
+    .createHmac('sha256', secret)
+    .update(JSON.stringify(body))
+    .digest('hex');
+  
+  return crypto.timingSafeEqual(
+    Buffer.from(signature),
+    Buffer.from(expectedSignature)
+  );
+}
+
+// Validate webhook payload
+function validateWebhookPayload(body) {
+  const errors = [];
+  
+  if (!body.content) errors.push('Missing content field');
+  if (typeof body.transferAmount !== 'number' || body.transferAmount <= 0) {
+    errors.push('Invalid transferAmount');
+  }
+  if (!body.transferType) errors.push('Missing transferType');
+  
+  return {
+    valid: errors.length === 0,
+    errors
+  };
+}
 
 /**
  * POST /api/payment/webhook - Nhận webhook từ SePay/Casso
@@ -23,7 +65,34 @@ import prisma from '@/lib/prisma';
  */
 export async function POST(request) {
   try {
+    // 🔐 RATE LIMITING - Chống spam webhook
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.STRICT);
+    if (rateLimitError) {
+      console.warn('Webhook rate limited');
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const body = await request.json();
+    
+    // 🔐 VALIDATE PAYLOAD
+    const validation = validateWebhookPayload(body);
+    if (!validation.valid) {
+      console.warn('Invalid webhook payload:', validation.errors);
+      return NextResponse.json({ 
+        error: 'Invalid payload',
+        details: validation.errors 
+      }, { status: 400 });
+    }
+
+    // 🔐 VERIFY SIGNATURE (nếu có)
+    const webhookSecret = process.env.SEPAY_WEBHOOK_SECRET;
+    const signature = request.headers.get('x-sepay-signature');
+    
+    if (webhookSecret && !verifyWebhookSignature(body, signature, webhookSecret)) {
+      console.warn('Invalid webhook signature');
+      return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
+    }
+
     console.log('Webhook received:', JSON.stringify(body, null, 2));
 
     // Lấy thông tin từ webhook (SePay format)

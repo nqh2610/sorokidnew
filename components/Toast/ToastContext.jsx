@@ -45,8 +45,19 @@ export function ToastProvider({ children }) {
 
 export function useToast() {
   const context = useContext(ToastContext);
+  // 🔧 FIX: Return no-op functions thay vì throw error để tránh crash page
   if (!context) {
-    throw new Error('useToast must be used within ToastProvider');
+    // Return dummy functions khi context chưa sẵn sàng
+    const noop = () => {};
+    return {
+      addToast: noop,
+      removeToast: noop,
+      success: noop,
+      error: noop,
+      warning: noop,
+      info: noop,
+      levelUp: noop
+    };
   }
   return context;
 }

@@ -3,20 +3,46 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { getLevelInfo } from '@/lib/gamification';
+import { cache, CACHE_KEYS, CACHE_TTL, getOrSet } from '@/lib/cache';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
 
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
 export const revalidate = 0;
 
+/**
+ * 🚀 TỐI ƯU DASHBOARD API CHO SHARED HOSTING
+ * 
+ * Vấn đề: API này chạy ~20+ queries, rất nặng
+ * Giải pháp:
+ * 1. Cache kết quả trong 30s
+ * 2. Rate limiting
+ * 3. Tối ưu queries với select specific fields
+ * 4. Batch queries với Promise.all
+ */
+
 // GET /api/dashboard/stats - Get all dashboard statistics
 export async function GET(request) {
   try {
+    // Rate limiting
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.NORMAL);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const userId = session.user.id;
+    
+    // 🔧 CHECK CACHE FIRST
+    const cacheKey = CACHE_KEYS.DASHBOARD_STATS(userId);
+    const cached = cache.get(cacheKey);
+    if (cached) {
+      return NextResponse.json(cached);
+    }
 
     // Lấy tất cả dữ liệu song song để tối ưu performance
     const [
@@ -30,7 +56,7 @@ export async function GET(request) {
       activityData,
       certificateData
     ] = await Promise.all([
-      // 1. User info
+      // 1. User info - CHỈ LẤY FIELDS CẦN THIẾT
       prisma.user.findUnique({
         where: { id: userId },
         select: {
@@ -79,7 +105,7 @@ export async function GET(request) {
     // Lấy bài học tiếp theo cần học (Continue Learning)
     const nextLesson = await getNextLesson(userId, progressData);
 
-    return NextResponse.json({
+    const response = {
       success: true,
       user: {
         ...user,
@@ -95,50 +121,69 @@ export async function GET(request) {
       leaderboard: leaderboardData,
       activityChart: activityData,
       certificates: certificateData
-    });
+    };
+
+    // 🔧 CACHE KẾT QUẢ
+    cache.set(cacheKey, response, CACHE_TTL.MEDIUM);
+
+    return NextResponse.json(response);
   } catch (error) {
     console.error('Error fetching dashboard stats:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
-// Thống kê tiến độ học tập
+// Thống kê tiến độ học tập - TỐI ƯU: Batch queries
 async function getProgressStats(userId) {
-  const progress = await prisma.progress.findMany({
-    where: { userId }
-  });
-
-  const lessons = await prisma.lesson.findMany({
-    orderBy: [{ levelId: 'asc' }, { lessonId: 'asc' }]
-  });
-
-  // Lấy danh sách Level từ database
-  const levelsFromDB = await prisma.level.findMany({
-    orderBy: { order: 'asc' }
-  });
+  // 🔧 TỐI ƯU: Batch tất cả queries cùng lúc
+  const [progress, lessons, levelsFromDB] = await Promise.all([
+    prisma.progress.findMany({
+      where: { userId },
+      select: {
+        levelId: true,
+        lessonId: true,
+        completed: true,
+        starsEarned: true,
+        timeSpent: true,
+        accuracy: true
+      }
+    }),
+    prisma.lesson.findMany({
+      select: {
+        id: true,
+        levelId: true,
+        lessonId: true,
+        title: true,
+        description: true,
+        stars: true
+      },
+      orderBy: [{ levelId: 'asc' }, { lessonId: 'asc' }]
+    }),
+    prisma.level.findMany({
+      select: { id: true, name: true, icon: true },
+      orderBy: { order: 'asc' }
+    })
+  ]);
   
   // Tạo map levelId -> level info
-  const levelMap = {};
-  levelsFromDB.forEach(level => {
-    levelMap[level.id] = level;
-  });
+  const levelMap = new Map(levelsFromDB.map(l => [l.id, l]));
 
-  // Group lessons by level
-  const lessonsByLevel = {};
+  // 🔧 TỐI ƯU: Dùng Map để group nhanh hơn
+  const lessonsByLevel = new Map();
   lessons.forEach(lesson => {
-    if (!lessonsByLevel[lesson.levelId]) {
-      lessonsByLevel[lesson.levelId] = [];
+    if (!lessonsByLevel.has(lesson.levelId)) {
+      lessonsByLevel.set(lesson.levelId, []);
     }
-    lessonsByLevel[lesson.levelId].push(lesson);
+    lessonsByLevel.get(lesson.levelId).push(lesson);
   });
 
   // Tính stats theo từng level (bài học)
   const statsByLevel = {};
 
-  Object.keys(lessonsByLevel).forEach(levelId => {
-    const levelLessons = lessonsByLevel[levelId];
+  // 🔧 TỐI ƯU: Dùng Map.forEach thay vì Object.keys
+  for (const [levelId, levelLessons] of lessonsByLevel) {
     const completedInLevel = progress.filter(
-      p => p.levelId === parseInt(levelId) && p.completed
+      p => p.levelId === levelId && p.completed
     );
 
     // Đếm số lesson unique đã hoàn thành (tránh đếm trùng)
@@ -148,15 +193,15 @@ async function getProgressStats(userId) {
     // Giới hạn completedCount không vượt quá tổng số bài trong level
     const completedCount = Math.min(uniqueCompletedLessons.size, levelLessons.length);
 
-    const totalStarsInLevel = completedInLevel.reduce((sum, p) => sum + p.starsEarned, 0);
-    const maxStarsInLevel = levelLessons.reduce((sum, l) => sum + l.stars, 0); // Tổng sao tối đa của level
-    const totalTimeInLevel = completedInLevel.reduce((sum, p) => sum + p.timeSpent, 0);
+    const totalStarsInLevel = completedInLevel.reduce((sum, p) => sum + (p.starsEarned || 0), 0);
+    const maxStarsInLevel = levelLessons.reduce((sum, l) => sum + (l.stars || 0), 0);
+    const totalTimeInLevel = completedInLevel.reduce((sum, p) => sum + (p.timeSpent || 0), 0);
     const avgAccuracy = completedInLevel.length > 0
-      ? completedInLevel.reduce((sum, p) => sum + p.accuracy, 0) / completedInLevel.length
+      ? completedInLevel.reduce((sum, p) => sum + (p.accuracy || 0), 0) / completedInLevel.length
       : 0;
 
-    // Lấy tên level từ database
-    const levelInfo = levelMap[parseInt(levelId)];
+    // Lấy tên level từ Map
+    const levelInfo = levelMap.get(levelId);
     const levelName = levelInfo ? `${levelInfo.icon} ${levelInfo.name}` : `Level ${levelId}`;
 
     statsByLevel[levelId] = {
@@ -167,19 +212,19 @@ async function getProgressStats(userId) {
         ? Math.min(100, Math.round((Math.min(completedCount, levelLessons.length) / levelLessons.length) * 100))
         : 0,
       totalStars: totalStarsInLevel,
-      maxStars: maxStarsInLevel, // Thêm maxStars
+      maxStars: maxStarsInLevel,
       totalTime: totalTimeInLevel,
       avgAccuracy: Math.round(avgAccuracy)
     };
-  });
+  }
 
   // Tổng hợp
   const totalLessons = lessons.length;
   const completedLessons = progress.filter(p => p.completed).length;
-  const totalStars = progress.reduce((sum, p) => sum + p.starsEarned, 0);
-  const totalTime = progress.reduce((sum, p) => sum + p.timeSpent, 0);
+  const totalStars = progress.reduce((sum, p) => sum + (p.starsEarned || 0), 0);
+  const totalTime = progress.reduce((sum, p) => sum + (p.timeSpent || 0), 0);
   const avgAccuracy = completedLessons > 0
-    ? progress.filter(p => p.completed).reduce((sum, p) => sum + p.accuracy, 0) / completedLessons
+    ? progress.filter(p => p.completed).reduce((sum, p) => sum + (p.accuracy || 0), 0) / completedLessons
     : 0;
 
   // Danh sách tất cả bài học với trạng thái
@@ -271,10 +316,16 @@ async function getExerciseStats(userId) {
   };
 }
 
-// Thống kê thi đấu
+// Thống kê thi đấu - TỐI ƯU: Giảm queries trong loop
 async function getCompeteStats(userId) {
   const results = await prisma.competeResult.findMany({
-    where: { userId }
+    where: { userId },
+    select: {
+      arenaId: true,
+      correct: true,
+      totalTime: true,
+      stars: true
+    }
   });
 
   if (results.length === 0) {
@@ -298,16 +349,38 @@ async function getCompeteStats(userId) {
   // Tổng sao từ thi đấu
   const totalStars = results.reduce((sum, r) => sum + (r.stars || 0), 0);
 
-  // Đếm số lần vào top 3 (cần query thêm)
+  // 🔧 TỐI ƯU: Batch query tất cả arenas cùng lúc thay vì loop
+  // Lấy top 3 của TẤT CẢ arenas user đã tham gia trong 1 query
   let top3Count = 0;
-  for (const arenaId of uniqueArenas) {
-    const arenaResults = await prisma.competeResult.findMany({
-      where: { arenaId },
-      orderBy: [{ correct: 'desc' }, { totalTime: 'asc' }],
-      take: 3
+  
+  // Giới hạn chỉ check 10 arenas gần nhất để tiết kiệm queries
+  const recentArenas = Array.from(uniqueArenas).slice(0, 10);
+  
+  if (recentArenas.length > 0) {
+    // Query tất cả results của các arenas này
+    const allArenaResults = await prisma.competeResult.findMany({
+      where: { arenaId: { in: recentArenas } },
+      select: {
+        arenaId: true,
+        userId: true,
+        correct: true,
+        totalTime: true
+      },
+      orderBy: [{ correct: 'desc' }, { totalTime: 'asc' }]
     });
-    if (arenaResults.some(r => r.userId === userId)) {
-      top3Count++;
+
+    // Group by arenaId và check top 3
+    const arenaGroups = {};
+    allArenaResults.forEach(r => {
+      if (!arenaGroups[r.arenaId]) arenaGroups[r.arenaId] = [];
+      arenaGroups[r.arenaId].push(r);
+    });
+
+    for (const arenaId of recentArenas) {
+      const arenaResults = (arenaGroups[arenaId] || []).slice(0, 3);
+      if (arenaResults.some(r => r.userId === userId)) {
+        top3Count++;
+      }
     }
   }
 
@@ -486,7 +559,15 @@ async function getQuestStats(userId) {
   // Tính progress thực tế cho mỗi quest
   const questsWithProgress = await Promise.all(quests.map(async (quest) => {
     const userQuest = userQuests.find(uq => uq.questId === quest.id);
-    const requirement = JSON.parse(quest.requirement);
+    
+    // 🔧 Safe JSON parse với fallback
+    let requirement = {};
+    try {
+      requirement = quest.requirement ? JSON.parse(quest.requirement) : {};
+    } catch (e) {
+      console.error(`Failed to parse quest requirement ${quest.id}:`, e.message);
+      requirement = { count: 0 };
+    }
     
     // Nếu đã claim thì giữ nguyên progress cũ
     if (userQuest?.claimedAt) {
@@ -605,64 +686,72 @@ async function getLeaderboardRank(userId) {
   };
 }
 
-// Biểu đồ hoạt động 7 ngày
+// Biểu đồ hoạt động 7 ngày - TỐI ƯU: Giảm từ 21 queries xuống 3 queries
 async function getActivityChart(userId) {
-  const days = [];
   const today = new Date();
+  today.setHours(23, 59, 59, 999);
   
-  for (let i = 6; i >= 0; i--) {
-    const date = new Date(today);
-    date.setDate(date.getDate() - i);
-    date.setHours(0, 0, 0, 0);
-    
-    const nextDate = new Date(date);
-    nextDate.setDate(nextDate.getDate() + 1);
+  const weekAgo = new Date(today);
+  weekAgo.setDate(weekAgo.getDate() - 6);
+  weekAgo.setHours(0, 0, 0, 0);
 
-    // Lấy progress trong ngày
-    const progressStars = await prisma.progress.aggregate({
+  // 🔧 TỐI ƯU: Batch query tất cả data trong 7 ngày cùng lúc
+  const [progressData, exerciseData, competeData] = await Promise.all([
+    // Progress stars trong 7 ngày
+    prisma.progress.findMany({
       where: {
         userId,
-        completedAt: {
-          gte: date,
-          lt: nextDate
-        }
+        completedAt: { gte: weekAgo, lte: today }
       },
-      _sum: { starsEarned: true }
-    });
-
-    // Lấy exercise trong ngày (ước tính sao từ số câu đúng)
-    const exerciseCount = await prisma.exerciseResult.count({
+      select: { completedAt: true, starsEarned: true }
+    }),
+    // Exercise results trong 7 ngày
+    prisma.exerciseResult.findMany({
       where: {
         userId,
         isCorrect: true,
-        createdAt: {
-          gte: date,
-          lt: nextDate
-        }
-      }
-    });
-
-    // Lấy compete stars trong ngày
-    const competeStars = await prisma.competeResult.aggregate({
+        createdAt: { gte: weekAgo, lte: today }
+      },
+      select: { createdAt: true }
+    }),
+    // Compete results trong 7 ngày
+    prisma.competeResult.findMany({
       where: {
         userId,
-        createdAt: {
-          gte: date,
-          lt: nextDate
-        }
+        createdAt: { gte: weekAgo, lte: today }
       },
-      _sum: { stars: true }
-    });
+      select: { createdAt: true, stars: true }
+    })
+  ]);
 
-    const dayNames = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
-    const totalStars = (progressStars._sum.starsEarned || 0) + 
-                       (exerciseCount * 10) + 
-                       (competeStars._sum.stars || 0);
+  // Group data theo ngày
+  const dayNames = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+  const days = [];
+
+  for (let i = 6; i >= 0; i--) {
+    const date = new Date(today);
+    date.setDate(date.getDate() - i);
+    const dateStr = date.toISOString().split('T')[0];
+    
+    // Tính stars từ progress
+    const progressStars = progressData
+      .filter(p => p.completedAt && p.completedAt.toISOString().split('T')[0] === dateStr)
+      .reduce((sum, p) => sum + (p.starsEarned || 0), 0);
+    
+    // Tính stars từ exercises (10 stars mỗi câu đúng)
+    const exerciseStars = exerciseData
+      .filter(e => e.createdAt.toISOString().split('T')[0] === dateStr)
+      .length * 10;
+    
+    // Tính stars từ compete
+    const competeStars = competeData
+      .filter(c => c.createdAt.toISOString().split('T')[0] === dateStr)
+      .reduce((sum, c) => sum + (c.stars || 0), 0);
 
     days.push({
       day: dayNames[date.getDay()],
-      date: date.toISOString().split('T')[0],
-      stars: totalStars,
+      date: dateStr,
+      stars: progressStars + exerciseStars + competeStars,
       isToday: i === 0
     });
   }

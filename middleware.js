@@ -1,6 +1,15 @@
 import { NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
+/**
+ * 🔒 MIDDLEWARE TỐI ƯU CHO SHARED HOSTING
+ * 
+ * Giới hạn 1000 processes:
+ * - Không import heavy modules trong middleware
+ * - Rate limiting nhẹ bằng headers
+ * - Sớm reject requests không hợp lệ
+ */
+
 // Các route cần authentication
 const protectedRoutes = [
   '/dashboard',
@@ -23,8 +32,52 @@ const adminRoutes = [
   '/admin'
 ];
 
+// 🔧 SIMPLE IN-MIDDLEWARE RATE LIMIT (không tạo thêm processes)
+// Sử dụng Map đơn giản, reset mỗi phút
+const requestCounts = new Map();
+const RATE_LIMIT_WINDOW = 60000; // 1 minute
+const MAX_REQUESTS_PER_IP = 120; // 120 requests/minute per IP
+let lastCleanup = Date.now();
+
+function getClientIP(request) {
+  return request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+         request.headers.get('x-real-ip') ||
+         request.headers.get('cf-connecting-ip') ||
+         'unknown';
+}
+
+function checkRateLimitSimple(ip) {
+  const now = Date.now();
+  
+  // Cleanup cũ mỗi phút
+  if (now - lastCleanup > RATE_LIMIT_WINDOW) {
+    requestCounts.clear();
+    lastCleanup = now;
+  }
+  
+  const count = (requestCounts.get(ip) || 0) + 1;
+  requestCounts.set(ip, count);
+  
+  return count <= MAX_REQUESTS_PER_IP;
+}
+
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
+
+  // 🔒 RATE LIMIT CHECK - Sớm reject để tiết kiệm resources
+  const clientIP = getClientIP(request);
+  if (!checkRateLimitSimple(clientIP)) {
+    return new NextResponse(
+      JSON.stringify({ error: 'Too many requests. Please slow down.' }),
+      { 
+        status: 429, 
+        headers: { 
+          'Content-Type': 'application/json',
+          'Retry-After': '60'
+        } 
+      }
+    );
+  }
 
   // Lấy token từ session
   const token = await getToken({ 

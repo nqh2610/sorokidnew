@@ -3,10 +3,19 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+
+export const dynamic = 'force-dynamic';
 
 // POST /api/user/change-password - Đổi mật khẩu
 export async function POST(request) {
   try {
+    // 🔒 Rate limiting STRICT cho đổi mật khẩu (chống brute-force)
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.STRICT);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const session = await getServerSession(authOptions);
     
     if (!session) {
@@ -15,7 +24,7 @@ export async function POST(request) {
 
     const { currentPassword, newPassword, confirmPassword } = await request.json();
 
-    // Validate input
+    // Validate input trước khi query database
     if (!currentPassword || !newPassword || !confirmPassword) {
       return NextResponse.json({ 
         error: 'Vui lòng điền đầy đủ thông tin' 
@@ -34,17 +43,16 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
-    // Get current user with password
+    // 🔧 TỐI ƯU: Chỉ select password
     const user = await prisma.user.findUnique({
       where: { id: session.user.id },
-      select: { id: true, password: true }
+      select: { password: true }
     });
 
     if (!user) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
-    // Check if user has password (not OAuth user)
     if (!user.password) {
       return NextResponse.json({ 
         error: 'Tài khoản này đăng nhập bằng Google, không thể đổi mật khẩu' 
@@ -59,10 +67,9 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
-    // Hash new password
+    // 🔧 TỐI ƯU: Dùng cost factor 10 (tối ưu cho shared hosting)
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    // Update password
     await prisma.user.update({
       where: { id: session.user.id },
       data: { password: hashedPassword }

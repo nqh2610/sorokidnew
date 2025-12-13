@@ -3,18 +3,31 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { getLevelInfo } from '@/lib/gamification';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import { getOrSet, invalidateUserCache } from '@/lib/cache';
+
+export const dynamic = 'force-dynamic';
 
 // GET /api/user/profile - Lấy thông tin profile
 export async function GET(request) {
   try {
+    // 🔒 Rate limiting
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.NORMAL);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const session = await getServerSession(authOptions);
     
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    const userId = session.user.id;
+
+    // 🔧 TỐI ƯU: Query user với tier trong cùng 1 query
     const user = await prisma.user.findUnique({
-      where: { id: session.user.id },
+      where: { id: userId },
       select: {
         id: true,
         email: true,
@@ -25,7 +38,8 @@ export async function GET(request) {
         diamonds: true,
         streak: true,
         lastLoginDate: true,
-        createdAt: true
+        createdAt: true,
+        tier: true // Lấy tier từ User model
       }
     });
 
@@ -33,36 +47,21 @@ export async function GET(request) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
-    // Tính level từ totalStars (thống nhất với gamification system)
+    // Tính level từ totalStars
     const levelInfo = getLevelInfo(user.totalStars || 0);
 
-    // Get tier info
-    let tier = 'free';
-    try {
-      const userTier = await prisma.userTier.findUnique({
-        where: { userId: user.id }
-      });
-      if (userTier && (!userTier.expiresAt || new Date(userTier.expiresAt) > new Date())) {
-        tier = userTier.tierName;
-      }
-    } catch (e) {
-      // Table might not exist
-    }
-
-    return NextResponse.json({ 
-      user: { 
-        ...user, 
-        tier,
-        // Level tính từ totalStars (thống nhất)
+    const profileData = {
+      ...user,
+      level: levelInfo.level,
+      levelInfo: {
         level: levelInfo.level,
-        levelInfo: {
-          level: levelInfo.level,
-          name: levelInfo.name,
-          icon: levelInfo.icon,
-          progressPercent: levelInfo.progressPercent
-        }
+        name: levelInfo.name,
+        icon: levelInfo.icon,
+        progressPercent: levelInfo.progressPercent
       }
-    });
+    };
+
+    return NextResponse.json({ user: profileData });
   } catch (error) {
     console.error('Error fetching profile:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
@@ -72,17 +71,23 @@ export async function GET(request) {
 // PUT /api/user/profile - Cập nhật profile
 export async function PUT(request) {
   try {
+    // 🔒 Rate limiting MODERATE cho update profile
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.MODERATE);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const session = await getServerSession(authOptions);
     
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { name, username, avatar, age } = await request.json();
+    const userId = session.user.id;
+    const { name, username, avatar } = await request.json();
 
     // Validate username
     if (username) {
-      // Check format
       if (!/^[a-zA-Z0-9_]+$/.test(username)) {
         return NextResponse.json({ 
           error: 'Username chỉ được chứa chữ, số và dấu gạch dưới' 
@@ -95,12 +100,13 @@ export async function PUT(request) {
         }, { status: 400 });
       }
 
-      // Check if username already taken
+      // 🔧 TỐI ƯU: Select chỉ id để kiểm tra tồn tại
       const existingUser = await prisma.user.findFirst({
         where: {
           username,
-          NOT: { id: session.user.id }
-        }
+          NOT: { id: userId }
+        },
+        select: { id: true }
       });
 
       if (existingUser) {
@@ -117,7 +123,7 @@ export async function PUT(request) {
     if (avatar) updateData.avatar = avatar;
 
     const updatedUser = await prisma.user.update({
-      where: { id: session.user.id },
+      where: { id: userId },
       data: updateData,
       select: {
         id: true,
@@ -127,6 +133,9 @@ export async function PUT(request) {
         avatar: true
       }
     });
+
+    // 🔧 Invalidate cache sau khi update
+    invalidateUserCache(userId);
 
     return NextResponse.json({
       success: true,

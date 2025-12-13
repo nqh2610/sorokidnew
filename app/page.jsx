@@ -1,80 +1,113 @@
-'use client';
-
+/**
+ * 🚀 HOMEPAGE - STATIC GENERATION
+ * 
+ * TỐI ƯU:
+ * - Loại bỏ 'use client' cho phần lớn page (SSG)
+ * - Dynamic import cho Soroban components (chỉ load khi cần)
+ * - Giảm TTFB và LCP đáng kể
+ */
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { 
-  BookOpen, Trophy, Target, Gamepad2, Users, BarChart3, 
-  Zap, Clock, Award, TrendingUp, GraduationCap, Heart, Sparkles
+  BookOpen, Trophy, Target, Gamepad2, BarChart3, 
+  Zap, Clock, Award, TrendingUp, Sparkles
 } from 'lucide-react';
-import CompactSoroban from '@/components/FloatingSoroban/CompactSoroban';
-import SorobanBoard from '@/components/Soroban/SorobanBoard';
 import Logo from '@/components/Logo/Logo';
 
-export default function HomePage() {
-  const features = [
-    {
-      icon: <Gamepad2 className="w-8 h-8" />,
-      title: "Game hóa học tập",
-      description: "Chơi mà học, học mà chơi! Hệ thống điểm thưởng, sao, kim cương khiến việc học thú vị như chơi game.",
-      color: "from-blue-500 to-violet-500",
-      emoji: "🎮"
-    },
-    {
-      icon: <BookOpen className="w-8 h-8" />,
-      title: "Bài học khoa học",
-      description: "Lộ trình từ cơ bản đến nâng cao, giúp học sinh từ chưa biết gì đến thành thạo tính nhẩm Soroban.",
-      color: "from-violet-500 to-purple-500",
-      emoji: "📚"
-    },
-    {
-      icon: <Zap className="w-8 h-8" />,
-      title: "Luyện tập thông minh",
-      description: "Bài tập đa dạng giúp tăng phản xạ và kỹ năng tính toán. Càng luyện càng nhanh, càng chính xác!",
-      color: "from-amber-500 to-orange-500",
-      emoji: "⚡"
-    },
-    {
-      icon: <Trophy className="w-8 h-8" />,
-      title: "Thi đấu xếp hạng",
-      description: "Ganh đua lành mạnh với bạn bè qua bảng xếp hạng. Tăng động lực học tập và tinh thần cạnh tranh.",
-      color: "from-yellow-500 to-amber-500",
-      emoji: "🏆"
-    },
-    {
-      icon: <Target className="w-8 h-8" />,
-      title: "Nhiệm vụ hằng ngày",
-      description: "Hoàn thành nhiệm vụ để nhận thưởng! Hệ thống quest giúp học sinh duy trì thói quen học tập đều đặn.",
-      color: "from-pink-500 to-rose-500",
-      emoji: "🎯"
-    },
-    {
-      icon: <BarChart3 className="w-8 h-8" />,
-      title: "Theo dõi tiến độ",
-      description: "Phụ huynh nắm rõ con học đến đâu, đạt được gì. Đo lường độ chăm chỉ, tốc độ và độ chính xác.",
-      color: "from-cyan-500 to-blue-500",
-      emoji: "📊"
-    }
-  ];
+// 🔧 DYNAMIC IMPORTS: Chỉ load Soroban components ở client khi cần
+// Giảm ~30% initial JS bundle
+const CompactSoroban = dynamic(
+  () => import('@/components/FloatingSoroban/CompactSoroban'),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="h-32 bg-gradient-to-r from-amber-100 to-orange-100 rounded-xl animate-pulse flex items-center justify-center">
+        <span className="text-4xl">🧮</span>
+      </div>
+    )
+  }
+);
 
-  const userTypes = [
-    {
-      title: "Học sinh",
-      description: "Học Soroban qua game thú vị, nhận thưởng khi hoàn thành bài học, thi đấu với bạn bè.",
-      color: "bg-gradient-to-br from-blue-500 to-violet-500",
-      emoji: "👦"
-    },
-    {
-      title: "Phụ huynh", 
-      description: "Công cụ kèm con tự học tại nhà. Theo dõi tiến độ, biết con đạt được những gì mỗi ngày.",
-      color: "bg-gradient-to-br from-violet-500 to-purple-500",
-      emoji: "👨‍👩‍👧"
-    },
-    {
-      title: "Giáo viên",
-      description: "Công cụ dạy học hiện đại, cá nhân hóa cho từng học sinh. Quản lý lớp học dễ dàng.",
-      color: "bg-gradient-to-br from-pink-500 to-rose-500",
-      emoji: "👩‍🏫"
-    }
-  ];
+const SorobanBoard = dynamic(
+  () => import('@/components/Soroban/SorobanBoard'),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="h-48 bg-gradient-to-r from-amber-100 to-orange-100 rounded-xl animate-pulse flex items-center justify-center">
+        <span className="text-6xl">🧮</span>
+      </div>
+    )
+  }
+);
+
+// Static data - không thay đổi
+const features = [
+  {
+    icon: <Gamepad2 className="w-8 h-8" />,
+    title: "Game hóa học tập",
+    description: "Chơi mà học, học mà chơi! Hệ thống điểm thưởng, sao, kim cương khiến việc học thú vị như chơi game.",
+    color: "from-blue-500 to-violet-500",
+    emoji: "🎮"
+  },
+  {
+    icon: <BookOpen className="w-8 h-8" />,
+    title: "Bài học khoa học",
+    description: "Lộ trình từ cơ bản đến nâng cao, giúp học sinh từ chưa biết gì đến thành thạo tính nhẩm Soroban.",
+    color: "from-violet-500 to-purple-500",
+    emoji: "📚"
+  },
+  {
+    icon: <Zap className="w-8 h-8" />,
+    title: "Luyện tập thông minh",
+    description: "Bài tập đa dạng giúp tăng phản xạ và kỹ năng tính toán. Càng luyện càng nhanh, càng chính xác!",
+    color: "from-amber-500 to-orange-500",
+    emoji: "⚡"
+  },
+  {
+    icon: <Trophy className="w-8 h-8" />,
+    title: "Thi đấu xếp hạng",
+    description: "Ganh đua lành mạnh với bạn bè qua bảng xếp hạng. Tăng động lực học tập và tinh thần cạnh tranh.",
+    color: "from-yellow-500 to-amber-500",
+    emoji: "🏆"
+  },
+  {
+    icon: <Target className="w-8 h-8" />,
+    title: "Nhiệm vụ hằng ngày",
+    description: "Hoàn thành nhiệm vụ để nhận thưởng! Hệ thống quest giúp học sinh duy trì thói quen học tập đều đặn.",
+    color: "from-pink-500 to-rose-500",
+    emoji: "🎯"
+  },
+  {
+    icon: <BarChart3 className="w-8 h-8" />,
+    title: "Theo dõi tiến độ",
+    description: "Phụ huynh nắm rõ con học đến đâu, đạt được gì. Đo lường độ chăm chỉ, tốc độ và độ chính xác.",
+    color: "from-cyan-500 to-blue-500",
+    emoji: "📊"
+  }
+];
+
+const userTypes = [
+  {
+    title: "Học sinh",
+    description: "Học Soroban qua game thú vị, nhận thưởng khi hoàn thành bài học, thi đấu với bạn bè.",
+    color: "bg-gradient-to-br from-blue-500 to-violet-500",
+    emoji: "👦"
+  },
+  {
+    title: "Phụ huynh", 
+    description: "Công cụ kèm con tự học tại nhà. Theo dõi tiến độ, biết con đạt được những gì mỗi ngày.",
+    color: "bg-gradient-to-br from-violet-500 to-purple-500",
+    emoji: "👨‍👩‍👧"
+  },
+  {
+    title: "Giáo viên",
+    description: "Công cụ dạy học hiện đại, cá nhân hóa cho từng học sinh. Quản lý lớp học dễ dàng.",
+    color: "bg-gradient-to-br from-pink-500 to-rose-500",
+    emoji: "👩‍🏫"
+  }
+];
+
+export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50">

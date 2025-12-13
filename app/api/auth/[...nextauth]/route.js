@@ -1,10 +1,13 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
-import { PrismaClient } from '@prisma/client';
 import { compare } from 'bcryptjs';
+// 🔧 SỬ DỤNG PRISMA SINGLETON thay vì tạo mới
+import prisma from '@/lib/prisma';
 
-const prisma = new PrismaClient();
+// Cache user role trong memory để giảm DB queries
+const userRoleCache = new Map();
+const ROLE_CACHE_TTL = 300000; // 5 minutes
 
 export const authOptions = {
   session: {
@@ -89,18 +92,38 @@ export const authOptions = {
         token.username = user.username;
       }
       
-      // Fetch role from database
-      try {
-        const dbUser = await prisma.user.findUnique({
-          where: { email: token.email },
-          select: { role: true, id: true, username: true }
-        });
-        if (dbUser) {
-          token.role = dbUser.role;
-          token.id = dbUser.id;
-          token.username = dbUser.username;
+      // 🔧 TỐI ƯU: Cache user role để giảm DB queries
+      const cacheKey = token.email;
+      const cached = userRoleCache.get(cacheKey);
+      
+      if (cached && Date.now() < cached.expiresAt) {
+        // Sử dụng cached data
+        token.role = cached.role;
+        token.id = cached.id;
+        token.username = cached.username;
+      } else {
+        // Fetch từ database và cache
+        try {
+          const dbUser = await prisma.user.findUnique({
+            where: { email: token.email },
+            select: { role: true, id: true, username: true }
+          });
+          if (dbUser) {
+            token.role = dbUser.role;
+            token.id = dbUser.id;
+            token.username = dbUser.username;
+            // Cache kết quả
+            userRoleCache.set(cacheKey, {
+              role: dbUser.role,
+              id: dbUser.id,
+              username: dbUser.username,
+              expiresAt: Date.now() + ROLE_CACHE_TTL
+            });
+          }
+        } catch (e) {
+          console.error('JWT callback DB error:', e);
         }
-      } catch (e) {}
+      }
       
       // Admin email override
       if (token.email === 'nqh2610@gmail.com') {

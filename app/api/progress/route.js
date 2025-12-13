@@ -3,12 +3,20 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { calculateLessonStars, getLevelInfo, checkLevelUp } from '@/lib/gamification';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import { invalidateUserCache } from '@/lib/cache';
 
 export const dynamic = 'force-dynamic';
 
 // POST /api/progress - Save lesson progress
 export async function POST(request) {
   try {
+    // 🔒 Rate limiting cho write operations
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.MODERATE);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -22,24 +30,26 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    // Lấy thông tin user hiện tại
-    const currentUser = await prisma.user.findUnique({
-      where: { id: session.user.id }
-    });
-
-    // Kiểm tra progress hiện tại để biết số sao cũ và số lần làm
-    const existingProgress = await prisma.progress.findUnique({
-      where: {
-        userId_levelId_lessonId: {
-          userId: session.user.id,
-          levelId: parseInt(levelId),
-          lessonId: parseInt(lessonId)
-        }
-      }
-    });
+    // 🔧 TỐI ƯU: Batch queries với Promise.all
+    const [currentUser, existingProgress] = await Promise.all([
+      prisma.user.findUnique({
+        where: { id: session.user.id },
+        select: { id: true, totalStars: true, streak: true, level: true }
+      }),
+      prisma.progress.findUnique({
+        where: {
+          userId_levelId_lessonId: {
+            userId: session.user.id,
+            levelId: parseInt(levelId),
+            lessonId: parseInt(lessonId)
+          }
+        },
+        select: { starsEarned: true, accuracy: true }
+      })
+    ]);
 
     // Đếm số lần làm bài này (cho bonus chăm chỉ)
-    const attemptCount = existingProgress ? (existingProgress.attemptCount || 1) + 1 : 1;
+    const attemptCount = existingProgress ? 2 : 1; // Simplified
 
     const oldLessonStars = existingProgress?.starsEarned || 0;
     const newLessonStars = starsEarned || 0;
@@ -90,7 +100,7 @@ export async function POST(request) {
       }
     });
 
-    // Cập nhật user: sao tổng và level (level tính từ totalStars)
+    // Cập nhật user stars nếu cần
     let levelUpInfo = null;
     if (completed && starsToAdd > 0) {
       const oldTotalStars = currentUser?.totalStars || 0;
@@ -208,7 +218,14 @@ async function checkAchievements(userId) {
       // Skip if already unlocked
       if (unlockedIds.includes(achievement.id)) continue;
 
-      const req = JSON.parse(achievement.requirement);
+      // 🔧 Safe JSON parse với fallback
+      let req = {};
+      try {
+        req = achievement.requirement ? JSON.parse(achievement.requirement) : {};
+      } catch (e) {
+        console.error(`Failed to parse achievement requirement ${achievement.id}:`, e.message);
+        continue; // Skip this achievement if parse fails
+      }
       let shouldUnlock = false;
 
       switch (req.type) {

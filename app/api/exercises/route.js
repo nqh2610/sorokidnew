@@ -2,12 +2,21 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import { cache, CACHE_KEYS, CACHE_TTL } from '@/lib/cache';
+import { invalidateUserCache } from '@/lib/cache';
 
 export const dynamic = 'force-dynamic';
 
 // POST /api/exercises - Save exercise result
 export async function POST(request) {
   try {
+    // 🔒 Rate limiting cho write operations
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.MODERATE);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -21,39 +30,51 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    // Save exercise result
-    const result = await prisma.exerciseResult.create({
-      data: {
-        userId: session.user.id,
-        exerciseType,
-        difficulty: difficulty || 1,
-        problem,
-        userAnswer: String(userAnswer),
-        correctAnswer: String(correctAnswer),
-        isCorrect: !!isCorrect,
-        timeTaken: timeTaken || 0
-      }
-    });
-
-    // Award stars if correct
-    let starsEarned = 0;
-    if (isCorrect) {
-      starsEarned = 10 * (difficulty || 1);
-      await prisma.user.update({
-        where: { id: session.user.id },
+    // 🔧 TỐI ƯU: Batch operations trong transaction
+    const result = await prisma.$transaction(async (tx) => {
+      // Save exercise result
+      const exerciseResult = await tx.exerciseResult.create({
         data: {
-          totalStars: { increment: starsEarned }
+          userId: session.user.id,
+          exerciseType,
+          difficulty: difficulty || 1,
+          problem,
+          userAnswer: String(userAnswer),
+          correctAnswer: String(correctAnswer),
+          isCorrect: !!isCorrect,
+          timeTaken: timeTaken || 0
         }
       });
-    }
 
-    // Update quest progress
-    await updateQuestProgress(session.user.id, 'complete_exercises', 1);
+      // Award stars if correct
+      let starsEarned = 0;
+      if (isCorrect) {
+        starsEarned = 10 * (difficulty || 1);
+        await tx.user.update({
+          where: { id: session.user.id },
+          data: {
+            totalStars: { increment: starsEarned }
+          }
+        });
+      }
 
-    // Check achievements
-    await checkExerciseAchievements(session.user.id);
+      return { exerciseResult, starsEarned };
+    });
 
-    return NextResponse.json({ result, starsEarned, success: true });
+    // 🔧 Invalidate cache
+    invalidateUserCache(session.user.id);
+
+    // Update quest progress (async, không block response)
+    updateQuestProgress(session.user.id, 'complete_exercises', 1).catch(console.error);
+
+    // Check achievements (async)
+    checkExerciseAchievements(session.user.id).catch(console.error);
+
+    return NextResponse.json({ 
+      result: result.exerciseResult, 
+      starsEarned: result.starsEarned, 
+      success: true 
+    });
   } catch (error) {
     console.error('Error saving exercise result:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
@@ -63,13 +84,19 @@ export async function POST(request) {
 // GET /api/exercises - Get exercise history
 export async function GET(request) {
   try {
+    // 🔒 Rate limiting
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.NORMAL);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { searchParams } = new URL(request.url);
-    const limit = parseInt(searchParams.get('limit')) || 50;
+    const limit = Math.min(parseInt(searchParams.get('limit')) || 50, 100); // Max 100
     const type = searchParams.get('type');
 
     const where = {
@@ -77,8 +104,17 @@ export async function GET(request) {
       ...(type && { exerciseType: type })
     };
 
+    // 🔧 TỐI ƯU: Select only needed fields
     const exercises = await prisma.exerciseResult.findMany({
       where,
+      select: {
+        id: true,
+        exerciseType: true,
+        difficulty: true,
+        isCorrect: true,
+        timeTaken: true,
+        createdAt: true
+      },
       orderBy: { createdAt: 'desc' },
       take: limit
     });

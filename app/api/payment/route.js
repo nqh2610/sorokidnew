@@ -3,6 +3,8 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import crypto from 'crypto';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import { getOrSet } from '@/lib/cache';
 
 // Thứ tự tier (dùng để so sánh)
 const TIER_ORDER = {
@@ -12,53 +14,72 @@ const TIER_ORDER = {
   vip: 3
 };
 
-// Lấy pricing plans từ database
+// 🔧 TỐI ƯU: Cache pricing plans với TTL dài hơn
 async function getPricingPlans() {
-  try {
-    const settings = await prisma.systemSettings.findUnique({
-      where: { key: 'pricing_plans' }
-    });
-    if (settings?.value) {
-      const plans = JSON.parse(settings.value);
-      return Array.isArray(plans) ? plans : [];
+  return getOrSet('pricing_plans', async () => {
+    try {
+      const settings = await prisma.systemSettings.findUnique({
+        where: { key: 'pricing_plans' }
+      });
+      if (settings?.value) {
+        const plans = JSON.parse(settings.value);
+        return Array.isArray(plans) ? plans : [];
+      }
+    } catch (e) {
+      console.error('Error loading pricing plans:', e);
     }
-  } catch (e) {
-    console.error('Error loading pricing plans:', e);
-  }
-  return [];
+    return [];
+  }, 300); // Cache 5 phút
 }
 
-// Lấy payment settings từ database
+// 🔧 TỐI ƯU: Cache payment settings
 async function getPaymentSettings() {
-  try {
-    const settings = await prisma.systemSettings.findUnique({
-      where: { key: 'payment_settings' }
-    });
-    if (settings?.value) {
-      return JSON.parse(settings.value);
+  return getOrSet('payment_settings', async () => {
+    try {
+      const settings = await prisma.systemSettings.findUnique({
+        where: { key: 'payment_settings' }
+      });
+      if (settings?.value) {
+        return JSON.parse(settings.value);
+      }
+    } catch (e) {
+      console.error('Error loading payment settings:', e);
     }
-  } catch (e) {
-    console.error('Error loading payment settings:', e);
-  }
-  // Default settings
-  return {
-    bankCode: 'MB',
-    accountNumber: '0839969966',
-    accountName: 'NGUYEN QUANG HUY',
-    contentTemplate: 'SOROKID {orderId}'
-  };
+    return {
+      bankCode: 'MB',
+      accountNumber: '0839969966',
+      accountName: 'NGUYEN QUANG HUY',
+      contentTemplate: 'SOROKID {orderId}'
+    };
+  }, 300); // Cache 5 phút
 }
 
 // GET /api/payment - Lấy thông tin thanh toán
 export async function GET(request) {
   try {
+    // 🔒 Rate limiting
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.NORMAL);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const { searchParams } = new URL(request.url);
     const orderId = searchParams.get('orderId');
 
     if (orderId) {
-      // Lấy thông tin đơn hàng cụ thể
       const order = await prisma.paymentOrder.findFirst({
-        where: { orderCode: orderId }
+        where: { orderCode: orderId },
+        select: {
+          id: true,
+          orderCode: true,
+          tier: true,
+          amount: true,
+          status: true,
+          previousTier: true,
+          transactionType: true,
+          expiresAt: true,
+          note: true
+        }
       });
 
       if (!order) {
@@ -68,9 +89,11 @@ export async function GET(request) {
       return NextResponse.json({ order });
     }
 
-    // Trả về thông tin pricing
-    const plans = await getPricingPlans();
-    const paymentSettings = await getPaymentSettings();
+    // 🔧 TỐI ƯU: Dùng cached data
+    const [plans, paymentSettings] = await Promise.all([
+      getPricingPlans(),
+      getPaymentSettings()
+    ]);
     
     return NextResponse.json({
       plans,
@@ -89,27 +112,36 @@ export async function GET(request) {
 // POST /api/payment - Tạo đơn hàng thanh toán
 export async function POST(request) {
   try {
+    // 🔒 Rate limiting STRICT cho tạo đơn hàng
+    const rateLimitError = checkRateLimit(request, RATE_LIMITS.STRICT);
+    if (rateLimitError) {
+      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+    }
+
     const session = await getServerSession(authOptions);
     
     if (!session) {
       return NextResponse.json({ error: 'Vui lòng đăng nhập' }, { status: 401 });
     }
 
-    const { packageId, currentTier } = await request.json();
+    const { packageId } = await request.json();
+    const userId = session.user.id;
 
-    // Lấy pricing plans
-    const plans = await getPricingPlans();
+    // 🔧 TỐI ƯU: Lấy plans và payment settings song song
+    const [plans, paymentSettings, user] = await Promise.all([
+      getPricingPlans(),
+      getPaymentSettings(),
+      prisma.user.findUnique({
+        where: { id: userId },
+        select: { tier: true }
+      })
+    ]);
+
     const targetPlan = plans.find(p => p.id === packageId);
     
     if (!targetPlan) {
       return NextResponse.json({ error: 'Gói không hợp lệ' }, { status: 400 });
     }
-
-    // Lấy user để kiểm tra tier hiện tại
-    const user = await prisma.user.findUnique({
-      where: { id: session.user.id },
-      select: { tier: true }
-    });
 
     const userCurrentTier = user?.tier || 'free';
 
@@ -128,7 +160,6 @@ export async function POST(request) {
     let transactionType = 'new';
     
     if (userCurrentTier !== 'free') {
-      // Tìm gói hiện tại để tính chênh lệch
       const currentPlan = plans.find(p => p.id === userCurrentTier);
       if (currentPlan) {
         const difference = targetPlan.price - currentPlan.price;
@@ -138,9 +169,6 @@ export async function POST(request) {
         }
       }
     }
-
-    // Lấy payment settings
-    const paymentSettings = await getPaymentSettings();
 
     // Generate order code
     const orderCode = `SK${Date.now()}${crypto.randomBytes(3).toString('hex').toUpperCase()}`;
@@ -155,7 +183,7 @@ export async function POST(request) {
     const order = await prisma.paymentOrder.create({
       data: {
         orderCode,
-        userId: session.user.id,
+        userId,
         tier: packageId,
         amount: amount,
         status: 'pending',
