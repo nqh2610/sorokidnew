@@ -70,13 +70,7 @@ const DEFAULT_PLANS = [
 // GET /api/pricing - Lấy danh sách gói (public)
 export async function GET(request) {
   try {
-    // 🔒 Rate limiting RELAXED cho public endpoint
-    const rateLimitError = checkRateLimit(request, RATE_LIMITS.RELAXED);
-    if (rateLimitError) {
-      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
-    }
-
-    // 🔧 TỐI ƯU: Cache pricing plans (5 phút)
+    // TỐI ƯU: Cache pricing plans (5 phút)
     const plans = await getOrSet(
       'pricing_plans_public',
       async () => {

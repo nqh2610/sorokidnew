@@ -69,6 +69,12 @@ export default function UsersPage() {
   const [newUserForm, setNewUserForm] = useState({ name: '', email: '', username: '', password: '', tier: 'free' });
   const [toast, setToast] = useState(null);
   
+  // Certificate states for edit modal
+  const [userCertificates, setUserCertificates] = useState([]);
+  const [updateCertificates, setUpdateCertificates] = useState(false);
+  const [selectedCertificates, setSelectedCertificates] = useState([]);
+  const [loadingCertificates, setLoadingCertificates] = useState(false);
+  
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -257,7 +263,7 @@ export default function UsersPage() {
     }
   };
 
-  const handleOpenEdit = (user) => {
+  const handleOpenEdit = async (user) => {
     setEditForm({
       name: user.name || '',
       email: user.email || '',
@@ -265,6 +271,23 @@ export default function UsersPage() {
       role: user.role || 'user'
     });
     setEditModal(user);
+    setUpdateCertificates(false);
+    setSelectedCertificates([]);
+    setUserCertificates([]);
+    
+    // Fetch certificates của user
+    setLoadingCertificates(true);
+    try {
+      const res = await fetch(`/api/admin/users/${user.id}`);
+      if (res.ok) {
+        const data = await res.json();
+        setUserCertificates(data.certificates || []);
+      }
+    } catch (error) {
+      console.error('Error fetching certificates:', error);
+    } finally {
+      setLoadingCertificates(false);
+    }
   };
 
   const handleSaveEdit = async () => {
@@ -272,12 +295,22 @@ export default function UsersPage() {
       const res = await fetch(`/api/admin/users/${editModal.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(editForm)
+        body: JSON.stringify({
+          ...editForm,
+          updateCertificates,
+          certificateIds: selectedCertificates.length > 0 ? selectedCertificates : null
+        })
       });
       if (res.ok) {
+        const data = await res.json();
         fetchUsers();
         setEditModal(null);
-        showToast('Đã cập nhật thông tin người dùng!');
+        
+        let message = 'Đã cập nhật thông tin người dùng!';
+        if (data.updatedCertificates > 0) {
+          message += ` (Đã cập nhật ${data.updatedCertificates} chứng chỉ)`;
+        }
+        showToast(message);
       } else {
         const data = await res.json();
         showToast(data.error || 'Có lỗi xảy ra', 'error');
@@ -285,6 +318,22 @@ export default function UsersPage() {
     } catch (error) {
       console.error('Error updating user:', error);
       showToast('Có lỗi xảy ra', 'error');
+    }
+  };
+
+  const handleToggleCertificate = (certId) => {
+    setSelectedCertificates(prev => 
+      prev.includes(certId) 
+        ? prev.filter(id => id !== certId)
+        : [...prev, certId]
+    );
+  };
+
+  const handleSelectAllCertificates = () => {
+    if (selectedCertificates.length === userCertificates.length) {
+      setSelectedCertificates([]);
+    } else {
+      setSelectedCertificates(userCertificates.map(c => c.id));
     }
   };
 
@@ -923,7 +972,7 @@ export default function UsersPage() {
       {/* Edit Modal */}
       {editModal && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-md border border-slate-700">
+          <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-lg border border-slate-700 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center gap-3 mb-6">
               <MonsterAvatar 
                 seed={editModal.id || editModal.email}
@@ -974,6 +1023,94 @@ export default function UsersPage() {
                   <option value="user">👤 Người dùng</option>
                   <option value="admin">🛡️ Quản trị viên</option>
                 </select>
+              </div>
+              
+              {/* Certificates Section */}
+              <div className="pt-4 border-t border-slate-600">
+                <div className="flex items-center justify-between mb-3">
+                  <label className="text-sm font-medium text-slate-300">
+                    📜 Cập nhật tên trong chứng chỉ
+                  </label>
+                  {loadingCertificates && (
+                    <span className="text-xs text-slate-400">Đang tải...</span>
+                  )}
+                </div>
+                
+                {userCertificates.length > 0 ? (
+                  <>
+                    <label className="flex items-center gap-3 mb-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={updateCertificates}
+                        onChange={(e) => {
+                          setUpdateCertificates(e.target.checked);
+                          if (!e.target.checked) setSelectedCertificates([]);
+                        }}
+                        className="w-4 h-4 rounded bg-slate-700 border-slate-600 text-purple-500 focus:ring-purple-500"
+                      />
+                      <span className="text-sm text-slate-300">
+                        Đồng thời cập nhật tên trong chứng chỉ
+                      </span>
+                    </label>
+                    
+                    {updateCertificates && (
+                      <div className="space-y-2 bg-slate-700/50 rounded-lg p-3">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs text-slate-400">
+                            Chọn chứng chỉ cần cập nhật ({selectedCertificates.length}/{userCertificates.length})
+                          </span>
+                          <button
+                            type="button"
+                            onClick={handleSelectAllCertificates}
+                            className="text-xs text-purple-400 hover:text-purple-300"
+                          >
+                            {selectedCertificates.length === userCertificates.length ? 'Bỏ chọn tất cả' : 'Chọn tất cả'}
+                          </button>
+                        </div>
+                        
+                        <div className="space-y-2 max-h-40 overflow-y-auto">
+                          {userCertificates.map((cert) => (
+                            <label
+                              key={cert.id}
+                              className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-colors ${
+                                selectedCertificates.includes(cert.id) 
+                                  ? 'bg-purple-500/20 border border-purple-500/50' 
+                                  : 'bg-slate-600/50 hover:bg-slate-600'
+                              }`}
+                            >
+                              <input
+                                type="checkbox"
+                                checked={selectedCertificates.includes(cert.id)}
+                                onChange={() => handleToggleCertificate(cert.id)}
+                                className="w-4 h-4 rounded bg-slate-700 border-slate-600 text-purple-500 focus:ring-purple-500"
+                              />
+                              <div className="flex-1 min-w-0">
+                                <p className="text-sm text-white truncate">
+                                  {cert.certType === 'addition_subtraction' && '🧮 Chứng chỉ Cộng Trừ'}
+                                  {cert.certType === 'comprehensive' && '🏆 Chứng chỉ Toàn diện'}
+                                  {!['addition_subtraction', 'comprehensive'].includes(cert.certType) && `📜 ${cert.certType}`}
+                                </p>
+                                <p className="text-xs text-slate-400">
+                                  Tên hiện tại: <span className="text-amber-400">{cert.recipientName}</span>
+                                </p>
+                              </div>
+                            </label>
+                          ))}
+                        </div>
+                        
+                        {selectedCertificates.length === 0 && (
+                          <p className="text-xs text-amber-400 mt-2">
+                            ⚠️ Chưa chọn chứng chỉ nào → Sẽ cập nhật tất cả
+                          </p>
+                        )}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <p className="text-sm text-slate-500 italic">
+                    {loadingCertificates ? 'Đang tải...' : 'Người dùng chưa có chứng chỉ nào'}
+                  </p>
+                )}
               </div>
             </div>
             <div className="flex justify-end gap-3 mt-6">
