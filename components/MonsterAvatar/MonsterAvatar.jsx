@@ -6,7 +6,7 @@
  * Cố định cho mỗi user dựa trên userId hoặc email (hash)
  */
 
-// Bộ sưu tập 20 avatar động vật cute từ SVGRepo
+// Bộ sưu tập 40 avatar động vật cute
 const CUTE_ANIMALS = [
   // 1. Khủng long xanh
   `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path fill="#4caf50" d="M352 128c0-35.3-28.7-64-64-64s-64 28.7-64 64c0 17.7 7.2 33.7 18.8 45.2L208 224l-48-16-48 32-48-16-48 48v128l32 32h64l32-32v-32h64l32 32h64l32-32v-32l48-48 16-64-16-48-48-16zm-64 32c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/><circle cx="304" cy="112" r="16" fill="#263238"/></svg>`,
@@ -66,7 +66,67 @@ const CUTE_ANIMALS = [
   `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path fill="#ff9800" d="M320 176H192c-53 0-96 43-96 96v80c0 35.3 28.7 64 64 64h192c35.3 0 64-28.7 64-64v-80c0-53-43-96-96-96z"/><path fill="#fff" d="M256 256v160h-64c-35.3 0-64-28.7-64-64v-48l64-48zm0 0v160h64c35.3 0 64-28.7 64-64v-48l-64-48z"/><path fill="#ff9800" d="M160 192l-64-80 48-16 48 64zm192 0l64-80-48-16-48 64z"/><circle cx="208" cy="256" r="16" fill="#263238"/><circle cx="304" cy="256" r="16" fill="#263238"/><ellipse cx="256" cy="296" rx="20" ry="12" fill="#263238"/></svg>`,
   
   // 20. Sóc nâu
-  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><ellipse cx="256" cy="304" rx="96" ry="112" fill="#8d6e63"/><circle cx="256" cy="224" r="72" fill="#8d6e63"/><circle cx="224" cy="216" r="16" fill="#263238"/><circle cx="288" cy="216" r="16" fill="#263238"/><ellipse cx="256" cy="256" rx="12" ry="8" fill="#5d4037"/><path fill="#8d6e63" d="M176 160l-32-48 48-16v48zm160 0l32-48-48-16v48z"/><ellipse cx="352" cy="352" rx="32" ry="64" fill="#a1887f" transform="rotate(-30 352 352)"/></svg>`
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><ellipse cx="256" cy="304" rx="96" ry="112" fill="#8d6e63"/><circle cx="256" cy="224" r="72" fill="#8d6e63"/><circle cx="224" cy="216" r="16" fill="#263238"/><circle cx="288" cy="216" r="16" fill="#263238"/><ellipse cx="256" cy="256" rx="12" ry="8" fill="#5d4037"/><path fill="#8d6e63" d="M176 160l-32-48 48-16v48zm160 0l32-48-48-16v48z"/><ellipse cx="352" cy="352" rx="32" ry="64" fill="#a1887f" transform="rotate(-30 352 352)"/></svg>`,
+  
+  // 21. Gấu nâu
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><circle cx="256" cy="288" r="128" fill="#795548"/><circle cx="208" cy="256" r="24" fill="#263238"/><circle cx="304" cy="256" r="24" fill="#263238"/><ellipse cx="256" cy="320" rx="40" ry="28" fill="#a1887f"/><ellipse cx="256" cy="312" rx="16" ry="12" fill="#263238"/><circle cx="176" cy="176" r="40" fill="#795548"/><circle cx="336" cy="176" r="40" fill="#795548"/></svg>`,
+  
+  // 22. Chuột xám
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><ellipse cx="256" cy="304" rx="112" ry="96" fill="#9e9e9e"/><circle cx="256" cy="224" r="80" fill="#9e9e9e"/><circle cx="160" cy="176" r="48" fill="#f48fb1"/><circle cx="352" cy="176" r="48" fill="#f48fb1"/><circle cx="160" cy="176" r="32" fill="#9e9e9e"/><circle cx="352" cy="176" r="32" fill="#9e9e9e"/><circle cx="224" cy="216" r="12" fill="#263238"/><circle cx="288" cy="216" r="12" fill="#263238"/><ellipse cx="256" cy="256" rx="8" ry="6" fill="#f48fb1"/></svg>`,
+  
+  // 23. Khỉ nâu
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><circle cx="256" cy="288" r="128" fill="#8d6e63"/><ellipse cx="256" cy="320" rx="80" ry="64" fill="#d7ccc8"/><circle cx="208" cy="256" r="20" fill="#263238"/><circle cx="304" cy="256" r="20" fill="#263238"/><ellipse cx="256" cy="340" rx="24" ry="16" fill="#8d6e63"/><circle cx="152" cy="256" r="32" fill="#d7ccc8"/><circle cx="360" cy="256" r="32" fill="#d7ccc8"/></svg>`,
+  
+  // 24. Chim cánh cụt
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><ellipse cx="256" cy="304" rx="112" ry="128" fill="#263238"/><ellipse cx="256" cy="336" rx="72" ry="80" fill="#fff"/><circle cx="216" cy="240" r="20" fill="#fff"/><circle cx="296" cy="240" r="20" fill="#fff"/><circle cx="216" cy="240" r="10" fill="#263238"/><circle cx="296" cy="240" r="10" fill="#263238"/><path fill="#ff9800" d="M256 280l-20 32h40z"/></svg>`,
+  
+  // 25. Koala xám
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><circle cx="256" cy="288" r="120" fill="#78909c"/><circle cx="160" cy="208" r="56" fill="#78909c"/><circle cx="352" cy="208" r="56" fill="#78909c"/><circle cx="160" cy="208" r="32" fill="#455a64"/><circle cx="352" cy="208" r="32" fill="#455a64"/><circle cx="216" cy="272" r="16" fill="#263238"/><circle cx="296" cy="272" r="16" fill="#263238"/><ellipse cx="256" cy="320" rx="32" ry="24" fill="#263238"/></svg>`,
+  
+  // 26. Hà mã xanh
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><ellipse cx="256" cy="304" rx="144" ry="112" fill="#78909c"/><ellipse cx="256" cy="352" rx="80" ry="48" fill="#90a4ae"/><circle cx="216" cy="256" r="24" fill="#263238"/><circle cx="296" cy="256" r="24" fill="#263238"/><circle cx="232" cy="368" r="12" fill="#455a64"/><circle cx="280" cy="368" r="12" fill="#455a64"/><ellipse cx="176" cy="240" rx="24" ry="32" fill="#78909c"/><ellipse cx="336" cy="240" rx="24" ry="32" fill="#78909c"/></svg>`,
+  
+  // 27. Cừu trắng
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><circle cx="256" cy="288" r="112" fill="#fff"/><circle cx="176" cy="240" r="40" fill="#fff"/><circle cx="336" cy="240" r="40" fill="#fff"/><circle cx="200" cy="320" r="32" fill="#fff"/><circle cx="312" cy="320" r="32" fill="#fff"/><ellipse cx="256" cy="304" rx="64" ry="56" fill="#ffccbc"/><circle cx="232" cy="288" r="12" fill="#263238"/><circle cx="280" cy="288" r="12" fill="#263238"/><ellipse cx="256" cy="320" rx="16" ry="12" fill="#263238"/></svg>`,
+  
+  // 28. Sứa hồng
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><ellipse cx="256" cy="224" rx="112" ry="96" fill="#f48fb1"/><circle cx="216" cy="208" r="20" fill="#263238"/><circle cx="296" cy="208" r="20" fill="#263238"/><path fill="#ec407a" d="M176 304v112l24-24 24 24v-112zm80 0v112l24-24 24 24v-112zm80 0v112l24-24 24 24v-112z"/></svg>`,
+  
+  // 29. Rùa xanh
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><ellipse cx="256" cy="304" rx="144" ry="96" fill="#4caf50"/><ellipse cx="256" cy="288" rx="112" ry="72" fill="#81c784"/><path fill="#388e3c" d="M200 256l56 32 56-32-56-32zM200 320l56 32 56-32-56-32z"/><circle cx="160" cy="240" r="32" fill="#8bc34a"/><circle cx="352" cy="240" r="32" fill="#8bc34a"/><circle cx="256" cy="200" r="40" fill="#8bc34a"/><circle cx="240" cy="192" r="8" fill="#263238"/><circle cx="272" cy="192" r="8" fill="#263238"/></svg>`,
+  
+  // 30. Kỳ lân tím
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path fill="#e1bee7" d="M320 192H192c-53 0-96 43-96 96v64c0 35.3 28.7 64 64 64h192c35.3 0 64-28.7 64-64v-64c0-53-43-96-96-96z"/><path fill="#9c27b0" d="M256 96l-24 96h48z"/><path fill="#e1bee7" d="M168 208l-48-80 64 24v56zm176 0l48-80-64 24v56z"/><circle cx="208" cy="288" r="20" fill="#263238"/><circle cx="304" cy="288" r="20" fill="#263238"/><ellipse cx="256" cy="336" rx="16" ry="12" fill="#ce93d8"/><path fill="#ff80ab" d="M320 400c0-35.3-28.7-64-64-64s-64 28.7-64 64"/></svg>`,
+  
+  // 31. Robot cute
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><rect x="144" y="176" width="224" height="192" rx="32" fill="#90caf9"/><rect x="176" y="208" width="160" height="128" rx="16" fill="#e3f2fd"/><circle cx="216" cy="272" r="24" fill="#1976d2"/><circle cx="296" cy="272" r="24" fill="#1976d2"/><rect x="208" y="312" width="96" height="16" rx="8" fill="#1976d2"/><rect x="232" y="112" width="48" height="64" fill="#90caf9"/><circle cx="256" cy="112" r="24" fill="#ffc107"/><rect x="112" y="240" width="32" height="64" rx="16" fill="#90caf9"/><rect x="368" y="240" width="32" height="64" rx="16" fill="#90caf9"/></svg>`,
+  
+  // 32. Alien xanh
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><ellipse cx="256" cy="288" rx="128" ry="144" fill="#69f0ae"/><ellipse cx="192" cy="240" rx="48" ry="64" fill="#263238"/><ellipse cx="320" cy="240" rx="48" ry="64" fill="#263238"/><ellipse cx="192" cy="240" rx="24" ry="32" fill="#b9f6ca"/><ellipse cx="320" cy="240" rx="24" ry="32" fill="#b9f6ca"/><ellipse cx="256" cy="352" rx="32" ry="16" fill="#00e676"/></svg>`,
+  
+  // 33. Bướm hồng
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><ellipse cx="256" cy="320" rx="24" ry="80" fill="#795548"/><circle cx="256" cy="224" r="32" fill="#795548"/><circle cx="248" cy="216" r="8" fill="#263238"/><circle cx="264" cy="216" r="8" fill="#263238"/><ellipse cx="160" cy="256" rx="80" ry="96" fill="#f48fb1"/><ellipse cx="352" cy="256" rx="80" ry="96" fill="#f48fb1"/><ellipse cx="160" cy="256" rx="48" ry="64" fill="#f8bbd9"/><ellipse cx="352" cy="256" rx="48" ry="64" fill="#f8bbd9"/><path fill="#795548" d="M240 192c-16-32-32-48-32-48m48 48c16-32 32-48 32-48"/></svg>`,
+  
+  // 34. Ong vàng
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><ellipse cx="256" cy="288" rx="112" ry="96" fill="#ffc107"/><path fill="#263238" d="M176 248h160v32H176zm0 56h160v32H176z"/><circle cx="256" cy="208" r="56" fill="#ffc107"/><circle cx="232" cy="200" r="12" fill="#263238"/><circle cx="280" cy="200" r="12" fill="#263238"/><ellipse cx="176" cy="224" rx="48" ry="24" fill="#e3f2fd" transform="rotate(-30 176 224)"/><ellipse cx="336" cy="224" rx="48" ry="24" fill="#e3f2fd" transform="rotate(30 336 224)"/><path fill="#263238" d="M240 168c-8-24-24-32-24-32m32 32c8-24 24-32 24-32"/></svg>`,
+  
+  // 35. Cá vàng
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><ellipse cx="256" cy="288" rx="128" ry="80" fill="#ff9800"/><path fill="#ff9800" d="M384 288l80-64v128z"/><path fill="#ffc107" d="M192 288c0-44.2 28.7-80 64-80s64 35.8 64 80-28.7 80-64 80-64-35.8-64-80z"/><circle cx="216" cy="272" r="20" fill="#fff"/><circle cx="224" cy="272" r="10" fill="#263238"/><path fill="#ff9800" d="M256 208l-32-48h64zm0 160l-32 48h64z"/></svg>`,
+  
+  // 36. Bọ rùa đỏ
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><ellipse cx="256" cy="304" rx="128" ry="96" fill="#f44336"/><path fill="#263238" d="M256 208v192M160 256c32 0 64 32 96 32s64-32 96-32"/><circle cx="192" cy="288" r="24" fill="#263238"/><circle cx="320" cy="288" r="24" fill="#263238"/><circle cx="224" cy="352" r="20" fill="#263238"/><circle cx="288" cy="352" r="20" fill="#263238"/><circle cx="256" cy="208" r="48" fill="#263238"/><circle cx="240" cy="200" r="12" fill="#fff"/><circle cx="272" cy="200" r="12" fill="#fff"/></svg>`,
+  
+  // 37. Cá mập xanh
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><ellipse cx="256" cy="288" rx="144" ry="96" fill="#607d8b"/><path fill="#607d8b" d="M256 192l48-80-48 32-48-32z"/><path fill="#cfd8dc" d="M160 288c0-35.3 43-64 96-64s96 28.7 96 64-43 64-96 64-96-28.7-96-64z"/><circle cx="200" cy="256" r="16" fill="#263238"/><circle cx="312" cy="256" r="16" fill="#263238"/><path fill="#607d8b" d="M224 320c0 17.7 14.3 32 32 32s32-14.3 32-32h-16l-16 16-16-16z"/></svg>`,
+  
+  // 38. Gà con vàng
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><circle cx="256" cy="304" r="112" fill="#ffeb3b"/><circle cx="256" cy="224" r="80" fill="#ffeb3b"/><circle cx="224" cy="208" r="16" fill="#263238"/><circle cx="288" cy="208" r="16" fill="#263238"/><path fill="#ff9800" d="M256 240l-20 24h40z"/><path fill="#f44336" d="M240 144c0-17.7 7.2-32 16-32s16 14.3 16 32c0 8.8-3.6 16.8-9.4 22.6L256 176l-6.6-9.4c-5.8-5.8-9.4-13.8-9.4-22.6z"/><ellipse cx="176" cy="320" rx="24" ry="32" fill="#ffeb3b" transform="rotate(-30 176 320)"/><ellipse cx="336" cy="320" rx="24" ry="32" fill="#ffeb3b" transform="rotate(30 336 320)"/></svg>`,
+  
+  // 39. Mực tím
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path fill="#7e57c2" d="M256 128c-70.7 0-128 57.3-128 128v32h256v-32c0-70.7-57.3-128-128-128z"/><circle cx="208" cy="224" r="24" fill="#fff"/><circle cx="304" cy="224" r="24" fill="#fff"/><circle cx="216" cy="232" r="12" fill="#263238"/><circle cx="312" cy="232" r="12" fill="#263238"/><path fill="#5e35b1" d="M144 288l16 128-32-64zm48 0l16 128-16-80zm48 0v128l-8-96zm32 0v128l8-96zm48 0l-16 128 16-80zm48 0l-16 128 32-64z"/></svg>`,
+  
+  // 40. Hổ cam
+  `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><circle cx="256" cy="288" r="128" fill="#ff9800"/><path fill="#263238" d="M176 240c16 0 32 16 32 32M304 272c0-16 16-32 32-32M208 320c16 16 32 16 48 0 16 16 32 16 48 0"/><circle cx="200" cy="256" r="24" fill="#fff"/><circle cx="312" cy="256" r="24" fill="#fff"/><circle cx="208" cy="264" r="12" fill="#263238"/><circle cx="320" cy="264" r="12" fill="#263238"/><ellipse cx="256" cy="320" rx="24" ry="16" fill="#ffccbc"/><path fill="#263238" d="M232 184l-16-48 32 24zm48 0l16-48-32 24z"/><path fill="#ff9800" d="M160 208l-32-64 48 32v32zm192 0l32-64-48 32v32z"/></svg>`
 ];
 
 // Hàm hash đơn giản để tạo số từ string (seed)
