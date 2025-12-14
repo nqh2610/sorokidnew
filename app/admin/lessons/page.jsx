@@ -153,9 +153,13 @@ function PracticeItemEditor({ item, index, onChange, onRemove, onMoveUp, onMoveD
 
 // Component để xây dựng nội dung lý thuyết
 function TheoryBuilder({ items, onChange }) {
-  const [lines, setLines] = useState(items || []);
+  // Ensure items is always an array
+  const safeItems = Array.isArray(items) ? items : [];
+  const [lines, setLines] = useState(safeItems);
 
-  useEffect(() => { setLines(items || []); }, [items]);
+  useEffect(() => { 
+    setLines(Array.isArray(items) ? items : []); 
+  }, [items]);
 
   const updateLine = (index, value) => {
     const newLines = [...lines];
