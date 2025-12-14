@@ -532,7 +532,7 @@ export default function LessonPage() {
   }
 
   const content = lesson.content || {};
-  const theory = content.theory || [];
+  const theory = Array.isArray(content.theory) ? content.theory : [];
   // Dùng filteredPractices đã được filter ở trên
   const practices = filteredPractices;
   const currentPractice = practices[practiceIndex];
@@ -875,8 +875,9 @@ export default function LessonPage() {
 
           {/* Main Content Area - FULL HEIGHT */}
           <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
+        
         {/* Phần lý thuyết - CẢI TIẾN UI */}
-        {currentStep === 0 && theory.length > 0 && (
+        {currentStep === 0 && theory && theory.length > 0 && (
           <div className="flex-1 flex flex-col lg:flex-row gap-2 min-h-0 overflow-hidden">
             {/* Left: Theory content - CẢI TIẾN HIỂN THỊ */}
             <div className="lg:w-2/5 bg-white rounded-xl shadow overflow-auto">
@@ -905,7 +906,7 @@ export default function LessonPage() {
         )}
 
         {/* Phần luyện tập - TỐI ƯU KHÔNG GIAN */}
-        {(currentStep === 1 || theory.length === 0) && practices.length > 0 && (
+        {(currentStep === 1 || !theory || theory.length === 0) && practices.length > 0 && (
           <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
             {/* Mini progress bar - siêu gọn */}
             <div className="flex items-center gap-2 mb-2 px-1 flex-shrink-0">
@@ -920,6 +921,13 @@ export default function LessonPage() {
             
             {/* Practice content - FULL HEIGHT */}
             <div className="flex-1 overflow-y-auto pb-2">
+              {/* Debug: Hiển thị type nếu không match */}
+              {currentPractice && !['create', 'calc', 'explore', 'memory', 'mental', 'chain', 'speed', 'flashcard', 'friend5', 'friend10'].includes(currentPractice.type) && (
+                <div className="bg-yellow-100 p-4 rounded-xl text-center">
+                  <p className="text-yellow-700">⚠️ Unknown practice type: {currentPractice.type}</p>
+                </div>
+              )}
+              
               {/* Hiển thị câu hỏi theo loại */}
               {currentPractice?.type === 'create' && (
                 <CreateNumberPractice
@@ -993,15 +1001,27 @@ export default function LessonPage() {
               {currentPractice?.type === 'speed' && (
                 <SpeedPractice
                   key={`speed-${practiceIndex}`}
-                  count={currentPractice.count}
-                  difficulty={currentPractice.difficulty}
+                  problem={currentPractice.problem}
+                  answer={currentPractice.answer}
                   timeLimit={currentPractice.timeLimit}
-                  onComplete={(correct, total) => {
-                    const accuracy = total > 0 ? correct / total : 0;
-                    handlePracticeAnswer(accuracy >= 0.7, true);
-                  }}
+                  onAnswer={(ans) => handlePracticeAnswer(ans, currentPractice.answer)}
                   showResult={showResult}
                   isCorrect={isCorrect}
+                  practiceIndex={practiceIndex}
+                />
+              )}
+
+              {/* Flash Card / Flash Anzan */}
+              {currentPractice?.type === 'flashcard' && (
+                <FlashcardPractice
+                  key={`flashcard-${practiceIndex}`}
+                  numbers={currentPractice.numbers}
+                  displayTime={currentPractice.displayTime}
+                  answer={currentPractice.answer}
+                  onAnswer={(ans) => handlePracticeAnswer(ans, currentPractice.answer)}
+                  showResult={showResult}
+                  isCorrect={isCorrect}
+                  practiceIndex={practiceIndex}
                 />
               )}
 
@@ -2426,136 +2446,91 @@ function ChainPractice({ problems, answer, onAnswer, showResult, isCorrect, prac
   );
 }
 
-// Component: Thi đấu tốc độ - COMPACT VERSION
-function SpeedPractice({ count, difficulty, timeLimit, onComplete, showResult, isCorrect }) {
-  const [problems, setProblems] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+// Component: Thi đấu tốc độ - Giải 1 phép tính với giới hạn thời gian
+function SpeedPractice({ problem, answer, timeLimit, onAnswer, showResult, isCorrect, practiceIndex }) {
   const [userInput, setUserInput] = useState('');
-  const [results, setResults] = useState([]);
-  const [timeLeft, setTimeLeft] = useState(timeLimit);
-  const [finished, setFinished] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(timeLimit || 10);
+  const [submitted, setSubmitted] = useState(false);
 
-  // Difficulty labels for kids
-  const difficultyLabels = {
-    easy: '🟢 Dễ',
-    medium: '🟡 Vừa', 
-    hard: '🔴 Khó'
-  };
-
+  // Reset khi chuyển câu
   useEffect(() => {
-    const generated = [];
-    for (let i = 0; i < count; i++) {
-      let a, b, op, ans;
-      if (difficulty === 'easy') {
-        a = Math.floor(Math.random() * 5) + 1;
-        b = Math.floor(Math.random() * 5) + 1;
-        op = '+';
-        ans = a + b;
-      } else if (difficulty === 'medium') {
-        a = Math.floor(Math.random() * 20) + 10;
-        b = Math.floor(Math.random() * 10) + 1;
-        op = Math.random() > 0.5 ? '+' : '-';
-        ans = op === '+' ? a + b : a - b;
-      } else {
-        a = Math.floor(Math.random() * 50) + 20;
-        b = Math.floor(Math.random() * 30) + 10;
-        op = Math.random() > 0.5 ? '+' : '-';
-        ans = op === '+' ? a + b : a - b;
-      }
-      generated.push({ problem: `${a}${op}${b}`, answer: ans });
-    }
-    setProblems(generated);
-  }, [count, difficulty]);
+    setUserInput('');
+    setTimeLeft(timeLimit || 10);
+    setSubmitted(false);
+  }, [practiceIndex, timeLimit]);
 
+  // Timer countdown
   useEffect(() => {
-    if (showResult || finished || timeLeft <= 0) return;
+    if (showResult || submitted || timeLeft <= 0) return;
     const timer = setInterval(() => {
       setTimeLeft(t => {
         if (t <= 1) {
-          setFinished(true);
-          const correct = results.filter(r => r).length;
-          onComplete(correct, count);
+          // Hết giờ - auto submit sai
+          if (!submitted && onAnswer) {
+            setSubmitted(true);
+            onAnswer(-999); // Giá trị sai
+          }
           return 0;
         }
         return t - 1;
       });
     }, 1000);
     return () => clearInterval(timer);
-  }, [showResult, finished, timeLeft, results, count, onComplete]);
+  }, [showResult, submitted, timeLeft, onAnswer]);
 
   const handleSubmit = () => {
-    const isCorrectAnswer = parseInt(userInput) === problems[currentIndex]?.answer;
-    const newResults = [...results, isCorrectAnswer];
-    setResults(newResults);
-    setUserInput('');
-
-    if (currentIndex < count - 1) {
-      setCurrentIndex(currentIndex + 1);
-    } else {
-      setFinished(true);
-      const correct = newResults.filter(r => r).length;
-      onComplete(correct, count);
+    if (!userInput || submitted) return;
+    setSubmitted(true);
+    if (onAnswer) {
+      onAnswer(parseInt(userInput));
     }
   };
 
-  if (problems.length === 0) {
-    return <div className="text-center py-4 text-sm text-gray-500">🎮 Đang chuẩn bị trò chơi...</div>;
-  }
-
-  const currentProblem = problems[currentIndex];
-  const correctCount = results.filter(r => r).length;
-
   return (
-    <div className="flex flex-col items-center">
-      {/* Header - Timer + Progress */}
-      <div className="w-full flex items-center justify-between mb-3 px-2">
-        <div className="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-1 rounded-full">
-          ⚡ {currentIndex + 1}/{count}
-        </div>
-        <div className={`px-3 py-1 rounded-full font-bold text-sm ${timeLeft <= 10 ? 'bg-red-100 text-red-600 animate-pulse' : 'bg-blue-50 text-blue-600'}`}>
-          ⏱️ {timeLeft}s
-        </div>
-        <div className="text-xs text-green-600 font-bold bg-green-50 px-2 py-1 rounded-full">
-          ✅ {correctCount}
-        </div>
+    <div className="flex flex-col items-center py-4">
+      {/* Timer */}
+      <div className={`mb-4 px-4 py-2 rounded-full font-bold text-lg ${
+        timeLeft <= 3 ? 'bg-red-100 text-red-600 animate-pulse' : 'bg-blue-50 text-blue-600'
+      }`}>
+        ⏱️ {timeLeft}s
       </div>
 
-      {!finished && !showResult && (
+      {!showResult && !submitted ? (
         <>
-          <div className="text-center mb-4">
-            <div className="text-sm text-gray-400 mb-1">Tính nhanh nào!</div>
-            <div className="text-4xl font-bold text-purple-600 animate-pulse">{currentProblem?.problem} = ?</div>
+          <div className="text-center mb-6">
+            <div className="text-sm text-gray-400 mb-2">⚡ Tính nhanh nào!</div>
+            <div className="text-5xl font-black text-purple-600">{problem} = ?</div>
           </div>
 
-          <div className="flex gap-2 max-w-xs mx-auto">
+          <div className="flex gap-3 max-w-sm mx-auto w-full px-4">
             <input
               type="number"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && userInput && handleSubmit()}
-              className="flex-1 text-center text-xl font-bold border-2 border-gray-200 rounded-xl py-2 focus:border-purple-500 focus:outline-none"
+              className="flex-1 text-center text-2xl font-bold border-3 border-purple-200 rounded-xl py-3 focus:border-purple-500 focus:outline-none bg-white"
               placeholder="?"
               autoFocus
             />
             <button
               onClick={handleSubmit}
               disabled={!userInput}
-              className="px-5 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-bold disabled:opacity-50 hover:scale-105 transition-transform"
+              className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-bold text-xl disabled:opacity-50 hover:scale-105 transition-transform shadow-lg"
             >
               ✓
             </button>
           </div>
         </>
-      )}
-
-      {(finished || showResult) && (
-        <div className={`w-full p-4 rounded-xl text-center ${isCorrect ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-700'}`}>
-          <div className="text-3xl mb-1">{isCorrect ? '🏆' : '💪'}</div>
-          <div className="text-xl font-bold">
-            {correctCount}/{count} câu đúng
+      ) : (
+        <div className={`w-full max-w-sm p-6 rounded-2xl text-center ${
+          isCorrect ? 'bg-green-100' : 'bg-orange-100'
+        }`}>
+          <div className="text-4xl mb-2">{isCorrect ? '🎉' : '💪'}</div>
+          <div className="text-2xl font-bold mb-2">
+            {problem} = <span className={isCorrect ? 'text-green-600' : 'text-orange-600'}>{answer}</span>
           </div>
-          <div className="text-sm mt-1">
-            {isCorrect ? '🌟 Tuyệt vời! Em là siêu sao tính nhẩm!' : '✨ Cố gắng thêm em nhé! Em làm được!'}
+          <div className="text-sm">
+            {isCorrect ? '⭐ Tuyệt vời! Nhanh quá!' : `Đáp án đúng là ${answer}`}
           </div>
         </div>
       )}
@@ -2672,6 +2647,173 @@ function FriendPractice({ question, answer, friendOf, onAnswer, showResult, isCo
           onValueChange={handleValueChange}
         />
       </div>
+    </div>
+  );
+}
+
+// Component: Flash Card / Flash Anzan - Hiển thị số nhanh, tính tổng
+function FlashcardPractice({ numbers, displayTime, answer, onAnswer, showResult, isCorrect, practiceIndex }) {
+  const [phase, setPhase] = useState('ready'); // ready | showing | answer
+  const [currentNumberIndex, setCurrentNumberIndex] = useState(0);
+  const [userInput, setUserInput] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  // Thời gian hiển thị mỗi số (ms)
+  const numberDisplayTime = displayTime || 1000;
+  
+  // Reset khi chuyển câu
+  useEffect(() => {
+    setPhase('ready');
+    setCurrentNumberIndex(0);
+    setUserInput('');
+    setSubmitted(false);
+  }, [practiceIndex]);
+
+  // Bắt đầu hiển thị số
+  const startFlash = () => {
+    setPhase('showing');
+    setCurrentNumberIndex(0);
+  };
+
+  // Hiển thị từng số
+  useEffect(() => {
+    if (phase !== 'showing') return;
+    
+    if (currentNumberIndex < numbers.length) {
+      const timer = setTimeout(() => {
+        setCurrentNumberIndex(prev => prev + 1);
+      }, numberDisplayTime);
+      return () => clearTimeout(timer);
+    } else {
+      // Đã hiển thị hết số, chuyển sang phase nhập đáp án
+      setTimeout(() => {
+        setPhase('answer');
+      }, 300);
+    }
+  }, [phase, currentNumberIndex, numbers.length, numberDisplayTime]);
+
+  const handleSubmit = () => {
+    if (!userInput || submitted) return;
+    setSubmitted(true);
+    onAnswer(parseInt(userInput));
+  };
+
+  // Format số để hiển thị (thêm dấu + hoặc -)
+  const formatNumber = (num, index) => {
+    if (index === 0) return num.toString();
+    return num >= 0 ? `+${num}` : num.toString();
+  };
+
+  return (
+    <div className="flex flex-col items-center py-4">
+      {/* Phase: Ready - Chuẩn bị */}
+      {phase === 'ready' && !showResult && (
+        <div className="text-center">
+          <div className="text-6xl mb-4">🧠</div>
+          <h3 className="text-xl font-bold text-purple-600 mb-2">Flash Anzan</h3>
+          <p className="text-gray-500 mb-4 text-sm">
+            {numbers.length} số sẽ xuất hiện nhanh<br/>
+            Hãy tính tổng của chúng!
+          </p>
+          <div className="flex items-center justify-center gap-2 mb-4 text-sm text-gray-400">
+            <span>⏱️ {numberDisplayTime}ms / số</span>
+          </div>
+          <button
+            onClick={startFlash}
+            className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl font-bold text-lg shadow-xl hover:scale-105 transition-transform animate-pulse"
+          >
+            🚀 Bắt đầu!
+          </button>
+        </div>
+      )}
+
+      {/* Phase: Showing - Hiển thị số */}
+      {phase === 'showing' && currentNumberIndex < numbers.length && (
+        <div className="text-center">
+          <div className="text-sm text-gray-400 mb-4">
+            Số {currentNumberIndex + 1} / {numbers.length}
+          </div>
+          <div className="w-48 h-48 flex items-center justify-center bg-gradient-to-br from-purple-100 to-pink-100 rounded-3xl shadow-xl">
+            <span className={`text-6xl font-black ${numbers[currentNumberIndex] >= 0 ? 'text-blue-600' : 'text-red-500'}`}>
+              {formatNumber(numbers[currentNumberIndex], currentNumberIndex)}
+            </span>
+          </div>
+          <div className="mt-4 flex justify-center gap-1">
+            {numbers.map((_, idx) => (
+              <div 
+                key={idx} 
+                className={`w-3 h-3 rounded-full transition-all ${
+                  idx < currentNumberIndex ? 'bg-green-400' : 
+                  idx === currentNumberIndex ? 'bg-purple-500 scale-125' : 'bg-gray-200'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Transition: Đã hiển thị hết số */}
+      {phase === 'showing' && currentNumberIndex >= numbers.length && (
+        <div className="text-center">
+          <div className="text-5xl animate-bounce">🤔</div>
+          <p className="text-gray-500 mt-2">Đang xử lý...</p>
+        </div>
+      )}
+
+      {/* Phase: Answer - Nhập đáp án */}
+      {phase === 'answer' && !showResult && !submitted && (
+        <div className="text-center w-full max-w-sm">
+          <div className="text-4xl mb-3">🎯</div>
+          <p className="text-gray-600 mb-4">Tổng của {numbers.length} số là bao nhiêu?</p>
+          
+          <div className="flex gap-3 px-4">
+            <input
+              type="number"
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && userInput && handleSubmit()}
+              className="flex-1 text-center text-3xl font-bold border-3 border-purple-200 rounded-xl py-4 focus:border-purple-500 focus:outline-none bg-white"
+              placeholder="?"
+              autoFocus
+            />
+            <button
+              onClick={handleSubmit}
+              disabled={!userInput}
+              className="px-6 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl font-bold text-2xl disabled:opacity-50 hover:scale-105 transition-transform shadow-lg"
+            >
+              ✓
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Result */}
+      {(showResult || submitted) && (
+        <div className={`w-full max-w-sm p-6 rounded-2xl text-center ${
+          isCorrect ? 'bg-green-100' : 'bg-orange-100'
+        }`}>
+          <div className="text-4xl mb-2">{isCorrect ? '🎉' : '💪'}</div>
+          
+          {/* Hiển thị phép tính */}
+          <div className="text-lg text-gray-600 mb-2">
+            {numbers.map((n, i) => (
+              <span key={i}>
+                {i > 0 && <span className="mx-1">{n >= 0 ? '+' : ''}</span>}
+                <span className={n >= 0 ? 'text-blue-600' : 'text-red-500'}>{n}</span>
+              </span>
+            ))}
+            <span className="mx-2">=</span>
+            <span className={`font-bold ${isCorrect ? 'text-green-600' : 'text-orange-600'}`}>{answer}</span>
+          </div>
+          
+          <div className="text-sm mt-2">
+            {isCorrect 
+              ? '⭐ Tuyệt vời! Trí nhớ siêu phàm!' 
+              : `Đáp án đúng là ${answer}`
+            }
+          </div>
+        </div>
+      )}
     </div>
   );
 }
