@@ -5,9 +5,112 @@
  * - Loại bỏ 'use client' cho phần lớn page (SSG)
  * - Dynamic import cho Soroban components (chỉ load khi cần)
  * - Giảm TTFB và LCP đáng kể
+ * 
+ * SEO:
+ * - Structured data JSON-LD
+ * - Semantic HTML (header, main, section, footer)
+ * - Proper heading hierarchy (h1 > h2 > h3)
  */
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import Script from 'next/script';
+
+// Structured Data cho SEO
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://sorokid.com/#website',
+      'url': 'https://sorokid.com',
+      'name': 'Sorokid',
+      'description': 'Nền tảng học Soroban trực tuyến #1 Việt Nam',
+      'inLanguage': 'vi',
+      'potentialAction': {
+        '@type': 'SearchAction',
+        'target': 'https://sorokid.com/search?q={search_term_string}',
+        'query-input': 'required name=search_term_string'
+      }
+    },
+    {
+      '@type': 'Organization',
+      '@id': 'https://sorokid.com/#organization',
+      'name': 'Sorokid',
+      'url': 'https://sorokid.com',
+      'logo': {
+        '@type': 'ImageObject',
+        'url': 'https://sorokid.com/logo.png'
+      },
+      'sameAs': [
+        'https://facebook.com/sorokid',
+        'https://youtube.com/@sorokid'
+      ]
+    },
+    {
+      '@type': 'WebPage',
+      '@id': 'https://sorokid.com/#webpage',
+      'url': 'https://sorokid.com',
+      'name': 'Sorokid - Học Soroban Online | Tính Nhẩm Nhanh Cho Trẻ Em',
+      'isPartOf': { '@id': 'https://sorokid.com/#website' },
+      'about': { '@id': 'https://sorokid.com/#organization' },
+      'description': 'Học Soroban online miễn phí cho trẻ em. Game hóa học tập, bài học khoa học, luyện tính nhẩm nhanh.',
+      'inLanguage': 'vi'
+    },
+    {
+      '@type': 'EducationalOrganization',
+      'name': 'Sorokid',
+      'description': 'Nền tảng học Soroban trực tuyến cho học sinh tiểu học Việt Nam',
+      'url': 'https://sorokid.com',
+      'areaServed': {
+        '@type': 'Country',
+        'name': 'Vietnam'
+      },
+      'educationalCredentialAwarded': 'Chứng chỉ Soroban các cấp độ'
+    },
+    {
+      '@type': 'Course',
+      'name': 'Khóa học Soroban Online',
+      'description': 'Học tính nhẩm Soroban từ cơ bản đến nâng cao cho học sinh tiểu học',
+      'provider': {
+        '@type': 'Organization',
+        'name': 'Sorokid'
+      },
+      'educationalLevel': 'Tiểu học',
+      'teaches': ['Tính nhẩm', 'Soroban', 'Toán tư duy', 'Anzan'],
+      'availableLanguage': 'vi',
+      'isAccessibleForFree': true
+    },
+    {
+      '@type': 'FAQPage',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': 'Soroban là gì?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Soroban là bàn tính Nhật Bản, giúp trẻ em phát triển khả năng tính nhẩm nhanh và tư duy logic.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Sorokid phù hợp với độ tuổi nào?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Sorokid phù hợp với học sinh tiểu học từ 6-12 tuổi, nhưng cũng có thể dành cho người lớn muốn học tính nhẩm.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Học Soroban online có hiệu quả không?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Có! Sorokid sử dụng phương pháp game hóa học tập, bàn tính ảo tương tác, giúp trẻ học hiệu quả và thú vị hơn.'
+          }
+        }
+      ]
+    }
+  ]
+};
 import { 
   BookOpen, Trophy, Target, Gamepad2, BarChart3, 
   Zap, Clock, Award, TrendingUp, Sparkles
@@ -44,43 +147,43 @@ const SorobanBoard = dynamic(
 const features = [
   {
     icon: <Gamepad2 className="w-8 h-8" />,
-    title: "Game hóa học tập",
-    description: "Chơi mà học, học mà chơi! Hệ thống điểm thưởng, sao, kim cương khiến việc học thú vị như chơi game.",
+    title: "Học như chơi game",
+    description: "Điểm thưởng, sao, kim cương... khiến việc luyện tính nhẩm thú vị như chơi game yêu thích!",
     color: "from-blue-500 to-violet-500",
     emoji: "🎮"
   },
   {
     icon: <BookOpen className="w-8 h-8" />,
-    title: "Bài học khoa học",
-    description: "Lộ trình từ cơ bản đến nâng cao, giúp học sinh từ chưa biết gì đến thành thạo tính nhẩm Soroban.",
+    title: "Bài học sinh động",
+    description: "Từ cơ bản đến nâng cao theo phương pháp Soroban Nhật Bản. Dễ hiểu, dễ nhớ, dễ áp dụng.",
     color: "from-violet-500 to-purple-500",
     emoji: "📚"
   },
   {
     icon: <Zap className="w-8 h-8" />,
-    title: "Luyện tập thông minh",
-    description: "Bài tập đa dạng giúp tăng phản xạ và kỹ năng tính toán. Càng luyện càng nhanh, càng chính xác!",
+    title: "Phản xạ nhanh hơn",
+    description: "Bài tập đa dạng giúp bé tính toán nhanh và chính xác hơn mỗi ngày. Kết quả thấy rõ sau 2 tuần!",
     color: "from-amber-500 to-orange-500",
     emoji: "⚡"
   },
   {
     icon: <Trophy className="w-8 h-8" />,
-    title: "Thi đấu xếp hạng",
-    description: "Ganh đua lành mạnh với bạn bè qua bảng xếp hạng. Tăng động lực học tập và tinh thần cạnh tranh.",
+    title: "Thi đua vui vẻ",
+    description: "Bảng xếp hạng, giải đấu với bạn bè. Động lực học tập tăng vọt khi có đối thủ!",
     color: "from-yellow-500 to-amber-500",
     emoji: "🏆"
   },
   {
     icon: <Target className="w-8 h-8" />,
-    title: "Nhiệm vụ hằng ngày",
-    description: "Hoàn thành nhiệm vụ để nhận thưởng! Hệ thống quest giúp học sinh duy trì thói quen học tập đều đặn.",
+    title: "Nhiệm vụ mỗi ngày",
+    description: "Quest hằng ngày giúp bé duy trì thói quen tự học. Hoàn thành = nhận thưởng!",
     color: "from-pink-500 to-rose-500",
     emoji: "🎯"
   },
   {
     icon: <BarChart3 className="w-8 h-8" />,
-    title: "Theo dõi tiến độ",
-    description: "Phụ huynh nắm rõ con học đến đâu, đạt được gì. Đo lường độ chăm chỉ, tốc độ và độ chính xác.",
+    title: "Báo cáo chi tiết",
+    description: "Ba mẹ nắm rõ con học đến đâu: tốc độ, độ chính xác, thời gian học mỗi ngày.",
     color: "from-cyan-500 to-blue-500",
     emoji: "📊"
   }
@@ -88,20 +191,20 @@ const features = [
 
 const userTypes = [
   {
-    title: "Học sinh",
-    description: "Học Soroban qua game thú vị, nhận thưởng khi hoàn thành bài học, thi đấu với bạn bè.",
+    title: "Học sinh 6-12 tuổi",
+    description: "Học qua game thú vị, nhận thưởng khi hoàn thành bài, thi đua cùng bạn bè. Tự tin giơ tay phát biểu!",
     color: "bg-gradient-to-br from-blue-500 to-violet-500",
     emoji: "👦"
   },
   {
     title: "Phụ huynh", 
-    description: "Công cụ kèm con tự học tại nhà. Theo dõi tiến độ, biết con đạt được những gì mỗi ngày.",
+    description: "Công cụ kèm con tự học tại nhà hiệu quả. Biết con tiến bộ từng ngày, không cần đưa đón đi học thêm.",
     color: "bg-gradient-to-br from-violet-500 to-purple-500",
     emoji: "👨‍👩‍👧"
   },
   {
     title: "Giáo viên",
-    description: "Công cụ dạy học hiện đại, cá nhân hóa cho từng học sinh. Quản lý lớp học dễ dàng.",
+    description: "Công cụ dạy học hiện đại, giao bài - chấm điểm tự động. Cá nhân hóa theo năng lực từng học sinh.",
     color: "bg-gradient-to-br from-pink-500 to-rose-500",
     emoji: "👩‍🏫"
   }
@@ -110,46 +213,58 @@ const userTypes = [
 export default function HomePage() {
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50">
-      {/* Navigation */}
-      <nav className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-          <Logo size="md" />
-          <div className="flex gap-2 sm:gap-3">
-            <Link href="/login" className="px-3 sm:px-6 py-2 text-sm sm:text-base text-violet-600 font-bold hover:bg-violet-50 rounded-full transition-all">
-              Đăng nhập
-            </Link>
-            <Link href="/register" className="px-3 sm:px-6 py-2 text-sm sm:text-base bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white font-bold rounded-full hover:scale-105 transition-all shadow-lg">
-              Đăng ký
-            </Link>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 via-violet-400/10 to-pink-400/10" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 lg:py-20">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm mb-6">
-              <Sparkles className="w-4 h-4 text-amber-500" />
-              <span className="text-sm font-medium text-gray-600">Phương pháp Soroban từ Nhật Bản</span>
-              <span className="w-6 h-4 bg-white border border-gray-300 rounded flex items-center justify-center shadow-sm">
-                <span className="w-3 h-3 bg-red-600 rounded-full"></span>
-              </span>
+    <>
+      {/* JSON-LD Structured Data for SEO */}
+      <Script
+        id="json-ld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50">
+        {/* Header Navigation */}
+        <header role="banner">
+          <nav className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50" aria-label="Main navigation">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+              <Logo size="md" />
+              <div className="flex gap-2 sm:gap-3">
+                <Link href="/login" className="px-3 sm:px-6 py-2 text-sm sm:text-base text-violet-600 font-bold hover:bg-violet-50 rounded-full transition-all" aria-label="Đăng nhập vào tài khoản">
+                  Đăng nhập
+                </Link>
+                <Link href="/register" className="px-3 sm:px-6 py-2 text-sm sm:text-base bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white font-bold rounded-full hover:scale-105 transition-all shadow-lg" aria-label="Đăng ký tài khoản miễn phí">
+                  Đăng ký
+                </Link>
+              </div>
             </div>
-            
-            <h1 className="text-2xl sm:text-4xl lg:text-6xl font-black mb-4 sm:mb-6 leading-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500">
-                Học Soroban
-              </span>
-              <br />
-              <span className="text-gray-800">Vui như chơi Game!</span>
-            </h1>
-            
-            <p className="text-base sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
+          </nav>
+        </header>
+
+        <main role="main">
+
+        {/* Hero Section */}
+        <section className="relative overflow-hidden" aria-labelledby="hero-heading">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 via-violet-400/10 to-pink-400/10" aria-hidden="true" />
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 lg:py-20">
+            <div className="text-center mb-10">
+              <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm mb-6">
+                <Sparkles className="w-4 h-4 text-amber-500" aria-hidden="true" />
+                <span className="text-sm font-medium text-gray-600">Phương pháp Soroban từ Nhật Bản</span>
+                <span className="w-6 h-4 bg-white border border-gray-300 rounded flex items-center justify-center shadow-sm" aria-label="Cờ Nhật Bản" role="img">
+                  <span className="w-3 h-3 bg-red-600 rounded-full"></span>
+                </span>
+              </div>
+              
+              <h1 id="hero-heading" className="text-2xl sm:text-4xl lg:text-6xl font-black mb-4 sm:mb-6 leading-tight">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500">
+                  Tính nhẩm siêu nhanh
+                </span>
+                <br />
+                <span className="text-gray-800">Chơi mà học, học mà chơi!</span>
+              </h1>
+              
+              <p className="text-base sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
               Ứng dụng học tính nhẩm Soroban dành cho học sinh tiểu học. 
-              <strong className="text-violet-600"> Chơi mà học, học mà chơi!</strong>
+              <strong className="text-violet-600"> Từ sợ toán thành yêu toán chỉ sau vài tuần!</strong>
             </p>
 
             <div className="flex justify-center mb-8 px-4">
@@ -175,14 +290,14 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Soroban Demo */}
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
-                🧮 Trải nghiệm bàn tính Soroban
-              </h2>
-              <p className="text-gray-600">Click vào các hạt để di chuyển lên/xuống</p>
-            </div>
+            {/* Soroban Demo */}
+            <div className="max-w-4xl mx-auto" role="region" aria-labelledby="soroban-demo-heading">
+              <div className="text-center mb-6">
+                <h2 id="soroban-demo-heading" className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
+                  <span aria-hidden="true">🧮</span> Thử ngay bàn tính ảo!
+                </h2>
+                <p className="text-gray-600">Click vào các hạt để di chuyển lên/xuống</p>
+              </div>
             
             {/* Mobile */}
             <div className="md:hidden px-4">
@@ -200,44 +315,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-12 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
-              ✨ Tính năng nổi bật
-            </h2>
-            <p className="text-gray-600 text-base sm:text-lg max-w-3xl mx-auto">
-              Sorokid được thiết kế đặc biệt cho học sinh tiểu học với giao diện đơn giản, bắt mắt
-            </p>
-          </div>
+        {/* Features Section - Tính năng học Soroban online */}
+        <section className="py-12 sm:py-20 bg-white" aria-labelledby="features-heading">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12">
+              <h2 id="features-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
+                <span aria-hidden="true">✨</span> Tại sao trẻ thích học cùng Sorokid?
+              </h2>
+              <p className="text-gray-600 text-base sm:text-lg max-w-3xl mx-auto">
+                Sorokid được thiết kế đặc biệt cho học sinh tiểu học với giao diện đơn giản, bắt mắt
+              </p>
+            </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, index) => (
-              <div key={index} className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all border border-gray-100 hover:border-violet-200 hover:-translate-y-1">
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}>
-                  {feature.icon}
-                </div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-2xl">{feature.emoji}</span>
-                  <h3 className="text-xl font-bold text-gray-800">{feature.title}</h3>
-                </div>
-                <p className="text-gray-600">{feature.description}</p>
-              </div>
-            ))}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
+              {features.map((feature, index) => (
+                <article key={index} className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all border border-gray-100 hover:border-violet-200 hover:-translate-y-1" role="listitem">
+                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`} aria-hidden="true">
+                    {feature.icon}
+                  </div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-2xl" aria-hidden="true">{feature.emoji}</span>
+                    <h3 className="text-xl font-bold text-gray-800">{feature.title}</h3>
+                  </div>
+                  <p className="text-gray-600">{feature.description}</p>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* How it works */}
-      <section className="py-12 sm:py-20 bg-gradient-to-br from-violet-50 to-pink-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
-              📈 Lộ trình học tập khoa học
-            </h2>
-            <p className="text-gray-600 text-lg">Từ người mới bắt đầu đến thành thạo tính nhẩm</p>
-          </div>
+        {/* How it works - Lộ trình học Soroban */}
+        <section className="py-12 sm:py-20 bg-gradient-to-br from-violet-50 to-pink-50" aria-labelledby="roadmap-heading">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12">
+              <h2 id="roadmap-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
+                <span aria-hidden="true">📈</span> Lộ trình học tập khoa học
+              </h2>
+              <p className="text-gray-600 text-lg">Từ chưa biết gì đến tính nhẩm nhanh như máy tính!</p>
+            </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -264,14 +379,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Measurement System */}
-      <section className="py-12 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-6">
-                📊 Theo dõi tiến độ học tập
-              </h2>
+        {/* Measurement System - Theo dõi tiến độ học Soroban */}
+        <section className="py-12 sm:py-20 bg-white" aria-labelledby="progress-heading">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 id="progress-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-6">
+                  <span aria-hidden="true">📊</span> Phụ huynh yên tâm theo dõi con
+                </h2>
               <p className="text-gray-600 text-lg mb-8">
                 Hệ thống tự động đánh giá và đo lường sự tiến bộ của học sinh qua từng bài học.
               </p>
@@ -315,15 +430,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* User Types */}
-      <section className="py-12 sm:py-20 bg-gradient-to-br from-blue-50 to-violet-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
-              👥 Dành cho ai?
-            </h2>
-            <p className="text-gray-600 text-lg">Sorokid phù hợp với nhiều đối tượng người dùng</p>
-          </div>
+        {/* User Types - Đối tượng học Soroban */}
+        <section className="py-12 sm:py-20 bg-gradient-to-br from-blue-50 to-violet-50" aria-labelledby="users-heading">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12">
+              <h2 id="users-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
+                <span aria-hidden="true">👥</span> Ai nên dùng Sorokid?
+              </h2>
+              <p className="text-gray-600 text-lg">Phù hợp với mọi người muốn con giỏi toán tư duy</p>
+            </div>
 
           <div className="grid sm:grid-cols-3 gap-6">
             {userTypes.map((type, index) => (
@@ -341,21 +456,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Highlights */}
-      <section className="py-12 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
-              💡 Điểm nổi bật
-            </h2>
-          </div>
+        {/* Highlights - Điểm nổi bật của Sorokid */}
+        <section className="py-12 sm:py-20 bg-white" aria-labelledby="highlights-heading">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12">
+              <h2 id="highlights-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
+                <span aria-hidden="true">💡</span> Vì sao chọn Sorokid?
+              </h2>
+            </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: "🎨", title: "Giao diện đẹp", desc: "Thiết kế bắt mắt, phù hợp lứa tuổi tiểu học" },
-              { icon: "📱", title: "Đa nền tảng", desc: "Học mọi lúc mọi nơi trên điện thoại, máy tính" },
-              { icon: "🧮", title: "Bàn tính ảo", desc: "Không cần mua bàn tính thật, tiện lợi" },
-              { icon: "🏠", title: "Tự học tại nhà", desc: "Phụ huynh có thể kèm con học" }
+              { icon: "🎨", title: "Giao diện bắt mắt", desc: "Màu sắc tươi sáng, dễ thương - bé thích ngay từ cái nhìn đầu tiên" },
+              { icon: "📱", title: "Học mọi lúc mọi nơi", desc: "Điện thoại, máy tính bảng, laptop - thiết bị nào cũng được" },
+              { icon: "🧮", title: "Bàn tính ảo miễn phí", desc: "Không cần mua bàn tính thật, tiết kiệm chi phí cho gia đình" },
+              { icon: "🏠", title: "Tự học tại nhà", desc: "Ba mẹ bận cũng yên tâm - con tự học được với hướng dẫn chi tiết" }
             ].map((item, index) => (
               <div key={index} className="text-center p-6 bg-gray-50 rounded-2xl hover:bg-violet-50 transition-colors">
                 <div className="text-4xl mb-4">{item.icon}</div>
@@ -367,47 +482,52 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-12 sm:py-20 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center text-white">
-          <h2 className="text-xl sm:text-3xl lg:text-4xl font-black mb-4 sm:mb-6">
-            🚀 Bắt đầu hành trình Soroban ngay hôm nay!
-          </h2>
-          <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
-            Đăng ký và khám phá thế giới tính nhẩm thú vị cùng Sorokid
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-            <Link href="/register" className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-violet-600 rounded-full text-base sm:text-lg font-bold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
-              Đăng ký ngay
-            </Link>
-            <Link href="/login" className="px-6 sm:px-8 py-3 sm:py-4 bg-white/20 backdrop-blur text-white rounded-full text-base sm:text-lg font-bold hover:bg-white/30 transition-all border-2 border-white/50">
-              Đã có tài khoản? Đăng nhập
-            </Link>
+        {/* CTA Section - Đăng ký học Soroban */}
+        <section className="py-12 sm:py-20 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500" aria-labelledby="cta-heading">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center text-white">
+            <h2 id="cta-heading" className="text-xl sm:text-3xl lg:text-4xl font-black mb-4 sm:mb-6">
+              <span aria-hidden="true">🚀</span> Chỉ 15 phút mỗi ngày - Thần đồng tính nhẩm trong tầm tay!
+            </h2>
+            <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
+              Hơn 10.000 học sinh đã tính nhẩm nhanh hơn sau 3 tháng. Sẵn sàng cho con bạn chưa?
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+              <Link href="/register" className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-violet-600 rounded-full text-base sm:text-lg font-bold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all" aria-label="Đăng ký học Soroban miễn phí">
+                Đăng ký miễn phí
+              </Link>
+              <Link href="/login" className="px-6 sm:px-8 py-3 sm:py-4 bg-white/20 backdrop-blur text-white rounded-full text-base sm:text-lg font-bold hover:bg-white/30 transition-all border-2 border-white/50" aria-label="Đăng nhập vào tài khoản Sorokid">
+                Đã có tài khoản? Đăng nhập
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 sm:py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-3">
-              <Logo size="md" />
-              <span className="text-gray-400">|</span>
-              <span className="text-gray-400">Học Soroban vui như chơi Game</span>
+        </main>
+
+        {/* Footer */}
+        <footer className="bg-gray-900 text-white py-8 sm:py-12" role="contentinfo">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+              <div className="flex items-center gap-3">
+                <Logo size="md" />
+                <span className="text-gray-400" aria-hidden="true">|</span>
+                <span className="text-gray-400">Học toán tính nhanh vui như chơi game</span>
+              </div>
+              <nav aria-label="Footer navigation">
+                <ul className="flex flex-wrap justify-center gap-6 text-gray-400">
+                  <li><Link href="/learn" className="hover:text-white transition-colors">Bài học</Link></li>
+                  <li><Link href="/practice" className="hover:text-white transition-colors">Luyện tập</Link></li>
+                  <li><Link href="/compete" className="hover:text-white transition-colors">Thi đấu</Link></li>
+                  <li><Link href="/leaderboard" className="hover:text-white transition-colors">Xếp hạng</Link></li>
+                </ul>
+              </nav>
             </div>
-            <div className="flex flex-wrap justify-center gap-6 text-gray-400">
-              <Link href="/learn" className="hover:text-white transition-colors">Bài học</Link>
-              <Link href="/practice" className="hover:text-white transition-colors">Luyện tập</Link>
-              <Link href="/compete" className="hover:text-white transition-colors">Thi đấu</Link>
-              <Link href="/leaderboard" className="hover:text-white transition-colors">Xếp hạng</Link>
+            <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+              <p>© 2024 Sorokid. Phát triển với <span aria-label="tình yêu">❤️</span> cho học sinh Việt Nam.</p>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-            © 2024 Sorokid. Phát triển với ❤️ cho học sinh Việt Nam.
-          </div>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
+    </>
   );
 }

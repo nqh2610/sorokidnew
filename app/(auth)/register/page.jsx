@@ -154,7 +154,7 @@ export default function RegisterPage() {
             </Link>
             <p className="text-gray-600 flex items-center justify-center gap-2 mb-3 sm:mb-4 text-sm sm:text-base">
               <span className="text-xl">🎮</span> 
-              <span className="font-medium">Học Soroban vui như chơi Game!</span>
+              <span className="font-medium">Học toán tính nhanh vui như chơi Game!</span>
             </p>
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 via-violet-100 to-pink-100 rounded-full">
               <Sparkles size={18} className="text-violet-600" />
