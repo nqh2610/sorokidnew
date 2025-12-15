@@ -246,36 +246,36 @@ export default function PaymentSettingsPage() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-4 sm:space-y-6">
       {/* Header with Status */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
-        <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+      <div className="flex flex-col gap-3 sm:gap-4 mb-2">
+        <div className="min-w-0">
+          <h1 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
             💳 Cài đặt thanh toán
           </h1>
-          <p className="text-slate-400 text-sm mt-1">Cấu hình tài khoản ngân hàng và webhook để nhận thanh toán tự động</p>
+          <p className="text-slate-400 text-xs sm:text-sm mt-1 line-clamp-2">Cấu hình tài khoản ngân hàng và webhook để nhận thanh toán tự động</p>
         </div>
         
         {/* Master Toggle */}
-        <div className={`flex items-center gap-4 p-4 rounded-xl border ${isActive ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-slate-800 border-slate-700'}`}>
+        <div className={`flex items-center justify-between gap-3 p-3 rounded-xl border ${isActive ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-slate-800 border-slate-700'}`}>
           <div className="flex items-center gap-2">
-            <div className={`w-3 h-3 rounded-full ${isActive ? 'bg-emerald-400 animate-pulse' : 'bg-slate-500'}`}></div>
-            <span className={`font-medium ${isActive ? 'text-emerald-400' : 'text-slate-400'}`}>
-              {isActive ? 'Đang hoạt động' : 'Đã tắt'}
+            <div className={`w-2.5 h-2.5 rounded-full ${isActive ? 'bg-emerald-400 animate-pulse' : 'bg-slate-500'}`}></div>
+            <span className={`font-medium text-sm ${isActive ? 'text-emerald-400' : 'text-slate-400'}`}>
+              {isActive ? 'Đang hoạt động' : 'Đang tắt'}
             </span>
           </div>
           <button 
             onClick={handleToggleActive}
-            className={`relative w-14 h-7 rounded-full transition-colors ${isActive ? 'bg-emerald-500' : 'bg-slate-600'}`}
+            className={`relative w-12 h-6 rounded-full transition-colors flex-shrink-0 ${isActive ? 'bg-emerald-500' : 'bg-slate-600'}`}
           >
-            <div className={`absolute top-1 w-5 h-5 bg-white rounded-full transition-transform ${isActive ? 'translate-x-8' : 'translate-x-1'}`}></div>
+            <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition-transform ${isActive ? 'translate-x-6' : 'translate-x-0.5'}`}></div>
           </button>
         </div>
       </div>
 
       {/* Message */}
       {message.text && (
-        <div className={`p-4 rounded-xl border flex items-center gap-3 ${
+        <div className={`p-3 sm:p-4 rounded-xl border flex items-center gap-2 sm:gap-3 text-sm ${
           message.type === 'success' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' :
           message.type === 'error' ? 'bg-red-500/10 text-red-400 border-red-500/30' :
           'bg-blue-500/10 text-blue-400 border-blue-500/30'
@@ -286,38 +286,38 @@ export default function PaymentSettingsPage() {
       )}
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-          <div className="text-slate-400 text-sm">Ngân hàng</div>
-          <div className="text-white font-semibold mt-1">{selectedBank?.name || 'Chưa cấu hình'}</div>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
+        <div className="bg-slate-800 rounded-xl p-3 sm:p-4 border border-slate-700">
+          <div className="text-slate-400 text-xs sm:text-sm">Ngân hàng</div>
+          <div className="text-white font-semibold mt-1 text-sm sm:text-base truncate">{selectedBank?.name || 'Chưa cấu hình'}</div>
         </div>
-        <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-          <div className="text-slate-400 text-sm">Số tài khoản</div>
-          <div className="text-white font-semibold mt-1 font-mono">{bankSettings.accountNumber || '---'}</div>
+        <div className="bg-slate-800 rounded-xl p-3 sm:p-4 border border-slate-700">
+          <div className="text-slate-400 text-xs sm:text-sm">Số tài khoản</div>
+          <div className="text-white font-semibold mt-1 font-mono text-xs sm:text-base truncate">{bankSettings.accountNumber || '---'}</div>
         </div>
-        <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-          <div className="text-slate-400 text-sm">Webhook</div>
-          <div className={`font-semibold mt-1 flex items-center gap-2 ${connectionStatus === 'connected' ? 'text-emerald-400' : connectionStatus === 'checking' ? 'text-yellow-400' : 'text-slate-400'}`}>
+        <div className="bg-slate-800 rounded-xl p-3 sm:p-4 border border-slate-700">
+          <div className="text-slate-400 text-xs sm:text-sm">Webhook</div>
+          <div className={`font-semibold mt-1 flex items-center gap-1 sm:gap-2 text-xs sm:text-base ${connectionStatus === 'connected' ? 'text-emerald-400' : connectionStatus === 'checking' ? 'text-yellow-400' : 'text-slate-400'}`}>
             <span className={`w-2 h-2 rounded-full ${connectionStatus === 'connected' ? 'bg-emerald-400' : connectionStatus === 'checking' ? 'bg-yellow-400 animate-pulse' : 'bg-slate-500'}`}></span>
-            {connectionStatus === 'connected' ? 'Đã kết nối' : connectionStatus === 'checking' ? 'Đang kiểm tra...' : 'Chưa kết nối'}
+            {connectionStatus === 'connected' ? 'OK' : connectionStatus === 'checking' ? '...' : 'Chưa'}
           </div>
         </div>
-        <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-          <div className="text-slate-400 text-sm">Provider</div>
-          <div className="text-purple-400 font-semibold mt-1">{webhookProvider === 'sepay' ? 'SePay' : 'Casso'}</div>
+        <div className="bg-slate-800 rounded-xl p-3 sm:p-4 border border-slate-700">
+          <div className="text-slate-400 text-xs sm:text-sm">Provider</div>
+          <div className="text-purple-400 font-semibold mt-1 text-sm sm:text-base">{webhookProvider === 'sepay' ? 'SePay' : 'Casso'}</div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 border-b border-slate-700 pb-0">
+      <div className="flex gap-1 sm:gap-2 border-b border-slate-700 pb-0">
         {[
-          { id: 'bank', label: '🏦 Ngân hàng', desc: 'Tài khoản nhận tiền' },
-          { id: 'webhook', label: '🔗 Webhook', desc: 'Kết nối tự động' },
+          { id: 'bank', label: '🏦 Ngân hàng' },
+          { id: 'webhook', label: '🔗 Webhook' },
         ].map(tab => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-6 py-3 rounded-t-xl transition-all font-medium ${
+            className={`px-3 sm:px-6 py-2 sm:py-3 rounded-t-xl transition-all font-medium text-sm sm:text-base ${
               activeTab === tab.id 
                 ? 'bg-slate-800 text-white border-t border-l border-r border-slate-700' 
                 : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
@@ -329,26 +329,26 @@ export default function PaymentSettingsPage() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-slate-800 rounded-b-2xl rounded-tr-2xl p-6 border border-slate-700 border-t-0">
+      <div className="bg-slate-800 rounded-b-2xl rounded-tr-2xl p-3 sm:p-6 border border-slate-700 border-t-0">
         
         {/* Bank Settings Tab */}
         {activeTab === 'bank' && (
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <div>
-              <h3 className="text-lg font-semibold text-white mb-1">Tài khoản ngân hàng nhận tiền</h3>
-              <p className="text-slate-400 text-sm">Tiền thanh toán của học sinh sẽ được chuyển vào tài khoản này</p>
+              <h3 className="text-base sm:text-lg font-semibold text-white mb-1">Tài khoản ngân hàng nhận tiền</h3>
+              <p className="text-slate-400 text-xs sm:text-sm">Tiền thanh toán của học sinh sẽ được chuyển vào tài khoản này</p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
               {/* Form */}
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {/* Bank Select */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">🏦 Ngân hàng *</label>
+                  <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1.5 sm:mb-2">🏦 Ngân hàng *</label>
                   <select
                     value={bankSettings.bankCode}
                     onChange={(e) => setBankSettings({ ...bankSettings, bankCode: e.target.value })}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-xl text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-700 border border-slate-600 rounded-xl text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
                   >
                     {BANKS.map(bank => (
                       <option key={bank.code} value={bank.code}>{bank.logo} {bank.name} ({bank.code})</option>
@@ -358,28 +358,28 @@ export default function PaymentSettingsPage() {
 
                 {/* Account Number */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2"># Số tài khoản *</label>
+                  <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1.5 sm:mb-2"># Số tài khoản *</label>
                   <input
                     type="text"
                     value={bankSettings.accountNumber}
                     onChange={(e) => setBankSettings({ ...bankSettings, accountNumber: e.target.value.replace(/\D/g, '') })}
                     placeholder="Nhập số tài khoản"
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent font-mono text-lg"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent font-mono text-base sm:text-lg"
                   />
-                  <p className="text-slate-500 text-xs mt-1">Có thể dùng Virtual Account (VA) của SePay</p>
+                  <p className="text-slate-500 text-[10px] sm:text-xs mt-1">Có thể dùng Virtual Account (VA) của SePay</p>
                 </div>
 
                 {/* Account Name */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">👤 Tên chủ tài khoản *</label>
+                  <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1.5 sm:mb-2">👤 Tên chủ tài khoản *</label>
                   <input
                     type="text"
                     value={bankSettings.accountName}
                     onChange={(e) => setBankSettings({ ...bankSettings, accountName: e.target.value.toUpperCase() })}
                     placeholder="NGUYEN VAN A"
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent uppercase"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent uppercase text-sm sm:text-base"
                   />
-                  <p className="text-slate-500 text-xs mt-1">Nhập chính xác như trên tài khoản (không dấu, in hoa)</p>
+                  <p className="text-slate-500 text-[10px] sm:text-xs mt-1">Nhập chính xác (không dấu, in hoa)</p>
                 </div>
               </div>
 
@@ -387,39 +387,40 @@ export default function PaymentSettingsPage() {
               <div className="flex flex-col items-center justify-center">
                 {bankSettings.accountNumber ? (
                   <div className="text-center">
-                    <div className="bg-white p-4 rounded-2xl shadow-lg inline-block">
+                    <div className="bg-white p-3 sm:p-4 rounded-2xl shadow-lg inline-block">
                       <img 
                         src={getQRPreviewUrl()} 
                         alt="QR Preview" 
-                        className="w-52 h-52 object-contain"
+                        className="w-40 h-40 sm:w-52 sm:h-52 object-contain"
                       />
                     </div>
-                    <p className="text-slate-400 text-sm mt-3">📱 QR mẫu với số tiền {formatCurrency(199000)}</p>
-                    <p className="text-emerald-400 text-xs mt-1">Quét để test chuyển tiền</p>
+                    <p className="text-slate-400 text-xs sm:text-sm mt-2 sm:mt-3">📱 QR mẫu: {formatCurrency(199000)}</p>
+                    <p className="text-emerald-400 text-[10px] sm:text-xs mt-1">Quét để test chuyển tiền</p>
                   </div>
                 ) : (
-                  <div className="text-center p-8 border-2 border-dashed border-slate-600 rounded-2xl">
-                    <span className="text-4xl">📱</span>
-                    <p className="text-slate-400 mt-2">Nhập số tài khoản để xem QR</p>
+                  <div className="text-center p-6 sm:p-8 border-2 border-dashed border-slate-600 rounded-2xl">
+                    <span className="text-3xl sm:text-4xl">📱</span>
+                    <p className="text-slate-400 mt-2 text-xs sm:text-sm">Nhập số tài khoản để xem QR</p>
                   </div>
                 )}
               </div>
             </div>
 
             {/* Save Bank Button */}
-            <div className="pt-4 border-t border-slate-700">
+            <div className="pt-3 sm:pt-4 border-t border-slate-700">
               <button
                 onClick={handleSaveBank}
                 disabled={isSavingBank}
-                className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-all disabled:opacity-50 flex items-center gap-2"
+                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-all disabled:opacity-50 flex items-center gap-2 text-sm sm:text-base"
               >
                 {isSavingBank ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Đang lưu...
+                    <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span className="hidden sm:inline">Đang lưu...</span>
+                    <span className="sm:hidden">...</span>
                   </>
                 ) : (
-                  <>🏦 Lưu thông tin ngân hàng</>
+                  <>🏦 <span className="hidden sm:inline">Lưu thông tin ngân hàng</span><span className="sm:hidden">Lưu ngân hàng</span></>
                 )}
               </button>
             </div>
@@ -428,20 +429,20 @@ export default function PaymentSettingsPage() {
 
         {/* Webhook Settings Tab */}
         {activeTab === 'webhook' && (
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
+          <div className="space-y-4 sm:space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <h3 className="text-lg font-semibold text-white mb-1">Dịch vụ Webhook (Tự động xác nhận)</h3>
-                <p className="text-slate-400 text-sm">Nhận thông báo real-time khi có tiền vào tài khoản</p>
+                <h3 className="text-base sm:text-lg font-semibold text-white mb-1">Dịch vụ Webhook</h3>
+                <p className="text-slate-400 text-xs sm:text-sm">Nhận thông báo real-time khi có tiền vào</p>
               </div>
               
               {/* Connection Status Badge */}
-              <div className={`px-4 py-2 rounded-full flex items-center gap-2 ${
+              <div className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full flex items-center gap-2 text-xs sm:text-sm w-fit ${
                 connectionStatus === 'connected' ? 'bg-emerald-500/20 text-emerald-400' :
                 connectionStatus === 'checking' ? 'bg-yellow-500/20 text-yellow-400' :
                 'bg-slate-700 text-slate-400'
               }`}>
-                <span className={`w-2 h-2 rounded-full ${
+                <span className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${
                   connectionStatus === 'connected' ? 'bg-emerald-400' :
                   connectionStatus === 'checking' ? 'bg-yellow-400 animate-pulse' :
                   'bg-slate-500'
@@ -453,106 +454,106 @@ export default function PaymentSettingsPage() {
             </div>
 
             {/* Provider Selection */}
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div 
                 onClick={() => setWebhookProvider('sepay')}
-                className={`p-5 border-2 rounded-xl cursor-pointer transition-all relative ${
+                className={`p-3 sm:p-5 border-2 rounded-xl cursor-pointer transition-all relative ${
                   webhookProvider === 'sepay' 
                     ? 'border-purple-500 bg-purple-500/10' 
                     : 'border-slate-600 hover:border-slate-500'
                 }`}
               >
-                <span className="absolute -top-3 left-4 bg-emerald-500 text-white text-xs px-2 py-0.5 rounded font-medium">
+                <span className="absolute -top-2.5 sm:-top-3 left-3 sm:left-4 bg-emerald-500 text-white text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded font-medium">
                   ⭐ Khuyên dùng
                 </span>
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl">🔌</span>
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <span className="text-2xl sm:text-3xl">🔌</span>
                   <div>
-                    <div className="font-semibold text-white text-lg">SePay</div>
-                    <p className="text-emerald-400 text-sm font-medium">Miễn phí hoàn toàn</p>
+                    <div className="font-semibold text-white text-base sm:text-lg">SePay</div>
+                    <p className="text-emerald-400 text-xs sm:text-sm font-medium">Miễn phí</p>
                   </div>
                 </div>
-                <div className="mt-3 space-y-1 text-xs text-slate-400">
+                <div className="mt-2 sm:mt-3 space-y-0.5 sm:space-y-1 text-[10px] sm:text-xs text-slate-400">
                   <p>✓ Không giới hạn giao dịch</p>
                   <p>✓ Webhook real-time</p>
-                  <p>✓ Hỗ trợ 15+ ngân hàng</p>
+                  <p className="hidden sm:block">✓ Hỗ trợ 15+ ngân hàng</p>
                 </div>
-                <a href="https://sepay.vn" target="_blank" rel="noreferrer" className="text-purple-400 text-xs hover:underline inline-flex items-center gap-1 mt-2">
+                <a href="https://sepay.vn" target="_blank" rel="noreferrer" className="text-purple-400 text-[10px] sm:text-xs hover:underline inline-flex items-center gap-1 mt-1.5 sm:mt-2">
                   sepay.vn ↗
                 </a>
               </div>
 
               <div 
                 onClick={() => setWebhookProvider('casso')}
-                className={`p-5 border-2 rounded-xl cursor-pointer transition-all ${
+                className={`p-3 sm:p-5 border-2 rounded-xl cursor-pointer transition-all ${
                   webhookProvider === 'casso' 
                     ? 'border-purple-500 bg-purple-500/10' 
                     : 'border-slate-600 hover:border-slate-500'
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl">🔗</span>
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <span className="text-2xl sm:text-3xl">🔗</span>
                   <div>
-                    <div className="font-semibold text-white text-lg">Casso</div>
-                    <p className="text-slate-400 text-sm">Free 7 TK, 50k/tháng</p>
+                    <div className="font-semibold text-white text-base sm:text-lg">Casso</div>
+                    <p className="text-slate-400 text-xs sm:text-sm">Free 7 TK, 50k/th</p>
                   </div>
                 </div>
-                <div className="mt-3 space-y-1 text-xs text-slate-400">
+                <div className="mt-2 sm:mt-3 space-y-0.5 sm:space-y-1 text-[10px] sm:text-xs text-slate-400">
                   <p>✓ Nhiều ngân hàng</p>
                   <p>✓ Webhook real-time</p>
-                  <p>✓ Dashboard quản lý</p>
+                  <p className="hidden sm:block">✓ Dashboard quản lý</p>
                 </div>
-                <a href="https://casso.vn" target="_blank" rel="noreferrer" className="text-purple-400 text-xs hover:underline inline-flex items-center gap-1 mt-2">
+                <a href="https://casso.vn" target="_blank" rel="noreferrer" className="text-purple-400 text-[10px] sm:text-xs hover:underline inline-flex items-center gap-1 mt-1.5 sm:mt-2">
                   casso.vn ↗
                 </a>
               </div>
             </div>
 
             {/* API Configuration */}
-            <div className="bg-slate-900/50 rounded-xl p-5 space-y-4">
-              <h4 className="font-medium text-white flex items-center gap-2">
+            <div className="bg-slate-900/50 rounded-xl p-3 sm:p-5 space-y-3 sm:space-y-4">
+              <h4 className="font-medium text-white flex items-center gap-2 text-sm sm:text-base">
                 🔐 Cấu hình {webhookProvider === 'sepay' ? 'SePay' : 'Casso'}
               </h4>
 
               {/* API Key */}
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">API Key *</label>
+                <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1.5 sm:mb-2">API Key *</label>
                 <div className="relative">
                   <input
                     type={showApiKey ? 'text' : 'password'}
                     value={webhookSettings.apiKey}
                     onChange={(e) => setWebhookSettings({ ...webhookSettings, apiKey: e.target.value })}
-                    placeholder={hasApiKey ? '••••••••••••' : 'Nhập API Key từ ' + (webhookProvider === 'sepay' ? 'SePay' : 'Casso')}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent pr-24"
+                    placeholder={hasApiKey ? '••••••••••••' : 'Nhập API Key'}
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent pr-16 sm:pr-24 text-sm sm:text-base"
                   />
                   <button
                     type="button"
                     onClick={() => setShowApiKey(!showApiKey)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-sm"
+                    className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs sm:text-sm"
                   >
-                    {showApiKey ? '🙈 Ẩn' : '👁️ Xem'}
+                    {showApiKey ? '🙈' : '👁️'}
                   </button>
                 </div>
                 {hasApiKey && (
-                  <p className="text-emerald-400 text-xs mt-1">✓ API Key đã được lưu. Nhập mới để thay đổi.</p>
+                  <p className="text-emerald-400 text-[10px] sm:text-xs mt-1">✓ API Key đã được lưu</p>
                 )}
               </div>
 
               {/* Webhook URL */}
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">🔗 Webhook URL (Copy vào {webhookProvider === 'sepay' ? 'SePay' : 'Casso'})</label>
+                <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1.5 sm:mb-2">🔗 Webhook URL</label>
                 <div className="flex gap-2">
                   <input
                     type="text"
                     value={webhookUrl}
                     readOnly
-                    className="flex-1 px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-slate-300 text-sm font-mono"
+                    className="flex-1 px-2 sm:px-4 py-2.5 sm:py-3 bg-slate-800 border border-slate-700 rounded-xl text-slate-300 text-[10px] sm:text-sm font-mono truncate"
                   />
                   <button
                     onClick={() => copyToClipboard(webhookUrl)}
-                    className="px-4 py-3 bg-purple-500 text-white rounded-xl hover:bg-purple-600 transition-colors font-medium"
+                    className="px-3 sm:px-4 py-2.5 sm:py-3 bg-purple-500 text-white rounded-xl hover:bg-purple-600 transition-colors font-medium text-sm"
                   >
-                    📋 Copy
+                    📋
                   </button>
                 </div>
               </div>
@@ -561,45 +562,47 @@ export default function PaymentSettingsPage() {
               <button
                 onClick={handleTestWebhook}
                 disabled={isTesting || (!hasApiKey && !webhookSettings.apiKey)}
-                className="w-full py-3 border-2 border-purple-500 text-purple-400 font-medium rounded-xl hover:bg-purple-500/10 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-2.5 sm:py-3 border-2 border-purple-500 text-purple-400 font-medium rounded-xl hover:bg-purple-500/10 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
               >
                 {isTesting ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-purple-400 border-t-transparent rounded-full animate-spin"></div>
-                    Đang kiểm tra...
+                    <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 border-2 border-purple-400 border-t-transparent rounded-full animate-spin"></div>
+                    <span className="hidden sm:inline">Đang kiểm tra...</span>
+                    <span className="sm:hidden">...</span>
                   </>
                 ) : (
-                  <>🔌 Test kết nối Webhook</>
+                  <>🔌 <span className="hidden sm:inline">Test kết nối Webhook</span><span className="sm:hidden">Test kết nối</span></>
                 )}
               </button>
             </div>
 
             {/* Instructions */}
-            <div className="bg-amber-500/10 rounded-xl p-4 border border-amber-500/20">
-              <h4 className="font-medium text-amber-400 mb-2">📋 Hướng dẫn nhanh</h4>
-              <ol className="space-y-1 text-sm text-slate-300 list-decimal ml-4">
+            <div className="bg-amber-500/10 rounded-xl p-3 sm:p-4 border border-amber-500/20">
+              <h4 className="font-medium text-amber-400 mb-2 text-sm sm:text-base">📋 Hướng dẫn nhanh</h4>
+              <ol className="space-y-0.5 sm:space-y-1 text-xs sm:text-sm text-slate-300 list-decimal ml-4">
                 <li>Đăng ký tài khoản tại <a href={`https://${webhookProvider}.vn`} target="_blank" rel="noreferrer" className="text-purple-400 underline">{webhookProvider}.vn</a></li>
                 <li>Liên kết tài khoản ngân hàng</li>
-                <li>Vào <strong className="text-white">Cài đặt → API & Webhooks → Tạo API Key</strong></li>
-                <li>Copy API Key và paste vào ô bên trên</li>
-                <li>Copy <strong className="text-white">Webhook URL</strong> và paste vào {webhookProvider === 'sepay' ? 'SePay' : 'Casso'}</li>
+                <li>Vào <strong className="text-white">Cài đặt → API → Tạo API Key</strong></li>
+                <li>Copy API Key và paste vào ô trên</li>
+                <li>Copy <strong className="text-white">Webhook URL</strong> vào {webhookProvider}</li>
               </ol>
             </div>
 
             {/* Save Webhook Button */}
-            <div className="pt-4 border-t border-slate-700">
+            <div className="pt-3 sm:pt-4 border-t border-slate-700">
               <button
                 onClick={handleSaveWebhook}
                 disabled={isSavingWebhook}
-                className="px-6 py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all disabled:opacity-50 flex items-center gap-2"
+                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all disabled:opacity-50 flex items-center gap-2 text-sm sm:text-base"
               >
                 {isSavingWebhook ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Đang lưu...
+                    <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span className="hidden sm:inline">Đang lưu...</span>
+                    <span className="sm:hidden">...</span>
                   </>
                 ) : (
-                  <>🔗 Lưu cấu hình Webhook</>
+                  <>🔗 <span className="hidden sm:inline">Lưu cấu hình Webhook</span><span className="sm:hidden">Lưu Webhook</span></>
                 )}
               </button>
             </div>

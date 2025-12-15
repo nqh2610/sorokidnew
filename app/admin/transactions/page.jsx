@@ -214,64 +214,64 @@ export default function TransactionsPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Action Buttons */}
-      <div className="flex flex-wrap gap-3 justify-end">
+      <div className="flex flex-wrap gap-2 sm:gap-3 justify-end">
         <button
           onClick={handleDeleteCancelled}
-          className="px-4 py-2 bg-slate-700 text-slate-300 rounded-xl hover:bg-slate-600 text-sm flex items-center gap-2 border border-slate-600 transition-colors"
+          className="px-3 sm:px-4 py-2 bg-slate-700 text-slate-300 rounded-xl hover:bg-slate-600 text-xs sm:text-sm flex items-center gap-1 sm:gap-2 border border-slate-600 transition-colors"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
           </svg>
-          Xóa đơn hủy
+          <span className="hidden sm:inline">Xóa đơn hủy</span>
         </button>
         <button
           onClick={handleDeleteExpired}
-          className="px-4 py-2 bg-red-500/20 text-red-400 rounded-xl hover:bg-red-500/30 text-sm flex items-center gap-2 border border-red-500/30 transition-colors"
+          className="px-3 sm:px-4 py-2 bg-red-500/20 text-red-400 rounded-xl hover:bg-red-500/30 text-xs sm:text-sm flex items-center gap-1 sm:gap-2 border border-red-500/30 transition-colors"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
           </svg>
-          Xóa đơn hết hạn
+          <span className="hidden sm:inline">Xóa đơn hết hạn</span>
         </button>
         <button
           onClick={handleExportExcel}
-          className="px-4 py-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 text-sm flex items-center gap-2 transition-colors"
+          className="px-3 sm:px-4 py-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 text-xs sm:text-sm flex items-center gap-1 sm:gap-2 transition-colors"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
-          Xuất Excel
+          <span className="hidden sm:inline">Xuất Excel</span>
         </button>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-slate-800 rounded-2xl p-5 border border-slate-700">
-          <div className="text-slate-400 text-sm mb-1">Tổng đơn</div>
-          <div className="text-2xl font-bold text-white">{stats.totalOrders}</div>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        <div className="bg-slate-800 rounded-2xl p-3 sm:p-5 border border-slate-700">
+          <div className="text-slate-400 text-xs sm:text-sm mb-1">Tổng đơn</div>
+          <div className="text-xl sm:text-2xl font-bold text-white">{stats.totalOrders}</div>
         </div>
-        <div className="bg-slate-800 rounded-2xl p-5 border border-slate-700">
-          <div className="text-slate-400 text-sm mb-1">Hoàn thành</div>
-          <div className="text-2xl font-bold text-emerald-400">{stats.completedOrders}</div>
+        <div className="bg-slate-800 rounded-2xl p-3 sm:p-5 border border-slate-700">
+          <div className="text-slate-400 text-xs sm:text-sm mb-1">Hoàn thành</div>
+          <div className="text-xl sm:text-2xl font-bold text-emerald-400">{stats.completedOrders}</div>
         </div>
-        <div className="bg-slate-800 rounded-2xl p-5 border border-slate-700">
-          <div className="text-slate-400 text-sm mb-1">Đang chờ</div>
-          <div className="text-2xl font-bold text-amber-400">{stats.pendingOrders}</div>
+        <div className="bg-slate-800 rounded-2xl p-3 sm:p-5 border border-slate-700">
+          <div className="text-slate-400 text-xs sm:text-sm mb-1">Đang chờ</div>
+          <div className="text-xl sm:text-2xl font-bold text-amber-400">{stats.pendingOrders}</div>
         </div>
-        <div className="bg-slate-800 rounded-2xl p-5 border border-slate-700">
-          <div className="text-slate-400 text-sm mb-1">Doanh thu</div>
-          <div className="text-2xl font-bold text-emerald-400">{formatCurrency(stats.totalRevenue)}</div>
+        <div className="bg-slate-800 rounded-2xl p-3 sm:p-5 border border-slate-700">
+          <div className="text-slate-400 text-xs sm:text-sm mb-1">Doanh thu</div>
+          <div className="text-lg sm:text-2xl font-bold text-emerald-400">{formatCurrency(stats.totalRevenue)}</div>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700">
-        <div className="flex flex-wrap gap-4 items-center">
-          <div className="flex-1 min-w-[200px]">
+      <div className="bg-slate-800 rounded-2xl p-3 sm:p-4 border border-slate-700">
+        <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-4 items-stretch sm:items-center">
+          <div className="flex-1 min-w-[150px] sm:min-w-[200px]">
             <div className="relative">
-              <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
               <input
@@ -279,53 +279,55 @@ export default function TransactionsPage() {
                 value={search}
                 onChange={(e) => handleFilterChange(setSearch)(e.target.value)}
                 placeholder="Tìm theo mã đơn, email..."
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full pl-9 sm:pl-10 pr-4 py-2 sm:py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white text-sm placeholder-slate-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               />
             </div>
           </div>
-          <select
-            value={filterStatus}
-            onChange={(e) => handleFilterChange(setFilterStatus)(e.target.value)}
-            className="px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white focus:ring-2 focus:ring-purple-500"
-          >
-            <option value="all">Tất cả trạng thái</option>
-            <option value="completed">Hoàn thành</option>
-            <option value="pending">Đang chờ</option>
-            <option value="cancelled">Đã hủy</option>
-            <option value="expired">Hết hạn</option>
-          </select>
-          <select
-            value={filterPackage}
-            onChange={(e) => handleFilterChange(setFilterPackage)(e.target.value)}
-            className="px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white focus:ring-2 focus:ring-purple-500"
-          >
-            <option value="all">Tất cả gói</option>
-            <option value="basic">Cơ Bản</option>
-            <option value="advanced">Nâng Cao</option>
-          </select>
-          <select
-            value={filterType}
-            onChange={(e) => handleFilterChange(setFilterType)(e.target.value)}
-            className="px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white focus:ring-2 focus:ring-purple-500"
-          >
-            <option value="all">Tất cả loại GD</option>
-            <option value="new">Mua mới</option>
-            <option value="upgrade">Nâng cấp</option>
-            <option value="renew">Gia hạn</option>
-          </select>
-          <button
-            onClick={fetchTransactions}
-            className="p-2.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-xl transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-            </svg>
-          </button>
+          <div className="flex flex-wrap gap-2 sm:gap-4">
+            <select
+              value={filterStatus}
+              onChange={(e) => handleFilterChange(setFilterStatus)(e.target.value)}
+              className="flex-1 sm:flex-none px-3 sm:px-4 py-2 sm:py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white text-sm focus:ring-2 focus:ring-purple-500"
+            >
+              <option value="all">Tất cả trạng thái</option>
+              <option value="completed">Hoàn thành</option>
+              <option value="pending">Đang chờ</option>
+              <option value="cancelled">Đã hủy</option>
+              <option value="expired">Hết hạn</option>
+            </select>
+            <select
+              value={filterPackage}
+              onChange={(e) => handleFilterChange(setFilterPackage)(e.target.value)}
+              className="flex-1 sm:flex-none px-3 sm:px-4 py-2 sm:py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white text-sm focus:ring-2 focus:ring-purple-500"
+            >
+              <option value="all">Tất cả gói</option>
+              <option value="basic">Cơ Bản</option>
+              <option value="advanced">Nâng Cao</option>
+            </select>
+            <select
+              value={filterType}
+              onChange={(e) => handleFilterChange(setFilterType)(e.target.value)}
+              className="hidden sm:block px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white text-sm focus:ring-2 focus:ring-purple-500"
+            >
+              <option value="all">Tất cả loại GD</option>
+              <option value="new">Mua mới</option>
+              <option value="upgrade">Nâng cấp</option>
+              <option value="renew">Gia hạn</option>
+            </select>
+            <button
+              onClick={fetchTransactions}
+              className="p-2 sm:p-2.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-xl transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Table */}
-      <div className="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden">
+      {/* Table - Desktop */}
+      <div className="hidden sm:block bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-slate-700/50 border-b border-slate-700">
@@ -430,13 +432,14 @@ export default function TransactionsPage() {
 
         {/* Pagination */}
         {filteredTransactions.length > 0 && (
-          <div className="px-6 py-4 border-t border-slate-700 flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-4 text-sm text-slate-400">
-              <span>Hiển thị {paginatedTransactions.length} / {filteredTransactions.length} giao dịch</span>
+          <div className="px-4 sm:px-6 py-4 border-t border-slate-700 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-slate-400">
+              <span className="hidden sm:inline">Hiển thị {paginatedTransactions.length} / {filteredTransactions.length} giao dịch</span>
+              <span className="sm:hidden">{paginatedTransactions.length}/{filteredTransactions.length}</span>
               <select
                 value={itemsPerPage}
                 onChange={(e) => { setItemsPerPage(Number(e.target.value)); setCurrentPage(1); }}
-                className="px-3 py-1.5 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm"
+                className="px-2 sm:px-3 py-1.5 bg-slate-700 border border-slate-600 rounded-lg text-white text-xs sm:text-sm"
               >
                 <option value={10}>10/trang</option>
                 <option value={20}>20/trang</option>
@@ -449,59 +452,156 @@ export default function TransactionsPage() {
               <button
                 onClick={() => setCurrentPage(1)}
                 disabled={currentPage === 1}
-                className="px-3 py-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-30 disabled:hover:bg-transparent text-sm"
+                className="px-2 sm:px-3 py-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-30 disabled:hover:bg-transparent text-xs sm:text-sm"
               >
                 ««
               </button>
               <button
                 onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
-                className="px-3 py-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-30 disabled:hover:bg-transparent text-sm"
+                className="px-2 sm:px-3 py-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-30 disabled:hover:bg-transparent text-xs sm:text-sm"
               >
                 «
               </button>
               
-              {/* Page numbers */}
-              {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                let pageNum;
-                if (totalPages <= 5) {
-                  pageNum = i + 1;
-                } else if (currentPage <= 3) {
-                  pageNum = i + 1;
-                } else if (currentPage >= totalPages - 2) {
-                  pageNum = totalPages - 4 + i;
-                } else {
-                  pageNum = currentPage - 2 + i;
-                }
-                return (
-                  <button
-                    key={pageNum}
-                    onClick={() => setCurrentPage(pageNum)}
-                    className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${
-                      currentPage === pageNum ? 'bg-purple-500 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-700'
-                    }`}
-                  >
-                    {pageNum}
-                  </button>
-                );
-              })}
+              {/* Page numbers - hide on very small screens */}
+              <span className="sm:hidden px-3 py-1.5 text-white text-sm">{currentPage}/{totalPages}</span>
+              <div className="hidden sm:flex items-center gap-1">
+                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                  let pageNum;
+                  if (totalPages <= 5) {
+                    pageNum = i + 1;
+                  } else if (currentPage <= 3) {
+                    pageNum = i + 1;
+                  } else if (currentPage >= totalPages - 2) {
+                    pageNum = totalPages - 4 + i;
+                  } else {
+                    pageNum = currentPage - 2 + i;
+                  }
+                  return (
+                    <button
+                      key={pageNum}
+                      onClick={() => setCurrentPage(pageNum)}
+                      className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${
+                        currentPage === pageNum ? 'bg-purple-500 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-700'
+                      }`}
+                    >
+                      {pageNum}
+                    </button>
+                  );
+                })}
+              </div>
               
               <button
                 onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                 disabled={currentPage === totalPages}
-                className="px-3 py-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-30 disabled:hover:bg-transparent text-sm"
+                className="px-2 sm:px-3 py-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-30 disabled:hover:bg-transparent text-xs sm:text-sm"
               >
                 »
               </button>
               <button
                 onClick={() => setCurrentPage(totalPages)}
                 disabled={currentPage === totalPages}
-                className="px-3 py-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-30 disabled:hover:bg-transparent text-sm"
+                className="px-2 sm:px-3 py-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-30 disabled:hover:bg-transparent text-xs sm:text-sm"
               >
                 »»
               </button>
             </div>
           </div>
+        )}
+      </div>
+
+      {/* Mobile Card View */}
+      <div className="sm:hidden space-y-3">
+        {filteredTransactions.length === 0 ? (
+          <div className="bg-slate-800 rounded-2xl p-8 text-center text-slate-400 border border-slate-700">
+            Chưa có giao dịch nào
+          </div>
+        ) : (
+          <>
+            {paginatedTransactions.map((t) => (
+              <div key={t.id} className="bg-slate-800 rounded-2xl p-4 border border-slate-700 space-y-3">
+                {/* Header */}
+                <div className="flex items-center justify-between">
+                  <span className="text-purple-400 font-medium text-sm">{t.orderId}</span>
+                  {getStatusBadge(t.status)}
+                </div>
+                
+                {/* User */}
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-slate-600 rounded-full flex items-center justify-center text-slate-300 text-sm">
+                    {t.user?.name?.[0]?.toUpperCase() || '?'}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium text-white text-sm truncate">{t.user?.name || 'Unknown'}</div>
+                    <div className="text-xs text-slate-400 truncate">{t.user?.email}</div>
+                  </div>
+                </div>
+                
+                {/* Details */}
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div>
+                    <span className="text-slate-500 text-xs">Loại GD</span>
+                    <div>{getTypeBadge(t.transactionType)}</div>
+                  </div>
+                  <div>
+                    <span className="text-slate-500 text-xs">Gói</span>
+                    <div>{getPackageBadge(t.packageType)}</div>
+                  </div>
+                  <div>
+                    <span className="text-slate-500 text-xs">Số tiền</span>
+                    <div className="font-semibold text-white">{formatCurrency(t.amount)}</div>
+                  </div>
+                  <div>
+                    <span className="text-slate-500 text-xs">Thời gian</span>
+                    <div className="text-slate-300 text-xs">{formatDate(t.createdAt)}</div>
+                  </div>
+                </div>
+                
+                {/* Actions */}
+                {t.status === 'pending' && (
+                  <div className="flex gap-2 pt-2 border-t border-slate-700">
+                    <button 
+                      onClick={() => handleConfirmPayment(t.id)}
+                      className="flex-1 py-2 bg-emerald-500/20 text-emerald-400 rounded-lg text-sm font-medium hover:bg-emerald-500/30 transition-colors"
+                    >
+                      ✓ Xác nhận
+                    </button>
+                    <button 
+                      onClick={() => handleCancelOrder(t.id)}
+                      className="flex-1 py-2 bg-red-500/20 text-red-400 rounded-lg text-sm font-medium hover:bg-red-500/30 transition-colors"
+                    >
+                      ✕ Hủy đơn
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))}
+            
+            {/* Mobile Pagination */}
+            {filteredTransactions.length > 0 && (
+              <div className="flex items-center justify-between bg-slate-800 rounded-2xl p-3 border border-slate-700">
+                <span className="text-slate-400 text-xs">{paginatedTransactions.length}/{filteredTransactions.length} giao dịch</span>
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                    className="px-3 py-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-30 text-sm"
+                  >
+                    «
+                  </button>
+                  <span className="px-3 py-1.5 text-white text-sm">{currentPage}/{totalPages}</span>
+                  <button
+                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                    disabled={currentPage === totalPages}
+                    className="px-3 py-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-30 text-sm"
+                  >
+                    »
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

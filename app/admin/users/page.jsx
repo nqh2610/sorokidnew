@@ -450,82 +450,82 @@ export default function UsersPage() {
       )}
 
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-2">👥 Quản lí Người dùng</h1>
-          <p className="text-slate-400 mt-1">Quản lí tài khoản, gói dịch vụ và phân quyền</p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+        <div className="min-w-0 flex-1">
+          <h1 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">👥 Quản lí Người dùng</h1>
+          <p className="text-slate-400 mt-1 text-xs sm:text-sm truncate">Quản lí tài khoản, gói dịch vụ và phân quyền</p>
         </div>
         <button
           onClick={() => setAddUserModal(true)}
-          className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:shadow-lg transition-all flex items-center gap-2"
+          className="w-full sm:w-auto px-4 py-2.5 sm:py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
         >
           ➕ Thêm người dùng
         </button>
       </div>
 
       {/* Enhanced Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700 hover:border-purple-500/50 transition-colors">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center text-xl">👥</div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+        <div className="bg-slate-800 rounded-2xl p-3 sm:p-4 border border-slate-700 hover:border-purple-500/50 transition-colors">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-purple-500/20 flex items-center justify-center text-lg sm:text-xl">👥</div>
             <div>
-              <div className="text-2xl font-bold text-white">{stats.total}</div>
-              <div className="text-slate-400 text-xs">Tổng cộng</div>
+              <div className="text-xl sm:text-2xl font-bold text-white">{stats.total}</div>
+              <div className="text-slate-400 text-[10px] sm:text-xs">Tổng cộng</div>
             </div>
           </div>
         </div>
-        <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700 hover:border-slate-500/50 transition-colors">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-slate-500/20 flex items-center justify-center text-xl">🆓</div>
+        <div className="bg-slate-800 rounded-2xl p-3 sm:p-4 border border-slate-700 hover:border-slate-500/50 transition-colors">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-slate-500/20 flex items-center justify-center text-lg sm:text-xl">🆓</div>
             <div>
-              <div className="text-2xl font-bold text-slate-300">{stats.free}</div>
-              <div className="text-slate-400 text-xs">Miễn phí</div>
+              <div className="text-xl sm:text-2xl font-bold text-slate-300">{stats.free}</div>
+              <div className="text-slate-400 text-[10px] sm:text-xs">Miễn phí</div>
             </div>
           </div>
         </div>
-        <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700 hover:border-blue-500/50 transition-colors">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center text-xl">⭐</div>
+        <div className="bg-slate-800 rounded-2xl p-3 sm:p-4 border border-slate-700 hover:border-blue-500/50 transition-colors">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-blue-500/20 flex items-center justify-center text-lg sm:text-xl">⭐</div>
             <div>
-              <div className="text-2xl font-bold text-blue-400">{stats.basic}</div>
-              <div className="text-slate-400 text-xs">Cơ Bản</div>
+              <div className="text-xl sm:text-2xl font-bold text-blue-400">{stats.basic}</div>
+              <div className="text-slate-400 text-[10px] sm:text-xs">Cơ Bản</div>
             </div>
           </div>
         </div>
-        <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700 hover:border-amber-500/50 transition-colors">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center text-xl">👑</div>
+        <div className="bg-slate-800 rounded-2xl p-3 sm:p-4 border border-slate-700 hover:border-amber-500/50 transition-colors">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-500/20 flex items-center justify-center text-lg sm:text-xl">👑</div>
             <div>
-              <div className="text-2xl font-bold text-amber-400">{stats.advanced}</div>
-              <div className="text-slate-400 text-xs">Nâng Cao</div>
+              <div className="text-xl sm:text-2xl font-bold text-amber-400">{stats.advanced}</div>
+              <div className="text-slate-400 text-[10px] sm:text-xs">Nâng Cao</div>
             </div>
           </div>
         </div>
-        <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700 hover:border-green-500/50 transition-colors">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center text-xl">🟢</div>
+        <div className="bg-slate-800 rounded-2xl p-3 sm:p-4 border border-slate-700 hover:border-green-500/50 transition-colors">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-green-500/20 flex items-center justify-center text-lg sm:text-xl">🟢</div>
             <div>
-              <div className="text-2xl font-bold text-green-400">{stats.activeToday || 0}</div>
-              <div className="text-slate-400 text-xs">Online hôm nay</div>
+              <div className="text-xl sm:text-2xl font-bold text-green-400">{stats.activeToday || 0}</div>
+              <div className="text-slate-400 text-[10px] sm:text-xs">Online hôm nay</div>
             </div>
           </div>
         </div>
-        <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700 hover:border-cyan-500/50 transition-colors">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-cyan-500/20 flex items-center justify-center text-xl">🆕</div>
+        <div className="bg-slate-800 rounded-2xl p-3 sm:p-4 border border-slate-700 hover:border-cyan-500/50 transition-colors hidden sm:block">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-cyan-500/20 flex items-center justify-center text-lg sm:text-xl">🆕</div>
             <div>
-              <div className="text-2xl font-bold text-cyan-400">{stats.newThisWeek || 0}</div>
-              <div className="text-slate-400 text-xs">Mới tuần này</div>
+              <div className="text-xl sm:text-2xl font-bold text-cyan-400">{stats.newThisWeek || 0}</div>
+              <div className="text-slate-400 text-[10px] sm:text-xs">Mới tuần này</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Filters & Actions Bar */}
-      <div className="bg-slate-800 rounded-2xl p-4 border border-slate-700 space-y-4">
+      <div className="bg-slate-800 rounded-2xl p-3 sm:p-4 border border-slate-700 space-y-3 sm:space-y-4">
         {/* Search & View Toggle */}
-        <div className="flex flex-wrap gap-4 items-center">
-          <div className="flex-1 min-w-[250px]">
+        <div className="flex flex-wrap gap-2 sm:gap-4 items-center">
+          <div className="flex-1 min-w-[180px] sm:min-w-[250px]">
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">🔍</span>
               <input
@@ -533,7 +533,7 @@ export default function UsersPage() {
                 value={search}
                 onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
                 placeholder="Tìm theo tên, email, username..."
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 sm:py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white text-sm placeholder-slate-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               />
               {search && (
                 <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">✕</button>
@@ -544,29 +544,29 @@ export default function UsersPage() {
           <div className="flex items-center gap-2 bg-slate-700 rounded-xl p-1">
             <button
               onClick={() => setViewMode('table')}
-              className={`px-3 py-1.5 rounded-lg transition-all ${viewMode === 'table' ? 'bg-purple-500 text-white' : 'text-slate-400 hover:text-white'}`}
+              className={`px-2 sm:px-3 py-1.5 rounded-lg transition-all ${viewMode === 'table' ? 'bg-purple-500 text-white' : 'text-slate-400 hover:text-white'}`}
               title="Dạng bảng"
             >
               📋
             </button>
             <button
               onClick={() => setViewMode('grid')}
-              className={`px-3 py-1.5 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-purple-500 text-white' : 'text-slate-400 hover:text-white'}`}
+              className={`px-2 sm:px-3 py-1.5 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-purple-500 text-white' : 'text-slate-400 hover:text-white'}`}
               title="Dạng lưới"
             >
               📱
             </button>
           </div>
           
-          <button onClick={fetchUsers} className="p-2.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-xl transition-colors" title="Làm mới">🔄</button>
+          <button onClick={fetchUsers} className="p-2 sm:p-2.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-xl transition-colors" title="Làm mới">🔄</button>
         </div>
 
         {/* Filters Row */}
-        <div className="flex flex-wrap gap-3 items-center">
+        <div className="flex flex-wrap gap-2 sm:gap-3 items-center">
           <select
             value={filterTier}
             onChange={(e) => { setFilterTier(e.target.value); setCurrentPage(1); }}
-            className="px-4 py-2 bg-slate-700 border border-slate-600 rounded-xl text-white focus:ring-2 focus:ring-purple-500"
+            className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-xl text-white text-sm focus:ring-2 focus:ring-purple-500"
           >
             <option value="all">🎫 Tất cả gói</option>
             <option value="free">🆓 Miễn phí</option>
@@ -577,7 +577,7 @@ export default function UsersPage() {
           <select
             value={filterRole}
             onChange={(e) => { setFilterRole(e.target.value); setCurrentPage(1); }}
-            className="px-4 py-2 bg-slate-700 border border-slate-600 rounded-xl text-white focus:ring-2 focus:ring-purple-500"
+            className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-xl text-white text-sm focus:ring-2 focus:ring-purple-500"
           >
             <option value="all">👤 Tất cả vai trò</option>
             <option value="user">👤 Người dùng</option>
@@ -587,16 +587,16 @@ export default function UsersPage() {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-4 py-2 bg-slate-700 border border-slate-600 rounded-xl text-white focus:ring-2 focus:ring-purple-500"
+            className="hidden sm:block px-4 py-2 bg-slate-700 border border-slate-600 rounded-xl text-white text-sm focus:ring-2 focus:ring-purple-500"
           >
             {SORT_OPTIONS.map(opt => (
               <option key={opt.value} value={opt.value}>{opt.label}</option>
             ))}
           </select>
           
-          <div className="flex-1"></div>
+          <div className="hidden sm:block flex-1"></div>
           
-          <span className="text-slate-400 text-sm">
+          <span className="hidden sm:inline text-slate-400 text-sm">
             Hiển thị {paginatedUsers.length} / {filteredAndSortedUsers.length} người dùng
           </span>
         </div>
@@ -971,21 +971,21 @@ export default function UsersPage() {
 
       {/* Edit Modal */}
       {editModal && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-lg border border-slate-700 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center gap-3 mb-6">
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-2 sm:p-4">
+          <div className="bg-slate-800 rounded-2xl p-4 sm:p-6 w-full max-w-lg border border-slate-700 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center gap-3 mb-4 sm:mb-6">
               <MonsterAvatar 
                 seed={editModal.id || editModal.email}
-                size={48}
-                className="border-2 border-slate-600"
+                size={40}
+                className="border-2 border-slate-600 sm:w-12 sm:h-12"
                 showBorder={false}
               />
-              <div>
-                <h3 className="text-lg font-bold text-white">Sửa thông tin</h3>
-                <p className="text-slate-400 text-sm">{editModal.email}</p>
+              <div className="min-w-0">
+                <h3 className="text-base sm:text-lg font-bold text-white">Sửa thông tin</h3>
+                <p className="text-slate-400 text-xs sm:text-sm truncate">{editModal.email}</p>
               </div>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-1">Họ tên</label>
                 <input
@@ -1113,9 +1113,9 @@ export default function UsersPage() {
                 )}
               </div>
             </div>
-            <div className="flex justify-end gap-3 mt-6">
-              <button onClick={() => setEditModal(null)} className="px-4 py-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors">Hủy</button>
-              <button onClick={handleSaveEdit} className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors">Lưu thay đổi</button>
+            <div className="flex flex-col sm:flex-row justify-end gap-2 sm:gap-3 mt-4 sm:mt-6">
+              <button onClick={() => setEditModal(null)} className="px-4 py-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors text-sm order-2 sm:order-1">Hủy</button>
+              <button onClick={handleSaveEdit} className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors text-sm order-1 sm:order-2">Lưu thay đổi</button>
             </div>
           </div>
         </div>
@@ -1123,23 +1123,23 @@ export default function UsersPage() {
 
       {/* Package Modal */}
       {packageModal && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-md border border-slate-700">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-2xl">📦</div>
-              <div>
-                <h3 className="text-lg font-bold text-white">Kích hoạt gói</h3>
-                <p className="text-slate-400 text-sm">{packageModal.name || packageModal.email}</p>
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-2 sm:p-4">
+          <div className="bg-slate-800 rounded-2xl p-4 sm:p-6 w-full max-w-md border border-slate-700 max-h-[95vh] overflow-y-auto">
+            <div className="flex items-center gap-3 mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-xl sm:text-2xl">📦</div>
+              <div className="min-w-0">
+                <h3 className="text-base sm:text-lg font-bold text-white">Kích hoạt gói</h3>
+                <p className="text-slate-400 text-xs sm:text-sm truncate">{packageModal.name || packageModal.email}</p>
               </div>
             </div>
-            <p className="text-sm text-slate-400 mb-4 p-3 bg-slate-700/50 rounded-lg">
+            <p className="text-xs sm:text-sm text-slate-400 mb-3 sm:mb-4 p-2 sm:p-3 bg-slate-700/50 rounded-lg">
               💡 Chọn gói để kích hoạt (áp dụng khi khách chuyển khoản thủ công)
             </p>
-            <div className="space-y-3">
+            <div className="space-y-2 sm:space-y-3">
               {Object.entries(TIER_CONFIG).filter(([key]) => key !== 'vip').map(([key, config]) => (
                 <label
                   key={key}
-                  className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                  className={`flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl border-2 cursor-pointer transition-all ${
                     selectedPackage === key ? `${config.borderColor} ${config.bgColor}` : 'border-slate-600 hover:border-slate-500'
                   }`}
                 >
@@ -1149,12 +1149,12 @@ export default function UsersPage() {
                     value={key}
                     checked={selectedPackage === key}
                     onChange={(e) => setSelectedPackage(e.target.value)}
-                    className="w-5 h-5"
+                    className="w-4 h-4 sm:w-5 sm:h-5"
                   />
-                  <span className="text-2xl">{config.icon}</span>
-                  <div className="flex-1">
-                    <div className={`font-medium ${config.color}`}>{config.label}</div>
-                    <div className="text-sm text-slate-400">
+                  <span className="text-xl sm:text-2xl">{config.icon}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className={`font-medium text-sm sm:text-base ${config.color}`}>{config.label}</div>
+                    <div className="text-xs sm:text-sm text-slate-400">
                       {key === 'free' && '3 bài học đầu tiên'}
                       {key === 'basic' && 'Level 1-10 • 199.000đ'}
                       {key === 'advanced' && 'Full 18 Level • 299.000đ'}
@@ -1163,9 +1163,9 @@ export default function UsersPage() {
                 </label>
               ))}
             </div>
-            <div className="flex justify-end gap-3 mt-6">
-              <button onClick={() => setPackageModal(null)} className="px-4 py-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors">Hủy</button>
-              <button onClick={handleActivatePackage} className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">Kích hoạt gói</button>
+            <div className="flex flex-col sm:flex-row justify-end gap-2 sm:gap-3 mt-4 sm:mt-6">
+              <button onClick={() => setPackageModal(null)} className="px-4 py-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors text-sm order-2 sm:order-1">Hủy</button>
+              <button onClick={handleActivatePackage} className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm order-1 sm:order-2">Kích hoạt gói</button>
             </div>
           </div>
         </div>
@@ -1173,31 +1173,31 @@ export default function UsersPage() {
 
       {/* Detail Modal */}
       {detailModal && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl w-full max-w-lg border border-slate-700 max-h-[90vh] flex flex-col">
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-2 sm:p-4">
+          <div className="bg-slate-800 rounded-2xl w-full max-w-lg border border-slate-700 max-h-[95vh] sm:max-h-[90vh] flex flex-col">
             {/* Header - Fixed */}
-            <div className="shrink-0 bg-slate-800 p-5 border-b border-slate-700 flex items-center justify-between rounded-t-2xl">
-              <h3 className="text-lg font-bold text-white">Chi tiết người dùng</h3>
-              <button onClick={() => setDetailModal(null)} className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg">✕</button>
+            <div className="shrink-0 bg-slate-800 p-3 sm:p-5 border-b border-slate-700 flex items-center justify-between rounded-t-2xl">
+              <h3 className="text-base sm:text-lg font-bold text-white">Chi tiết người dùng</h3>
+              <button onClick={() => setDetailModal(null)} className="p-1.5 sm:p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg">✕</button>
             </div>
             
             {/* Scrollable Content */}
-            <div className="flex-1 overflow-y-auto p-5">
+            <div className="flex-1 overflow-y-auto p-3 sm:p-5">
               {/* Avatar & Name */}
-              <div className="flex items-center gap-4 mb-5">
+              <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
                 <div className="relative">
                   <MonsterAvatar 
                     seed={detailModal.id || detailModal.email}
-                    size={72}
-                    className="border-2 border-slate-600"
+                    size={56}
+                    className="border-2 border-slate-600 sm:w-[72px] sm:h-[72px]"
                     showBorder={false}
                   />
                   {detailModal.role === 'admin' && (
-                    <span className="absolute -top-1 -right-1 text-lg">🛡️</span>
+                    <span className="absolute -top-1 -right-1 text-base sm:text-lg">🛡️</span>
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-lg font-bold text-white truncate">{detailModal.name || 'Chưa đặt tên'}</div>
+                  <div className="text-base sm:text-lg font-bold text-white truncate">{detailModal.name || 'Chưa đặt tên'}</div>
                   <div className="text-slate-400 text-sm">@{detailModal.username || 'no-username'}</div>
                   <div className="mt-1 flex items-center gap-2">
                     {getTierBadge(detailModal.tier)}
@@ -1209,117 +1209,117 @@ export default function UsersPage() {
               </div>
               
               {/* Main Stats Grid */}
-              <div className="grid grid-cols-4 gap-2 mb-4">
-                <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl p-3 text-center border border-purple-500/30">
-                  <div className="text-xl font-bold text-white">Lv.{detailModal.level || 1}</div>
-                  <div className="text-purple-400 text-xs">Level</div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3 sm:mb-4">
+                <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl p-2 sm:p-3 text-center border border-purple-500/30">
+                  <div className="text-lg sm:text-xl font-bold text-white">Lv.{detailModal.level || 1}</div>
+                  <div className="text-purple-400 text-[10px] sm:text-xs">Level</div>
                 </div>
-                <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-xl p-3 text-center border border-amber-500/30">
-                  <div className="text-xl font-bold text-amber-400">⭐ {(detailModal.totalStars || 0).toLocaleString()}</div>
-                  <div className="text-amber-400/70 text-xs">Sao</div>
+                <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-xl p-2 sm:p-3 text-center border border-amber-500/30">
+                  <div className="text-lg sm:text-xl font-bold text-amber-400">⭐ {(detailModal.totalStars || 0).toLocaleString()}</div>
+                  <div className="text-amber-400/70 text-[10px] sm:text-xs">Sao</div>
                 </div>
-                <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-xl p-3 text-center border border-cyan-500/30">
-                  <div className="text-xl font-bold text-cyan-400">💎 {detailModal.diamonds || 0}</div>
-                  <div className="text-cyan-400/70 text-xs">Kim cương</div>
+                <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-xl p-2 sm:p-3 text-center border border-cyan-500/30">
+                  <div className="text-lg sm:text-xl font-bold text-cyan-400">💎 {detailModal.diamonds || 0}</div>
+                  <div className="text-cyan-400/70 text-[10px] sm:text-xs">Kim cương</div>
                 </div>
-                <div className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl p-3 text-center border border-green-500/30">
-                  <div className="text-xl font-bold text-green-400">✨ {(detailModal.totalEXP || 0).toLocaleString()}</div>
-                  <div className="text-green-400/70 text-xs">EXP</div>
+                <div className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl p-2 sm:p-3 text-center border border-green-500/30">
+                  <div className="text-lg sm:text-xl font-bold text-green-400">✨ {(detailModal.totalEXP || 0).toLocaleString()}</div>
+                  <div className="text-green-400/70 text-[10px] sm:text-xs">EXP</div>
                 </div>
               </div>
 
               {/* Activity Stats */}
-              <div className="grid grid-cols-2 gap-2 mb-4">
-                <div className="bg-slate-700/50 rounded-xl p-3 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center text-lg">🔥</div>
-                  <div>
-                    <div className="text-white font-bold">{detailModal.streak || 0} ngày</div>
-                    <div className="text-slate-400 text-xs">Streak liên tiếp</div>
+              <div className="grid grid-cols-2 gap-2 mb-3 sm:mb-4">
+                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-orange-500/20 flex items-center justify-center text-base sm:text-lg">🔥</div>
+                  <div className="min-w-0">
+                    <div className="text-white font-bold text-sm sm:text-base">{detailModal.streak || 0} ngày</div>
+                    <div className="text-slate-400 text-[10px] sm:text-xs">Streak</div>
                   </div>
                 </div>
-                <div className="bg-slate-700/50 rounded-xl p-3 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center text-lg">📚</div>
-                  <div>
-                    <div className="text-white font-bold">{detailModal.completedLessons || 0} bài</div>
-                    <div className="text-slate-400 text-xs">Đã hoàn thành</div>
+                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-green-500/20 flex items-center justify-center text-base sm:text-lg">📚</div>
+                  <div className="min-w-0">
+                    <div className="text-white font-bold text-sm sm:text-base">{detailModal.completedLessons || 0} bài</div>
+                    <div className="text-slate-400 text-[10px] sm:text-xs">Hoàn thành</div>
                   </div>
                 </div>
-                <div className="bg-slate-700/50 rounded-xl p-3 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center text-lg">🏆</div>
-                  <div>
-                    <div className="text-white font-bold">{detailModal.totalAchievements || 0}</div>
-                    <div className="text-slate-400 text-xs">Thành tích</div>
+                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-amber-500/20 flex items-center justify-center text-base sm:text-lg">🏆</div>
+                  <div className="min-w-0">
+                    <div className="text-white font-bold text-sm sm:text-base">{detailModal.totalAchievements || 0}</div>
+                    <div className="text-slate-400 text-[10px] sm:text-xs">Thành tích</div>
                   </div>
                 </div>
-                <div className="bg-slate-700/50 rounded-xl p-3 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center text-lg">🎯</div>
-                  <div>
-                    <div className="text-white font-bold">{detailModal.completedQuests || 0}</div>
-                    <div className="text-slate-400 text-xs">Nhiệm vụ</div>
+                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-purple-500/20 flex items-center justify-center text-base sm:text-lg">🎯</div>
+                  <div className="min-w-0">
+                    <div className="text-white font-bold text-sm sm:text-base">{detailModal.completedQuests || 0}</div>
+                    <div className="text-slate-400 text-[10px] sm:text-xs">Nhiệm vụ</div>
                   </div>
                 </div>
-                <div className="bg-slate-700/50 rounded-xl p-3 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center text-lg">⚔️</div>
-                  <div>
-                    <div className="text-white font-bold">{detailModal.totalMatches || 0} trận</div>
-                    <div className="text-slate-400 text-xs">Thi đấu</div>
+                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-red-500/20 flex items-center justify-center text-base sm:text-lg">⚔️</div>
+                  <div className="min-w-0">
+                    <div className="text-white font-bold text-sm sm:text-base">{detailModal.totalMatches || 0} trận</div>
+                    <div className="text-slate-400 text-[10px] sm:text-xs">Thi đấu</div>
                   </div>
                 </div>
-                <div className="bg-slate-700/50 rounded-xl p-3 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center text-lg">⏱️</div>
-                  <div>
-                    <div className="text-white font-bold">{Math.round((detailModal.totalTimeSpent || 0) / 60)} phút</div>
-                    <div className="text-slate-400 text-xs">Thời gian học</div>
+                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-blue-500/20 flex items-center justify-center text-base sm:text-lg">⏱️</div>
+                  <div className="min-w-0">
+                    <div className="text-white font-bold text-sm sm:text-base">{Math.round((detailModal.totalTimeSpent || 0) / 60)} phút</div>
+                    <div className="text-slate-400 text-[10px] sm:text-xs">Thời gian</div>
                   </div>
                 </div>
               </div>
               
               {/* Info Details */}
-              <div className="space-y-2 mb-4">
-                <div className="flex items-center justify-between p-2.5 bg-slate-700/30 rounded-lg">
-                  <span className="text-slate-400 text-sm">📧 Email</span>
-                  <span className="text-white text-sm font-medium truncate ml-2 max-w-[200px]">{detailModal.email}</span>
+              <div className="space-y-2 mb-3 sm:mb-4">
+                <div className="flex items-center justify-between p-2 sm:p-2.5 bg-slate-700/30 rounded-lg">
+                  <span className="text-slate-400 text-xs sm:text-sm">📧 Email</span>
+                  <span className="text-white text-xs sm:text-sm font-medium truncate ml-2 max-w-[150px] sm:max-w-[200px]">{detailModal.email}</span>
                 </div>
-                <div className="flex items-center justify-between p-2.5 bg-slate-700/30 rounded-lg">
-                  <span className="text-slate-400 text-sm">📅 Ngày đăng ký</span>
-                  <span className="text-white text-sm">{formatDate(detailModal.createdAt)}</span>
+                <div className="flex items-center justify-between p-2 sm:p-2.5 bg-slate-700/30 rounded-lg">
+                  <span className="text-slate-400 text-xs sm:text-sm">📅 Đăng ký</span>
+                  <span className="text-white text-xs sm:text-sm">{formatDate(detailModal.createdAt)}</span>
                 </div>
-                <div className="flex items-center justify-between p-2.5 bg-slate-700/30 rounded-lg">
-                  <span className="text-slate-400 text-sm">💳 Kích hoạt gói</span>
-                  <span className="text-white text-sm">{formatDate(detailModal.tierPurchasedAt) || 'Chưa kích hoạt'}</span>
+                <div className="flex items-center justify-between p-2 sm:p-2.5 bg-slate-700/30 rounded-lg">
+                  <span className="text-slate-400 text-xs sm:text-sm">💳 Kích hoạt</span>
+                  <span className="text-white text-xs sm:text-sm">{formatDate(detailModal.tierPurchasedAt) || 'Chưa'}</span>
                 </div>
-                <div className="flex items-center justify-between p-2.5 bg-slate-700/30 rounded-lg">
-                  <span className="text-slate-400 text-sm">🕐 Hoạt động cuối</span>
-                  <span className="text-white text-sm">{formatRelativeTime(detailModal.lastLoginDate)}</span>
+                <div className="flex items-center justify-between p-2 sm:p-2.5 bg-slate-700/30 rounded-lg">
+                  <span className="text-slate-400 text-xs sm:text-sm">🕐 Hoạt động</span>
+                  <span className="text-white text-xs sm:text-sm">{formatRelativeTime(detailModal.lastLoginDate)}</span>
                 </div>
               </div>
             </div>
               
             {/* Quick Actions - Fixed at bottom */}
-            <div className="shrink-0 p-4 border-t border-slate-700 grid grid-cols-2 gap-2">
+            <div className="shrink-0 p-3 sm:p-4 border-t border-slate-700 grid grid-cols-2 gap-2">
               <button
                 onClick={() => { setDetailModal(null); handleOpenEdit(detailModal); }}
-                className="p-2.5 bg-slate-700 text-white rounded-xl hover:bg-slate-600 transition-colors flex items-center justify-center gap-2 text-sm"
+                className="p-2 sm:p-2.5 bg-slate-700 text-white rounded-xl hover:bg-slate-600 transition-colors flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm"
               >
-                ✏️ Sửa thông tin
+                ✏️ <span className="hidden sm:inline">Sửa thông tin</span><span className="sm:hidden">Sửa</span>
               </button>
               <button
                 onClick={() => { setDetailModal(null); handleOpenPackage(detailModal); }}
-                className="p-2.5 bg-purple-500 text-white rounded-xl hover:bg-purple-600 transition-colors flex items-center justify-center gap-2 text-sm"
+                className="p-2 sm:p-2.5 bg-purple-500 text-white rounded-xl hover:bg-purple-600 transition-colors flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm"
               >
-                📦 Kích hoạt gói
+                📦 <span className="hidden sm:inline">Kích hoạt gói</span><span className="sm:hidden">Gói</span>
               </button>
               <button
                 onClick={() => { handleResetPassword(detailModal.id); }}
-                className="p-2.5 bg-amber-500/20 text-amber-400 rounded-xl hover:bg-amber-500/30 transition-colors flex items-center justify-center gap-2 text-sm"
+                className="p-2 sm:p-2.5 bg-amber-500/20 text-amber-400 rounded-xl hover:bg-amber-500/30 transition-colors flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm"
               >
-                🔑 Reset mật khẩu
+                🔑 <span className="hidden sm:inline">Reset mật khẩu</span><span className="sm:hidden">Reset</span>
               </button>
               <button
                 onClick={() => { setDetailModal(null); setDeleteConfirm(detailModal); }}
-                className="p-2.5 bg-red-500/20 text-red-400 rounded-xl hover:bg-red-500/30 transition-colors flex items-center justify-center gap-2 text-sm"
+                className="p-2 sm:p-2.5 bg-red-500/20 text-red-400 rounded-xl hover:bg-red-500/30 transition-colors flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm"
               >
-                🗑️ Xóa tài khoản
+                🗑️ <span className="hidden sm:inline">Xóa tài khoản</span><span className="sm:hidden">Xóa</span>
               </button>
             </div>
           </div>
@@ -1328,41 +1328,41 @@ export default function UsersPage() {
 
       {/* Delete Confirm Modal */}
       {deleteConfirm && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-md border border-slate-700">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center">
-                <svg className="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-2 sm:p-4">
+          <div className="bg-slate-800 rounded-2xl p-4 sm:p-6 w-full max-w-md border border-slate-700">
+            <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-red-500/20 flex items-center justify-center">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white">Xác nhận xóa</h3>
-                <p className="text-slate-400 text-sm">Hành động này không thể hoàn tác</p>
+                <h3 className="text-base sm:text-lg font-bold text-white">Xác nhận xóa</h3>
+                <p className="text-slate-400 text-xs sm:text-sm">Hành động này không thể hoàn tác</p>
               </div>
             </div>
             
-            <div className="bg-slate-700/50 rounded-xl p-4 mb-4">
-              <p className="text-slate-300">
+            <div className="bg-slate-700/50 rounded-xl p-3 sm:p-4 mb-3 sm:mb-4">
+              <p className="text-slate-300 text-sm">
                 Bạn có chắc muốn xóa người dùng <strong className="text-white">{deleteConfirm.name || deleteConfirm.email}</strong>?
               </p>
-              <p className="text-red-400 text-sm mt-2">
-                Tất cả dữ liệu của người dùng này sẽ bị xóa vĩnh viễn, bao gồm tiến trình học tập, thành tích, và lịch sử thanh toán.
+              <p className="text-red-400 text-xs sm:text-sm mt-2">
+                Tất cả dữ liệu sẽ bị xóa vĩnh viễn.
               </p>
             </div>
             
-            <div className="flex gap-3">
+            <div className="flex gap-2 sm:gap-3">
               <button
                 onClick={() => setDeleteConfirm(null)}
-                className="flex-1 px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition-colors"
+                className="flex-1 px-3 sm:px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition-colors text-sm"
               >
                 Hủy
               </button>
               <button
                 onClick={handleDeleteUser}
-                className="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                className="flex-1 px-3 sm:px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-sm"
               >
-                Xóa người dùng
+                Xóa
               </button>
             </div>
           </div>

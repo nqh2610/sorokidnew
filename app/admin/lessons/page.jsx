@@ -616,63 +616,63 @@ export default function AdminLessonsPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-white">📚 Quản lí Bài học</h1>
-          <p className="text-slate-400 mt-1">Quản lí Level (Màn) và Bài học (Nhiệm vụ)</p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+        <div className="min-w-0">
+          <h1 className="text-xl sm:text-2xl font-bold text-white">📚 Quản lí Bài học</h1>
+          <p className="text-slate-400 mt-1 text-xs sm:text-sm truncate">Quản lí Level (Màn) và Bài học (Nhiệm vụ)</p>
         </div>
         <div className="flex gap-2">
           <button
             onClick={() => { setEditingLevel(null); resetLevelForm(); setShowLevelModal(true); }}
-            className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl font-medium hover:shadow-lg transition-all"
+            className="flex-1 sm:flex-none px-3 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl font-medium hover:shadow-lg transition-all text-sm"
           >
-            + Thêm Level
+            + Level
           </button>
           <button
             onClick={() => { setEditingLesson(null); resetLessonForm(); setActiveTab('basic'); setShowLessonModal(true); }}
-            className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:shadow-lg transition-all"
+            className="flex-1 sm:flex-none px-3 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:shadow-lg transition-all text-sm"
           >
-            + Thêm Bài học
+            + Bài học
           </button>
         </div>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-          <div className="text-2xl font-bold text-white">{stats.totalLevels || 0}</div>
-          <div className="text-slate-400 text-sm">Tổng Level</div>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
+        <div className="bg-slate-800 rounded-xl p-3 sm:p-4 border border-slate-700">
+          <div className="text-xl sm:text-2xl font-bold text-white">{stats.totalLevels || 0}</div>
+          <div className="text-slate-400 text-xs sm:text-sm">Tổng Level</div>
         </div>
-        <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-          <div className="text-2xl font-bold text-purple-400">{stats.totalLessons || 0}</div>
-          <div className="text-slate-400 text-sm">Tổng Bài học</div>
+        <div className="bg-slate-800 rounded-xl p-3 sm:p-4 border border-slate-700">
+          <div className="text-xl sm:text-2xl font-bold text-purple-400">{stats.totalLessons || 0}</div>
+          <div className="text-slate-400 text-xs sm:text-sm">Tổng Bài học</div>
         </div>
-        <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-          <div className="text-2xl font-bold text-green-400">{(stats.totalLessons || 0) - (stats.lockedLessons || 0)}</div>
-          <div className="text-slate-400 text-sm">Đã mở khóa</div>
+        <div className="bg-slate-800 rounded-xl p-3 sm:p-4 border border-slate-700">
+          <div className="text-xl sm:text-2xl font-bold text-green-400">{(stats.totalLessons || 0) - (stats.lockedLessons || 0)}</div>
+          <div className="text-slate-400 text-xs sm:text-sm">Đã mở khóa</div>
         </div>
-        <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-          <div className="text-2xl font-bold text-amber-400">{stats.lockedLessons || 0}</div>
-          <div className="text-slate-400 text-sm">Đang khóa</div>
+        <div className="bg-slate-800 rounded-xl p-3 sm:p-4 border border-slate-700">
+          <div className="text-xl sm:text-2xl font-bold text-amber-400">{stats.lockedLessons || 0}</div>
+          <div className="text-slate-400 text-xs sm:text-sm">Đang khóa</div>
         </div>
       </div>
 
       {/* Levels Section */}
       <div className="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
-        <div className="bg-slate-700/50 px-4 py-3 border-b border-slate-700">
-          <h2 className="text-lg font-bold text-white flex items-center gap-2">🎮 Danh sách Level (Màn chơi)</h2>
+        <div className="bg-slate-700/50 px-3 sm:px-4 py-2 sm:py-3 border-b border-slate-700">
+          <h2 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">🎮 Danh sách Level (Màn chơi)</h2>
         </div>
-        <div className="p-4">
+        <div className="p-3 sm:p-4">
           {levels.length === 0 ? (
-            <div className="text-center py-8 text-slate-400">Chưa có Level nào. Nhấn "Thêm Level" để tạo mới.</div>
+            <div className="text-center py-6 sm:py-8 text-slate-400 text-sm sm:text-base">Chưa có Level nào. Nhấn "Thêm Level" để tạo mới.</div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-4">
               {levels.map((level) => (
                 <div
                   key={level.id}
-                  className={`rounded-xl p-4 border-2 transition-all cursor-pointer hover:scale-[1.02] ${
+                  className={`rounded-xl p-3 sm:p-4 border-2 transition-all cursor-pointer hover:scale-[1.02] ${
                     selectedLevel === String(level.id)
                       ? 'bg-purple-500/20 border-purple-500'
                       : 'bg-slate-700/50 border-slate-600 hover:border-slate-500'
@@ -680,21 +680,21 @@ export default function AdminLessonsPage() {
                   onClick={() => setSelectedLevel(selectedLevel === String(level.id) ? '' : String(level.id))}
                 >
                   <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className="text-3xl">{level.icon}</span>
-                      <div>
-                        <div className="text-white font-bold">Level {level.id}</div>
-                        <div className="text-slate-300 text-sm">{level.name}</div>
+                    <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                      <span className="text-2xl sm:text-3xl flex-shrink-0">{level.icon}</span>
+                      <div className="min-w-0">
+                        <div className="text-white font-bold text-sm sm:text-base">Level {level.id}</div>
+                        <div className="text-slate-300 text-xs sm:text-sm truncate">{level.name}</div>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <button onClick={(e) => { e.stopPropagation(); openEditLevelModal(level); }} className="p-1 text-blue-400 hover:bg-blue-500/20 rounded" title="Sửa">✏️</button>
-                      <button onClick={(e) => { e.stopPropagation(); handleDeleteLevel(level.id); }} className="p-1 text-red-400 hover:bg-red-500/20 rounded" title="Xóa">🗑️</button>
+                    <div className="flex items-center gap-0.5 sm:gap-1 flex-shrink-0">
+                      <button onClick={(e) => { e.stopPropagation(); openEditLevelModal(level); }} className="p-1 text-blue-400 hover:bg-blue-500/20 rounded text-sm sm:text-base" title="Sửa">✏️</button>
+                      <button onClick={(e) => { e.stopPropagation(); handleDeleteLevel(level.id); }} className="p-1 text-red-400 hover:bg-red-500/20 rounded text-sm sm:text-base" title="Xóa">🗑️</button>
                     </div>
                   </div>
-                  <div className="mt-2 flex items-center justify-between text-sm">
-                    <span className="text-slate-400">{lessonsByLevel[level.id]?.length || 0} bài học</span>
-                    <span className={level.isActive ? 'text-green-400' : 'text-red-400'}>{level.isActive ? '✓ Hoạt động' : '✗ Tắt'}</span>
+                  <div className="mt-2 flex items-center justify-between text-xs sm:text-sm">
+                    <span className="text-slate-400">{lessonsByLevel[level.id]?.length || 0} bài</span>
+                    <span className={level.isActive ? 'text-green-400' : 'text-red-400'}>{level.isActive ? '✓' : '✗'}</span>
                   </div>
                 </div>
               ))}
@@ -705,24 +705,26 @@ export default function AdminLessonsPage() {
 
       {/* Lessons Table */}
       <div className="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
-        <div className="bg-slate-700/50 px-4 py-3 border-b border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <h2 className="text-lg font-bold text-white flex items-center gap-2">
-            📖 Danh sách Bài học {selectedLevel && `(Level ${selectedLevel})`}
+        <div className="bg-slate-700/50 px-3 sm:px-4 py-2 sm:py-3 border-b border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
+          <h2 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+            📖 <span className="hidden sm:inline">Danh sách</span> Bài học {selectedLevel && `(Lv.${selectedLevel})`}
           </h2>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="🔍 Tìm bài học..."
-              className="px-4 py-2 bg-slate-600 border border-slate-500 rounded-lg text-white placeholder-slate-400 w-48"
+              placeholder="🔍 Tìm..."
+              className="px-3 sm:px-4 py-2 bg-slate-600 border border-slate-500 rounded-lg text-white placeholder-slate-400 text-sm flex-1 sm:flex-none sm:w-48"
             />
             {selectedLevel && (
-              <button onClick={() => setSelectedLevel('')} className="text-sm text-slate-400 hover:text-white">✕ Bỏ lọc</button>
+              <button onClick={() => setSelectedLevel('')} className="text-xs sm:text-sm text-slate-400 hover:text-white whitespace-nowrap">✕ Bỏ lọc</button>
             )}
           </div>
         </div>
-        <div className="overflow-x-auto">
+        
+        {/* Desktop Table */}
+        <div className="hidden sm:block overflow-x-auto">
           <table className="w-full">
             <thead className="bg-slate-700/50">
               <tr>
@@ -790,37 +792,97 @@ export default function AdminLessonsPage() {
           </table>
         </div>
 
+        {/* Mobile Card View */}
+        <div className="sm:hidden p-3 space-y-3">
+          {isLoading ? (
+            <div className="text-center py-8 text-slate-400">Đang tải...</div>
+          ) : paginatedLessons.length === 0 ? (
+            <div className="text-center py-8 text-slate-400 text-sm">
+              {searchQuery ? 'Không tìm thấy bài học phù hợp' : `Chưa có bài học${selectedLevel ? ' trong level này' : ''}`}
+            </div>
+          ) : (
+            paginatedLessons.map((lesson) => {
+              const content = typeof lesson.content === 'string' ? JSON.parse(lesson.content || '{}') : (lesson.content || {});
+              const theory = content.theory || [];
+              const practice = content.practice || [];
+              const diffConfig = getDifficultyConfig(lesson.difficulty);
+              return (
+                <div key={lesson.id} className="bg-slate-700/50 rounded-xl p-3 border border-slate-600">
+                  {/* Header */}
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <div className="flex items-center gap-2">
+                      <span className="px-1.5 py-0.5 bg-blue-500/20 text-blue-400 rounded text-xs font-medium">Lv.{lesson.levelId}</span>
+                      <span className="text-white font-medium text-sm">Bài {lesson.lessonId}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      {lesson.isLocked ? (
+                        <span className="text-red-400 text-sm">🔒</span>
+                      ) : (
+                        <span className="text-green-400 text-sm">✓</span>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {/* Title */}
+                  <div className="text-white font-medium mb-1">{lesson.title}</div>
+                  <div className="text-slate-400 text-xs mb-2 line-clamp-2">{lesson.description}</div>
+                  
+                  {/* Details */}
+                  <div className="flex flex-wrap items-center gap-2 text-xs mb-3">
+                    <span className={`px-1.5 py-0.5 ${diffConfig.bgColor || 'bg-slate-600'} ${diffConfig.color || 'text-slate-300'} rounded`}>
+                      {diffConfig.icon} {diffConfig.label}
+                    </span>
+                    <span className="text-amber-400">⭐{lesson.stars}</span>
+                    <span className="text-cyan-400">📖{theory.length}</span>
+                    <span className="text-purple-400">{formatPracticePreview(practice)}</span>
+                  </div>
+                  
+                  {/* Actions */}
+                  <div className="flex gap-2 pt-2 border-t border-slate-600">
+                    <button onClick={() => openEditLessonModal(lesson)} className="flex-1 py-1.5 text-blue-400 hover:bg-blue-500/20 rounded text-sm">✏️ Sửa</button>
+                    <button onClick={() => handleDeleteLesson(lesson.id)} className="flex-1 py-1.5 text-red-400 hover:bg-red-500/20 rounded text-sm">🗑️ Xóa</button>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+
         {/* Pagination */}
         {filteredLessons.length > 0 && (
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-4 px-4 pb-4">
-            <div className="flex items-center gap-2 text-sm text-slate-400">
-              <span>Hiển thị</span>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 mt-4 px-3 sm:px-4 pb-3 sm:pb-4">
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-400">
+              <span className="hidden sm:inline">Hiển thị</span>
               <select
                 value={itemsPerPage}
                 onChange={(e) => {
                   setItemsPerPage(Number(e.target.value));
                   setCurrentPage(1);
                 }}
-                className="bg-slate-700 border border-slate-600 rounded px-2 py-1 text-white"
+                className="bg-slate-700 border border-slate-600 rounded px-2 py-1 text-white text-xs sm:text-sm"
               >
                 <option value={10}>10</option>
                 <option value={20}>20</option>
                 <option value={50}>50</option>
                 <option value={100}>100</option>
               </select>
-              <span>trong tổng số {filteredLessons.length} bài học</span>
+              <span><span className="hidden sm:inline">trong tổng số </span>{filteredLessons.length} bài</span>
             </div>
             
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2">
               <button
                 onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
-                className="px-3 py-1 bg-slate-700 rounded hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed text-white"
+                className="px-2 sm:px-3 py-1 bg-slate-700 rounded hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm"
               >
                 ←
               </button>
               
-              <div className="flex items-center gap-1">
+              {/* Mobile: Show current/total */}
+              <span className="sm:hidden px-3 py-1 text-white text-sm">{currentPage}/{Math.ceil(filteredLessons.length / itemsPerPage)}</span>
+              
+              {/* Desktop: Page numbers */}
+              <div className="hidden sm:flex items-center gap-1">
                 {Array.from({ length: Math.ceil(filteredLessons.length / itemsPerPage) }, (_, i) => i + 1)
                   .filter(page => {
                     const totalPages = Math.ceil(filteredLessons.length / itemsPerPage);
@@ -851,7 +913,7 @@ export default function AdminLessonsPage() {
               <button
                 onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredLessons.length / itemsPerPage), p + 1))}
                 disabled={currentPage >= Math.ceil(filteredLessons.length / itemsPerPage)}
-                className="px-3 py-1 bg-slate-700 rounded hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed text-white"
+                className="px-2 sm:px-3 py-1 bg-slate-700 rounded hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm"
               >
                 →
               </button>
@@ -993,32 +1055,33 @@ export default function AdminLessonsPage() {
 
       {/* Lesson Modal with Tabs */}
       {showLessonModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col">
-            <div className="p-6 border-b border-slate-700">
-              <h2 className="text-xl font-bold text-white">{editingLesson ? 'Sửa Bài học' : 'Thêm Bài học mới'}</h2>
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4">
+          <div className="bg-slate-800 rounded-2xl w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] flex flex-col">
+            <div className="p-3 sm:p-6 border-b border-slate-700">
+              <h2 className="text-lg sm:text-xl font-bold text-white">{editingLesson ? 'Sửa Bài học' : 'Thêm Bài học mới'}</h2>
               {/* Tabs */}
-              <div className="flex gap-2 mt-4">
+              <div className="flex gap-1 sm:gap-2 mt-3 sm:mt-4 overflow-x-auto">
                 {[
-                  { id: 'basic', label: '📋 Thông tin cơ bản', color: 'blue' },
-                  { id: 'theory', label: '📖 Lý thuyết', color: 'cyan' },
-                  { id: 'practice', label: '🎯 Bài tập', color: 'purple' }
+                  { id: 'basic', label: '📋 Cơ bản', fullLabel: '📋 Thông tin cơ bản', color: 'blue' },
+                  { id: 'theory', label: '📖 Lý thuyết', fullLabel: '📖 Lý thuyết', color: 'cyan' },
+                  { id: 'practice', label: '🎯 Bài tập', fullLabel: '🎯 Bài tập', color: 'purple' }
                 ].map(tab => (
-                  <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)} className={`px-4 py-2 rounded-lg font-medium transition-all ${activeTab === tab.id ? `bg-${tab.color}-500 text-white` : 'bg-slate-700 text-slate-400 hover:text-white'}`}>
-                    {tab.label}
+                  <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)} className={`px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg font-medium transition-all text-xs sm:text-sm whitespace-nowrap flex-shrink-0 ${activeTab === tab.id ? `bg-${tab.color}-500 text-white` : 'bg-slate-700 text-slate-400 hover:text-white'}`}>
+                    <span className="sm:hidden">{tab.label}</span>
+                    <span className="hidden sm:inline">{tab.fullLabel}</span>
                   </button>
                 ))}
               </div>
             </div>
 
-            <form onSubmit={handleLessonSubmit} className="flex-1 overflow-y-auto p-6">
+            <form onSubmit={handleLessonSubmit} className="flex-1 overflow-y-auto p-3 sm:p-6">
               {/* Tab: Basic Info */}
               {activeTab === 'basic' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-1">Level *</label>
-                      <select value={lessonForm.levelId} onChange={(e) => setLessonForm({...lessonForm, levelId: e.target.value})} className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white" required disabled={!!editingLesson}>
+                      <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Level *</label>
+                      <select value={lessonForm.levelId} onChange={(e) => setLessonForm({...lessonForm, levelId: e.target.value})} className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm" required disabled={!!editingLesson}>
                         <option value="">Chọn Level</option>
                         {levels.map(level => (
                           <option key={level.id} value={level.id}>{level.icon} Level {level.id}: {level.name}</option>
@@ -1026,44 +1089,44 @@ export default function AdminLessonsPage() {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-1">Số bài học *</label>
-                      <input type="number" value={lessonForm.lessonId} onChange={(e) => setLessonForm({...lessonForm, lessonId: e.target.value})} className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white" required disabled={!!editingLesson} min={1} />
+                      <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Số bài học *</label>
+                      <input type="number" value={lessonForm.lessonId} onChange={(e) => setLessonForm({...lessonForm, lessonId: e.target.value})} className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm" required disabled={!!editingLesson} min={1} />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-1">Tiêu đề *</label>
-                    <input type="text" value={lessonForm.title} onChange={(e) => setLessonForm({...lessonForm, title: e.target.value})} className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white" placeholder="VD: Làm quen với bàn tính Soroban" required />
+                    <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Tiêu đề *</label>
+                    <input type="text" value={lessonForm.title} onChange={(e) => setLessonForm({...lessonForm, title: e.target.value})} className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm" placeholder="VD: Làm quen với bàn tính Soroban" required />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-1">Mô tả *</label>
-                    <textarea value={lessonForm.description} onChange={(e) => setLessonForm({...lessonForm, description: e.target.value})} className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white" rows={2} placeholder="Mô tả ngắn về bài học này..." required />
+                    <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Mô tả *</label>
+                    <textarea value={lessonForm.description} onChange={(e) => setLessonForm({...lessonForm, description: e.target.value})} className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm" rows={2} placeholder="Mô tả ngắn về bài học này..." required />
                   </div>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2 sm:gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-1">Độ khó</label>
-                      <select value={lessonForm.difficulty} onChange={(e) => setLessonForm({...lessonForm, difficulty: parseInt(e.target.value)})} className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white">
+                      <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Độ khó</label>
+                      <select value={lessonForm.difficulty} onChange={(e) => setLessonForm({...lessonForm, difficulty: parseInt(e.target.value)})} className="w-full px-2 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-xs sm:text-sm">
                         {DIFFICULTY_LEVELS.map(d => (
                           <option key={d.value} value={d.value}>{d.icon} {d.label}</option>
                         ))}
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-1">Thời gian (phút)</label>
-                      <input type="number" value={lessonForm.duration} onChange={(e) => setLessonForm({...lessonForm, duration: parseInt(e.target.value) || 15})} className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white" min={1} />
+                      <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Thời gian</label>
+                      <input type="number" value={lessonForm.duration} onChange={(e) => setLessonForm({...lessonForm, duration: parseInt(e.target.value) || 15})} className="w-full px-2 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm" min={1} />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-1">Sao thưởng</label>
-                      <input type="number" value={lessonForm.stars} onChange={(e) => setLessonForm({...lessonForm, stars: parseInt(e.target.value) || 10})} className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white" min={1} />
+                      <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Sao</label>
+                      <input type="number" value={lessonForm.stars} onChange={(e) => setLessonForm({...lessonForm, stars: parseInt(e.target.value) || 10})} className="w-full px-2 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm" min={1} />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-1">Video URL (tùy chọn)</label>
-                    <input type="url" value={lessonForm.videoUrl} onChange={(e) => setLessonForm({...lessonForm, videoUrl: e.target.value})} className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white" placeholder="https://youtube.com/..." />
+                    <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Video URL (tùy chọn)</label>
+                    <input type="url" value={lessonForm.videoUrl} onChange={(e) => setLessonForm({...lessonForm, videoUrl: e.target.value})} className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm" placeholder="https://youtube.com/..." />
                   </div>
                   <div className="flex items-center gap-4">
-                    <label className="flex items-center gap-2 text-white">
+                    <label className="flex items-center gap-2 text-white text-xs sm:text-sm">
                       <input type="checkbox" checked={lessonForm.isLocked} onChange={(e) => setLessonForm({...lessonForm, isLocked: e.target.checked})} className="w-4 h-4 rounded" />
-                      🔒 Khóa bài học (yêu cầu hoàn thành bài trước)
+                      🔒 Khóa bài học
                     </label>
                   </div>
                 </div>
@@ -1088,13 +1151,13 @@ export default function AdminLessonsPage() {
               )}
             </form>
 
-            <div className="p-6 border-t border-slate-700 flex items-center justify-between">
-              <div className="text-sm text-slate-400">
+            <div className="p-3 sm:p-6 border-t border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="text-xs sm:text-sm text-slate-400">
                 📖 {lessonForm.theory.length} lý thuyết | 🎯 {lessonForm.practice.length} bài tập
               </div>
-              <div className="flex gap-3">
-                <button type="button" onClick={() => setShowLessonModal(false)} className="px-4 py-2 text-slate-400 hover:text-white">Hủy</button>
-                <button type="button" onClick={handleLessonSubmit} className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium">{editingLesson ? 'Cập nhật' : 'Tạo mới'}</button>
+              <div className="flex gap-2 sm:gap-3 w-full sm:w-auto">
+                <button type="button" onClick={() => setShowLessonModal(false)} className="flex-1 sm:flex-none px-4 py-2 text-slate-400 hover:text-white text-sm">Hủy</button>
+                <button type="button" onClick={handleLessonSubmit} className="flex-1 sm:flex-none px-4 sm:px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium text-sm">{editingLesson ? 'Cập nhật' : 'Tạo mới'}</button>
               </div>
             </div>
           </div>

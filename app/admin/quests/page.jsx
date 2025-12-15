@@ -351,76 +351,76 @@ export default function AdminQuestsPage() {
   const getCategoryConfig = (cat) => CATEGORIES.find(c => c.value === cat) || CATEGORIES[0];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-bold text-white">🎯 Quản lí Nhiệm vụ</h1>
-            <p className="text-slate-400 mt-1">Tạo và quản lí nhiệm vụ hàng ngày, hàng tuần, đặc biệt</p>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+          <div className="min-w-0">
+            <h1 className="text-xl sm:text-2xl font-bold text-white">🎯 Quản lí Nhiệm vụ</h1>
+            <p className="text-slate-400 mt-1 text-xs sm:text-sm truncate">Tạo và quản lí nhiệm vụ hàng ngày, hàng tuần</p>
           </div>
           <button
             onClick={() => { setEditingQuest(null); resetForm(); setShowModal(true); }}
-            className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:shadow-lg transition-all"
+            className="w-full sm:w-auto px-3 sm:px-4 py-2.5 sm:py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:shadow-lg transition-all text-sm sm:text-base flex items-center justify-center gap-1"
           >
-            + Thêm nhiệm vụ
+            <span>+</span> <span className="hidden sm:inline">Thêm nhiệm vụ</span><span className="sm:hidden">Thêm nhiệm vụ</span>
           </button>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
-          <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-            <div className="text-2xl font-bold text-white">{stats.total || 0}</div>
-            <div className="text-slate-400 text-sm">Tổng nhiệm vụ</div>
+        <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-4">
+          <div className="bg-slate-800 rounded-xl p-3 sm:p-4 border border-slate-700 text-center sm:text-left">
+            <div className="text-xl sm:text-2xl font-bold text-white">{stats.total || 0}</div>
+            <div className="text-slate-400 text-[10px] sm:text-sm">Tổng nhiệm vụ</div>
           </div>
-          <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-            <div className="text-2xl font-bold text-green-400">{stats.active || 0}</div>
-            <div className="text-slate-400 text-sm">Đang hoạt động</div>
+          <div className="bg-slate-800 rounded-xl p-3 sm:p-4 border border-slate-700 text-center sm:text-left">
+            <div className="text-xl sm:text-2xl font-bold text-green-400">{stats.active || 0}</div>
+            <div className="text-slate-400 text-[10px] sm:text-sm">Hàng ngày</div>
           </div>
-          <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
+          <div className="bg-slate-800 rounded-xl p-3 sm:p-4 border border-slate-700 text-center sm:text-left">
+            <div className="text-xl sm:text-2xl font-bold text-purple-400">{stats.weekly || 0}</div>
+            <div className="text-slate-400 text-[10px] sm:text-sm">Đặc biệt</div>
+          </div>
+          <div className="hidden sm:block bg-slate-800 rounded-xl p-4 border border-slate-700">
             <div className="text-2xl font-bold text-blue-400">{stats.daily || 0}</div>
             <div className="text-slate-400 text-sm">Hàng ngày</div>
           </div>
-          <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-            <div className="text-2xl font-bold text-purple-400">{stats.weekly || 0}</div>
-            <div className="text-slate-400 text-sm">Hàng tuần</div>
-          </div>
-          <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
+          <div className="hidden sm:block bg-slate-800 rounded-xl p-4 border border-slate-700">
             <div className="text-2xl font-bold text-amber-400">{stats.special || 0}</div>
             <div className="text-slate-400 text-sm">Đặc biệt</div>
           </div>
         </div>
 
         {/* Filters */}
-        <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-          <div className="flex flex-wrap items-center gap-4">
-            <div className="flex-1 min-w-[200px]">
+        <div className="bg-slate-800 rounded-xl p-3 sm:p-4 border border-slate-700">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2 sm:gap-4">
+            <div className="flex-1 min-w-[150px]">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="🔍 Tìm kiếm nhiệm vụ..."
-                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400"
+                placeholder="🔍 Tìm kiếm..."
+                className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 text-sm"
               />
             </div>
             <div className="flex items-center gap-2">
-              <label className="text-white font-medium">Loại:</label>
+              <label className="text-white font-medium text-sm hidden sm:block">Loại:</label>
               <select
                 value={filterType}
                 onChange={(e) => setFilterType(e.target.value)}
-                className="px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
+                className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm"
               >
-                <option value="">Tất cả</option>
+                <option value="">Tất cả loại</option>
                 {TYPES.map((type) => (
                   <option key={type.value} value={type.value}>{type.label}</option>
                 ))}
               </select>
             </div>
             <div className="flex items-center gap-2">
-              <label className="text-white font-medium">Danh mục:</label>
+              <label className="text-white font-medium text-sm hidden sm:block">Danh mục:</label>
               <select
                 value={filterCategory}
                 onChange={(e) => setFilterCategory(e.target.value)}
-                className="px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
+                className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm"
               >
                 <option value="">Tất cả</option>
                 {FILTER_CATEGORIES.map((cat) => (
@@ -431,9 +431,9 @@ export default function AdminQuestsPage() {
           </div>
         </div>
 
-        {/* Table */}
+        {/* Table - Desktop */}
         <div className="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
-          <div className="overflow-x-auto">
+          <div className="hidden sm:block overflow-x-auto">
             <table className="w-full">
               <thead className="bg-slate-700/50">
                 <tr>
@@ -538,37 +538,99 @@ export default function AdminQuestsPage() {
             </table>
           </div>
 
+          {/* Mobile Card View */}
+          <div className="sm:hidden p-3 space-y-3">
+            {isLoading ? (
+              <div className="text-center py-8 text-slate-400">Đang tải...</div>
+            ) : paginatedQuests.length === 0 ? (
+              <div className="text-center py-8 text-slate-400 text-sm">
+                {searchQuery ? 'Không tìm thấy nhiệm vụ phù hợp' : 'Chưa có nhiệm vụ nào'}
+              </div>
+            ) : (
+              paginatedQuests.map((quest) => {
+                const typeConfig = getTypeConfig(quest.type);
+                const catConfig = getCategoryConfig(quest.category);
+                const formatted = formatRequirement(quest.requirement);
+                return (
+                  <div key={quest.id} className="bg-slate-700/50 rounded-xl p-3 border border-slate-600">
+                    {/* Header */}
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className={`px-1.5 py-0.5 rounded text-xs ${typeConfig.color}`}>
+                          {typeConfig.label}
+                        </span>
+                        <span className="text-slate-400 text-xs">{catConfig.icon} {catConfig.label}</span>
+                      </div>
+                      <button
+                        onClick={() => handleToggleActive(quest)}
+                        className={`px-2 py-0.5 rounded text-xs ${
+                          quest.isActive ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'
+                        }`}
+                      >
+                        {quest.isActive ? '✓' : '✗'}
+                      </button>
+                    </div>
+                    
+                    {/* Title */}
+                    <div className="text-white font-medium text-sm mb-1">{quest.title}</div>
+                    <div className="text-slate-400 text-xs mb-2 line-clamp-2">{quest.description}</div>
+                    
+                    {/* Details */}
+                    <div className="flex flex-wrap items-center gap-2 text-xs mb-3">
+                      <div className="bg-slate-900/50 px-2 py-1 rounded flex items-center gap-1">
+                        <span>{formatted.icon}</span>
+                        <span className="text-emerald-400">{formatted.text}</span>
+                      </div>
+                      <span className="text-amber-400">⭐{quest.stars}</span>
+                      <span className="text-purple-400">💎{quest.diamonds}</span>
+                    </div>
+                    
+                    {/* Actions */}
+                    <div className="flex gap-2 pt-2 border-t border-slate-600">
+                      <button onClick={() => openEditModal(quest)} className="flex-1 py-1.5 text-blue-400 hover:bg-blue-500/20 rounded text-sm">✏️ Sửa</button>
+                      <button onClick={() => handleDelete(quest.id)} className="flex-1 py-1.5 text-red-400 hover:bg-red-500/20 rounded text-sm">🗑️ Xóa</button>
+                    </div>
+                  </div>
+                );
+              })
+            )}
+          </div>
+
           {/* Pagination */}
           {filteredQuests.length > 0 && (
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-4 px-4 pb-4">
-              <div className="flex items-center gap-2 text-sm text-slate-400">
-                <span>Hiển thị</span>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 mt-4 px-3 sm:px-4 pb-3 sm:pb-4">
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-400">
+                <span className="hidden sm:inline">Hiển thị</span>
                 <select
                   value={itemsPerPage}
                   onChange={(e) => {
                     setItemsPerPage(Number(e.target.value));
                     setCurrentPage(1);
                   }}
-                  className="bg-slate-700 border border-slate-600 rounded px-2 py-1 text-white"
+                  className="bg-slate-700 border border-slate-600 rounded px-2 py-1 text-white text-xs sm:text-sm"
                 >
                   <option value={10}>10</option>
                   <option value={20}>20</option>
                   <option value={50}>50</option>
                   <option value={100}>100</option>
                 </select>
-                <span>trong tổng số {filteredQuests.length} nhiệm vụ</span>
+                <span><span className="hidden sm:inline">trong tổng số </span>{filteredQuests.length}</span>
               </div>
               
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 sm:gap-2">
                 <button
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="px-3 py-1 bg-slate-700 rounded hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed text-white"
+                  className="px-2 sm:px-3 py-1 bg-slate-700 rounded hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm"
                 >
                   ←
                 </button>
                 
-                <div className="flex items-center gap-1">
+                {/* Mobile: Show current/total */}
+                <span className="sm:hidden px-3 py-1 text-white text-sm">{currentPage}/{Math.ceil(filteredQuests.length / itemsPerPage)}</span>
+                
+                {/* Desktop: Page numbers */}
+                <div className="hidden sm:flex items-center gap-1">
                   {Array.from({ length: Math.ceil(filteredQuests.length / itemsPerPage) }, (_, i) => i + 1)
                     .filter(page => {
                       const totalPages = Math.ceil(filteredQuests.length / itemsPerPage);
@@ -610,43 +672,43 @@ export default function AdminQuestsPage() {
 
         {/* Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-slate-800 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-              <div className="p-6 border-b border-slate-700">
-                <h2 className="text-xl font-bold text-white">
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4">
+            <div className="bg-slate-800 rounded-2xl w-full max-w-2xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+              <div className="p-4 sm:p-6 border-b border-slate-700">
+                <h2 className="text-lg sm:text-xl font-bold text-white">
                   {editingQuest ? 'Sửa nhiệm vụ' : 'Thêm nhiệm vụ mới'}
                 </h2>
               </div>
-              <form onSubmit={handleSubmit} className="p-6 space-y-4">
+              <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-3 sm:space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Tiêu đề *</label>
+                  <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Tiêu đề *</label>
                   <input
                     type="text"
                     value={formData.title}
                     onChange={(e) => setFormData({...formData, title: e.target.value})}
-                    className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
+                    className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm"
                     placeholder="VD: Hoàn thành 3 bài học"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Mô tả *</label>
+                  <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Mô tả *</label>
                   <textarea
                     value={formData.description}
                     onChange={(e) => setFormData({...formData, description: e.target.value})}
-                    className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
+                    className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm"
                     rows={2}
                     placeholder="Mô tả chi tiết nhiệm vụ"
                     required
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-1">Loại *</label>
+                    <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Loại *</label>
                     <select
                       value={formData.type}
                       onChange={(e) => setFormData({...formData, type: e.target.value})}
-                      className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
+                      className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm"
                     >
                       {TYPES.map((type) => (
                         <option key={type.value} value={type.value}>{type.label}</option>
@@ -654,11 +716,11 @@ export default function AdminQuestsPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-1">Danh mục *</label>
+                    <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Danh mục *</label>
                     <select
                       value={formData.category}
                       onChange={(e) => setFormData({...formData, category: e.target.value})}
-                      className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
+                      className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm"
                     >
                       {CATEGORIES.map((cat) => (
                         <option key={cat.value} value={cat.value}>{cat.icon} {cat.label}</option>
@@ -668,13 +730,13 @@ export default function AdminQuestsPage() {
                 </div>
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <label className="block text-sm font-medium text-slate-300">Điều kiện hoàn thành *</label>
+                    <label className="block text-xs sm:text-sm font-medium text-slate-300">Điều kiện hoàn thành *</label>
                     <button
                       type="button"
                       onClick={() => setShowAdvanced(!showAdvanced)}
                       className="text-xs text-slate-400 hover:text-white"
                     >
-                      {showAdvanced ? '← Chế độ đơn giản' : 'Chế độ nâng cao (JSON) →'}
+                      {showAdvanced ? '← Đơn giản' : 'Nâng cao →'}
                     </button>
                   </div>
                   
@@ -683,12 +745,12 @@ export default function AdminQuestsPage() {
                       <textarea
                         value={formData.requirement}
                         onChange={(e) => setFormData({...formData, requirement: e.target.value})}
-                        className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white font-mono text-sm"
+                        className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white font-mono text-xs sm:text-sm"
                         rows={4}
                         placeholder='{"type":"complete_lessons","target":3}'
                         required
                       />
-                      <p className="text-xs text-slate-500 mt-1">
+                      <p className="text-[10px] sm:text-xs text-slate-500 mt-1">
                         Các loại: complete_lessons, complete_exercises, win_compete, login_streak, earn_stars, earn_diamonds
                       </p>
                     </div>
@@ -699,39 +761,39 @@ export default function AdminQuestsPage() {
                     />
                   )}
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-1">Sao thưởng ⭐</label>
+                    <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Sao thưởng ⭐</label>
                     <input
                       type="number"
                       value={formData.stars}
                       onChange={(e) => setFormData({...formData, stars: e.target.value})}
-                      className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
+                      className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm"
                       min={0}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-1">Kim cương 💎</label>
+                    <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Kim cương 💎</label>
                     <input
                       type="number"
                       value={formData.diamonds}
                       onChange={(e) => setFormData({...formData, diamonds: e.target.value})}
-                      className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
+                      className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm"
                       min={0}
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Ngày hết hạn (tùy chọn)</label>
+                  <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Ngày hết hạn (tùy chọn)</label>
                   <input
                     type="date"
                     value={formData.expiresAt}
                     onChange={(e) => setFormData({...formData, expiresAt: e.target.value})}
-                    className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
+                    className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm"
                   />
                 </div>
                 <div className="flex items-center gap-4">
-                  <label className="flex items-center gap-2 text-white">
+                  <label className="flex items-center gap-2 text-white text-xs sm:text-sm">
                     <input
                       type="checkbox"
                       checked={formData.isActive}
@@ -741,17 +803,17 @@ export default function AdminQuestsPage() {
                     Kích hoạt nhiệm vụ
                   </label>
                 </div>
-                <div className="flex justify-end gap-3 pt-4 border-t border-slate-700">
+                <div className="flex flex-col sm:flex-row justify-end gap-2 sm:gap-3 pt-4 border-t border-slate-700">
                   <button
                     type="button"
                     onClick={() => setShowModal(false)}
-                    className="px-4 py-2 text-slate-400 hover:text-white"
+                    className="px-4 py-2 text-slate-400 hover:text-white text-sm order-2 sm:order-1"
                   >
                     Hủy
                   </button>
                   <button
                     type="submit"
-                    className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium"
+                    className="px-4 sm:px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium text-sm order-1 sm:order-2"
                   >
                     {editingQuest ? 'Cập nhật' : 'Tạo mới'}
                   </button>
