@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { 
@@ -10,6 +10,8 @@ import {
   ArrowLeft, Rocket, Timer, Lock, Clock, Users, TrendingUp, Heart, MessageCircle
 } from 'lucide-react';
 import TopBar from '@/components/TopBar/TopBar';
+import PaymentSuccessModal from '@/components/Payment/PaymentSuccessModal';
+import { useToast } from '@/components/Toast/ToastContext';
 
 // Thứ tự tier (dùng để so sánh)
 const TIER_ORDER = {
@@ -140,6 +142,7 @@ const FAQ_DATA = [
 export default function PricingPage() {
   const router = useRouter();
   const { data: session, status } = useSession();
+  const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [showQR, setShowQR] = useState(false);
   const [orderInfo, setOrderInfo] = useState(null);
@@ -148,6 +151,13 @@ export default function PricingPage() {
   const [isLoadingPlans, setIsLoadingPlans] = useState(true);
   const [userTier, setUserTier] = useState('free');
   const [purchaseNotification, setPurchaseNotification] = useState(null);
+  
+  // 🎉 State cho Success Modal
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [successTierInfo, setSuccessTierInfo] = useState({ name: '', displayName: '' });
+  
+  // 📌 Ref để track polling interval
+  const pollingRef = useRef(null);
 
   // 🔔 Social Proof: Random "vừa mua" notification với data đa dạng
   useEffect(() => {
@@ -332,21 +342,20 @@ export default function PricingPage() {
       if (data.success) {
         setOrderInfo(data.order);
         setShowQR(true);
-        // Bắt đầu polling kiểm tra trạng thái
-        startPaymentPolling(data.order.orderId);
+        // Bắt đầu polling kiểm tra trạng thái - truyền thêm tên gói
+        startPaymentPolling(data.order.orderId, plan.id, plan.name);
       } else {
-        alert(data.error || 'Có lỗi xảy ra');
+        toast.error(data.error || 'Có lỗi xảy ra');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Có lỗi xảy ra');
+      toast.error('Có lỗi xảy ra');
     } finally {
       setIsLoading(false);
     }
   };
-
-  // Polling kiểm tra trạng thái thanh toán
-  const startPaymentPolling = (orderId) => {
+    }
+    
     const pollInterval = setInterval(async () => {
       try {
         const res = await fetch(`/api/payment/status/${orderId}`);
@@ -354,18 +363,23 @@ export default function PricingPage() {
         
         if (data.status === 'completed') {
           clearInterval(pollInterval);
+          pollingRef.current = null;
           setShowQR(false);
           setOrderInfo(null);
           setSelectedPlan(null);
           // Cập nhật tier mới
           setUserTier(data.tier);
-          // Hiển thị thông báo thành công
-          alert('🎉 Thanh toán thành công! Gói của bạn đã được kích hoạt.');
-          // Refresh trang để cập nhật UI
-          router.refresh();
+          
+          // 🎉 Hiển thị Success Modal thay vì alert xấu
+          setSuccessTierInfo({ 
+            name: data.tier, 
+            displayName: tierDisplayName || data.tierName || 'Gói Premium' 
+          });
+          setShowSuccessModal(true);
         } else if (data.status === 'expired') {
           clearInterval(pollInterval);
-          alert('⏰ Đơn hàng đã hết hạn. Vui lòng tạo đơn mới.');
+          pollingRef.current = null;
+          // Hiển thị thông báo hết hạn với style tốt hơn
           setShowQR(false);
           setOrderInfo(null);
           setSelectedPlan(null);
@@ -374,17 +388,50 @@ export default function PricingPage() {
         console.error('Polling error:', error);
       }
     }, 5000); // Check mỗi 5 giây
+    
+    pollingRef.current = pollInterval;
 
     // Tự động dừng sau 30 phút
     setTimeout(() => {
-      clearInterval(pollInterval);
+      if (pollingRef.current) {
+        clearInterval(pollingRef.current);
+        pollingRef.current = null;
+      }
     }, 30 * 60 * 1000);
   };
+  
+  // Cleanup polling khi unmount
+  useEffect(() => {
+    return () => {
+      if (pollingRef.current) {
+        clearInterval(pollingRef.current);
+      }
+    };
+  }, []);
 
   const closeQRModal = () => {
     setShowQR(false);
     setOrderInfo(null);
     setSelectedPlan(null);
+    // Clear polling khi đóng modal
+    if (pollingRef.current) {
+      clearInterval(pollingRef.current);
+      pollingRef.current = null;
+    }
+  };
+  
+  // Handle success modal close
+  const handleSuccessClose = () => {
+    setShowSuccessModal(false);
+    // Force reload để cập nhật tier trên TopBar và toàn bộ UI
+    window.location.reload();
+  };
+  
+  // Handle go to dashboard
+  const handleGoToDashboard = () => {
+    setShowSuccessModal(false);
+    // Force reload để cập nhật tier trên TopBar trước khi chuyển trang
+    window.location.href = '/dashboard';
   };
 
   const renderFeatureValue = (value) => {
@@ -924,6 +971,15 @@ export default function PricingPage() {
           </div>
         </div>
       )}
+
+      {/* 🎉 SUCCESS MODAL - Thông báo thanh toán thành công với UX đẹp */}
+      <PaymentSuccessModal
+        isOpen={showSuccessModal}
+        onClose={handleSuccessClose}
+        tierName={successTierInfo.name}
+        tierDisplayName={successTierInfo.displayName}
+        onGoToDashboard={handleGoToDashboard}
+      />
 
       {/* 🔔 PURCHASE NOTIFICATION - Popup thông báo mua hàng */}
       {purchaseNotification && (

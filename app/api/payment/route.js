@@ -128,12 +128,22 @@ export async function POST(request) {
     const userId = session.user.id;
 
     // 🔧 TỐI ƯU: Lấy plans và payment settings song song
-    const [plans, paymentSettings, user] = await Promise.all([
+    const [plans, paymentSettings, user, existingPendingOrder] = await Promise.all([
       getPricingPlans(),
       getPaymentSettings(),
       prisma.user.findUnique({
         where: { id: userId },
         select: { tier: true }
+      }),
+      // 🔧 FIX: Tìm đơn hàng pending cùng gói, chưa hết hạn
+      prisma.paymentOrder.findFirst({
+        where: {
+          userId,
+          tier: packageId,
+          status: 'pending',
+          expiresAt: { gt: new Date() }
+        },
+        orderBy: { createdAt: 'desc' }
       })
     ]);
 
@@ -153,6 +163,45 @@ export async function POST(request) {
       return NextResponse.json({ 
         error: 'Bạn chỉ có thể nâng cấp lên gói cao hơn' 
       }, { status: 400 });
+    }
+
+    // 🔧 FIX: Nếu có đơn pending cùng gói và cùng số tiền, tái sử dụng
+    if (existingPendingOrder) {
+      // Tính số tiền cho đơn mới để so sánh
+      let newAmount = targetPlan.price;
+      if (userCurrentTier !== 'free') {
+        const currentPlan = plans.find(p => p.id === userCurrentTier);
+        if (currentPlan) {
+          const difference = targetPlan.price - currentPlan.price;
+          if (difference > 0) newAmount = difference;
+        }
+      }
+      
+      // Nếu số tiền giống nhau, tái sử dụng đơn cũ
+      if (existingPendingOrder.amount === newAmount) {
+        const qrUrl = `https://img.vietqr.io/image/${paymentSettings.bankCode}-${paymentSettings.accountNumber}-compact2.png?amount=${existingPendingOrder.amount}&addInfo=${encodeURIComponent(existingPendingOrder.note)}&accountName=${encodeURIComponent(paymentSettings.accountName)}`;
+        
+        return NextResponse.json({
+          success: true,
+          reused: true, // Flag cho biết đã tái sử dụng
+          order: {
+            orderId: existingPendingOrder.orderCode,
+            amount: existingPendingOrder.amount,
+            packageName: targetPlan.name,
+            targetTier: packageId,
+            previousTier: existingPendingOrder.previousTier,
+            transactionType: existingPendingOrder.transactionType,
+            content: existingPendingOrder.note,
+            qrUrl,
+            expiresAt: existingPendingOrder.expiresAt,
+            paymentInfo: {
+              bankCode: paymentSettings.bankCode,
+              accountNumber: paymentSettings.accountNumber,
+              accountName: paymentSettings.accountName
+            }
+          }
+        });
+      }
     }
 
     // Tính số tiền cần thanh toán

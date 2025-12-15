@@ -1,6 +1,25 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
+import AdminConfirmDialog from '@/components/Admin/AdminConfirmDialog';
+
+// Simple toast component inline
+function Toast({ message, type, onClose }) {
+  useEffect(() => {
+    const timer = setTimeout(onClose, 3000);
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  const bgColor = type === 'success' ? 'bg-emerald-500/20 border-emerald-500/30 text-emerald-400' 
+    : type === 'error' ? 'bg-red-500/20 border-red-500/30 text-red-400'
+    : 'bg-blue-500/20 border-blue-500/30 text-blue-400';
+
+  return (
+    <div className={`fixed top-4 right-4 z-[100] ${bgColor} border backdrop-blur-xl rounded-xl px-4 py-3 shadow-xl animate-slide-in flex items-center gap-2`}>
+      {type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ'} {message}
+    </div>
+  );
+}
 
 export default function TransactionsPage() {
   const [transactions, setTransactions] = useState([]);
@@ -19,6 +38,12 @@ export default function TransactionsPage() {
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+
+  // Toast & Confirm states
+  const [toast, setToast] = useState(null);
+  const [confirmDialog, setConfirmDialog] = useState(null);
+
+  const showToast = (message, type = 'info') => setToast({ message, type });
 
   useEffect(() => {
     fetchTransactions();
@@ -125,84 +150,132 @@ export default function TransactionsPage() {
     window.open(`/api/admin/transactions/export?${params.toString()}`, '_blank');
   };
 
-  const handleDeleteCancelled = async () => {
-    if (!confirm('Bạn có chắc muốn xóa TẤT CẢ đơn hàng đã hủy?')) return;
-    
-    try {
-      const res = await fetch('/api/admin/transactions?status=cancelled', { method: 'DELETE' });
-      const data = await res.json();
-      if (res.ok) {
-        alert(data.message);
-        fetchTransactions();
-      } else {
-        alert(data.error || 'Có lỗi xảy ra');
+  const handleDeleteCancelled = () => {
+    setConfirmDialog({
+      type: 'danger',
+      title: 'Xóa đơn hàng đã hủy',
+      message: 'Bạn có chắc muốn xóa TẤT CẢ đơn hàng đã hủy? Hành động này không thể hoàn tác.',
+      confirmText: 'Xóa tất cả',
+      onConfirm: async () => {
+        try {
+          const res = await fetch('/api/admin/transactions?status=cancelled', { method: 'DELETE' });
+          const data = await res.json();
+          if (res.ok) {
+            showToast(data.message, 'success');
+            fetchTransactions();
+          } else {
+            showToast(data.error || 'Có lỗi xảy ra', 'error');
+          }
+        } catch (error) {
+          showToast('Có lỗi xảy ra khi xóa', 'error');
+        }
+        setConfirmDialog(null);
       }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Có lỗi xảy ra khi xóa');
-    }
+    });
   };
 
-  const handleDeleteExpired = async () => {
-    if (!confirm('Bạn có chắc muốn xóa TẤT CẢ đơn hàng hết hạn?')) return;
-    
-    try {
-      const res = await fetch('/api/admin/transactions?status=expired', { method: 'DELETE' });
-      const data = await res.json();
-      if (res.ok) {
-        alert(data.message);
-        fetchTransactions();
-      } else {
-        alert(data.error || 'Có lỗi xảy ra');
+  const handleDeleteExpired = () => {
+    setConfirmDialog({
+      type: 'danger',
+      title: 'Xóa đơn hàng hết hạn',
+      message: 'Bạn có chắc muốn xóa TẤT CẢ đơn hàng hết hạn? Hành động này không thể hoàn tác.',
+      confirmText: 'Xóa tất cả',
+      onConfirm: async () => {
+        try {
+          const res = await fetch('/api/admin/transactions?status=expired', { method: 'DELETE' });
+          const data = await res.json();
+          if (res.ok) {
+            showToast(data.message, 'success');
+            fetchTransactions();
+          } else {
+            showToast(data.error || 'Có lỗi xảy ra', 'error');
+          }
+        } catch (error) {
+          showToast('Có lỗi xảy ra khi xóa', 'error');
+        }
+        setConfirmDialog(null);
       }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Có lỗi xảy ra khi xóa');
-    }
+    });
   };
 
-  const handleConfirmPayment = async (id) => {
-    if (!confirm('Xác nhận đơn hàng này đã thanh toán?')) return;
-    
-    try {
-      const res = await fetch('/api/admin/transactions', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, status: 'completed' })
-      });
-      const data = await res.json();
-      if (res.ok) {
-        alert(data.message);
-        fetchTransactions();
-      } else {
-        alert(data.error || 'Có lỗi xảy ra');
+  const handleConfirmPayment = (id) => {
+    setConfirmDialog({
+      type: 'success',
+      title: 'Xác nhận thanh toán',
+      message: 'Xác nhận đơn hàng này đã thanh toán thành công? Gói sẽ được kích hoạt ngay.',
+      confirmText: 'Xác nhận',
+      onConfirm: async () => {
+        try {
+          const res = await fetch('/api/admin/transactions', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id, status: 'completed' })
+          });
+          const data = await res.json();
+          if (res.ok) {
+            showToast(data.message, 'success');
+            fetchTransactions();
+          } else {
+            showToast(data.error || 'Có lỗi xảy ra', 'error');
+          }
+        } catch (error) {
+          showToast('Có lỗi xảy ra', 'error');
+        }
+        setConfirmDialog(null);
       }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Có lỗi xảy ra');
-    }
+    });
   };
 
-  const handleCancelOrder = async (id) => {
-    if (!confirm('Bạn có chắc muốn hủy đơn hàng này?')) return;
-    
-    try {
-      const res = await fetch('/api/admin/transactions', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, status: 'cancelled' })
-      });
-      const data = await res.json();
-      if (res.ok) {
-        alert(data.message);
-        fetchTransactions();
-      } else {
-        alert(data.error || 'Có lỗi xảy ra');
+  const handleCancelOrder = (id) => {
+    setConfirmDialog({
+      type: 'warning',
+      title: 'Hủy đơn hàng',
+      message: 'Bạn có chắc muốn hủy đơn hàng này?',
+      confirmText: 'Hủy đơn',
+      onConfirm: async () => {
+        try {
+          const res = await fetch('/api/admin/transactions', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id, status: 'cancelled' })
+          });
+          const data = await res.json();
+          if (res.ok) {
+            showToast(data.message, 'success');
+            fetchTransactions();
+          } else {
+            showToast(data.error || 'Có lỗi xảy ra', 'error');
+          }
+        } catch (error) {
+          showToast('Có lỗi xảy ra', 'error');
+        }
+        setConfirmDialog(null);
       }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Có lỗi xảy ra');
-    }
+    });
+  };
+
+  const handleDeleteSingle = (id) => {
+    setConfirmDialog({
+      type: 'danger',
+      title: 'Xóa vĩnh viễn',
+      message: 'Bạn có chắc muốn XÓA VĨNH VIỄN đơn hàng này? Hành động này không thể hoàn tác.',
+      confirmText: 'Xóa',
+      onConfirm: async () => {
+        try {
+          const res = await fetch(`/api/admin/transactions?id=${id}`, { method: 'DELETE' });
+          const data = await res.json();
+          if (res.ok) {
+            showToast(data.message, 'success');
+            fetchTransactions();
+          } else {
+            showToast(data.error || 'Có lỗi xảy ra', 'error');
+          }
+        } catch (error) {
+          showToast('Có lỗi xảy ra khi xóa', 'error');
+        }
+        setConfirmDialog(null);
+      }
+    });
   };
 
   if (isLoading) {
@@ -406,7 +479,7 @@ export default function TransactionsPage() {
                             </button>
                             <button 
                               onClick={() => handleCancelOrder(t.id)}
-                              className="p-2 text-red-400 hover:bg-red-500/20 rounded-lg transition-colors"
+                              className="p-2 text-amber-400 hover:bg-amber-500/20 rounded-lg transition-colors"
                               title="Hủy đơn"
                             >
                               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -415,6 +488,16 @@ export default function TransactionsPage() {
                             </button>
                           </>
                         )}
+                        {/* Nút xóa riêng từng giao dịch */}
+                        <button 
+                          onClick={() => handleDeleteSingle(t.id)}
+                          className="p-2 text-red-400 hover:bg-red-500/20 rounded-lg transition-colors"
+                          title="Xóa vĩnh viễn"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
                         <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors" title="Xem chi tiết">
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -559,22 +642,31 @@ export default function TransactionsPage() {
                 </div>
                 
                 {/* Actions */}
-                {t.status === 'pending' && (
-                  <div className="flex gap-2 pt-2 border-t border-slate-700">
-                    <button 
-                      onClick={() => handleConfirmPayment(t.id)}
-                      className="flex-1 py-2 bg-emerald-500/20 text-emerald-400 rounded-lg text-sm font-medium hover:bg-emerald-500/30 transition-colors"
-                    >
-                      ✓ Xác nhận
-                    </button>
-                    <button 
-                      onClick={() => handleCancelOrder(t.id)}
-                      className="flex-1 py-2 bg-red-500/20 text-red-400 rounded-lg text-sm font-medium hover:bg-red-500/30 transition-colors"
-                    >
-                      ✕ Hủy đơn
-                    </button>
-                  </div>
-                )}
+                <div className="flex gap-2 pt-2 border-t border-slate-700">
+                  {t.status === 'pending' && (
+                    <>
+                      <button 
+                        onClick={() => handleConfirmPayment(t.id)}
+                        className="flex-1 py-2 bg-emerald-500/20 text-emerald-400 rounded-lg text-sm font-medium hover:bg-emerald-500/30 transition-colors"
+                      >
+                        ✓ Xác nhận
+                      </button>
+                      <button 
+                        onClick={() => handleCancelOrder(t.id)}
+                        className="flex-1 py-2 bg-amber-500/20 text-amber-400 rounded-lg text-sm font-medium hover:bg-amber-500/30 transition-colors"
+                      >
+                        ✕ Hủy
+                      </button>
+                    </>
+                  )}
+                  <button 
+                    onClick={() => handleDeleteSingle(t.id)}
+                    className="py-2 px-3 bg-red-500/20 text-red-400 rounded-lg text-sm font-medium hover:bg-red-500/30 transition-colors"
+                    title="Xóa vĩnh viễn"
+                  >
+                    🗑️
+                  </button>
+                </div>
               </div>
             ))}
             
@@ -604,6 +696,28 @@ export default function TransactionsPage() {
           </>
         )}
       </div>
+
+      {/* Toast */}
+      {toast && (
+        <Toast 
+          message={toast.message} 
+          type={toast.type} 
+          onClose={() => setToast(null)} 
+        />
+      )}
+
+      {/* Confirm Dialog */}
+      {confirmDialog && (
+        <AdminConfirmDialog
+          isOpen={true}
+          onClose={() => setConfirmDialog(null)}
+          onConfirm={confirmDialog.onConfirm}
+          title={confirmDialog.title}
+          message={confirmDialog.message}
+          confirmText={confirmDialog.confirmText}
+          type={confirmDialog.type}
+        />
+      )}
     </div>
   );
 }

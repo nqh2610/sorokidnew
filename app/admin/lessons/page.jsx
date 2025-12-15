@@ -1,6 +1,23 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
+import AdminConfirmDialog from '@/components/Admin/AdminConfirmDialog';
+
+// Simple toast component inline
+function Toast({ message, type, onClose }) {
+  useEffect(() => {
+    const timer = setTimeout(onClose, 3000);
+    return () => clearTimeout(timer);
+  }, [onClose]);
+  const bgColor = type === 'success' ? 'bg-emerald-500/20 border-emerald-500/30 text-emerald-400' 
+    : type === 'error' ? 'bg-red-500/20 border-red-500/30 text-red-400'
+    : 'bg-blue-500/20 border-blue-500/30 text-blue-400';
+  return (
+    <div className={`fixed top-4 right-4 z-[100] ${bgColor} border backdrop-blur-xl rounded-xl px-4 py-3 shadow-xl flex items-center gap-2`}>
+      {type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ'} {message}
+    </div>
+  );
+}
 
 // =============================================
 // CONSTANTS
@@ -347,6 +364,11 @@ export default function AdminLessonsPage() {
   const [editingLesson, setEditingLesson] = useState(null);
   const [editingLevel, setEditingLevel] = useState(null);
   
+  // Toast & Confirm states
+  const [toast, setToast] = useState(null);
+  const [confirmDialog, setConfirmDialog] = useState(null);
+  const showToast = (message, type = 'info') => setToast({ message, type });
+  
   // Tab state for lesson modal
   const [activeTab, setActiveTab] = useState('basic');
   
@@ -478,27 +500,37 @@ export default function AdminLessonsPage() {
         setEditingLesson(null);
         resetLessonForm();
         fetchData();
+        showToast(editingLesson ? 'Cập nhật bài học thành công' : 'Thêm bài học thành công', 'success');
       } else {
-        alert(data.error || 'Có lỗi xảy ra');
+        showToast(data.error || 'Có lỗi xảy ra', 'error');
       }
     } catch (error) {
-      alert('Có lỗi xảy ra');
+      showToast('Có lỗi xảy ra', 'error');
     }
   };
 
-  const handleDeleteLesson = async (id) => {
-    if (!confirm('Bạn có chắc muốn xóa bài học này?')) return;
-    try {
-      const res = await fetch(`/api/admin/lessons?id=${id}`, { method: 'DELETE' });
-      const data = await res.json();
-      if (data.success) {
-        fetchData();
-      } else {
-        alert(data.error);
+  const handleDeleteLesson = (id) => {
+    setConfirmDialog({
+      type: 'danger',
+      title: 'Xóa bài học',
+      message: 'Bạn có chắc muốn xóa bài học này? Hành động này không thể hoàn tác.',
+      confirmText: 'Xóa',
+      onConfirm: async () => {
+        try {
+          const res = await fetch(`/api/admin/lessons?id=${id}`, { method: 'DELETE' });
+          const data = await res.json();
+          if (data.success) {
+            fetchData();
+            showToast('Đã xóa bài học', 'success');
+          } else {
+            showToast(data.error, 'error');
+          }
+        } catch (error) {
+          showToast('Có lỗi xảy ra', 'error');
+        }
+        setConfirmDialog(null);
       }
-    } catch (error) {
-      alert('Có lỗi xảy ra');
-    }
+    });
   };
 
   const openEditLessonModal = (lesson) => {
@@ -567,28 +599,38 @@ export default function AdminLessonsPage() {
         setEditingLevel(null);
         resetLevelForm();
         fetchData();
+        showToast(editingLevel ? 'Cập nhật Level thành công' : 'Thêm Level thành công', 'success');
       } else {
-        alert(data.error || 'Có lỗi xảy ra');
+        showToast(data.error || 'Có lỗi xảy ra', 'error');
       }
     } catch (error) {
-      alert('Có lỗi xảy ra');
+      showToast('Có lỗi xảy ra', 'error');
     }
   };
 
-  const handleDeleteLevel = async (id) => {
-    if (!confirm('Bạn có chắc muốn xóa Level này? Level phải không có bài học nào để có thể xóa.')) return;
-    try {
-      const res = await fetch(`/api/admin/levels?id=${id}`, { method: 'DELETE' });
-      const data = await res.json();
-      if (data.success) {
-        if (selectedLevel === String(id)) setSelectedLevel('');
-        fetchData();
-      } else {
-        alert(data.error);
+  const handleDeleteLevel = (id) => {
+    setConfirmDialog({
+      type: 'danger',
+      title: 'Xóa Level',
+      message: 'Bạn có chắc muốn xóa Level này? Level phải không có bài học nào để có thể xóa.',
+      confirmText: 'Xóa',
+      onConfirm: async () => {
+        try {
+          const res = await fetch(`/api/admin/levels?id=${id}`, { method: 'DELETE' });
+          const data = await res.json();
+          if (data.success) {
+            if (selectedLevel === String(id)) setSelectedLevel('');
+            fetchData();
+            showToast('Đã xóa Level', 'success');
+          } else {
+            showToast(data.error, 'error');
+          }
+        } catch (error) {
+          showToast('Có lỗi xảy ra', 'error');
+        }
+        setConfirmDialog(null);
       }
-    } catch (error) {
-      alert('Có lỗi xảy ra');
-    }
+    });
   };
 
   const openEditLevelModal = (level) => {
@@ -1162,6 +1204,22 @@ export default function AdminLessonsPage() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Toast */}
+      {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
+
+      {/* Confirm Dialog */}
+      {confirmDialog && (
+        <AdminConfirmDialog
+          isOpen={true}
+          onClose={() => setConfirmDialog(null)}
+          onConfirm={confirmDialog.onConfirm}
+          title={confirmDialog.title}
+          message={confirmDialog.message}
+          confirmText={confirmDialog.confirmText}
+          type={confirmDialog.type}
+        />
       )}
     </div>
   );

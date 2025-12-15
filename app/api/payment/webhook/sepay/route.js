@@ -11,6 +11,9 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import crypto from 'crypto';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import { invalidateUserCache } from '@/lib/cache';
+
+export const dynamic = 'force-dynamic';
 
 // Validate webhook payload
 function validateWebhookPayload(body) {
@@ -208,6 +211,7 @@ export async function POST(request) {
         transactionId: transactionId?.toString() || referenceCode,
         paidAmount: transferAmount,
         paidAt: transactionDate ? new Date(transactionDate.replace(' ', 'T')) : new Date(),
+        createdAt: new Date(), // 🔧 FIX: Cập nhật để giao dịch mới lên đầu danh sách
         note: `${order.note || ''} | ✅ Thanh toán thành công qua ${gateway}`,
         updatedAt: new Date()
       }
@@ -221,6 +225,9 @@ export async function POST(request) {
         tierPurchasedAt: new Date()
       }
     });
+
+    // 🔧 FIX: Invalidate cache user để TopBar và Dashboard cập nhật ngay
+    invalidateUserCache(order.userId);
 
     console.log(`✅ User ${order.userId} (${order.user?.email}) upgraded to ${order.tier}`);
 

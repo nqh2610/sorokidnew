@@ -1,6 +1,23 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
+import AdminConfirmDialog from '@/components/Admin/AdminConfirmDialog';
+
+// Simple toast component inline
+function Toast({ message, type, onClose }) {
+  useEffect(() => {
+    const timer = setTimeout(onClose, 3000);
+    return () => clearTimeout(timer);
+  }, [onClose]);
+  const bgColor = type === 'success' ? 'bg-emerald-500/20 border-emerald-500/30 text-emerald-400' 
+    : type === 'error' ? 'bg-red-500/20 border-red-500/30 text-red-400'
+    : 'bg-blue-500/20 border-blue-500/30 text-blue-400';
+  return (
+    <div className={`fixed top-4 right-4 z-[100] ${bgColor} border backdrop-blur-xl rounded-xl px-4 py-3 shadow-xl flex items-center gap-2`}>
+      {type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ'} {message}
+    </div>
+  );
+}
 
 const TYPES = [
   { value: 'daily', label: 'Hàng ngày', color: 'bg-blue-500/20 text-blue-400' },
@@ -201,6 +218,12 @@ export default function AdminQuestsPage() {
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [showModal, setShowModal] = useState(false);
   const [editingQuest, setEditingQuest] = useState(null);
+  
+  // Toast & Confirm states
+  const [toast, setToast] = useState(null);
+  const [confirmDialog, setConfirmDialog] = useState(null);
+  const showToast = (message, type = 'info') => setToast({ message, type });
+  
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -278,27 +301,37 @@ export default function AdminQuestsPage() {
         setEditingQuest(null);
         resetForm();
         fetchQuests();
+        showToast(editingQuest ? 'Cập nhật nhiệm vụ thành công' : 'Thêm nhiệm vụ thành công', 'success');
       } else {
-        alert(data.error || 'Có lỗi xảy ra');
+        showToast(data.error || 'Có lỗi xảy ra', 'error');
       }
     } catch (error) {
-      alert('Có lỗi xảy ra');
+      showToast('Có lỗi xảy ra', 'error');
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!confirm('Bạn có chắc muốn xóa nhiệm vụ này?')) return;
-    try {
-      const res = await fetch(`/api/admin/quests?id=${id}`, { method: 'DELETE' });
-      const data = await res.json();
-      if (data.success) {
-        fetchQuests();
-      } else {
-        alert(data.error);
+  const handleDelete = (id) => {
+    setConfirmDialog({
+      type: 'danger',
+      title: 'Xóa nhiệm vụ',
+      message: 'Bạn có chắc muốn xóa nhiệm vụ này? Hành động này không thể hoàn tác.',
+      confirmText: 'Xóa',
+      onConfirm: async () => {
+        try {
+          const res = await fetch(`/api/admin/quests?id=${id}`, { method: 'DELETE' });
+          const data = await res.json();
+          if (data.success) {
+            fetchQuests();
+            showToast('Đã xóa nhiệm vụ', 'success');
+          } else {
+            showToast(data.error, 'error');
+          }
+        } catch (error) {
+          showToast('Có lỗi xảy ra', 'error');
+        }
+        setConfirmDialog(null);
       }
-    } catch (error) {
-      alert('Có lỗi xảy ra');
-    }
+    });
   };
 
   const handleToggleActive = async (quest) => {
@@ -311,9 +344,10 @@ export default function AdminQuestsPage() {
       const data = await res.json();
       if (data.success) {
         fetchQuests();
+        showToast(quest.isActive ? 'Đã tắt nhiệm vụ' : 'Đã bật nhiệm vụ', 'success');
       }
     } catch (error) {
-      alert('Có lỗi xảy ra');
+      showToast('Có lỗi xảy ra', 'error');
     }
   };
 
@@ -821,6 +855,22 @@ export default function AdminQuestsPage() {
               </form>
             </div>
           </div>
+        )}
+
+        {/* Toast */}
+        {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
+
+        {/* Confirm Dialog */}
+        {confirmDialog && (
+          <AdminConfirmDialog
+            isOpen={true}
+            onClose={() => setConfirmDialog(null)}
+            onConfirm={confirmDialog.onConfirm}
+            title={confirmDialog.title}
+            message={confirmDialog.message}
+            confirmText={confirmDialog.confirmText}
+            type={confirmDialog.type}
+          />
         )}
       </div>
   );

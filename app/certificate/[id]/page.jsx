@@ -6,6 +6,7 @@ import Link from 'next/link';
 import QRCode from 'qrcode';
 import { ArrowLeft, Download, Share2, Printer, Award, Star, CheckCircle } from 'lucide-react';
 import { LogoIcon } from '@/components/Logo/Logo';
+import { useToast } from '@/components/Toast/ToastContext';
 
 export default function CertificateDetailPage() {
   const { id } = useParams();
@@ -15,6 +16,7 @@ export default function CertificateDetailPage() {
   const [qrCodeUrl, setQrCodeUrl] = useState('');
   const [isDownloading, setIsDownloading] = useState(false);
   const certificateRef = useRef(null);
+  const toast = useToast();
 
   useEffect(() => {
     fetchCertificate();
@@ -123,7 +125,7 @@ export default function CertificateDetailPage() {
       
     } catch (error) {
       console.error('Error generating PDF:', error);
-      alert('Có lỗi khi tạo PDF. Vui lòng thử lại!');
+      toast.error('Có lỗi khi tạo PDF. Vui lòng thử lại!');
     } finally {
       setIsDownloading(false);
     }
@@ -148,7 +150,7 @@ export default function CertificateDetailPage() {
       }
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert('Đã copy link chứng chỉ!');
+      toast.success('Đã copy link chứng chỉ!');
     }
   };
 
@@ -378,7 +380,7 @@ export default function CertificateDetailPage() {
                 navigator.clipboard.writeText(
                   `${window.location.origin}/api/certificate/verify/${certificate.code}`
                 );
-                alert('Đã copy link!');
+                toast.success('Đã copy link!');
               }}
               className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
               title="Copy link"

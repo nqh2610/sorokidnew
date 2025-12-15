@@ -145,9 +145,10 @@ export async function POST(request) {
       }
     });
 
-    // 🔧 FIX: Xóa cache pricing để cập nhật ngay lập tức
+    // 🔧 FIX: Xóa TẤT CẢ cache pricing để cập nhật ngay lập tức
     cache.delete('pricing_plans_public');
-    cache.deletePattern('pricing');
+    cache.delete('pricing_plans');  // Cache trong API payment
+    cache.deletePattern('pricing');  // Các cache khác có prefix pricing
 
     return NextResponse.json({ 
       success: true, 
@@ -213,9 +214,10 @@ export async function PUT(request) {
       }
     });
 
-    // 🔧 FIX: Xóa cache pricing để cập nhật ngay lập tức
+    // 🔧 FIX: Xóa TẤT CẢ cache pricing để cập nhật ngay lập tức
     cache.delete('pricing_plans_public');
-    cache.deletePattern('pricing');
+    cache.delete('pricing_plans');  // Cache trong API payment
+    cache.deletePattern('pricing');  // Các cache khác có prefix pricing
 
     return NextResponse.json({ 
       success: true, 
@@ -280,9 +282,10 @@ export async function DELETE(request) {
       }
     });
 
-    // 🔧 FIX: Xóa cache pricing để cập nhật ngay lập tức
+    // 🔧 FIX: Xóa TẤT CẢ cache pricing để cập nhật ngay lập tức
     cache.delete('pricing_plans_public');
-    cache.deletePattern('pricing');
+    cache.delete('pricing_plans');  // Cache trong API payment
+    cache.deletePattern('pricing');  // Các cache khác có prefix pricing
 
     return NextResponse.json({ 
       success: true, 

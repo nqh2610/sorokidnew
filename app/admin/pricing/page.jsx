@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import AdminConfirmDialog from '@/components/Admin/AdminConfirmDialog';
 
 const ICONS = ['Gift', 'Star', 'Crown', 'Zap', 'Shield', 'Award', 'Rocket', 'Diamond'];
 
@@ -15,6 +16,7 @@ export default function PricingAdminPage() {
   const [message, setMessage] = useState({ type: '', text: '' });
   const [editingPlan, setEditingPlan] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [confirmDialog, setConfirmDialog] = useState(null);
 
   useEffect(() => {
     fetchPlans();
@@ -57,22 +59,29 @@ export default function PricingAdminPage() {
     }
   };
 
-  const handleDeletePlan = async (planId) => {
+  const handleDeletePlan = (planId) => {
     if (planId === 'free') {
       setMessage({ type: 'error', text: 'Không thể xóa gói miễn phí!' });
       return;
     }
 
-    if (!confirm('Bạn có chắc muốn xóa gói này?')) return;
-
-    setIsSaving(true);
-    const newPlans = plans.filter(p => p.id !== planId);
-    const success = await savePlansToDb(newPlans);
-    if (success) {
-      setPlans(newPlans);
-      setMessage({ type: 'success', text: '✅ Đã xóa gói thành công!' });
-    }
-    setIsSaving(false);
+    setConfirmDialog({
+      type: 'danger',
+      title: 'Xóa gói',
+      message: 'Bạn có chắc muốn xóa gói này? Hành động này không thể hoàn tác.',
+      confirmText: 'Xóa',
+      onConfirm: async () => {
+        setIsSaving(true);
+        const newPlans = plans.filter(p => p.id !== planId);
+        const success = await savePlansToDb(newPlans);
+        if (success) {
+          setPlans(newPlans);
+          setMessage({ type: 'success', text: '✅ Đã xóa gói thành công!' });
+        }
+        setIsSaving(false);
+        setConfirmDialog(null);
+      }
+    });
   };
 
   const handleEditPlan = (plan) => {
@@ -535,6 +544,18 @@ export default function PricingAdminPage() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Admin Confirm Dialog */}
+      {confirmDialog && (
+        <AdminConfirmDialog
+          type={confirmDialog.type}
+          title={confirmDialog.title}
+          message={confirmDialog.message}
+          confirmText={confirmDialog.confirmText}
+          onConfirm={confirmDialog.onConfirm}
+          onCancel={() => setConfirmDialog(null)}
+        />
       )}
 
     </div>

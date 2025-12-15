@@ -5,12 +5,14 @@ import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { ArrowLeft, Award, CheckCircle, Circle, Lock, ChevronRight, ChevronDown, Star, Trophy, Sparkles, Target, BookOpen, Swords, Brain, Zap, TrendingUp, Download, Eye } from 'lucide-react';
 import TopBar from '@/components/TopBar/TopBar';
+import { useToast } from '@/components/Toast/ToastContext';
 
 export default function CertificatePage() {
   const { data: session } = useSession();
   const [progressData, setProgressData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [claimingCert, setClaimingCert] = useState(null);
+  const toast = useToast();
 
   useEffect(() => {
     fetchProgress();
@@ -40,13 +42,13 @@ export default function CertificatePage() {
       });
       const data = await res.json();
       if (data.success) {
-        alert('🎉 Chúc mừng! Bạn đã nhận được chứng chỉ!');
+        toast.success('🎉 Chúc mừng! Bạn đã nhận được chứng chỉ!');
         fetchProgress(); // Refresh
       } else {
-        alert(data.error || 'Có lỗi xảy ra');
+        toast.error(data.error || 'Có lỗi xảy ra');
       }
     } catch (error) {
-      alert('Có lỗi xảy ra');
+      toast.error('Có lỗi xảy ra');
     } finally {
       setClaimingCert(null);
     }

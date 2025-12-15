@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import { invalidateUserCache } from '@/lib/cache';
 
 export const dynamic = 'force-dynamic';
 
@@ -189,14 +190,19 @@ export async function PUT(request) {
       updateData.paidAt = new Date();
       updateData.paidAmount = order.amount;
       
-      // Update user tier
+      // Update user tier - FIX: dùng order.tier thay vì order.tierName
       await prisma.user.update({
         where: { id: order.userId },
         data: {
-          tier: order.tierName,
+          tier: order.tier,
           tierPurchasedAt: new Date()
         }
       });
+      
+      // 🔧 Invalidate cache để user thấy tier mới ngay lập tức
+      invalidateUserCache(order.userId);
+      
+      console.log(`✅ Admin confirmed payment for user ${order.userId}, upgraded to ${order.tier}`);
     }
 
     await prisma.paymentOrder.update({

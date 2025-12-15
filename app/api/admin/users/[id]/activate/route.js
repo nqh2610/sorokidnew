@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { invalidateUserCache } from '@/lib/cache';
 
 // POST /api/admin/users/[id]/activate - Kích hoạt gói cho user
 export async function POST(request, { params }) {
@@ -34,6 +35,10 @@ export async function POST(request, { params }) {
         tierPurchasedAt: tier !== 'free' ? new Date() : null
       }
     });
+    
+    // 🔧 Invalidate cache để user thấy tier mới ngay lập tức
+    invalidateUserCache(id);
+    console.log(`✅ Admin activated ${tier} for user ${id}`);
 
     if (tier === 'free') {
       return NextResponse.json({ success: true, message: 'Đã chuyển về gói miễn phí' });
@@ -48,7 +53,7 @@ export async function POST(request, { params }) {
         data: {
           orderCode,
           userId: id,
-          tierName: tier,
+          tier: tier,
           amount: amount,
           paidAmount: amount,
           status: 'completed',

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { MonsterAvatar } from '@/components/MonsterAvatar';
+import AdminConfirmDialog from '@/components/Admin/AdminConfirmDialog';
 
 // =============================================
 // CONSTANTS
@@ -68,6 +69,7 @@ export default function UsersPage() {
   const [editForm, setEditForm] = useState({ name: '', email: '', username: '', role: 'user' });
   const [newUserForm, setNewUserForm] = useState({ name: '', email: '', username: '', password: '', tier: 'free' });
   const [toast, setToast] = useState(null);
+  const [confirmDialog, setConfirmDialog] = useState(null);
   
   // Certificate states for edit modal
   const [userCertificates, setUserCertificates] = useState([]);
@@ -243,24 +245,37 @@ export default function UsersPage() {
       'deactivate': 'free'
     };
     
-    if (!confirm(`Bạn có chắc muốn thực hiện hành động này cho ${selectedUsers.length} người dùng?`)) return;
-    
-    try {
-      const tier = tierMap[bulkAction];
-      await Promise.all(selectedUsers.map(userId => 
-        fetch(`/api/admin/users/${userId}/activate`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ tier })
-        })
-      ));
-      fetchUsers();
-      showToast(`Đã cập nhật ${selectedUsers.length} người dùng`);
-      setSelectedUsers([]);
-      setBulkAction('');
-    } catch (error) {
-      showToast('Có lỗi xảy ra', 'error');
-    }
+    const actionLabels = {
+      'activate_basic': 'kích hoạt gói Cơ Bản',
+      'activate_advanced': 'kích hoạt gói Nâng Cao',
+      'deactivate': 'chuyển về Miễn phí'
+    };
+
+    setConfirmDialog({
+      type: 'warning',
+      title: 'Xác nhận hành động hàng loạt',
+      message: `Bạn có chắc muốn ${actionLabels[bulkAction]} cho ${selectedUsers.length} người dùng?`,
+      confirmText: 'Thực hiện',
+      onConfirm: async () => {
+        try {
+          const tier = tierMap[bulkAction];
+          await Promise.all(selectedUsers.map(userId => 
+            fetch(`/api/admin/users/${userId}/activate`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ tier })
+            })
+          ));
+          fetchUsers();
+          showToast(`Đã cập nhật ${selectedUsers.length} người dùng`);
+          setSelectedUsers([]);
+          setBulkAction('');
+        } catch (error) {
+          showToast('Có lỗi xảy ra', 'error');
+        }
+        setConfirmDialog(null);
+      }
+    });
   };
 
   const handleOpenEdit = async (user) => {
@@ -406,25 +421,32 @@ export default function UsersPage() {
     }
   };
 
-  const handleResetPassword = async (userId) => {
-    if (!confirm('Bạn có chắc muốn reset mật khẩu cho người dùng này?')) return;
-    
-    try {
-      const res = await fetch(`/api/admin/users/${userId}/reset-password`, {
-        method: 'POST'
-      });
-      if (res.ok) {
-        const data = await res.json();
-        // Copy to clipboard
-        navigator.clipboard.writeText(data.newPassword);
-        showToast(`Mật khẩu mới: ${data.newPassword} (đã copy vào clipboard)`);
-      } else {
-        showToast('Có lỗi xảy ra', 'error');
+  const handleResetPassword = (userId) => {
+    setConfirmDialog({
+      type: 'warning',
+      title: 'Reset mật khẩu',
+      message: 'Bạn có chắc muốn reset mật khẩu cho người dùng này? Mật khẩu mới sẽ được tạo tự động.',
+      confirmText: 'Reset',
+      onConfirm: async () => {
+        try {
+          const res = await fetch(`/api/admin/users/${userId}/reset-password`, {
+            method: 'POST'
+          });
+          if (res.ok) {
+            const data = await res.json();
+            // Copy to clipboard
+            navigator.clipboard.writeText(data.newPassword);
+            showToast(`Mật khẩu mới: ${data.newPassword} (đã copy vào clipboard)`);
+          } else {
+            showToast('Có lỗi xảy ra', 'error');
+          }
+        } catch (error) {
+          console.error('Error resetting password:', error);
+          showToast('Có lỗi xảy ra', 'error');
+        }
+        setConfirmDialog(null);
       }
-    } catch (error) {
-      console.error('Error resetting password:', error);
-      showToast('Có lỗi xảy ra', 'error');
-    }
+    });
   };
 
   if (isLoading) {
@@ -1435,6 +1457,18 @@ export default function UsersPage() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Admin Confirm Dialog */}
+      {confirmDialog && (
+        <AdminConfirmDialog
+          type={confirmDialog.type}
+          title={confirmDialog.title}
+          message={confirmDialog.message}
+          confirmText={confirmDialog.confirmText}
+          onConfirm={confirmDialog.onConfirm}
+          onCancel={() => setConfirmDialog(null)}
+        />
       )}
     </div>
   );
