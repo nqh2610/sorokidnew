@@ -5,12 +5,12 @@ import prisma from '@/lib/prisma';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
 import { cache, CACHE_KEYS, CACHE_TTL } from '@/lib/cache';
 import { invalidateUserCache } from '@/lib/cache';
+import { withApiProtection, withTimeout } from '@/lib/apiWrapper';
 
 export const dynamic = 'force-dynamic';
 
 // POST /api/exercises - Save exercise result
-export async function POST(request) {
-  try {
+export const POST = withApiProtection(async (request) => {
     // 🔒 Rate limiting cho write operations
     const rateLimitError = checkRateLimit(request, RATE_LIMITS.MODERATE);
     if (rateLimitError) {
@@ -64,27 +64,31 @@ export async function POST(request) {
     // 🔧 Invalidate cache
     invalidateUserCache(session.user.id);
 
-    // Update quest progress (async, không block response)
-    updateQuestProgress(session.user.id, 'complete_exercises', 1).catch(console.error);
-
-    // Check achievements (async)
-    checkExerciseAchievements(session.user.id).catch(console.error);
+    // 🔧 FIX: Await background operations với timeout để không leak process
+    // Giới hạn 2s để không block response quá lâu
+    try {
+      await Promise.race([
+        Promise.all([
+          updateQuestProgress(session.user.id, 'complete_exercises', 1),
+          checkExerciseAchievements(session.user.id)
+        ]),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Background ops timeout')), 2000))
+      ]);
+    } catch (e) {
+      // Timeout hoặc error - log và tiếp tục
+      console.warn('Exercise background ops skipped:', e.message);
+    }
 
     return NextResponse.json({ 
       result: result.exerciseResult, 
       starsEarned: result.starsEarned, 
       success: true 
     });
-  } catch (error) {
-    console.error('Error saving exercise result:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
-}
+}, { timeout: 15000, useCircuitBreaker: true }); // 15s timeout
 
 // GET /api/exercises - Get exercise history
-export async function GET(request) {
-  try {
-    // 🔒 Rate limiting
+export const GET = withTimeout(async (request) => {
+  // 🔒 Rate limiting
     const rateLimitError = checkRateLimit(request, RATE_LIMITS.NORMAL);
     if (rateLimitError) {
       return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
@@ -132,15 +136,13 @@ export async function GET(request) {
     };
 
     return NextResponse.json({ exercises, stats });
-  } catch (error) {
-    console.error('Error fetching exercises:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
-}
+}, 10000); // 10s timeout cho GET
 
-// Helper function to update quest progress
+// 🔧 TỐI ƯU: Helper function to update quest progress - LIGHTWEIGHT VERSION
+// Giảm N+1 queries bằng cách batch operations
 async function updateQuestProgress(userId, questType, increment) {
   try {
+    // 🔧 FIX: Chỉ query 1 lần thay vì loop
     const activeQuests = await prisma.quest.findMany({
       where: {
         isActive: true,
@@ -148,128 +150,101 @@ async function updateQuestProgress(userId, questType, increment) {
           { expiresAt: null },
           { expiresAt: { gt: new Date() } }
         ]
+      },
+      take: 5 // Giới hạn số quest check
+    });
+
+    // Lọc quests liên quan trong memory
+    const relevantQuests = activeQuests.filter(q => {
+      try {
+        const req = JSON.parse(q.requirement);
+        return req.type === questType;
+      } catch { return false; }
+    });
+
+    if (relevantQuests.length === 0) return;
+
+    // 🔧 FIX: Batch query userQuests
+    const userQuests = await prisma.userQuest.findMany({
+      where: {
+        userId,
+        questId: { in: relevantQuests.map(q => q.id) },
+        completed: false
       }
     });
 
-    for (const quest of activeQuests) {
+    // 🔧 FIX: Batch upsert thay vì từng cái một
+    const upsertOps = relevantQuests.slice(0, 3).map(quest => {
       const req = JSON.parse(quest.requirement);
-      if (req.type === questType) {
-        const userQuest = await prisma.userQuest.findUnique({
-          where: {
-            userId_questId: {
-              userId,
-              questId: quest.id
-            }
-          }
-        });
+      const userQuest = userQuests.find(uq => uq.questId === quest.id);
+      const newProgress = (userQuest?.progress || 0) + increment;
+      const completed = newProgress >= req.count;
 
-        if (userQuest && !userQuest.completed) {
-          const newProgress = userQuest.progress + increment;
-          const completed = newProgress >= req.count;
+      return prisma.userQuest.upsert({
+        where: { userId_questId: { userId, questId: quest.id } },
+        create: { userId, questId: quest.id, progress: increment, completed: increment >= req.count },
+        update: { progress: newProgress, completed }
+      });
+    });
 
-          await prisma.userQuest.update({
-            where: { id: userQuest.id },
-            data: {
-              progress: newProgress,
-              completed
-            }
-          });
-
-          if (completed) {
-            // Create notification
-            await prisma.notification.create({
-              data: {
-                userId,
-                type: 'quest',
-                title: 'Nhiệm vụ hoàn thành!',
-                message: `Bạn đã hoàn thành nhiệm vụ "${quest.title}"! Hãy nhận phần thưởng!`,
-                data: JSON.stringify({ questId: quest.id })
-              }
-            });
-          }
-        } else if (!userQuest) {
-          // Create new user quest
-          await prisma.userQuest.create({
-            data: {
-              userId,
-              questId: quest.id,
-              progress: increment,
-              completed: increment >= req.count
-            }
-          });
-        }
-      }
-    }
+    await Promise.all(upsertOps);
   } catch (error) {
-    console.error('Error updating quest progress:', error);
+    console.error('Error updating quest progress:', error.message);
   }
 }
 
-// Helper function to check exercise-related achievements
+// 🔧 TỐI ƯU: Helper function to check exercise-related achievements - LIGHTWEIGHT VERSION
 async function checkExerciseAchievements(userId) {
   try {
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      include: {
-        exercises: {
-          orderBy: { createdAt: 'desc' },
-          take: 50
-        },
-        achievements: true
-      }
-    });
-
-    if (!user) return;
+    // 🔧 FIX: Lighter query - chỉ lấy counts
+    const [exerciseCount, unlockedIds] = await Promise.all([
+      prisma.exerciseResult.count({ where: { userId } }),
+      prisma.userAchievement.findMany({
+        where: { userId },
+        select: { achievementId: true }
+      })
+    ]);
 
     const allAchievements = await prisma.achievement.findMany({
-      where: {
-        category: { in: ['practice', 'accuracy'] }
-      }
+      where: { category: { in: ['practice', 'accuracy'] } },
+      take: 10 // Giới hạn
     });
 
-    const unlockedIds = user.achievements.map(ua => ua.achievementId);
+    const unlockedSet = new Set(unlockedIds.map(ua => ua.achievementId));
+    const pendingAchievements = allAchievements.filter(a => !unlockedSet.has(a.id));
+    
+    // 🔧 FIX: Early return
+    if (pendingAchievements.length === 0) return;
+    
+    // 🔧 FIX: Chỉ check 2 achievements mỗi lần
+    const toCheck = pendingAchievements.slice(0, 2);
+    const toUnlock = [];
 
-    for (const achievement of allAchievements) {
-      if (unlockedIds.includes(achievement.id)) continue;
+    for (const achievement of toCheck) {
+      try {
+        const req = JSON.parse(achievement.requirement);
+        if (req.type === 'complete_exercises' && exerciseCount >= req.count) {
+          toUnlock.push(achievement);
+        }
+      } catch { continue; }
+    }
 
-      const req = JSON.parse(achievement.requirement);
-      let shouldUnlock = false;
-
-      if (req.type === 'complete_exercises') {
-        shouldUnlock = user.exercises.length >= req.count;
-      } else if (req.type === 'perfect_accuracy') {
-        const recent = user.exercises.slice(0, req.count);
-        shouldUnlock = recent.length === req.count && recent.every(e => e.isCorrect);
-      }
-
-      if (shouldUnlock) {
-        await prisma.userAchievement.create({
+    // 🔧 FIX: Batch unlock
+    if (toUnlock.length > 0) {
+      await prisma.$transaction([
+        ...toUnlock.map(a => prisma.userAchievement.create({
+          data: { userId, achievementId: a.id }
+        })),
+        prisma.user.update({
+          where: { id: userId },
           data: {
-            userId: user.id,
-            achievementId: achievement.id
+            totalStars: { increment: toUnlock.reduce((s, a) => s + (a.stars || 0), 0) },
+            diamonds: { increment: toUnlock.reduce((s, a) => s + (a.diamonds || 0), 0) }
           }
-        });
-
-        await prisma.user.update({
-          where: { id: user.id },
-          data: {
-            totalStars: { increment: achievement.stars },
-            diamonds: { increment: achievement.diamonds }
-          }
-        });
-
-        await prisma.notification.create({
-          data: {
-            userId: user.id,
-            type: 'achievement',
-            title: 'Thành tích mới!',
-            message: `Bạn đã mở khóa "${achievement.name}"!`,
-            data: JSON.stringify({ achievementId: achievement.id })
-          }
-        });
-      }
+        })
+      ]);
     }
   } catch (error) {
-    console.error('Error checking exercise achievements:', error);
+    console.error('Error checking achievements:', error.message);
   }
 }

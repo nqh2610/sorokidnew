@@ -4,22 +4,22 @@ import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
 import { cache, CACHE_KEYS, CACHE_TTL, getOrSet } from '@/lib/cache';
+import { withTimeout, withApiProtection } from '@/lib/apiWrapper';
 
 export const dynamic = 'force-dynamic';
 
 // GET /api/quests
-export async function GET(request) {
-  try {
-    // 🔒 Rate limiting
-    const rateLimitError = checkRateLimit(request, RATE_LIMITS.NORMAL);
-    if (rateLimitError) {
-      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
-    }
+export const GET = withTimeout(async (request) => {
+  // 🔒 Rate limiting
+  const rateLimitError = checkRateLimit(request, RATE_LIMITS.NORMAL);
+  if (rateLimitError) {
+    return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+  }
 
-    const session = await getServerSession(authOptions);
-    if (!session) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
 
     const { searchParams } = new URL(request.url);
     const type = searchParams.get('type'); // daily, weekly, special
@@ -92,31 +92,26 @@ export async function GET(request) {
     });
 
     return NextResponse.json({ quests: questsWithProgress });
-  } catch (error) {
-    console.error('Error fetching quests:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
-}
+}, 10000); // 10s timeout
 
 // POST /api/quests - Claim quest reward
-export async function POST(request) {
-  try {
-    // 🔒 Rate limiting cho claim (strict - tránh abuse)
-    const rateLimitError = checkRateLimit(request, RATE_LIMITS.STRICT);
-    if (rateLimitError) {
-      return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
-    }
+export const POST = withApiProtection(async (request) => {
+  // 🔒 Rate limiting cho claim (strict - tránh abuse)
+  const rateLimitError = checkRateLimit(request, RATE_LIMITS.STRICT);
+  if (rateLimitError) {
+    return NextResponse.json({ error: rateLimitError.error }, { status: 429 });
+  }
 
-    const session = await getServerSession(authOptions);
-    if (!session) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
 
-    const { questId } = await request.json();
+  const { questId } = await request.json();
 
-    // 🔧 TỐI ƯU: Dùng transaction
-    const result = await prisma.$transaction(async (tx) => {
-      const userQuest = await tx.userQuest.findUnique({
+  // 🔧 TỐI ƯU: Dùng transaction
+  const result = await prisma.$transaction(async (tx) => {
+    const userQuest = await tx.userQuest.findUnique({
         where: {
           userId_questId: {
             userId: session.user.id,
@@ -163,20 +158,4 @@ export async function POST(request) {
       success: true,
       rewards: result
     });
-  } catch (error) {
-    console.error('Error claiming quest:', error);
-    
-    // Return proper error status based on error type
-    if (error.message === 'Quest not found') {
-      return NextResponse.json({ error: 'Quest not found' }, { status: 404 });
-    }
-    if (error.message === 'Quest not completed') {
-      return NextResponse.json({ error: 'Quest not completed yet' }, { status: 400 });
-    }
-    if (error.message === 'Quest already claimed') {
-      return NextResponse.json({ error: 'Quest reward already claimed' }, { status: 400 });
-    }
-    
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
-}
+}, { timeout: 10000, useCircuitBreaker: true }); // 10s timeout

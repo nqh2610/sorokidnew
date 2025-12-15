@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { getLevelInfo } from '@/lib/gamification';
 import { cache, CACHE_KEYS, CACHE_TTL, getOrSet } from '@/lib/cache';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import { withTimeout } from '@/lib/apiWrapper';
 
 export const dynamic = 'force-dynamic';
 
@@ -11,7 +12,7 @@ export const dynamic = 'force-dynamic';
  * 
  * Leaderboard ít thay đổi, cache 1 phút là hợp lý
  */
-export async function GET(request) {
+export const GET = withTimeout(async (request) => {
   // Rate limiting
   const rateLimitError = checkRateLimit(request, RATE_LIMITS.RELAXED);
   if (rateLimitError) {
@@ -46,4 +47,4 @@ export async function GET(request) {
   );
   
   return NextResponse.json({ leaderboard });
-}
+}, 10000); // 10s timeout

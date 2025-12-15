@@ -41,21 +41,15 @@ export default function TopBar({ showStats = true }) {
     }
   }, [session]);
 
+  // 🔧 TỐI ƯU: Gộp 2 API calls thành 1 vì profile đã có tier
   const fetchUserStats = async () => {
     try {
-      const [profileRes, tierRes] = await Promise.all([
-        fetch('/api/user/profile'),
-        fetch('/api/tier')
-      ]);
-      
+      const profileRes = await fetch('/api/user/profile');
       const profileData = await profileRes.json();
-      const tierData = await tierRes.json();
       
       if (profileData.user) {
         setUserStats(profileData.user);
-      }
-      if (tierData.tier) {
-        setUserTier(tierData.tier);
+        setUserTier(profileData.user.tier || 'free');
       }
     } catch (error) {
       console.error('Error fetching user stats:', error);

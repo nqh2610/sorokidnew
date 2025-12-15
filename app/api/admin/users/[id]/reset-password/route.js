@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authOptions, hashPassword } from '@/lib/auth';
 import prisma from '@/lib/prisma';
-import bcrypt from 'bcryptjs';
 
 // POST /api/admin/users/[id]/reset-password - Reset mật khẩu user
 export async function POST(request, { params }) {
@@ -27,8 +26,8 @@ export async function POST(request, { params }) {
       newPassword += chars.charAt(Math.floor(Math.random() * chars.length));
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    // Hash password (12 rounds từ lib/auth.js)
+    const hashedPassword = await hashPassword(newPassword);
 
     // Update user
     await prisma.user.update({

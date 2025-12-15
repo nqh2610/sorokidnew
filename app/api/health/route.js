@@ -50,9 +50,10 @@ export async function GET(request) {
     const rateLimiterStats = rateLimiter.stats();
     const requestLimiterStats = requestLimiter.getStats();
 
-    // Tính % capacity
+    // 🔧 FIX: Sử dụng config thực tế (50 concurrent)
+    const maxConcurrent = 50;
     const capacityPercent = Math.round(
-      (requestLimiterStats.activeRequests / 100) * 100
+      (requestLimiterStats.activeRequests / maxConcurrent) * 100
     );
 
     return NextResponse.json({
@@ -62,7 +63,7 @@ export async function GET(request) {
       capacity: {
         percent: capacityPercent,
         activeRequests: requestLimiterStats.activeRequests,
-        maxConcurrent: 100,
+        maxConcurrent: maxConcurrent,
         queueLength: requestLimiterStats.queueLength,
         peakConcurrent: requestLimiterStats.peakConcurrent,
         status: capacityPercent < 70 ? 'healthy' : capacityPercent < 90 ? 'busy' : 'critical'

@@ -4,29 +4,34 @@ import GoogleProvider from 'next-auth/providers/google';
 import { compare } from 'bcryptjs';
 // 🔧 SỬ DỤNG PRISMA SINGLETON thay vì tạo mới
 import prisma from '@/lib/prisma';
+// 🛡️ LOGIN PROTECTION - Chống brute-force
+import {
+  checkLoginProtection,
+  recordFailedLogin,
+  recordSuccessfulLogin,
+  getResponseDelay,
+  sleep
+} from '@/lib/loginProtection';
 
 // 🔧 Cache user role trong memory với giới hạn kích thước
 const userRoleCache = new Map();
 const ROLE_CACHE_TTL = 300000; // 5 minutes
 const MAX_CACHE_SIZE = 10000; // Giới hạn 10k entries để tránh memory leak
 
-// 🔧 Cleanup routine chạy mỗi 5 phút
-setInterval(() => {
+// 🔧 Lazy cleanup - KHÔNG dùng setInterval để tránh spawn process
+function cleanupRoleCache() {
+  if (userRoleCache.size < MAX_CACHE_SIZE / 2) return; // Chỉ cleanup khi cần
+  
   const now = Date.now();
-  let deletedCount = 0;
+  let cleaned = 0;
   for (const [key, value] of userRoleCache.entries()) {
     if (now >= value.expiresAt) {
       userRoleCache.delete(key);
-      deletedCount++;
+      cleaned++;
     }
+    if (cleaned >= 500) break; // Dừng sớm
   }
-  // Nếu vẫn quá size, xóa entries cũ nhất
-  if (userRoleCache.size > MAX_CACHE_SIZE) {
-    const entriesToDelete = userRoleCache.size - MAX_CACHE_SIZE;
-    const keys = Array.from(userRoleCache.keys()).slice(0, entriesToDelete);
-    keys.forEach(k => userRoleCache.delete(k));
-  }
-}, 300000); // 5 phút
+}
 
 export const authOptions = {
   session: {
@@ -44,25 +49,58 @@ export const authOptions = {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Mật khẩu', type: 'password' },
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) {
         try {
           if (!credentials?.email || !credentials?.password) {
             throw new Error('Vui lòng nhập đầy đủ thông tin');
           }
 
+          const email = credentials.email.toLowerCase().trim();
+
+          // 🛡️ STEP 1: Kiểm tra login protection (rate limit + lock)
+          const protection = checkLoginProtection(req, email);
+          if (!protection.allowed) {
+            throw new Error(protection.error);
+          }
+
+          // 🛡️ STEP 2: Query user - CHỈ LẤY CÁC FIELD CẦN THIẾT
           const user = await prisma.user.findUnique({
-            where: { email: credentials.email },
+            where: { email },
+            select: {
+              id: true,
+              email: true,
+              password: true,
+              name: true,
+              username: true,
+              avatar: true
+            }
           });
 
           if (!user) {
-            throw new Error('Email không tồn tại');
+            // Delay để chống timing attack
+            await sleep(getResponseDelay(protection.failedAttempts));
+            recordFailedLogin(protection.ip, email);
+            throw new Error('Email hoặc mật khẩu không đúng');
           }
 
+          // 🛡️ STEP 3: So sánh password (tốn CPU nhất)
           const isValid = await compare(credentials.password, user.password);
 
           if (!isValid) {
-            throw new Error('Mật khẩu không đúng');
+            // Ghi nhận login thất bại
+            const result = recordFailedLogin(protection.ip, email);
+            // Delay response
+            await sleep(getResponseDelay(protection.failedAttempts + 1));
+            
+            // Trả message tùy thuộc có bị lock không
+            if (result.locked) {
+              throw new Error(result.message);
+            }
+            throw new Error(`Email hoặc mật khẩu không đúng. Còn ${result.remainingAttempts} lần thử`);
           }
+
+          // 🎉 Login thành công - Reset counter
+          recordSuccessfulLogin(protection.ip, email);
 
           return {
             id: user.id,
@@ -72,7 +110,7 @@ export const authOptions = {
             avatar: user.avatar,
           };
         } catch (error) {
-          console.error('Auth error:', error);
+          console.error('Auth error:', error.message);
           throw error;
         }
       },
@@ -111,6 +149,9 @@ export const authOptions = {
         token.username = user.username;
       }
       
+      // 🔧 Lazy cleanup (thay vì setInterval)
+      cleanupRoleCache();
+      
       // 🔧 TỐI ƯU: Cache user role để giảm DB queries
       const cacheKey = token.email;
       const cached = userRoleCache.get(cacheKey);
@@ -141,6 +182,7 @@ export const authOptions = {
           }
         } catch (e) {
           console.error('JWT callback DB error:', e);
+          // Không throw error - giữ token cũ nếu có
         }
       }
       

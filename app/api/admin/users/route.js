@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authOptions, hashPassword } from '@/lib/auth';
 import prisma from '@/lib/prisma';
-import bcrypt from 'bcryptjs';
 
 // GET /api/admin/users - Lấy danh sách người dùng
 export async function GET(request) {
@@ -195,8 +194,8 @@ export async function POST(request) {
       }
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Hash password (12 rounds từ lib/auth.js)
+    const hashedPassword = await hashPassword(password);
 
     // Create user
     const newUser = await prisma.user.create({

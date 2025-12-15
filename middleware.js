@@ -41,8 +41,16 @@ const adminRoutes = [
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
 
-  // ❌ BỎ RATE LIMIT - Không block user
-  // Thay vào đó dùng: Caching, Query optimization, Lazy loading
+  // 🔧 FIX: Skip API routes hoàn toàn trong middleware để giảm overhead
+  // API routes tự handle authentication riêng
+  if (pathname.startsWith('/api')) {
+    return NextResponse.next();
+  }
+
+  // 🔧 FIX: Skip static và health check routes
+  if (pathname === '/api/health' || pathname.startsWith('/_next')) {
+    return NextResponse.next();
+  }
 
   // Lấy token từ session
   const token = await getToken({ 
@@ -99,13 +107,14 @@ export async function middleware(request) {
 export const config = {
   matcher: [
     /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes) - handled separately
+     * 🔧 TỐI ƯU: Chỉ match page routes, không match:
+     * - api (API routes - self-handled)
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * - public folder
+     * - public folder files
+     * - health check
      */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.png$|.*\\.jpg$|.*\\.svg$).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$|.*\\.jpg$|.*\\.svg$|.*\\.ico$|.*\\.webp$).*)',
   ],
 };

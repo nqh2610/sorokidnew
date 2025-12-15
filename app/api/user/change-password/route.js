@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authOptions, hashPassword, verifyPassword } from '@/lib/auth';
 import prisma from '@/lib/prisma';
-import bcrypt from 'bcryptjs';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
 
 export const dynamic = 'force-dynamic';
@@ -60,15 +59,15 @@ export async function POST(request) {
     }
 
     // Verify current password
-    const isValidPassword = await bcrypt.compare(currentPassword, user.password);
+    const isValidPassword = await verifyPassword(currentPassword, user.password);
     if (!isValidPassword) {
       return NextResponse.json({ 
         error: 'Mật khẩu hiện tại không đúng' 
       }, { status: 400 });
     }
 
-    // 🔧 TỐI ƯU: Dùng cost factor 10 (tối ưu cho shared hosting)
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    // 🔧 Sử dụng hashPassword từ lib/auth.js (12 rounds)
+    const hashedPassword = await hashPassword(newPassword);
 
     await prisma.user.update({
       where: { id: session.user.id },
