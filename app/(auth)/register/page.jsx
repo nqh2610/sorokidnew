@@ -352,7 +352,7 @@ export default function RegisterPage() {
 
         {/* Bottom decoration */}
         <div className="text-center mt-6 text-white/70 text-sm">
-          <p>© 2024 SoroKid - Học toán tư duy cùng bàn tính Soroban</p>
+          <p>© 2025 SoroKid - Học toán tư duy cùng bàn tính Soroban</p>
         </div>
       </div>
     </div>

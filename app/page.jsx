@@ -523,7 +523,7 @@ export default function HomePage() {
               </nav>
             </div>
             <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-              <p>© 2024 Sorokid. Phát triển với <span aria-label="tình yêu">❤️</span> cho học sinh Việt Nam.</p>
+              <p>© 2025 SoroKid - Học toán tư duy cùng bàn tính Soroban</p>
             </div>
           </div>
         </footer>

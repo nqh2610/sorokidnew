@@ -310,7 +310,7 @@ export default function DashboardPage() {
 
       {/* Footer */}
       <footer className="py-8 text-center text-gray-400 text-sm">
-        <p>© 2025 Sorokid - Học Soroban thật vui 🧮</p>
+        <p>© 2025 SoroKid - Học toán tư duy cùng bàn tính Soroban</p>
       </footer>
     </div>
   );

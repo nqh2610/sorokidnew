@@ -847,7 +847,7 @@ export default function PricingPage() {
 
       {/* Footer */}
       <div className="relative text-center py-10 text-slate-500 text-sm border-t border-slate-200 bg-white/50">
-        <p>© 2025 SoroKid - Học toán tính nhanh vui như chơi Game! 🎮</p>
+        <p>© 2025 SoroKid - Học toán tư duy cùng bàn tính Soroban</p>
       </div>
 
       {/* QR Modal - Light Theme */}
