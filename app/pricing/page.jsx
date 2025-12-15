@@ -896,34 +896,9 @@ export default function PricingPage() {
                 />
               </div>
 
-              {/* Payment Info */}
-              <div className="text-left bg-slate-50 rounded-xl p-3 mb-3 text-sm space-y-2 border border-slate-200">
-                <div className="flex justify-between">
-                  <span className="text-slate-500">Ngân hàng:</span>
-                  <span className="font-semibold text-slate-800">{orderInfo.paymentInfo.bankCode}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500">Số tài khoản:</span>
-                  <span className="font-semibold text-slate-800">{orderInfo.paymentInfo.accountNumber}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500">Chủ tài khoản:</span>
-                  <span className="font-semibold text-slate-800">{orderInfo.paymentInfo.accountName}</span>
-                </div>
-                <div className="h-px bg-slate-200 my-1"></div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500">Số tiền:</span>
-                  <span className="font-bold text-emerald-600">{formatPrice(orderInfo.amount)}đ</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500">Nội dung CK:</span>
-                  <span className="font-bold text-fuchsia-600 text-xs break-all">{orderInfo.content}</span>
-                </div>
-              </div>
-
-              {/* 🔄 TRẠNG THÁI ĐANG CHỜ XÁC NHẬN - UX cải thiện */}
-              <div className="mb-4 p-3 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl">
-                <div className="flex items-center justify-center gap-2 mb-2">
+              {/* 🔄 TRẠNG THÁI ĐANG CHỜ XÁC NHẬN - Đặt ngay dưới QR để thấy ngay */}
+              <div className="mb-3 p-3 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl">
+                <div className="flex items-center justify-center gap-2 mb-1">
                   {isCheckingPayment ? (
                     <>
                       <div className="w-4 h-4 border-2 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
@@ -939,7 +914,7 @@ export default function PricingPage() {
                 <p className="text-xs text-amber-600">
                   {isCheckingPayment 
                     ? `Hệ thống đang kiểm tra... (${paymentCheckCount})`
-                    : 'Sau khi chuyển khoản, hệ thống sẽ tự động xác nhận trong vài giây'
+                    : 'Sau khi chuyển khoản, hệ thống sẽ tự động xác nhận'
                   }
                 </p>
                 {/* Progress indicator */}
@@ -949,6 +924,37 @@ export default function PricingPage() {
                   </div>
                 )}
               </div>
+
+              {/* Payment Info - Thu gọn để không cần scroll nhiều */}
+              <details className="text-left bg-slate-50 rounded-xl mb-3 border border-slate-200 group">
+                <summary className="p-3 cursor-pointer text-sm font-medium text-slate-700 flex items-center justify-between hover:bg-slate-100 rounded-xl transition-colors">
+                  <span>Chi tiết chuyển khoản</span>
+                  <ChevronRight size={16} className="text-slate-400 group-open:rotate-90 transition-transform" />
+                </summary>
+                <div className="p-3 pt-0 text-sm space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">Ngân hàng:</span>
+                    <span className="font-semibold text-slate-800">{orderInfo.paymentInfo.bankCode}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">Số tài khoản:</span>
+                    <span className="font-semibold text-slate-800">{orderInfo.paymentInfo.accountNumber}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">Chủ tài khoản:</span>
+                    <span className="font-semibold text-slate-800">{orderInfo.paymentInfo.accountName}</span>
+                  </div>
+                  <div className="h-px bg-slate-200 my-1"></div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">Số tiền:</span>
+                    <span className="font-bold text-emerald-600">{formatPrice(orderInfo.amount)}đ</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">Nội dung CK:</span>
+                    <span className="font-bold text-fuchsia-600 text-xs break-all">{orderInfo.content}</span>
+                  </div>
+                </div>
+              </details>
 
               {/* Nút "Tôi đã chuyển khoản" để trigger check ngay */}
               <button
