@@ -13,12 +13,14 @@ import {
   Settings,
   Shield,
   Edit3,
-  Star
+  Star,
+  Camera
 } from 'lucide-react';
 import TopBar from '@/components/TopBar/TopBar';
 import BottomNav from '@/components/Navigation/BottomNav';
 import ConfirmDialog from '@/components/ConfirmDialog/ConfirmDialog';
 import { MonsterAvatar } from '@/components/MonsterAvatar';
+import AvatarSelector from '@/components/AvatarSelector/AvatarSelector';
 
 export default function ProfilePage() {
   const { data: session, status } = useSession();
@@ -27,6 +29,7 @@ export default function ProfilePage() {
   const [userTier, setUserTier] = useState('free');
   const [isLoading, setIsLoading] = useState(true);
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
+  const [showAvatarSelector, setShowAvatarSelector] = useState(false);
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -61,6 +64,29 @@ export default function ProfilePage() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleAvatarSelect = async (avatarIndex) => {
+    try {
+      const response = await fetch('/api/user/profile', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ avatar: avatarIndex !== null ? String(avatarIndex) : null })
+      });
+
+      if (response.ok) {
+        setUserStats(prev => ({ ...prev, avatar: avatarIndex !== null ? String(avatarIndex) : null }));
+      }
+    } catch (error) {
+      console.error('Error updating avatar:', error);
+    }
+  };
+
+  // Parse avatar from database (stored as string) to number
+  const getCurrentAvatarIndex = () => {
+    if (!userStats?.avatar) return null;
+    const parsed = parseInt(userStats.avatar, 10);
+    return isNaN(parsed) ? null : parsed;
   };
 
   const getTierInfo = () => {
@@ -132,26 +158,44 @@ export default function ProfilePage() {
         type="warning"
       />
 
+      {/* Avatar Selector Modal */}
+      <AvatarSelector
+        isOpen={showAvatarSelector}
+        onClose={() => setShowAvatarSelector(false)}
+        currentAvatar={getCurrentAvatarIndex()}
+        seed={session.user?.id || session.user?.email || 'default'}
+        onSelect={handleAvatarSelect}
+      />
+
       <main className="min-h-screen bg-gradient-to-b from-blue-50 via-violet-50 to-pink-50 pb-24">
         <div className="max-w-2xl mx-auto px-4 py-6">
           
           {/* Profile Card */}
           <div className="bg-white rounded-3xl shadow-lg p-6 mb-6">
             <div className="flex items-center gap-4">
-              {/* Monster Avatar */}
-              <div className="relative">
+              {/* Monster Avatar - Clickable to change */}
+              <button 
+                onClick={() => setShowAvatarSelector(true)}
+                className="relative group"
+                title="Đổi avatar"
+              >
                 <MonsterAvatar 
                   seed={session.user?.id || session.user?.email || 'default'}
+                  avatarIndex={getCurrentAvatarIndex()}
                   size={80}
-                  className="border-4 border-violet-200"
+                  className="border-4 border-violet-200 group-hover:border-violet-400 transition-colors"
                   showBorder={false}
                 />
+                {/* Camera icon overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 rounded-full transition-all flex items-center justify-center">
+                  <Camera size={24} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
                 {/* Level badge */}
                 <div className="absolute -bottom-1 -right-1 bg-gradient-to-r from-violet-500 to-pink-500 text-white text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-0.5">
                   <span>{userStats?.levelInfo?.icon || '🌱'}</span>
                   <span>Lv.{userStats?.level || 1}</span>
                 </div>
-              </div>
+              </button>
               
               {/* User info */}
               <div className="flex-1">

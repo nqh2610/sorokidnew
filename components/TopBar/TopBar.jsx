@@ -16,6 +16,13 @@ export default function TopBar({ showStats = true }) {
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
   const dropdownRef = useRef(null);
 
+  // Helper to parse avatar index from database
+  const getAvatarIndex = () => {
+    if (!userStats?.avatar) return null;
+    const parsed = parseInt(userStats.avatar, 10);
+    return isNaN(parsed) ? null : parsed;
+  };
+
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -181,6 +188,7 @@ export default function TopBar({ showStats = true }) {
                 >
                   <MonsterAvatar 
                     seed={session.user?.id || session.user?.email || 'default'}
+                    avatarIndex={getAvatarIndex()}
                     size={36}
                     className="border-2 border-violet-200"
                     showBorder={false}
@@ -207,6 +215,7 @@ export default function TopBar({ showStats = true }) {
                 >
                   <MonsterAvatar 
                     seed={session.user?.id || session.user?.email || 'default'}
+                    avatarIndex={getAvatarIndex()}
                     size={36}
                     className="border-2 border-violet-200"
                     showBorder={false}

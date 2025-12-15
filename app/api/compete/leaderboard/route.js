@@ -46,7 +46,7 @@ export async function GET(request) {
             stars: true,
             createdAt: true,
             user: {
-              select: { name: true }
+              select: { name: true, avatar: true }
             }
           },
           take: 100 // Giới hạn 100 kết quả
@@ -64,6 +64,7 @@ export async function GET(request) {
               oderId: result.id,
               userId: result.userId,
               userName: result.user.name,
+              avatar: result.user.avatar,
               correct: result.correct,
               totalTime: result.totalTime,
               stars: result.stars,

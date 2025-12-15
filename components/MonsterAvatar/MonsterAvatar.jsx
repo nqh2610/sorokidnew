@@ -414,13 +414,17 @@ function getBgGradient(seed, avatarIndex) {
 
 export default function MonsterAvatar({ 
   seed, // userId hoặc email để tạo avatar cố định
+  avatarIndex: forcedAvatarIndex = null, // Cho phép chọn avatar trực tiếp bằng index
   size = 40, 
   className = '',
   showBorder = true
 }) {
-  const avatarIndex = getAvatarIndex(seed);
+  // Nếu có avatarIndex được truyền vào, sử dụng nó, nếu không thì hash từ seed
+  const avatarIndex = forcedAvatarIndex !== null && forcedAvatarIndex >= 0 && forcedAvatarIndex < CUTE_ANIMALS.length
+    ? forcedAvatarIndex 
+    : getAvatarIndex(seed);
   const svgContent = CUTE_ANIMALS[avatarIndex];
-  const bgGradient = getBgGradient(seed, avatarIndex);
+  const bgGradient = getBgGradient(seed || `avatar_${avatarIndex}`, avatarIndex);
   
   const borderClass = showBorder ? 'border-2 border-white shadow-md' : '';
   

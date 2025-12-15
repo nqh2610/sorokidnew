@@ -13,6 +13,13 @@ export default function LeaderboardPage() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Helper to parse avatar index from database
+  const getAvatarIndex = (user) => {
+    if (!user?.avatar) return null;
+    const parsed = parseInt(user.avatar, 10);
+    return isNaN(parsed) ? null : parsed;
+  };
+
   useEffect(() => {
     if (status === 'unauthenticated') {
       router.push('/login');
@@ -87,6 +94,7 @@ export default function LeaderboardPage() {
                 <div className="flex justify-center mb-2">
                   <MonsterAvatar 
                     seed={top3[1].id || top3[1].email}
+                    avatarIndex={getAvatarIndex(top3[1])}
                     size={56}
                     className="border-2 border-gray-500"
                     showBorder={false}
@@ -115,6 +123,7 @@ export default function LeaderboardPage() {
                 <div className="flex justify-center mb-2">
                   <MonsterAvatar 
                     seed={top3[0].id || top3[0].email}
+                    avatarIndex={getAvatarIndex(top3[0])}
                     size={64}
                     className="border-2 border-yellow-600"
                     showBorder={false}
@@ -140,6 +149,7 @@ export default function LeaderboardPage() {
                 <div className="flex justify-center mb-2">
                   <MonsterAvatar 
                     seed={top3[2].id || top3[2].email}
+                    avatarIndex={getAvatarIndex(top3[2])}
                     size={56}
                     className="border-2 border-orange-500"
                     showBorder={false}
@@ -176,6 +186,7 @@ export default function LeaderboardPage() {
                     </div>
                     <MonsterAvatar 
                       seed={player.id || player.email}
+                      avatarIndex={getAvatarIndex(player)}
                       size={44}
                       className="border-2 border-blue-200 flex-shrink-0"
                       showBorder={false}
