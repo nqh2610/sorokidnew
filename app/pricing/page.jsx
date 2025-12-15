@@ -157,6 +157,10 @@ export default function PricingPage() {
   
   // 📌 Ref để track polling interval
   const pollingRef = useRef(null);
+  
+  // 🔄 State cho trạng thái đang kiểm tra thanh toán
+  const [isCheckingPayment, setIsCheckingPayment] = useState(false);
+  const [paymentCheckCount, setPaymentCheckCount] = useState(0);
 
   // Load pricing plans and user tier
   useEffect(() => {
@@ -282,7 +286,7 @@ export default function PricingPage() {
   };
 
   // Function để bắt đầu polling kiểm tra trạng thái thanh toán
-  // 🔧 TỐI ƯU: Tăng interval lên 10s để giảm requests trên shared host
+  // 🔧 TỐI ƯU: Dùng progressive polling - check nhanh ban đầu, chậm dần sau
   const startPaymentPolling = (orderId, tierId, tierDisplayName) => {
     // Clear polling cũ nếu có
     if (pollingRef.current) {
@@ -290,15 +294,20 @@ export default function PricingPage() {
     }
     
     let pollCount = 0;
-    const MAX_POLLS = 90; // Giới hạn 90 lần poll (15 phút với interval 10s)
+    const MAX_POLLS = 180; // Tổng 15 phút
+    setPaymentCheckCount(0);
+    setIsCheckingPayment(true);
     
-    const pollInterval = setInterval(async () => {
+    // Progressive polling: nhanh ban đầu (3s), chậm dần (10s sau 2 phút)
+    const doPoll = async () => {
       pollCount++;
+      setPaymentCheckCount(pollCount);
       
       // 🔧 Dừng nếu đã poll quá nhiều
       if (pollCount > MAX_POLLS) {
-        clearInterval(pollInterval);
+        clearInterval(pollingRef.current);
         pollingRef.current = null;
+        setIsCheckingPayment(false);
         return;
       }
       
@@ -307,8 +316,9 @@ export default function PricingPage() {
         const data = await res.json();
         
         if (data.status === 'completed') {
-          clearInterval(pollInterval);
+          clearInterval(pollingRef.current);
           pollingRef.current = null;
+          setIsCheckingPayment(false);
           setShowQR(false);
           setOrderInfo(null);
           setSelectedPlan(null);
@@ -322,8 +332,9 @@ export default function PricingPage() {
           });
           setShowSuccessModal(true);
         } else if (data.status === 'expired') {
-          clearInterval(pollInterval);
+          clearInterval(pollingRef.current);
           pollingRef.current = null;
+          setIsCheckingPayment(false);
           // Hiển thị thông báo hết hạn với style tốt hơn
           setShowQR(false);
           setOrderInfo(null);
@@ -332,8 +343,13 @@ export default function PricingPage() {
       } catch (error) {
         console.error('Polling error:', error);
       }
-    }, 10000); // 🔧 TỐI ƯU: Check mỗi 10 giây thay vì 5s
+    };
     
+    // 🚀 Check ngay lập tức lần đầu
+    doPoll();
+    
+    // Sau đó check mỗi 5 giây (cân bằng giữa UX và server load)
+    const pollInterval = setInterval(doPoll, 5000);
     pollingRef.current = pollInterval;
 
     // Tự động dừng sau 30 phút
@@ -341,6 +357,7 @@ export default function PricingPage() {
       if (pollingRef.current) {
         clearInterval(pollingRef.current);
         pollingRef.current = null;
+        setIsCheckingPayment(false);
       }
     }, 30 * 60 * 1000);
   };
@@ -358,6 +375,8 @@ export default function PricingPage() {
     setShowQR(false);
     setOrderInfo(null);
     setSelectedPlan(null);
+    setIsCheckingPayment(false);
+    setPaymentCheckCount(0);
     // Clear polling khi đóng modal
     if (pollingRef.current) {
       clearInterval(pollingRef.current);
@@ -842,7 +861,7 @@ export default function PricingPage() {
         <p>© 2025 SoroKid - Học toán tư duy cùng bàn tính Soroban</p>
       </div>
 
-      {/* QR Modal - Light Theme */}
+      {/* QR Modal - Light Theme với UX cải thiện */}
       {showQR && orderInfo && (
         <div 
           className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4"
@@ -902,13 +921,70 @@ export default function PricingPage() {
                 </div>
               </div>
 
-              <p className="text-xs text-slate-500 mb-3">
-                Sau khi thanh toán, vui lòng đợi 1-5 phút để hệ thống xác nhận
-              </p>
+              {/* 🔄 TRẠNG THÁI ĐANG CHỜ XÁC NHẬN - UX cải thiện */}
+              <div className="mb-4 p-3 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  {isCheckingPayment ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+                      <span className="text-amber-700 font-semibold text-sm">Đang chờ xác nhận thanh toán...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Clock size={16} className="text-amber-600" />
+                      <span className="text-amber-700 font-semibold text-sm">Chờ thanh toán</span>
+                    </>
+                  )}
+                </div>
+                <p className="text-xs text-amber-600">
+                  {isCheckingPayment 
+                    ? `Hệ thống đang kiểm tra... (${paymentCheckCount})`
+                    : 'Sau khi chuyển khoản, hệ thống sẽ tự động xác nhận trong vài giây'
+                  }
+                </p>
+                {/* Progress indicator */}
+                {isCheckingPayment && (
+                  <div className="mt-2 h-1 bg-amber-200 rounded-full overflow-hidden">
+                    <div className="h-full bg-gradient-to-r from-amber-400 to-orange-500 rounded-full animate-pulse w-full"></div>
+                  </div>
+                )}
+              </div>
+
+              {/* Nút "Tôi đã chuyển khoản" để trigger check ngay */}
+              <button
+                onClick={() => {
+                  // Trigger check ngay lập tức
+                  if (orderInfo?.orderId) {
+                    setIsCheckingPayment(true);
+                    fetch(`/api/payment/status/${orderInfo.orderId}`)
+                      .then(res => res.json())
+                      .then(data => {
+                        if (data.status === 'completed') {
+                          closeQRModal();
+                          setUserTier(data.tier);
+                          setSuccessTierInfo({ 
+                            name: data.tier, 
+                            displayName: orderInfo.packageName || 'Gói Premium' 
+                          });
+                          setShowSuccessModal(true);
+                        } else {
+                          toast.info('Chưa nhận được thanh toán. Hệ thống sẽ tự động kiểm tra lại...');
+                        }
+                      })
+                      .catch(() => {
+                        toast.error('Lỗi kết nối. Vui lòng đợi...');
+                      });
+                  }
+                }}
+                className="w-full py-3 mb-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-emerald-500/25 transition-all flex items-center justify-center gap-2"
+              >
+                <Check size={18} />
+                Tôi đã chuyển khoản
+              </button>
 
               <button
                 onClick={closeQRModal}
-                className="w-full py-3 bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-fuchsia-500/25 transition-all"
+                className="w-full py-3 bg-slate-200 text-slate-700 rounded-xl font-semibold hover:bg-slate-300 transition-all"
               >
                 Đóng
               </button>
