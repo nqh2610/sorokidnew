@@ -62,7 +62,8 @@ export async function GET(request) {
         isActive: settings.isActive,
         basicPrice: settings.basicPrice,
         advancedPrice: settings.advancedPrice,
-        webhookUrl: `${process.env.NEXTAUTH_URL || 'https://sorokid.com'}/api/payment/webhook/${settings.webhookProvider || 'sepay'}`
+        // Webhook URL đúng - không có /sepay suffix
+        webhookUrl: `${process.env.NEXTAUTH_URL || 'https://sorokid.com'}/api/payment/webhook`
       }
     });
 

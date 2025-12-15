@@ -28,7 +28,8 @@ export async function GET(request) {
     // Build where clause
     const where = {};
     if (status && status !== 'all') where.status = status;
-    if (packageType && packageType !== 'all') where.tierName = packageType;
+    // FIX: Schema uses 'tier' not 'tierName'
+    if (packageType && packageType !== 'all') where.tier = packageType;
     if (transactionType && transactionType !== 'all') where.transactionType = transactionType;
 
     try {
@@ -42,7 +43,6 @@ export async function GET(request) {
             orderCode: true,
             transactionType: true,
             previousTier: true,
-            tierName: true,
             tier: true,
             amount: true,
             paidAmount: true,
@@ -72,7 +72,7 @@ export async function GET(request) {
         orderId: order.orderCode,
         transactionType: order.transactionType || 'new',
         previousTier: order.previousTier,
-        packageType: order.tierName || order.tier,
+        packageType: order.tier,
         amount: order.amount,
         paidAmount: order.paidAmount,
         status: order.status,

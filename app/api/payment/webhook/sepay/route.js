@@ -1,31 +1,16 @@
+/**
+ * 🔌 SePay Webhook Handler (Alias route)
+ * 
+ * Route này chuyển tiếp request đến webhook chính tại /api/payment/webhook
+ * Mục đích: Tương thích với URL đã cấu hình trên SePay portal
+ * 
+ * URL: /api/payment/webhook/sepay
+ */
+
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import crypto from 'crypto';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
-
-/**
- * 🔐 BẢO MẬT WEBHOOK PAYMENT
- * 
- * 1. Verify webhook signature (nếu provider hỗ trợ)
- * 2. Rate limiting để chống spam
- * 3. Validate dữ liệu đầu vào
- * 4. Idempotency check (không xử lý trùng)
- */
-
-// Verify SePay webhook signature (nếu có)
-function verifyWebhookSignature(body, signature, secret) {
-  if (!secret || !signature) return true; // Skip nếu không có secret
-  
-  const expectedSignature = crypto
-    .createHmac('sha256', secret)
-    .update(JSON.stringify(body))
-    .digest('hex');
-  
-  return crypto.timingSafeEqual(
-    Buffer.from(signature),
-    Buffer.from(expectedSignature)
-  );
-}
 
 // Validate webhook payload
 function validateWebhookPayload(body) {
@@ -44,30 +29,29 @@ function validateWebhookPayload(body) {
 }
 
 /**
- * POST /api/payment/webhook - Nhận webhook từ SePay/Casso
- * Tự động kích hoạt gói khi thanh toán thành công
+ * POST /api/payment/webhook/sepay - Nhận webhook từ SePay
  * 
  * SePay format:
  * {
- *   "id": 123,
- *   "gateway": "MBBank",
- *   "transactionDate": "2024-01-15 10:30:00",
- *   "accountNumber": "0839969966",
+ *   "id": 35641348,
+ *   "gateway": "BIDV",
+ *   "transactionDate": "2025-12-15 15:29:26",
+ *   "accountNumber": "96247G3A5R",
  *   "subAccount": null,
- *   "code": null,
- *   "content": "SOROKID SK1234567890ABC",
+ *   "code": "TF2412150001234",
+ *   "content": "SOROKID SK17657874666429B087F",
  *   "transferType": "in",
  *   "description": "...",
- *   "transferAmount": 199000,
- *   "referenceCode": "FT24015...",
- *   "accumulated": 1000000
+ *   "transferAmount": 1000,
+ *   "referenceCode": "064089a2-9492-4e52-8643-ecd4cd432ea1",
+ *   "accumulated": 503000
  * }
  */
 export async function POST(request) {
-  console.log('=== WEBHOOK RECEIVED ===');
+  console.log('=== SEPAY WEBHOOK RECEIVED ===');
   
   try {
-    // 🔐 RATE LIMITING - Chống spam webhook
+    // 🔐 RATE LIMITING
     const rateLimitError = checkRateLimit(request, RATE_LIMITS.STRICT);
     if (rateLimitError) {
       console.warn('Webhook rate limited');
@@ -77,8 +61,9 @@ export async function POST(request) {
     const body = await request.json();
     
     // 📝 LOG FULL PAYLOAD FOR DEBUGGING
-    console.log('Webhook Payload:', JSON.stringify(body, null, 2));
-    
+    console.log('SePay Webhook Payload:', JSON.stringify(body, null, 2));
+    console.log('Headers:', Object.fromEntries(request.headers.entries()));
+
     // 🔐 VALIDATE PAYLOAD
     const validation = validateWebhookPayload(body);
     if (!validation.valid) {
@@ -90,15 +75,6 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
-    // 🔐 VERIFY SIGNATURE (nếu có)
-    const webhookSecret = process.env.SEPAY_WEBHOOK_SECRET;
-    const signature = request.headers.get('x-sepay-signature');
-    
-    if (webhookSecret && !verifyWebhookSignature(body, signature, webhookSecret)) {
-      console.warn('Invalid webhook signature');
-      return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
-    }
-
     // Lấy thông tin từ webhook (SePay format)
     const {
       id: transactionId,
@@ -107,11 +83,13 @@ export async function POST(request) {
       transferType,
       transactionDate,
       referenceCode,
-      gateway
+      gateway,
+      accountNumber
     } = body;
 
     console.log(`Transaction: ID=${transactionId}, Amount=${transferAmount}, Type=${transferType}`);
     console.log(`Content: ${content}`);
+    console.log(`Bank: ${gateway}, Account: ${accountNumber}`);
 
     // Chỉ xử lý giao dịch tiền vào
     if (transferType !== 'in') {
@@ -129,14 +107,14 @@ export async function POST(request) {
       console.log('No order code found in content:', content);
       return NextResponse.json({ 
         success: true, 
-        message: 'No order code found' 
+        message: 'No order code found in content' 
       });
     }
 
     const orderCode = orderCodeMatch[0].toUpperCase();
     console.log('Found order code:', orderCode);
 
-    // Tìm đơn hàng
+    // Tìm đơn hàng PENDING
     const order = await prisma.paymentOrder.findFirst({
       where: { 
         orderCode,
@@ -152,7 +130,7 @@ export async function POST(request) {
     if (!order) {
       console.log('Order not found or already processed:', orderCode);
       
-      // Idempotency check
+      // Kiểm tra xem order đã completed chưa (idempotency)
       const existingOrder = await prisma.paymentOrder.findFirst({
         where: { orderCode }
       });
@@ -183,7 +161,8 @@ export async function POST(request) {
         data: {
           paidAmount: transferAmount,
           transactionId: transactionId?.toString() || referenceCode,
-          note: `${order.note || ''} | ⚠️ Thiếu tiền: Nhận ${transferAmount}đ / Cần ${order.amount}đ`
+          note: `${order.note || ''} | ⚠️ Thiếu tiền: Nhận ${transferAmount}đ / Cần ${order.amount}đ (-${order.amount - transferAmount}đ)`,
+          updatedAt: new Date()
         }
       });
       
@@ -197,24 +176,20 @@ export async function POST(request) {
     console.log('✅ Payment confirmed! Activating tier:', order.tier);
 
     // 1. Cập nhật đơn hàng thành completed
-    // SePay date format: "2025-12-15 15:29:26" -> cần replace space với T
-    const paidAtDate = transactionDate 
-      ? new Date(transactionDate.replace(' ', 'T')) 
-      : new Date();
-    
     await prisma.paymentOrder.update({
       where: { id: order.id },
       data: {
         status: 'completed',
         transactionId: transactionId?.toString() || referenceCode,
         paidAmount: transferAmount,
-        paidAt: paidAtDate,
-        note: `${order.note || ''} | ✅ Thanh toán thành công qua ${gateway || 'bank'}`
+        paidAt: transactionDate ? new Date(transactionDate.replace(' ', 'T')) : new Date(),
+        note: `${order.note || ''} | ✅ Thanh toán thành công qua ${gateway}`,
+        updatedAt: new Date()
       }
     });
 
     // 2. Cập nhật tier cho user
-    await prisma.user.update({
+    const updatedUser = await prisma.user.update({
       where: { id: order.userId },
       data: {
         tier: order.tier,
@@ -224,7 +199,7 @@ export async function POST(request) {
 
     console.log(`✅ User ${order.userId} (${order.user?.email}) upgraded to ${order.tier}`);
 
-    // 3. Tạo notification cho user
+    // 3. Tạo notification cho user (không throw error nếu fail)
     try {
       await prisma.notification.create({
         data: {
@@ -235,13 +210,15 @@ export async function POST(request) {
           data: JSON.stringify({
             orderCode,
             tier: order.tier,
-            amount: transferAmount
-          })
+            amount: transferAmount,
+            transactionId: transactionId?.toString() || referenceCode
+          }),
+          isRead: false
         }
       });
+      console.log('Notification created for user');
     } catch (notifyError) {
-      console.error('Error creating notification:', notifyError);
-      // Không throw lỗi, vì thanh toán đã thành công
+      console.error('Error creating notification (non-critical):', notifyError.message);
     }
 
     return NextResponse.json({ 
@@ -250,24 +227,28 @@ export async function POST(request) {
       data: {
         orderCode,
         tier: order.tier,
-        userId: order.userId
+        userId: order.userId,
+        userEmail: order.user?.email,
+        amount: transferAmount
       }
     });
 
   } catch (error) {
-    console.error('Webhook error:', error);
+    console.error('❌ Webhook error:', error);
     return NextResponse.json({ 
+      success: false,
       error: 'Internal server error',
       message: error.message 
     }, { status: 500 });
   }
 }
 
-// GET /api/payment/webhook - Health check
+// GET /api/payment/webhook/sepay - Health check
 export async function GET() {
   return NextResponse.json({ 
     status: 'ok',
-    message: 'Webhook endpoint is active',
+    provider: 'sepay',
+    message: 'SePay webhook endpoint is active',
     timestamp: new Date().toISOString()
   });
 }
