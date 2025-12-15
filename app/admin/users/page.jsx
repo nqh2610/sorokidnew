@@ -457,9 +457,9 @@ export default function UsersPage() {
         </div>
         <button
           onClick={() => setAddUserModal(true)}
-          className="w-full sm:w-auto px-4 py-2.5 sm:py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
+          className="w-full sm:w-auto px-3 sm:px-4 py-2.5 sm:py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:shadow-lg transition-all flex items-center justify-center gap-1 sm:gap-2 text-sm"
         >
-          ➕ Thêm người dùng
+          <span>➕</span> <span>Thêm người dùng</span>
         </button>
       </div>
 
@@ -631,10 +631,10 @@ export default function UsersPage() {
         )}
       </div>
 
-      {/* Table View */}
+      {/* Table View - Hidden on mobile */}
       {viewMode === 'table' && (
         <div className="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden">
-          <div className="overflow-x-auto">
+          <div className="hidden sm:block overflow-x-auto">
             <table className="w-full">
               <thead className="bg-slate-700/50 border-b border-slate-700">
                 <tr>
@@ -733,6 +733,74 @@ export default function UsersPage() {
               </tbody>
             </table>
           </div>
+
+          {/* Mobile Card View for Table Mode */}
+          <div className="sm:hidden p-3 space-y-3">
+            {paginatedUsers.length === 0 ? (
+              <div className="text-center py-8 text-slate-400">
+                <div className="text-3xl mb-2">🔍</div>
+                <p className="text-sm">Không tìm thấy người dùng nào</p>
+              </div>
+            ) : (
+              paginatedUsers.map((user) => (
+                <div key={user.id} className={`bg-slate-700/50 rounded-xl p-3 border ${selectedUsers.includes(user.id) ? 'border-purple-500 bg-purple-500/10' : 'border-slate-600'}`}>
+                  {/* Header */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <input
+                      type="checkbox"
+                      checked={selectedUsers.includes(user.id)}
+                      onChange={() => toggleSelectUser(user.id)}
+                      className="w-4 h-4 rounded"
+                    />
+                    <div className="relative">
+                      <MonsterAvatar 
+                        seed={user.id || user.email}
+                        size={40}
+                        className="border-2 border-slate-600"
+                        showBorder={false}
+                      />
+                      {user.role === 'admin' && (
+                        <span className="absolute -top-1 -right-1 text-xs">🛡️</span>
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium text-white text-sm truncate">{user.name || 'Chưa đặt tên'}</div>
+                      <div className="text-xs text-slate-400 truncate">{user.email}</div>
+                    </div>
+                    {getTierBadge(user.tier)}
+                  </div>
+                  
+                  {/* Stats */}
+                  <div className="grid grid-cols-4 gap-2 mb-3 text-center">
+                    <div className="bg-slate-800/50 rounded-lg p-1.5">
+                      <div className="text-white font-bold text-sm">Lv.{user.level || 1}</div>
+                      <div className="text-[10px] text-slate-500">Level</div>
+                    </div>
+                    <div className="bg-slate-800/50 rounded-lg p-1.5">
+                      <div className="text-amber-400 font-bold text-sm">⭐{user.totalStars || 0}</div>
+                      <div className="text-[10px] text-slate-500">Sao</div>
+                    </div>
+                    <div className="bg-slate-800/50 rounded-lg p-1.5">
+                      <div className="text-cyan-400 font-bold text-sm">💎{user.diamonds || 0}</div>
+                      <div className="text-[10px] text-slate-500">KC</div>
+                    </div>
+                    <div className="bg-slate-800/50 rounded-lg p-1.5">
+                      <div className="text-orange-400 font-bold text-sm">🔥{user.streak || 0}</div>
+                      <div className="text-[10px] text-slate-500">Streak</div>
+                    </div>
+                  </div>
+                  
+                  {/* Actions */}
+                  <div className="flex gap-1 pt-2 border-t border-slate-600">
+                    <button onClick={() => setDetailModal(user)} className="flex-1 py-1.5 text-slate-400 hover:bg-slate-600 rounded text-xs">👁️ Chi tiết</button>
+                    <button onClick={() => handleOpenEdit(user)} className="flex-1 py-1.5 text-slate-400 hover:bg-slate-600 rounded text-xs">✏️ Sửa</button>
+                    <button onClick={() => handleOpenPackage(user)} className="flex-1 py-1.5 text-blue-400 hover:bg-blue-500/20 rounded text-xs">📦 Gói</button>
+                    <button onClick={() => setDeleteConfirm(user)} className="py-1.5 px-2 text-red-400 hover:bg-red-500/20 rounded text-xs">🗑️</button>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
         </div>
       )}
 
@@ -814,34 +882,34 @@ export default function UsersPage() {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between bg-slate-800 rounded-2xl p-4 border border-slate-700">
-          <div className="flex items-center gap-2">
-            <span className="text-slate-400 text-sm">Hiển thị</span>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-slate-800 rounded-2xl p-3 sm:p-4 border border-slate-700">
+          <div className="flex items-center gap-2 order-2 sm:order-1">
+            <span className="text-slate-400 text-xs sm:text-sm hidden sm:inline">Hiển thị</span>
             <select
               value={itemsPerPage}
               onChange={(e) => { setItemsPerPage(Number(e.target.value)); setCurrentPage(1); }}
-              className="px-2 py-1 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm"
+              className="px-2 py-1 bg-slate-700 border border-slate-600 rounded-lg text-white text-xs sm:text-sm"
             >
               <option value={10}>10</option>
               <option value={20}>20</option>
               <option value={50}>50</option>
               <option value={100}>100</option>
             </select>
-            <span className="text-slate-400 text-sm">/ trang</span>
+            <span className="text-slate-400 text-xs sm:text-sm">/ trang</span>
           </div>
           
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2 order-1 sm:order-2">
             <button
               onClick={() => setCurrentPage(1)}
               disabled={currentPage === 1}
-              className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="hidden sm:block p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               ⏮️
             </button>
             <button
               onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
               disabled={currentPage === 1}
-              className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-1.5 sm:p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               ◀️
             </button>
@@ -882,13 +950,13 @@ export default function UsersPage() {
             <button
               onClick={() => setCurrentPage(totalPages)}
               disabled={currentPage === totalPages}
-              className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="hidden sm:block p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               ⏭️
             </button>
           </div>
           
-          <div className="text-slate-400 text-sm">
+          <div className="text-slate-400 text-xs sm:text-sm order-3">
             Trang {currentPage} / {totalPages}
           </div>
         </div>
@@ -896,64 +964,64 @@ export default function UsersPage() {
 
       {/* Add User Modal */}
       {addUserModal && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-md border border-slate-700">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-2xl">➕</div>
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-2 sm:p-4">
+          <div className="bg-slate-800 rounded-2xl p-4 sm:p-6 w-full max-w-md border border-slate-700 max-h-[95vh] overflow-y-auto">
+            <div className="flex items-center gap-3 mb-4 sm:mb-6">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-xl sm:text-2xl">➕</div>
               <div>
-                <h3 className="text-lg font-bold text-white">Thêm người dùng mới</h3>
-                <p className="text-slate-400 text-sm">Tạo tài khoản cho người dùng</p>
+                <h3 className="text-base sm:text-lg font-bold text-white">Thêm người dùng mới</h3>
+                <p className="text-slate-400 text-xs sm:text-sm">Tạo tài khoản cho người dùng</p>
               </div>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Họ tên</label>
+                <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Họ tên</label>
                 <input
                   type="text"
                   value={newUserForm.name}
                   onChange={(e) => setNewUserForm({ ...newUserForm, name: e.target.value })}
-                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+                  className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm focus:ring-2 focus:ring-purple-500"
                   placeholder="Nguyễn Văn A"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Email *</label>
+                <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Email *</label>
                 <input
                   type="email"
                   value={newUserForm.email}
                   onChange={(e) => setNewUserForm({ ...newUserForm, email: e.target.value })}
-                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+                  className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm focus:ring-2 focus:ring-purple-500"
                   placeholder="email@example.com"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Username</label>
+                <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Username</label>
                 <input
                   type="text"
                   value={newUserForm.username}
                   onChange={(e) => setNewUserForm({ ...newUserForm, username: e.target.value })}
-                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+                  className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm focus:ring-2 focus:ring-purple-500"
                   placeholder="username"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Mật khẩu *</label>
+                <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Mật khẩu *</label>
                 <input
                   type="text"
                   value={newUserForm.password}
                   onChange={(e) => setNewUserForm({ ...newUserForm, password: e.target.value })}
-                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+                  className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm focus:ring-2 focus:ring-purple-500"
                   placeholder="Nhập mật khẩu"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Gói dịch vụ</label>
+                <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Gói dịch vụ</label>
                 <select
                   value={newUserForm.tier}
                   onChange={(e) => setNewUserForm({ ...newUserForm, tier: e.target.value })}
-                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+                  className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm focus:ring-2 focus:ring-purple-500"
                 >
                   <option value="free">🆓 Miễn phí</option>
                   <option value="basic">⭐ Cơ Bản</option>
@@ -961,9 +1029,9 @@ export default function UsersPage() {
                 </select>
               </div>
             </div>
-            <div className="flex justify-end gap-3 mt-6">
-              <button onClick={() => setAddUserModal(false)} className="px-4 py-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors">Hủy</button>
-              <button onClick={handleAddUser} className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors">Tạo người dùng</button>
+            <div className="flex flex-col sm:flex-row justify-end gap-2 sm:gap-3 mt-4 sm:mt-6">
+              <button onClick={() => setAddUserModal(false)} className="px-4 py-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors text-sm order-2 sm:order-1">Hủy</button>
+              <button onClick={handleAddUser} className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors text-sm order-1 sm:order-2">Tạo người dùng</button>
             </div>
           </div>
         </div>
@@ -987,38 +1055,38 @@ export default function UsersPage() {
             </div>
             <div className="space-y-3 sm:space-y-4">
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Họ tên</label>
+                <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Họ tên</label>
                 <input
                   type="text"
                   value={editForm.name}
                   onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
-                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+                  className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm focus:ring-2 focus:ring-purple-500"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Email</label>
+                <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Email</label>
                 <input
                   type="email"
                   value={editForm.email}
                   onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
-                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+                  className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm focus:ring-2 focus:ring-purple-500"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Username</label>
+                <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Username</label>
                 <input
                   type="text"
                   value={editForm.username}
                   onChange={(e) => setEditForm({ ...editForm, username: e.target.value })}
-                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+                  className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm focus:ring-2 focus:ring-purple-500"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Vai trò</label>
+                <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Vai trò</label>
                 <select
                   value={editForm.role}
                   onChange={(e) => setEditForm({ ...editForm, role: e.target.value })}
-                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+                  className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm focus:ring-2 focus:ring-purple-500"
                 >
                   <option value="user">👤 Người dùng</option>
                   <option value="admin">🛡️ Quản trị viên</option>
@@ -1026,19 +1094,19 @@ export default function UsersPage() {
               </div>
               
               {/* Certificates Section */}
-              <div className="pt-4 border-t border-slate-600">
-                <div className="flex items-center justify-between mb-3">
-                  <label className="text-sm font-medium text-slate-300">
-                    📜 Cập nhật tên trong chứng chỉ
+              <div className="pt-3 sm:pt-4 border-t border-slate-600">
+                <div className="flex items-center justify-between mb-2 sm:mb-3">
+                  <label className="text-xs sm:text-sm font-medium text-slate-300">
+                    📜 Cập nhật tên chứng chỉ
                   </label>
                   {loadingCertificates && (
-                    <span className="text-xs text-slate-400">Đang tải...</span>
+                    <span className="text-[10px] sm:text-xs text-slate-400">Đang tải...</span>
                   )}
                 </div>
                 
                 {userCertificates.length > 0 ? (
                   <>
-                    <label className="flex items-center gap-3 mb-3 cursor-pointer">
+                    <label className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3 cursor-pointer">
                       <input
                         type="checkbox"
                         checked={updateCertificates}
@@ -1048,31 +1116,31 @@ export default function UsersPage() {
                         }}
                         className="w-4 h-4 rounded bg-slate-700 border-slate-600 text-purple-500 focus:ring-purple-500"
                       />
-                      <span className="text-sm text-slate-300">
-                        Đồng thời cập nhật tên trong chứng chỉ
+                      <span className="text-xs sm:text-sm text-slate-300">
+                        Cập nhật tên trong chứng chỉ
                       </span>
                     </label>
                     
                     {updateCertificates && (
-                      <div className="space-y-2 bg-slate-700/50 rounded-lg p-3">
+                      <div className="space-y-2 bg-slate-700/50 rounded-lg p-2 sm:p-3">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-xs text-slate-400">
-                            Chọn chứng chỉ cần cập nhật ({selectedCertificates.length}/{userCertificates.length})
+                          <span className="text-[10px] sm:text-xs text-slate-400">
+                            Chọn ({selectedCertificates.length}/{userCertificates.length})
                           </span>
                           <button
                             type="button"
                             onClick={handleSelectAllCertificates}
-                            className="text-xs text-purple-400 hover:text-purple-300"
+                            className="text-[10px] sm:text-xs text-purple-400 hover:text-purple-300"
                           >
-                            {selectedCertificates.length === userCertificates.length ? 'Bỏ chọn tất cả' : 'Chọn tất cả'}
+                            {selectedCertificates.length === userCertificates.length ? 'Bỏ chọn' : 'Chọn tất cả'}
                           </button>
                         </div>
                         
-                        <div className="space-y-2 max-h-40 overflow-y-auto">
+                        <div className="space-y-2 max-h-32 sm:max-h-40 overflow-y-auto">
                           {userCertificates.map((cert) => (
                             <label
                               key={cert.id}
-                              className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-colors ${
+                              className={`flex items-center gap-2 sm:gap-3 p-1.5 sm:p-2 rounded-lg cursor-pointer transition-colors ${
                                 selectedCertificates.includes(cert.id) 
                                   ? 'bg-purple-500/20 border border-purple-500/50' 
                                   : 'bg-slate-600/50 hover:bg-slate-600'
@@ -1085,13 +1153,13 @@ export default function UsersPage() {
                                 className="w-4 h-4 rounded bg-slate-700 border-slate-600 text-purple-500 focus:ring-purple-500"
                               />
                               <div className="flex-1 min-w-0">
-                                <p className="text-sm text-white truncate">
-                                  {cert.certType === 'addition_subtraction' && '🧮 Chứng chỉ Cộng Trừ'}
-                                  {cert.certType === 'comprehensive' && '🏆 Chứng chỉ Toàn diện'}
+                                <p className="text-xs sm:text-sm text-white truncate">
+                                  {cert.certType === 'addition_subtraction' && '🧮 Cộng Trừ'}
+                                  {cert.certType === 'comprehensive' && '🏆 Toàn diện'}
                                   {!['addition_subtraction', 'comprehensive'].includes(cert.certType) && `📜 ${cert.certType}`}
                                 </p>
-                                <p className="text-xs text-slate-400">
-                                  Tên hiện tại: <span className="text-amber-400">{cert.recipientName}</span>
+                                <p className="text-[10px] sm:text-xs text-slate-400 truncate">
+                                  <span className="text-amber-400">{cert.recipientName}</span>
                                 </p>
                               </div>
                             </label>
@@ -1099,16 +1167,16 @@ export default function UsersPage() {
                         </div>
                         
                         {selectedCertificates.length === 0 && (
-                          <p className="text-xs text-amber-400 mt-2">
-                            ⚠️ Chưa chọn chứng chỉ nào → Sẽ cập nhật tất cả
+                          <p className="text-[10px] sm:text-xs text-amber-400 mt-2">
+                            ⚠️ Chưa chọn → Cập nhật tất cả
                           </p>
                         )}
                       </div>
                     )}
                   </>
                 ) : (
-                  <p className="text-sm text-slate-500 italic">
-                    {loadingCertificates ? 'Đang tải...' : 'Người dùng chưa có chứng chỉ nào'}
+                  <p className="text-xs sm:text-sm text-slate-500 italic">
+                    {loadingCertificates ? 'Đang tải...' : 'Chưa có chứng chỉ'}
                   </p>
                 )}
               </div>
