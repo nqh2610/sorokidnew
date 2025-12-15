@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { AlertTriangle, Info, Trash2, CheckCircle } from 'lucide-react';
 
 /**
@@ -30,11 +31,28 @@ export default function AdminConfirmDialog({
   // Support both onClose and onCancel
   const handleClose = onCancel || onClose;
   
+  // Internal loading state
+  const [isProcessing, setIsProcessing] = useState(false);
+  
   if (!isOpen) return null;
 
-  const handleConfirm = () => {
-    onConfirm();
+  const handleConfirm = async () => {
+    // Prevent double click
+    if (isProcessing) return;
+    
+    setIsProcessing(true);
+    try {
+      // Support both sync and async onConfirm
+      if (onConfirm) {
+        await onConfirm();
+      }
+    } finally {
+      setIsProcessing(false);
+    }
   };
+
+  // Use external loading prop or internal isProcessing
+  const showLoading = loading || isProcessing;
 
   const handleKeyDown = (e) => {
     if (e.key === 'Escape') {
@@ -95,17 +113,17 @@ export default function AdminConfirmDialog({
         <div className="flex gap-3">
           <button
             onClick={handleClose}
-            disabled={loading}
+            disabled={showLoading}
             className="flex-1 px-4 py-2.5 bg-slate-700 text-slate-300 rounded-xl font-medium hover:bg-slate-600 transition-all focus:outline-none focus:ring-2 focus:ring-slate-500/50 disabled:opacity-50"
           >
             {cancelText}
           </button>
           <button
             onClick={handleConfirm}
-            disabled={loading}
+            disabled={showLoading}
             className={`flex-1 px-4 py-2.5 text-white rounded-xl font-medium transition-all focus:outline-none focus:ring-2 disabled:opacity-50 ${confirmButtonStyles[type]}`}
           >
-            {loading ? (
+            {showLoading ? (
               <span className="flex items-center justify-center gap-2">
                 <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
