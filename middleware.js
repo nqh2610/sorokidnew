@@ -107,14 +107,16 @@ export async function middleware(request) {
 export const config = {
   matcher: [
     /*
-     * 🔧 TỐI ƯU: Chỉ match page routes, không match:
+     * 🔧 TỐI ƯU SHARED HOST: Chỉ match page routes, KHÔNG match:
      * - api (API routes - self-handled)
      * - _next/static (static files)
      * - _next/image (image optimization files)
+     * - _next/data (ISR data files)
      * - favicon.ico (favicon file)
-     * - public folder files
+     * - public folder files (images, fonts, assets)
      * - health check
+     * - manifest, robots, sitemap
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$|.*\\.jpg$|.*\\.svg$|.*\\.ico$|.*\\.webp$).*)',
+    '/((?!api|_next/static|_next/image|_next/data|favicon.ico|manifest\\.json|robots\\.txt|sitemap\\.xml|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf|otf|mp3|mp4|pdf)$).*)',
   ],
 };

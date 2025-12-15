@@ -150,7 +150,6 @@ export default function PricingPage() {
   const [pricingPlans, setPricingPlans] = useState([]);
   const [isLoadingPlans, setIsLoadingPlans] = useState(true);
   const [userTier, setUserTier] = useState('free');
-  const [purchaseNotification, setPurchaseNotification] = useState(null);
   
   // 🎉 State cho Success Modal
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -158,79 +157,6 @@ export default function PricingPage() {
   
   // 📌 Ref để track polling interval
   const pollingRef = useRef(null);
-
-  // 🔔 Social Proof: Random "vừa mua" notification với data đa dạng
-  useEffect(() => {
-    // Danh sách tên phổ biến Việt Nam (150+ tên)
-    const firstNames = [
-      // Tên nam phổ biến
-      'Minh', 'Nam', 'Tuấn', 'Đức', 'Khoa', 'Hải', 'Long', 'Quang', 'Bình', 'Hùng',
-      'Thành', 'Hoàng', 'Trung', 'Dũng', 'Kiên', 'Phúc', 'Tùng', 'Việt', 'Cường', 'Sơn',
-      'Toàn', 'Nghĩa', 'Đạt', 'Khánh', 'Hưng', 'Tín', 'Nhân', 'Phong', 'Thiện', 'Tâm',
-      'Trí', 'Khang', 'Hiếu', 'Lộc', 'Thắng', 'Vinh', 'Hậu', 'Luân', 'Phát', 'Tài',
-      'Duy', 'Khôi', 'Bảo', 'An', 'Lâm', 'Đăng', 'Quân', 'Huy', 'Tiến', 'Trọng',
-      
-      // Tên nữ phổ biến
-      'Hà', 'Linh', 'Hương', 'Mai', 'Lan', 'Anh', 'Phương', 'Thảo', 'Ngọc', 'Trang',
-      'Yến', 'Hiền', 'Vy', 'Nhung', 'Ly', 'Hạnh', 'Nga', 'Oanh', 'Loan', 'Thủy',
-      'Hồng', 'Diệu', 'Ánh', 'Vân', 'Thanh', 'Xuân', 'Thu', 'Hằng', 'Trinh', 'Dung',
-      'Hoa', 'Thúy', 'Tuyết', 'Trâm', 'Quyên', 'Như', 'Thy', 'Uyên', 'Nhi', 'Trúc',
-      'Giang', 'Châu', 'Yên', 'Huyền', 'Quỳnh', 'My', 'Chi', 'Thư', 'Khanh', 'Nhiên',
-      
-      // Tên unisex
-      'Bách', 'Bằng', 'Cẩm', 'Công', 'Danh', 'Điệp', 'Hạ', 'Hiệp', 'Hòa', 'Khải',
-      'Kim', 'Lam', 'Lệ', 'Liên', 'Mạnh', 'Ngân', 'Nhật', 'Phượng', 'Quốc', 'Sang',
-      'Sáng', 'Tân', 'Thắm', 'Thiên', 'Thuận', 'Thương', 'Tín', 'Trang', 'Trâm', 'Tuyền',
-      'Uyển', 'Vũ', 'Xuyến', 'Yến', 'Tú', 'Tường', 'Phước', 'Phụng', 'Liêm', 'Luật',
-      
-      // Thêm tên đặc biệt
-      'Bảo Ngọc', 'Minh Anh', 'Thanh Hà', 'Hoàng Anh', 'Phương Anh', 'Thùy Linh',
-      'Minh Châu', 'Thanh Trúc', 'Bảo Trâm', 'Thu Hà', 'Minh Tâm', 'Thanh Tùng',
-      'Hoàng Long', 'Minh Quân', 'Bảo An', 'Thu Thảo', 'Minh Hằng', 'Thanh Nga'
-    ];
-    
-    const packages = ['Cơ Bản', 'Nâng Cao'];
-    
-    // Track tên đã hiện để tránh lặp liên tiếp
-    let lastName = '';
-    
-    const showNotification = () => {
-      let name;
-      
-      // Đảm bảo không lặp lại tên liên tiếp
-      do {
-        name = firstNames[Math.floor(Math.random() * firstNames.length)];
-      } while (name === lastName);
-      
-      lastName = name;
-      
-      const pkg = packages[Math.floor(Math.random() * packages.length)];
-      const isMinutes = Math.random() > 0.3; // 70% là phút, 30% là giờ
-      const time = isMinutes 
-        ? Math.floor(Math.random() * 15) + 1  // 1-15 phút
-        : Math.floor(Math.random() * 3) + 1;  // 1-3 giờ
-      const unit = isMinutes ? 'phút' : 'giờ';
-      
-      setPurchaseNotification({ name, pkg, time, unit });
-      
-      // Ẩn sau 4-5 giây
-      setTimeout(() => setPurchaseNotification(null), 4000 + Math.random() * 1000);
-    };
-
-    // Hiện notification đầu tiên sau 8-12 giây
-    const firstDelay = 8000 + Math.random() * 4000;
-    const firstTimeout = setTimeout(showNotification, firstDelay);
-    
-    // Sau đó hiện mỗi 20-40 giây (random để tự nhiên hơn)
-    const interval = setInterval(() => {
-      showNotification();
-    }, 20000 + Math.random() * 20000);
-    
-    return () => {
-      clearTimeout(firstTimeout);
-      clearInterval(interval);
-    };
-  }, []);
 
   // Load pricing plans and user tier
   useEffect(() => {
@@ -356,13 +282,26 @@ export default function PricingPage() {
   };
 
   // Function để bắt đầu polling kiểm tra trạng thái thanh toán
+  // 🔧 TỐI ƯU: Tăng interval lên 10s để giảm requests trên shared host
   const startPaymentPolling = (orderId, tierId, tierDisplayName) => {
     // Clear polling cũ nếu có
     if (pollingRef.current) {
       clearInterval(pollingRef.current);
     }
     
+    let pollCount = 0;
+    const MAX_POLLS = 90; // Giới hạn 90 lần poll (15 phút với interval 10s)
+    
     const pollInterval = setInterval(async () => {
+      pollCount++;
+      
+      // 🔧 Dừng nếu đã poll quá nhiều
+      if (pollCount > MAX_POLLS) {
+        clearInterval(pollInterval);
+        pollingRef.current = null;
+        return;
+      }
+      
       try {
         const res = await fetch(`/api/payment/status/${orderId}`);
         const data = await res.json();
@@ -393,7 +332,7 @@ export default function PricingPage() {
       } catch (error) {
         console.error('Polling error:', error);
       }
-    }, 5000); // Check mỗi 5 giây
+    }, 10000); // 🔧 TỐI ƯU: Check mỗi 10 giây thay vì 5s
     
     pollingRef.current = pollInterval;
 
@@ -986,43 +925,6 @@ export default function PricingPage() {
         tierDisplayName={successTierInfo.displayName}
         onGoToDashboard={handleGoToDashboard}
       />
-
-      {/* 🔔 PURCHASE NOTIFICATION - Popup thông báo mua hàng */}
-      {purchaseNotification && (
-        <div className="fixed bottom-6 left-6 z-40 animate-in slide-in-from-left-full duration-500">
-          <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 p-4 max-w-xs">
-            <div className="flex items-start gap-3">
-              {/* Avatar với icon check */}
-              <div className="relative flex-shrink-0">
-                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-bold">
-                  {purchaseNotification.name.charAt(0)}
-                </div>
-                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full flex items-center justify-center border-2 border-white">
-                  <Check size={10} className="text-white" />
-                </div>
-              </div>
-              
-              {/* Content */}
-              <div className="flex-1 min-w-0">
-                <p className="text-sm text-slate-800 leading-snug">
-                  <span className="font-semibold">{purchaseNotification.name}</span>
-                  <span className="text-slate-500"> vừa đăng ký gói </span>
-                  <span className={`font-semibold ${
-                    purchaseNotification.pkg === 'Nâng Cao' 
-                      ? 'text-fuchsia-600' 
-                      : 'text-blue-600'
-                  }`}>
-                    {purchaseNotification.pkg}
-                  </span>
-                </p>
-                <p className="text-xs text-slate-400 mt-1">
-                  {purchaseNotification.time} {purchaseNotification.unit} trước
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

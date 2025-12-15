@@ -161,6 +161,18 @@ export const API_CONFIG = {
     // Thời gian OPEN trước khi thử HALF_OPEN
     timeout: IS_SHARED ? 60000 : 30000,
   },
+  
+  // === POLLING CONFIG (Frontend) ===
+  polling: {
+    // Payment status polling interval (ms)
+    paymentInterval: IS_SHARED ? 10000 : 5000,
+    
+    // Max polling attempts trước khi dừng
+    maxPolls: IS_SHARED ? 90 : 180, // 15 phút với 10s / 15 phút với 5s
+    
+    // Auto-stop polling timeout (ms)
+    autoStopTimeout: IS_SHARED ? 15 * 60 * 1000 : 30 * 60 * 1000,
+  },
 };
 
 /**
@@ -209,11 +221,17 @@ export const RENDERING_CONFIG = {
   
   // Prefetch settings
   prefetch: {
-    // Enable link prefetch
+    // Enable link prefetch trên navigation
     enabled: IS_VPS,
     
     // Prefetch on hover only (for shared)
     onHoverOnly: IS_SHARED,
+  },
+  
+  // Navigation settings
+  navigation: {
+    // Prefetch links trong BottomNav
+    prefetchLinks: IS_VPS, // false cho shared host
   },
   
   // Image optimization
