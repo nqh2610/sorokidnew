@@ -155,16 +155,41 @@ export async function POST(request) {
     if (transferAmount < order.amount) {
       console.warn(`❌ Amount insufficient: received ${transferAmount}đ, expected ${order.amount}đ`);
       
+      const shortAmount = order.amount - transferAmount;
+      
       // Cập nhật ghi chú về số tiền chưa đủ
       await prisma.paymentOrder.update({
         where: { id: order.id },
         data: {
           paidAmount: transferAmount,
           transactionId: transactionId?.toString() || referenceCode,
-          note: `${order.note || ''} | ⚠️ Thiếu tiền: Nhận ${transferAmount}đ / Cần ${order.amount}đ (-${order.amount - transferAmount}đ)`,
+          note: `${order.note || ''} | ⚠️ Thiếu tiền: Nhận ${transferAmount.toLocaleString()}đ / Cần ${order.amount.toLocaleString()}đ (-${shortAmount.toLocaleString()}đ)`,
           updatedAt: new Date()
         }
       });
+      
+      // 🔔 TẠO NOTIFICATION CHO USER - Thông báo số tiền không đủ
+      try {
+        await prisma.notification.create({
+          data: {
+            userId: order.userId,
+            type: 'payment_insufficient',
+            title: '⚠️ Số tiền chuyển không đủ!',
+            message: `Đơn hàng ${orderCode}: Bạn đã chuyển ${transferAmount.toLocaleString()}đ nhưng cần ${order.amount.toLocaleString()}đ. Còn thiếu ${shortAmount.toLocaleString()}đ để kích hoạt gói ${order.tier.toUpperCase()}. Vui lòng chuyển thêm hoặc liên hệ hỗ trợ.`,
+            data: JSON.stringify({
+              orderCode,
+              tier: order.tier,
+              required: order.amount,
+              received: transferAmount,
+              shortage: shortAmount
+            }),
+            isRead: false
+          }
+        });
+        console.log('Notification created for insufficient amount');
+      } catch (notifyError) {
+        console.error('Error creating notification:', notifyError.message);
+      }
       
       return NextResponse.json({ 
         success: true, 
