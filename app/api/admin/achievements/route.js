@@ -114,6 +114,9 @@ export async function POST(request) {
       }
     });
 
+    // 🔧 FIX: Clear cache sau khi tạo achievement
+    cache.deletePattern('achievements');
+
     return NextResponse.json({ 
       success: true, 
       achievement: { ...achievement, requirement: requirementJson }
@@ -163,6 +166,9 @@ export async function PUT(request) {
       data: updateData
     });
 
+    // 🔧 FIX: Clear cache sau khi cập nhật achievement
+    cache.deletePattern('achievements');
+
     return NextResponse.json({ 
       success: true, 
       achievement: { ...achievement, requirement: JSON.parse(achievement.requirement) }
@@ -196,6 +202,9 @@ export async function DELETE(request) {
     await prisma.achievement.delete({
       where: { id }
     });
+
+    // 🔧 FIX: Clear cache sau khi xóa achievement
+    cache.deletePattern('achievements');
 
     return NextResponse.json({ success: true });
   } catch (error) {

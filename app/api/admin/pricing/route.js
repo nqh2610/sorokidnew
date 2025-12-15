@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { cache } from '@/lib/cache';
 
 // Default pricing plans
 const DEFAULT_PLANS = [
@@ -144,6 +145,10 @@ export async function POST(request) {
       }
     });
 
+    // 🔧 FIX: Xóa cache pricing để cập nhật ngay lập tức
+    cache.delete('pricing_plans_public');
+    cache.deletePattern('pricing');
+
     return NextResponse.json({ 
       success: true, 
       message: 'Đã lưu danh sách gói thành công'
@@ -208,6 +213,10 @@ export async function PUT(request) {
       }
     });
 
+    // 🔧 FIX: Xóa cache pricing để cập nhật ngay lập tức
+    cache.delete('pricing_plans_public');
+    cache.deletePattern('pricing');
+
     return NextResponse.json({ 
       success: true, 
       message: 'Đã cập nhật gói thành công'
@@ -270,6 +279,10 @@ export async function DELETE(request) {
         updatedAt: new Date() 
       }
     });
+
+    // 🔧 FIX: Xóa cache pricing để cập nhật ngay lập tức
+    cache.delete('pricing_plans_public');
+    cache.deletePattern('pricing');
 
     return NextResponse.json({ 
       success: true, 

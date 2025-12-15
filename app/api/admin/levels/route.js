@@ -106,6 +106,10 @@ export async function POST(request) {
       }
     });
 
+    // 🔧 FIX: Clear cache sau khi tạo level
+    cache.delete('all_levels');
+    cache.delete('lesson_counts');
+
     return NextResponse.json({ success: true, level });
   } catch (error) {
     console.error('Error creating level:', error);
@@ -147,6 +151,9 @@ export async function PUT(request) {
       }
     });
 
+    // 🔧 FIX: Clear cache sau khi cập nhật level
+    cache.delete('all_levels');
+
     return NextResponse.json({ success: true, level });
   } catch (error) {
     console.error('Error updating level:', error);
@@ -183,6 +190,10 @@ export async function DELETE(request) {
     await prisma.level.delete({
       where: { id: parseInt(id) }
     });
+
+    // 🔧 FIX: Clear cache sau khi xóa level
+    cache.delete('all_levels');
+    cache.delete('lesson_counts');
 
     return NextResponse.json({ success: true });
   } catch (error) {

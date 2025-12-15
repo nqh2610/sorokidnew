@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { cache } from '@/lib/cache';
 
 // GET /api/admin/payment-settings - Lấy cài đặt thanh toán
 export async function GET(request) {
@@ -139,6 +140,9 @@ export async function POST(request) {
           updatedAt: new Date() 
         }
       });
+
+      // 🔧 FIX: Clear cache sau khi lưu payment settings
+      cache.delete('payment_settings');
 
       return NextResponse.json({ 
         success: true, 

@@ -112,6 +112,9 @@ export async function POST(request) {
       }
     });
 
+    // 🔧 FIX: Clear cache sau khi tạo lesson
+    cache.deletePattern('lessons');
+
     return NextResponse.json({ 
       success: true, 
       lesson: { ...lesson, content: contentJson }
@@ -163,6 +166,9 @@ export async function PUT(request) {
       data: updateData
     });
 
+    // 🔧 FIX: Clear cache sau khi cập nhật lesson
+    cache.deletePattern('lessons');
+
     return NextResponse.json({ 
       success: true, 
       lesson: { ...lesson, content: JSON.parse(lesson.content) }
@@ -191,6 +197,9 @@ export async function DELETE(request) {
     await prisma.lesson.delete({
       where: { id }
     });
+
+    // 🔧 FIX: Clear cache sau khi xóa lesson
+    cache.deletePattern('lessons');
 
     return NextResponse.json({ success: true });
   } catch (error) {

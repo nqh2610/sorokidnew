@@ -113,6 +113,7 @@ export async function POST(request) {
 
     // 🔧 Invalidate cache khi tạo mới
     cache.deleteByPrefix('admin_quests_');
+    cache.deletePattern('quests');
 
     const data = await request.json();
     const { title, description, type, category, requirement, stars, diamonds, expiresAt, isActive } = data;
@@ -205,6 +206,10 @@ export async function PUT(request) {
       data: updateData
     });
 
+    // 🔧 FIX: Clear cache sau khi cập nhật quest
+    cache.deleteByPrefix('admin_quests_');
+    cache.deletePattern('quests');
+
     return NextResponse.json({ 
       success: true, 
       quest: { ...quest, requirement: JSON.parse(quest.requirement) }
@@ -238,6 +243,10 @@ export async function DELETE(request) {
     await prisma.quest.delete({
       where: { id }
     });
+
+    // 🔧 FIX: Clear cache sau khi xóa quest
+    cache.deleteByPrefix('admin_quests_');
+    cache.deletePattern('quests');
 
     return NextResponse.json({ success: true });
   } catch (error) {
