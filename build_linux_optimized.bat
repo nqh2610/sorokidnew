@@ -154,7 +154,7 @@ del /q "%OUTPUT_DIR%\.env.production" 2>nul
 :: Tao .env moi voi RUNTIME_ENV=shared
 (
 echo # Database - MySQL
-echo DATABASE_URL="mysql://nhsortag_soro:dNu6PJPiiLo66XWz@sorokid.com:3306/nhsortag_sorokids?connection_limit=5&pool_timeout=10"
+echo DATABASE_URL="mysql://nhsortag_soro:dNu6PJPiiLo66XWz@sorokid.com:3306/nhsortag_sorokids?connection_limit=5^&pool_timeout=10"
 echo.
 echo # NextAuth
 echo NEXTAUTH_URL="https://sorokid.com"
