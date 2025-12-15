@@ -354,6 +354,12 @@ export default function PricingPage() {
       setIsLoading(false);
     }
   };
+
+  // Function để bắt đầu polling kiểm tra trạng thái thanh toán
+  const startPaymentPolling = (orderId, tierId, tierDisplayName) => {
+    // Clear polling cũ nếu có
+    if (pollingRef.current) {
+      clearInterval(pollingRef.current);
     }
     
     const pollInterval = setInterval(async () => {
