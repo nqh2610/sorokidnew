@@ -152,24 +152,34 @@ del /q "%OUTPUT_DIR%\.env" 2>nul
 del /q "%OUTPUT_DIR%\.env.production" 2>nul
 
 :: Tao .env moi voi RUNTIME_ENV=shared
-(
-echo # Database - MySQL
-echo DATABASE_URL="mysql://nhsortag_soro:dNu6PJPiiLo66XWz@sorokid.com:3306/nhsortag_sorokids?connection_limit=5^&pool_timeout=10"
+:: Copy tu template de tranh van de ky tu dac biet trong CMD
+if exist ".env.production.template" (
+    copy /Y ".env.production.template" "%OUTPUT_DIR%\.env"
+    echo   - Da copy .env tu template
+) else (
+    :: Fallback: Tao .env bang cach copy tung dong
+    echo # Database - MySQL> "%OUTPUT_DIR%\.env"
+    echo DATABASE_URL=mysql://nhsortag_soro:dNu6PJPiiLo66XWz@sorokid.com:3306/nhsortag_sorokids?connection_limit=5>> "%OUTPUT_DIR%\.env"
+    echo.>> "%OUTPUT_DIR%\.env"
+    echo # NextAuth>> "%OUTPUT_DIR%\.env"
+    echo NEXTAUTH_URL=https://sorokid.com>> "%OUTPUT_DIR%\.env"
+    echo NEXTAUTH_SECRET=wstVe5DkkFHKqTosIMpgwjRWUigLJgbYg8n04+qWjv8=>> "%OUTPUT_DIR%\.env"
+    echo.>> "%OUTPUT_DIR%\.env"
+    echo # Node environment>> "%OUTPUT_DIR%\.env"
+    echo NODE_ENV=production>> "%OUTPUT_DIR%\.env"
+    echo.>> "%OUTPUT_DIR%\.env"
+    echo # RUNTIME CONFIG>> "%OUTPUT_DIR%\.env"
+    echo RUNTIME_ENV=shared>> "%OUTPUT_DIR%\.env"
+    echo.>> "%OUTPUT_DIR%\.env"
+    echo # Server>> "%OUTPUT_DIR%\.env"
+    echo PORT=3000>> "%OUTPUT_DIR%\.env"
+    echo HOSTNAME=0.0.0.0>> "%OUTPUT_DIR%\.env"
+    echo   - Tao .env (LUU Y: DATABASE_URL khong co pool_timeout - can sua tay)
+)
+
 echo.
-echo # NextAuth
-echo NEXTAUTH_URL="https://sorokid.com"
-echo NEXTAUTH_SECRET="wstVe5DkkFHKqTosIMpgwjRWUigLJgbYg8n04+qWjv8="
-echo.
-echo # Node environment
-echo NODE_ENV="production"
-echo.
-echo # RUNTIME CONFIG - QUAN TRONG cho shared host
-echo RUNTIME_ENV="shared"
-echo.
-echo # Server configuration
-echo PORT=3000
-echo HOSTNAME="0.0.0.0"
-) > "%OUTPUT_DIR%\.env"
+echo *** QUAN TRONG: Sau khi deploy, kiem tra file .env tren server! ***
+echo *** DATABASE_URL phai co dang: ...?connection_limit=5^&pool_timeout=10 ***
 
 :: ========================================
 :: KIEM TRA KET QUA
