@@ -1794,7 +1794,7 @@ export default function PracticePage() {
                   <input
                     ref={flashInputRef}
                     type="text"
-                    inputMode="numeric"
+                    inputMode="none"
                     value={flashAnswer}
                     onChange={(e) => {
                       if (/^-?\d*$/.test(e.target.value)) {
@@ -1808,21 +1808,56 @@ export default function PracticePage() {
                     }}
                     placeholder="?"
                     autoFocus
-                    className="w-full text-5xl sm:text-6xl font-black text-center py-4 sm:py-5 bg-transparent text-yellow-400 placeholder-white/20 outline-none caret-yellow-400"
+                    readOnly
+                    className="w-full text-5xl sm:text-6xl font-black text-center py-4 sm:py-5 bg-transparent text-yellow-400 placeholder-white/20 outline-none caret-yellow-400 sm:caret-yellow-400"
                   />
                 </div>
               </div>
               
-              {/* Submit button - Epic */}
+              {/* 🔧 Numpad for Mobile - Hidden on Desktop (sm:hidden) */}
+              <div className="grid grid-cols-3 gap-1.5 mb-2 sm:hidden">
+                {[1,2,3,4,5,6,7,8,9].map((num) => (
+                  <button
+                    key={num}
+                    onClick={() => setFlashAnswer(prev => prev + num)}
+                    className="bg-white/20 hover:bg-white/30 active:bg-white/40 rounded-xl p-3 text-white font-bold text-xl transition-all active:scale-95"
+                  >
+                    {num}
+                  </button>
+                ))}
+                <button
+                  onClick={() => setFlashAnswer(prev => prev.slice(0, -1))}
+                  className="bg-red-500/70 hover:bg-red-500 active:bg-red-600 rounded-xl p-3 text-white font-bold text-base transition-all active:scale-95"
+                >
+                  ⌫
+                </button>
+                <button
+                  onClick={() => setFlashAnswer(prev => prev + '0')}
+                  className="bg-white/20 hover:bg-white/30 active:bg-white/40 rounded-xl p-3 text-white font-bold text-xl transition-all active:scale-95"
+                >
+                  0
+                </button>
+                <button
+                  onClick={() => {
+                    if (flashAnswer) handleFlashSubmit();
+                  }}
+                  disabled={!flashAnswer}
+                  className="bg-green-500 hover:bg-green-600 active:bg-green-700 rounded-xl p-3 text-white font-bold text-sm transition-all active:scale-95 disabled:opacity-50"
+                >
+                  Enter
+                </button>
+              </div>
+              
+              {/* Submit button - Epic - Hidden on Mobile when numpad shown */}
               <button
                 onClick={handleFlashSubmit}
                 disabled={!flashAnswer}
-                className="w-full py-3 sm:py-4 bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 text-white font-black text-lg sm:text-xl rounded-2xl hover:brightness-110 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-2xl shadow-orange-500/50 flex items-center justify-center gap-2 border-2 border-yellow-300/30"
+                className="hidden sm:flex w-full py-3 sm:py-4 bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 text-white font-black text-lg sm:text-xl rounded-2xl hover:brightness-110 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-2xl shadow-orange-500/50 items-center justify-center gap-2 border-2 border-yellow-300/30"
               >
                 <span className="text-2xl">⚡</span> XÁC NHẬN
               </button>
               
-              <p className="mt-1.5 text-white/50 text-[10px] sm:text-xs flex items-center justify-center gap-1">
+              <p className="mt-1.5 text-white/50 text-[10px] sm:text-xs hidden sm:flex items-center justify-center gap-1">
                 Nhấn <kbd className="bg-white/20 px-1.5 py-0.5 rounded text-white font-bold">Enter</kbd> để gửi đáp án
               </p>
             </div>

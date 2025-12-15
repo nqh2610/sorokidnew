@@ -2759,7 +2759,8 @@ export default function CompetePage() {
                   <input
                     ref={flashInputRef}
                     type="text"
-                    inputMode="numeric"
+                    inputMode="none"
+                    readOnly
                     value={flashAnswer}
                     onChange={(e) => {
                       if (/^-?\d*$/.test(e.target.value)) {
@@ -2773,21 +2774,53 @@ export default function CompetePage() {
                     }}
                     placeholder="?"
                     autoFocus
-                    className="w-full text-5xl sm:text-6xl font-black text-center py-4 sm:py-5 bg-transparent text-yellow-400 placeholder-white/20 outline-none caret-yellow-400"
+                    className="w-full text-5xl sm:text-6xl font-black text-center py-4 sm:py-5 bg-transparent text-yellow-400 placeholder-white/20 outline-none caret-yellow-400 sm:[&]:read-write"
                   />
                 </div>
               </div>
+
+              {/* Numpad for Mobile - Hidden on Desktop (sm:hidden) */}
+              <div className="grid grid-cols-3 gap-1.5 mb-2 sm:hidden">
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+                  <button
+                    key={num}
+                    onClick={() => setFlashAnswer(prev => prev + num)}
+                    className="bg-gradient-to-br from-slate-700 to-slate-800 text-white text-2xl font-bold py-3 rounded-xl border border-white/20 active:scale-95 active:brightness-125 transition-all shadow-lg"
+                  >
+                    {num}
+                  </button>
+                ))}
+                <button
+                  onClick={() => setFlashAnswer(prev => prev.slice(0, -1))}
+                  className="bg-gradient-to-br from-red-600 to-red-700 text-white text-xl font-bold py-3 rounded-xl border border-red-400/30 active:scale-95 transition-all shadow-lg"
+                >
+                  ⌫
+                </button>
+                <button
+                  onClick={() => setFlashAnswer(prev => prev + '0')}
+                  className="bg-gradient-to-br from-slate-700 to-slate-800 text-white text-2xl font-bold py-3 rounded-xl border border-white/20 active:scale-95 active:brightness-125 transition-all shadow-lg"
+                >
+                  0
+                </button>
+                <button
+                  onClick={handleFlashSubmit}
+                  disabled={!flashAnswer}
+                  className="bg-gradient-to-br from-green-500 to-emerald-600 text-white text-lg font-bold py-3 rounded-xl border border-green-400/30 active:scale-95 transition-all shadow-lg disabled:opacity-40"
+                >
+                  Enter
+                </button>
+              </div>
               
-              {/* Submit button - Epic */}
+              {/* Submit button - Epic - Hidden on Mobile */}
               <button
                 onClick={handleFlashSubmit}
                 disabled={!flashAnswer}
-                className="w-full py-3 sm:py-4 bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 text-white font-black text-lg sm:text-xl rounded-2xl hover:brightness-110 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-2xl shadow-orange-500/50 flex items-center justify-center gap-2 border-2 border-yellow-300/30"
+                className="hidden sm:flex w-full py-3 sm:py-4 bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 text-white font-black text-lg sm:text-xl rounded-2xl hover:brightness-110 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-2xl shadow-orange-500/50 items-center justify-center gap-2 border-2 border-yellow-300/30"
               >
                 <span className="text-2xl">⚡</span> XÁC NHẬN
               </button>
               
-              <p className="mt-1.5 text-white/50 text-[10px] sm:text-xs flex items-center justify-center gap-1">
+              <p className="mt-1.5 text-white/50 text-[10px] sm:text-xs hidden sm:flex items-center justify-center gap-1">
                 Nhấn <kbd className="bg-white/20 px-1.5 py-0.5 rounded text-white font-bold">Enter</kbd> để gửi đáp án
               </p>
             </div>
