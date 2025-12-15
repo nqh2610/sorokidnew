@@ -43,11 +43,6 @@ model User {
   achievements            UserAchievement[]
   quests                  UserQuest[]
 
-  // 🔧 INDEXES ĐỂ TỐI ƯU QUERIES
-  @@index([totalStars(sort: Desc)]) // Leaderboard
-  @@index([role])                    // Admin queries
-  @@index([tier])                    // Tier-based queries
-  @@index([createdAt])               // Sorting by date
   @@map("users")
 }
 
@@ -66,11 +61,6 @@ model Progress {
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, levelId, lessonId])
-  // 🔧 INDEXES ĐỂ TỐI ƯU QUERIES
-  @@index([userId, completed])        // Lọc completed lessons
-  @@index([completedAt])              // Activity chart  
-  @@index([levelId])                  // Stats by level
-  @@index([userId, completedAt])      // 🆕 Activity chart query tối ưu
   @@map("progress")
 }
 
@@ -88,11 +78,6 @@ model ExerciseResult {
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, createdAt])
-  // 🔧 INDEXES BỔ SUNG
-  @@index([userId, isCorrect])        // Accuracy calculations
-  @@index([userId, exerciseType])     // Stats by type
-  @@index([exerciseType, difficulty]) // Filtering
-  @@index([userId, isCorrect, createdAt]) // 🆕 Activity chart query tối ưu
   @@map("exercise_results")
 }
 
@@ -187,9 +172,6 @@ model UserQuest {
 
   @@unique([userId, questId])
   @@index([questId], map: "user_quests_questId_fkey")
-  // 🔧 INDEX BỔ SUNG cho groupBy queries
-  @@index([questId, completed])
-  @@index([questId, claimedAt])
   @@map("user_quests")
 }
 
@@ -304,12 +286,8 @@ model CompeteResult {
 
   @@unique([userId, arenaId])
   @@index([arenaId, correct, totalTime])
-  // 🔧 INDEX BỔ SUNG cho leaderboard queries
-  @@index([arenaId, userId])
   @@map("compete_results")
 }
-
-// ==================== PAYMENT SYSTEM ====================
 
 model PaymentOrder {
   id              String    @id @default(uuid())
@@ -332,13 +310,8 @@ model PaymentOrder {
   @@index([userId])
   @@index([orderCode])
   @@index([status])
-  // 🔧 INDEX BỔ SUNG cho admin queries
-  @@index([status, paidAt])
-  @@index([createdAt])
   @@map("payment_orders")
 }
-
-// ==================== CERTIFICATE SYSTEM ====================
 
 model Certificate {
   id            String   @id @default(uuid())

@@ -133,9 +133,9 @@ export async function DELETE(request) {
     const id = searchParams.get('id'); // Xóa theo ID cụ thể
 
     if (id) {
-      // Xóa 1 transaction cụ thể
+      // Xóa 1 transaction cụ thể - ID là String (UUID)
       await prisma.paymentOrder.delete({
-        where: { id: parseInt(id) }
+        where: { id: id }
       });
       return NextResponse.json({ success: true, message: 'Đã xóa đơn hàng' });
     }
@@ -177,7 +177,8 @@ export async function PUT(request) {
       return NextResponse.json({ error: 'Missing id or status' }, { status: 400 });
     }
 
-    const order = await prisma.paymentOrder.findUnique({ where: { id: parseInt(id) } });
+    // ID là String (UUID) - không cần parseInt
+    const order = await prisma.paymentOrder.findUnique({ where: { id } });
     if (!order) {
       return NextResponse.json({ error: 'Order not found' }, { status: 404 });
     }
@@ -206,7 +207,7 @@ export async function PUT(request) {
     }
 
     await prisma.paymentOrder.update({
-      where: { id: parseInt(id) },
+      where: { id },
       data: updateData
     });
 
