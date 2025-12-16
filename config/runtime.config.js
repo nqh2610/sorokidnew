@@ -18,27 +18,37 @@ const IS_DEV = process.env.NODE_ENV === 'development';
 
 /**
  * 🔧 DATABASE CONFIGURATION
- * Shared host: Pool nhỏ, timeout ngắn, fail-fast
+ * Shared host: Pool vừa đủ, timeout ngắn, fail-fast
  * VPS: Pool lớn hơn, timeout linh hoạt hơn
+ * 
+ * 🎯 SHARED HOST OPTIMIZATION:
+ * - 8 connections đủ cho ~40-50 concurrent users
+ * - Sequential queries trong dashboard để không chiếm hết pool
  */
 export const DATABASE_CONFIG = {
-  // Connection pool size
-  connectionLimit: IS_SHARED ? 5 : 20,
+  // Connection pool size - tăng lên 8 để có buffer
+  connectionLimit: IS_SHARED ? 8 : 20,
   
-  // Pool timeout (ms) - thời gian chờ lấy connection từ pool
-  poolTimeout: IS_SHARED ? 10 : 30,
+  // Pool timeout (s) - thời gian chờ lấy connection từ pool
+  poolTimeout: IS_SHARED ? 15 : 30,
   
-  // Connect timeout (ms) - thời gian chờ kết nối DB
-  connectTimeout: IS_SHARED ? 5 : 15,
+  // Connect timeout (s) - thời gian chờ kết nối DB
+  connectTimeout: IS_SHARED ? 10 : 15,
   
-  // Socket timeout (ms) - timeout cho query
+  // Socket timeout (s) - timeout cho query
   socketTimeout: IS_SHARED ? 30 : 60,
   
   // Query timeout (ms) - soft limit cho queries
-  queryTimeout: IS_SHARED ? 25000 : 60000,
+  queryTimeout: IS_SHARED ? 20000 : 60000,
   
   // Log level
   logLevel: IS_DEV ? ['error', 'warn'] : ['error'],
+  
+  // 🆕 Retry config cho transient failures
+  retry: {
+    attempts: IS_SHARED ? 2 : 3,
+    delay: IS_SHARED ? 500 : 1000,
+  },
 };
 
 /**
@@ -88,18 +98,37 @@ export const AUTH_CONFIG = {
 /**
  * 🌐 API CONFIGURATION
  * Rate limiting, timeouts, concurrent requests
+ * 
+ * 🎯 SHARED HOST: Giảm concurrent, tăng queue, priority cho essential APIs
  */
 export const API_CONFIG = {
   // === REQUEST LIMITING ===
   requests: {
-    // Concurrent requests tối đa (mỗi request ≈ 2-5 processes)
-    maxConcurrent: IS_SHARED ? 50 : 200,
+    // Concurrent requests tối đa - giảm xuống 30 để ổn định
+    maxConcurrent: IS_SHARED ? 30 : 200,
     
-    // Queue size cho requests chờ
-    maxQueueSize: IS_SHARED ? 100 : 500,
+    // Queue size cho requests chờ - tăng để absorb burst
+    maxQueueSize: IS_SHARED ? 150 : 500,
     
-    // Queue timeout (ms)
-    queueTimeout: IS_SHARED ? 15000 : 30000,
+    // Queue timeout (ms) - tăng lên để user có cơ hội
+    queueTimeout: IS_SHARED ? 20000 : 30000,
+    
+    // 🆕 Priority queue cho essential APIs
+    priorityAPIs: [
+      '/api/auth',
+      '/api/lessons',
+      '/api/progress',
+      '/api/exercises',
+    ],
+    
+    // 🆕 Heavy APIs cần throttle riêng
+    heavyAPIs: [
+      '/api/dashboard/stats',
+      '/api/leaderboard',
+      '/api/admin',
+    ],
+    // Max concurrent cho heavy APIs
+    maxHeavyConcurrent: IS_SHARED ? 5 : 20,
   },
   
   // === RATE LIMITING (tracking, soft-limit) ===
@@ -178,30 +207,43 @@ export const API_CONFIG = {
 /**
  * 💾 CACHE CONFIGURATION
  * In-memory cache settings
+ * 
+ * 🎯 SHARED HOST OPTIMIZATION:
+ * - Tăng TTL để giảm DB queries
+ * - Stale-while-revalidate pattern: serve cũ trong khi fetch mới
  */
 export const CACHE_CONFIG = {
   // Max entries trong cache
   maxSize: IS_SHARED ? 500 : 2000,
   
-  // Default TTL (ms)
-  defaultTTL: IS_SHARED ? 30000 : 60000,
+  // Default TTL (ms) - tăng lên 60s cho shared
+  defaultTTL: IS_SHARED ? 60000 : 60000,
   
   // Cleanup threshold (ms) - lazy cleanup
   cleanupInterval: IS_SHARED ? 60000 : 120000,
   
-  // TTL presets
+  // TTL presets - TĂNG GẤP ĐÔI cho shared host
   ttl: {
-    // Very short (realtime data)
-    short: IS_SHARED ? 10000 : 15000,
+    // Very short (realtime data) - chấp nhận delay 15-20s
+    short: IS_SHARED ? 15000 : 15000,
     
-    // Medium (user data, progress)
-    medium: IS_SHARED ? 30000 : 60000,
+    // Medium (user data, progress) - 60s OK cho dashboard
+    medium: IS_SHARED ? 60000 : 60000,
     
-    // Long (static data, leaderboard)
-    long: IS_SHARED ? 60000 : 180000,
+    // Long (static data, leaderboard) - 2-3 phút
+    long: IS_SHARED ? 120000 : 180000,
     
-    // Extended (rarely changing)
-    extended: IS_SHARED ? 300000 : 600000,
+    // Extended (rarely changing) - 10 phút
+    extended: IS_SHARED ? 600000 : 600000,
+    
+    // 🆕 Dashboard specific - 90s để giảm load
+    dashboard: IS_SHARED ? 90000 : 60000,
+  },
+  
+  // 🆕 Stale-while-revalidate: serve stale data trong khi fetch mới
+  staleWhileRevalidate: {
+    enabled: IS_SHARED, // Chỉ bật cho shared host
+    maxStaleAge: IS_SHARED ? 300000 : 0, // 5 phút stale OK
   },
 };
 

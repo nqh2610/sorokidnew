@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { X, CreditCard, Smartphone, Clock, CheckCircle, Loader2 } from 'lucide-react';
+import { X, CreditCard, Smartphone, Clock, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
 import { formatPrice, PRICING, getTierInfo } from '@/lib/tierSystem';
 
 /**
@@ -27,7 +27,8 @@ export default function PaymentQRModal({
     setPaymentStatus('checking');
     
     try {
-      const res = await fetch(`/api/payment/check?orderCode=${orderCode}`);
+      // 🔧 FIX: Sử dụng đúng API endpoint
+      const res = await fetch(`/api/payment/status/${orderCode}`);
       const data = await res.json();
       
       if (data.status === 'completed') {
@@ -36,6 +37,8 @@ export default function PaymentQRModal({
           onPaymentSuccess?.(data);
           onClose();
         }, 2000);
+      } else if (data.status === 'expired') {
+        setPaymentStatus('expired');
       } else {
         setPaymentStatus('pending');
       }
@@ -82,6 +85,20 @@ export default function PaymentQRModal({
               </div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">Thanh toán thành công!</h3>
               <p className="text-gray-600">Đang kích hoạt gói {tierInfo.displayName}...</p>
+            </div>
+          ) : paymentStatus === 'expired' ? (
+            <div className="text-center py-8">
+              <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <AlertCircle className="w-10 h-10 text-orange-500" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">Đơn hàng đã hết hạn</h3>
+              <p className="text-gray-600 mb-4">Vui lòng tạo đơn hàng mới để tiếp tục thanh toán.</p>
+              <button
+                onClick={onClose}
+                className="px-6 py-2 bg-orange-500 text-white rounded-xl font-medium hover:bg-orange-600 transition-colors"
+              >
+                Đóng
+              </button>
             </div>
           ) : (
             <>

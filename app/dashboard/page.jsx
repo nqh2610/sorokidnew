@@ -3,8 +3,8 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { Star, Zap, Trophy, ChevronRight, Play, Clock, ChevronDown, ChevronUp, Sparkles, Gift, Award } from 'lucide-react';
+import { useEffect, useState, useCallback, lazy, Suspense } from 'react';
+import { Star, Zap, Trophy, ChevronRight, Play, Clock, ChevronDown, ChevronUp, Sparkles, Gift, Award, Loader2 } from 'lucide-react';
 import LevelBadge from '@/components/LevelBadge/LevelBadge';
 import TopBar from '@/components/TopBar/TopBar';
 import ActivityChart from '@/components/Dashboard/ActivityChart';
@@ -15,38 +15,211 @@ import ProgressByLevel from '@/components/Dashboard/ProgressByLevel';
 import CertificateProgress from '@/components/Dashboard/CertificateProgress';
 import RewardPopup, { useRewardPopup } from '@/components/RewardPopup/RewardPopup';
 
+/**
+ * 🚀 PROGRESSIVE LOADING DASHBOARD
+ * 
+ * Phase 1: Load essential data (user, nextLesson, quickStats) - 3 queries, <200ms
+ * Phase 2: Lazy load quests, achievements, certificates - on-demand
+ * Phase 3: Load activity/stats khi user mở thống kê chi tiết
+ * 
+ * FALLBACK: Nếu API mới lỗi, fallback về API cũ
+ */
+
+// Skeleton components for loading states
+const SectionSkeleton = ({ className = "" }) => (
+  <div className={`animate-pulse bg-white rounded-2xl p-5 shadow-lg ${className}`}>
+    <div className="h-4 bg-gray-200 rounded w-1/3 mb-3"></div>
+    <div className="h-3 bg-gray-100 rounded w-2/3 mb-2"></div>
+    <div className="h-3 bg-gray-100 rounded w-1/2"></div>
+  </div>
+);
+
 export default function DashboardPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const [dashboardData, setDashboardData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  
+  // === PROGRESSIVE STATE ===
+  // Phase 1: Essential (critical path)
+  const [essential, setEssential] = useState(null);
+  const [essentialLoading, setEssentialLoading] = useState(true);
+  
+  // Phase 2: Secondary data (lazy loaded)
+  const [quests, setQuests] = useState(null);
+  const [questsLoading, setQuestsLoading] = useState(false);
+  const [achievements, setAchievements] = useState(null);
+  const [achievementsLoading, setAchievementsLoading] = useState(false);
+  const [certificates, setCertificates] = useState(null);
+  const [certificatesLoading, setCertificatesLoading] = useState(false);
+  
+  // Phase 3: Activity (load on expand)
+  const [activity, setActivity] = useState(null);
+  const [activityLoading, setActivityLoading] = useState(false);
+  
+  // Fallback: Old API data
+  const [fallbackData, setFallbackData] = useState(null);
+  const [useFallback, setUseFallback] = useState(false);
+  
   const [showDetailedStats, setShowDetailedStats] = useState(false);
   
   // Hook hiệu ứng nhận thưởng
   const { showReward, RewardPopupComponent } = useRewardPopup();
 
+  // === PHASE 1: ESSENTIAL DATA (Critical Path) ===
+  const fetchEssential = useCallback(async () => {
+    try {
+      setEssentialLoading(true);
+      const response = await fetch('/api/dashboard/essential');
+      const data = await response.json();
+      
+      if (data.success) {
+        setEssential(data);
+        // Trigger secondary loads sau khi essential done
+        fetchSecondaryData();
+      } else {
+        throw new Error('Essential API failed');
+      }
+    } catch (error) {
+      console.error('[Dashboard] Essential failed, using fallback:', error);
+      // Fallback to old API
+      fetchFallbackData();
+    } finally {
+      setEssentialLoading(false);
+    }
+  }, []);
+
+  // === PHASE 2: SECONDARY DATA (Parallel, after essential) ===
+  const fetchSecondaryData = useCallback(() => {
+    // Load quests
+    fetchQuests();
+    // Load certificates (thường hay xem)
+    fetchCertificates();
+    // Achievements load sau 300ms để ưu tiên trên
+    setTimeout(() => fetchAchievements(), 300);
+  }, []);
+
+  const fetchQuests = async () => {
+    if (quests || questsLoading) return;
+    try {
+      setQuestsLoading(true);
+      const response = await fetch('/api/dashboard/quests');
+      const data = await response.json();
+      if (data.success) {
+        setQuests(data);
+      }
+    } catch (error) {
+      console.error('[Dashboard] Quests fetch error:', error);
+    } finally {
+      setQuestsLoading(false);
+    }
+  };
+
+  const fetchCertificates = async () => {
+    if (certificates || certificatesLoading) return;
+    try {
+      setCertificatesLoading(true);
+      const response = await fetch('/api/dashboard/certificates');
+      const data = await response.json();
+      if (data.success) {
+        setCertificates(data);
+      }
+    } catch (error) {
+      console.error('[Dashboard] Certificates fetch error:', error);
+    } finally {
+      setCertificatesLoading(false);
+    }
+  };
+
+  const fetchAchievements = async () => {
+    if (achievements || achievementsLoading) return;
+    try {
+      setAchievementsLoading(true);
+      const response = await fetch('/api/dashboard/achievements');
+      const data = await response.json();
+      if (data.success) {
+        setAchievements(data);
+      }
+    } catch (error) {
+      console.error('[Dashboard] Achievements fetch error:', error);
+    } finally {
+      setAchievementsLoading(false);
+    }
+  };
+
+  // === PHASE 3: ACTIVITY (Load on expand) ===
+  const fetchActivity = async () => {
+    if (activity || activityLoading) return;
+    try {
+      setActivityLoading(true);
+      const response = await fetch('/api/dashboard/activity');
+      const data = await response.json();
+      if (data.success) {
+        setActivity(data);
+      }
+    } catch (error) {
+      console.error('[Dashboard] Activity fetch error:', error);
+    } finally {
+      setActivityLoading(false);
+    }
+  };
+
+  // === FALLBACK: OLD API ===
+  const fetchFallbackData = async () => {
+    try {
+      const response = await fetch('/api/dashboard/stats');
+      const data = await response.json();
+      if (data.success) {
+        setFallbackData(data);
+        setUseFallback(true);
+      }
+    } catch (error) {
+      console.error('[Dashboard] Fallback also failed:', error);
+    }
+  };
+
+  // === EFFECTS ===
   useEffect(() => {
     if (status === 'unauthenticated') {
       router.push('/login');
     } else if (status === 'authenticated') {
-      fetchDashboardData();
+      fetchEssential();
     }
-  }, [status, router]);
+  }, [status, router, fetchEssential]);
 
-  const fetchDashboardData = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch('/api/dashboard/stats');
-      const data = await response.json();
-      if (data.success) {
-        setDashboardData(data);
-      }
-    } catch (error) {
-      console.error('Error fetching dashboard data:', error);
-    } finally {
-      setLoading(false);
+  // Load activity when expanding stats - chỉ chạy 1 lần khi mở
+  useEffect(() => {
+    if (showDetailedStats && !activity && !activityLoading) {
+      fetchActivity();
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showDetailedStats]); // Chỉ depend on showDetailedStats để tránh loop
+
+  // === DATA HELPERS ===
+  // Merge essential data với các phần đã load
+  const user = useFallback ? fallbackData?.user : essential?.user;
+  const nextLesson = useFallback ? fallbackData?.nextLesson : essential?.nextLesson;
+  const quickStats = essential?.quickStats;
+  
+  // Secondary data - use fallback if progressive not loaded
+  // QuestList cần quests.active và quests.completedCount
+  const questsData = quests || (useFallback ? fallbackData?.quests : null);
+  const certificatesData = certificates || (useFallback ? { earned: fallbackData?.certificates?.earned, inProgress: fallbackData?.certificates?.inProgress } : null);
+  const achievementsData = achievements || (useFallback ? fallbackData?.achievements : null);
+  
+  // Activity - only from activity API or fallback
+  const activityChart = activity?.activityChart || fallbackData?.activityChart;
+  const progress = useFallback ? fallbackData?.progress : null;
+  const exercise = useFallback ? fallbackData?.exercise : null;
+  const compete = useFallback ? fallbackData?.compete : null;
+
+  // Refresh all data
+  const refreshData = useCallback(() => {
+    setEssential(null);
+    setQuests(null);
+    setAchievements(null);
+    setCertificates(null);
+    setActivity(null);
+    fetchEssential();
+  }, [fetchEssential]);
 
   const handleClaimReward = async (questId) => {
     try {
@@ -58,22 +231,59 @@ export default function DashboardPage() {
       
       if (response.ok) {
         const data = await response.json();
+        const rewardStars = data.reward?.stars || 0;
+        const rewardDiamonds = data.reward?.diamonds || 0;
+        
+        // 🚀 OPTIMISTIC UPDATE: Cập nhật UI ngay lập tức
+        if (essential?.user) {
+          const newTotalStars = (essential.user.totalStars || 0) + rewardStars;
+          const newDiamonds = (essential.user.diamonds || 0) + rewardDiamonds;
+          
+          // Import getLevelInfo để tính level mới
+          const { getLevelInfo } = await import('@/lib/gamification');
+          const newLevelInfo = getLevelInfo(newTotalStars);
+          
+          setEssential(prev => ({
+            ...prev,
+            user: {
+              ...prev.user,
+              totalStars: newTotalStars,
+              diamonds: newDiamonds,
+              levelInfo: newLevelInfo
+            }
+          }));
+          
+          // 🔄 Dispatch event với DATA để TopBar update (KHÔNG fetch server)
+          window.dispatchEvent(new CustomEvent('user-stats-updated', {
+            detail: {
+              stars: rewardStars,
+              diamonds: rewardDiamonds,
+              newLevel: newLevelInfo?.level
+            }
+          }));
+        }
+        
         // Hiển thị popup nhận thưởng với hiệu ứng đẹp
         showReward({
-          stars: data.reward.stars,
-          diamonds: data.reward.diamonds,
+          stars: rewardStars,
+          diamonds: rewardDiamonds,
           name: data.reward.name,
           icon: data.reward.icon
         });
-        // Refresh data
-        fetchDashboardData();
+        
+        // Refresh quests data (để cập nhật trạng thái claimed)
+        setQuests(null);
+        fetchQuests();
       }
     } catch (error) {
       console.error('Error claiming reward:', error);
     }
   };
 
-  if (status === 'loading' || loading) {
+  // === LOADING STATES ===
+  const isInitialLoading = status === 'loading' || essentialLoading;
+  
+  if (isInitialLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
         <div className="text-center">
@@ -84,7 +294,23 @@ export default function DashboardPage() {
     );
   }
 
-  const { user, nextLesson, progress, exercise, compete, quests, achievements, leaderboard, activityChart, certificates } = dashboardData || {};
+  // Show minimal content if essential failed but no fallback yet
+  if (!user && !essentialLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
+        <div className="text-center">
+          <div className="text-6xl mb-4">😕</div>
+          <p className="text-gray-600 font-medium mb-4">Không thể tải dữ liệu</p>
+          <button 
+            onClick={refreshData}
+            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+          >
+            Thử lại
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50">
@@ -247,13 +473,25 @@ export default function DashboardPage() {
         </div>
 
         {/* Nhiệm vụ hôm nay */}
-        <QuestList quests={quests} onClaimReward={handleClaimReward} />
+        {questsLoading ? (
+          <SectionSkeleton />
+        ) : questsData ? (
+          <QuestList quests={questsData} onClaimReward={handleClaimReward} />
+        ) : null}
 
         {/* Tiến độ chứng chỉ */}
-        <CertificateProgress certificates={certificates} />
+        {certificatesLoading ? (
+          <SectionSkeleton />
+        ) : certificatesData ? (
+          <CertificateProgress certificates={certificatesData} />
+        ) : null}
 
         {/* Thành tích */}
-        <AchievementList achievements={achievements} allAchievements={achievements?.all} />
+        {achievementsLoading ? (
+          <SectionSkeleton />
+        ) : achievementsData ? (
+          <AchievementList achievements={achievementsData} allAchievements={achievementsData?.all || achievementsData?.unlocked} />
+        ) : null}
 
         {/* Thống kê chi tiết - CUỐI CÙNG */}
         <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden">
@@ -277,29 +515,47 @@ export default function DashboardPage() {
           
           {showDetailedStats && (
             <div className="px-4 sm:px-5 pb-5 space-y-6 border-t border-gray-100 pt-4">
-              {/* Activity Chart */}
-              <div>
-                <h4 className="font-bold text-gray-700 mb-3 flex items-center gap-2">
-                  <span>📈</span> Hoạt động 7 ngày qua
-                </h4>
-                <ActivityChart data={activityChart || []} compact={true} />
-              </div>
+              {activityLoading ? (
+                <div className="flex items-center justify-center py-8">
+                  <Loader2 className="w-6 h-6 animate-spin text-purple-500" />
+                  <span className="ml-2 text-gray-500">Đang tải thống kê...</span>
+                </div>
+              ) : (
+                <>
+                  {/* Activity Chart */}
+                  <div>
+                    <h4 className="font-bold text-gray-700 mb-3 flex items-center gap-2">
+                      <span>📈</span> Hoạt động 7 ngày qua
+                    </h4>
+                    <ActivityChart data={activityChart || activity?.activityChart || []} compact={true} />
+                  </div>
 
-              {/* Stats Cards */}
-              <div>
-                <h4 className="font-bold text-gray-700 mb-3 flex items-center gap-2">
-                  <span>🎯</span> Tổng quan
-                </h4>
-                <StatsCards progress={progress} exercise={exercise} compete={compete} compact={true} />
-              </div>
+                  {/* Stats Cards */}
+                  {(activity?.thisWeek || progress) && (
+                    <div>
+                      <h4 className="font-bold text-gray-700 mb-3 flex items-center gap-2">
+                        <span>🎯</span> Tổng quan
+                      </h4>
+                      <StatsCards 
+                        progress={progress || { completedLessons: activity?.overall?.totalLessons }} 
+                        exercise={exercise || { today: { total: 0 } }} 
+                        compete={compete || {}} 
+                        compact={true} 
+                      />
+                    </div>
+                  )}
 
-              {/* Progress by Level - Hiển thị tên bài học */}
-              <div>
-                <h4 className="font-bold text-gray-700 mb-3 flex items-center gap-2">
-                  <span>📚</span> Tiến độ học tập
-                </h4>
-                <ProgressByLevel progress={progress} compact={true} showLessonNames={true} />
-              </div>
+                  {/* Progress by Level - Hiển thị tên bài học */}
+                  {progress && (
+                    <div>
+                      <h4 className="font-bold text-gray-700 mb-3 flex items-center gap-2">
+                        <span>📚</span> Tiến độ học tập
+                      </h4>
+                      <ProgressByLevel progress={progress} compact={true} showLessonNames={true} />
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           )}
         </div>

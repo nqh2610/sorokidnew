@@ -6,22 +6,27 @@ import { getLevelInfo } from '@/lib/gamification';
 import { cache, CACHE_KEYS, CACHE_TTL, getOrSet } from '@/lib/cache';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
 import { withApiProtection } from '@/lib/apiWrapper';
+import { CACHE_CONFIG } from '@/config/runtime.config';
 
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
 export const revalidate = 0;
 
 /**
- * 🚀 TỐI ƯU DASHBOARD API CHO SHARED HOSTING
+ * 🚀 TỐI ƯU DASHBOARD API CHO SHARED HOSTING v2.0
  * 
- * Vấn đề: API này chạy ~20+ queries, rất nặng
- * Giải pháp:
- * 1. Cache kết quả trong 30s
- * 2. Rate limiting
- * 3. Tối ưu queries với select specific fields
- * 4. Batch queries với Promise.all
- * 5. API protection wrapper với timeout + circuit breaker
+ * CHIẾN LƯỢC "SURVIVE SHARED HOST":
+ * 1. ⏰ CACHE LÂU HƠN (90s thay vì 30s) - giảm 66% DB hits
+ * 2. 🔄 STALE-WHILE-REVALIDATE - serve cached data ngay, refresh ngầm
+ * 3. 📊 SEQUENTIAL QUERIES - không chiếm hết DB pool
+ * 4. 🎯 PRIORITY DATA - Essential data trước, optional sau
+ * 5. 💾 COMPONENT CACHE - Cache từng phần riêng biệt
+ * 6. 🚨 GRACEFUL DEGRADATION - Trả cached/partial data khi overload
  */
+
+// Cache TTL cho dashboard (90s cho shared host)
+const DASHBOARD_CACHE_TTL = CACHE_CONFIG?.ttl?.dashboard || 90000;
+const STALE_MAX_AGE = CACHE_CONFIG?.staleWhileRevalidate?.maxStaleAge || 300000;
 
 // GET /api/dashboard/stats - Get all dashboard statistics
 export const GET = withApiProtection(async (request) => {
@@ -37,98 +42,162 @@ export const GET = withApiProtection(async (request) => {
   }
 
   const userId = session.user.id;
-  
-  // 🔧 CHECK CACHE FIRST
   const cacheKey = CACHE_KEYS.DASHBOARD_STATS(userId);
-  const cached = cache.get(cacheKey);
-  if (cached) {
-    return NextResponse.json(cached);
+  
+  // 🔧 STALE-WHILE-REVALIDATE PATTERN
+  // Check cache - bao gồm cả stale data
+  const cachedEntry = cache.cache?.get(cacheKey);
+  const now = Date.now();
+  
+  if (cachedEntry) {
+    const age = now - cachedEntry.createdAt;
+    const isStale = now > cachedEntry.expiresAt;
+    const isWithinStaleWindow = age < STALE_MAX_AGE;
+    
+    // Nếu còn fresh -> return ngay
+    if (!isStale) {
+      return NextResponse.json(cachedEntry.value);
+    }
+    
+    // Nếu stale nhưng trong window -> return stale + refresh ngầm
+    if (isStale && isWithinStaleWindow) {
+      // Fire-and-forget: refresh cache ngầm
+      refreshDashboardCache(userId, cacheKey).catch(() => {});
+      // Return stale data ngay lập tức
+      return NextResponse.json({
+        ...cachedEntry.value,
+        _stale: true, // Flag để frontend biết data có thể cũ
+        _cachedAt: cachedEntry.createdAt
+      });
+    }
   }
 
-  // Lấy tất cả dữ liệu song song để tối ưu performance
-  const [
-    user,
-    progressData,
-    exerciseData,
-    competeData,
-    questData,
-    achievementData,
-    leaderboardData,
-    activityData,
-    certificateData
-  ] = await Promise.all([
-    // 1. User info - CHỈ LẤY FIELDS CẦN THIẾT
-    prisma.user.findUnique({
-      where: { id: userId },
-      select: {
-        id: true,
-        name: true,
-        totalStars: true,
-        level: true,
-        diamonds: true,
-        streak: true,
-        lastLoginDate: true,
-        tier: true
-      }
-    }),
+  // Không có cache hoặc quá cũ -> fetch mới
+  try {
+    const response = await fetchDashboardData(userId);
+    
+    // Cache kết quả
+    cache.set(cacheKey, response, DASHBOARD_CACHE_TTL);
+    
+    return NextResponse.json(response);
+  } catch (error) {
+    // 🚨 GRACEFUL DEGRADATION: Nếu lỗi, trả về stale cache nếu có
+    if (cachedEntry) {
+      console.warn(`[Dashboard] DB error, serving stale cache for ${userId}`);
+      return NextResponse.json({
+        ...cachedEntry.value,
+        _stale: true,
+        _error: 'Dữ liệu có thể không mới nhất'
+      });
+    }
+    throw error;
+  }
+}, { timeout: 15000, useCircuitBreaker: true }); // Giảm timeout xuống 15s
 
-    // 2. Progress (bài học)
+/**
+ * 🔄 Refresh cache ngầm (background)
+ */
+async function refreshDashboardCache(userId, cacheKey) {
+  try {
+    const response = await fetchDashboardData(userId);
+    cache.set(cacheKey, response, DASHBOARD_CACHE_TTL);
+  } catch (error) {
+    console.warn(`[Dashboard] Background refresh failed for ${userId}:`, error.message);
+  }
+}
+
+/**
+ * 📊 FETCH DASHBOARD DATA - SEQUENTIAL để không chiếm hết DB pool
+ * 
+ * Thay vì Promise.all (9 parallel queries = chiếm hết 8 connections)
+ * -> Sequential với priority ordering
+ */
+async function fetchDashboardData(userId) {
+  // === PHASE 1: ESSENTIAL DATA (user cần thấy ngay) ===
+  // User info - CHỈ LẤY FIELDS CẦN THIẾT
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: {
+      id: true,
+      name: true,
+      totalStars: true,
+      level: true,
+      diamonds: true,
+      streak: true,
+      lastLoginDate: true,
+      tier: true
+    }
+  });
+
+  if (!user) {
+    throw new Error('User not found');
+  }
+
+  // Tính level info ngay (không cần query)
+  const levelInfo = getLevelInfo(user.totalStars || 0);
+
+  // === PHASE 2: CORE DATA (batch 2-3 queries mỗi lần) ===
+  const [progressData, exerciseData] = await Promise.all([
     getProgressStats(userId),
-
-    // 3. Exercise (luyện tập)
     getExerciseStats(userId),
+  ]);
 
-    // 4. Compete (thi đấu)
-      getCompeteStats(userId),
+  // Activity chart để tính streak
+  const activityData = await getActivityChart(userId);
+  const calculatedStreak = calculateStreakFromActivity(activityData);
 
-      // 5. Quests (nhiệm vụ)
-      getQuestStats(userId),
+  // Next lesson (cần progress data)
+  const nextLesson = await getNextLesson(userId, progressData);
 
-      // 6. Achievements (thành tích)
-      getAchievementStats(userId),
+  // === PHASE 3: SECONDARY DATA (có thể chậm hơn) ===
+  const [questData, achievementData] = await Promise.all([
+    getQuestStats(userId),
+    getAchievementStats(userId),
+  ]);
 
-      // 7. Leaderboard rank
-      getLeaderboardRank(userId),
+  // === PHASE 4: OPTIONAL DATA (cache riêng, có thể skip nếu timeout) ===
+  let competeData = { totalArenas: 0, totalMatches: 0 };
+  let leaderboardData = { rank: null };
+  let certificateData = { total: 0, earned: 0 };
 
-      // 8. Activity chart (7 ngày)
-      getActivityChart(userId),
-
-      // 9. Certificate progress
-      getCertificateProgress(userId)
+  try {
+    // Timeout ngắn cho optional data
+    const optionalPromise = Promise.all([
+      Promise.race([getCompeteStats(userId), timeoutPromise(3000, { totalArenas: 0 })]),
+      Promise.race([getLeaderboardRank(userId), timeoutPromise(2000, { rank: null })]),
+      Promise.race([getCertificateProgress(userId), timeoutPromise(2000, { total: 0, earned: 0 })]),
     ]);
 
-    // Tính level info
-    const levelInfo = getLevelInfo(user?.totalStars || 0);
+    [competeData, leaderboardData, certificateData] = await optionalPromise;
+  } catch (error) {
+    console.warn('[Dashboard] Optional data timeout, using defaults');
+  }
 
-    // Tính streak thực tế từ activityChart (đếm ngày liên tiếp có hoạt động)
-    const calculatedStreak = calculateStreakFromActivity(activityData);
+  return {
+    success: true,
+    user: {
+      ...user,
+      streak: calculatedStreak,
+      levelInfo
+    },
+    nextLesson,
+    progress: progressData,
+    exercise: exerciseData,
+    compete: competeData,
+    quests: questData,
+    achievements: achievementData,
+    leaderboard: leaderboardData,
+    activityChart: activityData,
+    certificates: certificateData
+  };
+}
 
-    // Lấy bài học tiếp theo cần học (Continue Learning)
-    const nextLesson = await getNextLesson(userId, progressData);
-
-    const response = {
-      success: true,
-      user: {
-        ...user,
-        streak: calculatedStreak, // Dùng streak tính toán thay vì từ DB
-        levelInfo
-      },
-      nextLesson,
-      progress: progressData,
-      exercise: exerciseData,
-      compete: competeData,
-      quests: questData,
-      achievements: achievementData,
-      leaderboard: leaderboardData,
-      activityChart: activityData,
-      certificates: certificateData
-    };
-
-    // 🔧 CACHE KẾT QUẢ
-    cache.set(cacheKey, response, CACHE_TTL.MEDIUM);
-
-    return NextResponse.json(response);
-}, { timeout: 20000, useCircuitBreaker: true }); // 20s timeout cho route nặng
+/**
+ * ⏱️ Timeout helper cho optional data
+ */
+function timeoutPromise(ms, fallback) {
+  return new Promise(resolve => setTimeout(() => resolve(fallback), ms));
+}
 
 // Thống kê tiến độ học tập - TỐI ƯU: Batch queries
 async function getProgressStats(userId) {

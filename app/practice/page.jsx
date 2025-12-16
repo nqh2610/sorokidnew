@@ -901,7 +901,7 @@ export default function PracticePage() {
     }));
 
     try {
-      await fetch('/api/exercises', {
+      const res = await fetch('/api/exercises', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -914,6 +914,20 @@ export default function PracticePage() {
           timeTaken
         })
       });
+      
+      // � OPTIMISTIC UPDATE: Cập nhật stars ngay (KHÔNG fetch server)
+      if (isCorrect && res.ok) {
+        const data = await res.json();
+        const starsEarned = data.starsEarned || instantStars || 0;
+        if (starsEarned > 0) {
+          window.dispatchEvent(new CustomEvent('user-stats-updated', {
+            detail: {
+              stars: starsEarned,
+              diamonds: 0
+            }
+          }));
+        }
+      }
     } catch (error) {
       console.error('Error:', error);
     }

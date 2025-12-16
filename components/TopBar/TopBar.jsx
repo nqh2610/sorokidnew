@@ -48,6 +48,39 @@ export default function TopBar({ showStats = true }) {
     }
   }, [session]);
 
+  // � OPTIMISTIC UPDATE: Update local state từ event, KHÔNG fetch server
+  useEffect(() => {
+    const handleUserStatsUpdate = (event) => {
+      const { stars = 0, diamonds = 0, newLevel, newTier } = event.detail || {};
+      
+      setUserStats(prev => {
+        if (!prev) return prev;
+        
+        const updatedStats = {
+          ...prev,
+          totalStars: (prev.totalStars || 0) + stars,
+          diamonds: (prev.diamonds || 0) + diamonds
+        };
+        
+        // Update level nếu có
+        if (newLevel) {
+          updatedStats.level = newLevel;
+        }
+        
+        return updatedStats;
+      });
+      
+      // Update tier nếu có
+      if (newTier) {
+        setUserTier(newTier);
+      }
+    };
+
+    window.addEventListener('user-stats-updated', handleUserStatsUpdate);
+    return () => {
+      window.removeEventListener('user-stats-updated', handleUserStatsUpdate);
+    };
+  }, []);
   // 🔧 TỐI ƯU: Gộp 2 API calls thành 1 vì profile đã có tier
   const fetchUserStats = async () => {
     try {

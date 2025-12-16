@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import crypto from 'crypto';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
-import { invalidateUserCache } from '@/lib/cache';
+import { invalidateUserCacheCompletely } from '@/lib/cache';
 
 export const dynamic = 'force-dynamic';
 
@@ -251,8 +251,9 @@ export async function POST(request) {
       }
     });
 
-    // 🔧 FIX: Invalidate cache user để TopBar và Dashboard cập nhật ngay
-    invalidateUserCache(order.userId);
+    // 🔧 QUAN TRỌNG: Invalidate TOÀN BỘ cache user để đảm bảo
+    // user thấy tier mới ngay lập tức trên Dashboard, TopBar, etc.
+    invalidateUserCacheCompletely(order.userId);
 
     console.log(`✅ User ${order.userId} (${order.user?.email}) upgraded to ${order.tier}`);
 

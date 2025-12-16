@@ -442,6 +442,19 @@ export default function LessonPage() {
         setExpBreakdown(data.expBreakdown || []);
         setLevelUpInfo(data.levelUp);
         
+        // � OPTIMISTIC UPDATE: Dispatch với DATA (KHÔNG fetch server)
+        // Chỉ tính stars mới = expEarned (nếu là kỷ lục mới hoặc lần đầu)
+        const starsGained = data.expEarned || 0;
+        if (starsGained > 0) {
+          window.dispatchEvent(new CustomEvent('user-stats-updated', {
+            detail: {
+              stars: starsGained,
+              diamonds: 0,
+              newLevel: data.levelUp?.newLevel
+            }
+          }));
+        }
+        
         // Hiển thị toast thông báo lên level
         if (data.levelUp) {
           toast.levelUp(data.levelUp.oldLevel, data.levelUp.newLevel);

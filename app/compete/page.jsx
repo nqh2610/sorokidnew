@@ -948,16 +948,27 @@ export default function CompetePage() {
 
   const submitResult = async () => {
     try {
-      await fetch('/api/compete/result', {
+      const starsToSubmit = sessionStats.stars;
+      const res = await fetch('/api/compete/result', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           arenaId: selectedArena.id,
           correct: sessionStats.correct + (result === true ? 1 : 0),
           totalTime: totalTimeRef.current,
-          stars: sessionStats.stars
+          stars: starsToSubmit
         })
       });
+      
+      // 🚀 OPTIMISTIC UPDATE: Cập nhật stars ngay (KHÔNG fetch server)
+      if (res.ok && starsToSubmit > 0) {
+        window.dispatchEvent(new CustomEvent('user-stats-updated', {
+          detail: {
+            stars: starsToSubmit,
+            diamonds: 0
+          }
+        }));
+      }
     } catch (error) {
       console.error('Error submitting result:', error);
     }
