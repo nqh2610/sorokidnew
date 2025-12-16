@@ -119,18 +119,6 @@ import Logo from '@/components/Logo/Logo';
 
 // 🔧 DYNAMIC IMPORTS: Chỉ load Soroban components ở client khi cần
 // Giảm ~30% initial JS bundle
-const CompactSoroban = dynamic(
-  () => import('@/components/FloatingSoroban/CompactSoroban'),
-  { 
-    ssr: false,
-    loading: () => (
-      <div className="h-32 bg-gradient-to-r from-amber-100 to-orange-100 rounded-xl animate-pulse flex items-center justify-center">
-        <span className="text-4xl">🧮</span>
-      </div>
-    )
-  }
-);
-
 const SorobanBoard = dynamic(
   () => import('@/components/Soroban/SorobanBoard'),
   { 
@@ -299,15 +287,9 @@ export default function HomePage() {
                 <p className="text-gray-600">Click vào các hạt để di chuyển lên/xuống</p>
               </div>
             
-            {/* Mobile */}
-            <div className="md:hidden px-4">
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-white/50">
-                <CompactSoroban />
-              </div>
-            </div>
-            {/* Desktop */}
-            <div className="hidden md:block px-4">
-              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/50">
+            {/* Soroban Demo - Full 9 cột cho cả mobile và desktop */}
+            <div className="px-4">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-xl border border-white/50">
                 <SorobanBoard />
               </div>
             </div>

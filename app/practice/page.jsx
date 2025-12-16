@@ -254,11 +254,13 @@ export default function PracticePage() {
   const [flashLevel, setFlashLevel] = useState(null); // Cấp độ Flash Anzan đã chọn
   const [flashPhase, setFlashPhase] = useState('idle'); // 'idle' | 'countdown' | 'showing' | 'answer' | 'result'
   const [flashNumbers, setFlashNumbers] = useState([]); // Các số sẽ hiện
+  const [flashOperations, setFlashOperations] = useState([]); // Các phép tính (+/-) cho từng số
   const [flashCurrentIndex, setFlashCurrentIndex] = useState(0); // Index số đang hiện
   const [flashAnswer, setFlashAnswer] = useState(''); // Đáp án người dùng nhập
   const [flashCorrectAnswer, setFlashCorrectAnswer] = useState(0); // Đáp án đúng
   const [flashCountdown, setFlashCountdown] = useState(3); // Đếm ngược
   const [flashShowingNumber, setFlashShowingNumber] = useState(null); // Số đang hiện trên màn hình
+  const [flashShowingOperation, setFlashShowingOperation] = useState(null); // Phép tính đang hiện (+/-)
   const [flashAnswerTimer, setFlashAnswerTimer] = useState(0); // Đồng hồ bấm giờ khi nhập đáp án
   const [flashResultMessage, setFlashResultMessage] = useState(null); // Lưu lời khen/động viên
   const flashInputRef = useRef(null);
@@ -650,22 +652,44 @@ export default function PracticePage() {
 
   // ================== FLASH ANZAN FUNCTIONS ==================
   
-  // Tạo số ngẫu nhiên cho Flash Anzan
+  // Tạo số ngẫu nhiên cho Flash Anzan với cả cộng và trừ
   const generateFlashNumbers = (level) => {
     const config = flashLevels.find(l => l.id === level);
-    if (!config) return [];
+    if (!config) return { numbers: [], operations: [] };
     
     const count = config.numbers[0] + Math.floor(Math.random() * (config.numbers[1] - config.numbers[0] + 1));
     const numbers = [];
+    const operations = [];
     
     const maxDigit = Math.pow(10, config.digits) - 1;
     const minDigit = config.digits === 1 ? 1 : Math.pow(10, config.digits - 1);
     
+    let runningTotal = 0;
+    
     for (let i = 0; i < count; i++) {
-      numbers.push(Math.floor(Math.random() * (maxDigit - minDigit + 1)) + minDigit);
+      const num = Math.floor(Math.random() * (maxDigit - minDigit + 1)) + minDigit;
+      
+      // Số đầu tiên luôn là cộng, hoặc nếu level là additionOnly thì luôn cộng
+      if (i === 0 || config.additionOnly) {
+        operations.push('+');
+        numbers.push(num);
+        runningTotal += num;
+      } else {
+        // 50% cộng, 50% trừ - nhưng đảm bảo kết quả không âm
+        const shouldSubtract = Math.random() < 0.5 && runningTotal >= num;
+        if (shouldSubtract) {
+          operations.push('-');
+          numbers.push(num);
+          runningTotal -= num;
+        } else {
+          operations.push('+');
+          numbers.push(num);
+          runningTotal += num;
+        }
+      }
     }
     
-    return numbers;
+    return { numbers, operations };
   };
   
   // Bắt đầu Flash Anzan với cấp độ đã chọn
@@ -679,11 +703,23 @@ export default function PracticePage() {
     setFlashAnswer('');
     setFlashCurrentIndex(0);
     setFlashShowingNumber(null);
+    setFlashShowingOperation(null);
     
-    const numbers = generateFlashNumbers(levelId);
+    const { numbers, operations } = generateFlashNumbers(levelId);
     setFlashNumbers(numbers);
-    const correctAnswer = numbers.reduce((a, b) => a + b, 0);
-    console.log('Generated Flash:', { numbers, correctAnswer, sum: numbers.join('+') });
+    setFlashOperations(operations);
+    
+    // Tính tổng dựa trên phép tính
+    let correctAnswer = 0;
+    for (let i = 0; i < numbers.length; i++) {
+      if (operations[i] === '+') {
+        correctAnswer += numbers[i];
+      } else {
+        correctAnswer -= numbers[i];
+      }
+    }
+    
+    console.log('Generated Flash:', { numbers, operations, correctAnswer });
     setFlashCorrectAnswer(correctAnswer);
     
     // Reset session stats cho round mới
@@ -703,31 +739,33 @@ export default function PracticePage() {
         // Bắt đầu hiện số
         setTimeout(() => {
           setFlashPhase('showing');
-          showFlashNumber(0, numbers, config);
+          showFlashNumber(0, numbers, operations, config);
         }, 500);
       }
     }, 1000);
   };
   
   // Hiện số từng cái một - TỐC ĐỘ CỐ ĐỊNH - FIX FLICKERING
-  const showFlashNumber = (index, numbers, config) => {
+  const showFlashNumber = (index, numbers, operations, config) => {
     if (index >= numbers.length) {
       // Đã hiện hết số, chuyển sang phase trả lời
       setFlashPhase('answer');
       setFlashShowingNumber(null);
+      setFlashShowingOperation(null);
       setTimeout(() => flashInputRef.current?.focus(), 100);
       return;
     }
     
     setFlashCurrentIndex(index);
     setFlashShowingNumber(numbers[index]);
+    setFlashShowingOperation(operations[index]);
     
     // Tốc độ CỐ ĐỊNH - dùng giá trị trung bình của range
     const speed = (config.speed[0] + config.speed[1]) / 2;
     
     // Chuyển trực tiếp sang số tiếp theo không cần set null để tránh nhấp nháy
     flashTimeoutRef.current = setTimeout(() => {
-      showFlashNumber(index + 1, numbers, config);
+      showFlashNumber(index + 1, numbers, operations, config);
     }, speed * 1000);
   };
   
@@ -1744,14 +1782,25 @@ export default function PracticePage() {
               {/* Epic number display - RESPONSIVE */}
               <div className="relative">
                 {/* Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl sm:rounded-3xl blur-xl sm:blur-2xl opacity-50 animate-pulse"></div>
+                <div className={`absolute inset-0 rounded-2xl sm:rounded-3xl blur-xl sm:blur-2xl opacity-50 animate-pulse ${
+                  flashShowingOperation === '-' 
+                    ? 'bg-gradient-to-r from-blue-500 to-cyan-500' 
+                    : 'bg-gradient-to-r from-yellow-500 to-orange-500'
+                }`}></div>
                 
                 <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 shadow-xl sm:shadow-2xl border border-white/10">
                   {flashShowingNumber !== null ? (
                     <div 
                       key={flashCurrentIndex}
-                      className="text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-yellow-300 via-amber-400 to-orange-500 animate-zoom-in drop-shadow-2xl"
+                      className={`text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] font-black text-transparent bg-clip-text animate-zoom-in drop-shadow-2xl ${
+                        flashShowingOperation === '-'
+                          ? 'bg-gradient-to-br from-blue-300 via-cyan-400 to-teal-500'
+                          : 'bg-gradient-to-br from-yellow-300 via-amber-400 to-orange-500'
+                      }`}
                     >
+                      <span className={`${flashShowingOperation === '-' ? 'text-blue-400' : 'text-green-400'}`}>
+                        {flashShowingOperation}
+                      </span>
                       {flashShowingNumber}
                     </div>
                   ) : (
@@ -1785,8 +1834,8 @@ export default function PracticePage() {
               {/* Question prompt - Exciting */}
               <div className="mb-2">
                 <div className="text-3xl sm:text-4xl mb-1 animate-bounce">🧠</div>
-                <h2 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-400 animate-pulse leading-relaxed pt-1">TỔNG LÀ BAO NHIÊU?</h2>
-                <p className="text-white/70 text-xs">Nhập kết quả của bạn</p>
+                <h2 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-400 animate-pulse leading-relaxed pt-1">KẾT QUẢ LÀ BAO NHIÊU?</h2>
+                <p className="text-white/70 text-xs">Nhập kết quả phép tính của bạn</p>
               </div>
               
               {/* Info badges - Compact inline */}
@@ -1811,7 +1860,7 @@ export default function PracticePage() {
                     inputMode="none"
                     value={flashAnswer}
                     onChange={(e) => {
-                      if (/^-?\d*$/.test(e.target.value)) {
+                      if (/^\d*$/.test(e.target.value)) {
                         setFlashAnswer(e.target.value);
                       }
                     }}
@@ -1944,8 +1993,14 @@ export default function PracticePage() {
                     <div className="flex flex-wrap items-center gap-0.5 flex-1">
                       {flashNumbers.map((num, i) => (
                         <span key={i} className="flex items-center">
-                          <span className="bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs sm:text-sm font-bold">{num}</span>
-                          {i < flashNumbers.length - 1 && <span className="text-white/50 mx-0.5 text-xs">+</span>}
+                          {i > 0 && (
+                            <span className={`mx-0.5 text-xs font-bold ${flashOperations[i] === '-' ? 'text-blue-400' : 'text-green-400'}`}>
+                              {flashOperations[i]}
+                            </span>
+                          )}
+                          <span className={`px-1.5 py-0.5 rounded text-xs sm:text-sm font-bold ${
+                            flashOperations[i] === '-' ? 'bg-blue-500 text-white' : 'bg-amber-500 text-white'
+                          }`}>{num}</span>
                         </span>
                       ))}
                       <span className="text-white/50 mx-1">=</span>
@@ -2005,8 +2060,14 @@ export default function PracticePage() {
                     <div className="flex flex-wrap items-center gap-0.5 flex-1">
                       {flashNumbers.map((num, i) => (
                         <span key={i} className="flex items-center">
-                          <span className="bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs sm:text-sm font-bold">{num}</span>
-                          {i < flashNumbers.length - 1 && <span className="text-white/50 mx-0.5 text-xs">+</span>}
+                          {i > 0 && (
+                            <span className={`mx-0.5 text-xs font-bold ${flashOperations[i] === '-' ? 'text-blue-400' : 'text-green-400'}`}>
+                              {flashOperations[i]}
+                            </span>
+                          )}
+                          <span className={`px-1.5 py-0.5 rounded text-xs sm:text-sm font-bold ${
+                            flashOperations[i] === '-' ? 'bg-blue-500 text-white' : 'bg-amber-500 text-white'
+                          }`}>{num}</span>
                         </span>
                       ))}
                       <span className="text-white/50 mx-1">=</span>

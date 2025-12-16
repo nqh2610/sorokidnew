@@ -891,29 +891,40 @@ export default function LessonPage() {
         
         {/* Phần lý thuyết - CẢI TIẾN UI */}
         {currentStep === 0 && theory && theory.length > 0 && (
-          <div className="flex-1 flex flex-col lg:flex-row gap-2 min-h-0 overflow-hidden">
+          <div className="flex-1 flex flex-col gap-2 min-h-0 overflow-y-auto lg:overflow-hidden lg:flex-row relative pb-16 lg:pb-0">
             {/* Left: Theory content - CẢI TIẾN HIỂN THỊ */}
-            <div className="lg:w-2/5 bg-white rounded-xl shadow overflow-auto">
+            <div className="lg:w-2/5 bg-white rounded-xl shadow flex-shrink-0 lg:overflow-auto">
               <TheoryContent theory={theory} />
-              
-              {/* Button chuyển sang luyện tập */}
-              <div className="p-3 border-t bg-gradient-to-r from-green-50 to-emerald-50">
-                <button
-                  onClick={() => setCurrentStep(1)}
-                  className="w-full py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all"
-                >
-                  🎮 Luyện tập ngay!
-                  <ArrowRight size={16} />
-                </button>
-              </div>
             </div>
 
             {/* Right: Soroban - CHIẾM NHIỀU KHÔNG GIAN HƠN */}
-            <div className="lg:w-3/5 flex-1 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-2 flex flex-col min-h-[300px]">
+            <div className="lg:w-3/5 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-2 flex flex-col min-h-[280px] lg:min-h-[300px] flex-shrink-0">
               <div className="text-center text-xs text-gray-500 mb-1">🧠 Thử gạt các hạt!</div>
               <div className="flex-1 flex items-center justify-center">
                 <SorobanBoard mode="free" showHints={true} />
               </div>
+            </div>
+
+            {/* Button chuyển sang luyện tập - LUÔN HIỂN THỊ Ở DƯỚI CÙNG TRÊN MOBILE */}
+            <div className="lg:hidden fixed bottom-0 left-0 right-0 p-3 bg-gradient-to-r from-green-50 to-emerald-50 border-t shadow-lg z-40">
+              <button
+                onClick={() => setCurrentStep(1)}
+                className="w-full py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all"
+              >
+                🎮 Luyện tập ngay!
+                <ArrowRight size={16} />
+              </button>
+            </div>
+
+            {/* Button cho desktop - nằm trong theory panel */}
+            <div className="hidden lg:block absolute bottom-0 left-0 w-2/5 p-3 border-t bg-gradient-to-r from-green-50 to-emerald-50">
+              <button
+                onClick={() => setCurrentStep(1)}
+                className="w-full py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all"
+              >
+                🎮 Luyện tập ngay!
+                <ArrowRight size={16} />
+              </button>
             </div>
           </div>
         )}
@@ -1182,46 +1193,42 @@ function CreateNumberPractice({ target, onCorrect, showResult, isCorrect, practi
   const isMatch = currentValue === target;
 
   return (
-    <div className="flex flex-col lg:flex-row gap-3 h-full">
-      {/* Left: Đề bài - GỌN */}
-      <div className="lg:w-1/3 flex flex-col">
-        <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl p-3 text-center">
-          <div className="text-sm text-gray-600 mb-2">🎯 Tạo số này!</div>
-          <div className="flex items-center justify-center gap-2">
-            <span className="text-4xl lg:text-5xl font-black text-purple-600">{target}</span>
-            {showResult && (
-              <span className={`text-3xl ${isCorrect ? 'animate-bounce' : ''}`}>
-                {isCorrect ? '🎉' : '😅'}
-              </span>
-            )}
-          </div>
-          
-          {/* Hiển thị giá trị hiện tại khi chưa đúng */}
-          {!showResult && (
-            <div className={`mt-3 p-2 rounded-lg transition-all ${isMatch ? 'bg-green-100 border-2 border-green-400' : 'bg-white/50'}`}>
-              <div className="text-xs text-gray-500 mb-1">Bàn tính của em:</div>
-              <div className={`text-2xl font-bold ${isMatch ? 'text-green-600' : 'text-gray-500'}`}>
-                {currentValue}
-                {isMatch && <span className="ml-2 text-green-500 animate-bounce inline-block">✓</span>}
-              </div>
-              {!isMatch && currentValue > 0 && (
-                <div className="text-xs text-orange-500 mt-1">
-                  {currentValue > target ? '📉 Lớn quá!' : '📈 Nhỏ quá!'} Thử lại nhé!
-                </div>
-              )}
-            </div>
-          )}
-
+    <div className="flex flex-col lg:flex-row gap-3 pb-4 lg:pb-0">
+      {/* Đề bài - Compact trên mobile */}
+      <div className="lg:w-1/3 bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl p-3 text-center flex-shrink-0">
+        <div className="text-sm text-gray-600 mb-1">🎯 Tạo số này!</div>
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-4xl font-black text-purple-600">{target}</span>
           {showResult && (
-            <div className={`mt-2 py-1.5 px-3 rounded-lg text-sm font-bold ${isCorrect ? 'bg-green-200 text-green-800' : 'bg-orange-200 text-orange-800'}`}>
-              {isCorrect ? '✅ Đúng rồi!' : `💪 Đáp án: ${target}`}
-            </div>
+            <span className={`text-3xl ${isCorrect ? 'animate-bounce' : ''}`}>
+              {isCorrect ? '🎉' : '😅'}
+            </span>
           )}
         </div>
+        
+        {/* Hiển thị giá trị hiện tại khi chưa đúng */}
+        {!showResult && (
+          <div className={`mt-2 p-2 rounded-lg transition-all ${isMatch ? 'bg-green-100 border-2 border-green-400' : 'bg-white/50'}`}>
+            <div className="text-xs text-gray-500">Bàn tính của em: <span className={`text-xl font-bold ${isMatch ? 'text-green-600' : 'text-gray-600'}`}>{currentValue}</span>
+              {isMatch && <span className="ml-2 text-green-500 animate-bounce inline-block">✓</span>}
+            </div>
+            {!isMatch && currentValue > 0 && (
+              <div className="text-xs text-orange-500 mt-1">
+                {currentValue > target ? '📉 Lớn quá!' : '📈 Nhỏ quá!'}
+              </div>
+            )}
+          </div>
+        )}
+
+        {showResult && (
+          <div className={`mt-2 py-1.5 px-3 rounded-lg text-sm font-bold ${isCorrect ? 'bg-green-200 text-green-800' : 'bg-orange-200 text-orange-800'}`}>
+            {isCorrect ? '✅ Đúng rồi!' : `💪 Đáp án: ${target}`}
+          </div>
+        )}
       </div>
       
-      {/* Right: Soroban Board - LỚN */}
-      <div className="lg:w-2/3 flex-1 flex items-center justify-center bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-2 min-h-[280px]">
+      {/* Soroban Board */}
+      <div className="lg:w-2/3 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-2 flex-shrink-0 flex items-center justify-center">
         <SorobanBoard 
           mode="practice" 
           targetNumber={target}
@@ -1402,24 +1409,22 @@ function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, 
   const isStepMatch = showGuide && currentStep && currentValue === currentStep.demoValue;
 
   return (
-    <div className="flex flex-col lg:flex-row gap-3 h-full">
-      {/* Left: Đề bài + Hướng dẫn */}
-      <div className="lg:w-2/5 flex flex-col gap-2">
+    <div className="flex flex-col lg:flex-row gap-3 pb-4 lg:pb-0">
+      {/* Đề bài + Hướng dẫn */}
+      <div className="lg:w-1/3 flex flex-col gap-2 flex-shrink-0">
         {/* Phép tính */}
         <div className="bg-gradient-to-r from-blue-100 to-purple-100 rounded-xl p-3">
           <div className="text-center mb-2">
-            <span className="text-3xl lg:text-4xl font-black text-purple-600">{problem}</span>
-            <span className="text-3xl lg:text-4xl font-bold text-gray-400 mx-2">=</span>
-            <span className="text-3xl lg:text-4xl font-black text-purple-400">?</span>
+            <span className="text-3xl font-black text-purple-600">{problem}</span>
+            <span className="text-3xl font-bold text-gray-400 mx-2">=</span>
+            <span className="text-3xl font-black text-purple-400">?</span>
           </div>
 
           {/* Kết quả trên bàn tính */}
           <div className={`p-2 rounded-xl transition-all ${
             submitted || isMatch ? 'bg-green-100 border-2 border-green-400' : 'bg-white/70'
           }`}>
-            <div className="text-xs text-gray-500 text-center">Bàn tính của em:</div>
-            <div className={`text-2xl font-black text-center ${submitted || isMatch ? 'text-green-600' : 'text-gray-600'}`}>
-              {currentValue}
+            <div className="text-xs text-gray-500 text-center">Bàn tính của em: <span className={`text-xl font-black ${submitted || isMatch ? 'text-green-600' : 'text-gray-600'}`}>{currentValue}</span>
               {(submitted || isMatch) && <span className="ml-2 animate-bounce inline-block">✅</span>}
             </div>
           </div>
@@ -1489,9 +1494,9 @@ function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, 
               </div>
               <div className="flex-1 text-center bg-white/10 rounded-lg py-2 px-1">
                 <div className="text-xs text-white/60">🎯 Mục tiêu</div>
-                <div className="text-3xl font-black text-yellow-300">{currentStep?.demoValue}</div>
+                <div className="text-2xl font-black text-yellow-300">{currentStep?.demoValue}</div>
                 <div className={`text-sm mt-1 font-medium ${isStepMatch ? 'text-green-300' : 'text-white/80'}`}>
-                  Em: <span className="font-bold text-lg">{currentValue}</span>
+                  Em: <span className="font-bold">{currentValue}</span>
                   {isStepMatch && ' ✓'}
                 </div>
               </div>
@@ -1507,8 +1512,8 @@ function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, 
         )}
       </div>
 
-      {/* Right: Bàn tính */}
-      <div className={`lg:w-3/5 flex-1 flex flex-col rounded-xl p-2 min-h-[280px] transition-all ${
+      {/* Bàn tính */}
+      <div className={`lg:w-2/3 rounded-xl p-2 flex-shrink-0 transition-all flex flex-col justify-center ${
         stepCompleted ? 'bg-gradient-to-br from-green-100 to-emerald-100' : 'bg-gradient-to-br from-amber-50 to-orange-50'
       }`}>
         <div className={`text-center text-sm font-medium mb-1 py-1 rounded-lg ${
@@ -1519,15 +1524,13 @@ function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, 
             : '🧮 Gạt bàn tính để tính!'
           }
         </div>
-        <div className="flex-1 flex items-center justify-center">
-          <SorobanBoard 
-            mode="free" 
-            showHints={!showGuide} 
-            resetKey={`${practiceIndex}-${sorobanKey}`}
-            onValueChange={handleValueChange}
-            highlightColumn={showGuide ? currentStep?.column : null}
-          />
-        </div>
+        <SorobanBoard 
+          mode="free" 
+          showHints={!showGuide} 
+          resetKey={`${practiceIndex}-${sorobanKey}`}
+          onValueChange={handleValueChange}
+          highlightColumn={showGuide ? currentStep?.column : null}
+        />
       </div>
     </div>
   );
@@ -2215,47 +2218,42 @@ function ExplorePractice({ instruction, target, onComplete, onAnswer, practiceIn
   const isMatch = hasTarget && currentValue === target;
 
   return (
-    <div className="flex flex-col lg:flex-row gap-3 h-full">
-      {/* Left: Instruction */}
-      <div className="lg:w-1/3 flex flex-col">
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-3 text-center border border-blue-100">
-          <div className="text-2xl mb-2">🔍</div>
-          <p className="text-gray-700 text-sm mb-3">{instruction}</p>
-          
-          {/* Hiển thị target nếu có */}
-          {hasTarget && (
-            <div className="mb-3 p-2 bg-white rounded-lg border-2 border-dashed border-blue-300">
-              <div className="text-xs text-gray-500 mb-1">Mục tiêu:</div>
-              <div className="text-3xl font-bold text-blue-600">{target}</div>
-            </div>
-          )}
+    <div className="flex flex-col lg:flex-row gap-3 pb-4 lg:pb-0">
+      {/* Instruction */}
+      <div className="lg:w-1/3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-3 text-center border border-blue-100 flex-shrink-0">
+        <p className="text-gray-700 text-sm mb-2">🔍 {instruction}</p>
+        
+        {/* Hiển thị target nếu có */}
+        {hasTarget && (
+          <div className="p-2 bg-white rounded-lg border-2 border-dashed border-blue-300 inline-block">
+            <div className="text-xs text-gray-500">Mục tiêu:</div>
+            <div className="text-3xl font-bold text-blue-600">{target}</div>
+          </div>
+        )}
 
-          {/* Hiển thị giá trị hiện tại */}
-          {hasTarget && (
-            <div className={`p-2 rounded-lg transition-all ${
-              explored 
-                ? 'bg-green-100 border-2 border-green-400' 
-                : isMatch 
-                  ? 'bg-green-50 border-2 border-green-300' 
-                  : 'bg-gray-50'
-            }`}>
-              <div className="text-xs text-gray-500 mb-1">Bàn tính của em:</div>
-              <div className={`text-2xl font-bold transition-colors ${isMatch || explored ? 'text-green-600' : 'text-gray-600'}`}>
-                {currentValue}
-                {(isMatch || explored) && <span className="ml-2 text-green-500 animate-bounce inline-block">✓</span>}
-              </div>
-              {explored && (
-                <div className="mt-2 text-green-600 font-bold text-sm animate-pulse">
-                  🌟 Giỏi lắm!
-                </div>
-              )}
+        {/* Hiển thị giá trị hiện tại */}
+        {hasTarget && (
+          <div className={`mt-2 p-2 rounded-lg transition-all ${
+            explored 
+              ? 'bg-green-100 border-2 border-green-400' 
+              : isMatch 
+                ? 'bg-green-50 border-2 border-green-300' 
+                : 'bg-gray-50'
+          }`}>
+            <div className="text-xs text-gray-500">Bàn tính của em: <span className={`text-xl font-bold ${isMatch || explored ? 'text-green-600' : 'text-gray-600'}`}>{currentValue}</span>
+              {(isMatch || explored) && <span className="ml-2 text-green-500 animate-bounce inline-block">✓</span>}
             </div>
-          )}
-        </div>
+            {explored && (
+              <div className="mt-1 text-green-600 font-bold text-sm animate-pulse">
+                🌟 Giỏi lắm!
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
-      {/* Right: Soroban Board */}
-      <div className="lg:w-2/3 flex-1 flex items-center justify-center bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-2 min-h-[280px]">
+      {/* Soroban Board */}
+      <div className="lg:w-2/3 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-2 flex-shrink-0 flex items-center justify-center">
         <SorobanBoard 
           mode="free"
           showHints={true} 
@@ -2270,7 +2268,7 @@ function ExplorePractice({ instruction, target, onComplete, onAnswer, practiceIn
 // Component: Ghi nhớ cặp số - OPTIMIZED VERSION
 function MemoryPractice({ pairs, onComplete, showResult }) {
   return (
-    <div className="flex flex-col items-center justify-center h-full">
+    <div className="flex flex-col items-center py-4">
       <div className="text-2xl mb-2">🧠</div>
       <div className="text-gray-600 mb-4 text-center font-medium">Hãy nhớ các "Đôi bạn thân" của số 10 nhé!</div>
       <div className="flex flex-wrap justify-center gap-3 mb-6">
@@ -2402,57 +2400,55 @@ function ChainPractice({ problems, answer, onAnswer, showResult, isCorrect, prac
   const displayChain = problems.join(' ');
 
   return (
-    <div className="flex flex-col lg:flex-row gap-3 h-full">
-      {/* Left: Đề bài + Input - GỌN */}
-      <div className="lg:w-1/3 flex flex-col">
-        <div className="bg-gradient-to-r from-indigo-100 to-purple-100 rounded-xl p-3">
-          <div className="text-center text-sm text-gray-600 mb-2">🔗 Tính chuỗi!</div>
-          <div className="flex items-center justify-center gap-1 flex-wrap mb-2">
-            {problems.map((p, i) => (
-              <span key={i} className={`text-lg lg:text-xl font-bold ${i === 0 ? 'text-purple-600' : 'text-pink-500'}`}>
-                {p}
-              </span>
-            ))}
-          </div>
-          
-          <div className="flex items-center justify-center gap-1">
-            <span className="text-xl font-bold text-gray-400">=</span>
-            {!showResult ? (
-              <>
-                <input
-                  type="number"
-                  value={userInput}
-                  onChange={(e) => setUserInput(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && userInput && handleSubmit()}
-                  className="w-16 text-center text-xl font-bold border-2 border-purple-400 rounded-lg py-1.5 focus:border-purple-600 focus:outline-none"
-                  placeholder="?"
-                  autoFocus
-                />
-                <button
-                  onClick={handleSubmit}
-                  disabled={!userInput}
-                  className="px-3 py-1.5 bg-purple-500 text-white rounded-lg font-bold disabled:opacity-50"
-                >
-                  ✓
-                </button>
-              </>
-            ) : (
-              <span className={`text-xl lg:text-2xl font-bold ${isCorrect ? 'text-green-600' : 'text-red-600'}`}>
-                {answer} {isCorrect ? '✅' : '❌'}
-              </span>
-            )}
-          </div>
-
-          {showResult && (
-            <div className={`mt-2 py-1.5 rounded-lg text-center font-bold text-sm ${isCorrect ? 'bg-green-200 text-green-800' : 'bg-orange-200 text-orange-800'}`}>
-              {isCorrect ? '🌟 Xuất sắc!' : `💪 ${displayChain} = ${answer}`}
-            </div>
+    <div className="flex flex-col lg:flex-row gap-3 pb-4 lg:pb-0">
+      {/* Đề bài + Input */}
+      <div className="lg:w-1/3 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-xl p-3 flex-shrink-0">
+        <div className="text-center text-sm text-gray-600 mb-2">🔗 Tính chuỗi!</div>
+        <div className="flex items-center justify-center gap-1 flex-wrap mb-2">
+          {problems.map((p, i) => (
+            <span key={i} className={`text-lg font-bold ${i === 0 ? 'text-purple-600' : 'text-pink-500'}`}>
+              {p}
+            </span>
+          ))}
+        </div>
+        
+        <div className="flex items-center justify-center gap-1 flex-wrap">
+          <span className="text-xl font-bold text-gray-400">=</span>
+          {!showResult ? (
+            <>
+              <input
+                type="number"
+                value={userInput}
+                onChange={(e) => setUserInput(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && userInput && handleSubmit()}
+                className="w-16 text-center text-xl font-bold border-2 border-purple-400 rounded-lg py-1.5 focus:border-purple-600 focus:outline-none"
+                placeholder="?"
+                autoFocus
+              />
+              <button
+                onClick={handleSubmit}
+                disabled={!userInput}
+                className="px-3 py-1.5 bg-purple-500 text-white rounded-lg font-bold disabled:opacity-50"
+              >
+                ✓
+              </button>
+            </>
+          ) : (
+            <span className={`text-xl font-bold ${isCorrect ? 'text-green-600' : 'text-red-600'}`}>
+              {answer} {isCorrect ? '✅' : '❌'}
+            </span>
           )}
         </div>
+
+        {showResult && (
+          <div className={`mt-2 py-1.5 rounded-lg text-center font-bold text-sm ${isCorrect ? 'bg-green-200 text-green-800' : 'bg-orange-200 text-orange-800'}`}>
+            {isCorrect ? '🌟 Xuất sắc!' : `💪 ${displayChain} = ${answer}`}
+          </div>
+        )}
       </div>
 
-      {/* Right: Soroban Board - LỚN */}
-      <div className="lg:w-2/3 flex-1 flex items-center justify-center bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-2 min-h-[280px]">
+      {/* Soroban Board */}
+      <div className="lg:w-2/3 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-2 flex-shrink-0 flex items-center justify-center">
         <SorobanBoard mode="free" showHints={false} resetKey={practiceIndex} />
       </div>
     </div>
@@ -2512,23 +2508,23 @@ function SpeedPractice({ problem, answer, timeLimit, onAnswer, showResult, isCor
         <>
           <div className="text-center mb-6">
             <div className="text-sm text-gray-400 mb-2">⚡ Tính nhanh nào!</div>
-            <div className="text-5xl font-black text-purple-600">{problem} = ?</div>
+            <div className="text-4xl sm:text-5xl font-black text-purple-600">{problem} = ?</div>
           </div>
 
-          <div className="flex gap-3 max-w-sm mx-auto w-full px-4">
+          <div className="flex gap-2 justify-center w-full px-4">
             <input
               type="number"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && userInput && handleSubmit()}
-              className="flex-1 text-center text-2xl font-bold border-3 border-purple-200 rounded-xl py-3 focus:border-purple-500 focus:outline-none bg-white"
+              className="w-24 text-center text-2xl font-bold border-2 border-purple-200 rounded-xl py-3 focus:border-purple-500 focus:outline-none bg-white"
               placeholder="?"
               autoFocus
             />
             <button
               onClick={handleSubmit}
               disabled={!userInput}
-              className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-bold text-xl disabled:opacity-50 hover:scale-105 transition-transform shadow-lg"
+              className="px-5 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-bold text-xl disabled:opacity-50 hover:scale-105 transition-transform shadow-lg"
             >
               ✓
             </button>
@@ -2580,79 +2576,77 @@ function FriendPractice({ question, answer, friendOf, onAnswer, showResult, isCo
   const isMatch = currentValue === answer;
 
   return (
-    <div className="flex flex-col lg:flex-row gap-3 h-full">
-      {/* Left: Question */}
-      <div className="lg:w-1/3 flex flex-col">
-        <div className={`bg-gradient-to-r ${bgColor} rounded-xl p-3`}>
-          <div className="text-center mb-2">
-            <span className="text-3xl">{friendOf === 5 ? '🖐️' : '🔟'}</span>
-            <div className="text-sm font-bold text-gray-700">{friendOf === 5 ? 'Bạn nhỏ' : 'Bạn lớn'}</div>
+    <div className="flex flex-col lg:flex-row gap-3 pb-4 lg:pb-0">
+      {/* Question */}
+      <div className={`lg:w-1/3 bg-gradient-to-r ${bgColor} rounded-xl p-3 flex-shrink-0`}>
+        <div className="text-center mb-2">
+          <span className="text-3xl">{friendOf === 5 ? '🖐️' : '🔟'}</span>
+          <div className="text-sm font-bold text-gray-700">{friendOf === 5 ? 'Bạn nhỏ' : 'Bạn lớn'}</div>
+        </div>
+        
+        {/* Câu hỏi */}
+        <div className="text-center mb-3">
+          <div className="text-lg text-gray-600 mb-1">{question}</div>
+          <div className="flex items-center justify-center gap-2">
+            <span className={`text-4xl font-black bg-gradient-to-r ${friendColor} text-transparent bg-clip-text`}>?</span>
           </div>
-          
-          {/* Câu hỏi */}
-          <div className="text-center mb-3">
-            <div className="text-lg text-gray-600 mb-1">{question}</div>
-            <div className="flex items-center justify-center gap-2">
-              <span className={`text-4xl font-black bg-gradient-to-r ${friendColor} text-transparent bg-clip-text`}>?</span>
-            </div>
-          </div>
+        </div>
 
-          {/* Hiển thị giá trị bàn tính */}
-          <div className={`p-3 rounded-xl transition-all ${
-            submitted || showResult
-              ? 'bg-green-100 border-2 border-green-400'
-              : isMatch 
+        {/* Hiển thị giá trị bàn tính */}
+        <div className={`p-3 rounded-xl transition-all ${
+          submitted || showResult
+            ? 'bg-green-100 border-2 border-green-400'
+            : isMatch 
                 ? 'bg-green-50 border-2 border-green-300' 
                 : 'bg-white/70'
           }`}>
-            <div className="text-xs text-gray-500 mb-1 text-center">Gạt bàn tính:</div>
-            <div className={`text-3xl font-black text-center transition-colors ${
-              submitted || showResult || isMatch ? 'text-green-600' : 'text-gray-600'
-            }`}>
-              {currentValue}
-              {(submitted || isMatch) && !showResult && (
-                <span className="ml-2 text-green-500 animate-bounce inline-block">✓</span>
-              )}
-            </div>
+          <div className="text-xs text-gray-500 mb-1 text-center">Gạt bàn tính:</div>
+          <div className={`text-3xl font-black text-center transition-colors ${
+            submitted || showResult || isMatch ? 'text-green-600' : 'text-gray-600'
+          }`}>
+            {currentValue}
+            {(submitted || isMatch) && !showResult && (
+              <span className="ml-2 text-green-500 animate-bounce inline-block">✓</span>
+            )}
           </div>
+        </div>
 
-          {/* Kết quả */}
-          {(submitted || showResult) && (
-            <div className={`mt-3 py-2 rounded-lg text-center font-bold text-sm ${
-              isCorrect ? 'bg-green-200 text-green-800' : 'bg-orange-200 text-orange-800'
-            }`}>
-              {isCorrect 
-                ? `🎉 Đúng rồi! ${friendOf - answer} + ${answer} = ${friendOf}` 
-                : `💪 Đáp án: ${answer}`
-              }
-            </div>
-          )}
+        {/* Kết quả */}
+        {(submitted || showResult) && (
+          <div className={`mt-3 py-2 rounded-lg text-center font-bold text-sm ${
+            isCorrect ? 'bg-green-200 text-green-800' : 'bg-orange-200 text-orange-800'
+          }`}>
+            {isCorrect 
+              ? `🎉 Đúng rồi! ${friendOf - answer} + ${answer} = ${friendOf}` 
+              : `💪 Đáp án: ${answer}`
+            }
+          </div>
+        )}
 
-          {/* Visual hints */}
-          <div className="mt-3 p-2 bg-white/50 rounded-lg">
-            <div className="text-xs text-gray-500 text-center mb-1">💡 {friendOf === 5 ? 'Bạn nhỏ: cộng = 5' : 'Bạn lớn: cộng = 10'}</div>
-            <div className="flex flex-wrap justify-center gap-1 text-xs">
-              {friendOf === 5 ? (
-                <>
-                  <span className="bg-cyan-100 text-cyan-700 rounded px-2 py-0.5 font-medium">1 ❤️ 4</span>
-                  <span className="bg-cyan-100 text-cyan-700 rounded px-2 py-0.5 font-medium">2 ❤️ 3</span>
-                </>
-              ) : (
-                <>
-                  <span className="bg-purple-100 text-purple-700 rounded px-1.5 py-0.5 font-medium">1❤️9</span>
-                  <span className="bg-purple-100 text-purple-700 rounded px-1.5 py-0.5 font-medium">2❤️8</span>
-                  <span className="bg-purple-100 text-purple-700 rounded px-1.5 py-0.5 font-medium">3❤️7</span>
-                  <span className="bg-purple-100 text-purple-700 rounded px-1.5 py-0.5 font-medium">4❤️6</span>
-                  <span className="bg-purple-100 text-purple-700 rounded px-1.5 py-0.5 font-medium">5❤️5</span>
-                </>
-              )}
-            </div>
+        {/* Visual hints */}
+        <div className="mt-3 p-2 bg-white/50 rounded-lg">
+          <div className="text-xs text-gray-500 text-center mb-1">💡 {friendOf === 5 ? 'Bạn nhỏ: cộng = 5' : 'Bạn lớn: cộng = 10'}</div>
+          <div className="flex flex-wrap justify-center gap-1 text-xs">
+            {friendOf === 5 ? (
+              <>
+                <span className="bg-cyan-100 text-cyan-700 rounded px-2 py-0.5 font-medium">1 ❤️ 4</span>
+                <span className="bg-cyan-100 text-cyan-700 rounded px-2 py-0.5 font-medium">2 ❤️ 3</span>
+              </>
+            ) : (
+              <>
+                <span className="bg-purple-100 text-purple-700 rounded px-1.5 py-0.5 font-medium">1❤️9</span>
+                <span className="bg-purple-100 text-purple-700 rounded px-1.5 py-0.5 font-medium">2❤️8</span>
+                <span className="bg-purple-100 text-purple-700 rounded px-1.5 py-0.5 font-medium">3❤️7</span>
+                <span className="bg-purple-100 text-purple-700 rounded px-1.5 py-0.5 font-medium">4❤️6</span>
+                <span className="bg-purple-100 text-purple-700 rounded px-1.5 py-0.5 font-medium">5❤️5</span>
+              </>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Right: Soroban Board */}
-      <div className="lg:w-2/3 flex-1 flex items-center justify-center bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-2 min-h-[280px]">
+      {/* Soroban Board */}
+      <div className="lg:w-2/3 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-2 flex-shrink-0 flex items-center justify-center">
         <SorobanBoard 
           mode="free" 
           showHints={true} 
@@ -2729,7 +2723,7 @@ function FlashcardPractice({ numbers, displayTime, answer, onAnswer, showResult,
             Hãy tính tổng của chúng!
           </p>
           <div className="flex items-center justify-center gap-2 mb-4 text-sm text-gray-400">
-            <span>⏱️ {numberDisplayTime}ms / số</span>
+            <span>⏱️ {(numberDisplayTime / 1000).toFixed(1)} giây / số</span>
           </div>
           <button
             onClick={startFlash}
@@ -2775,24 +2769,24 @@ function FlashcardPractice({ numbers, displayTime, answer, onAnswer, showResult,
 
       {/* Phase: Answer - Nhập đáp án */}
       {phase === 'answer' && !showResult && !submitted && (
-        <div className="text-center w-full max-w-sm">
+        <div className="text-center w-full px-4">
           <div className="text-4xl mb-3">🎯</div>
           <p className="text-gray-600 mb-4">Tổng của {numbers.length} số là bao nhiêu?</p>
           
-          <div className="flex gap-3 px-4">
+          <div className="flex gap-2 justify-center">
             <input
               type="number"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && userInput && handleSubmit()}
-              className="flex-1 text-center text-3xl font-bold border-3 border-purple-200 rounded-xl py-4 focus:border-purple-500 focus:outline-none bg-white"
+              className="w-24 text-center text-2xl font-bold border-2 border-purple-200 rounded-xl py-3 focus:border-purple-500 focus:outline-none bg-white"
               placeholder="?"
               autoFocus
             />
             <button
               onClick={handleSubmit}
               disabled={!userInput}
-              className="px-6 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl font-bold text-2xl disabled:opacity-50 hover:scale-105 transition-transform shadow-lg"
+              className="px-5 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl font-bold text-xl disabled:opacity-50 hover:scale-105 transition-transform shadow-lg"
             >
               ✓
             </button>
@@ -2802,24 +2796,26 @@ function FlashcardPractice({ numbers, displayTime, answer, onAnswer, showResult,
 
       {/* Result */}
       {(showResult || submitted) && (
-        <div className={`w-full max-w-sm p-6 rounded-2xl text-center ${
-          isCorrect ? 'bg-green-100' : 'bg-orange-100'
+        <div className={`w-full max-w-sm mx-auto p-4 rounded-2xl text-center shadow-lg ${
+          isCorrect ? 'bg-gradient-to-br from-green-100 to-emerald-100 border-2 border-green-300' : 'bg-gradient-to-br from-orange-100 to-amber-100 border-2 border-orange-300'
         }`}>
-          <div className="text-4xl mb-2">{isCorrect ? '🎉' : '💪'}</div>
+          <div className="text-5xl mb-3 animate-bounce">{isCorrect ? '🎉' : '💪'}</div>
           
           {/* Hiển thị phép tính */}
-          <div className="text-lg text-gray-600 mb-2">
+          <div className="text-base text-gray-700 mb-2 flex flex-wrap items-center justify-center gap-1">
             {numbers.map((n, i) => (
-              <span key={i}>
-                {i > 0 && <span className="mx-1">{n >= 0 ? '+' : ''}</span>}
-                <span className={n >= 0 ? 'text-blue-600' : 'text-red-500'}>{n}</span>
+              <span key={i} className="inline-flex items-center">
+                {i > 0 && <span className="mx-0.5 text-gray-500">{n >= 0 ? '+' : ''}</span>}
+                <span className={`font-bold ${n >= 0 ? 'text-blue-600' : 'text-red-500'}`}>{n}</span>
               </span>
             ))}
-            <span className="mx-2">=</span>
-            <span className={`font-bold ${isCorrect ? 'text-green-600' : 'text-orange-600'}`}>{answer}</span>
+            <span className="mx-1 text-gray-500">=</span>
+            <span className={`text-xl font-black ${isCorrect ? 'text-green-600' : 'text-orange-600'}`}>{answer}</span>
           </div>
           
-          <div className="text-sm mt-2">
+          <div className={`text-sm font-bold py-2 px-3 rounded-lg ${
+            isCorrect ? 'bg-green-200 text-green-800' : 'bg-orange-200 text-orange-800'
+          }`}>
             {isCorrect 
               ? '⭐ Tuyệt vời! Trí nhớ siêu phàm!' 
               : `Đáp án đúng là ${answer}`

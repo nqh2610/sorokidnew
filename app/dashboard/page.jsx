@@ -443,42 +443,78 @@ export default function DashboardPage() {
           </Link>
         )}
 
-        {/* Quick Actions */}
+        {/* Quick Actions - 3 CHỨC NĂNG CHÍNH */}
         <div className="grid grid-cols-3 gap-2 sm:gap-4">
+          {/* HỌC TẬP */}
           <Link
             href="/learn"
             prefetch={true}
-            className="group bg-white rounded-2xl p-4 sm:p-5 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all text-center focus:outline-none focus:ring-2 focus:ring-purple-400"
+            className="group relative bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 rounded-2xl p-4 sm:p-5 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 hover:scale-105 transition-all text-center focus:outline-none focus:ring-4 focus:ring-blue-300 overflow-hidden"
           >
-            <div className="text-4xl sm:text-5xl mb-2 group-hover:scale-110 transition-transform">📚</div>
-            <h3 className="text-sm sm:text-lg font-bold text-gray-800">Học tập</h3>
-            {progress?.completedLessons > 0 && (
-              <p className="text-xs text-gray-500 mt-1">{progress.completedLessons} bài</p>
-            )}
+            {/* Animated background */}
+            <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute -top-4 -right-4 w-16 h-16 bg-white/10 rounded-full blur-xl group-hover:scale-150 transition-transform" />
+            
+            <div className="relative">
+              <div className="text-4xl sm:text-5xl mb-2 group-hover:scale-125 group-hover:rotate-6 transition-transform drop-shadow-lg">📚</div>
+              <h3 className="text-sm sm:text-lg font-bold text-white drop-shadow">Học tập</h3>
+              {progress?.completedLessons > 0 ? (
+                <p className="text-xs text-white/80 mt-1 font-medium">{progress.completedLessons} bài</p>
+              ) : (
+                <p className="text-xs text-white/80 mt-1 font-medium animate-pulse">Bắt đầu ngay!</p>
+              )}
+            </div>
+            
+            {/* Shimmer effect */}
+            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000" />
           </Link>
 
+          {/* LUYỆN TẬP */}
           <Link
             href="/practice"
             prefetch={true}
-            className="group bg-white rounded-2xl p-4 sm:p-5 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all text-center focus:outline-none focus:ring-2 focus:ring-purple-400"
+            className="group relative bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500 rounded-2xl p-4 sm:p-5 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 hover:scale-105 transition-all text-center focus:outline-none focus:ring-4 focus:ring-orange-300 overflow-hidden"
           >
-            <div className="text-4xl sm:text-5xl mb-2 group-hover:scale-110 transition-transform">💪</div>
-            <h3 className="text-sm sm:text-lg font-bold text-gray-800">Luyện tập</h3>
-            {exercise?.today?.total > 0 && (
-              <p className="text-xs text-gray-500 mt-1">{exercise.today.total} hôm nay</p>
-            )}
+            {/* Animated background */}
+            <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute -top-4 -right-4 w-16 h-16 bg-white/10 rounded-full blur-xl group-hover:scale-150 transition-transform" />
+            
+            <div className="relative">
+              <div className="text-4xl sm:text-5xl mb-2 group-hover:scale-125 group-hover:-rotate-6 transition-transform drop-shadow-lg">💪</div>
+              <h3 className="text-sm sm:text-lg font-bold text-white drop-shadow">Luyện tập</h3>
+              {exercise?.today?.total > 0 ? (
+                <p className="text-xs text-white/80 mt-1 font-medium">{exercise.today.total} hôm nay</p>
+              ) : (
+                <p className="text-xs text-white/80 mt-1 font-medium animate-pulse">Rèn luyện nào!</p>
+              )}
+            </div>
+            
+            {/* Shimmer effect */}
+            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000" />
           </Link>
 
+          {/* THI ĐẤU */}
           <Link
             href="/compete"
             prefetch={true}
-            className="group bg-white rounded-2xl p-4 sm:p-5 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all text-center focus:outline-none focus:ring-2 focus:ring-purple-400"
+            className="group relative bg-gradient-to-br from-purple-500 via-pink-500 to-rose-500 rounded-2xl p-4 sm:p-5 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 hover:scale-105 transition-all text-center focus:outline-none focus:ring-4 focus:ring-purple-300 overflow-hidden"
           >
-            <div className="text-4xl sm:text-5xl mb-2 group-hover:scale-110 transition-transform">🏆</div>
-            <h3 className="text-sm sm:text-lg font-bold text-gray-800">Thi Đấu</h3>
-            {compete?.top3Count > 0 && (
-              <p className="text-xs text-gray-500 mt-1">Top 3: {compete.top3Count}x</p>
-            )}
+            {/* Animated background */}
+            <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute -top-4 -right-4 w-16 h-16 bg-white/10 rounded-full blur-xl group-hover:scale-150 transition-transform" />
+            
+            <div className="relative">
+              <div className="text-4xl sm:text-5xl mb-2 group-hover:scale-125 group-hover:rotate-12 transition-transform drop-shadow-lg animate-bounce">🏆</div>
+              <h3 className="text-sm sm:text-lg font-bold text-white drop-shadow">Thi Đấu</h3>
+              {compete?.top3Count > 0 ? (
+                <p className="text-xs text-white/80 mt-1 font-medium">Top 3: {compete.top3Count}x</p>
+              ) : (
+                <p className="text-xs text-white/80 mt-1 font-medium animate-pulse">Thử tài nào!</p>
+              )}
+            </div>
+            
+            {/* Shimmer effect */}
+            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000" />
           </Link>
         </div>
 

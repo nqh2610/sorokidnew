@@ -343,11 +343,13 @@ export default function CompetePage() {
   // Flash Anzan states
   const [flashPhase, setFlashPhase] = useState('idle'); // 'idle' | 'countdown' | 'showing' | 'answer' | 'result'
   const [flashNumbers, setFlashNumbers] = useState([]);
+  const [flashOperations, setFlashOperations] = useState([]); // Các phép tính (+/-) cho từng số
   const [flashCurrentIndex, setFlashCurrentIndex] = useState(0);
   const [flashAnswer, setFlashAnswer] = useState('');
   const [flashCorrectAnswer, setFlashCorrectAnswer] = useState(0);
   const [flashCountdown, setFlashCountdown] = useState(3);
   const [flashShowingNumber, setFlashShowingNumber] = useState(null);
+  const [flashShowingOperation, setFlashShowingOperation] = useState(null); // Phép tính đang hiện (+/-)
   const [flashAnswerTimer, setFlashAnswerTimer] = useState(0);
   const [flashResultMessage, setFlashResultMessage] = useState(null);
   const flashInputRef = useRef(null);
@@ -686,31 +688,51 @@ export default function CompetePage() {
     // Lấy config từ flashLevelsCompete dựa trên difficulty
     const config = flashLevelsCompete.find(l => l.level === selectedArena.difficulty) || flashLevelsCompete[0];
     
-    // Tạo dãy số ngẫu nhiên
+    // Tạo dãy số ngẫu nhiên với phép tính cộng/trừ
     const count = Math.floor(Math.random() * (config.numbers[1] - config.numbers[0] + 1)) + config.numbers[0];
     const maxDigitValue = Math.pow(10, config.digits) - 1;
     const minDigitValue = Math.pow(10, config.digits - 1);
     
     const nums = [];
+    const ops = [];
+    let runningTotal = 0;
+    
     for (let i = 0; i < count; i++) {
-      if (config.additionOnly) {
-        nums.push(Math.floor(Math.random() * (maxDigitValue - minDigitValue + 1)) + minDigitValue);
+      const num = Math.floor(Math.random() * (maxDigitValue - minDigitValue + 1)) + minDigitValue;
+      
+      // Số đầu tiên luôn là cộng, hoặc nếu level là additionOnly thì luôn cộng
+      if (i === 0 || config.additionOnly) {
+        ops.push('+');
+        nums.push(num);
+        runningTotal += num;
       } else {
-        nums.push(Math.floor(Math.random() * (maxDigitValue - minDigitValue + 1)) + minDigitValue);
+        // 50% cộng, 50% trừ - nhưng đảm bảo kết quả không âm
+        const shouldSubtract = Math.random() < 0.5 && runningTotal >= num;
+        if (shouldSubtract) {
+          ops.push('-');
+          nums.push(num);
+          runningTotal -= num;
+        } else {
+          ops.push('+');
+          nums.push(num);
+          runningTotal += num;
+        }
       }
     }
     
-    const sum = nums.reduce((a, b) => a + b, 0);
-    
     setFlashNumbers(nums);
-    setFlashCorrectAnswer(sum);
+    setFlashOperations(ops);
+    setFlashCorrectAnswer(runningTotal);
     setFlashCurrentIndex(0);
     setFlashShowingNumber(null);
+    setFlashShowingOperation(null);
     setFlashAnswer('');
     setFlashAnswerTimer(0);
     setFlashResultMessage(null);
     setFlashCountdown(3);
     setFlashPhase('countdown');
+    
+    console.log('Generated Flash Compete:', { nums, ops, correctAnswer: runningTotal });
     
     // Bắt đầu countdown
     let countdown = 3;
@@ -721,13 +743,13 @@ export default function CompetePage() {
         clearInterval(countdownInterval);
         // Bắt đầu hiện số
         setTimeout(() => {
-          showFlashNumbers(nums, config);
+          showFlashNumbers(nums, ops, config);
         }, 500);
       }
     }, 1000);
   };
 
-  const showFlashNumbers = (nums, config) => {
+  const showFlashNumbers = (nums, ops, config) => {
     setFlashPhase('showing');
     
     // Hiện số từng cái một - TỐC ĐỘ CỐ ĐỊNH - FIX FLICKERING (copy từ practice)
@@ -736,12 +758,14 @@ export default function CompetePage() {
         // Đã hiện hết số, chuyển sang phase trả lời
         setFlashPhase('answer');
         setFlashShowingNumber(null);
+        setFlashShowingOperation(null);
         setTimeout(() => flashInputRef.current?.focus(), 100);
         return;
       }
       
       setFlashCurrentIndex(index);
       setFlashShowingNumber(nums[index]);
+      setFlashShowingOperation(ops[index]);
       
       // Tốc độ CỐ ĐỊNH - dùng giá trị trung bình của range
       const speed = (config.speed[0] + config.speed[1]) / 2;
@@ -2706,14 +2730,25 @@ export default function CompetePage() {
               {/* Epic number display - RESPONSIVE */}
               <div className="relative">
                 {/* Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl sm:rounded-3xl blur-xl sm:blur-2xl opacity-50 animate-pulse"></div>
+                <div className={`absolute inset-0 rounded-2xl sm:rounded-3xl blur-xl sm:blur-2xl opacity-50 animate-pulse ${
+                  flashShowingOperation === '-' 
+                    ? 'bg-gradient-to-r from-blue-500 to-cyan-500' 
+                    : 'bg-gradient-to-r from-yellow-500 to-orange-500'
+                }`}></div>
                 
                 <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 shadow-xl sm:shadow-2xl border border-white/10">
                   {flashShowingNumber !== null ? (
                     <div 
                       key={flashCurrentIndex}
-                      className="text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-yellow-300 via-amber-400 to-orange-500 animate-zoom-in drop-shadow-2xl"
+                      className={`text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] font-black text-transparent bg-clip-text animate-zoom-in drop-shadow-2xl ${
+                        flashShowingOperation === '-'
+                          ? 'bg-gradient-to-br from-blue-300 via-cyan-400 to-teal-500'
+                          : 'bg-gradient-to-br from-yellow-300 via-amber-400 to-orange-500'
+                      }`}
                     >
+                      <span className={`${flashShowingOperation === '-' ? 'text-blue-400' : 'text-green-400'}`}>
+                        {flashShowingOperation}
+                      </span>
                       {flashShowingNumber}
                     </div>
                   ) : (
@@ -2747,8 +2782,8 @@ export default function CompetePage() {
               {/* Question prompt - Exciting */}
               <div className="mb-2">
                 <div className="text-3xl sm:text-4xl mb-1 animate-bounce">🧠</div>
-                <h2 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-400 animate-pulse leading-relaxed pt-1">TỔNG LÀ BAO NHIÊU?</h2>
-                <p className="text-white/70 text-xs">Nhập kết quả của bạn</p>
+                <h2 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-400 animate-pulse leading-relaxed pt-1">KẾT QUẢ LÀ BAO NHIÊU?</h2>
+                <p className="text-white/70 text-xs">Nhập kết quả phép tính của bạn</p>
               </div>
               
               {/* Info badges - Compact inline */}
@@ -2774,7 +2809,7 @@ export default function CompetePage() {
                     readOnly
                     value={flashAnswer}
                     onChange={(e) => {
-                      if (/^-?\d*$/.test(e.target.value)) {
+                      if (/^\d*$/.test(e.target.value)) {
                         setFlashAnswer(e.target.value);
                       }
                     }}
@@ -2904,8 +2939,14 @@ export default function CompetePage() {
                     <div className="flex flex-wrap items-center gap-0.5 flex-1">
                       {flashNumbers.map((num, i) => (
                         <span key={i} className="flex items-center">
-                          <span className="bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs sm:text-sm font-bold">{num}</span>
-                          {i < flashNumbers.length - 1 && <span className="text-white/50 mx-0.5 text-xs">+</span>}
+                          {i > 0 && (
+                            <span className={`mx-0.5 text-xs font-bold ${flashOperations[i] === '-' ? 'text-blue-400' : 'text-green-400'}`}>
+                              {flashOperations[i]}
+                            </span>
+                          )}
+                          <span className={`px-1.5 py-0.5 rounded text-xs sm:text-sm font-bold ${
+                            flashOperations[i] === '-' ? 'bg-blue-500 text-white' : 'bg-amber-500 text-white'
+                          }`}>{num}</span>
                         </span>
                       ))}
                       <span className="text-white/50 mx-1">=</span>
@@ -2965,8 +3006,14 @@ export default function CompetePage() {
                     <div className="flex flex-wrap items-center gap-0.5 flex-1">
                       {flashNumbers.map((num, i) => (
                         <span key={i} className="flex items-center">
-                          <span className="bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs sm:text-sm font-bold">{num}</span>
-                          {i < flashNumbers.length - 1 && <span className="text-white/50 mx-0.5 text-xs">+</span>}
+                          {i > 0 && (
+                            <span className={`mx-0.5 text-xs font-bold ${flashOperations[i] === '-' ? 'text-blue-400' : 'text-green-400'}`}>
+                              {flashOperations[i]}
+                            </span>
+                          )}
+                          <span className={`px-1.5 py-0.5 rounded text-xs sm:text-sm font-bold ${
+                            flashOperations[i] === '-' ? 'bg-blue-500 text-white' : 'bg-amber-500 text-white'
+                          }`}>{num}</span>
                         </span>
                       ))}
                       <span className="text-white/50 mx-1">=</span>

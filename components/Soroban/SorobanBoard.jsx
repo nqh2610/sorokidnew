@@ -1,11 +1,39 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { HelpCircle, Lightbulb, RotateCcw } from 'lucide-react';
 
-// Cấu hình số cột - 9 cột cho số lên đến hàng trăm triệu
-const NUM_COLUMNS = 9;
-const COLUMN_LABELS = ['Tr.Tr', 'Ch.Tr', 'Triệu', 'Tr.N', 'Ch.N', 'Nghìn', 'Trăm', 'Chục', 'Đ.vị'];
+// Cấu hình mặc định - 9 cột cho số lên đến hàng trăm triệu
+const DEFAULT_NUM_COLUMNS = 9;
+const MOBILE_NUM_COLUMNS = 7; // Số cột cho mobile (< 640px)
+const ALL_COLUMN_LABELS = ['Tr.Tr', 'Ch.Tr', 'Triệu', 'Tr.N', 'Ch.N', 'Nghìn', 'Trăm', 'Chục', 'Đ.vị'];
+
+// Ngưỡng kéo tối thiểu để trigger action (pixels)
+const DRAG_THRESHOLD = 15;
+
+// Custom hook để detect screen size
+function useResponsiveColumns(defaultColumns) {
+  const [numColumns, setNumColumns] = useState(defaultColumns);
+  
+  useEffect(() => {
+    const checkWidth = () => {
+      if (typeof window !== 'undefined') {
+        // Dưới 640px (mobile) -> giảm số cột
+        if (window.innerWidth < 640) {
+          setNumColumns(Math.min(defaultColumns, MOBILE_NUM_COLUMNS));
+        } else {
+          setNumColumns(defaultColumns);
+        }
+      }
+    };
+    
+    checkWidth();
+    window.addEventListener('resize', checkWidth);
+    return () => window.removeEventListener('resize', checkWidth);
+  }, [defaultColumns]);
+  
+  return numColumns;
+}
 
 export default function SorobanBoard({ 
   targetNumber, 
@@ -17,8 +45,14 @@ export default function SorobanBoard({
   resetKey,
   highlightColumn = null, // Cột đang được highlight trong tutorial mode
   tutorialMode = false,   // Có đang ở tutorial mode không
-  tutorialBeads = null    // Trạng thái hạt từ tutorial (nếu có)
+  tutorialBeads = null,   // Trạng thái hạt từ tutorial (nếu có)
+  columns = DEFAULT_NUM_COLUMNS, // Số cột hiển thị (mặc định 9)
+  responsive = true // Tự động điều chỉnh số cột theo màn hình
 }) {
+  // Tính toán số cột responsive
+  const responsiveColumns = useResponsiveColumns(columns);
+  const NUM_COLUMNS = responsive ? responsiveColumns : Math.min(Math.max(columns, 1), 9);
+  const COLUMN_LABELS = useMemo(() => ALL_COLUMN_LABELS.slice(-NUM_COLUMNS), [NUM_COLUMNS]);
   // State cho hạt: mỗi cột có [heavenBead, earth1, earth2, earth3, earth4]
   // true = hạt đã được đẩy về thanh ngang (đang đếm)
   // false = hạt ở vị trí nghỉ (không đếm)
@@ -32,6 +66,12 @@ export default function SorobanBoard({
   const [tutorialStep, setTutorialStep] = useState(0);
   const [hint, setHint] = useState('');
   const [isCorrect, setIsCorrect] = useState(false);
+
+  // Reset bàn tính khi số cột thay đổi (responsive)
+  useEffect(() => {
+    setBeads(Array(NUM_COLUMNS).fill(null).map(() => [false, false, false, false, false]));
+    setCurrentNumber(0);
+  }, [NUM_COLUMNS]);
 
   // Reset bàn tính khi chuyển bài (targetNumber hoặc resetKey thay đổi)
   useEffect(() => {
@@ -108,31 +148,126 @@ export default function SorobanBoard({
     return total;
   };
 
-  const toggleBead = (col, row) => {
-    const newBeads = beads.map(c => [...c]);
-    
-    if (row === 0) {
-      // Heaven bead - toggle đơn giản
-      newBeads[col][0] = !newBeads[col][0];
-    } else {
-      // Earth beads - logic Soroban thực tế
-      // Hạt được đánh số 1-4 từ trên xuống (gần thanh ngang đến xa)
-      const isUp = beads[col][row]; // Hạt này đang ở trên (đã đẩy lên)?
+  const toggleBead = useCallback((col, row) => {
+    setBeads(prevBeads => {
+      const newBeads = prevBeads.map(c => [...c]);
       
-      if (isUp) {
-        // Đang ở trên → đẩy xuống: hạt này và tất cả hạt DƯỚI nó cũng phải xuống
-        for (let i = row; i <= 4; i++) {
-          newBeads[col][i] = false;
-        }
+      if (row === 0) {
+        // Heaven bead - toggle đơn giản
+        newBeads[col][0] = !newBeads[col][0];
       } else {
-        // Đang ở dưới → đẩy lên: hạt này và tất cả hạt TRÊN nó cũng phải lên
-        for (let i = 1; i <= row; i++) {
-          newBeads[col][i] = true;
+        // Earth beads - logic Soroban thực tế
+        // Hạt được đánh số 1-4 từ trên xuống (gần thanh ngang đến xa)
+        const isUp = prevBeads[col][row]; // Hạt này đang ở trên (đã đẩy lên)?
+        
+        if (isUp) {
+          // Đang ở trên → đẩy xuống: hạt này và tất cả hạt DƯỚI nó cũng phải xuống
+          for (let i = row; i <= 4; i++) {
+            newBeads[col][i] = false;
+          }
+        } else {
+          // Đang ở dưới → đẩy lên: hạt này và tất cả hạt TRÊN nó cũng phải lên
+          for (let i = 1; i <= row; i++) {
+            newBeads[col][i] = true;
+          }
         }
       }
+      
+      return newBeads;
+    });
+  }, []);
+
+  // Xử lý drag cho Heaven bead (hạt trên - kéo xuống để bật, kéo lên để tắt)
+  const handleBeadDrag = useCallback((col, row, direction) => {
+    setBeads(prevBeads => {
+      const newBeads = prevBeads.map(c => [...c]);
+      
+      if (row === 0) {
+        // Heaven bead: kéo xuống = bật (true), kéo lên = tắt (false)
+        if (direction === 'down' && !prevBeads[col][0]) {
+          newBeads[col][0] = true;
+        } else if (direction === 'up' && prevBeads[col][0]) {
+          newBeads[col][0] = false;
+        } else {
+          return prevBeads; // Không thay đổi
+        }
+      } else {
+        // Earth beads: kéo lên = bật, kéo xuống = tắt
+        const isUp = prevBeads[col][row];
+        
+        if (direction === 'up' && !isUp) {
+          // Kéo lên: hạt này và tất cả hạt TRÊN nó cũng phải lên
+          for (let i = 1; i <= row; i++) {
+            newBeads[col][i] = true;
+          }
+        } else if (direction === 'down' && isUp) {
+          // Kéo xuống: hạt này và tất cả hạt DƯỚI nó cũng phải xuống
+          for (let i = row; i <= 4; i++) {
+            newBeads[col][i] = false;
+          }
+        } else {
+          return prevBeads; // Không thay đổi
+        }
+      }
+      
+      return newBeads;
+    });
+  }, []);
+
+  // ========== SIMPLIFIED EVENT HANDLING ==========
+  // Dùng pointer events cho cả desktop và mobile
+  
+  const pointerStartRef = useRef(null);
+  
+  const handlePointerDown = useCallback((e, col, row) => {
+    if (tutorialMode) return;
+    
+    // Capture pointer để nhận events kể cả khi di chuyển ra ngoài element
+    e.target.setPointerCapture(e.pointerId);
+    
+    pointerStartRef.current = {
+      col,
+      row,
+      y: e.clientY,
+      pointerId: e.pointerId,
+      moved: false
+    };
+  }, [tutorialMode]);
+
+  const handlePointerMove = useCallback((e) => {
+    if (!pointerStartRef.current) return;
+    if (e.pointerId !== pointerStartRef.current.pointerId) return;
+    
+    const deltaY = e.clientY - pointerStartRef.current.y;
+    
+    if (Math.abs(deltaY) > DRAG_THRESHOLD) {
+      pointerStartRef.current.moved = true;
     }
-    setBeads(newBeads);
-  };
+  }, []);
+
+  const handlePointerUp = useCallback((e) => {
+    if (!pointerStartRef.current) return;
+    if (e.pointerId !== pointerStartRef.current.pointerId) return;
+    
+    const { col, row, y: startY, moved } = pointerStartRef.current;
+    const deltaY = e.clientY - startY;
+    
+    // Reset ref
+    pointerStartRef.current = null;
+    
+    if (Math.abs(deltaY) > DRAG_THRESHOLD && moved) {
+      // Drag action
+      const direction = deltaY > 0 ? 'down' : 'up';
+      handleBeadDrag(col, row, direction);
+    } else {
+      // Click/tap action
+      toggleBead(col, row);
+    }
+  }, [handleBeadDrag, toggleBead]);
+
+  const handlePointerCancel = useCallback((e) => {
+    pointerStartRef.current = null;
+  }, []);
 
   const reset = () => {
     setBeads(Array(NUM_COLUMNS).fill(null).map(() => [false, false, false, false, false]));
@@ -178,7 +313,7 @@ export default function SorobanBoard({
   };
 
   return (
-    <div className="relative w-full max-w-xl mx-auto">
+    <div className="relative w-full max-w-xl mx-auto overflow-hidden">
       {/* Tutorial Overlay */}
       {showTutorial && (
         <div className="absolute inset-0 bg-black bg-opacity-50 z-50 rounded-3xl flex items-center justify-center p-8">
@@ -222,9 +357,9 @@ export default function SorobanBoard({
         </div>
       )}
 
-      <div className="relative">
+      <div className="relative overflow-hidden">
         {/* Soroban Board - All in one container */}
-        <div className={`relative bg-gradient-to-b from-amber-800 to-amber-900 shadow-xl ${compact ? 'rounded-xl p-2' : 'rounded-2xl p-3 sm:p-4'}`}>
+        <div className={`relative bg-gradient-to-b from-amber-800 to-amber-900 shadow-xl overflow-hidden ${compact ? 'rounded-xl p-2' : 'rounded-2xl p-3 sm:p-4'}`}>
           {/* Frame decoration */}
           <div className={`absolute inset-0 border-4 border-amber-950/50 pointer-events-none z-20 ${compact ? 'rounded-xl' : 'rounded-2xl'}`}></div>
           
@@ -287,7 +422,7 @@ export default function SorobanBoard({
           )}
 
           {/* Main beads container */}
-          <div className="relative">
+          <div className="relative select-none" style={{ touchAction: 'none' }}>
             {/* Heaven beads section */}
             <div className="flex justify-between gap-0.5 sm:gap-1">
               {beads.map((col, colIndex) => {
@@ -303,14 +438,18 @@ export default function SorobanBoard({
                     
                     {/* Heaven bead */}
                     <div className={`relative flex flex-col justify-start pt-0.5 ${compact ? 'h-12' : 'h-16 sm:h-20'}`}>
-                      <button
-                        onClick={() => toggleBead(colIndex, 0)}
-                        disabled={tutorialMode}
+                      <div
+                        onPointerDown={(e) => handlePointerDown(e, colIndex, 0)}
+                        onPointerMove={handlePointerMove}
+                        onPointerUp={handlePointerUp}
+                        onPointerCancel={handlePointerCancel}
                         className={`relative z-10 rounded-full cursor-pointer transition-all duration-200 active:scale-95 ${
                           compact ? 'w-6 h-6' : 'w-8 h-8 sm:w-10 sm:h-10'
                         } ${col[0] ? (compact ? 'translate-y-5' : 'translate-y-7 sm:translate-y-9') : 'translate-y-0'} ${
-                          tutorialMode ? 'cursor-not-allowed' : ''
+                          tutorialMode ? 'cursor-not-allowed opacity-70' : ''
                         } ${isHighlighted ? 'animate-pulse' : ''}`}
+                        role="button"
+                        tabIndex={tutorialMode ? -1 : 0}
                         aria-label={`Hạt 5 cột ${colIndex + 1}`}
                       >
                         <div className={`absolute inset-0 rounded-full shadow-lg transition-colors duration-100 ${
@@ -321,7 +460,7 @@ export default function SorobanBoard({
                           <div className="absolute inset-1 rounded-full bg-gradient-to-br from-white/50 via-transparent to-transparent"></div>
                           <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-800/70 ${compact ? 'w-1 h-1' : 'w-1.5 h-1.5 sm:w-2 sm:h-2'}`}></div>
                         </div>
-                      </button>
+                      </div>
                     </div>
                   </div>
                 );
@@ -352,15 +491,19 @@ export default function SorobanBoard({
                       {[1, 2, 3, 4].map((beadIdx) => {
                         const isUp = col[beadIdx];
                         return (
-                          <button
+                          <div
                             key={beadIdx}
-                            onClick={() => toggleBead(colIndex, beadIdx)}
-                            disabled={tutorialMode}
+                            onPointerDown={(e) => handlePointerDown(e, colIndex, beadIdx)}
+                            onPointerMove={handlePointerMove}
+                            onPointerUp={handlePointerUp}
+                            onPointerCancel={handlePointerCancel}
                             className={`relative z-10 rounded-full cursor-pointer transition-all duration-200 active:scale-95 ${
                               compact ? 'w-6 h-6' : 'w-8 h-8 sm:w-10 sm:h-10'
                             } ${isUp ? (compact ? '-translate-y-2' : '-translate-y-3 sm:-translate-y-4') : (compact ? 'translate-y-0.5' : 'translate-y-1 sm:translate-y-1.5')} ${
-                              tutorialMode ? 'cursor-not-allowed' : ''
+                              tutorialMode ? 'cursor-not-allowed opacity-70' : ''
                             } ${isHighlighted ? 'animate-pulse' : ''}`}
+                            role="button"
+                            tabIndex={tutorialMode ? -1 : 0}
                             aria-label={`Hạt ${beadIdx} cột ${colIndex + 1}`}
                           >
                             <div className={`absolute inset-0 rounded-full shadow-lg transition-colors duration-100 ${
@@ -371,7 +514,7 @@ export default function SorobanBoard({
                               <div className="absolute inset-1 rounded-full bg-gradient-to-br from-white/50 via-transparent to-transparent"></div>
                               <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-800/60 ${compact ? 'w-1 h-1' : 'w-1.5 h-1.5 sm:w-2 sm:h-2'}`}></div>
                             </div>
-                          </button>
+                          </div>
                         );
                       })}
                     </div>
