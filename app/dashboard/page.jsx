@@ -281,10 +281,16 @@ export default function DashboardPage() {
   };
 
   // === LOADING STATES ===
+  // Track nếu đã từng fetch thất bại
+  const [hasFetchFailed, setHasFetchFailed] = useState(false);
+  
   const isInitialLoading = status === 'loading' || essentialLoading;
   
-  // Chỉ hiện loading khi chưa có data và đang load
-  if (isInitialLoading && !user) {
+  // Hiện loading khi:
+  // 1. Session đang loading HOẶC
+  // 2. Essential đang loading HOẶC
+  // 3. Đã authenticated nhưng chưa có user data (đang chờ fetch)
+  if (!user && (isInitialLoading || status === 'authenticated')) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
         <div className="text-center">
@@ -295,8 +301,11 @@ export default function DashboardPage() {
     );
   }
 
-  // Chỉ hiện error khi BOTH essential và fallback đều thất bại và không còn loading
-  if (!user && !essentialLoading && !useFallback && !fallbackData) {
+  // Chỉ hiện error khi:
+  // 1. Không có user data VÀ
+  // 2. Không phải authenticated (đã logout hoặc lỗi session) VÀ  
+  // 3. Không đang loading
+  if (!user && status !== 'authenticated' && status !== 'loading') {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
         <div className="text-center">
