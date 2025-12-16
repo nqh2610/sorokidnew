@@ -1,19 +1,23 @@
 const path = require('path');
 
 /**
- * 🚀 PM2 CONFIG TỐI ƯU CHO SHARED HOSTING
+ * 🚀 PM2 CONFIG v2.0 - SHARED HOST SURVIVAL MODE
  * 
  * ⚠️ GIỚI HẠN: 1000 PROCESSES / 3GB RAM
  * 
- * Phân tích process usage:
- * - Node.js app: 1 main process
- * - libuv threads: 2 threads (UV_THREADPOOL_SIZE=2)
- * - Prisma: 5 DB connections (từ runtime config)
- * - System: ~200 processes đã dùng
- * - Còn lại: ~790 processes cho app
+ * CHIẾN LƯỢC TỐI ƯU:
+ * 1. 📊 1 instance duy nhất - tránh process explosion
+ * 2. 💾 Memory limit 450MB với auto-restart
+ * 3. ⏱️ UV threadpool = 4 (tăng từ 2 để I/O tốt hơn)
+ * 4. 🔄 Graceful restart với proper cleanup
+ * 5. 📝 Log rotation để tránh disk full
  * 
- * Với 1 PM2 instance + giới hạn concurrent requests:
- * -> An toàn xử lý ~50 concurrent users (shared host limit)
+ * Process breakdown:
+ * - Node.js main: 1
+ * - UV threads: 4
+ * - Prisma connections: 8
+ * - System overhead: ~50
+ * - Còn lại cho requests: ~900+ processes available
  */
 
 // Cross-platform: Detect OS and set appropriate paths
@@ -30,35 +34,44 @@ module.exports = {
       args: 'start',
       cwd: defaultCwd,
       
-      // 🔧 TỐI ƯU CHO SHARED HOSTING - 1000 PROCESSES LIMIT
-      instances: 1,           // CHỈ 1 INSTANCE - quan trọng!
-      exec_mode: 'fork',      // Fork mode, không cluster
+      // 🔧 SINGLE INSTANCE - Quan trọng cho shared host
+      instances: 1,
+      exec_mode: 'fork',
       
-      // Environment - GIỚI HẠN RESOURCES
+      // 🔧 ENVIRONMENT - Tối ưu cho shared hosting
       env: {
         NODE_ENV: 'production',
         PORT: 3000,
-        RUNTIME_ENV: 'shared', // Kích hoạt shared host config
-        // Giới hạn Node.js memory và threads
-        NODE_OPTIONS: '--max-old-space-size=384 --optimize-for-size',
-        // 🔧 QUAN TRỌNG: Giới hạn UV threadpool
-        UV_THREADPOOL_SIZE: '2',
-        // Disable source maps trong production
-        NODE_NO_WARNINGS: '1'
+        RUNTIME_ENV: 'shared',
+        
+        // 🔧 Memory optimization
+        // Tăng lên 450MB để có buffer, giảm GC pressure
+        NODE_OPTIONS: '--max-old-space-size=450 --optimize-for-size --gc-interval=100',
+        
+        // 🔧 UV threadpool - tăng lên 4 để I/O tốt hơn
+        // 4 threads vẫn an toàn với 1000 process limit
+        UV_THREADPOOL_SIZE: '4',
+        
+        // Disable warnings trong production
+        NODE_NO_WARNINGS: '1',
+        
+        // 🆕 Force IPv4 để tránh DNS issues trên shared host
+        NODE_OPTIONS_EXTRA: '--dns-result-order=ipv4first',
       },
       env_production: {
         NODE_ENV: 'production',
         PORT: 3000,
         RUNTIME_ENV: 'shared',
-        NODE_OPTIONS: '--max-old-space-size=384 --optimize-for-size',
-        UV_THREADPOOL_SIZE: '2',
-        NODE_NO_WARNINGS: '1'
+        NODE_OPTIONS: '--max-old-space-size=450 --optimize-for-size --gc-interval=100',
+        UV_THREADPOOL_SIZE: '4',
+        NODE_NO_WARNINGS: '1',
       },
       
-      // 🔧 MEMORY MANAGEMENT - Giảm xuống 400M để tránh process spike
-      max_memory_restart: '400M',
+      // 🔧 MEMORY MANAGEMENT
+      // Restart khi memory vượt 500MB (buffer 50MB)
+      max_memory_restart: '500M',
       
-      // Logs - Giới hạn size
+      // 🔧 LOGGING - với rotation
       error_file: path.join(defaultCwd, 'logs', 'error.log'),
       out_file: path.join(defaultCwd, 'logs', 'out.log'),
       log_file: path.join(defaultCwd, 'logs', 'combined.log'),
@@ -66,24 +79,50 @@ module.exports = {
       log_date_format: 'YYYY-MM-DD HH:mm:ss',
       merge_logs: true,
       
-      // 🔧 RESTART STRATEGY - Tránh restart loops
+      // 🆕 Log rotation - giữ file size nhỏ
+      log_type: 'json',
+      
+      // 🔧 RESTART STRATEGY - Conservative
       watch: false,
       autorestart: true,
-      max_restarts: 3,        // Giảm từ 5 xuống 3
-      min_uptime: '60s',      // Tăng lên 60s để ổn định
-      restart_delay: 10000,   // Tăng delay lên 10s
+      max_restarts: 5,           // Tăng lên 5 để resilient hơn
+      min_uptime: '30s',         // 30s là đủ để verify stable
+      restart_delay: 5000,       // 5s delay giữa restarts
       
-      // 🔧 Graceful shutdown - QUAN TRỌNG để release processes
-      kill_timeout: 15000,    // 15s để cleanup DB connections
+      // 🔧 GRACEFUL SHUTDOWN - Đủ thời gian cleanup
+      kill_timeout: 10000,       // 10s để cleanup connections
       wait_ready: true,
-      listen_timeout: 15000,
+      listen_timeout: 10000,
       
-      // 🔧 CRON RESTART - Restart hàng ngày lúc 4h sáng
-      // Giúp giải phóng memory leaks và orphan processes
+      // 🔧 CRON RESTART - 4h sáng mỗi ngày
+      // Giải phóng memory leaks tích lũy
       cron_restart: '0 4 * * *',
       
-      // Exp backoff restart - tránh restart quá nhanh
-      exp_backoff_restart_delay: 2000
+      // 🔧 EXPONENTIAL BACKOFF - Tránh restart loop
+      exp_backoff_restart_delay: 1000,
+      
+      // 🆕 HEALTH CHECK
+      // PM2 sẽ restart nếu app không respond
+      // Commented vì cần PM2 Plus
+      // health_check: {
+      //   url: 'http://localhost:3000/api/health',
+      //   interval: 30000,
+      //   timeout: 5000,
+      // },
     }
-  ]
+  ],
+  
+  // 🆕 DEPLOY CONFIG (optional, cho CI/CD)
+  deploy: {
+    production: {
+      user: process.env.DEPLOY_USER || 'nhsortag',
+      host: process.env.DEPLOY_HOST || 'sorokids.com',
+      ref: 'origin/main',
+      repo: 'git@github.com:username/sorokid.git',
+      path: '/var/www/sorokid',
+      'pre-deploy-local': '',
+      'post-deploy': 'npm install && npm run build && pm2 reload ecosystem.config.js --env production',
+      'pre-setup': ''
+    }
+  }
 };

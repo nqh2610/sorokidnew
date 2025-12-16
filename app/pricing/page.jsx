@@ -166,8 +166,8 @@ export default function PricingPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch plans
-        const plansRes = await fetch('/api/pricing');
+        // Fetch plans - bypass cache bằng timestamp
+        const plansRes = await fetch(`/api/pricing?t=${Date.now()}`);
         if (plansRes.ok) {
           const data = await plansRes.json();
           setPricingPlans(data.plans || []);

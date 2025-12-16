@@ -70,9 +70,9 @@ export default function PaymentQRModal({
           </button>
           
           <div className="text-center">
-            <div className="text-4xl mb-2">{tierInfo.icon}</div>
-            <h2 className="text-xl font-bold">{tierInfo.displayName}</h2>
-            <p className="text-white/80 text-sm mt-1">{duration} ngày</p>
+            <div className="text-5xl mb-3">{tierInfo.icon}</div>
+            <p className="text-white/80 text-sm">Quét mã QR để thanh toán</p>
+            <h2 className="text-2xl font-black mt-1">{tierInfo.displayName} - {formatPrice(amount)}</h2>
           </div>
         </div>
 
@@ -102,10 +102,20 @@ export default function PaymentQRModal({
             </div>
           ) : (
             <>
-              {/* Amount */}
-              <div className="text-center mb-6">
-                <p className="text-gray-500 text-sm">Số tiền thanh toán</p>
-                <p className="text-3xl font-black text-gray-800">{formatPrice(amount)}</p>
+              {/* Package Info - Nổi bật */}
+              <div className={`bg-gradient-to-r ${tierInfo.color} bg-opacity-10 border-2 border-current rounded-2xl p-4 mb-6`}>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="text-3xl">{tierInfo.icon}</div>
+                    <div>
+                      <p className="font-bold text-gray-800 text-lg">{tierInfo.displayName}</p>
+                      <p className="text-gray-500 text-sm">{duration || 'Vĩnh viễn'}</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-3xl font-black text-gray-800">{formatPrice(amount)}</p>
+                  </div>
+                </div>
               </div>
 
               {/* QR Code */}

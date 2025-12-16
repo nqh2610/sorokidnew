@@ -283,7 +283,8 @@ export default function DashboardPage() {
   // === LOADING STATES ===
   const isInitialLoading = status === 'loading' || essentialLoading;
   
-  if (isInitialLoading) {
+  // Chỉ hiện loading khi chưa có data và đang load
+  if (isInitialLoading && !user) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
         <div className="text-center">
@@ -294,8 +295,8 @@ export default function DashboardPage() {
     );
   }
 
-  // Show minimal content if essential failed but no fallback yet
-  if (!user && !essentialLoading) {
+  // Chỉ hiện error khi BOTH essential và fallback đều thất bại và không còn loading
+  if (!user && !essentialLoading && !useFallback && !fallbackData) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
         <div className="text-center">
