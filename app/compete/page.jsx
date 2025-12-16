@@ -1168,7 +1168,7 @@ export default function CompetePage() {
                   mulDiv: 'advanced',
                   mixed: 'advanced',
                   mentalMath: 'advanced',
-                  flashAnzan: 'basic'
+                  flashAnzan: 'advanced'  // Tia Chớp chỉ mở cho gói Nâng cao
                 };
                 
                 const recommendLevel = {
