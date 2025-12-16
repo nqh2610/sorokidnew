@@ -159,7 +159,7 @@ if exist ".env.production.template" (
 ) else (
     :: Fallback: Tao .env bang cach copy tung dong
     echo # Database - MySQL> "%OUTPUT_DIR%\.env"
-    echo DATABASE_URL=mysql://nhsortag_soro:dNu6PJPiiLo66XWz@sorokid.com:3306/nhsortag_sorokids?connection_limit=5>> "%OUTPUT_DIR%\.env"
+    echo DATABASE_URL=mysql://nhsortag_soro:dNu6PJPiiLo66XWz@sorokid.com:3306/nhsortag_sorokids?connection_limit=8>> "%OUTPUT_DIR%\.env"
     echo.>> "%OUTPUT_DIR%\.env"
     echo # NextAuth>> "%OUTPUT_DIR%\.env"
     echo NEXTAUTH_URL=https://sorokid.com>> "%OUTPUT_DIR%\.env"
@@ -179,7 +179,7 @@ if exist ".env.production.template" (
 
 echo.
 echo *** QUAN TRONG: Sau khi deploy, kiem tra file .env tren server! ***
-echo *** DATABASE_URL phai co dang: ...?connection_limit=5^&pool_timeout=10 ***
+echo *** DATABASE_URL phai co dang: ...?connection_limit=8^&pool_timeout=10 ***
 
 :: ========================================
 :: KIEM TRA KET QUA
@@ -224,9 +224,10 @@ echo   Dung luong: khoang %SIZE_MB% MB
 echo.
 echo   CONFIG DA TOI UU:
 echo   - RUNTIME_ENV=shared (kich hoat shared host mode)
-echo   - DB connection_limit=5 (toi uu cho shared host)
-echo   - UV_THREADPOOL_SIZE=2 (trong ecosystem.config.js)
-echo   - Memory limit 400M
+echo   - DB connection_limit=8 (toi uu cho shared host)
+echo   - UV_THREADPOOL_SIZE=4 (trong ecosystem.config.js)
+echo   - Memory limit 500M
+echo   - Progressive loading dashboard (giam 80%% queries)
 echo.
 echo   HUONG DAN DEPLOY:
 echo   1. Upload thu muc deploy_linux len host
