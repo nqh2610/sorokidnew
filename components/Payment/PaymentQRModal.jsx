@@ -109,7 +109,6 @@ export default function PaymentQRModal({
                     <div className="text-3xl">{tierInfo.icon}</div>
                     <div>
                       <p className="font-bold text-gray-800 text-lg">{tierInfo.displayName}</p>
-                      <p className="text-gray-500 text-sm">{duration || 'Vĩnh viễn'}</p>
                     </div>
                   </div>
                   <div className="text-right">
