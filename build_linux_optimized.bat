@@ -157,29 +157,35 @@ if exist ".env.production.template" (
     copy /Y ".env.production.template" "%OUTPUT_DIR%\.env"
     echo   - Da copy .env tu template
 ) else (
-    :: Fallback: Tao .env bang cach copy tung dong
+    :: Fallback: Tao .env day du
     echo # Database - MySQL> "%OUTPUT_DIR%\.env"
-    echo DATABASE_URL=mysql://nhsortag_soro:dNu6PJPiiLo66XWz@sorokid.com:3306/nhsortag_sorokids?connection_limit=8>> "%OUTPUT_DIR%\.env"
+    echo DATABASE_URL="mysql://nhsortag_soro:dNu6PJPiiLo66XWz@sorokid.com:3306/nhsortag_sorokids?connection_limit=8&pool_timeout=15">> "%OUTPUT_DIR%\.env"
     echo.>> "%OUTPUT_DIR%\.env"
     echo # NextAuth>> "%OUTPUT_DIR%\.env"
-    echo NEXTAUTH_URL=https://sorokid.com>> "%OUTPUT_DIR%\.env"
-    echo NEXTAUTH_SECRET=wstVe5DkkFHKqTosIMpgwjRWUigLJgbYg8n04+qWjv8=>> "%OUTPUT_DIR%\.env"
+    echo NEXTAUTH_URL="https://sorokid.com">> "%OUTPUT_DIR%\.env"
+    echo NEXTAUTH_SECRET="wstVe5DkkFHKqTosIMpgwjRWUigLJgbYg8n04+qWjv8=">> "%OUTPUT_DIR%\.env"
     echo.>> "%OUTPUT_DIR%\.env"
     echo # Node environment>> "%OUTPUT_DIR%\.env"
-    echo NODE_ENV=production>> "%OUTPUT_DIR%\.env"
+    echo NODE_ENV="production">> "%OUTPUT_DIR%\.env"
     echo.>> "%OUTPUT_DIR%\.env"
     echo # RUNTIME CONFIG>> "%OUTPUT_DIR%\.env"
-    echo RUNTIME_ENV=shared>> "%OUTPUT_DIR%\.env"
+    echo RUNTIME_ENV="shared">> "%OUTPUT_DIR%\.env"
     echo.>> "%OUTPUT_DIR%\.env"
     echo # Server>> "%OUTPUT_DIR%\.env"
     echo PORT=3000>> "%OUTPUT_DIR%\.env"
-    echo HOSTNAME=0.0.0.0>> "%OUTPUT_DIR%\.env"
-    echo   - Tao .env (LUU Y: DATABASE_URL khong co pool_timeout - can sua tay)
+    echo HOSTNAME="0.0.0.0">> "%OUTPUT_DIR%\.env"
+    echo.>> "%OUTPUT_DIR%\.env"
+    echo # SSL (de trong neu dung reverse proxy)>> "%OUTPUT_DIR%\.env"
+    echo SSL_KEY_PATH="">> "%OUTPUT_DIR%\.env"
+    echo SSL_CERT_PATH="">> "%OUTPUT_DIR%\.env"
+    echo.>> "%OUTPUT_DIR%\.env"
+    echo # App path for PM2>> "%OUTPUT_DIR%\.env"
+    echo APP_PATH="/var/www/sorokid">> "%OUTPUT_DIR%\.env"
+    echo   - Tao .env day du (connection_limit=8, pool_timeout=15)
 )
 
 echo.
-echo *** QUAN TRONG: Sau khi deploy, kiem tra file .env tren server! ***
-echo *** DATABASE_URL phai co dang: ...?connection_limit=8^&pool_timeout=10 ***
+echo   .env da duoc tao day du voi cac thong so toi uu.
 
 :: ========================================
 :: KIEM TRA KET QUA
