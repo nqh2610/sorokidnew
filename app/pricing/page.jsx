@@ -876,16 +876,16 @@ export default function PricingPage() {
             <div className="absolute bottom-0 left-0 w-40 h-40 bg-purple-100 rounded-full blur-3xl pointer-events-none"></div>
             
             <div className="relative text-center">
-              <div className="w-14 h-14 mx-auto mb-3 bg-gradient-to-br from-fuchsia-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-fuchsia-500/30">
-                <Sparkles className="w-7 h-7 text-white" />
+              {/* Header nổi bật với tên gói và giá */}
+              <div className="bg-gradient-to-r from-fuchsia-500 via-purple-500 to-indigo-500 -mx-5 lg:-mx-6 -mt-5 lg:-mt-6 px-5 py-5 rounded-t-3xl mb-4">
+                <div className="w-16 h-16 mx-auto mb-3 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center">
+                  <Sparkles className="w-8 h-8 text-white" />
+                </div>
+                <p className="text-white/80 text-sm mb-1">Quét mã QR để thanh toán</p>
+                <h3 className="text-2xl font-black text-white">
+                  {orderInfo.packageName} - {formatPrice(orderInfo.amount)}đ
+                </h3>
               </div>
-              
-              <h3 className="text-lg font-bold text-slate-800 mb-1">
-                Quét mã QR để thanh toán
-              </h3>
-              <p className="text-slate-500 text-sm mb-3">
-                {orderInfo.packageName} - {formatPrice(orderInfo.amount)}đ
-              </p>
 
               {/* QR Code */}
               <div className="bg-slate-50 p-4 rounded-2xl mb-3 border border-slate-200">
