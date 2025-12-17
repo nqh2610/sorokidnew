@@ -22,10 +22,10 @@ export default function EditProfilePage() {
   
   // Profile form state
   const [profileData, setProfileData] = useState({
-    name: '',
-    username: ''
+    name: ''
   });
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   
   // Password form state
   const [passwordData, setPasswordData] = useState({
@@ -60,10 +60,10 @@ export default function EditProfilePage() {
       
       if (data.user) {
         setProfileData({
-          name: data.user.name || '',
-          username: data.user.username || ''
+          name: data.user.name || ''
         });
         setEmail(data.user.email || '');
+        setUsername(data.user.username || '');
         // Check if user logged in via OAuth (no password)
         // We'll detect this when they try to change password
       }
@@ -93,16 +93,8 @@ export default function EditProfilePage() {
       setError('Vui lòng nhập họ tên');
       return false;
     }
-    if (!profileData.username.trim()) {
-      setError('Vui lòng nhập username');
-      return false;
-    }
-    if (profileData.username.length < 3) {
-      setError('Username phải có ít nhất 3 ký tự');
-      return false;
-    }
-    if (!/^[a-zA-Z0-9_]+$/.test(profileData.username)) {
-      setError('Username chỉ được chứa chữ, số và dấu gạch dưới');
+    if (profileData.name.trim().length < 2) {
+      setError('Họ tên phải có ít nhất 2 ký tự');
       return false;
     }
     return true;
@@ -153,8 +145,7 @@ export default function EditProfilePage() {
         ...session,
         user: {
           ...session.user,
-          name: profileData.name,
-          username: profileData.username
+          name: profileData.name
         }
       });
 
@@ -274,11 +265,11 @@ export default function EditProfilePage() {
           </div>
         )}
 
-        {/* Profile Tab */}
+        {/* Profile Form - Chỉ cho phép sửa họ tên */}
         {activeTab === 'profile' && (
           <div className="bg-white rounded-2xl shadow-md overflow-hidden">
             <div className="p-6 space-y-5">
-              {/* Full Name */}
+              {/* Full Name - Có thể chỉnh sửa */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <User size={16} className="inline-block mr-2 text-violet-500" />
@@ -297,22 +288,25 @@ export default function EditProfilePage() {
                 </p>
               </div>
 
-              {/* Username */}
+              {/* Username - Read Only */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  <AtSign size={16} className="inline-block mr-2 text-violet-500" />
-                  Username
+                  <AtSign size={16} className="inline-block mr-2 text-gray-400" />
+                  Tên đăng nhập
                 </label>
-                <input
-                  type="text"
-                  name="username"
-                  value={profileData.username}
-                  onChange={handleProfileChange}
-                  placeholder="username_cua_ban"
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-violet-400 focus:outline-none transition-colors text-gray-800 font-mono"
-                />
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={username}
+                    disabled
+                    className="w-full px-4 py-3 border-2 border-gray-100 rounded-xl bg-gray-50 text-gray-500 cursor-not-allowed font-mono"
+                  />
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                    <Lock size={16} className="text-gray-400" />
+                  </div>
+                </div>
                 <p className="text-xs text-gray-400 mt-1.5">
-                  Username hiển thị trên bảng xếp hạng (chỉ chữ, số, dấu _)
+                  Tên đăng nhập không thể thay đổi
                 </p>
               </div>
 

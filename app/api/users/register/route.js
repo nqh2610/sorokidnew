@@ -26,14 +26,24 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Password too short' }, { status: 400 });
     }
 
-    // 🔧 TỐI ƯU: Chỉ select id để kiểm tra tồn tại
-    const existing = await prisma.user.findFirst({
-      where: { OR: [{ email }, { username }] },
+    // 🔧 Kiểm tra email đã tồn tại
+    const existingEmail = await prisma.user.findUnique({
+      where: { email },
       select: { id: true }
     });
 
-    if (existing) {
-      return NextResponse.json({ error: 'User exists' }, { status: 409 });
+    if (existingEmail) {
+      return NextResponse.json({ error: 'Email already exists' }, { status: 409 });
+    }
+
+    // 🔧 Kiểm tra username đã tồn tại
+    const existingUsername = await prisma.user.findUnique({
+      where: { username },
+      select: { id: true }
+    });
+
+    if (existingUsername) {
+      return NextResponse.json({ error: 'Username already exists' }, { status: 409 });
     }
 
     // 🔧 TỐI ƯU: Hash password với cost factor 10 (cân bằng bảo mật/hiệu năng)

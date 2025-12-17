@@ -96,10 +96,12 @@ export default function RegisterPage() {
       if (!response.ok) {
         // Chuyển thông báo lỗi thành thân thiện với người dùng
         let friendlyError = 'Đăng ký thất bại. Vui lòng thử lại!';
-        if (data.error?.includes('email') && data.error?.includes('exist')) {
+        if (data.error === 'Email already exists') {
           friendlyError = 'Email này đã được sử dụng!';
-        } else if (data.error?.includes('username') && data.error?.includes('exist')) {
+          setErrors(prev => ({ ...prev, email: 'Email này đã được sử dụng' }));
+        } else if (data.error === 'Username already exists') {
           friendlyError = 'Tên đăng nhập này đã được sử dụng!';
+          setErrors(prev => ({ ...prev, username: 'Tên đăng nhập này đã được sử dụng' }));
         } else if (data.error?.includes('email')) {
           friendlyError = 'Email không hợp lệ!';
         } else if (data.error?.includes('password')) {
@@ -141,7 +143,7 @@ export default function RegisterPage() {
       </div>
 
       <div className="max-w-md w-full relative z-10">
-        <div className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-8 border border-white/20 max-h-[90vh] overflow-y-auto">
+        <div className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-8 border border-white/20 max-h-[90vh] overflow-y-auto custom-scrollbar">
           {/* Header */}
           <div className="text-center mb-4 sm:mb-6">
             <Link href="/" className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4 cursor-pointer">

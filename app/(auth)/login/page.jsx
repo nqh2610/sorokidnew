@@ -4,14 +4,14 @@ import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Mail, Lock, Eye, EyeOff, Sparkles } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, Sparkles, User } from 'lucide-react';
 import { useToast } from '@/components/Toast/ToastContext';
 import Logo from '@/components/Logo/Logo';
 
 export default function LoginPage() {
   const router = useRouter();
   const toast = useToast();
-  const [email, setEmail] = useState('');
+  const [identifier, setIdentifier] = useState(''); // email hoặc username
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
@@ -19,10 +19,10 @@ export default function LoginPage() {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!email) {
-      newErrors.email = 'Vui lòng nhập email';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      newErrors.email = 'Email không hợp lệ';
+    if (!identifier) {
+      newErrors.identifier = 'Vui lòng nhập email hoặc tên đăng nhập';
+    } else if (identifier.length < 3) {
+      newErrors.identifier = 'Email hoặc tên đăng nhập phải có ít nhất 3 ký tự';
     }
     if (!password) {
       newErrors.password = 'Vui lòng nhập mật khẩu';
@@ -43,13 +43,13 @@ export default function LoginPage() {
     try {
       const result = await signIn('credentials', {
         redirect: false,
-        email,
+        identifier, // có thể là email hoặc username
         password,
       });
       if (result?.error) {
         // Chuyển thông báo lỗi thành thân thiện với người dùng
-        const friendlyError = result.error.includes('credentials') || result.error.includes('password') || result.error.includes('email')
-          ? 'Email hoặc mật khẩu không đúng!'
+        const friendlyError = result.error.includes('credentials') || result.error.includes('password') || result.error.includes('email') || result.error.includes('username')
+          ? 'Email/Tên đăng nhập hoặc mật khẩu không đúng!'
           : 'Đăng nhập thất bại. Vui lòng thử lại!';
         toast.error(friendlyError);
       } else {
@@ -112,26 +112,26 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="block text-gray-700 font-semibold mb-2 flex items-center gap-2">
-                <Mail size={18} className="text-violet-600" />
-                Email
+                <User size={18} className="text-violet-600" />
+                Email hoặc Tên đăng nhập
               </label>
               <input
-                type="email"
-                value={email}
+                type="text"
+                value={identifier}
                 onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (errors.email) setErrors({ ...errors, email: '' });
+                  setIdentifier(e.target.value);
+                  if (errors.identifier) setErrors({ ...errors, identifier: '' });
                 }}
                 className={`w-full px-4 py-3.5 border-2 rounded-xl focus:outline-none transition-all bg-gray-50 focus:bg-white ${
-                  errors.email 
+                  errors.identifier 
                     ? 'border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200' 
                     : 'border-gray-200 focus:border-violet-500 focus:ring-2 focus:ring-violet-200'
                 }`}
-                placeholder="email@example.com"
+                placeholder="email@example.com hoặc username"
               />
-              {errors.email && (
+              {errors.identifier && (
                 <p className="mt-2 text-sm text-red-500 flex items-center gap-1">
-                  <span>⚠️</span> {errors.email}
+                  <span>⚠️</span> {errors.identifier}
                 </p>
               )}
             </div>

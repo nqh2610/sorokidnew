@@ -46,26 +46,29 @@ export const authOptions = {
     CredentialsProvider({
       name: 'credentials',
       credentials: {
-        email: { label: 'Email', type: 'email' },
+        identifier: { label: 'Email hoặc Username', type: 'text' },
         password: { label: 'Mật khẩu', type: 'password' },
       },
       async authorize(credentials, req) {
         try {
-          if (!credentials?.email || !credentials?.password) {
+          if (!credentials?.identifier || !credentials?.password) {
             throw new Error('Vui lòng nhập đầy đủ thông tin');
           }
 
-          const email = credentials.email.toLowerCase().trim();
+          const identifier = credentials.identifier.toLowerCase().trim();
+          const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identifier);
 
           // 🛡️ STEP 1: Kiểm tra login protection (rate limit + lock)
-          const protection = checkLoginProtection(req, email);
+          const protection = checkLoginProtection(req, identifier);
           if (!protection.allowed) {
             throw new Error(protection.error);
           }
 
-          // 🛡️ STEP 2: Query user - CHỈ LẤY CÁC FIELD CẦN THIẾT
-          const user = await prisma.user.findUnique({
-            where: { email },
+          // 🛡️ STEP 2: Query user - Tìm theo email hoặc username
+          const user = await prisma.user.findFirst({
+            where: isEmail 
+              ? { email: identifier }
+              : { username: identifier },
             select: {
               id: true,
               email: true,
@@ -79,8 +82,8 @@ export const authOptions = {
           if (!user) {
             // Delay để chống timing attack
             await sleep(getResponseDelay(protection.failedAttempts));
-            recordFailedLogin(protection.ip, email);
-            throw new Error('Email hoặc mật khẩu không đúng');
+            recordFailedLogin(protection.ip, identifier);
+            throw new Error('Email/Tên đăng nhập hoặc mật khẩu không đúng');
           }
 
           // 🛡️ STEP 3: So sánh password (tốn CPU nhất)
@@ -100,7 +103,7 @@ export const authOptions = {
           }
 
           // 🎉 Login thành công - Reset counter
-          recordSuccessfulLogin(protection.ip, email);
+          recordSuccessfulLogin(protection.ip, identifier);
 
           return {
             id: user.id,
