@@ -9,6 +9,8 @@ import StarBadge, { StarReward } from '@/components/Rewards/StarBadge';
 import CelebrationEffect, { CorrectAnswerEffect, WrongAnswerEffect } from '@/components/Rewards/CelebrationEffect';
 import { StarsEarnedCard } from '@/components/LevelBadge/LevelBadge';
 import { useToast } from '@/components/Toast/ToastContext';
+import { parseMultiplicationProblem } from '@/lib/soroban-multiplication-guide';
+import { parseDivisionProblem } from '@/lib/soroban-division-guide';
 
 // ===== COMPONENT HIỂN THỊ LÝ THUYẾT CẢI TIẾN =====
 function TheoryContent({ theory }) {
@@ -946,7 +948,7 @@ export default function LessonPage() {
             {/* Practice content - FULL HEIGHT */}
             <div className="flex-1 overflow-y-auto pb-2">
               {/* Debug: Hiển thị type nếu không match */}
-              {currentPractice && !['create', 'calc', 'explore', 'memory', 'mental', 'chain', 'speed', 'flashcard', 'friend5', 'friend10'].includes(currentPractice.type) && (
+              {currentPractice && !['create', 'calc', 'explore', 'memory', 'mental', 'chain', 'speed', 'flashcard', 'friend5', 'friend10', 'multiply', 'divide'].includes(currentPractice.type) && (
                 <div className="bg-yellow-100 p-4 rounded-xl text-center">
                   <p className="text-yellow-700">⚠️ Unknown practice type: {currentPractice.type}</p>
                 </div>
@@ -1070,6 +1072,34 @@ export default function LessonPage() {
                   question={currentPractice.question}
                   answer={currentPractice.answer}
                   friendOf={10}
+                  onAnswer={(ans) => handlePracticeAnswer(ans, currentPractice.answer)}
+                  showResult={showResult}
+                  isCorrect={isCorrect}
+                  practiceIndex={practiceIndex}
+                />
+              )}
+
+              {/* Phép nhân */}
+              {currentPractice?.type === 'multiply' && (
+                <CalcPractice
+                  key={`multiply-${practiceIndex}`}
+                  problem={currentPractice.problem}
+                  answer={currentPractice.answer}
+                  hint={null}
+                  onAnswer={(ans) => handlePracticeAnswer(ans, currentPractice.answer)}
+                  showResult={showResult}
+                  isCorrect={isCorrect}
+                  practiceIndex={practiceIndex}
+                />
+              )}
+
+              {/* Phép chia */}
+              {currentPractice?.type === 'divide' && (
+                <CalcPractice
+                  key={`divide-${practiceIndex}`}
+                  problem={currentPractice.problem}
+                  answer={currentPractice.answer}
+                  hint={null}
                   onAnswer={(ans) => handlePracticeAnswer(ans, currentPractice.answer)}
                   showResult={showResult}
                   isCorrect={isCorrect}
@@ -1244,57 +1274,71 @@ function CreateNumberPractice({ target, onCorrect, showResult, isCorrect, practi
 
 // ===== MINI SOROBAN DEMO - Bàn tính thu nhỏ để hướng dẫn =====
 function MiniSorobanDemo({ value = 0, highlightColumn = null, showArrow = false, arrowDirection = 'up' }) {
-  // Chuyển số thành trạng thái hạt (chỉ hiện 3 cột: trăm, chục, đơn vị)
+  // Chuyển số thành trạng thái hạt
   const getBeadState = (digit) => {
     const heaven = digit >= 5;
     const earth = digit >= 5 ? digit - 5 : digit;
     return { heaven, earth };
   };
 
-  const digits = value.toString().padStart(3, '0').split('').map(Number);
-  const columns = [
-    { label: 'Trăm', digit: digits[0], index: 6 },
-    { label: 'Chục', digit: digits[1], index: 7 },
-    { label: 'Đơn vị', digit: digits[2], index: 8 }
-  ];
+  // Tự động tính số cột cần thiết dựa trên value
+  const numDigits = Math.max(value.toString().length, 3); // Tối thiểu 3 cột
+  const digits = value.toString().padStart(numDigits, '0').split('').map(Number);
+
+  // Mapping label và index cho từng cột (từ trái sang phải)
+  const allLabels = ['Tr.Tr', 'Ch.Tr', 'Triệu', 'Tr.N', 'Ch.N', 'Nghìn', 'Trăm', 'Chục', 'Đ.vị'];
+  const startIndex = 9 - numDigits; // Index bắt đầu trong mảng 9 cột
+
+  const columns = digits.map((digit, i) => ({
+    label: allLabels[startIndex + i],
+    digit: digit,
+    index: startIndex + i
+  }));
+
+  // Điều chỉnh width và kích thước hạt theo số cột
+  const columnWidth = numDigits <= 3 ? 36 : numDigits <= 5 ? 32 : 28;
+  const beadSize = numDigits <= 3 ? 24 : numDigits <= 5 ? 22 : 20; // pixels
 
   return (
     <div className="bg-gradient-to-b from-amber-800 to-amber-900 rounded-xl p-2 shadow-xl relative">
       {/* Frame decoration */}
       <div className="absolute inset-0 border-2 border-amber-950/50 rounded-xl pointer-events-none z-20" />
-      
+
       {/* THANH NGANG LIỀN MẠCH - đặt ở vị trí cố định */}
       <div className="absolute left-2 right-2 top-[52px] h-1.5 bg-gradient-to-b from-amber-900 via-amber-600 to-amber-900 rounded-sm shadow-md z-10">
         <div className="absolute inset-x-0 top-0 h-px bg-amber-400/40" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-black/30" />
       </div>
-      
+
       <div className="flex justify-center gap-1 relative">
         {columns.map((col, colIdx) => {
           const state = getBeadState(col.digit);
           const isHighlighted = highlightColumn === col.index;
-          
+
           return (
-            <div 
-              key={colIdx} 
+            <div
+              key={colIdx}
               className={`flex flex-col items-center relative transition-all ${
                 isHighlighted ? 'bg-yellow-400/30 ring-2 ring-yellow-400 rounded-lg' : ''
               }`}
-              style={{ width: '36px' }}
+              style={{ width: `${columnWidth}px` }}
             >
               {/* Rod - thanh dọc */}
               <div className="absolute left-1/2 -translate-x-1/2 top-1 bottom-8 w-0.5 bg-gradient-to-b from-amber-400 via-amber-500 to-amber-400 rounded-full z-0" />
-              
+
               {/* Heaven bead - Hạt trời: container h-12, hạt di chuyển trong đó */}
               <div className="h-12 flex flex-col justify-start pt-1 relative z-20">
-                <div className={`w-6 h-6 rounded-full transition-all duration-200 relative ${
-                  state.heaven 
-                    ? 'translate-y-4' 
-                    : 'translate-y-0'
-                }`}>
+                <div
+                  className={`rounded-full transition-all duration-200 relative ${
+                    state.heaven
+                      ? 'translate-y-4'
+                      : 'translate-y-0'
+                  }`}
+                  style={{ width: `${beadSize}px`, height: `${beadSize}px` }}
+                >
                   <div className={`absolute inset-0 rounded-full shadow-lg ${
-                    state.heaven 
-                      ? 'bg-gradient-to-br from-red-400 to-red-600 ring-2 ring-white/60' 
+                    state.heaven
+                      ? 'bg-gradient-to-br from-red-400 to-red-600 ring-2 ring-white/60'
                       : 'bg-gradient-to-br from-red-300 to-red-500'
                   }`}>
                     <div className="absolute inset-1 rounded-full bg-gradient-to-br from-white/50 via-transparent to-transparent" />
@@ -1302,26 +1346,27 @@ function MiniSorobanDemo({ value = 0, highlightColumn = null, showArrow = false,
                   </div>
                 </div>
               </div>
-              
+
               {/* Spacer cho thanh ngang */}
               <div className="h-1.5" />
-              
+
               {/* Earth beads - 4 Hạt đất */}
               <div className="flex flex-col gap-0.5 relative z-20">
                 {[0, 1, 2, 3].map((i) => {
                   const isUp = i < state.earth;
                   return (
-                    <div 
+                    <div
                       key={i}
-                      className={`w-6 h-6 rounded-full transition-all duration-200 relative ${
-                        isUp 
-                          ? (i === 0 ? '-translate-y-0.5' : '-translate-y-1') 
+                      className={`rounded-full transition-all duration-200 relative ${
+                        isUp
+                          ? (i === 0 ? '-translate-y-0.5' : '-translate-y-1')
                           : 'translate-y-0.5'
                       }`}
+                      style={{ width: `${beadSize}px`, height: `${beadSize}px` }}
                     >
                       <div className={`absolute inset-0 rounded-full shadow-lg ${
-                        isUp 
-                          ? 'bg-gradient-to-br from-yellow-300 to-amber-500 ring-2 ring-white/60' 
+                        isUp
+                          ? 'bg-gradient-to-br from-yellow-300 to-amber-500 ring-2 ring-white/60'
                           : 'bg-gradient-to-br from-amber-500 to-amber-700'
                       }`}>
                         <div className="absolute inset-1 rounded-full bg-gradient-to-br from-white/50 via-transparent to-transparent" />
@@ -1375,6 +1420,13 @@ function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, 
       setGuideSteps(steps);
     }
   }, [problem, answer]);
+
+  // Hàm để chuyển bước tiếp theo (cho bước giải thích)
+  const handleNextStep = () => {
+    if (currentGuideStep < guideSteps.length - 1) {
+      setCurrentGuideStep(prev => prev + 1);
+    }
+  };
 
   // Kiểm tra khi học sinh làm đúng bước hiện tại
   const handleValueChange = (value) => {
@@ -1487,20 +1539,35 @@ function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, 
               )}
             </div>
 
-            {/* Mini Soroban + Mục tiêu - Layout cải thiện */}
-            <div className="flex items-center gap-2">
-              <div className="flex-shrink-0">
-                <MiniSorobanDemo value={currentStep?.demoValue || 0} highlightColumn={currentStep?.column} />
-              </div>
-              <div className="flex-1 text-center bg-white/10 rounded-lg py-2 px-1">
-                <div className="text-xs text-white/60">🎯 Mục tiêu</div>
-                <div className="text-2xl font-black text-yellow-300">{currentStep?.demoValue}</div>
-                <div className={`text-sm mt-1 font-medium ${isStepMatch ? 'text-green-300' : 'text-white/80'}`}>
-                  Em: <span className="font-bold">{currentValue}</span>
-                  {isStepMatch && ' ✓'}
+            {/* Mini Soroban + Mục tiêu - Chỉ hiện khi KHÔNG phải bước giải thích */}
+            {!currentStep?.skipCheck && (
+              <div className="flex items-center gap-2">
+                <div className="flex-shrink-0">
+                  <MiniSorobanDemo value={currentStep?.demoValue || 0} highlightColumn={currentStep?.column} />
+                </div>
+                <div className="flex-1 text-center bg-white/10 rounded-lg py-2 px-1">
+                  <div className="text-xs text-white/60">🎯 Mục tiêu</div>
+                  <div className="text-2xl font-black text-yellow-300">{currentStep?.demoValue}</div>
+                  <div className={`text-sm mt-1 font-medium ${isStepMatch ? 'text-green-300' : 'text-white/80'}`}>
+                    Em: <span className="font-bold">{currentValue}</span>
+                    {isStepMatch && ' ✓'}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
+
+            {/* Nếu là bước giải thích, hiển thị nút tiếp tục */}
+            {currentStep?.skipCheck && (
+              <div className="text-center">
+                <button
+                  onClick={handleNextStep}
+                  className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                >
+                  <span>Tiếp tục</span>
+                  <ArrowRight size={20} />
+                </button>
+              </div>
+            )}
           </div>
         )}
 
@@ -1519,8 +1586,12 @@ function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, 
         <div className={`text-center text-sm font-medium mb-1 py-1 rounded-lg ${
           showGuide ? stepCompleted ? 'text-green-700 bg-green-200' : 'text-blue-700 bg-blue-100' : 'text-gray-500'
         }`}>
-          {showGuide 
-            ? stepCompleted ? '🎉 Tuyệt vời!' : `🎯 Gạt để được số ${currentStep?.demoValue}`
+          {showGuide
+            ? stepCompleted
+              ? '🎉 Tuyệt vời!'
+              : currentStep?.skipCheck
+                ? '📖 Đọc hướng dẫn phía bên trái'
+                : `🎯 Gạt để được số ${currentStep?.demoValue}`
             : '🧮 Gạt bàn tính để tính!'
           }
         </div>
@@ -1736,8 +1807,23 @@ function getSorobanOperation(currentDigit, operand, operator, columnName) {
 function parseSimpleProblem(problem, answer) {
   const steps = [];
   let stepNumber = 1;
-  
+
+  // Kiểm tra phép cộng/trừ
   const match = problem.replace(/\s/g, '').match(/^(\d+)([\+\-])(\d+)$/);
+
+  // Kiểm tra phép nhân
+  const multiplyMatch = problem.replace(/\s/g, '').match(/^(\d+)[×\*](\d+)$/);
+  if (multiplyMatch) {
+    return parseMultiplicationProblem(problem, answer);
+  }
+
+  // Kiểm tra phép chia
+  const divideMatch = problem.replace(/\s/g, '').match(/^(\d+)[÷\/](\d+)$/);
+  if (divideMatch) {
+    return parseDivisionProblem(problem, answer);
+  }
+
+  // Nếu không phải cộng/trừ/nhân/chia
   if (!match) {
     return [{
       emoji: '🎯',

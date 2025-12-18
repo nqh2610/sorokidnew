@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(node check-lessons-local.js:*)",
+      "Bash(node test-multiplication-guide.js:*)",
+      "Bash(node analyze-multiplication-lessons.js:*)",
+      "Bash(node:*)",
+      "Bash(cat:*)"
+    ]
+  }
+}
