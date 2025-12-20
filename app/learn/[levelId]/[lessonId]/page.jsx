@@ -1395,22 +1395,38 @@ function MiniSorobanDemo({ value = 0, highlightColumn = null, showArrow = false,
 // Component: Tính toán - HỌC SINH LÀM TỪNG BƯỚC THEO HƯỚNG DẪN
 function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, practiceIndex }) {
   const [currentValue, setCurrentValue] = useState(0);
+  const [quotientValue, setQuotientValue] = useState(0); // Giá trị bàn thương
   const [submitted, setSubmitted] = useState(false);
   const [showGuide, setShowGuide] = useState(false);
   const [guideSteps, setGuideSteps] = useState([]);
   const [currentGuideStep, setCurrentGuideStep] = useState(0);
   const [stepCompleted, setStepCompleted] = useState(false);
   const [sorobanKey, setSorobanKey] = useState(0);
+  const [quotientSorobanKey, setQuotientSorobanKey] = useState(0);
+
+  // Kiểm tra có phải phép chia không - để hiển thị bàn thương
+  const isDivision = problem?.includes('÷');
+
+  // Tính số dư cho phép chia
+  const expectedRemainder = useMemo(() => {
+    if (!isDivision || !problem) return 0;
+    const parts = problem.split('÷').map(p => parseInt(p.trim()));
+    if (parts.length !== 2) return 0;
+    const [dividend, divisor] = parts;
+    return dividend - (answer * divisor);
+  }, [isDivision, problem, answer]);
 
   // Reset khi chuyển câu
   useEffect(() => {
     setCurrentValue(0);
+    setQuotientValue(0);
     setSubmitted(false);
     setShowGuide(false);
     setGuideSteps([]);
     setCurrentGuideStep(0);
     setStepCompleted(false);
     setSorobanKey(prev => prev + 1);
+    setQuotientSorobanKey(prev => prev + 1);
   }, [practiceIndex]);
 
   // Phân tích bài toán thành các bước
@@ -1428,75 +1444,154 @@ function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, 
     }
   };
 
-  // Kiểm tra khi học sinh làm đúng bước hiện tại
-  const handleValueChange = (value) => {
+  // Kiểm tra khi học sinh thay đổi bàn chính
+  const handleMainValueChange = (value) => {
     setCurrentValue(value);
-    
+    checkStepCompletion(value, quotientValue);
+  };
+
+  // Kiểm tra khi học sinh thay đổi bàn thương
+  const handleQuotientValueChange = (value) => {
+    setQuotientValue(value);
+    checkStepCompletion(currentValue, value);
+  };
+
+  // Logic kiểm tra chung cho cả 2 bàn
+  const checkStepCompletion = (mainVal, quotientVal) => {
     if (showGuide && guideSteps.length > 0) {
       const currentStep = guideSteps[currentGuideStep];
-      const targetValue = currentStep?.demoValue;
-      
-      if (value === targetValue && !stepCompleted) {
+
+      // Bước có skipCheck (giải thích/ước lượng) không tự động chuyển - chờ user bấm nút
+      if (currentStep?.skipCheck) {
+        return;
+      }
+
+      const activeBoard = currentStep?.activeBoard; // 'quotient' hoặc 'main'
+
+      let isCorrect = false;
+      if (activeBoard === 'quotient') {
+        isCorrect = quotientVal === currentStep?.quotientTarget;
+      } else if (activeBoard === 'main') {
+        isCorrect = mainVal === currentStep?.mainTarget;
+      } else {
+        // Không có activeBoard (phép cũ, chỉ dùng demoValue)
+        isCorrect = mainVal === currentStep?.demoValue;
+      }
+
+      if (isCorrect && !stepCompleted) {
         setStepCompleted(true);
         setTimeout(() => {
           if (currentGuideStep < guideSteps.length - 1) {
+            // Chưa phải bước cuối → chuyển bước tiếp
             setCurrentGuideStep(prev => prev + 1);
             setStepCompleted(false);
           } else {
+            // Bước cuối - tìm ra thương số → xong bài, submit luôn
             setSubmitted(true);
-            setTimeout(() => onAnswer(value), 500);
+            const finalAnswer = isDivision ? quotientVal : mainVal;
+            onAnswer(finalAnswer);
           }
         }, 1000);
       }
     } else {
-      if (value === answer && !submitted) {
-        setSubmitted(true);
-        setTimeout(() => onAnswer(value), 800);
+      // Không có guide - kiểm tra kết quả trực tiếp
+      if (isDivision) {
+        // Phép chia: kiểm tra bàn THƯƠNG có đúng đáp án không
+        if (quotientVal === answer && !submitted) {
+          setSubmitted(true);
+          setTimeout(() => onAnswer(quotientVal), 800);
+        }
+      } else {
+        // Phép khác: kiểm tra bàn chính
+        if (mainVal === answer && !submitted) {
+          setSubmitted(true);
+          setTimeout(() => onAnswer(mainVal), 800);
+        }
       }
     }
   };
 
-  const isMatch = currentValue === answer;
+  // Kiểm tra kết quả đúng - phép chia kiểm tra bàn thương VÀ số dư, phép khác kiểm tra bàn chính
+  const isMatch = isDivision
+    ? (quotientValue === answer && currentValue === expectedRemainder)
+    : currentValue === answer;
   const currentStep = guideSteps[currentGuideStep];
-  const isStepMatch = showGuide && currentStep && currentValue === currentStep.demoValue;
+
+  // Kiểm tra match dựa trên activeBoard
+  const isStepMatch = showGuide && currentStep && (() => {
+    const activeBoard = currentStep.activeBoard;
+    if (activeBoard === 'quotient') {
+      return quotientValue === currentStep.quotientTarget;
+    } else if (activeBoard === 'main') {
+      return currentValue === currentStep.mainTarget;
+    } else {
+      return currentValue === currentStep.demoValue;
+    }
+  })();
 
   return (
-    <div className="flex flex-col lg:flex-row gap-3 pb-4 lg:pb-0">
+    <div className="flex flex-col lg:flex-row gap-2 pb-2 lg:pb-0 max-w-full overflow-hidden">
       {/* Đề bài + Hướng dẫn */}
-      <div className="lg:w-1/3 flex flex-col gap-2 flex-shrink-0">
+      <div className="lg:w-[280px] xl:w-[320px] flex flex-col gap-1.5 flex-shrink-0">
         {/* Phép tính */}
-        <div className="bg-gradient-to-r from-blue-100 to-purple-100 rounded-xl p-3">
-          <div className="text-center mb-2">
-            <span className="text-3xl font-black text-purple-600">{problem}</span>
-            <span className="text-3xl font-bold text-gray-400 mx-2">=</span>
-            <span className="text-3xl font-black text-purple-400">?</span>
+        <div className="bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg p-2">
+          <div className="text-center">
+            <span className="text-2xl font-black text-purple-600">{problem}</span>
+            <span className="text-2xl font-bold text-gray-400 mx-1">=</span>
+            <span className="text-2xl font-black text-purple-400">?</span>
           </div>
 
           {/* Kết quả trên bàn tính */}
-          <div className={`p-2 rounded-xl transition-all ${
-            submitted || isMatch ? 'bg-green-100 border-2 border-green-400' : 'bg-white/70'
+          <div className={`p-1.5 rounded-lg mt-1 transition-all ${
+            submitted || isMatch ? 'bg-green-100 border border-green-400' : 'bg-white/70'
           }`}>
-            <div className="text-xs text-gray-500 text-center">Bàn tính của em: <span className={`text-xl font-black ${submitted || isMatch ? 'text-green-600' : 'text-gray-600'}`}>{currentValue}</span>
-              {(submitted || isMatch) && <span className="ml-2 animate-bounce inline-block">✅</span>}
-            </div>
+            {isDivision ? (
+              // Phép chia: hiển thị Thương và Dư
+              <div className="text-xs text-center">
+                <div className={`flex items-center justify-center gap-2 flex-wrap ${isMatch ? 'text-green-600' : 'text-purple-600'}`}>
+                  <div className="flex items-center gap-1">
+                    <span className="text-purple-500 font-medium">📊 Thương:</span>
+                    <span className={`text-lg font-black ${quotientValue === answer && quotientValue > 0 ? 'text-green-600' : 'text-purple-600'}`}>
+                      {quotientValue}
+                    </span>
+                    {quotientValue === answer && quotientValue > 0 && <span className="text-green-500">✓</span>}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <span className="text-orange-500 font-medium">🧮 Dư:</span>
+                    <span className={`text-lg font-black ${isMatch ? 'text-green-600' : 'text-orange-600'}`}>
+                      {currentValue}
+                    </span>
+                    {/* Chỉ hiện tick dư khi thương đã đúng VÀ dư đúng */}
+                    {quotientValue === answer && quotientValue > 0 && currentValue === expectedRemainder && <span className="text-green-500">✓</span>}
+                  </div>
+                  {isMatch && <span className="animate-bounce inline-block">✅</span>}
+                </div>
+              </div>
+            ) : (
+              // Phép khác: chỉ hiện bàn chính
+              <div className="text-xs text-gray-500 text-center">
+                Bàn tính của em: <span className={`text-lg font-black ${submitted || isMatch ? 'text-green-600' : 'text-gray-600'}`}>{currentValue}</span>
+                {(submitted || isMatch) && <span className="ml-1 animate-bounce inline-block">✅</span>}
+              </div>
+            )}
           </div>
 
           {submitted && (
-            <div className="mt-2 py-2 rounded-lg text-center font-bold text-sm bg-green-200 text-green-800">
-              🎉 Đúng rồi! {problem} = {answer}
+            <div className="mt-1 py-1 rounded-lg text-center font-bold text-xs bg-green-200 text-green-800">
+              🎉 Đúng! {problem} = {answer}{isDivision && expectedRemainder > 0 ? ` dư ${expectedRemainder}` : ''}
             </div>
           )}
 
           {/* Nút xem hướng dẫn */}
           {!submitted && !showResult && (
             <button
-              onClick={() => { 
-                setShowGuide(!showGuide); 
+              onClick={() => {
+                setShowGuide(!showGuide);
                 setCurrentGuideStep(0);
                 setStepCompleted(false);
                 if (!showGuide) setSorobanKey(prev => prev + 1);
               }}
-              className={`mt-2 w-full py-2 rounded-lg font-bold text-sm transition-all ${
+              className={`mt-1 w-full py-1.5 rounded-lg font-bold text-xs transition-all ${
                 showGuide ? 'bg-gray-200 text-gray-600 hover:bg-gray-300' : 'bg-blue-100 text-blue-600 hover:bg-blue-200'
               }`}
             >
@@ -1505,68 +1600,93 @@ function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, 
           )}
         </div>
 
-        {/* Panel Hướng Dẫn - Cố định chiều cao để không giật */}
+        {/* Panel Hướng Dẫn - COMPACT */}
         {showGuide && !submitted && guideSteps.length > 0 && (
-          <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl p-3 text-white shadow-lg">
-            {/* Header + Progress */}
-            <div className="flex items-center justify-between mb-2">
-              <span className="font-bold text-sm">📖 Bước {currentGuideStep + 1}/{guideSteps.length}</span>
-              <div className="flex gap-1">
-                {guideSteps.map((_, idx) => (
-                  <div 
-                    key={idx}
-                    className={`w-2.5 h-2.5 rounded-full transition-all ${
-                      idx < currentGuideStep ? 'bg-green-400 scale-110' : idx === currentGuideStep ? 'bg-yellow-400 animate-pulse' : 'bg-white/30'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Hướng dẫn - Tối ưu hiển thị */}
-            <div className={`rounded-lg p-2 mb-2 transition-colors ${stepCompleted ? 'bg-green-400/30' : 'bg-white/10'}`}>
-              <div className="flex items-start gap-2">
-                <span className="text-xl flex-shrink-0 leading-none">{currentStep?.emoji}</span>
-                <div className="flex-1 min-w-0">
-                  <div className="font-bold text-sm leading-tight">{currentStep?.title}</div>
-                  <div className="text-[11px] text-white/90 whitespace-pre-line leading-snug mt-0.5">{currentStep?.instruction}</div>
+          <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg p-1.5 text-white shadow-lg">
+            {/* Header gộp với Title */}
+            <div className={`flex items-center gap-1.5 rounded p-1 mb-1 ${stepCompleted ? 'bg-green-400/30' : 'bg-white/10'}`}>
+              <span className="text-base flex-shrink-0">{currentStep?.emoji}</span>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-[11px] truncate">{currentStep?.title}</span>
+                  <span className="text-[9px] text-white/60 flex-shrink-0 ml-1">{currentGuideStep + 1}/{guideSteps.length}</span>
                 </div>
               </div>
-              {stepCompleted && (
-                <div className="text-center text-yellow-300 font-bold text-xs mt-1 animate-pulse">
-                  ✨ Đúng! Chuyển bước tiếp...
-                </div>
-              )}
+              {stepCompleted && <span className="text-green-300 text-sm">✓</span>}
             </div>
 
-            {/* Mini Soroban + Mục tiêu - Chỉ hiện khi KHÔNG phải bước giải thích */}
+            {/* Instruction - text dễ đọc hơn */}
+            <div className="text-[10px] text-white/95 whitespace-pre-line leading-snug max-h-[4.5rem] overflow-y-auto bg-white/5 rounded px-1.5 py-1 mb-1">
+              {currentStep?.instruction}
+            </div>
+
+            {/* Mục tiêu bước này - Mini Soroban */}
             {!currentStep?.skipCheck && (
-              <div className="flex items-center gap-2">
-                <div className="flex-shrink-0">
-                  <MiniSorobanDemo value={currentStep?.demoValue || 0} highlightColumn={currentStep?.column} />
-                </div>
-                <div className="flex-1 text-center bg-white/10 rounded-lg py-2 px-1">
-                  <div className="text-xs text-white/60">🎯 Mục tiêu</div>
-                  <div className="text-2xl font-black text-yellow-300">{currentStep?.demoValue}</div>
-                  <div className={`text-sm mt-1 font-medium ${isStepMatch ? 'text-green-300' : 'text-white/80'}`}>
-                    Em: <span className="font-bold">{currentValue}</span>
-                    {isStepMatch && ' ✓'}
+              <div className="flex gap-1.5">
+                {/* Mini Soroban chính */}
+                <div className={`flex-1 p-1 rounded ${
+                  currentStep?.activeBoard === 'main' || !currentStep?.activeBoard
+                    ? 'bg-yellow-400/20 ring-1 ring-yellow-400'
+                    : 'bg-white/10'
+                }`}>
+                  <div className="text-[9px] text-white/70 text-center mb-0.5">
+                    {isDivision ? '🧮 Số bị chia' : '🧮 Kết quả'}
+                  </div>
+                  <div className="flex justify-center transform scale-[0.8] origin-top">
+                    <MiniSorobanDemo
+                      value={currentStep?.mainTarget ?? currentStep?.demoValue}
+                      highlightColumn={currentStep?.column}
+                    />
+                  </div>
+                  <div className="text-center mt-0.5">
+                    <span className="text-[9px] text-yellow-300">Mục tiêu: {currentStep?.mainTarget ?? currentStep?.demoValue}</span>
+                    <span className={`ml-1 text-[9px] px-1 rounded ${
+                      (currentStep?.activeBoard === 'main' || !currentStep?.activeBoard) && currentValue === (currentStep?.mainTarget ?? currentStep?.demoValue)
+                        ? 'bg-green-500 text-white'
+                        : 'bg-white/20 text-white/70'
+                    }`}>
+                      Em: {currentValue} {(currentStep?.activeBoard === 'main' || !currentStep?.activeBoard) && currentValue === (currentStep?.mainTarget ?? currentStep?.demoValue) && '✓'}
+                    </span>
                   </div>
                 </div>
+
+                {/* 📊 Thương số - Mini */}
+                {currentStep?.quotientSoFar !== undefined && (
+                  <div className={`flex-1 p-1 rounded ${
+                    currentStep?.activeBoard === 'quotient'
+                      ? 'bg-purple-400/20 ring-1 ring-purple-400'
+                      : 'bg-purple-500/10'
+                  }`}>
+                    <div className="text-[9px] text-purple-200/70 text-center mb-0.5">📊 Thương số</div>
+                    <div className="flex justify-center transform scale-[0.8] origin-top">
+                      <MiniSorobanDemo
+                        value={currentStep?.quotientTarget ?? currentStep?.quotientSoFar}
+                        highlightColumn={currentStep?.quotientColumn}
+                      />
+                    </div>
+                    <div className="text-center mt-0.5">
+                      <span className="text-[9px] text-purple-200">Mục tiêu: {currentStep?.quotientTarget ?? currentStep?.quotientSoFar}</span>
+                      <span className={`ml-1 text-[9px] px-1 rounded ${
+                        currentStep?.activeBoard === 'quotient' && quotientValue === currentStep.quotientTarget
+                          ? 'bg-green-500 text-white'
+                          : 'bg-white/20 text-white/70'
+                      }`}>
+                        Em: {quotientValue} {currentStep?.activeBoard === 'quotient' && quotientValue === currentStep.quotientTarget && '✓'}
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
-            {/* Nếu là bước giải thích, hiển thị nút tiếp tục */}
+            {/* Nút tiếp tục cho bước giải thích */}
             {currentStep?.skipCheck && (
-              <div className="text-center">
-                <button
-                  onClick={handleNextStep}
-                  className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
-                >
-                  <span>Tiếp tục</span>
-                  <ArrowRight size={20} />
-                </button>
-              </div>
+              <button
+                onClick={handleNextStep}
+                className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-3 rounded text-sm transition-all flex items-center justify-center gap-1"
+              >
+                Tiếp tục <ArrowRight size={16} />
+              </button>
             )}
           </div>
         )}
@@ -1580,10 +1700,11 @@ function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, 
       </div>
 
       {/* Bàn tính */}
-      <div className={`lg:w-2/3 rounded-xl p-2 flex-shrink-0 transition-all flex flex-col justify-center ${
+      <div className={`flex-1 min-w-0 rounded-xl p-1.5 transition-all overflow-hidden ${
         stepCompleted ? 'bg-gradient-to-br from-green-100 to-emerald-100' : 'bg-gradient-to-br from-amber-50 to-orange-50'
       }`}>
-        <div className={`text-center text-sm font-medium mb-1 py-1 rounded-lg ${
+        {/* Hướng dẫn trên cùng */}
+        <div className={`text-center text-xs sm:text-sm font-medium py-0.5 mb-1 rounded-lg ${
           showGuide ? stepCompleted ? 'text-green-700 bg-green-200' : 'text-blue-700 bg-blue-100' : 'text-gray-500'
         }`}>
           {showGuide
@@ -1591,17 +1712,66 @@ function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, 
               ? '🎉 Tuyệt vời!'
               : currentStep?.skipCheck
                 ? '📖 Đọc hướng dẫn phía bên trái'
-                : `🎯 Gạt để được số ${currentStep?.demoValue}`
+                : currentStep?.activeBoard === 'quotient'
+                  ? `📊 Gạt THƯƠNG SỐ để được số ${currentStep?.quotientTarget}`
+                  : currentStep?.activeBoard === 'main'
+                    ? `🧮 Gạt SỐ BỊ CHIA để trừ → còn ${currentStep?.mainTarget}`
+                    : `🎯 Gạt để được số ${currentStep?.demoValue}`
             : '🧮 Gạt bàn tính để tính!'
           }
         </div>
-        <SorobanBoard 
-          mode="free" 
-          showHints={!showGuide} 
-          resetKey={`${practiceIndex}-${sorobanKey}`}
-          onValueChange={handleValueChange}
-          highlightColumn={showGuide ? currentStep?.column : null}
-        />
+
+        {/* 2 bàn tính cạnh nhau - kích thước đầy đủ */}
+        <div className={`flex ${isDivision ? 'gap-3' : ''} justify-center items-start`}>
+          {/* Bàn CHÍNH */}
+          <div className="text-center">
+            <div className={`text-xs font-bold py-0.5 px-3 rounded inline-block mb-1 ${
+              isDivision
+                ? (currentStep?.activeBoard === 'main' ? 'text-blue-700 bg-blue-100 animate-pulse' : 'text-gray-500 bg-gray-100')
+                : 'text-gray-600 bg-gray-100'
+            }`}>
+              {isDivision ? '🧮 Số bị chia' : '🧮 Bàn tính'} {isDivision && currentStep?.activeBoard === 'main' && '← GẠT'}
+            </div>
+            <SorobanBoard
+              mode="free"
+              showHints={!showGuide}
+              resetKey={`${practiceIndex}-${sorobanKey}`}
+              onValueChange={handleMainValueChange}
+              highlightColumn={showGuide && currentStep?.activeBoard === 'main' ? currentStep?.column : null}
+            />
+          </div>
+
+          {/* Bàn THƯƠNG */}
+          {isDivision && (
+            <div className={`text-center rounded-xl p-2 ${
+              isMatch ? 'bg-green-100 ring-2 ring-green-400' : 'bg-purple-100 ring-2 ring-purple-400'
+            }`}>
+              <div className={`text-xs font-bold py-0.5 px-3 rounded inline-block mb-1 ${
+                isMatch
+                  ? 'text-green-700 bg-green-200'
+                  : currentStep?.activeBoard === 'quotient'
+                    ? 'text-purple-700 bg-purple-200 animate-pulse'
+                    : 'text-purple-600 bg-purple-200'
+              }`}>
+                📊 Thương số {currentStep?.activeBoard === 'quotient' && '← GẠT'}
+              </div>
+              <SorobanBoard
+                mode="free"
+                showHints={false}
+                resetKey={`${practiceIndex}-${quotientSorobanKey}`}
+                onValueChange={handleQuotientValueChange}
+                highlightColumn={showGuide && currentStep?.activeBoard === 'quotient' ? currentStep?.column : null}
+                columns={Math.max(3, (currentStep?.quotientTarget || answer || 0).toString().length)}
+                responsive={false}
+              />
+              <div className={`text-base font-bold mt-1 py-1 px-4 rounded inline-block ${
+                isMatch ? 'bg-green-300 text-green-800' : 'bg-purple-200 text-purple-700'
+              }`}>
+                = {quotientValue} {isMatch && '✓'}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

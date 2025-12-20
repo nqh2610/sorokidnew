@@ -1790,9 +1790,19 @@ export default function PracticePage() {
                 
                 <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 shadow-xl sm:shadow-2xl border border-white/10">
                   {flashShowingNumber !== null ? (
-                    <div 
+                    <div
                       key={flashCurrentIndex}
-                      className={`text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] font-black text-transparent bg-clip-text animate-zoom-in drop-shadow-2xl ${
+                      className={`font-black text-transparent bg-clip-text animate-zoom-in drop-shadow-2xl ${
+                        // Điều chỉnh font size theo độ dài của số (bao gồm cả dấu trừ nếu có)
+                        (() => {
+                          const displayText = `${flashShowingOperation}${flashShowingNumber}`;
+                          const length = displayText.length;
+                          if (length <= 2) return 'text-6xl sm:text-8xl md:text-9xl lg:text-[10rem]';
+                          if (length === 3) return 'text-5xl sm:text-7xl md:text-8xl lg:text-[8rem]';
+                          if (length === 4) return 'text-4xl sm:text-6xl md:text-7xl lg:text-[6rem]';
+                          return 'text-3xl sm:text-5xl md:text-6xl lg:text-[5rem]';
+                        })()
+                      } ${
                         flashShowingOperation === '-'
                           ? 'bg-gradient-to-br from-blue-300 via-cyan-400 to-teal-500'
                           : 'bg-gradient-to-br from-yellow-300 via-amber-400 to-orange-500'

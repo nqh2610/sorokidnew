@@ -133,6 +133,9 @@ export default function SorobanBoard({
   }, [tutorialMode, tutorialBeads]);
 
   const calculateValue = (col) => {
+    // Safety check: đảm bảo column tồn tại
+    if (!beads[col]) return 0;
+
     // Heaven bead: nếu true (đẩy xuống) = 5
     const heaven = beads[col][0] ? 5 : 0;
     // Earth beads: đếm số hạt true (đã đẩy lên)
@@ -426,7 +429,7 @@ export default function SorobanBoard({
             {/* Heaven beads section */}
             <div className="flex justify-between gap-0.5 sm:gap-1">
               {beads.map((col, colIndex) => {
-                const isHighlighted = tutorialMode && highlightColumn === colIndex;
+                const isHighlighted = tutorialMode && highlightColumn && (highlightColumn - 1) === colIndex;
                 return (
                   <div key={colIndex} className={`relative flex flex-col items-center flex-1 rounded-lg transition-all duration-300 ${
                     isHighlighted ? 'bg-yellow-400/30 ring-2 ring-yellow-400 shadow-lg shadow-yellow-400/50' : ''
@@ -476,7 +479,7 @@ export default function SorobanBoard({
             {/* Earth beads section */}
             <div className="flex justify-between gap-0.5 sm:gap-1">
               {beads.map((col, colIndex) => {
-                const isHighlighted = tutorialMode && highlightColumn === colIndex;
+                const isHighlighted = tutorialMode && highlightColumn && (highlightColumn - 1) === colIndex;
                 return (
                   <div key={colIndex} className={`relative flex flex-col items-center flex-1 rounded-lg transition-all duration-300 ${
                     isHighlighted ? 'bg-yellow-400/30 ring-2 ring-yellow-400 shadow-lg shadow-yellow-400/50' : ''
