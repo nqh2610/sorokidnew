@@ -98,7 +98,8 @@ const difficultyInfo = {
   2: { label: 'Chiến Binh', emoji: '⚔️' },
   3: { label: 'Dũng Sĩ', emoji: '🛡️' },
   4: { label: 'Cao Thủ', emoji: '🔥' },
-  5: { label: 'Huyền Thoại', emoji: '👑' }
+  5: { label: 'Huyền Thoại', emoji: '👑' },
+  6: { label: 'Siêu Huyền Thoại', emoji: '💎' }
 };
 
 const modeInfo = {
@@ -177,6 +178,7 @@ const arenaNames = {
     3: { title: 'Tia Chớp', icon: '⚡' },
     4: { title: 'Sao Băng', icon: '☄️' },
     5: { title: 'BIG BANG', icon: '💥' },
+    6: { title: 'SIÊU BIG BANG', icon: '🌌' },
   },
 };
 

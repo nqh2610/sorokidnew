@@ -83,7 +83,8 @@ const difficultyInfo = {
   2: { label: 'Chiến Binh', emoji: '⚔️' },
   3: { label: 'Dũng Sĩ', emoji: '🛡️' },
   4: { label: 'Cao Thủ', emoji: '🔥' },
-  5: { label: 'Huyền Thoại', emoji: '👑' }
+  5: { label: 'Huyền Thoại', emoji: '👑' },
+  6: { label: 'Siêu Huyền Thoại', emoji: '💎' }
 };
 
 const modeInfo = {
