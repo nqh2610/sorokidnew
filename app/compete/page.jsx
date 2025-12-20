@@ -2814,7 +2814,14 @@ export default function CompetePage() {
                       }
                     }}
                     onKeyDown={(e) => {
-                      if (e.key === 'Enter' && flashAnswer) {
+                      // Xử lý nhập số từ bàn phím (desktop)
+                      if (/^[0-9]$/.test(e.key)) {
+                        e.preventDefault();
+                        setFlashAnswer(prev => prev + e.key);
+                      } else if (e.key === 'Backspace') {
+                        e.preventDefault();
+                        setFlashAnswer(prev => prev.slice(0, -1));
+                      } else if (e.key === 'Enter' && flashAnswer) {
                         handleFlashSubmit();
                       }
                     }}
@@ -2830,7 +2837,7 @@ export default function CompetePage() {
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
                   <button
                     key={num}
-                    onClick={() => setFlashAnswer(prev => prev + num)}
+                    onClick={() => setFlashAnswer(prev => prev + String(num))}
                     className="bg-gradient-to-br from-slate-700 to-slate-800 text-white text-2xl font-bold py-3 rounded-xl border border-white/20 active:scale-95 active:brightness-125 transition-all shadow-lg"
                   >
                     {num}
