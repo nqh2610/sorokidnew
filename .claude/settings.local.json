@@ -8,7 +8,9 @@
       "Bash(node analyze-multiplication-lessons.js:*)",
       "Bash(node:*)",
       "Bash(cat:*)",
-      "Bash(del \"f:\\\\Recovered_18_49_43\\\\New Volume\\(E\\)\\\\sorokids\\\\sorokid_github\\\\test-multiplication-guide.js\")"
+      "Bash(del \"f:\\\\Recovered_18_49_43\\\\New Volume\\(E\\)\\\\sorokids\\\\sorokid_github\\\\test-multiplication-guide.js\")",
+      "Bash(npm run build:*)",
+      "Bash(npx next lint:*)"
     ]
   }
 }

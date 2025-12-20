@@ -99,103 +99,129 @@ const modeInfo = {
 };
 
 // Cấu hình các cấp độ Flash Anzan - LIGHT SPEED THEME (Tốc độ ánh sáng)
+// CHỈ CÓ TỐC ĐỘ - Số chữ số và phép toán được chọn riêng
 const flashLevels = [
-  { 
-    id: 'anhNen', 
-    name: 'Ánh Nến', 
+  {
+    id: 'anhNen',
+    name: 'Ánh Nến',
     subtitle: 'Lung linh dịu dàng',
-    emoji: '🕯️', 
-    color: 'from-amber-400 to-orange-500', 
+    emoji: '🕯️',
+    color: 'from-amber-400 to-orange-500',
     bgColor: 'from-amber-50 to-orange-50',
     glowColor: 'shadow-amber-400/50',
-    numbers: [3, 4], 
-    digits: 1, 
-    speed: [2, 2], 
-    stars: 2, 
-    difficultyLevel: 1, 
+    numbers: [3, 4],
+    speed: [3, 3],
+    stars: 2,
+    difficultyLevel: 1,
     tagline: 'Khởi đầu ấm áp',
     rank: '⭐',
     rankLabel: 'Tập Sự',
     rankColor: 'from-amber-500 to-orange-600',
-    bonusMultiplier: 1,
-    additionOnly: true
+    bonusMultiplier: 1
   },
-  { 
-    id: 'anhTrang', 
-    name: 'Ánh Trăng', 
+  {
+    id: 'anhTrang',
+    name: 'Ánh Trăng',
     subtitle: 'Huyền ảo đêm thanh',
-    emoji: '🌙', 
-    color: 'from-slate-300 to-blue-400', 
+    emoji: '🌙',
+    color: 'from-slate-300 to-blue-400',
     bgColor: 'from-slate-50 to-blue-50',
     glowColor: 'shadow-blue-300/50',
-    numbers: [5, 6], 
-    digits: 1, 
-    speed: [1.5, 1.5], 
-    stars: 4, 
-    difficultyLevel: 2, 
+    numbers: [4, 5],
+    speed: [2.5, 2.5],
+    stars: 4,
+    difficultyLevel: 2,
     tagline: 'Bước tiếp vững chắc',
     rank: '⭐⭐',
     rankLabel: 'Chiến Binh',
     rankColor: 'from-slate-400 to-blue-500',
     bonusMultiplier: 1.5
   },
-  { 
-    id: 'tiaChop', 
-    name: 'Tia Chớp', 
+  {
+    id: 'tiaChop',
+    name: 'Tia Chớp',
     subtitle: 'Lóe sáng chớp nhoáng',
-    emoji: '⚡', 
-    color: 'from-yellow-400 to-amber-500', 
+    emoji: '⚡',
+    color: 'from-yellow-400 to-amber-500',
     bgColor: 'from-yellow-50 to-amber-50',
     glowColor: 'shadow-yellow-400/50',
-    numbers: [5, 6], 
-    digits: 2, 
-    speed: [2, 2], 
-    stars: 6, 
-    difficultyLevel: 3, 
+    numbers: [5, 6],
+    speed: [2, 2],
+    stars: 6,
+    difficultyLevel: 3,
     tagline: 'Nhanh như chớp!',
     rank: '⭐⭐⭐',
     rankLabel: 'Dũng Sĩ',
     rankColor: 'from-yellow-500 to-amber-600',
     bonusMultiplier: 2
   },
-  { 
-    id: 'saoBang', 
-    name: 'Sao Băng', 
+  {
+    id: 'saoBang',
+    name: 'Sao Băng',
     subtitle: 'Vụt sáng khoảnh khắc',
-    emoji: '☄️', 
-    color: 'from-purple-500 to-pink-600', 
+    emoji: '☄️',
+    color: 'from-purple-500 to-pink-600',
     bgColor: 'from-purple-50 to-pink-50',
     glowColor: 'shadow-purple-400/50',
-    numbers: [8, 9], 
-    digits: 2, 
-    speed: [1.5, 1.5], 
-    stars: 8, 
-    difficultyLevel: 4, 
+    numbers: [6, 7],
+    speed: [1.5, 1.5],
+    stars: 8,
+    difficultyLevel: 4,
     tagline: '🔥 SIÊU TỐC 🔥',
     rank: '⭐⭐⭐⭐',
     rankLabel: 'Huyền Thoại',
     rankColor: 'from-purple-500 to-pink-600',
     bonusMultiplier: 3
   },
-  { 
-    id: 'bigBang', 
-    name: 'BIG BANG', 
+  {
+    id: 'bigBang',
+    name: 'BIG BANG',
     subtitle: 'Vụ nổ khai sinh vũ trụ',
-    emoji: '💥', 
-    color: 'from-red-500 via-orange-500 to-yellow-400', 
+    emoji: '💥',
+    color: 'from-red-500 via-orange-500 to-yellow-400',
     bgColor: 'from-red-50 to-yellow-50',
     glowColor: 'shadow-red-500/50',
-    numbers: [5, 6], 
-    digits: 3, 
-    speed: [2, 2], 
-    stars: 10, 
-    difficultyLevel: 5, 
+    numbers: [7, 8],
+    speed: [1, 1],
+    stars: 10,
+    difficultyLevel: 5,
     tagline: '💥 VỤ NỔ VŨ TRỤ 💥',
     rank: '👑',
     rankLabel: 'THẦN',
     rankColor: 'from-red-500 via-orange-500 to-yellow-400',
     bonusMultiplier: 5
   },
+  {
+    id: 'sieuBigBang',
+    name: 'SIÊU BIG BANG',
+    subtitle: 'Đỉnh cao tốc độ',
+    emoji: '🌌',
+    color: 'from-fuchsia-500 via-purple-600 to-indigo-700',
+    bgColor: 'from-fuchsia-50 to-indigo-50',
+    glowColor: 'shadow-fuchsia-500/50',
+    numbers: [8, 10],
+    speed: [0.7, 0.7],
+    stars: 15,
+    difficultyLevel: 6,
+    tagline: '🌌 SIÊU VŨ TRỤ 🌌',
+    rank: '👑👑',
+    rankLabel: 'THẦN THÁNH',
+    rankColor: 'from-fuchsia-500 via-purple-600 to-indigo-700',
+    bonusMultiplier: 8
+  },
+];
+
+// Cấu hình số chữ số cho Flash Anzan
+const flashDigitOptions = [
+  { id: 1, name: '1 chữ số', emoji: '1️⃣', color: 'from-green-400 to-emerald-500', description: '1-9' },
+  { id: 2, name: '2 chữ số', emoji: '2️⃣', color: 'from-blue-400 to-cyan-500', description: '10-99' },
+  { id: 3, name: '3 chữ số', emoji: '3️⃣', color: 'from-purple-400 to-pink-500', description: '100-999' },
+];
+
+// Cấu hình phép toán cho Flash Anzan (chỉ có Cộng và Cộng Trừ Mix)
+const flashOperationOptions = [
+  { id: 'addition', name: 'Phép Cộng', emoji: '➕', symbol: '+', color: 'from-green-400 to-emerald-500', description: 'Chỉ có phép cộng' },
+  { id: 'mixed', name: 'Cộng Trừ Mix', emoji: '➕➖', symbol: '±', color: 'from-orange-400 to-red-500', description: 'Xen kẽ cộng và trừ' },
 ];
 
 // Helper hiển thị sao độ khó
@@ -266,6 +292,11 @@ export default function PracticePage() {
   const flashInputRef = useRef(null);
   const flashTimeoutRef = useRef(null);
   const flashAnswerTimerRef = useRef(null);
+
+  // Flash Anzan Mode Selection states
+  const [flashSelectedDigits, setFlashSelectedDigits] = useState(null); // 1, 2, hoặc 3 chữ số
+  const [flashSelectedOperation, setFlashSelectedOperation] = useState(null); // 'addition', 'subtraction', hoặc 'mixed'
+  const [flashModeStep, setFlashModeStep] = useState('digits'); // 'digits' | 'operation' | 'speed'
   
   // Danh sách lời khen và động viên
   const praiseMessages = [
@@ -651,44 +682,64 @@ export default function PracticePage() {
   };
 
   // ================== FLASH ANZAN FUNCTIONS ==================
-  
-  // Tạo số ngẫu nhiên cho Flash Anzan với cả cộng và trừ
-  const generateFlashNumbers = (level) => {
+
+  // Tạo số ngẫu nhiên cho Flash Anzan với chữ số và phép toán được chọn
+  // Chỉ hỗ trợ 'addition' và 'mixed' - kết quả LUÔN DƯƠNG cho học sinh tiểu học
+  const generateFlashNumbers = (level, selectedDigits, selectedOperation) => {
     const config = flashLevels.find(l => l.id === level);
     if (!config) return { numbers: [], operations: [] };
-    
+
+    // Sử dụng số chữ số đã chọn thay vì từ config
+    const digits = selectedDigits || 1;
+    const operationMode = selectedOperation || 'addition';
+
     const count = config.numbers[0] + Math.floor(Math.random() * (config.numbers[1] - config.numbers[0] + 1));
     const numbers = [];
     const operations = [];
-    
-    const maxDigit = Math.pow(10, config.digits) - 1;
-    const minDigit = config.digits === 1 ? 1 : Math.pow(10, config.digits - 1);
-    
+
+    const maxDigit = Math.pow(10, digits) - 1;
+    const minDigit = digits === 1 ? 1 : Math.pow(10, digits - 1);
+
     let runningTotal = 0;
-    
+
     for (let i = 0; i < count; i++) {
-      const num = Math.floor(Math.random() * (maxDigit - minDigit + 1)) + minDigit;
-      
-      // Số đầu tiên luôn là cộng, hoặc nếu level là additionOnly thì luôn cộng
-      if (i === 0 || config.additionOnly) {
+      let num = Math.floor(Math.random() * (maxDigit - minDigit + 1)) + minDigit;
+
+      if (operationMode === 'addition') {
+        // Chỉ có phép cộng
         operations.push('+');
         numbers.push(num);
         runningTotal += num;
       } else {
-        // 50% cộng, 50% trừ - nhưng đảm bảo kết quả không âm
-        const shouldSubtract = Math.random() < 0.5 && runningTotal >= num;
-        if (shouldSubtract) {
-          operations.push('-');
-          numbers.push(num);
-          runningTotal -= num;
-        } else {
+        // Mixed: Cộng trừ xen kẽ - ĐẢM BẢO KẾT QUẢ LUÔN DƯƠNG
+        if (i === 0) {
+          // Số đầu tiên luôn là cộng
           operations.push('+');
           numbers.push(num);
           runningTotal += num;
+        } else {
+          // Chỉ cho phép trừ nếu kết quả sau khi trừ vẫn > 0
+          // Giới hạn số trừ tối đa = 70% tổng hiện tại để đảm bảo dư nhiều
+          const maxSubtractAllowed = Math.floor(runningTotal * 0.7);
+          const canSubtract = maxSubtractAllowed >= minDigit;
+          const shouldSubtract = canSubtract && Math.random() < 0.4; // 40% trừ, 60% cộng
+
+          if (shouldSubtract) {
+            // Tạo số trừ trong phạm vi an toàn
+            const safeMax = Math.min(maxDigit, maxSubtractAllowed);
+            num = Math.floor(Math.random() * (safeMax - minDigit + 1)) + minDigit;
+            operations.push('-');
+            numbers.push(num);
+            runningTotal -= num;
+          } else {
+            operations.push('+');
+            numbers.push(num);
+            runningTotal += num;
+          }
         }
       }
     }
-    
+
     return { numbers, operations };
   };
   
@@ -696,7 +747,7 @@ export default function PracticePage() {
   const startFlashAnzan = (levelId) => {
     const config = flashLevels.find(l => l.id === levelId);
     if (!config) return;
-    
+
     setFlashLevel(levelId);
     setFlashPhase('countdown');
     setFlashCountdown(3);
@@ -704,11 +755,12 @@ export default function PracticePage() {
     setFlashCurrentIndex(0);
     setFlashShowingNumber(null);
     setFlashShowingOperation(null);
-    
-    const { numbers, operations } = generateFlashNumbers(levelId);
+
+    // Sử dụng số chữ số và phép toán đã chọn
+    const { numbers, operations } = generateFlashNumbers(levelId, flashSelectedDigits, flashSelectedOperation);
     setFlashNumbers(numbers);
     setFlashOperations(operations);
-    
+
     // Tính tổng dựa trên phép tính
     let correctAnswer = 0;
     for (let i = 0; i < numbers.length; i++) {
@@ -718,8 +770,8 @@ export default function PracticePage() {
         correctAnswer -= numbers[i];
       }
     }
-    
-    console.log('Generated Flash:', { numbers, operations, correctAnswer });
+
+    console.log('Generated Flash:', { numbers, operations, correctAnswer, digits: flashSelectedDigits, operation: flashSelectedOperation });
     setFlashCorrectAnswer(correctAnswer);
     
     // Reset session stats cho round mới
@@ -1331,9 +1383,33 @@ export default function PracticePage() {
   }
 
   // ================== FLASH ANZAN SCREENS ==================
-  
-  // Màn hình chọn cấp độ Flash Anzan - EPIC LIGHT THEME (fit screen)
+
+  // Màn hình chọn mode Flash Anzan - STEPS: digits -> operation -> speed
   if (mode === 'flashAnzan' && !flashLevel) {
+    // Xác định tiêu đề và mô tả theo bước
+    const stepTitles = {
+      digits: { title: 'CHỌN SỐ CHỮ SỐ', subtitle: 'Chọn độ khó của các số', icon: '🔢' },
+      operation: { title: 'CHỌN PHÉP TOÁN', subtitle: 'Chọn loại phép tính', icon: '➕' },
+      speed: { title: 'CHỌN TỐC ĐỘ', subtitle: 'Càng nhanh → Càng khó → Càng nhiều thưởng!', icon: '⚡' }
+    };
+    const currentStep = stepTitles[flashModeStep] || stepTitles.digits;
+
+    // Xử lý nút Back
+    const handleBack = () => {
+      if (flashModeStep === 'digits') {
+        setMode(null);
+        setFlashModeStep('digits');
+        setFlashSelectedDigits(null);
+        setFlashSelectedOperation(null);
+      } else if (flashModeStep === 'operation') {
+        setFlashModeStep('digits');
+        setFlashSelectedDigits(null);
+      } else if (flashModeStep === 'speed') {
+        setFlashModeStep('operation');
+        setFlashSelectedOperation(null);
+      }
+    };
+
     return (
       <div className="min-h-[100dvh] lg:h-[100dvh] bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 overflow-y-auto lg:overflow-hidden relative flex flex-col">
         {/* Animated starfield background */}
@@ -1375,7 +1451,7 @@ export default function PracticePage() {
         <div className="relative z-10 flex-shrink-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-lg shadow-purple-500/30">
           <div className="max-w-7xl mx-auto px-3 py-2 flex items-center justify-between">
             <button
-              onClick={() => setMode(null)}
+              onClick={handleBack}
               className="flex items-center bg-black/30 rounded-lg text-white hover:bg-black/50 hover:scale-105 transition-all backdrop-blur"
               style={{ padding: 'clamp(6px, 1vh, 12px)' }}
             >
@@ -1383,13 +1459,13 @@ export default function PracticePage() {
             </button>
             <div className="text-center">
               <h1 className="text-lg sm:text-xl font-black text-white flex items-center gap-2 leading-relaxed">
-                <span className="text-2xl animate-pulse">⚡</span> 
+                <span className="text-2xl animate-pulse">⚡</span>
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-white to-cyan-200 whitespace-nowrap">
                   TỐC ĐỘ ÁNH SÁNG
                 </span>
                 <span className="text-2xl animate-pulse">💫</span>
               </h1>
-              <p className="text-white/80 text-[10px]">Từ Ánh Nến đến Big Bang!</p>
+              <p className="text-white/80 text-[10px]">Từ Ánh Nến đến Siêu Big Bang!</p>
             </div>
             <Link
               href="/dashboard"
@@ -1402,9 +1478,26 @@ export default function PracticePage() {
           </div>
         </div>
 
+        {/* Progress Steps Indicator */}
+        <div className="relative z-10 flex justify-center py-3">
+          <div className="flex items-center gap-2 bg-black/30 rounded-full px-4 py-2 border border-white/10">
+            <div className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${flashModeStep === 'digits' ? 'bg-yellow-500 text-black' : flashSelectedDigits ? 'bg-green-500 text-white' : 'bg-white/20 text-white/60'}`}>
+              <span>🔢</span> <span className="hidden sm:inline">{flashSelectedDigits ? `${flashSelectedDigits} chữ số` : 'Chữ số'}</span>
+            </div>
+            <div className="text-white/40">→</div>
+            <div className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${flashModeStep === 'operation' ? 'bg-yellow-500 text-black' : flashSelectedOperation ? 'bg-green-500 text-white' : 'bg-white/20 text-white/60'}`}>
+              <span>➕</span> <span className="hidden sm:inline">{flashSelectedOperation ? flashOperationOptions.find(o => o.id === flashSelectedOperation)?.name : 'Phép toán'}</span>
+            </div>
+            <div className="text-white/40">→</div>
+            <div className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${flashModeStep === 'speed' ? 'bg-yellow-500 text-black' : 'bg-white/20 text-white/60'}`}>
+              <span>⚡</span> <span className="hidden sm:inline">Tốc độ</span>
+            </div>
+          </div>
+        </div>
+
         {/* Main content - FLEX GROW to fill space */}
         <div className="relative z-10 flex-1 flex flex-col max-w-7xl mx-auto px-3 py-3 w-full">
-          
+
           {/* Hero + Steps Row - EPIC */}
           <div className="flex flex-col lg:flex-row items-center justify-center gap-4 mb-3">
             {/* Mini Hero with glow */}
@@ -1412,41 +1505,75 @@ export default function PracticePage() {
               <div className="relative">
                 <div className="absolute inset-0 bg-yellow-400 rounded-full blur-xl opacity-50 animate-pulse"></div>
                 <div className="relative w-14 h-14 bg-gradient-to-br from-yellow-300 via-orange-400 to-red-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white/30">
-                  <span className="text-3xl animate-pulse">💡</span>
+                  <span className="text-3xl animate-pulse">{currentStep.icon}</span>
                 </div>
               </div>
               <div>
                 <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-cyan-400 leading-relaxed pt-1">
                   CUỘC ĐUA ÁNH SÁNG
                 </h2>
-                <p className="text-white/60 text-xs">🕯️ → 🌙 → ⚡ → ☄️ → � Big Bang!</p>
+                <p className="text-white/60 text-xs">🕯️ → 🌙 → ⚡ → ☄️ → 💥 → 🌌</p>
               </div>
-            </div>
-
-            {/* Progress Bar Visual - Journey from Đom Đóm to Big Bang */}
-            <div className="hidden lg:flex items-center gap-1 bg-black/30 rounded-full px-3 py-1.5 border border-white/10">
-              <span className="text-sm">🕯️</span>
-              <div className="flex items-center gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <div key={i} className={`w-6 h-1.5 rounded-full ${i === 0 ? 'bg-amber-400' : 'bg-white/20'}`} />
-                ))}
-              </div>
-              <span className="text-sm">�</span>
             </div>
           </div>
 
-          {/* Level Selection Title - EPIC */}
+          {/* Step Title */}
           <div className="text-center mb-3">
             <h3 className="text-lg sm:text-xl font-black text-white flex items-center justify-center gap-2 leading-relaxed pt-1">
-              <span className="animate-bounce">�️</span> 
-              CHỌN TỐC ĐỘ 
-              <span className="animate-bounce">🏎️</span>
+              <span className="animate-bounce">{currentStep.icon}</span>
+              {currentStep.title}
+              <span className="animate-bounce">{currentStep.icon}</span>
             </h3>
-            <p className="text-white/60 text-xs">Càng nhanh → Càng khó → Càng nhiều thưởng! 🏆</p>
+            <p className="text-white/60 text-xs">{currentStep.subtitle}</p>
           </div>
 
-          {/* Level Cards - EPIC GAMING GRID */}
-          <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 mb-2 content-start">
+          {/* STEP 1: Chọn số chữ số */}
+          {flashModeStep === 'digits' && (
+            <div className="flex-1 flex flex-col items-center justify-center">
+              <div className="grid grid-cols-3 gap-4 sm:gap-6 max-w-xl mx-auto">
+                {flashDigitOptions.map((option) => (
+                  <button
+                    key={option.id}
+                    onClick={() => {
+                      setFlashSelectedDigits(option.id);
+                      setFlashModeStep('operation');
+                    }}
+                    className={`relative group bg-gradient-to-br ${option.color} rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transform hover:scale-105 active:scale-95 transition-all duration-300 text-white flex flex-col items-center border-2 border-white/30`}
+                  >
+                    <div className="text-5xl sm:text-6xl mb-3">{option.emoji}</div>
+                    <div className="font-black text-lg sm:text-xl">{option.name}</div>
+                    <div className="text-white/70 text-sm">{option.description}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* STEP 2: Chọn phép toán */}
+          {flashModeStep === 'operation' && (
+            <div className="flex-1 flex flex-col items-center justify-center">
+              <div className="grid grid-cols-2 gap-6 sm:gap-8 max-w-lg mx-auto">
+                {flashOperationOptions.map((option) => (
+                  <button
+                    key={option.id}
+                    onClick={() => {
+                      setFlashSelectedOperation(option.id);
+                      setFlashModeStep('speed');
+                    }}
+                    className={`relative group bg-gradient-to-br ${option.color} rounded-2xl p-8 sm:p-10 shadow-lg hover:shadow-2xl transform hover:scale-105 active:scale-95 transition-all duration-300 text-white flex flex-col items-center border-2 border-white/30`}
+                  >
+                    <div className="text-6xl sm:text-7xl mb-4">{option.emoji}</div>
+                    <div className="font-black text-xl sm:text-2xl">{option.name}</div>
+                    <div className="text-white/70 text-sm text-center mt-1">{option.description}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* STEP 3: Chọn tốc độ - Level Cards - EPIC GAMING GRID */}
+          {flashModeStep === 'speed' && (
+            <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mb-2 content-start">
             {flashLevels.map((level, index) => {
               const isLocked = false; // Logic khóa nếu cần
               const isLastLevel = index === flashLevels.length - 1;
@@ -1532,12 +1659,8 @@ export default function PracticePage() {
                       <span className="font-black">{level.numbers[0]}-{level.numbers[1]}</span>
                     </div>
                     <div className="flex items-center justify-between bg-black/30 rounded px-2 py-0.5">
-                      <span>🔢 Chữ số</span>
-                      <span className="font-black">{level.digits}</span>
-                    </div>
-                    <div className="flex items-center justify-between bg-black/30 rounded px-2 py-0.5">
                       <span>⚡ Tốc độ</span>
-                      <span className="font-black text-yellow-200">{level.speed[0]}-{level.speed[1]}s</span>
+                      <span className="font-black text-yellow-200">{level.speed[0]}s/số</span>
                     </div>
                   </div>
                   
@@ -1563,10 +1686,11 @@ export default function PracticePage() {
                 </button>
               );
             })}
-          </div>
+            </div>
+          )}
 
           {/* Bottom info bar - EPIC TIPS */}
-          <div className="bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 border border-white/10 rounded-xl p-2 sm:p-3 max-w-4xl mx-auto flex-shrink-0">
+          <div className="bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 border border-white/10 rounded-xl p-2 sm:p-3 max-w-4xl mx-auto flex-shrink-0 mt-auto">
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm">
               <div className="flex items-center gap-1.5 bg-blue-500/20 px-3 py-1 rounded-full">
                 <span className="text-lg">👀</span>
@@ -1582,11 +1706,11 @@ export default function PracticePage() {
               </div>
             </div>
           </div>
-          
+
           {/* Epic call to action */}
           <div className="text-center py-2 flex-shrink-0">
             <p className="text-white/50 text-xs animate-pulse">
-              💥 Bạn có thể chạm tới BIG BANG không? 💥
+              🌌 Bạn có thể chạm tới SIÊU BIG BANG không? 🌌
             </p>
           </div>
         </div>
