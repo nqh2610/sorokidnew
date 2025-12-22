@@ -36,6 +36,7 @@ export async function GET(request) {
     }
 
     // Get users with tier directly from users table
+    // 🔧 TỐI ƯU: Sử dụng _count thay vì select full records
     const users = await prisma.user.findMany({
       where,
       select: {
@@ -55,24 +56,19 @@ export async function GET(request) {
         trialExpiresAt: true,
         lastLoginDate: true,
         createdAt: true,
-        totalEXP: true,
-        // Đếm số bài học hoàn thành
-        progress: {
-          where: { completed: true },
-          select: { id: true, timeSpent: true }
+        // 🔧 TỐI ƯU: Sử dụng _count thay vì select toàn bộ records
+        _count: {
+          select: {
+            progress: true,
+            achievements: true,
+            quests: true,
+            competeResults: true,
+            certificates: true
+          }
         },
-        // Đếm số thành tích
-        achievements: {
-          select: { id: true }
-        },
-        // Đếm số nhiệm vụ hoàn thành
-        quests: {
-          where: { completed: true },
-          select: { id: true }
-        },
-        // Đếm số trận thi đấu
+        // Chỉ cần sum correct từ competeResults
         competeResults: {
-          select: { id: true, correct: true }
+          select: { correct: true }
         }
       },
       orderBy: { createdAt: 'desc' },
@@ -82,11 +78,6 @@ export async function GET(request) {
 
     // Format users với tier info và thống kê
     const usersWithTier = users.map(user => {
-      const completedLessons = user.progress?.length || 0;
-      const totalTimeSpent = user.progress?.reduce((sum, p) => sum + (p.timeSpent || 0), 0) || 0;
-      const totalAchievements = user.achievements?.length || 0;
-      const completedQuests = user.quests?.length || 0;
-      const totalMatches = user.competeResults?.length || 0;
       const totalCorrect = user.competeResults?.reduce((sum, r) => sum + (r.correct || 0), 0) || 0;
       
       return {
@@ -106,48 +97,45 @@ export async function GET(request) {
         trialExpiresAt: user.trialExpiresAt,
         lastLoginDate: user.lastLoginDate,
         createdAt: user.createdAt,
-        totalEXP: user.totalEXP || 0,
-        completedLessons,
-        totalTimeSpent,
-        totalAchievements,
-        completedQuests,
-        totalMatches,
+        // 🔧 TỐI ƯU: Lấy từ _count
+        completedLessons: user._count.progress,
+        totalAchievements: user._count.achievements,
+        completedQuests: user._count.quests,
+        totalMatches: user._count.competeResults,
+        totalCertificates: user._count.certificates,
         totalCorrect,
         activatedAt: user.tierPurchasedAt
       };
     });
 
-    const total = await prisma.user.count({ where });
+    // 🔧 TỐI ƯU: Gộp tất cả stats queries vào Promise.all
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const weekAgo = new Date();
+    weekAgo.setDate(weekAgo.getDate() - 7);
 
-    // Calculate stats từ users table
-    const statsData = await prisma.user.groupBy({
-      by: ['tier'],
-      _count: { id: true }
-    });
-    
-    let stats = { total: 0, free: 0, basic: 0, advanced: 0, activeToday: 0, newThisWeek: 0 };
+    const [total, statsData, activeToday, newThisWeek] = await Promise.all([
+      prisma.user.count({ where }),
+      prisma.user.groupBy({
+        by: ['tier'],
+        _count: { id: true }
+      }),
+      prisma.user.count({
+        where: { lastLoginDate: { gte: today } }
+      }),
+      prisma.user.count({
+        where: { createdAt: { gte: weekAgo } }
+      })
+    ]);
+
+    let stats = { total: 0, free: 0, basic: 0, advanced: 0, activeToday, newThisWeek };
     for (const s of statsData) {
-      // tier null được coi là free
       const tierName = s.tier || 'free';
       if (stats[tierName] !== undefined) {
         stats[tierName] += s._count.id;
       }
       stats.total += s._count.id;
     }
-
-    // Count active today
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    stats.activeToday = await prisma.user.count({
-      where: { lastLoginDate: { gte: today } }
-    });
-
-    // Count new this week
-    const weekAgo = new Date();
-    weekAgo.setDate(weekAgo.getDate() - 7);
-    stats.newThisWeek = await prisma.user.count({
-      where: { createdAt: { gte: weekAgo } }
-    });
 
     return NextResponse.json({
       users: usersWithTier,

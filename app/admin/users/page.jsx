@@ -1402,8 +1402,8 @@ export default function UsersPage() {
                 </div>
               </div>
               
-              {/* Main Stats Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3 sm:mb-4">
+              {/* Main Stats - Simplified */}
+              <div className="grid grid-cols-4 gap-2 mb-3 sm:mb-4">
                 <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl p-2 sm:p-3 text-center border border-purple-500/30">
                   <div className="text-lg sm:text-xl font-bold text-white">Lv.{detailModal.level || 1}</div>
                   <div className="text-purple-400 text-[10px] sm:text-xs">Level</div>
@@ -1416,55 +1416,37 @@ export default function UsersPage() {
                   <div className="text-lg sm:text-xl font-bold text-cyan-400">💎 {detailModal.diamonds || 0}</div>
                   <div className="text-cyan-400/70 text-[10px] sm:text-xs">Kim cương</div>
                 </div>
-                <div className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl p-2 sm:p-3 text-center border border-green-500/30">
-                  <div className="text-lg sm:text-xl font-bold text-green-400">✨ {(detailModal.totalEXP || 0).toLocaleString()}</div>
-                  <div className="text-green-400/70 text-[10px] sm:text-xs">EXP</div>
+                <div className="bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-xl p-2 sm:p-3 text-center border border-orange-500/30">
+                  <div className="text-lg sm:text-xl font-bold text-orange-400">🔥 {detailModal.streak || 0}</div>
+                  <div className="text-orange-400/70 text-[10px] sm:text-xs">Streak</div>
                 </div>
               </div>
 
-              {/* Activity Stats */}
-              <div className="grid grid-cols-2 gap-2 mb-3 sm:mb-4">
-                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 flex items-center gap-2 sm:gap-3">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-orange-500/20 flex items-center justify-center text-base sm:text-lg">🔥</div>
-                  <div className="min-w-0">
-                    <div className="text-white font-bold text-sm sm:text-base">{detailModal.streak || 0} ngày</div>
-                    <div className="text-slate-400 text-[10px] sm:text-xs">Streak</div>
-                  </div>
+              {/* Activity Summary */}
+              <div className="grid grid-cols-3 gap-2 mb-3 sm:mb-4">
+                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 text-center">
+                  <div className="text-white font-bold text-sm sm:text-base">📚 {detailModal.completedLessons || 0}</div>
+                  <div className="text-slate-400 text-[10px] sm:text-xs">Bài học</div>
                 </div>
-                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 flex items-center gap-2 sm:gap-3">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-green-500/20 flex items-center justify-center text-base sm:text-lg">📚</div>
-                  <div className="min-w-0">
-                    <div className="text-white font-bold text-sm sm:text-base">{detailModal.completedLessons || 0} bài</div>
-                    <div className="text-slate-400 text-[10px] sm:text-xs">Hoàn thành</div>
-                  </div>
+                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 text-center">
+                  <div className="text-white font-bold text-sm sm:text-base">🏆 {detailModal.totalAchievements || 0}</div>
+                  <div className="text-slate-400 text-[10px] sm:text-xs">Thành tích</div>
                 </div>
-                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 flex items-center gap-2 sm:gap-3">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-amber-500/20 flex items-center justify-center text-base sm:text-lg">🏆</div>
-                  <div className="min-w-0">
-                    <div className="text-white font-bold text-sm sm:text-base">{detailModal.totalAchievements || 0}</div>
-                    <div className="text-slate-400 text-[10px] sm:text-xs">Thành tích</div>
-                  </div>
+                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 text-center">
+                  <div className="text-white font-bold text-sm sm:text-base">🎯 {detailModal.completedQuests || 0}</div>
+                  <div className="text-slate-400 text-[10px] sm:text-xs">Nhiệm vụ</div>
                 </div>
-                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 flex items-center gap-2 sm:gap-3">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-purple-500/20 flex items-center justify-center text-base sm:text-lg">🎯</div>
-                  <div className="min-w-0">
-                    <div className="text-white font-bold text-sm sm:text-base">{detailModal.completedQuests || 0}</div>
-                    <div className="text-slate-400 text-[10px] sm:text-xs">Nhiệm vụ</div>
-                  </div>
+                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 text-center">
+                  <div className="text-white font-bold text-sm sm:text-base">⚔️ {detailModal.totalMatches || 0}</div>
+                  <div className="text-slate-400 text-[10px] sm:text-xs">Thi đấu</div>
                 </div>
-                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 flex items-center gap-2 sm:gap-3">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-red-500/20 flex items-center justify-center text-base sm:text-lg">⚔️</div>
-                  <div className="min-w-0">
-                    <div className="text-white font-bold text-sm sm:text-base">{detailModal.totalMatches || 0} trận</div>
-                    <div className="text-slate-400 text-[10px] sm:text-xs">Thi đấu</div>
-                  </div>
+                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 text-center">
+                  <div className="text-white font-bold text-sm sm:text-base">📜 {detailModal.totalCertificates || 0}</div>
+                  <div className="text-slate-400 text-[10px] sm:text-xs">Chứng chỉ</div>
                 </div>
-                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 flex items-center gap-2 sm:gap-3">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-blue-500/20 flex items-center justify-center text-base sm:text-lg">⏱️</div>
-                  <div className="min-w-0">
-                    <div className="text-white font-bold text-sm sm:text-base">{Math.round((detailModal.totalTimeSpent || 0) / 60)} phút</div>
-                    <div className="text-slate-400 text-[10px] sm:text-xs">Thời gian</div>
-                  </div>
+                <div className="bg-slate-700/50 rounded-xl p-2 sm:p-3 text-center">
+                  <div className="text-white font-bold text-sm sm:text-base">✅ {detailModal.totalCorrect || 0}</div>
+                  <div className="text-slate-400 text-[10px] sm:text-xs">Câu đúng</div>
                 </div>
               </div>
               
@@ -1484,7 +1466,7 @@ export default function UsersPage() {
                 </div>
                 <div className="flex items-center justify-between p-2 sm:p-2.5 bg-slate-700/30 rounded-lg">
                   <span className="text-slate-400 text-xs sm:text-sm">💳 Kích hoạt</span>
-                  <span className="text-white text-xs sm:text-sm">{formatDate(detailModal.tierPurchasedAt) || 'Chưa'}</span>
+                  <span className="text-white text-xs sm:text-sm">{formatDate(detailModal.tierPurchasedAt) || '-'}</span>
                 </div>
                 <div className="flex items-center justify-between p-2 sm:p-2.5 bg-slate-700/30 rounded-lg">
                   <span className="text-slate-400 text-xs sm:text-sm">🕐 Hoạt động</span>

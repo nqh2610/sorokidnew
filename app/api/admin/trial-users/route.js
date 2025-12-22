@@ -15,7 +15,8 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const status = searchParams.get('status') || 'all'; // 'active', 'expired', 'all'
     const page = parseInt(searchParams.get('page')) || 1;
-    const limit = parseInt(searchParams.get('limit')) || 20;
+    const limit = parseInt(searchParams.get('limit')) || 10;
+    const search = searchParams.get('search')?.trim() || '';
     const skip = (page - 1) * limit;
 
     const now = new Date();
@@ -34,8 +35,19 @@ export async function GET(request) {
     // Thêm điều kiện chỉ lấy user free (chưa mua gói)
     whereClause.tier = 'free';
 
-    // Lấy danh sách user
-    const [users, total] = await Promise.all([
+    // Thêm điều kiện tìm kiếm theo tên, email, username
+    if (search) {
+      whereClause.OR = [
+        { name: { contains: search, mode: 'insensitive' } },
+        { email: { contains: search, mode: 'insensitive' } },
+        { username: { contains: search, mode: 'insensitive' } }
+      ];
+    }
+
+    // 🔧 TỐI ƯU: Gộp tất cả queries vào một Promise.all duy nhất
+    const baseWhere = { trialExpiresAt: { not: null }, tier: 'free' };
+    
+    const [users, total, activeCount, expiredCount] = await Promise.all([
       prisma.user.findMany({
         where: whereClause,
         select: {
@@ -52,28 +64,12 @@ export async function GET(request) {
         skip,
         take: limit
       }),
-      prisma.user.count({ where: whereClause })
-    ]);
-
-    // Thống kê
-    const [activeCount, expiredCount, totalTrialUsers] = await Promise.all([
+      prisma.user.count({ where: whereClause }),
       prisma.user.count({
-        where: {
-          trialExpiresAt: { gt: now },
-          tier: 'free'
-        }
+        where: { ...baseWhere, trialExpiresAt: { gt: now } }
       }),
       prisma.user.count({
-        where: {
-          trialExpiresAt: { lte: now, not: null },
-          tier: 'free'
-        }
-      }),
-      prisma.user.count({
-        where: {
-          trialExpiresAt: { not: null },
-          tier: 'free'
-        }
+        where: { ...baseWhere, trialExpiresAt: { lte: now } }
       })
     ]);
 
@@ -99,7 +95,7 @@ export async function GET(request) {
       stats: {
         active: activeCount,
         expired: expiredCount,
-        total: totalTrialUsers
+        total: activeCount + expiredCount
       }
     });
   } catch (error) {

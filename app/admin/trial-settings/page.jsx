@@ -25,7 +25,9 @@ export default function TrialSettingsPage() {
   const [userStats, setUserStats] = useState({ active: 0, expired: 0, total: 0 });
   const [userFilter, setUserFilter] = useState('all');
   const [usersLoading, setUsersLoading] = useState(false);
-  const [pagination, setPagination] = useState({ page: 1, limit: 20, total: 0, totalPages: 0 });
+  const [pagination, setPagination] = useState({ page: 1, limit: 10, total: 0, totalPages: 0 });
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchInput, setSearchInput] = useState('');
 
   useEffect(() => {
     fetchSettings();
@@ -36,7 +38,7 @@ export default function TrialSettingsPage() {
     if (activeTab === 'users') {
       fetchTrialUsers();
     }
-  }, [activeTab, userFilter, pagination.page]);
+  }, [activeTab, userFilter, pagination.page, searchQuery]);
 
   const fetchSettings = async () => {
     try {
@@ -70,7 +72,8 @@ export default function TrialSettingsPage() {
   const fetchTrialUsers = async () => {
     setUsersLoading(true);
     try {
-      const res = await fetch(`/api/admin/trial-users?status=${userFilter}&page=${pagination.page}&limit=${pagination.limit}`);
+      const searchParam = searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : '';
+      const res = await fetch(`/api/admin/trial-users?status=${userFilter}&page=${pagination.page}&limit=${pagination.limit}${searchParam}`);
       if (res.ok) {
         const data = await res.json();
         setUsers(data.users || []);
@@ -82,6 +85,18 @@ export default function TrialSettingsPage() {
     } finally {
       setUsersLoading(false);
     }
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchQuery(searchInput);
+    setPagination(p => ({ ...p, page: 1 }));
+  };
+
+  const clearSearch = () => {
+    setSearchInput('');
+    setSearchQuery('');
+    setPagination(p => ({ ...p, page: 1 }));
   };
 
   const handleSaveSettings = async () => {
@@ -308,29 +323,62 @@ export default function TrialSettingsPage() {
       {/* Users Tab */}
       {activeTab === 'users' && (
         <div className="bg-white rounded-xl shadow-sm border">
-          {/* Filter */}
-          <div className="p-4 border-b flex items-center justify-between">
-            <div className="flex gap-2">
-              {['all', 'active', 'expired'].map(filter => (
-                <button
-                  key={filter}
-                  onClick={() => {
-                    setUserFilter(filter);
-                    setPagination(p => ({ ...p, page: 1 }));
-                  }}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    userFilter === filter
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  {filter === 'all' ? 'Tất cả' : filter === 'active' ? '🟢 Đang trial' : '🔴 Hết hạn'}
-                </button>
-              ))}
+          {/* Search and Filter */}
+          <div className="p-4 border-b space-y-3">
+            {/* Search */}
+            <form onSubmit={handleSearch} className="flex gap-2">
+              <div className="relative flex-1">
+                <input
+                  type="text"
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  placeholder="Tìm kiếm theo tên, email hoặc username..."
+                  className="w-full pl-10 pr-10 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                />
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
+                {searchInput && (
+                  <button
+                    type="button"
+                    onClick={clearSearch}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+              <button
+                type="submit"
+                className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+              >
+                Tìm kiếm
+              </button>
+            </form>
+            
+            {/* Filter and Stats */}
+            <div className="flex items-center justify-between">
+              <div className="flex gap-2">
+                {['all', 'active', 'expired'].map(filter => (
+                  <button
+                    key={filter}
+                    onClick={() => {
+                      setUserFilter(filter);
+                      setPagination(p => ({ ...p, page: 1 }));
+                    }}
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      userFilter === filter
+                        ? 'bg-purple-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {filter === 'all' ? 'Tất cả' : filter === 'active' ? '🟢 Đang trial' : '🔴 Hết hạn'}
+                  </button>
+                ))}
+              </div>
+              <p className="text-sm text-gray-500">
+                Tổng: <span className="font-semibold">{pagination.total}</span> users
+                {searchQuery && <span className="text-purple-600"> (đang lọc theo: "{searchQuery}")</span>}
+              </p>
             </div>
-            <p className="text-sm text-gray-500">
-              Tổng: {pagination.total} users
-            </p>
           </div>
 
           {/* Table */}
@@ -398,25 +446,97 @@ export default function TrialSettingsPage() {
           </div>
 
           {/* Pagination */}
-          {pagination.totalPages > 1 && (
-            <div className="p-4 border-t flex items-center justify-center gap-2">
-              <button
-                onClick={() => setPagination(p => ({ ...p, page: p.page - 1 }))}
-                disabled={pagination.page === 1}
-                className="px-3 py-1 rounded border disabled:opacity-50"
-              >
-                ←
-              </button>
-              <span className="text-sm text-gray-600">
-                Trang {pagination.page} / {pagination.totalPages}
-              </span>
-              <button
-                onClick={() => setPagination(p => ({ ...p, page: p.page + 1 }))}
-                disabled={pagination.page === pagination.totalPages}
-                className="px-3 py-1 rounded border disabled:opacity-50"
-              >
-                →
-              </button>
+          {pagination.total > 0 && (
+            <div className="p-4 border-t flex flex-wrap items-center justify-between gap-4">
+              {/* Page size selector */}
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-600">Hiển thị:</span>
+                <select
+                  value={pagination.limit}
+                  onChange={(e) => setPagination(p => ({ ...p, limit: Number(e.target.value), page: 1 }))}
+                  className="border rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                >
+                  <option value={10}>10</option>
+                  <option value={20}>20</option>
+                  <option value={50}>50</option>
+                  <option value={100}>100</option>
+                </select>
+                <span className="text-sm text-gray-600">/ trang</span>
+              </div>
+              
+              {/* Page navigation */}
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => setPagination(p => ({ ...p, page: 1 }))}
+                  disabled={pagination.page === 1}
+                  className="px-2 py-1 rounded border text-sm disabled:opacity-50 hover:bg-gray-100"
+                  title="Trang đầu"
+                >
+                  ««
+                </button>
+                <button
+                  onClick={() => setPagination(p => ({ ...p, page: p.page - 1 }))}
+                  disabled={pagination.page === 1}
+                  className="px-3 py-1 rounded border text-sm disabled:opacity-50 hover:bg-gray-100"
+                >
+                  ←
+                </button>
+                
+                {/* Page numbers */}
+                {(() => {
+                  const pages = [];
+                  const current = pagination.page;
+                  const total = pagination.totalPages;
+                  
+                  let start = Math.max(1, current - 2);
+                  let end = Math.min(total, current + 2);
+                  
+                  if (current <= 3) {
+                    end = Math.min(5, total);
+                  }
+                  if (current >= total - 2) {
+                    start = Math.max(1, total - 4);
+                  }
+                  
+                  for (let i = start; i <= end; i++) {
+                    pages.push(
+                      <button
+                        key={i}
+                        onClick={() => setPagination(p => ({ ...p, page: i }))}
+                        className={`px-3 py-1 rounded text-sm transition-colors ${
+                          pagination.page === i
+                            ? 'bg-purple-600 text-white'
+                            : 'border hover:bg-gray-100'
+                        }`}
+                      >
+                        {i}
+                      </button>
+                    );
+                  }
+                  return pages;
+                })()}
+                
+                <button
+                  onClick={() => setPagination(p => ({ ...p, page: p.page + 1 }))}
+                  disabled={pagination.page === pagination.totalPages}
+                  className="px-3 py-1 rounded border text-sm disabled:opacity-50 hover:bg-gray-100"
+                >
+                  →
+                </button>
+                <button
+                  onClick={() => setPagination(p => ({ ...p, page: pagination.totalPages }))}
+                  disabled={pagination.page === pagination.totalPages}
+                  className="px-2 py-1 rounded border text-sm disabled:opacity-50 hover:bg-gray-100"
+                  title="Trang cuối"
+                >
+                  »»
+                </button>
+              </div>
+              
+              {/* Page info */}
+              <div className="text-sm text-gray-600">
+                Trang {pagination.page} / {pagination.totalPages} ({pagination.total} users)
+              </div>
             </div>
           )}
         </div>
