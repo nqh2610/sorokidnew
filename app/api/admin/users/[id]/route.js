@@ -61,7 +61,7 @@ export async function PUT(request, { params }) {
     }
 
     const { id } = params;
-    const { name, email, username, updateCertificates, certificateIds } = await request.json();
+    const { name, email, username, phone, updateCertificates, certificateIds } = await request.json();
 
     // Cập nhật user
     const updatedUser = await prisma.user.update({
@@ -69,7 +69,8 @@ export async function PUT(request, { params }) {
       data: {
         ...(name && { name }),
         ...(email && { email }),
-        ...(username && { username })
+        ...(username && { username }),
+        ...(phone !== undefined && { phone: phone || null })
       }
     });
 

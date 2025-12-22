@@ -112,7 +112,7 @@ export async function POST(request) {
     }
 
     // 🔧 Invalidate cache khi tạo mới
-    cache.deleteByPrefix('admin_quests_');
+    cache.deletePattern('admin_quests_');
     cache.deletePattern('quests');
 
     const data = await request.json();
@@ -128,9 +128,10 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Invalid type. Must be: daily, weekly, special' }, { status: 400 });
     }
 
-    // Validate category
-    if (!['learn', 'practice', 'compete', 'social'].includes(category)) {
-      return NextResponse.json({ error: 'Invalid category. Must be: learn, practice, compete, social' }, { status: 400 });
+    // Validate category - hỗ trợ tất cả categories trong database
+    const validCategories = ['learn', 'lesson', 'practice', 'compete', 'social', 'streak', 'accuracy', 'mastery'];
+    if (!validCategories.includes(category)) {
+      return NextResponse.json({ error: `Invalid category. Must be one of: ${validCategories.join(', ')}` }, { status: 400 });
     }
 
     // Validate requirement JSON
@@ -207,12 +208,12 @@ export async function PUT(request) {
     });
 
     // 🔧 FIX: Clear cache sau khi cập nhật quest
-    cache.deleteByPrefix('admin_quests_');
+    cache.deletePattern('admin_quests_');
     cache.deletePattern('quests');
 
-    return NextResponse.json({ 
-      success: true, 
-      quest: { ...quest, requirement: JSON.parse(quest.requirement) }
+    return NextResponse.json({
+      success: true,
+      quest: { ...quest, requirement: JSON.parse(quest.requirement || '{}') }
     });
   } catch (error) {
     console.error('Error updating quest:', error);
@@ -245,7 +246,7 @@ export async function DELETE(request) {
     });
 
     // 🔧 FIX: Clear cache sau khi xóa quest
-    cache.deleteByPrefix('admin_quests_');
+    cache.deletePattern('admin_quests_');
     cache.deletePattern('quests');
 
     return NextResponse.json({ success: true });

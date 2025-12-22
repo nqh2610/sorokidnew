@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { User, Mail, Lock, UserCircle, Eye, EyeOff, Sparkles, Award } from 'lucide-react';
+import { User, Mail, Lock, UserCircle, Eye, EyeOff, Sparkles, Award, Phone } from 'lucide-react';
 import { useToast } from '@/components/Toast/ToastContext';
 import Logo from '@/components/Logo/Logo';
 
@@ -14,6 +14,7 @@ export default function RegisterPage() {
     name: '',
     username: '',
     email: '',
+    phone: '',
     password: '',
     confirmPassword: '',
   });
@@ -53,6 +54,22 @@ export default function RegisterPage() {
       newErrors.email = 'Email không hợp lệ';
     }
 
+    // Validate số điện thoại Việt Nam
+    if (!formData.phone) {
+      newErrors.phone = 'Vui lòng nhập số điện thoại';
+    } else {
+      // Chuẩn hóa số điện thoại (loại bỏ khoảng trắng, dấu gạch)
+      const cleanPhone = formData.phone.replace(/[\s\-\.]/g, '');
+      // Regex cho số điện thoại Việt Nam:
+      // - Bắt đầu bằng 0 hoặc +84 hoặc 84
+      // - Tiếp theo là các đầu số hợp lệ (3, 5, 7, 8, 9)
+      // - Tổng cộng 10 số (nếu bắt đầu bằng 0) hoặc 11-12 số (nếu có +84/84)
+      const vietnamPhoneRegex = /^(0|\+84|84)(3[2-9]|5[2689]|7[0-9]|8[1-9]|9[0-9])[0-9]{7}$/;
+      if (!vietnamPhoneRegex.test(cleanPhone)) {
+        newErrors.phone = 'Số điện thoại không hợp lệ (VD: 0901234567)';
+      }
+    }
+
     if (!formData.password) {
       newErrors.password = 'Vui lòng nhập mật khẩu';
     } else if (formData.password.length < 6) {
@@ -80,6 +97,9 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
+      // Chuẩn hóa số điện thoại trước khi gửi
+      const cleanPhone = formData.phone.replace(/[\s\-\.]/g, '');
+
       const response = await fetch('/api/users/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -87,6 +107,7 @@ export default function RegisterPage() {
           name: formData.name,
           username: formData.username,
           email: formData.email,
+          phone: cleanPhone,
           password: formData.password,
         }),
       });
@@ -102,10 +123,15 @@ export default function RegisterPage() {
         } else if (data.error === 'Username already exists') {
           friendlyError = 'Tên đăng nhập này đã được sử dụng!';
           setErrors(prev => ({ ...prev, username: 'Tên đăng nhập này đã được sử dụng' }));
+        } else if (data.error === 'Phone already exists') {
+          friendlyError = 'Số điện thoại này đã được sử dụng!';
+          setErrors(prev => ({ ...prev, phone: 'Số điện thoại này đã được sử dụng' }));
         } else if (data.error?.includes('email')) {
           friendlyError = 'Email không hợp lệ!';
         } else if (data.error?.includes('password')) {
           friendlyError = 'Mật khẩu không hợp lệ!';
+        } else if (data.error?.includes('phone')) {
+          friendlyError = 'Số điện thoại không hợp lệ!';
         }
         toast.error(friendlyError);
         return;
@@ -232,8 +258,8 @@ export default function RegisterPage() {
                 value={formData.email}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all bg-gray-50 focus:bg-white ${
-                  errors.email 
-                    ? 'border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200' 
+                  errors.email
+                    ? 'border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200'
                     : 'border-gray-200 focus:border-violet-500 focus:ring-2 focus:ring-violet-200'
                 }`}
                 placeholder="email@example.com"
@@ -241,6 +267,31 @@ export default function RegisterPage() {
               {errors.email && (
                 <p className="mt-1.5 text-sm text-red-500 flex items-center gap-1">
                   <span>⚠️</span> {errors.email}
+                </p>
+              )}
+            </div>
+
+            {/* Số điện thoại */}
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1.5 flex items-center gap-2">
+                <Phone size={18} className="text-violet-600" />
+                Số điện thoại
+              </label>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all bg-gray-50 focus:bg-white ${
+                  errors.phone
+                    ? 'border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200'
+                    : 'border-gray-200 focus:border-violet-500 focus:ring-2 focus:ring-violet-200'
+                }`}
+                placeholder="0901234567"
+              />
+              {errors.phone && (
+                <p className="mt-1.5 text-sm text-red-500 flex items-center gap-1">
+                  <span>⚠️</span> {errors.phone}
                 </p>
               )}
             </div>

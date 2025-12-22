@@ -33,6 +33,7 @@ export async function GET(request) {
         email: true,
         username: true,
         name: true,
+        phone: true,
         avatar: true,
         totalStars: true,
         diamonds: true,
@@ -84,7 +85,7 @@ export async function PUT(request) {
     }
 
     const userId = session.user.id;
-    const { name, username, avatar } = await request.json();
+    const { name, username, avatar, phone } = await request.json();
 
     // Validate username
     if (username) {
@@ -110,8 +111,34 @@ export async function PUT(request) {
       });
 
       if (existingUser) {
-        return NextResponse.json({ 
-          error: 'Username này đã được sử dụng' 
+        return NextResponse.json({
+          error: 'Username này đã được sử dụng'
+        }, { status: 400 });
+      }
+    }
+
+    // Validate phone nếu có
+    if (phone) {
+      const cleanPhone = phone.replace(/[\s\-\.]/g, '');
+      const vietnamPhoneRegex = /^(0|\+84|84)(3[2-9]|5[2689]|7[0-9]|8[1-9]|9[0-9])[0-9]{7}$/;
+      if (!vietnamPhoneRegex.test(cleanPhone)) {
+        return NextResponse.json({
+          error: 'Số điện thoại không hợp lệ'
+        }, { status: 400 });
+      }
+
+      // Kiểm tra số điện thoại đã được sử dụng bởi người khác chưa
+      const existingPhone = await prisma.user.findFirst({
+        where: {
+          phone: cleanPhone,
+          NOT: { id: userId }
+        },
+        select: { id: true }
+      });
+
+      if (existingPhone) {
+        return NextResponse.json({
+          error: 'Số điện thoại này đã được sử dụng'
         }, { status: 400 });
       }
     }
@@ -121,6 +148,7 @@ export async function PUT(request) {
     if (name) updateData.name = name;
     if (username) updateData.username = username;
     if (avatar) updateData.avatar = avatar;
+    if (phone !== undefined) updateData.phone = phone ? phone.replace(/[\s\-\.]/g, '') : null;
 
     const updatedUser = await prisma.user.update({
       where: { id: userId },
@@ -130,6 +158,7 @@ export async function PUT(request) {
         email: true,
         username: true,
         name: true,
+        phone: true,
         avatar: true
       }
     });

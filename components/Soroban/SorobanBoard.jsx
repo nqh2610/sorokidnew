@@ -66,11 +66,15 @@ export default function SorobanBoard({
   const [tutorialStep, setTutorialStep] = useState(0);
   const [hint, setHint] = useState('');
   const [isCorrect, setIsCorrect] = useState(false);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false); // Track user interaction
+  const [hasSubmitted, setHasSubmitted] = useState(false); // Prevent multiple submissions
 
   // Reset bàn tính khi số cột thay đổi (responsive)
   useEffect(() => {
     setBeads(Array(NUM_COLUMNS).fill(null).map(() => [false, false, false, false, false]));
     setCurrentNumber(0);
+    setHasUserInteracted(false); // Reset interaction flag
+    setHasSubmitted(false); // Reset submission flag
   }, [NUM_COLUMNS]);
 
   // Reset bàn tính khi chuyển bài (targetNumber hoặc resetKey thay đổi)
@@ -79,6 +83,8 @@ export default function SorobanBoard({
     setCurrentNumber(0);
     setHint('');
     setIsCorrect(false);
+    setHasUserInteracted(false); // Reset interaction flag
+    setHasSubmitted(false); // Reset submission flag
   }, [targetNumber, resetKey]);
 
   const tutorials = [
@@ -113,9 +119,11 @@ export default function SorobanBoard({
       onValueChange(total);
     }
 
-    if (mode === 'practice' && targetNumber !== undefined) {
+    // Chỉ kiểm tra đúng/sai khi user đã tương tác và chưa submit
+    if (mode === 'practice' && targetNumber !== undefined && hasUserInteracted && !hasSubmitted) {
       if (total === targetNumber) {
         setIsCorrect(true);
+        setHasSubmitted(true); // Mark as submitted to prevent multiple calls
         if (onCorrect) {
           setTimeout(() => onCorrect(), 500);
         }
@@ -123,7 +131,7 @@ export default function SorobanBoard({
         setIsCorrect(false);
       }
     }
-  }, [beads, mode, targetNumber, onCorrect, onValueChange]);
+  }, [beads, mode, targetNumber, onCorrect, onValueChange, hasUserInteracted, hasSubmitted]);
 
   // Cập nhật beads từ tutorialBeads khi ở tutorial mode
   useEffect(() => {
@@ -152,6 +160,7 @@ export default function SorobanBoard({
   };
 
   const toggleBead = useCallback((col, row) => {
+    setHasUserInteracted(true); // Mark that user has interacted
     setBeads(prevBeads => {
       const newBeads = prevBeads.map(c => [...c]);
       
@@ -182,6 +191,7 @@ export default function SorobanBoard({
 
   // Xử lý drag cho Heaven bead (hạt trên - kéo xuống để bật, kéo lên để tắt)
   const handleBeadDrag = useCallback((col, row, direction) => {
+    setHasUserInteracted(true); // Mark that user has interacted
     setBeads(prevBeads => {
       const newBeads = prevBeads.map(c => [...c]);
       

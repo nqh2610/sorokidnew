@@ -71,15 +71,30 @@ export function MilestoneCelebration({
     basic: 'Nâng cấp để trải nghiệm đầy đủ 18 level'
   };
 
+  const handleClose = () => {
+    setShowInternal(false);
+    onClose?.();
+  };
+
   return (
-    <div className="fixed bottom-4 right-4 z-40 animate-in slide-in-from-bottom-5 duration-500">
-      <div className="bg-white rounded-2xl shadow-2xl border border-purple-100 p-4 max-w-sm">
-        <button 
-          onClick={() => { setShowInternal(false); onClose?.(); }}
-          className="absolute -top-2 -right-2 w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-200 transition-colors"
-        >
-          <X size={14} />
-        </button>
+    <>
+      {/* Backdrop - click để đóng */}
+      <div 
+        className="fixed inset-0 z-40 bg-black/10"
+        onClick={handleClose}
+      />
+      
+      {/* Toast content */}
+      <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:max-w-sm z-50 animate-in slide-in-from-bottom-5 duration-500">
+        <div className="bg-white rounded-2xl shadow-2xl border border-purple-100 p-4 relative">
+          {/* Nút X - dễ bấm trên mobile */}
+          <button 
+            onClick={handleClose}
+            className="absolute top-2 right-2 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-200 transition-colors active:scale-95"
+            aria-label="Đóng"
+          >
+            <X size={18} />
+          </button>
         
         <div className="flex items-start gap-3">
           <div className="p-2 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl text-white flex-shrink-0">
@@ -96,6 +111,7 @@ export function MilestoneCelebration({
             )}
             <Link 
               href="/pricing"
+              onClick={handleClose}
               className="inline-flex items-center gap-1.5 text-xs text-purple-600 hover:text-purple-700 font-medium group"
             >
               <Sparkles size={12} className="group-hover:animate-pulse" />
@@ -106,6 +122,7 @@ export function MilestoneCelebration({
         </div>
       </div>
     </div>
+    </>
   );
 }
 

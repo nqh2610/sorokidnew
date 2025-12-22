@@ -14,6 +14,7 @@ model User {
   username                String                   @unique
   password                String
   name                    String
+  phone                   String?                  @db.VarChar(50)
   avatar                  String?
   level                   Int                      @default(1)
   totalStars              Int                      @default(0)
@@ -28,6 +29,7 @@ model User {
   tier                    String                   @default("free")
   tierPurchasedAt         DateTime?
   isProfileComplete       Boolean                  @default(true)
+  trialExpiresAt          DateTime?
   certificateProgress     CertificateProgress[]
   certificates            Certificate[]
   challengeParticipations ChallengeParticipation[]

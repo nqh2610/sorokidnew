@@ -66,10 +66,14 @@ export default function UsersPage() {
   
   // Form states
   const [selectedPackage, setSelectedPackage] = useState('');
-  const [editForm, setEditForm] = useState({ name: '', email: '', username: '', role: 'user' });
-  const [newUserForm, setNewUserForm] = useState({ name: '', email: '', username: '', password: '', tier: 'free' });
+  const [editForm, setEditForm] = useState({ name: '', email: '', username: '', phone: '', role: 'user' });
+  const [newUserForm, setNewUserForm] = useState({ name: '', email: '', username: '', phone: '', password: '', tier: 'free' });
   const [toast, setToast] = useState(null);
   const [confirmDialog, setConfirmDialog] = useState(null);
+  
+  // Trial extend states
+  const [trialDays, setTrialDays] = useState(0);
+  const [extendingTrial, setExtendingTrial] = useState(null);
   
   // Certificate states for edit modal
   const [userCertificates, setUserCertificates] = useState([]);
@@ -283,6 +287,7 @@ export default function UsersPage() {
       name: user.name || '',
       email: user.email || '',
       username: user.username || '',
+      phone: user.phone || '',
       role: user.role || 'user'
     });
     setEditModal(user);
@@ -367,7 +372,7 @@ export default function UsersPage() {
       if (res.ok) {
         fetchUsers();
         setAddUserModal(false);
-        setNewUserForm({ name: '', email: '', username: '', password: '', tier: 'free' });
+        setNewUserForm({ name: '', email: '', username: '', phone: '', password: '', tier: 'free' });
         showToast('Đã tạo người dùng mới!');
       } else {
         showToast(data.error || 'Có lỗi xảy ra', 'error');
@@ -419,6 +424,52 @@ export default function UsersPage() {
       console.error('Error activating package:', error);
       showToast('Có lỗi xảy ra', 'error');
     }
+  };
+
+  // Extend trial for user
+  const handleExtendTrial = async (userId, days) => {
+    if (days < 0 || days > 365) {
+      showToast('Số ngày phải từ 0-365', 'error');
+      return;
+    }
+    
+    setExtendingTrial(userId);
+    try {
+      const res = await fetch(`/api/admin/users/${userId}/extend-trial`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ days })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        fetchUsers();
+        // Cập nhật detailModal nếu đang mở
+        if (detailModal?.id === userId) {
+          setDetailModal(prev => ({
+            ...prev,
+            trialExpiresAt: data.user.trialExpiresAt
+          }));
+        }
+        showToast(data.message);
+        setTrialDays(0);
+      } else {
+        showToast(data.error || 'Có lỗi xảy ra', 'error');
+      }
+    } catch (error) {
+      console.error('Error extending trial:', error);
+      showToast('Có lỗi xảy ra', 'error');
+    } finally {
+      setExtendingTrial(null);
+    }
+  };
+
+  // Helper: Tính số ngày trial còn lại
+  const getTrialDaysRemaining = (trialExpiresAt) => {
+    if (!trialExpiresAt) return null;
+    const now = new Date();
+    const expires = new Date(trialExpiresAt);
+    const diff = Math.ceil((expires - now) / (1000 * 60 * 60 * 24));
+    return diff;
   };
 
   const handleResetPassword = (userId) => {
@@ -671,6 +722,7 @@ export default function UsersPage() {
                   <th className="text-left px-4 py-4 text-sm font-medium text-slate-300">Người dùng</th>
                   <th className="text-left px-4 py-4 text-sm font-medium text-slate-300">Gói & Vai trò</th>
                   <th className="text-left px-4 py-4 text-sm font-medium text-slate-300">Tiến độ</th>
+                  <th className="text-left px-4 py-4 text-sm font-medium text-slate-300">Trial</th>
                   <th className="text-left px-4 py-4 text-sm font-medium text-slate-300">Hoạt động</th>
                   <th className="text-center px-4 py-4 text-sm font-medium text-slate-300">Thao tác</th>
                 </tr>
@@ -678,7 +730,7 @@ export default function UsersPage() {
               <tbody>
                 {paginatedUsers.length === 0 ? (
                   <tr>
-                    <td colSpan={6} className="px-6 py-12 text-center text-slate-400">
+                    <td colSpan={7} className="px-6 py-12 text-center text-slate-400">
                       <div className="text-4xl mb-2">🔍</div>
                       Không tìm thấy người dùng nào
                     </td>
@@ -697,7 +749,7 @@ export default function UsersPage() {
                       <td className="px-4 py-4">
                         <div className="flex items-center gap-3">
                           <div className="relative">
-                            <MonsterAvatar 
+                            <MonsterAvatar
                               seed={user.id || user.email}
                               size={40}
                               className="border-2 border-slate-600"
@@ -711,6 +763,7 @@ export default function UsersPage() {
                             <div className="font-medium text-white">{user.name || 'Chưa đặt tên'}</div>
                             <div className="text-sm text-slate-400">{user.email}</div>
                             {user.username && <div className="text-xs text-slate-500">@{user.username}</div>}
+                            {user.phone && <div className="text-xs text-green-400">📱 {user.phone}</div>}
                           </div>
                         </div>
                       </td>
@@ -733,6 +786,35 @@ export default function UsersPage() {
                             <span className="text-orange-400">🔥 {user.streak || 0}</span>
                           </div>
                         </div>
+                      </td>
+                      <td className="px-4 py-4">
+                        {(() => {
+                          const daysRemaining = getTrialDaysRemaining(user.trialExpiresAt);
+                          if (daysRemaining === null) {
+                            return <span className="text-slate-500 text-sm">—</span>;
+                          }
+                          if (daysRemaining > 0) {
+                            return (
+                              <div className="space-y-1">
+                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                  daysRemaining <= 2 ? 'bg-red-500/20 text-red-400' :
+                                  daysRemaining <= 5 ? 'bg-amber-500/20 text-amber-400' :
+                                  'bg-green-500/20 text-green-400'
+                                }`}>
+                                  ⏰ Còn {daysRemaining} ngày
+                                </span>
+                                <div className="text-xs text-slate-500">
+                                  Đến {new Date(user.trialExpiresAt).toLocaleDateString('vi-VN')}
+                                </div>
+                              </div>
+                            );
+                          }
+                          return (
+                            <span className="px-2 py-1 bg-slate-600/30 text-slate-400 rounded-full text-xs">
+                              Đã hết
+                            </span>
+                          );
+                        })()}
                       </td>
                       <td className="px-4 py-4">
                         <div className="space-y-1 text-sm">
@@ -788,6 +870,7 @@ export default function UsersPage() {
                     <div className="flex-1 min-w-0">
                       <div className="font-medium text-white text-sm truncate">{user.name || 'Chưa đặt tên'}</div>
                       <div className="text-xs text-slate-400 truncate">{user.email}</div>
+                      {user.phone && <div className="text-xs text-green-400">📱 {user.phone}</div>}
                     </div>
                     {getTierBadge(user.tier)}
                   </div>
@@ -871,8 +954,9 @@ export default function UsersPage() {
                 <div className="mb-3">
                   <div className="font-bold text-white truncate">{user.name || 'Chưa đặt tên'}</div>
                   <div className="text-sm text-slate-400 truncate">{user.email}</div>
+                  {user.phone && <div className="text-xs text-green-400 mt-1">📱 {user.phone}</div>}
                 </div>
-                
+
                 <div className="flex items-center gap-2 mb-3">
                   {getTierBadge(user.tier)}
                 </div>
@@ -1028,6 +1112,16 @@ export default function UsersPage() {
                 />
               </div>
               <div>
+                <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Số điện thoại</label>
+                <input
+                  type="tel"
+                  value={newUserForm.phone}
+                  onChange={(e) => setNewUserForm({ ...newUserForm, phone: e.target.value })}
+                  className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm focus:ring-2 focus:ring-purple-500"
+                  placeholder="0912345678"
+                />
+              </div>
+              <div>
                 <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Mật khẩu *</label>
                 <input
                   type="text"
@@ -1101,6 +1195,16 @@ export default function UsersPage() {
                   value={editForm.username}
                   onChange={(e) => setEditForm({ ...editForm, username: e.target.value })}
                   className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm focus:ring-2 focus:ring-purple-500"
+                />
+              </div>
+              <div>
+                <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1">Số điện thoại</label>
+                <input
+                  type="tel"
+                  value={editForm.phone}
+                  onChange={(e) => setEditForm({ ...editForm, phone: e.target.value })}
+                  className="w-full px-3 sm:px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm focus:ring-2 focus:ring-purple-500"
+                  placeholder="0912345678"
                 />
               </div>
               <div>
@@ -1371,6 +1475,10 @@ export default function UsersPage() {
                   <span className="text-white text-xs sm:text-sm font-medium truncate ml-2 max-w-[150px] sm:max-w-[200px]">{detailModal.email}</span>
                 </div>
                 <div className="flex items-center justify-between p-2 sm:p-2.5 bg-slate-700/30 rounded-lg">
+                  <span className="text-slate-400 text-xs sm:text-sm">📱 Điện thoại</span>
+                  <span className="text-green-400 text-xs sm:text-sm font-medium">{detailModal.phone || 'Chưa có'}</span>
+                </div>
+                <div className="flex items-center justify-between p-2 sm:p-2.5 bg-slate-700/30 rounded-lg">
                   <span className="text-slate-400 text-xs sm:text-sm">📅 Đăng ký</span>
                   <span className="text-white text-xs sm:text-sm">{formatDate(detailModal.createdAt)}</span>
                 </div>
@@ -1382,6 +1490,43 @@ export default function UsersPage() {
                   <span className="text-slate-400 text-xs sm:text-sm">🕐 Hoạt động</span>
                   <span className="text-white text-xs sm:text-sm">{formatRelativeTime(detailModal.lastLoginDate)}</span>
                 </div>
+              </div>
+              
+              {/* Trial Section */}
+              <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-3 sm:p-4 border border-purple-500/30 mb-3 sm:mb-4">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-purple-400 text-xs sm:text-sm font-medium">🎁 Học thử</span>
+                  {(() => {
+                    const daysRemaining = getTrialDaysRemaining(detailModal.trialExpiresAt);
+                    if (daysRemaining === null) {
+                      return <span className="text-slate-400 text-xs">Chưa có</span>;
+                    } else if (daysRemaining > 0) {
+                      return <span className="text-green-400 text-xs font-medium">🟢 Còn {daysRemaining} ngày</span>;
+                    } else {
+                      return <span className="text-red-400 text-xs font-medium">🔴 Đã hết</span>;
+                    }
+                  })()}
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <input
+                    type="number"
+                    min="0"
+                    max="365"
+                    placeholder="Số ngày"
+                    value={trialDays}
+                    onChange={(e) => setTrialDays(parseInt(e.target.value) || 0)}
+                    className="flex-1 px-3 py-1.5 bg-slate-700 border border-slate-600 rounded-lg text-white text-sm focus:ring-2 focus:ring-purple-500 w-20"
+                  />
+                  <button
+                    onClick={() => handleExtendTrial(detailModal.id, trialDays)}
+                    disabled={extendingTrial === detailModal.id}
+                    className="px-3 py-1.5 bg-purple-500 text-white rounded-lg hover:bg-purple-600 disabled:opacity-50 transition-colors text-xs sm:text-sm whitespace-nowrap"
+                  >
+                    {extendingTrial === detailModal.id ? '...' : trialDays === 0 ? 'Xóa trial' : 'Cấp trial'}
+                  </button>
+                </div>
+                <p className="text-slate-500 text-[10px] mt-1.5">Nhập 0 để xóa trial, hoặc số ngày để cấp/gia hạn</p>
               </div>
             </div>
               

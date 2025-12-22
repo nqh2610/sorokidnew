@@ -1403,6 +1403,8 @@ function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, 
   const [stepCompleted, setStepCompleted] = useState(false);
   const [sorobanKey, setSorobanKey] = useState(0);
   const [quotientSorobanKey, setQuotientSorobanKey] = useState(0);
+  const [hasMainInteracted, setHasMainInteracted] = useState(false); // Track main soroban interaction
+  const [hasQuotientInteracted, setHasQuotientInteracted] = useState(false); // Track quotient soroban interaction
 
   // Kiểm tra có phải phép chia không - để hiển thị bàn thương
   const isDivision = problem?.includes('÷');
@@ -1427,6 +1429,8 @@ function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, 
     setStepCompleted(false);
     setSorobanKey(prev => prev + 1);
     setQuotientSorobanKey(prev => prev + 1);
+    setHasMainInteracted(false);
+    setHasQuotientInteracted(false);
   }, [practiceIndex]);
 
   // Phân tích bài toán thành các bước
@@ -1447,17 +1451,27 @@ function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, 
   // Kiểm tra khi học sinh thay đổi bàn chính
   const handleMainValueChange = (value) => {
     setCurrentValue(value);
-    checkStepCompletion(value, quotientValue);
+    // Chỉ check khi user đã tương tác (value !== 0)
+    if (value !== 0) {
+      setHasMainInteracted(true);
+      checkStepCompletion(value, quotientValue, true, hasQuotientInteracted);
+    }
   };
 
   // Kiểm tra khi học sinh thay đổi bàn thương
   const handleQuotientValueChange = (value) => {
     setQuotientValue(value);
-    checkStepCompletion(currentValue, value);
+    // Chỉ check khi user đã tương tác (value !== 0)
+    if (value !== 0) {
+      setHasQuotientInteracted(true);
+      checkStepCompletion(currentValue, value, hasMainInteracted, true);
+    }
   };
 
   // Logic kiểm tra chung cho cả 2 bàn
-  const checkStepCompletion = (mainVal, quotientVal) => {
+  const checkStepCompletion = (mainVal, quotientVal, mainInteracted = hasMainInteracted, quotientInteracted = hasQuotientInteracted) => {
+    // Không check nếu đã submit
+    if (submitted) return;
     if (showGuide && guideSteps.length > 0) {
       const currentStep = guideSteps[currentGuideStep];
 
@@ -1497,13 +1511,15 @@ function CalcPractice({ problem, answer, hint, onAnswer, showResult, isCorrect, 
       // Không có guide - kiểm tra kết quả trực tiếp
       if (isDivision) {
         // Phép chia: kiểm tra bàn THƯƠNG có đúng đáp án không
-        if (quotientVal === answer && !submitted) {
+        // Chỉ check khi user đã tương tác với bàn thương
+        if (quotientInteracted && quotientVal === answer && !submitted) {
           setSubmitted(true);
           setTimeout(() => onAnswer(quotientVal), 800);
         }
       } else {
         // Phép khác: kiểm tra bàn chính
-        if (mainVal === answer && !submitted) {
+        // Chỉ check khi user đã tương tác với bàn chính
+        if (mainInteracted && mainVal === answer && !submitted) {
           setSubmitted(true);
           setTimeout(() => onAnswer(mainVal), 800);
         }
@@ -2447,19 +2463,31 @@ function parseSimpleProblem(problem, answer) {
 function ExplorePractice({ instruction, target, onComplete, onAnswer, practiceIndex }) {
   const [explored, setExplored] = useState(false);
   const [currentValue, setCurrentValue] = useState(0);
+  const [hasInteracted, setHasInteracted] = useState(false); // Track if user has interacted
 
   // Reset khi chuyển câu
   useEffect(() => {
     setExplored(false);
     setCurrentValue(0);
+    setHasInteracted(false); // Reset interaction flag
   }, [practiceIndex]);
 
   // Kiểm tra kết quả khi Soroban thay đổi - TỰ ĐỘNG CHUYỂN KHI ĐÚNG
   const handleSorobanChange = (value) => {
     setCurrentValue(value);
     
-    // Nếu đúng và chưa explored thì tự động submit
-    if (target !== undefined && value === target && !explored) {
+    // Nếu value khác 0, user đã tương tác
+    const userHasInteracted = value !== 0;
+    if (userHasInteracted && !hasInteracted) {
+      setHasInteracted(true);
+    }
+    
+    // Chỉ auto-submit nếu:
+    // 1. Có target và target khác 0 (tránh auto-pass khi soroban reset về 0)
+    // 2. Giá trị khớp target
+    // 3. Chưa explored
+    // 4. User đã tương tác (value !== 0 nghĩa là đã thao tác)
+    if (target !== undefined && target !== 0 && value === target && !explored && userHasInteracted) {
       setExplored(true);
       // Delay một chút để bé thấy hiệu ứng đúng
       setTimeout(() => {
@@ -2818,8 +2846,9 @@ function FriendPractice({ question, answer, friendOf, onAnswer, showResult, isCo
   const handleValueChange = (value) => {
     setCurrentValue(value);
     
+    // Chỉ check khi user đã tương tác (value !== 0) để tránh auto-pass khi reset
     // Nếu đúng và chưa submit thì tự động báo đúng
-    if (value === answer && !submitted && !showResult) {
+    if (value !== 0 && value === answer && !submitted && !showResult) {
       setSubmitted(true);
       setTimeout(() => {
         onAnswer(value);

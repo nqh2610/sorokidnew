@@ -8,7 +8,6 @@ import { PlayCircle, Lock, CheckCircle, Star, Clock, ChevronRight, BookOpen, Cro
 import TopBar from '@/components/TopBar/TopBar';
 import StarBadge from '@/components/Rewards/StarBadge';
 import { useUpgradeModal } from '@/components/UpgradeModal';
-import { ProgressPeek, LockedContentPreview } from '@/components/SoftUpgradeTrigger';
 
 // Fallback colors cho levels (nếu database không có)
 const LEVEL_COLORS = {
@@ -345,15 +344,6 @@ export default function LearnPage() {
           )}
         </div>
       </div>
-      
-      {/* Progress Peek - Tinh tế nhắc khi gần hết free levels */}
-      {userTier === 'free' && maxLevel && (
-        <ProgressPeek 
-          currentLevel={selectedLevel || 1}
-          maxFreeLevel={maxLevel}
-          onUpgradeClick={showUpgradeModal}
-        />
-      )}
       
       {/* Modal nâng cấp tinh tế */}
       <UpgradeModalComponent />

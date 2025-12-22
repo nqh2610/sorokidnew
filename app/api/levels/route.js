@@ -4,6 +4,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import prisma from '@/lib/prisma';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
 import { getOrSet } from '@/lib/cache';
+import { getEffectiveTierSync, getTrialInfo, getTrialSettings } from '@/lib/tierSystem';
 
 export const dynamic = 'force-dynamic';
 
@@ -61,7 +62,7 @@ export async function GET(request) {
     const [user, userProgress] = await Promise.all([
       prisma.user.findUnique({
         where: { email: session.user.email },
-        select: { id: true, tier: true }
+        select: { id: true, tier: true, trialExpiresAt: true }
       }),
       prisma.progress.findMany({
         where: { userId: session.user.id },
@@ -73,9 +74,13 @@ export async function GET(request) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
-    // Tính maxLevel theo tier
-    const userTier = user.tier || 'free';
-    const maxLevel = TIER_LEVEL_LIMITS[userTier] || TIER_LEVEL_LIMITS.free;
+    // 🔧 TỐI ƯU: Lấy trial settings một lần, dùng sync version để tránh query thừa
+    const trialSettings = await getTrialSettings(); // Đã có cache 10 phút
+    const effectiveTier = getEffectiveTierSync(user, trialSettings.trialTier);
+    const maxLevel = TIER_LEVEL_LIMITS[effectiveTier] || TIER_LEVEL_LIMITS.free;
+    
+    // Lấy thông tin trial (không query DB)
+    const trialInfo = getTrialInfo(user, trialSettings.trialTier);
 
     // 🔧 TỐI ƯU: Dùng Map để lookup nhanh hơn
     const lessonCountMap = new Map(lessonCounts.map(lc => [lc.levelId, lc._count.id]));
@@ -111,8 +116,10 @@ export async function GET(request) {
 
     return NextResponse.json({ 
       levels: levelsWithAccess,
-      userTier,
-      maxLevel
+      userTier: effectiveTier,
+      actualTier: user.tier || 'free',
+      maxLevel,
+      trialInfo
     });
   } catch (error) {
     console.error('Error fetching levels:', error);

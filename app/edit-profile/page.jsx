@@ -4,16 +4,17 @@ import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { 
-  ArrowLeft, 
-  User, 
-  AtSign, 
-  Mail, 
-  Lock, 
-  Eye, 
+import {
+  ArrowLeft,
+  User,
+  AtSign,
+  Mail,
+  Lock,
+  Eye,
   EyeOff,
   Check,
-  AlertCircle
+  AlertCircle,
+  Phone
 } from 'lucide-react';
 
 export default function EditProfilePage() {
@@ -22,7 +23,8 @@ export default function EditProfilePage() {
   
   // Profile form state
   const [profileData, setProfileData] = useState({
-    name: ''
+    name: '',
+    phone: ''
   });
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -60,7 +62,8 @@ export default function EditProfilePage() {
       
       if (data.user) {
         setProfileData({
-          name: data.user.name || ''
+          name: data.user.name || '',
+          phone: data.user.phone || ''
         });
         setEmail(data.user.email || '');
         setUsername(data.user.username || '');
@@ -97,6 +100,15 @@ export default function EditProfilePage() {
       setError('Họ tên phải có ít nhất 2 ký tự');
       return false;
     }
+    // Validate số điện thoại nếu có nhập
+    if (profileData.phone) {
+      const cleanPhone = profileData.phone.replace(/[\s\-\.]/g, '');
+      const vietnamPhoneRegex = /^(0|\+84|84)(3[2-9]|5[2689]|7[0-9]|8[1-9]|9[0-9])[0-9]{7}$/;
+      if (!vietnamPhoneRegex.test(cleanPhone)) {
+        setError('Số điện thoại không hợp lệ (VD: 0901234567)');
+        return false;
+      }
+    }
     return true;
   };
 
@@ -128,10 +140,16 @@ export default function EditProfilePage() {
     setSuccess('');
 
     try {
+      // Chuẩn hóa số điện thoại trước khi gửi
+      const dataToSend = {
+        ...profileData,
+        phone: profileData.phone ? profileData.phone.replace(/[\s\-\.]/g, '') : ''
+      };
+
       const res = await fetch('/api/user/profile', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(profileData)
+        body: JSON.stringify(dataToSend)
       });
 
       const data = await res.json();
@@ -285,6 +303,25 @@ export default function EditProfilePage() {
                 />
                 <p className="text-xs text-gray-400 mt-1.5">
                   🏅 Họ và tên sẽ hiển thị trên chứng chỉ khi bạn đạt được
+                </p>
+              </div>
+
+              {/* Phone - Có thể chỉnh sửa */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <Phone size={16} className="inline-block mr-2 text-violet-500" />
+                  Số điện thoại
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={profileData.phone}
+                  onChange={handleProfileChange}
+                  placeholder="0901234567"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-violet-400 focus:outline-none transition-colors text-gray-800"
+                />
+                <p className="text-xs text-gray-400 mt-1.5">
+                  Số điện thoại Việt Nam (VD: 0901234567)
                 </p>
               </div>
 

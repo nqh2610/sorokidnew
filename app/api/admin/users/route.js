@@ -25,7 +25,8 @@ export async function GET(request) {
       where.OR = [
         { name: { contains: search } },
         { email: { contains: search } },
-        { username: { contains: search } }
+        { username: { contains: search } },
+        { phone: { contains: search } }
       ];
     }
     
@@ -42,6 +43,7 @@ export async function GET(request) {
         email: true,
         username: true,
         name: true,
+        phone: true,
         avatar: true,
         level: true,
         totalStars: true,
@@ -50,6 +52,7 @@ export async function GET(request) {
         role: true,
         tier: true,
         tierPurchasedAt: true,
+        trialExpiresAt: true,
         lastLoginDate: true,
         createdAt: true,
         totalEXP: true,
@@ -91,6 +94,7 @@ export async function GET(request) {
         email: user.email,
         username: user.username,
         name: user.name,
+        phone: user.phone,
         avatar: user.avatar,
         level: user.level,
         totalStars: user.totalStars,
@@ -99,6 +103,7 @@ export async function GET(request) {
         role: user.role,
         tier: user.tier || 'free',
         tierPurchasedAt: user.tierPurchasedAt,
+        trialExpiresAt: user.trialExpiresAt,
         lastLoginDate: user.lastLoginDate,
         createdAt: user.createdAt,
         totalEXP: user.totalEXP || 0,
@@ -169,7 +174,7 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { name, email, username, password, tier } = await request.json();
+    const { name, email, username, phone, password, tier } = await request.json();
 
     if (!email || !password) {
       return NextResponse.json({ error: 'Email và mật khẩu là bắt buộc' }, { status: 400 });
@@ -204,6 +209,7 @@ export async function POST(request) {
         password: hashedPassword,
         name: name || null,
         username: username || null,
+        phone: phone || null,
         tier: tier || 'free',
         tierPurchasedAt: tier && tier !== 'free' ? new Date() : null,
         level: 1,

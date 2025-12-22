@@ -14,6 +14,7 @@ import AchievementList from '@/components/Dashboard/AchievementList';
 import ProgressByLevel from '@/components/Dashboard/ProgressByLevel';
 import CertificateProgress from '@/components/Dashboard/CertificateProgress';
 import RewardPopup, { useRewardPopup } from '@/components/RewardPopup/RewardPopup';
+import TrialDaysBadge from '@/components/TrialDaysBadge/TrialDaysBadge';
 
 /**
  * 🚀 PROGRESSIVE LOADING DASHBOARD
@@ -271,9 +272,27 @@ export default function DashboardPage() {
           icon: data.reward.icon
         });
         
-        // Refresh quests data (để cập nhật trạng thái claimed)
-        setQuests(null);
-        fetchQuests();
+        // 🚀 OPTIMISTIC UPDATE: Cập nhật quests state ngay lập tức
+        setQuests(prev => {
+          if (!prev || !prev.active) return prev;
+          
+          // Đánh dấu quest đã claimed
+          const updatedActive = prev.active.map(q => 
+            q.id === questId ? { ...q, claimed: true } : q
+          );
+          
+          // Lọc bỏ quest đã claimed khỏi danh sách active
+          const stillActive = updatedActive.filter(q => !q.claimed);
+          
+          // Cập nhật completedCount
+          const newCompletedCount = stillActive.filter(q => q.completed && !q.claimed).length;
+          
+          return {
+            ...prev,
+            active: stillActive,
+            completedCount: newCompletedCount
+          };
+        });
       }
     } catch (error) {
       console.error('Error claiming reward:', error);
@@ -398,6 +417,7 @@ export default function DashboardPage() {
               <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 {user?.levelInfo?.name}
               </div>
+              <TrialDaysBadge />
               <div className="mt-3">
                 <div className="flex justify-between text-sm text-gray-600 mb-1">
                   <span>Tiến độ lên level</span>
