@@ -4,6 +4,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import prisma from '@/lib/prisma';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
 import cache, { CACHE_TTL } from '@/lib/cache';
+import { getEffectiveTierSync, getTrialSettings } from '@/lib/tierSystem';
 
 export const dynamic = 'force-dynamic';
 
@@ -112,13 +113,15 @@ export async function GET(request) {
     const cached = cache.get(cacheKey);
     if (cached) return NextResponse.json(cached);
 
-    // Lấy user tier và streak
+    // Lấy user tier, streak và trialExpiresAt
     const user = await prisma.user.findUnique({
       where: { id: userId },
-      select: { tier: true, name: true, streak: true }
+      select: { tier: true, name: true, streak: true, trialExpiresAt: true }
     });
 
-    const userTier = user?.tier || 'free';
+    // 🔧 Tính effective tier (có tính trial)
+    const trialSettings = await getTrialSettings();
+    const userTier = getEffectiveTierSync(user, trialSettings.trialTier);
     const userStreak = user?.streak || 0;
 
     // Lấy tất cả dữ liệu cần thiết
@@ -480,7 +483,7 @@ export async function POST(request) {
       prisma.competeResult.findMany({ where: { userId } }),
       prisma.user.findUnique({ 
         where: { id: userId }, 
-        select: { name: true, tier: true, streak: true } 
+        select: { name: true, tier: true, streak: true, trialExpiresAt: true } 
       })
     ]);
 
@@ -494,9 +497,11 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
-    // Kiểm tra tier
+    // 🔧 Kiểm tra tier (có tính trial)
     const tierOrder = { free: 0, basic: 1, advanced: 2, vip: 3 };
-    if (tierOrder[user.tier] < tierOrder[config.requiredTier]) {
+    const trialSettingsForClaim = await getTrialSettings();
+    const effectiveTierForClaim = getEffectiveTierSync(user, trialSettingsForClaim.trialTier);
+    if (tierOrder[effectiveTierForClaim] < tierOrder[config.requiredTier]) {
       return NextResponse.json({ 
         error: `Cần nâng cấp lên gói ${config.requiredTier} để nhận chứng chỉ này`,
         requiredTier: config.requiredTier

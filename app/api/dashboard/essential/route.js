@@ -5,6 +5,7 @@ import prisma from '@/lib/prisma';
 import { getLevelInfo } from '@/lib/gamification';
 import { cache, CACHE_KEYS, CACHE_TTL } from '@/lib/cache';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import { getEffectiveTierSync, getTrialInfo, getTrialSettings } from '@/lib/tierSystem';
 
 export const dynamic = 'force-dynamic';
 
@@ -12,7 +13,7 @@ export const dynamic = 'force-dynamic';
  * 🚀 DASHBOARD ESSENTIAL API - PHASE 1
  * 
  * API siêu nhẹ chỉ trả về data thiết yếu:
- * - User info (stars, level, tier)
+ * - User info (stars, level, tier - có tính trial)
  * - Next lesson (CTA chính)
  * - Quick stats (tổng quan)
  * 
@@ -41,7 +42,7 @@ export async function GET(request) {
       return NextResponse.json(cached);
     }
 
-    // === QUERY 1: User info ===
+    // === QUERY 1: User info (bao gồm trialExpiresAt để tính trial) ===
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
@@ -52,13 +53,19 @@ export async function GET(request) {
         diamonds: true,
         streak: true,
         lastLoginDate: true,
-        tier: true
+        tier: true,
+        trialExpiresAt: true // 🔧 Thêm để tính effective tier
       }
     });
 
     if (!user) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
+
+    // 🔧 Tính effective tier (có tính trial)
+    const trialSettings = await getTrialSettings();
+    const effectiveTier = getEffectiveTierSync(user, trialSettings.trialTier);
+    const trialInfo = getTrialInfo(user, trialSettings.trialTier);
 
     // Tính level info (không query)
     const levelInfo = getLevelInfo(user.totalStars || 0);
@@ -115,7 +122,10 @@ export async function GET(request) {
       success: true,
       user: {
         ...user,
-        levelInfo
+        tier: effectiveTier, // 🔧 Trả về effective tier (có tính trial)
+        actualTier: user.tier, // Tier gốc
+        levelInfo,
+        trialInfo // 🔧 Thêm thông tin trial
       },
       nextLesson,
       quickStats: {

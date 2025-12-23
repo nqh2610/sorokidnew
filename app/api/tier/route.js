@@ -4,10 +4,11 @@ import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
 import { invalidateUserCache } from '@/lib/cache';
+import { getEffectiveTierSync, getTrialInfo, getTrialSettings } from '@/lib/tierSystem';
 
 export const dynamic = 'force-dynamic';
 
-// GET /api/tier - Lấy thông tin tier của user hiện tại
+// GET /api/tier - Lấy thông tin tier của user hiện tại (có tính trial)
 export async function GET(request) {
   try {
     // 🔒 Rate limiting
@@ -24,22 +25,31 @@ export async function GET(request) {
 
     const userId = session.user.id;
 
-    // Lấy thông tin user để lấy tier
+    // Lấy thông tin user để lấy tier (bao gồm cả trialExpiresAt để tính trial)
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
         tier: true,
-        tierPurchasedAt: true
+        tierPurchasedAt: true,
+        trialExpiresAt: true
       }
     });
 
-    // Trả về tier từ user model
+    // 🔧 Lấy trial settings và tính effective tier (có tính trial)
+    const trialSettings = await getTrialSettings();
+    const effectiveTier = getEffectiveTierSync(user, trialSettings.trialTier);
+    const trialInfo = getTrialInfo(user, trialSettings.trialTier);
+
+    // Trả về effective tier (đã tính cả trial) thay vì tier gốc
     return NextResponse.json({
-      tier: user?.tier || 'free',
+      tier: effectiveTier, // ✅ Trả về effective tier (có tính trial)
+      actualTier: user?.tier || 'free', // Tier gốc (không tính trial)
       tierInfo: {
-        tierName: user?.tier || 'free',
+        tierName: effectiveTier,
+        actualTierName: user?.tier || 'free',
         purchasedAt: user?.tierPurchasedAt
       },
+      trialInfo, // Thông tin trial chi tiết
       isExpired: false
     });
   } catch (error) {

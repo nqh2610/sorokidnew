@@ -5,6 +5,7 @@ import prisma from '@/lib/prisma';
 import { getLevelInfo } from '@/lib/gamification';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
 import { getOrSet, invalidateUserCache } from '@/lib/cache';
+import { getEffectiveTierSync, getTrialInfo, getTrialSettings } from '@/lib/tierSystem';
 
 export const dynamic = 'force-dynamic';
 
@@ -25,7 +26,7 @@ export async function GET(request) {
 
     const userId = session.user.id;
 
-    // 🔧 TỐI ƯU: Query user với tier trong cùng 1 query
+    // 🔧 TỐI ƯU: Query user với tier và trialExpiresAt trong cùng 1 query
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
@@ -40,7 +41,8 @@ export async function GET(request) {
         streak: true,
         lastLoginDate: true,
         createdAt: true,
-        tier: true // Lấy tier từ User model
+        tier: true, // Lấy tier từ User model
+        trialExpiresAt: true // 🔧 Thêm để tính effective tier
       }
     });
 
@@ -48,11 +50,19 @@ export async function GET(request) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
+    // 🔧 Tính effective tier (có tính trial)
+    const trialSettings = await getTrialSettings();
+    const effectiveTier = getEffectiveTierSync(user, trialSettings.trialTier);
+    const trialInfo = getTrialInfo(user, trialSettings.trialTier);
+
     // Tính level từ totalStars
     const levelInfo = getLevelInfo(user.totalStars || 0);
 
     const profileData = {
       ...user,
+      tier: effectiveTier, // 🔧 Trả về effective tier (có tính trial)
+      actualTier: user.tier, // Tier gốc
+      trialInfo, // 🔧 Thêm thông tin trial
       level: levelInfo.level,
       levelInfo: {
         level: levelInfo.level,

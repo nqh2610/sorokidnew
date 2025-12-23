@@ -3352,22 +3352,15 @@ export default function CompetePage() {
             <input
               ref={mentalInputRef}
               type="text"
-              inputMode="numeric"
-              pattern="[0-9]*"
+              inputMode="none"
+              readOnly
               value={mentalAnswer}
-              onChange={(e) => {
-                const val = e.target.value;
-                if (/^-?\d*$/.test(val)) setMentalAnswer(val);
-              }}
               onKeyDown={handleMentalKeyDown}
-              onBlur={() => {
-                if (result === null) setTimeout(() => mentalInputRef.current?.focus(), 10);
-              }}
               disabled={result !== null}
               placeholder="?"
-              autoFocus
               autoComplete="off"
-              className={`font-black text-xl sm:text-3xl md:text-4xl px-3 sm:px-4 py-1 sm:py-2 rounded-xl sm:rounded-2xl w-20 sm:w-28 text-center transition-all outline-none ${
+              style={{ width: `${Math.max(3, mentalAnswer.length + 2)}ch` }}
+              className={`font-black text-xl sm:text-3xl md:text-4xl px-2 sm:px-3 py-1 sm:py-2 rounded-xl sm:rounded-2xl text-center transition-all outline-none caret-transparent ${
                 result === true ? 'bg-green-500 text-white shadow-lg shadow-green-500/50' 
                 : showingAnswer ? 'bg-yellow-500 text-white'
                 : 'bg-white text-purple-700 shadow-lg ring-2 sm:ring-4 ring-white/50'
@@ -3440,24 +3433,24 @@ export default function CompetePage() {
 
       {/* Soroban hoặc Mental Math UI */}
       {isMentalMode ? (
-        <div className="flex-1 min-h-0 flex flex-col items-center justify-center p-2 overflow-hidden">
-          <div className="text-center w-full max-w-[280px]">
-            <div className="text-3xl sm:text-5xl mb-1">🧠</div>
-            <p className="text-white/80 text-[10px] sm:text-xs mb-2">
-              Nhập số → <span className="bg-green-500 px-1 py-0.5 rounded font-bold">Enter</span>
+        <div className="flex-1 min-h-0 flex flex-col items-center justify-center p-2 sm:p-4 overflow-hidden">
+          <div className="text-center w-full max-w-[340px] sm:max-w-[280px]">
+            <div className="text-4xl sm:text-5xl mb-1 sm:mb-2">🧠</div>
+            <p className="text-white/80 text-xs sm:text-xs mb-3 sm:mb-2">
+              Nhập số → <span className="bg-green-500 px-1.5 py-0.5 rounded font-bold">Enter</span>
             </p>
             
-            <div className="grid grid-cols-3 gap-1 sm:gap-1.5 mx-auto">
+            {/* Numpad - LỚN HƠN trên mobile */}
+            <div className="grid grid-cols-3 gap-2 sm:gap-1.5 mx-auto">
               {[1,2,3,4,5,6,7,8,9].map((num) => (
                 <button
                   key={num}
                   onClick={() => {
                     if (result !== null) return;
                     setMentalAnswer(prev => prev + num);
-                    mentalInputRef.current?.focus();
                   }}
                   disabled={result !== null}
-                  className="bg-white/20 hover:bg-white/30 active:bg-white/40 rounded-lg p-2 sm:p-3 text-white font-bold text-base sm:text-xl transition-all active:scale-95 disabled:opacity-50"
+                  className="bg-white/20 hover:bg-white/30 active:bg-white/40 rounded-xl sm:rounded-lg p-4 sm:p-3 text-white font-bold text-2xl sm:text-xl transition-all active:scale-95 disabled:opacity-50 shadow-lg"
                 >
                   {num}
                 </button>
@@ -3466,10 +3459,9 @@ export default function CompetePage() {
                 onClick={() => {
                   if (result !== null) return;
                   setMentalAnswer(prev => prev.slice(0, -1));
-                  mentalInputRef.current?.focus();
                 }}
                 disabled={result !== null}
-                className="bg-red-500/70 hover:bg-red-500 active:bg-red-600 rounded-lg p-2 sm:p-3 text-white font-bold text-xs sm:text-sm transition-all active:scale-95 disabled:opacity-50"
+                className="bg-red-500/70 hover:bg-red-500 active:bg-red-600 rounded-xl sm:rounded-lg p-4 sm:p-3 text-white font-bold text-lg sm:text-sm transition-all active:scale-95 disabled:opacity-50 shadow-lg"
               >
                 ⌫
               </button>
@@ -3477,10 +3469,9 @@ export default function CompetePage() {
                 onClick={() => {
                   if (result !== null) return;
                   setMentalAnswer(prev => prev + '0');
-                  mentalInputRef.current?.focus();
                 }}
                 disabled={result !== null}
-                className="bg-white/20 hover:bg-white/30 active:bg-white/40 rounded-lg p-2 sm:p-3 text-white font-bold text-base sm:text-xl transition-all active:scale-95 disabled:opacity-50"
+                className="bg-white/20 hover:bg-white/30 active:bg-white/40 rounded-xl sm:rounded-lg p-4 sm:p-3 text-white font-bold text-2xl sm:text-xl transition-all active:scale-95 disabled:opacity-50 shadow-lg"
               >
                 0
               </button>
@@ -3490,7 +3481,7 @@ export default function CompetePage() {
                   handleMentalSubmit();
                 }}
                 disabled={result !== null || !mentalAnswer}
-                className="bg-green-500 hover:bg-green-400 active:bg-green-600 rounded-lg p-2 sm:p-3 text-white font-bold text-xs sm:text-sm transition-all active:scale-95 disabled:opacity-50"
+                className="bg-green-500 hover:bg-green-400 active:bg-green-600 rounded-xl sm:rounded-lg p-4 sm:p-3 text-white font-bold text-base sm:text-sm transition-all active:scale-95 disabled:opacity-50 shadow-lg"
               >
                 Enter
               </button>

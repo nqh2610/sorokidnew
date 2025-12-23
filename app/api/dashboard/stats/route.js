@@ -7,6 +7,7 @@ import { cache, CACHE_KEYS, CACHE_TTL, getOrSet } from '@/lib/cache';
 import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
 import { withApiProtection } from '@/lib/apiWrapper';
 import { CACHE_CONFIG } from '@/config/runtime.config';
+import { getEffectiveTierSync, getTrialSettings } from '@/lib/tierSystem';
 
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
@@ -1010,16 +1011,18 @@ async function getNextLesson(userId, progressData) {
 // Lấy tiến độ chứng chỉ
 async function getCertificateProgress(userId) {
   try {
-    // Lấy user tier và certificates đã có
+    // Lấy user tier, trialExpiresAt và certificates đã có
     const [user, existingCerts, progressData, exerciseData, competeData] = await Promise.all([
-      prisma.user.findUnique({ where: { id: userId }, select: { tier: true } }),
+      prisma.user.findUnique({ where: { id: userId }, select: { tier: true, trialExpiresAt: true } }),
       prisma.certificate.findMany({ where: { userId } }),
       prisma.progress.findMany({ where: { userId, completed: true } }),
       prisma.exerciseResult.findMany({ where: { userId } }),
       prisma.competeResult.findMany({ where: { userId } })
     ]);
 
-    const userTier = user?.tier || 'free';
+    // 🔧 Tính effective tier (có tính trial)
+    const trialSettings = await getTrialSettings();
+    const userTier = getEffectiveTierSync(user, trialSettings.trialTier);
     const tierOrder = { free: 0, basic: 1, advanced: 2, vip: 3 };
 
     // Cấu hình chứng chỉ (đơn giản hóa)
