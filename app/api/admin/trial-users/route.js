@@ -73,10 +73,12 @@ export async function GET(request) {
       })
     ]);
 
-    // Tính số ngày còn lại cho mỗi user
+    // Tính số ngày còn lại cho mỗi user (so sánh theo ngày, không tính giờ)
+    const nowDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const usersWithDays = users.map(user => {
       const trialEnd = new Date(user.trialExpiresAt);
-      const daysRemaining = Math.ceil((trialEnd - now) / (1000 * 60 * 60 * 24));
+      const trialEndDate = new Date(trialEnd.getFullYear(), trialEnd.getMonth(), trialEnd.getDate());
+      const daysRemaining = Math.floor((trialEndDate - nowDate) / (1000 * 60 * 60 * 24));
       return {
         ...user,
         daysRemaining: Math.max(0, daysRemaining),

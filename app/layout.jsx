@@ -46,6 +46,7 @@ export const metadata = {
         width: 1200,
         height: 630,
         alt: 'Sorokid - Học Soroban Online cho trẻ em Việt Nam',
+        type: 'image/png',
       },
     ],
   },
@@ -54,6 +55,7 @@ export const metadata = {
     title: 'Sorokid - Học Soroban Online | Tính Nhẩm Nhanh',
     description: 'Nền tảng học Soroban trực tuyến #1 Việt Nam. Học qua game, phù hợp học sinh tiểu học.',
     images: ['/og-image.png'],
+    creator: '@sorokid',
   },
   alternates: {
     canonical: 'https://sorokid.com',

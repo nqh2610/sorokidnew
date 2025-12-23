@@ -48,17 +48,19 @@ export default function TopBar({ showStats = true }) {
     }
   }, [session]);
 
-  // � OPTIMISTIC UPDATE: Update local state từ event, KHÔNG fetch server
+  // 🔄 OPTIMISTIC UPDATE: Update local state từ event, KHÔNG fetch server
   useEffect(() => {
-    const handleUserStatsUpdate = (event) => {
+    const handleUserStatsUpdate = async (event) => {
       const { stars = 0, diamonds = 0, newLevel, newTier } = event.detail || {};
       
       setUserStats(prev => {
         if (!prev) return prev;
         
+        const newTotalStars = (prev.totalStars || 0) + stars;
+        
         const updatedStats = {
           ...prev,
-          totalStars: (prev.totalStars || 0) + stars,
+          totalStars: newTotalStars,
           diamonds: (prev.diamonds || 0) + diamonds
         };
         

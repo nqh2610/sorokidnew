@@ -463,13 +463,34 @@ export default function UsersPage() {
     }
   };
 
-  // Helper: Tính số ngày trial còn lại
-  const getTrialDaysRemaining = (trialExpiresAt) => {
+  // Helper: Tính thông tin trial còn lại (ngày, giờ, phút)
+  const getTrialInfoDetail = (trialExpiresAt) => {
     if (!trialExpiresAt) return null;
     const now = new Date();
     const expires = new Date(trialExpiresAt);
-    const diff = Math.ceil((expires - now) / (1000 * 60 * 60 * 24));
-    return diff;
+    const diffMs = expires - now;
+    
+    // Tính số ngày (so sánh theo ngày)
+    const nowDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const expiresDate = new Date(expires.getFullYear(), expires.getMonth(), expires.getDate());
+    const days = Math.floor((expiresDate - nowDate) / (1000 * 60 * 60 * 24));
+    
+    // Tính giờ và phút còn lại
+    const hours = Math.max(0, Math.floor(diffMs / (1000 * 60 * 60)));
+    const minutes = Math.max(0, Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60)));
+    
+    return {
+      days,
+      hours,
+      minutes,
+      isActive: diffMs > 0
+    };
+  };
+
+  // Helper cũ để tương thích
+  const getTrialDaysRemaining = (trialExpiresAt) => {
+    const info = getTrialInfoDetail(trialExpiresAt);
+    return info ? info.days : null;
   };
 
   const handleResetPassword = (userId) => {
@@ -1474,18 +1495,25 @@ export default function UsersPage() {
                 </div>
               </div>
               
-              {/* Trial Section */}
+              {/* Trial Section - Luôn hiển thị để admin có thể cấp/quản lý trial */}
               <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-3 sm:p-4 border border-purple-500/30 mb-3 sm:mb-4">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-purple-400 text-xs sm:text-sm font-medium">🎁 Học thử</span>
                   {(() => {
-                    const daysRemaining = getTrialDaysRemaining(detailModal.trialExpiresAt);
-                    if (daysRemaining === null) {
-                      return <span className="text-slate-400 text-xs">Chưa có</span>;
-                    } else if (daysRemaining > 0) {
-                      return <span className="text-green-400 text-xs font-medium">🟢 Còn {daysRemaining} ngày</span>;
+                    if (!detailModal.trialExpiresAt) {
+                      return <span className="text-slate-500 text-xs">Chưa kích hoạt</span>;
+                    }
+                    const trialInfo = getTrialInfoDetail(detailModal.trialExpiresAt);
+                    if (!trialInfo || !trialInfo.isActive) {
+                      return <span className="text-slate-500 text-xs">⏹️ Đã kết thúc</span>;
+                    } else if (trialInfo.days === 0) {
+                      return <span className="text-red-400 text-xs font-medium">⏰ Còn {trialInfo.hours}h {trialInfo.minutes}p</span>;
+                    } else if (trialInfo.days === 1) {
+                      return <span className="text-orange-400 text-xs font-medium">🌟 Ngày cuối</span>;
+                    } else if (trialInfo.days <= 3) {
+                      return <span className="text-yellow-400 text-xs font-medium">⚡ Còn {trialInfo.days} ngày</span>;
                     } else {
-                      return <span className="text-red-400 text-xs font-medium">🔴 Đã hết</span>;
+                      return <span className="text-green-400 text-xs font-medium">🎉 Còn {trialInfo.days} ngày</span>;
                     }
                   })()}
                 </div>

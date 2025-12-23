@@ -102,7 +102,9 @@ export default function DashboardPage() {
     if (quests || questsLoading) return;
     try {
       setQuestsLoading(true);
-      const response = await fetch('/api/dashboard/quests');
+      const response = await fetch('/api/dashboard/quests', {
+        cache: 'no-store'
+      });
       const data = await response.json();
       if (data.success) {
         setQuests(data);

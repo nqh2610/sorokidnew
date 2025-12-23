@@ -54,30 +54,53 @@ export default function TrialDaysBadge() {
 
   const tierName = tierNames[trialInfo.trialTier] || trialInfo.trialTier;
 
-  // Trial đã hết hạn
-  if (!trialInfo.isActive && trialInfo.daysRemaining <= 0) {
-    return (
-      <span className="inline-flex items-center gap-1 text-xs text-orange-600">
-        <AlertCircle size={12} />
-        <span>Dùng thử đã hết</span>
-      </span>
-    );
+  // Không hiện gì nếu trial đã hết - để UpgradeBanner lo
+  if (!trialInfo.isActive) {
+    return null;
   }
 
   // Trial còn hiệu lực
-  if (trialInfo.isActive) {
-    // Nếu còn ít ngày (<=2) thì highlight màu cam
-    const isUrgent = trialInfo.daysRemaining <= 2;
-    
+  const { daysRemaining, hoursRemaining, minutesRemaining } = trialInfo;
+  
+  // Còn 0 ngày - hiển thị giờ:phút + mời nâng cấp tinh tế
+  if (daysRemaining === 0) {
     return (
-      <span className={`inline-flex items-center gap-1 text-xs ${isUrgent ? 'text-orange-500' : 'text-purple-500'}`}>
-        <Clock size={12} />
+      <a href="/pricing" className="inline-flex items-center gap-1 text-xs text-red-500 hover:text-red-400 transition-colors cursor-pointer" title="Xem các gói học">
         <span>
-          Dùng thử {tierName}: {trialInfo.daysRemaining} ngày
+          ⏰ Học thử còn {hoursRemaining}h {minutesRemaining}p · Nâng cấp ngay!
+        </span>
+      </a>
+    );
+  }
+  
+  // Còn 1 ngày - thông báo thân thiện
+  if (daysRemaining === 1) {
+    return (
+      <a href="/pricing" className="inline-flex items-center gap-1 text-xs text-orange-500 hover:text-orange-400 transition-colors cursor-pointer" title="Xem các gói học">
+        <span>
+          🌟 Ngày cuối học thử · Xem gói học
+        </span>
+      </a>
+    );
+  }
+  
+  // Còn 2-3 ngày - nhắc nhẹ
+  if (daysRemaining <= 3) {
+    return (
+      <span className="inline-flex items-center gap-1 text-xs text-yellow-500">
+        <span>
+          🎁 Học thử còn {daysRemaining} ngày
         </span>
       </span>
     );
   }
-
-  return null;
+  
+  // Còn nhiều ngày - vui vẻ
+  return (
+    <span className="inline-flex items-center gap-1 text-xs text-purple-500">
+      <span>
+        🎉 Học thử còn {daysRemaining} ngày
+      </span>
+    </span>
+  );
 }
