@@ -70,7 +70,7 @@ function ArticleCard({ post, category, featured = false }) {
     <article className={`bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300 group ${featured ? 'lg:flex' : 'flex flex-col h-full'}`}>
       <Link href={`/blog/${post.slug}`} className={`block ${featured ? 'lg:flex lg:w-full' : 'flex flex-col h-full'}`}>
         {/* Thumbnail */}
-        <div className={`relative bg-gradient-to-br from-violet-100 to-pink-100 ${featured ? 'lg:w-2/5 h-56 lg:h-auto min-h-[200px]' : 'h-48'}`}>
+        <div className={`relative bg-gradient-to-br from-violet-100 to-pink-100 ${featured ? 'lg:w-2/5 h-48 sm:h-56 lg:h-auto min-h-[200px]' : 'h-40 sm:h-48'}`}>
           {post.image ? (
             <div className="w-full h-full relative">
               <img 
@@ -136,17 +136,17 @@ function CategoryCard({ category }) {
   return (
     <Link 
       href={`/blog/danh-muc/${category.slug}`}
-      className="flex items-center gap-3 p-3 sm:p-4 bg-white rounded-xl border border-gray-100 hover:border-violet-200 hover:shadow-md hover:scale-[1.02] transition-all duration-200 group"
+      className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-4 bg-white rounded-xl border border-gray-100 hover:border-violet-200 hover:shadow-md hover:scale-[1.02] transition-all duration-200 group"
     >
       <div 
-        className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
+        className="w-9 h-9 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
         style={{ backgroundColor: `${category.color}15` }}
       >
-        <CategoryIcon icon={category.icon} className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: category.color }} />
+        <CategoryIcon icon={category.icon} className="w-4 h-4 sm:w-6 sm:h-6" style={{ color: category.color }} />
       </div>
       <div className="min-w-0 flex-grow">
-        <h3 className="font-semibold text-gray-900 text-xs sm:text-sm truncate group-hover:text-violet-600 transition-colors">{category.name}</h3>
-        <p className="text-xs text-gray-500 line-clamp-1 hidden sm:block">{category.description || 'Xem bài viết'}</p>
+        <h3 className="font-semibold text-gray-900 text-[11px] sm:text-sm truncate group-hover:text-violet-600 transition-colors">{category.name}</h3>
+        <p className="text-[10px] sm:text-xs text-gray-500 line-clamp-1 hidden sm:block">{category.description || 'Xem bài viết'}</p>
       </div>
       <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 group-hover:text-violet-500 group-hover:translate-x-1 transition-all flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -180,20 +180,20 @@ export default function BlogPage({ searchParams }) {
     <>
       {/* Hero Header */}
       <header className="bg-gradient-to-br from-violet-600 via-purple-600 to-pink-500 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 text-center">
-          <h1 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-14 text-center">
+          <h1 className="text-xl sm:text-4xl font-bold mb-2 sm:mb-4">
             Chia sẻ cho phụ huynh
           </h1>
-          <p className="text-white/90 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+          <p className="text-white/90 text-sm sm:text-lg leading-relaxed max-w-2xl mx-auto">
             Kinh nghiệm thực tế giúp ba mẹ đồng hành cùng con học toán – nhẹ nhàng, hiệu quả, không căng thẳng.
           </p>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-12">
         {/* Featured Post - only on page 1 */}
         {featuredPost && (
-          <section className="mb-10">
+          <section className="mb-6 sm:mb-10">
             <ArticleCard 
               post={featuredPost} 
               category={featuredCategory}
@@ -204,7 +204,7 @@ export default function BlogPage({ searchParams }) {
 
         {/* Categories Row - only on page 1 */}
         {currentPage === 1 && (
-          <section className="mb-8 sm:mb-10">
+          <section className="mb-5 sm:mb-10">
             <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4">
               Khám phá theo chủ đề
             </h2>
@@ -226,7 +226,7 @@ export default function BlogPage({ searchParams }) {
               {currentPage === 1 ? 'Tất cả bài viết' : `Trang ${currentPage}`}
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {displayPosts.map(post => {
               const category = categories.find(c => c.slug === post.category);
               return (

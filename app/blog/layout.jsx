@@ -54,11 +54,11 @@ export default function BlogLayout({ children }) {
         
         {/* Categories Navigation */}
         <div className="border-t border-violet-100 bg-violet-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <nav className="flex items-center gap-1 sm:gap-2 py-3 overflow-x-auto scrollbar-hide" aria-label="Danh mục blog">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6">
+            <nav className="flex items-center gap-1 py-2.5 sm:py-3 overflow-x-auto scrollbar-hide" aria-label="Danh mục blog">
               <Link 
                 href="/blog"
-                className="px-3 py-1.5 text-sm font-medium text-violet-700 hover:text-violet-800 hover:bg-violet-100 rounded-full transition-all whitespace-nowrap"
+                className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium text-violet-700 hover:text-violet-800 hover:bg-violet-100 rounded-full transition-all whitespace-nowrap"
               >
                 Tất cả
               </Link>
@@ -66,7 +66,7 @@ export default function BlogLayout({ children }) {
                 <Link 
                   key={cat.slug}
                   href={`/blog/danh-muc/${cat.slug}`}
-                  className="px-3 py-1.5 text-sm text-violet-600 hover:text-violet-800 hover:bg-violet-100 rounded-full transition-all whitespace-nowrap"
+                  className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm text-violet-600 hover:text-violet-800 hover:bg-violet-100 rounded-full transition-all whitespace-nowrap"
                 >
                   {cat.name}
                 </Link>

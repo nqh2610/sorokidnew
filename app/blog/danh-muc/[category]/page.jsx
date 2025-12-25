@@ -84,7 +84,7 @@ function ArticleCard({ post }) {
     <article className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col h-full">
       <Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
         {/* Thumbnail */}
-        <div className="h-48 bg-gradient-to-br from-violet-100 to-pink-100 flex items-center justify-center relative overflow-hidden">
+        <div className="h-40 sm:h-48 bg-gradient-to-br from-violet-100 to-pink-100 flex items-center justify-center relative overflow-hidden">
           {post.image ? (
             <>
               <img 
@@ -101,11 +101,11 @@ function ArticleCard({ post }) {
         </div>
         
         {/* Content */}
-        <div className="p-5 flex flex-col flex-grow">
-          <h2 className="text-lg font-bold text-gray-900 mb-3 line-clamp-2 leading-tight group-hover:text-violet-600 transition-colors">
+        <div className="p-4 sm:p-5 flex flex-col flex-grow">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3 line-clamp-2 leading-tight group-hover:text-violet-600 transition-colors">
             {post.title}
           </h2>
-          <p className="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed flex-grow">
+          <p className="text-gray-600 text-sm mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3 leading-relaxed flex-grow">
             {post.description}
           </p>
           
@@ -182,9 +182,9 @@ export default function CategoryPage({ params, searchParams }) {
     <>
       {/* Header with Category Color */}
       <header style={{ background: `linear-gradient(135deg, ${category.color}15 0%, ${category.color}05 100%)` }} className="border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-12">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
+          <nav className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">
             <Link href="/" className="hover:text-violet-600 transition-colors">Trang chủ</Link>
             <span className="text-gray-300">/</span>
             <Link href="/blog" className="hover:text-violet-600 transition-colors">Blog</Link>
@@ -193,18 +193,18 @@ export default function CategoryPage({ params, searchParams }) {
           </nav>
 
           {/* Category Header */}
-          <div className="flex items-start gap-5">
+          <div className="flex items-start gap-3 sm:gap-5">
             <div 
-              className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm"
+              className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm"
               style={{ backgroundColor: `${category.color}20` }}
             >
-              <CategoryIcon icon={category.icon} className="w-8 h-8" style={{ color: category.color }} />
+              <CategoryIcon icon={category.icon} className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: category.color }} />
             </div>
             <div>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
+              <h1 className="text-xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">
                 {category.name}
               </h1>
-              <p className="text-gray-600 leading-relaxed text-lg">
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-lg line-clamp-2 sm:line-clamp-none">
                 {category.description}
               </p>
             </div>
@@ -212,17 +212,17 @@ export default function CategoryPage({ params, searchParams }) {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-12">
         {/* Posts */}
         <section>
           {currentPage > 1 && (
-            <div className="flex items-center justify-between mb-6">
-              <p className="text-sm text-gray-500">
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
+              <p className="text-xs sm:text-sm text-gray-500">
                 Trang {currentPage}
               </p>
             </div>
           )}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {posts.map(post => (
               <ArticleCard key={post.slug} post={post} />
             ))}
