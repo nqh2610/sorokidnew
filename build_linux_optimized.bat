@@ -247,6 +247,12 @@ if exist "%OUTPUT_DIR%\lib\blog.js" (echo [OK] lib/blog.js - Blog utilities) els
 if exist "%OUTPUT_DIR%\lib\auth.js" (echo [OK] lib/auth.js - Auth for admin) else (echo [THIEU] lib/auth.js)
 
 echo.
+echo === SEO (Auto-built by Next.js) ===
+echo [INFO] sitemap.js - Sitemap dong tu dong cap nhat (/sitemap.xml)
+echo [INFO] robots.js - Robots.txt huong dan crawl (/robots.txt)
+echo [INFO] Cac file nay da duoc build vao .next/standalone tu dong
+
+echo.
 echo === Prisma ===
 if exist "%OUTPUT_DIR%\prisma\schema.prisma" (echo [OK] prisma/schema.prisma) else (echo [THIEU] prisma/schema.prisma)
 
