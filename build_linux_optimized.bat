@@ -226,16 +226,21 @@ if exist "%OUTPUT_DIR%\.env" (echo [OK] .env) else (echo [THIEU] .env)
 if exist "%OUTPUT_DIR%\public" (echo [OK] public/) else (echo [THIEU] public/)
 
 echo.
+echo === Public Assets ===
+if exist "%OUTPUT_DIR%\public\blog" (echo [OK] public/blog/ - Anh bai viet) else (echo [THIEU] public/blog/)
+
+echo.
 echo === Config Files (Process Optimization) ===
 if exist "%OUTPUT_DIR%\ecosystem.config.js" (echo [OK] ecosystem.config.js) else (echo [THIEU] ecosystem.config.js)
 if exist "%OUTPUT_DIR%\config\runtime.config.js" (echo [OK] config/runtime.config.js) else (echo [THIEU] config/runtime.config.js)
 if exist "%OUTPUT_DIR%\scripts\monitor-processes.sh" (echo [OK] scripts/monitor-processes.sh) else (echo [THIEU] scripts/monitor-processes.sh)
 
 echo.
-echo === Blog System (NEW) ===
-if exist "%OUTPUT_DIR%\content\blog\posts" (echo [OK] content/blog/posts/) else (echo [THIEU] content/blog/posts/)
+echo === Blog System ===
+if exist "%OUTPUT_DIR%\content\blog\posts" (echo [OK] content/blog/posts/ - Du lieu bai viet JSON) else (echo [THIEU] content/blog/posts/)
 if exist "%OUTPUT_DIR%\content\blog\categories.json" (echo [OK] content/blog/categories.json) else (echo [THIEU] content/blog/categories.json)
-if exist "%OUTPUT_DIR%\lib\blog.js" (echo [OK] lib/blog.js) else (echo [THIEU] lib/blog.js)
+if exist "%OUTPUT_DIR%\lib\blog.js" (echo [OK] lib/blog.js - Blog utilities) else (echo [THIEU] lib/blog.js)
+if exist "%OUTPUT_DIR%\lib\auth.js" (echo [OK] lib/auth.js - Auth for admin) else (echo [THIEU] lib/auth.js)
 
 echo.
 echo === Prisma ===
