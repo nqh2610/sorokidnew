@@ -132,7 +132,7 @@ function ArticleCard({ post, category, featured = false }) {
 }
 
 // Category Card Component
-function CategoryCard({ category, postCount }) {
+function CategoryCard({ category }) {
   return (
     <Link 
       href={`/blog/danh-muc/${category.slug}`}
@@ -146,7 +146,7 @@ function CategoryCard({ category, postCount }) {
       </div>
       <div className="min-w-0 flex-grow">
         <h3 className="font-semibold text-gray-900 text-sm truncate group-hover:text-violet-600 transition-colors">{category.name}</h3>
-        <p className="text-xs text-gray-500">{postCount} bài viết</p>
+        <p className="text-xs text-gray-500">{category.description || 'Xem bài viết'}</p>
       </div>
       <svg className="w-5 h-5 text-gray-400 group-hover:text-violet-500 group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -167,12 +167,8 @@ export default function BlogPage({ searchParams }) {
     sortOrder: 'desc'
   });
   
-  // Count posts per category (get all posts for count)
+  // Get all posts for featured post selection
   const allPosts = getAllPosts({ sortBy: 'publishedAt', sortOrder: 'desc' });
-  const categoryPostCounts = categories.map(cat => ({
-    ...cat,
-    postCount: allPosts.filter(p => p.category === cat.slug).length
-  }));
 
   // Featured post only on page 1
   const showFeatured = currentPage === 1;
@@ -213,11 +209,10 @@ export default function BlogPage({ searchParams }) {
               Khám phá theo chủ đề
             </h2>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-              {categoryPostCounts.map(category => (
+              {categories.map(category => (
                 <CategoryCard 
                   key={category.slug} 
                   category={category} 
-                  postCount={category.postCount}
                 />
               ))}
             </div>
@@ -230,9 +225,6 @@ export default function BlogPage({ searchParams }) {
             <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">
               {currentPage === 1 ? 'Tất cả bài viết' : `Trang ${currentPage}`}
             </h2>
-            <p className="text-sm text-gray-500">
-              {totalPosts} bài viết
-            </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayPosts.map(post => {

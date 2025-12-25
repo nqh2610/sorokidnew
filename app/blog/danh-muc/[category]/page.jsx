@@ -215,11 +215,13 @@ export default function CategoryPage({ params, searchParams }) {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Posts */}
         <section>
-          <div className="flex items-center justify-between mb-6">
-            <p className="text-sm text-gray-500">
-              {currentPage > 1 ? `Trang ${currentPage} • ` : ''}{totalPosts} bài viết
-            </p>
-          </div>
+          {currentPage > 1 && (
+            <div className="flex items-center justify-between mb-6">
+              <p className="text-sm text-gray-500">
+                Trang {currentPage}
+              </p>
+            </div>
+          )}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {posts.map(post => (
               <ArticleCard key={post.slug} post={post} />
