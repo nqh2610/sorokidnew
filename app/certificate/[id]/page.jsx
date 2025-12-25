@@ -57,6 +57,12 @@ export default function CertificateDetailPage() {
   };
 
   const handleDownloadPDF = async () => {
+    // Chỉ cho phép download trên màn hình lớn (>= 640px) để đảm bảo PDF đẹp
+    if (window.innerWidth < 640) {
+      toast.error('Vui lòng sử dụng máy tính hoặc xoay ngang màn hình để tải PDF!');
+      return;
+    }
+    
     if (!certificateRef.current || isDownloading) return;
     
     setIsDownloading(true);
@@ -71,21 +77,46 @@ export default function CertificateDetailPage() {
       // Đợi font load hoàn tất
       await document.fonts.ready;
       
+      // Đợi tất cả ảnh (bao gồm QR code) load xong
+      const images = element.querySelectorAll('img');
+      await Promise.all(
+        Array.from(images).map(img => {
+          if (img.complete) return Promise.resolve();
+          return new Promise((resolve) => {
+            img.onload = resolve;
+            img.onerror = resolve;
+          });
+        })
+      );
+      
       // Render canvas với chất lượng cao
       const canvas = await html2canvas(element, {
         scale: 3, // Tăng scale để chất lượng cao hơn
         useCORS: true,
         allowTaint: true,
         backgroundColor: '#ffffff',
-        logging: false,
+        logging: true, // Enable logging để debug
         letterRendering: true,
         imageTimeout: 15000,
-        removeContainer: true,
-        // Fix for gradient rendering
+        // Fix for gradient rendering và QR code
         onclone: (clonedDoc) => {
           const clonedElement = clonedDoc.querySelector('[data-certificate]');
           if (clonedElement) {
             clonedElement.style.transform = 'none';
+            // Fix QR code - convert img sang div với background
+            const qrImg = clonedElement.querySelector('img[alt="QR Verify"]');
+            if (qrImg && qrImg.src) {
+              const qrDiv = clonedDoc.createElement('div');
+              qrDiv.style.cssText = `
+                width: ${qrImg.offsetWidth}px;
+                height: ${qrImg.offsetHeight}px;
+                background-image: url(${qrImg.src});
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+              `;
+              qrImg.parentNode.replaceChild(qrDiv, qrImg);
+            }
           }
         }
       });
@@ -118,6 +149,15 @@ export default function CertificateDetailPage() {
       const offsetY = (pdfHeight - finalHeight) / 2;
       
       pdf.addImage(imgData, 'PNG', offsetX, offsetY, finalWidth, finalHeight);
+      
+      // Thêm QR code trực tiếp vào PDF nếu có
+      if (qrCodeUrl) {
+        // QR code vừa khít khung, cách lề 1px cả 4 phía
+        const qrSize = 18; // mm - lớn hơn để vừa khít khung
+        const qrX = offsetX + finalWidth - qrSize - 12.5; // căn giữa trong khung
+        const qrY = offsetY + finalHeight - qrSize - 29; // căn giữa trong khung
+        pdf.addImage(qrCodeUrl, 'PNG', qrX, qrY, qrSize, qrSize);
+      }
       
       // Tên file
       const fileName = `Chung_chi_Sorokid_${certificate.recipientName?.replace(/\s+/g, '_') || 'certificate'}.pdf`;
@@ -211,20 +251,13 @@ export default function CertificateDetailPage() {
             <ArrowLeft size={20} />
             Quay lại
           </Link>
-          <div className="flex flex-wrap gap-3">
+          <div className="hidden sm:flex flex-wrap gap-3">
             <button
               onClick={handleShare}
               className="px-4 py-2.5 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-colors flex items-center gap-2 font-medium shadow-md"
             >
               <Share2 size={18} />
               Chia sẻ
-            </button>
-            <button
-              onClick={handlePrint}
-              className="px-4 py-2.5 bg-gray-600 text-white rounded-xl hover:bg-gray-700 transition-colors flex items-center gap-2 font-medium shadow-md"
-            >
-              <Printer size={18} />
-              In
             </button>
             <button
               onClick={handleDownloadPDF}
@@ -246,12 +279,25 @@ export default function CertificateDetailPage() {
           </div>
         </div>
 
-        {/* Certificate Display */}
-        <div
-          ref={certificateRef}
-          data-certificate
-          className="bg-white rounded-2xl shadow-2xl overflow-hidden print:shadow-none print:rounded-none"
-          style={{ aspectRatio: '1.414' }}
+        {/* Mobile: Hướng dẫn scroll và thông báo download */}
+        <div className="sm:hidden text-center mb-3 print:hidden space-y-2">
+          <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
+            <span>👆</span>
+            Vuốt để xem toàn bộ chứng chỉ
+            <span>👉</span>
+          </p>
+          <p className="text-xs text-amber-600 bg-amber-50 rounded-lg py-2 px-3">
+            💡 Để tải PDF đẹp nhất, vui lòng sử dụng máy tính hoặc xoay ngang màn hình
+          </p>
+        </div>
+
+        {/* Certificate Display - Wrapper cho phép scroll trên mobile */}
+        <div className="overflow-auto print:overflow-visible">
+          <div
+            ref={certificateRef}
+            data-certificate
+            className="bg-white rounded-2xl shadow-2xl overflow-hidden print:shadow-none print:rounded-none min-w-[600px]"
+            style={{ aspectRatio: '1.414' }}
         >
           {/* Outer Border with gradient */}
           <div className={`m-3 sm:m-4 p-4 sm:p-8 border-4 border-double ${config.border} h-[calc(100%-1.5rem)] sm:h-[calc(100%-2rem)] flex flex-col relative overflow-hidden`}>
@@ -360,6 +406,7 @@ export default function CertificateDetailPage() {
               </p>
             </div>
           </div>
+        </div>
         </div>
 
         {/* Verify info */}
