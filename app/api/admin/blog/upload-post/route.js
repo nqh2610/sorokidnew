@@ -31,24 +31,149 @@ export async function POST(request) {
     try {
       postData = JSON.parse(content);
     } catch (e) {
-      return NextResponse.json({ error: 'File JSON không hợp lệ. Kiểm tra lại cú pháp.' }, { status: 400 });
+      // Parse JSON error with line/column info
+      const errorMsg = e.message;
+      const posMatch = errorMsg.match(/position (\d+)/);
+      let errorDetail = `Lỗi cú pháp JSON: ${errorMsg}`;
+      
+      if (posMatch) {
+        const pos = parseInt(posMatch[1]);
+        const lines = content.substring(0, pos).split('\n');
+        const lineNum = lines.length;
+        const colNum = lines[lines.length - 1].length + 1;
+        errorDetail = `Lỗi cú pháp JSON tại dòng ${lineNum}, cột ${colNum}: ${errorMsg}`;
+      }
+      
+      return NextResponse.json({ 
+        error: errorDetail,
+        errors: [errorDetail],
+        hint: 'Kiểm tra: dấu phẩy thừa, ngoặc thiếu, dấu nháy kép không đóng'
+      }, { status: 400 });
     }
 
-    // Validate required fields
-    const requiredFields = ['title', 'slug'];
-    for (const field of requiredFields) {
+    // Comprehensive validation - collect all errors
+    const errors = [];
+    
+    // Required fields validation
+    const requiredFields = [
+      { field: 'title', label: 'Tiêu đề (title)' },
+      { field: 'slug', label: 'Đường dẫn URL (slug)' },
+    ];
+    
+    for (const { field, label } of requiredFields) {
       if (!postData[field]) {
-        return NextResponse.json({ 
-          error: `Thiếu trường bắt buộc: ${field}` 
-        }, { status: 400 });
+        errors.push(`❌ Thiếu trường bắt buộc: ${label}`);
+      } else if (typeof postData[field] !== 'string') {
+        errors.push(`❌ ${label} phải là chuỗi văn bản`);
+      } else if (postData[field].trim() === '') {
+        errors.push(`❌ ${label} không được để trống`);
       }
     }
 
     // Validate slug format
-    const slugRegex = /^[a-z0-9-]+$/;
-    if (!slugRegex.test(postData.slug)) {
+    if (postData.slug) {
+      const slugRegex = /^[a-z0-9-]+$/;
+      if (!slugRegex.test(postData.slug)) {
+        errors.push(`❌ Slug "${postData.slug}" không hợp lệ. Chỉ dùng: chữ thường (a-z), số (0-9), dấu gạch ngang (-)`);
+      }
+      if (postData.slug.startsWith('-') || postData.slug.endsWith('-')) {
+        errors.push(`❌ Slug không được bắt đầu hoặc kết thúc bằng dấu gạch ngang`);
+      }
+      if (postData.slug.includes('--')) {
+        errors.push(`❌ Slug không được có 2 dấu gạch ngang liên tiếp`);
+      }
+    }
+
+    // Validate meta
+    if (postData.meta) {
+      if (typeof postData.meta !== 'object' || Array.isArray(postData.meta)) {
+        errors.push(`❌ Trường "meta" phải là object`);
+      } else {
+        if (postData.meta.title && typeof postData.meta.title !== 'string') {
+          errors.push(`❌ meta.title phải là chuỗi`);
+        }
+        if (postData.meta.description && typeof postData.meta.description !== 'string') {
+          errors.push(`❌ meta.description phải là chuỗi`);
+        }
+        if (postData.meta.keywords && !Array.isArray(postData.meta.keywords)) {
+          errors.push(`❌ meta.keywords phải là mảng: ["từ khóa 1", "từ khóa 2"]`);
+        }
+      }
+    }
+
+    // Validate content structure
+    if (postData.content) {
+      if (typeof postData.content !== 'object' || Array.isArray(postData.content)) {
+        errors.push(`❌ Trường "content" phải là object`);
+      } else {
+        if (postData.content.intro && typeof postData.content.intro !== 'string') {
+          errors.push(`❌ content.intro phải là chuỗi văn bản`);
+        }
+        if (postData.content.sections) {
+          if (!Array.isArray(postData.content.sections)) {
+            errors.push(`❌ content.sections phải là mảng`);
+          } else {
+            postData.content.sections.forEach((section, i) => {
+              if (!section.type) {
+                errors.push(`❌ Section ${i + 1}: Thiếu trường "type"`);
+              } else if (!['heading', 'paragraph', 'list', 'callout', 'table'].includes(section.type)) {
+                errors.push(`❌ Section ${i + 1}: type "${section.type}" không hợp lệ. Chỉ chấp nhận: heading, paragraph, list, callout, table`);
+              }
+              
+              if (section.type === 'heading' && !section.text) {
+                errors.push(`❌ Section ${i + 1} (heading): Thiếu trường "text"`);
+              }
+              if (section.type === 'paragraph' && !section.text) {
+                errors.push(`❌ Section ${i + 1} (paragraph): Thiếu trường "text"`);
+              }
+              if (section.type === 'list' && !Array.isArray(section.items)) {
+                errors.push(`❌ Section ${i + 1} (list): Thiếu hoặc sai định dạng "items" (phải là mảng)`);
+              }
+              if (section.type === 'callout' && !section.text) {
+                errors.push(`❌ Section ${i + 1} (callout): Thiếu trường "text"`);
+              }
+            });
+          }
+        }
+      }
+    }
+
+    // Validate FAQ
+    if (postData.faq) {
+      if (!Array.isArray(postData.faq)) {
+        errors.push(`❌ Trường "faq" phải là mảng`);
+      } else {
+        postData.faq.forEach((item, i) => {
+          if (!item.question) {
+            errors.push(`❌ FAQ ${i + 1}: Thiếu trường "question"`);
+          }
+          if (!item.answer) {
+            errors.push(`❌ FAQ ${i + 1}: Thiếu trường "answer"`);
+          }
+        });
+      }
+    }
+
+    // Validate image path
+    if (postData.image) {
+      if (typeof postData.image !== 'string') {
+        errors.push(`❌ Trường "image" phải là chuỗi đường dẫn`);
+      } else if (!postData.image.startsWith('/blog/')) {
+        errors.push(`⚠️ Đường dẫn ảnh nên bắt đầu bằng "/blog/" (hiện tại: "${postData.image}")`);
+      }
+    }
+
+    // Validate category
+    if (postData.category && typeof postData.category !== 'string') {
+      errors.push(`❌ Trường "category" phải là chuỗi`);
+    }
+
+    // Return all errors if any
+    if (errors.length > 0) {
       return NextResponse.json({ 
-        error: 'Slug không hợp lệ. Chỉ dùng chữ thường, số và dấu gạch ngang.' 
+        error: `Tìm thấy ${errors.length} lỗi trong file JSON`,
+        errors: errors,
+        hint: 'Copy danh sách lỗi bên dưới để sửa file'
       }, { status: 400 });
     }
 

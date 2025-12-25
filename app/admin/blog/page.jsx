@@ -80,6 +80,7 @@ export default function AdminBlogPage() {
   const [actionLoading, setActionLoading] = useState(null);
   const [toast, setToast] = useState(null);
   const [uploadLoading, setUploadLoading] = useState(false);
+  const [uploadErrors, setUploadErrors] = useState(null); // For error modal
 
   // Filters
   const [statusFilter, setStatusFilter] = useState('all');
@@ -198,6 +199,7 @@ export default function AdminBlogPage() {
 
     // Reset input
     e.target.value = '';
+    setUploadErrors(null);
 
     try {
       setUploadLoading(true);
@@ -212,7 +214,17 @@ export default function AdminBlogPage() {
       const data = await res.json();
 
       if (data.error) {
-        throw new Error(data.error);
+        // Show error modal with details if there are multiple errors
+        if (data.errors && data.errors.length > 0) {
+          setUploadErrors({
+            title: data.error,
+            errors: data.errors,
+            hint: data.hint
+          });
+        } else {
+          setToast({ type: 'error', message: data.error });
+        }
+        return;
       }
 
       setToast({ 
@@ -227,6 +239,15 @@ export default function AdminBlogPage() {
     }
   };
 
+  // Copy errors to clipboard
+  const copyErrorsToClipboard = () => {
+    if (uploadErrors?.errors) {
+      const text = uploadErrors.errors.join('\n');
+      navigator.clipboard.writeText(text);
+      setToast({ type: 'success', message: 'Đã copy danh sách lỗi!' });
+    }
+  };
+
   return (
     <div className="p-6 max-w-7xl mx-auto">
       {/* Toast */}
@@ -236,6 +257,71 @@ export default function AdminBlogPage() {
           message={toast.message}
           onClose={() => setToast(null)}
         />
+      )}
+
+      {/* Error Modal */}
+      {uploadErrors && (
+        <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-800 rounded-2xl border border-slate-700 max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
+            {/* Modal Header */}
+            <div className="bg-red-500/20 border-b border-red-500/30 px-6 py-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white">{uploadErrors.title}</h3>
+                  <p className="text-sm text-red-400">{uploadErrors.hint}</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setUploadErrors(null)}
+                className="text-slate-400 hover:text-white transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            {/* Error List */}
+            <div className="p-6 overflow-y-auto max-h-[50vh]">
+              <div className="bg-slate-900 rounded-xl p-4 font-mono text-sm">
+                {uploadErrors.errors.map((error, i) => (
+                  <div key={i} className="py-1.5 border-b border-slate-700 last:border-0">
+                    <span className="text-slate-300">{error}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Modal Footer */}
+            <div className="border-t border-slate-700 px-6 py-4 flex justify-between items-center bg-slate-800/50">
+              <span className="text-sm text-slate-400">
+                Tổng cộng: {uploadErrors.errors.length} lỗi
+              </span>
+              <div className="flex gap-3">
+                <button
+                  onClick={copyErrorsToClipboard}
+                  className="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg font-medium transition-colors flex items-center gap-2"
+                >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                  Copy danh sách lỗi
+                </button>
+                <button
+                  onClick={() => setUploadErrors(null)}
+                  className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-medium transition-colors"
+                >
+                  Đóng
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Header */}
