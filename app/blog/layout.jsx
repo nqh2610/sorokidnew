@@ -13,12 +13,12 @@ import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Logo from '@/components/Logo/Logo';
 
-// Categories data (inline để tránh import từ server module)
+// Categories data - phải khớp với content/blog/categories.json
 const categories = [
   { slug: 'phu-huynh-kem-con-hoc-toan', name: 'Phụ huynh kèm con học toán' },
-  { slug: 'con-gap-kho-khan', name: 'Con gặp khó khăn' },
-  { slug: 'hoc-soroban', name: 'Học Soroban' },
-  { slug: 'chia-se', name: 'Chia sẻ' },
+  { slug: 'con-gap-kho-khan-hoc-toan', name: 'Con gặp khó khăn' },
+  { slug: 'cach-giup-con-hoc-toan-nhe-nhang', name: 'Học toán nhẹ nhàng' },
+  { slug: 'soroban-cho-phu-huynh', name: 'Soroban' },
 ];
 
 // Scroll Arrow Button Component
