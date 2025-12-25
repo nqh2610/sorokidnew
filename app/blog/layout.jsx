@@ -12,14 +12,10 @@
 import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Logo from '@/components/Logo/Logo';
+import categoriesData from '@/content/blog/categories.json';
 
-// Categories data - phải khớp với content/blog/categories.json
-const categories = [
-  { slug: 'phu-huynh-kem-con-hoc-toan', name: 'Phụ huynh kèm con học toán' },
-  { slug: 'con-gap-kho-khan-hoc-toan', name: 'Con gặp khó khăn' },
-  { slug: 'cach-giup-con-hoc-toan-nhe-nhang', name: 'Học toán nhẹ nhàng' },
-  { slug: 'soroban-cho-phu-huynh', name: 'Soroban' },
-];
+// Load categories từ JSON file
+const categories = categoriesData.categories;
 
 // Scroll Arrow Button Component
 function ScrollArrow({ direction, onClick, visible }) {
