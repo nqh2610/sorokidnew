@@ -809,8 +809,8 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 id="progress-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-6">
-                  <span aria-hidden="true">📊</span> Phụ huynh yên tâm<br className="sm:hidden" /> theo dõi con
+                <h2 id="progress-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-6 lg:whitespace-nowrap">
+                  <span aria-hidden="true">📊</span> Phụ huynh yên tâm theo dõi con
                 </h2>
               <p className="text-gray-600 text-lg mb-8">
                 Hệ thống tự động đánh giá và đo lường sự tiến bộ của học sinh qua từng bài học.
