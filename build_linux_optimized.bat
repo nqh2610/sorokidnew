@@ -142,6 +142,27 @@ if exist "%PROJECT_DIR%components\Soroban" (
     echo     [OK] components/Soroban
 )
 
+:: Copy content folder (BLOG DATA - BAT BUOC)
+if exist "%PROJECT_DIR%content" (
+    if not exist "%OUTPUT_DIR%\content" mkdir "%OUTPUT_DIR%\content"
+    xcopy "%PROJECT_DIR%content" "%OUTPUT_DIR%\content\" /E /I /Q /Y >nul
+    echo     [OK] content/ (blog posts + categories)
+)
+
+:: Copy lib folder (utility functions - BAT BUOC cho blog)
+if exist "%PROJECT_DIR%lib" (
+    if not exist "%OUTPUT_DIR%\lib" mkdir "%OUTPUT_DIR%\lib"
+    xcopy "%PROJECT_DIR%lib" "%OUTPUT_DIR%\lib\" /E /I /Q /Y >nul
+    echo     [OK] lib/ (blog.js, auth.js, etc.)
+)
+
+:: Copy prisma schema (cho Prisma Client)
+if exist "%PROJECT_DIR%prisma\schema.prisma" (
+    if not exist "%OUTPUT_DIR%\prisma" mkdir "%OUTPUT_DIR%\prisma"
+    copy /Y "%PROJECT_DIR%prisma\schema.prisma" "%OUTPUT_DIR%\prisma\" >nul
+    echo     [OK] prisma/schema.prisma
+)
+
 :: ========================================
 :: BUOC 10: TAO FILE CAU HINH
 :: ========================================
@@ -209,6 +230,16 @@ echo === Config Files (Process Optimization) ===
 if exist "%OUTPUT_DIR%\ecosystem.config.js" (echo [OK] ecosystem.config.js) else (echo [THIEU] ecosystem.config.js)
 if exist "%OUTPUT_DIR%\config\runtime.config.js" (echo [OK] config/runtime.config.js) else (echo [THIEU] config/runtime.config.js)
 if exist "%OUTPUT_DIR%\scripts\monitor-processes.sh" (echo [OK] scripts/monitor-processes.sh) else (echo [THIEU] scripts/monitor-processes.sh)
+
+echo.
+echo === Blog System (NEW) ===
+if exist "%OUTPUT_DIR%\content\blog\posts" (echo [OK] content/blog/posts/) else (echo [THIEU] content/blog/posts/)
+if exist "%OUTPUT_DIR%\content\blog\categories.json" (echo [OK] content/blog/categories.json) else (echo [THIEU] content/blog/categories.json)
+if exist "%OUTPUT_DIR%\lib\blog.js" (echo [OK] lib/blog.js) else (echo [THIEU] lib/blog.js)
+
+echo.
+echo === Prisma ===
+if exist "%OUTPUT_DIR%\prisma\schema.prisma" (echo [OK] prisma/schema.prisma) else (echo [THIEU] prisma/schema.prisma)
 
 echo.
 echo === Prisma Linux Binaries ===
