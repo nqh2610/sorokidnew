@@ -14,6 +14,76 @@
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
+import { getAllPosts, formatDate, calculateReadingTime } from '@/lib/blog';
+
+// Blog Section Component
+function BlogSection() {
+  const posts = getAllPosts({ sortBy: 'publishedAt', sortOrder: 'desc' }).slice(0, 4);
+  
+  if (posts.length === 0) return null;
+
+  return (
+    <section className="py-12 sm:py-20 bg-gray-50" aria-labelledby="blog-heading">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-10">
+          <h2 id="blog-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
+            <span aria-hidden="true">📚</span> Chia sẻ cho phụ huynh
+          </h2>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Kinh nghiệm thực tế giúp ba mẹ đồng hành cùng con học toán – nhẹ nhàng, hiệu quả
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {posts.map((post) => (
+            <Link 
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300"
+            >
+              <div className="h-40 bg-gradient-to-br from-violet-100 to-pink-100 flex items-center justify-center overflow-hidden">
+                {post.image ? (
+                  <img 
+                    src={post.image}
+                    alt={post.imageAlt || post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                ) : (
+                  <span className="text-4xl opacity-50">📖</span>
+                )}
+              </div>
+              <div className="p-5">
+                <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 leading-snug group-hover:text-violet-600 transition-colors">
+                  {post.title}
+                </h3>
+                <p className="text-gray-600 text-sm line-clamp-2 mb-3">
+                  {post.description}
+                </p>
+                <div className="flex items-center gap-3 text-xs text-gray-500">
+                  <span>{formatDate(post.publishedAt)}</span>
+                  <span>•</span>
+                  <span>{post.readingTime || calculateReadingTime(post.content?.intro)} phút</span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <Link 
+            href="/blog"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-50 hover:border-gray-300 transition-all"
+          >
+            Xem tất cả bài viết
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 // Structured Data cho SEO
 const jsonLd = {
@@ -214,12 +284,15 @@ export default function HomePage() {
         <header role="banner">
           <nav className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50" aria-label="Main navigation">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+              {/* Logo */}
               <Logo size="md" />
-              <div className="flex gap-2 sm:gap-3">
-                <Link href="/login" className="px-3 sm:px-6 py-2 text-sm sm:text-base text-violet-600 font-bold hover:bg-violet-50 rounded-full transition-all" aria-label="Đăng nhập vào tài khoản">
+              
+              {/* Auth Buttons */}
+              <div className="flex items-center gap-2 sm:gap-3">
+                <Link href="/login" className="px-4 sm:px-5 py-2 text-sm sm:text-base text-violet-600 font-semibold hover:bg-violet-50 rounded-full transition-all" aria-label="Đăng nhập vào tài khoản">
                   Đăng nhập
                 </Link>
-                <Link href="/register" className="px-3 sm:px-6 py-2 text-sm sm:text-base bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white font-bold rounded-full hover:scale-105 transition-all shadow-lg" aria-label="Đăng ký tài khoản miễn phí">
+                <Link href="/register" className="px-4 sm:px-5 py-2 text-sm sm:text-base bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white font-semibold rounded-full hover:scale-105 transition-all shadow-lg" aria-label="Đăng ký tài khoản miễn phí">
                   Đăng ký
                 </Link>
               </div>
@@ -464,6 +537,9 @@ export default function HomePage() {
         </div>
       </section>
 
+        {/* Blog Section - Chia sẻ cho phụ huynh */}
+        <BlogSection />
+
         {/* CTA Section - Đăng ký học Soroban */}
         <section className="py-12 sm:py-20 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500" aria-labelledby="cta-heading">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center text-white">
@@ -501,6 +577,7 @@ export default function HomePage() {
                   <li><Link href="/practice" className="hover:text-white transition-colors">Luyện tập</Link></li>
                   <li><Link href="/compete" className="hover:text-white transition-colors">Thi đấu</Link></li>
                   <li><Link href="/leaderboard" className="hover:text-white transition-colors">Xếp hạng</Link></li>
+                  <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
                 </ul>
               </nav>
             </div>

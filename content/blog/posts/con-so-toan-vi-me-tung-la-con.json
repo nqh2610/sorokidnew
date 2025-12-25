@@ -1,0 +1,92 @@
+{
+  "slug": "con-so-toan-vi-me-tung-la-con",
+  "title": "Con sợ toán vì mẹ từng la con – Mình nhận ra muộn",
+  "description": "Mình hay la con khi con làm sai toán. Hóa ra đó là nguyên nhân con sợ học.",
+  "category": "cach-giup-con-hoc-toan-nhe-nhang",
+  "keywords": [
+    "con sợ toán",
+    "la con khi học",
+    "tâm lý học toán"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/me-la-con.jpg",
+  "imageAlt": "Mẹ châu Á ngồi cạnh con với vẻ mặt hối hận",
+  "readingTime": 5,
+  "categoryOrder": 4,
+  "order": 19,
+  "content": {
+    "intro": "\"Sao đơn giản thế mà cũng sai!\" – Mình hay nói câu này. Cho đến khi con mình khóc và nói: \"Con ghét học toán.\" Mình mới giật mình.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình đã sai ở đâu?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mỗi lần con sai, mình bực mình. Thở dài. Nói to. Đôi khi quát."
+      },
+      {
+        "type": "paragraph",
+        "text": "Não con tiếp nhận: \"Toán = bị la = cảm giác tệ.\" Dần dần con sợ ngồi vào bàn học."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Trẻ con học theo cảm xúc. Khi cảm xúc tiêu cực, não không tiếp thu được."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình đã thay đổi thế này"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Khi con sai, mình hỏi thay vì la**\n- \"Con tính thế nào nhỉ?\"\n- \"À, chỗ này hơi khó đấy.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Khen nỗ lực, không chỉ khen đúng**\n- \"Con ngồi tập trung tốt quá.\"\n- \"Con làm kiên trì lắm.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Cho con tự học với app**\n- App không bao giờ la con.\n- Sai thì làm lại, không có áp lực."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết quả bất ngờ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sau 1 tháng, con chủ động xin học. \"Mẹ ơi, con làm Sorokid nha!\" Mình suýt khóc."
+      },
+      {
+        "type": "paragraph",
+        "text": "Con không còn sợ toán nữa. Thực ra con không ghét toán – con chỉ ghét bị la."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Nếu bạn từng la con, không sao cả. Bắt đầu thay đổi từ hôm nay. Chưa muộn đâu."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Làm sao để kiên nhẫn hơn khi kèm con?",
+      "answer": "Hít thở sâu trước khi phản ứng. Hoặc để con tự học với app, bớt tương tác trực tiếp."
+    },
+    {
+      "question": "Con đã sợ toán rồi, có sửa được không?",
+      "answer": "Được. Nhưng cần thời gian và sự kiên nhẫn. Khoảng 1-2 tháng học nhẹ nhàng con sẽ bớt sợ."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid – con tự học, không ai la, không áp lực.",
+    "buttonText": "Thử ngay miễn phí",
+    "buttonLink": "/register"
+  }
+}

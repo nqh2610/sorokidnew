@@ -1,0 +1,97 @@
+{
+  "slug": "con-trai-va-con-gai-hoc-toan-khac-nhau-khong",
+  "title": "Con trai và con gái học toán khác nhau không? – Sự thật mình tìm hiểu được",
+  "description": "\"Con gái không giỏi toán bằng con trai\" – mình từng nghe câu này. Tìm hiểu xong mình thấy khác.",
+  "category": "cach-giup-con-hoc-toan-nhe-nhang",
+  "keywords": [
+    "con gái học toán",
+    "giới tính và học toán",
+    "định kiến giới trong học tập"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-gai-hoc-toan.jpg",
+  "imageAlt": "Bé gái châu Á đang làm toán tự tin",
+  "readingTime": 6,
+  "categoryOrder": 4,
+  "order": 15,
+  "content": {
+    "intro": "\"Con gái thường giỏi văn, con trai giỏi toán\" – Mình nghe câu này từ nhỏ. Giờ mình có con gái, mình tự hỏi: điều đó có đúng không?",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình tìm hiểu nghiên cứu"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nghiên cứu cho thấy: không có khác biệt đáng kể về khả năng toán học bẩm sinh giữa con trai và con gái."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sự khác biệt (nếu có) đến từ: môi trường, kỳ vọng của người lớn, và định kiến xã hội."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Định kiến ảnh hưởng thế nào?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nếu con gái luôn được nói \"con gái không giỏi toán\", con sẽ tin điều đó. Con sẽ ít cố gắng hơn."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ngược lại, nếu con được khuyến khích, con sẽ tự tin thử thách."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Đừng để định kiến giới hạn con. Con trai hay con gái đều có thể giỏi toán nếu được hỗ trợ đúng cách."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Con gái mình học toán thế nào"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không bao giờ nói \"con gái không cần giỏi toán\". Mình cho con học Sorokid như bất kỳ đứa trẻ nào."
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình giờ tính nhẩm nhanh. Con tự tin. Con không nghĩ giới tính là rào cản."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lời khuyên cho cha mẹ có con gái"
+      },
+      {
+        "type": "paragraph",
+        "text": "- Không nói \"con gái không giỏi toán\".\n- Khen con khi con cố gắng làm toán.\n- Cho con thấy những người phụ nữ giỏi toán.\n- Tạo môi trường học tập bình đẳng."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Con gái có thể giỏi toán như bất kỳ ai. Đừng để định kiến cản bước con."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Con gái có thể học Soroban tốt không?",
+      "answer": "Hoàn toàn. Soroban không phân biệt giới tính. Ai tập luyện đều đặn đều giỏi được."
+    },
+    {
+      "question": "Làm sao giúp con gái tự tin với toán?",
+      "answer": "Khuyến khích, khen ngợi nỗ lực, không so sánh với con trai, cho con thấy hình mẫu phụ nữ giỏi toán."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid dành cho tất cả các bé, không phân biệt giới tính.",
+    "buttonText": "Cho con học thử",
+    "buttonLink": "/register"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "slug": "tre-hieu-dong-can-ho-tro-hoc-toan-the-nao",
+  "title": "Con mình hiếu động quá – học toán 5 phút là ngọ nguậy. Mình làm thế này",
+  "description": "Con không ngồi yên được. Bắt ngồi học là chạy. Mình tìm cách phù hợp với con.",
+  "category": "cach-giup-con-hoc-toan-nhe-nhang",
+  "keywords": [
+    "trẻ hiếu động học toán",
+    "con không ngồi yên",
+    "phương pháp cho trẻ hiếu động"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-hieu-dong.jpg",
+  "imageAlt": "Bé trai châu Á hiếu động đứng bên bàn học với năng lượng cao",
+  "readingTime": 6,
+  "categoryOrder": 4,
+  "order": 16,
+  "content": {
+    "intro": "Con mình như có pin Duracell. Chạy cả ngày. Bắt ngồi học 10 phút là như hành hình. Mình từng nghĩ con có vấn đề. Rồi mình thay đổi cách tiếp cận.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình từng ép con ngồi yên"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Ngồi xuống! Học đi!\" – Mình nói hàng chục lần mỗi tối. Con ngồi 3 phút, đứng dậy. Mình tức."
+      },
+      {
+        "type": "paragraph",
+        "text": "Càng ép con càng ghét học. Mối quan hệ mẹ con căng thẳng."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình hiểu con hơn"
+      },
+      {
+        "type": "paragraph",
+        "text": "Trẻ hiếu động không phải \"hư\". Đó là cách não bộ hoạt động. Con cần vận động để giải phóng năng lượng."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ép con ngồi yên = đi ngược lại bản năng. Không hiệu quả."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Đừng ép trẻ hiếu động thành trẻ ngồi yên. Hãy tìm cách học phù hợp với năng lượng của con."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình thay đổi thế nào"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Cho con vận động trước:** 15 phút chạy nhảy, sau đó mới ngồi học. Năng lượng dư bớt đi."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Chia nhỏ thời gian:** 5 phút học + 2 phút nghỉ + 5 phút học. Không ép liên tục."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Học có tương tác:** Sorokid có animation, có phản hồi ngay. Con thích hơn ngồi đọc sách."
+      },
+      {
+        "type": "paragraph",
+        "text": "**4. Cho đứng học:** Con đứng cạnh bàn, tay cầm tablet. Không bắt ngồi."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bây giờ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình học Sorokid 15 phút mỗi ngày. Vẫn ngọ nguậy, nhưng hoàn thành bài."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không còn ép con ngồi yên. Mình làm việc với năng lượng của con, không chống lại nó."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Trẻ hiếu động vẫn học được. Chỉ cần phương pháp phù hợp."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Trẻ hiếu động có học Soroban được không?",
+      "answer": "Được. Soroban cần sự tập trung ngắn. App có tương tác, phù hợp với trẻ cần kích thích liên tục."
+    },
+    {
+      "question": "Làm sao để con tập trung lâu hơn?",
+      "answer": "Cho vận động trước khi học, chia nhỏ thời gian, nghỉ giữa chừng, dùng công cụ có tương tác."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có bài học ngắn, phù hợp với trẻ hiếu động.",
+    "buttonText": "Cho con thử",
+    "buttonLink": "/register"
+  }
+}

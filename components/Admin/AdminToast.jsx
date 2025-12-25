@@ -57,6 +57,8 @@ function ToastContainer({ toasts, removeToast }) {
   );
 }
 
+// Default export for compatibility
+export default { AdminToastProvider, useAdminToast };
 function Toast({ toast, onClose }) {
   const { type, message } = toast;
 

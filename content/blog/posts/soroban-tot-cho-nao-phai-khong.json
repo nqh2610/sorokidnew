@@ -1,0 +1,105 @@
+{
+  "slug": "soroban-tot-cho-nao-phai-khong",
+  "title": "Soroban tốt cho não – mình tìm hiểu kỹ xem có thật không",
+  "description": "Nghe quảng cáo nói Soroban phát triển não. Mình tra cứu nghiên cứu xem có đúng không.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "soroban phát triển não",
+    "lợi ích của soroban",
+    "nghiên cứu về soroban"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/nao-bo-tre.jpg",
+  "imageAlt": "Bé châu Á tập trung suy nghĩ với hình ảnh não bộ phát sáng minh họa",
+  "readingTime": 7,
+  "categoryOrder": 1,
+  "order": 35,
+  "content": {
+    "intro": "\"Soroban phát triển não phải trái\", \"Soroban giúp con thông minh hơn\" – Mình đọc được nhiều quảng cáo thế. Nhưng mình muốn biết: có nghiên cứu khoa học chứng minh không?",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình tìm hiểu được gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Có nhiều nghiên cứu về ảnh hưởng của Soroban lên não bộ. Một số từ Nhật Bản, Trung Quốc và các trường đại học."
+      },
+      {
+        "type": "paragraph",
+        "text": "Kết quả cho thấy: trẻ học Soroban có sự hoạt động khác biệt ở não khi tính toán so với trẻ không học."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Soroban giúp gì cho não?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Kích hoạt nhiều vùng não:** Khi tính nhẩm Soroban, não xử lý cả hình ảnh (bàn tính) và số. Nhiều vùng não làm việc cùng lúc."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Rèn trí nhớ ngắn hạn:** Phải nhớ vị trí hạt trong đầu. Đây là bài tập cho trí nhớ làm việc."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Tăng khả năng tập trung:** Tính nhẩm đòi hỏi tập trung cao độ. Rèn luyện đều đặn giúp tăng khả năng này."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Soroban có lợi ích cho não – điều này có cơ sở khoa học. Nhưng đừng kỳ vọng \"con thông minh gấp đôi\". Hiệu quả cần thời gian."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Điều mình cần thận trọng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Không phải mọi quảng cáo đều chính xác. \"Soroban giúp con IQ cao\" – Không có nghiên cứu chứng minh rõ ràng điều này."
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban tốt cho não, nhưng không phải \"phép màu\". Cần kết hợp với chế độ dinh dưỡng, ngủ đủ, vui chơi..."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình quyết định thế nào"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con học Sorokid vì:"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. Có lợi ích cho tính toán – chắc chắn.\n2. Có lợi ích cho não – có cơ sở, nhưng không quá kỳ vọng.\n3. Con thích – quan trọng nhất."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Soroban không phải thuốc thần. Nhưng là công cụ tốt để rèn luyện não và tính toán."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Soroban có làm con thông minh hơn không?",
+      "answer": "Soroban giúp rèn luyện một số kỹ năng não bộ. Nhưng \"thông minh\" phụ thuộc nhiều yếu tố. Đừng kỳ vọng quá cao."
+    },
+    {
+      "question": "Học bao lâu thì thấy lợi ích cho não?",
+      "answer": "Các nghiên cứu thường theo dõi từ 6 tháng - 2 năm. Lợi ích đến dần, không phải ngay lập tức."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid giúp con rèn luyện tính toán và phát triển tư duy.",
+    "buttonText": "Cho con học thử",
+    "buttonLink": "/register"
+  }
+}

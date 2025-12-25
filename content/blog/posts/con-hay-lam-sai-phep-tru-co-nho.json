@@ -1,0 +1,88 @@
+{
+  "slug": "con-hay-lam-sai-phep-tru-co-nho",
+  "title": "Con hay làm sai phép trừ có nhớ – Mình chỉ con kiểu này",
+  "description": "Phép trừ có nhớ là cơn ác mộng của nhiều trẻ lớp 2-3. Con mình cũng vậy, nhưng giờ đã khác.",
+  "category": "con-gap-kho-khan-hoc-toan",
+  "keywords": [
+    "phép trừ có nhớ",
+    "con sai phép trừ",
+    "dạy trừ có nhớ"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/phep-tru-co-nho.jpg",
+  "imageAlt": "Bé châu Á đang làm phép tính trừ",
+  "readingTime": 5,
+  "categoryOrder": 2,
+  "order": 19,
+  "content": {
+    "intro": "Phép cộng có nhớ con mình làm tốt. Nhưng đến phép trừ có nhớ thì... sai tới 70%. Mình phải tìm cách khác.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vấn đề nằm ở đâu?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Phép cộng có nhớ: con cộng rồi mang sang.\nPhép trừ có nhớ: con phải mượn rồi trừ. Logic hơi khác."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhiều trẻ bị lẫn: đáng mượn thì lại cộng thêm. Hoặc quên trả lại sau khi mượn."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách mình dạy con"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 1: Dùng đồ vật thật**\n- Lấy 10 viên kẹo. Bảo con lấy đi 7 viên.\n- Con thiếu → phải \"mượn\" 1 gói 10 viên.\n- Con hiểu được khái niệm \"mượn\"."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 2: Đánh dấu khi mượn**\n- Viết dấu chấm nhỏ ở số bị mượn.\n- Nhắc con: \"Thấy chấm là trừ thêm 1.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 3: Luyện tập đều đặn**\n- Mỗi ngày 5-10 bài trừ có nhớ.\n- Dùng app để con không chán."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Mẹo nhỏ: Nói to \"mượn 1\" khi tính. Giúp não ghi nhớ hành động này."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết quả sau 2 tuần"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình từ sai 70% xuống chỉ còn 10%. Tốc độ tính cũng nhanh hơn vì não đã quen."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Phép trừ có nhớ khó thật. Nhưng kiên trì luyện tập, con nào cũng làm được."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Con lớp mấy thì học phép trừ có nhớ?",
+      "answer": "Thường là lớp 2. Nhưng nhiều con vẫn sai đến lớp 3-4."
+    },
+    {
+      "question": "Dùng Soroban có giúp phép trừ có nhớ không?",
+      "answer": "Có. Soroban giúp con hiểu trực quan việc \"mượn\" qua hạt tính."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có bài luyện phép trừ có nhớ với hình ảnh trực quan.",
+    "buttonText": "Dùng thử miễn phí",
+    "buttonLink": "/register"
+  }
+}
