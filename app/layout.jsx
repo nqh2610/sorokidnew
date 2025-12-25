@@ -8,34 +8,40 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata = {
   metadataBase: new URL('https://sorokid.com'),
   title: {
-    default: 'Sorokid - Học Soroban Online | Tính Nhẩm Nhanh Cho Trẻ Em',
-    template: '%s | Sorokid'
+    default: 'Sorokid - Ứng dụng học Soroban Online | Tính Nhẩm Nhanh Cho Học Sinh Tiểu Học',
+    template: '%s | Sorokid - App học Soroban'
   },
-  description: 'Sorokid - Nền tảng học Soroban trực tuyến #1 Việt Nam. Học tính nhẩm nhanh qua game, bàn tính ảo, bài học khoa học. Phù hợp học sinh tiểu học 6-12 tuổi. Đăng ký miễn phí!',
+  description: 'Sorokid - Ứng dụng học Soroban trực tuyến #1 Việt Nam. Học tính nhẩm nhanh qua game, bàn tính ảo tương tác. Phù hợp học sinh tiểu học 6-12 tuổi. Phụ huynh đồng hành cùng con tại nhà. Đăng ký miễn phí!',
   keywords: [
-    'học soroban online', 'soroban', 'học tính nhẩm', 'bàn tính soroban',
-    'sorokid', 'toán tư duy', 'anzan', 'tính nhẩm nhanh',
-    'học soroban cho trẻ em', 'soroban tiểu học', 'abacus việt nam',
-    'luyện tính nhẩm online', 'app học soroban', 'game học toán',
-    'dạy con học soroban tại nhà', 'phần mềm học soroban'
+    'ứng dụng học soroban', 'app học soroban', 'học soroban online',
+    'soroban cho học sinh tiểu học', 'học tính nhẩm online',
+    'bàn tính soroban ảo', 'sorokid', 'app học toán cho bé',
+    'toán tư duy cho trẻ em', 'anzan tính nhẩm',
+    'phần mềm học soroban', 'game học toán tiểu học',
+    'phụ huynh kèm con học toán', 'tự học soroban tại nhà',
+    'ứng dụng toán cho học sinh tiểu học', 'app tính nhẩm nhanh'
   ],
-  authors: [{ name: 'Sorokid Team' }],
+  authors: [{ name: 'Sorokid Team', url: 'https://sorokid.com' }],
   creator: 'Sorokid',
   publisher: 'Sorokid',
+  applicationName: 'Sorokid',
+  referrer: 'origin-when-cross-origin',
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
   },
   openGraph: {
-    title: 'Sorokid - Học Soroban Online | Tính Nhẩm Nhanh Cho Trẻ Em',
-    description: 'Nền tảng học Soroban trực tuyến #1 Việt Nam. Học tính nhẩm qua game, phù hợp học sinh tiểu học. Đăng ký miễn phí!',
+    title: 'Sorokid - Ứng dụng học Soroban Online | Tính Nhẩm Cho Học Sinh Tiểu Học',
+    description: 'Ứng dụng học Soroban trực tuyến #1 Việt Nam. Học tính nhẩm qua game, phụ huynh đồng hành cùng con tại nhà. Đăng ký miễn phí!',
     url: 'https://sorokid.com',
     siteName: 'Sorokid',
     locale: 'vi_VN',
@@ -45,25 +51,29 @@ export const metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Sorokid - Học Soroban Online cho trẻ em Việt Nam',
+        alt: 'Sorokid - Ứng dụng học Soroban Online cho học sinh tiểu học Việt Nam',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sorokid - Học Soroban Online | Tính Nhẩm Nhanh',
-    description: 'Nền tảng học Soroban trực tuyến #1 Việt Nam. Học qua game, phù hợp học sinh tiểu học.',
+    title: 'Sorokid - App học Soroban Online | Tính Nhẩm Nhanh',
+    description: 'Ứng dụng học Soroban #1 Việt Nam. Học qua game, phù hợp học sinh tiểu học 6-12 tuổi.',
     images: ['/og-image.png'],
     creator: '@sorokid',
   },
   alternates: {
     canonical: 'https://sorokid.com',
+    languages: {
+      'vi-VN': 'https://sorokid.com',
+    },
   },
   verification: {
     google: 'google-site-verification-code',
   },
   category: 'education',
+  classification: 'Educational Application',
   icons: {
     icon: [
       { url: '/icon.svg', type: 'image/svg+xml' },
@@ -71,6 +81,12 @@ export const metadata = {
     apple: [
       { url: '/apple-icon.svg', type: 'image/svg+xml' },
     ],
+  },
+  other: {
+    'apple-mobile-web-app-title': 'Sorokid',
+    'application-name': 'Sorokid',
+    'msapplication-TileColor': '#8B5CF6',
+    'theme-color': '#8B5CF6',
   },
 };
 
