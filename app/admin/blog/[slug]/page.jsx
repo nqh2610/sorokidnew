@@ -528,10 +528,17 @@ export default function AdminBlogDetailPage() {
         {post.faq?.length > 0 && (
           <div className="mt-6">
             <h3 className="text-sm text-slate-400 mb-2">FAQ ({post.faq.length} câu hỏi)</h3>
-            <div className="space-y-2">
+            <div className="space-y-3">
               {post.faq.map((item, i) => (
-                <div key={i} className="bg-slate-700/30 rounded-lg p-3">
-                  <div className="text-white font-medium">{item.question}</div>
+                <div key={i} className="bg-slate-700/30 rounded-lg p-4">
+                  <div className="flex items-start gap-2 mb-2">
+                    <span className="text-orange-400 text-xs font-mono bg-orange-500/20 px-2 py-0.5 rounded flex-shrink-0">Q</span>
+                    <span className="text-white font-medium">{item.question}</span>
+                  </div>
+                  <div className="flex items-start gap-2 ml-0 pl-6 border-l-2 border-slate-600">
+                    <span className="text-green-400 text-xs font-mono bg-green-500/20 px-2 py-0.5 rounded flex-shrink-0">A</span>
+                    <span className="text-slate-300 text-sm">{item.answer}</span>
+                  </div>
                 </div>
               ))}
             </div>
