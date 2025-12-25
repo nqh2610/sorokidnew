@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { AdminToast } from '@/components/Admin';
@@ -55,7 +55,9 @@ export default function AdminBlogDetailPage() {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
+  const [uploadLoading, setUploadLoading] = useState(false);
   const [toast, setToast] = useState(null);
+  const fileInputRef = useRef(null);
 
   // Fetch post
   useEffect(() => {
@@ -127,6 +129,43 @@ export default function AdminBlogDetailPage() {
       setToast({ type: 'error', message: error.message || 'Không thể gỡ xuất bản' });
     } finally {
       setActionLoading(false);
+    }
+  };
+
+  // Handle image upload
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      setUploadLoading(true);
+      
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('slug', post.slug);
+
+      const res = await fetch('/api/admin/blog/upload-image', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      // Update post with new image (add timestamp to bust cache)
+      setPost({ ...post, image: data.image + '?t=' + Date.now() });
+      setToast({ type: 'success', message: 'Đã thay ảnh thành công' });
+    } catch (error) {
+      setToast({ type: 'error', message: error.message || 'Không thể upload ảnh' });
+    } finally {
+      setUploadLoading(false);
+      // Reset input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
     }
   };
 
@@ -326,14 +365,63 @@ export default function AdminBlogDetailPage() {
           </div>
 
           {/* Image */}
-          {post.image && (
-            <div>
-              <label className="block text-sm text-slate-400 mb-1">Featured Image</label>
-              <div className="bg-slate-700/50 rounded-lg p-2">
-                <img src={post.image} alt={post.title} className="w-full max-w-md rounded-lg" />
+          <div>
+            <label className="block text-sm text-slate-400 mb-2">Featured Image</label>
+            <div className="bg-slate-700/50 rounded-lg p-4">
+              {post.image ? (
+                <div className="space-y-3">
+                  <img 
+                    src={post.image} 
+                    alt={post.title} 
+                    className="w-full max-w-md rounded-lg"
+                  />
+                  <div className="text-xs text-slate-500 font-mono">
+                    {post.image.split('?')[0]}
+                  </div>
+                </div>
+              ) : (
+                <div className="text-slate-500 text-center py-8">
+                  Chưa có ảnh
+                </div>
+              )}
+              
+              {/* Upload button */}
+              <div className="mt-4">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/jpeg,image/jpg,image/png,image/webp"
+                  onChange={handleImageUpload}
+                  className="hidden"
+                  id="image-upload"
+                />
+                <label
+                  htmlFor="image-upload"
+                  className={`inline-flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg font-medium transition-colors cursor-pointer ${uploadLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                  {uploadLoading ? (
+                    <>
+                      <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Đang upload...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      {post.image ? 'Thay ảnh' : 'Upload ảnh'}
+                    </>
+                  )}
+                </label>
+                <p className="text-xs text-slate-500 mt-2">
+                  JPG, PNG, WebP • Tối đa 2MB • Ảnh mới sẽ ghi đè ảnh cũ
+                </p>
               </div>
             </div>
-          )}
+          </div>
         </div>
       </div>
 
@@ -359,13 +447,77 @@ export default function AdminBlogDetailPage() {
         {/* Sections */}
         {post.content?.sections?.length > 0 && (
           <div>
-            <h3 className="text-sm text-slate-400 mb-2">Các phần ({post.content.sections.length})</h3>
-            <div className="space-y-2">
+            <h3 className="text-sm text-slate-400 mb-2">Nội dung chính ({post.content.sections.length} phần)</h3>
+            <div className="space-y-3 max-h-[600px] overflow-y-auto pr-2">
               {post.content.sections.map((section, i) => (
-                <div key={i} className="bg-slate-700/30 rounded-lg p-3">
-                  <div className="text-white font-medium">
-                    {i + 1}. {section.heading}
-                  </div>
+                <div key={i} className="bg-slate-700/30 rounded-lg p-4">
+                  {/* Heading */}
+                  {section.type === 'heading' && (
+                    <div className="flex items-start gap-2">
+                      <span className="text-purple-400 text-xs font-mono bg-purple-500/20 px-2 py-0.5 rounded">H{section.level || 2}</span>
+                      <span className="text-white font-semibold">{section.text}</span>
+                    </div>
+                  )}
+                  
+                  {/* Paragraph */}
+                  {section.type === 'paragraph' && (
+                    <div className="flex items-start gap-2">
+                      <span className="text-blue-400 text-xs font-mono bg-blue-500/20 px-2 py-0.5 rounded">P</span>
+                      <span className="text-slate-300 text-sm">{section.text}</span>
+                    </div>
+                  )}
+                  
+                  {/* List */}
+                  {section.type === 'list' && (
+                    <div>
+                      <span className="text-green-400 text-xs font-mono bg-green-500/20 px-2 py-0.5 rounded mb-2 inline-block">LIST</span>
+                      <ul className="mt-2 space-y-1 ml-4">
+                        {section.items?.map((item, j) => (
+                          <li key={j} className="text-slate-300 text-sm flex items-start gap-2">
+                            <span className="text-green-400">•</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {/* Callout */}
+                  {section.type === 'callout' && (
+                    <div className={`border-l-4 pl-3 ${section.style === 'empathy' ? 'border-amber-500 bg-amber-500/10' : 'border-green-500 bg-green-500/10'}`}>
+                      <span className="text-amber-400 text-xs font-mono bg-amber-500/20 px-2 py-0.5 rounded mb-2 inline-block">
+                        {section.style === 'empathy' ? '💛 EMPATHY' : '💚 REASSURE'}
+                      </span>
+                      <p className="text-slate-300 text-sm mt-1">{section.text}</p>
+                    </div>
+                  )}
+                  
+                  {/* Table */}
+                  {section.type === 'table' && (
+                    <div>
+                      <span className="text-cyan-400 text-xs font-mono bg-cyan-500/20 px-2 py-0.5 rounded mb-2 inline-block">TABLE</span>
+                      <div className="mt-2 overflow-x-auto">
+                        <table className="w-full text-sm">
+                          <thead>
+                            <tr>
+                              {section.headers?.map((h, j) => (
+                                <th key={j} className="text-left text-slate-400 p-2 border-b border-slate-600">{h}</th>
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {section.rows?.map((row, j) => (
+                              <tr key={j}>
+                                {row.map((cell, k) => (
+                                  <td key={k} className="text-slate-300 p-2 border-b border-slate-700">{cell}</td>
+                                ))}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
