@@ -141,6 +141,10 @@ if exist "%PROJECT_DIR%components\Soroban" (
     xcopy "%PROJECT_DIR%components\Soroban" "%OUTPUT_DIR%\components\Soroban\" /E /I /Q /Y >nul
     echo     [OK] components/Soroban
 )
+if exist "%PROJECT_DIR%components\Analytics" (
+    xcopy "%PROJECT_DIR%components\Analytics" "%OUTPUT_DIR%\components\Analytics\" /E /I /Q /Y >nul
+    echo     [OK] components/Analytics (Google Analytics)
+)
 
 :: Copy content folder (BLOG DATA - BAT BUOC)
 if exist "%PROJECT_DIR%content" (
