@@ -1,0 +1,110 @@
+{
+  "slug": "soroban-cho-nguoi-lon-co-hoc-duoc-khong",
+  "title": "Mình 35 tuổi tập Soroban – để hiểu con đang học gì",
+  "description": "Con học mà mình không biết nó là gì. Mình quyết định tự học thử. Đây là trải nghiệm của mình.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "soroban cho người lớn",
+    "phụ huynh học soroban",
+    "tự học soroban"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/me-hoc-soroban.jpg",
+  "imageAlt": "Mẹ châu Á đang tập dùng bàn tính Soroban",
+  "readingTime": 6,
+  "categoryOrder": 1,
+  "order": 28,
+  "content": {
+    "intro": "Con mình học Soroban, mình chỉ biết gật gù. Con hỏi: \"Mẹ ơi, con làm đúng chưa?\" Mình... không biết. Mình quyết định tự học thử 1 tuần xem sao.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ngày 1: Ủa, khó vậy sao?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình nghĩ đơn giản lắm. Hạt trên là 5, hạt dưới là 1. Nhưng khi tính 4 + 3, mình không biết làm."
+      },
+      {
+        "type": "paragraph",
+        "text": "Té ra phải học \"bạn của 5\", \"bạn của 10\". 4 + 3 = 4 + (5-2) = thêm 5, bớt 2. Mình đọc đi đọc lại 3 lần mới hiểu."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ngày 3: Bắt đầu quen"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình tập mỗi ngày 15 phút. Phép cộng đơn giản bắt đầu tự động. 2 + 3, tay mình gạt hạt không cần suy nghĩ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình hiểu tại sao con phải luyện tập nhiều. Cái này cần thành phản xạ, không phải hiểu là xong."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ngày 7: Mình bắt đầu \"thấy\" số"
+      },
+      {
+        "type": "paragraph",
+        "text": "Lúc đi siêu thị, tính tiền mình bất giác hình dung bàn tính trong đầu. Không rõ lắm, nhưng có."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình hiểu cảm giác con mình đang trải qua. Cái \"nhìn thấy số\" này rất khác với tính trên giấy."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Học thử giúp mình đồng cảm với con hơn. Mình biết phần nào khó, phần nào cần kiên nhẫn."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Người lớn học có chậm hơn không?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Có và không. Người lớn hiểu lý thuyết nhanh hơn. Nhưng tay người lớn cứng hơn, phản xạ chậm hơn trẻ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình thấy con mình gạt hạt nhanh hơn mình sau 2 tuần. Trẻ con học vận động tốt hơn thật."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lợi ích của việc phụ huynh học thử"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. **Hiểu con học gì:** Biết phần nào khó, phần nào cần động viên.\n2. **Kiểm tra được:** Con hỏi mình trả lời được.\n3. **Làm gương:** Con thấy mẹ cũng học, con có động lực hơn."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Bạn không cần giỏi Soroban. Chỉ cần hiểu đủ để đồng hành cùng con. 1 tuần tập thử là đủ."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Người lớn có thể học Soroban không?",
+      "answer": "Được. Không có giới hạn tuổi. Chỉ là người lớn cần kiên nhẫn hơn vì phản xạ chậm hơn trẻ."
+    },
+    {
+      "question": "Phụ huynh cần học bao lâu để kèm con?",
+      "answer": "Khoảng 1-2 tuần tập cơ bản là đủ hiểu con đang học gì. Không cần thành thạo."
+    }
+  ],
+  "cta": {
+    "text": "Nếu bạn muốn học cùng con, Sorokid có tài khoản gia đình. Bố mẹ cũng có thể tập.",
+    "buttonText": "Tìm hiểu thêm",
+    "buttonLink": "/register"
+  }
+}

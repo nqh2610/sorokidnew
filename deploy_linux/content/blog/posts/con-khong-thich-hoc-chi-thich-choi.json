@@ -1,0 +1,92 @@
+{
+  "slug": "con-khong-thich-hoc-chi-thich-choi",
+  "title": "Con chỉ thích chơi, không thích học – mình từng lo, giờ thì khác",
+  "description": "Con mình 6 tuổi chỉ muốn chơi. Ép học là khóc. Mình tìm cách biến học thành chơi.",
+  "category": "cach-giup-con-hoc-toan-nhe-nhang",
+  "keywords": [
+    "trẻ không thích học",
+    "con chỉ thích chơi",
+    "học qua chơi"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-thich-choi.jpg",
+  "imageAlt": "Bé trai châu Á cầm đồ chơi trong khi vở toán để mở trên bàn",
+  "readingTime": 6,
+  "categoryOrder": 4,
+  "order": 14,
+  "content": {
+    "intro": "\"Con không muốn học! Con muốn chơi!\" – Con mình hét lên mỗi khi mình bảo làm bài. Mình sợ con lười. Mình ép. Càng ép càng khóc. Rồi mình thử cách khác.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Trẻ 5-7 tuổi có nhiệm vụ gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình đọc được: nhiệm vụ chính của trẻ nhỏ là CHƠI. Qua chơi, trẻ học về thế giới."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nếu mình ép con ngồi học như người lớn, con sẽ ghét học. Vì đó không phải cách con tiếp thu."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Trẻ không lười. Trẻ chỉ đang làm đúng việc của mình: chơi. Việc của người lớn là biến học thành chơi."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình thay đổi thế nào"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Không nói \"học\":** Mình không bảo con \"đi học\". Mình bảo \"đi chơi game Sorokid nhé\"."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Dùng app có game hóa:** Sorokid có level, có sao, có phần thưởng. Con nghĩ đang chơi, thực ra đang học."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Giới hạn thời gian:** 15 phút thôi. Con chưa kịp chán đã xong."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bây giờ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình tự mở Sorokid mỗi sáng. \"Mẹ ơi, con chơi nha!\" – Con không biết mình đang học toán."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không còn phải ép. Mình chỉ cần tạo môi trường đúng."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Đừng chống lại bản năng của trẻ. Hãy dùng nó. Trẻ thích chơi? Biến học thành chơi."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Con chỉ thích chơi có bình thường không?",
+      "answer": "Hoàn toàn bình thường với trẻ 5-7 tuổi. Chơi là cách trẻ học về thế giới. Đừng lo lắng."
+    },
+    {
+      "question": "Làm sao biến học thành chơi?",
+      "answer": "Dùng app có game hóa, biến bài tập thành trò chơi, cho phần thưởng nhỏ, không gọi là \"học\"."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid biến học toán thành trò chơi. Con chơi vui, mà vẫn học.",
+    "buttonText": "Cho con chơi thử",
+    "buttonLink": "/register"
+  }
+}

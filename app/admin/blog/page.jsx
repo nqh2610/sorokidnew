@@ -374,15 +374,15 @@ export default function AdminBlogPage() {
 
       {/* Filters */}
       <div className="bg-slate-800 rounded-xl p-4 mb-6 border border-slate-700">
-        <div className="flex flex-wrap gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {/* Search */}
-          <div className="flex-1 min-w-[200px]">
+          <div className="sm:col-span-2 lg:col-span-1">
             <input
               type="text"
               placeholder="Tìm kiếm bài viết..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
             />
           </div>
 
@@ -390,7 +390,7 @@ export default function AdminBlogPage() {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
           >
             <option value="all">Tất cả trạng thái</option>
             <option value="published">Published</option>
@@ -401,7 +401,7 @@ export default function AdminBlogPage() {
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
           >
             <option value="">Tất cả danh mục</option>
             {categories.map(cat => (
@@ -417,9 +417,9 @@ export default function AdminBlogPage() {
               setSortBy(by);
               setSortOrder(order);
             }}
-            className="px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
           >
-            <option value="categoryOrder-asc">📁 Theo Category + Thứ tự</option>
+            <option value="categoryOrder-asc">📁 Category + Thứ tự</option>
             <option value="createdAt-desc">Mới tạo nhất</option>
             <option value="createdAt-asc">Cũ nhất</option>
             <option value="publishedAt-desc">Mới xuất bản</option>
@@ -429,7 +429,7 @@ export default function AdminBlogPage() {
         </div>
       </div>
 
-      {/* Posts Table */}
+      {/* Posts List */}
       <div className="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
         {loading ? (
           <div className="p-12 text-center">
@@ -444,59 +444,122 @@ export default function AdminBlogPage() {
             <p className="text-slate-400">Không có bài viết nào</p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-slate-700 bg-slate-800/50">
-                  <th className="text-left px-4 py-4 text-sm font-medium text-slate-400 w-20">Ảnh</th>
-                  <th className="text-left px-4 py-4 text-sm font-medium text-slate-400">Bài viết</th>
-                  <th className="text-left px-4 py-4 text-sm font-medium text-slate-400">Danh mục</th>
-                  <th className="text-center px-4 py-4 text-sm font-medium text-slate-400">Trạng thái</th>
-                  <th className="text-center px-4 py-4 text-sm font-medium text-slate-400">Ngày tạo</th>
-                  <th className="text-center px-4 py-4 text-sm font-medium text-slate-400">Thao tác</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-700">
-                {currentPosts.map(post => (
-                  <tr key={post.slug} className="hover:bg-slate-700/30 transition-colors">
+          <>
+            {/* Mobile Card View */}
+            <div className="lg:hidden divide-y divide-slate-700">
+              {currentPosts.map(post => (
+                <div key={post.slug} className="p-4">
+                  <Link href={`/admin/blog/${post.slug}`} className="flex gap-3">
                     {/* Thumbnail */}
-                    <td className="px-4 py-3">
-                      <div className="w-16 h-12 rounded-lg overflow-hidden bg-slate-700 flex-shrink-0">
-                        {post.image ? (
-                          <img 
-                            src={post.image} 
-                            alt={post.title}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-slate-500">
-                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                          </div>
-                        )}
+                    <div className="w-20 h-16 rounded-lg overflow-hidden bg-slate-700 flex-shrink-0">
+                      {post.image ? (
+                        <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-slate-500">
+                          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                    {/* Info */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-white font-medium text-sm line-clamp-2 mb-1">{post.title}</h3>
+                      <div className="flex flex-wrap items-center gap-2 text-xs">
+                        <StatusBadge status={post.status} />
+                        <span className="text-slate-500">{getCategoryName(post.category)}</span>
                       </div>
-                    </td>
-
-                    {/* Title & Description */}
-                    <td className="px-4 py-4 max-w-md">
-                      <Link 
-                        href={`/admin/blog/${post.slug}`}
-                        className="block group"
+                    </div>
+                  </Link>
+                  {/* Mobile Actions */}
+                  <div className="flex items-center justify-end gap-2 mt-3 pt-3 border-t border-slate-700/50">
+                    <span className="text-xs text-slate-500 mr-auto">{formatDate(post.createdAt)}</span>
+                    {post.status === 'draft' ? (
+                      <button
+                        onClick={() => handlePublish(post.slug)}
+                        disabled={actionLoading === post.slug}
+                        className="px-3 py-1.5 text-xs font-medium bg-emerald-500/20 text-emerald-400 rounded-lg hover:bg-emerald-500/30 transition-colors disabled:opacity-50"
                       >
-                        <h3 className="text-white font-medium group-hover:text-purple-400 transition-colors line-clamp-1">
-                          {post.title}
-                        </h3>
-                        <p className="text-sm text-slate-400 line-clamp-1 mt-0.5">
-                          {post.description}
-                        </p>
-                      </Link>
-                    </td>
+                        {actionLoading === post.slug ? '...' : 'Publish'}
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleUnpublish(post.slug)}
+                        disabled={actionLoading === post.slug}
+                        className="px-3 py-1.5 text-xs font-medium bg-amber-500/20 text-amber-400 rounded-lg hover:bg-amber-500/30 transition-colors disabled:opacity-50"
+                      >
+                        {actionLoading === post.slug ? '...' : 'Unpublish'}
+                      </button>
+                    )}
+                    {post.status === 'published' && (
+                      <a
+                        href={`/blog/${post.slug}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1.5 text-xs font-medium bg-slate-700 text-slate-300 rounded-lg hover:bg-slate-600 transition-colors"
+                      >
+                        Xem
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
 
-                    {/* Category */}
-                    <td className="px-4 py-4">
-                      <span className="text-sm text-slate-300">
-                        {getCategoryName(post.category)}
+            {/* Desktop Table View */}
+            <div className="hidden lg:block overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-slate-700 bg-slate-800/50">
+                    <th className="text-left px-4 py-4 text-sm font-medium text-slate-400 w-20">Ảnh</th>
+                    <th className="text-left px-4 py-4 text-sm font-medium text-slate-400">Bài viết</th>
+                    <th className="text-left px-4 py-4 text-sm font-medium text-slate-400">Danh mục</th>
+                    <th className="text-center px-4 py-4 text-sm font-medium text-slate-400">Trạng thái</th>
+                    <th className="text-center px-4 py-4 text-sm font-medium text-slate-400">Ngày tạo</th>
+                    <th className="text-center px-4 py-4 text-sm font-medium text-slate-400">Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-700">
+                  {currentPosts.map(post => (
+                    <tr key={post.slug} className="hover:bg-slate-700/30 transition-colors">
+                      {/* Thumbnail */}
+                      <td className="px-4 py-3">
+                        <div className="w-16 h-12 rounded-lg overflow-hidden bg-slate-700 flex-shrink-0">
+                          {post.image ? (
+                            <img 
+                              src={post.image} 
+                              alt={post.title}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-slate-500">
+                              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
+                      </td>
+
+                      {/* Title & Description */}
+                      <td className="px-4 py-4 max-w-md">
+                        <Link 
+                          href={`/admin/blog/${post.slug}`}
+                          className="block group"
+                        >
+                          <h3 className="text-white font-medium group-hover:text-purple-400 transition-colors line-clamp-1">
+                            {post.title}
+                          </h3>
+                          <p className="text-sm text-slate-400 line-clamp-1 mt-0.5">
+                            {post.description}
+                          </p>
+                        </Link>
+                      </td>
+
+                      {/* Category */}
+                      <td className="px-4 py-4">
+                        <span className="text-sm text-slate-300">
+                          {getCategoryName(post.category)}
                       </span>
                     </td>
 
@@ -587,34 +650,58 @@ export default function AdminBlogPage() {
               </tbody>
             </table>
           </div>
+          </>
         )}
 
         {/* Pagination */}
         {!loading && posts.length > postsPerPage && (
-          <div className="border-t border-slate-700 px-6 py-4 flex items-center justify-between">
-            <div className="text-sm text-slate-400">
-              Hiển thị {startIndex + 1}-{Math.min(endIndex, posts.length)} / {posts.length} bài viết
-            </div>
-            <div className="flex items-center gap-2">
-              {/* Previous */}
+          <div className="border-t border-slate-700 px-4 sm:px-6 py-4">
+            {/* Mobile Pagination */}
+            <div className="flex sm:hidden items-center justify-between">
               <button
                 onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
-                className="px-3 py-1.5 rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="px-3 py-2 rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
               >
                 ← Trước
               </button>
+              <span className="text-sm text-slate-400">
+                {currentPage} / {totalPages}
+              </span>
+              <button
+                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+                className="px-3 py-2 rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
+              >
+                Sau →
+              </button>
+            </div>
 
-              {/* Page Numbers */}
-              <div className="flex items-center gap-1">
-                {Array.from({ length: totalPages }, (_, i) => i + 1)
-                  .filter(page => {
-                    // Show first, last, current, and adjacent pages
-                    return page === 1 || 
-                           page === totalPages || 
-                           Math.abs(page - currentPage) <= 1;
-                  })
-                  .map((page, index, arr) => (
+            {/* Desktop Pagination */}
+            <div className="hidden sm:flex items-center justify-between">
+              <div className="text-sm text-slate-400">
+                Hiển thị {startIndex + 1}-{Math.min(endIndex, posts.length)} / {posts.length} bài viết
+              </div>
+              <div className="flex items-center gap-2">
+                {/* Previous */}
+                <button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="px-3 py-1.5 rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  ← Trước
+                </button>
+
+                {/* Page Numbers */}
+                <div className="flex items-center gap-1">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1)
+                    .filter(page => {
+                      // Show first, last, current, and adjacent pages
+                      return page === 1 || 
+                             page === totalPages || 
+                             Math.abs(page - currentPage) <= 1;
+                    })
+                    .map((page, index, arr) => (
                     <span key={page} className="flex items-center">
                       {index > 0 && arr[index - 1] !== page - 1 && (
                         <span className="px-2 text-slate-500">...</span>
@@ -631,16 +718,17 @@ export default function AdminBlogPage() {
                       </button>
                     </span>
                   ))}
-              </div>
+                </div>
 
-              {/* Next */}
-              <button
-                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-                disabled={currentPage === totalPages}
-                className="px-3 py-1.5 rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                Sau →
-              </button>
+                {/* Next */}
+                <button
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                  className="px-3 py-1.5 rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  Sau →
+                </button>
+              </div>
             </div>
           </div>
         )}

@@ -285,7 +285,7 @@ export default function AdminBlogDetailPage() {
       </div>
 
       {/* Info Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
         <InfoCard
           label="Danh mục"
           value={post.category}

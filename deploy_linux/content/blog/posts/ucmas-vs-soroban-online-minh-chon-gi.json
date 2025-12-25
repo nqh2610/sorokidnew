@@ -1,0 +1,127 @@
+{
+  "slug": "ucmas-vs-soroban-online-minh-chon-gi",
+  "title": "UCMAS hay Soroban online – cuối cùng mình chọn cái không ngờ",
+  "description": "Mình từng định cho con học UCMAS. Nhưng sau khi tìm hiểu kỹ, mình lại quyết định khác.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "ucmas hay soroban",
+    "so sánh ucmas soroban",
+    "học toán tư duy"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/me-tim-hieu-soroban.jpg",
+  "imageAlt": "Mẹ châu Á đang nghiên cứu trên laptop",
+  "readingTime": 7,
+  "categoryOrder": 1,
+  "order": 26,
+  "content": {
+    "intro": "Mình biết UCMAS trước. Thấy quảng cáo trẻ tính nhẩm siêu nhanh, mình thích lắm. Đang định đăng ký thì phát hiện Soroban online. Mình so sánh và kết quả làm mình bất ngờ.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "UCMAS là gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "UCMAS cũng dạy tính nhẩm bằng bàn tính, giống Soroban. Khác biệt là UCMAS có chương trình đào tạo, thi cấp chứng chỉ quốc tế."
+      },
+      {
+        "type": "paragraph",
+        "text": "Trung tâm UCMAS có ở nhiều nơi. Con học trực tiếp 2 buổi/tuần, có giáo viên kèm."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cái mình thích ở UCMAS"
+      },
+      {
+        "type": "paragraph",
+        "text": "- Có lộ trình rõ ràng, có chứng chỉ\n- Giáo viên dạy trực tiếp\n- Môi trường học tập có bạn bè"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cái khiến mình đắn đo"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Học phí:** 2-3 triệu/tháng, chưa tính tài liệu. Học 2-3 năm tổng cũng 60-70 triệu."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Thời gian:** Phải đưa đón 2 buổi/tuần. Mình và chồng đều đi làm, khó sắp xếp."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Áp lực thi:** Mình sợ con bị áp lực phải thi lên cấp, lên đai."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Soroban online khác gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban online cũng dạy tính nhẩm bằng bàn tính, nhưng qua app. Con học ở nhà, bất cứ lúc nào."
+      },
+      {
+        "type": "paragraph",
+        "text": "- Học phí rẻ hơn nhiều (200-400k/tháng)\n- Không cần đưa đón\n- Học theo tốc độ của con, không áp lực thi"
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Cái mình lo nhất khi chọn online là: không có ai kèm, con có tự học được không? Nhưng thử rồi mình thấy con thích học qua app hơn là ngồi lớp."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Quyết định của mình"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình chọn Soroban online với Sorokid. Lý do:"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. **Phù hợp hoàn cảnh:** Vợ chồng mình bận, không có thời gian đưa đón.\n2. **Chi phí hợp lý:** Với mình, 300k/tháng dễ duy trì hơn 2.5 triệu.\n3. **Con thích:** Con mình học qua app tập trung hơn ngồi lớp."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "5 tháng sau"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình tính nhẩm được 2 chữ số. Chưa nhanh như video UCMAS quảng cáo, nhưng tiến bộ rõ so với trước."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không hối hận. Nếu sau này con muốn học chuyên sâu hơn, mình có thể xem xét trung tâm. Nhưng hiện tại, online đủ rồi."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "UCMAS và Soroban online đều dạy tính nhẩm. Chọn cái nào tùy hoàn cảnh gia đình bạn. Không có cái nào \"tốt hơn\" tuyệt đối."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "UCMAS và Soroban có giống nhau không?",
+      "answer": "Đều dạy tính nhẩm bằng bàn tính. UCMAS là chương trình có bản quyền, học tại trung tâm. Soroban online là học qua app."
+    },
+    {
+      "question": "Cái nào rẻ hơn?",
+      "answer": "Soroban online rẻ hơn nhiều. UCMAS khoảng 2-3 triệu/tháng, Soroban online khoảng 200-400k/tháng."
+    }
+  ],
+  "cta": {
+    "text": "Muốn thử Soroban online cho con? Sorokid có bản dùng thử miễn phí.",
+    "buttonText": "Cho con học thử",
+    "buttonLink": "/register"
+  }
+}

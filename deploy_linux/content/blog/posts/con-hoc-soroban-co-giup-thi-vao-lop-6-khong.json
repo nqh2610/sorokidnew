@@ -1,0 +1,97 @@
+{
+  "slug": "con-hoc-soroban-co-giup-thi-vao-lop-6-khong",
+  "title": "Con học Soroban có giúp thi vào lớp 6 không?",
+  "description": "Nhiều mẹ hỏi mình: Soroban có giúp con thi vào trường chuyên không? Mình chia sẻ kinh nghiệm.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "Soroban thi lớp 6",
+    "thi vào trường chuyên",
+    "Soroban lợi ích"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/soroban-thi-lop-6.jpg",
+  "imageAlt": "Học sinh châu Á đang làm bài thi với vẻ tự tin",
+  "readingTime": 6,
+  "categoryOrder": 1,
+  "order": 39,
+  "content": {
+    "intro": "Chị hàng xóm hỏi mình: \"Cho con học Soroban có giúp thi vào chuyên Amsterdam không?\" Mình trả lời thật: CÓ GIÚP, nhưng không phải theo cách bạn nghĩ.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Soroban giúp gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. **Tính nhanh và chính xác**\n   - Bài thi có giới hạn thời gian.\n   - Tính nhanh = làm được nhiều câu hơn."
+      },
+      {
+        "type": "paragraph",
+        "text": "2. **Tăng khả năng tập trung**\n   - Thi 60-90 phút cần tập trung cao.\n   - Soroban rèn não tập trung."
+      },
+      {
+        "type": "paragraph",
+        "text": "3. **Giảm sai sót nhỏ**\n   - Nhiều trẻ mất điểm vì sai tính.\n   - Soroban giúp não tính chuẩn hơn."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Soroban KHÔNG thay thế được gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "- Giải bài toán có lời văn phức tạp.\n- Tư duy logic nâng cao.\n- Kiến thức chuyên sâu về hình học, đại số."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Soroban là nền tảng tốt, nhưng muốn thi chuyên vẫn cần học thêm các dạng bài nâng cao."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Nên bắt đầu khi nào?"
+      },
+      {
+        "type": "paragraph",
+        "text": "- **Lớp 1-3**: Học Soroban để xây nền tảng.\n- **Lớp 4-5**: Tiếp tục Soroban + học thêm bài nâng cao."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nếu bắt đầu từ lớp 5 thì hơi muộn để thấy hiệu quả rõ rệt cho kỳ thi."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kinh nghiệm của mình"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình học Soroban từ lớp 2. Đến lớp 5, phần tính toán con không còn lo. Mình tập trung cho con học dạng bài nâng cao."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Soroban không phải phép màu. Nhưng nó giúp con có nền tảng vững để học lên cao."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Học Soroban bao lâu thì đủ để thi lớp 6?",
+      "answer": "Tối thiểu 2 năm học đều đặn. Bắt đầu từ lớp 2-3 là lý tưởng."
+    },
+    {
+      "question": "Có nên cho con học Soroban nếu chỉ còn 1 năm thi?",
+      "answer": "Vẫn có lợi, nhưng hiệu quả không bằng học sớm hơn."
+    }
+  ],
+  "cta": {
+    "text": "Xây nền tảng toán cho con từ sớm với Sorokid.",
+    "buttonText": "Bắt đầu ngay",
+    "buttonLink": "/register"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "slug": "hoc-toan-moi-ngay-15-phut-co-hieu-qua",
+  "title": "Cho con học toán 15 phút/ngày – tưởng ít nhưng hiệu quả bất ngờ",
+  "description": "Mình từng nghĩ phải học nhiều mới giỏi. Hóa ra 15 phút đều đặn còn hơn 2 tiếng cuối tuần.",
+  "category": "cach-giup-con-hoc-toan-nhe-nhang",
+  "keywords": [
+    "học toán 15 phút",
+    "học đều đặn",
+    "phương pháp học hiệu quả"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-hoc-15-phut.jpg",
+  "imageAlt": "Bé châu Á ngồi học với đồng hồ bấm giờ",
+  "readingTime": 5,
+  "categoryOrder": 4,
+  "order": 6,
+  "content": {
+    "intro": "Trước đây mình cho con học toán 1-2 tiếng mỗi cuối tuần. Con kêu mệt, học không vào. Rồi mình thử cách khác: 15 phút mỗi ngày. Kết quả làm mình bất ngờ.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tại sao 15 phút lại hiệu quả?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Não trẻ tập trung ngắn:** Trẻ 6-8 tuổi chỉ tập trung tốt được 15-20 phút. Học lâu hơn, não mệt, không ghi nhớ được."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Đều đặn hơn nhồi nhét:** Học 15 phút × 7 ngày = 105 phút. Học 2 tiếng cuối tuần = 120 phút. Tưởng nhiều hơn, nhưng não không ghi nhớ được khi nhồi nhét."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Tạo thói quen:** Học ít nhưng đều, con quen dần. Học thành phản xạ, không cần ép."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "15 phút nghe ít, nhưng 15 phút tập trung 100% còn hơn 1 tiếng vừa học vừa ngáp."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách mình áp dụng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con học Sorokid 15 phút sau khi ăn sáng. Giờ cố định, mỗi ngày."
+      },
+      {
+        "type": "paragraph",
+        "text": "Đặt hẹn giờ 15 phút. Khi hết giờ, dừng. Không ép thêm dù con đang làm dở."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "2 tháng sau"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình tự động mở app sau khi ăn sáng. Không cần nhắc. 15 phút thành thói quen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Điểm toán ở trường cũng tốt hơn. Không phải vì học nhiều, mà vì học đều."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Không cần học nhiều. Chỉ cần học đều. 15 phút mỗi ngày, 6 tháng sau bạn sẽ thấy khác biệt."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "15 phút có đủ không?",
+      "answer": "Đủ nếu con tập trung 100%. Quan trọng là chất lượng và sự đều đặn, không phải số lượng."
+    },
+    {
+      "question": "Học vào lúc nào tốt nhất?",
+      "answer": "Sáng sớm sau khi ngủ dậy là tốt nhất. Não còn tươi. Hoặc sau bữa ăn nhẹ. Tránh học khi con đói hoặc buồn ngủ."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có bài học ngắn, phù hợp cho 15 phút học mỗi ngày.",
+    "buttonText": "Cho con thử",
+    "buttonLink": "/register"
+  }
+}

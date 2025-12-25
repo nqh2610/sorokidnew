@@ -1,0 +1,92 @@
+{
+  "slug": "bo-ban-khong-biet-day-con-hoc-toan",
+  "title": "Bố bận cả ngày – nhưng vẫn muốn đóng góp việc học của con",
+  "description": "Chồng mình đi làm từ sáng đến tối. Không có thời gian kèm con. Nhưng anh ấy tìm được cách khác để tham gia.",
+  "category": "phu-huynh-kem-con-hoc-toan",
+  "keywords": [
+    "bố bận không kèm con",
+    "bố tham gia việc học",
+    "vai trò của bố"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/bo-va-con-hoc.jpg",
+  "imageAlt": "Bố châu Á ngồi cạnh con đang học",
+  "readingTime": 5,
+  "categoryOrder": 3,
+  "order": 12,
+  "content": {
+    "intro": "Chồng mình đi làm 10-12 tiếng/ngày. Về nhà mệt lả. Kèm con học? Không có sức. Nhưng anh ấy vẫn muốn tham gia. Đây là cách anh ấy làm.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vai trò của bố quan trọng thế nào?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nghiên cứu cho thấy: trẻ có bố tham gia việc học có kết quả tốt hơn. Không cần nhiều thời gian, chỉ cần có mặt."
+      },
+      {
+        "type": "paragraph",
+        "text": "Con cần thấy bố quan tâm, dù bố bận."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách chồng mình tham gia"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Hỏi thăm mỗi tối:** \"Hôm nay con học Soroban được mấy sao?\" – Chỉ 1 câu hỏi, con kể vanh vách."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Xem báo cáo cuối tuần:** Chủ nhật anh ấy mở Sorokid, xem con học được gì. Rồi khen con."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Thi đố vui:** \"Con tính 23 + 18 nhanh hơn bố được không?\" Con thích lắm. 5 phút mỗi tối thôi."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Bố không cần ngồi kèm hàng giờ. Chỉ cần cho con thấy bố quan tâm. Điều đó đủ để tạo khác biệt."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết quả"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình tự giác học hơn vì biết \"bố sẽ hỏi tối nay\". Con muốn có gì hay để khoe bố."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cũng bớt áp lực vì không phải gánh một mình."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Bố bận không có nghĩa là vắng mặt. Chỉ cần 5 phút mỗi ngày, bố vẫn có thể đóng góp."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Bố không biết Soroban thì sao hỏi con?",
+      "answer": "Không cần biết. Chỉ cần hỏi: \"Con học được gì hôm nay?\" và lắng nghe. Con sẽ tự kể."
+    },
+    {
+      "question": "Bố về muộn con ngủ rồi thì sao?",
+      "answer": "Gửi tin nhắn voice: \"Bố nhớ con, ngày mai kể bố nghe con học được gì nhé.\" Con nghe sáng hôm sau cũng vui."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có báo cáo để bố mẹ theo dõi tiến độ con, dù bận vẫn biết con học ra sao.",
+    "buttonText": "Tìm hiểu thêm",
+    "buttonLink": "/register"
+  }
+}

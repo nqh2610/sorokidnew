@@ -136,19 +136,19 @@ function CategoryCard({ category }) {
   return (
     <Link 
       href={`/blog/danh-muc/${category.slug}`}
-      className="flex items-center gap-3 p-4 bg-white rounded-xl border border-gray-100 hover:border-violet-200 hover:shadow-md hover:scale-[1.02] transition-all duration-200 group"
+      className="flex items-center gap-3 p-3 sm:p-4 bg-white rounded-xl border border-gray-100 hover:border-violet-200 hover:shadow-md hover:scale-[1.02] transition-all duration-200 group"
     >
       <div 
-        className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
+        className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
         style={{ backgroundColor: `${category.color}15` }}
       >
-        <CategoryIcon icon={category.icon} className="w-6 h-6" style={{ color: category.color }} />
+        <CategoryIcon icon={category.icon} className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: category.color }} />
       </div>
       <div className="min-w-0 flex-grow">
-        <h3 className="font-semibold text-gray-900 text-sm truncate group-hover:text-violet-600 transition-colors">{category.name}</h3>
-        <p className="text-xs text-gray-500">{category.description || 'Xem bài viết'}</p>
+        <h3 className="font-semibold text-gray-900 text-xs sm:text-sm truncate group-hover:text-violet-600 transition-colors">{category.name}</h3>
+        <p className="text-xs text-gray-500 line-clamp-1 hidden sm:block">{category.description || 'Xem bài viết'}</p>
       </div>
-      <svg className="w-5 h-5 text-gray-400 group-hover:text-violet-500 group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 group-hover:text-violet-500 group-hover:translate-x-1 transition-all flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
     </Link>
