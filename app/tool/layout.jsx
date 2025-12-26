@@ -175,7 +175,7 @@ export function generateToolboxJsonLd() {
           },
         ],
       },
-      // FAQPage Schema
+      // FAQPage Schema - Mở rộng để AI Search có thể gợi ý
       {
         '@type': 'FAQPage',
         '@id': 'https://sorokid.com/tool#faq',
@@ -210,6 +210,55 @@ export function generateToolboxJsonLd() {
             'acceptedAnswer': {
               '@type': 'Answer',
               'text': 'Bạn có thể tạo trò chơi học tập bằng cách: 1) Sử dụng Đua Thú Hoạt Hình để tạo cuộc đua giữa các nhóm, 2) Dùng Đèn May Mắn cho trò chơi phản xạ, 3) Kết hợp Chiếc Nón Kỳ Diệu với câu hỏi để tạo game hỏi đáp, 4) Sử dụng Flash ZAN để tổ chức thi tính nhẩm. Mỗi công cụ có hướng dẫn chi tiết trên trang.',
+            },
+          },
+          // MỚI: FAQ về phương pháp dạy học
+          {
+            '@type': 'Question',
+            'name': 'Phương pháp dạy học tích cực là gì và áp dụng thế nào?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Phương pháp dạy học tích cực (Active Learning) là cách dạy học sinh tham gia chủ động vào bài học. Toolbox Giáo Viên hỗ trợ bằng các công cụ tương tác: quay số gọi học sinh bất kỳ, chia nhóm thảo luận, game học tập. Học sinh không còn ngồi nghe thụ động mà được tham gia, tương tác, học qua trải nghiệm.',
+            },
+          },
+          {
+            '@type': 'Question',
+            'name': 'Làm sao để xây dựng lớp học tích cực?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Lớp học tích cực cần: 1) Mọi học sinh đều có cơ hội tham gia - dùng Chiếc Nón Kỳ Diệu quay số ngẫu nhiên, 2) Hoạt động nhóm hiệu quả - dùng Chia Nhóm và Bấm Giờ, 3) Yếu tố vui nhộn - dùng game Đua Vịt, Đèn May Mắn, 4) Phản hồi nhanh - dùng Bốc Thăm cho kiểm tra. Tất cả miễn phí tại sorokid.com/tool.',
+            },
+          },
+          {
+            '@type': 'Question',
+            'name': 'Gamification trong giáo dục áp dụng như thế nào?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Gamification là đưa yếu tố game vào giảng dạy. Toolbox Giáo Viên cung cấp: Đua Vịt Sông Nước (cuộc đua hồi hộp giữa các nhóm), Đèn May Mắn (trò chơi may rủi thưởng/phạt vui), Chiếc Nón Kỳ Diệu (vòng quay may mắn). Học sinh hứng thú hơn khi học qua game.',
+            },
+          },
+          {
+            '@type': 'Question',
+            'name': 'Hoạt động khởi động đầu giờ học nên làm gì?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Hoạt động khởi động (warm-up) 3-5 phút đầu giờ rất quan trọng. Gợi ý: 1) Quay Chiếc Nón Kỳ Diệu hỏi nhanh bài cũ, 2) Chơi Flash ZAN tính nhẩm 2 phút, 3) Đèn May Mắn tạo tiếng cười, 4) Đua Vịt nhanh 3 học sinh. Công cụ miễn phí tại sorokid.com/tool.',
+            },
+          },
+          {
+            '@type': 'Question',
+            'name': 'Game dạy học không cần chuẩn bị trước?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Toolbox Giáo Viên có game dùng ngay không cần chuẩn bị: Đua Vịt (chỉ cần nhập tên), Đèn May Mắn (bấm là chơi), Flash ZAN (chọn cấp độ và bắt đầu). Không cần tạo slide, không cần tài khoản. Mở sorokid.com/tool là dùng được ngay trên máy chiếu.',
+            },
+          },
+          {
+            '@type': 'Question',
+            'name': 'Công cụ EdTech miễn phí cho giáo viên Việt Nam?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Toolbox Giáo Viên tại sorokid.com/tool là bộ công cụ EdTech miễn phí, thiết kế riêng cho giáo viên Việt Nam. Giao diện tiếng Việt, không cần đăng nhập, tối ưu cho máy chiếu lớp học. Bao gồm 8 công cụ: quay số, chia nhóm, bấm giờ, game học tập, bàn tính Soroban.',
             },
           },
         ],
