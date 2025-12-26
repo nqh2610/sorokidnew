@@ -17,10 +17,33 @@ export default function FlashZan() {
   const [numbers, setNumbers] = useState([]);
   const [displayValue, setDisplayValue] = useState(null);
   const [isFinished, setIsFinished] = useState(false);
-  const [showAnswer, setShowAnswer] = useState(false); // Thêm state hiển thị đáp án
+  const [showAnswer, setShowAnswer] = useState(false);
   
   const intervalRef = useRef(null);
   const containerRef = useRef(null);
+  const flashDisplayRef = useRef(null);
+
+  // Enter fullscreen for flash display
+  const enterFullscreen = useCallback(async () => {
+    try {
+      if (!document.fullscreenElement && flashDisplayRef.current) {
+        await flashDisplayRef.current.requestFullscreen();
+      }
+    } catch (err) {
+      console.log('Fullscreen not supported');
+    }
+  }, []);
+
+  // Exit fullscreen
+  const exitFullscreen = useCallback(async () => {
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+      }
+    } catch (err) {
+      console.log('Exit fullscreen error');
+    }
+  }, []);
 
   // Generate random number based on digit count
   const generateNumber = useCallback((min, max) => {
@@ -82,17 +105,6 @@ export default function FlashZan() {
     return sequence;
   }, [flashCount, digitCount, operationType, generateNumber]);
 
-  // Enter fullscreen
-  const enterFullscreen = useCallback(async () => {
-    try {
-      if (containerRef.current && !document.fullscreenElement) {
-        await containerRef.current.requestFullscreen();
-      }
-    } catch (err) {
-      console.error('Fullscreen error:', err);
-    }
-  }, []);
-
   // Start flash
   const startFlash = useCallback(async () => {
     const sequence = generateSequence();
@@ -101,13 +113,15 @@ export default function FlashZan() {
     setIsRunning(true);
     setIsFinished(false);
     setIsPaused(false);
-    setShowAnswer(false); // Reset show answer
-    
-    // Enter fullscreen
-    await enterFullscreen();
+    setShowAnswer(false);
     
     // Show first number immediately
     setDisplayValue(sequence[0]);
+    
+    // Enter fullscreen after a short delay to let React render
+    setTimeout(() => {
+      enterFullscreen();
+    }, 100);
   }, [generateSequence, enterFullscreen]);
 
   // Flash animation loop
@@ -144,17 +158,13 @@ export default function FlashZan() {
     if (intervalRef.current) {
       clearTimeout(intervalRef.current);
     }
+    exitFullscreen();
     setIsRunning(false);
     setIsPaused(false);
     setIsFinished(false);
     setCurrentIndex(0);
     setDisplayValue(null);
-    
-    // Exit fullscreen
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-    }
-  }, []);
+  }, [exitFullscreen]);
 
   // Calculate answer
   const calculateAnswer = useCallback(() => {
@@ -185,7 +195,7 @@ export default function FlashZan() {
   }, []);
 
   return (
-    <ToolLayout toolName="Flash ZAN" toolIcon="⚡">
+    <ToolLayout toolName="Flash ZAN" toolIcon="⚡" hideFullscreenButton>
       <div ref={containerRef} className="space-y-6">
         {/* Settings Panel - Hidden during flash */}
         {!isRunning && !isFinished && (
@@ -321,8 +331,10 @@ export default function FlashZan() {
 
         {/* Flash Display */}
         {(isRunning || isFinished) && (
-          <div className="fixed inset-0 z-50 bg-gradient-to-br from-gray-900 via-violet-900 to-pink-900
-            flex flex-col items-center justify-center">
+          <div 
+            ref={flashDisplayRef}
+            className="fixed inset-0 z-50 bg-gradient-to-br from-gray-900 via-violet-900 to-pink-900
+              flex flex-col items-center justify-center">
             
             {/* Top bar with ESC hint */}
             <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-4 py-3

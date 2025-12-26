@@ -18,6 +18,7 @@ export default function ToolLayout({
   toolIcon,
   toolColor = 'from-violet-500 to-pink-500',
   showHeader = true,
+  hideFullscreenButton = false, // Ẩn nút fullscreen cho các tool tự fullscreen
 }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const containerRef = useRef(null);
@@ -112,25 +113,28 @@ export default function ToolLayout({
               </div>
 
               {/* Right: Fullscreen button */}
-              <button
-                onClick={toggleFullscreen}
-                className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-violet-600 
-                  hover:bg-violet-50 rounded-lg transition-all group"
-                title="Toàn màn hình - Nhấn ESC để thoát"
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  {isFullscreen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
-                      d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5l5.25 5.25" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
-                      d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
-                  )}
-                </svg>
-                <span className="hidden sm:inline text-sm">
-                  {isFullscreen ? 'Thoát (ESC)' : 'Toàn màn hình'}
-                </span>
-              </button>
+              {!hideFullscreenButton && (
+                <button
+                  onClick={toggleFullscreen}
+                  className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-violet-600 
+                    hover:bg-violet-50 rounded-lg transition-all group"
+                  title="Toàn màn hình - Nhấn ESC để thoát"
+                >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    {isFullscreen ? (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                        d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5l5.25 5.25" />
+                    ) : (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                        d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+                    )}
+                  </svg>
+                  <span className="hidden sm:inline text-sm">
+                    {isFullscreen ? 'Thoát (ESC)' : 'Toàn màn hình'}
+                  </span>
+                </button>
+              )}
+              {hideFullscreenButton && <div className="w-20" />}
             </div>
 
             {/* Fullscreen hint for teachers */}
@@ -177,8 +181,15 @@ export default function ToolLayout({
 
       {/* Main Content - wrapped with FullscreenContext */}
       <FullscreenContext.Provider value={{ isFullscreen, exitFullscreen }}>
-        <main className={`max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 ${isFullscreen ? 'pt-16' : ''}`}>
-          {children}
+        <main className={`
+          ${isFullscreen 
+            ? 'w-full h-screen pt-16 pb-4 px-4 flex items-center justify-center' 
+            : 'max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8'
+          }`}
+        >
+          <div className={isFullscreen ? 'w-full max-w-6xl scale-110 origin-center' : ''}>
+            {children}
+          </div>
         </main>
       </FullscreenContext.Provider>
 
@@ -195,7 +206,7 @@ export default function ToolLayout({
 
       <style jsx global>{`
         .fullscreen-mode {
-          background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 50%, #fdf2f8 100%);
+          background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%);
         }
         
         .fullscreen-mode main {
@@ -204,6 +215,24 @@ export default function ToolLayout({
           min-height: 100vh;
           justify-content: center;
           align-items: center;
+          padding-top: 4rem;
+        }
+        
+        /* Don't scale if tool has its own fullscreen overlay */
+        .fullscreen-mode main > div:not(:has(.fixed)) {
+          transform-origin: center center;
+        }
+        
+        @media (min-width: 1024px) {
+          .fullscreen-mode main > div:not(:has(.fixed)) {
+            transform: scale(1.15);
+          }
+        }
+        
+        @media (min-width: 1280px) {
+          .fullscreen-mode main > div:not(:has(.fixed)) {
+            transform: scale(1.2);
+          }
         }
       `}</style>
     </div>

@@ -119,13 +119,12 @@ function DenMayManContent() {
     const maxFlickers = 20;
     const lights = lightMode === 2 ? ['red', 'green'] : ['red', 'yellow', 'green'];
     
-    flickerIntervalRef.current = setInterval(() => {
+    const doFlicker = () => {
       setActiveLight(lights[flickerCount % lights.length]);
       if (flickerCount % 2 === 0) playSound('tick');
       flickerCount++;
       
       if (flickerCount >= maxFlickers) {
-        clearInterval(flickerIntervalRef.current);
         const random = Math.random() * 100;
         let finalResult;
         
@@ -144,8 +143,14 @@ function DenMayManContent() {
           setIsSpinning(false);
           playSound(finalResult);
         }, 300);
+      } else {
+        // Speed slows down as we get closer to the end
+        const delay = 80 + flickerCount * 15;
+        flickerIntervalRef.current = setTimeout(doFlicker, delay);
       }
-    }, 100 + flickerCount * 6);
+    };
+    
+    doFlicker();
   }, [lightMode, greenChance, yellowChance, playSound]);
 
   const handlePress = useCallback(() => {
@@ -167,7 +172,7 @@ function DenMayManContent() {
   }, [isSpinning, countdown, playSound, startSpin]);
 
   const handleReset = useCallback(() => {
-    if (flickerIntervalRef.current) clearInterval(flickerIntervalRef.current);
+    if (flickerIntervalRef.current) clearTimeout(flickerIntervalRef.current);
     if (countdownRef.current) clearInterval(countdownRef.current);
     exitFullscreen();
     setIsSpinning(false);
@@ -178,7 +183,7 @@ function DenMayManContent() {
 
   useEffect(() => {
     return () => {
-      if (flickerIntervalRef.current) clearInterval(flickerIntervalRef.current);
+      if (flickerIntervalRef.current) clearTimeout(flickerIntervalRef.current);
       if (countdownRef.current) clearInterval(countdownRef.current);
       if (audioContextRef.current) audioContextRef.current.close();
     };
@@ -194,10 +199,7 @@ function DenMayManContent() {
   };
 
   const getBgClass = () => {
-    if (result === 'green') return 'from-emerald-400 via-green-500 to-teal-500';
-    if (result === 'yellow') return 'from-yellow-400 via-amber-500 to-orange-500';
-    if (result === 'red') return 'from-red-400 via-rose-500 to-pink-500';
-    return 'from-slate-100 to-slate-200';
+    return 'from-slate-700 via-slate-800 to-slate-900';
   };
 
   return (
@@ -352,7 +354,7 @@ function DenMayManContent() {
 
       {/* Right Panel */}
       <div className="flex-1 min-w-0">
-        <div className={`relative bg-gradient-to-br ${getBgClass()} rounded-3xl shadow-xl p-8 min-h-[500px] flex flex-col items-center justify-center transition-all duration-500`}>
+        <div className={`relative bg-gradient-to-br ${getBgClass()} rounded-3xl shadow-xl p-6 min-h-[400px] flex flex-col items-center justify-center transition-all duration-500`}>
           
           {/* Countdown */}
           {countdown !== null && (
@@ -363,53 +365,70 @@ function DenMayManContent() {
 
           {/* Lights */}
           {lightMode === 2 ? (
-            <div className="flex gap-8 sm:gap-16 items-center">
+            <div className="flex gap-6 sm:gap-12 items-center">
               <div className="text-center">
-                <div className={`relative w-36 h-36 sm:w-48 sm:h-48 rounded-full transition-all duration-300 mb-4
-                  ${activeLight === 'red' || result === 'red' ? 'bg-red-500 shadow-[0_0_100px_40px_rgba(239,68,68,0.7)]' : 'bg-red-900/40 border-4 border-red-900/30'}`}>
-                  <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
-                  {result === 'red' && <div className="absolute inset-0 flex items-center justify-center text-7xl animate-bounce">😱</div>}
+                <div className={`relative w-28 h-28 sm:w-36 sm:h-36 rounded-full transition-all duration-300 mb-3
+                  ${activeLight === 'red' || result === 'red' 
+                    ? 'bg-red-500 shadow-[0_0_80px_30px_rgba(239,68,68,0.8)]' 
+                    : 'bg-red-800/60 border-4 border-red-600/50'}`}>
+                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+                  {result === 'red' && <div className="absolute inset-0 flex items-center justify-center text-5xl sm:text-6xl animate-bounce">😱</div>}
                 </div>
-                <span className={`text-lg font-bold ${result === 'red' ? 'text-white' : 'text-gray-600'}`}>ĐỎ - Phạt</span>
+                <span className="text-base sm:text-lg font-bold text-red-400">ĐỎ - Phạt</span>
               </div>
               <div className="text-center">
-                <div className={`relative w-36 h-36 sm:w-48 sm:h-48 rounded-full transition-all duration-300 mb-4
-                  ${activeLight === 'green' || result === 'green' ? 'bg-green-500 shadow-[0_0_100px_40px_rgba(34,197,94,0.7)]' : 'bg-green-900/40 border-4 border-green-900/30'}`}>
-                  <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
-                  {result === 'green' && <div className="absolute inset-0 flex items-center justify-center text-7xl animate-bounce">🎉</div>}
+                <div className={`relative w-28 h-28 sm:w-36 sm:h-36 rounded-full transition-all duration-300 mb-3
+                  ${activeLight === 'green' || result === 'green' 
+                    ? 'bg-green-500 shadow-[0_0_80px_30px_rgba(34,197,94,0.8)]' 
+                    : 'bg-green-800/60 border-4 border-green-600/50'}`}>
+                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+                  {result === 'green' && <div className="absolute inset-0 flex items-center justify-center text-5xl sm:text-6xl animate-bounce">🎉</div>}
                 </div>
-                <span className={`text-lg font-bold ${result === 'green' ? 'text-white' : 'text-gray-600'}`}>XANH - An toàn</span>
+                <span className="text-base sm:text-lg font-bold text-green-400">XANH - An toàn</span>
               </div>
             </div>
           ) : (
-            <div className="bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl border-4 border-gray-700">
-              <div className="flex flex-col gap-5 items-center">
-                <div className={`relative w-28 h-28 sm:w-36 sm:h-36 rounded-full transition-all duration-300
-                  ${activeLight === 'red' || result === 'red' ? 'bg-red-500 shadow-[0_0_60px_20px_rgba(239,68,68,0.7)]' : 'bg-red-900/40'}`}>
+            <div className="flex gap-4 sm:gap-6 items-end">
+              <div className="text-center">
+                <div className={`relative w-20 h-20 sm:w-28 sm:h-28 rounded-full transition-all duration-300 mb-2
+                  ${activeLight === 'red' || result === 'red' 
+                    ? 'bg-red-500 shadow-[0_0_60px_25px_rgba(239,68,68,0.8)]' 
+                    : 'bg-red-800/60 border-4 border-red-600/50'}`}>
                   <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
-                  {result === 'red' && <div className="absolute inset-0 flex items-center justify-center text-5xl animate-bounce">😱</div>}
+                  {result === 'red' && <div className="absolute inset-0 flex items-center justify-center text-4xl sm:text-5xl animate-bounce">😱</div>}
                 </div>
-                <div className={`relative w-28 h-28 sm:w-36 sm:h-36 rounded-full transition-all duration-300
-                  ${activeLight === 'yellow' || result === 'yellow' ? 'bg-yellow-400 shadow-[0_0_60px_20px_rgba(250,204,21,0.7)]' : 'bg-yellow-900/40'}`}>
+                <span className="text-sm sm:text-base font-bold text-red-400">ĐỎ</span>
+              </div>
+              <div className="text-center">
+                <div className={`relative w-20 h-20 sm:w-28 sm:h-28 rounded-full transition-all duration-300 mb-2
+                  ${activeLight === 'yellow' || result === 'yellow' 
+                    ? 'bg-yellow-400 shadow-[0_0_60px_25px_rgba(250,204,21,0.8)]' 
+                    : 'bg-yellow-700/60 border-4 border-yellow-500/50'}`}>
                   <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
-                  {result === 'yellow' && <div className="absolute inset-0 flex items-center justify-center text-5xl animate-bounce">🤔</div>}
+                  {result === 'yellow' && <div className="absolute inset-0 flex items-center justify-center text-4xl sm:text-5xl animate-bounce">🤔</div>}
                 </div>
-                <div className={`relative w-28 h-28 sm:w-36 sm:h-36 rounded-full transition-all duration-300
-                  ${activeLight === 'green' || result === 'green' ? 'bg-green-500 shadow-[0_0_60px_20px_rgba(34,197,94,0.7)]' : 'bg-green-900/40'}`}>
+                <span className="text-sm sm:text-base font-bold text-yellow-400">VÀNG</span>
+              </div>
+              <div className="text-center">
+                <div className={`relative w-20 h-20 sm:w-28 sm:h-28 rounded-full transition-all duration-300 mb-2
+                  ${activeLight === 'green' || result === 'green' 
+                    ? 'bg-green-500 shadow-[0_0_60px_25px_rgba(34,197,94,0.8)]' 
+                    : 'bg-green-800/60 border-4 border-green-600/50'}`}>
                   <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
-                  {result === 'green' && <div className="absolute inset-0 flex items-center justify-center text-5xl animate-bounce">🎉</div>}
+                  {result === 'green' && <div className="absolute inset-0 flex items-center justify-center text-4xl sm:text-5xl animate-bounce">🎉</div>}
                 </div>
+                <span className="text-sm sm:text-base font-bold text-green-400">XANH</span>
               </div>
             </div>
           )}
 
           {/* Result Text */}
           {result && getResultText() && (
-            <div className="mt-8 text-center">
-              <h1 className={`text-4xl sm:text-6xl font-black text-white drop-shadow-lg mb-2 ${result === 'red' ? 'animate-shake' : ''}`}>
+            <div className="mt-4 text-center">
+              <h1 className={`text-3xl sm:text-5xl font-black text-white drop-shadow-lg mb-1 ${result === 'red' ? 'animate-shake' : ''}`}>
                 {getResultText().title}
               </h1>
-              <p className="text-xl sm:text-2xl text-white/90 font-semibold">{getResultText().sub}</p>
+              <p className="text-lg sm:text-xl text-white/90 font-semibold">{getResultText().sub}</p>
             </div>
           )}
 
@@ -426,16 +445,17 @@ function DenMayManContent() {
           {/* Main Button */}
           {!isSpinning && !result && countdown === null && (
             <button onClick={handlePress}
-              className="mt-8 px-16 sm:px-24 py-6 sm:py-8 text-3xl sm:text-5xl font-black text-white bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-600 hover:to-pink-600 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all animate-pulse">
+              className="mt-6 px-12 sm:px-16 py-5 sm:py-6 text-2xl sm:text-4xl font-black text-white bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-600 hover:to-pink-600 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all animate-pulse">
               🎰 BẤM!
             </button>
           )}
 
           {/* Action Buttons */}
           {result && (
-            <div className="mt-8 flex gap-4">
-              <button onClick={handleReset} className="px-6 py-3 bg-white/90 hover:bg-white text-gray-700 font-bold rounded-full shadow-lg">🔄 Reset</button>
-              <button onClick={handlePress} className="px-8 py-3 bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-600 hover:to-pink-600 text-white text-lg font-bold rounded-full shadow-lg hover:scale-105 transition-all">🎰 Quay lại!</button>
+            <div className="mt-4">
+              <button onClick={handleReset} className="px-8 py-3 bg-white/90 hover:bg-white text-gray-700 font-bold rounded-full shadow-lg hover:scale-105 transition-all">
+                🔄 Chơi lại
+              </button>
             </div>
           )}
         </div>

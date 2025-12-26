@@ -268,41 +268,52 @@ export default function ChiecNonKyDieu() {
     const spinDuration = 12000;
     startSpinMusic(spinDuration);
 
-    // Random số vòng quay (12-18 vòng) + góc ngẫu nhiên
-    const spins = 12 + Math.random() * 6;
-    const segmentAngle = 360 / items.length;
+    // Copy items hiện tại để tính toán (vì items có thể thay đổi)
+    const currentItems = [...items];
+    const segmentAngle = 360 / currentItems.length;
     
-    // Tạo hiệu ứng "suýt vượt qua" - dừng gần ranh giới ô
-    // Random: đôi khi dừng gần đầu ô, đôi khi gần cuối ô (sát ranh giới)
+    // Random chọn một mục sẽ trúng
+    const winningIndex = Math.floor(Math.random() * currentItems.length);
+    
+    // Tính góc để mũi tên (ở vị trí 12h = -90 độ) chỉ vào giữa segment
+    // Segment i bắt đầu ở góc: i * segmentAngle - 90
+    // Giữa segment: i * segmentAngle - 90 + segmentAngle/2
+    // Wheel cần quay sao cho giữa segment đó nằm ở vị trí -90 (top)
+    // => cần quay: -(i * segmentAngle + segmentAngle/2)
+    const targetAngleInSegment = winningIndex * segmentAngle + segmentAngle / 2;
+    
+    // Thêm hiệu ứng "suýt vượt qua" - offset nhỏ trong segment
     const suspenseType = Math.random();
-    let randomAngle;
+    let offsetInSegment = 0;
     
     if (suspenseType < 0.4) {
       // 40%: Dừng gần cuối ô (như sắp vượt qua sang ô kế) - hồi hộp nhất!
-      const baseAngle = Math.floor(Math.random() * items.length) * segmentAngle;
-      randomAngle = baseAngle + segmentAngle * (0.85 + Math.random() * 0.12); // 85-97% của ô
+      offsetInSegment = segmentAngle * (0.35 + Math.random() * 0.1); // Gần cạnh
     } else if (suspenseType < 0.7) {
       // 30%: Dừng gần đầu ô (như vừa mới vượt qua ranh giới)
-      const baseAngle = Math.floor(Math.random() * items.length) * segmentAngle;
-      randomAngle = baseAngle + segmentAngle * (0.03 + Math.random() * 0.12); // 3-15% của ô
+      offsetInSegment = segmentAngle * (-0.35 + Math.random() * 0.1); // Gần cạnh kia
     } else {
-      // 30%: Dừng random bình thường
-      randomAngle = Math.random() * 360;
+      // 30%: Dừng random bình thường trong vùng an toàn
+      offsetInSegment = segmentAngle * (-0.2 + Math.random() * 0.4);
     }
     
-    const totalRotation = rotation + spins * 360 + randomAngle;
+    // Random số vòng quay (12-18 vòng)
+    const spins = 12 + Math.random() * 6;
+    
+    // Góc cần quay = vòng quay + góc để đúng segment
+    // Wheel quay theo chiều kim đồng hồ (rotation tăng)
+    // Mũi tên ở top (-90 độ)
+    const targetRotation = spins * 360 + targetAngleInSegment + offsetInSegment;
+    const totalRotation = rotation + targetRotation;
 
     setRotation(totalRotation);
 
     // Tính toán item được chọn sau khi quay xong
     spinTimeoutRef.current = setTimeout(() => {
-      const normalizedAngle = (360 - (totalRotation % 360) + 90) % 360;
-      const selectedIndex = Math.floor(normalizedAngle / segmentAngle) % items.length;
-      
       stopMusic();
       playWinSound();
       
-      const winner = items[selectedIndex];
+      const winner = currentItems[winningIndex];
       setResult(winner);
       setShowResult(true);
       setIsSpinning(false);
@@ -323,12 +334,16 @@ export default function ChiecNonKyDieu() {
     }
     setShowResult(false);
     setResult(null);
+    // Reset rotation về 0 để vòng quay mới hiển thị đúng
+    setRotation(0);
   }, [removeAfterSpin, result]);
 
   const handleConfirmRemove = useCallback(() => {
     // Đã loại rồi, chỉ cần đóng modal
     setShowResult(false);
     setResult(null);
+    // Reset rotation về 0 để vòng quay mới hiển thị đúng
+    setRotation(0);
   }, []);
 
   // Reset everything

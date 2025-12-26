@@ -1151,7 +1151,7 @@ export default function DuaThuHoatHinh() {
     }
     const currentAnimal = ANIMAL_TYPES[animalType];
     return (
-      <ToolLayout toolName="Đua Thú Hoạt Hình" toolIcon="🏁">
+      <ToolLayout toolName="Đua Thú Hoạt Hình" toolIcon="🏁" hideFullscreenButton>
         <div className="min-h-[80vh] flex items-center justify-center p-4">
           <div className="w-full max-w-2xl">
             {/* Header */}
