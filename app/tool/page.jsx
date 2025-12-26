@@ -4,25 +4,33 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Logo from '@/components/Logo/Logo';
 
-// Tool data configuration - Brand colors: Blue → Violet → Pink
+// Tool data configuration - Each tool has its unique color theme
 const tools = [
   {
     id: 'chiec-non-ky-dieu',
     name: 'Chiếc Nón Kỳ Diệu',
     description: 'Quay số ngẫu nhiên để gọi học sinh, chọn câu hỏi, chọn lượt chơi',
     icon: '🎡',
-    color: 'from-violet-500 to-pink-500',
-    bgColor: 'bg-gradient-to-br from-violet-50 to-pink-50',
+    color: 'from-fuchsia-500 to-purple-600',
+    bgColor: 'bg-gradient-to-br from-fuchsia-600 to-purple-700',
+    iconBg: 'from-fuchsia-400 to-purple-500',
+    textColor: 'text-white',
+    descColor: 'text-fuchsia-100',
     badge: '🔥 HOT',
+    theme: 'dark',
   },
   {
     id: 'dua-thu-hoat-hinh',
     name: 'Đua Vịt Sông Nước',
     description: 'Nhập tên học sinh, hàng trăm vịt cùng đua trên sông, hồi hộp!',
     icon: '🦆',
-    color: 'from-blue-500 to-violet-500',
-    bgColor: 'bg-gradient-to-br from-blue-50 to-violet-50',
-    badge: null,
+    color: 'from-cyan-400 to-blue-500',
+    bgColor: 'bg-gradient-to-br from-cyan-500 to-blue-600',
+    iconBg: 'from-yellow-300 to-amber-400',
+    textColor: 'text-white',
+    descColor: 'text-cyan-100',
+    badge: '🌊 VUI',
+    theme: 'dark',
   },
   {
     id: 'flash-zan',
@@ -30,17 +38,25 @@ const tools = [
     description: 'Luyện tính nhẩm nhanh với flash số, phù hợp Soroban & Anzan',
     icon: '⚡',
     color: 'from-amber-400 to-orange-500',
-    bgColor: 'bg-gradient-to-br from-amber-50 to-orange-50',
+    bgColor: 'bg-gradient-to-br from-gray-900 to-gray-800',
+    iconBg: 'from-amber-400 to-orange-500',
+    textColor: 'text-amber-400',
+    descColor: 'text-gray-300',
     badge: '⚡ FLASH',
+    theme: 'flash',
   },
   {
     id: 'dong-ho-bam-gio',
     name: 'Đồng Hồ Bấm Giờ',
     description: 'Timer đếm ngược với âm thanh, hiển thị to rõ cho lớp học',
     icon: '⏱️',
-    color: 'from-blue-500 to-indigo-500',
-    bgColor: 'bg-gradient-to-br from-blue-50 to-indigo-50',
+    color: 'from-sky-400 to-blue-500',
+    bgColor: 'bg-gradient-to-br from-sky-500 to-blue-600',
+    iconBg: 'from-white to-sky-100',
+    textColor: 'text-white',
+    descColor: 'text-sky-100',
     badge: null,
+    theme: 'dark',
   },
   {
     id: 'chia-nhom',
@@ -48,26 +64,38 @@ const tools = [
     description: 'Chia nhóm ngẫu nhiên theo số nhóm hoặc số người, chọn nhóm trưởng tự động',
     icon: '👥',
     color: 'from-violet-500 to-purple-600',
-    bgColor: 'bg-gradient-to-br from-violet-50 to-purple-50',
+    bgColor: 'bg-gradient-to-br from-violet-500 to-purple-600',
+    iconBg: 'from-violet-300 to-purple-400',
+    textColor: 'text-white',
+    descColor: 'text-violet-100',
     badge: '✨ MỚI',
+    theme: 'dark',
   },
   {
     id: 'boc-tham',
     name: 'Bốc Thăm',
     description: 'Bốc tên, câu hỏi, quà tặng... với hiệu ứng slot machine hồi hộp',
     icon: '🎫',
-    color: 'from-pink-500 to-rose-500',
-    bgColor: 'bg-gradient-to-br from-pink-50 to-rose-50',
-    badge: '✨ MỚI',
+    color: 'from-rose-500 to-pink-600',
+    bgColor: 'bg-gradient-to-br from-rose-500 to-pink-600',
+    iconBg: 'from-rose-300 to-pink-400',
+    textColor: 'text-white',
+    descColor: 'text-rose-100',
+    badge: '🎰 HỒI HỘP',
+    theme: 'dark',
   },
   {
     id: 'ban-tinh-soroban',
     name: 'Bàn Tính Soroban',
     description: 'Bàn tính ảo miễn phí để học sinh luyện tập, hỗ trợ kéo thả hạt',
     icon: '🧮',
-    color: 'from-teal-500 to-emerald-500',
-    bgColor: 'bg-gradient-to-br from-teal-50 to-emerald-50',
-    badge: '✨ MỚI',
+    color: 'from-amber-600 to-orange-700',
+    bgColor: 'bg-gradient-to-br from-amber-700 to-orange-800',
+    iconBg: 'from-amber-300 to-yellow-400',
+    textColor: 'text-amber-100',
+    descColor: 'text-amber-200',
+    badge: '🧮 CLASSIC',
+    theme: 'dark',
   },
   {
     id: 'den-may-man',
@@ -75,18 +103,26 @@ const tools = [
     description: 'Xanh = Thoát, Đỏ = Bị phạt! Đèn giao thông hồi hộp vui nhộn',
     icon: '🚦',
     color: 'from-emerald-500 to-green-600',
-    bgColor: 'bg-gradient-to-br from-emerald-50 to-green-50',
-    badge: '🆙 CẢI TIẾN',
+    bgColor: 'bg-gradient-to-br from-emerald-600 to-green-700',
+    iconBg: 'from-emerald-300 to-green-400',
+    textColor: 'text-white',
+    descColor: 'text-emerald-100',
+    badge: '🍀 MAY MẮN',
+    theme: 'dark',
   },
   {
     id: 'ai-la-trieu-phu',
     name: 'Ai Là Triệu Phú',
-    description: 'Game show họi đáp kiến thức, tạo hồi hộp cho lớp học!',
-    icon: '💰',
-    color: 'from-yellow-500 to-amber-600',
-    bgColor: 'bg-gradient-to-br from-yellow-50 to-amber-50',
-    badge: '🛠️ COMING SOON',
-    comingSoon: true,
+    description: '50:50, Hỏi khán giả, Gọi điện - Bạn có dám thử?',
+    icon: '💎',
+    color: 'from-blue-900 to-indigo-900',
+    bgColor: 'bg-gradient-to-br from-blue-950 to-indigo-950',
+    iconBg: 'from-amber-400 to-yellow-500',
+    textColor: 'text-amber-400',
+    descColor: 'text-blue-200',
+    isALTP: true,
+    badge: '🏆 GAME SHOW',
+    theme: 'altp',
   },
   {
     id: 'cuoc-dua-ki-thu',
@@ -94,9 +130,13 @@ const tools = [
     description: 'Đua xe, đua ngựa hồi hộp - Ai về đích trước?',
     icon: '🏁',
     color: 'from-red-500 to-orange-500',
-    bgColor: 'bg-gradient-to-br from-red-50 to-orange-50',
+    bgColor: 'bg-gradient-to-br from-red-500 to-orange-500',
+    iconBg: 'from-red-300 to-orange-300',
+    textColor: 'text-white',
+    descColor: 'text-red-100',
     badge: '🛠️ COMING SOON',
     comingSoon: true,
+    theme: 'dark',
   },
   {
     id: 'xuc-xac',
@@ -104,19 +144,27 @@ const tools = [
     description: 'Lắc xúc xắc ngẫu nhiên, tạo trò chơi vui nhộn!',
     icon: '🎲',
     color: 'from-indigo-500 to-purple-600',
-    bgColor: 'bg-gradient-to-br from-indigo-50 to-purple-50',
+    bgColor: 'bg-gradient-to-br from-indigo-600 to-purple-700',
+    iconBg: 'from-white to-indigo-100',
+    textColor: 'text-white',
+    descColor: 'text-indigo-100',
     badge: '🛠️ COMING SOON',
     comingSoon: true,
+    theme: 'dark',
   },
   {
     id: 'thanh-tien-do',
     name: 'Thanh Tiến Độ',
     description: 'Hiển thị % tiến độ bài học, kéo để cập nhật trực quan',
     icon: '📊',
-    color: 'from-cyan-500 to-blue-600',
-    bgColor: 'bg-gradient-to-br from-cyan-50 to-blue-50',
+    color: 'from-teal-500 to-cyan-600',
+    bgColor: 'bg-gradient-to-br from-teal-600 to-cyan-700',
+    iconBg: 'from-teal-300 to-cyan-400',
+    textColor: 'text-white',
+    descColor: 'text-teal-100',
     badge: '🛠️ COMING SOON',
     comingSoon: true,
+    theme: 'dark',
   },
 ];
 
@@ -266,24 +314,33 @@ function ToolCard({ tool, index }) {
     ? {} 
     : { href: `/tool/${tool.id}` };
 
+  const isDark = tool.theme === 'dark' || tool.theme === 'altp' || tool.theme === 'flash';
+  const isALTP = tool.isALTP;
+  const isFlash = tool.theme === 'flash';
+
   return (
     <CardWrapper
       {...cardProps}
       className={`group relative ${tool.bgColor} rounded-3xl p-6 sm:p-8 
-        border-2 border-white shadow-lg hover:shadow-2xl 
+        border-2 ${isALTP ? 'border-amber-500/30' : isFlash ? 'border-amber-500/20' : 'border-white/20'} 
+        shadow-lg hover:shadow-2xl 
         transform hover:-translate-y-2 transition-all duration-300
         overflow-hidden
-        ${tool.comingSoon ? 'cursor-default' : 'cursor-pointer'}`}
+        ${tool.comingSoon ? 'cursor-default opacity-80' : 'cursor-pointer'}`}
     >
       {/* Badge */}
       {tool.badge && (
         <div className="absolute top-4 right-4 z-10">
           <span className={`px-3 py-1.5 text-xs font-bold rounded-full shadow-md
             ${tool.badge.includes('HOT') ? 'bg-red-500 text-white animate-pulse' : ''}
-            ${tool.badge.includes('MỚI') ? 'bg-gradient-to-r from-violet-500 to-pink-500 text-white' : ''}
-            ${tool.badge.includes('FLASH') ? 'bg-amber-400 text-amber-900' : ''}
-            ${tool.badge.includes('CẢI TIẾN') ? 'bg-emerald-500 text-white' : ''}
-            ${tool.badge.includes('COMING SOON') ? 'bg-gray-500 text-white' : ''}
+            ${tool.badge.includes('MỚI') ? 'bg-white/90 text-violet-600' : ''}
+            ${tool.badge.includes('FLASH') ? 'bg-amber-400 text-gray-900 animate-pulse' : ''}
+            ${tool.badge.includes('VUI') ? 'bg-white/90 text-cyan-600' : ''}
+            ${tool.badge.includes('HỒI HỘP') ? 'bg-white/90 text-rose-600' : ''}
+            ${tool.badge.includes('CLASSIC') ? 'bg-amber-200 text-amber-800' : ''}
+            ${tool.badge.includes('MAY MẮN') ? 'bg-white/90 text-emerald-600' : ''}
+            ${tool.badge.includes('COMING SOON') ? 'bg-white/30 text-white' : ''}
+            ${tool.badge.includes('GAME SHOW') ? 'bg-gradient-to-r from-amber-400 to-yellow-500 text-blue-900 font-black' : ''}
           `}>
             {tool.badge}
           </span>
@@ -291,32 +348,51 @@ function ToolCard({ tool, index }) {
       )}
 
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full -translate-y-16 translate-x-16" />
-      <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12" />
+      <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16" />
+      <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-12 -translate-x-12" />
+      
+      {/* ALTP special glow */}
+      {isALTP && (
+        <div className="absolute inset-0 bg-gradient-to-t from-amber-500/10 via-transparent to-transparent pointer-events-none" />
+      )}
+      
+      {/* Flash special effect */}
+      {isFlash && (
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-orange-500/5 pointer-events-none" />
+      )}
       
       {/* Icon with idle animation */}
-      <div className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br ${tool.color} 
+      <div className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl 
+        bg-gradient-to-br ${tool.iconBg || tool.color}
+        ${isALTP ? 'ring-4 ring-amber-400/30' : isFlash ? 'ring-4 ring-amber-400/20' : ''}
         flex items-center justify-center text-4xl sm:text-5xl mb-6
         shadow-lg group-hover:scale-110 transition-transform duration-300`}>
         <span className="group-hover:animate-bounce">{tool.icon}</span>
         {/* Glow effect on hover */}
-        <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${tool.color} 
+        <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${tool.iconBg || tool.color}
           opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-300`} />
       </div>
 
       {/* Content */}
-      <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2 group-hover:text-violet-700 transition-colors">
+      <h2 className={`text-xl sm:text-2xl font-bold mb-2 transition-colors
+        ${tool.textColor || 'text-white'} group-hover:brightness-110`}>
         {tool.name}
       </h2>
-      <p className="text-gray-600 text-sm sm:text-base mb-6 leading-relaxed line-clamp-2">
+      <p className={`text-sm sm:text-base mb-6 leading-relaxed line-clamp-2
+        ${tool.descColor || 'text-white/80'}`}>
         {tool.description}
       </p>
 
       {/* Button */}
       <div className={`inline-flex items-center gap-2 px-5 py-2.5 
-        bg-gradient-to-r ${tool.color} text-white font-semibold rounded-full
+        ${isALTP 
+          ? 'bg-gradient-to-r from-amber-400 to-yellow-500 text-blue-900' 
+          : isFlash
+          ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900'
+          : 'bg-white/20 backdrop-blur-sm text-white border border-white/30'} 
+        font-semibold rounded-full
         ${tool.comingSoon ? '' : 'group-hover:shadow-lg group-hover:scale-105'} transition-all duration-300`}>
-        <span>{tool.comingSoon ? 'Sắp ra mắt' : 'Mở tool'}</span>
+        <span>{tool.comingSoon ? 'Sắp ra mắt' : isALTP ? 'Chơi ngay!' : 'Mở tool'}</span>
         {!tool.comingSoon && (
           <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
             fill="none" viewBox="0 0 24 24" stroke="currentColor">

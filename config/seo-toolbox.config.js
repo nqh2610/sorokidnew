@@ -333,6 +333,30 @@ Cách chơi:
 Phù hợp cho hoạt động khởi động, thưởng phạt vui trong tiết ôn tập. Giáo viên THPT dùng để giảm căng thẳng, tạo tiếng cười cho lớp.`,
     keywords: ['đèn may mắn', 'trò chơi xanh đỏ', 'game lớp học', 'đèn giao thông', 'trò chơi may rủi'],
   },
+
+  'ai-la-trieu-phu': {
+    url: '/tool/ai-la-trieu-phu',
+    title: 'Ai Là Triệu Phú - Game Hỏi Đáp Cho Lớp Học',
+    metaDescription: 'Game Ai Là Triệu Phú cho lớp học. Tự tạo câu hỏi, có trợ giúp 50:50, gọi điện, hỏi khán giả. Âm thanh hồi hộp như game show thực.',
+    h1: 'Ai Là Triệu Phú - Quiz Game Show Lớp Học',
+    description: `Ai Là Triệu Phú phiên bản lớp học - game hỏi đáp kiến thức với không khí game show hồi hộp, phù hợp cho mọi môn học và cấp học.
+
+Tính năng nổi bật:
+• Tự tạo câu hỏi hoặc dùng câu hỏi mẫu
+• Bắt đầu nhanh chỉ 1 click - không cần đăng nhập
+• 3 quyền trợ giúp: 50:50, Khán giả, Gọi điện
+• Âm thanh và hiệu ứng hồi hộp như game show thực
+• Tự động lưu - không mất dữ liệu khi refresh
+
+Phù hợp cho:
+• Ôn tập kiến thức trước kiểm tra
+• Khởi động đầu giờ với câu hỏi nhanh
+• Thi đua giữa các nhóm
+• Kiểm tra miệng vui nhộn
+
+Đặc biệt hiệu quả với giáo viên THPT - biến tiết ôn tập nhàm chán thành trò chơi sôi động!`,
+    keywords: ['ai là triệu phú', 'game hỏi đáp', 'quiz lớp học', 'trắc nghiệm online', 'game show lớp học', 'who wants to be a millionaire'],
+  },
 };
 
 // ============================================
@@ -397,7 +421,7 @@ export const AI_SEARCH_CONTENT = {
     `Các công cụ trong Toolbox Giáo Viên không cần chuẩn bị trước, chỉ cần mở trình duyệt và sử dụng. Hiển thị tốt trên máy chiếu lớp học, phù hợp với giáo viên bận rộn cần giải pháp nhanh.`,
 
     // Snippet 4: Danh sách tool
-    `Toolbox Giáo Viên gồm: Chiếc Nón Kỳ Diệu (quay số), Đua Vịt (game đua), Flash ZAN (tính nhẩm), Đồng Hồ Bấm Giờ, Chia Nhóm, Bốc Thăm, Bàn Tính Soroban, Đèn May Mắn. Tất cả miễn phí.`,
+    `Toolbox Giáo Viên gồm: Chiếc Nón Kỳ Diệu (quay số), Đua Vịt (game đua), Flash ZAN (tính nhẩm), Đồng Hồ Bấm Giờ, Chia Nhóm, Bốc Thăm, Bàn Tính Soroban, Đèn May Mắn, Đấu Trường Kiến Thức (quiz game show). Tất cả miễn phí.`,
 
     // Snippet 5: Lợi ích
     `Sử dụng Toolbox Giáo Viên giúp lớp học vui nhộn hơn, học sinh tham gia chủ động, tiết kiệm thời gian chuẩn bị cho giáo viên. Đặc biệt hữu ích trong các tiết ôn tập, kiểm tra, hoặc khi cần thay đổi không khí lớp học.`,
