@@ -123,6 +123,7 @@ echo     [OK] ecosystem.config.js
 if not exist "%OUTPUT_DIR%\config" mkdir "%OUTPUT_DIR%\config"
 xcopy "%PROJECT_DIR%config" "%OUTPUT_DIR%\config\" /E /I /Q /Y >nul
 echo     [OK] config/runtime.config.js
+echo     [OK] config/seo-toolbox.config.js (SEO reference)
 
 :: Copy scripts folder (monitoring)
 if not exist "%OUTPUT_DIR%\scripts" mkdir "%OUTPUT_DIR%\scripts"
@@ -144,6 +145,12 @@ if exist "%PROJECT_DIR%components\Soroban" (
 if exist "%PROJECT_DIR%components\Analytics" (
     xcopy "%PROJECT_DIR%components\Analytics" "%OUTPUT_DIR%\components\Analytics\" /E /I /Q /Y >nul
     echo     [OK] components/Analytics (Google Analytics)
+)
+
+:: Copy ToolLayout (BAT BUOC cho /tool pages)
+if exist "%PROJECT_DIR%components\ToolLayout" (
+    xcopy "%PROJECT_DIR%components\ToolLayout" "%OUTPUT_DIR%\components\ToolLayout\" /E /I /Q /Y >nul
+    echo     [OK] components/ToolLayout (Loading skeleton + Layout)
 )
 
 :: Copy content folder (BLOG DATA - BAT BUOC)
@@ -251,6 +258,11 @@ echo === SEO (Auto-built by Next.js) ===
 echo [INFO] sitemap.js - Sitemap dong tu dong cap nhat (/sitemap.xml)
 echo [INFO] robots.js - Robots.txt huong dan crawl (/robots.txt)
 echo [INFO] Cac file nay da duoc build vao .next/standalone tu dong
+if exist "%OUTPUT_DIR%\config\seo-toolbox.config.js" (echo [OK] config/seo-toolbox.config.js - SEO keywords + FAQ) else (echo [THIEU] config/seo-toolbox.config.js)
+
+echo.
+echo === Tool Components ===
+if exist "%OUTPUT_DIR%\components\ToolLayout" (echo [OK] components/ToolLayout/ - Tool layout + loading) else (echo [INFO] ToolLayout bundled in .next)
 
 echo.
 echo === Prisma ===
