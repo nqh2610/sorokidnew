@@ -26,6 +26,7 @@ function BocThamContent() {
   
   // Audio context
   const audioContextRef = useRef(null);
+  const spinTimeoutRef = useRef(null);
 
   // Compute names count
   const nameCount = useMemo(() => {
@@ -148,7 +149,7 @@ function BocThamContent() {
         playSound('drumroll');
       }
       
-      setTimeout(spin, spinSpeed);
+      spinTimeoutRef.current = setTimeout(spin, spinSpeed);
     };
     
     spin();
@@ -169,9 +170,14 @@ function BocThamContent() {
     handleReset();
   }, [handleReset]);
 
-  // Cleanup audio context
+  // Cleanup audio context and animation timeout
   useEffect(() => {
     return () => {
+      // Cancel any pending spin animation
+      if (spinTimeoutRef.current) {
+        clearTimeout(spinTimeoutRef.current);
+      }
+      // Close audio context
       if (audioContextRef.current) {
         audioContextRef.current.close();
       }

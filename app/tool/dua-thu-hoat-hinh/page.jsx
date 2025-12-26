@@ -1113,11 +1113,24 @@ export default function DuaThuHoatHinh() {
   // Screen state: 'setup' or 'racing'
   const [screen, setScreen] = useState('setup');
   
-  // Cleanup
+  // Cleanup - stop all audio and animation when unmount
   useEffect(() => {
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
+      }
+      // Stop background music when leaving
+      if (bgMusicIntervalRef.current) {
+        clearInterval(bgMusicIntervalRef.current);
+        bgMusicIntervalRef.current = null;
+      }
+      if (bgMusicRef.current) {
+        bgMusicRef.current.close?.();
+        bgMusicRef.current = null;
+      }
+      // Clear commentary timeout
+      if (commentaryTimeoutRef.current) {
+        clearTimeout(commentaryTimeoutRef.current);
       }
     };
   }, []);
