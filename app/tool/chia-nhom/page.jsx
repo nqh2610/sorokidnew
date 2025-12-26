@@ -156,9 +156,9 @@ function ChiaNhomContent() {
   }, [handleReset]);
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6">
-      {/* Left Panel: Input & Settings */}
-      <div className="w-full lg:w-80 flex-shrink-0 space-y-4">
+    <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
+      {/* Left Panel: Input & Settings - Order 2 on mobile */}
+      <div className="w-full lg:w-80 flex-shrink-0 space-y-3 lg:space-y-4 order-2 lg:order-1">
         {/* Input */}
         <div className="bg-white rounded-2xl shadow-lg p-5 border border-gray-100">
           <h2 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
@@ -256,8 +256,8 @@ function ChiaNhomContent() {
                 max="10"
                 value={groupCount}
                 onChange={(e) => setGroupCount(parseInt(e.target.value))}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer
-                  accent-violet-500"
+                className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer
+                  accent-violet-500 tool-slider"
                 disabled={isAnimating}
               />
               <div className="flex justify-between text-xs text-gray-400 mt-1">
@@ -276,8 +276,8 @@ function ChiaNhomContent() {
                 max="8"
                 value={personsPerGroup}
                 onChange={(e) => setPersonsPerGroup(parseInt(e.target.value))}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer
-                  accent-violet-500"
+                className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer
+                  accent-violet-500 tool-slider"
                 disabled={isAnimating}
               />
               <div className="flex justify-between text-xs text-gray-400 mt-1">
@@ -311,7 +311,7 @@ function ChiaNhomContent() {
         <div className="flex gap-3">
           <button
             onClick={handleReset}
-            className="flex-1 py-3 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 
+            className="flex-1 py-3 px-4 min-h-[44px] bg-gray-100 hover:bg-gray-200 text-gray-700 
               font-semibold rounded-xl transition-all disabled:opacity-50"
             disabled={isAnimating || groups.length === 0}
           >
@@ -320,7 +320,7 @@ function ChiaNhomContent() {
           <button
             onClick={divideIntoGroups}
             disabled={isAnimating || nameCount < 2}
-            className="flex-1 py-3 px-4 bg-gradient-to-r from-violet-500 to-pink-500 
+            className="flex-1 py-3 px-4 min-h-[44px] bg-gradient-to-r from-violet-500 to-pink-500 
               hover:from-violet-600 hover:to-pink-600 text-white font-bold 
               rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed
               shadow-lg hover:shadow-xl"
@@ -330,17 +330,17 @@ function ChiaNhomContent() {
         </div>
       </div>
 
-      {/* Right Panel: Results */}
-      <div className="flex-1 min-w-0">
+      {/* Right Panel: Results - Order 1 on mobile */}
+      <div className="flex-1 min-w-0 order-1 lg:order-2">
         {/* No results yet */}
         {!showResults && !isAnimating && (
-          <div className="bg-white rounded-2xl shadow-lg p-12 text-center border border-gray-100 h-full 
-            flex flex-col items-center justify-center min-h-[400px]">
-            <div className="text-8xl mb-6 animate-bounce">👥</div>
-            <h3 className="text-2xl font-bold text-gray-400 mb-2">
+          <div className="bg-white rounded-2xl shadow-lg p-6 lg:p-12 text-center border border-gray-100 h-full 
+            flex flex-col items-center justify-center min-h-[250px] lg:min-h-[400px]">
+            <div className="text-5xl lg:text-8xl mb-4 lg:mb-6 animate-bounce">👥</div>
+            <h3 className="text-xl lg:text-2xl font-bold text-gray-400 mb-2">
               Sẵn sàng chia nhóm!
             </h3>
-            <p className="text-gray-400">
+            <p className="text-gray-400 text-sm lg:text-base">
               Nhập danh sách học sinh và bấm nút để bắt đầu
             </p>
           </div>
@@ -348,10 +348,10 @@ function ChiaNhomContent() {
 
         {/* Animating */}
         {isAnimating && (
-          <div className="bg-gradient-to-br from-violet-500 to-pink-500 rounded-2xl shadow-2xl p-12 
-            text-center min-h-[400px] flex flex-col items-center justify-center">
-            <div className="text-6xl mb-6 animate-spin">🔀</div>
-            <div className="text-3xl font-bold text-white mb-4">
+          <div className="bg-gradient-to-br from-violet-500 to-pink-500 rounded-2xl shadow-2xl p-6 lg:p-12 
+            text-center min-h-[250px] lg:min-h-[400px] flex flex-col items-center justify-center">
+            <div className="text-4xl lg:text-6xl mb-4 lg:mb-6 animate-spin">🔀</div>
+            <div className="text-xl lg:text-3xl font-bold text-white mb-4">
               Đang xáo trộn & chia nhóm...
             </div>
             <div className="flex gap-2">

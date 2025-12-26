@@ -179,12 +179,12 @@ function BocThamContent() {
   }, []);
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6">
-      {/* Left Panel: Input */}
-      <div className="w-full lg:w-80 flex-shrink-0 space-y-4">
+    <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
+      {/* Left Panel: Input - Order 2 on mobile */}
+      <div className="w-full lg:w-80 flex-shrink-0 space-y-3 sm:space-y-4 order-2 lg:order-1">
         {/* Input */}
-        <div className="bg-white rounded-2xl shadow-lg p-5 border border-gray-100">
-          <h2 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-5 border border-gray-100">
+          <h2 className="text-base sm:text-lg font-bold text-gray-800 mb-2 sm:mb-3 flex items-center gap-2">
             <span>📝</span>
             Danh sách bốc thăm
           </h2>
@@ -227,7 +227,7 @@ function BocThamContent() {
               type="checkbox"
               checked={soundEnabled}
               onChange={(e) => setSoundEnabled(e.target.checked)}
-              className="w-4 h-4 text-violet-500 rounded focus:ring-violet-400"
+              className="w-5 h-5 text-violet-500 rounded focus:ring-violet-400"
             />
             <span className="text-gray-700 text-sm">
               🔊 Âm thanh
@@ -239,7 +239,7 @@ function BocThamContent() {
         <div className="flex gap-3">
           <button
             onClick={handleReset}
-            className="flex-1 py-3 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 
+            className="flex-1 py-3 px-4 min-h-[44px] bg-gray-100 hover:bg-gray-200 text-gray-700 
               font-semibold rounded-xl transition-all disabled:opacity-50"
             disabled={isAnimating || !pickedPerson}
           >
@@ -248,7 +248,7 @@ function BocThamContent() {
           <button
             onClick={pickOnePerson}
             disabled={isAnimating || nameCount < 1}
-            className="flex-1 py-3 px-4 bg-gradient-to-r from-violet-500 to-pink-500 
+            className="flex-1 py-3 px-4 min-h-[44px] bg-gradient-to-r from-violet-500 to-pink-500 
               hover:from-violet-600 hover:to-pink-600 text-white font-bold 
               rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed
               shadow-lg hover:shadow-xl"
@@ -269,24 +269,24 @@ function BocThamContent() {
         </div>
       </div>
 
-      {/* Right Panel: Results */}
-      <div className="flex-1 min-w-0">
+      {/* Right Panel: Results - Order 1 on mobile (show result first) */}
+      <div className="flex-1 min-w-0 order-1 lg:order-2">
         {/* No results yet */}
         {!showResult && !isAnimating && (
-          <div className="bg-gradient-to-br from-violet-100 to-pink-100 rounded-3xl shadow-lg p-12 
-            text-center h-full flex flex-col items-center justify-center min-h-[450px]">
-            <div className="text-8xl mb-6 flex items-center gap-4">
+          <div className="bg-gradient-to-br from-violet-100 to-pink-100 rounded-2xl lg:rounded-3xl shadow-lg p-6 lg:p-12 
+            text-center h-full flex flex-col items-center justify-center min-h-[280px] lg:min-h-[450px]">
+            <div className="text-5xl lg:text-8xl mb-4 lg:mb-6 flex items-center gap-2 lg:gap-4">
               <span className="animate-bounce" style={{ animationDelay: '0s' }}>🎫</span>
               <span className="animate-bounce" style={{ animationDelay: '0.1s' }}>🎁</span>
               <span className="animate-bounce" style={{ animationDelay: '0.2s' }}>❓</span>
             </div>
-            <h3 className="text-3xl font-bold text-gray-700 mb-3">
+            <h3 className="text-xl lg:text-3xl font-bold text-gray-700 mb-2 lg:mb-3">
               Sẵn sàng bốc thăm!
             </h3>
-            <p className="text-gray-500 text-lg mb-4">
+            <p className="text-gray-500 text-sm lg:text-lg mb-2 lg:mb-4">
               Bốc tên • Bốc câu hỏi • Bốc quà • Bốc chủ đề
             </p>
-            <p className="text-violet-500 text-sm">
+            <p className="text-violet-500 text-xs lg:text-sm">
               Nhập danh sách bên trái và bấm nút để bắt đầu
             </p>
           </div>

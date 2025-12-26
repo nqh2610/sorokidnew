@@ -83,7 +83,7 @@ export default function BanTinhSoroban() {
               <div className="flex bg-gray-100 rounded-xl p-1">
                 <button
                   onClick={() => { setMode('free'); setTargetNumber(null); }}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all
+                  className={`px-4 py-2 min-h-[44px] rounded-lg text-sm font-medium transition-all
                     ${mode === 'free' 
                       ? 'bg-white text-violet-600 shadow' 
                       : 'text-gray-500 hover:text-gray-700'}`}
@@ -92,7 +92,7 @@ export default function BanTinhSoroban() {
                 </button>
                 <button
                   onClick={startRandomPractice}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all
+                  className={`px-4 py-2 min-h-[44px] rounded-lg text-sm font-medium transition-all
                     ${mode === 'practice' 
                       ? 'bg-white text-violet-600 shadow' 
                       : 'text-gray-500 hover:text-gray-700'}`}
@@ -137,7 +137,7 @@ export default function BanTinhSoroban() {
               {/* Clear button */}
               <button
                 onClick={clearBoard}
-                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 
+                className="px-4 py-2 min-h-[44px] bg-gray-100 hover:bg-gray-200 text-gray-700 
                   font-medium rounded-lg text-sm transition-all"
               >
                 🔄 Xóa bàn tính
@@ -146,7 +146,7 @@ export default function BanTinhSoroban() {
               {/* Reset button */}
               <button
                 onClick={handleReset}
-                className="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-600 
+                className="px-4 py-2 min-h-[44px] bg-red-100 hover:bg-red-200 text-red-600 
                   font-medium rounded-lg text-sm transition-all"
               >
                 ↩️ Về tự do
@@ -179,14 +179,14 @@ export default function BanTinhSoroban() {
                   />
                   <button
                     onClick={startPractice}
-                    className="px-4 py-2 bg-violet-500 hover:bg-violet-600 text-white 
+                    className="px-4 py-2 min-h-[44px] bg-violet-500 hover:bg-violet-600 text-white 
                       font-medium rounded-lg text-sm transition-all"
                   >
                     Luyện số này
                   </button>
                   <button
                     onClick={generateRandomNumber}
-                    className="px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white 
+                    className="px-4 py-2 min-h-[44px] bg-pink-500 hover:bg-pink-600 text-white 
                       font-medium rounded-lg text-sm transition-all"
                   >
                     🎲 Số ngẫu nhiên

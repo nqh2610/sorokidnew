@@ -203,17 +203,17 @@ function DenMayManContent() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 min-h-[70vh]">
-      {/* Left Panel */}
-      <div className="w-full lg:w-72 flex-shrink-0 space-y-4">
+    <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 min-h-[70vh]">
+      {/* Left Panel - Order 2 on mobile (settings below lights) */}
+      <div className="w-full lg:w-72 flex-shrink-0 space-y-4 order-2 lg:order-1">
         {/* Mode Selection */}
-        <div className="bg-white rounded-2xl shadow-lg p-5 border border-gray-100">
+        <div className="bg-white rounded-2xl shadow-lg p-4 lg:p-5 border border-gray-100">
           <h3 className="text-base font-bold text-gray-800 mb-4">🚦 Chế độ đèn</h3>
           <div className="space-y-2">
             <button
               onClick={() => setLightMode(2)}
               disabled={isSpinning}
-              className={`w-full p-3 rounded-xl text-left transition-all flex items-center gap-3
+              className={`w-full p-3 min-h-[60px] rounded-xl text-left transition-all flex items-center gap-3
                 ${lightMode === 2 ? 'bg-violet-100 border-2 border-violet-400' : 'bg-gray-50 border-2 border-transparent hover:bg-gray-100'}`}
             >
               <div className="flex gap-1">
@@ -228,7 +228,7 @@ function DenMayManContent() {
             <button
               onClick={() => setLightMode(3)}
               disabled={isSpinning}
-              className={`w-full p-3 rounded-xl text-left transition-all flex items-center gap-3
+              className={`w-full p-3 min-h-[60px] rounded-xl text-left transition-all flex items-center gap-3
                 ${lightMode === 3 ? 'bg-violet-100 border-2 border-violet-400' : 'bg-gray-50 border-2 border-transparent hover:bg-gray-100'}`}
             >
               <div className="flex gap-1">
@@ -260,7 +260,7 @@ function DenMayManContent() {
                 value={greenChance}
                 onChange={(e) => setGreenChance(parseInt(e.target.value))}
                 disabled={isSpinning}
-                className="w-full h-2 bg-green-200 rounded-lg appearance-none cursor-pointer"
+                className="w-full h-3 bg-green-200 rounded-lg appearance-none cursor-pointer tool-slider"
               />
             </div>
 
@@ -277,7 +277,7 @@ function DenMayManContent() {
                   value={yellowChance}
                   onChange={(e) => setYellowChance(parseInt(e.target.value))}
                   disabled={isSpinning}
-                  className="w-full h-2 bg-yellow-200 rounded-lg appearance-none cursor-pointer"
+                  className="w-full h-3 bg-yellow-200 rounded-lg appearance-none cursor-pointer tool-slider"
                 />
               </div>
             )}
@@ -352,14 +352,14 @@ function DenMayManContent() {
         </div>
       </div>
 
-      {/* Right Panel */}
-      <div className="flex-1 min-w-0">
-        <div className={`relative bg-gradient-to-br ${getBgClass()} rounded-3xl shadow-xl p-6 min-h-[400px] flex flex-col items-center justify-center transition-all duration-500`}>
+      {/* Right Panel - Order 1 on mobile (lights first) */}
+      <div className="flex-1 min-w-0 order-1 lg:order-2">
+        <div className={`relative bg-gradient-to-br ${getBgClass()} rounded-2xl lg:rounded-3xl shadow-xl p-4 lg:p-6 min-h-[300px] lg:min-h-[400px] flex flex-col items-center justify-center transition-all duration-500`}>
           
           {/* Countdown */}
           {countdown !== null && (
-            <div className="absolute inset-0 flex items-center justify-center z-20 bg-black/80 rounded-3xl">
-              <div className="text-[12rem] font-black text-white animate-pulse">{countdown}</div>
+            <div className="absolute inset-0 flex items-center justify-center z-20 bg-black/80 rounded-2xl lg:rounded-3xl">
+              <div className="text-[8rem] sm:text-[10rem] lg:text-[12rem] font-black text-white animate-pulse">{countdown}</div>
             </div>
           )}
 
@@ -445,7 +445,7 @@ function DenMayManContent() {
           {/* Main Button */}
           {!isSpinning && !result && countdown === null && (
             <button onClick={handlePress}
-              className="mt-6 px-12 sm:px-16 py-5 sm:py-6 text-2xl sm:text-4xl font-black text-white bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-600 hover:to-pink-600 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all animate-pulse">
+              className="mt-6 px-12 sm:px-16 py-5 sm:py-6 min-h-[64px] text-2xl sm:text-4xl font-black text-white bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-600 hover:to-pink-600 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all animate-pulse">
               🎰 BẤM!
             </button>
           )}
@@ -453,7 +453,7 @@ function DenMayManContent() {
           {/* Action Buttons */}
           {result && (
             <div className="mt-4">
-              <button onClick={handleReset} className="px-8 py-3 bg-white/90 hover:bg-white text-gray-700 font-bold rounded-full shadow-lg hover:scale-105 transition-all">
+              <button onClick={handleReset} className="px-8 py-3 min-h-[48px] bg-white/90 hover:bg-white text-gray-700 font-bold rounded-full shadow-lg hover:scale-105 transition-all">
                 🔄 Chơi lại
               </button>
             </div>

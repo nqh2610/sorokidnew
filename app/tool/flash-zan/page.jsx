@@ -280,7 +280,7 @@ export default function FlashZan() {
                   value={flashCount}
                   onChange={(e) => setFlashCount(parseInt(e.target.value))}
                   className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer
-                    accent-violet-500"
+                    accent-violet-500 tool-slider"
                 />
                 <div className="flex justify-between text-xs text-gray-400 mt-1">
                   <span>3</span>
@@ -301,7 +301,7 @@ export default function FlashZan() {
                   value={speed}
                   onChange={(e) => setSpeed(parseFloat(e.target.value))}
                   className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer
-                    accent-violet-500"
+                    accent-violet-500 tool-slider"
                 />
                 <div className="flex justify-between text-xs text-gray-400 mt-1">
                   <span>0.1s (Siêu nhanh)</span>
@@ -314,7 +314,7 @@ export default function FlashZan() {
             <div className="mt-8 text-center">
               <button
                 onClick={startFlash}
-                className="px-12 py-5 text-2xl font-black text-white rounded-full
+                className="px-12 py-5 min-h-[56px] text-2xl font-black text-white rounded-full
                   bg-gradient-to-r from-yellow-400 to-orange-500 
                   hover:from-yellow-500 hover:to-orange-600 
                   hover:scale-105 hover:shadow-xl 
@@ -373,12 +373,12 @@ export default function FlashZan() {
             {isRunning && displayValue && (
               <div className="text-center animate-flash">
                 <div className={`font-black leading-none
-                  ${digitCount === 1 ? 'text-[20rem]' : 'text-[15rem]'}
                   ${displayValue.operation === '-' 
                     ? 'text-orange-300' // Màu cam nhẹ cho trừ - không căng thẳng
                     : 'text-cyan-300'   // Màu xanh cyan cho cộng - tươi sáng
                   }`}
                   style={{
+                    fontSize: digitCount === 1 ? 'min(40vw, 50vh, 320px)' : 'min(35vw, 45vh, 280px)',
                     textShadow: displayValue.operation === '-'
                       ? '0 0 60px rgba(251,191,36,0.5), 0 0 120px rgba(251,146,60,0.3)'
                       : '0 0 60px rgba(103,232,249,0.5), 0 0 120px rgba(34,211,238,0.3)'

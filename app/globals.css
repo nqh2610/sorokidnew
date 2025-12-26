@@ -469,3 +469,258 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* ===== TOOL RESPONSIVE UTILITIES ===== */
+/* Typography cho Tool - đọc rõ từ xa */
+.tool-title {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.tool-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+}
+
+.tool-text {
+  font-size: clamp(0.875rem, 2vw, 1.25rem);
+}
+
+.tool-text-sm {
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+}
+
+/* Result number - EXTRA LARGE cho máy chiếu */
+.tool-result {
+  font-size: clamp(3rem, 15vw, 12rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.tool-result-medium {
+  font-size: clamp(2rem, 10vw, 8rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Button sizes - minimum 44x44px touch target */
+.tool-btn {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.75rem 1.5rem;
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tool-btn-lg {
+  min-height: 56px;
+  padding: 1rem 2rem;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  border-radius: 1rem;
+}
+
+.tool-btn-xl {
+  min-height: 64px;
+  padding: 1.25rem 2.5rem;
+  font-size: clamp(1.125rem, 3vw, 1.75rem);
+  border-radius: 1rem;
+}
+
+/* Touch-friendly spacing */
+.tool-gap {
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.tool-gap-lg {
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+/* Card containers */
+.tool-card {
+  background: white;
+  border-radius: clamp(0.75rem, 2vw, 1.5rem);
+  padding: clamp(1rem, 3vw, 2rem);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Input fields - touch-friendly */
+.tool-input {
+  min-height: 44px;
+  padding: 0.75rem 1rem;
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  border-radius: 0.5rem;
+  border: 2px solid #e5e7eb;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.tool-input:focus {
+  border-color: #8b5cf6;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.tool-input-lg {
+  min-height: 56px;
+  padding: 1rem 1.25rem;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+/* Slider/Range - touch-friendly */
+.tool-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 12px;
+  border-radius: 6px;
+  background: #e5e7eb;
+  cursor: pointer;
+}
+
+.tool-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.tool-slider::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Grid layouts cho tools */
+.tool-grid {
+  display: grid;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.tool-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.tool-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.tool-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Responsive grid - tự động xuống dòng */
+.tool-grid-auto {
+  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+}
+
+@media (max-width: 640px) {
+  .tool-grid-2, .tool-grid-3, .tool-grid-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  .tool-grid-2.keep-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .tool-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Container cho tool content - tự động scale */
+.tool-container {
+  width: 100%;
+  max-width: min(100%, 1200px);
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+/* Projector-friendly: high contrast backgrounds */
+.tool-bg-light {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.tool-bg-gradient {
+  background: linear-gradient(135deg, #f5f3ff 0%, #fdf2f8 100%);
+}
+
+/* Visibility utilities for different screens */
+@media (max-width: 640px) {
+  .hide-mobile { display: none !important; }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hide-tablet { display: none !important; }
+}
+
+@media (min-width: 1025px) {
+  .hide-desktop { display: none !important; }
+}
+
+@media (max-width: 1024px) {
+  .show-desktop-only { display: none !important; }
+}
+
+@media (min-width: 1025px) {
+  .show-mobile-only { display: none !important; }
+}
+
+/* Safe area for mobile notch */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .tool-safe-area {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Emoji scaling cho readability */
+.tool-emoji {
+  font-size: clamp(2rem, 6vw, 5rem);
+  line-height: 1;
+}
+
+.tool-emoji-lg {
+  font-size: clamp(3rem, 10vw, 8rem);
+  line-height: 1;
+}
+
+.tool-emoji-xl {
+  font-size: clamp(4rem, 15vw, 12rem);
+  line-height: 1;
+}
+
+/* Animation performance - reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles - hide unnecessary elements */
+@media print {
+  .tool-no-print {
+    display: none !important;
+  }
+}

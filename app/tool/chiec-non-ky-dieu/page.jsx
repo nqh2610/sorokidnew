@@ -383,17 +383,17 @@ export default function ChiecNonKyDieu() {
 
   return (
     <ToolLayout toolName="Chiếc Nón Kỳ Diệu" toolIcon="🎡">
-      {/* Main container - Fit viewport height, no scroll needed */}
-      <div className="flex gap-6 h-[calc(100vh-140px)] max-h-[700px]">
-        {/* Left Panel: Fixed width, cách xa wheel */}
-        <div className="w-52 flex-shrink-0 space-y-2 overflow-y-auto">
+      {/* Main container - Mobile: column, Desktop: row */}
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 min-h-[calc(100vh-140px)] lg:h-[calc(100vh-140px)] lg:max-h-[700px]">
+        {/* Left Panel: Mobile full width, Desktop fixed width */}
+        <div className="w-full lg:w-52 flex-shrink-0 space-y-2 overflow-y-auto order-2 lg:order-1">
           {/* Mode Selector - Compact */}
           <div className="bg-white rounded-xl shadow-md p-3 border border-gray-100">
             <div className="flex gap-1">
               <button
                 onClick={() => setMode('text')}
                 disabled={isSpinning}
-                className={`flex-1 py-2 px-2 rounded-lg font-semibold text-xs transition-all
+                className={`flex-1 py-2 px-2 min-h-[44px] rounded-lg font-semibold text-xs transition-all
                   ${mode === 'text' 
                     ? 'bg-gradient-to-r from-violet-500 to-purple-500 text-white shadow-md' 
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
@@ -404,7 +404,7 @@ export default function ChiecNonKyDieu() {
               <button
                 onClick={() => setMode('number')}
                 disabled={isSpinning}
-                className={`flex-1 py-2 px-2 rounded-lg font-semibold text-xs transition-all
+                className={`flex-1 py-2 px-2 min-h-[44px] rounded-lg font-semibold text-xs transition-all
                   ${mode === 'number' 
                     ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-md' 
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
@@ -511,11 +511,11 @@ export default function ChiecNonKyDieu() {
             </div>
           </div>
 
-          {/* SPIN BUTTON - Main action in left panel */}
+          {/* SPIN BUTTON - Hidden on mobile (shown below wheel), visible on desktop */}
           <button
             onClick={spinWheel}
             disabled={isSpinning || items.length === 0}
-            className={`w-full py-3 text-base font-black text-white rounded-xl
+            className={`hidden lg:block w-full py-3 min-h-[48px] text-base font-black text-white rounded-xl
               shadow-lg transform transition-all duration-200 relative overflow-hidden
               ${isSpinning 
                 ? 'bg-gray-400 cursor-not-allowed' 
@@ -557,12 +557,12 @@ export default function ChiecNonKyDieu() {
           </div>
         </div>
 
-        {/* Right Panel: Wheel - vừa với viewport */}
-        <div className="flex-1 flex flex-col items-center justify-center relative">
+        {/* Right Panel: Wheel - Mobile first, vừa với viewport */}
+        <div className="flex-1 flex flex-col items-center justify-center relative order-1 lg:order-2 min-h-[300px] sm:min-h-[400px]">
           {/* Sound toggle - larger and more visible */}
           <button
             onClick={() => setSoundEnabled(!soundEnabled)}
-            className={`absolute top-4 right-4 p-3 rounded-full shadow-lg transition-all z-10 text-2xl
+            className={`absolute top-2 right-2 lg:top-4 lg:right-4 p-2 lg:p-3 rounded-full shadow-lg transition-all z-10 text-xl lg:text-2xl
               ${soundEnabled 
                 ? 'bg-green-100 hover:bg-green-200 border-2 border-green-400' 
                 : 'bg-red-100 hover:bg-red-200 border-2 border-red-400'}`}
@@ -572,21 +572,21 @@ export default function ChiecNonKyDieu() {
           </button>
 
           {items.length === 0 ? (
-            <div className="text-center py-20">
-              <div className="text-8xl mb-6 animate-bounce">🎡</div>
-              <h3 className="text-2xl font-bold text-gray-400 mb-2">
+            <div className="text-center py-10 lg:py-20">
+              <div className="text-6xl lg:text-8xl mb-4 lg:mb-6 animate-bounce">🎡</div>
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-400 mb-2">
                 {mode === 'text' ? 'Nhập danh sách để bắt đầu' : 'Thiết lập khoảng số'}
               </h3>
-              <p className="text-gray-400">
+              <p className="text-gray-400 text-sm lg:text-base">
                 {mode === 'text' ? 'Mỗi dòng là một mục trong vòng quay' : 'Nhập số từ và đến để quay'}
               </p>
             </div>
           ) : (
             <>
-              {/* Wheel Container - Tự động vừa viewport */}
+              {/* Wheel Container - Mobile: vừa màn hình, Desktop: vừa viewport */}
               <div className="relative" style={{
-                width: 'min(520px, calc(100vh - 180px), calc(100vw - 240px))',
-                height: 'min(520px, calc(100vh - 180px), calc(100vw - 240px))'
+                width: 'min(520px, 80vw, calc(100vh - 350px))',
+                height: 'min(520px, 80vw, calc(100vh - 350px))'
               }}>
                 {/* Outer glow ring */}
                 <div className={`absolute inset-[-10px] rounded-full bg-gradient-to-r from-violet-500 via-pink-500 to-yellow-500 
@@ -736,6 +736,23 @@ export default function ChiecNonKyDieu() {
                   </>
                 )}
               </div>
+
+              {/* Mobile QUAY Button - Only visible on mobile, below wheel */}
+              <button
+                onClick={spinWheel}
+                disabled={isSpinning || items.length === 0}
+                className={`lg:hidden mt-4 w-full max-w-xs py-4 min-h-[56px] text-xl font-black text-white rounded-2xl
+                  shadow-lg transform transition-all duration-200 relative overflow-hidden
+                  ${isSpinning 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-gradient-to-r from-red-500 via-pink-500 to-yellow-500 hover:from-red-600 hover:via-pink-600 hover:to-yellow-600 active:scale-95'
+                  }`}
+                style={{
+                  boxShadow: isSpinning ? 'none' : '0 6px 25px rgba(255, 105, 180, 0.5)'
+                }}
+              >
+                {isSpinning ? '🎰 Đang quay...' : '🎯 QUAY!'}
+              </button>
             </>
           )}
         </div>

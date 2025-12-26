@@ -1264,7 +1264,7 @@ export default function DuaThuHoatHinh() {
                     <button
                       key={option.value}
                       onClick={() => setRaceSpeed(option.value)}
-                      className={`py-2 px-2 rounded-xl font-medium transition-all text-center
+                      className={`py-2 px-2 min-h-[60px] rounded-xl font-medium transition-all text-center
                         ${raceSpeed === option.value 
                           ? 'bg-blue-500 text-white shadow-lg scale-105' 
                           : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'}`}
@@ -1308,7 +1308,7 @@ export default function DuaThuHoatHinh() {
                 <div className="flex items-center gap-4">
                   <button
                     onClick={() => setSoundEnabled(!soundEnabled)}
-                    className={`px-4 py-2 rounded-xl text-sm font-medium transition-all
+                    className={`px-4 py-2 min-h-[44px] rounded-xl text-sm font-medium transition-all
                       ${soundEnabled ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}
                   >
                     {soundEnabled ? '🔊 Âm thanh BẬT' : '🔇 Âm thanh TẮT'}
@@ -1322,7 +1322,7 @@ export default function DuaThuHoatHinh() {
                 <button
                   onClick={handleStartRace}
                   disabled={racers.length < 2}
-                  className={`px-8 py-4 font-black rounded-2xl text-xl transition-all
+                  className={`px-8 py-4 min-h-[56px] font-black rounded-2xl text-xl transition-all
                     ${racers.length < 2
                       ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
                       : 'bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:shadow-xl hover:scale-105 active:scale-95'
