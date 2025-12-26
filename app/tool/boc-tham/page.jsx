@@ -294,8 +294,8 @@ function BocThamContent() {
 
         {/* Animating - Slot Machine Effect */}
         {isAnimating && (
-          <div className="bg-gradient-to-br from-violet-600 via-purple-600 to-pink-600 rounded-3xl 
-            shadow-2xl p-8 text-center min-h-[450px] flex flex-col items-center justify-center
+          <div className="bg-gradient-to-br from-violet-600 via-purple-600 to-pink-600 rounded-2xl lg:rounded-3xl 
+            shadow-2xl p-4 lg:p-8 text-center min-h-[280px] lg:min-h-[450px] flex flex-col items-center justify-center
             relative overflow-hidden">
             {/* Decorative lights */}
             <div className="absolute inset-0 overflow-hidden">
@@ -314,16 +314,16 @@ function BocThamContent() {
             </div>
             
             {/* Slot machine display */}
-            <div className="relative z-10 bg-black/30 backdrop-blur rounded-2xl p-8 border-4 border-yellow-400">
-              <div className="text-6xl mb-6">🎰</div>
+            <div className="relative z-10 bg-black/30 backdrop-blur rounded-xl lg:rounded-2xl p-4 lg:p-8 border-4 border-yellow-400">
+              <div className="text-4xl lg:text-6xl mb-4 lg:mb-6">🎰</div>
               
               {/* Slot reels */}
-              <div className="bg-white rounded-xl p-4 mb-4 min-w-[300px]">
+              <div className="bg-white rounded-lg lg:rounded-xl p-3 lg:p-4 mb-4 min-w-[200px] lg:min-w-[300px]">
                 <div className="space-y-2">
                   {animatingNames.map((name, i) => (
                     <div
                       key={i}
-                      className={`text-2xl font-bold py-2 px-4 rounded-lg transition-all
+                      className={`text-lg lg:text-2xl font-bold py-2 px-3 lg:px-4 rounded-lg transition-all
                         ${i === 1 ? 'bg-yellow-300 text-yellow-800 scale-110' : 'bg-gray-100 text-gray-500 opacity-50'}`}
                     >
                       {name}
@@ -332,7 +332,7 @@ function BocThamContent() {
                 </div>
               </div>
               
-              <p className="text-white text-xl font-bold animate-pulse">
+              <p className="text-white text-lg lg:text-xl font-bold animate-pulse">
                 Đang quay số...
               </p>
             </div>
@@ -342,8 +342,8 @@ function BocThamContent() {
         {/* Winner Result */}
         {showResult && pickedPerson && (
           <div className="animate-bounceIn">
-            <div className="bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400 rounded-3xl 
-              shadow-2xl overflow-hidden min-h-[450px] relative">
+            <div className="bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400 rounded-2xl lg:rounded-3xl 
+              shadow-2xl overflow-hidden min-h-[280px] lg:min-h-[450px] relative">
               {/* Confetti */}
               <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 {[...Array(40)].map((_, i) => (
@@ -362,47 +362,47 @@ function BocThamContent() {
               </div>
               
               {/* Header */}
-              <div className="bg-gradient-to-r from-red-500 to-pink-500 p-6 text-center relative">
+              <div className="bg-gradient-to-r from-red-500 to-pink-500 p-4 lg:p-6 text-center relative">
                 <div className="absolute inset-0 flex items-center justify-around">
-                  <span className="text-4xl animate-bounce">🎉</span>
-                  <span className="text-4xl animate-bounce" style={{ animationDelay: '0.2s' }}>🎊</span>
-                  <span className="text-4xl animate-bounce" style={{ animationDelay: '0.1s' }}>✨</span>
-                  <span className="text-4xl animate-bounce" style={{ animationDelay: '0.3s' }}>🎉</span>
+                  <span className="text-2xl lg:text-4xl animate-bounce">🎉</span>
+                  <span className="text-2xl lg:text-4xl animate-bounce" style={{ animationDelay: '0.2s' }}>🎊</span>
+                  <span className="text-2xl lg:text-4xl animate-bounce" style={{ animationDelay: '0.1s' }}>✨</span>
+                  <span className="text-2xl lg:text-4xl animate-bounce" style={{ animationDelay: '0.3s' }}>🎉</span>
                 </div>
-                <h2 className="text-3xl font-black text-white relative z-10 drop-shadow-lg">
-                  � KẾT QUẢ BỐC THĂM 🎫
+                <h2 className="text-xl lg:text-3xl font-black text-white relative z-10 drop-shadow-lg">
+                  🎫 KẾT QUẢ BỐC THĂM 🎫
                 </h2>
               </div>
               
               {/* Winner Name */}
-              <div className="p-12 text-center flex flex-col items-center justify-center min-h-[300px]">
-                <div className="bg-white rounded-3xl shadow-2xl p-8 transform hover:scale-105 transition-all">
-                  <div className="text-6xl mb-4">🎯</div>
-                  <div className="text-5xl sm:text-7xl font-black text-transparent bg-clip-text 
-                    bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 mb-4
+              <div className="p-6 lg:p-12 text-center flex flex-col items-center justify-center min-h-[180px] lg:min-h-[300px]">
+                <div className="bg-white rounded-2xl lg:rounded-3xl shadow-2xl p-4 lg:p-8 transform hover:scale-105 transition-all">
+                  <div className="text-4xl lg:text-6xl mb-2 lg:mb-4">🎯</div>
+                  <div className="text-3xl sm:text-5xl lg:text-7xl font-black text-transparent bg-clip-text 
+                    bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 mb-2 lg:mb-4
                     animate-pulse">
                     {pickedPerson}
                   </div>
-                  <div className="text-2xl">🎉 Chúc mừng! 🎉</div>
+                  <div className="text-lg lg:text-2xl">🎉 Chúc mừng! 🎉</div>
                 </div>
                 
                 {/* Action buttons */}
-                <div className="flex gap-4 mt-8">
+                <div className="flex gap-3 lg:gap-4 mt-4 lg:mt-8">
                   <button
                     onClick={handleReset}
-                    className="px-6 py-3 bg-white/90 hover:bg-white text-gray-700 
-                      font-bold rounded-full text-lg shadow-lg transition-all"
+                    className="px-4 lg:px-6 py-2 lg:py-3 min-h-[44px] bg-white/90 hover:bg-white text-gray-700 
+                      font-bold rounded-full text-sm lg:text-lg shadow-lg transition-all"
                   >
                     🔄 Làm mới
                   </button>
                   <button
                     onClick={pickOnePerson}
-                    className="px-8 py-3 bg-gradient-to-r from-violet-500 to-pink-500 
-                      text-white font-bold rounded-full text-lg shadow-lg
+                    className="px-6 lg:px-8 py-2 lg:py-3 min-h-[44px] bg-gradient-to-r from-violet-500 to-pink-500 
+                      text-white font-bold rounded-full text-sm lg:text-lg shadow-lg
                       hover:from-violet-600 hover:to-pink-600 transition-all
                       hover:shadow-xl"
                   >
-                    � Bốc lại!
+                    🎲 Bốc lại!
                   </button>
                 </div>
               </div>

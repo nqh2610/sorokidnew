@@ -1352,8 +1352,63 @@ export default function DuaThuHoatHinh() {
   }
 
   // ============ RACING SCREEN - FULLSCREEN ============
+  // State to track orientation
+  const [isPortrait, setIsPortrait] = useState(false);
+
+  // Check orientation on mount and resize
+  useEffect(() => {
+    const checkOrientation = () => {
+      setIsPortrait(window.innerHeight > window.innerWidth && window.innerWidth < 768);
+    };
+    
+    checkOrientation();
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', checkOrientation);
+    
+    // Try to lock to landscape on mobile
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape').catch(() => {
+        // Orientation lock not supported or denied
+      });
+    }
+    
+    return () => {
+      window.removeEventListener('resize', checkOrientation);
+      window.removeEventListener('orientationchange', checkOrientation);
+      // Unlock orientation when leaving
+      if (screen.orientation && screen.orientation.unlock) {
+        screen.orientation.unlock();
+      }
+    };
+  }, []);
+
   return (
     <div ref={containerRef} className="fixed inset-0 z-50 bg-black">
+      {/* Portrait Mode Warning Overlay */}
+      {isPortrait && (
+        <div className="absolute inset-0 z-[100] bg-gradient-to-br from-blue-600 to-purple-700 
+          flex flex-col items-center justify-center text-white p-6 text-center">
+          <div className="text-8xl mb-6 animate-bounce">📱</div>
+          <div className="text-6xl mb-4 animate-spin-slow">🔄</div>
+          <h2 className="text-2xl font-black mb-3">Xoay ngang màn hình!</h2>
+          <p className="text-lg opacity-90 mb-4">
+            Để xem cuộc đua tốt nhất, vui lòng xoay điện thoại ngang
+          </p>
+          <div className="flex items-center gap-2 text-yellow-300">
+            <span className="text-2xl">👉</span>
+            <span className="font-bold">Landscape Mode</span>
+            <span className="text-2xl">👈</span>
+          </div>
+          <button
+            onClick={backToSetup}
+            className="mt-8 px-6 py-3 bg-white/20 hover:bg-white/30 rounded-full 
+              font-bold transition-all"
+          >
+            ← Quay lại cài đặt
+          </button>
+        </div>
+      )}
+
       {/* FULLSCREEN RIVER RACE */}
       <div className="relative w-full h-full overflow-hidden">
         
@@ -2042,6 +2097,12 @@ export default function DuaThuHoatHinh() {
           100% { transform: scale(0) rotate(360deg) translateY(50px); opacity: 0; }
         }
         .animate-confetti-pop { animation: confetti-pop 1.5s ease-out infinite; }
+        
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow { animation: spin-slow 3s linear infinite; }
       `}</style>
     </div>
   );
