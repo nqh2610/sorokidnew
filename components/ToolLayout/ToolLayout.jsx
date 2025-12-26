@@ -106,11 +106,14 @@ export default function ToolLayout({
                 </Link>
               </div>
 
-              {/* Center: Tool name */}
-              <div className="flex items-center gap-2">
+              {/* Center: Tool name with link to toolbox */}
+              <Link href="/tool" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <span className="text-2xl">{toolIcon}</span>
-                <h1 className="text-lg sm:text-xl font-bold text-gray-800">{toolName}</h1>
-              </div>
+                <div className="flex flex-col items-start">
+                  <span className="text-[10px] text-violet-500 font-medium -mb-0.5">Toolbox Giáo Viên</span>
+                  <h1 className="text-lg sm:text-xl font-bold text-gray-800">{toolName}</h1>
+                </div>
+              </Link>
 
               {/* Right: Fullscreen button */}
               {!hideFullscreenButton && (
@@ -196,9 +199,13 @@ export default function ToolLayout({
       {/* Footer - hidden in fullscreen */}
       {!isFullscreen && (
         <footer className="border-t border-gray-100 bg-white/50 py-6 mt-auto">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-3">
+            <Link href="/" className="flex items-center">
+              <Logo size="sm" showText={true} />
+            </Link>
+            <div className="w-px h-5 bg-gray-300" />
             <p className="text-sm text-gray-500">
-              © 2025 <Link href="/" className="text-violet-600 hover:underline">SoroKid</Link> - Học toán tư duy cùng bàn tính Soroban
+              © 2025 SoroKid - Học toán tính nhanh vui như chơi game 🎮
             </p>
           </div>
         </footer>
