@@ -323,6 +323,118 @@
   }
 }
 
+/* ===== TOOLBOX ANIMATIONS ===== */
+@keyframes tool-card-hover {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-8px) scale(1.02); }
+}
+
+.tool-card-animate:hover {
+  animation: tool-card-hover 0.3s ease-out forwards;
+}
+
+@keyframes wheel-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-wheel-spin {
+  animation: wheel-spin 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+}
+
+@keyframes result-reveal {
+  0% { 
+    transform: scale(0) rotate(-180deg); 
+    opacity: 0; 
+  }
+  50% { 
+    transform: scale(1.2) rotate(10deg); 
+  }
+  100% { 
+    transform: scale(1) rotate(0deg); 
+    opacity: 1; 
+  }
+}
+
+.animate-result-reveal {
+  animation: result-reveal 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes race-wiggle {
+  0%, 100% { transform: translateY(-50%) rotate(-2deg); }
+  50% { transform: translateY(-50%) rotate(2deg); }
+}
+
+.animate-race-wiggle {
+  animation: race-wiggle 0.1s ease-in-out infinite;
+}
+
+@keyframes timer-warning {
+  0%, 100% { transform: scale(1); color: inherit; }
+  50% { transform: scale(1.05); }
+}
+
+.animate-timer-warning {
+  animation: timer-warning 0.5s ease-in-out infinite;
+}
+
+@keyframes flash-number {
+  0% { 
+    transform: scale(0.5); 
+    opacity: 0; 
+    filter: blur(10px);
+  }
+  30% { 
+    transform: scale(1.1); 
+    opacity: 1;
+    filter: blur(0);
+  }
+  70% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% { 
+    transform: scale(0.9); 
+    opacity: 0;
+  }
+}
+
+.animate-flash-number {
+  animation: flash-number var(--flash-duration, 1s) ease-in-out;
+}
+
+@keyframes group-appear {
+  0% { 
+    transform: translateY(30px) scale(0.9); 
+    opacity: 0; 
+  }
+  100% { 
+    transform: translateY(0) scale(1); 
+    opacity: 1; 
+  }
+}
+
+.animate-group-appear {
+  animation: group-appear 0.4s ease-out forwards;
+}
+
+/* Fullscreen mode styles */
+.fullscreen-container:fullscreen {
+  background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 50%, #fdf2f8 100%);
+}
+
+.fullscreen-container:fullscreen .fullscreen-hide {
+  display: none;
+}
+
+.fullscreen-container:fullscreen .fullscreen-center {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Custom Scrollbar Styles */
 .custom-scrollbar {
   scrollbar-width: thin;
