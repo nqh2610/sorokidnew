@@ -21,8 +21,8 @@ function DenMayManContent() {
   const [countdown, setCountdown] = useState(null);
   
   const [lightMode, setLightMode] = useState(2);
-  const [greenChance, setGreenChance] = useState(50);
-  const [yellowChance, setYellowChance] = useState(30); // 3-đèn mặc định cân bằng hơn
+  const [greenChance, setGreenChance] = useState(50); // 2-đèn: 50/50 cân bằng
+  const [yellowChance, setYellowChance] = useState(33); // 3-đèn: 34/33/33 cân bằng
   const [showProbability, setShowProbability] = useState(true); // Ẩn/hiện tỷ lệ
   
   const audioContextRef = useRef(null);
