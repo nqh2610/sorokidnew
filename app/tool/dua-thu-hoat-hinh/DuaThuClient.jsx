@@ -242,6 +242,7 @@ export default function DuaThuHoatHinh() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [lastLeader, setLastLeader] = useState(null);
   const [duplicateNames, setDuplicateNames] = useState([]); // Tên trùng
+  const [isPortrait, setIsPortrait] = useState(false); // Track orientation for mobile
   
   const animationRef = useRef(null);
   const containerRef = useRef(null);
@@ -322,6 +323,30 @@ export default function DuaThuHoatHinh() {
   useEffect(() => {
     parseInput();
   }, [inputText, parseInput]);
+
+  // Check orientation on mount and resize (for mobile portrait warning)
+  useEffect(() => {
+    const checkOrientation = () => {
+      setIsPortrait(window.innerHeight > window.innerWidth && window.innerWidth < 768);
+    };
+    
+    checkOrientation();
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', checkOrientation);
+    
+    // Try to lock to landscape on mobile when racing
+    if (isFullscreen && screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape').catch(() => {});
+    }
+    
+    return () => {
+      window.removeEventListener('resize', checkOrientation);
+      window.removeEventListener('orientationchange', checkOrientation);
+      if (screen.orientation && screen.orientation.unlock) {
+        screen.orientation.unlock();
+      }
+    };
+  }, [isFullscreen]);
 
   // Play sound
   const playSound = useCallback((type) => {
@@ -1365,36 +1390,6 @@ export default function DuaThuHoatHinh() {
   }
 
   // ============ RACING SCREEN - FULLSCREEN ============
-  // State to track orientation
-  const [isPortrait, setIsPortrait] = useState(false);
-
-  // Check orientation on mount and resize
-  useEffect(() => {
-    const checkOrientation = () => {
-      setIsPortrait(window.innerHeight > window.innerWidth && window.innerWidth < 768);
-    };
-    
-    checkOrientation();
-    window.addEventListener('resize', checkOrientation);
-    window.addEventListener('orientationchange', checkOrientation);
-    
-    // Try to lock to landscape on mobile
-    if (screen.orientation && screen.orientation.lock) {
-      screen.orientation.lock('landscape').catch(() => {
-        // Orientation lock not supported or denied
-      });
-    }
-    
-    return () => {
-      window.removeEventListener('resize', checkOrientation);
-      window.removeEventListener('orientationchange', checkOrientation);
-      // Unlock orientation when leaving
-      if (screen.orientation && screen.orientation.unlock) {
-        screen.orientation.unlock();
-      }
-    };
-  }, []);
-
   return (
     <div ref={containerRef} className="fixed inset-0 z-50 bg-black">
       {/* Portrait Mode Warning Overlay */}

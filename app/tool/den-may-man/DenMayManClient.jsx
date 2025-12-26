@@ -22,7 +22,8 @@ function DenMayManContent() {
   
   const [lightMode, setLightMode] = useState(2);
   const [greenChance, setGreenChance] = useState(50);
-  const [yellowChance, setYellowChance] = useState(20);
+  const [yellowChance, setYellowChance] = useState(30); // 3-đèn mặc định cân bằng hơn
+  const [showProbability, setShowProbability] = useState(true); // Ẩn/hiện tỷ lệ
   
   const audioContextRef = useRef(null);
   const flickerIntervalRef = useRef(null);
@@ -199,264 +200,255 @@ function DenMayManContent() {
   };
 
   const getBgClass = () => {
-    return 'from-slate-700 via-slate-800 to-slate-900';
+    return 'from-indigo-600 via-purple-700 to-violet-800';
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 min-h-[70vh]">
-      {/* Left Panel - Order 2 on mobile (settings below lights) */}
-      <div className="w-full lg:w-72 flex-shrink-0 space-y-4 order-2 lg:order-1">
-        {/* Mode Selection */}
-        <div className="bg-white rounded-2xl shadow-lg p-4 lg:p-5 border border-gray-100">
-          <h3 className="text-base font-bold text-gray-800 mb-4">🚦 Chế độ đèn</h3>
-          <div className="space-y-2">
+    <div className="flex flex-col lg:flex-row gap-3 lg:gap-4">
+      {/* Left Panel - Compact settings */}
+      <div className="w-full lg:w-64 flex-shrink-0 space-y-2 order-2 lg:order-1">
+        {/* Mode Selection - Compact */}
+        <div className="bg-white rounded-xl shadow-md p-3 border border-gray-100">
+          <h3 className="text-sm font-bold text-gray-800 mb-2">🚦 Chế độ đèn</h3>
+          <div className="flex gap-2">
             <button
               onClick={() => setLightMode(2)}
               disabled={isSpinning}
-              className={`w-full p-3 min-h-[60px] rounded-xl text-left transition-all flex items-center gap-3
+              className={`flex-1 p-2 rounded-lg text-center transition-all
                 ${lightMode === 2 ? 'bg-violet-100 border-2 border-violet-400' : 'bg-gray-50 border-2 border-transparent hover:bg-gray-100'}`}
             >
-              <div className="flex gap-1">
-                <span className="w-4 h-4 rounded-full bg-red-500"></span>
-                <span className="w-4 h-4 rounded-full bg-green-500"></span>
+              <div className="flex gap-1 justify-center mb-1">
+                <span className="w-3 h-3 rounded-full bg-red-500"></span>
+                <span className="w-3 h-3 rounded-full bg-green-500"></span>
               </div>
-              <div>
-                <div className="font-semibold">2 Đèn</div>
-                <div className="text-xs text-gray-500">Xanh / Đỏ</div>
-              </div>
+              <div className="text-xs font-semibold">2 Đèn</div>
             </button>
             <button
               onClick={() => setLightMode(3)}
               disabled={isSpinning}
-              className={`w-full p-3 min-h-[60px] rounded-xl text-left transition-all flex items-center gap-3
+              className={`flex-1 p-2 rounded-lg text-center transition-all
                 ${lightMode === 3 ? 'bg-violet-100 border-2 border-violet-400' : 'bg-gray-50 border-2 border-transparent hover:bg-gray-100'}`}
             >
-              <div className="flex gap-1">
-                <span className="w-4 h-4 rounded-full bg-red-500"></span>
-                <span className="w-4 h-4 rounded-full bg-yellow-400"></span>
-                <span className="w-4 h-4 rounded-full bg-green-500"></span>
+              <div className="flex gap-1 justify-center mb-1">
+                <span className="w-3 h-3 rounded-full bg-red-500"></span>
+                <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
+                <span className="w-3 h-3 rounded-full bg-green-500"></span>
               </div>
-              <div>
-                <div className="font-semibold">3 Đèn</div>
-                <div className="text-xs text-gray-500">Xanh / Vàng / Đỏ</div>
-              </div>
+              <div className="text-xs font-semibold">3 Đèn</div>
             </button>
           </div>
         </div>
 
-        {/* Probability Settings */}
-        <div className="bg-white rounded-2xl shadow-lg p-5 border border-gray-100">
-          <h3 className="text-base font-bold text-gray-800 mb-4">⚖️ Tỷ lệ</h3>
-          <div className="space-y-4">
+        {/* Probability Settings - Collapsible */}
+        <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden">
+          <button
+            onClick={() => setShowProbability(!showProbability)}
+            className="w-full p-3 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
+          >
+            <span className="text-sm font-bold text-gray-800 flex items-center gap-2">
+              ⚖️ Tỷ lệ
+              {!showProbability && (
+                <span className="text-xs font-normal text-gray-400">(Đang ẩn)</span>
+              )}
+            </span>
+            <span className={`text-gray-400 transition-transform ${showProbability ? 'rotate-180' : ''}`}>
+              ▼
+            </span>
+          </button>
+          
+          {showProbability && (
+            <div className="px-3 pb-3 space-y-3 border-t border-gray-100 pt-2">
             <div>
-              <div className="flex justify-between mb-1.5">
-                <span className="text-sm font-medium flex items-center gap-1.5">
-                  <span className="w-3 h-3 rounded-full bg-green-500"></span>Xanh (An toàn)
+              <div className="flex justify-between mb-1">
+                <span className="text-xs font-medium flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-full bg-green-500"></span>Xanh
                 </span>
-                <span className="text-sm font-bold text-green-600">{greenChance}%</span>
+                <span className="text-xs font-bold text-green-600">{greenChance}%</span>
               </div>
               <input
                 type="range" min="10" max={lightMode === 2 ? 90 : 80} step="10"
                 value={greenChance}
                 onChange={(e) => setGreenChance(parseInt(e.target.value))}
                 disabled={isSpinning}
-                className="w-full h-3 bg-green-200 rounded-lg appearance-none cursor-pointer tool-slider"
+                className="w-full h-2 bg-green-200 rounded-lg appearance-none cursor-pointer"
               />
             </div>
 
             {lightMode === 3 && (
               <div>
-                <div className="flex justify-between mb-1.5">
-                  <span className="text-sm font-medium flex items-center gap-1.5">
-                    <span className="w-3 h-3 rounded-full bg-yellow-400"></span>Vàng (Thử thách)
+                <div className="flex justify-between mb-1">
+                  <span className="text-xs font-medium flex items-center gap-1">
+                    <span className="w-2 h-2 rounded-full bg-yellow-400"></span>Vàng
                   </span>
-                  <span className="text-sm font-bold text-yellow-600">{yellowChance}%</span>
+                  <span className="text-xs font-bold text-yellow-600">{yellowChance}%</span>
                 </div>
                 <input
                   type="range" min="10" max={90 - greenChance} step="10"
                   value={yellowChance}
                   onChange={(e) => setYellowChance(parseInt(e.target.value))}
                   disabled={isSpinning}
-                  className="w-full h-3 bg-yellow-200 rounded-lg appearance-none cursor-pointer tool-slider"
+                  className="w-full h-2 bg-yellow-200 rounded-lg appearance-none cursor-pointer"
                 />
               </div>
             )}
 
-            <div className="pt-2 border-t border-gray-100">
-              <div className="flex justify-between">
-                <span className="text-sm font-medium flex items-center gap-1.5">
-                  <span className="w-3 h-3 rounded-full bg-red-500"></span>Đỏ (Bị phạt)
-                </span>
-                <span className="text-sm font-bold text-red-600">{redChance}%</span>
-              </div>
+            <div className="flex justify-between text-xs pt-1 border-t border-gray-100">
+              <span className="font-medium flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-red-500"></span>Đỏ
+              </span>
+              <span className="font-bold text-red-600">{redChance}%</span>
             </div>
-          </div>
 
-          <div className="mt-4 pt-4 border-t border-gray-100">
-            <p className="text-xs text-gray-500 mb-2">Mẫu nhanh:</p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1 pt-1">
               {lightMode === 2 ? (
                 <>
                   <button onClick={() => setGreenChance(30)} disabled={isSpinning}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium ${greenChance === 30 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>
-                    Khó (30/70)
+                    className={`px-2 py-1 rounded text-[10px] font-medium ${greenChance === 30 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>
+                    Khó
                   </button>
                   <button onClick={() => setGreenChance(50)} disabled={isSpinning}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium ${greenChance === 50 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>
-                    Công bằng
+                    className={`px-2 py-1 rounded text-[10px] font-medium ${greenChance === 50 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>
+                    50/50
                   </button>
                   <button onClick={() => setGreenChance(70)} disabled={isSpinning}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium ${greenChance === 70 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>
-                    Dễ (70/30)
+                    className={`px-2 py-1 rounded text-[10px] font-medium ${greenChance === 70 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>
+                    Dễ
                   </button>
                 </>
               ) : (
                 <>
-                  <button onClick={() => { setGreenChance(30); setYellowChance(30); }} disabled={isSpinning}
-                    className="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-100 hover:bg-gray-200">30/30/40</button>
-                  <button onClick={() => { setGreenChance(40); setYellowChance(30); }} disabled={isSpinning}
-                    className="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-100 hover:bg-gray-200">40/30/30</button>
+                  <button onClick={() => { setGreenChance(34); setYellowChance(33); }} disabled={isSpinning}
+                    className={`px-2 py-1 rounded text-[10px] font-medium ${greenChance === 34 && yellowChance === 33 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>Cân bằng</button>
                   <button onClick={() => { setGreenChance(50); setYellowChance(30); }} disabled={isSpinning}
-                    className="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-100 hover:bg-gray-200">50/30/20</button>
+                    className={`px-2 py-1 rounded text-[10px] font-medium ${greenChance === 50 && yellowChance === 30 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>Dễ hơn</button>
+                  <button onClick={() => { setGreenChance(20); setYellowChance(30); }} disabled={isSpinning}
+                    className={`px-2 py-1 rounded text-[10px] font-medium ${greenChance === 20 && yellowChance === 30 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>Khó hơn</button>
                 </>
               )}
             </div>
-          </div>
+            </div>
+          )}
         </div>
 
-        {/* Sound Toggle */}
-        <div className="bg-white rounded-2xl shadow-lg p-4 border border-gray-100">
-          <label className="flex items-center gap-3 cursor-pointer">
+        {/* Sound Toggle + Instructions - Combined */}
+        <div className="bg-white rounded-xl shadow-md p-3 border border-gray-100">
+          <label className="flex items-center gap-2 cursor-pointer mb-2">
             <input type="checkbox" checked={soundEnabled} onChange={(e) => setSoundEnabled(e.target.checked)}
-              className="w-5 h-5 text-violet-500 rounded" />
-            <span className="font-medium text-gray-700">{soundEnabled ? '🔊 Âm thanh bật' : '🔇 Âm thanh tắt'}</span>
+              className="w-4 h-4 text-violet-500 rounded" />
+            <span className="text-sm font-medium text-gray-700">{soundEnabled ? '🔊 Bật' : '🔇 Tắt'}</span>
           </label>
-        </div>
-
-        {/* Instructions */}
-        <div className="bg-gradient-to-r from-violet-50 to-pink-50 rounded-xl p-4 text-sm border border-violet-100">
-          <p className="font-semibold text-violet-700 mb-2">💡 Ý nghĩa đèn:</p>
-          <ul className="space-y-1.5 text-gray-600">
-            <li className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-green-500"></span><strong>Xanh</strong> - An toàn!
-            </li>
-            {lightMode === 3 && (
-              <li className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-yellow-400"></span><strong>Vàng</strong> - Trả lời câu hỏi!
-              </li>
-            )}
-            <li className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-red-500"></span><strong>Đỏ</strong> - Bị phạt!
-            </li>
-          </ul>
+          <div className="text-[10px] text-gray-500 flex flex-wrap gap-x-3">
+            <span>🟢 An toàn</span>
+            {lightMode === 3 && <span>🟡 Thử thách</span>}
+            <span>🔴 Phạt</span>
+          </div>
         </div>
       </div>
 
-      {/* Right Panel - Order 1 on mobile (lights first) */}
+      {/* Right Panel - Compact lights */}
       <div className="flex-1 min-w-0 order-1 lg:order-2">
-        <div className={`relative bg-gradient-to-br ${getBgClass()} rounded-2xl lg:rounded-3xl shadow-xl p-4 lg:p-6 min-h-[300px] lg:min-h-[400px] flex flex-col items-center justify-center transition-all duration-500`}>
+        <div className={`relative bg-gradient-to-br ${getBgClass()} rounded-2xl shadow-xl p-3 sm:p-4 min-h-[240px] flex flex-col items-center justify-center transition-all duration-500`}>
           
           {/* Countdown */}
           {countdown !== null && (
-            <div className="absolute inset-0 flex items-center justify-center z-20 bg-black/80 rounded-2xl lg:rounded-3xl">
-              <div className="text-[8rem] sm:text-[10rem] lg:text-[12rem] font-black text-white animate-pulse">{countdown}</div>
+            <div className="absolute inset-0 flex items-center justify-center z-20 bg-black/80 rounded-2xl">
+              <div className="text-[7rem] sm:text-[9rem] font-black text-white animate-pulse">{countdown}</div>
             </div>
           )}
 
-          {/* Lights */}
+          {/* Lights - 2 mode */}
           {lightMode === 2 ? (
-            <div className="flex gap-6 sm:gap-12 items-center">
+            <div className="flex gap-8 sm:gap-16 items-center">
               <div className="text-center">
-                <div className={`relative w-28 h-28 sm:w-36 sm:h-36 rounded-full transition-all duration-300 mb-3
-                  ${activeLight === 'red' || result === 'red' 
-                    ? 'bg-red-500 shadow-[0_0_80px_30px_rgba(239,68,68,0.8)]' 
-                    : 'bg-red-800/60 border-4 border-red-600/50'}`}>
-                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
-                  {result === 'red' && <div className="absolute inset-0 flex items-center justify-center text-5xl sm:text-6xl animate-bounce">😱</div>}
-                </div>
-                <span className="text-base sm:text-lg font-bold text-red-400">ĐỎ - Phạt</span>
-              </div>
-              <div className="text-center">
-                <div className={`relative w-28 h-28 sm:w-36 sm:h-36 rounded-full transition-all duration-300 mb-3
-                  ${activeLight === 'green' || result === 'green' 
-                    ? 'bg-green-500 shadow-[0_0_80px_30px_rgba(34,197,94,0.8)]' 
-                    : 'bg-green-800/60 border-4 border-green-600/50'}`}>
-                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
-                  {result === 'green' && <div className="absolute inset-0 flex items-center justify-center text-5xl sm:text-6xl animate-bounce">🎉</div>}
-                </div>
-                <span className="text-base sm:text-lg font-bold text-green-400">XANH - An toàn</span>
-              </div>
-            </div>
-          ) : (
-            <div className="flex gap-4 sm:gap-6 items-end">
-              <div className="text-center">
-                <div className={`relative w-20 h-20 sm:w-28 sm:h-28 rounded-full transition-all duration-300 mb-2
+                <div className={`relative w-24 h-24 sm:w-32 sm:h-32 rounded-full transition-all duration-300 mb-1
                   ${activeLight === 'red' || result === 'red' 
                     ? 'bg-red-500 shadow-[0_0_60px_25px_rgba(239,68,68,0.8)]' 
                     : 'bg-red-800/60 border-4 border-red-600/50'}`}>
                   <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
                   {result === 'red' && <div className="absolute inset-0 flex items-center justify-center text-4xl sm:text-5xl animate-bounce">😱</div>}
                 </div>
-                <span className="text-sm sm:text-base font-bold text-red-400">ĐỎ</span>
+                <span className="text-sm font-bold text-red-400">Đỏ</span>
               </div>
               <div className="text-center">
-                <div className={`relative w-20 h-20 sm:w-28 sm:h-28 rounded-full transition-all duration-300 mb-2
-                  ${activeLight === 'yellow' || result === 'yellow' 
-                    ? 'bg-yellow-400 shadow-[0_0_60px_25px_rgba(250,204,21,0.8)]' 
-                    : 'bg-yellow-700/60 border-4 border-yellow-500/50'}`}>
-                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
-                  {result === 'yellow' && <div className="absolute inset-0 flex items-center justify-center text-4xl sm:text-5xl animate-bounce">🤔</div>}
-                </div>
-                <span className="text-sm sm:text-base font-bold text-yellow-400">VÀNG</span>
-              </div>
-              <div className="text-center">
-                <div className={`relative w-20 h-20 sm:w-28 sm:h-28 rounded-full transition-all duration-300 mb-2
+                <div className={`relative w-24 h-24 sm:w-32 sm:h-32 rounded-full transition-all duration-300 mb-1
                   ${activeLight === 'green' || result === 'green' 
                     ? 'bg-green-500 shadow-[0_0_60px_25px_rgba(34,197,94,0.8)]' 
                     : 'bg-green-800/60 border-4 border-green-600/50'}`}>
                   <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
                   {result === 'green' && <div className="absolute inset-0 flex items-center justify-center text-4xl sm:text-5xl animate-bounce">🎉</div>}
                 </div>
-                <span className="text-sm sm:text-base font-bold text-green-400">XANH</span>
+                <span className="text-sm font-bold text-green-400">Xanh</span>
+              </div>
+            </div>
+          ) : (
+            /* 3 mode - horizontal */
+            <div className="flex gap-4 sm:gap-8 items-center">
+              <div className="text-center">
+                <div className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full transition-all duration-300 mb-1
+                  ${activeLight === 'red' || result === 'red' 
+                    ? 'bg-red-500 shadow-[0_0_50px_20px_rgba(239,68,68,0.8)]' 
+                    : 'bg-red-800/60 border-4 border-red-600/50'}`}>
+                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+                  {result === 'red' && <div className="absolute inset-0 flex items-center justify-center text-3xl sm:text-4xl animate-bounce">😱</div>}
+                </div>
+                <span className="text-xs font-bold text-red-400">Đỏ</span>
+              </div>
+              <div className="text-center">
+                <div className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full transition-all duration-300 mb-1
+                  ${activeLight === 'yellow' || result === 'yellow' 
+                    ? 'bg-yellow-400 shadow-[0_0_50px_20px_rgba(250,204,21,0.8)]' 
+                    : 'bg-yellow-700/60 border-4 border-yellow-500/50'}`}>
+                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+                  {result === 'yellow' && <div className="absolute inset-0 flex items-center justify-center text-3xl sm:text-4xl animate-bounce">🤔</div>}
+                </div>
+                <span className="text-xs font-bold text-yellow-400">Vàng</span>
+              </div>
+              <div className="text-center">
+                <div className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full transition-all duration-300 mb-1
+                  ${activeLight === 'green' || result === 'green' 
+                    ? 'bg-green-500 shadow-[0_0_50px_20px_rgba(34,197,94,0.8)]' 
+                    : 'bg-green-800/60 border-4 border-green-600/50'}`}>
+                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+                  {result === 'green' && <div className="absolute inset-0 flex items-center justify-center text-3xl sm:text-4xl animate-bounce">🎉</div>}
+                </div>
+                <span className="text-xs font-bold text-green-400">Xanh</span>
               </div>
             </div>
           )}
 
-          {/* Result Text */}
+          {/* Result Text - Compact */}
           {result && getResultText() && (
-            <div className="mt-4 text-center">
-              <h1 className={`text-3xl sm:text-5xl font-black text-white drop-shadow-lg mb-1 ${result === 'red' ? 'animate-shake' : ''}`}>
+            <div className="mt-2 text-center">
+              <h1 className={`text-2xl sm:text-4xl font-black text-white drop-shadow-lg ${result === 'red' ? 'animate-shake' : ''}`}>
                 {getResultText().title}
               </h1>
-              <p className="text-lg sm:text-xl text-white/90 font-semibold">{getResultText().sub}</p>
+              <p className="text-sm sm:text-base text-white/90">{getResultText().sub}</p>
             </div>
           )}
 
           {/* Confetti */}
           {result === 'green' && (
-            <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
-              {[...Array(40)].map((_, i) => (
-                <div key={i} className="absolute w-3 h-3 rounded-full animate-confetti"
+            <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+              {[...Array(25)].map((_, i) => (
+                <div key={i} className="absolute w-2 h-2 rounded-full animate-confetti"
                   style={{ left: `${Math.random() * 100}%`, backgroundColor: ['#22c55e', '#86efac', '#4ade80', '#fbbf24', '#a855f7'][i % 5], animationDelay: `${Math.random() * 0.5}s` }} />
               ))}
             </div>
           )}
 
-          {/* Main Button */}
+          {/* Main Button - Compact */}
           {!isSpinning && !result && countdown === null && (
             <button onClick={handlePress}
-              className="mt-6 px-12 sm:px-16 py-5 sm:py-6 min-h-[64px] text-2xl sm:text-4xl font-black text-white bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-600 hover:to-pink-600 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all animate-pulse">
+              className="mt-3 px-8 sm:px-12 py-3 sm:py-4 text-lg sm:text-2xl font-black text-white bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-600 hover:to-pink-600 rounded-full shadow-xl hover:scale-105 active:scale-95 transition-all animate-pulse">
               🎰 BẤM!
             </button>
           )}
 
-          {/* Action Buttons */}
+          {/* Action Button */}
           {result && (
-            <div className="mt-4">
-              <button onClick={handleReset} className="px-8 py-3 min-h-[48px] bg-white/90 hover:bg-white text-gray-700 font-bold rounded-full shadow-lg hover:scale-105 transition-all">
-                🔄 Chơi lại
-              </button>
-            </div>
+            <button onClick={handleReset} className="mt-2 px-5 py-1.5 bg-white/90 hover:bg-white text-gray-700 text-sm font-bold rounded-full shadow-lg hover:scale-105 transition-all">
+              🔄 Chơi lại
+            </button>
           )}
         </div>
       </div>

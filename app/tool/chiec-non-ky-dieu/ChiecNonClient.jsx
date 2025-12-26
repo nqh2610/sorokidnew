@@ -383,10 +383,10 @@ export default function ChiecNonKyDieu() {
 
   return (
     <ToolLayout toolName="Chiếc Nón Kỳ Diệu" toolIcon="🎡">
-      {/* Main container - Mobile: column, Desktop: row */}
-      <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 min-h-[calc(100vh-140px)] lg:h-[calc(100vh-140px)] lg:max-h-[700px]">
+      {/* Main container - Compact layout */}
+      <div className="flex flex-col lg:flex-row gap-3 lg:gap-4 min-h-[calc(100vh-160px)] lg:h-[calc(100vh-160px)]">
         {/* Left Panel: Mobile full width, Desktop fixed width */}
-        <div className="w-full lg:w-52 flex-shrink-0 space-y-2 overflow-y-auto order-2 lg:order-1">
+        <div className="w-full lg:w-56 flex-shrink-0 space-y-2 overflow-y-auto order-2 lg:order-1">
           {/* Mode Selector - Compact */}
           <div className="bg-white rounded-xl shadow-md p-3 border border-gray-100">
             <div className="flex gap-1">
@@ -557,36 +557,36 @@ export default function ChiecNonKyDieu() {
           </div>
         </div>
 
-        {/* Right Panel: Wheel - Mobile first, vừa với viewport */}
-        <div className="flex-1 flex flex-col items-center justify-center relative order-1 lg:order-2 min-h-[300px] sm:min-h-[400px]">
-          {/* Sound toggle - larger and more visible */}
+        {/* Right Panel: Wheel - Maximize space */}
+        <div className="flex-1 flex flex-col items-center justify-center relative order-1 lg:order-2 py-2">
+          {/* Sound toggle - compact position */}
           <button
             onClick={() => setSoundEnabled(!soundEnabled)}
-            className={`absolute top-2 right-2 lg:top-4 lg:right-4 p-2 lg:p-3 rounded-full shadow-lg transition-all z-10 text-xl lg:text-2xl
+            className={`absolute top-0 right-0 p-2 rounded-full shadow-md transition-all z-10 text-lg
               ${soundEnabled 
-                ? 'bg-green-100 hover:bg-green-200 border-2 border-green-400' 
-                : 'bg-red-100 hover:bg-red-200 border-2 border-red-400'}`}
+                ? 'bg-green-100 hover:bg-green-200 border border-green-400' 
+                : 'bg-red-100 hover:bg-red-200 border border-red-400'}`}
             title={soundEnabled ? 'Tắt âm thanh' : 'Bật âm thanh'}
           >
             {soundEnabled ? '🔊' : '🔇'}
           </button>
 
           {items.length === 0 ? (
-            <div className="text-center py-10 lg:py-20">
-              <div className="text-6xl lg:text-8xl mb-4 lg:mb-6 animate-bounce">🎡</div>
-              <h3 className="text-xl lg:text-2xl font-bold text-gray-400 mb-2">
+            <div className="text-center py-6 lg:py-12">
+              <div className="text-5xl lg:text-7xl mb-3 lg:mb-4 animate-bounce">🎡</div>
+              <h3 className="text-lg lg:text-xl font-bold text-gray-400 mb-1">
                 {mode === 'text' ? 'Nhập danh sách để bắt đầu' : 'Thiết lập khoảng số'}
               </h3>
-              <p className="text-gray-400 text-sm lg:text-base">
+              <p className="text-gray-400 text-sm">
                 {mode === 'text' ? 'Mỗi dòng là một mục trong vòng quay' : 'Nhập số từ và đến để quay'}
               </p>
             </div>
           ) : (
             <>
-              {/* Wheel Container - Mobile: vừa màn hình, Desktop: vừa viewport */}
+              {/* Wheel Container - Maximize size */}
               <div className="relative" style={{
-                width: 'min(520px, 80vw, calc(100vh - 350px))',
-                height: 'min(520px, 80vw, calc(100vh - 350px))'
+                width: 'min(600px, 85vw, calc(100vh - 220px))',
+                height: 'min(600px, 85vw, calc(100vh - 220px))'
               }}>
                 {/* Outer glow ring */}
                 <div className={`absolute inset-[-10px] rounded-full bg-gradient-to-r from-violet-500 via-pink-500 to-yellow-500 

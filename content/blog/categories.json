@@ -1,6 +1,24 @@
 {
   "categories": [
     {
+      "slug": "goc-chia-se-giao-vien",
+      "name": "Góc chia sẻ Giáo viên",
+      "description": "Giáo viên chia sẻ trải nghiệm thực tế sử dụng công cụ dạy học tích cực, trò chơi học tập để tạo hứng thú trong tiết dạy",
+      "color": "#8B5CF6",
+      "icon": "sparkles",
+      "keywords": [
+        "công cụ dạy học tích cực",
+        "trò chơi học tập trên lớp",
+        "phương pháp dạy học tích cực",
+        "game dạy học cho giáo viên",
+        "hoạt động khởi động đầu giờ",
+        "toolbox giáo viên",
+        "dạy học lấy học sinh làm trung tâm"
+      ],
+      "seoTitle": "Góc chia sẻ Giáo viên - Công cụ & Trò chơi Dạy học Tích cực | Sorokid",
+      "seoDescription": "Giáo viên chia sẻ trải nghiệm thực tế: công cụ dạy học tích cực, trò chơi học tập, hoạt động khởi động giúp tiết dạy sinh động, học sinh hứng thú hơn."
+    },
+    {
       "slug": "phu-huynh-kem-con-hoc-toan",
       "name": "Phụ huynh kèm con học toán",
       "description": "Những trăn trở, khó khăn thực tế khi phụ huynh tự kèm con học toán tại nhà",

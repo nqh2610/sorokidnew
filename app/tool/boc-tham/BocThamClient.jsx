@@ -16,6 +16,7 @@ function BocThamContent() {
   
   // Input
   const [inputText, setInputText] = useState('');
+  const [isListHidden, setIsListHidden] = useState(false); // Ẩn danh sách (quà bí mật)
   
   // Results
   const [pickedPerson, setPickedPerson] = useState(null);
@@ -190,23 +191,53 @@ function BocThamContent() {
       <div className="w-full lg:w-80 flex-shrink-0 space-y-3 sm:space-y-4 order-2 lg:order-1">
         {/* Input */}
         <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-5 border border-gray-100">
-          <h2 className="text-base sm:text-lg font-bold text-gray-800 mb-2 sm:mb-3 flex items-center gap-2">
-            <span>📝</span>
-            Danh sách bốc thăm
-          </h2>
+          <div className="flex items-center justify-between mb-2 sm:mb-3">
+            <h2 className="text-base sm:text-lg font-bold text-gray-800 flex items-center gap-2">
+              <span>📝</span>
+              Danh sách bốc thăm
+            </h2>
+            {nameCount > 0 && (
+              <button
+                onClick={() => setIsListHidden(!isListHidden)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all
+                  ${isListHidden 
+                    ? 'bg-amber-100 text-amber-700 hover:bg-amber-200' 
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                title={isListHidden ? 'Hiện danh sách' : 'Ẩn danh sách (để bí mật)'}
+              >
+                {isListHidden ? '👁️ Hiện' : '🔒 Ẩn'}
+              </button>
+            )}
+          </div>
           
-          <textarea
-            value={inputText}
-            onChange={(e) => {
-              setInputText(e.target.value);
-              setShowResult(false);
-            }}
-            placeholder="Nhập mỗi dòng một mục&#10;&#10;Ví dụ:&#10;Minh&#10;Lan&#10;Hùng&#10;Mai&#10;Tuấn"
-            className="w-full h-48 p-3 border-2 border-gray-200 rounded-xl text-base
-              focus:border-violet-400 focus:ring-2 focus:ring-violet-100 
-              transition-all resize-none"
-            disabled={isAnimating}
-          />
+          {/* Textarea - hidden when isListHidden */}
+          <div className="relative">
+            <textarea
+              value={inputText}
+              onChange={(e) => {
+                setInputText(e.target.value);
+                setShowResult(false);
+              }}
+              placeholder="Nhập mỗi dòng một mục&#10;&#10;Ví dụ:&#10;Minh&#10;Lan&#10;Hùng&#10;Mai&#10;Tuấn"
+              className={`w-full h-48 p-3 border-2 border-gray-200 rounded-xl text-base
+                focus:border-violet-400 focus:ring-2 focus:ring-violet-100 
+                transition-all resize-none
+                ${isListHidden ? 'text-transparent select-none' : ''}`}
+              disabled={isAnimating}
+              style={isListHidden ? { caretColor: 'transparent' } : {}}
+            />
+            
+            {/* Hidden overlay */}
+            {isListHidden && nameCount > 0 && (
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-50 to-orange-50 
+                rounded-xl border-2 border-amber-200 flex flex-col items-center justify-center
+                pointer-events-none">
+                <div className="text-5xl mb-2">🎁</div>
+                <p className="text-amber-700 font-bold text-lg">Danh sách bí mật</p>
+                <p className="text-amber-600 text-sm">{nameCount} mục đã ẩn</p>
+              </div>
+            )}
+          </div>
 
           <div className="mt-3 flex items-center justify-between text-sm">
             <span className={`font-medium ${nameCount > 0 ? 'text-violet-600' : 'text-gray-400'}`}>

@@ -345,3 +345,51 @@ Bài viết đề xuất:
 3. **Viết 10 bài BOFU đầu tiên** (chuyển đổi cao nhất)
 4. **Setup Google Search Console** để track keywords
 5. **Internal linking** giữa các bài trong cùng topic cluster
+
+---
+
+## 🆕 CATEGORY MỚI: GÓC CHIA SẺ GIÁO VIÊN (+12 bài)
+*Mục tiêu: SEO Toolbox Giáo Viên cho đối tượng giáo viên*
+
+### Đối tượng mục tiêu
+- Giáo viên tiểu học, THCS, THPT
+- Quan tâm phương pháp dạy học tích cực
+- Tìm công cụ miễn phí để tạo hứng thú lớp học
+
+### Từ khóa chiến lược
+| Từ khóa | Volume | Độ khó |
+|---------|--------|--------|
+| công cụ dạy học tích cực | ~800 | Thấp |
+| trò chơi học tập trên lớp | ~1,200 | TB |
+| hoạt động khởi động đầu giờ | ~900 | Thấp |
+| phương pháp dạy học tích cực | ~1,500 | Cao |
+| chia nhóm học sinh | ~400 | Thấp |
+| quay số gọi học sinh | ~300 | Rất thấp |
+
+### Danh sách 12 bài viết
+
+#### Nhóm 1: Tổng quan phương pháp (4 bài)
+1. `tiet-day-thay-doi-khi-day-hoc-tich-cuc` - Phương pháp dạy học tích cực
+2. `5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi` - Hoạt động khởi động
+3. `game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu` - Gamification
+4. `lop-dong-45-hoc-sinh-cach-tao-tuong-tac` - Dạy lớp đông
+
+#### Nhóm 2: Review tool cụ thể (4 bài)
+5. `chiec-non-ky-dieu-goi-hoc-sinh-cong-bang` ✅ - Quay số gọi học sinh
+6. `chia-nhom-30-giay-giai-phap-tiet-hoc-45-phut` - Chia nhóm nhanh
+7. `dong-ho-bam-gio-may-chieu-cong-cu-nho-hieu-qua-lon` - Timer lớp học
+8. `flash-zan-5-phut-dau-gio-thu-thach-vui` - Flash tính nhẩm
+
+#### Nhóm 3: Tình huống thực tế (4 bài)
+9. `hoc-sinh-hoi-hom-nay-co-choi-game-khong` - Học sinh hứng thú
+10. `tiet-on-tap-truoc-ky-thi-hoc-sinh-khong-ngu-gat` - Ôn tập vui
+11. `boc-tham-kiem-tra-mieng-cong-bang` - Kiểm tra miệng
+12. `den-may-man-cuoi-tiet-phan-thuong-nho-dong-luc-lon` - Game thưởng phạt
+
+### Giọng văn
+- Chân thực như giáo viên kể chuyện với đồng nghiệp
+- Có cả khó khăn, không chỉ thành công
+- Không khen tool quá mức, nói vừa đủ
+- CTA nhẹ nhàng ở cuối bài
+
+*Chi tiết đầy đủ xem: TOOLBOX_BLOG_STRATEGY.md*
