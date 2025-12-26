@@ -1,74 +1,109 @@
 'use client';
 
 import { useState, useRef, useCallback, useEffect } from 'react';
-import ToolLayout from '@/components/ToolLayout/ToolLayout';
+import ToolLayout, { useFullscreen } from '@/components/ToolLayout/ToolLayout';
 
 export default function DenMayMan() {
+  return (
+    <ToolLayout toolName="Đèn May Mắn" toolIcon="🚦">
+      <DenMayManContent />
+    </ToolLayout>
+  );
+}
+
+function DenMayManContent() {
+  const { exitFullscreen } = useFullscreen();
+  
   const [isSpinning, setIsSpinning] = useState(false);
-  const [result, setResult] = useState(null); // 'green' | 'red' | null
+  const [result, setResult] = useState(null);
   const [soundEnabled, setSoundEnabled] = useState(true);
-  const [flickerColor, setFlickerColor] = useState(null);
+  const [activeLight, setActiveLight] = useState(null);
+  const [countdown, setCountdown] = useState(null);
+  
+  const [lightMode, setLightMode] = useState(2);
+  const [greenChance, setGreenChance] = useState(50);
+  const [yellowChance, setYellowChance] = useState(20);
   
   const audioContextRef = useRef(null);
   const flickerIntervalRef = useRef(null);
+  const countdownRef = useRef(null);
 
-  // Play sound effects
+  const redChance = lightMode === 2 ? 100 - greenChance : 100 - greenChance - yellowChance;
+
   const playSound = useCallback((type) => {
     if (!soundEnabled) return;
-
     try {
       if (!audioContextRef.current) {
         audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
       }
-      
       const ctx = audioContextRef.current;
-      const oscillator = ctx.createOscillator();
-      const gainNode = ctx.createGain();
       
-      oscillator.connect(gainNode);
-      gainNode.connect(ctx.destination);
-
       switch (type) {
-        case 'suspense':
-          // Ticking suspense sound
-          oscillator.type = 'square';
-          oscillator.frequency.value = 200;
-          gainNode.gain.value = 0.15;
-          oscillator.start();
-          setTimeout(() => oscillator.stop(), 80);
+        case 'countdown':
+          const beep = ctx.createOscillator();
+          const beepGain = ctx.createGain();
+          beep.connect(beepGain);
+          beepGain.connect(ctx.destination);
+          beep.type = 'sine';
+          beep.frequency.value = 880;
+          beepGain.gain.setValueAtTime(0.3, ctx.currentTime);
+          beepGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+          beep.start();
+          beep.stop(ctx.currentTime + 0.2);
           break;
-          
+        case 'tick':
+          const tick = ctx.createOscillator();
+          const tickGain = ctx.createGain();
+          tick.connect(tickGain);
+          tickGain.connect(ctx.destination);
+          tick.type = 'square';
+          tick.frequency.value = 400 + Math.random() * 300;
+          tickGain.gain.setValueAtTime(0.12, ctx.currentTime);
+          tickGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.04);
+          tick.start();
+          tick.stop(ctx.currentTime + 0.05);
+          break;
         case 'green':
-          // Happy victory sound
-          oscillator.type = 'sine';
-          gainNode.gain.value = 0.3;
-          oscillator.frequency.value = 523; // C5
-          oscillator.start();
-          setTimeout(() => {
-            oscillator.frequency.value = 659; // E5
-            setTimeout(() => {
-              oscillator.frequency.value = 784; // G5
-              setTimeout(() => {
-                oscillator.frequency.value = 1047; // C6
-                setTimeout(() => oscillator.stop(), 200);
-              }, 150);
-            }, 150);
-          }, 150);
+          [523, 659, 784, 1047].forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'sine';
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + i * 0.1 + 0.2);
+            osc.start(ctx.currentTime + i * 0.1);
+            osc.stop(ctx.currentTime + i * 0.1 + 0.25);
+          });
           break;
-          
+        case 'yellow':
+          [440, 466, 440, 466].forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'triangle';
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.2, ctx.currentTime + i * 0.15);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + i * 0.15 + 0.15);
+            osc.start(ctx.currentTime + i * 0.15);
+            osc.stop(ctx.currentTime + i * 0.15 + 0.2);
+          });
+          break;
         case 'red':
-          // Dramatic fail sound
-          oscillator.type = 'sawtooth';
-          gainNode.gain.value = 0.25;
-          oscillator.frequency.value = 200;
-          oscillator.start();
-          setTimeout(() => {
-            oscillator.frequency.value = 150;
-            setTimeout(() => {
-              oscillator.frequency.value = 100;
-              setTimeout(() => oscillator.stop(), 300);
-            }, 200);
-          }, 200);
+          [200, 150, 100].forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'sawtooth';
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.2, ctx.currentTime + i * 0.15);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + i * 0.15 + 0.2);
+            osc.start(ctx.currentTime + i * 0.15);
+            osc.stop(ctx.currentTime + i * 0.15 + 0.25);
+          });
           break;
       }
     } catch (e) {
@@ -76,301 +111,349 @@ export default function DenMayMan() {
     }
   }, [soundEnabled]);
 
-  // Start the suspense animation
-  const handlePress = useCallback(() => {
-    if (isSpinning) return;
-    
+  const startSpin = useCallback(() => {
     setIsSpinning(true);
     setResult(null);
     
-    // Flicker effect - alternating colors
     let flickerCount = 0;
     const maxFlickers = 20;
+    const lights = lightMode === 2 ? ['red', 'green'] : ['red', 'yellow', 'green'];
     
     flickerIntervalRef.current = setInterval(() => {
-      // Alternate between green and red
-      setFlickerColor(prev => prev === 'green' ? 'red' : 'green');
-      
-      // Play tick sound
-      if (flickerCount % 2 === 0) {
-        playSound('suspense');
-      }
-      
+      setActiveLight(lights[flickerCount % lights.length]);
+      if (flickerCount % 2 === 0) playSound('tick');
       flickerCount++;
       
-      // Slow down towards the end
       if (flickerCount >= maxFlickers) {
         clearInterval(flickerIntervalRef.current);
+        const random = Math.random() * 100;
+        let finalResult;
         
-        // Final result - random!
-        const finalResult = Math.random() < 0.5 ? 'green' : 'red';
+        if (lightMode === 2) {
+          finalResult = random < greenChance ? 'green' : 'red';
+        } else {
+          if (random < greenChance) finalResult = 'green';
+          else if (random < greenChance + yellowChance) finalResult = 'yellow';
+          else finalResult = 'red';
+        }
         
-        // Brief pause before reveal
+        setActiveLight(null);
         setTimeout(() => {
-          setFlickerColor(null);
+          setActiveLight(finalResult);
           setResult(finalResult);
           setIsSpinning(false);
           playSound(finalResult);
         }, 300);
       }
-    }, 100 + flickerCount * 10); // Gradually slow down
-    
-  }, [isSpinning, playSound]);
+    }, 100 + flickerCount * 6);
+  }, [lightMode, greenChance, yellowChance, playSound]);
 
-  // Reset
+  const handlePress = useCallback(() => {
+    if (isSpinning || countdown !== null) return;
+    setCountdown(3);
+    playSound('countdown');
+    
+    countdownRef.current = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(countdownRef.current);
+          startSpin();
+          return null;
+        }
+        playSound('countdown');
+        return prev - 1;
+      });
+    }, 700);
+  }, [isSpinning, countdown, playSound, startSpin]);
+
   const handleReset = useCallback(() => {
-    if (flickerIntervalRef.current) {
-      clearInterval(flickerIntervalRef.current);
-    }
+    if (flickerIntervalRef.current) clearInterval(flickerIntervalRef.current);
+    if (countdownRef.current) clearInterval(countdownRef.current);
+    exitFullscreen();
     setIsSpinning(false);
     setResult(null);
-    setFlickerColor(null);
-  }, []);
+    setActiveLight(null);
+    setCountdown(null);
+  }, [exitFullscreen]);
 
-  // Cleanup
   useEffect(() => {
     return () => {
-      if (flickerIntervalRef.current) {
-        clearInterval(flickerIntervalRef.current);
-      }
+      if (flickerIntervalRef.current) clearInterval(flickerIntervalRef.current);
+      if (countdownRef.current) clearInterval(countdownRef.current);
+      if (audioContextRef.current) audioContextRef.current.close();
     };
   }, []);
 
-  // Get background color
-  const getBackgroundClass = () => {
-    if (flickerColor === 'green') return 'bg-green-500';
-    if (flickerColor === 'red') return 'bg-red-500';
-    if (result === 'green') return 'bg-gradient-to-br from-green-400 via-green-500 to-emerald-600';
-    if (result === 'red') return 'bg-gradient-to-br from-red-400 via-red-500 to-rose-600';
-    return 'bg-gradient-to-br from-violet-500 via-purple-500 to-pink-500';
+  const getResultText = () => {
+    switch (result) {
+      case 'green': return { title: '🎉 AN TOÀN! 🎉', sub: 'May mắn rồi! Thoát phạt!' };
+      case 'yellow': return { title: '⚡ THỬ THÁCH! ⚡', sub: 'Trả lời câu hỏi để thoát!' };
+      case 'red': return { title: '💥 BỊ PHẠT! 💥', sub: 'Ôi không! Phải chịu phạt rồi!' };
+      default: return null;
+    }
+  };
+
+  const getBgClass = () => {
+    if (result === 'green') return 'from-emerald-400 via-green-500 to-teal-500';
+    if (result === 'yellow') return 'from-yellow-400 via-amber-500 to-orange-500';
+    if (result === 'red') return 'from-red-400 via-rose-500 to-pink-500';
+    return 'from-slate-100 to-slate-200';
   };
 
   return (
-    <ToolLayout toolName="Đèn May Mắn" toolIcon="🚦">
-      <div className="flex flex-col items-center justify-center min-h-[70vh]">
-        {/* Main Display Area */}
-        <div 
-          className={`relative w-full max-w-3xl aspect-square rounded-[3rem] shadow-2xl 
-            flex flex-col items-center justify-center transition-all duration-200
-            ${getBackgroundClass()}
-            ${isSpinning ? 'animate-pulse' : ''}
-            ${result ? 'animate-result-reveal' : ''}`}
-        >
-          {/* Decorative lights */}
-          <div className="absolute inset-4 border-8 border-white/20 rounded-[2.5rem]" />
-          <div className="absolute inset-8 border-4 border-white/10 rounded-[2rem]" />
-          
-          {/* Glow effect */}
-          {(result || flickerColor) && (
-            <div className={`absolute inset-0 rounded-[3rem] blur-3xl opacity-50
-              ${flickerColor === 'green' || result === 'green' ? 'bg-green-400' : ''}
-              ${flickerColor === 'red' || result === 'red' ? 'bg-red-400' : ''}`} 
-            />
-          )}
-
-          {/* Content */}
-          <div className="relative z-10 text-center px-8">
-            {/* Initial State - Press Button */}
-            {!isSpinning && !result && (
-              <div className="animate-bounceIn">
-                <div className="text-8xl mb-8">🎰</div>
-                <button
-                  onClick={handlePress}
-                  className="px-16 py-8 text-4xl sm:text-5xl font-black text-purple-700 
-                    bg-white rounded-full shadow-2xl
-                    hover:scale-105 hover:shadow-3xl active:scale-95
-                    transition-all duration-200 animate-pulse"
-                >
-                  NHẤN!
-                </button>
-                <p className="text-white/80 text-xl mt-6">
-                  Bấm để thử vận may! 🍀
-                </p>
+    <div className="flex flex-col lg:flex-row gap-6 min-h-[70vh]">
+      {/* Left Panel */}
+      <div className="w-full lg:w-72 flex-shrink-0 space-y-4">
+        {/* Mode Selection */}
+        <div className="bg-white rounded-2xl shadow-lg p-5 border border-gray-100">
+          <h3 className="text-base font-bold text-gray-800 mb-4">🚦 Chế độ đèn</h3>
+          <div className="space-y-2">
+            <button
+              onClick={() => setLightMode(2)}
+              disabled={isSpinning}
+              className={`w-full p-3 rounded-xl text-left transition-all flex items-center gap-3
+                ${lightMode === 2 ? 'bg-violet-100 border-2 border-violet-400' : 'bg-gray-50 border-2 border-transparent hover:bg-gray-100'}`}
+            >
+              <div className="flex gap-1">
+                <span className="w-4 h-4 rounded-full bg-red-500"></span>
+                <span className="w-4 h-4 rounded-full bg-green-500"></span>
               </div>
-            )}
-
-            {/* Spinning/Flickering State */}
-            {isSpinning && (
-              <div className="text-center">
-                <div className={`text-[12rem] leading-none
-                  ${flickerColor === 'green' ? 'animate-bounce' : 'animate-wiggle'}`}>
-                  {flickerColor === 'green' ? '🟢' : '🔴'}
-                </div>
-                <p className="text-white text-3xl font-bold mt-4 animate-pulse">
-                  Đang quay...
-                </p>
+              <div>
+                <div className="font-semibold">2 Đèn</div>
+                <div className="text-xs text-gray-500">Xanh / Đỏ</div>
               </div>
-            )}
-
-            {/* Green Result - THOÁT */}
-            {result === 'green' && (
-              <div className="animate-bounceIn">
-                <div className="text-[10rem] sm:text-[14rem] leading-none mb-4 animate-bounce">
-                  🟢
-                </div>
-                <h1 className="text-5xl sm:text-7xl font-black text-white mb-4 
-                  drop-shadow-lg animate-pulse">
-                  THOÁT!
-                </h1>
-                <p className="text-2xl sm:text-3xl text-white/90 font-bold">
-                  🎉 May mắn quá! An toàn rồi! 🎉
-                </p>
-                
-                {/* Confetti effect */}
-                <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                  {[...Array(30)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-4 h-4 rounded-full animate-confetti"
-                      style={{
-                        left: `${Math.random() * 100}%`,
-                        backgroundColor: ['#22c55e', '#86efac', '#4ade80', '#16a34a', '#15803d'][i % 5],
-                        animationDelay: `${Math.random() * 0.5}s`,
-                        animationDuration: `${1.5 + Math.random()}s`
-                      }}
-                    />
-                  ))}
-                </div>
+            </button>
+            <button
+              onClick={() => setLightMode(3)}
+              disabled={isSpinning}
+              className={`w-full p-3 rounded-xl text-left transition-all flex items-center gap-3
+                ${lightMode === 3 ? 'bg-violet-100 border-2 border-violet-400' : 'bg-gray-50 border-2 border-transparent hover:bg-gray-100'}`}
+            >
+              <div className="flex gap-1">
+                <span className="w-4 h-4 rounded-full bg-red-500"></span>
+                <span className="w-4 h-4 rounded-full bg-yellow-400"></span>
+                <span className="w-4 h-4 rounded-full bg-green-500"></span>
               </div>
-            )}
-
-            {/* Red Result - BỊ PHẠT */}
-            {result === 'red' && (
-              <div className="animate-bounceIn">
-                <div className="text-[10rem] sm:text-[14rem] leading-none mb-4 animate-wiggle">
-                  🔴
-                </div>
-                <h1 className="text-5xl sm:text-7xl font-black text-white mb-4 
-                  drop-shadow-lg animate-shake">
-                  BỊ PHẠT!
-                </h1>
-                <p className="text-2xl sm:text-3xl text-white/90 font-bold">
-                  😱 Ôi không! Phải chịu phạt rồi! 😱
-                </p>
-                
-                {/* Dramatic effect */}
-                <div className="absolute inset-0 pointer-events-none">
-                  {[...Array(8)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute text-6xl animate-ping"
-                      style={{
-                        left: `${10 + (i % 4) * 25}%`,
-                        top: `${20 + Math.floor(i / 4) * 50}%`,
-                        animationDelay: `${i * 0.1}s`,
-                        animationDuration: '1s'
-                      }}
-                    >
-                      ⚡
-                    </div>
-                  ))}
-                </div>
+              <div>
+                <div className="font-semibold">3 Đèn</div>
+                <div className="text-xs text-gray-500">Xanh / Vàng / Đỏ</div>
               </div>
-            )}
+            </button>
           </div>
         </div>
 
-        {/* Controls */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          {/* Sound Toggle */}
-          <button
-            onClick={() => setSoundEnabled(!soundEnabled)}
-            className={`px-6 py-3 rounded-full font-semibold transition-all
-              ${soundEnabled 
-                ? 'bg-green-100 text-green-700 hover:bg-green-200' 
-                : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
-          >
-            {soundEnabled ? '🔊 Âm thanh BẬT' : '🔇 Âm thanh TẮT'}
-          </button>
+        {/* Probability Settings */}
+        <div className="bg-white rounded-2xl shadow-lg p-5 border border-gray-100">
+          <h3 className="text-base font-bold text-gray-800 mb-4">⚖️ Tỷ lệ</h3>
+          <div className="space-y-4">
+            <div>
+              <div className="flex justify-between mb-1.5">
+                <span className="text-sm font-medium flex items-center gap-1.5">
+                  <span className="w-3 h-3 rounded-full bg-green-500"></span>Xanh (An toàn)
+                </span>
+                <span className="text-sm font-bold text-green-600">{greenChance}%</span>
+              </div>
+              <input
+                type="range" min="10" max={lightMode === 2 ? 90 : 80} step="10"
+                value={greenChance}
+                onChange={(e) => setGreenChance(parseInt(e.target.value))}
+                disabled={isSpinning}
+                className="w-full h-2 bg-green-200 rounded-lg appearance-none cursor-pointer"
+              />
+            </div>
 
-          {/* Reset Button */}
-          {result && (
-            <button
-              onClick={handleReset}
-              className="px-8 py-3 bg-white hover:bg-gray-100 text-gray-700 
-                font-semibold rounded-full shadow-lg transition-all"
-            >
-              🔄 Chơi lại
-            </button>
-          )}
+            {lightMode === 3 && (
+              <div>
+                <div className="flex justify-between mb-1.5">
+                  <span className="text-sm font-medium flex items-center gap-1.5">
+                    <span className="w-3 h-3 rounded-full bg-yellow-400"></span>Vàng (Thử thách)
+                  </span>
+                  <span className="text-sm font-bold text-yellow-600">{yellowChance}%</span>
+                </div>
+                <input
+                  type="range" min="10" max={90 - greenChance} step="10"
+                  value={yellowChance}
+                  onChange={(e) => setYellowChance(parseInt(e.target.value))}
+                  disabled={isSpinning}
+                  className="w-full h-2 bg-yellow-200 rounded-lg appearance-none cursor-pointer"
+                />
+              </div>
+            )}
 
-          {/* Try Again - Big button after result */}
-          {result && (
-            <button
-              onClick={handlePress}
-              className="px-10 py-4 bg-gradient-to-r from-violet-500 to-pink-500 
-                hover:from-violet-600 hover:to-pink-600 text-white text-xl
-                font-bold rounded-full shadow-xl hover:shadow-2xl 
-                hover:scale-105 transition-all"
-            >
-              🎰 THỬ LẠI!
-            </button>
-          )}
+            <div className="pt-2 border-t border-gray-100">
+              <div className="flex justify-between">
+                <span className="text-sm font-medium flex items-center gap-1.5">
+                  <span className="w-3 h-3 rounded-full bg-red-500"></span>Đỏ (Bị phạt)
+                </span>
+                <span className="text-sm font-bold text-red-600">{redChance}%</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-gray-100">
+            <p className="text-xs text-gray-500 mb-2">Mẫu nhanh:</p>
+            <div className="flex flex-wrap gap-2">
+              {lightMode === 2 ? (
+                <>
+                  <button onClick={() => setGreenChance(30)} disabled={isSpinning}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-medium ${greenChance === 30 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>
+                    Khó (30/70)
+                  </button>
+                  <button onClick={() => setGreenChance(50)} disabled={isSpinning}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-medium ${greenChance === 50 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>
+                    Công bằng
+                  </button>
+                  <button onClick={() => setGreenChance(70)} disabled={isSpinning}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-medium ${greenChance === 70 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>
+                    Dễ (70/30)
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button onClick={() => { setGreenChance(30); setYellowChance(30); }} disabled={isSpinning}
+                    className="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-100 hover:bg-gray-200">30/30/40</button>
+                  <button onClick={() => { setGreenChance(40); setYellowChance(30); }} disabled={isSpinning}
+                    className="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-100 hover:bg-gray-200">40/30/30</button>
+                  <button onClick={() => { setGreenChance(50); setYellowChance(30); }} disabled={isSpinning}
+                    className="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-100 hover:bg-gray-200">50/30/20</button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Sound Toggle */}
+        <div className="bg-white rounded-2xl shadow-lg p-4 border border-gray-100">
+          <label className="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" checked={soundEnabled} onChange={(e) => setSoundEnabled(e.target.checked)}
+              className="w-5 h-5 text-violet-500 rounded" />
+            <span className="font-medium text-gray-700">{soundEnabled ? '🔊 Âm thanh bật' : '🔇 Âm thanh tắt'}</span>
+          </label>
         </div>
 
         {/* Instructions */}
-        {!isSpinning && !result && (
-          <div className="mt-8 bg-white/80 backdrop-blur rounded-2xl p-6 max-w-xl text-center">
-            <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center justify-center gap-2">
-              <span>💡</span> Hướng dẫn
-            </h3>
-            <ul className="text-gray-600 space-y-1 text-left">
-              <li>• 🟢 <strong>XANH</strong> = THOÁT - Học sinh được an toàn!</li>
-              <li>• 🔴 <strong>ĐỎ</strong> = BỊ PHẠT - Phải trả lời câu hỏi hoặc làm thử thách!</li>
-              <li>• Bấm nút "NHẤN" để bắt đầu quay số may mắn</li>
-              <li>• Kết quả hoàn toàn ngẫu nhiên 50/50</li>
-              <li>• Nhấn <kbd className="px-1.5 py-0.5 bg-gray-200 rounded text-gray-700 font-mono text-sm">Toàn màn hình</kbd> để hiển thị to hơn, <kbd className="px-1.5 py-0.5 bg-gray-200 rounded text-gray-700 font-mono text-sm">ESC</kbd> để thoát</li>
-            </ul>
-          </div>
-        )}
+        <div className="bg-gradient-to-r from-violet-50 to-pink-50 rounded-xl p-4 text-sm border border-violet-100">
+          <p className="font-semibold text-violet-700 mb-2">💡 Ý nghĩa đèn:</p>
+          <ul className="space-y-1.5 text-gray-600">
+            <li className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-green-500"></span><strong>Xanh</strong> - An toàn!
+            </li>
+            {lightMode === 3 && (
+              <li className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-yellow-400"></span><strong>Vàng</strong> - Trả lời câu hỏi!
+              </li>
+            )}
+            <li className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-red-500"></span><strong>Đỏ</strong> - Bị phạt!
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Right Panel */}
+      <div className="flex-1 min-w-0">
+        <div className={`relative bg-gradient-to-br ${getBgClass()} rounded-3xl shadow-xl p-8 min-h-[500px] flex flex-col items-center justify-center transition-all duration-500`}>
+          
+          {/* Countdown */}
+          {countdown !== null && (
+            <div className="absolute inset-0 flex items-center justify-center z-20 bg-black/80 rounded-3xl">
+              <div className="text-[12rem] font-black text-white animate-pulse">{countdown}</div>
+            </div>
+          )}
+
+          {/* Lights */}
+          {lightMode === 2 ? (
+            <div className="flex gap-8 sm:gap-16 items-center">
+              <div className="text-center">
+                <div className={`relative w-36 h-36 sm:w-48 sm:h-48 rounded-full transition-all duration-300 mb-4
+                  ${activeLight === 'red' || result === 'red' ? 'bg-red-500 shadow-[0_0_100px_40px_rgba(239,68,68,0.7)]' : 'bg-red-900/40 border-4 border-red-900/30'}`}>
+                  <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+                  {result === 'red' && <div className="absolute inset-0 flex items-center justify-center text-7xl animate-bounce">😱</div>}
+                </div>
+                <span className={`text-lg font-bold ${result === 'red' ? 'text-white' : 'text-gray-600'}`}>ĐỎ - Phạt</span>
+              </div>
+              <div className="text-center">
+                <div className={`relative w-36 h-36 sm:w-48 sm:h-48 rounded-full transition-all duration-300 mb-4
+                  ${activeLight === 'green' || result === 'green' ? 'bg-green-500 shadow-[0_0_100px_40px_rgba(34,197,94,0.7)]' : 'bg-green-900/40 border-4 border-green-900/30'}`}>
+                  <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+                  {result === 'green' && <div className="absolute inset-0 flex items-center justify-center text-7xl animate-bounce">🎉</div>}
+                </div>
+                <span className={`text-lg font-bold ${result === 'green' ? 'text-white' : 'text-gray-600'}`}>XANH - An toàn</span>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl border-4 border-gray-700">
+              <div className="flex flex-col gap-5 items-center">
+                <div className={`relative w-28 h-28 sm:w-36 sm:h-36 rounded-full transition-all duration-300
+                  ${activeLight === 'red' || result === 'red' ? 'bg-red-500 shadow-[0_0_60px_20px_rgba(239,68,68,0.7)]' : 'bg-red-900/40'}`}>
+                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+                  {result === 'red' && <div className="absolute inset-0 flex items-center justify-center text-5xl animate-bounce">😱</div>}
+                </div>
+                <div className={`relative w-28 h-28 sm:w-36 sm:h-36 rounded-full transition-all duration-300
+                  ${activeLight === 'yellow' || result === 'yellow' ? 'bg-yellow-400 shadow-[0_0_60px_20px_rgba(250,204,21,0.7)]' : 'bg-yellow-900/40'}`}>
+                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+                  {result === 'yellow' && <div className="absolute inset-0 flex items-center justify-center text-5xl animate-bounce">🤔</div>}
+                </div>
+                <div className={`relative w-28 h-28 sm:w-36 sm:h-36 rounded-full transition-all duration-300
+                  ${activeLight === 'green' || result === 'green' ? 'bg-green-500 shadow-[0_0_60px_20px_rgba(34,197,94,0.7)]' : 'bg-green-900/40'}`}>
+                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+                  {result === 'green' && <div className="absolute inset-0 flex items-center justify-center text-5xl animate-bounce">🎉</div>}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Result Text */}
+          {result && getResultText() && (
+            <div className="mt-8 text-center">
+              <h1 className={`text-4xl sm:text-6xl font-black text-white drop-shadow-lg mb-2 ${result === 'red' ? 'animate-shake' : ''}`}>
+                {getResultText().title}
+              </h1>
+              <p className="text-xl sm:text-2xl text-white/90 font-semibold">{getResultText().sub}</p>
+            </div>
+          )}
+
+          {/* Confetti */}
+          {result === 'green' && (
+            <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
+              {[...Array(40)].map((_, i) => (
+                <div key={i} className="absolute w-3 h-3 rounded-full animate-confetti"
+                  style={{ left: `${Math.random() * 100}%`, backgroundColor: ['#22c55e', '#86efac', '#4ade80', '#fbbf24', '#a855f7'][i % 5], animationDelay: `${Math.random() * 0.5}s` }} />
+              ))}
+            </div>
+          )}
+
+          {/* Main Button */}
+          {!isSpinning && !result && countdown === null && (
+            <button onClick={handlePress}
+              className="mt-8 px-16 sm:px-24 py-6 sm:py-8 text-3xl sm:text-5xl font-black text-white bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-600 hover:to-pink-600 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all animate-pulse">
+              🎰 BẤM!
+            </button>
+          )}
+
+          {/* Action Buttons */}
+          {result && (
+            <div className="mt-8 flex gap-4">
+              <button onClick={handleReset} className="px-6 py-3 bg-white/90 hover:bg-white text-gray-700 font-bold rounded-full shadow-lg">🔄 Reset</button>
+              <button onClick={handlePress} className="px-8 py-3 bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-600 hover:to-pink-600 text-white text-lg font-bold rounded-full shadow-lg hover:scale-105 transition-all">🎰 Quay lại!</button>
+            </div>
+          )}
+        </div>
       </div>
 
       <style jsx>{`
         @keyframes confetti {
-          0% {
-            transform: translateY(-100vh) rotate(0deg);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(100vh) rotate(720deg);
-            opacity: 0;
-          }
+          0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+          100% { transform: translateY(500px) rotate(720deg); opacity: 0; }
         }
-        
-        .animate-confetti {
-          animation: confetti 2s ease-out forwards;
-        }
-        
-        @keyframes bounceIn {
-          0% { transform: scale(0.3); opacity: 0; }
-          50% { transform: scale(1.05); }
-          70% { transform: scale(0.9); }
-          100% { transform: scale(1); opacity: 1; }
-        }
-        
-        .animate-bounceIn {
-          animation: bounceIn 0.5s ease-out;
-        }
-        
-        @keyframes wiggle {
-          0%, 100% { transform: rotate(-5deg); }
-          50% { transform: rotate(5deg); }
-        }
-        
-        .animate-wiggle {
-          animation: wiggle 0.15s ease-in-out infinite;
-        }
-        
+        .animate-confetti { animation: confetti 2.5s ease-out forwards; }
         @keyframes shake {
           0%, 100% { transform: translateX(0); }
           10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
           20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
-        
-        .animate-shake {
-          animation: shake 0.5s ease-in-out;
-        }
+        .animate-shake { animation: shake 0.5s ease-in-out; }
       `}</style>
-    </ToolLayout>
+    </div>
   );
 }

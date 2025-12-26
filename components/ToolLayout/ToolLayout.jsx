@@ -187,8 +187,7 @@ export default function ToolLayout({
         <footer className="border-t border-gray-100 bg-white/50 py-6 mt-auto">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
             <p className="text-sm text-gray-500">
-              Công cụ dạy học miễn phí cho giáo viên tiểu học •{' '}
-              <Link href="/" className="text-violet-600 hover:underline">Sorokid.com</Link>
+              © 2025 <Link href="/" className="text-violet-600 hover:underline">SoroKid</Link> - Học toán tư duy cùng bàn tính Soroban
             </p>
           </div>
         </footer>
