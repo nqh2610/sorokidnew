@@ -12,6 +12,9 @@ export const FullscreenContext = createContext({
 
 export const useFullscreen = () => useContext(FullscreenContext);
 
+// Helper to check if we're in browser
+const isBrowser = typeof window !== 'undefined';
+
 export default function ToolLayout({ 
   children, 
   toolName, 
@@ -25,6 +28,7 @@ export default function ToolLayout({
 
   // Exit fullscreen
   const exitFullscreen = useCallback(async () => {
+    if (!isBrowser) return;
     try {
       if (document.fullscreenElement) {
         await document.exitFullscreen();
@@ -37,6 +41,7 @@ export default function ToolLayout({
 
   // Toggle fullscreen
   const toggleFullscreen = useCallback(async () => {
+    if (!isBrowser) return;
     try {
       if (!document.fullscreenElement) {
         await containerRef.current?.requestFullscreen();
@@ -52,6 +57,8 @@ export default function ToolLayout({
 
   // Listen for fullscreen changes
   useEffect(() => {
+    if (!isBrowser) return;
+    
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
     };
@@ -64,6 +71,8 @@ export default function ToolLayout({
 
   // ESC key handler
   useEffect(() => {
+    if (!isBrowser) return;
+    
     const handleEsc = (e) => {
       if (e.key === 'Escape' && isFullscreen) {
         document.exitFullscreen();
