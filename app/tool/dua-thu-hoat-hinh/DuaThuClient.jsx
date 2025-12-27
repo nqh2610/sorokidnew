@@ -384,131 +384,233 @@ export default function DuaThuHoatHinh() {
     };
   }, [isFullscreen]);
 
-  // Play sound
+  // Play sound - LOUDER and more impactful
   const playSound = useCallback((type) => {
     if (!soundEnabled) return;
     
     try {
       const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      const oscillator = audioContext.createOscillator();
-      const gainNode = audioContext.createGain();
-      
-      oscillator.connect(gainNode);
-      gainNode.connect(audioContext.destination);
+      const masterGain = audioContext.createGain();
+      masterGain.connect(audioContext.destination);
       
       switch (type) {
-        case 'countdown':
-          oscillator.frequency.value = 440;
-          gainNode.gain.value = 0.2;
-          oscillator.start();
-          setTimeout(() => oscillator.stop(), 150);
+        case 'countdown': {
+          // Epic countdown beep - như đồng hồ đếm ngược
+          masterGain.gain.value = 0.5;
+          const osc = audioContext.createOscillator();
+          const gain = audioContext.createGain();
+          osc.connect(gain);
+          gain.connect(masterGain);
+          osc.frequency.value = 800;
+          osc.type = 'square';
+          gain.gain.setValueAtTime(0.8, audioContext.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+          osc.start();
+          osc.stop(audioContext.currentTime + 0.2);
           break;
-        case 'start':
-          oscillator.frequency.value = 880;
-          gainNode.gain.value = 0.3;
-          oscillator.start();
-          setTimeout(() => oscillator.stop(), 300);
+        }
+        case 'start': {
+          // XUẤT PHÁT! - fanfare dồn dập
+          masterGain.gain.value = 0.6;
+          const notes = [523, 659, 784, 1047]; // C5-E5-G5-C6
+          notes.forEach((freq, i) => {
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.connect(gain);
+            gain.connect(masterGain);
+            osc.frequency.value = freq;
+            osc.type = 'sawtooth';
+            const startTime = audioContext.currentTime + i * 0.08;
+            gain.gain.setValueAtTime(0.7, startTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.15);
+            osc.start(startTime);
+            osc.stop(startTime + 0.15);
+          });
+          // Add bass punch
+          const bass = audioContext.createOscillator();
+          const bassGain = audioContext.createGain();
+          bass.connect(bassGain);
+          bassGain.connect(masterGain);
+          bass.frequency.value = 130;
+          bass.type = 'sine';
+          bassGain.gain.setValueAtTime(0.9, audioContext.currentTime);
+          bassGain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.4);
+          bass.start();
+          bass.stop(audioContext.currentTime + 0.4);
           break;
-        case 'event':
-          oscillator.frequency.value = 600;
-          gainNode.gain.value = 0.15;
-          oscillator.start();
-          setTimeout(() => oscillator.stop(), 100);
+        }
+        case 'event': {
+          // Sự kiện xảy ra - attention grabbing
+          masterGain.gain.value = 0.4;
+          const osc1 = audioContext.createOscillator();
+          const osc2 = audioContext.createOscillator();
+          const gain = audioContext.createGain();
+          osc1.connect(gain);
+          osc2.connect(gain);
+          gain.connect(masterGain);
+          osc1.frequency.value = 880;
+          osc2.frequency.value = 1100;
+          osc1.type = 'triangle';
+          osc2.type = 'sine';
+          gain.gain.setValueAtTime(0.6, audioContext.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+          osc1.start();
+          osc2.start();
+          osc1.stop(audioContext.currentTime + 0.15);
+          osc2.stop(audioContext.currentTime + 0.15);
           break;
-        case 'win':
-          gainNode.gain.value = 0.3;
-          oscillator.frequency.value = 523;
-          oscillator.start();
-          setTimeout(() => {
-            oscillator.frequency.value = 659;
-            setTimeout(() => {
-              oscillator.frequency.value = 784;
-              setTimeout(() => {
-                oscillator.frequency.value = 1047;
-                setTimeout(() => oscillator.stop(), 200);
-              }, 150);
-            }, 150);
-          }, 150);
+        }
+        case 'win': {
+          // CHIẾN THẮNG! - Epic victory fanfare
+          masterGain.gain.value = 0.7;
+          const melody = [523, 659, 784, 880, 1047, 1319, 1568]; // C-E-G-A-C-E-G
+          melody.forEach((freq, i) => {
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.connect(gain);
+            gain.connect(masterGain);
+            osc.frequency.value = freq;
+            osc.type = i < 4 ? 'sawtooth' : 'square';
+            const startTime = audioContext.currentTime + i * 0.1;
+            gain.gain.setValueAtTime(0.6, startTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.25);
+            osc.start(startTime);
+            osc.stop(startTime + 0.3);
+          });
+          // Add triumphant bass
+          [131, 165, 196].forEach((freq, i) => {
+            const bass = audioContext.createOscillator();
+            const bassGain = audioContext.createGain();
+            bass.connect(bassGain);
+            bassGain.connect(masterGain);
+            bass.frequency.value = freq;
+            bass.type = 'sine';
+            const startTime = audioContext.currentTime + i * 0.2;
+            bassGain.gain.setValueAtTime(0.8, startTime);
+            bassGain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.4);
+            bass.start(startTime);
+            bass.stop(startTime + 0.4);
+          });
           break;
+        }
       }
     } catch (e) {
       // Audio not supported
     }
   }, [soundEnabled]);
 
-  // Start background race music - exciting continuous racing tune
+  // Start background race music - INTENSE RACING BEAT!
   const startBgMusic = useCallback(() => {
     if (!soundEnabled) return;
     try {
       const audioContext = new (window.AudioContext || window.webkitAudioContext)();
       bgMusicRef.current = audioContext;
       
-      // Create master gain for overall volume control
+      // Master volume - LOUD and exciting!
       const masterGain = audioContext.createGain();
-      masterGain.gain.value = 0.12;
+      masterGain.gain.value = 0.35; // 3x louder
       masterGain.connect(audioContext.destination);
       
-      // Exciting upbeat racing melody - faster tempo!
+      // 🎵 CATCHY racing melody - dễ nhớ, hào hứng như nhạc game đua xe!
+      // Inspired by classic arcade racing games
       const melodyPattern = [
-        // Phrase 1 - Energetic start
-        { note: 392, dur: 0.12 }, // G4
-        { note: 440, dur: 0.12 }, // A4
-        { note: 523, dur: 0.12 }, // C5
-        { note: 587, dur: 0.12 }, // D5
-        { note: 659, dur: 0.24 }, // E5
-        { note: 587, dur: 0.12 }, // D5
-        { note: 523, dur: 0.12 }, // C5
-        { note: 440, dur: 0.24 }, // A4
-        // Phrase 2 - Building excitement
-        { note: 523, dur: 0.12 }, // C5
-        { note: 659, dur: 0.12 }, // E5
-        { note: 784, dur: 0.24 }, // G5
-        { note: 880, dur: 0.12 }, // A5
-        { note: 784, dur: 0.12 }, // G5
-        { note: 659, dur: 0.12 }, // E5
-        { note: 523, dur: 0.24 }, // C5
-        // Phrase 3 - Climax
-        { note: 659, dur: 0.12 }, // E5
-        { note: 784, dur: 0.12 }, // G5
-        { note: 880, dur: 0.12 }, // A5
-        { note: 988, dur: 0.24 }, // B5
-        { note: 880, dur: 0.12 }, // A5
-        { note: 784, dur: 0.12 }, // G5
-        { note: 659, dur: 0.24 }, // E5
-        // Phrase 4 - Resolution
-        { note: 784, dur: 0.12 }, // G5
-        { note: 659, dur: 0.12 }, // E5
-        { note: 523, dur: 0.12 }, // C5
-        { note: 440, dur: 0.12 }, // A4
-        { note: 392, dur: 0.24 }, // G4
-        { note: 440, dur: 0.12 }, // A4
-        { note: 523, dur: 0.24 }, // C5
+        // Hook phrase - DÙM DÙM DÙM DA DÀ! (signature)
+        { note: 659, dur: 0.1 },  // E5
+        { note: 659, dur: 0.1 },  // E5
+        { note: 659, dur: 0.1 },  // E5
+        { note: 523, dur: 0.15 }, // C5
+        { note: 784, dur: 0.25 }, // G5 (hold)
+        { note: 0, dur: 0.1 },    // rest
+        // Response - DA DÀ DA DUM!
+        { note: 784, dur: 0.1 },  // G5
+        { note: 880, dur: 0.1 },  // A5
+        { note: 784, dur: 0.1 },  // G5
+        { note: 659, dur: 0.2 },  // E5 (hold)
+        { note: 0, dur: 0.1 },    // rest
+        // Building up - ascending run
+        { note: 523, dur: 0.08 }, // C5
+        { note: 587, dur: 0.08 }, // D5
+        { note: 659, dur: 0.08 }, // E5
+        { note: 698, dur: 0.08 }, // F5
+        { note: 784, dur: 0.08 }, // G5
+        { note: 880, dur: 0.08 }, // A5
+        { note: 988, dur: 0.15 }, // B5
+        { note: 1047, dur: 0.25 },// C6 (peak!)
+        // Descending excitement
+        { note: 988, dur: 0.08 }, // B5
+        { note: 880, dur: 0.08 }, // A5
+        { note: 784, dur: 0.1 },  // G5
+        { note: 659, dur: 0.1 },  // E5
+        { note: 523, dur: 0.15 }, // C5
+        { note: 0, dur: 0.1 },    // rest
+        // Repeat hook variation - higher energy
+        { note: 784, dur: 0.1 },  // G5
+        { note: 784, dur: 0.1 },  // G5
+        { note: 784, dur: 0.1 },  // G5
+        { note: 659, dur: 0.15 }, // E5
+        { note: 1047, dur: 0.25 },// C6 (higher peak!)
+        { note: 0, dur: 0.1 },    // rest
+        // Final phrase - victory feel
+        { note: 880, dur: 0.1 },  // A5
+        { note: 988, dur: 0.1 },  // B5
+        { note: 1047, dur: 0.1 }, // C6
+        { note: 988, dur: 0.1 },  // B5
+        { note: 880, dur: 0.1 },  // A5
+        { note: 784, dur: 0.2 },  // G5
+        { note: 659, dur: 0.2 },  // E5
+        { note: 0, dur: 0.15 },   // rest before loop
       ];
       
-      // Driving bass line - steady rhythm
+      // 🎸 Groovy bass line - catchy & driving
       const bassPattern = [
-        { note: 131, dur: 0.24 }, // C3
-        { note: 131, dur: 0.12 }, // C3
-        { note: 165, dur: 0.12 }, // E3
-        { note: 196, dur: 0.24 }, // G3
-        { note: 196, dur: 0.12 }, // G3
-        { note: 165, dur: 0.12 }, // E3
-        { note: 175, dur: 0.24 }, // F3
-        { note: 175, dur: 0.12 }, // F3
-        { note: 196, dur: 0.12 }, // G3
-        { note: 220, dur: 0.24 }, // A3
-        { note: 196, dur: 0.12 }, // G3
-        { note: 165, dur: 0.12 }, // E3
+        // Main groove (C major feel)
+        { note: 131, dur: 0.1 },  // C3
+        { note: 0, dur: 0.05 },   // rest
+        { note: 131, dur: 0.1 },  // C3
+        { note: 165, dur: 0.1 },  // E3
+        { note: 196, dur: 0.15 }, // G3
+        { note: 165, dur: 0.1 },  // E3
+        // Walk up
+        { note: 175, dur: 0.1 },  // F3
+        { note: 196, dur: 0.1 },  // G3
+        { note: 220, dur: 0.15 }, // A3
+        { note: 196, dur: 0.1 },  // G3
+        // Bounce back
+        { note: 165, dur: 0.1 },  // E3
+        { note: 131, dur: 0.1 },  // C3
+        { note: 165, dur: 0.1 },  // E3
+        { note: 196, dur: 0.15 }, // G3
+        // Tension builder
+        { note: 220, dur: 0.1 },  // A3
+        { note: 247, dur: 0.1 },  // B3
+        { note: 262, dur: 0.15 }, // C4
+        { note: 247, dur: 0.1 },  // B3
+        { note: 220, dur: 0.1 },  // A3
+        { note: 196, dur: 0.15 }, // G3
+      ];
+      
+      // Drum pattern - BPM ~150
+      const drumPattern = [
+        { type: 'kick', dur: 0.08 },
+        { type: 'hihat', dur: 0.08 },
+        { type: 'snare', dur: 0.08 },
+        { type: 'hihat', dur: 0.08 },
+        { type: 'kick', dur: 0.08 },
+        { type: 'hihat', dur: 0.08 },
+        { type: 'snare', dur: 0.08 },
+        { type: 'hihat', dur: 0.08 },
       ];
       
       let melodyIndex = 0;
       let bassIndex = 0;
+      let drumIndex = 0;
       let nextMelodyTime = audioContext.currentTime + 0.1;
       let nextBassTime = audioContext.currentTime + 0.1;
+      let nextDrumTime = audioContext.currentTime + 0.1;
       
-      // Smooth note player with proper envelope (no clicks!)
+      // Note player with envelope
       const playNote = (freq, startTime, duration, gainValue, waveType = 'sine') => {
-        if (!bgMusicRef.current) return;
+        if (!bgMusicRef.current || freq === 0) return;
         
         const osc = audioContext.createOscillator();
         const noteGain = audioContext.createGain();
@@ -518,11 +620,10 @@ export default function DuaThuHoatHinh() {
         osc.connect(noteGain);
         noteGain.connect(masterGain);
         
-        // Super smooth ADSR envelope - no harsh starts or stops
-        const attackTime = 0.03;
-        const decayTime = 0.05;
-        const sustainLevel = gainValue * 0.8;
-        const releaseTime = 0.08;
+        const attackTime = 0.015;
+        const decayTime = 0.03;
+        const sustainLevel = gainValue * 0.7;
+        const releaseTime = 0.04;
         
         noteGain.gain.setValueAtTime(0, startTime);
         noteGain.gain.linearRampToValueAtTime(gainValue, startTime + attackTime);
@@ -534,33 +635,93 @@ export default function DuaThuHoatHinh() {
         osc.stop(startTime + duration + 0.01);
       };
       
+      // Drum sounds
+      const playDrum = (type, startTime) => {
+        if (!bgMusicRef.current) return;
+        
+        if (type === 'kick') {
+          const osc = audioContext.createOscillator();
+          const gain = audioContext.createGain();
+          osc.connect(gain);
+          gain.connect(masterGain);
+          osc.frequency.setValueAtTime(150, startTime);
+          osc.frequency.exponentialRampToValueAtTime(50, startTime + 0.05);
+          gain.gain.setValueAtTime(0.8, startTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.08);
+          osc.start(startTime);
+          osc.stop(startTime + 0.08);
+        } else if (type === 'snare') {
+          const bufferSize = audioContext.sampleRate * 0.05;
+          const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+          const data = buffer.getChannelData(0);
+          for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+          const noise = audioContext.createBufferSource();
+          noise.buffer = buffer;
+          const gain = audioContext.createGain();
+          const filter = audioContext.createBiquadFilter();
+          filter.type = 'highpass';
+          filter.frequency.value = 1000;
+          noise.connect(filter);
+          filter.connect(gain);
+          gain.connect(masterGain);
+          gain.gain.setValueAtTime(0.5, startTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.05);
+          noise.start(startTime);
+          noise.stop(startTime + 0.05);
+        } else if (type === 'hihat') {
+          const bufferSize = audioContext.sampleRate * 0.02;
+          const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+          const data = buffer.getChannelData(0);
+          for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+          const noise = audioContext.createBufferSource();
+          noise.buffer = buffer;
+          const gain = audioContext.createGain();
+          const filter = audioContext.createBiquadFilter();
+          filter.type = 'highpass';
+          filter.frequency.value = 5000;
+          noise.connect(filter);
+          filter.connect(gain);
+          gain.connect(masterGain);
+          gain.gain.setValueAtTime(0.2, startTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.02);
+          noise.start(startTime);
+          noise.stop(startTime + 0.02);
+        }
+      };
+      
       const scheduleMusic = () => {
         if (!bgMusicRef.current) return;
         const currentTime = bgMusicRef.current.currentTime;
         
-        // Schedule melody notes ahead (look-ahead buffering)
+        // Schedule melody
         while (nextMelodyTime < currentTime + 0.3) {
           const { note, dur } = melodyPattern[melodyIndex % melodyPattern.length];
-          playNote(note, nextMelodyTime, dur, 0.5, 'sine');
-          // Add slight octave harmony every other note for richness
-          if (melodyIndex % 2 === 0) {
-            playNote(note * 0.5, nextMelodyTime, dur, 0.2, 'triangle');
+          playNote(note, nextMelodyTime, dur, 0.5, 'sawtooth');
+          if (melodyIndex % 3 === 0) {
+            playNote(note * 0.5, nextMelodyTime, dur, 0.25, 'triangle');
           }
           nextMelodyTime += dur;
           melodyIndex++;
         }
         
-        // Schedule bass notes
+        // Schedule bass
         while (nextBassTime < currentTime + 0.3) {
           const { note, dur } = bassPattern[bassIndex % bassPattern.length];
-          playNote(note, nextBassTime, dur, 0.4, 'triangle');
+          if (note > 0) playNote(note, nextBassTime, dur, 0.6, 'triangle');
           nextBassTime += dur;
           bassIndex++;
         }
+        
+        // Schedule drums
+        while (nextDrumTime < currentTime + 0.3) {
+          const { type, dur } = drumPattern[drumIndex % drumPattern.length];
+          playDrum(type, nextDrumTime);
+          nextDrumTime += dur;
+          drumIndex++;
+        }
       };
       
-      // Schedule music with frequent updates for smooth playback
-      bgMusicIntervalRef.current = setInterval(scheduleMusic, 50);
+      bgMusicIntervalRef.current = setInterval(scheduleMusic, 40);
       scheduleMusic();
       
     } catch (e) {

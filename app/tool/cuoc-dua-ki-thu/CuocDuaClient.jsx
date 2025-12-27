@@ -1053,140 +1053,93 @@ export default function CuocDuaClient() {
             </button>
             
             <div className="bg-white/95 backdrop-blur border-t-2 border-emerald-300 shadow-2xl">
-              <div className="px-2 sm:px-3 py-2 sm:py-3">
-                {/* Mobile: Stack layout */}
-                <div className="max-w-4xl mx-auto">
-                  {/* Row 1: Selected + Score buttons */}
-                  <div className="flex items-center gap-1 sm:gap-2 mb-2 sm:mb-0">
-                    {/* Selected Info - Compact on mobile */}
-                    {selectedRacer !== null && racers[selectedRacer] ? (
-                      <div className="flex items-center gap-1 sm:gap-2 bg-blue-100 rounded-lg sm:rounded-xl px-2 sm:px-3 py-1 sm:py-1.5 border border-blue-300 flex-shrink-0">
-                        <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-md sm:rounded-lg bg-gradient-to-br ${racers[selectedRacer].color} flex items-center justify-center text-sm sm:text-lg`}>
-                          {racers[selectedRacer].icon}
-                        </div>
-                        <span className="text-gray-800 font-bold text-xs sm:text-sm max-w-[60px] sm:max-w-[100px] truncate">{racers[selectedRacer].name}</span>
-                        <button onClick={() => setSelectedRacer(null)} className="text-gray-400 hover:text-gray-600 text-sm sm:text-base">✕</button>
+              <div className="px-2 sm:px-4 py-1.5 sm:py-2">
+                {/* Single row layout - evenly distributed */}
+                <div className="max-w-5xl mx-auto flex items-center justify-between gap-1 sm:gap-3">
+                  {/* Selected Info - Compact */}
+                  {selectedRacer !== null && racers[selectedRacer] ? (
+                    <div className="flex items-center gap-1 bg-blue-100 rounded-lg px-1.5 sm:px-2 py-1 border border-blue-300 flex-shrink-0">
+                      <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded bg-gradient-to-br ${racers[selectedRacer].color} flex items-center justify-center text-xs sm:text-sm`}>
+                        {racers[selectedRacer].icon}
                       </div>
-                    ) : (
-                      <div className="text-gray-400 text-xs sm:text-sm px-2 sm:px-3 py-1.5 sm:py-2 bg-gray-100 rounded-lg sm:rounded-xl flex-shrink-0">👆 Chọn</div>
-                    )}
-                    
-                    {/* Score Buttons - Responsive grid */}
-                    <div className="flex-1 grid grid-cols-8 gap-0.5 sm:gap-1">
-                      {/* Plus Score Buttons */}
-                      {[1, 2, 3, 5].map(pts => (
-                        <button
-                          key={`plus-${pts}`}
-                          onClick={() => selectedRacer !== null && addScore(selectedRacer, pts)}
-                          disabled={selectedRacer === null || isLocked}
-                          className={`h-9 sm:h-11 rounded-lg sm:rounded-xl font-black text-sm sm:text-base transition-all
-                            ${selectedRacer !== null && !isLocked
-                              ? 'bg-gradient-to-b from-emerald-400 to-emerald-500 hover:from-emerald-300 hover:to-emerald-400 text-white shadow-md active:scale-95' 
-                              : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
-                        >
-                          +{pts}
-                        </button>
-                      ))}
-                      
-                      {/* Minus Score Buttons */}
-                      {[1, 2, 3, 5].map(pts => (
-                        <button
-                          key={`minus-${pts}`}
-                          onClick={() => selectedRacer !== null && addScore(selectedRacer, -pts)}
-                          disabled={selectedRacer === null || isLocked}
-                          className={`h-9 sm:h-11 rounded-lg sm:rounded-xl font-black text-sm sm:text-base transition-all
-                            ${selectedRacer !== null && !isLocked
-                              ? 'bg-gradient-to-b from-red-400 to-red-500 hover:from-red-300 hover:to-red-400 text-white shadow-md active:scale-95' 
-                              : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
-                        >
-                          -{pts}
-                        </button>
-                      ))}
+                      <span className="text-gray-800 font-bold text-xs max-w-[50px] sm:max-w-[80px] truncate">{racers[selectedRacer].name}</span>
+                      <button onClick={() => setSelectedRacer(null)} className="text-gray-400 hover:text-gray-600 text-xs">✕</button>
                     </div>
+                  ) : (
+                    <div className="text-gray-400 text-xs px-2 py-1 bg-gray-100 rounded-lg flex-shrink-0">👆Chọn</div>
+                  )}
+                  
+                  {/* Score Buttons - Compact */}
+                  <div className="flex items-center gap-0.5">
+                    {[1, 2, 3, 5].map(pts => (
+                      <button
+                        key={`plus-${pts}`}
+                        onClick={() => selectedRacer !== null && addScore(selectedRacer, pts)}
+                        disabled={selectedRacer === null || isLocked}
+                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-md font-bold text-xs sm:text-sm transition-all
+                          ${selectedRacer !== null && !isLocked
+                            ? 'bg-gradient-to-b from-emerald-400 to-emerald-500 hover:from-emerald-300 hover:to-emerald-400 text-white shadow active:scale-95' 
+                            : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+                      >
+                        +{pts}
+                      </button>
+                    ))}
                   </div>
                   
-                  {/* Row 2: Action buttons - Only on mobile, merged on desktop */}
-                  <div className="flex sm:hidden items-center gap-1 mt-2">
-                    {/* Random Pick */}
-                    <button
-                      onClick={suggestNextRacer}
-                      disabled={isSpinning}
-                      className={`flex-1 h-9 rounded-lg font-bold text-xs flex items-center justify-center gap-1 shadow-md transition-all
-                        ${isSpinning 
-                          ? 'bg-gradient-to-r from-yellow-400 to-orange-400 text-white animate-pulse cursor-wait' 
-                          : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white active:scale-95'}`}
-                    >
-                      <span className={isSpinning ? 'animate-spin' : ''}>🎲</span>
-                      <span>{isSpinning ? 'Đang gọi...' : 'Gọi ngẫu nhiên'}</span>
-                    </button>
-                    
-                    {/* Lock */}
-                    <button
-                      onClick={() => setIsLocked(!isLocked)}
-                      className={`h-9 px-3 rounded-lg text-xs font-medium transition-all flex items-center gap-1
-                        ${isLocked 
-                          ? 'bg-red-100 text-red-600 border-2 border-red-300' 
-                          : 'bg-gray-100 text-gray-600'}`}
-                    >
-                      <span>{isLocked ? '🔒' : '🔓'}</span>
-                    </button>
-                    
-                    {/* Undo */}
-                    <button
-                      onClick={undo}
-                      disabled={history.length === 0}
-                      className={`h-9 px-3 rounded-lg text-xs font-medium flex items-center gap-1 transition-all
-                        ${history.length > 0 
-                          ? 'bg-gray-100 text-gray-700' 
-                          : 'bg-gray-50 text-gray-300 cursor-not-allowed'}`}
-                    >
-                      <span>↩️</span>
-                    </button>
+                  <div className="flex items-center gap-0.5">
+                    {[1, 2, 3, 5].map(pts => (
+                      <button
+                        key={`minus-${pts}`}
+                        onClick={() => selectedRacer !== null && addScore(selectedRacer, -pts)}
+                        disabled={selectedRacer === null || isLocked}
+                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-md font-bold text-xs sm:text-sm transition-all
+                          ${selectedRacer !== null && !isLocked
+                            ? 'bg-gradient-to-b from-red-400 to-red-500 hover:from-red-300 hover:to-red-400 text-white shadow active:scale-95' 
+                            : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+                      >
+                        -{pts}
+                      </button>
+                    ))}
                   </div>
                   
-                  {/* Desktop: All in one row */}
-                  <div className="hidden sm:flex items-center gap-2 mt-2">
-                    {/* Divider */}
-                    <div className="w-px h-9 bg-gray-300" />
+                  {/* Divider */}
+                  <div className="w-px h-6 bg-gray-300 hidden sm:block" />
                   
-                    {/* Random Pick */}
-                    <button
-                      onClick={suggestNextRacer}
-                      disabled={isSpinning}
-                      className={`h-11 px-4 rounded-xl font-bold text-sm flex items-center gap-2 shadow-md transition-all
-                        ${isSpinning 
-                          ? 'bg-gradient-to-r from-yellow-400 to-orange-400 text-white animate-pulse cursor-wait' 
-                          : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-400 hover:to-pink-400 active:scale-95'}`}
-                    >
-                      <span className={isSpinning ? 'animate-spin' : ''}>🎲</span>
-                      <span>{isSpinning ? 'Đang gọi...' : 'Gọi ngẫu nhiên'}</span>
-                    </button>
-                    
-                    {/* Lock */}
-                    <button
-                      onClick={() => setIsLocked(!isLocked)}
-                      className={`h-11 px-3 rounded-xl text-sm font-medium transition-all flex items-center gap-1.5 flex-shrink-0
-                        ${isLocked 
-                          ? 'bg-red-100 text-red-600 border-2 border-red-300' 
-                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
-                    >
-                      <span className="text-lg">{isLocked ? '🔒' : '🔓'}</span>
-                      <span>{isLocked ? 'Đang khóa' : 'Khóa'}</span>
-                    </button>
-                    
-                    {/* Undo */}
-                    <button
-                      onClick={undo}
-                      disabled={history.length === 0}
-                      className={`h-11 px-3 rounded-xl text-sm font-medium flex items-center gap-1.5 flex-shrink-0 transition-all
-                        ${history.length > 0 
-                          ? 'bg-gray-100 text-gray-700 hover:bg-gray-200' 
-                          : 'bg-gray-50 text-gray-300 cursor-not-allowed'}`}
-                    >
-                      <span className="text-lg">↩️</span>
-                      <span>Hoàn tác</span>
-                    </button>
-                  </div>
+                  {/* Action buttons - Compact */}
+                  <button
+                    onClick={suggestNextRacer}
+                    disabled={isSpinning}
+                    className={`h-7 sm:h-8 px-2 sm:px-3 rounded-lg font-bold text-xs flex items-center gap-1 shadow transition-all flex-shrink-0
+                      ${isSpinning 
+                        ? 'bg-gradient-to-r from-yellow-400 to-orange-400 text-white animate-pulse cursor-wait' 
+                        : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white active:scale-95'}`}
+                  >
+                    <span className={isSpinning ? 'animate-spin' : ''}>🎲</span>
+                    <span className="hidden sm:inline">{isSpinning ? '...' : 'Gọi ngẫu nhiên'}</span>
+                  </button>
+                  
+                  <button
+                    onClick={() => setIsLocked(!isLocked)}
+                    className={`h-7 sm:h-8 px-1.5 sm:px-2 rounded-lg text-xs font-medium transition-all flex items-center gap-0.5 flex-shrink-0
+                      ${isLocked 
+                        ? 'bg-red-100 text-red-600 border border-red-300' 
+                        : 'bg-gray-100 text-gray-600'}`}
+                  >
+                    <span>{isLocked ? '🔒' : '🔓'}</span>
+                    <span className="hidden sm:inline">{isLocked ? 'Khóa' : ''}</span>
+                  </button>
+                  
+                  <button
+                    onClick={undo}
+                    disabled={history.length === 0}
+                    className={`h-7 sm:h-8 px-1.5 sm:px-2 rounded-lg text-xs font-medium flex items-center gap-0.5 flex-shrink-0 transition-all
+                      ${history.length > 0 
+                        ? 'bg-gray-100 text-gray-700' 
+                        : 'bg-gray-50 text-gray-300 cursor-not-allowed'}`}
+                  >
+                    <span>↩️</span>
+                    <span className="hidden sm:inline">Hoàn tác</span>
+                  </button>
                 </div>
               </div>
             </div>

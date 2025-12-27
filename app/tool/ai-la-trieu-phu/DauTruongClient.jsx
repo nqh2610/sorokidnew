@@ -323,26 +323,44 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
     }
   }, [currentIndex, questions.length, exitFullscreen]);
 
-  // Trợ giúp 50:50
+  // Trợ giúp 50:50 - 70% xác suất giữ đáp án đúng
   const use5050 = useCallback(() => {
     if (used5050 || isLocked) return;
     const current = questions[currentIndex];
     const wrongAnswers = [0, 1, 2, 3].filter(i => i !== current.correct);
-    const toHide = wrongAnswers.sort(() => Math.random() - 0.5).slice(0, 2);
+    
+    let toHide;
+    if (Math.random() < 0.7) {
+      // 70%: Loại 2 đáp án sai (giữ đáp án đúng)
+      toHide = wrongAnswers.sort(() => Math.random() - 0.5).slice(0, 2);
+    } else {
+      // 30%: Loại 1 sai + 1 đúng (có thể đánh lừa!)
+      const oneWrong = wrongAnswers[Math.floor(Math.random() * wrongAnswers.length)];
+      const remainingWrong = wrongAnswers.filter(i => i !== oneWrong);
+      const anotherWrong = remainingWrong[Math.floor(Math.random() * remainingWrong.length)];
+      toHide = [current.correct, anotherWrong];
+    }
+    
     setHidden5050(toHide);
     setUsed5050(true);
     if (toHide.includes(selectedAnswer)) setSelectedAnswer(null);
     playSound('help');
   }, [used5050, isLocked, questions, currentIndex, selectedAnswer, playSound]);
 
-  // Trợ giúp Khán giả
+  // Trợ giúp Khán giả - 70% xác suất khán giả chọn đúng
   const useAudience = useCallback(() => {
     if (usedAudience || isLocked) return;
     const current = questions[currentIndex];
     const votes = [0, 0, 0, 0];
-    votes[current.correct] = 45 + Math.random() * 40;
-    let remaining = 100 - votes[current.correct];
-    [0, 1, 2, 3].filter(i => i !== current.correct && !hidden5050.includes(i)).forEach((i, idx, arr) => {
+    
+    // 70% khán giả bình chọn đúng, 30% bị đánh lừa
+    const isCorrect = Math.random() < 0.7;
+    const highestVoteIdx = isCorrect ? current.correct : 
+      [0, 1, 2, 3].filter(i => i !== current.correct && !hidden5050.includes(i))[Math.floor(Math.random() * 3)];
+    
+    votes[highestVoteIdx] = 35 + Math.random() * 30; // 35-65%
+    let remaining = 100 - votes[highestVoteIdx];
+    [0, 1, 2, 3].filter(i => i !== highestVoteIdx && !hidden5050.includes(i)).forEach((i, idx, arr) => {
       const share = idx === arr.length - 1 ? remaining : Math.random() * remaining * 0.6;
       votes[i] = share;
       remaining -= share;
@@ -353,18 +371,25 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
     playSound('help');
   }, [usedAudience, isLocked, questions, currentIndex, hidden5050, playSound]);
 
-  // Trợ giúp Gọi điện
+  // Trợ giúp Gọi điện - 70% xác suất gợi ý đúng
   const usePhone = useCallback(() => {
     if (usedPhone || isLocked) return;
     const current = questions[currentIndex];
-    const letter = ['A', 'B', 'C', 'D'][current.correct];
-    const hints = Math.random() > 0.4
-      ? [`Chắc chắn là ${letter}!`, `Tôi nghĩ ${letter} đúng!`]
-      : [`Có lẽ là ${letter}...`, `Hmm, ${letter}?`];
+    
+    // 70% gợi ý đúng, 30% gợi ý sai
+    const isCorrect = Math.random() < 0.7;
+    const hintIdx = isCorrect ? current.correct : 
+      [0, 1, 2, 3].filter(i => i !== current.correct && !hidden5050.includes(i))[Math.floor(Math.random() * 3)];
+    const letter = ['A', 'B', 'C', 'D'][hintIdx];
+    
+    const confidentHints = [`Chắc chắn là ${letter}!`, `Tôi nghĩ ${letter} đúng!`, `${letter} chắc luôn!`];
+    const unsureHints = [`Có lẽ là ${letter}...`, `Hmm, ${letter}?`, `Tôi đoán là ${letter}...`];
+    const hints = Math.random() > 0.4 ? confidentHints : unsureHints;
+    
     setPhoneHint(hints[Math.floor(Math.random() * hints.length)]);
     setUsedPhone(true);
     playSound('help');
-  }, [usedPhone, isLocked, questions, currentIndex, playSound]);
+  }, [usedPhone, isLocked, questions, currentIndex, hidden5050, playSound]);
 
   const resetGame = useCallback(() => {
     exitFullscreen();

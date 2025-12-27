@@ -352,25 +352,44 @@ function BocThamContent() {
             
             {/* Slot machine display */}
             <div className="relative z-10 bg-black/30 backdrop-blur rounded-xl lg:rounded-2xl p-4 lg:p-8 border-4 border-yellow-400">
-              <div className="text-4xl lg:text-6xl mb-4 lg:mb-6">🎰</div>
+              <div className="text-4xl lg:text-6xl mb-4 lg:mb-6">�</div>
               
-              {/* Slot reels */}
-              <div className="bg-white rounded-lg lg:rounded-xl p-3 lg:p-4 mb-4 min-w-[200px] lg:min-w-[300px]">
-                <div className="space-y-2">
-                  {animatingNames.map((name, i) => (
-                    <div
-                      key={i}
-                      className={`text-lg lg:text-2xl font-bold py-2 px-3 lg:px-4 rounded-lg transition-all
-                        ${i === 1 ? 'bg-yellow-300 text-yellow-800 scale-110' : 'bg-gray-100 text-gray-500 opacity-50'}`}
-                    >
-                      {name}
-                    </div>
-                  ))}
+              {/* Slot reels - Hiệu ứng cuộn thực sự */}
+              <div className="bg-white rounded-lg lg:rounded-xl p-3 lg:p-4 mb-4 min-w-[200px] lg:min-w-[300px] overflow-hidden">
+                {/* Reel container với hiệu ứng cuộn */}
+                <div className="relative h-[140px] lg:h-[180px] overflow-hidden">
+                  {/* Gradient overlay trên */}
+                  <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-white to-transparent z-10" />
+                  {/* Gradient overlay dưới */}
+                  <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent z-10" />
+                  
+                  {/* Highlight dòng giữa */}
+                  <div className="absolute top-1/2 left-0 right-0 h-12 lg:h-14 -translate-y-1/2 
+                    bg-yellow-300 rounded-lg border-2 border-yellow-400 z-0" />
+                  
+                  {/* Cuộn items */}
+                  <div className="animate-slot-spin">
+                    {[...Array(12)].map((_, i) => {
+                      const secretSymbols = ['🎁', '🎀', '⭐', '🎯', '💎', '🎪', '🔮', '🎊', '✨', '🎲', '🌟', '💫'];
+                      const displayText = isListHidden 
+                        ? secretSymbols[i % secretSymbols.length]
+                        : animatingNames[i % animatingNames.length] || '???';
+                      
+                      return (
+                        <div
+                          key={i}
+                          className="h-12 lg:h-14 flex items-center justify-center text-lg lg:text-2xl font-bold text-gray-700"
+                        >
+                          {displayText}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
               
               <p className="text-white text-lg lg:text-xl font-bold animate-pulse">
-                Đang quay số...
+                {isListHidden ? '🔒 Đang bốc thăm bí mật...' : 'Đang quay số...'}
               </p>
             </div>
           </div>
@@ -473,6 +492,15 @@ function BocThamContent() {
         
         .animate-bounceIn {
           animation: bounceIn 0.6s ease-out;
+        }
+        
+        @keyframes slotSpin {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-50%); }
+        }
+        
+        .animate-slot-spin {
+          animation: slotSpin 0.4s linear infinite;
         }
       `}</style>
     </div>
