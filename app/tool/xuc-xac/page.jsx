@@ -1,13 +1,4 @@
-import dynamic from 'next/dynamic';
-
-const XucXac3DClient = dynamic(() => import('./XucXac3DClient'), {
-  ssr: false,
-  loading: () => (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 flex items-center justify-center">
-      <div className="text-white text-xl">Đang tải...</div>
-    </div>
-  ),
-});
+import XucXacWrapper from './XucXacWrapper';
 
 export const metadata = {
   title: 'Xúc Xắc 3D - Lắc Xúc Xắc Online Miễn Phí | SoroKid',
@@ -21,5 +12,5 @@ export const metadata = {
 };
 
 export default function XucXac3DPage() {
-  return <XucXac3DClient />;
+  return <XucXacWrapper />;
 }
