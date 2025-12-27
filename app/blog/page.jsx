@@ -208,7 +208,7 @@ export default function BlogPage({ searchParams }) {
             <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4">
               Khám phá theo chủ đề
             </h2>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
               {categories.map(category => (
                 <CategoryCard 
                   key={category.slug} 

@@ -943,11 +943,8 @@ export default function HomePage() {
               </div>
               <nav aria-label="Footer navigation">
                 <ul className="flex flex-wrap justify-center gap-6 text-gray-400">
-                  <li><Link href="/learn" className="hover:text-white transition-colors">Bài học</Link></li>
-                  <li><Link href="/practice" className="hover:text-white transition-colors">Luyện tập</Link></li>
-                  <li><Link href="/compete" className="hover:text-white transition-colors">Thi đấu</Link></li>
-                  <li><Link href="/leaderboard" className="hover:text-white transition-colors">Xếp hạng</Link></li>
                   <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
+                  <li><Link href="/tool" className="hover:text-white transition-colors flex items-center gap-1">🧰 Toolbox Giáo Viên</Link></li>
                 </ul>
               </nav>
             </div>

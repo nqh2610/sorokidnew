@@ -57,8 +57,52 @@ function ToastContainer({ toasts, removeToast }) {
   );
 }
 
+// Simple Toast component for direct use (standalone)
+export function AdminToast({ type, message, onClose }) {
+  const icons = {
+    success: <CheckCircle className="w-5 h-5 text-emerald-400" />,
+    error: <XCircle className="w-5 h-5 text-red-400" />,
+    warning: <AlertTriangle className="w-5 h-5 text-amber-400" />,
+    info: <Info className="w-5 h-5 text-blue-400" />
+  };
+
+  const bgColors = {
+    success: 'bg-emerald-500/10 border-emerald-500/30',
+    error: 'bg-red-500/10 border-red-500/30',
+    warning: 'bg-amber-500/10 border-amber-500/30',
+    info: 'bg-blue-500/10 border-blue-500/30'
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onClose?.();
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  return (
+    <div className="fixed top-4 right-4 z-[100] max-w-sm w-full animate-slide-in-right">
+      <div
+        className={`${bgColors[type] || bgColors.info} border backdrop-blur-xl rounded-xl p-4 shadow-xl flex items-start gap-3`}
+        role="alert"
+      >
+        {icons[type] || icons.info}
+        <p className="flex-1 text-sm text-white">{message}</p>
+        <button
+          onClick={onClose}
+          className="text-slate-400 hover:text-white transition-colors"
+        >
+          <X className="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // Default export for compatibility
-export default { AdminToastProvider, useAdminToast };
+export default AdminToast;
+
+// Internal Toast component for ToastContainer
 function Toast({ toast, onClose }) {
   const { type, message } = toast;
 
