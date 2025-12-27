@@ -519,59 +519,64 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
           
           {/* Main Content */}
           <div className="relative z-10 h-screen flex flex-col">
-            {/* Top Bar */}
-            <div className="flex items-center justify-between p-3">
-              <button onClick={resetGame} className="px-4 py-2 bg-black/50 hover:bg-black/70 text-white rounded-lg text-sm font-medium transition-colors">
-                ✕ Thoát
+            {/* Top Bar - Responsive */}
+            <div className="flex items-center justify-between p-2 sm:p-3">
+              <button onClick={resetGame} className="px-2 sm:px-4 py-1.5 sm:py-2 bg-black/50 hover:bg-black/70 text-white rounded-lg text-xs sm:text-sm font-medium transition-colors">
+                ✕ <span className="hidden sm:inline">Thoát</span>
               </button>
-              <button onClick={() => setSoundEnabled(!soundEnabled)} className="px-4 py-2 bg-black/50 hover:bg-black/70 text-white rounded-lg text-sm">
-                {soundEnabled ? '🔊' : '🔇'}
-              </button>
-            </div>
-
-            {/* Question Box - Hexagon Style - CHỮ TO */}
-            <div className="flex-shrink-0 px-4 mb-6">
-              <div className="altp-question-box">
-                <span className="altp-diamond text-2xl">◆</span>
-                <span className="altp-question-text text-2xl md:text-3xl lg:text-4xl font-bold drop-shadow-lg">
-                  {currentQuestion.question}
+              <div className="flex items-center gap-1 sm:gap-2">
+                <span className="px-2 sm:px-3 py-1 bg-amber-500/80 text-white rounded-lg text-xs sm:text-sm font-bold">
+                  Câu {currentIndex + 1}/{questions.length}
                 </span>
-                <span className="altp-diamond text-2xl">◆</span>
+                <button onClick={() => setSoundEnabled(!soundEnabled)} className="px-2 sm:px-4 py-1.5 sm:py-2 bg-black/50 hover:bg-black/70 text-white rounded-lg text-xs sm:text-sm">
+                  {soundEnabled ? '🔊' : '🔇'}
+                </button>
               </div>
             </div>
 
-            {/* Main Game Area */}
-            <div className="flex-1 flex">
+            {/* Question Box - Responsive */}
+            <div className="flex-shrink-0 px-2 sm:px-4 mb-3 sm:mb-6">
+              <div className="altp-question-box">
+                <span className="altp-diamond text-lg sm:text-2xl">◆</span>
+                <span className="altp-question-text text-base sm:text-2xl md:text-3xl lg:text-4xl font-bold drop-shadow-lg">
+                  {currentQuestion.question}
+                </span>
+                <span className="altp-diamond text-lg sm:text-2xl">◆</span>
+              </div>
+            </div>
+
+            {/* Main Game Area - Responsive layout */}
+            <div className="flex-1 flex flex-col lg:flex-row min-h-0">
               {/* Left Side - Answers */}
-              <div className="flex-1 flex flex-col justify-center px-4 pb-4">
-                {/* Phone Hint - CHỮ TO */}
+              <div className="flex-1 flex flex-col justify-start lg:justify-center px-2 sm:px-4 pb-2 sm:pb-4 overflow-y-auto">
+                {/* Phone Hint - Compact */}
                 {phoneHint && (
-                  <div className="mb-6 p-4 bg-green-900/90 border-2 border-green-400 rounded-xl text-center animate-fadeIn">
-                    <p className="text-green-300 text-xl md:text-2xl font-bold">📞 "{phoneHint}"</p>
+                  <div className="mb-2 sm:mb-4 p-2 sm:p-3 bg-green-900/90 border-2 border-green-400 rounded-xl text-center animate-fadeIn">
+                    <p className="text-green-300 text-sm sm:text-lg md:text-xl font-bold">📞 &ldquo;{phoneHint}&rdquo;</p>
                   </div>
                 )}
 
-                {/* Audience Chart - TO HƠN */}
+                {/* Audience Chart - Compact */}
                 {audienceVotes && (
-                  <div className="mb-6 p-4 bg-blue-900/90 border-2 border-blue-400 rounded-xl animate-fadeIn">
-                    <p className="text-white text-lg font-bold text-center mb-3">👥 KẾT QUẢ BÌNH CHỌN KHÁN GIẢ</p>
-                    <div className="flex justify-center gap-6">
+                  <div className="mb-2 sm:mb-4 p-2 sm:p-3 bg-blue-900/90 border-2 border-blue-400 rounded-xl animate-fadeIn">
+                    <p className="text-white text-xs sm:text-sm font-bold text-center mb-1 sm:mb-2">👥 KẾT QUẢ BÌNH CHỌN</p>
+                    <div className="flex justify-center gap-2 sm:gap-4">
                       {['A', 'B', 'C', 'D'].map((letter, i) => (
                         <div key={letter} className={`text-center ${hidden5050.includes(i) ? 'opacity-20' : ''}`}>
-                          <div className="h-20 w-12 bg-blue-950 rounded-lg relative overflow-hidden border-2 border-blue-400">
+                          <div className="h-10 sm:h-16 w-6 sm:w-10 bg-blue-950 rounded-md relative overflow-hidden border border-blue-400">
                             <div className="absolute bottom-0 w-full bg-gradient-to-t from-orange-500 to-yellow-400 transition-all duration-700"
                               style={{ height: `${audienceVotes[i]}%` }} />
                           </div>
-                          <span className="text-orange-400 font-black text-lg block mt-1">{audienceVotes[i]}%</span>
-                          <span className="text-white font-bold text-lg">{letter}</span>
+                          <span className="text-orange-400 font-black text-xs sm:text-sm block">{audienceVotes[i]}%</span>
+                          <span className="text-white font-bold text-xs sm:text-sm">{letter}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {/* Answers Grid - 2x2 - CHỮ TO */}
-                <div className="grid grid-cols-2 gap-3 md:gap-4 max-w-4xl mx-auto w-full">
+                {/* Answers Grid - Always 2 columns except very small screens */}
+                <div className="grid grid-cols-2 gap-1.5 sm:gap-2 md:gap-3 max-w-4xl mx-auto w-full">
                   {['A', 'B', 'C', 'D'].map((letter, index) => {
                     const isHidden = hidden5050.includes(index);
                     const isSelected = selectedAnswer === index;
@@ -592,9 +597,9 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
                         disabled={isLocked || isHidden}
                         className={`altp-answer-btn ${stateClass}`}
                       >
-                        <span className="altp-answer-diamond text-xl">◆</span>
-                        <span className="altp-answer-letter text-2xl md:text-3xl">{letter}</span>
-                        <span className="altp-answer-text text-xl md:text-2xl font-semibold">
+                        <span className="altp-answer-diamond text-xs sm:text-base">◆</span>
+                        <span className="altp-answer-letter text-base sm:text-xl md:text-2xl">{letter}</span>
+                        <span className="altp-answer-text text-xs sm:text-base md:text-lg font-semibold truncate">
                           {currentQuestion.answers[index]}
                         </span>
                       </button>
@@ -602,48 +607,48 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
                   })}
                 </div>
 
-                {/* Action Buttons - NÚT TO */}
-                <div className="mt-6 flex justify-center gap-4 md:gap-6">
+                {/* Action Buttons - Compact */}
+                <div className="mt-2 sm:mt-4 flex justify-center gap-2 sm:gap-3">
                   {/* Trợ giúp */}
                   <button onClick={use5050} disabled={used5050 || isLocked}
                     className={`altp-help-btn ${used5050 ? 'opacity-30' : ''}`}>
-                    <span className="text-lg font-black">50:50</span>
+                    <span className="text-[10px] sm:text-sm font-black">50:50</span>
                   </button>
                   <button onClick={useAudience} disabled={usedAudience || isLocked}
                     className={`altp-help-btn ${usedAudience ? 'opacity-30' : ''}`}>
-                    <span className="text-2xl">👥</span>
+                    <span className="text-base sm:text-xl">👥</span>
                   </button>
                   <button onClick={usePhone} disabled={usedPhone || isLocked}
                     className={`altp-help-btn ${usedPhone ? 'opacity-30' : ''}`}>
-                    <span className="text-2xl">📞</span>
+                    <span className="text-base sm:text-xl">📞</span>
                   </button>
                 </div>
 
-                {/* Lock / Next Button - CHỮ TO */}
-                <div className="mt-6 text-center">
+                {/* Lock / Next Button - Compact */}
+                <div className="mt-2 sm:mt-4 text-center pb-2">
                   {!isLocked && selectedAnswer !== null && (
-                    <button onClick={lockAnswer} className="altp-action-btn text-xl md:text-2xl px-8 py-4">
+                    <button onClick={lockAnswer} className="altp-action-btn text-sm sm:text-base md:text-lg px-4 sm:px-6 py-2 sm:py-3">
                       ✓ CHỐT ĐÁP ÁN
                     </button>
                   )}
                   
                   {isLocked && !isRevealed && (
-                    <div className="flex flex-col items-center gap-3">
-                      <p className="text-yellow-400 text-2xl font-bold animate-pulse">Đang chờ kết quả...</p>
-                      <div className="flex justify-center gap-3">
-                        <span className="w-4 h-4 bg-orange-400 rounded-full animate-bounce"></span>
-                        <span className="w-4 h-4 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></span>
-                        <span className="w-4 h-4 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></span>
+                    <div className="flex flex-col items-center gap-1 sm:gap-2">
+                      <p className="text-yellow-400 text-sm sm:text-lg font-bold animate-pulse">Đang chờ kết quả...</p>
+                      <div className="flex justify-center gap-1 sm:gap-2">
+                        <span className="w-2 h-2 sm:w-3 sm:h-3 bg-orange-400 rounded-full animate-bounce"></span>
+                        <span className="w-2 h-2 sm:w-3 sm:h-3 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></span>
+                        <span className="w-2 h-2 sm:w-3 sm:h-3 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></span>
                       </div>
                     </div>
                   )}
                   
                   {isRevealed && (
                     <div className="animate-fadeIn">
-                      <p className={`text-3xl md:text-4xl font-black mb-4 drop-shadow-lg ${selectedAnswer === currentQuestion.correct ? 'text-green-400' : 'text-red-400'}`}>
+                      <p className={`text-lg sm:text-2xl md:text-3xl font-black mb-2 drop-shadow-lg ${selectedAnswer === currentQuestion.correct ? 'text-green-400' : 'text-red-400'}`}>
                         {selectedAnswer === currentQuestion.correct ? '🎉 CHÍNH XÁC!' : `❌ Đáp án: ${['A', 'B', 'C', 'D'][currentQuestion.correct]}`}
                       </p>
-                      <button onClick={nextQuestion} className="altp-action-btn text-xl md:text-2xl px-8 py-4">
+                      <button onClick={nextQuestion} className="altp-action-btn text-sm sm:text-base md:text-lg px-4 sm:px-6 py-2 sm:py-3">
                         {currentIndex + 1 >= questions.length ? '🏁 XEM KẾT QUẢ' : '➡️ CÂU TIẾP THEO'}
                       </button>
                     </div>
@@ -651,8 +656,8 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
                 </div>
               </div>
 
-              {/* Right Side - Prize Ladder */}
-              <div className="w-48 flex-shrink-0 pr-4">
+              {/* Right Side - Prize Ladder - Hidden on mobile, shown on lg */}
+              <div className="hidden lg:block w-48 flex-shrink-0 pr-4">
                 <div className="altp-prize-ladder">
                   {[...PRIZE_LEVELS].reverse().map((prize, i) => {
                     const realIndex = PRIZE_LEVELS.length - 1 - i;
@@ -733,18 +738,6 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
           background: linear-gradient(180deg, #0a1628 0%, #1a237e 40%, #311b92 70%, #1a1a2e 100%);
         }
         
-        .altp-question-box {
-          background: linear-gradient(90deg, transparent 0%, rgba(26,35,126,0.95) 5%, rgba(40,53,147,0.95) 50%, rgba(26,35,126,0.95) 95%, transparent 100%);
-          border-top: 4px solid #ff9800;
-          border-bottom: 4px solid #ff9800;
-          padding: 1.5rem 3rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 1.5rem;
-          clip-path: polygon(3% 0%, 97% 0%, 100% 50%, 97% 100%, 3% 100%, 0% 50%);
-          box-shadow: 0 0 30px rgba(255,152,0,0.3);
-        }
         .altp-diamond {
           color: #ff9800;
           flex-shrink: 0;
@@ -756,19 +749,6 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
           text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
         
-        .altp-answer-btn {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          padding: 1rem 1.5rem;
-          border-radius: 6px;
-          font-weight: 600;
-          transition: all 0.2s;
-          cursor: pointer;
-          position: relative;
-          clip-path: polygon(2% 0%, 98% 0%, 100% 50%, 98% 100%, 2% 100%, 0% 50%);
-          min-height: 70px;
-        }
         .altp-answer-default {
           background: linear-gradient(90deg, rgba(26,35,126,0.95) 0%, rgba(40,53,147,0.95) 50%, rgba(26,35,126,0.95) 100%);
           border: 3px solid #5c6bc0;
@@ -823,15 +803,74 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
         .altp-answer-text {
           flex: 1;
           text-align: left;
-          font-size: 0.9rem;
+          font-size: 0.75rem;
+        }
+        @media (min-width: 640px) {
+          .altp-answer-text {
+            font-size: 0.9rem;
+          }
+        }
+        
+        .altp-action-btn {
+          padding: 0.5rem 1.5rem;
+          background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
+          border: 2px solid #64b5f6;
+          border-radius: 10px;
+          color: white;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.2s;
+          box-shadow: 0 4px 20px rgba(21,101,192,0.4);
+          text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        @media (min-width: 640px) {
+          .altp-action-btn {
+            padding: 1rem 2.5rem;
+            border: 3px solid #64b5f6;
+            border-radius: 12px;
+          }
+        }
+        .altp-action-btn:hover {
+          transform: scale(1.08);
+          border-color: #ff9800;
+          box-shadow: 0 0 30px rgba(255,152,0,0.5);
+        }
+        
+        .altp-answer-btn {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+          padding: 0.5rem 0.75rem;
+          border-radius: 4px;
+          font-weight: 600;
+          transition: all 0.2s;
+          cursor: pointer;
+          position: relative;
+          clip-path: polygon(2% 0%, 98% 0%, 100% 50%, 98% 100%, 2% 100%, 0% 50%);
+          min-height: 40px;
+        }
+        @media (min-width: 640px) {
+          .altp-answer-btn {
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            min-height: 56px;
+            border-radius: 6px;
+          }
+        }
+        @media (min-width: 768px) {
+          .altp-answer-btn {
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            min-height: 64px;
+          }
         }
         
         .altp-help-btn {
-          width: 70px;
-          height: 70px;
+          width: 40px;
+          height: 40px;
           border-radius: 50%;
           background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
-          border: 3px solid #5c6bc0;
+          border: 2px solid #5c6bc0;
           color: white;
           font-weight: 700;
           display: flex;
@@ -841,31 +880,40 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
           transition: all 0.2s;
           box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
+        @media (min-width: 640px) {
+          .altp-help-btn {
+            width: 56px;
+            height: 56px;
+          }
+        }
         .altp-help-btn:hover:not(:disabled) {
           border-color: #ff9800;
-          transform: scale(1.15);
-          box-shadow: 0 0 25px rgba(255,152,0,0.5);
+          transform: scale(1.1);
+          box-shadow: 0 0 20px rgba(255,152,0,0.5);
         }
         .altp-help-btn:disabled {
           cursor: not-allowed;
         }
         
-        .altp-action-btn {
-          padding: 1rem 2.5rem;
-          background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
-          border: 3px solid #64b5f6;
-          border-radius: 12px;
-          color: white;
-          font-weight: 700;
-          cursor: pointer;
-          transition: all 0.2s;
-          box-shadow: 0 4px 20px rgba(21,101,192,0.4);
-          text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        .altp-question-box {
+          background: linear-gradient(90deg, transparent 0%, rgba(26,35,126,0.95) 5%, rgba(40,53,147,0.95) 50%, rgba(26,35,126,0.95) 95%, transparent 100%);
+          border-top: 3px solid #ff9800;
+          border-bottom: 3px solid #ff9800;
+          padding: 0.75rem 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.75rem;
+          clip-path: polygon(3% 0%, 97% 0%, 100% 50%, 97% 100%, 3% 100%, 0% 50%);
+          box-shadow: 0 0 30px rgba(255,152,0,0.3);
         }
-        .altp-action-btn:hover {
-          transform: scale(1.08);
-          border-color: #ff9800;
-          box-shadow: 0 0 30px rgba(255,152,0,0.5);
+        @media (min-width: 640px) {
+          .altp-question-box {
+            border-top: 4px solid #ff9800;
+            border-bottom: 4px solid #ff9800;
+            padding: 1.5rem 3rem;
+            gap: 1.5rem;
+          }
         }
         
         .altp-prize-ladder {

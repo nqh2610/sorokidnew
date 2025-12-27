@@ -830,40 +830,41 @@ export default function CuocDuaClient() {
       {screen === 'race' && (
         <div className="h-screen flex flex-col bg-gradient-to-br from-emerald-50 via-cyan-50 to-blue-50 overflow-hidden">
           
-          {/* ===== TOP BAR - Friendly Theme ===== */}
-          <div className="flex items-center justify-between px-3 py-2 bg-white/80 backdrop-blur border-b-2 border-emerald-200 shadow-sm">
-            <div className="flex items-center gap-2">
-              <button onClick={backToSetup} className="h-9 px-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-sm font-medium flex items-center gap-1.5 transition-all">
-                <span>⚙️</span><span className="hidden sm:inline">Cài đặt</span>
+          {/* ===== TOP BAR - Responsive ===== */}
+          <div className="flex flex-wrap items-center justify-between gap-2 px-2 sm:px-3 py-2 bg-white/80 backdrop-blur border-b-2 border-emerald-200 shadow-sm">
+            {/* Left buttons */}
+            <div className="flex items-center gap-1 sm:gap-2">
+              <button onClick={backToSetup} className="h-8 sm:h-9 px-2 sm:px-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-xs sm:text-sm font-medium flex items-center gap-1 transition-all">
+                <span>⚙️</span><span className="hidden xs:inline sm:inline">Cài đặt</span>
               </button>
-              <button onClick={resetRace} className="h-9 px-3 bg-orange-100 hover:bg-orange-200 text-orange-700 rounded-lg text-sm font-medium flex items-center gap-1.5 transition-all">
-                <span>🔄</span><span className="hidden sm:inline">Reset</span>
+              <button onClick={resetRace} className="h-8 sm:h-9 px-2 sm:px-3 bg-orange-100 hover:bg-orange-200 text-orange-700 rounded-lg text-xs sm:text-sm font-medium flex items-center gap-1 transition-all">
+                <span>🔄</span><span className="hidden xs:inline sm:inline">Reset</span>
               </button>
-              <button onClick={finishRace} className="h-9 px-4 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-400 hover:to-green-400 text-white rounded-lg text-sm font-bold flex items-center gap-1.5 shadow-lg transition-all">
-                <span>🏁</span><span>Kết thúc</span>
+              <button onClick={finishRace} className="h-8 sm:h-9 px-2 sm:px-4 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-400 hover:to-green-400 text-white rounded-lg text-xs sm:text-sm font-bold flex items-center gap-1 shadow-lg transition-all">
+                <span>🏁</span><span className="hidden xs:inline">Kết thúc</span>
               </button>
             </div>
             
-            {/* Race Title */}
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">🏆</span>
-              <span className="text-gray-800 font-black text-lg tracking-wide hidden md:block">CUỘC ĐUA KÌ THÚ</span>
+            {/* Race Title - Hidden on very small screens */}
+            <div className="hidden sm:flex items-center gap-2">
+              <span className="text-xl sm:text-2xl">🏆</span>
+              <span className="text-gray-800 font-black text-sm sm:text-lg tracking-wide hidden md:block">CUỘC ĐUA KÌ THÚ</span>
             </div>
             
-            {/* Search Input */}
-            <div className="flex items-center gap-2">
+            {/* Search & Controls - Responsive */}
+            <div className="flex items-center gap-1 sm:gap-2">
               <div className="relative">
                 <input
                   type="text"
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                   placeholder="🔍 Tìm..."
-                  className="h-9 w-32 sm:w-40 px-3 rounded-lg border-2 border-gray-200 focus:border-emerald-400 focus:outline-none text-sm transition-all"
+                  className="h-8 sm:h-9 w-20 sm:w-32 md:w-40 px-2 sm:px-3 rounded-lg border-2 border-gray-200 focus:border-emerald-400 focus:outline-none text-xs sm:text-sm transition-all"
                 />
                 {searchText && (
                   <button
                     onClick={() => setSearchText('')}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs"
                   >
                     ✕
                   </button>
@@ -871,25 +872,24 @@ export default function CuocDuaClient() {
               </div>
               <button
                 onClick={() => setSortBy(sortBy === 'score' ? 'id' : 'score')}
-                className={`h-9 px-3 rounded-lg text-sm font-medium flex items-center gap-1.5 transition-all ${
+                className={`h-8 sm:h-9 px-2 sm:px-3 rounded-lg text-xs sm:text-sm font-medium flex items-center gap-1 transition-all ${
                   sortBy === 'score' 
                     ? 'bg-amber-100 text-amber-700' 
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
                 <span>{sortBy === 'score' ? '🏆' : '📋'}</span>
-                <span className="hidden sm:inline">{sortBy === 'score' ? 'Xếp hạng' : 'Thứ tự'}</span>
+                <span className="hidden md:inline">{sortBy === 'score' ? 'Xếp hạng' : 'Thứ tự'}</span>
               </button>
               <button
                 onClick={() => setSoundEnabled(!soundEnabled)}
-                className={`h-9 px-3 rounded-lg text-sm font-medium flex items-center gap-1.5 transition-all ${
+                className={`h-8 sm:h-9 px-2 sm:px-3 rounded-lg text-xs sm:text-sm font-medium flex items-center gap-1 transition-all ${
                   soundEnabled 
                     ? 'bg-green-100 text-green-700' 
                     : 'bg-gray-100 text-gray-400'
                 }`}
               >
                 <span>{soundEnabled ? '🔊' : '🔇'}</span>
-                <span className="hidden sm:inline">{soundEnabled ? 'Âm thanh' : 'Tắt tiếng'}</span>
               </button>
             </div>
           </div>
@@ -1042,102 +1042,151 @@ export default function CuocDuaClient() {
             </div>
           </div>
 
-          {/* ===== BOTTOM PANEL - Friendly Control ===== */}
-          <div className={`fixed left-0 right-0 z-30 transition-all duration-300 ${showControls ? 'bottom-0' : '-bottom-16'}`}>
+          {/* ===== BOTTOM PANEL - Responsive Control ===== */}
+          <div className={`fixed left-0 right-0 z-30 transition-all duration-300 ${showControls ? 'bottom-0' : '-bottom-20'}`}>
             {/* Toggle Button */}
             <button
               onClick={() => setShowControls(!showControls)}
-              className="absolute -top-9 left-1/2 transform -translate-x-1/2 bg-white px-5 py-2 rounded-t-xl border-2 border-b-0 border-emerald-300 shadow-lg text-emerald-600 hover:bg-emerald-50 transition-colors font-bold text-sm"
+              className="absolute -top-8 sm:-top-9 left-1/2 transform -translate-x-1/2 bg-white px-3 sm:px-5 py-1.5 sm:py-2 rounded-t-xl border-2 border-b-0 border-emerald-300 shadow-lg text-emerald-600 hover:bg-emerald-50 transition-colors font-bold text-xs sm:text-sm"
             >
-              {showControls ? '▼ Ẩn bảng điều khiển' : '▲ Hiện bảng điều khiển'}
+              {showControls ? '▼ Ẩn' : '▲ Hiện'}
             </button>
             
             <div className="bg-white/95 backdrop-blur border-t-2 border-emerald-300 shadow-2xl">
-              <div className="px-3 py-3">
-                <div className="max-w-4xl mx-auto flex items-center gap-2">
-                  {/* Selected Info */}
-                  {selectedRacer !== null && racers[selectedRacer] ? (
-                    <div className="flex items-center gap-2 bg-blue-100 rounded-xl px-3 py-1.5 mr-2 border border-blue-300">
-                      <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${racers[selectedRacer].color} flex items-center justify-center text-lg`}>
-                        {racers[selectedRacer].icon}
+              <div className="px-2 sm:px-3 py-2 sm:py-3">
+                {/* Mobile: Stack layout */}
+                <div className="max-w-4xl mx-auto">
+                  {/* Row 1: Selected + Score buttons */}
+                  <div className="flex items-center gap-1 sm:gap-2 mb-2 sm:mb-0">
+                    {/* Selected Info - Compact on mobile */}
+                    {selectedRacer !== null && racers[selectedRacer] ? (
+                      <div className="flex items-center gap-1 sm:gap-2 bg-blue-100 rounded-lg sm:rounded-xl px-2 sm:px-3 py-1 sm:py-1.5 border border-blue-300 flex-shrink-0">
+                        <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-md sm:rounded-lg bg-gradient-to-br ${racers[selectedRacer].color} flex items-center justify-center text-sm sm:text-lg`}>
+                          {racers[selectedRacer].icon}
+                        </div>
+                        <span className="text-gray-800 font-bold text-xs sm:text-sm max-w-[60px] sm:max-w-[100px] truncate">{racers[selectedRacer].name}</span>
+                        <button onClick={() => setSelectedRacer(null)} className="text-gray-400 hover:text-gray-600 text-sm sm:text-base">✕</button>
                       </div>
-                      <span className="text-gray-800 font-bold text-sm max-w-[100px] truncate">{racers[selectedRacer].name}</span>
-                      <button onClick={() => setSelectedRacer(null)} className="text-gray-400 hover:text-gray-600 text-base ml-1">✕</button>
+                    ) : (
+                      <div className="text-gray-400 text-xs sm:text-sm px-2 sm:px-3 py-1.5 sm:py-2 bg-gray-100 rounded-lg sm:rounded-xl flex-shrink-0">👆 Chọn</div>
+                    )}
+                    
+                    {/* Score Buttons - Responsive grid */}
+                    <div className="flex-1 grid grid-cols-8 gap-0.5 sm:gap-1">
+                      {/* Plus Score Buttons */}
+                      {[1, 2, 3, 5].map(pts => (
+                        <button
+                          key={`plus-${pts}`}
+                          onClick={() => selectedRacer !== null && addScore(selectedRacer, pts)}
+                          disabled={selectedRacer === null || isLocked}
+                          className={`h-9 sm:h-11 rounded-lg sm:rounded-xl font-black text-sm sm:text-base transition-all
+                            ${selectedRacer !== null && !isLocked
+                              ? 'bg-gradient-to-b from-emerald-400 to-emerald-500 hover:from-emerald-300 hover:to-emerald-400 text-white shadow-md active:scale-95' 
+                              : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+                        >
+                          +{pts}
+                        </button>
+                      ))}
+                      
+                      {/* Minus Score Buttons */}
+                      {[1, 2, 3, 5].map(pts => (
+                        <button
+                          key={`minus-${pts}`}
+                          onClick={() => selectedRacer !== null && addScore(selectedRacer, -pts)}
+                          disabled={selectedRacer === null || isLocked}
+                          className={`h-9 sm:h-11 rounded-lg sm:rounded-xl font-black text-sm sm:text-base transition-all
+                            ${selectedRacer !== null && !isLocked
+                              ? 'bg-gradient-to-b from-red-400 to-red-500 hover:from-red-300 hover:to-red-400 text-white shadow-md active:scale-95' 
+                              : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+                        >
+                          -{pts}
+                        </button>
+                      ))}
                     </div>
-                  ) : (
-                    <div className="text-gray-400 text-sm px-3 py-2 bg-gray-100 rounded-xl">👆 Chọn người chơi</div>
-                  )}
+                  </div>
                   
-                  {/* Plus Score Buttons */}
-                  {[1, 2, 3, 5].map(pts => (
+                  {/* Row 2: Action buttons - Only on mobile, merged on desktop */}
+                  <div className="flex sm:hidden items-center gap-1 mt-2">
+                    {/* Random Pick */}
                     <button
-                      key={`plus-${pts}`}
-                      onClick={() => selectedRacer !== null && addScore(selectedRacer, pts)}
-                      disabled={selectedRacer === null || isLocked}
-                      className={`flex-1 h-11 rounded-xl font-black text-base transition-all
-                        ${selectedRacer !== null && !isLocked
-                          ? 'bg-gradient-to-b from-emerald-400 to-emerald-500 hover:from-emerald-300 hover:to-emerald-400 text-white shadow-md active:scale-95' 
-                          : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+                      onClick={suggestNextRacer}
+                      disabled={isSpinning}
+                      className={`flex-1 h-9 rounded-lg font-bold text-xs flex items-center justify-center gap-1 shadow-md transition-all
+                        ${isSpinning 
+                          ? 'bg-gradient-to-r from-yellow-400 to-orange-400 text-white animate-pulse cursor-wait' 
+                          : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white active:scale-95'}`}
                     >
-                      +{pts}
+                      <span className={isSpinning ? 'animate-spin' : ''}>🎲</span>
+                      <span>{isSpinning ? 'Đang gọi...' : 'Gọi ngẫu nhiên'}</span>
                     </button>
-                  ))}
-                  
-                  {/* Minus Score Buttons */}
-                  {[1, 2, 3, 5].map(pts => (
+                    
+                    {/* Lock */}
                     <button
-                      key={`minus-${pts}`}
-                      onClick={() => selectedRacer !== null && addScore(selectedRacer, -pts)}
-                      disabled={selectedRacer === null || isLocked}
-                      className={`flex-1 h-11 rounded-xl font-black text-base transition-all
-                        ${selectedRacer !== null && !isLocked
-                          ? 'bg-gradient-to-b from-red-400 to-red-500 hover:from-red-300 hover:to-red-400 text-white shadow-md active:scale-95' 
-                          : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+                      onClick={() => setIsLocked(!isLocked)}
+                      className={`h-9 px-3 rounded-lg text-xs font-medium transition-all flex items-center gap-1
+                        ${isLocked 
+                          ? 'bg-red-100 text-red-600 border-2 border-red-300' 
+                          : 'bg-gray-100 text-gray-600'}`}
                     >
-                      -{pts}
+                      <span>{isLocked ? '🔒' : '🔓'}</span>
                     </button>
-                  ))}
+                    
+                    {/* Undo */}
+                    <button
+                      onClick={undo}
+                      disabled={history.length === 0}
+                      className={`h-9 px-3 rounded-lg text-xs font-medium flex items-center gap-1 transition-all
+                        ${history.length > 0 
+                          ? 'bg-gray-100 text-gray-700' 
+                          : 'bg-gray-50 text-gray-300 cursor-not-allowed'}`}
+                    >
+                      <span>↩️</span>
+                    </button>
+                  </div>
                   
-                  {/* Divider */}
-                  <div className="w-px h-9 bg-gray-300 mx-1" />
-                
-                  {/* Random Pick with spinning animation */}
-                  <button
-                    onClick={suggestNextRacer}
-                    disabled={isSpinning}
-                    className={`h-11 px-4 rounded-xl font-bold text-sm flex items-center gap-2 shadow-md transition-all
-                      ${isSpinning 
-                        ? 'bg-gradient-to-r from-yellow-400 to-orange-400 text-white animate-pulse cursor-wait' 
-                        : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-400 hover:to-pink-400 active:scale-95'}`}
-                  >
-                    <span className={isSpinning ? 'animate-spin' : ''}>🎲</span>
-                    <span className="hidden sm:inline">{isSpinning ? 'Đang gọi...' : 'Gọi ngẫu nhiên'}</span>
-                  </button>
+                  {/* Desktop: All in one row */}
+                  <div className="hidden sm:flex items-center gap-2 mt-2">
+                    {/* Divider */}
+                    <div className="w-px h-9 bg-gray-300" />
                   
-                  {/* Lock */}
-                  <button
-                    onClick={() => setIsLocked(!isLocked)}
-                    className={`h-11 px-3 rounded-xl text-sm font-medium transition-all flex items-center gap-1.5 flex-shrink-0
-                      ${isLocked 
-                        ? 'bg-red-100 text-red-600 border-2 border-red-300' 
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
-                  >
-                    <span className="text-lg">{isLocked ? '🔒' : '🔓'}</span>
-                    <span className="hidden sm:inline">{isLocked ? 'Đang khóa' : 'Khóa'}</span>
-                  </button>
-                  
-                  {/* Undo */}
-                  <button
-                    onClick={undo}
-                    disabled={history.length === 0}
-                    className={`h-11 px-3 rounded-xl text-sm font-medium flex items-center gap-1.5 flex-shrink-0 transition-all
-                      ${history.length > 0 
-                        ? 'bg-gray-100 text-gray-700 hover:bg-gray-200' 
-                        : 'bg-gray-50 text-gray-300 cursor-not-allowed'}`}
-                  >
-                    <span className="text-lg">↩️</span>
-                    <span className="hidden sm:inline">Hoàn tác</span>
-                  </button>
+                    {/* Random Pick */}
+                    <button
+                      onClick={suggestNextRacer}
+                      disabled={isSpinning}
+                      className={`h-11 px-4 rounded-xl font-bold text-sm flex items-center gap-2 shadow-md transition-all
+                        ${isSpinning 
+                          ? 'bg-gradient-to-r from-yellow-400 to-orange-400 text-white animate-pulse cursor-wait' 
+                          : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-400 hover:to-pink-400 active:scale-95'}`}
+                    >
+                      <span className={isSpinning ? 'animate-spin' : ''}>🎲</span>
+                      <span>{isSpinning ? 'Đang gọi...' : 'Gọi ngẫu nhiên'}</span>
+                    </button>
+                    
+                    {/* Lock */}
+                    <button
+                      onClick={() => setIsLocked(!isLocked)}
+                      className={`h-11 px-3 rounded-xl text-sm font-medium transition-all flex items-center gap-1.5 flex-shrink-0
+                        ${isLocked 
+                          ? 'bg-red-100 text-red-600 border-2 border-red-300' 
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                    >
+                      <span className="text-lg">{isLocked ? '🔒' : '🔓'}</span>
+                      <span>{isLocked ? 'Đang khóa' : 'Khóa'}</span>
+                    </button>
+                    
+                    {/* Undo */}
+                    <button
+                      onClick={undo}
+                      disabled={history.length === 0}
+                      className={`h-11 px-3 rounded-xl text-sm font-medium flex items-center gap-1.5 flex-shrink-0 transition-all
+                        ${history.length > 0 
+                          ? 'bg-gray-100 text-gray-700 hover:bg-gray-200' 
+                          : 'bg-gray-50 text-gray-300 cursor-not-allowed'}`}
+                    >
+                      <span className="text-lg">↩️</span>
+                      <span>Hoàn tác</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

@@ -253,8 +253,19 @@ export default function ChiecNonKyDieu() {
   useEffect(() => {
     if (mode === 'number') {
       generateNumberItems();
+    } else {
+      // Mode text - parse from inputText
+      const lines = inputText
+        .split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0);
+      
+      setItems(lines);
+      setOriginalItems(lines);
+      setResult(null);
+      setShowResult(false);
     }
-  }, [mode, minNumber, maxNumber, generateNumberItems]);
+  }, [mode, minNumber, maxNumber, generateNumberItems, inputText]);
 
   // Spin the wheel with physics-based deceleration
   const spinWheel = useCallback(() => {

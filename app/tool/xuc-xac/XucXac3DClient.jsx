@@ -41,8 +41,8 @@ const DiceFace = ({ value, color = 'white', dotColor = 'black' }) => (
   </div>
 );
 
-// Component: Xúc xắc 3D
-const Dice3D = ({ value, isRolling, delay = 0, diceColor = '#ffffff', dotColor = '#1a1a1a' }) => {
+// Component: Xúc xắc 3D - Responsive size
+const Dice3D = ({ value, isRolling, delay = 0, diceColor = '#ffffff', dotColor = '#1a1a1a', size = 180 }) => {
   const [rotation, setRotation] = useState({ x: 0, y: 0, z: 0 });
   
   // Tính góc quay để hiển thị mặt tương ứng
@@ -91,8 +91,7 @@ const Dice3D = ({ value, isRolling, delay = 0, diceColor = '#ffffff', dotColor =
     }
   }, [isRolling, value, delay]);
 
-  // Kích thước xúc xắc lớn hơn cho máy chiếu
-  const size = 180; // pixels
+  // Kích thước xúc xắc responsive
   const halfSize = size / 2;
 
   return (
@@ -276,22 +275,22 @@ export default function XucXac3DClient() {
   return (
     <ToolLayout>
       <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 flex flex-col">
-        {/* Compact Header */}
-        <div className="flex items-center justify-between px-3 py-2 bg-black/30">
+        {/* Compact Header - Responsive */}
+        <div className="flex flex-wrap items-center justify-between gap-2 px-2 sm:px-3 py-2 bg-black/30">
           <a 
             href="/tool" 
-            className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all text-sm"
+            className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all text-xs sm:text-sm"
           >
-            ← Toolbox
+            ← <span className="hidden xs:inline">Toolbox</span>
           </a>
           
-          {/* Inline Settings */}
-          <div className="flex items-center gap-2">
+          {/* Inline Settings - Responsive */}
+          <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-end">
             {/* Dice Count Toggle */}
             <div className="flex bg-white/10 rounded-lg overflow-hidden">
               <button
                 onClick={() => setDiceCount(1)}
-                className={`px-3 py-1.5 text-sm font-medium transition-all ${
+                className={`px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium transition-all ${
                   diceCount === 1 
                     ? 'bg-amber-500 text-white' 
                     : 'text-white/70 hover:bg-white/10'
@@ -301,7 +300,7 @@ export default function XucXac3DClient() {
               </button>
               <button
                 onClick={() => setDiceCount(2)}
-                className={`px-3 py-1.5 text-sm font-medium transition-all ${
+                className={`px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium transition-all ${
                   diceCount === 2 
                     ? 'bg-amber-500 text-white' 
                     : 'text-white/70 hover:bg-white/10'
@@ -311,13 +310,13 @@ export default function XucXac3DClient() {
               </button>
             </div>
             
-            {/* Color Picker */}
-            <div className="flex gap-1">
+            {/* Color Picker - Responsive */}
+            <div className="flex gap-0.5 sm:gap-1">
               {DICE_COLORS.slice(0, 5).map((c) => (
                 <button
                   key={c.color}
                   onClick={() => setDiceColor(c.color)}
-                  className={`w-7 h-7 rounded-lg border-2 transition-all ${
+                  className={`w-6 h-6 sm:w-7 sm:h-7 rounded-md sm:rounded-lg border-2 transition-all ${
                     diceColor === c.color 
                       ? 'border-amber-400 scale-110' 
                       : 'border-white/20 hover:border-white/50'
@@ -330,44 +329,68 @@ export default function XucXac3DClient() {
             {/* Sound Toggle */}
             <button
               onClick={() => setSoundEnabled(!soundEnabled)}
-              className={`p-2 rounded-lg transition-all ${soundEnabled ? 'bg-emerald-500/30 text-emerald-300' : 'bg-white/10 text-white/40'}`}
+              className={`p-1.5 sm:p-2 rounded-lg transition-all ${soundEnabled ? 'bg-emerald-500/30 text-emerald-300' : 'bg-white/10 text-white/40'}`}
             >
               {soundEnabled ? '🔊' : '🔇'}
             </button>
           </div>
         </div>
 
-        {/* Main Area - Compact */}
-        <div className="flex-1 flex flex-col items-center justify-center p-2">
-          {/* Dice Container */}
-          <div className={`flex items-center justify-center gap-8 sm:gap-16 lg:gap-24 mb-6 ${isRolling ? 'dice-rolling' : ''}`}>
+        {/* Main Area - Responsive */}
+        <div className="flex-1 flex flex-col items-center justify-center p-2 sm:p-4">
+          {/* Dice Container - Responsive sizes */}
+          <div className={`flex items-center justify-center gap-4 sm:gap-8 md:gap-12 lg:gap-20 mb-4 sm:mb-6 ${isRolling ? 'dice-rolling' : ''}`}>
             {Array.from({ length: diceCount }).map((_, i) => (
               <div key={i} className="relative">
-                <Dice3D 
-                  value={results[i]}
-                  isRolling={isRolling}
-                  delay={i * 100}
-                  diceColor={currentColorSet.color}
-                  dotColor={currentColorSet.dotColor}
-                />
+                {/* Responsive dice size: 100px mobile, 140px tablet, 180px desktop */}
+                <div className="block sm:hidden">
+                  <Dice3D 
+                    value={results[i]}
+                    isRolling={isRolling}
+                    delay={i * 100}
+                    diceColor={currentColorSet.color}
+                    dotColor={currentColorSet.dotColor}
+                    size={100}
+                  />
+                </div>
+                <div className="hidden sm:block md:hidden">
+                  <Dice3D 
+                    value={results[i]}
+                    isRolling={isRolling}
+                    delay={i * 100}
+                    diceColor={currentColorSet.color}
+                    dotColor={currentColorSet.dotColor}
+                    size={140}
+                  />
+                </div>
+                <div className="hidden md:block">
+                  <Dice3D 
+                    value={results[i]}
+                    isRolling={isRolling}
+                    delay={i * 100}
+                    diceColor={currentColorSet.color}
+                    dotColor={currentColorSet.dotColor}
+                    size={180}
+                  />
+                </div>
               </div>
             ))}
           </div>
 
-          {/* Result Display - TO RÕ */}
+          {/* Result Display - Responsive */}
           {results.some(r => r !== null) && !isRolling && (
-            <div className="mb-6 animate-fade-in">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl px-8 py-4 border border-white/20">
-                <div className="flex items-center justify-center gap-4 text-5xl sm:text-6xl lg:text-7xl font-black text-white">
+            <div className="mb-4 sm:mb-6 animate-fade-in">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl px-4 sm:px-8 py-3 sm:py-4 border border-white/20">
+                <div className="flex items-center justify-center gap-2 sm:gap-4 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white">
                   {results.filter(r => r !== null).map((r, i) => (
-                    <span key={i} className="flex items-center gap-3">
-                      {i > 0 && <span className="text-white/40 text-4xl">+</span>}
+                    <span key={i} className="flex items-center gap-1 sm:gap-3">
+                      {i > 0 && <span className="text-white/40 text-2xl sm:text-4xl">+</span>}
                       <span className="text-amber-400 drop-shadow-lg">{r}</span>
                     </span>
                   ))}
                   {diceCount === 2 && results[0] !== null && results[1] !== null && (
                     <>
-                      <span className="text-white/40 text-4xl">=</span>
+                      <span className="text-white/40 text-2xl sm:text-4xl">=</span>
                       <span className="text-emerald-400 drop-shadow-lg">{total}</span>
                     </>
                   )}
@@ -376,17 +399,17 @@ export default function XucXac3DClient() {
             </div>
           )}
 
-          {/* Roll Button */}
+          {/* Roll Button - Responsive */}
           <button
             onClick={rollDice}
             disabled={isRolling}
-            className={`px-10 py-5 text-xl sm:text-2xl font-black rounded-2xl shadow-2xl
-              transition-all duration-300 flex items-center gap-3
+            className={`px-6 sm:px-10 py-3 sm:py-5 text-lg sm:text-xl md:text-2xl font-black rounded-xl sm:rounded-2xl shadow-2xl
+              transition-all duration-300 flex items-center gap-2 sm:gap-3
               ${isRolling 
                 ? 'bg-gray-600 cursor-not-allowed scale-95' 
                 : 'bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 hover:scale-105 active:scale-95'}`}
           >
-            <span className={`text-3xl ${isRolling ? 'animate-bounce' : ''}`}>
+            <span className={`text-2xl sm:text-3xl ${isRolling ? 'animate-bounce' : ''}`}>
               {diceCount === 1 ? '🎲' : '🎲🎲'}
             </span>
             <span className="text-white">

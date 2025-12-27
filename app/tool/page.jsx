@@ -151,10 +151,10 @@ const tools = [
     theme: 'dark',
   },
   {
-    id: 'thanh-tien-do',
-    name: 'Thanh Tiến Độ',
-    description: 'Hiển thị % tiến độ bài học, kéo để cập nhật trực quan',
-    icon: '📊',
+    id: 'tro-choi-o-chu',
+    name: 'Trò Chơi Ô Chữ',
+    description: 'Tạo ô chữ theo chủ đề bài học, học sinh thi đoán từ khóa',
+    icon: '🔤',
     color: 'from-teal-500 to-cyan-600',
     bgColor: 'bg-gradient-to-br from-teal-600 to-cyan-700',
     iconBg: 'from-teal-300 to-cyan-400',
@@ -265,24 +265,22 @@ export default function ToolboxPage() {
           ))}
         </div>
 
-        {/* Coming Soon Section */}
-        <div className="mt-12 text-center">
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 px-8 py-6 
-            bg-gradient-to-r from-gray-50 to-violet-50 border border-violet-100
-            rounded-2xl shadow-sm">
-            <div className="flex items-center gap-3">
-              <span className="text-3xl animate-bounce">🚀</span>
-              <div className="text-left">
-                <p className="font-semibold text-gray-700">Thêm công cụ mới sắp ra mắt!</p>
-                <p className="text-sm text-gray-500">Bảng điểm, Phát thưởng, Minigame...</p>
-              </div>
-            </div>
+        {/* SoroKid Introduction */}
+        <div className="mt-16 text-center">
+          <div className="inline-flex items-center gap-3 px-6 py-4 
+            bg-gradient-to-r from-violet-50 via-white to-pink-50 
+            border border-violet-100/50 rounded-full shadow-sm">
+            <p className="text-gray-600">
+              <span className="font-semibold bg-gradient-to-r from-violet-600 to-pink-500 bg-clip-text text-transparent">SoroKid</span>
+              {' '}- Công cụ dạy Soroban cá nhân hoá cho từng học sinh
+            </p>
             <Link 
               href="/"
-              className="px-4 py-2 bg-violet-100 hover:bg-violet-200 text-violet-700 
-                font-medium rounded-full text-sm transition-all"
+              className="px-4 py-1.5 bg-gradient-to-r from-violet-500 to-pink-500 
+                hover:from-violet-600 hover:to-pink-600
+                text-white text-sm font-medium rounded-full transition-all"
             >
-              Theo dõi cập nhật →
+              Khám phá →
             </Link>
           </div>
         </div>
