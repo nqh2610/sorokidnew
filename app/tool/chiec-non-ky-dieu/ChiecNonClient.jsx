@@ -281,45 +281,41 @@ export default function ChiecNonKyDieu() {
 
     // Copy items hiện tại để tính toán (vì items có thể thay đổi)
     const currentItems = [...items];
-    const segmentAngle = 360 / currentItems.length;
+    const n = currentItems.length;
+    const segmentAngle = 360 / n;
     
     // Random chọn một mục sẽ trúng
-    const winningIndex = Math.floor(Math.random() * currentItems.length);
+    const winningIndex = Math.floor(Math.random() * n);
     
-    // Tính góc để mũi tên (ở vị trí 12h = -90 độ) chỉ vào giữa segment
-    // Segment i bắt đầu ở góc: i * segmentAngle - 90
-    // Giữa segment: i * segmentAngle - 90 + segmentAngle/2
-    // Wheel cần quay sao cho giữa segment đó nằm ở vị trí -90 (top)
-    // => cần quay: -(i * segmentAngle + segmentAngle/2)
-    const targetAngleInSegment = winningIndex * segmentAngle + segmentAngle / 2;
+    // Góc cần thiết để segment winningIndex ở TOP:
+    // targetAngle = 342 - winningIndex * segmentAngle (đã chứng minh ở trên)
+    const targetAngle = ((342 - winningIndex * segmentAngle) % 360 + 360) % 360;
     
-    // Thêm hiệu ứng "suýt vượt qua" - offset nhỏ trong segment
-    const suspenseType = Math.random();
-    let offsetInSegment = 0;
+    // Thêm offset nhỏ trong segment để tạo hồi hộp (max ±30% segment)
+    const offsetInSegment = (Math.random() - 0.5) * segmentAngle * 0.5;
     
-    if (suspenseType < 0.4) {
-      // 40%: Dừng gần cuối ô (như sắp vượt qua sang ô kế) - hồi hộp nhất!
-      offsetInSegment = segmentAngle * (0.35 + Math.random() * 0.1); // Gần cạnh
-    } else if (suspenseType < 0.7) {
-      // 30%: Dừng gần đầu ô (như vừa mới vượt qua ranh giới)
-      offsetInSegment = segmentAngle * (-0.35 + Math.random() * 0.1); // Gần cạnh kia
-    } else {
-      // 30%: Dừng random bình thường trong vùng an toàn
-      offsetInSegment = segmentAngle * (-0.2 + Math.random() * 0.4);
-    }
+    // Góc cuối cùng wheel cần dừng lại
+    const finalStopAngle = targetAngle + offsetInSegment;
     
-    // Random số vòng quay (12-18 vòng)
-    const spins = 12 + Math.random() * 6;
+    // Random số vòng quay (12-18 vòng) 
+    const spins = Math.floor(12 + Math.random() * 6);
     
-    // Góc cần quay = vòng quay + góc để đúng segment
-    // Wheel quay theo chiều kim đồng hồ (rotation tăng)
-    // Mũi tên ở top (-90 độ)
-    const targetRotation = spins * 360 + targetAngleInSegment + offsetInSegment;
-    const totalRotation = rotation + targetRotation;
-
+    // Tổng góc quay = số vòng đầy đủ + góc dừng cuối cùng
+    const totalRotation = spins * 360 + finalStopAngle;
+    
+    // Debug log
+    console.log('🎡 Spin:', { 
+      winningIndex, 
+      winner: currentItems[winningIndex], 
+      targetAngle, 
+      offsetInSegment: offsetInSegment.toFixed(1),
+      finalStopAngle: finalStopAngle.toFixed(1),
+      totalRotation: totalRotation.toFixed(1)
+    });
+    
     setRotation(totalRotation);
 
-    // Tính toán item được chọn sau khi quay xong
+    // Winner đã được xác định, chỉ cần hiển thị sau khi animation xong
     spinTimeoutRef.current = setTimeout(() => {
       stopMusic();
       playWinSound();
@@ -329,33 +325,31 @@ export default function ChiecNonKyDieu() {
       setShowResult(true);
       setIsSpinning(false);
       
-      // Tự động loại khỏi danh sách nếu option được chọn
-      if (removeAfterSpin) {
-        setItems(prev => prev.filter(item => item !== winner));
-      }
+      // KHÔNG tự động loại - đợi user confirm qua popup
     }, spinDuration);
 
-  }, [items, isSpinning, rotation, startSpinMusic, stopMusic, playWinSound, removeAfterSpin]);
+  }, [items, isSpinning, rotation, startSpinMusic, stopMusic, playWinSound]);
 
-  // Handle after result shown
+  // Handle after result shown - User chọn GIỮ LẠI (không loại)
   const handleKeepResult = useCallback(() => {
-    // Nếu đã tự động loại rồi nhưng muốn giữ lại, thêm lại vào
-    if (removeAfterSpin && result) {
-      setItems(prev => [...prev, result]);
-    }
-    setShowResult(false);
-    setResult(null);
-    // Reset rotation về 0 để vòng quay mới hiển thị đúng
-    setRotation(0);
-  }, [removeAfterSpin, result]);
-
-  const handleConfirmRemove = useCallback(() => {
-    // Đã loại rồi, chỉ cần đóng modal
+    // Không loại, chỉ đóng popup
     setShowResult(false);
     setResult(null);
     // Reset rotation về 0 để vòng quay mới hiển thị đúng
     setRotation(0);
   }, []);
+
+  // Handle confirm remove - User chọn LOẠI khỏi danh sách
+  const handleConfirmRemove = useCallback(() => {
+    // Loại item khỏi danh sách
+    if (result) {
+      setItems(prev => prev.filter(item => item !== result));
+    }
+    setShowResult(false);
+    setResult(null);
+    // Reset rotation về 0 để vòng quay mới hiển thị đúng
+    setRotation(0);
+  }, [result]);
 
   // Reset everything
   const handleReset = useCallback(() => {
@@ -803,7 +797,7 @@ export default function ChiecNonKyDieu() {
 
             {removeAfterSpin && (
               <p className="text-gray-400 text-sm mb-4">
-                (Đã được loại khỏi danh sách)
+                Bạn muốn loại kết quả này khỏi vòng quay?
               </p>
             )}
 
@@ -815,14 +809,14 @@ export default function ChiecNonKyDieu() {
                     className="px-4 py-2.5 bg-gradient-to-r from-violet-500 to-purple-500 
                       text-white font-semibold rounded-full hover:shadow-lg transition-all text-sm whitespace-nowrap"
                   >
-                    👍 OK, quay tiếp
+                    ✓ Loại & quay tiếp
                   </button>
                   <button
                     onClick={handleKeepResult}
                     className="px-4 py-2.5 bg-gray-100 text-gray-600 font-semibold 
                       rounded-full hover:bg-gray-200 transition-all text-sm whitespace-nowrap"
                   >
-                    ↩️ Cho quay lại
+                    ↩️ Giữ lại
                   </button>
                 </>
               ) : (

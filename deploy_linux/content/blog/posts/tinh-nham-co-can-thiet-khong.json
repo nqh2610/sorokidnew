@@ -1,0 +1,96 @@
+{
+  "slug": "tinh-nham-co-can-thiet-khong",
+  "title": "Có máy tính rồi, tính nhẩm còn cần không? – Mình từng nghĩ không",
+  "description": "Thời đại điện thoại, ai cũng có máy tính. Vậy sao phải tính nhẩm? Mình tìm hiểu và thay đổi suy nghĩ.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "tính nhẩm có cần thiết",
+    "kỹ năng tính nhẩm",
+    "lợi ích tính nhẩm"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/tre-tinh-nham.jpg",
+  "imageAlt": "Bé châu Á đang tính nhẩm trong đầu",
+  "readingTime": 6,
+  "categoryOrder": 1,
+  "order": 29,
+  "content": {
+    "intro": "\"Có điện thoại rồi, cần gì tính nhẩm!\" – Mình từng nghĩ vậy. Nhưng sau khi tìm hiểu, mình thấy tính nhẩm không chỉ để tính số.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tính nhẩm là kỹ năng não"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi tính nhẩm, não phải: nhớ số, xử lý nhiều bước, kiểm tra kết quả. Đó là bài tập cho não."
+      },
+      {
+        "type": "paragraph",
+        "text": "Máy tính làm hết thì não không được tập. Giống như có xe máy thì không cần đi bộ – nhưng đi bộ tốt cho sức khỏe."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tính nhẩm giúp gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Tự tin trong đời sống:** Đi chợ, ước lượng tiền. Không cần rút điện thoại ra."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Kiểm tra được máy tính:** Nếu bấm sai, biết kết quả vô lý để kiểm tra lại."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Rèn trí nhớ ngắn hạn:** Tính nhẩm cần nhớ số tạm thời. Đây là kỹ năng quan trọng cho học tập."
+      },
+      {
+        "type": "paragraph",
+        "text": "**4. Tập trung:** Tính nhẩm đòi hỏi tập trung cao độ. Rèn khả năng này tốt cho mọi việc."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Tính nhẩm không để thay thế máy tính. Nó để rèn luyện não. Như tập thể dục cho đầu óc."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Con mình học tính nhẩm như thế nào?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con học Soroban qua Sorokid. Soroban là phương pháp tính nhẩm của Nhật."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sau 6 tháng, con tính 2 chữ số + 2 chữ số trong đầu được. Con tự tin hơn khi làm toán."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Không cần tính nhẩm siêu nhanh như trong video. Chỉ cần đủ để tự tin, để não được rèn luyện."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Tính nhẩm có lỗi thời không?",
+      "answer": "Không. Tính nhẩm rèn luyện não, không chỉ để tính số. Kỹ năng tập trung, trí nhớ ngắn hạn từ tính nhẩm có ích suốt đời."
+    },
+    {
+      "question": "Trẻ mấy tuổi nên học tính nhẩm?",
+      "answer": "Từ 5-6 tuổi có thể bắt đầu với Soroban. Càng sớm não càng dễ phát triển."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid dạy tính nhẩm qua phương pháp Soroban của Nhật.",
+    "buttonText": "Cho con học thử",
+    "buttonLink": "/register"
+  }
+}

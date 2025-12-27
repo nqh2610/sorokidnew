@@ -1,0 +1,88 @@
+{
+  "slug": "hoc-soroban-co-can-biet-tieng-nhat-khong",
+  "title": "Học Soroban có cần biết tiếng Nhật không? – Câu hỏi mình từng thắc mắc",
+  "description": "Soroban từ Nhật Bản. Mình lo không biết tiếng Nhật có học được không. Đây là câu trả lời.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "soroban tiếng Việt",
+    "học soroban không biết tiếng Nhật",
+    "soroban cho người Việt"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/soroban-tieng-viet.jpg",
+  "imageAlt": "Bé Việt Nam học Soroban",
+  "readingTime": 4,
+  "categoryOrder": 1,
+  "order": 36,
+  "content": {
+    "intro": "Soroban xuất xứ từ Nhật Bản. Mình từng thắc mắc: \"Không biết tiếng Nhật thì có học được không? Có cần nhớ thuật ngữ Nhật không?\"",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Câu trả lời ngắn gọn: KHÔNG CẦN"
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban là PHƯƠNG PHÁP, không phải ngôn ngữ. Bạn dùng bàn tính để tính toán. Không cần biết tiếng Nhật."
+      },
+      {
+        "type": "paragraph",
+        "text": "Giống như võ Judo từ Nhật, bạn không cần biết tiếng Nhật để học Judo."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Một vài từ Nhật có thể gặp"
+      },
+      {
+        "type": "paragraph",
+        "text": "- **Soroban:** Bàn tính Nhật\n- **Anzan:** Tính nhẩm (hình dung bàn tính trong đầu)\n- **Tama:** Hạt trên bàn tính"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chỉ vài từ thôi. Và bạn không bắt buộc phải nhớ."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Đừng lo về ngôn ngữ. Sorokid dạy hoàn toàn bằng tiếng Việt. Con bạn học bình thường."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Sorokid có bằng tiếng Việt không?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Có. Sorokid được thiết kế cho trẻ em Việt Nam. Giao diện tiếng Việt, hướng dẫn tiếng Việt."
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình học không gặp vấn đề gì về ngôn ngữ."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Soroban là kỹ năng toàn cầu. Không cần biết tiếng Nhật để học và thành thạo."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Soroban có phải chỉ người Nhật học được không?",
+      "answer": "Không. Soroban được dạy ở nhiều nước trên thế giới: Trung Quốc, Malaysia, Ấn Độ, Mỹ, và cả Việt Nam."
+    },
+    {
+      "question": "Sorokid có tiếng Anh không?",
+      "answer": "Hiện tại Sorokid tập trung vào tiếng Việt để phục vụ trẻ em Việt Nam tốt nhất."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid – học Soroban hoàn toàn bằng tiếng Việt.",
+    "buttonText": "Cho con học thử",
+    "buttonLink": "/register"
+  }
+}

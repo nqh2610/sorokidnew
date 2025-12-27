@@ -1,0 +1,100 @@
+{
+  "slug": "lam-gi-khi-con-chan-hoc-soroban",
+  "title": "Con học Soroban được 2 tháng rồi chán – mình làm thế này",
+  "description": "Ban đầu con hào hứng lắm. Sau 2 tháng bắt đầu chán. Mình không ép, mình tìm cách khác.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "con chán học soroban",
+    "duy trì động lực học",
+    "con bỏ học giữa chừng"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-chan-hoc.jpg",
+  "imageAlt": "Bé trai châu Á gục đầu xuống bàn với bàn tính Soroban bên cạnh",
+  "readingTime": 6,
+  "categoryOrder": 1,
+  "order": 32,
+  "content": {
+    "intro": "Tháng đầu con hào hứng: \"Mẹ ơi, con muốn học Sorokid!\" Tháng thứ 2: \"Con không muốn nữa.\" Mình không biết nên ép hay cho nghỉ.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vì sao con chán?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Hết mới lạ:** Cái gì mới cũng hấp dẫn. Quen rồi thì hết thú vị."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Gặp bài khó:** Lúc dễ thì vui, gặp bài khó bắt đầu nản."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Không thấy tiến bộ:** Con không nhận ra mình giỏi hơn trước."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Chán là bình thường. Ai cũng trải qua. Quan trọng là cách cha mẹ xử lý."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình làm gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Không ép, cũng không bỏ cuộc:** Mình giảm thời gian học từ 15 phút xuống 10 phút. Ít nhưng vẫn duy trì."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Cho con thấy tiến bộ:** \"Con nhớ không, tháng trước con làm bài này 3 phút, giờ 1 phút!\" Con ngạc nhiên."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Thêm mục tiêu nhỏ:** \"Tuần này con đạt 50 sao, mẹ con mình đi ăn kem nhé!\" Con có động lực."
+      },
+      {
+        "type": "paragraph",
+        "text": "**4. Nghỉ ngắn hạn nếu cần:** Mình cho con nghỉ 3 ngày. Không nhắc gì về Soroban. Sau đó con tự hỏi: \"Mẹ ơi, mở Sorokid đi.\""
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Sau giai đoạn chán"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình vượt qua, tiếp tục học. Không hào hứng như đầu, nhưng đều đặn."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình học được: giai đoạn chán là bình thường. Vượt qua được, con sẽ có kỷ luật."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Đừng bỏ cuộc khi con chán. Cũng đừng ép đến mức con ghét. Tìm điểm cân bằng."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Nên ép con học tiếp hay cho nghỉ?",
+      "answer": "Không ép quá, cũng không bỏ hẳn. Giảm thời gian, thêm động lực, nghỉ ngắn nếu cần. Sau đó tiếp tục."
+    },
+    {
+      "question": "Nếu con nhất định không học thì sao?",
+      "answer": "Cho nghỉ 1 tuần, không nhắc. Sau đó thử lại nhẹ nhàng. Nếu vẫn không thì có thể chưa phải thời điểm phù hợp."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có hệ thống phần thưởng giúp duy trì động lực cho con.",
+    "buttonText": "Tìm hiểu thêm",
+    "buttonLink": "/register"
+  }
+}

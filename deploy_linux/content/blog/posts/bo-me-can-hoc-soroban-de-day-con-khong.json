@@ -1,0 +1,96 @@
+{
+  "slug": "bo-me-can-hoc-soroban-de-day-con-khong",
+  "title": "Bố mẹ có cần biết Soroban mới dạy được con không? – Không đâu",
+  "description": "Mình không biết Soroban. Mình lo không kèm được con. Nhưng hóa ra không cần.",
+  "category": "phu-huynh-kem-con-hoc-toan",
+  "keywords": [
+    "bố mẹ không biết soroban",
+    "kèm con học soroban",
+    "phụ huynh hỗ trợ con"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/me-khong-biet-soroban.jpg",
+  "imageAlt": "Mẹ châu Á ngồi cạnh con đang học Soroban",
+  "readingTime": 5,
+  "categoryOrder": 3,
+  "order": 14,
+  "content": {
+    "intro": "Khi cho con học Sorokid, mình lo: \"Mình không biết Soroban. Con hỏi thì mình trả lời sao?\" Rồi mình phát hiện: không cần biết cũng được.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tại sao bố mẹ không cần biết?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. App dạy thay bố mẹ:** Sorokid có video hướng dẫn, có bài tập. Con học qua app, không cần mình giảng."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Con tự sửa sai:** Làm sai thì app cho làm lại. Không cần mình kiểm tra."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Báo cáo tiến độ:** Mình chỉ cần xem báo cáo để biết con học đến đâu."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vậy bố mẹ làm gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Động viên:** \"Con học giỏi quá! Con cố gắng mẹ tự hào!\""
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Nhắc nhở:** \"Giờ học Sorokid rồi nha con.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Theo dõi:** Xem báo cáo cuối tuần, biết con tiến bộ hay đang gặp khó."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Bạn không cần là chuyên gia Soroban. Bạn chỉ cần là người ủng hộ con."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Nếu con hỏi mình không biết?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình nói thật: \"Mẹ không biết, nhưng con xem lại video hướng dẫn nhé.\" Hoặc: \"Để mẹ học cùng con nha.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Con thấy mẹ cũng đang học → con có động lực hơn."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Bạn không cần giỏi mới dạy được con. Đôi khi, học cùng con còn tốt hơn."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Nếu muốn học Soroban thì sao?",
+      "answer": "Hoàn toàn được. Học cùng con cũng vui. Chỉ cần 1-2 tuần tập cơ bản là hiểu con đang học gì."
+    },
+    {
+      "question": "Bố mẹ không có thời gian thì con có học được không?",
+      "answer": "Được. App dạy thay. Bạn chỉ cần nhắc con học đúng giờ và xem báo cáo cuối tuần."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid dạy con, bạn chỉ cần động viên.",
+    "buttonText": "Cho con bắt đầu",
+    "buttonLink": "/register"
+  }
+}

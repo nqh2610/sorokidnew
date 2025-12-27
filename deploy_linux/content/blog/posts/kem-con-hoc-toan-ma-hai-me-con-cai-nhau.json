@@ -1,0 +1,96 @@
+{
+  "slug": "kem-con-hoc-toan-ma-hai-me-con-cai-nhau",
+  "title": "Kèm con học toán mà hai mẹ con cãi nhau – mình quyết định dừng lại",
+  "description": "Mỗi tối kèm con học là một trận chiến. Cuối cùng mình chọn cách khác.",
+  "category": "phu-huynh-kem-con-hoc-toan",
+  "keywords": [
+    "kèm con học toán",
+    "mẹ con cãi nhau vì bài tập",
+    "dạy con không stress"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/me-con-cai-nhau.jpg",
+  "imageAlt": "Mẹ châu Á và con gái ngồi học với vẻ căng thẳng",
+  "readingTime": 6,
+  "categoryOrder": 3,
+  "order": 8,
+  "content": {
+    "intro": "\"Mẹ nói rồi, sao con không nghe!\" – \"Con không hiểu!\" – Đó là đoạn hội thoại mỗi tối ở nhà mình. Kèm con học toán mà mình như đang cãi nhau. Mình mệt, con cũng mệt.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình nhận ra vấn đề"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình giải thích cách của mình. Con không hiểu. Mình lặp lại. Con vẫn không hiểu. Mình bắt đầu sốt ruột."
+      },
+      {
+        "type": "paragraph",
+        "text": "Giọng mình to hơn. Con bắt đầu khóc. Buổi học kết thúc trong nước mắt."
+      },
+      {
+        "type": "paragraph",
+        "text": "Đêm đó mình nằm nghĩ: mình đang dạy con hay đang ép con?"
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Phụ huynh không phải giáo viên. Chúng ta thiếu kỹ năng sư phạm. Dạy con cái là một kỹ năng riêng, không phải ai cũng có."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình quyết định dừng kèm con"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không dạy con toán nữa. Không phải bỏ mặc. Mình tìm công cụ khác."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con học qua app Sorokid. App dạy con thay mình. Mình chỉ cần theo dõi tiến độ."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết quả bất ngờ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con học với app không khóc. Con làm sai, app cho làm lại. Không ai sốt ruột."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình và con không còn cãi nhau về toán. Tối mình đọc sách cùng con thay vì kèm bài."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mối quan hệ mẹ con tốt hơn. Toán con cũng tiến bộ."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Nếu việc kèm con đang làm hai mẹ con căng thẳng, hãy dừng lại. Có những cách khác. Mối quan hệ với con quan trọng hơn điểm toán."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Không kèm con thì con sẽ lười?",
+      "answer": "Không nhất thiết. Nếu có công cụ phù hợp như app học tập, con có thể tự giác. Quan trọng là tạo thói quen đều đặn."
+    },
+    {
+      "question": "App có thay thế được phụ huynh không?",
+      "answer": "App không thay thế được sự động viên, khích lệ từ bố mẹ. Nhưng app có thể làm phần dạy kiến thức, để bố mẹ tập trung vào phần cảm xúc."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid dạy con thay bố mẹ. Bạn chỉ cần động viên, không cần giải thích.",
+    "buttonText": "Tìm hiểu thêm",
+    "buttonLink": "/register"
+  }
+}

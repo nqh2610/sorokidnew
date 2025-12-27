@@ -1,0 +1,92 @@
+{
+  "slug": "hoc-soroban-co-can-mua-ban-tinh-khong",
+  "title": "Học Soroban có cần mua bàn tính không? – Mình đã mua rồi đây là review",
+  "description": "Thấy người ta khoe bàn tính đẹp, mình cũng mua. Dùng xong mới biết cần hay không.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "mua bàn tính soroban",
+    "bàn tính soroban cho bé",
+    "dụng cụ học soroban"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/ban-tinh-soroban.jpg",
+  "imageAlt": "Bàn tính Soroban bên cạnh tablet",
+  "readingTime": 5,
+  "categoryOrder": 1,
+  "order": 33,
+  "content": {
+    "intro": "Cho con học Sorokid được 1 tháng, mình thấy trong group mọi người khoe bàn tính đẹp. Mình cũng đặt mua một cái. 150k. Dùng xong mình có vài suy nghĩ.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bàn tính có cần không?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Câu trả lời: TÙY. Nếu con học qua app như Sorokid, app đã có bàn tính ảo. Con \"gạt\" trên màn hình."
+      },
+      {
+        "type": "paragraph",
+        "text": "Bàn tính thật là BỔ SUNG, không phải BẮT BUỘC."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình dùng bàn tính thật như thế nào?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Lúc đầu:** Con thích lắm. Sờ hạt thật, di chuyển thật. Cảm giác khác với trên app."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Sau 2 tuần:** Con quay lại app vì app có animation, có điểm, có phần thưởng. Bàn tính thật \"chán\" hơn."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Bây giờ:** Mình dùng bàn tính thật để kiểm tra con. \"Tính 23 + 18 trên bàn tính đi.\" Xem con làm đúng không."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Bàn tính thật giúp con \"sờ\" được số, nhưng không thay thế được app trong việc duy trì động lực học."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Nên mua hay không?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Nên mua nếu:**\n- Con thích sờ đồ vật thật.\n- Muốn con nghỉ ngơi khỏi màn hình mà vẫn luyện.\n- Có thời gian ngồi cùng con."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Không cần nếu:**\n- Con học tốt trên app rồi.\n- Không có thời gian kèm.\n- Ngân sách hạn chế."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Bàn tính thật là công cụ bổ trợ tốt, nhưng không có cũng không sao. App đã đủ để học."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Mua bàn tính loại nào?",
+      "answer": "Bàn tính 17 hàng là phổ biến nhất cho trẻ em. Giá khoảng 100-300k. Không cần mua loại đắt."
+    },
+    {
+      "question": "Bàn tính thật hay ảo tốt hơn?",
+      "answer": "Mỗi cái có ưu điểm. Bàn tính thật giúp \"cảm nhận\" số. Bàn tính ảo có động lực và tiện lợi hơn. Kết hợp cả hai là tốt nhất."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có bàn tính ảo, con học ở đâu cũng được.",
+    "buttonText": "Dùng thử miễn phí",
+    "buttonLink": "/register"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "slug": "con-lop-1-khong-nhan-mat-so",
+  "title": "Con lớp 1 không nhận mặt số – mình từng nghĩ con chậm",
+  "description": "Con không phân biệt được số 6 và số 9. Mình lo quá. Nhưng hóa ra đây là chuyện bình thường.",
+  "category": "con-gap-kho-khan-hoc-toan",
+  "keywords": [
+    "trẻ không nhận mặt số",
+    "con lớp 1 khó học toán",
+    "dạy con nhận số"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-khong-nhan-so.jpg",
+  "imageAlt": "Bé châu Á đang nhìn bảng số với vẻ bối rối",
+  "readingTime": 5,
+  "categoryOrder": 2,
+  "order": 7,
+  "content": {
+    "intro": "Con mình vào lớp 1, cô giáo gọi điện: \"Con nhầm số 6 với số 9 hoài.\" Mình nghĩ: \"Chết rồi, con mình bị gì sao?\" Lo lắng mấy tuần trời.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Chuyện gì đang xảy ra?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình viết số 6 thành số 9. Viết số 3 ngược. Nhìn số 12, đọc thành 21."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình đọc lên mạng, thấy có từ \"rối loạn học tập\", \"dyscalculia\". Mình sợ quá."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình hỏi cô giáo"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cô giáo nói: \"Bình thường mà chị. Nhiều bé lớp 1 thế. Não bé chưa phân biệt trái phải rõ ràng.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Cô khuyên mình kiên nhẫn, cho con tập nhiều. Nếu đến lớp 2, 3 vẫn thế thì mới cần kiểm tra."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Mình thở phào. Hóa ra trẻ 5-7 tuổi nhầm số, chữ ngược là bình thường. Não bé đang phát triển."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình làm gì để giúp con?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Cho con sờ số:** Mình mua bộ số nhựa, cho con cầm, sờ. Con \"cảm\" được hình dạng số."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Dùng màu sắc:** Số 6 viết màu xanh, số 9 viết màu đỏ. Con dễ phân biệt hơn."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Gắn với hình ảnh:** \"Số 6 có bụng ở dưới như bà bầu. Số 9 có đầu to ở trên.\""
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "3 tháng sau"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình hết nhầm. Không cần kiểm tra gì. Chỉ cần thời gian và luyện tập."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình học được bài học: đừng vội lo lắng. Trẻ nhỏ cần thời gian để não phát triển."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Nếu con bạn đang nhầm số, đừng la mắng. Cũng đừng vội nghĩ con có vấn đề. Cho con thời gian và cách học phù hợp."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Con nhầm số 6 và 9 có bình thường không?",
+      "answer": "Bình thường với trẻ 5-7 tuổi. Đây là giai đoạn não đang phát triển khả năng nhận diện không gian."
+    },
+    {
+      "question": "Khi nào cần lo lắng?",
+      "answer": "Nếu đến lớp 3 con vẫn nhầm thường xuyên, kèm khó đọc, viết chậm, thì nên gặp chuyên gia."
+    }
+  ],
+  "cta": {
+    "text": "Học toán qua hình ảnh giúp trẻ nhận diện số tốt hơn. Sorokid dùng bàn tính trực quan để con \"thấy\" số.",
+    "buttonText": "Tìm hiểu thêm",
+    "buttonLink": "/register"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "slug": "minh-do-toan-nhung-van-muon-con-gioi-toan",
+  "title": "Mình dở toán từ nhỏ – sợ con giống mình nên lo quá",
+  "description": "Hồi nhỏ mình sợ toán kinh khủng. Giờ mình lo con sẽ \"di truyền\" nỗi sợ đó.",
+  "category": "phu-huynh-kem-con-hoc-toan",
+  "keywords": [
+    "mẹ dở toán",
+    "di truyền sợ toán",
+    "dạy con khi mình không giỏi"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/me-lo-con-giong-minh.jpg",
+  "imageAlt": "Mẹ châu Á lo lắng nhìn vở toán với biểu cảm tự ti về khả năng toán của mình",
+  "readingTime": 6,
+  "categoryOrder": 3,
+  "order": 10,
+  "content": {
+    "intro": "Hồi cấp 2 mình sợ toán đến mức mơ thấy ác mộng trước ngày thi. Đến giờ vẫn nhớ. Giờ con mình vào lớp 1, mình lo: \"Lỡ con giống mình thì sao?\"",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Nỗi lo của mình"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình đọc ở đâu đó: trẻ có thể \"thừa hưởng\" thái độ với toán từ bố mẹ. Nếu mình lo lắng về toán, con có thể cảm nhận được."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình sợ mỗi khi con hỏi bài toán, vẻ mặt mình sẽ căng thẳng. Con sẽ nghĩ toán là thứ đáng sợ."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình tìm hiểu và thấy yên tâm hơn"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sợ toán không di truyền qua gene. Con không \"sinh ra\" để dở toán vì mẹ dở toán."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cái di truyền được là THÁI ĐỘ. Nếu mình thể hiện lo lắng, con sẽ học theo thái độ đó."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Bạn dở toán không có nghĩa con sẽ dở. Nhưng nếu bạn thể hiện sự sợ hãi với toán, con có thể học theo."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình làm gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Không nói \"mẹ dở toán\":** Dù sự thật là vậy, mình không nói trước mặt con. Mình không muốn con có \"lý do\" để nghĩ mình cũng sẽ dở."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Để con học qua app:** Mình không dạy con toán. Mình để Sorokid dạy. Con không thấy mình căng thẳng."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Khen con nhiều:** Dù con làm đúng hay sai, mình khen nỗ lực. Mình muốn con có trải nghiệm tích cực với toán."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "1 năm sau"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình không sợ toán. Con không giỏi nhất lớp, nhưng con tự tin. Con không có nỗi sợ như mình hồi nhỏ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình nhẹ nhõm. Hóa ra mình có thể cắt đứt \"vòng lặp\" đó."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Bạn không thể thay đổi quá khứ của mình. Nhưng bạn có thể tạo trải nghiệm khác cho con."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Sợ toán có di truyền không?",
+      "answer": "Không di truyền qua gene. Nhưng thái độ và cảm xúc của bố mẹ có thể ảnh hưởng đến con. Cố gắng không thể hiện lo lắng trước mặt con."
+    },
+    {
+      "question": "Mình dở toán thì dạy con thế nào?",
+      "answer": "Không cần tự dạy. Dùng app hoặc gia sư để dạy con kiến thức. Việc của bạn là động viên và tạo môi trường tích cực."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid dạy con toán thay bạn. Bạn chỉ cần động viên con.",
+    "buttonText": "Tìm hiểu thêm",
+    "buttonLink": "/register"
+  }
+}

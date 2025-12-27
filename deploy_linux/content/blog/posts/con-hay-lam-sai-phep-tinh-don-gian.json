@@ -1,0 +1,100 @@
+{
+  "slug": "con-hay-lam-sai-phep-tinh-don-gian",
+  "title": "Con hay làm sai phép tính đơn giản – mình từng tức giận, giờ hiểu hơn",
+  "description": "3 + 4 = 8. Con viết thế. Mình tức: sao dễ thế mà cũng sai? Rồi mình tìm hiểu và thấy thương con.",
+  "category": "con-gap-kho-khan-hoc-toan",
+  "keywords": [
+    "trẻ hay làm sai toán",
+    "lỗi tính toán đơn giản",
+    "con cẩu thả"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-lam-sai-toan.jpg",
+  "imageAlt": "Bé châu Á nhìn bài làm với vẻ bối rối",
+  "readingTime": 6,
+  "categoryOrder": 2,
+  "order": 14,
+  "content": {
+    "intro": "Bài kiểm tra con được 7 điểm. Mình xem lại: toàn sai phép tính dễ. 5 + 3 = 9. 7 - 2 = 4. Mình nghĩ con cẩu thả. Mình la. Nhưng rồi mình tìm hiểu.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vì sao con hay sai phép tính dễ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Chưa thành phản xạ:** Con vẫn phải \"tính\" mỗi phép cộng trừ. Não bận, dễ sai."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Mệt mỏi:** Cuối bài kiểm tra con mệt, mất tập trung."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Vội vàng:** Con muốn làm xong nhanh, không kiểm tra lại."
+      },
+      {
+        "type": "paragraph",
+        "text": "**4. Viết số xấu:** Đôi khi con viết số 3 giống số 8, rồi tự nhầm."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Con không cố tình sai. Con cũng không muốn bị điểm thấp. Hãy tìm nguyên nhân thay vì trách."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình giúp con như thế nào"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Luyện phản xạ:** Cho con học Sorokid mỗi ngày. Các phép tính cơ bản trở thành tự động."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Dạy kiểm tra lại:** \"Làm xong chưa nộp vội. Xem lại 2 phút.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Viết số rõ ràng:** Cho con tập viết số đẹp, phân biệt rõ các số."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "3 tháng sau"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con vẫn đôi khi sai. Nhưng ít hơn nhiều. Con biết kiểm tra lại trước khi nộp."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không còn la con. Mình hiểu đó là quá trình. Con đang cố gắng."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Sai phép tính đơn giản không phải vì con dốt. Thường do chưa có phản xạ hoặc thiếu tập trung. Rèn luyện được."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Có nên phạt con khi làm sai?",
+      "answer": "Không nên. Phạt làm con sợ toán. Thay vào đó, tìm nguyên nhân và giúp con khắc phục."
+    },
+    {
+      "question": "Làm sao để con ít sai hơn?",
+      "answer": "Luyện tập đều đặn để các phép tính thành phản xạ. Dạy con thói quen kiểm tra lại bài."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid giúp con luyện phản xạ tính toán, giảm lỗi sai không đáng có.",
+    "buttonText": "Cho con luyện tập",
+    "buttonLink": "/register"
+  }
+}
