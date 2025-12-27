@@ -357,6 +357,64 @@ Phù hợp cho:
 Đặc biệt hiệu quả với giáo viên THPT - biến tiết ôn tập nhàm chán thành trò chơi sôi động!`,
     keywords: ['ai là triệu phú', 'game hỏi đáp', 'quiz lớp học', 'trắc nghiệm online', 'game show lớp học', 'who wants to be a millionaire'],
   },
+
+  'xuc-xac': {
+    url: '/tool/xuc-xac',
+    title: 'Thảy Xúc Xắc - Công Cụ Tạo Tương Tác Lớp Học',
+    metaDescription: 'Tool thảy xúc xắc giúp giáo viên tạo trò chơi học tập, khởi động đầu giờ và ôn bài nhanh cho học sinh. Miễn phí, không cần đăng nhập.',
+    h1: 'Thảy Xúc Xắc - Trò Chơi Tương Tác Lớp Học',
+    description: `Xúc xắc may mắn cho lớp học - Công cụ tạo tương tác vui nhộn, giúp giáo viên tổ chức hoạt động nhanh chóng không cần chuẩn bị phức tạp.
+
+Tính năng nổi bật:
+• Tùy chọn số mặt: 6, 8, 10, 12 mặt
+• Tự nhập nội dung cho từng mặt (số, câu hỏi, hành động)
+• Template mẫu có sẵn: Số 1-6, Câu hỏi, Hành động, Ôn bài
+• Hiệu ứng lăn 3D mượt mà, âm thanh vui nhộn
+• Khóa mặt không muốn ra, đánh dấu mặt đã xuất hiện
+• Chế độ công bằng: không lặp cùng mặt 3 lần liên tiếp
+• Tự động lưu - không mất dữ liệu khi refresh
+
+Áp dụng cho:
+• Khởi động đầu giờ - tạo không khí sôi động
+• Kiểm tra nhanh kiến thức
+• Chọn học sinh trả lời ngẫu nhiên
+• Trò chơi ôn bài cuối tiết
+• Phạt vui, thưởng điểm ngẫu nhiên
+
+Phù hợp mọi cấp học từ Tiểu học đến THPT!`,
+    keywords: ['thảy xúc xắc', 'dice game', 'trò chơi lớp học', 'xúc xắc may mắn', 'khởi động đầu giờ', 'game học tập', 'công cụ giáo viên'],
+  },
+
+  'cuoc-dua-ki-thu': {
+    url: '/tool/cuoc-dua-ki-thu',
+    title: 'Cuộc Đua Kì Thú - Tool Chấm Điểm Thi Đua Nhóm',
+    metaDescription: 'Trò chơi cuộc đua kì thú giúp giáo viên chấm điểm, thi đua nhóm và tạo động lực học tập trong lớp học. Miễn phí, không cần đăng nhập.',
+    h1: 'Cuộc Đua Kì Thú - Thi Đua Điểm Số Lớp Học',
+    description: `Game thi đua điểm số trực quan - Chấm điểm theo nhóm hoặc cá nhân với hiệu ứng cuộc đua hấp dẫn.
+
+TRIẾT LÝ TRÒ CHƠI:
+• Không có vạch đích kết thúc - Ai cũng có cơ hội
+• Không ai bị loại - Chỉ so sánh ai đang dẫn đầu
+• Càng cộng điểm → nhân vật chạy càng xa
+
+Tính năng nổi bật:
+• 2 chế độ: Đua theo NHÓM hoặc CÁ NHÂN
+• 4 loại nhân vật: Xe cộ, Động vật, Người, Tàu vũ trụ
+• Cộng/trừ điểm nhanh: +1, +5, +10, -1, -5
+• Hiệu ứng vượt lên khi dẫn đầu
+• Confetti khi đạt top 1
+• Undo thao tác vừa rồi
+• Tự động lưu - không mất dữ liệu
+
+Áp dụng cho:
+• Thi đua nhóm trong tiết học
+• Ôn bài, trả lời câu hỏi
+• Tạo động lực học tập suốt tiết
+• Kiểm tra kiến thức vui nhộn
+
+Phù hợp Tiểu học, THCS và THPT!`,
+    keywords: ['cuộc đua kì thú', 'chấm điểm nhóm', 'thi đua lớp học', 'game thi đua', 'scoreboard lớp học', 'gamification giáo dục', 'tool giáo viên'],
+  },
 };
 
 // ============================================

@@ -197,21 +197,56 @@ const DUCK_COLORS = [
   '#a5b4fc', '#93c5fd', '#7dd3fc', '#a7f3d0', '#d9f99d',
 ];
 
-// Vật cản trên sông - gây tai nạn thực sự
-const OBSTACLES = [
-  { id: 'rock1', emoji: '🪨', x: 25, y: 20, size: 'large' },
-  { id: 'rock2', emoji: '🪨', x: 45, y: 70, size: 'medium' },
-  { id: 'rock3', emoji: '🪨', x: 65, y: 35, size: 'large' },
-  { id: 'log1', emoji: '🪵', x: 35, y: 50, size: 'medium' },
-  { id: 'log2', emoji: '🪵', x: 55, y: 15, size: 'large' },
-  { id: 'log3', emoji: '🪵', x: 75, y: 60, size: 'medium' },
-  { id: 'plant1', emoji: '🌿', x: 20, y: 80, size: 'small' },
-  { id: 'plant2', emoji: '🌾', x: 40, y: 25, size: 'small' },
-  { id: 'plant3', emoji: '🌿', x: 60, y: 85, size: 'small' },
-  { id: 'whirl1', emoji: '🌀', x: 50, y: 45, size: 'medium' },
-  { id: 'fish1', emoji: '🐟', x: 30, y: 65, size: 'small' },
-  { id: 'crab1', emoji: '🦀', x: 70, y: 40, size: 'small' },
+// Mẫu vật cản - sẽ được random vị trí mỗi lần đua
+const OBSTACLE_TEMPLATES = [
+  { emoji: '🪨', size: 'large' },
+  { emoji: '🪨', size: 'medium' },
+  { emoji: '🪨', size: 'large' },
+  { emoji: '🪵', size: 'medium' },
+  { emoji: '🪵', size: 'large' },
+  { emoji: '🪵', size: 'medium' },
+  { emoji: '🌿', size: 'small' },
+  { emoji: '🌾', size: 'small' },
+  { emoji: '🌿', size: 'small' },
+  { emoji: '🌀', size: 'medium' },
+  { emoji: '🐟', size: 'small' },
+  { emoji: '🦀', size: 'small' },
 ];
+
+// Hàm tạo vật cản với vị trí ngẫu nhiên - đảm bảo công bằng cho tất cả lane
+const generateRandomObstacles = () => {
+  const obstacles = [];
+  const numObstacles = OBSTACLE_TEMPLATES.length;
+  
+  // Chia map thành lưới để phân bố đều
+  // X: 15-85% (tránh start/finish)
+  // Y: 10-90% (toàn bộ chiều cao)
+  const gridCols = 4; // 4 cột theo chiều ngang
+  const gridRows = 3; // 3 hàng theo chiều dọc
+  
+  OBSTACLE_TEMPLATES.forEach((template, index) => {
+    // Phân bố vào các ô lưới
+    const col = index % gridCols;
+    const row = Math.floor(index / gridCols) % gridRows;
+    
+    // Tính vùng của ô lưới
+    const xMin = 15 + col * (70 / gridCols);
+    const xMax = 15 + (col + 1) * (70 / gridCols);
+    const yMin = 10 + row * (80 / gridRows);
+    const yMax = 10 + (row + 1) * (80 / gridRows);
+    
+    // Random vị trí trong ô lưới
+    obstacles.push({
+      id: `obs-${index}`,
+      emoji: template.emoji,
+      size: template.size,
+      x: xMin + Math.random() * (xMax - xMin),
+      y: yMin + Math.random() * (yMax - yMin),
+    });
+  });
+  
+  return obstacles;
+};
 
 // Helper: Extract short name (tên) from full Vietnamese name
 const getShortName = (fullName) => {
@@ -243,6 +278,7 @@ export default function DuaThuHoatHinh() {
   const [lastLeader, setLastLeader] = useState(null);
   const [duplicateNames, setDuplicateNames] = useState([]); // Tên trùng
   const [isPortrait, setIsPortrait] = useState(false); // Track orientation for mobile
+  const [obstacles, setObstacles] = useState(() => generateRandomObstacles()); // Random obstacles mỗi lần đua
   
   const animationRef = useRef(null);
   const containerRef = useRef(null);
@@ -652,6 +688,9 @@ export default function DuaThuHoatHinh() {
     setRaceTime(0);
     raceStartTimeRef.current = null;
     
+    // Generate new random obstacles for this race - đảm bảo công bằng
+    setObstacles(generateRandomObstacles());
+    
     // Countdown
     setCountdown(3);
     playSound('countdown');
@@ -683,17 +722,6 @@ export default function DuaThuHoatHinh() {
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [racers, isRacing, playSound, raceSpeed, showCommentary]);
-
-  // Check collision with obstacles
-  const checkObstacleCollision = useCallback((x, y) => {
-    for (const obs of OBSTACLES) {
-      const hitRange = obs.size === 'large' ? 8 : obs.size === 'medium' ? 6 : 4;
-      if (Math.abs(x - obs.x) < hitRange && Math.abs(y - obs.y) < hitRange) {
-        return obs;
-      }
-    }
-    return null;
-  }, []);
 
   // Main race logic - realistic with fatigue and obstacles
   const runRace = useCallback(() => {
@@ -814,9 +842,25 @@ export default function DuaThuHoatHinh() {
           // Ensure minimum speed to prevent stuttering
           const speed = Math.max(state.currentSpeed, 0.05);
           
-          // === OBSTACLE COLLISION ===
-          const obstacle = checkObstacleCollision(currentPos, currentV);
-          if (obstacle && now - state.lastObstacleHit > 3000) {
+          // === OBSTACLE COLLISION - XÁC SUẤT CÔNG BẰNG CHO TẤT CẢ ===
+          // Thay vì dựa vào vị trí thực, dùng random chance như nhau cho mọi vịt
+          // Điều này đảm bảo không lane nào có lợi thế hơn
+          const obstacleChance = 0.002; // ~0.2% mỗi frame khi ở vùng có vật cản (15-85%)
+          const inObstacleZone = currentPos > 15 && currentPos < 85;
+          const shouldHitObstacle = inObstacleZone && Math.random() < obstacleChance && now - state.lastObstacleHit > 3000;
+          
+          if (shouldHitObstacle) {
+            // Random chọn loại vật cản để hiển thị
+            const obstacleTypes = [
+              { emoji: '🪨', size: 'large', name: 'đá' },
+              { emoji: '🪨', size: 'medium', name: 'đá' },
+              { emoji: '🪵', size: 'medium', name: 'gỗ' },
+              { emoji: '🪵', size: 'large', name: 'gỗ' },
+              { emoji: '🌿', size: 'small', name: 'rong' },
+              { emoji: '🌀', size: 'medium', name: 'xoáy nước' },
+            ];
+            const obstacle = obstacleTypes[Math.floor(Math.random() * obstacleTypes.length)];
+            
             state.lastObstacleHit = now;
             state.isStunned = true;
             state.stunnedUntil = now + (obstacle.size === 'large' ? 1200 : obstacle.size === 'medium' ? 800 : 400);
@@ -1086,7 +1130,7 @@ export default function DuaThuHoatHinh() {
     };
     
     animationRef.current = requestAnimationFrame(animate);
-  }, [racers, verticalPos, checkObstacleCollision, playSound, showCommentary]);
+  }, [racers, verticalPos, playSound, showCommentary]);
 
   // Reset race
   const resetRace = useCallback(() => {
@@ -1567,8 +1611,8 @@ export default function DuaThuHoatHinh() {
         </div>
         <div className="absolute right-4 top-1/2 -translate-y-1/2 text-6xl z-20 animate-pulse">🏆</div>
 
-        {/* OBSTACLES */}
-        {OBSTACLES.map(obs => (
+        {/* OBSTACLES - Random mỗi lần đua */}
+        {obstacles.map(obs => (
           <div
             key={obs.id}
             className="absolute z-15"

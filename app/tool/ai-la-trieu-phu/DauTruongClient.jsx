@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useCallback, useEffect } from 'react';
+import ToolLayout from '@/components/ToolLayout/ToolLayout';
 
 // localStorage keys
 const STORAGE_KEYS = {
@@ -387,7 +388,8 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
   const currentQuestion = questions[currentIndex];
 
   return (
-    <div ref={gameContainerRef} className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800">
+    <ToolLayout>
+      <div ref={gameContainerRef} className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800">
       {/* Toast */}
       {toast && (
         <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] bg-black/80 text-white px-4 py-2 rounded-lg">
@@ -906,6 +908,7 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
           text-align: right;
         }
       `}</style>
-    </div>
+      </div>
+    </ToolLayout>
   );
 }
