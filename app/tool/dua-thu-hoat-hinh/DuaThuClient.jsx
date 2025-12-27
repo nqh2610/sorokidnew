@@ -2122,7 +2122,8 @@ export default function DuaThuHoatHinh() {
               ))}
             </div>
 
-            <div className="bg-white rounded-3xl shadow-2xl p-6 max-w-sm w-full mx-4 text-center animate-bounceIn relative overflow-hidden">
+            {/* Winner Card - Responsive cho cả portrait và landscape */}
+            <div className="winner-card bg-white rounded-3xl shadow-2xl p-3 sm:p-4 max-w-sm w-full mx-4 text-center animate-bounceIn relative overflow-hidden">
               
               {/* Confetti inside card */}
               <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -2142,54 +2143,63 @@ export default function DuaThuHoatHinh() {
                 ))}
               </div>
 
-              <div className="relative z-10">
-                <div className="text-6xl mb-1 animate-bounce" style={{ 
-                  transform: ANIMAL_TYPES[animalType].flipX ? 'scaleX(-1)' : 'none' 
-                }}>
-                  {ANIMAL_TYPES[animalType].emoji}
-                </div>
-                <div className="text-4xl mb-2 animate-pulse">🏆</div>
-                
-                <h2 className="text-3xl font-black text-gray-800 mb-2 animate-pulse">🎉 VÔ ĐỊCH! 🎉</h2>
-                
-                <div className="inline-block px-5 py-2 rounded-full text-xl font-bold text-white mb-3 animate-bounce"
-                  style={{ backgroundColor: winner.color, boxShadow: `0 0 20px ${winner.color}` }}>
-                  {winner.name}
-                </div>
-                
-                {/* TOP 5 Final Results with FULL names */}
-                {topRacers.length > 1 && (
-                  <div className="bg-gray-100 rounded-xl p-2 mb-3 text-left max-h-32 overflow-y-auto">
-                    <div className="text-xs font-bold text-gray-600 mb-1 text-center">🏅 Bảng xếp hạng</div>
-                    {topRacers.slice(0, 5).map((racer, idx) => (
-                      <div key={racer.id} className="flex items-center gap-1.5 py-0.5 text-xs">
-                        <span className="font-black w-5" style={{ 
-                          color: idx === 0 ? '#fbbf24' : idx === 1 ? '#9ca3af' : idx === 2 ? '#f97316' : '#6b7280' 
-                        }}>
-                          {idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `${idx + 1}.`}
-                        </span>
-                        <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: racer.color }} />
-                        <span className="font-medium text-gray-700 truncate text-xs">{racer.name}</span>
-                      </div>
-                    ))}
+              <div className="winner-content relative z-10">
+                {/* Left section: Icon + Trophy */}
+                <div className="winner-icon-section">
+                  <div className="winner-animal text-5xl sm:text-6xl mb-1 animate-bounce" style={{ 
+                    transform: ANIMAL_TYPES[animalType].flipX ? 'scaleX(-1)' : 'none' 
+                  }}>
+                    {ANIMAL_TYPES[animalType].emoji}
                   </div>
-                )}
-                
-                <div className="text-gray-500 mb-3 text-sm">
-                  ⏱️ {raceTime}s | {ANIMAL_TYPES[animalType].emoji} {racers.length} {ANIMAL_TYPES[animalType].plural}
+                  <div className="winner-trophy text-3xl sm:text-4xl mb-1 animate-pulse">🏆</div>
                 </div>
 
-                <div className="flex gap-2 justify-center">
-                  <button 
-                    onClick={backToSetup}
-                    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold rounded-full text-sm transition-all">
-                    ← Setup
-                  </button>
-                  <button 
-                    onClick={() => { resetRace(); setTimeout(() => startRace(), 100); }}
-                    className="px-6 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-full text-sm hover:shadow-xl transition-all">
-                    🚀 Đua lại!
-                  </button>
+                {/* Middle section: Winner info */}
+                <div className="winner-info-section">
+                  <h2 className="winner-title text-2xl sm:text-3xl font-black text-gray-800 mb-1 animate-pulse">🎉 VÔ ĐỊCH! 🎉</h2>
+                  
+                  <div className="winner-name-badge inline-block px-4 py-1.5 rounded-full text-lg sm:text-xl font-bold text-white mb-2 animate-bounce"
+                    style={{ backgroundColor: winner.color, boxShadow: `0 0 20px ${winner.color}` }}>
+                    {winner.name}
+                  </div>
+                  
+                  <div className="winner-stats text-gray-500 text-sm">
+                    ⏱️ {raceTime}s | {ANIMAL_TYPES[animalType].emoji} {racers.length} {ANIMAL_TYPES[animalType].plural}
+                  </div>
+                </div>
+                
+                {/* Right section: Ranking + Buttons */}
+                <div className="winner-actions-section">
+                  {/* TOP 5 Final Results */}
+                  {topRacers.length > 1 && (
+                    <div className="winner-ranking bg-gray-100 rounded-xl p-2 mb-2 text-left max-h-24 overflow-y-auto">
+                      <div className="text-xs font-bold text-gray-600 mb-1 text-center">🏅 Bảng xếp hạng</div>
+                      {topRacers.slice(0, 5).map((racer, idx) => (
+                        <div key={racer.id} className="flex items-center gap-1.5 py-0.5 text-xs">
+                          <span className="font-black w-5" style={{ 
+                            color: idx === 0 ? '#fbbf24' : idx === 1 ? '#9ca3af' : idx === 2 ? '#f97316' : '#6b7280' 
+                          }}>
+                            {idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `${idx + 1}.`}
+                          </span>
+                          <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: racer.color }} />
+                          <span className="font-medium text-gray-700 truncate text-xs">{racer.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="winner-buttons flex gap-2 justify-center">
+                    <button 
+                      onClick={backToSetup}
+                      className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold rounded-full text-sm transition-all">
+                      ← Setup
+                    </button>
+                    <button 
+                      onClick={() => { resetRace(); setTimeout(() => startRace(), 100); }}
+                      className="px-5 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-full text-sm hover:shadow-xl transition-all">
+                      🚀 Đua lại!
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2316,6 +2326,70 @@ export default function DuaThuHoatHinh() {
           to { transform: rotate(360deg); }
         }
         .animate-spin-slow { animation: spin-slow 3s linear infinite; }
+        
+        /* === Winner Card Landscape Responsive === */
+        @media (orientation: landscape) and (max-height: 500px) {
+          .winner-card {
+            max-width: 42rem;
+            max-height: 90vh;
+            padding: 0.75rem;
+          }
+          .winner-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+          }
+          .winner-icon-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+          }
+          .winner-animal {
+            font-size: 2.5rem;
+            margin-bottom: 0;
+          }
+          .winner-trophy {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+          }
+          .winner-info-section {
+            flex: 1;
+            text-align: left;
+          }
+          .winner-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+          }
+          .winner-name-badge {
+            font-size: 1rem;
+            padding: 0.25rem 0.75rem;
+            margin-bottom: 0.25rem;
+          }
+          .winner-stats {
+            font-size: 0.75rem;
+          }
+          .winner-actions-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex-shrink: 0;
+            width: 11rem;
+          }
+          .winner-ranking {
+            margin-bottom: 0;
+            max-height: 5rem;
+          }
+          .winner-buttons {
+            flex-direction: column;
+            gap: 0.25rem;
+          }
+          .winner-buttons button {
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.75rem;
+          }
+        }
       `}</style>
     </div>
   );
