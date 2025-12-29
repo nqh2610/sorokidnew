@@ -806,7 +806,9 @@ export default function DuaThuHoatHinh() {
 
   // Preload background music - start playing muted during countdown
   // Use crossfade technique for smooth looping
+  // Background music using HTML5 Audio with crossfade loop
   const preloadBgMusic = useCallback(() => {
+    // This is called during countdown (after user click) to preload audio
     try {
       // Stop any existing music first
       if (bgMusicRef.current) {
@@ -814,7 +816,6 @@ export default function DuaThuHoatHinh() {
           bgMusicRef.current.forEach(a => { 
             a.pause(); 
             a.currentTime = 0;
-            a.ontimeupdate = null;
             a.onended = null;
           });
         } else if (bgMusicRef.current instanceof Audio) {
@@ -824,148 +825,57 @@ export default function DuaThuHoatHinh() {
         bgMusicRef.current = null;
       }
       
-      // Create two audio elements for crossfade looping
-      const audio1 = new Audio('/tool/duavit/dua_vit.mp3');
-      const audio2 = new Audio('/tool/duavit/dua_vit.mp3');
+      // Create single audio element with loop (simpler, more reliable)
+      const audio = new Audio('/tool/duavit/dua_vit.mp3');
+      audio.preload = 'auto';
+      audio.loop = true; // Native loop - browser handles seamlessly
+      audio.volume = 0;
       
-      audio1.preload = 'auto';
-      audio2.preload = 'auto';
+      // Store audio
+      bgMusicRef.current = audio;
       
-      // Store both audios and state
-      const audios = [audio1, audio2];
-      audios.activeIndex = 0;
-      audios.targetVolume = 0.65;
-      audios.crossfading = false;
-      bgMusicRef.current = audios;
-      
-      // Start playing audio1 with volume 0 immediately (user gesture context from button click)
-      // This "unlocks" audio playback on mobile browsers
-      audio1.volume = 0;
-      audio1.play().then(() => {
-        console.log('Audio preload started (muted)');
+      // Try to play immediately (muted) to unlock autoplay
+      // This works because it's called from user gesture (button click) context
+      audio.play().then(() => {
+        console.log('🎵 Audio unlocked and preloading');
       }).catch(e => {
-        console.log('Audio preload play failed:', e);
+        console.log('🎵 Audio preload blocked, will play on startBgMusic:', e.message);
       });
       
-      // Just load audio2 for later
-      audio2.load();
     } catch (e) {
       console.log('Audio preload failed:', e);
     }
   }, []);
 
-  // Crossfade function for smooth loop transition
-  const doCrossfade = useCallback(() => {
-    if (!bgMusicRef.current || !Array.isArray(bgMusicRef.current)) return;
-    if (bgMusicRef.current.crossfading) return;
-    if (!soundEnabledRef.current) return;
-    
-    const audios = bgMusicRef.current;
-    audios.crossfading = true;
-    
-    const currentIndex = audios.activeIndex;
-    const nextIndex = currentIndex === 0 ? 1 : 0;
-    const currentAudio = audios[currentIndex];
-    const nextAudio = audios[nextIndex];
-    const targetVol = audios.targetVolume || 0.65;
-    
-    console.log('🎵 Crossfade: switching from audio', currentIndex, 'to', nextIndex);
-    
-    // Start next audio from beginning with volume 0
-    nextAudio.currentTime = 0;
-    nextAudio.volume = 0;
-    nextAudio.play().catch(() => {});
-    
-    // Crossfade over 2 seconds
-    let step = 0;
-    const totalSteps = 20;
-    const crossfadeInterval = setInterval(() => {
-      if (!soundEnabledRef.current) {
-        clearInterval(crossfadeInterval);
-        audios.crossfading = false;
-        return;
-      }
-      
-      step++;
-      const progress = step / totalSteps;
-      
-      if (step >= totalSteps) {
-        // Crossfade complete
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        nextAudio.volume = targetVol;
-        audios.activeIndex = nextIndex;
-        audios.crossfading = false;
-        clearInterval(crossfadeInterval);
-        console.log('🎵 Crossfade complete, now playing audio', nextIndex);
-      } else {
-        // Smooth crossfade with sine curve
-        const fadeOut = Math.cos(progress * Math.PI / 2);
-        const fadeIn = Math.sin(progress * Math.PI / 2);
-        currentAudio.volume = Math.max(0, targetVol * fadeOut);
-        nextAudio.volume = Math.min(targetVol, targetVol * fadeIn);
-      }
-    }, 100); // 100ms x 20 = 2 seconds
-  }, []);
-
-  // Start background race music
+  // Start background race music - simple and reliable
   const startBgMusic = useCallback(() => {
     if (!soundEnabledRef.current) return;
     
     try {
-      if (bgMusicRef.current && Array.isArray(bgMusicRef.current)) {
-        const audios = bgMusicRef.current;
-        const activeIndex = audios.activeIndex || 0;
-        const activeAudio = audios[activeIndex];
-        audios.targetVolume = 0.65;
+      if (bgMusicRef.current instanceof Audio) {
+        const audio = bgMusicRef.current;
         
-        console.log('🎵 Starting music, audio', activeIndex, 'paused:', activeAudio.paused);
+        console.log('🎵 Starting music, paused:', audio.paused, 'readyState:', audio.readyState);
         
-        // If not playing, start from beginning
-        if (activeAudio.paused) {
-          activeAudio.currentTime = 0;
-          activeAudio.play().catch(e => console.log('Play failed:', e));
-        }
+        // Reset to beginning and play
+        audio.currentTime = 0;
+        audio.volume = 0.65;
         
-        // Fade in volume from 0 to target over 0.5 seconds (fast fade in)
-        activeAudio.volume = 0;
-        let vol = 0;
-        const fadeIn = setInterval(() => {
-          vol += 0.13; // ~5 steps to reach 0.65
-          if (vol >= 0.65) {
-            activeAudio.volume = 0.65;
-            clearInterval(fadeIn);
-            console.log('🎵 Music fade in complete');
-          } else {
-            activeAudio.volume = vol;
-          }
-        }, 100);
-        
-        // Setup crossfade: check every 500ms if near end
-        const checkCrossfade = setInterval(() => {
-          if (!bgMusicRef.current || !Array.isArray(bgMusicRef.current)) {
-            clearInterval(checkCrossfade);
-            return;
-          }
-          
-          const audios = bgMusicRef.current;
-          const currentAudio = audios[audios.activeIndex];
-          
-          // If within 3 seconds of end, start crossfade
-          if (currentAudio.duration && currentAudio.currentTime >= currentAudio.duration - 3) {
-            if (!audios.crossfading) {
-              console.log('🎵 Near end, starting crossfade. Time:', currentAudio.currentTime, 'Duration:', currentAudio.duration);
-              doCrossfade();
-            }
-          }
-        }, 500);
-        
-        // Store interval ref for cleanup
-        bgMusicIntervalRef.current = checkCrossfade;
+        audio.play().then(() => {
+          console.log('🎵 Music playing!');
+        }).catch(e => {
+          console.log('🎵 Play failed:', e.message);
+          // Retry with new audio element
+          const newAudio = new Audio('/tool/duavit/dua_vit.mp3');
+          newAudio.loop = true;
+          newAudio.volume = 0.65;
+          bgMusicRef.current = newAudio;
+          newAudio.play().catch(() => {});
+        });
         
       } else {
-        // Fallback: simple loop
-        console.log('🎵 Using fallback loop');
+        // Create new audio if not preloaded
+        console.log('🎵 Creating new audio (not preloaded)');
         const audio = new Audio('/tool/duavit/dua_vit.mp3');
         audio.loop = true;
         audio.volume = 0.65;
@@ -975,7 +885,7 @@ export default function DuaThuHoatHinh() {
     } catch (e) {
       console.log('Audio error:', e);
     }
-  }, [doCrossfade]);
+  }, []);
 
   // Stop background music with fade out effect
   const stopBgMusic = useCallback((fadeOut = true) => {
@@ -984,51 +894,29 @@ export default function DuaThuHoatHinh() {
       bgMusicIntervalRef.current = null;
     }
     if (bgMusicRef.current) {
-      // For array of Audio elements (crossfade system)
-      if (Array.isArray(bgMusicRef.current)) {
-        const audios = bgMusicRef.current;
-        const activeAudio = audios[audios.activeIndex || 0];
-        
-        // Clear timeupdate listeners
-        audios.forEach(a => { a.ontimeupdate = null; });
-        
-        if (fadeOut && activeAudio.volume > 0) {
-          // Fade out over 3 seconds
-          const fadeInterval = setInterval(() => {
-            if (activeAudio.volume > 0.03) {
-              activeAudio.volume = Math.max(0, activeAudio.volume - 0.03);
-            } else {
-              clearInterval(fadeInterval);
-              audios.forEach(a => { a.pause(); a.currentTime = 0; });
-            }
-          }, 100);
-        } else {
-          audios.forEach(a => { a.pause(); a.currentTime = 0; });
-        }
-        bgMusicRef.current = null;
-      } else if (bgMusicRef.current instanceof Audio) {
-        // Single audio element (legacy/fallback)
+      if (bgMusicRef.current instanceof Audio) {
         const audio = bgMusicRef.current;
         
         if (fadeOut && audio.volume > 0) {
-          // Fade out over 3 seconds for smooth ending
+          // Fade out over 2 seconds
           const fadeInterval = setInterval(() => {
-            if (audio.volume > 0.03) {
-              audio.volume = Math.max(0, audio.volume - 0.03);
+            if (audio.volume > 0.05) {
+              audio.volume = Math.max(0, audio.volume - 0.05);
             } else {
               clearInterval(fadeInterval);
               audio.pause();
               audio.currentTime = 0;
+              bgMusicRef.current = null;
             }
-          }, 100); // 100ms x ~22 steps ≈ 3s fade out
+          }, 100);
         } else {
           audio.pause();
           audio.currentTime = 0;
+          bgMusicRef.current = null;
         }
-        bgMusicRef.current = null;
-      } else {
-        // For AudioContext (legacy cleanup)
-        bgMusicRef.current.close?.();
+      } else if (bgMusicRef.current.close) {
+        // For AudioContext
+        bgMusicRef.current.close();
         bgMusicRef.current = null;
       }
     }
