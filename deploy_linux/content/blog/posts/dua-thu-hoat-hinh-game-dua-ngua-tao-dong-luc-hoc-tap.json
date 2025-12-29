@@ -3,9 +3,18 @@
   "title": "Đua Thú Hoạt Hình - Biến Thi Đua Học Tập Thành Cuộc Đua Động Vật Siêu Vui",
   "description": "Chia sẻ cách sử dụng Đua Thú Hoạt Hình trong lớp học. Mỗi đội chọn một con vật, trả lời đúng để con vật tiến lên. Học sinh hào hứng, cổ vũ nhiệt tình.",
   "category": "goc-chia-se-giao-vien",
-  "keywords": ["đua thú hoạt hình", "game đua ngựa", "đua động vật lớp học", "thi đua hoạt hình", "game đua thú", "đua ngựa giáo dục", "game thi đua học sinh", "cuộc đua động vật"],
-  "status": "draft",
-  "publishedAt": null,
+  "keywords": [
+    "đua thú hoạt hình",
+    "game đua ngựa",
+    "đua động vật lớp học",
+    "thi đua hoạt hình",
+    "game đua thú",
+    "đua ngựa giáo dục",
+    "game thi đua học sinh",
+    "cuộc đua động vật"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-28T05:49:27.134Z",
   "author": {
     "name": "Cô Thảo",
     "role": "Giáo viên Tiểu học"
@@ -14,40 +23,603 @@
     "intro": "\"Cô ơi! Con thỏ của đội con sắp đuổi kịp con hổ rồi!\" - Tiếng reo hò vang khắp lớp 3A. Trên màn hình, 4 con vật hoạt hình đang chạy đua về đích. Mỗi lần một đội trả lời đúng, con vật của họ lại nhảy lên phía trước. Đây không phải giờ ra chơi, mà là tiết ôn tập Toán. Kể từ khi tôi đưa Đua Thú Hoạt Hình vào lớp, các con xem tiết học như một cuộc phiêu lưu.",
     "sections": [
       {
-        "title": "Đua Thú Hoạt Hình Là Gì?",
-        "content": "Đua Thú Hoạt Hình là phiên bản \"cute\" của Cuộc Đua Kì Thú, thiết kế đặc biệt cho học sinh tiểu học:\n\n**Cách hoạt động:**\n- Chia lớp thành 4-6 đội\n- Mỗi đội chọn 1 con vật đại diện: thỏ, hổ, voi, khỉ, gấu...\n- Khi đội trả lời đúng → con vật tiến lên\n- Trả lời sai → đứng yên (không bị lùi)\n- Con vật nào về đích trước = đội đó thắng!\n\n**Điểm khác biệt:**\n- 🐰 Hình ảnh động vật hoạt hình dễ thương\n- 🏃 Animation con vật chạy, nhảy sinh động\n- 🎵 Âm thanh vui nhộn khi tiến lên\n- 🎉 Hiệu ứng ăn mừng khi về đích\n\n**Tại sao trẻ em thích?**\nTrẻ tiểu học yêu động vật. Khi con vật \"của mình\" chạy, các em cảm thấy như đang cổ vũ cho một người bạn. Sự gắn kết cảm xúc này tạo động lực học tập cực mạnh!"
+        "type": "heading",
+        "level": 2,
+        "text": "Đua Thú Hoạt Hình Là Gì?"
       },
       {
-        "title": "Tại Sao Tôi Chọn Đua Thú Thay Vì Bảng Điểm?",
-        "content": "Trước đây tôi dùng bảng điểm số đơn thuần. Kết quả không như mong đợi:\n\n**Vấn đề với bảng điểm số:**\n- Trẻ tiểu học chưa hiểu rõ ý nghĩa con số\n- \"50 điểm\" vs \"60 điểm\" - khó hình dung\n- Thiếu yếu tố hình ảnh, cảm xúc\n- Dễ chán, thiếu hào hứng\n\n**Ưu điểm của Đua Thú Hoạt Hình:**\n- 👀 Trực quan: Thấy rõ ai đang dẫn đầu\n- 🐯 Nhân cách hóa: \"Con hổ của đội mình\"\n- 🎭 Cảm xúc: Vui khi tiến, tiếc khi đứng yên\n- 🤝 Gắn kết: Cả đội cổ vũ cho \"con vật của mình\"\n- 📖 Dễ hiểu: Trẻ 6 tuổi cũng hiểu ngay\n\n**Kết quả thực tế:**\n- Học sinh tập trung hơn 80%\n- Tham gia phát biểu tăng gấp 3 lần\n- Không còn cảnh \"ngồi im chờ hết tiết\"\n- Các em hỏi: \"Cô ơi, hôm nay có đua thú không?\""
+        "type": "paragraph",
+        "text": "Đua Thú Hoạt Hình là phiên bản \"cute\" của Cuộc Đua Kì Thú, thiết kế đặc biệt cho học sinh tiểu học:"
       },
       {
-        "title": "Cách Tổ Chức Một Cuộc Đua Thú",
-        "content": "**Chuẩn bị (5 phút trước tiết):**\n- Chuẩn bị 10-15 câu hỏi theo bài học\n- Mở SoroKid Đua Thú Hoạt Hình\n- Kết nối màn hình/projector\n\n**Bước 1: Chia đội (3 phút)**\n- 4 đội, mỗi đội 8-10 học sinh\n- Có thể chia theo tổ có sẵn\n- Hoặc dùng Chia Nhóm ngẫu nhiên\n\n**Bước 2: Chọn con vật (2 phút)**\n- Mỗi đội được chọn 1 con vật\n- Đội nào giơ tay trước được chọn trước\n- Con thỏ, con hổ, con voi, con gấu...\n- Các em RẤT hào hứng bước này!\n\n**Bước 3: Giải thích luật (2 phút)**\n- Trả lời đúng = con vật tiến 1 bước\n- Trả lời sai = đứng yên\n- Mỗi đội luân phiên trả lời\n- Về đích trước = thắng!\n\n**Bước 4: Bắt đầu đua! (20-25 phút)**\n- Đặt câu hỏi, đội được chỉ định trả lời\n- Cả đội thảo luận 10 giây, cử 1 bạn trả lời\n- Đúng: Con vật nhảy lên, cả lớp reo hò\n- Tiếp tục đến khi có đội về đích\n\n**Bước 5: Tổng kết (3 phút)**\n- Chúc mừng đội thắng\n- Khen tất cả các đội\n- Hỏi: \"Câu nào khó nhất? Học được gì?\""
+        "type": "paragraph",
+        "text": "**Cách hoạt động:**"
       },
       {
-        "title": "10 Mẹo Để Cuộc Đua Thêm Vui",
-        "content": "**1. Đặt tên cho con vật:**\n- Không chỉ \"con thỏ\" mà là \"Thỏ Bông\"\n- \"Hổ Mạnh Mẽ\", \"Voi Thông Minh\"...\n- Các em gắn bó hơn với tên riêng\n\n**2. Tạo tiếng hô đội:**\n- \"Thỏ Bông! Thỏ Bông! Vô địch! Vô địch!\"\n- Cho 1 phút các đội tạo tiếng hô\n- Hô khi con vật tiến lên\n\n**3. Thêm \"Power-up\":**\n- Trả lời đúng câu khó = tiến 2 bước\n- Trả lời nhanh nhất = +1 bước bonus\n- Giống như game điện tử!\n\n**4. \"Chướng ngại vật\":**\n- Câu hỏi đặc biệt = tất cả đội cùng trả lời\n- Đội nào sai = lùi 1 bước\n- Tạo kịch tính!\n\n**5. Cho đội yếu cơ hội:**\n- Đội cuối được chọn độ khó câu hỏi\n- Chọn câu dễ = tiến 1, câu khó = tiến 2\n\n**6. \"Cứu bạn\":**\n- Đội khác có thể \"cứu\" đội sai\n- Nếu cứu đúng = cả 2 đội cùng tiến\n\n**7. Âm thanh sôi động:**\n- Bật nhạc nền nhẹ\n- Hiệu ứng âm thanh khi tiến/về đích\n\n**8. Nghỉ giữa chừng:**\n- Sau 10 câu, nghỉ 2 phút\n- Các đội bàn chiến thuật\n\n**9. \"Vòng tăng tốc\" cuối:**\n- 5 câu cuối = tiến 2 bước/câu\n- Đội cuối vẫn có cơ hội lật ngược!\n\n**10. Trao giải nhiều hạng:**\n- Quán quân, Á quân, Đội fair-play nhất..."
+        "type": "list",
+        "items": [
+          "Chia lớp thành 4-6 đội",
+          "Mỗi đội chọn 1 con vật đại diện: thỏ, hổ, voi, khỉ, gấu...",
+          "Khi đội trả lời đúng → con vật tiến lên",
+          "Trả lời sai → đứng yên (không bị lùi)",
+          "Con vật nào về đích trước = đội đó thắng!"
+        ]
       },
       {
-        "title": "Phản Ứng Đáng Yêu Của Học Sinh",
-        "content": "Tổ chức Đua Thú, tôi chứng kiến nhiều khoảnh khắc đáng yêu:\n\n**\"Con voi của con!\"**\nMột em ôm màn hình (giả vờ) khi con voi về nhất: \"Con voi của con thắng rồi!\" - Sự gắn bó đáng yêu.\n\n**Cổ vũ nhiệt tình:**\n\"Thỏ ơi cố lên! Cố lên!\" - Cả đội hô vang như cổ vũ bóng đá.\n\n**Tiếc nuối dễ thương:**\n\"Hu hu, con gấu của tụi con thua rồi\" - Nhưng 5 giây sau đã cười toe toét.\n\n**Tự học bài:**\n\"Mẹ ơi, con phải học bài để mai đua thú thắng!\" - Phụ huynh nhắn lại.\n\n**Nhường bạn:**\n\"Để bạn Lan trả lời đi, bạn ấy biết câu này!\" - Tinh thần đồng đội.\n\n**Hỏi mỗi ngày:**\n\"Cô ơi, hôm nay đua thú không cô?\" - Câu hỏi đầu tiên khi vào lớp.\n\n**Kết quả bất ngờ:**\nNhững em nhút nhát nhất cũng giơ tay vì \"không muốn con thỏ của đội thua\"!"
+        "type": "paragraph",
+        "text": "**Điểm khác biệt:**"
       },
       {
-        "title": "Ứng Dụng Cho Các Môn Học",
-        "content": "Đua Thú không chỉ cho Toán, mà phù hợp mọi môn:\n\n**Toán:**\n- Tính nhẩm nhanh\n- Đọc số, so sánh số\n- Hình học cơ bản\n- Bảng cửu chương\n\n**Tiếng Việt:**\n- Đọc đúng từ\n- Ghép vần\n- Từ đồng nghĩa/trái nghĩa\n- Điền từ vào chỗ trống\n\n**Tiếng Anh:**\n- Từ vựng theo chủ đề\n- Màu sắc, số đếm, động vật\n- Câu đơn giản\n- Phát âm\n\n**Tự nhiên - Xã hội:**\n- Động vật, thực vật\n- Cơ thể người\n- Gia đình, trường học\n- An toàn giao thông\n\n**Đạo đức:**\n- Tình huống ứng xử\n- Đúng/sai\n- Việc nên làm\n\n**Âm nhạc:**\n- Đoán tên bài hát\n- Nhận biết nhạc cụ\n- Hát đúng lời"
+        "type": "list",
+        "items": [
+          "🐰 Hình ảnh động vật hoạt hình dễ thương",
+          "🏃 Animation con vật chạy, nhảy sinh động",
+          "🎵 Âm thanh vui nhộn khi tiến lên",
+          "🎉 Hiệu ứng ăn mừng khi về đích"
+        ]
       },
       {
-        "title": "So Sánh: Đua Thú vs Cuộc Đua Kì Thú",
-        "content": "Cả hai đều là game đua, nhưng khác nhau:\n\n**Đua Thú Hoạt Hình:**\n- 🎯 Đối tượng: Tiểu học (6-11 tuổi)\n- 🐰 Hình ảnh: Động vật hoạt hình dễ thương\n- 🎨 Màu sắc: Rực rỡ, vui mắt\n- 🎵 Âm thanh: Vui nhộn, trẻ con\n- 📊 Cách tính: Đơn giản (tiến/đứng yên)\n- ❤️ Cảm xúc: Gắn bó với \"con vật của mình\"\n\n**Cuộc Đua Kì Thú:**\n- 🎯 Đối tượng: THCS, THPT, Đại học\n- 📊 Hình ảnh: Bảng xếp hạng, biểu đồ\n- 🎨 Màu sắc: Chuyên nghiệp, hiện đại\n- 🔢 Âm thanh: Nhẹ nhàng hơn\n- 📊 Cách tính: Điểm số chi tiết\n- 🏆 Cảm xúc: Cạnh tranh, thành tích\n\n**Khi nào chọn gì?**\n- Lớp 1-5: Đua Thú Hoạt Hình\n- Lớp 6 trở lên: Cuộc Đua Kì Thú\n- Lớp 5-6 có thể dùng cả hai, tùy không khí lớp"
+        "type": "paragraph",
+        "text": "**Tại sao trẻ em thích?**\nTrẻ tiểu học yêu động vật. Khi con vật \"của mình\" chạy, các em cảm thấy như đang cổ vũ cho một người bạn. Sự gắn kết cảm xúc này tạo động lực học tập cực mạnh!"
       },
       {
-        "title": "Kết Hợp Với Các Công Cụ Khác",
-        "content": "Đua Thú mạnh hơn khi kết hợp:\n\n**+ Bốc Thăm:**\n- Bốc thăm chọn đội trả lời\n- Bốc thăm chọn bạn đại diện đội\n- Công bằng, không ai phàn nàn\n\n**+ Đồng Hồ Bấm Giờ:**\n- Giới hạn 10-15 giây/câu\n- Trả lời trong 5 giây = bonus!\n- Tạo nhịp độ nhanh, hấp dẫn\n\n**+ Xúc Xắc:**\n- Gieo xúc xắc quyết định số bước tiến\n- Trả lời đúng + gieo được 6 = tiến 6 bước!\n- Thêm yếu tố may mắn\n\n**+ Chiếc Nón Kỳ Diệu:**\n- Vòng quay chọn chủ đề câu hỏi\n- \"Vòng quay may mắn\" xen kẽ\n- Trúng \"x2\" = tiến gấp đôi!\n\n**Công thức hoàn hảo:**\nĐua Thú + Timer + Bốc Thăm = Tiết học siêu vui!"
+        "type": "heading",
+        "level": 2,
+        "text": "Tại Sao Tôi Chọn Đua Thú Thay Vì Bảng Điểm?"
       },
       {
-        "title": "Lưu Ý Quan Trọng Cho Giáo Viên",
-        "content": "**1. Kiểm soát cảm xúc:**\n- Trẻ tiểu học cảm xúc mạnh\n- Một số em khóc khi thua\n- Chuẩn bị tâm lý: \"Thua không sao, lần sau thắng!\"\n- Khen TẤT CẢ các đội, không chỉ đội thắng\n\n**2. Đảm bảo công bằng:**\n- Chia đội đều về học lực\n- Câu hỏi phù hợp trình độ\n- Mỗi bạn đều có cơ hội trả lời\n\n**3. Không để ai bị \"bỏ rơi\":**\n- Bạn yếu hơn: cho câu dễ\n- Bạn nhút nhát: cho cơ hội cùng bạn khác\n- Mọi em đều tham gia\n\n**4. Thời gian hợp lý:**\n- 20-25 phút/cuộc đua\n- Đừng kéo dài quá\n- Kết thúc khi còn đang vui\n\n**5. Phần thưởng:**\n- Sticker, sao, điểm tốt\n- KHÔNG cần quà vật chất lớn\n- Thưởng tinh thần là đủ\n\n**6. Sau cuộc đua:**\n- Tổng kết kiến thức\n- \"Các con học được gì từ cuộc đua?\"\n- Liên hệ với bài học"
+        "type": "paragraph",
+        "text": "Trước đây tôi dùng bảng điểm số đơn thuần. Kết quả không như mong đợi:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Vấn đề với bảng điểm số:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Trẻ tiểu học chưa hiểu rõ ý nghĩa con số",
+          "\"50 điểm\" vs \"60 điểm\" - khó hình dung",
+          "Thiếu yếu tố hình ảnh, cảm xúc",
+          "Dễ chán, thiếu hào hứng"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Ưu điểm của Đua Thú Hoạt Hình:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "👀 Trực quan: Thấy rõ ai đang dẫn đầu",
+          "🐯 Nhân cách hóa: \"Con hổ của đội mình\"",
+          "🎭 Cảm xúc: Vui khi tiến, tiếc khi đứng yên",
+          "🤝 Gắn kết: Cả đội cổ vũ cho \"con vật của mình\"",
+          "📖 Dễ hiểu: Trẻ 6 tuổi cũng hiểu ngay"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả thực tế:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Học sinh tập trung hơn 80%",
+          "Tham gia phát biểu tăng gấp 3 lần",
+          "Không còn cảnh \"ngồi im chờ hết tiết\"",
+          "Các em hỏi: \"Cô ơi, hôm nay có đua thú không?\""
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách Tổ Chức Một Cuộc Đua Thú"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Chuẩn bị (5 phút trước tiết):**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chuẩn bị 10-15 câu hỏi theo bài học",
+          "Mở SoroKid Đua Thú Hoạt Hình",
+          "Kết nối màn hình/projector"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 1: Chia đội (3 phút)**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "4 đội, mỗi đội 8-10 học sinh",
+          "Có thể chia theo tổ có sẵn",
+          "Hoặc dùng Chia Nhóm ngẫu nhiên"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 2: Chọn con vật (2 phút)**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Mỗi đội được chọn 1 con vật",
+          "Đội nào giơ tay trước được chọn trước",
+          "Con thỏ, con hổ, con voi, con gấu...",
+          "Các em RẤT hào hứng bước này!"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 3: Giải thích luật (2 phút)**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Trả lời đúng = con vật tiến 1 bước",
+          "Trả lời sai = đứng yên",
+          "Mỗi đội luân phiên trả lời",
+          "Về đích trước = thắng!"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 4: Bắt đầu đua! (20-25 phút)**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đặt câu hỏi, đội được chỉ định trả lời",
+          "Cả đội thảo luận 10 giây, cử 1 bạn trả lời",
+          "Đúng: Con vật nhảy lên, cả lớp reo hò",
+          "Tiếp tục đến khi có đội về đích"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 5: Tổng kết (3 phút)**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chúc mừng đội thắng",
+          "Khen tất cả các đội",
+          "Hỏi: \"Câu nào khó nhất? Học được gì?\""
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "10 Mẹo Để Cuộc Đua Thêm Vui"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Đặt tên cho con vật:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Không chỉ \"con thỏ\" mà là \"Thỏ Bông\"",
+          "\"Hổ Mạnh Mẽ\", \"Voi Thông Minh\"...",
+          "Các em gắn bó hơn với tên riêng"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Tạo tiếng hô đội:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"Thỏ Bông! Thỏ Bông! Vô địch! Vô địch!\"",
+          "Cho 1 phút các đội tạo tiếng hô",
+          "Hô khi con vật tiến lên"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Thêm \"Power-up\":**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Trả lời đúng câu khó = tiến 2 bước",
+          "Trả lời nhanh nhất = +1 bước bonus",
+          "Giống như game điện tử!"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**4. \"Chướng ngại vật\":**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Câu hỏi đặc biệt = tất cả đội cùng trả lời",
+          "Đội nào sai = lùi 1 bước",
+          "Tạo kịch tính!"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**5. Cho đội yếu cơ hội:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đội cuối được chọn độ khó câu hỏi",
+          "Chọn câu dễ = tiến 1, câu khó = tiến 2"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**6. \"Cứu bạn\":**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đội khác có thể \"cứu\" đội sai",
+          "Nếu cứu đúng = cả 2 đội cùng tiến"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**7. Âm thanh sôi động:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bật nhạc nền nhẹ",
+          "Hiệu ứng âm thanh khi tiến/về đích"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**8. Nghỉ giữa chừng:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Sau 10 câu, nghỉ 2 phút",
+          "Các đội bàn chiến thuật"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**9. \"Vòng tăng tốc\" cuối:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "5 câu cuối = tiến 2 bước/câu",
+          "Đội cuối vẫn có cơ hội lật ngược!"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**10. Trao giải nhiều hạng:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Quán quân, Á quân, Đội fair-play nhất..."
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Phản Ứng Đáng Yêu Của Học Sinh"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tổ chức Đua Thú, tôi chứng kiến nhiều khoảnh khắc đáng yêu:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**\"Con voi của con!\"**\nMột em ôm màn hình (giả vờ) khi con voi về nhất: \"Con voi của con thắng rồi!\" - Sự gắn bó đáng yêu."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cổ vũ nhiệt tình:**\n\"Thỏ ơi cố lên! Cố lên!\" - Cả đội hô vang như cổ vũ bóng đá."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tiếc nuối dễ thương:**\n\"Hu hu, con gấu của tụi con thua rồi\" - Nhưng 5 giây sau đã cười toe toét."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tự học bài:**\n\"Mẹ ơi, con phải học bài để mai đua thú thắng!\" - Phụ huynh nhắn lại."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Nhường bạn:**\n\"Để bạn Lan trả lời đi, bạn ấy biết câu này!\" - Tinh thần đồng đội."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Hỏi mỗi ngày:**\n\"Cô ơi, hôm nay đua thú không cô?\" - Câu hỏi đầu tiên khi vào lớp."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả bất ngờ:**\nNhững em nhút nhát nhất cũng giơ tay vì \"không muốn con thỏ của đội thua\"!"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ứng Dụng Cho Các Môn Học"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đua Thú không chỉ cho Toán, mà phù hợp mọi môn:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Toán:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Tính nhẩm nhanh",
+          "Đọc số, so sánh số",
+          "Hình học cơ bản",
+          "Bảng cửu chương"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tiếng Việt:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đọc đúng từ",
+          "Ghép vần",
+          "Từ đồng nghĩa/trái nghĩa",
+          "Điền từ vào chỗ trống"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tiếng Anh:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Từ vựng theo chủ đề",
+          "Màu sắc, số đếm, động vật",
+          "Câu đơn giản",
+          "Phát âm"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tự nhiên - Xã hội:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Động vật, thực vật",
+          "Cơ thể người",
+          "Gia đình, trường học",
+          "An toàn giao thông"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Đạo đức:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Tình huống ứng xử",
+          "Đúng/sai",
+          "Việc nên làm"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Âm nhạc:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đoán tên bài hát",
+          "Nhận biết nhạc cụ",
+          "Hát đúng lời"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "So Sánh: Đua Thú vs Cuộc Đua Kì Thú"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cả hai đều là game đua, nhưng khác nhau:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Đua Thú Hoạt Hình:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "🎯 Đối tượng: Tiểu học (6-11 tuổi)",
+          "🐰 Hình ảnh: Động vật hoạt hình dễ thương",
+          "🎨 Màu sắc: Rực rỡ, vui mắt",
+          "🎵 Âm thanh: Vui nhộn, trẻ con",
+          "📊 Cách tính: Đơn giản (tiến/đứng yên)",
+          "❤️ Cảm xúc: Gắn bó với \"con vật của mình\""
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cuộc Đua Kì Thú:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "🎯 Đối tượng: THCS, THPT, Đại học",
+          "📊 Hình ảnh: Bảng xếp hạng, biểu đồ",
+          "🎨 Màu sắc: Chuyên nghiệp, hiện đại",
+          "🔢 Âm thanh: Nhẹ nhàng hơn",
+          "📊 Cách tính: Điểm số chi tiết",
+          "🏆 Cảm xúc: Cạnh tranh, thành tích"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Khi nào chọn gì?**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Lớp 1-5: Đua Thú Hoạt Hình",
+          "Lớp 6 trở lên: Cuộc Đua Kì Thú",
+          "Lớp 5-6 có thể dùng cả hai, tùy không khí lớp"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết Hợp Với Các Công Cụ Khác"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đua Thú mạnh hơn khi kết hợp:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**+ Bốc Thăm:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bốc thăm chọn đội trả lời",
+          "Bốc thăm chọn bạn đại diện đội",
+          "Công bằng, không ai phàn nàn"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**+ Đồng Hồ Bấm Giờ:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Giới hạn 10-15 giây/câu",
+          "Trả lời trong 5 giây = bonus!",
+          "Tạo nhịp độ nhanh, hấp dẫn"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**+ Xúc Xắc:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Gieo xúc xắc quyết định số bước tiến",
+          "Trả lời đúng + gieo được 6 = tiến 6 bước!",
+          "Thêm yếu tố may mắn"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**+ Chiếc Nón Kỳ Diệu:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Vòng quay chọn chủ đề câu hỏi",
+          "\"Vòng quay may mắn\" xen kẽ",
+          "Trúng \"x2\" = tiến gấp đôi!"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Công thức hoàn hảo:**\nĐua Thú + Timer + Bốc Thăm = Tiết học siêu vui!"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lưu Ý Quan Trọng Cho Giáo Viên"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Kiểm soát cảm xúc:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Trẻ tiểu học cảm xúc mạnh",
+          "Một số em khóc khi thua",
+          "Chuẩn bị tâm lý: \"Thua không sao, lần sau thắng!\"",
+          "Khen TẤT CẢ các đội, không chỉ đội thắng"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Đảm bảo công bằng:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chia đội đều về học lực",
+          "Câu hỏi phù hợp trình độ",
+          "Mỗi bạn đều có cơ hội trả lời"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Không để ai bị \"bỏ rơi\":**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bạn yếu hơn: cho câu dễ",
+          "Bạn nhút nhát: cho cơ hội cùng bạn khác",
+          "Mọi em đều tham gia"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**4. Thời gian hợp lý:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "20-25 phút/cuộc đua",
+          "Đừng kéo dài quá",
+          "Kết thúc khi còn đang vui"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**5. Phần thưởng:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Sticker, sao, điểm tốt",
+          "KHÔNG cần quà vật chất lớn",
+          "Thưởng tinh thần là đủ"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**6. Sau cuộc đua:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Tổng kết kiến thức",
+          "\"Các con học được gì từ cuộc đua?\"",
+          "Liên hệ với bài học"
+        ]
       }
     ]
   },
@@ -74,17 +646,31 @@
     }
   ],
   "cta": {
-    "title": "Bắt Đầu Cuộc Đua Thú Ngay!",
-    "description": "Học sinh sẽ mê mẩn khi thấy các con vật hoạt hình chạy đua. Miễn phí, dễ sử dụng, hiệu ứng đẹp mắt.",
     "buttonText": "Chơi Đua Thú",
-    "buttonLink": "/tool/dua-thu-hoat-hinh"
+    "buttonLink": "/tool/dua-thu-hoat-hinh",
+    "text": "Bắt Đầu Cuộc Đua Thú Ngay! - Học sinh sẽ mê mẩn khi thấy các con vật hoạt hình chạy đua. Miễn phí, dễ sử dụng, hiệu ứng đẹp mắt."
   },
-  "relatedTools": ["dua-thu-hoat-hinh", "cuoc-dua-ki-thu", "random-picker", "timer"],
-  "relatedPosts": ["cuoc-dua-ki-thu-bien-lop-hoc-thanh-duong-dua", "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu", "chia-nhom-ngau-nhien-cong-bang-khong-ai-than-phien"],
+  "relatedTools": [
+    "dua-thu-hoat-hinh",
+    "cuoc-dua-ki-thu",
+    "random-picker",
+    "timer"
+  ],
+  "relatedPosts": [
+    "cuoc-dua-ki-thu-bien-lop-hoc-thanh-duong-dua",
+    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
+    "chia-nhom-ngau-nhien-cong-bang-khong-ai-than-phien"
+  ],
   "seo": {
     "title": "Đua Thú Hoạt Hình - Game Đua Động Vật Cho Lớp Học Tiểu Học",
     "description": "Hướng dẫn tổ chức Đua Thú Hoạt Hình trong lớp. Học sinh chọn con vật, đua bằng cách trả lời câu hỏi. Công cụ miễn phí, hình ảnh dễ thương.",
-    "keywords": ["đua thú hoạt hình", "game đua ngựa", "đua động vật", "thi đua lớp học", "game tiểu học"]
+    "keywords": [
+      "đua thú hoạt hình",
+      "game đua ngựa",
+      "đua động vật",
+      "thi đua lớp học",
+      "game tiểu học"
+    ]
   },
   "schema": {
     "type": "Article",
@@ -92,5 +678,6 @@
     "author": "Cô Thảo - Giáo viên Tiểu học",
     "datePublished": null,
     "dateModified": null
-  }
+  },
+  "image": "/blog/dua-thu-hoat-hinh-game-dua-ngua-tao-dong-luc-hoc-tap.png"
 }

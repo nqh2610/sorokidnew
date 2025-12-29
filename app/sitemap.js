@@ -26,6 +26,9 @@ const TOOL_PAGES = [
   { path: '/tool/boc-tham', priority: 0.8, changefreq: 'monthly' },
   { path: '/tool/ban-tinh-soroban', priority: 0.8, changefreq: 'monthly' },
   { path: '/tool/den-may-man', priority: 0.8, changefreq: 'monthly' },
+  { path: '/tool/ai-la-trieu-phu', priority: 0.8, changefreq: 'monthly' },
+  { path: '/tool/cuoc-dua-ki-thu', priority: 0.8, changefreq: 'monthly' },
+  { path: '/tool/xuc-xac', priority: 0.8, changefreq: 'monthly' },
 ];
 
 export default async function sitemap() {

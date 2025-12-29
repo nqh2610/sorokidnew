@@ -35,6 +35,7 @@ const CHARACTER_TYPES = {
   cars: {
     name: '🚗 Xe cộ',
     icons: ['🚗', '🚙', '🚕', '🚌', '🏎️', '🚓', '🚑', '🚒', '🛻', '🚐', '🏍️', '🚲'],
+    flipTransform: 'scaleX(-1)', // Flip horizontal - xe mặc định hướng trái
     colors: [
       'from-red-500 to-rose-600',
       'from-blue-500 to-indigo-600',
@@ -53,6 +54,7 @@ const CHARACTER_TYPES = {
   animals: {
     name: '🐎 Động vật',
     icons: ['🐎', '🦁', '🐅', '🦊', '🐰', '🐻', '🐼', '🦄', '🐲', '🦅', '🐬', '🦋'],
+    flipTransform: 'scaleX(-1)', // Flip horizontal - động vật mặc định hướng trái
     colors: [
       'from-amber-600 to-yellow-600',
       'from-orange-500 to-amber-600',
@@ -71,6 +73,7 @@ const CHARACTER_TYPES = {
   people: {
     name: '🧑 Người',
     icons: ['🏃', '🚴', '🏄', '⛷️', '🤸', '🧗', '🏋️', '🤾', '🏊', '🚣', '🧘', '🤺'],
+    flipTransform: 'scaleX(-1)', // Flip horizontal - người mặc định hướng trái
     colors: [
       'from-blue-500 to-indigo-600',
       'from-green-500 to-teal-600',
@@ -89,6 +92,7 @@ const CHARACTER_TYPES = {
   rockets: {
     name: '🚀 Tàu vũ trụ',
     icons: ['🚀', '🛸', '🛩️', '✈️', '🚁', '🛰️', '🎈', '🪂', '🛫', '🛬', '⛵', '🚢'],
+    flipTransform: 'rotate(-25deg)', // Chéo sang phải, hướng lên trên
     colors: [
       'from-red-500 to-orange-600',
       'from-green-400 to-emerald-600',
@@ -968,7 +972,7 @@ export default function CuocDuaClient() {
                             <div className={`absolute -right-5 transition-all duration-300 ${justScored ? 'scale-150 animate-bounce' : 'hover:scale-110'}`}
                                  style={{ top: isLargeCard ? '-42px' : isMediumCard ? '-36px' : '-30px' }}>
                               <span className={`${isLargeCard ? 'text-5xl' : isMediumCard ? 'text-4xl' : 'text-3xl'} drop-shadow-xl filter`}
-                                    style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
+                                    style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)', transform: CHARACTER_TYPES[charType]?.flipTransform || 'scaleX(-1)', display: 'inline-block' }}>
                                 {racer.icon}
                               </span>
                             </div>
@@ -1184,7 +1188,7 @@ export default function CuocDuaClient() {
                   'bg-orange-50'}`}>
                   <div className="text-2xl">{i === 0 ? '🥇' : i === 1 ? '🥈' : '🥉'}</div>
                   <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${racer.color} flex items-center justify-center text-xl`}>
-                    {racer.icon}
+                    <span style={{ transform: CHARACTER_TYPES[charType]?.flipTransform || 'scaleX(-1)', display: 'inline-block' }}>{racer.icon}</span>
                   </div>
                   <div className="flex-1">
                     <p className="text-gray-800 font-bold text-sm">{racer.name}</p>

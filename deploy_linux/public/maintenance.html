@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoroKid - Đang Nâng Cấp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #1e1b4b 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated background circles */
+        body::before,
+        body::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        body::before {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #4F7FFF, #8B5CF6);
+            top: -100px;
+            left: -100px;
+        }
+
+        body::after {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, 30px) scale(1.1); }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 50px;
+            border-radius: 32px;
+            max-width: 520px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Logo SVG */
+        /* Logo Text */
+        .logo-text {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #4F7FFF 0%, #8B5CF6 50%, #EC4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        /* Loading animation */
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 40px 0;
+        }
+
+        .loader span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 1.4s ease-in-out infinite;
+        }
+
+        .loader span:nth-child(1) {
+            background: #4F7FFF;
+            animation-delay: 0s;
+        }
+
+        .loader span:nth-child(2) {
+            background: #8B5CF6;
+            animation-delay: 0.2s;
+        }
+
+        .loader span:nth-child(3) {
+            background: #EC4899;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse {
+            0%, 80%, 100% {
+                transform: scale(0.6);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* Progress bar */
+        .progress-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            height: 6px;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4F7FFF, #8B5CF6, #EC4899);
+            border-radius: 100px;
+            animation: loading 2.5s ease-in-out infinite;
+            width: 30%;
+        }
+
+        @keyframes loading {
+            0% { width: 10%; margin-left: 0; }
+            50% { width: 60%; margin-left: 20%; }
+            100% { width: 10%; margin-left: 90%; }
+        }
+
+        .message {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .message a {
+            color: #8B5CF6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .message a:hover {
+            color: #EC4899;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 40px 30px;
+            }
+
+            .logo-text {
+                font-size: 2.5rem;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo-text">SoroKid</div>
+
+        <h1>Đang Nâng Cấp Hệ Thống</h1>
+        <p class="subtitle">
+            Chúng tôi đang cập nhật để mang đến<br>
+            trải nghiệm tốt hơn cho bạn.
+        </p>
+
+        <!-- Loading dots -->
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+
+        <p class="message">
+            Vui lòng quay lại sau ít phút.<br>
+            Liên hệ: <a href="mailto:support@sorokid.com">support@sorokid.com</a>
+        </p>
+    </div>
+</body>
+</html>

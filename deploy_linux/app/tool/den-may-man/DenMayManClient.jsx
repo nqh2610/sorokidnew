@@ -22,8 +22,8 @@ function DenMayManContent() {
   
   const [lightMode, setLightMode] = useState(2);
   const [greenChance, setGreenChance] = useState(50); // 2-đèn: 50/50 cân bằng
-  const [yellowChance, setYellowChance] = useState(33); // 3-đèn: 34/33/33 cân bằng
-  const [showProbability, setShowProbability] = useState(true); // Ẩn/hiện tỷ lệ
+  const [yellowChance, setYellowChance] = useState(33); // 3-đèn: 33.4/33.3/33.3 cân bằng
+  const [showProbability, setShowProbability] = useState(false); // Mặc định ẩn tỷ lệ
   
   const audioContextRef = useRef(null);
   const flickerIntervalRef = useRef(null);
@@ -239,97 +239,6 @@ function DenMayManContent() {
           </div>
         </div>
 
-        {/* Probability Settings - Collapsible */}
-        <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden">
-          <button
-            onClick={() => setShowProbability(!showProbability)}
-            className="w-full p-3 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
-          >
-            <span className="text-sm font-bold text-gray-800 flex items-center gap-2">
-              ⚖️ Tỷ lệ
-              {!showProbability && (
-                <span className="text-xs font-normal text-gray-400">(Đang ẩn)</span>
-              )}
-            </span>
-            <span className={`text-gray-400 transition-transform ${showProbability ? 'rotate-180' : ''}`}>
-              ▼
-            </span>
-          </button>
-          
-          {showProbability && (
-            <div className="px-3 pb-3 space-y-3 border-t border-gray-100 pt-2">
-            <div>
-              <div className="flex justify-between mb-1">
-                <span className="text-xs font-medium flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-green-500"></span>Xanh
-                </span>
-                <span className="text-xs font-bold text-green-600">{greenChance}%</span>
-              </div>
-              <input
-                type="range" min="10" max={lightMode === 2 ? 90 : 80} step="10"
-                value={greenChance}
-                onChange={(e) => setGreenChance(parseInt(e.target.value))}
-                disabled={isSpinning}
-                className="w-full h-2 bg-green-200 rounded-lg appearance-none cursor-pointer"
-              />
-            </div>
-
-            {lightMode === 3 && (
-              <div>
-                <div className="flex justify-between mb-1">
-                  <span className="text-xs font-medium flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-yellow-400"></span>Vàng
-                  </span>
-                  <span className="text-xs font-bold text-yellow-600">{yellowChance}%</span>
-                </div>
-                <input
-                  type="range" min="10" max={90 - greenChance} step="10"
-                  value={yellowChance}
-                  onChange={(e) => setYellowChance(parseInt(e.target.value))}
-                  disabled={isSpinning}
-                  className="w-full h-2 bg-yellow-200 rounded-lg appearance-none cursor-pointer"
-                />
-              </div>
-            )}
-
-            <div className="flex justify-between text-xs pt-1 border-t border-gray-100">
-              <span className="font-medium flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-red-500"></span>Đỏ
-              </span>
-              <span className="font-bold text-red-600">{redChance}%</span>
-            </div>
-
-            <div className="flex flex-wrap gap-1 pt-1">
-              {lightMode === 2 ? (
-                <>
-                  <button onClick={() => setGreenChance(30)} disabled={isSpinning}
-                    className={`px-2 py-1 rounded text-[10px] font-medium ${greenChance === 30 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>
-                    Khó
-                  </button>
-                  <button onClick={() => setGreenChance(50)} disabled={isSpinning}
-                    className={`px-2 py-1 rounded text-[10px] font-medium ${greenChance === 50 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>
-                    50/50
-                  </button>
-                  <button onClick={() => setGreenChance(70)} disabled={isSpinning}
-                    className={`px-2 py-1 rounded text-[10px] font-medium ${greenChance === 70 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>
-                    Dễ
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button onClick={() => { setGreenChance(34); setYellowChance(33); }} disabled={isSpinning}
-                    className={`px-2 py-1 rounded text-[10px] font-medium ${greenChance === 34 && yellowChance === 33 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>Cân bằng</button>
-                  <button onClick={() => { setGreenChance(50); setYellowChance(30); }} disabled={isSpinning}
-                    className={`px-2 py-1 rounded text-[10px] font-medium ${greenChance === 50 && yellowChance === 30 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>Dễ hơn</button>
-                  <button onClick={() => { setGreenChance(20); setYellowChance(30); }} disabled={isSpinning}
-                    className={`px-2 py-1 rounded text-[10px] font-medium ${greenChance === 20 && yellowChance === 30 ? 'bg-violet-500 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>Khó hơn</button>
-                </>
-              )}
-            </div>
-            </div>
-          )}
-        </div>
-
         {/* Sound Toggle + Instructions - Combined */}
         <div className="bg-white rounded-xl shadow-md p-3 border border-gray-100">
           <label className="flex items-center gap-2 cursor-pointer mb-2">
@@ -345,84 +254,84 @@ function DenMayManContent() {
         </div>
       </div>
 
-      {/* Right Panel - Compact lights */}
+      {/* Right Panel - BIG lights for classroom visibility */}
       <div className="flex-1 min-w-0 order-1 lg:order-2">
-        <div className={`relative bg-gradient-to-br ${getBgClass()} rounded-2xl shadow-xl p-3 sm:p-4 min-h-[240px] flex flex-col items-center justify-center transition-all duration-500`}>
+        <div className={`relative bg-gradient-to-br ${getBgClass()} rounded-2xl shadow-xl p-4 sm:p-8 min-h-[400px] sm:min-h-[500px] flex flex-col items-center justify-center transition-all duration-500`}>
           
           {/* Countdown */}
           {countdown !== null && (
             <div className="absolute inset-0 flex items-center justify-center z-20 bg-black/80 rounded-2xl">
-              <div className="text-[7rem] sm:text-[9rem] font-black text-white animate-pulse">{countdown}</div>
+              <div className="text-[10rem] sm:text-[14rem] font-black text-white animate-pulse">{countdown}</div>
             </div>
           )}
 
-          {/* Lights - 2 mode */}
+          {/* Lights - 2 mode - EXTRA LARGE */}
           {lightMode === 2 ? (
-            <div className="flex gap-8 sm:gap-16 items-center">
+            <div className="flex gap-12 sm:gap-24 lg:gap-32 items-center">
               <div className="text-center">
-                <div className={`relative w-24 h-24 sm:w-32 sm:h-32 rounded-full transition-all duration-300 mb-1
+                <div className={`relative w-36 h-36 sm:w-48 sm:h-48 lg:w-56 lg:h-56 rounded-full transition-all duration-300 mb-2
                   ${activeLight === 'red' || result === 'red' 
-                    ? 'bg-red-500 shadow-[0_0_60px_25px_rgba(239,68,68,0.8)]' 
-                    : 'bg-red-800/60 border-4 border-red-600/50'}`}>
-                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
-                  {result === 'red' && <div className="absolute inset-0 flex items-center justify-center text-4xl sm:text-5xl animate-bounce">😱</div>}
+                    ? 'bg-red-500 shadow-[0_0_100px_50px_rgba(239,68,68,0.8)]' 
+                    : 'bg-red-800/60 border-8 border-red-600/50'}`}>
+                  <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+                  {result === 'red' && <div className="absolute inset-0 flex items-center justify-center text-6xl sm:text-7xl lg:text-8xl animate-bounce">😱</div>}
                 </div>
-                <span className="text-sm font-bold text-red-400">Đỏ</span>
+                <span className="text-lg sm:text-xl lg:text-2xl font-bold text-red-400">Đỏ</span>
               </div>
               <div className="text-center">
-                <div className={`relative w-24 h-24 sm:w-32 sm:h-32 rounded-full transition-all duration-300 mb-1
+                <div className={`relative w-36 h-36 sm:w-48 sm:h-48 lg:w-56 lg:h-56 rounded-full transition-all duration-300 mb-2
                   ${activeLight === 'green' || result === 'green' 
-                    ? 'bg-green-500 shadow-[0_0_60px_25px_rgba(34,197,94,0.8)]' 
-                    : 'bg-green-800/60 border-4 border-green-600/50'}`}>
-                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
-                  {result === 'green' && <div className="absolute inset-0 flex items-center justify-center text-4xl sm:text-5xl animate-bounce">🎉</div>}
+                    ? 'bg-green-500 shadow-[0_0_100px_50px_rgba(34,197,94,0.8)]' 
+                    : 'bg-green-800/60 border-8 border-green-600/50'}`}>
+                  <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+                  {result === 'green' && <div className="absolute inset-0 flex items-center justify-center text-6xl sm:text-7xl lg:text-8xl animate-bounce">🎉</div>}
                 </div>
-                <span className="text-sm font-bold text-green-400">Xanh</span>
+                <span className="text-lg sm:text-xl lg:text-2xl font-bold text-green-400">Xanh</span>
               </div>
             </div>
           ) : (
-            /* 3 mode - horizontal */
-            <div className="flex gap-4 sm:gap-8 items-center">
+            /* 3 mode - horizontal - LARGE */
+            <div className="flex gap-6 sm:gap-12 lg:gap-16 items-center">
               <div className="text-center">
-                <div className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full transition-all duration-300 mb-1
+                <div className={`relative w-28 h-28 sm:w-36 sm:h-36 lg:w-44 lg:h-44 rounded-full transition-all duration-300 mb-2
                   ${activeLight === 'red' || result === 'red' 
-                    ? 'bg-red-500 shadow-[0_0_50px_20px_rgba(239,68,68,0.8)]' 
-                    : 'bg-red-800/60 border-4 border-red-600/50'}`}>
-                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
-                  {result === 'red' && <div className="absolute inset-0 flex items-center justify-center text-3xl sm:text-4xl animate-bounce">😱</div>}
+                    ? 'bg-red-500 shadow-[0_0_80px_40px_rgba(239,68,68,0.8)]' 
+                    : 'bg-red-800/60 border-6 border-red-600/50'}`}>
+                  <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+                  {result === 'red' && <div className="absolute inset-0 flex items-center justify-center text-5xl sm:text-6xl lg:text-7xl animate-bounce">😱</div>}
                 </div>
-                <span className="text-xs font-bold text-red-400">Đỏ</span>
+                <span className="text-base sm:text-lg lg:text-xl font-bold text-red-400">Đỏ</span>
               </div>
               <div className="text-center">
-                <div className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full transition-all duration-300 mb-1
+                <div className={`relative w-28 h-28 sm:w-36 sm:h-36 lg:w-44 lg:h-44 rounded-full transition-all duration-300 mb-2
                   ${activeLight === 'yellow' || result === 'yellow' 
-                    ? 'bg-yellow-400 shadow-[0_0_50px_20px_rgba(250,204,21,0.8)]' 
-                    : 'bg-yellow-700/60 border-4 border-yellow-500/50'}`}>
-                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
-                  {result === 'yellow' && <div className="absolute inset-0 flex items-center justify-center text-3xl sm:text-4xl animate-bounce">🤔</div>}
+                    ? 'bg-yellow-400 shadow-[0_0_80px_40px_rgba(250,204,21,0.8)]' 
+                    : 'bg-yellow-700/60 border-6 border-yellow-500/50'}`}>
+                  <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+                  {result === 'yellow' && <div className="absolute inset-0 flex items-center justify-center text-5xl sm:text-6xl lg:text-7xl animate-bounce">🤔</div>}
                 </div>
-                <span className="text-xs font-bold text-yellow-400">Vàng</span>
+                <span className="text-base sm:text-lg lg:text-xl font-bold text-yellow-400">Vàng</span>
               </div>
               <div className="text-center">
-                <div className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full transition-all duration-300 mb-1
+                <div className={`relative w-28 h-28 sm:w-36 sm:h-36 lg:w-44 lg:h-44 rounded-full transition-all duration-300 mb-2
                   ${activeLight === 'green' || result === 'green' 
-                    ? 'bg-green-500 shadow-[0_0_50px_20px_rgba(34,197,94,0.8)]' 
-                    : 'bg-green-800/60 border-4 border-green-600/50'}`}>
-                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
-                  {result === 'green' && <div className="absolute inset-0 flex items-center justify-center text-3xl sm:text-4xl animate-bounce">🎉</div>}
+                    ? 'bg-green-500 shadow-[0_0_80px_40px_rgba(34,197,94,0.8)]' 
+                    : 'bg-green-800/60 border-6 border-green-600/50'}`}>
+                  <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+                  {result === 'green' && <div className="absolute inset-0 flex items-center justify-center text-5xl sm:text-6xl lg:text-7xl animate-bounce">🎉</div>}
                 </div>
-                <span className="text-xs font-bold text-green-400">Xanh</span>
+                <span className="text-base sm:text-lg lg:text-xl font-bold text-green-400">Xanh</span>
               </div>
             </div>
           )}
 
-          {/* Result Text - Compact */}
+          {/* Result Text - LARGE */}
           {result && getResultText() && (
-            <div className="mt-2 text-center">
-              <h1 className={`text-2xl sm:text-4xl font-black text-white drop-shadow-lg ${result === 'red' ? 'animate-shake' : ''}`}>
+            <div className="mt-4 text-center">
+              <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-black text-white drop-shadow-lg ${result === 'red' ? 'animate-shake' : ''}`}>
                 {getResultText().title}
               </h1>
-              <p className="text-sm sm:text-base text-white/90">{getResultText().sub}</p>
+              <p className="text-lg sm:text-xl lg:text-2xl text-white/90 mt-1">{getResultText().sub}</p>
             </div>
           )}
 

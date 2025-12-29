@@ -3,7 +3,16 @@
   "title": "Hoạt Động Ice Breaker (Phá Băng) - 15 Trò Chơi Khởi Động Lớp Học Hiệu Quả",
   "description": "Tổng hợp 15 hoạt động ice breaker/phá băng để khởi động lớp học, tạo không khí vui vẻ và kết nối học sinh. Dễ thực hiện, không cần chuẩn bị nhiều.",
   "category": "goc-chia-se-giao-vien",
-  "keywords": ["ice breaker", "phá băng", "hoạt động khởi động", "trò chơi lớp học", "kết nối học sinh", "warm up activities", "team building", "hoạt động đầu giờ"],
+  "keywords": [
+    "ice breaker",
+    "phá băng",
+    "hoạt động khởi động",
+    "trò chơi lớp học",
+    "kết nối học sinh",
+    "warm up activities",
+    "team building",
+    "hoạt động đầu giờ"
+  ],
   "status": "draft",
   "publishedAt": null,
   "author": {
@@ -14,36 +23,460 @@
     "intro": "Buổi học đầu năm, lớp mới, học sinh mới - không khí lạnh lẽo như đông giá. Các em ngồi im, không dám nói chuyện với bạn bên cạnh. Đó là lúc Ice Breaker (hoạt động phá băng) phát huy tác dụng. Bài viết này tổng hợp 15 hoạt động phá băng mà tôi đã thử và thành công, giúp lớp học từ \"đóng băng\" chuyển sang \"sôi sục\".",
     "sections": [
       {
-        "title": "Ice Breaker Là Gì Và Khi Nào Cần?",
-        "content": "Ice Breaker (phá băng) là hoạt động ngắn giúp:\n- Làm quen, kết nối mọi người\n- Phá vỡ sự ngại ngùng, căng thẳng\n- Tạo không khí vui vẻ, thoải mái\n- Chuẩn bị tinh thần cho hoạt động chính\n\n**Khi nào cần Ice Breaker:**\n- Đầu năm học: Học sinh chưa quen nhau\n- Lớp mới thành lập: Ghép từ nhiều lớp\n- Sau kỳ nghỉ dài: Cần \"nóng máy\" lại\n- Trước hoạt động nhóm: Tạo kết nối\n- Khi lớp buồn ngủ: Đánh thức năng lượng\n- Có học sinh mới: Giúp hòa nhập\n\n**Thời gian:** 3-10 phút, không nên quá dài\n\n**Nguyên tắc:** Vui vẻ, đơn giản, ai cũng tham gia được"
+        "type": "heading",
+        "level": 2,
+        "text": "Ice Breaker Là Gì Và Khi Nào Cần?"
       },
       {
-        "title": "5 Ice Breaker Không Cần Chuẩn Bị",
-        "content": "**1. Hai Sự Thật Một Lời Nói Dối**\n- Mỗi người nói 3 điều về mình, 2 thật 1 giả\n- Cả lớp đoán điều nào là giả\n- Thời gian: 5-7 phút\n- Hiệu quả: Biết thêm về nhau\n\n**2. Nếu Tôi Là...**\n- \"Nếu tôi là một con vật, tôi sẽ là...vì...\"\n- Có thể đổi: màu sắc, đồ ăn, siêu anh hùng...\n- Thời gian: 5 phút\n- Hiệu quả: Thể hiện cá tính\n\n**3. Giống Và Khác**\n- Cặp đôi tìm 3 điểm giống và 3 điểm khác nhau\n- Chia sẻ với cả lớp\n- Thời gian: 5-7 phút\n- Hiệu quả: Kết nối cặp\n\n**4. Đếm Không Trùng**\n- Cả lớp đếm từ 1 đến 20\n- Không ai được nói cùng lúc\n- Nếu trùng, bắt đầu lại từ 1\n- Thời gian: 3-5 phút\n- Hiệu quả: Tập trung, lắng nghe\n\n**5. Vỗ Tay Theo Nhịp**\n- Giáo viên vỗ một nhịp, lớp vỗ theo\n- Tăng dần độ khó\n- Thời gian: 2-3 phút\n- Hiệu quả: Tập trung, năng lượng"
+        "type": "paragraph",
+        "text": "Ice Breaker (phá băng) là hoạt động ngắn giúp:"
       },
       {
-        "title": "5 Ice Breaker Dùng Công Cụ SoroKid",
-        "content": "**6. Bốc Thăm Giới Thiệu**\n- Dùng Bốc Thăm gọi ngẫu nhiên\n- Người được gọi giới thiệu bản thân + 1 điều thú vị\n- Thời gian: 5-10 phút\n- Hiệu quả: Ai cũng có cơ hội nói\n\n**7. Đèn May Mắn Làm Quen**\n- Các ô: \"Kể chuyện vui\", \"Hát 1 câu\", \"Làm hành động hài\", \"Nói 3 sở thích\"...\n- Quay và thực hiện\n- Thời gian: 5-7 phút\n- Hiệu quả: Vui vẻ, phá ngại\n\n**8. Chia Nhóm Ngẫu Nhiên + Thử Thách**\n- Chia nhóm 4-5 người bằng công cụ\n- Mỗi nhóm có 3 phút tìm 5 điểm chung\n- Dùng Timer đếm ngược\n- Thời gian: 5-7 phút\n- Hiệu quả: Kết nối nhóm mới\n\n**9. Chiếc Nón Kỳ Diệu + Câu Hỏi**\n- Chuẩn bị danh sách câu hỏi vui\n- Nón chọn ai, người đó trả lời\n- \"Siêu năng lực bạn muốn?\", \"Nếu trúng số?\"\n- Thời gian: 5 phút\n- Hiệu quả: Biết thêm tính cách\n\n**10. Flash ZAN Team**\n- Chia đội, thi Flash ZAN\n- Đội nào nhiều điểm thắng\n- Thời gian: 5 phút\n- Hiệu quả: Tạo tinh thần đội"
+        "type": "list",
+        "items": [
+          "Làm quen, kết nối mọi người",
+          "Phá vỡ sự ngại ngùng, căng thẳng",
+          "Tạo không khí vui vẻ, thoải mái",
+          "Chuẩn bị tinh thần cho hoạt động chính"
+        ]
       },
       {
-        "title": "5 Ice Breaker Vận Động",
-        "content": "**11. Đổi Chỗ Nếu...**\n- \"Đổi chỗ nếu bạn thích kem chocolate!\"\n- Ai đứng giữa nói câu tiếp theo\n- Thời gian: 5 phút\n- Hiệu quả: Vận động, biết sở thích nhau\n\n**12. Tìm Người Giống Mình**\n- Phát phiếu với các tiêu chí\n- Tìm người giống mình ở mỗi tiêu chí\n- \"Cùng tháng sinh\", \"Cùng sở thích\"...\n- Thời gian: 7-10 phút\n- Hiệu quả: Di chuyển, nói chuyện\n\n**13. Xếp Hàng Không Nói**\n- Xếp hàng theo: ngày sinh, tên ABC, chiều cao...\n- KHÔNG ĐƯỢC NÓI, chỉ dùng cử chỉ\n- Thời gian: 3-5 phút\n- Hiệu quả: Giao tiếp phi ngôn ngữ\n\n**14. Gương Soi**\n- Cặp đôi đối mặt\n- Một người làm động tác, người kia bắt chước\n- Đổi vai sau 1 phút\n- Thời gian: 3 phút\n- Hiệu quả: Tập trung, vui\n\n**15. Đuổi Hình Bắt Chữ Người**\n- Một người dùng cơ thể diễn tả từ khóa\n- Cả nhóm đoán\n- Thời gian: 5-7 phút\n- Hiệu quả: Cực vui, phá ngại"
+        "type": "paragraph",
+        "text": "**Khi nào cần Ice Breaker:**"
       },
       {
-        "title": "Chọn Ice Breaker Phù Hợp",
-        "content": "**Theo mục đích:**\n- Làm quen: 1, 3, 6, 7, 12\n- Tạo năng lượng: 5, 11, 13, 14, 15\n- Kết nối nhóm: 3, 8, 10, 12\n- Biết tính cách: 1, 2, 7, 9\n\n**Theo thời gian:**\n- 2-3 phút: 4, 5, 13, 14\n- 5-7 phút: 1, 2, 6, 7, 9, 10, 11, 15\n- 7-10 phút: 3, 8, 12\n\n**Theo lứa tuổi:**\n- Tiểu học: 4, 5, 11, 13, 14, 15 (vận động nhiều)\n- THCS: 1, 2, 3, 6, 7, 8, 9, 12\n- THPT: 1, 2, 3, 6, 9 (sâu hơn)\n\n**Theo không gian:**\n- Lớp học bình thường: Tất cả\n- Không gian chật: 1, 2, 4, 5, 6, 7, 9, 10\n- Có sân rộng: 11, 12, 13"
+        "type": "list",
+        "items": [
+          "Đầu năm học: Học sinh chưa quen nhau",
+          "Lớp mới thành lập: Ghép từ nhiều lớp",
+          "Sau kỳ nghỉ dài: Cần \"nóng máy\" lại",
+          "Trước hoạt động nhóm: Tạo kết nối",
+          "Khi lớp buồn ngủ: Đánh thức năng lượng",
+          "Có học sinh mới: Giúp hòa nhập"
+        ]
       },
       {
-        "title": "Mẹo Để Ice Breaker Thành Công",
-        "content": "**1. Giáo viên tham gia trước:**\nLàm mẫu để học sinh thấy \"an toàn\". Nếu cô thầy dám làm hài, học sinh sẽ mạnh dạn hơn.\n\n**2. Không ép buộc:**\n\"Ai không muốn tham gia có thể xem\" - nhưng 99% sẽ tham gia khi thấy vui.\n\n**3. Khen ngợi mọi cố gắng:**\n\"Hay quá!\", \"Sáng tạo thế!\" - tạo không khí tích cực.\n\n**4. Giữ nhịp nhanh:**\nKhông để hoạt động kéo dài, dừng khi đang \"đỉnh\".\n\n**5. Kết nối với bài học (nếu có thể):**\n\"Hôm nay học về teamwork, chúng ta vừa làm teamwork rồi đấy!\"\n\n**6. Có phương án B:**\nNếu hoạt động không hiệu quả, chuyển sang hoạt động khác. Đừng ép."
+        "type": "paragraph",
+        "text": "**Thời gian:** 3-10 phút, không nên quá dài"
       },
       {
-        "title": "Ice Breaker Cho Các Tình Huống Đặc Biệt",
-        "content": "**Học sinh mới vào lớp:**\n- \"Phỏng vấn bạn mới\": Cặp đôi hỏi 5 câu, giới thiệu bạn mới cho lớp\n- Đèn May Mắn với các ô câu hỏi dành cho bạn mới\n\n**Sau kỳ nghỉ dài:**\n- \"Kỳ nghỉ của tôi trong 3 từ\"\n- \"Show and Tell\": Mang đồ kỷ niệm từ kỳ nghỉ\n\n**Lớp ghép từ nhiều lớp:**\n- Tìm người giống mình (buộc phải nói chuyện với người lạ)\n- Chia nhóm ngẫu nhiên để trộn đều\n\n**Trước hoạt động nhóm quan trọng:**\n- Đếm không trùng (rèn lắng nghe)\n- Gương soi (rèn quan sát)\n\n**Buổi họp phụ huynh:**\n- Hai sự thật một lời nói dối (phiên bản người lớn)\n- \"Con tôi trong 3 từ\""
+        "type": "paragraph",
+        "text": "**Nguyên tắc:** Vui vẻ, đơn giản, ai cũng tham gia được"
       },
       {
-        "title": "Kết Quả Khi Áp Dụng Thường Xuyên",
-        "content": "Sau 1 năm dùng Ice Breaker đều đặn:\n\n**Về không khí lớp:**\n- Học sinh cởi mở, nói chuyện với nhau nhiều hơn\n- Không còn \"nhóm\" tách biệt trong lớp\n- Lớp học vui vẻ, ít xung đột\n\n**Về học tập:**\n- Hoạt động nhóm hiệu quả hơn\n- Học sinh dám phát biểu hơn\n- Tinh thần hợp tác cao\n\n**Về quan hệ thầy trò:**\n- Học sinh thấy cô \"vui tính\", dễ gần\n- Dám chia sẻ khó khăn\n- Lớp học như \"gia đình\"\n\n**Phản hồi:**\n- \"Con thích nhất lúc chơi trò đầu giờ\" - Minh, lớp 4\n- \"Nhờ trò chơi con quen được nhiều bạn\" - Hà, lớp 5\n- \"Cô ơi, hôm nay mình chơi gì ạ?\" - Câu hỏi tôi nghe mỗi ngày"
+        "type": "heading",
+        "level": 2,
+        "text": "5 Ice Breaker Không Cần Chuẩn Bị"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Hai Sự Thật Một Lời Nói Dối**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Mỗi người nói 3 điều về mình, 2 thật 1 giả",
+          "Cả lớp đoán điều nào là giả",
+          "Thời gian: 5-7 phút",
+          "Hiệu quả: Biết thêm về nhau"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Nếu Tôi Là...**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"Nếu tôi là một con vật, tôi sẽ là...vì...\"",
+          "Có thể đổi: màu sắc, đồ ăn, siêu anh hùng...",
+          "Thời gian: 5 phút",
+          "Hiệu quả: Thể hiện cá tính"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Giống Và Khác**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Cặp đôi tìm 3 điểm giống và 3 điểm khác nhau",
+          "Chia sẻ với cả lớp",
+          "Thời gian: 5-7 phút",
+          "Hiệu quả: Kết nối cặp"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**4. Đếm Không Trùng**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Cả lớp đếm từ 1 đến 20",
+          "Không ai được nói cùng lúc",
+          "Nếu trùng, bắt đầu lại từ 1",
+          "Thời gian: 3-5 phút",
+          "Hiệu quả: Tập trung, lắng nghe"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**5. Vỗ Tay Theo Nhịp**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Giáo viên vỗ một nhịp, lớp vỗ theo",
+          "Tăng dần độ khó",
+          "Thời gian: 2-3 phút",
+          "Hiệu quả: Tập trung, năng lượng"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "5 Ice Breaker Dùng Công Cụ SoroKid"
+      },
+      {
+        "type": "paragraph",
+        "text": "**6. Bốc Thăm Giới Thiệu**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Dùng Bốc Thăm gọi ngẫu nhiên",
+          "Người được gọi giới thiệu bản thân + 1 điều thú vị",
+          "Thời gian: 5-10 phút",
+          "Hiệu quả: Ai cũng có cơ hội nói"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**7. Đèn May Mắn Làm Quen**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Các ô: \"Kể chuyện vui\", \"Hát 1 câu\", \"Làm hành động hài\", \"Nói 3 sở thích\"...",
+          "Quay và thực hiện",
+          "Thời gian: 5-7 phút",
+          "Hiệu quả: Vui vẻ, phá ngại"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**8. Chia Nhóm Ngẫu Nhiên + Thử Thách**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chia nhóm 4-5 người bằng công cụ",
+          "Mỗi nhóm có 3 phút tìm 5 điểm chung",
+          "Dùng Timer đếm ngược",
+          "Thời gian: 5-7 phút",
+          "Hiệu quả: Kết nối nhóm mới"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**9. Chiếc Nón Kỳ Diệu + Câu Hỏi**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chuẩn bị danh sách câu hỏi vui",
+          "Nón chọn ai, người đó trả lời",
+          "\"Siêu năng lực bạn muốn?\", \"Nếu trúng số?\"",
+          "Thời gian: 5 phút",
+          "Hiệu quả: Biết thêm tính cách"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**10. Flash ZAN Team**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chia đội, thi Flash ZAN",
+          "Đội nào nhiều điểm thắng",
+          "Thời gian: 5 phút",
+          "Hiệu quả: Tạo tinh thần đội"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "5 Ice Breaker Vận Động"
+      },
+      {
+        "type": "paragraph",
+        "text": "**11. Đổi Chỗ Nếu...**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"Đổi chỗ nếu bạn thích kem chocolate!\"",
+          "Ai đứng giữa nói câu tiếp theo",
+          "Thời gian: 5 phút",
+          "Hiệu quả: Vận động, biết sở thích nhau"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**12. Tìm Người Giống Mình**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Phát phiếu với các tiêu chí",
+          "Tìm người giống mình ở mỗi tiêu chí",
+          "\"Cùng tháng sinh\", \"Cùng sở thích\"...",
+          "Thời gian: 7-10 phút",
+          "Hiệu quả: Di chuyển, nói chuyện"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**13. Xếp Hàng Không Nói**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Xếp hàng theo: ngày sinh, tên ABC, chiều cao...",
+          "KHÔNG ĐƯỢC NÓI, chỉ dùng cử chỉ",
+          "Thời gian: 3-5 phút",
+          "Hiệu quả: Giao tiếp phi ngôn ngữ"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**14. Gương Soi**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Cặp đôi đối mặt",
+          "Một người làm động tác, người kia bắt chước",
+          "Đổi vai sau 1 phút",
+          "Thời gian: 3 phút",
+          "Hiệu quả: Tập trung, vui"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**15. Đuổi Hình Bắt Chữ Người**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Một người dùng cơ thể diễn tả từ khóa",
+          "Cả nhóm đoán",
+          "Thời gian: 5-7 phút",
+          "Hiệu quả: Cực vui, phá ngại"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Chọn Ice Breaker Phù Hợp"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Theo mục đích:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Làm quen: 1, 3, 6, 7, 12",
+          "Tạo năng lượng: 5, 11, 13, 14, 15",
+          "Kết nối nhóm: 3, 8, 10, 12",
+          "Biết tính cách: 1, 2, 7, 9"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Theo thời gian:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "2-3 phút: 4, 5, 13, 14",
+          "5-7 phút: 1, 2, 6, 7, 9, 10, 11, 15",
+          "7-10 phút: 3, 8, 12"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Theo lứa tuổi:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Tiểu học: 4, 5, 11, 13, 14, 15 (vận động nhiều)",
+          "THCS: 1, 2, 3, 6, 7, 8, 9, 12",
+          "THPT: 1, 2, 3, 6, 9 (sâu hơn)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Theo không gian:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Lớp học bình thường: Tất cả",
+          "Không gian chật: 1, 2, 4, 5, 6, 7, 9, 10",
+          "Có sân rộng: 11, 12, 13"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mẹo Để Ice Breaker Thành Công"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Giáo viên tham gia trước:**\nLàm mẫu để học sinh thấy \"an toàn\". Nếu cô thầy dám làm hài, học sinh sẽ mạnh dạn hơn."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Không ép buộc:**\n\"Ai không muốn tham gia có thể xem\" - nhưng 99% sẽ tham gia khi thấy vui."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Khen ngợi mọi cố gắng:**\n\"Hay quá!\", \"Sáng tạo thế!\" - tạo không khí tích cực."
+      },
+      {
+        "type": "paragraph",
+        "text": "**4. Giữ nhịp nhanh:**\nKhông để hoạt động kéo dài, dừng khi đang \"đỉnh\"."
+      },
+      {
+        "type": "paragraph",
+        "text": "**5. Kết nối với bài học (nếu có thể):**\n\"Hôm nay học về teamwork, chúng ta vừa làm teamwork rồi đấy!\""
+      },
+      {
+        "type": "paragraph",
+        "text": "**6. Có phương án B:**\nNếu hoạt động không hiệu quả, chuyển sang hoạt động khác. Đừng ép."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ice Breaker Cho Các Tình Huống Đặc Biệt"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Học sinh mới vào lớp:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"Phỏng vấn bạn mới\": Cặp đôi hỏi 5 câu, giới thiệu bạn mới cho lớp",
+          "Đèn May Mắn với các ô câu hỏi dành cho bạn mới"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Sau kỳ nghỉ dài:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"Kỳ nghỉ của tôi trong 3 từ\"",
+          "\"Show and Tell\": Mang đồ kỷ niệm từ kỳ nghỉ"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Lớp ghép từ nhiều lớp:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Tìm người giống mình (buộc phải nói chuyện với người lạ)",
+          "Chia nhóm ngẫu nhiên để trộn đều"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Trước hoạt động nhóm quan trọng:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đếm không trùng (rèn lắng nghe)",
+          "Gương soi (rèn quan sát)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Buổi họp phụ huynh:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Hai sự thật một lời nói dối (phiên bản người lớn)",
+          "\"Con tôi trong 3 từ\""
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết Quả Khi Áp Dụng Thường Xuyên"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sau 1 năm dùng Ice Breaker đều đặn:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Về không khí lớp:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Học sinh cởi mở, nói chuyện với nhau nhiều hơn",
+          "Không còn \"nhóm\" tách biệt trong lớp",
+          "Lớp học vui vẻ, ít xung đột"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Về học tập:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Hoạt động nhóm hiệu quả hơn",
+          "Học sinh dám phát biểu hơn",
+          "Tinh thần hợp tác cao"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Về quan hệ thầy trò:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Học sinh thấy cô \"vui tính\", dễ gần",
+          "Dám chia sẻ khó khăn",
+          "Lớp học như \"gia đình\""
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Phản hồi:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"Con thích nhất lúc chơi trò đầu giờ\" - Minh, lớp 4",
+          "\"Nhờ trò chơi con quen được nhiều bạn\" - Hà, lớp 5",
+          "\"Cô ơi, hôm nay mình chơi gì ạ?\" - Câu hỏi tôi nghe mỗi ngày"
+        ]
       }
     ]
   },
@@ -70,17 +503,33 @@
     }
   ],
   "cta": {
-    "title": "Công Cụ Cho Hoạt Động Ice Breaker",
-    "description": "Bốc Thăm, Đèn May Mắn, Chia Nhóm, Timer - tất cả miễn phí cho hoạt động phá băng.",
     "buttonText": "Khám Phá Toolbox",
-    "buttonLink": "/tool"
+    "buttonLink": "/tool",
+    "text": "Công Cụ Cho Hoạt Động Ice Breaker - Bốc Thăm, Đèn May Mắn, Chia Nhóm, Timer - tất cả miễn phí cho hoạt động phá băng."
   },
-  "relatedTools": ["random-picker", "lucky-light", "group-divider", "timer", "magic-hat"],
-  "relatedPosts": ["5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi", "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu", "lop-dong-45-hoc-sinh-cach-tao-tuong-tac"],
+  "relatedTools": [
+    "random-picker",
+    "lucky-light",
+    "group-divider",
+    "timer",
+    "magic-hat"
+  ],
+  "relatedPosts": [
+    "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi",
+    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
+    "lop-dong-45-hoc-sinh-cach-tao-tuong-tac"
+  ],
   "seo": {
     "title": "15 Hoạt Động Ice Breaker (Phá Băng) Cho Lớp Học Hiệu Quả",
     "description": "Tổng hợp 15 hoạt động ice breaker/phá băng để khởi động lớp học. Trò chơi dễ thực hiện, không cần chuẩn bị nhiều, phù hợp mọi lứa tuổi.",
-    "keywords": ["ice breaker", "phá băng", "hoạt động khởi động", "trò chơi lớp học", "warm up activities", "team building"]
+    "keywords": [
+      "ice breaker",
+      "phá băng",
+      "hoạt động khởi động",
+      "trò chơi lớp học",
+      "warm up activities",
+      "team building"
+    ]
   },
   "schema": {
     "type": "Article",

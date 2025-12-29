@@ -107,13 +107,8 @@ export default function DongHoBamGio() {
     }
   }, []);
 
-  // Play background sound based on mode
-  const startBgSound = useCallback((mode) => {
-    stopBgSound();
-    
-    const currentMode = SOUND_MODES.find(m => m.id === mode);
-    if (!currentMode || !currentMode.bgSound) return;
-
+  // Web Audio API fallback - defined before startBgSound
+  const playWebAudioSound = useCallback((bgSound) => {
     try {
       if (!audioContextRef.current) {
         audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
@@ -171,120 +166,144 @@ export default function DongHoBamGio() {
         return noise;
       };
 
-      switch (currentMode.bgSound) {
+      switch (bgSound) {
         // === BINAURAL BEATS - Sóng não ===
         case 'alpha': {
-          // Alpha (8-12Hz) - Thư giãn tỉnh táo, học nhẹ nhàng
-          // Base 200Hz, diff 10Hz = Alpha waves
+          // Alpha (10Hz) - Thư giãn tỉnh táo + pink noise nền
           const osc1 = ctx.createOscillator();
           const osc2 = ctx.createOscillator();
-          const gain = ctx.createGain();
+          const binauralGain = ctx.createGain();
+          
           osc1.type = 'sine';
           osc2.type = 'sine';
           osc1.frequency.value = 200;
           osc2.frequency.value = 210; // 10Hz difference
-          osc1.connect(gain);
-          osc2.connect(gain);
-          gain.connect(ctx.destination);
-          gain.gain.value = 0.15;
+          osc1.connect(binauralGain);
+          osc2.connect(binauralGain);
+          binauralGain.connect(ctx.destination);
+          binauralGain.gain.value = 0.1;
+          
+          // Thêm pink noise nền nhẹ
+          const noise = playNoise('lowpass', 300, 0.06);
+          
           osc1.start();
           osc2.start();
-          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); } };
+          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); noise.stop(); } };
           break;
         }
 
         case 'beta_low': {
-          // Beta thấp (12-15Hz) - Tập trung học bài, tư duy logic
+          // Beta thấp (14Hz) - Tập trung học bài + pink noise
           const osc1 = ctx.createOscillator();
           const osc2 = ctx.createOscillator();
-          const gain = ctx.createGain();
+          const binauralGain = ctx.createGain();
+          
           osc1.type = 'sine';
           osc2.type = 'sine';
           osc1.frequency.value = 200;
           osc2.frequency.value = 214; // 14Hz difference
-          osc1.connect(gain);
-          osc2.connect(gain);
-          gain.connect(ctx.destination);
-          gain.gain.value = 0.15;
+          osc1.connect(binauralGain);
+          osc2.connect(binauralGain);
+          binauralGain.connect(ctx.destination);
+          binauralGain.gain.value = 0.1;
+          
+          const noise = playNoise('lowpass', 350, 0.05);
+          
           osc1.start();
           osc2.start();
-          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); } };
+          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); noise.stop(); } };
           break;
         }
 
         case 'beta_high': {
-          // Beta cao (18-25Hz) - Tập trung cao độ, giải quyết vấn đề
+          // Beta cao (20Hz) - Tập trung cao độ + pink noise
           const osc1 = ctx.createOscillator();
           const osc2 = ctx.createOscillator();
-          const gain = ctx.createGain();
+          const binauralGain = ctx.createGain();
+          
           osc1.type = 'sine';
           osc2.type = 'sine';
           osc1.frequency.value = 200;
           osc2.frequency.value = 220; // 20Hz difference
-          osc1.connect(gain);
-          osc2.connect(gain);
-          gain.connect(ctx.destination);
-          gain.gain.value = 0.12;
+          osc1.connect(binauralGain);
+          osc2.connect(binauralGain);
+          binauralGain.connect(ctx.destination);
+          binauralGain.gain.value = 0.1;
+          
+          const noise = playNoise('lowpass', 400, 0.05);
+          
           osc1.start();
           osc2.start();
-          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); } };
+          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); noise.stop(); } };
           break;
         }
 
         case 'gamma': {
-          // Gamma (30-50Hz) - Siêu tập trung, ghi nhớ, xử lý thông tin nhanh
+          // Gamma (40Hz) - Siêu tập trung + pink noise
           const osc1 = ctx.createOscillator();
           const osc2 = ctx.createOscillator();
-          const gain = ctx.createGain();
+          const binauralGain = ctx.createGain();
+          
           osc1.type = 'sine';
           osc2.type = 'sine';
           osc1.frequency.value = 200;
           osc2.frequency.value = 240; // 40Hz difference
-          osc1.connect(gain);
-          osc2.connect(gain);
-          gain.connect(ctx.destination);
-          gain.gain.value = 0.1;
+          osc1.connect(binauralGain);
+          osc2.connect(binauralGain);
+          binauralGain.connect(ctx.destination);
+          binauralGain.gain.value = 0.08;
+          
+          const noise = playNoise('lowpass', 400, 0.08);
+          
           osc1.start();
           osc2.start();
-          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); } };
+          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); noise.stop(); } };
           break;
         }
 
         case 'theta': {
-          // Theta (4-8Hz) - Sáng tạo, học sâu, ghi nhớ dài hạn
+          // Theta (6Hz) - Sáng tạo + pink noise nền
           const osc1 = ctx.createOscillator();
           const osc2 = ctx.createOscillator();
-          const gain = ctx.createGain();
+          const binauralGain = ctx.createGain();
+          
           osc1.type = 'sine';
           osc2.type = 'sine';
           osc1.frequency.value = 200;
           osc2.frequency.value = 206; // 6Hz difference
-          osc1.connect(gain);
-          osc2.connect(gain);
-          gain.connect(ctx.destination);
-          gain.gain.value = 0.18;
+          osc1.connect(binauralGain);
+          osc2.connect(binauralGain);
+          binauralGain.connect(ctx.destination);
+          binauralGain.gain.value = 0.1;
+          
+          const noise = playNoise('lowpass', 250, 0.08);
+          
           osc1.start();
           osc2.start();
-          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); } };
+          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); noise.stop(); } };
           break;
         }
 
         case 'focus': {
-          // Backward compatible - same as beta_low
+          // Focus (12Hz) - Tập trung + pink noise
           const osc1 = ctx.createOscillator();
           const osc2 = ctx.createOscillator();
-          const gain = ctx.createGain();
+          const binauralGain = ctx.createGain();
+          
           osc1.type = 'sine';
           osc2.type = 'sine';
           osc1.frequency.value = 200;
-          osc2.frequency.value = 214;
-          osc1.connect(gain);
-          osc2.connect(gain);
-          gain.connect(ctx.destination);
-          gain.gain.value = 0.15;
+          osc2.frequency.value = 212; // 12Hz difference
+          osc1.connect(binauralGain);
+          osc2.connect(binauralGain);
+          binauralGain.connect(ctx.destination);
+          binauralGain.gain.value = 0.1;
+          
+          const noise = playNoise('lowpass', 350, 0.06);
+          
           osc1.start();
           osc2.start();
-          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); } };
+          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); noise.stop(); } };
           break;
         }
 
@@ -353,26 +372,25 @@ export default function DongHoBamGio() {
         }
 
         case 'fire': {
-          // Lửa trại - crackling fire sound
+          // Lửa trại - tiếng lửa cháy ấm áp với tiếng tí tách
           const noise = ctx.createBufferSource();
-          noise.buffer = createNoiseBuffer(2, 'white');
+          noise.buffer = createNoiseBuffer(3, 'pink');
           noise.loop = true;
           
           const filter = ctx.createBiquadFilter();
-          filter.type = 'bandpass';
-          filter.frequency.value = 1000;
-          filter.Q.value = 2;
+          filter.type = 'lowpass';
+          filter.frequency.value = 600;
+          filter.Q.value = 0.5;
           
-          // Modulate for crackling effect
           const lfo = ctx.createOscillator();
-          lfo.frequency.value = 8;
+          lfo.frequency.value = 4;
           const lfoGain = ctx.createGain();
-          lfoGain.gain.value = 0.1;
+          lfoGain.gain.value = 150;
           lfo.connect(lfoGain);
+          lfoGain.connect(filter.frequency);
           
           const gain = ctx.createGain();
-          gain.gain.value = 0.15;
-          lfoGain.connect(gain.gain);
+          gain.gain.value = 0.22;
           
           noise.connect(filter);
           filter.connect(gain);
@@ -380,39 +398,113 @@ export default function DongHoBamGio() {
           noise.start();
           lfo.start();
           
-          bgSoundRef.current = { stop: () => { noise.stop(); lfo.stop(); } };
+          // Tiếng tí tách của lửa
+          const playCrackle = () => {
+            if (!bgSoundRef.current) return;
+            const osc = ctx.createOscillator();
+            const crackleGain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.value = 800 + Math.random() * 600;
+            osc.connect(crackleGain);
+            crackleGain.connect(ctx.destination);
+            crackleGain.gain.setValueAtTime(0.1, ctx.currentTime);
+            crackleGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.06);
+          };
+          const crackleInterval = setInterval(() => {
+            if (Math.random() > 0.5) playCrackle();
+          }, 200 + Math.random() * 300);
+          
+          bgSoundRef.current = { stop: () => { noise.stop(); lfo.stop(); clearInterval(crackleInterval); } };
           break;
         }
 
         case 'cafe': {
-          // Tiếng quán cafe - pink noise + occasional sounds
-          const noise = playNoise('bandpass', 800, 0.12, 0.5);
-          bgSoundRef.current = { stop: () => noise.stop() };
+          // Quán cafe - tiếng ồn ào vừa phải, ấm áp
+          const noise = ctx.createBufferSource();
+          noise.buffer = createNoiseBuffer(3, 'pink');
+          noise.loop = true;
+          
+          const filter = ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.value = 600;
+          filter.Q.value = 0.5;
+          
+          const lfo = ctx.createOscillator();
+          lfo.frequency.value = 0.15;
+          const lfoGain = ctx.createGain();
+          lfoGain.gain.value = 100;
+          lfo.connect(lfoGain);
+          lfoGain.connect(filter.frequency);
+          
+          const gain = ctx.createGain();
+          gain.gain.value = 0.2;
+          
+          noise.connect(filter);
+          filter.connect(gain);
+          gain.connect(ctx.destination);
+          noise.start();
+          lfo.start();
+          
+          // Thêm tiếng ly tách occasional
+          const playCup = () => {
+            if (!bgSoundRef.current) return;
+            const osc = ctx.createOscillator();
+            const cupGain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.value = 1200 + Math.random() * 400;
+            osc.connect(cupGain);
+            cupGain.connect(ctx.destination);
+            cupGain.gain.setValueAtTime(0.08, ctx.currentTime);
+            cupGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.2);
+          };
+          const cupInterval = setInterval(() => {
+            if (Math.random() > 0.7) playCup();
+          }, 3000 + Math.random() * 4000);
+          
+          bgSoundRef.current = { stop: () => { noise.stop(); lfo.stop(); clearInterval(cupInterval); } };
           break;
         }
 
         case 'library': {
-          // Thư viện - very quiet ambience
-          const noise = playNoise('lowpass', 200, 0.03);
-          // Occasional page turn
-          const playPage = () => {
-            if (!isPlaying) return;
-            const buffer = ctx.createBuffer(1, ctx.sampleRate * 0.3, ctx.sampleRate);
-            const data = buffer.getChannelData(0);
-            for (let i = 0; i < buffer.length; i++) {
-              data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (buffer.length * 0.3)) * 0.1;
-            }
-            const source = ctx.createBufferSource();
-            source.buffer = buffer;
-            const filter = ctx.createBiquadFilter();
-            filter.type = 'highpass';
-            filter.frequency.value = 2000;
-            source.connect(filter);
-            filter.connect(ctx.destination);
-            source.start();
+          // Thư viện - yên tĩnh với tiếng đồng hồ tích tắc nhẹ
+          const noise = ctx.createBufferSource();
+          noise.buffer = createNoiseBuffer(3, 'pink');
+          noise.loop = true;
+          
+          const filter = ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.value = 150;
+          filter.Q.value = 0.3;
+          
+          const gain = ctx.createGain();
+          gain.gain.value = 0.08;
+          
+          noise.connect(filter);
+          filter.connect(gain);
+          gain.connect(ctx.destination);
+          noise.start();
+          
+          // Tiếng đồng hồ tích tắc nhẹ
+          const playTick = () => {
+            if (!bgSoundRef.current) return;
+            const osc = ctx.createOscillator();
+            const tickGain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.value = 600;
+            osc.connect(tickGain);
+            tickGain.connect(ctx.destination);
+            tickGain.gain.setValueAtTime(0.06, ctx.currentTime);
+            tickGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.03);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.04);
           };
-          intervalId = setInterval(playPage, 8000 + Math.random() * 7000);
-          bgSoundRef.current = { stop: () => { isPlaying = false; clearInterval(intervalId); noise.stop(); } };
+          const tickInterval = setInterval(playTick, 1000);
+          
+          bgSoundRef.current = { stop: () => { noise.stop(); clearInterval(tickInterval); } };
           break;
         }
 
@@ -438,19 +530,19 @@ export default function DongHoBamGio() {
         }
 
         case 'tick': {
-          // Tick nhanh hơn
+          // Tick nhẹ nhàng - dùng sine wave
           const playTick = () => {
             if (!isPlaying) return;
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
-            osc.type = 'square';
-            osc.frequency.value = 1000;
+            osc.type = 'sine'; // Sine mềm hơn square
+            osc.frequency.value = 800;
             osc.connect(gain);
             gain.connect(ctx.destination);
-            gain.gain.setValueAtTime(0.15, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.03);
+            gain.gain.setValueAtTime(0.2, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
             osc.start();
-            osc.stop(ctx.currentTime + 0.04);
+            osc.stop(ctx.currentTime + 0.06);
           };
           playTick();
           intervalId = setInterval(playTick, 1000);
@@ -496,115 +588,137 @@ export default function DongHoBamGio() {
         }
 
         case 'urgent': {
-          // Gấp gáp - tim đập nhanh + ticking
+          // Gấp gáp - nhịp nhanh nhưng không chói tai
           const playUrgent = () => {
             if (!isPlaying) return;
-            // Fast heartbeat - tần số cao hơn để nghe rõ
+            // Heartbeat nhanh
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
-            osc.type = 'sine';
-            osc.frequency.value = 140; // Tăng từ 80 lên 140Hz
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            gain.gain.setValueAtTime(0.5, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.12);
-            osc.start();
-            osc.stop(ctx.currentTime + 0.15);
+            const filter = ctx.createBiquadFilter();
             
-            // Tick sound
+            osc.type = 'sine';
+            osc.frequency.value = 120;
+            filter.type = 'lowpass';
+            filter.frequency.value = 300;
+            
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(ctx.destination);
+            gain.gain.setValueAtTime(0.4, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.12);
+            
+            // Tick nhẹ
             const tick = ctx.createOscillator();
             const tickGain = ctx.createGain();
-            tick.type = 'square';
-            tick.frequency.value = 1200;
+            tick.type = 'sine'; // Sine thay vì square
+            tick.frequency.value = 600;
             tick.connect(tickGain);
             tickGain.connect(ctx.destination);
-            tickGain.gain.setValueAtTime(0.2, ctx.currentTime);
-            tickGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.02);
+            tickGain.gain.setValueAtTime(0.1, ctx.currentTime);
+            tickGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.03);
             tick.start();
-            tick.stop(ctx.currentTime + 0.03);
+            tick.stop(ctx.currentTime + 0.04);
           };
           playUrgent();
-          intervalId = setInterval(playUrgent, 400); // Very fast - 150 BPM
+          intervalId = setInterval(playUrgent, 450); // Chậm hơn một chút
           bgSoundRef.current = { stop: () => { isPlaying = false; clearInterval(intervalId); } };
           break;
         }
 
         case 'game': {
-          // Game show - upbeat melody loop
+          // Game show - melody vui nhộn nhưng không chói tai
           let noteIndex = 0;
-          const notes = [523, 587, 659, 698, 784, 698, 659, 587]; // C major scale up and down
+          const notes = [523, 587, 659, 784, 659, 587, 523, 440]; // Melody pattern
           
           const playNote = () => {
             if (!isPlaying) return;
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
-            osc.type = 'square';
+            const filter = ctx.createBiquadFilter();
+            
+            osc.type = 'triangle'; // Triangle mềm hơn square
             osc.frequency.value = notes[noteIndex % notes.length];
-            osc.connect(gain);
+            
+            filter.type = 'lowpass';
+            filter.frequency.value = 2000;
+            
+            osc.connect(filter);
+            filter.connect(gain);
             gain.connect(ctx.destination);
-            gain.gain.setValueAtTime(0.15, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+            gain.gain.setValueAtTime(0.12, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.18);
             osc.start();
-            osc.stop(ctx.currentTime + 0.18);
+            osc.stop(ctx.currentTime + 0.2);
             noteIndex++;
           };
           playNote();
-          intervalId = setInterval(playNote, 250); // Fast tempo
+          intervalId = setInterval(playNote, 300); // Chậm hơn một chút
           bgSoundRef.current = { stop: () => { isPlaying = false; clearInterval(intervalId); } };
           break;
         }
 
         case 'meditation': {
-          // Thiền - drone + singing bowl effect
-          const osc1 = ctx.createOscillator();
-          const osc2 = ctx.createOscillator();
-          const osc3 = ctx.createOscillator();
+          // Thiền - pad dịu nhẹ với modulation chậm (không gây nhức đầu)
+          const noise = ctx.createBufferSource();
+          noise.buffer = createNoiseBuffer(4, 'pink');
+          noise.loop = true;
+          
+          const filter = ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.value = 200;
+          
+          // Modulation rất chậm
+          const lfo = ctx.createOscillator();
+          lfo.frequency.value = 0.03; // Cực chậm
+          const lfoGain = ctx.createGain();
+          lfoGain.gain.value = 50;
+          lfo.connect(lfoGain);
+          lfoGain.connect(filter.frequency);
+          
           const gain = ctx.createGain();
-          
-          osc1.type = 'sine';
-          osc2.type = 'sine';
-          osc3.type = 'sine';
-          osc1.frequency.value = 136.1; // Om frequency
-          osc2.frequency.value = 272.2; // Octave
-          osc3.frequency.value = 408.3; // Fifth
-          
-          osc1.connect(gain);
-          osc2.connect(gain);
-          osc3.connect(gain);
-          gain.connect(ctx.destination);
           gain.gain.value = 0.12;
           
-          osc1.start();
-          osc2.start();
-          osc3.start();
-          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); osc3.stop(); } };
+          noise.connect(filter);
+          filter.connect(gain);
+          gain.connect(ctx.destination);
+          noise.start();
+          lfo.start();
+          
+          bgSoundRef.current = { stop: () => { noise.stop(); lfo.stop(); } };
           break;
         }
 
         case 'singing_bowl': {
-          // Chuông bát - harmonic tones với slow decay
+          // Chuông bát - âm thanh dài, thư giãn, không lặp lại quá nhanh
           const playBowl = () => {
             if (!isPlaying) return;
-            const fundamental = 256 + Math.random() * 100; // Random base frequency
-            const harmonics = [1, 2, 3, 4.2, 5.4]; // Singing bowl harmonics
+            const fundamental = 280; // Cố định tần số để ổn định hơn
+            const harmonics = [1, 2, 3]; // Ít harmonics hơn
             
             harmonics.forEach((ratio, i) => {
               const osc = ctx.createOscillator();
-              const gain = ctx.createGain();
+              const oscGain = ctx.createGain();
+              const filter = ctx.createBiquadFilter();
               osc.type = 'sine';
               osc.frequency.value = fundamental * ratio;
-              osc.connect(gain);
-              gain.connect(ctx.destination);
+              filter.type = 'lowpass';
+              filter.frequency.value = 1000;
               
-              const vol = 0.15 / (i + 1); // Higher harmonics quieter
-              gain.gain.setValueAtTime(vol, ctx.currentTime);
-              gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 8);
+              osc.connect(filter);
+              filter.connect(oscGain);
+              oscGain.connect(ctx.destination);
+              
+              const vol = 0.1 / (i + 1);
+              oscGain.gain.setValueAtTime(vol, ctx.currentTime);
+              oscGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 12);
               osc.start();
-              osc.stop(ctx.currentTime + 8.5);
+              osc.stop(ctx.currentTime + 12.5);
             });
           };
           playBowl();
-          intervalId = setInterval(playBowl, 10000); // Every 10 seconds
+          intervalId = setInterval(playBowl, 15000); // 15 giây mới đánh lại
           bgSoundRef.current = { stop: () => { isPlaying = false; clearInterval(intervalId); } };
           break;
         }
@@ -638,41 +752,32 @@ export default function DongHoBamGio() {
         }
 
         case 'study_lofi': {
-          // Lo-fi study beats - simple chord progression
-          let chordIndex = 0;
-          const chords = [
-            [261.6, 329.6, 392], // C major
-            [293.7, 349.2, 440], // D minor
-            [329.6, 392, 493.9], // E minor
-            [349.2, 440, 523.3]  // F major
-          ];
+          // Lo-fi study - pink noise với kick đều dịu dàng
+          const noise = playNoise('lowpass', 280, 0.12);
           
-          const playChord = () => {
+          // Kick nhẹ nhàng
+          const playKick = () => {
             if (!isPlaying) return;
-            const chord = chords[chordIndex % chords.length];
-            chord.forEach((freq, i) => {
-              const osc = ctx.createOscillator();
-              const gain = ctx.createGain();
-              const filter = ctx.createBiquadFilter();
-              
-              osc.type = 'triangle';
-              osc.frequency.value = freq;
-              filter.type = 'lowpass';
-              filter.frequency.value = 800;
-              
-              osc.connect(filter);
-              filter.connect(gain);
-              gain.connect(ctx.destination);
-              gain.gain.setValueAtTime(0.08, ctx.currentTime);
-              gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.8);
-              osc.start();
-              osc.stop(ctx.currentTime + 2);
-            });
-            chordIndex++;
+            const osc = ctx.createOscillator();
+            const kickGain = ctx.createGain();
+            const filter = ctx.createBiquadFilter();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(100, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.1);
+            filter.type = 'lowpass';
+            filter.frequency.value = 200;
+            osc.connect(filter);
+            filter.connect(kickGain);
+            kickGain.connect(ctx.destination);
+            kickGain.gain.setValueAtTime(0.15, ctx.currentTime);
+            kickGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.25);
           };
-          playChord();
-          intervalId = setInterval(playChord, 2000);
-          bgSoundRef.current = { stop: () => { isPlaying = false; clearInterval(intervalId); } };
+          
+          playKick();
+          intervalId = setInterval(playKick, 1200); // Chậm hơn
+          bgSoundRef.current = { stop: () => { isPlaying = false; clearInterval(intervalId); noise.stop(); } };
           break;
         }
 
@@ -721,56 +826,51 @@ export default function DongHoBamGio() {
         }
 
         case 'delta': {
-          // Delta (1-4Hz) - Deep relaxation
+          // Delta (2Hz) - Thư giãn sâu + pink noise
           const osc1 = ctx.createOscillator();
           const osc2 = ctx.createOscillator();
-          const gain = ctx.createGain();
+          const binauralGain = ctx.createGain();
+          
           osc1.type = 'sine';
           osc2.type = 'sine';
           osc1.frequency.value = 200;
           osc2.frequency.value = 202; // 2Hz difference
-          osc1.connect(gain);
-          osc2.connect(gain);
-          gain.connect(ctx.destination);
-          gain.gain.value = 0.18;
+          osc1.connect(binauralGain);
+          osc2.connect(binauralGain);
+          binauralGain.connect(ctx.destination);
+          binauralGain.gain.value = 0.1;
+          
+          const noise = playNoise('lowpass', 200, 0.1);
+          
           osc1.start();
           osc2.start();
-          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); } };
+          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); noise.stop(); } };
           break;
         }
 
         case 'focus_mix': {
-          // Alpha + Beta mix with pink noise
+          // Alpha + Beta mix với pink noise
           const osc1 = ctx.createOscillator();
           const osc2 = ctx.createOscillator();
-          const osc3 = ctx.createOscillator();
-          const osc4 = ctx.createOscillator();
-          const gain = ctx.createGain();
+          const binauralGain = ctx.createGain();
           
-          // Alpha component (10Hz)
+          // Focus mix (12Hz - giữa alpha và beta)
           osc1.type = 'sine';
           osc2.type = 'sine';
           osc1.frequency.value = 200;
-          osc2.frequency.value = 210;
+          osc2.frequency.value = 212; // 12Hz difference
           
-          // Beta component (14Hz)
-          osc3.type = 'sine';
-          osc4.type = 'sine';
-          osc3.frequency.value = 300;
-          osc4.frequency.value = 314;
+          osc1.connect(binauralGain);
+          osc2.connect(binauralGain);
+          binauralGain.connect(ctx.destination);
+          binauralGain.gain.value = 0.08;
           
-          osc1.connect(gain);
-          osc2.connect(gain);
-          osc3.connect(gain);
-          osc4.connect(gain);
-          gain.connect(ctx.destination);
-          gain.gain.value = 0.08;
+          // Pink noise nền
+          const noise = playNoise('lowpass', 350, 0.08);
           
           osc1.start();
           osc2.start();
-          osc3.start();
-          osc4.start();
-          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); osc3.stop(); osc4.stop(); } };
+          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); noise.stop(); } };
           break;
         }
 
@@ -807,42 +907,253 @@ export default function DongHoBamGio() {
         }
 
         case 'thunder': {
-          // Rain with occasional thunder
+          // Mưa với sấm - dùng noise thay vì sawtooth
           const rain = playNoise('lowpass', 500, 0.25);
           
           const playThunder = () => {
             if (!isPlaying) return;
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.type = 'sawtooth';
-            osc.frequency.value = 40 + Math.random() * 30;
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            gain.gain.setValueAtTime(0.4, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 2);
-            osc.start();
-            osc.stop(ctx.currentTime + 2.5);
+            // Tiếng sấm = pink noise với lowpass
+            const thunder = ctx.createBufferSource();
+            thunder.buffer = createNoiseBuffer(3, 'pink');
+            const filter = ctx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.value = 150;
+            const thunderGain = ctx.createGain();
+            
+            thunder.connect(filter);
+            filter.connect(thunderGain);
+            thunderGain.connect(ctx.destination);
+            thunderGain.gain.setValueAtTime(0.5, ctx.currentTime);
+            thunderGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 2.5);
+            thunder.start();
+            thunder.stop(ctx.currentTime + 3);
           };
-          intervalId = setInterval(playThunder, 8000 + Math.random() * 10000);
+          intervalId = setInterval(playThunder, 10000 + Math.random() * 8000);
           bgSoundRef.current = { stop: () => { isPlaying = false; clearInterval(intervalId); rain.stop(); } };
           break;
         }
 
         case 'stream': {
-          // Stream/creek sound
+          // Suối chảy - tiếng nước róc rách rõ ràng
           const noise = ctx.createBufferSource();
-          noise.buffer = createNoiseBuffer(2, 'white');
+          noise.buffer = createNoiseBuffer(3, 'pink');
           noise.loop = true;
           
           const filter = ctx.createBiquadFilter();
           filter.type = 'bandpass';
-          filter.frequency.value = 2000;
-          filter.Q.value = 0.5;
+          filter.frequency.value = 1000;
+          filter.Q.value = 0.4;
           
           const lfo = ctx.createOscillator();
-          lfo.frequency.value = 2;
+          lfo.frequency.value = 0.8;
           const lfoGain = ctx.createGain();
-          lfoGain.gain.value = 500;
+          lfoGain.gain.value = 300;
+          lfo.connect(lfoGain);
+          lfoGain.connect(filter.frequency);
+          
+          const gain = ctx.createGain();
+          gain.gain.value = 0.2;
+          
+          noise.connect(filter);
+          filter.connect(gain);
+          gain.connect(ctx.destination);
+          noise.start();
+          lfo.start();
+          
+          // Thêm tiếng bong bóng nước
+          const playBubble = () => {
+            if (!bgSoundRef.current) return;
+            const osc = ctx.createOscillator();
+            const bubbleGain = ctx.createGain();
+            osc.type = 'sine';
+            const startFreq = 400 + Math.random() * 300;
+            osc.frequency.setValueAtTime(startFreq, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(startFreq * 2, ctx.currentTime + 0.1);
+            osc.connect(bubbleGain);
+            bubbleGain.connect(ctx.destination);
+            bubbleGain.gain.setValueAtTime(0.08, ctx.currentTime);
+            bubbleGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.12);
+          };
+          const bubbleInterval = setInterval(() => {
+            if (Math.random() > 0.6) playBubble();
+          }, 500 + Math.random() * 800);
+          
+          bgSoundRef.current = { stop: () => { noise.stop(); lfo.stop(); clearInterval(bubbleInterval); } };
+          break;
+        }
+
+        case 'night': {
+          // Đêm hè - tiếng dế kêu rõ ràng + ambient
+          const bgNoise = ctx.createBufferSource();
+          bgNoise.buffer = createNoiseBuffer(3, 'pink');
+          bgNoise.loop = true;
+          const bgFilter = ctx.createBiquadFilter();
+          bgFilter.type = 'lowpass';
+          bgFilter.frequency.value = 200;
+          const bgGain = ctx.createGain();
+          bgGain.gain.value = 0.1;
+          bgNoise.connect(bgFilter);
+          bgFilter.connect(bgGain);
+          bgGain.connect(ctx.destination);
+          bgNoise.start();
+          
+          // Tiếng dế kêu rõ ràng
+          const playChirp = () => {
+            if (!isPlaying) return;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            
+            osc.type = 'sine';
+            osc.frequency.value = 4000 + Math.random() * 500;
+            
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            gain.gain.setValueAtTime(0.12, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.06);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.08);
+          };
+          
+          // Chirp pattern: 3-4 tiếng liên tiếp
+          const playChirpPattern = () => {
+            if (!isPlaying) return;
+            const count = 3 + Math.floor(Math.random() * 2);
+            for (let i = 0; i < count; i++) {
+              setTimeout(() => { if (isPlaying) playChirp(); }, i * 80);
+            }
+          };
+          
+          playChirpPattern();
+          intervalId = setInterval(playChirpPattern, 1500 + Math.random() * 1500);
+          bgSoundRef.current = { stop: () => { isPlaying = false; clearInterval(intervalId); bgNoise.stop(); } };
+          break;
+        }
+
+        case 'wind': {
+          // Gió thổi - có modulation để tự nhiên hơn
+          const noise = ctx.createBufferSource();
+          noise.buffer = createNoiseBuffer(3, 'pink');
+          noise.loop = true;
+          
+          const filter = ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.value = 300;
+          
+          // Modulation tạo hiệu ứng gió thổi từng cơn
+          const lfo = ctx.createOscillator();
+          lfo.frequency.value = 0.2;
+          const lfoGain = ctx.createGain();
+          lfoGain.gain.value = 100;
+          lfo.connect(lfoGain);
+          lfoGain.connect(filter.frequency);
+          
+          const gain = ctx.createGain();
+          gain.gain.value = 0.25;
+          
+          // Volume modulation
+          const volLfo = ctx.createOscillator();
+          volLfo.frequency.value = 0.08;
+          const volLfoGain = ctx.createGain();
+          volLfoGain.gain.value = 0.1;
+          volLfo.connect(volLfoGain);
+          volLfoGain.connect(gain.gain);
+          
+          noise.connect(filter);
+          filter.connect(gain);
+          gain.connect(ctx.destination);
+          noise.start();
+          lfo.start();
+          volLfo.start();
+          
+          bgSoundRef.current = { stop: () => { noise.stop(); lfo.stop(); volLfo.stop(); } };
+          break;
+        }
+
+        case 'office': {
+          // Văn phòng - tiếng máy lạnh + keyboard nhẹ
+          const noise = ctx.createBufferSource();
+          noise.buffer = createNoiseBuffer(3, 'pink');
+          noise.loop = true;
+          
+          const filter = ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.value = 250;
+          filter.Q.value = 0.3;
+          
+          const gain = ctx.createGain();
+          gain.gain.value = 0.18;
+          
+          noise.connect(filter);
+          filter.connect(gain);
+          gain.connect(ctx.destination);
+          noise.start();
+          
+          // Thêm tiếng gõ phím nhẹ nhàng
+          const playKey = () => {
+            if (!bgSoundRef.current) return;
+            const osc = ctx.createOscillator();
+            const keyGain = ctx.createGain();
+            const keyFilter = ctx.createBiquadFilter();
+            osc.type = 'sine';
+            osc.frequency.value = 300 + Math.random() * 200;
+            keyFilter.type = 'lowpass';
+            keyFilter.frequency.value = 800;
+            osc.connect(keyFilter);
+            keyFilter.connect(keyGain);
+            keyGain.connect(ctx.destination);
+            keyGain.gain.setValueAtTime(0.08, ctx.currentTime);
+            keyGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.03);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.04);
+          };
+          const keyInterval = setInterval(() => {
+            if (Math.random() > 0.3) playKey();
+          }, 150 + Math.random() * 200);
+          
+          bgSoundRef.current = { stop: () => { noise.stop(); clearInterval(keyInterval); } };
+          break;
+        }
+
+        case 'classroom': {
+          // Lớp học - tiếng quạt trần/máy lạnh nhẹ nhàng
+          const noise = ctx.createBufferSource();
+          noise.buffer = createNoiseBuffer(3, 'pink');
+          noise.loop = true;
+          
+          const filter = ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.value = 300;
+          filter.Q.value = 0.5;
+          
+          const gain = ctx.createGain();
+          gain.gain.value = 0.15; // Nghe rõ hơn
+          
+          noise.connect(filter);
+          filter.connect(gain);
+          gain.connect(ctx.destination);
+          noise.start();
+          
+          bgSoundRef.current = { stop: () => noise.stop() };
+          break;
+        }
+
+        case 'space': {
+          // Không gian - ambient pad dịu nhẹ
+          const noise = ctx.createBufferSource();
+          noise.buffer = createNoiseBuffer(4, 'pink');
+          noise.loop = true;
+          
+          const filter = ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.value = 150;
+          
+          // Slow modulation
+          const lfo = ctx.createOscillator();
+          lfo.frequency.value = 0.02;
+          const lfoGain = ctx.createGain();
+          lfoGain.gain.value = 30;
           lfo.connect(lfoGain);
           lfoGain.connect(filter.frequency);
           
@@ -856,117 +1167,6 @@ export default function DongHoBamGio() {
           lfo.start();
           
           bgSoundRef.current = { stop: () => { noise.stop(); lfo.stop(); } };
-          break;
-        }
-
-        case 'night': {
-          // Night sounds - crickets
-          const playChirp = () => {
-            if (!isPlaying) return;
-            for (let i = 0; i < 3; i++) {
-              setTimeout(() => {
-                if (!isPlaying) return;
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.type = 'sine';
-                osc.frequency.value = 4000 + Math.random() * 1000;
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                gain.gain.setValueAtTime(0.05, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
-                osc.start();
-                osc.stop(ctx.currentTime + 0.06);
-              }, i * 80);
-            }
-          };
-          playChirp();
-          intervalId = setInterval(playChirp, 1500 + Math.random() * 1000);
-          bgSoundRef.current = { stop: () => { isPlaying = false; clearInterval(intervalId); } };
-          break;
-        }
-
-        case 'wind': {
-          // Gentle wind
-          const noise = playNoise('lowpass', 200, 0.2);
-          bgSoundRef.current = { stop: () => noise.stop() };
-          break;
-        }
-
-        case 'office': {
-          // Office ambience - typing + hum
-          const hum = playNoise('lowpass', 100, 0.05);
-          
-          const playType = () => {
-            if (!isPlaying) return;
-            for (let i = 0; i < 3 + Math.floor(Math.random() * 5); i++) {
-              setTimeout(() => {
-                if (!isPlaying) return;
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.type = 'square';
-                osc.frequency.value = 200 + Math.random() * 100;
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                gain.gain.setValueAtTime(0.03, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.02);
-                osc.start();
-                osc.stop(ctx.currentTime + 0.03);
-              }, i * (50 + Math.random() * 50));
-            }
-          };
-          intervalId = setInterval(playType, 500 + Math.random() * 1500);
-          bgSoundRef.current = { stop: () => { isPlaying = false; clearInterval(intervalId); hum.stop(); } };
-          break;
-        }
-
-        case 'classroom': {
-          // Classroom - pencil scratching
-          const ambient = playNoise('lowpass', 150, 0.02);
-          
-          const playWrite = () => {
-            if (!isPlaying) return;
-            const buffer = ctx.createBuffer(1, ctx.sampleRate * 0.5, ctx.sampleRate);
-            const data = buffer.getChannelData(0);
-            for (let i = 0; i < buffer.length; i++) {
-              data[i] = (Math.random() * 2 - 1) * 0.1 * Math.sin(i * 0.01);
-            }
-            const source = ctx.createBufferSource();
-            source.buffer = buffer;
-            const filter = ctx.createBiquadFilter();
-            filter.type = 'highpass';
-            filter.frequency.value = 1500;
-            source.connect(filter);
-            filter.connect(ctx.destination);
-            source.start();
-          };
-          intervalId = setInterval(playWrite, 2000 + Math.random() * 3000);
-          bgSoundRef.current = { stop: () => { isPlaying = false; clearInterval(intervalId); ambient.stop(); } };
-          break;
-        }
-
-        case 'space': {
-          // Space drone ambient - tần số tăng để nghe được trên mọi thiết bị
-          const osc1 = ctx.createOscillator();
-          const osc2 = ctx.createOscillator();
-          const gain = ctx.createGain();
-          const filter = ctx.createBiquadFilter();
-          
-          osc1.type = 'sine';
-          osc2.type = 'sine';
-          osc1.frequency.value = 120; // Tăng từ 60 lên 120Hz
-          osc2.frequency.value = 180; // Tăng từ 90 lên 180Hz
-          filter.type = 'lowpass';
-          filter.frequency.value = 400;
-          
-          osc1.connect(filter);
-          osc2.connect(filter);
-          filter.connect(gain);
-          gain.connect(ctx.destination);
-          gain.gain.value = 0.15;
-          
-          osc1.start();
-          osc2.start();
-          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); } };
           break;
         }
 
@@ -1061,64 +1261,81 @@ export default function DongHoBamGio() {
         }
 
         case 'suspense': {
-          // Suspenseful drone - tần số tăng để nghe rõ hơn
-          const osc1 = ctx.createOscillator();
-          const osc2 = ctx.createOscillator();
+          // Hồi hộp - drone nhẹ với modulation
+          const noise = ctx.createBufferSource();
+          noise.buffer = createNoiseBuffer(4, 'pink');
+          noise.loop = true;
+          
+          const filter = ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.value = 200;
+          
+          // Slow pulsing
           const lfo = ctx.createOscillator();
-          const lfoGain = ctx.createGain();
-          const gain = ctx.createGain();
-          
-          osc1.type = 'sawtooth';
-          osc2.type = 'sawtooth';
-          osc1.frequency.value = 160; // Tăng từ 80 lên 160Hz
-          osc2.frequency.value = 164; // Tăng từ 82 lên 164Hz
-          
           lfo.frequency.value = 0.5;
-          lfoGain.gain.value = 30;
+          const lfoGain = ctx.createGain();
+          lfoGain.gain.value = 50;
           lfo.connect(lfoGain);
-          lfoGain.connect(osc1.frequency);
+          lfoGain.connect(filter.frequency);
           
-          osc1.connect(gain);
-          osc2.connect(gain);
+          const gain = ctx.createGain();
+          gain.gain.value = 0.18;
+          
+          // Volume pulse
+          const volLfo = ctx.createOscillator();
+          volLfo.frequency.value = 1;
+          const volLfoGain = ctx.createGain();
+          volLfoGain.gain.value = 0.05;
+          volLfo.connect(volLfoGain);
+          volLfoGain.connect(gain.gain);
+          
+          noise.connect(filter);
+          filter.connect(gain);
           gain.connect(ctx.destination);
-          gain.gain.value = 0.1; // Tăng volume một chút
-          
-          osc1.start();
-          osc2.start();
+          noise.start();
           lfo.start();
-          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); lfo.stop(); } };
+          volLfo.start();
+          
+          bgSoundRef.current = { stop: () => { noise.stop(); lfo.stop(); volLfo.stop(); } };
           break;
         }
 
         case 'drum': {
-          // Simple drum beat
+          // Simple drum beat - dịu hơn
           let beat = 0;
           const playDrum = () => {
             if (!isPlaying) return;
             const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
+            const drumGain = ctx.createGain();
+            const filter = ctx.createBiquadFilter();
+            
+            filter.type = 'lowpass';
             
             if (beat % 4 === 0) {
               // Kick
               osc.type = 'sine';
               osc.frequency.setValueAtTime(150, ctx.currentTime);
               osc.frequency.exponentialRampToValueAtTime(50, ctx.currentTime + 0.1);
-              gain.gain.setValueAtTime(0.5, ctx.currentTime);
+              filter.frequency.value = 300;
+              drumGain.gain.setValueAtTime(0.45, ctx.currentTime);
             } else if (beat % 4 === 2) {
               // Snare
               osc.type = 'triangle';
               osc.frequency.value = 200;
-              gain.gain.setValueAtTime(0.3, ctx.currentTime);
+              filter.frequency.value = 500;
+              drumGain.gain.setValueAtTime(0.25, ctx.currentTime);
             } else {
-              // Hi-hat
-              osc.type = 'square';
+              // Hi-hat - dùng sine với filter thay vì square
+              osc.type = 'sine';
               osc.frequency.value = 800;
-              gain.gain.setValueAtTime(0.1, ctx.currentTime);
+              filter.frequency.value = 2000;
+              drumGain.gain.setValueAtTime(0.08, ctx.currentTime);
             }
             
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+            osc.connect(filter);
+            filter.connect(drumGain);
+            drumGain.connect(ctx.destination);
+            drumGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
             osc.start();
             osc.stop(ctx.currentTime + 0.12);
             beat++;
@@ -1130,134 +1347,162 @@ export default function DongHoBamGio() {
         }
 
         case 'chimes': {
-          // Wind chimes
+          // Chuông gió - nhẹ nhàng
           const playChime = () => {
             if (!isPlaying) return;
-            const notes = [523, 587, 659, 784, 880, 988];
+            const notes = [523, 659, 784, 880]; // Chỉ giữ 4 note
             const freq = notes[Math.floor(Math.random() * notes.length)];
             const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
+            const chimeGain = ctx.createGain();
+            const filter = ctx.createBiquadFilter();
+            
             osc.type = 'sine';
             osc.frequency.value = freq;
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            gain.gain.setValueAtTime(0.2, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 2);
+            filter.type = 'lowpass';
+            filter.frequency.value = 2000;
+            
+            osc.connect(filter);
+            filter.connect(chimeGain);
+            chimeGain.connect(ctx.destination);
+            chimeGain.gain.setValueAtTime(0.12, ctx.currentTime);
+            chimeGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 3);
             osc.start();
-            osc.stop(ctx.currentTime + 2.5);
+            osc.stop(ctx.currentTime + 3.5);
           };
           playChime();
-          intervalId = setInterval(playChime, 2000 + Math.random() * 3000);
+          intervalId = setInterval(playChime, 3000 + Math.random() * 4000); // Chậm hơn
           bgSoundRef.current = { stop: () => { isPlaying = false; clearInterval(intervalId); } };
           break;
         }
 
         case 'temple': {
-          // Temple bell
+          // Chuông chùa - đánh thưa hơn
           const playBell = () => {
             if (!isPlaying) return;
-            const harmonics = [1, 2.4, 3.8, 5.2];
-            harmonics.forEach((h, i) => {
-              const osc = ctx.createOscillator();
-              const gain = ctx.createGain();
-              osc.type = 'sine';
-              osc.frequency.value = 180 * h;
-              osc.connect(gain);
-              gain.connect(ctx.destination);
-              gain.gain.setValueAtTime(0.2 / (i + 1), ctx.currentTime);
-              gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 6);
-              osc.start();
-              osc.stop(ctx.currentTime + 6.5);
-            });
+            const osc = ctx.createOscillator();
+            const osc2 = ctx.createOscillator();
+            const bellGain = ctx.createGain();
+            const filter = ctx.createBiquadFilter();
+            
+            osc.type = 'sine';
+            osc2.type = 'sine';
+            osc.frequency.value = 180;
+            osc2.frequency.value = 360;
+            filter.type = 'lowpass';
+            filter.frequency.value = 800;
+            
+            osc.connect(filter);
+            osc2.connect(filter);
+            filter.connect(bellGain);
+            bellGain.connect(ctx.destination);
+            bellGain.gain.setValueAtTime(0.15, ctx.currentTime);
+            bellGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 8);
+            osc.start();
+            osc2.start();
+            osc.stop(ctx.currentTime + 8.5);
+            osc2.stop(ctx.currentTime + 8.5);
           };
           playBell();
-          intervalId = setInterval(playBell, 15000);
+          intervalId = setInterval(playBell, 20000); // 20 giây mới đánh lại
           bgSoundRef.current = { stop: () => { isPlaying = false; clearInterval(intervalId); } };
           break;
         }
 
         case 'breathing': {
-          // 4-7-8 breathing guide
-          let phase = 0;
-          const playBreath = () => {
-            if (!isPlaying) return;
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.type = 'sine';
+          // Hướng dẫn thở 4-7-8 - dùng white noise filtered thay vì tone
+          let breathPhase = 0; // 0 = hít vào, 1 = giữ, 2 = thở ra
+          
+          const createBreathSound = (duration, isInhale) => {
+            const noise = ctx.createBufferSource();
+            noise.buffer = createNoiseBuffer(duration, 'pink');
+            const filter = ctx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.value = isInhale ? 300 : 200;
+            const breathGain = ctx.createGain();
             
-            if (phase === 0) {
-              // Inhale (4 sec) - rising tone
-              osc.frequency.setValueAtTime(200, ctx.currentTime);
-              osc.frequency.linearRampToValueAtTime(400, ctx.currentTime + 4);
-              gain.gain.setValueAtTime(0.1, ctx.currentTime);
-              gain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 4);
-              osc.connect(gain);
-              gain.connect(ctx.destination);
-              osc.start();
-              osc.stop(ctx.currentTime + 4);
-            } else if (phase === 1) {
-              // Hold (7 sec) - steady tone
-              osc.frequency.value = 400;
-              gain.gain.value = 0.05;
-              osc.connect(gain);
-              gain.connect(ctx.destination);
-              osc.start();
-              osc.stop(ctx.currentTime + 7);
+            noise.connect(filter);
+            filter.connect(breathGain);
+            breathGain.connect(ctx.destination);
+            
+            if (isInhale) {
+              // Hít vào - tăng dần
+              breathGain.gain.setValueAtTime(0.01, ctx.currentTime);
+              breathGain.gain.linearRampToValueAtTime(0.15, ctx.currentTime + duration);
             } else {
-              // Exhale (8 sec) - falling tone
-              osc.frequency.setValueAtTime(400, ctx.currentTime);
-              osc.frequency.linearRampToValueAtTime(200, ctx.currentTime + 8);
-              gain.gain.setValueAtTime(0.2, ctx.currentTime);
-              gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 8);
-              osc.connect(gain);
-              gain.connect(ctx.destination);
-              osc.start();
-              osc.stop(ctx.currentTime + 8);
+              // Thở ra - giảm dần
+              breathGain.gain.setValueAtTime(0.15, ctx.currentTime);
+              breathGain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + duration);
             }
-            phase = (phase + 1) % 3;
+            
+            noise.start();
+            noise.stop(ctx.currentTime + duration);
           };
-          playBreath();
-          // 4 + 7 + 8 = 19 seconds cycle
-          intervalId = setInterval(() => {
-            if (phase === 0) setTimeout(playBreath, 0);
-            else if (phase === 1) setTimeout(playBreath, 4000);
-            else setTimeout(playBreath, 11000);
-          }, 19000);
-          bgSoundRef.current = { stop: () => { isPlaying = false; clearInterval(intervalId); } };
+          
+          const breathCycle = () => {
+            if (!isPlaying) return;
+            if (breathPhase === 0) {
+              createBreathSound(4, true); // Hít vào 4s
+              setTimeout(() => { breathPhase = 1; if (isPlaying) breathCycle(); }, 4000);
+            } else if (breathPhase === 1) {
+              // Giữ hơi 7s - im lặng
+              setTimeout(() => { breathPhase = 2; if (isPlaying) breathCycle(); }, 7000);
+            } else {
+              createBreathSound(8, false); // Thở ra 8s
+              setTimeout(() => { breathPhase = 0; if (isPlaying) breathCycle(); }, 8000);
+            }
+          };
+          
+          breathCycle();
+          bgSoundRef.current = { stop: () => { isPlaying = false; } };
           break;
         }
 
         case 'drone_om': {
-          // Continuous Om drone
+          // Om drone - nhẹ nhàng với modulation
           const osc1 = ctx.createOscillator();
-          const osc2 = ctx.createOscillator();
-          const osc3 = ctx.createOscillator();
+          const filter = ctx.createBiquadFilter();
           const gain = ctx.createGain();
           
           osc1.type = 'sine';
-          osc2.type = 'sine';
-          osc3.type = 'sine';
-          osc1.frequency.value = 136.1;
-          osc2.frequency.value = 272.2;
-          osc3.frequency.value = 544.4;
+          osc1.frequency.value = 136.1; // Om frequency
           
-          osc1.connect(gain);
-          osc2.connect(gain);
-          osc3.connect(gain);
+          filter.type = 'lowpass';
+          filter.frequency.value = 300;
+          
+          // Volume modulation nhẹ để không gây mỏi
+          const lfo = ctx.createOscillator();
+          lfo.frequency.value = 0.05;
+          const lfoGain = ctx.createGain();
+          lfoGain.gain.value = 0.03;
+          lfo.connect(lfoGain);
+          lfoGain.connect(gain.gain);
+          
+          osc1.connect(filter);
+          filter.connect(gain);
           gain.connect(ctx.destination);
-          gain.gain.value = 0.15;
+          gain.gain.value = 0.08; // Giảm volume
           
           osc1.start();
-          osc2.start();
-          osc3.start();
-          bgSoundRef.current = { stop: () => { osc1.stop(); osc2.stop(); osc3.stop(); } };
+          lfo.start();
+          bgSoundRef.current = { stop: () => { osc1.stop(); lfo.stop(); } };
           break;
         }
       }
     } catch (e) {
       console.error('Background sound error:', e);
     }
-  }, [stopBgSound]);
+  }, []);
+
+  // Play background sound - 100% Web Audio API (không cần file âm thanh)
+  const startBgSound = useCallback((mode) => {
+    stopBgSound();
+    
+    const currentMode = SOUND_MODES.find(m => m.id === mode);
+    if (!currentMode || !currentMode.bgSound) return;
+
+    // Tạo âm thanh realtime bằng Web Audio API
+    playWebAudioSound(currentMode.bgSound);
+  }, [stopBgSound, playWebAudioSound]);
 
   // Calculate total seconds
   const getTotalSeconds = useCallback(() => {
@@ -1581,65 +1826,65 @@ function TimerContent({
 
         {/* Settings Panel - Hidden when running */}
         {!isRunning && !isFinished && (
-          <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-            <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-5 border border-gray-100">
+            <h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
               <span>⚙️</span>
               Cài đặt thời gian
             </h2>
 
-            {/* Custom time input */}
-            <div className="flex items-center justify-center gap-4 mb-8">
+            {/* Custom time input - Compact */}
+            <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4">
               <div className="text-center">
-                <label className="block text-sm text-gray-500 mb-2">Giờ</label>
+                <label className="block text-xs text-gray-500 mb-1">Giờ</label>
                 <input
                   type="number"
                   min="0"
                   max="23"
                   value={hours}
                   onChange={(e) => setHours(Math.max(0, Math.min(23, parseInt(e.target.value) || 0)))}
-                  className="w-24 h-16 text-center text-3xl font-bold border-2 border-gray-200 
+                  className="w-16 sm:w-20 h-12 sm:h-14 text-center text-2xl font-bold border-2 border-gray-200 
                     rounded-xl focus:border-violet-400 focus:ring-2 focus:ring-violet-100"
                 />
               </div>
-              <span className="text-4xl font-bold text-gray-300 mt-6">:</span>
+              <span className="text-3xl font-bold text-gray-300 mt-5">:</span>
               <div className="text-center">
-                <label className="block text-sm text-gray-500 mb-2">Phút</label>
+                <label className="block text-xs text-gray-500 mb-1">Phút</label>
                 <input
                   type="number"
                   min="0"
                   max="59"
                   value={minutes}
                   onChange={(e) => setMinutes(Math.max(0, Math.min(59, parseInt(e.target.value) || 0)))}
-                  className="w-24 h-16 text-center text-3xl font-bold border-2 border-gray-200 
+                  className="w-16 sm:w-20 h-12 sm:h-14 text-center text-2xl font-bold border-2 border-gray-200 
                     rounded-xl focus:border-violet-400 focus:ring-2 focus:ring-violet-100"
                 />
               </div>
-              <span className="text-4xl font-bold text-gray-300 mt-6">:</span>
+              <span className="text-3xl font-bold text-gray-300 mt-5">:</span>
               <div className="text-center">
-                <label className="block text-sm text-gray-500 mb-2">Giây</label>
+                <label className="block text-xs text-gray-500 mb-1">Giây</label>
                 <input
                   type="number"
                   min="0"
                   max="59"
                   value={seconds}
                   onChange={(e) => setSeconds(Math.max(0, Math.min(59, parseInt(e.target.value) || 0)))}
-                  className="w-24 h-16 text-center text-3xl font-bold border-2 border-gray-200 
+                  className="w-16 sm:w-20 h-12 sm:h-14 text-center text-2xl font-bold border-2 border-gray-200 
                     rounded-xl focus:border-violet-400 focus:ring-2 focus:ring-violet-100"
                 />
               </div>
             </div>
 
-            {/* Presets */}
-            <div className="mb-8">
-              <h3 className="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wide text-center">
+            {/* Presets - Compact */}
+            <div className="mb-4">
+              <h3 className="text-sm font-semibold text-gray-600 mb-2 uppercase tracking-wide text-center">
                 Chọn nhanh
               </h3>
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap justify-center gap-1.5">
                 {PRESETS.map(preset => (
                   <button
                     key={preset.seconds}
                     onClick={() => applyPreset(preset.seconds)}
-                    className={`px-4 py-2 rounded-full font-semibold transition-all text-sm
+                    className={`px-3 py-1.5 rounded-full font-semibold transition-all text-sm
                       ${getTotalSeconds() === preset.seconds
                         ? 'bg-gradient-to-r from-violet-500 to-pink-500 text-white shadow-lg scale-105'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -1651,16 +1896,16 @@ function TimerContent({
               </div>
             </div>
 
-            {/* Sound Mode - Tab-based UI */}
-            <div className="mb-8">
-              <h3 className="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wide text-center">
+            {/* Sound Mode - Tab-based UI - Compact */}
+            <div className="mb-4">
+              <h3 className="text-sm font-semibold text-gray-600 mb-2 uppercase tracking-wide text-center">
                 🔊 Chế độ âm thanh
               </h3>
               
               {/* Hiển thị âm thanh đang chọn */}
               {soundMode !== 'none' && (
-                <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-xl flex items-center justify-between">
-                  <div className="flex items-center gap-2">
+                <div className="mb-3 p-2 bg-blue-50 border border-blue-200 rounded-lg flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-1">
                     <span className="text-blue-600 font-bold">Đang chọn:</span>
                     <span className="text-blue-800">{SOUND_MODES.find(m => m.id === soundMode)?.label}</span>
                   </div>
@@ -1673,20 +1918,20 @@ function TimerContent({
                 </div>
               )}
               
-              {/* Tabs */}
-              <div className="flex flex-wrap gap-1 mb-4 p-1 bg-gray-100 rounded-xl">
+              {/* Tabs - Compact */}
+              <div className="flex flex-wrap gap-0.5 mb-3 p-1 bg-gray-100 rounded-lg">
                 {[
-                  { id: 'basic', label: '🔔 Cơ bản', color: 'gray' },
-                  { id: 'brainwave', label: '🧠 Sóng não', color: 'purple' },
-                  { id: 'nature', label: '🌿 Thiên nhiên', color: 'green' },
-                  { id: 'ambient', label: '🏠 Không gian', color: 'amber' },
-                  { id: 'rhythm', label: '🥁 Nhịp', color: 'orange' },
-                  { id: 'meditation', label: '🧘 Thiền', color: 'indigo' },
+                  { id: 'basic', label: '🔔 Cơ bản' },
+                  { id: 'brainwave', label: '🧠 Sóng não' },
+                  { id: 'nature', label: '🌿 Thiên nhiên' },
+                  { id: 'ambient', label: '🏠 Không gian' },
+                  { id: 'rhythm', label: '🥁 Nhịp' },
+                  { id: 'meditation', label: '🧘 Thiền' },
                 ].map(tab => (
                   <button
                     key={tab.id}
                     onClick={() => setSoundTab(tab.id)}
-                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-all
+                    className={`px-2 py-1.5 rounded-md text-sm font-medium transition-all
                       ${soundTab === tab.id
                         ? 'bg-white shadow-md text-gray-800'
                         : 'text-gray-600 hover:bg-white/50'
@@ -1697,23 +1942,23 @@ function TimerContent({
                 ))}
               </div>
 
-              {/* Tab Content */}
-              <div className="min-h-[120px]">
+              {/* Tab Content - Compact */}
+              <div className="min-h-[100px]">
                 {/* Basic */}
                 {soundTab === 'basic' && (
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
                     {SOUND_MODES.filter(m => m.category === 'basic').map(mode => (
                       <button
                         key={mode.id}
                         onClick={() => setSoundMode(mode.id)}
-                        className={`p-3 rounded-xl font-medium transition-all text-left
+                        className={`p-2 rounded-lg font-medium transition-all text-left
                           ${soundMode === mode.id
                             ? 'bg-gradient-to-r from-gray-600 to-gray-700 text-white shadow-lg ring-2 ring-gray-300'
                             : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200'
                           }`}
                       >
                         <div className="text-sm font-bold">{mode.label}</div>
-                        <div className={`text-xs mt-1 ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
+                        <div className={`text-xs ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
                           {mode.description}
                         </div>
                       </button>
@@ -1724,22 +1969,20 @@ function TimerContent({
                 {/* Brainwave */}
                 {soundTab === 'brainwave' && (
                   <div>
-                    <div className="text-xs text-purple-600 mb-2 flex items-center gap-1">
-                      <span className="font-bold">💡 Mẹo:</span> Dùng tai nghe 🎧 để có hiệu quả tốt nhất
-                    </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <div className="text-xs text-purple-600 mb-1.5">💡 Dùng tai nghe 🎧 để hiệu quả nhất</div>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
                       {SOUND_MODES.filter(m => m.category === 'brainwave').map(mode => (
                         <button
                           key={mode.id}
                           onClick={() => setSoundMode(mode.id)}
-                          className={`p-3 rounded-xl font-medium transition-all text-left
+                          className={`p-2 rounded-lg font-medium transition-all text-left
                             ${soundMode === mode.id
                               ? 'bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-lg ring-2 ring-purple-300'
                               : 'bg-purple-50 text-gray-700 hover:bg-purple-100 border border-purple-200'
                             }`}
                         >
                           <div className="text-sm font-bold">{mode.label}</div>
-                          <div className={`text-xs mt-1 ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
+                          <div className={`text-xs ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
                             {mode.description}
                           </div>
                         </button>
@@ -1750,19 +1993,19 @@ function TimerContent({
 
                 {/* Nature */}
                 {soundTab === 'nature' && (
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
                     {SOUND_MODES.filter(m => m.category === 'nature').map(mode => (
                       <button
                         key={mode.id}
                         onClick={() => setSoundMode(mode.id)}
-                        className={`p-3 rounded-xl font-medium transition-all text-left
+                        className={`p-2 rounded-lg font-medium transition-all text-left
                           ${soundMode === mode.id
                             ? 'bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg ring-2 ring-green-300'
                             : 'bg-green-50 text-gray-700 hover:bg-green-100 border border-green-200'
                           }`}
                       >
                         <div className="text-sm font-bold">{mode.label}</div>
-                        <div className={`text-xs mt-1 ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
+                        <div className={`text-xs ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
                           {mode.description}
                         </div>
                       </button>
@@ -1772,19 +2015,19 @@ function TimerContent({
 
                 {/* Ambient */}
                 {soundTab === 'ambient' && (
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
                     {SOUND_MODES.filter(m => m.category === 'ambient').map(mode => (
                       <button
                         key={mode.id}
                         onClick={() => setSoundMode(mode.id)}
-                        className={`p-3 rounded-xl font-medium transition-all text-left
+                        className={`p-2 rounded-lg font-medium transition-all text-left
                           ${soundMode === mode.id
                             ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg ring-2 ring-amber-300'
                             : 'bg-amber-50 text-gray-700 hover:bg-amber-100 border border-amber-200'
                           }`}
                       >
                         <div className="text-sm font-bold">{mode.label}</div>
-                        <div className={`text-xs mt-1 ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
+                        <div className={`text-xs ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
                           {mode.description}
                         </div>
                       </button>
@@ -1794,19 +2037,19 @@ function TimerContent({
 
                 {/* Rhythm */}
                 {soundTab === 'rhythm' && (
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
                     {SOUND_MODES.filter(m => m.category === 'rhythm').map(mode => (
                       <button
                         key={mode.id}
                         onClick={() => setSoundMode(mode.id)}
-                        className={`p-3 rounded-xl font-medium transition-all text-left
+                        className={`p-2 rounded-lg font-medium transition-all text-left
                           ${soundMode === mode.id
                             ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg ring-2 ring-orange-300'
                             : 'bg-orange-50 text-gray-700 hover:bg-orange-100 border border-orange-200'
                           }`}
                       >
                         <div className="text-sm font-bold">{mode.label}</div>
-                        <div className={`text-xs mt-1 ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
+                        <div className={`text-xs ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
                           {mode.description}
                         </div>
                       </button>
@@ -1816,19 +2059,19 @@ function TimerContent({
 
                 {/* Meditation */}
                 {soundTab === 'meditation' && (
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
                     {SOUND_MODES.filter(m => m.category === 'meditation').map(mode => (
                       <button
                         key={mode.id}
                         onClick={() => setSoundMode(mode.id)}
-                        className={`p-3 rounded-xl font-medium transition-all text-left
+                        className={`p-2 rounded-lg font-medium transition-all text-left
                           ${soundMode === mode.id
                             ? 'bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow-lg ring-2 ring-indigo-300'
                             : 'bg-indigo-50 text-gray-700 hover:bg-indigo-100 border border-indigo-200'
                           }`}
                       >
                         <div className="text-sm font-bold">{mode.label}</div>
-                        <div className={`text-xs mt-1 ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
+                        <div className={`text-xs ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
                           {mode.description}
                         </div>
                       </button>
@@ -1838,12 +2081,12 @@ function TimerContent({
               </div>
             </div>
 
-            {/* Start Button */}
+            {/* Start Button - Compact */}
             <div className="text-center">
               <button
                 onClick={startTimer}
                 disabled={getTotalSeconds() <= 0}
-                className="px-16 py-6 text-3xl font-black text-white rounded-full
+                className="px-12 py-4 text-2xl font-black text-white rounded-full
                   bg-gradient-to-r from-blue-500 to-indigo-500 
                   hover:from-blue-600 hover:to-indigo-600 
                   hover:scale-105 hover:shadow-xl 

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import ToolLayout from '@/components/ToolLayout/ToolLayout';
+import { LogoIcon } from '@/components/Logo/Logo';
 
 export default function FlashZan() {
   // Settings
@@ -197,102 +198,104 @@ export default function FlashZan() {
   return (
     <ToolLayout toolName="Flash ZAN" toolIcon="⚡" hideFullscreenButton>
       <div ref={containerRef} className="space-y-6">
-        {/* Settings Panel - Hidden during flash */}
+        {/* Settings Panel - Compact Design */}
         {!isRunning && !isFinished && (
-          <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-            <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 border border-gray-100 max-w-3xl mx-auto">
+            <h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
               <span>⚙️</span>
               Cài đặt bài tập
             </h2>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Row 1: Phép tính + Số chữ số */}
+            <div className="grid grid-cols-2 gap-4 mb-4">
               {/* Operation Type */}
-              <div>
-                <h3 className="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wide">
-                  Loại phép tính
+              <div className="bg-gray-50 rounded-xl p-3">
+                <h3 className="text-sm font-semibold text-gray-500 mb-2 uppercase tracking-wide">
+                  Phép tính
                 </h3>
-                <div className="space-y-2">
-                  <label className="flex items-center gap-3 cursor-pointer p-3 rounded-xl 
-                    hover:bg-violet-50 transition-colors">
-                    <input
-                      type="radio"
-                      name="operation"
-                      checked={operationType === 'add'}
-                      onChange={() => setOperationType('add')}
-                      className="w-5 h-5 text-violet-500"
-                    />
-                    <span className="text-lg">➕ Cộng</span>
-                  </label>
-                  <label className="flex items-center gap-3 cursor-pointer p-3 rounded-xl 
-                    hover:bg-violet-50 transition-colors">
-                    <input
-                      type="radio"
-                      name="operation"
-                      checked={operationType === 'addSubtract'}
-                      onChange={() => setOperationType('addSubtract')}
-                      className="w-5 h-5 text-violet-500"
-                    />
-                    <span className="text-lg">➕➖ Cộng và Trừ</span>
-                  </label>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setOperationType('add')}
+                    className={`flex-1 py-2 px-3 rounded-lg font-medium transition-all
+                      ${operationType === 'add' 
+                        ? 'bg-violet-500 text-white shadow-md' 
+                        : 'bg-white text-gray-600 hover:bg-violet-50 border border-gray-200'}`}
+                  >
+                    ➕ Cộng
+                  </button>
+                  <button
+                    onClick={() => setOperationType('addSubtract')}
+                    className={`flex-1 py-2 px-3 rounded-lg font-medium transition-all
+                      ${operationType === 'addSubtract' 
+                        ? 'bg-violet-500 text-white shadow-md' 
+                        : 'bg-white text-gray-600 hover:bg-violet-50 border border-gray-200'}`}
+                  >
+                    ➕➖ Cộng Trừ
+                  </button>
                 </div>
               </div>
 
               {/* Digit Count */}
-              <div>
-                <h3 className="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wide">
+              <div className="bg-gray-50 rounded-xl p-3">
+                <h3 className="text-sm font-semibold text-gray-500 mb-2 uppercase tracking-wide">
                   Số chữ số
                 </h3>
-                <div className="space-y-2">
-                  <label className="flex items-center gap-3 cursor-pointer p-3 rounded-xl 
-                    hover:bg-violet-50 transition-colors">
-                    <input
-                      type="radio"
-                      name="digits"
-                      checked={digitCount === 1}
-                      onChange={() => setDigitCount(1)}
-                      className="w-5 h-5 text-violet-500"
-                    />
-                    <span className="text-lg">1 chữ số (1-9)</span>
-                  </label>
-                  <label className="flex items-center gap-3 cursor-pointer p-3 rounded-xl 
-                    hover:bg-violet-50 transition-colors">
-                    <input
-                      type="radio"
-                      name="digits"
-                      checked={digitCount === 2}
-                      onChange={() => setDigitCount(2)}
-                      className="w-5 h-5 text-violet-500"
-                    />
-                    <span className="text-lg">2 chữ số (10-99)</span>
-                  </label>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setDigitCount(1)}
+                    className={`flex-1 py-2 px-3 rounded-lg font-medium transition-all
+                      ${digitCount === 1 
+                        ? 'bg-violet-500 text-white shadow-md' 
+                        : 'bg-white text-gray-600 hover:bg-violet-50 border border-gray-200'}`}
+                  >
+                    1 số (1-9)
+                  </button>
+                  <button
+                    onClick={() => setDigitCount(2)}
+                    className={`flex-1 py-2 px-3 rounded-lg font-medium transition-all
+                      ${digitCount === 2 
+                        ? 'bg-violet-500 text-white shadow-md' 
+                        : 'bg-white text-gray-600 hover:bg-violet-50 border border-gray-200'}`}
+                  >
+                    2 số (10-99)
+                  </button>
                 </div>
               </div>
+            </div>
 
+            {/* Row 2: Sliders */}
+            <div className="grid grid-cols-2 gap-4 mb-5">
               {/* Flash Count */}
-              <div>
-                <h3 className="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wide">
-                  Số lượng số: <span className="text-violet-600 font-bold">{flashCount}</span>
-                </h3>
+              <div className="bg-gray-50 rounded-xl p-3">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                    Số lượng
+                  </h3>
+                  <span className="text-lg font-bold text-violet-600">{flashCount}</span>
+                </div>
                 <input
                   type="range"
                   min="3"
                   max="30"
                   value={flashCount}
                   onChange={(e) => setFlashCount(parseInt(e.target.value))}
-                  className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer
-                    accent-violet-500 tool-slider"
+                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer
+                    accent-violet-500"
                 />
-                <div className="flex justify-between text-xs text-gray-400 mt-1">
+                <div className="flex justify-between text-sm text-gray-400 mt-1">
                   <span>3</span>
                   <span>30</span>
                 </div>
               </div>
 
               {/* Speed */}
-              <div>
-                <h3 className="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wide">
-                  Tốc độ: <span className="text-violet-600 font-bold">{speed}s</span>
-                </h3>
+              <div className="bg-gray-50 rounded-xl p-3">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                    Tốc độ
+                  </h3>
+                  <span className="text-lg font-bold text-violet-600">{speed}s</span>
+                </div>
                 <input
                   type="range"
                   min="0.1"
@@ -300,21 +303,21 @@ export default function FlashZan() {
                   step="0.1"
                   value={speed}
                   onChange={(e) => setSpeed(parseFloat(e.target.value))}
-                  className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer
-                    accent-violet-500 tool-slider"
+                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer
+                    accent-violet-500"
                 />
-                <div className="flex justify-between text-xs text-gray-400 mt-1">
-                  <span>0.1s (Siêu nhanh)</span>
+                <div className="flex justify-between text-sm text-gray-400 mt-1">
+                  <span>0.1s (Nhanh)</span>
                   <span>5s (Chậm)</span>
                 </div>
               </div>
             </div>
 
             {/* Start Button */}
-            <div className="mt-8 text-center">
+            <div className="text-center">
               <button
                 onClick={startFlash}
-                className="px-12 py-5 min-h-[56px] text-2xl font-black text-white rounded-full
+                className="px-10 py-4 text-xl font-black text-white rounded-full
                   bg-gradient-to-r from-yellow-400 to-orange-500 
                   hover:from-yellow-500 hover:to-orange-600 
                   hover:scale-105 hover:shadow-xl 
@@ -322,8 +325,8 @@ export default function FlashZan() {
               >
                 ⚡ BẮT ĐẦU FLASH!
               </button>
-              <p className="text-sm text-gray-500 mt-3">
-                Sẽ tự động vào chế độ toàn màn hình
+              <p className="text-sm text-gray-400 mt-2">
+                Tự động vào toàn màn hình • Nhấn <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600 font-mono">ESC</kbd> để thoát
               </p>
             </div>
           </div>
@@ -511,26 +514,12 @@ export default function FlashZan() {
                 </div>
               </div>
             )}
-          </div>
-        )}
 
-        {/* Preview/Info Section */}
-        {!isRunning && !isFinished && (
-          <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 border border-yellow-200">
-            <div className="flex items-start gap-4">
-              <div className="text-4xl">💡</div>
-              <div>
-                <h3 className="text-lg font-bold text-gray-800 mb-2">
-                  Hướng dẫn sử dụng
-                </h3>
-                <ul className="text-gray-600 space-y-1">
-                  <li>• Flash sẽ hiển thị từng số một trên màn hình toàn màn hình</li>
-                  <li>• Nhấn <kbd className="px-1.5 py-0.5 bg-gray-200 rounded text-gray-700 font-mono text-sm">ESC</kbd> để thoát bất cứ lúc nào</li>
-                  <li>• Học sinh tính nhẩm tổng các số</li>
-                  <li>• Kết quả phép tính luôn là số dương</li>
-                  <li>• Phù hợp luyện tập Soroban và Anzan</li>
-                  <li>• Bấm "Xem đáp án" sau khi hoàn thành để kiểm tra</li>
-                </ul>
+            {/* LOGO SOROKID - Góc dưới trái */}
+            <div className="absolute bottom-3 left-3 z-[5] pointer-events-none select-none" aria-hidden="true">
+              <div className="flex items-center gap-1.5 opacity-60">
+                <LogoIcon size={22} />
+                <span className="text-xs font-bold tracking-tight text-white/80">SoroKid</span>
               </div>
             </div>
           </div>

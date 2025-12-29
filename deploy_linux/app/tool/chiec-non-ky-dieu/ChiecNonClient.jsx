@@ -28,6 +28,10 @@ export default function ChiecNonKyDieu() {
   const [minNumber, setMinNumber] = useState(1);
   const [maxNumber, setMaxNumber] = useState(10);
   
+  // String states for better mobile UX - cho phép xóa tự do
+  const [minNumberInput, setMinNumberInput] = useState('1');
+  const [maxNumberInput, setMaxNumberInput] = useState('10');
+  
   const wheelRef = useRef(null);
   const spinTimeoutRef = useRef(null);
   const audioContextRef = useRef(null);
@@ -284,28 +288,55 @@ export default function ChiecNonKyDieu() {
     const n = currentItems.length;
     const segmentAngle = 360 / n;
     
-    // Random chọn một mục sẽ trúng
+    // =====================================================
+    // LOGIC TÍNH ROTATION CHÍNH XÁC - KHÔNG SAI SỐ
+    // =====================================================
+    // 
+    // 1. Random chọn INDEX trước - đây là nguồn sự thật duy nhất
     const winningIndex = Math.floor(Math.random() * n);
     
-    // Góc cần thiết để segment winningIndex ở TOP:
-    // targetAngle = 342 - winningIndex * segmentAngle
-    const targetAngle = ((342 - winningIndex * segmentAngle) % 360 + 360) % 360;
+    // 2. PHÂN TÍCH HỆ TỌA ĐỘ:
+    //    - SVG vẽ segment[0] bắt đầu từ góc -90° (hướng 12 giờ)
+    //    - startAngle của segment[i] = i * segmentAngle - 90°
+    //    - TÂM của segment[i] = (i + 0.5) * segmentAngle - 90°
+    //    - Mũi tên cố định ở TOP = -90° (theo hệ unit circle) = 0° rotation
+    //    - CSS rotation: góc dương = xoay theo chiều kim đồng hồ
+    //
+    // 3. CÔNG THỨC:
+    //    - Để TÂM segment[winningIndex] khớp với mũi tên (TOP):
+    //    - Tâm segment ở góc: centerAngle = (winningIndex + 0.5) * segmentAngle - 90°
+    //    - Ta cần xoay wheel sao cho centerAngle trùng với -90° (TOP)
+    //    - Góc xoay cần thiết: rotation = -centerAngle - 90° = -((winningIndex + 0.5) * segmentAngle - 90°) - 90°
+    //                                    = -(winningIndex + 0.5) * segmentAngle
+    //    - Nhưng CSS rotation dương = CW, nên để wheel dừng đúng vị trí:
+    //      targetAngle = 360 - (winningIndex + 0.5) * segmentAngle (normalize về 0-360)
+    //
+    // 4. NORMALIZE góc về khoảng [0, 360):
+    const centerOffset = (winningIndex + 0.5) * segmentAngle;
+    const targetAngle = ((360 - centerOffset) % 360 + 360) % 360;
     
-    // Thêm offset nhỏ trong segment để tạo hồi hộp (max ±30% segment)
-    const offsetInSegment = (Math.random() - 0.5) * segmentAngle * 0.5;
+    // 5. Random số vòng quay đầy đủ (12-18 vòng) - KHÔNG ảnh hưởng kết quả
+    const fullSpins = 12 + Math.floor(Math.random() * 7);
     
-    // Góc cuối cùng wheel cần dừng lại
-    const finalStopAngle = targetAngle + offsetInSegment;
+    // 6. Tổng góc rotation = số vòng đầy đủ + góc dừng chính xác tại TÂM ô
+    //    KHÔNG thêm offset - mũi tên PHẢI chỉ đúng TÂM ô trúng
+    const totalRotation = fullSpins * 360 + targetAngle;
     
-    // Random số vòng quay (12-18 vòng) 
-    const spins = Math.floor(12 + Math.random() * 6);
-    
-    // Tổng góc quay = số vòng đầy đủ + góc dừng cuối cùng
-    const totalRotation = spins * 360 + finalStopAngle;
+    // Debug log
+    console.log('🎡 Spin:', { 
+      n,
+      winningIndex, 
+      winner: currentItems[winningIndex], 
+      segmentAngle: segmentAngle.toFixed(4),
+      centerOffset: centerOffset.toFixed(4),
+      targetAngle: targetAngle.toFixed(4),
+      fullSpins,
+      totalRotation: totalRotation.toFixed(4)
+    });
     
     setRotation(totalRotation);
 
-    // Tính toán item được chọn sau khi quay xong
+    // Winner đã được xác định bằng INDEX, chỉ cần hiển thị sau khi animation xong
     spinTimeoutRef.current = setTimeout(() => {
       stopMusic();
       playWinSound();
@@ -315,33 +346,31 @@ export default function ChiecNonKyDieu() {
       setShowResult(true);
       setIsSpinning(false);
       
-      // Tự động loại khỏi danh sách nếu option được chọn
-      if (removeAfterSpin) {
-        setItems(prev => prev.filter(item => item !== winner));
-      }
+      // KHÔNG tự động loại - đợi user confirm qua popup
     }, spinDuration);
 
-  }, [items, isSpinning, rotation, startSpinMusic, stopMusic, playWinSound, removeAfterSpin]);
+  }, [items, isSpinning, startSpinMusic, stopMusic, playWinSound]);
 
-  // Handle after result shown
+  // Handle after result shown - User chọn GIỮ LẠI (không loại)
   const handleKeepResult = useCallback(() => {
-    // Nếu đã tự động loại rồi nhưng muốn giữ lại, thêm lại vào
-    if (removeAfterSpin && result) {
-      setItems(prev => [...prev, result]);
-    }
-    setShowResult(false);
-    setResult(null);
-    // Reset rotation về 0 để vòng quay mới hiển thị đúng
-    setRotation(0);
-  }, [removeAfterSpin, result]);
-
-  const handleConfirmRemove = useCallback(() => {
-    // Đã loại rồi, chỉ cần đóng modal
+    // Không loại, chỉ đóng popup
     setShowResult(false);
     setResult(null);
     // Reset rotation về 0 để vòng quay mới hiển thị đúng
     setRotation(0);
   }, []);
+
+  // Handle confirm remove - User chọn LOẠI khỏi danh sách
+  const handleConfirmRemove = useCallback(() => {
+    // Loại item khỏi danh sách
+    if (result) {
+      setItems(prev => prev.filter(item => item !== result));
+    }
+    setShowResult(false);
+    setResult(null);
+    // Reset rotation về 0 để vòng quay mới hiển thị đúng
+    setRotation(0);
+  }, [result]);
 
   // Reset everything
   const handleReset = useCallback(() => {
@@ -446,13 +475,34 @@ export default function ChiecNonKyDieu() {
                 <div className="flex-1">
                   <label className="text-gray-500 text-xs">Từ</label>
                   <input
-                    type="number"
-                    value={minNumber}
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    maxLength={4}
+                    value={minNumberInput}
                     onChange={(e) => {
-                      const val = parseInt(e.target.value);
-                      setMinNumber(isNaN(val) ? 1 : Math.max(1, val));
+                      // Cho phép nhập tự do, giới hạn 4 ký tự (max 9999)
+                      const raw = e.target.value.replace(/[^0-9]/g, '').slice(0, 4);
+                      setMinNumberInput(raw);
+                      // Cập nhật số thực nếu hợp lệ
+                      const val = parseInt(raw);
+                      if (!isNaN(val) && val >= 1 && val <= 9999) {
+                        setMinNumber(val);
+                      }
                     }}
-                    min="1"
+                    onBlur={() => {
+                      // Khi rời ô input, validate và reset nếu không hợp lệ
+                      let val = parseInt(minNumberInput);
+                      if (isNaN(val) || val < 1) {
+                        setMinNumberInput('1');
+                        setMinNumber(1);
+                      } else {
+                        val = Math.min(val, 9999); // Giới hạn max
+                        setMinNumberInput(val.toString());
+                        setMinNumber(val);
+                      }
+                    }}
+                    onFocus={(e) => e.target.select()}
                     className="w-full p-1.5 border-2 border-gray-200 rounded-lg text-center text-base font-bold
                       focus:border-orange-400"
                     disabled={isSpinning}
@@ -462,13 +512,34 @@ export default function ChiecNonKyDieu() {
                 <div className="flex-1">
                   <label className="text-gray-500 text-xs">Đến</label>
                   <input
-                    type="number"
-                    value={maxNumber}
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    maxLength={4}
+                    value={maxNumberInput}
                     onChange={(e) => {
-                      const val = parseInt(e.target.value);
-                      setMaxNumber(isNaN(val) ? 10 : Math.max(1, val));
+                      // Cho phép nhập tự do, giới hạn 4 ký tự (max 9999)
+                      const raw = e.target.value.replace(/[^0-9]/g, '').slice(0, 4);
+                      setMaxNumberInput(raw);
+                      // Cập nhật số thực nếu hợp lệ
+                      const val = parseInt(raw);
+                      if (!isNaN(val) && val >= 1 && val <= 9999) {
+                        setMaxNumber(val);
+                      }
                     }}
-                    min="1"
+                    onBlur={() => {
+                      // Khi rời ô input, validate và reset nếu không hợp lệ
+                      let val = parseInt(maxNumberInput);
+                      if (isNaN(val) || val < 1) {
+                        setMaxNumberInput('10');
+                        setMaxNumber(10);
+                      } else {
+                        val = Math.min(val, 9999); // Giới hạn max
+                        setMaxNumberInput(val.toString());
+                        setMaxNumber(val);
+                      }
+                    }}
+                    onFocus={(e) => e.target.select()}
                     className="w-full p-1.5 border-2 border-gray-200 rounded-lg text-center text-base font-bold
                       focus:border-orange-400"
                     disabled={isSpinning}
@@ -789,7 +860,7 @@ export default function ChiecNonKyDieu() {
 
             {removeAfterSpin && (
               <p className="text-gray-400 text-sm mb-4">
-                (Đã được loại khỏi danh sách)
+                Bạn muốn loại kết quả này khỏi vòng quay?
               </p>
             )}
 
@@ -801,14 +872,14 @@ export default function ChiecNonKyDieu() {
                     className="px-4 py-2.5 bg-gradient-to-r from-violet-500 to-purple-500 
                       text-white font-semibold rounded-full hover:shadow-lg transition-all text-sm whitespace-nowrap"
                   >
-                    👍 OK, quay tiếp
+                    ✓ Loại & quay tiếp
                   </button>
                   <button
                     onClick={handleKeepResult}
                     className="px-4 py-2.5 bg-gray-100 text-gray-600 font-semibold 
                       rounded-full hover:bg-gray-200 transition-all text-sm whitespace-nowrap"
                   >
-                    ↩️ Cho quay lại
+                    ↩️ Giữ lại
                   </button>
                 </>
               ) : (

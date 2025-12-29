@@ -112,7 +112,7 @@ const jsonLd = {
       '@type': 'Organization',
       '@id': 'https://sorokid.com/#organization',
       'name': 'Sorokid',
-      'alternateName': 'SoroKid - Học Soroban Online',
+      'alternateName': ['SoroKid - Học Soroban Online', 'SoroKid - Toolbox Giáo Viên'],
       'url': 'https://sorokid.com',
       'logo': {
         '@type': 'ImageObject',
@@ -121,7 +121,7 @@ const jsonLd = {
         'height': 512
       },
       'image': 'https://sorokid.com/og-image.png',
-      'description': 'Sorokid là ứng dụng học toán Soroban trực tuyến, giúp học sinh tiểu học tính nhẩm nhanh qua phương pháp game hóa.',
+      'description': 'Sorokid là nền tảng giáo dục Soroban trực tuyến với 2 sản phẩm chính: (1) Ứng dụng học Soroban cho học sinh tiểu học - học tính nhẩm qua game, phụ huynh đồng hành cùng con; (2) Toolbox Giáo Viên - bộ công cụ dạy học tích cực miễn phí, ban đầu xây dựng cho giáo viên dạy Soroban nhưng phù hợp cho MỌI giáo viên cần tạo không khí lớp học sôi nổi, tích cực.',
       'foundingDate': '2024',
       'areaServed': {
         '@type': 'Country',
@@ -135,7 +135,67 @@ const jsonLd = {
         '@type': 'ContactPoint',
         'contactType': 'customer support',
         'availableLanguage': 'Vietnamese'
-      }
+      },
+      'makesOffer': [
+        {
+          '@type': 'Offer',
+          'name': 'Ứng dụng học Soroban Online',
+          'description': 'Học tính nhẩm Soroban cho học sinh tiểu học 6-12 tuổi',
+          'url': 'https://sorokid.com/learn'
+        },
+        {
+          '@type': 'Offer', 
+          'name': 'Toolbox Giáo Viên',
+          'description': 'Bộ công cụ dạy học tích cực miễn phí cho giáo viên các cấp',
+          'url': 'https://sorokid.com/tool'
+        }
+      ]
+    },
+    // 2.5. Toolbox Đa Năng - WebApplication riêng biệt
+    {
+      '@type': 'WebApplication',
+      '@id': 'https://sorokid.com/#toolbox',
+      'name': 'Toolbox - Bộ Sưu Tập Trò Chơi Quốc Dân',
+      'alternateName': ['SoroKid Toolbox', 'Trò chơi quốc dân lớp học', 'Game giáo dục Việt Nam', 'Teacher Toolbox', 'Presentation Tools'],
+      'description': 'Toolbox là BỘ SƯU TẬP TRÒ CHƠI QUỐC DÂN phổ biến nhất trong lớp học Việt Nam, tập trung tại MỘT ĐỊA CHỈ DUY NHẤT. Bao gồm: Ai Là Triệu Phú, Chiếc Nón Kỳ Diệu, Ô Chữ, Đua Thú, Xúc Xắc... Phù hợp cho giáo viên, phụ huynh, thuyết trình, workshop. Được cập nhật thường xuyên. LƯU BOOKMARK sorokid.com/tool để dùng khi cần!',
+      'applicationCategory': 'ProductivityApplication',
+      'applicationSubCategory': 'Interactive Games Collection',
+      'operatingSystem': 'Web Browser',
+      'url': 'https://sorokid.com/tool',
+      'author': { '@id': 'https://sorokid.com/#organization' },
+      'provider': { '@id': 'https://sorokid.com/#organization' },
+      'isPartOf': { '@id': 'https://sorokid.com/#website' },
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'VND',
+        'description': 'Miễn phí 100%, không cần đăng nhập, cập nhật thường xuyên'
+      },
+      'featureList': [
+        'Ai Là Triệu Phú - Game show quốc dân kiểm tra kiến thức',
+        'Chiếc Nón Kỳ Diệu - Quay số gọi tên quen thuộc mọi lớp học',
+        'Trò Chơi Ô Chữ - Crossword ôn tập từ vựng cực hot',
+        'Đua Thú Hoạt Hình - Thi đua nhóm sôi động',
+        'Cuộc Đua Kì Thú - Bảng xếp hạng thi đua điểm số',
+        'Xúc Xắc 3D - Gieo xúc xắc cho quyết định, phần thưởng',
+        'Chia Nhóm - Chia nhóm tự động công bằng',
+        'Đồng Hồ Bấm Giờ - Timer cho mọi hoạt động',
+        'Bốc Thăm - Random picker hấp dẫn',
+        'Flash ZAN - Luyện tính nhẩm',
+        'Đèn May Mắn - Trò chơi team building',
+        '... và nhiều game mới cập nhật thường xuyên'
+      ],
+      'audience': {
+        '@type': 'Audience',
+        'audienceType': 'Giáo viên mọi cấp, Phụ huynh, Người thuyết trình, MC, Workshop facilitator'
+      },
+      'teaches': [
+        'Gamification - Biến học thành chơi',
+        'Active Learning - Học tập chủ động',
+        'Audience Engagement - Tạo tương tác',
+        'Team Building - Gắn kết nhóm'
+      ],
+      'inLanguage': 'vi'
     },
     // 3. SoftwareApplication - QUAN TRỌNG: Định danh là ỨNG DỤNG
     {
@@ -424,6 +484,39 @@ const jsonLd = {
             'text': 'Điểm khác biệt chính: (1) Sorokid là ỨNG DỤNG ONLINE - học mọi lúc mọi nơi, không cần đến trung tâm; (2) CHI PHÍ THẤP hơn nhiều so với học phí trung tâm hàng tháng; (3) PHỤ HUYNH ĐỒNG HÀNH - có báo cáo tiến độ, biết con học đến đâu; (4) GAME HÓA - trẻ học như chơi game, có điểm thưởng, huy hiệu, bảng xếp hạng; (5) LINH HOẠT - học 15 phút/ngày, phù hợp lịch trình gia đình.'
           }
         },
+        // === NHÓM 2.5: TOOLBOX GIÁO VIÊN (MỐI LIÊN HỆ VỚI SOROKID) ===
+        {
+          '@type': 'Question',
+          'name': 'SoroKid là học Soroban hay công cụ cho giáo viên?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'SoroKid là NỀN TẢNG GIÁO DỤC SOROBAN với 2 sản phẩm: (1) Ứng dụng học Soroban online cho học sinh tiểu học 6-12 tuổi - học tính nhẩm qua game, phụ huynh đồng hành; (2) Toolbox Giáo Viên (sorokid.com/tool) - bộ công cụ dạy học tích cực miễn phí cho giáo viên MỌI CẤP, MỌI MÔN. Cả hai đều hướng đến phương pháp dạy học tích cực, game hóa học tập.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Tại sao SoroKid lại có Toolbox cho giáo viên?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Toolbox ban đầu được xây dựng để HỖ TRỢ GIÁO VIÊN DẠY SOROBAN: quay số gọi học sinh lên bảng luyện tập, chia nhóm thi đua tính nhẩm, bấm giờ làm bài Flash Anzan... Nhận thấy các công cụ này HỮU ÍCH cho TẤT CẢ giáo viên cần tạo lớp học sôi nổi, SoroKid mở rộng Toolbox thành bộ công cụ phổ quát cho giáo viên mọi môn (Toán, Văn, Anh, Lý, Hóa...), mọi cấp (Mầm non đến THPT).'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Giáo viên không dạy Soroban có dùng được Toolbox không?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Hoàn toàn được và KHUYẾN KHÍCH! Toolbox Giáo Viên thiết kế cho TẤT CẢ giáo viên Việt Nam: quay số gọi học sinh công bằng (kiểm tra miệng), chia nhóm thảo luận nhanh, bấm giờ hoạt động nhóm, game Ai Là Triệu Phú ôn tập, đua thú thi đua điểm... Các công cụ phù hợp với mọi môn học, mọi hoạt động lớp học. Miễn phí 100%, không cần đăng nhập.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Toolbox Giáo Viên có những công cụ nào?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Toolbox Giáo Viên (sorokid.com/tool) có 12+ công cụ: Chiếc Nón Kỳ Diệu (quay số), Chia Nhóm ngẫu nhiên, Đồng Hồ Bấm Giờ, Bốc Thăm (random picker), Đua Thú Hoạt Hình (game đua nhóm), Cuộc Đua Kì Thú (bảng xếp hạng), Ai Là Triệu Phú (game show kiến thức), Xúc Xắc 3D, Flash ZAN (tính nhẩm), Bàn Tính Soroban Ảo, Đèn May Mắn, Trò Chơi Ô Chữ (crossword). Tất cả miễn phí, dùng ngay trên máy chiếu.'
+          }
+        },
         // === NHÓM 3: CÁCH HỌC VÀ HIỆU QUẢ ===
         {
           '@type': 'Question',
@@ -463,7 +556,15 @@ const jsonLd = {
           'name': 'Phụ huynh không biết Soroban có kèm con học được không?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'Hoàn toàn được! Sorokid thiết kế để trẻ có thể TỰ HỌC với bài giảng video và hướng dẫn chi tiết. Phụ huynh không cần biết Soroban, chỉ cần: (1) Tạo môi trường học tập yên tĩnh; (2) Nhắc nhở con học đều đặn; (3) Động viên khi con đạt thành tích; (4) Xem báo cáo tiến độ để biết con học đến đâu. Thực tế, nhiều phụ huynh còn học cùng con!'
+            'text': 'Hoàn toàn được! Sorokid thiết kế để trẻ có thể TỰ HỌC với bài giảng video và hướng dẫn chi tiết. Phụ huynh KHÔNG CẦN BIẾT Soroban, chỉ cần hiểu tác dụng của phương pháp và yêu cầu con làm theo hướng dẫn trong app. SoroKid đã có sẵn lộ trình, thử thách, bài tập - phụ huynh chỉ cần đồng hành và động viên con. Thực tế, nhiều phụ huynh còn học cùng con!'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Phụ huynh có thể dùng Toolbox để tự ra bài tập cho con không?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Được! Toolbox không chỉ cho giáo viên mà còn cho PHỤ HUYNH kèm con học. Ví dụ: dùng "Ai Là Triệu Phú" tạo game ôn bài với con; dùng "Ô Chữ" để con học từ vựng Tiếng Anh; dùng "Flash ZAN" luyện tính nhẩm mỗi tối 5 phút. Phụ huynh có thể tự đặt rule riêng, như "Đúng 10 câu được xem TV 30 phút". Các tool miễn phí tại sorokid.com/tool.'
           }
         },
         {
@@ -479,7 +580,7 @@ const jsonLd = {
           'name': 'Làm sao để con không chán khi học Soroban?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'Sorokid áp dụng GAME HÓA học tập: (1) Điểm thưởng, sao, kim cương khi hoàn thành bài; (2) Huy hiệu thành tích khi đạt mốc quan trọng; (3) Bảng xếp hạng để thi đua với bạn bè; (4) Nhiệm vụ hàng ngày (Daily Quest) với phần thưởng; (5) Thăng cấp, mở khóa nội dung mới. Trẻ sẽ có cảm giác "chơi game" hơn là "học bài".'
+            'text': 'Sorokid áp dụng GAME HÓA học tập: (1) Điểm thưởng, sao, kim cương khi hoàn thành bài; (2) Huy hiệu thành tích khi đạt mốc quan trọng; (3) Bảng xếp hạng để thi đua với bạn bè; (4) Nhiệm vụ hàng ngày (Daily Quest) với phần thưởng; (5) Thăng cấp, mở khóa nội dung mới. Ngoài ra, phụ huynh có thể dùng Toolbox (Ai Là Triệu Phú, Ô Chữ, Flash ZAN) để tạo trò chơi ôn tập cùng con, biến việc học thành thời gian vui vẻ cả nhà.'
           }
         },
         // === NHÓM 5: GIÁ CẢ & ĐĂNG KÝ ===

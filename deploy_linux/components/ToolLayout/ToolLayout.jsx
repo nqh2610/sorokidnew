@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect, useRef, createContext, useContext } from 'react';
 import Link from 'next/link';
 import Logo from '@/components/Logo/Logo';
+import BrandWatermark from '@/components/BrandWatermark/BrandWatermark';
 
 // Context để chia sẻ hàm exitFullscreen với children
 export const FullscreenContext = createContext({
@@ -22,6 +23,11 @@ export default function ToolLayout({
   toolColor = 'from-violet-500 to-pink-500',
   showHeader = true,
   hideFullscreenButton = false, // Ẩn nút fullscreen cho các tool tự fullscreen
+  // Brand watermark options
+  showBrandLogo = true, // Hiện logo góc (mặc định bật)
+  showBrandWatermark = false, // Hiện watermark giữa (mặc định tắt)
+  brandPosition = 'bottom-right', // Vị trí logo góc
+  brandWatermarkOpacity = 0.05, // Độ mờ watermark
 }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const containerRef = useRef(null);
@@ -219,6 +225,15 @@ export default function ToolLayout({
           </div>
         </footer>
       )}
+
+      {/* Brand Watermark - Logo thương hiệu */}
+      <BrandWatermark 
+        showCornerLogo={showBrandLogo}
+        showCenterWatermark={showBrandWatermark}
+        cornerPosition={brandPosition}
+        centerOpacity={brandWatermarkOpacity}
+        isFullscreen={isFullscreen}
+      />
 
       <style jsx global>{`
         .fullscreen-mode {

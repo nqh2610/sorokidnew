@@ -12,7 +12,7 @@
   "publishedAt": null,
   "createdAt": "2025-12-25",
   "image": "/blog/hoc-soroban-online-tai-nha.jpg",
-  "imageAlt": "Bé châu Á học Soroban trên tablet trong khi mẹ đang làm việc phía sau",
+  "imageAlt": "Trẻ học Soroban online tại nhà cho phụ huynh bận rộn",
   "readingTime": 5,
   "content": {
     "intro": "Khi nghe nói về Soroban, mình nghĩ: \"Hay đấy, nhưng làm sao? Mình đi làm cả ngày, ai ngồi kèm con?\" Hóa ra có cách khác.",
@@ -155,7 +155,6 @@
     "buttonText": "Thử xem",
     "buttonLink": "/register"
   },
-  "imageAlt": "Trẻ học Soroban online tại nhà cho phụ huynh bận rộn",
   "categoryOrder": 1,
   "order": 21
 }

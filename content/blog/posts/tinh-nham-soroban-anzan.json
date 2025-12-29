@@ -13,7 +13,7 @@
   "publishedAt": null,
   "createdAt": "2025-12-25",
   "image": "/blog/tre-luyen-tinh-nham-anzan.jpg",
-  "imageAlt": "Bé gái châu Á nhắm mắt luyện tính nhẩm Anzan với tay gảy trong không khí",
+  "imageAlt": "Trẻ em luyện tính nhẩm Soroban Anzan",
   "readingTime": 8,
   "content": {
     "intro": "Khi thấy trẻ tính nhẩm hàng chục số trong vài giây trên TV, đó là Anzan – tính nhẩm bằng cách hình dung Soroban trong đầu. Đây là đỉnh cao của học Soroban, và bất kỳ trẻ nào cũng có thể đạt được nếu luyện đúng cách.",
@@ -257,7 +257,6 @@
     "buttonText": "Cho con luyện thử",
     "buttonLink": "/register"
   },
-  "imageAlt": "Trẻ em luyện tính nhẩm Soroban Anzan",
   "categoryOrder": 1,
   "order": 14
 }

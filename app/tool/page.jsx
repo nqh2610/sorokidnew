@@ -1,8 +1,98 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import Logo from '@/components/Logo/Logo';
+
+// Bookmark/Save Button Component
+function SaveBookmarkButton() {
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [isMac, setIsMac] = useState(false);
+
+  useEffect(() => {
+    setIsMac(navigator.platform.toUpperCase().indexOf('MAC') >= 0);
+  }, []);
+
+  const shortcut = isMac ? '⌘+D' : 'Ctrl+D';
+
+  // Nút "Lưu Bookmark" - Hiện toast ngắn gọn
+  const handleSaveBookmark = useCallback(() => {
+    // Check if already installed as PWA
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      setToastMessage('✅ Đã cài trên thiết bị!');
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 2000);
+      return;
+    }
+    
+    // Show short toast with keyboard shortcut
+    setToastMessage(`⭐ Nhấn ${shortcut} để lưu ngay!`);
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
+  }, [shortcut]);
+
+  // Nút "Chia sẻ" - Share hoặc Copy link
+  const handleShare = useCallback(() => {
+    const url = window.location.href;
+    const title = 'Toolbox Giáo Viên - SoroKid';
+    const text = 'Bộ sưu tập trò chơi quốc dân cho lớp học - Miễn phí!';
+
+    // Try Web Share API first (mobile)
+    if (navigator.share) {
+      navigator.share({ title, text, url }).catch(() => {});
+      return;
+    }
+
+    // Desktop: copy to clipboard
+    navigator.clipboard.writeText(url).then(() => {
+      setToastMessage('✅ Đã copy link!');
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 2000);
+    });
+  }, []);
+
+  return (
+    <div className="relative inline-flex items-center gap-2">
+      {/* Save Bookmark Button */}
+      <button
+        onClick={handleSaveBookmark}
+        className="inline-flex items-center gap-2 px-4 py-2 
+          bg-gradient-to-r from-amber-400 to-orange-500 
+          text-white text-sm font-semibold rounded-full shadow-md
+          hover:shadow-lg hover:scale-105 transition-all duration-300"
+      >
+        <span>⭐</span>
+        <span>Lưu Bookmark</span>
+        <kbd className="hidden sm:inline px-1.5 py-0.5 bg-white/20 text-xs rounded">{shortcut}</kbd>
+      </button>
+
+      {/* Share Button */}
+      <button
+        onClick={handleShare}
+        className="inline-flex items-center gap-2 px-4 py-2 
+          bg-white border border-gray-200
+          text-gray-600 text-sm font-medium rounded-full
+          hover:bg-gray-50 hover:border-gray-300 transition-all"
+      >
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+        </svg>
+        <span>Chia sẻ</span>
+      </button>
+
+      {/* Toast */}
+      {showToast && (
+        <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 z-50
+          px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-xl shadow-xl
+          whitespace-nowrap animate-fade-in">
+          {toastMessage}
+        </div>
+      )}
+    </div>
+  );
+}
 
 // Tool data configuration - Each tool has its unique color theme
 const tools = [
@@ -151,7 +241,7 @@ const tools = [
     theme: 'dark',
   },
   {
-    id: 'tro-choi-o-chu',
+    id: 'o-chu',
     name: 'Trò Chơi Ô Chữ',
     description: 'Tạo ô chữ theo chủ đề bài học, học sinh thi đoán từ khóa',
     icon: '🔤',
@@ -160,8 +250,7 @@ const tools = [
     iconBg: 'from-teal-300 to-cyan-400',
     textColor: 'text-white',
     descColor: 'text-teal-100',
-    badge: '🛠️ COMING SOON',
-    comingSoon: true,
+    badge: '✨ MỚI',
     theme: 'dark',
   },
 ];
@@ -205,30 +294,42 @@ export default function ToolboxPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="py-8 sm:py-10 text-center px-4">
+      {/* Hero Section - Compact but Complete */}
+      <section className="py-6 sm:py-8 text-center px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 text-violet-700 
-            rounded-full text-sm font-medium mb-4">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-violet-100 text-violet-700 
+            rounded-full text-sm font-medium mb-3">
             <span>🧰</span>
             <span>Miễn phí • Không cần đăng nhập</span>
           </div>
           
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-800 mb-3 leading-tight">
+          {/* Title */}
+          <h1 className="text-3xl sm:text-4xl font-black text-gray-800 mb-2">
             <span className="bg-gradient-to-r from-violet-600 to-pink-600 bg-clip-text text-transparent">
               Toolbox Giáo Viên
             </span>
           </h1>
           
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
-            Các công cụ hữu ích để dạy học tích cực, lớp học thêm phần vui nhộn! 🎉
+          {/* Subtitle */}
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-3">
+            Bộ sưu tập <strong>trò chơi quốc dân</strong> phổ biến nhất trong lớp học Việt Nam! 🎉
           </p>
 
+          {/* CTA Message + Buttons */}
+          <p className="text-sm text-gray-500 mb-3">
+            📌 Một đường link - Đủ công cụ cho mọi lớp học, cuộc họp, thuyết trình!
+          </p>
+          
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
+            <SaveBookmarkButton />
+          </div>
+
           {/* Filter Tabs */}
-          <div className="inline-flex items-center gap-2 p-1.5 bg-gray-100 rounded-full">
+          <div className="inline-flex items-center gap-1.5 p-1 bg-gray-100 rounded-full">
             <button
               onClick={() => setFilter('all')}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all
+              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all
                 ${filter === 'all' 
                   ? 'bg-white text-violet-600 shadow-sm' 
                   : 'text-gray-600 hover:text-gray-800'}`}
@@ -237,7 +338,7 @@ export default function ToolboxPage() {
             </button>
             <button
               onClick={() => setFilter('active')}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all
+              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all
                 ${filter === 'active' 
                   ? 'bg-white text-emerald-600 shadow-sm' 
                   : 'text-gray-600 hover:text-gray-800'}`}
@@ -246,7 +347,7 @@ export default function ToolboxPage() {
             </button>
             <button
               onClick={() => setFilter('coming')}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all
+              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all
                 ${filter === 'coming' 
                   ? 'bg-white text-amber-600 shadow-sm' 
                   : 'text-gray-600 hover:text-gray-800'}`}

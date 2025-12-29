@@ -219,6 +219,52 @@ function Table({ headers, rows }) {
 }
 
 function ContentSection({ section, index }) {
+  // Format mới: có title và content (string)
+  if (section.title && section.content) {
+    const headingId = `section-${index}-${section.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-').slice(0, 50)}`;
+    
+    // Parse content - tách thành các paragraph dựa trên \n\n
+    const paragraphs = section.content.split('\n\n').filter(p => p.trim());
+    
+    return (
+      <div className="mb-8">
+        <Heading level={2} text={section.title} id={headingId} />
+        {paragraphs.map((para, pIndex) => {
+          // Check nếu paragraph là list (bắt đầu bằng - hoặc *)
+          const lines = para.split('\n');
+          const isListBlock = lines.every(line => line.trim().startsWith('-') || line.trim().startsWith('*') || line.trim() === '');
+          
+          if (isListBlock && lines.filter(l => l.trim()).length > 0) {
+            const items = lines
+              .filter(line => line.trim())
+              .map(line => line.replace(/^[-*]\s*/, '').trim());
+            return <List key={pIndex} items={items} />;
+          }
+          
+          // Check nếu có list items trong paragraph (mixed content)
+          if (para.includes('\n-') || para.includes('\n*')) {
+            const parts = para.split(/\n(?=[-*])/);
+            return (
+              <div key={pIndex}>
+                {parts.map((part, partIndex) => {
+                  if (part.trim().startsWith('-') || part.trim().startsWith('*')) {
+                    const listLines = part.split('\n').filter(l => l.trim());
+                    const items = listLines.map(line => line.replace(/^[-*]\s*/, '').trim());
+                    return <List key={partIndex} items={items} />;
+                  }
+                  return part.trim() ? <Paragraph key={partIndex} text={part.trim()} /> : null;
+                })}
+              </div>
+            );
+          }
+          
+          return <Paragraph key={pIndex} text={para} />;
+        })}
+      </div>
+    );
+  }
+  
+  // Format cũ: có type
   switch (section.type) {
     case 'paragraph':
       return <Paragraph text={section.text} />;
@@ -238,7 +284,24 @@ function ContentSection({ section, index }) {
 
 // Table of Contents Component
 function TableOfContents({ sections }) {
-  const headings = sections?.filter(s => s.type === 'heading' && s.level === 2) || [];
+  if (!sections || sections.length === 0) return null;
+  
+  // Hỗ trợ cả 2 format:
+  // Format cũ: sections với type: 'heading'
+  // Format mới: sections với title (string)
+  const headings = sections
+    .map((s, index) => {
+      // Format mới: có title
+      if (s.title) {
+        return { text: s.title, index };
+      }
+      // Format cũ: type === 'heading' && level === 2
+      if (s.type === 'heading' && s.level === 2) {
+        return { text: s.text, index };
+      }
+      return null;
+    })
+    .filter(Boolean);
   
   if (headings.length < 2) return null;
 
@@ -248,11 +311,10 @@ function TableOfContents({ sections }) {
         📑 Nội dung bài viết
       </h2>
       <ul className="space-y-2">
-        {headings.map((heading, index) => {
-          const originalIndex = sections.findIndex((s, i) => s === heading);
-          const headingId = `section-${originalIndex}-${heading.text.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-').slice(0, 50)}`;
+        {headings.map((heading, i) => {
+          const headingId = `section-${heading.index}-${heading.text.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-').slice(0, 50)}`;
           return (
-            <li key={index}>
+            <li key={i}>
               <a 
                 href={`#${headingId}`}
                 className="text-gray-600 hover:text-violet-600 text-sm leading-relaxed transition-colors block py-0.5"
@@ -347,6 +409,12 @@ function FAQSection({ faqs }) {
 function CTASection({ cta }) {
   if (!cta) return null;
 
+  // Hỗ trợ 2 format:
+  // Format cũ: { text, buttonText, buttonLink }
+  // Format mới: { title, description, buttonText, buttonLink }
+  const ctaText = cta.text || cta.description || '';
+  const ctaTitle = cta.title || null;
+
   return (
     <section className="mt-12 bg-gradient-to-br from-violet-50 to-pink-50 rounded-2xl p-6 sm:p-8 border border-violet-100">
       <div className="flex items-start gap-4">
@@ -354,7 +422,12 @@ function CTASection({ cta }) {
           💡
         </div>
         <div className="flex-1">
-          <p className="text-gray-700 text-lg mb-5 leading-relaxed">{cta.text}</p>
+          {ctaTitle && (
+            <h3 className="text-lg font-bold text-gray-900 mb-2">{ctaTitle}</h3>
+          )}
+          {ctaText && (
+            <p className="text-gray-700 text-lg mb-5 leading-relaxed">{ctaText}</p>
+          )}
           <Link 
             href={cta.buttonLink || '/register'}
             className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-violet-600 to-pink-500 text-white font-medium rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-violet-500/25"

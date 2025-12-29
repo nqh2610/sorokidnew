@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import ToolLayout from '@/components/ToolLayout/ToolLayout';
+import { LogoIcon } from '@/components/Logo/Logo';
 
 // localStorage keys
 const STORAGE_KEYS = {
@@ -52,6 +53,105 @@ export default function AiLaTrieuPhu() {
 
   // ==================== ALTP SOUND SYSTEM ====================
   const audioCtxRef = useRef(null);
+  const bgMusicRef = useRef(null);
+  const correctSoundRef = useRef(null);
+  const wrongSoundRef = useRef(null);
+  const bgMusicStartedRef = useRef(false);
+  
+  // Initialize MP3 sounds
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      bgMusicRef.current = new Audio('/tool/ailatrieuphu/ai-la-trieu-phu.mp3');
+      bgMusicRef.current.loop = false; // Chỉ chạy 1 lần
+      bgMusicRef.current.volume = 0.3;
+      
+      correctSoundRef.current = new Audio('/tool/ailatrieuphu/dung.mp3');
+      correctSoundRef.current.volume = 0.7;
+      
+      wrongSoundRef.current = new Audio('/tool/ailatrieuphu/sai.mp3');
+      wrongSoundRef.current.volume = 0.7;
+    }
+  }, []);
+  
+  // Cleanup AudioContext and sounds when unmount
+  useEffect(() => {
+    return () => {
+      if (audioCtxRef.current) {
+        audioCtxRef.current.close?.();
+        audioCtxRef.current = null;
+      }
+      if (bgMusicRef.current) {
+        bgMusicRef.current.pause();
+        bgMusicRef.current.currentTime = 0;
+        bgMusicRef.current = null;
+      }
+      bgMusicStartedRef.current = false;
+    };
+  }, []);
+  
+  // Start background music when entering game (only once)
+  useEffect(() => {
+    if (!bgMusicRef.current) return;
+    
+    if (soundEnabled && screen === 'game' && !bgMusicStartedRef.current) {
+      bgMusicRef.current.currentTime = 0;
+      bgMusicRef.current.play().catch(() => {});
+      bgMusicStartedRef.current = true;
+    } else if (screen !== 'game') {
+      bgMusicRef.current.pause();
+      bgMusicRef.current.currentTime = 0;
+      bgMusicStartedRef.current = false;
+    }
+  }, [soundEnabled, screen]);
+  
+  // Toggle sound - pause/resume bg music
+  useEffect(() => {
+    if (!bgMusicRef.current || screen !== 'game') return;
+    
+    if (!soundEnabled) {
+      bgMusicRef.current.pause();
+    } else if (bgMusicStartedRef.current && bgMusicRef.current.paused) {
+      bgMusicRef.current.play().catch(() => {});
+    }
+  }, [soundEnabled, screen]);
+  
+  // Play MP3 sound effect (stops other sounds first)
+  const playMp3Sound = useCallback((type) => {
+    if (!soundEnabled) return;
+    try {
+      // Stop any playing effect sounds first
+      if (correctSoundRef.current) {
+        correctSoundRef.current.pause();
+        correctSoundRef.current.currentTime = 0;
+      }
+      if (wrongSoundRef.current) {
+        wrongSoundRef.current.pause();
+        wrongSoundRef.current.currentTime = 0;
+      }
+      
+      if (type === 'correct' && correctSoundRef.current) {
+        // Lower bg music volume
+        if (bgMusicRef.current) bgMusicRef.current.volume = 0.1;
+        correctSoundRef.current.play().catch(() => {});
+        // Restore bg music volume after sound ends
+        correctSoundRef.current.onended = () => {
+          if (bgMusicRef.current) bgMusicRef.current.volume = 0.3;
+        };
+      } else if (type === 'wrong' && wrongSoundRef.current) {
+        // Pause bg music completely
+        if (bgMusicRef.current) bgMusicRef.current.pause();
+        wrongSoundRef.current.play().catch(() => {});
+      }
+    } catch (e) { console.log('MP3 sound error:', e); }
+  }, [soundEnabled]);
+  
+  // Restart background music from beginning
+  const restartBgMusic = useCallback(() => {
+    if (!bgMusicRef.current || !soundEnabled) return;
+    bgMusicRef.current.currentTime = 0;
+    bgMusicRef.current.volume = 0.3;
+    bgMusicRef.current.play().catch(() => {});
+  }, [soundEnabled]);
   
   const getAudioCtx = useCallback(() => {
     if (!audioCtxRef.current || audioCtxRef.current.state === 'closed') {
@@ -88,56 +188,48 @@ export default function AiLaTrieuPhu() {
       
       switch (type) {
         case 'select':
-          // ALTP selection sound - quick sparkle
-          playNote(ctx, 1200, t, 0.08, 0.2);
-          playNote(ctx, 1600, t + 0.04, 0.08, 0.15);
+          // ALTP selection - deep electronic blip (như tiếng chọn đáp án trong show)
+          playNote(ctx, 220, t, 0.08, 0.3, 'sine'); // Bass note
+          playNote(ctx, 440, t, 0.06, 0.2, 'triangle'); // Harmonic
+          playNote(ctx, 330, t + 0.03, 0.1, 0.25, 'sine'); // Follow-up
           break;
           
         case 'lock':
-          // "Final Answer" dramatic ascending - D E F# G
-          playNote(ctx, 294, t, 0.2, 0.25); // D4
-          playNote(ctx, 330, t + 0.15, 0.2, 0.25); // E4
-          playNote(ctx, 370, t + 0.3, 0.2, 0.25); // F#4
-          playNote(ctx, 392, t + 0.45, 0.4, 0.3); // G4 (longer)
-          // Add chord
-          playNote(ctx, 294, t + 0.45, 0.4, 0.15); // D4
-          playNote(ctx, 370, t + 0.45, 0.4, 0.15); // F#4
-          break;
-          
-        case 'correct':
-          // Victory fanfare! C E G C (major chord arpeggio)
-          playNote(ctx, 523, t, 0.15, 0.3); // C5
-          playNote(ctx, 659, t + 0.1, 0.15, 0.3); // E5
-          playNote(ctx, 784, t + 0.2, 0.15, 0.3); // G5
-          playNote(ctx, 1047, t + 0.3, 0.4, 0.35); // C6
-          // Chord
-          playNote(ctx, 523, t + 0.35, 0.5, 0.2);
-          playNote(ctx, 659, t + 0.35, 0.5, 0.2);
-          playNote(ctx, 784, t + 0.35, 0.5, 0.2);
-          break;
-          
-        case 'wrong':
-          // Sad descending - Bb Ab Gb F
-          playNote(ctx, 233, t, 0.25, 0.25, 'triangle'); // Bb3
-          playNote(ctx, 208, t + 0.2, 0.25, 0.25, 'triangle'); // Ab3
-          playNote(ctx, 185, t + 0.4, 0.3, 0.25, 'triangle'); // Gb3
-          playNote(ctx, 175, t + 0.65, 0.5, 0.2, 'triangle'); // F3
+          // "Đó là câu trả lời cuối cùng!" - dramatic tension build
+          // Deep bass pulse building up
+          playNote(ctx, 110, t, 0.3, 0.35, 'sine'); // Low bass
+          playNote(ctx, 165, t + 0.1, 0.3, 0.3, 'sine'); // Fifth
+          playNote(ctx, 220, t + 0.25, 0.35, 0.35, 'sine'); // Octave
+          // Tension chord
+          playNote(ctx, 147, t + 0.5, 0.6, 0.25, 'triangle'); // D3
+          playNote(ctx, 185, t + 0.5, 0.6, 0.25, 'triangle'); // F#3
+          playNote(ctx, 220, t + 0.5, 0.6, 0.25, 'triangle'); // A3
+          // Final lock sound
+          playNote(ctx, 330, t + 0.9, 0.2, 0.4, 'sine'); // E4 confirmation
           break;
           
         case 'help':
-          // Lifeline sound - bright ascending
-          playNote(ctx, 880, t, 0.1, 0.2); // A5
-          playNote(ctx, 1047, t + 0.08, 0.1, 0.2); // C6
-          playNote(ctx, 1319, t + 0.16, 0.15, 0.25); // E6
+          // Lifeline activation - hopeful ascending arpeggio
+          playNote(ctx, 262, t, 0.12, 0.25, 'sine'); // C4
+          playNote(ctx, 330, t + 0.1, 0.12, 0.25, 'sine'); // E4
+          playNote(ctx, 392, t + 0.2, 0.12, 0.25, 'sine'); // G4
+          playNote(ctx, 523, t + 0.3, 0.25, 0.3, 'sine'); // C5
+          // Sparkle overlay
+          playNote(ctx, 1047, t + 0.35, 0.15, 0.15, 'sine'); // C6 sparkle
           break;
           
         case 'suspense':
-          // Heartbeat suspense during reveal wait
-          for (let i = 0; i < 6; i++) {
-            const beatTime = t + i * 0.25;
-            playNote(ctx, 80 + i * 5, beatTime, 0.12, 0.3, 'sine');
-            playNote(ctx, 80 + i * 5, beatTime + 0.1, 0.08, 0.2, 'sine');
+          // Heartbeat suspense - như nhịp tim hồi hộp chờ đáp án
+          for (let i = 0; i < 8; i++) {
+            const beatTime = t + i * 0.3;
+            const intensity = 0.2 + (i * 0.03); // Tăng dần intensity
+            const freq = 60 + (i * 3); // Tăng dần pitch
+            // Heartbeat: thump-thump
+            playNote(ctx, freq, beatTime, 0.1, intensity, 'sine');
+            playNote(ctx, freq * 1.5, beatTime + 0.12, 0.08, intensity * 0.7, 'sine');
           }
+          // Final dramatic bass hit
+          playNote(ctx, 55, t + 2.4, 0.3, 0.4, 'sine');
           break;
       }
     } catch (e) { console.log('Sound error:', e); }
@@ -211,27 +303,112 @@ export default function AiLaTrieuPhu() {
     if (screen === 'result') localStorage.removeItem(STORAGE_KEYS.GAME_STATE);
   }, [screen]);
 
-  // ==================== PARSE QUESTIONS ====================
+  // ==================== SMART PARSE QUESTIONS ====================
+  // Detect delimiter in text (|, ;, tab, or multiple spaces)
+  const detectDelimiter = useCallback((text) => {
+    const lines = text.trim().split('\n').filter(line => line.trim());
+    if (lines.length === 0) return '|';
+    
+    const sampleLine = lines[0];
+    
+    // Count occurrences of potential delimiters
+    const pipeCount = (sampleLine.match(/\|/g) || []).length;
+    const semicolonCount = (sampleLine.match(/;/g) || []).length;
+    const tabCount = (sampleLine.match(/\t/g) || []).length;
+    
+    // Need at least 5 delimiters for valid format (Q|A|B|C|D|Answer)
+    if (pipeCount >= 5) return '|';
+    if (semicolonCount >= 5) return ';';
+    if (tabCount >= 5) return '\t';
+    
+    // Fallback to pipe
+    return '|';
+  }, []);
+
+  // Try to fix common input errors
+  const smartFixLine = useCallback((line) => {
+    let fixed = line.trim();
+    
+    // Replace common wrong delimiters
+    // Replace tab with |
+    fixed = fixed.replace(/\t+/g, '|');
+    // Replace ; with | (if not inside text)
+    fixed = fixed.replace(/\s*;\s*/g, '|');
+    // Replace multiple spaces (3+) with | (likely intended as delimiter)
+    fixed = fixed.replace(/\s{3,}/g, '|');
+    
+    // Smart: Add | after ? if missing (question mark followed by space and text)
+    // Pattern: "câu hỏi? đáp án" → "câu hỏi?|đáp án"
+    // But NOT if already has | after ?
+    if (!fixed.includes('?|') && fixed.includes('?')) {
+      fixed = fixed.replace(/\?\s+(?!\|)/g, '?|');
+    }
+    
+    // Fix double pipes
+    fixed = fixed.replace(/\|\|+/g, '|');
+    
+    // Remove leading/trailing pipes
+    fixed = fixed.replace(/^\|+|\|+$/g, '');
+    
+    // Normalize spaces around pipes
+    fixed = fixed.replace(/\s*\|\s*/g, '|');
+    
+    return fixed;
+  }, []);
+
+  // Parse with smart detection
   const parseQuestions = useCallback((text) => {
     const lines = text.trim().split('\n').filter(line => line.trim());
     const parsed = [];
+    const errors = [];
     
-    for (const line of lines) {
-      const parts = line.split('|').map(p => p.trim());
+    for (let i = 0; i < lines.length; i++) {
+      const originalLine = lines[i];
+      const fixedLine = smartFixLine(originalLine);
+      const parts = fixedLine.split('|').map(p => p.trim()).filter(p => p);
+      
       if (parts.length >= 6) {
+        // Standard format: Question|A|B|C|D|Answer
         const correctLetter = parts[5].toUpperCase();
         const answerIndex = ['A', 'B', 'C', 'D'].indexOf(correctLetter);
         if (answerIndex !== -1) {
           parsed.push({
             question: parts[0],
             answers: [parts[1], parts[2], parts[3], parts[4]],
-            correct: answerIndex
+            correct: answerIndex,
+            lineNum: i + 1
           });
+        } else {
+          errors.push({ line: i + 1, text: originalLine.substring(0, 50), reason: `Đáp án "${parts[5]}" không hợp lệ (cần A/B/C/D)` });
         }
+      } else if (parts.length === 5) {
+        // Missing answer letter - try to detect from content
+        // Check if last part looks like an answer (A/B/C/D or 1/2/3/4)
+        const lastPart = parts[4].toUpperCase();
+        if (['A', 'B', 'C', 'D', '1', '2', '3', '4'].includes(lastPart)) {
+          const answerIndex = ['A', 'B', 'C', 'D', '1', '2', '3', '4'].indexOf(lastPart) % 4;
+          parsed.push({
+            question: parts[0],
+            answers: [parts[1], parts[2], parts[3], lastPart],
+            correct: answerIndex,
+            lineNum: i + 1,
+            autoFixed: true
+          });
+        } else {
+          errors.push({ line: i + 1, text: originalLine.substring(0, 50), reason: 'Thiếu đáp án đúng (A/B/C/D)' });
+        }
+      } else if (parts.length > 0 && parts.length < 5) {
+        errors.push({ line: i + 1, text: originalLine.substring(0, 50), reason: `Chỉ có ${parts.length} phần (cần 6: Câu hỏi|A|B|C|D|Đáp án)` });
       }
     }
-    return parsed;
-  }, []);
+    
+    return { parsed, errors };
+  }, [smartFixLine]);
+
+  // Wrapper for backward compatibility
+  const getValidQuestions = useCallback((text) => {
+    return parseQuestions(text).parsed;
+  }, [parseQuestions]);
 
   // Sample questions
   const sampleQuestions = `Thủ đô của Việt Nam là gì?|Hà Nội|Hồ Chí Minh|Đà Nẵng|Huế|A
@@ -252,14 +429,19 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
 
   // ==================== GAME ACTIONS ====================
   const startGame = useCallback(async () => {
-    const parsed = parseQuestions(questionsText);
+    const { parsed, errors } = parseQuestions(questionsText);
     if (parsed.length === 0) {
-      showToast('❌ Không có câu hỏi hợp lệ!');
+      if (errors.length > 0) {
+        showToast(`❌ Lỗi dòng ${errors[0].line}: ${errors[0].reason}`);
+      } else {
+        showToast('❌ Không có câu hỏi hợp lệ!');
+      }
       return;
     }
     
     const shuffled = [...parsed].sort(() => Math.random() - 0.5);
-    const selected = shuffled.slice(0, Math.min(numQuestions, shuffled.length));
+    // Sử dụng tất cả câu hỏi hợp lệ, tối đa 15 câu (chuẩn ALTP)
+    const selected = shuffled.slice(0, Math.min(15, shuffled.length));
     
     setQuestions(selected);
     setCurrentIndex(0);
@@ -278,7 +460,7 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
     // Auto fullscreen
     setTimeout(() => enterFullscreen(), 100);
     playSound('select');
-  }, [questionsText, numQuestions, parseQuestions, showToast, playSound, enterFullscreen]);
+  }, [questionsText, parseQuestions, showToast, playSound, enterFullscreen]);
 
   const selectAnswer = useCallback((index) => {
     if (isLocked || isRevealed || hidden5050.includes(index)) return;
@@ -300,13 +482,13 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
       setIsRevealed(true);
       const current = questions[currentIndex];
       if (selectedAnswer === current.correct) {
-        playSound('correct');
+        playMp3Sound('correct');
         setScore(s => s + 1);
       } else {
-        playSound('wrong');
+        playMp3Sound('wrong');
       }
     }, 2500);
-  }, [selectedAnswer, isLocked, questions, currentIndex, playSound]);
+  }, [selectedAnswer, isLocked, questions, currentIndex, playSound, playMp3Sound]);
 
   const nextQuestion = useCallback(() => {
     if (currentIndex + 1 >= questions.length) {
@@ -320,8 +502,10 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
       setHidden5050([]);
       setAudienceVotes(null);
       setPhoneHint(null);
+      // Restart background music for next question
+      restartBgMusic();
     }
-  }, [currentIndex, questions.length, exitFullscreen]);
+  }, [currentIndex, questions.length, exitFullscreen, restartBgMusic]);
 
   // Trợ giúp 50:50 - 70% xác suất giữ đáp án đúng
   const use5050 = useCallback(() => {
@@ -409,7 +593,10 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
     localStorage.removeItem(STORAGE_KEYS.GAME_STATE);
   }, [exitFullscreen]);
 
-  const validCount = parseQuestions(questionsText).length;
+  // Parse results with error info
+  const parseResult = parseQuestions(questionsText);
+  const validCount = parseResult.parsed.length;
+  const errorCount = parseResult.errors.length;
   const currentQuestion = questions[currentIndex];
 
   return (
@@ -424,79 +611,63 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
 
       {/* ==================== SETUP SCREEN ==================== */}
       {screen === 'setup' && (
-        <div className="min-h-screen bg-gradient-to-b from-violet-50 via-white to-pink-50 p-4">
-          <div className="max-w-2xl mx-auto pt-4">
-            {/* Header */}
-            <div className="text-center mb-6">
-              <div className="text-5xl mb-2">💰</div>
-              <h1 className="text-3xl font-black bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 bg-clip-text text-transparent">
-                Ai Là Triệu Phú
-              </h1>
-              <p className="text-gray-500 text-sm mt-1">Game show huyền thoại</p>
+        <div className="min-h-screen bg-gradient-to-b from-violet-50 via-white to-pink-50 p-3">
+          <div className="max-w-2xl mx-auto">
+            {/* Compact Header */}
+            <div className="text-center mb-3 flex items-center justify-center gap-2">
+              <span className="text-3xl">💰</span>
+              <div>
+                <h1 className="text-2xl font-black bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 bg-clip-text text-transparent">
+                  Ai Là Triệu Phú
+                </h1>
+              </div>
             </div>
 
-            {/* Quick Start */}
-            <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-4 mb-4 border border-amber-200">
-              <div className="flex items-center justify-between flex-wrap gap-3">
-                <div>
-                  <p className="font-bold text-amber-800">⚡ Chơi ngay</p>
-                  <p className="text-sm text-amber-600">15 câu hỏi mẫu - không cần setup</p>
+            {/* Quick Start - Compact */}
+            <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-3 mb-3 border border-amber-200">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex-1 min-w-0">
+                  <p className="font-bold text-amber-800">⚡ Chơi ngay (15 câu mẫu)</p>
                 </div>
                 <button 
                   onClick={() => { 
                     setQuestionsText(sampleQuestions); 
-                    setNumQuestions(15); // Chơi tất cả 15 câu
                     setTimeout(startGame, 50); 
                   }}
-                  className="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-all"
+                  className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg shadow hover:scale-105 transition-all whitespace-nowrap"
                 >
                   🎮 BẮT ĐẦU
                 </button>
               </div>
             </div>
 
-            {/* Custom Game Settings */}
-            <div className="bg-white rounded-xl p-4 mb-4 shadow border">
-              <p className="text-sm font-bold text-gray-700 mb-3">⚙️ Tùy chỉnh (cho câu hỏi tự nhập)</p>
-              <div className="flex items-center justify-between flex-wrap gap-3">
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-600">Chơi:</span>
-                    <select 
-                      value={numQuestions} 
-                      onChange={(e) => setNumQuestions(parseInt(e.target.value))}
-                      className="px-3 py-1.5 border rounded-lg font-bold text-amber-600"
-                    >
-                      {[5, 10, 15, 20, 30].map(n => <option key={n} value={n}>{n} câu</option>)}
-                    </select>
-                    <span className="text-xs text-gray-400">(random từ {validCount} câu)</span>
-                  </div>
+            {/* Question Input - Compact */}
+            <div className="bg-white rounded-xl shadow p-3 mb-3 border">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="font-bold text-gray-700">📝 Câu hỏi</span>
+                  <span className="px-1.5 py-0.5 bg-amber-100 text-amber-700 text-xs font-bold rounded-full">
+                    {validCount}✓
+                  </span>
+                  {errorCount > 0 && (
+                    <span className="px-1.5 py-0.5 bg-red-100 text-red-600 text-xs font-bold rounded-full">
+                      {errorCount}✗
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-center gap-1">
+                  <button onClick={() => setQuestionsText(sampleQuestions)} className="text-xs px-2 py-0.5 bg-blue-100 text-blue-600 rounded-full hover:bg-blue-200">
+                    📋 Mẫu
+                  </button>
+                  <button onClick={() => { setQuestionsText(''); localStorage.removeItem(STORAGE_KEYS.QUESTIONS); }} className="text-xs px-2 py-0.5 bg-red-100 text-red-600 rounded-full hover:bg-red-200">
+                    🗑️
+                  </button>
                   <button 
                     onClick={() => setSoundEnabled(!soundEnabled)}
-                    className={`p-2 rounded-lg ${soundEnabled ? 'bg-amber-100 text-amber-600' : 'bg-gray-100 text-gray-400'}`}
+                    className={`p-1 rounded ${soundEnabled ? 'bg-amber-100 text-amber-600' : 'bg-gray-100 text-gray-400'}`}
                     title={soundEnabled ? 'Tắt âm thanh' : 'Bật âm thanh'}
                   >
                     {soundEnabled ? '🔊' : '🔇'}
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Question Input */}
-            <div className="bg-white rounded-2xl shadow-lg p-4 mb-4 border">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2">
-                  <label className="font-bold text-gray-700">📝 Câu hỏi tự nhập</label>
-                  <span className="px-2 py-0.5 bg-amber-100 text-amber-700 text-xs font-bold rounded-full">
-                    {validCount} câu
-                  </span>
-                </div>
-                <div className="flex gap-2">
-                  <button onClick={() => setQuestionsText(sampleQuestions)} className="text-xs px-3 py-1 bg-blue-100 text-blue-600 rounded-full hover:bg-blue-200">
-                    📋 Mẫu
-                  </button>
-                  <button onClick={() => { setQuestionsText(''); localStorage.removeItem(STORAGE_KEYS.QUESTIONS); }} className="text-xs px-3 py-1 bg-red-100 text-red-600 rounded-full hover:bg-red-200">
-                    🗑️ Xóa
                   </button>
                 </div>
               </div>
@@ -504,27 +675,40 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
               <textarea
                 value={questionsText}
                 onChange={(e) => setQuestionsText(e.target.value)}
-                placeholder="Câu hỏi | A | B | C | D | Đáp án đúng (A/B/C/D)"
-                className="w-full h-36 p-3 border-2 rounded-xl focus:border-amber-400 resize-none font-mono text-sm"
+                placeholder={`Câu hỏi | A | B | C | D | Đáp án (A/B/C/D)\n\nVD: Thủ đô VN?|Hà Nội|HCM|Đà Nẵng|Huế|A\n\n💡 Tự nhận diện dấu |, ;, Tab`}
+                className={`w-full h-64 p-3 border-2 rounded-lg focus:border-amber-400 resize-none font-mono text-base leading-relaxed ${errorCount > 0 ? 'border-red-300' : ''}`}
               />
+              
+              {/* Error details - Compact */}
+              {errorCount > 0 && (
+                <div className="mt-2 p-2 bg-red-50 rounded-lg border border-red-200 text-xs">
+                  <p className="font-bold text-red-700 mb-1">⚠️ Lỗi:</p>
+                  {parseResult.errors.slice(0, 3).map((err, i) => (
+                    <div key={i} className="text-red-600">Dòng {err.line}: {err.reason}</div>
+                  ))}
+                  {parseResult.errors.length > 3 && (
+                    <div className="text-red-400">...+{parseResult.errors.length - 3} lỗi</div>
+                  )}
+                </div>
+              )}
             </div>
 
-            {/* Start Button */}
+            {/* Start Button - Compact */}
             <button
               onClick={startGame}
               disabled={validCount === 0}
-              className={`w-full py-4 text-xl font-black rounded-2xl shadow-xl transition-all
+              className={`w-full py-3 text-lg font-black rounded-xl shadow-lg transition-all
                 ${validCount > 0
                   ? 'bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white hover:scale-[1.02]'
                   : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
             >
-              🎬 VÀO GAME ({Math.min(numQuestions, validCount)} câu)
+              🎬 VÀO GAME ({Math.min(15, validCount)} câu)
             </button>
 
-            {/* Back to toolbox */}
-            <div className="text-center mt-4">
-              <a href="/tool" className="text-gray-500 hover:text-violet-600 text-sm">
-                ← Quay lại Toolbox
+            {/* Back link */}
+            <div className="text-center mt-2">
+              <a href="/tool" className="text-gray-400 hover:text-violet-600 text-sm">
+                ← Toolbox
               </a>
             </div>
           </div>
@@ -537,9 +721,17 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
           {/* Background - Hình studio ALTP */}
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('/tool/ailatrieuphu.jpg')" }}
+            style={{ backgroundImage: "url('/tool/ailatrieuphu/ailatrieuphu.jpg')" }}
           >
             <div className="absolute inset-0 bg-black/40"></div>
+          </div>
+
+          {/* LOGO SOROKID - Góc dưới trái, nhỏ gọn nhưng rõ ràng */}
+          <div className="absolute bottom-3 left-3 z-[5] pointer-events-none select-none" aria-hidden="true">
+            <div className="flex items-center gap-1.5 opacity-60">
+              <LogoIcon size={22} />
+              <span className="text-xs font-bold tracking-tight text-white/80">SoroKid</span>
+            </div>
           </div>
           
           {/* Main Content */}
@@ -706,7 +898,14 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
 
       {/* ==================== RESULT SCREEN ==================== */}
       {screen === 'result' && (
-        <div className="min-h-screen bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900 flex items-center justify-center p-4 relative">
+          {/* LOGO SOROKID - Góc dưới trái */}
+          <div className="absolute bottom-3 left-3 z-[5] pointer-events-none select-none" aria-hidden="true">
+            <div className="flex items-center gap-1.5 opacity-60">
+              <LogoIcon size={22} />
+              <span className="text-xs font-bold tracking-tight text-white/80">SoroKid</span>
+            </div>
+          </div>
           <div className="text-center">
             <div className="text-7xl mb-4">
               {score >= questions.length * 0.8 ? '🏆' : score >= questions.length * 0.5 ? '🌟' : '💪'}

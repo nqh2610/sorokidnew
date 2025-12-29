@@ -3,15 +3,26 @@
  * 
  * Layout cho tất cả trang tool với SEO metadata
  * Tối ưu cho: Google, Bing, AI Search
+ * 
+ * ĐỐI TƯỢNG SỬ DỤNG:
+ * - GIÁO VIÊN: Tạo lớp học sôi nổi, học sinh tham gia chủ động
+ * - PHỤ HUYNH: Tự tạo bài tập, chơi cùng con học tại nhà
+ * - THUYẾT TRÌNH/HỌP: Tạo tương tác khán giả, workshop, team building
+ * 
+ * MỐI LIÊN HỆ VỚI SOROKID:
+ * - SoroKid là nền tảng giáo dục Soroban
+ * - Toolbox ban đầu xây dựng cho giáo viên dạy Soroban
+ * - Mở rộng cho giáo viên, phụ huynh, thuyết trình, họp nhóm
  */
 
 export const metadata = {
   title: {
-    default: 'Toolbox Giáo Viên - Công Cụ Dạy Học Tích Cực Miễn Phí',
-    template: '%s | Toolbox Giáo Viên - Sorokid',
+    default: 'Toolbox Đa Năng - Công Cụ Tương Tác Miễn Phí | SoroKid',
+    template: '%s | Toolbox - SoroKid',
   },
-  description: 'Bộ công cụ dạy học tích cực miễn phí cho giáo viên các cấp. Quay số, chia nhóm, bấm giờ, trò chơi học tập. Không cần đăng nhập, sử dụng ngay trên máy chiếu lớp học.',
+  description: 'Toolbox by SoroKid - BỘ SƯU TẬP TRÒ CHƠI QUỐC DÂN phổ biến nhất trong lớp học Việt Nam, tập trung tại MỘT ĐỊA CHỈ. Ai Là Triệu Phú, Chiếc Nón Kỳ Diệu, Ô Chữ, Đua Thú... Miễn phí, cập nhật thường xuyên. LƯU BOOKMARK ngay!',
   keywords: [
+    // Keywords Toolbox chính
     'công cụ dạy học tích cực',
     'toolbox giáo viên',
     'trò chơi học tập',
@@ -22,6 +33,29 @@ export const metadata = {
     'game tương tác lớp học',
     'công cụ cho giáo viên THPT',
     'hoạt động khởi động tiết học',
+    // Keywords liên kết SoroKid
+    'sorokid toolbox',
+    'active learning',
+    'gamification giáo dục',
+    'công cụ giáo viên miễn phí',
+    // Keywords cho Phụ huynh
+    'phụ huynh kèm con học',
+    'tự tạo bài tập cho con',
+    'chơi cùng con học toán',
+    'dạy con học tại nhà',
+    // Keywords cho Thuyết trình, Họp, Workshop
+    'công cụ thuyết trình tương tác',
+    'tool họp nhóm sôi nổi',
+    'ice breaker cuộc họp',
+    'game team building',
+    'workshop tương tác',
+    'quay số chọn người trả lời',
+    'chia nhóm thảo luận',
+    'gamification thuyết trình',
+    // Keywords trò chơi quốc dân
+    'trò chơi quốc dân lớp học',
+    'tổng hợp game lớp học',
+    'bộ sưu tập trò chơi giáo dục',
   ],
   authors: [{ name: 'Sorokid Team', url: 'https://sorokid.com' }],
   creator: 'Sorokid',
@@ -77,9 +111,11 @@ export function generateToolboxJsonLd() {
       {
         '@type': 'WebApplication',
         '@id': 'https://sorokid.com/tool#webapp',
-        'name': 'Toolbox Giáo Viên',
+        'name': 'Toolbox Giáo Viên - SoroKid',
+        'alternateName': ['SoroKid Toolbox', 'Công cụ dạy học tích cực', 'Teacher Tools SoroKid'],
         'url': 'https://sorokid.com/tool',
         'applicationCategory': 'EducationalApplication',
+        'applicationSubCategory': 'Teaching Tools',
         'operatingSystem': 'Web Browser',
         'browserRequirements': 'Requires JavaScript. Requires HTML5.',
         'offers': {
@@ -91,18 +127,39 @@ export function generateToolboxJsonLd() {
         'audience': {
           '@type': 'EducationalAudience',
           'educationalRole': 'teacher',
-          'audienceType': 'Giáo viên các cấp',
+          'audienceType': 'Giáo viên Việt Nam các cấp: Mầm non, Tiểu học, THCS, THPT',
         },
-        'description': 'Bộ công cụ miễn phí giúp giáo viên tổ chức hoạt động học tập vui nhộn. Quay số, chia nhóm, bấm giờ, game tương tác.',
+        'description': 'Toolbox Giáo Viên là bộ công cụ dạy học tích cực miễn phí, được phát triển bởi SoroKid - nền tảng giáo dục Soroban. Ban đầu xây dựng để hỗ trợ giáo viên dạy Soroban tạo lớp học sôi nổi (quay số gọi học sinh, chia nhóm thi đua, bấm giờ...). Nhận thấy các công cụ này hữu ích cho TẤT CẢ giáo viên, SoroKid mở rộng Toolbox thành bộ công cụ phổ quát cho giáo viên mọi môn, mọi cấp - từ Mầm non đến THPT.',
         'featureList': [
-          'Quay số ngẫu nhiên gọi học sinh',
-          'Chia nhóm học tập nhanh',
-          'Đồng hồ bấm giờ cho lớp học',
-          'Trò chơi học tập tương tác',
-          'Bốc thăm ngẫu nhiên',
-          'Đèn may mắn vui nhộn',
+          'Chiếc Nón Kỳ Diệu - Quay số gọi học sinh ngẫu nhiên',
+          'Chia Nhóm - Chia nhóm học tập nhanh, công bằng',
+          'Đồng Hồ Bấm Giờ - Timer cho hoạt động lớp học',
+          'Bốc Thăm - Random picker với hiệu ứng slot machine',
+          'Đua Thú Hoạt Hình - Game đua thi đua nhóm',
+          'Cuộc Đua Kì Thú - Bảng xếp hạng thi đua điểm số',
+          'Ai Là Triệu Phú - Game show kiểm tra kiến thức',
+          'Xúc Xắc 3D - Gieo xúc xắc cho hoạt động ngẫu nhiên',
+          'Flash ZAN - Luyện tính nhẩm nhanh Soroban',
+          'Bàn Tính Soroban Ảo - Luyện tập Soroban online',
+          'Đèn May Mắn - Trò chơi may mắn tạo tiếng cười',
+          'Trò Chơi Ô Chữ - Crossword ôn tập từ vựng',
         ],
         'screenshot': 'https://sorokid.com/og-toolbox.png',
+        'isPartOf': {
+          '@type': 'WebSite',
+          'name': 'SoroKid',
+          'url': 'https://sorokid.com'
+        },
+        'creator': {
+          '@type': 'Organization',
+          'name': 'SoroKid',
+          'url': 'https://sorokid.com'
+        },
+        'teaches': [
+          'Active Learning - Dạy học tích cực',
+          'Gamification - Game hóa trong giáo dục',
+          'Student Engagement - Thu hút học sinh tham gia'
+        ],
         'softwareHelp': {
           '@type': 'CreativeWork',
           'name': 'Hướng dẫn sử dụng Toolbox Giáo Viên',
