@@ -806,7 +806,7 @@ export default function DuaThuHoatHinh() {
 
   // Preload background music - start playing muted during countdown
   // Use crossfade technique for smooth looping
-  // Background music - SIMPLE: single audio with native loop
+  // Background music - TWO audios for crossfade loop
   const preloadBgMusic = useCallback(() => {
     try {
       // Stop any existing music first
@@ -820,101 +820,229 @@ export default function DuaThuHoatHinh() {
         bgMusicRef.current = null;
       }
       
-      // Create single audio with native loop
-      const audio = new Audio('/tool/duavit/dua_vit.mp3');
-      audio.preload = 'auto';
-      audio.loop = true;
-      audio.volume = 0;
+      // Create TWO audio elements for crossfade
+      const audio1 = new Audio('/tool/duavit/dua_vit.mp3');
+      const audio2 = new Audio('/tool/duavit/dua_vit.mp3');
+      audio1.preload = 'auto';
+      audio2.preload = 'auto';
       
-      bgMusicRef.current = audio;
+      bgMusicRef.current = {
+        audios: [audio1, audio2],
+        active: 0,
+        fading: false
+      };
       
-      // Play muted to unlock autoplay (must be in user gesture context)
-      audio.play().then(() => {
-        console.log('🎵 Audio unlocked');
+      // Play audio1 immediately to unlock AND start buffering
+      // Nếu sound bị tắt trong setup → volume = 0 (chạy ngầm)
+      // Nếu sound bật → volume = 0.65
+      audio1.volume = soundEnabledRef.current ? 0.65 : 0;
+      audio1.play().then(() => {
+        console.log('🎵 Audio1 unlocked and playing, volume:', audio1.volume);
       }).catch(e => {
         console.log('🎵 Unlock failed:', e.message);
       });
+      
+      // Load audio2 for crossfade later
+      audio2.load();
       
     } catch (e) {
       console.log('Preload failed:', e);
     }
   }, []);
 
-  // Start background music - just fade in volume
+  // Crossfade to next audio - smoother 3 second transition
+  const doCrossfade = useCallback(() => {
+    const ref = bgMusicRef.current;
+    if (!ref || !ref.audios || ref.fading) return;
+    if (!soundEnabledRef.current) return;
+    
+    ref.fading = true;
+    const { audios, active } = ref;
+    const next = active === 0 ? 1 : 0;
+    const curr = audios[active];
+    const nextAudio = audios[next];
+    
+    // Start next from beginning
+    nextAudio.currentTime = 0;
+    nextAudio.volume = 0;
+    nextAudio.play().catch(() => {});
+    
+    // Crossfade 3 seconds (30 steps x 100ms) - smoother equal power crossfade
+    let step = 0;
+    const totalSteps = 30;
+    const interval = setInterval(() => {
+      step++;
+      const p = step / totalSteps;
+      // Equal power crossfade for smoother transition
+      curr.volume = 0.65 * Math.cos(p * Math.PI / 2);
+      nextAudio.volume = 0.65 * Math.sin(p * Math.PI / 2);
+      
+      if (step >= totalSteps) {
+        clearInterval(interval);
+        curr.pause();
+        curr.currentTime = 0;
+        nextAudio.volume = 0.65;
+        ref.active = next;
+        ref.fading = false;
+      }
+    }, 100);
+  }, []);
+
+  // Start background music - audio already playing from preload, just setup crossfade checker
   const startBgMusic = useCallback(() => {
     if (!soundEnabledRef.current) return;
     
-    try {
-      const audio = bgMusicRef.current;
-      if (!(audio instanceof Audio)) {
-        // Create new if not exist
-        const newAudio = new Audio('/tool/duavit/dua_vit.mp3');
-        newAudio.loop = true;
-        newAudio.volume = 0.65;
-        bgMusicRef.current = newAudio;
-        newAudio.play().catch(() => {});
-        return;
+    const ref = bgMusicRef.current;
+    
+    // If no audio ref exists (e.g., sound was disabled during preload), create new
+    if (!ref || !ref.audios) {
+      console.log('🎵 Creating new audio since none exists');
+      const audio1 = new Audio('/tool/duavit/dua_vit.mp3');
+      const audio2 = new Audio('/tool/duavit/dua_vit.mp3');
+      audio1.preload = 'auto';
+      audio2.preload = 'auto';
+      
+      bgMusicRef.current = {
+        audios: [audio1, audio2],
+        active: 0,
+        fading: false
+      };
+      
+      audio1.volume = 0.65;
+      audio1.play().then(() => {
+        console.log('🎵 Audio started from startBgMusic');
+      }).catch(e => {
+        console.log('🎵 Play failed:', e.message);
+      });
+      
+      audio2.load();
+    } else {
+      // Audio already exists, ensure volume and play if paused
+      const activeAudio = ref.audios[ref.active];
+      activeAudio.volume = 0.65;
+      if (activeAudio.paused) {
+        activeAudio.play().catch(() => {});
       }
-      
-      // Fade in volume (audio already playing from preload)
-      audio.volume = 0;
-      let vol = 0;
-      const fadeIn = setInterval(() => {
-        vol += 0.1;
-        if (vol >= 0.65) {
-          audio.volume = 0.65;
-          clearInterval(fadeIn);
-        } else {
-          audio.volume = vol;
-        }
-      }, 50);
-      
-    } catch (e) {
-      console.log('Start music failed:', e);
     }
-  }, []);
+    
+    // Setup crossfade checker - check 4 seconds before end for smoother loop
+    if (bgMusicIntervalRef.current) clearInterval(bgMusicIntervalRef.current);
+    
+    bgMusicIntervalRef.current = setInterval(() => {
+      const r = bgMusicRef.current;
+      if (!r || !r.audios) return;
+      
+      const curr = r.audios[r.active];
+      // Only crossfade if:
+      // 1. Duration is valid (> 10 seconds to ensure file loaded properly)
+      // 2. We're 4 seconds from the end
+      // 3. Not already fading
+      const duration = curr.duration;
+      if (duration && !isNaN(duration) && duration > 10 && curr.currentTime >= duration - 4 && !r.fading) {
+        console.log('🎵 Starting crossfade at', curr.currentTime, '/', duration);
+        doCrossfade();
+      }
+    }, 500); // Check every 500ms
+    
+  }, [doCrossfade]);
 
-  // Stop background music
-  const stopBgMusic = useCallback((fadeOut = true) => {
+  // Stop background music with smooth fade out
+  const stopBgMusic = useCallback((fadeOut = true, fadeDuration = 1500) => {
     if (bgMusicIntervalRef.current) {
       clearInterval(bgMusicIntervalRef.current);
       bgMusicIntervalRef.current = null;
     }
     
-    const audio = bgMusicRef.current;
-    if (!(audio instanceof Audio)) {
-      bgMusicRef.current = null;
-      return;
-    }
+    const ref = bgMusicRef.current;
+    if (!ref) return;
     
-    if (fadeOut && audio.volume > 0) {
-      let vol = audio.volume;
-      const fade = setInterval(() => {
-        vol -= 0.1;
-        if (vol <= 0) {
-          clearInterval(fade);
-          audio.pause();
-          audio.currentTime = 0;
-        } else {
-          audio.volume = vol;
-        }
-      }, 50);
-    } else {
-      audio.pause();
-      audio.currentTime = 0;
+    // Calculate fade step based on duration (updates every 50ms)
+    const fadeSteps = fadeDuration / 50;
+    
+    // Handle format: { audios: [audio1, audio2], activeIndex }
+    if (ref.audios && Array.isArray(ref.audios)) {
+      const activeAudio = ref.audios[ref.active || ref.activeIndex || 0];
+      if (fadeOut && activeAudio && activeAudio.volume > 0) {
+        const startVol = activeAudio.volume;
+        let step = 0;
+        const fade = setInterval(() => {
+          step++;
+          // Use exponential curve for more natural fade out
+          const progress = step / fadeSteps;
+          activeAudio.volume = startVol * Math.pow(1 - progress, 2);
+          
+          if (step >= fadeSteps || activeAudio.volume <= 0.01) {
+            clearInterval(fade);
+            ref.audios.forEach(a => { 
+              if (a) { a.pause(); a.currentTime = 0; a.src = ''; }
+            });
+            bgMusicRef.current = null;
+          }
+        }, 50);
+      } else {
+        ref.audios.forEach(a => { 
+          if (a) { a.pause(); a.currentTime = 0; a.src = ''; }
+        });
+        bgMusicRef.current = null;
+      }
+    } 
+    // Handle single Audio element
+    else if (ref instanceof Audio) {
+      if (fadeOut && ref.volume > 0) {
+        const startVol = ref.volume;
+        let step = 0;
+        const fade = setInterval(() => {
+          step++;
+          const progress = step / fadeSteps;
+          ref.volume = startVol * Math.pow(1 - progress, 2);
+          
+          if (step >= fadeSteps || ref.volume <= 0.01) {
+            clearInterval(fade);
+            ref.pause();
+            ref.currentTime = 0;
+            ref.src = '';
+            bgMusicRef.current = null;
+          }
+        }, 50);
+      } else {
+        ref.pause();
+        ref.currentTime = 0;
+        ref.src = '';
+        bgMusicRef.current = null;
+      }
     }
   }, []);
 
   // Stop/Start background music when sound toggle changes
   useEffect(() => {
+    const ref = bgMusicRef.current;
+    
     if (!soundEnabled) {
-      // Tắt ngay lập tức khi user tắt sound (không fade out)
-      stopBgMusic(false);
+      // Tắt âm thanh: chỉ giảm volume về 0, không dừng audio
+      // Audio vẫn tiếp tục chạy ngầm để khi bật lại sẽ tiếp tục từ vị trí hiện tại
+      if (ref && ref.audios) {
+        ref.audios.forEach(a => {
+          if (a) a.volume = 0;
+        });
+      }
     } else if (isRacing) {
-      // Restart background music if sound is re-enabled during race
-      startBgMusic();
+      // Bật âm thanh trong game
+      if (ref && ref.audios) {
+        // Audio đang chạy ngầm, chỉ cần tăng volume lên
+        const activeAudio = ref.audios[ref.active || 0];
+        if (activeAudio) {
+          activeAudio.volume = 0.65;
+          // Nếu audio bị pause (trường hợp lỗi), play lại
+          if (activeAudio.paused) {
+            activeAudio.play().catch(() => {});
+          }
+        }
+      } else {
+        // Chưa có audio (sound bị tắt từ setup), tạo mới
+        startBgMusic();
+      }
     }
-  }, [soundEnabled, isRacing, stopBgMusic, startBgMusic]);
+  }, [soundEnabled, isRacing, startBgMusic]);
 
   // Show commentary - dynamic based on animal type với hệ thống chống lặp
   const usedCommentariesRef = useRef({});
@@ -1521,7 +1649,7 @@ export default function DuaThuHoatHinh() {
             raceFinished = true;
             setWinner(racer);
             setIsRacing(false);
-            stopBgMusic(); // Stop background music
+            stopBgMusic(true, 2000); // Stop background music with 2 second fade out
             showCommentary('final', racer.name);
             playSound('win');
           }
@@ -1616,25 +1744,39 @@ export default function DuaThuHoatHinh() {
   
   // Cleanup helper function - stop all audio immediately
   const stopAllAudioImmediate = useCallback(() => {
+    // Clear any intervals
     if (bgMusicIntervalRef.current) {
       clearInterval(bgMusicIntervalRef.current);
       bgMusicIntervalRef.current = null;
     }
-    if (bgMusicRef.current) {
-      if (Array.isArray(bgMusicRef.current)) {
-        bgMusicRef.current.forEach(a => {
-          if (a) {
-            a.ontimeupdate = null;
-            a.pause();
-            a.currentTime = 0;
-          }
-        });
-      } else if (bgMusicRef.current instanceof Audio) {
-        bgMusicRef.current.pause();
-        bgMusicRef.current.currentTime = 0;
-      } else {
-        bgMusicRef.current.close?.();
-      }
+    
+    if (!bgMusicRef.current) return;
+    
+    // Handle format: { audios: [audio1, audio2], ... }
+    if (bgMusicRef.current.audios && Array.isArray(bgMusicRef.current.audios)) {
+      bgMusicRef.current.audios.forEach(a => {
+        if (a instanceof Audio) {
+          a.pause();
+          a.currentTime = 0;
+          a.src = ''; // Release resource
+        }
+      });
+      bgMusicRef.current = null;
+      return;
+    }
+    
+    // Handle single Audio element
+    if (bgMusicRef.current instanceof Audio) {
+      bgMusicRef.current.pause();
+      bgMusicRef.current.currentTime = 0;
+      bgMusicRef.current.src = ''; // Release resource
+      bgMusicRef.current = null;
+      return;
+    }
+    
+    // Handle AudioContext
+    if (bgMusicRef.current.close) {
+      bgMusicRef.current.close();
       bgMusicRef.current = null;
     }
   }, []);
@@ -1646,44 +1788,72 @@ export default function DuaThuHoatHinh() {
       stopAllAudioImmediate();
     };
     
+    // Handle popstate (browser back/forward)
+    const handlePopState = () => {
+      stopAllAudioImmediate();
+    };
+    
     // Handle visibility change (switch tab)
     const handleVisibilityChange = () => {
-      if (document.hidden && bgMusicRef.current) {
+      if (!bgMusicRef.current) return;
+      
+      // Get active audio element
+      let activeAudio = null;
+      if (bgMusicRef.current.audios && Array.isArray(bgMusicRef.current.audios)) {
+        activeAudio = bgMusicRef.current.audios[bgMusicRef.current.active || 0];
+      } else if (bgMusicRef.current instanceof Audio) {
+        activeAudio = bgMusicRef.current;
+      }
+      
+      if (!activeAudio) return;
+      
+      if (document.hidden) {
         // Pause when tab is hidden
-        if (Array.isArray(bgMusicRef.current)) {
-          const activeAudio = bgMusicRef.current[bgMusicRef.current.activeIndex || 0];
-          if (activeAudio) activeAudio.pause();
-        } else if (bgMusicRef.current instanceof Audio) {
-          bgMusicRef.current.pause();
-        }
-      } else if (!document.hidden && soundEnabled && isRacing && bgMusicRef.current) {
+        activeAudio.pause();
+      } else if (soundEnabled && isRacing) {
         // Resume when tab is visible again
-        if (Array.isArray(bgMusicRef.current)) {
-          const activeAudio = bgMusicRef.current[bgMusicRef.current.activeIndex || 0];
-          if (activeAudio) activeAudio.play().catch(() => {});
-        } else if (bgMusicRef.current instanceof Audio) {
-          bgMusicRef.current.play().catch(() => {});
-        }
+        activeAudio.play().catch(() => {});
       }
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener('popstate', handlePopState);
     document.addEventListener('visibilitychange', handleVisibilityChange);
     
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener('popstate', handlePopState);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
-      
+    };
+  }, [soundEnabled, isRacing]);
+
+  // Cleanup on unmount only - separate effect with empty deps
+  useEffect(() => {
+    return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
-      stopAllAudioImmediate();
+      // Stop all audio when component unmounts
+      if (bgMusicIntervalRef.current) {
+        clearInterval(bgMusicIntervalRef.current);
+      }
+      if (bgMusicRef.current) {
+        if (bgMusicRef.current.audios) {
+          bgMusicRef.current.audios.forEach(a => {
+            if (a) { a.pause(); a.src = ''; }
+          });
+        } else if (bgMusicRef.current instanceof Audio) {
+          bgMusicRef.current.pause();
+          bgMusicRef.current.src = '';
+        }
+        bgMusicRef.current = null;
+      }
       // Clear commentary timeout
       if (commentaryTimeoutRef.current) {
         clearTimeout(commentaryTimeoutRef.current);
       }
     };
-  }, [soundEnabled, isRacing, stopAllAudioImmediate]);
+  }, []); // Empty deps = only run on unmount
 
   // Start race and switch to racing screen
   const handleStartRace = useCallback(() => {
