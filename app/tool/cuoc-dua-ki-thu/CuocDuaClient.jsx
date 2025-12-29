@@ -350,7 +350,7 @@ export default function CuocDuaClient() {
         osc.stop(now + 0.05);
       }
     } catch (e) {
-      console.log('Audio error:', e);
+      // Audio error
     }
   }, [soundEnabled, getAudioContext]);
 

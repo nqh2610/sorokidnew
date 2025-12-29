@@ -806,7 +806,7 @@ export default function DuaThuHoatHinh() {
 
   // Preload background music - start playing muted during countdown
   // Use crossfade technique for smooth looping
-  // Background music - SIMPLE: single audio with native loop
+  // Background music - TWO audios for crossfade loop
   const preloadBgMusic = useCallback(() => {
     try {
       // Stop any existing music first
@@ -820,59 +820,95 @@ export default function DuaThuHoatHinh() {
         bgMusicRef.current = null;
       }
       
-      // Create single audio with native loop
-      const audio = new Audio('/tool/duavit/dua_vit.mp3');
-      audio.preload = 'auto';
-      audio.loop = true;
-      audio.volume = 0;
+      // Create TWO audio elements for crossfade
+      const audio1 = new Audio('/tool/duavit/dua_vit.mp3');
+      const audio2 = new Audio('/tool/duavit/dua_vit.mp3');
+      audio1.preload = 'auto';
+      audio2.preload = 'auto';
       
-      bgMusicRef.current = audio;
+      bgMusicRef.current = {
+        audios: [audio1, audio2],
+        active: 0,
+        fading: false
+      };
       
-      // Play muted to unlock autoplay (must be in user gesture context)
-      audio.play().then(() => {
-        console.log('🎵 Audio unlocked');
+      // Play audio1 muted immediately to unlock AND start buffering
+      audio1.volume = 0.65; // Set target volume, will play with this after countdown
+      audio1.play().then(() => {
+        console.log('🎵 Audio1 unlocked and playing');
       }).catch(e => {
         console.log('🎵 Unlock failed:', e.message);
       });
+      
+      // Load audio2 for crossfade later
+      audio2.load();
       
     } catch (e) {
       console.log('Preload failed:', e);
     }
   }, []);
 
-  // Start background music - just fade in volume
+  // Crossfade to next audio
+  const doCrossfade = useCallback(() => {
+    const ref = bgMusicRef.current;
+    if (!ref || !ref.audios || ref.fading) return;
+    if (!soundEnabledRef.current) return;
+    
+    ref.fading = true;
+    const { audios, active } = ref;
+    const next = active === 0 ? 1 : 0;
+    const curr = audios[active];
+    const nextAudio = audios[next];
+    
+    // Start next from beginning
+    nextAudio.currentTime = 0;
+    nextAudio.volume = 0;
+    nextAudio.play().catch(() => {});
+    
+    // Crossfade 2 seconds
+    let step = 0;
+    const interval = setInterval(() => {
+      step++;
+      const p = step / 20;
+      curr.volume = 0.65 * Math.cos(p * Math.PI / 2);
+      nextAudio.volume = 0.65 * Math.sin(p * Math.PI / 2);
+      
+      if (step >= 20) {
+        clearInterval(interval);
+        curr.pause();
+        curr.currentTime = 0;
+        nextAudio.volume = 0.65;
+        ref.active = next;
+        ref.fading = false;
+      }
+    }, 100);
+  }, []);
+
+  // Start background music - audio already playing from preload, just setup crossfade checker
   const startBgMusic = useCallback(() => {
     if (!soundEnabledRef.current) return;
     
-    try {
-      const audio = bgMusicRef.current;
-      if (!(audio instanceof Audio)) {
-        // Create new if not exist
-        const newAudio = new Audio('/tool/duavit/dua_vit.mp3');
-        newAudio.loop = true;
-        newAudio.volume = 0.65;
-        bgMusicRef.current = newAudio;
-        newAudio.play().catch(() => {});
-        return;
+    const ref = bgMusicRef.current;
+    if (!ref || !ref.audios) return;
+    
+    // Audio already playing from preloadBgMusic, just ensure volume
+    ref.audios[ref.active].volume = 0.65;
+    
+    // Setup crossfade checker
+    if (bgMusicIntervalRef.current) clearInterval(bgMusicIntervalRef.current);
+    
+    bgMusicIntervalRef.current = setInterval(() => {
+      const r = bgMusicRef.current;
+      if (!r || !r.audios) return;
+      
+      const curr = r.audios[r.active];
+      // Crossfade 3 seconds before end
+      if (curr.duration && curr.currentTime >= curr.duration - 3 && !r.fading) {
+        doCrossfade();
       }
-      
-      // Fade in volume (audio already playing from preload)
-      audio.volume = 0;
-      let vol = 0;
-      const fadeIn = setInterval(() => {
-        vol += 0.1;
-        if (vol >= 0.65) {
-          audio.volume = 0.65;
-          clearInterval(fadeIn);
-        } else {
-          audio.volume = vol;
-        }
-      }, 50);
-      
-    } catch (e) {
-      console.log('Start music failed:', e);
-    }
-  }, []);
+    }, 500);
+    
+  }, [doCrossfade]);
 
   // Stop background music
   const stopBgMusic = useCallback((fadeOut = true) => {
@@ -881,27 +917,42 @@ export default function DuaThuHoatHinh() {
       bgMusicIntervalRef.current = null;
     }
     
-    const audio = bgMusicRef.current;
-    if (!(audio instanceof Audio)) {
-      bgMusicRef.current = null;
-      return;
-    }
+    const ref = bgMusicRef.current;
+    if (!ref) return;
     
-    if (fadeOut && audio.volume > 0) {
-      let vol = audio.volume;
-      const fade = setInterval(() => {
-        vol -= 0.1;
-        if (vol <= 0) {
-          clearInterval(fade);
-          audio.pause();
-          audio.currentTime = 0;
-        } else {
-          audio.volume = vol;
-        }
-      }, 50);
-    } else {
-      audio.pause();
-      audio.currentTime = 0;
+    if (ref.audios) {
+      const curr = ref.audios[ref.active];
+      if (fadeOut && curr.volume > 0) {
+        let vol = curr.volume;
+        const fade = setInterval(() => {
+          vol -= 0.1;
+          if (vol <= 0) {
+            clearInterval(fade);
+            ref.audios.forEach(a => { a.pause(); a.currentTime = 0; });
+          } else {
+            curr.volume = vol;
+          }
+        }, 50);
+      } else {
+        ref.audios.forEach(a => { a.pause(); a.currentTime = 0; });
+      }
+    } else if (ref instanceof Audio) {
+      if (fadeOut && ref.volume > 0) {
+        let vol = ref.volume;
+        const fade = setInterval(() => {
+          vol -= 0.1;
+          if (vol <= 0) {
+            clearInterval(fade);
+            ref.pause();
+            ref.currentTime = 0;
+          } else {
+            ref.volume = vol;
+          }
+        }, 50);
+      } else {
+        ref.pause();
+        ref.currentTime = 0;
+      }
     }
   }, []);
 

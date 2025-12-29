@@ -91,7 +91,7 @@ export async function GET(request) {
           plans = parsed;
         }
       } catch (e) {
-        console.log('Error parsing pricing plans:', e.message);
+        // Error parsing pricing plans
       }
     }
 

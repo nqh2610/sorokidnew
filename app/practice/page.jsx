@@ -765,7 +765,6 @@ export default function PracticePage() {
       }
     }
 
-    console.log('Generated Flash:', { numbers, operations, correctAnswer, digits: flashSelectedDigits, operation: flashSelectedOperation });
     setFlashCorrectAnswer(correctAnswer);
     
     // Reset session stats cho round mới
@@ -819,15 +818,6 @@ export default function PracticePage() {
   const handleFlashSubmit = async () => {
     const userAnswer = parseInt(flashAnswer, 10);
     if (isNaN(userAnswer)) return;
-    
-    // Debug log
-    console.log('Flash Submit:', { 
-      userAnswer, 
-      flashCorrectAnswer, 
-      flashAnswerRaw: flashAnswer,
-      isEqual: userAnswer === flashCorrectAnswer,
-      types: { user: typeof userAnswer, correct: typeof flashCorrectAnswer }
-    });
     
     const isCorrect = userAnswer === flashCorrectAnswer;
     const config = flashLevels.find(l => l.id === flashLevel);

@@ -122,35 +122,35 @@ export async function DELETE(request, { params }) {
     // Delete related records first (theo đúng schema thực tế)
     try {
       await prisma.paymentOrder.deleteMany({ where: { userId: id } });
-    } catch (e) { console.log('Error deleting payment orders:', e.message); }
+    } catch (e) { /* Error deleting payment orders */ }
     
     try {
       await prisma.userProgress.deleteMany({ where: { userId: id } });
-    } catch (e) { console.log('Error deleting user progress:', e.message); }
+    } catch (e) { /* Error deleting user progress */ }
     
     try {
       await prisma.exerciseResult.deleteMany({ where: { userId: id } });
-    } catch (e) { console.log('Error deleting exercise results:', e.message); }
+    } catch (e) { /* Error deleting exercise results */ }
     
     try {
       await prisma.userAchievement.deleteMany({ where: { userId: id } });
-    } catch (e) { console.log('Error deleting user achievements:', e.message); }
+    } catch (e) { /* Error deleting user achievements */ }
     
     try {
       await prisma.userQuest.deleteMany({ where: { userId: id } });
-    } catch (e) { console.log('Error deleting user quests:', e.message); }
+    } catch (e) { /* Error deleting user quests */ }
     
     try {
       await prisma.certificate.deleteMany({ where: { userId: id } });
-    } catch (e) { console.log('Error deleting certificates:', e.message); }
+    } catch (e) { /* Error deleting certificates */ }
     
     try {
       await prisma.certificateProgress.deleteMany({ where: { userId: id } });
-    } catch (e) { console.log('Error deleting certificate progress:', e.message); }
+    } catch (e) { /* Error deleting certificate progress */ }
     
     try {
       await prisma.competeResult.deleteMany({ where: { odlerId: id } });
-    } catch (e) { console.log('Error deleting compete results:', e.message); }
+    } catch (e) { /* Error deleting compete results */ }
 
     await prisma.user.delete({ where: { id } });
 

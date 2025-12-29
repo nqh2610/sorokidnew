@@ -79,7 +79,7 @@ const getCommentaries = (animalType) => {
   return {
     start: [
       // So sánh hài hước
-      `🎙️ Xuất phát! Các ${plural} lao đi như được mẹ gọi về ăn cơm!`,
+      `🎙️ Xuất phát! Các ${plural} lao đi vun vút!`,
       `🎙️ Và họ đi! Nhanh như wifi nhà hàng xóm vậy!`,
       // Phóng đại
       `🎙️ BOOOM! Cuộc đua thế kỷ bắt đầu! Cả vũ trụ đang theo dõi!`,
@@ -102,64 +102,64 @@ const getCommentaries = (animalType) => {
     ],
     leading: [
       // So sánh hài hước
-      `🔥 {name} dẫn đầu! ${action.charAt(0).toUpperCase() + action.slice(1)} nhanh như shipper giao đồ ăn!`,
-      `👑 {name} đang bay! Nhanh hơn cả tin đồn lan truyền!`,
-      `🚀 {name} phóng như rocket Elon Musk vậy!`,
+      `🔥 {name} dẫn đầu! ${action.charAt(0).toUpperCase() + action.slice(1)} nhanh quá xá!`,
+      `👑 {name} đang bay! làm tim tôi lung lay!`,
+      `🚀 {name} phóng nhanh vượt ẩu!`,
       // Phóng đại
       `⚡ {name} nhanh đến nỗi tôi không thấy chân đâu luôn!`,
-      `💪 {name} dẫn đầu cách xa... khoảng 3 năm ánh sáng!`,
-      `🌟 {name} tỏa sáng hơn cả mặt trời lúc 12 giờ trưa!`,
+      `💪 {name} dẫn đầu cách xa... khoảng 300 năm ánh sáng!`,
+      `🌟 {name} sáng chói mà hơi sói trán!`,
       // Tự sự hài - BLV hồi hộp
-      `😎 {name} số 1! Tôi muốn làm fan cứng luôn rồi!`,
-      `🏃 {name} đẹp quá! Tim tôi tan chảy mất tiêu!`,
-      `🦸 {name} ơi, cho xin chữ ký được không?`,
+      `😎 {name} số 1! number one!`,
+      `🏃 {name} rất ngầu, như đang đi tàu!`,
+      `🦸 {name} ơi, cho em xin chữ ký được không?`,
       // Câu hỏi tu từ
-      `💨 {name} dẫn đầu! Ai mà theo kịp đây chứ?`,
-      `🤩 {name} ngon quá! Có ai dám cản không?`,
+      `💨 {name} đang dẫn đầu! bỏ xa 5 vạn 9 ngàn cây?`,
+      `🤩 {name} đang lao vút! Có ai dám cản không?`,
       // Nhân hóa - vịt có suy nghĩ
       `🎯 {name} đang nghĩ: "Các em đuổi đi, anh đợi!"`,
       `😏 {name} quay lại nhìn: "Sao đi chậm thế các bạn?"`,
       // Chơi chữ
-      `🔥 {name} dẫn đầu! Đầu là đầu, cuối là... ai đó!`,
-      `👑 {name} vô đối! Đối thủ chỉ biết nhìn theo!`,
+      `🔥 {name} dẫn đầu! thì ai dẫn đuôi!`,
+      `👑 {name} nhìn lên không có đối thủ, á vấp cục đá!`,
       // Bất ngờ
       `⚡ Ủa {name} đâu rồi? À đằng trước kia! Nhanh quá!`,
-      `🌟 {name} đi nhanh quá tôi tưởng lag màn hình!`,
+      `🌟 {name} phóng nhanh quá tôi tưởng gắn động cơ!`,
     ],
     overtake: [
       // So sánh hài hước
       '😱 {name} vượt lên! Nhanh như tia chớp vậy!',
-      '🔄 {name} lật kèo! Giống phim hoạt hình hay quá!',
-      '💨 {name} vượt mặt! Mượt như quảng cáo dầu gội!',
+      '🔄 {name} lật kèo! dù hơi bèo nhèo!',
+      '💨 {name} tóc mượt như sunsil bồ kết!',
       // Phóng đại
       '🎯 {name} bật turbo! Tưởng đang xem Fast & Furious!',
       '⚡ {name} vượt! Tốc độ này phải đo bằng vận tốc ánh sáng!',
       '🚀 {name} phóng! NASA muốn tuyển về làm tên lửa!',
       // Tự sự hài
       '😤 {name} vượt rồi! Ôi trời ơi tôi muốn hét lên!',
-      '🌪️ {name} như cơn lốc! Mắt tôi không theo kịp!',
+      '🌪️ {name} như cơn lốc! làm tôi bị sốc!',
       // Câu hỏi tu từ
-      '🔥 {name} bứt tốc! Ai cho phép nhanh thế?',
+      '🔥 {name} bứt tốc! ai chơi lại?',
       '⚔️ {name} vượt mặt! Có chơi hack không vậy?',
       // Nhân hóa - đối thoại
       '💥 {name} vượt! Đối thủ: "Ủa bạn đi đâu vậy?"',
       '🎪 {name} lên top! Các bạn khác: "Không công bằng!"',
       // Bất ngờ
-      '🏆 Tưởng ai ngờ {name}! Bất ngờ chưa!',
-      '⚡ {name} vượt lên! Kịch bản nào đây?',
+      '🏆 Ai ngờ là {name}! Bất ngờ chưa bà già!',
+      '⚡ {name} vượt lên! trên mọi đối thủ?',
       // Chơi chữ
       '💨 {name} tăng ga! Ga nào? Ga Hà Nội!',
       '🔥 {name} bứt phá! Phá kỷ lục hay phá tim tôi?',
     ],
     tired: [
       // So sánh hài hước
-      '😓 {name} đuối! Mệt như chạy thể dục 10 vòng sân!',
-      '💦 {name} thở hổn hển! Giống tôi leo cầu thang tầng 5!',
+      '😓 {name} đuối! Mệt như mới chạy 10 vòng trái đất!',
+      '💦 {name} thở hổn hển! Như vừa leo núi!',
       '🥵 {name} kiệt sức! Như điện thoại 1% pin vậy!',
       // Phóng đại
       '😴 {name} muốn ngủ! Chắc tối qua thức chơi game!',
-      '🥱 {name} ngáp! Miệng há to như cá mập!',
-      '😩 {name} hết xăng! Cần đổ 100 lít ngay!',
+      '🥱 {name} mệt xỉu! Cần nghỉ ngơi ngay!',
+      '😩 {name} hết xăng! Đổ đầy bình đi anh zai!',
       // Tự sự hài
       '💤 {name} mệt quá! Tôi nhìn cũng thấy mệt lây!',
       '😵 {name} sắp xỉu! Gọi xe cứu thương chưa?',
@@ -173,15 +173,15 @@ const getCommentaries = (animalType) => {
       '😓 Ủa {name} đâu rồi? À kia! Sao đi chậm vậy?',
       '💀 {name} kiệt! Phải chi mang theo Red Bull!',
       // Chơi chữ
-      '🥵 {name} đuối! Đuối như cá... à không, cá bơi giỏi mà!',
+      '🥵 {name} đuối! Đuối như con cá chuối!',
     ],
     collision: [
       // So sánh hài hước
-      '💥 {name} đụng đá! Đau như đạp trúng lego!',
-      '😵 {name} va chạm! Giống xe đụng trong công viên!',
+      '💥 {name} đụng đá! làm trái tim băng giá!',
+      '😵 {name} đụng là chạm! chưa ngán ai!',
       '🤕 {name} văng! Bay xa như bóng bay tuột tay!',
       // Phóng đại
-      '💫 {name} thấy sao bay! Đếm được 100 ngôi sao!',
+      '💫 {name} thấy sao bay! lên xe ngay!',
       '🤯 {name} đâm sầm! Tiếng vang cả vũ trụ!',
       // Tự sự hài
       '😵‍💫 {name} chóng mặt! Tôi nhìn cũng muốn xỉu!',
@@ -206,12 +206,12 @@ const getCommentaries = (animalType) => {
       '⚔️ Nảy lửa! Nóng hơn cả bếp gas đang xào!',
       // Phóng đại
       '😱 Sát sàn sạt! Không lọt được sợi tóc!',
-      '🥶 Lạnh gáy! Tôi sởn da gà cả người!',
-      '🎢 Hồi hộp! Tim tôi đập 200 nhịp/phút!',
+      '🥶 Lạnh giá! tưởng tôi là con cá!',
+      '🎢 Hồi hộp! Tim tôi đập như trống trận!',
       // Tự sự hài
       '💓 Đua từng milimet! Tôi không dám thở luôn!',
       '🤯 Không tin nổi! Tay tôi run cầm không được mic!',
-      '😤 Ai cũng quyết! Tôi muốn khóc!',
+      '😤 Tôi muốn khóc lên cho thoả nỗi nhớ!',
       // Câu hỏi tu từ
       '🫣 Ai thắng đây? Thần cũng không đoán được!',
       '🎬 Kịch tính quá! Đạo diễn nào viết kịch bản?',
@@ -224,14 +224,14 @@ const getCommentaries = (animalType) => {
     ],
     halfway: [
       // So sánh hài hước
-      '🏁 Qua nửa đường! Còn nửa đường nữa như thi đại học ấy!',
-      '⏰ 50%! Giống download file ở giữa chừng!',
+      '🏁 Qua nửa đường! Ai tỏ tường!',
+      '⏰ Mới 50%! Mà ngỡ như đã 100% chia đôi',
       // Phóng đại
       '🎯 Nửa chặng! Nửa còn lại sẽ BÙNG NỔ!',
       '🔥 Qua nửa! Drama chưa bắt đầu đâu!',
       // Tự sự hài
-      '📍 Halfway! Tim tôi chỉ mới đập 50% thôi!',
-      '⚡ 50% done! Tôi đã hết 90% năng lượng rồi!',
+      '📍 Mới nửa đường thôi à!',
+      '⚡ 50% done! Tôi đã hết cạn 90% pin rồi!',
       // Câu hỏi tu từ
       '🏁 Nửa đường rồi! Ai sẽ bung sức đây?',
       '🔥 Qua nửa! Bao giờ mới có drama?',
@@ -264,7 +264,7 @@ const getCommentaries = (animalType) => {
     ],
     boost: [
       // So sánh hài hước
-      '🚀 {name} bật turbo! Nhanh như bấm nút skip quảng cáo!',
+      '🚀 {name} bật chế độ tăng động!',
       '⚡ {name} tăng tốc! Giống xe đua F1 vậy!',
       '💨 {name} bay! Máy bay cũng phải gọi bằng cụ!',
       // Phóng đại
@@ -272,18 +272,18 @@ const getCommentaries = (animalType) => {
       '🚀 {name} phóng! Vượt qua cả tốc độ ánh sáng!',
       // Tự sự hài
       '⚡ {name} bứt tốc! Mắt tôi không theo kịp!',
-      '💨 {name} tăng ga! Wow! Amazing! Incredible!',
+      '💨 {name} tăng ga! Wow! Amazing! gút chóp!',
       // Nhân hóa
-      '🔥 {name} nghĩ: "Giờ mới show hàng thật!"',
+      '🔥 {name} nghĩ: "Giờ mới show sức mạnh!"',
       '🚀 {name}: "Các bạn, tạm biệt nhé!"',
       // Bất ngờ
-      '⚡ Ủa {name} đâu rồi? Nhanh quá mất tiêu!',
+      '⚡ Ủa {name} mất tiêu đâu? á đăng trước kìa',
     ],
     slowdown: [
       // So sánh hài hước
-      '🌊 {name} gặp khó! Chậm như loading game crack!',
-      '😓 {name} slow motion! Giống phim chạy chậm!',
-      '🐌 {name} mất đà! Chậm hơn cả ốc sên!',
+      '🌊 {name} Chậm quá! Chậm như wifi nhà tôi vậy!',
+      '😓 {name} slow motion! Giống phim cô dâu 8 tuổi!',
+      '🐌 {name} mất đà! ô là la!',
       // Tự sự hài
       '📉 {name} giảm tốc! Ôi không! Sao lại thế!',
       '🐢 {name} chậm lại! Tôi muốn khóc!',
@@ -295,21 +295,21 @@ const getCommentaries = (animalType) => {
     ],
     comeback: [
       // So sánh hài hước
-      '🔥 {name} hồi sinh! Như phượng hoàng từ tro tàn!',
-      '💪 {name} comeback! Giống phim siêu anh hùng!',
-      '😤 {name} quay lại! Đúng kiểu "chờ đã, chưa xong đâu"!',
+      '🔥 {name} hồi sinh! từ vũng sình!',
+      '💪 {name} comeback! quá xác oách!',
+      '😤 {name} quay lại! "chờ đã, chưa xong đâu"!',
       // Phóng đại
-      '⚡ {name} phục hận! Sức mạnh từ đâu ra vậy!',
-      '🎯 {name} trở lại! Từ cõi chết sống dậy!',
+      '⚡ {name} phục hận! như con rận!',
+      '🎯 {name} sẽ trở lại! dù có thất bại!',
       // Tự sự hài
-      '🔥 {name} hồi phục! Tôi tin rồi! Tôi tin rồi!',
+      '🔥 {name} hồi phục! tăng tốc thôi',
       '💪 {name} bùng nổ! Nước mắt tôi rơi!',
       // Nhân hóa
-      '😤 {name} nghĩ: "Tưởng tao chết hả? Đùa à!"',
-      '⚡ {name}: "Tao chưa xong đâu nhé!"',
+      '😤 {name} nghĩ: "Tui sẽ thắng!"',
+      '⚡ {name}: "Quá xá đã!"',
       // Bất ngờ
       '🔥 Tưởng hết hy vọng! Ai ngờ {name} quay lại!',
-      '💪 {name} comeback! Plot twist không ai ngờ!',
+      '💪 {name} comeback! không ai ngờ!',
       // Chơi chữ
       '😤 {name} trở lại! Come back hay back come? Kệ!',
     ],
@@ -317,7 +317,7 @@ const getCommentaries = (animalType) => {
       // So sánh hài hước
       '🍀 {name} may quá! Như trúng số vậy!',
       '✨ {name} thoát nạn! May như có bùa!',
-      '😅 {name} né được! Phản xạ như mèo!',
+      '😅 {name} né được! Phản xạ như như chớp!',
       // Tự sự hài
       '🙏 {name} may! Ông bà phù hộ chắc luôn!',
       '🍀 {name} thoát! Tim tôi rớt rồi nhặt lại!',
@@ -836,17 +836,13 @@ export default function DuaThuHoatHinh() {
       // Nếu sound bị tắt trong setup → volume = 0 (chạy ngầm)
       // Nếu sound bật → volume = 0.65
       audio1.volume = soundEnabledRef.current ? 0.65 : 0;
-      audio1.play().then(() => {
-        console.log('🎵 Audio1 unlocked and playing, volume:', audio1.volume);
-      }).catch(e => {
-        console.log('🎵 Unlock failed:', e.message);
-      });
+      audio1.play().catch(() => {});
       
       // Load audio2 for crossfade later
       audio2.load();
       
     } catch (e) {
-      console.log('Preload failed:', e);
+      // Preload failed silently
     }
   }, []);
 
@@ -896,7 +892,6 @@ export default function DuaThuHoatHinh() {
     
     // If no audio ref exists (e.g., sound was disabled during preload), create new
     if (!ref || !ref.audios) {
-      console.log('🎵 Creating new audio since none exists');
       const audio1 = new Audio('/tool/duavit/dua_vit.mp3');
       const audio2 = new Audio('/tool/duavit/dua_vit.mp3');
       audio1.preload = 'auto';
@@ -909,11 +904,7 @@ export default function DuaThuHoatHinh() {
       };
       
       audio1.volume = 0.65;
-      audio1.play().then(() => {
-        console.log('🎵 Audio started from startBgMusic');
-      }).catch(e => {
-        console.log('🎵 Play failed:', e.message);
-      });
+      audio1.play().catch(() => {});
       
       audio2.load();
     } else {
@@ -939,7 +930,6 @@ export default function DuaThuHoatHinh() {
       // 3. Not already fading
       const duration = curr.duration;
       if (duration && !isNaN(duration) && duration > 10 && curr.currentTime >= duration - 4 && !r.fading) {
-        console.log('🎵 Starting crossfade at', curr.currentTime, '/', duration);
         doCrossfade();
       }
     }, 500); // Check every 500ms
@@ -1047,6 +1037,11 @@ export default function DuaThuHoatHinh() {
   // Show commentary - dynamic based on animal type với hệ thống chống lặp
   const usedCommentariesRef = useRef({});
   
+  // Số lượng câu slang trong mỗi type (các câu slang nằm ở đầu array)
+  const SLANG_COUNT = {
+    random: 27, // Số câu slang mạng xã hội trong random array
+  };
+  
   const showCommentary = useCallback((type, name = '') => {
     const commentaries = getCommentaries(animalType);
     const messages = commentaries[type];
@@ -1070,15 +1065,33 @@ export default function DuaThuHoatHinh() {
       if (availableMessages.length === 0) availableMessages = messages; // fallback
     }
     
-    // Chọn random từ các câu chưa dùng
-    const randomIdx = Math.floor(Math.random() * availableMessages.length);
-    const originalIdx = messages.indexOf(availableMessages[randomIdx]);
+    // Ưu tiên slang 60% cho type 'random'
+    let selectedMessage;
+    const slangCount = SLANG_COUNT[type] || 0;
+    
+    if (type === 'random' && slangCount > 0 && Math.random() < 0.6) {
+      // 60% cơ hội chọn từ các câu slang (đầu array)
+      const slangMessages = availableMessages.filter((msg, idx) => {
+        const originalIdx = messages.indexOf(msg);
+        return originalIdx < slangCount;
+      });
+      if (slangMessages.length > 0) {
+        selectedMessage = slangMessages[Math.floor(Math.random() * slangMessages.length)];
+      }
+    }
+    
+    // Nếu chưa chọn được (không phải random hoặc không có slang available), chọn bình thường
+    if (!selectedMessage) {
+      selectedMessage = availableMessages[Math.floor(Math.random() * availableMessages.length)];
+    }
+    
+    const originalIdx = messages.indexOf(selectedMessage);
     usedCommentariesRef.current[type].push(originalIdx);
     
     // Use shortName if available
     const displayName = name.includes(' ') ? getShortName(name) : name;
     // Wrap name with markers for highlighting: [[name]]
-    const msg = availableMessages[randomIdx]
+    const msg = selectedMessage
       .replace('{name}', displayName ? `[[${displayName}]]` : '');
     setCommentary(msg);
     
@@ -1278,10 +1291,10 @@ export default function DuaThuHoatHinh() {
           }
         }
         
-        // Random commentary để liên tục từ đầu tới cuối (mỗi 70 frames ~ 1.2s)
-        // Tăng chance lên 40% để bình luận dày hơn
-        if (frameCount % 70 === 0 && maxPos > 5 && maxPos < 95) {
-          if (Math.random() < 0.4) {
+        // Random commentary (slang + hài) - TĂNG TẦN SUẤT MẠNH
+        // Mỗi 45 frames (~0.75s) với 55% cơ hội để bình luận dày và vui hơn
+        if (frameCount % 45 === 0 && maxPos > 5 && maxPos < 95) {
+          if (Math.random() < 0.55) {
             showCommentary('random');
           }
         }

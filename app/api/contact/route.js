@@ -17,12 +17,7 @@ export async function POST(request) {
     }
     
     // Log tin nhắn (sau này có thể lưu DB hoặc gửi email)
-    console.log('📩 [CONTACT MESSAGE]', {
-      timestamp: new Date().toISOString(),
-      name,
-      phone,
-      message
-    });
+    // Contact: name, phone, message - timestamp: new Date().toISOString()
     
     // TODO: Có thể thêm:
     // - Lưu vào database (cần thêm model ContactMessage)

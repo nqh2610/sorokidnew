@@ -322,18 +322,6 @@ export default function ChiecNonKyDieu() {
     //    KHÔNG thêm offset - mũi tên PHẢI chỉ đúng TÂM ô trúng
     const totalRotation = fullSpins * 360 + targetAngle;
     
-    // Debug log
-    console.log('🎡 Spin:', { 
-      n,
-      winningIndex, 
-      winner: currentItems[winningIndex], 
-      segmentAngle: segmentAngle.toFixed(4),
-      centerOffset: centerOffset.toFixed(4),
-      targetAngle: targetAngle.toFixed(4),
-      fullSpins,
-      totalRotation: totalRotation.toFixed(4)
-    });
-    
     setRotation(totalRotation);
 
     // Winner đã được xác định bằng INDEX, chỉ cần hiển thị sau khi animation xong

@@ -103,7 +103,7 @@ export async function GET(request) {
       return NextResponse.json({ transactions, stats });
 
     } catch (e) {
-      console.log('PaymentOrder error:', e.message);
+      // PaymentOrder error
       return NextResponse.json({ 
         transactions: [], 
         stats: { totalOrders: 0, completedOrders: 0, pendingOrders: 0, totalRevenue: 0 }
@@ -202,8 +202,6 @@ export async function PUT(request) {
       
       // 🔧 Invalidate cache để user thấy tier mới ngay lập tức
       invalidateUserCache(order.userId);
-      
-      console.log(`✅ Admin confirmed payment for user ${order.userId}, upgraded to ${order.tier}`);
     }
 
     await prisma.paymentOrder.update({

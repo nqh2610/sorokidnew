@@ -38,7 +38,6 @@ export async function POST(request, { params }) {
     
     // 🔧 Invalidate cache để user thấy tier mới ngay lập tức
     invalidateUserCache(id);
-    console.log(`✅ Admin activated ${tier} for user ${id}`);
 
     if (tier === 'free') {
       return NextResponse.json({ success: true, message: 'Đã chuyển về gói miễn phí' });
@@ -64,7 +63,7 @@ export async function POST(request, { params }) {
         }
       });
     } catch (e) {
-      console.log('Error creating payment order:', e.message);
+      // Error creating payment order
     }
 
     return NextResponse.json({ 

@@ -86,7 +86,7 @@ export async function GET(request) {
               return parsed.sort((a, b) => (a.order || 0) - (b.order || 0));
             }
           } catch (e) {
-            console.log('Error parsing pricing plans:', e.message);
+            // Error parsing pricing plans
           }
         }
         return DEFAULT_PLANS;

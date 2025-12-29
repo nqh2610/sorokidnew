@@ -142,7 +142,7 @@ export default function AiLaTrieuPhu() {
         if (bgMusicRef.current) bgMusicRef.current.pause();
         wrongSoundRef.current.play().catch(() => {});
       }
-    } catch (e) { console.log('MP3 sound error:', e); }
+    } catch (e) { /* MP3 sound error */ }
   }, [soundEnabled]);
   
   // Restart background music from beginning
@@ -232,7 +232,7 @@ export default function AiLaTrieuPhu() {
           playNote(ctx, 55, t + 2.4, 0.3, 0.4, 'sine');
           break;
       }
-    } catch (e) { console.log('Sound error:', e); }
+    } catch (e) { /* Sound error */ }
   }, [soundEnabled, getAudioCtx, playNote]);
 
   // ==================== FULLSCREEN ====================
@@ -245,7 +245,7 @@ export default function AiLaTrieuPhu() {
         await elem.webkitRequestFullscreen();
       }
     } catch (e) {
-      console.log('Fullscreen not supported');
+      // Fullscreen not supported
     }
   }, []);
 

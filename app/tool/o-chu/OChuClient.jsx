@@ -75,7 +75,7 @@ export default function OChuGame() {
         await elem.msRequestFullscreen();
       }
     } catch (e) {
-      console.log('Fullscreen not supported');
+      // Fullscreen not supported
     }
   }, []);
 

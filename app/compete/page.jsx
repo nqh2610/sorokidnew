@@ -780,8 +780,6 @@ export default function CompetePage() {
     setFlashResultMessage(null);
     setFlashCountdown(3);
     setFlashPhase('countdown');
-
-    console.log('Generated Flash Compete:', { nums, ops, correctAnswer: runningTotal, digits, operationMode });
     
     // Bắt đầu countdown
     let countdown = 3;

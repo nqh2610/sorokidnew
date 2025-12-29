@@ -47,7 +47,7 @@ export async function GET(request) {
         };
       }
     } catch (e) {
-      console.log('SystemSettings parse error:', e.message);
+      // SystemSettings parse error
     }
 
     return NextResponse.json({

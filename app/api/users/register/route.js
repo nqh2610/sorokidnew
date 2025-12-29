@@ -75,16 +75,11 @@ export async function POST(request) {
     let trialExpiresAt = null;
     try {
       const trialSettings = await getTrialSettings();
-      console.log('[Register] Trial settings:', trialSettings);
       if (trialSettings.isEnabled && trialSettings.trialDays > 0) {
         trialExpiresAt = new Date();
         trialExpiresAt.setDate(trialExpiresAt.getDate() + trialSettings.trialDays);
-        console.log('[Register] Trial enabled, expires at:', trialExpiresAt);
-      } else {
-        console.log('[Register] Trial disabled or days = 0');
       }
     } catch (error) {
-      console.error('Error fetching trial settings:', error);
       // Nếu lỗi thì không cấp trial, user vẫn đăng ký được
     }
 

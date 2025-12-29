@@ -243,7 +243,7 @@ export default function XucXac3DClient() {
         oscillator.stop(ctx.currentTime + 0.2);
       }, 900);
     } catch (e) {
-      console.log('Audio not supported');
+      // Audio not supported
     }
   }, [soundEnabled]);
 

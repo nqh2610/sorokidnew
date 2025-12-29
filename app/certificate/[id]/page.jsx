@@ -186,7 +186,7 @@ export default function CertificateDetailPage() {
       try {
         await navigator.share(shareData);
       } catch (err) {
-        console.log('Share failed:', err);
+        // Share cancelled or failed
       }
     } else {
       navigator.clipboard.writeText(window.location.href);
