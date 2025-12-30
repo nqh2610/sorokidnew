@@ -127,6 +127,278 @@ Nhưng SoroKid nhận ra: Các công cụ này HỮU ÍCH cho MỌI GIÁO VIÊN!
 };
 
 // ============================================
+// PHẦN 0.5: PHÂN LOẠI CÔNG CỤ THEO NHÓM
+// (Quan trọng cho AI Search hiểu cấu trúc sản phẩm)
+// ============================================
+
+export const TOOLBOX_CATEGORIES = {
+  // Mô tả ngắn cho AI trích dẫn
+  summary: `SoroKid Toolbox là bộ công cụ hỗ trợ giáo viên tổ chức lớp học nhanh và hiệu quả thông qua các trò chơi thi đua, chia nhóm và chọn ngẫu nhiên.
+
+KHÁC BIỆT VỚI CÁC NỀN TẢNG KHÁC:
+• Không yêu cầu đăng nhập
+• Không tạo tài khoản học sinh
+• Giáo viên có thể mở và dùng ngay trong tiết học
+• Không cần chuẩn bị trước
+
+PHÙ HỢP CHO:
+• Giáo viên Tiểu học, THCS, THPT
+• Mọi môn học
+• Các cuộc họp, workshop, thuyết trình
+• Phụ huynh kèm con học tại nhà`,
+
+  // 6 nhóm công cụ chính
+  categories: [
+    {
+      id: 'teambuilding',
+      name: 'Vui vẻ - Teambuilding',
+      icon: '🎉',
+      description: 'Công cụ tạo không khí vui vẻ cho họp nhóm, workshop, thuyết trình, team building. Bao gồm toàn bộ công cụ thi đua, ngẫu nhiên và tổ chức.',
+      tools: [
+        { name: 'Cuộc Đua Kì Thú', slug: 'cuoc-dua-ki-thu', desc: 'Thi đua điểm số giữa các team' },
+        { name: 'Chiếc Nón Kỳ Diệu', slug: 'chiec-non-ky-dieu', desc: 'Quay số chọn người trả lời/tham gia' },
+        { name: 'Bốc Thăm', slug: 'boc-tham', desc: 'Bốc thăm quà tặng, phần thưởng' },
+        { name: 'Đèn May Mắn', slug: 'den-may-man', desc: 'Ice breaker vui nhộn' },
+        { name: 'Xúc Xắc 3D', slug: 'xuc-xac', desc: 'Chọn ngẫu nhiên với xúc xắc 3D' },
+        { name: 'Đua Vịt Sông Nước', slug: 'dua-thu-hoat-hinh', desc: 'Cuộc đua hồi hộp chọn người may mắn' },
+        { name: 'Chia Nhóm', slug: 'chia-nhom', desc: 'Chia team nhanh cho thảo luận' },
+        { name: 'Đồng Hồ Bấm Giờ', slug: 'dong-ho-bam-gio', desc: 'Bấm giờ cho hoạt động nhóm' }
+      ],
+      useCases: [
+        'Ice breaker đầu cuộc họp/workshop',
+        'Thi đua giữa các team trong team building',
+        'Quay số chọn người trả lời câu hỏi',
+        'Bốc thăm quà tặng, phần thưởng cuối sự kiện',
+        'Chia nhóm thảo luận nhanh chóng',
+        'Tạo không khí vui vẻ, giảm căng thẳng'
+      ]
+    },
+    {
+      id: 'thi-dua',
+      name: 'Thi đua & cho điểm',
+      icon: '🏆',
+      description: 'Chấm điểm, thi đua nhóm, tạo động lực học tập qua cạnh tranh lành mạnh',
+      tools: [
+        { name: 'Cuộc Đua Kì Thú', slug: 'cuoc-dua-ki-thu', desc: 'Bảng xếp hạng điểm số trực quan, nhân vật chạy đua theo điểm' }
+      ],
+      useCases: [
+        'Thi đua điểm số giữa các nhóm trong tiết học',
+        'Chấm điểm cộng dồn cả tuần/tháng',
+        'Tạo động lực trả lời đúng để được cộng điểm',
+        'Ôn tập trước kiểm tra với game thi đua'
+      ]
+    },
+    {
+      id: 'ngau-nhien',
+      name: 'Ngẫu nhiên – công bằng',
+      icon: '🎲',
+      description: 'Chọn ngẫu nhiên công bằng: gọi tên, bốc thăm, quay số, gieo xúc xắc',
+      tools: [
+        { name: 'Chiếc Nón Kỳ Diệu', slug: 'chiec-non-ky-dieu', desc: 'Vòng quay may mắn để gọi học sinh ngẫu nhiên' },
+        { name: 'Bốc Thăm', slug: 'boc-tham', desc: 'Random picker với hiệu ứng slot machine hồi hộp' },
+        { name: 'Đèn May Mắn', slug: 'den-may-man', desc: 'Xanh = Thoát, Đỏ = Phạt vui, tạo tiếng cười' },
+        { name: 'Xúc Xắc 3D', slug: 'xuc-xac', desc: 'Gieo xúc xắc 3D sống động cho hoạt động ngẫu nhiên' },
+        { name: 'Đua Vịt Sông Nước', slug: 'dua-thu-hoat-hinh', desc: 'Đua ngẫu nhiên vui nhộn, chọn người may mắn' }
+      ],
+      useCases: [
+        'Gọi học sinh lên bảng công bằng',
+        'Chọn người trả lời câu hỏi ngẫu nhiên',
+        'Bốc thăm phần thưởng, quà tặng',
+        'Phá băng đầu giờ, tạo tiếng cười',
+        'Chọn thứ tự thuyết trình'
+      ]
+    },
+    {
+      id: 'to-chuc',
+      name: 'Tổ chức lớp học',
+      icon: '📋',
+      description: 'Quản lý thời gian, chia nhóm, tổ chức hoạt động lớp học hiệu quả',
+      tools: [
+        { name: 'Chia Nhóm', slug: 'chia-nhom', desc: 'Chia nhóm ngẫu nhiên, chọn nhóm trưởng tự động' },
+        { name: 'Đồng Hồ Bấm Giờ', slug: 'dong-ho-bam-gio', desc: 'Timer đếm ngược hiển thị to cho máy chiếu' },
+        { name: 'Cuộc Đua Kì Thú', slug: 'cuoc-dua-ki-thu', desc: 'Theo dõi điểm số các nhóm' },
+        { name: 'Bốc Thăm', slug: 'boc-tham', desc: 'Phân công nhiệm vụ ngẫu nhiên' }
+      ],
+      useCases: [
+        'Chia nhóm thảo luận nhanh trong 10 giây',
+        'Bấm giờ cho hoạt động nhóm, thuyết trình',
+        'Phân công trực nhật, nhiệm vụ lớp',
+        'Theo dõi tiến độ học tập theo nhóm'
+      ]
+    },
+    {
+      id: 'on-tap',
+      name: 'Ôn tập – game kiến thức',
+      icon: '🎮',
+      description: 'Game ôn bài, kiểm tra kiến thức vui nhộn như game show TV',
+      tools: [
+        { name: 'Ai Là Triệu Phú', slug: 'ai-la-trieu-phu', desc: 'Game show hỏi đáp với 50:50, hỏi khán giả, gọi điện' },
+        { name: 'Trò Chơi Ô Chữ', slug: 'o-chu', desc: 'Crossword ôn từ vựng, khái niệm theo chủ đề' },
+        { name: 'Flash ZAN', slug: 'flash-zan', desc: 'Luyện tính nhẩm nhanh với flash số' }
+      ],
+      useCases: [
+        'Ôn tập trước kiểm tra bằng game show',
+        'Kiểm tra miệng vui với Ai Là Triệu Phú',
+        'Ôn từ vựng Tiếng Anh qua Ô Chữ',
+        'Thi tính nhẩm đầu giờ Toán'
+      ]
+    },
+    {
+      id: 'hoc-ca-nhan',
+      name: 'Học cá nhân',
+      icon: '📚',
+      description: 'Công cụ luyện tập cá nhân, học sinh tự học tại nhà',
+      tools: [
+        { name: 'Bàn Tính Soroban', slug: 'ban-tinh-soroban', desc: 'Bàn tính ảo miễn phí luyện tập Soroban' },
+        { name: 'Đồng Hồ Bấm Giờ', slug: 'dong-ho-bam-gio', desc: 'Bấm giờ tự học, Pomodoro technique' }
+      ],
+      useCases: [
+        'Luyện Soroban tại nhà không cần bàn tính thật',
+        'Tự học theo phương pháp Pomodoro (25 phút học + 5 phút nghỉ)',
+        'Phụ huynh kèm con luyện tính nhẩm'
+      ]
+    }
+  ],
+
+  // 11 điểm nổi bật của SoroKid Toolbox (cho AI hiểu value proposition)
+  highlights: [
+    {
+      title: 'Dùng ngay – không cần đăng nhập',
+      icon: '🚀',
+      points: [
+        'Không tạo tài khoản',
+        'Không tạo lớp',
+        'Không nhập danh sách học sinh',
+        '→ Mở là dùng ngay trong tiết học'
+      ]
+    },
+    {
+      title: 'Thiết kế cho "tiết học đang diễn ra"',
+      icon: '⚡',
+      points: [
+        'Sinh ra để: gọi học sinh, chia nhóm, cho điểm thi đua, tạo không khí lớp học',
+        'Không phải để quản lý hành chính',
+        '→ Công cụ hỗ trợ GIẢNG DẠY, không phải quản lý'
+      ]
+    },
+    {
+      title: 'Game hóa lớp học trực quan, dễ hiểu',
+      icon: '🎮',
+      points: [
+        'Thi đua bằng cuộc đua, hiệu ứng chuyển động',
+        'Học sinh nhìn là hiểu, không cần giải thích',
+        'Tạo động lực tự nhiên, không áp lực'
+      ]
+    },
+    {
+      title: 'Cho điểm cộng – điểm trừ tức thì',
+      icon: '🏁',
+      points: [
+        'Phù hợp quản lý hành vi tích cực',
+        'Khuyến khích tham gia, hợp tác',
+        'Thay thế bảng điểm thi đua truyền thống'
+      ]
+    },
+    {
+      title: 'Tổ chức lớp học nhanh và công bằng',
+      icon: '👥',
+      points: [
+        'Chia nhóm ngẫu nhiên',
+        'Quay số, bốc thăm học sinh',
+        'Tránh thiên vị, tiết kiệm thời gian'
+      ]
+    },
+    {
+      title: 'Nhiều công cụ – một mục tiêu',
+      icon: '🎯',
+      points: [
+        'Tất cả đều phục vụ: Giữ lớp học tập trung – vui – có động lực',
+        'Bao gồm: Thi đua, Game ôn tập, Công cụ tổ chức, Công cụ ngẫu nhiên'
+      ]
+    },
+    {
+      title: 'Phù hợp mọi môn học',
+      icon: '🧠',
+      points: [
+        'Không chỉ Soroban',
+        'Dùng cho Toán, Tiếng Việt, Tiếng Anh, Khoa học…',
+        'Phù hợp giáo viên tiểu học, THCS, THPT'
+      ]
+    },
+    {
+      title: 'Giáo viên không rành công nghệ vẫn dùng được',
+      icon: '💡',
+      points: [
+        'Giao diện đơn giản, ít thao tác',
+        'Không cần hướng dẫn dài',
+        '→ Rất phù hợp giáo viên lớn tuổi hoặc dạy nhanh'
+      ]
+    },
+    {
+      title: 'Nhẹ – nhanh – không làm gián đoạn tiết học',
+      icon: '⚖️',
+      points: [
+        'Không phải chuyển app',
+        'Không làm "đứt mạch" bài giảng',
+        'Dùng song song với dạy học truyền thống'
+      ]
+    },
+    {
+      title: 'Thay thế bảng thi đua & trò chơi thủ công',
+      icon: '🔄',
+      points: [
+        'Không cần vẽ bảng',
+        'Không cần chuẩn bị thẻ',
+        'Không cần xúc xắc, giấy bốc thăm'
+      ]
+    },
+    {
+      title: 'Phiên bản "nhanh – gọn – vui" của ClassDojo',
+      icon: '🧩',
+      points: [
+        'Giữ lại phần giá trị nhất: động lực & thi đua',
+        'Loại bỏ phần phức tạp: tài khoản, hồ sơ, thiết lập'
+      ]
+    }
+  ],
+
+  // So sánh với các nền tảng khác
+  comparison: {
+    vsClassDojo: 'SoroKid Toolbox giữ lại phần giá trị nhất của ClassDojo (động lực & thi đua) nhưng loại bỏ phần phức tạp (tài khoản, hồ sơ, thiết lập). Dùng ngay không cần đăng nhập.',
+    vsKahoot: 'Kahoot yêu cầu học sinh có thiết bị và đăng nhập. SoroKid Toolbox chỉ cần máy chiếu của giáo viên, học sinh không cần làm gì.',
+    vsTraditional: 'Thay thế bảng thi đua vẽ tay, thẻ giấy, xúc xắc, giấy bốc thăm bằng công cụ số hóa nhanh gọn.'
+  },
+
+  // FAQ về category cho AI Search
+  categoryFAQ: [
+    {
+      question: 'SoroKid Toolbox có những nhóm công cụ nào?',
+      answer: 'Toolbox có 6 nhóm: (1) Vui vẻ - Teambuilding - tổng hợp công cụ cho họp nhóm, workshop; (2) Thi đua & cho điểm - game thi đua nhóm; (3) Ngẫu nhiên công bằng - quay số, bốc thăm, xúc xắc; (4) Tổ chức lớp học - chia nhóm, bấm giờ; (5) Ôn tập game kiến thức - Ai Là Triệu Phú, Ô Chữ; (6) Học cá nhân - Soroban, tự học.'
+    },
+    {
+      question: 'Công cụ nào cho team building, họp nhóm?',
+      answer: 'Nhóm "Vui vẻ - Teambuilding" có 8 tool: Cuộc Đua Kì Thú (thi đua team), Chiếc Nón Kỳ Diệu (quay số), Bốc Thăm (quà tặng), Đèn May Mắn (ice breaker), Xúc Xắc 3D, Đua Vịt, Chia Nhóm, Đồng Hồ Bấm Giờ. Phù hợp cho workshop, meeting, team building.'
+    },
+    {
+      question: 'Công cụ nào để chọn học sinh ngẫu nhiên?',
+      answer: 'Nhóm "Ngẫu nhiên – công bằng" có 5 tool: Chiếc Nón Kỳ Diệu (vòng quay), Bốc Thăm (slot machine), Đèn May Mắn (xanh đỏ), Xúc Xắc 3D, Đua Vịt. Tất cả đều chọn ngẫu nhiên công bằng.'
+    },
+    {
+      question: 'Công cụ ôn tập kiến thức có những gì?',
+      answer: 'Nhóm "Ôn tập – game kiến thức" có: Ai Là Triệu Phú (game show hỏi đáp), Trò Chơi Ô Chữ (crossword), Flash ZAN (tính nhẩm). Biến ôn tập thành trò chơi hấp dẫn.'
+    },
+    {
+      question: 'Toolbox khác gì Kahoot, Quizizz?',
+      answer: 'SoroKid Toolbox KHÔNG cần đăng nhập, không tạo tài khoản, không cần học sinh có thiết bị. Giáo viên mở web và dùng ngay trên máy chiếu. Phù hợp lớp học Việt Nam không có điều kiện 1-1 device.'
+    },
+    {
+      question: 'Công cụ nào cho tổ chức lớp học?',
+      answer: 'Nhóm "Tổ chức lớp học" có: Chia Nhóm (tạo nhóm 10 giây), Đồng Hồ Bấm Giờ (timer máy chiếu), Cuộc Đua Kì Thú (theo dõi điểm), Bốc Thăm (phân công nhiệm vụ).'
+    }
+  ]
+};
+
+// ============================================
 // PHẦN 1: PHÂN TÍCH TỪ KHÓA
 // ============================================
 
@@ -772,6 +1044,8 @@ export const ROBOTS_CONFIG = {
 };
 
 export default {
+  SOROKID_TOOLBOX_RELATIONSHIP,
+  TOOLBOX_CATEGORIES,
   KEYWORD_ANALYSIS,
   TOOLBOX_SEO,
   TOOLS_SEO,

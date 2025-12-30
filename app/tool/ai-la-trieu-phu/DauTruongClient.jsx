@@ -8,7 +8,14 @@ import { LogoIcon } from '@/components/Logo/Logo';
 const STORAGE_KEYS = {
   QUESTIONS: 'altp_questions',
   NUM_QUESTIONS: 'altp_num_questions',
-  GAME_STATE: 'altp_game_state'
+  GAME_STATE: 'altp_game_state',
+  GAME_MODE: 'altp_game_mode'
+};
+
+// Game modes
+const GAME_MODES = {
+  GAMESHOW: 'gameshow', // 15 câu chuẩn ALTP với thang tiền thưởng
+  QUICK: 'quick'        // Chơi hết câu hỏi, không giới hạn số lượng
 };
 
 // Prize money levels - 15 câu chuẩn ALTP
@@ -26,7 +33,8 @@ export default function AiLaTrieuPhu() {
   // Setup state
   const [questionsText, setQuestionsText] = useState('');
   const [numQuestions, setNumQuestions] = useState(15);
-  
+  const [gameMode, setGameMode] = useState(GAME_MODES.GAMESHOW); // 'gameshow' or 'quick'
+
   // Game state
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -276,6 +284,7 @@ export default function AiLaTrieuPhu() {
           setUsed5050(gs.used5050 || false);
           setUsedAudience(gs.usedAudience || false);
           setUsedPhone(gs.usedPhone || false);
+          setGameMode(gs.gameMode || GAME_MODES.GAMESHOW);
           setScreen('game');
           showToast('🔄 Khôi phục game đang dở');
         }
@@ -294,10 +303,10 @@ export default function AiLaTrieuPhu() {
   useEffect(() => {
     if (screen === 'game' && questions.length > 0) {
       localStorage.setItem(STORAGE_KEYS.GAME_STATE, JSON.stringify({
-        questions, currentIndex, score, used5050, usedAudience, usedPhone
+        questions, currentIndex, score, used5050, usedAudience, usedPhone, gameMode
       }));
     }
-  }, [screen, questions, currentIndex, score, used5050, usedAudience, usedPhone]);
+  }, [screen, questions, currentIndex, score, used5050, usedAudience, usedPhone, gameMode]);
 
   useEffect(() => {
     if (screen === 'result') localStorage.removeItem(STORAGE_KEYS.GAME_STATE);
@@ -428,7 +437,7 @@ Ai là Chủ tịch nước đầu tiên?|Hồ Chí Minh|Võ Nguyên Giáp|Phạ
 Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ranh|Vịnh Vân Phong|A`;
 
   // ==================== GAME ACTIONS ====================
-  const startGame = useCallback(async () => {
+  const startGame = useCallback(async (mode = null) => {
     const { parsed, errors } = parseQuestions(questionsText);
     if (parsed.length === 0) {
       if (errors.length > 0) {
@@ -438,11 +447,18 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
       }
       return;
     }
-    
+
+    // Xác định mode: nếu truyền vào thì dùng, không thì tự động
+    const selectedMode = mode || (parsed.length === 15 ? GAME_MODES.GAMESHOW : GAME_MODES.QUICK);
+    setGameMode(selectedMode);
+
     const shuffled = [...parsed].sort(() => Math.random() - 0.5);
-    // Sử dụng tất cả câu hỏi hợp lệ, tối đa 15 câu (chuẩn ALTP)
-    const selected = shuffled.slice(0, Math.min(15, shuffled.length));
-    
+
+    // Game Show mode: tối đa 15 câu, Quick mode: tất cả câu hỏi
+    const selected = selectedMode === GAME_MODES.GAMESHOW
+      ? shuffled.slice(0, Math.min(15, shuffled.length))
+      : shuffled;
+
     setQuestions(selected);
     setCurrentIndex(0);
     setScore(0);
@@ -456,7 +472,7 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
     setAudienceVotes(null);
     setPhoneHint(null);
     setScreen('game');
-    
+
     // Auto fullscreen
     setTimeout(() => enterFullscreen(), 100);
     playSound('select');
@@ -628,11 +644,12 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
               <div className="flex items-center justify-between gap-2">
                 <div className="flex-1 min-w-0">
                   <p className="font-bold text-amber-800">⚡ Chơi ngay (15 câu mẫu)</p>
+                  <p className="text-xs text-amber-600">Format Game Show chuẩn ALTP</p>
                 </div>
-                <button 
-                  onClick={() => { 
-                    setQuestionsText(sampleQuestions); 
-                    setTimeout(startGame, 50); 
+                <button
+                  onClick={() => {
+                    setQuestionsText(sampleQuestions);
+                    setTimeout(() => startGame(GAME_MODES.GAMESHOW), 50);
                   }}
                   className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg shadow hover:scale-105 transition-all whitespace-nowrap"
                 >
@@ -672,12 +689,41 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
                 </div>
               </div>
               
-              <textarea
-                value={questionsText}
-                onChange={(e) => setQuestionsText(e.target.value)}
-                placeholder={`Câu hỏi | A | B | C | D | Đáp án (A/B/C/D)\n\nVD: Thủ đô VN?|Hà Nội|HCM|Đà Nẵng|Huế|A\n\n💡 Tự nhận diện dấu |, ;, Tab`}
-                className={`w-full h-64 p-3 border-2 rounded-lg focus:border-amber-400 resize-none font-mono text-base leading-relaxed ${errorCount > 0 ? 'border-red-300' : ''}`}
-              />
+              {/* Textarea with line numbers */}
+              <div className={`relative flex border-2 rounded-lg overflow-hidden focus-within:border-amber-400 ${errorCount > 0 ? 'border-red-300' : ''}`}>
+                {/* Line numbers - scrollbar hidden but scrollable */}
+                <div
+                  className="line-numbers bg-gray-100 text-gray-400 text-right py-3 px-2 font-mono text-sm select-none border-r overflow-y-auto"
+                  style={{
+                    minWidth: '2.5rem',
+                    height: '256px',
+                    lineHeight: '1.5rem',
+                    scrollbarWidth: 'none', /* Firefox */
+                    msOverflowStyle: 'none', /* IE/Edge */
+                  }}
+                >
+                  {(questionsText || ' ').split('\n').map((_, i) => (
+                    <div
+                      key={i}
+                      className={`h-6 ${parseResult.errors.some(e => e.line === i + 1) ? 'text-red-500 font-bold' : ''}`}
+                    >
+                      {i + 1}
+                    </div>
+                  ))}
+                </div>
+                <textarea
+                  value={questionsText}
+                  onChange={(e) => setQuestionsText(e.target.value)}
+                  placeholder={`Câu hỏi | A | B | C | D | Đáp án (A/B/C/D)\n\nVD: Thủ đô VN?|Hà Nội|HCM|Đà Nẵng|Huế|A\n\n💡 Tự nhận diện dấu |, ;, Tab`}
+                  className="flex-1 h-64 py-3 px-3 resize-none font-mono text-sm focus:outline-none"
+                  style={{ lineHeight: '1.5rem' }}
+                  onScroll={(e) => {
+                    // Sync scroll with line numbers
+                    const lineNumbers = e.target.previousSibling;
+                    if (lineNumbers) lineNumbers.scrollTop = e.target.scrollTop;
+                  }}
+                />
+              </div>
               
               {/* Error details - Compact */}
               {errorCount > 0 && (
@@ -693,17 +739,47 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
               )}
             </div>
 
-            {/* Start Button - Compact */}
-            <button
-              onClick={startGame}
-              disabled={validCount === 0}
-              className={`w-full py-3 text-lg font-black rounded-xl shadow-lg transition-all
-                ${validCount > 0
-                  ? 'bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white hover:scale-[1.02]'
-                  : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
-            >
-              🎬 VÀO GAME ({Math.min(15, validCount)} câu)
-            </button>
+            {/* Mode Selection & Start Buttons */}
+            <div className="space-y-2">
+              {/* Game Show Mode - Chỉ hiện khi >= 15 câu */}
+              {validCount >= 15 && (
+                <button
+                  onClick={() => startGame(GAME_MODES.GAMESHOW)}
+                  className="w-full py-3 text-lg font-black rounded-xl shadow-lg transition-all
+                    bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white hover:scale-[1.02]"
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    <span>🎬</span>
+                    <span>GAME SHOW</span>
+                    <span className="text-sm opacity-80">(15 câu)</span>
+                  </div>
+                  <p className="text-xs font-normal opacity-80 mt-0.5">Format chuẩn ALTP với thang tiền thưởng & trợ giúp</p>
+                </button>
+              )}
+
+              {/* Chơi tất cả - Luôn hiện */}
+              <button
+                onClick={() => startGame(GAME_MODES.QUICK)}
+                disabled={validCount === 0}
+                className={`w-full py-3 text-base font-bold rounded-xl shadow transition-all
+                  ${validCount > 0
+                    ? validCount >= 15
+                      ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:scale-[1.02]'
+                      : 'bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white hover:scale-[1.02]'
+                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <span>📋</span>
+                  <span>CHƠI TẤT CẢ</span>
+                  <span className="text-sm opacity-80">({validCount} câu)</span>
+                </div>
+                <p className="text-xs font-normal opacity-80 mt-0.5">
+                  {validCount < 15
+                    ? 'Chơi hết câu hỏi (cần 15 câu cho Game Show)'
+                    : 'Chơi hết tất cả câu hỏi, không giới hạn'}
+                </p>
+              </button>
+            </div>
 
             {/* Back link */}
             <div className="text-center mt-2">
@@ -735,37 +811,51 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
           </div>
           
           {/* Main Content */}
-          <div className="relative z-10 h-screen flex flex-col">
+          <div className="relative z-10 min-h-screen min-h-[100dvh] flex flex-col">
             {/* Top Bar - Responsive */}
             <div className="flex items-center justify-between p-2 sm:p-3">
               <button onClick={resetGame} className="px-2 sm:px-4 py-1.5 sm:py-2 bg-black/50 hover:bg-black/70 text-white rounded-lg text-xs sm:text-sm font-medium transition-colors">
                 ✕ <span className="hidden sm:inline">Thoát</span>
               </button>
               <div className="flex items-center gap-1 sm:gap-2">
+                {/* Mode indicator */}
+                <span className={`px-2 py-1 rounded-lg text-xs font-bold ${
+                  gameMode === GAME_MODES.GAMESHOW
+                    ? 'bg-amber-500/30 text-amber-300 border border-amber-500/50'
+                    : 'bg-blue-500/30 text-blue-300 border border-blue-500/50'
+                }`}>
+                  {gameMode === GAME_MODES.GAMESHOW ? '🎬' : '📋'}
+                </span>
                 <span className="px-2 sm:px-3 py-1 bg-amber-500/80 text-white rounded-lg text-xs sm:text-sm font-bold">
                   Câu {currentIndex + 1}/{questions.length}
                 </span>
+                {/* Score indicator for Quick mode */}
+                {gameMode === GAME_MODES.QUICK && (
+                  <span className="px-2 sm:px-3 py-1 bg-green-500/80 text-white rounded-lg text-xs sm:text-sm font-bold">
+                    ✓ {score}
+                  </span>
+                )}
                 <button onClick={() => setSoundEnabled(!soundEnabled)} className="px-2 sm:px-4 py-1.5 sm:py-2 bg-black/50 hover:bg-black/70 text-white rounded-lg text-xs sm:text-sm">
                   {soundEnabled ? '🔊' : '🔇'}
                 </button>
               </div>
             </div>
 
-            {/* Question Box - Responsive */}
-            <div className="flex-shrink-0 px-2 sm:px-4 mb-3 sm:mb-6">
-              <div className="altp-question-box">
-                <span className="altp-diamond text-lg sm:text-2xl">◆</span>
-                <span className="altp-question-text text-base sm:text-2xl md:text-3xl lg:text-4xl font-bold drop-shadow-lg">
+            {/* Question Box - Responsive - Larger for projector */}
+            <div className="flex-shrink-0 px-2 sm:px-4 lg:px-8 mb-2 sm:mb-4 lg:mb-6">
+              <div className="altp-question-box py-2 sm:py-3 lg:py-5">
+                <span className="altp-diamond text-sm sm:text-2xl lg:text-3xl">◆</span>
+                <span className="altp-question-text text-sm sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-bold drop-shadow-lg leading-tight">
                   {currentQuestion.question}
                 </span>
-                <span className="altp-diamond text-lg sm:text-2xl">◆</span>
+                <span className="altp-diamond text-sm sm:text-2xl lg:text-3xl">◆</span>
               </div>
             </div>
 
             {/* Main Game Area - Responsive layout */}
-            <div className="flex-1 flex flex-col lg:flex-row min-h-0">
+            <div className="flex-1 flex flex-col lg:flex-row min-h-0 pb-safe">
               {/* Left Side - Answers */}
-              <div className="flex-1 flex flex-col justify-start lg:justify-center px-2 sm:px-4 pb-2 sm:pb-4 overflow-y-auto">
+              <div className="flex-1 flex flex-col justify-start lg:justify-center px-2 sm:px-4 pb-4 sm:pb-4 overflow-y-auto">
                 {/* Phone Hint - Compact */}
                 {phoneHint && (
                   <div className="mb-2 sm:mb-4 p-2 sm:p-3 bg-green-900/90 border-2 border-green-400 rounded-xl text-center animate-fadeIn">
@@ -792,31 +882,31 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
                   </div>
                 )}
 
-                {/* Answers Grid - Always 2 columns except very small screens */}
-                <div className="grid grid-cols-2 gap-1.5 sm:gap-2 md:gap-3 max-w-4xl mx-auto w-full">
+                {/* Answers Grid - Always 2 columns - Larger for projector */}
+                <div className="grid grid-cols-2 gap-1 sm:gap-2 md:gap-3 lg:gap-4 max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto w-full">
                   {['A', 'B', 'C', 'D'].map((letter, index) => {
                     const isHidden = hidden5050.includes(index);
                     const isSelected = selectedAnswer === index;
                     const isCorrect = currentQuestion.correct === index;
                     const showCorrect = isRevealed && isCorrect;
                     const showWrong = isRevealed && isSelected && !isCorrect;
-                    
+
                     let stateClass = 'altp-answer-default';
                     if (isHidden) stateClass = 'altp-answer-hidden';
                     else if (showCorrect) stateClass = 'altp-answer-correct';
                     else if (showWrong) stateClass = 'altp-answer-wrong';
                     else if (isSelected) stateClass = 'altp-answer-selected';
-                    
+
                     return (
                       <button
                         key={letter}
                         onClick={() => selectAnswer(index)}
                         disabled={isLocked || isHidden}
-                        className={`altp-answer-btn ${stateClass}`}
+                        className={`altp-answer-btn ${stateClass} py-2 sm:py-3 lg:py-5`}
                       >
-                        <span className="altp-answer-diamond text-xs sm:text-base">◆</span>
-                        <span className="altp-answer-letter text-base sm:text-xl md:text-2xl">{letter}</span>
-                        <span className="altp-answer-text text-xs sm:text-base md:text-lg font-semibold truncate">
+                        <span className="altp-answer-diamond text-[10px] sm:text-base lg:text-xl">◆</span>
+                        <span className="altp-answer-letter text-sm sm:text-xl md:text-2xl lg:text-4xl">{letter}</span>
+                        <span className="altp-answer-text text-[11px] sm:text-base md:text-xl lg:text-3xl xl:text-4xl font-semibold line-clamp-2">
                           {currentQuestion.answers[index]}
                         </span>
                       </button>
@@ -824,73 +914,77 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
                   })}
                 </div>
 
-                {/* Action Buttons - Compact */}
-                <div className="mt-2 sm:mt-4 flex justify-center gap-2 sm:gap-3">
-                  {/* Trợ giúp */}
-                  <button onClick={use5050} disabled={used5050 || isLocked}
-                    className={`altp-help-btn ${used5050 ? 'opacity-30' : ''}`}>
-                    <span className="text-[10px] sm:text-sm font-black">50:50</span>
-                  </button>
-                  <button onClick={useAudience} disabled={usedAudience || isLocked}
-                    className={`altp-help-btn ${usedAudience ? 'opacity-30' : ''}`}>
-                    <span className="text-base sm:text-xl">👥</span>
-                  </button>
-                  <button onClick={usePhone} disabled={usedPhone || isLocked}
-                    className={`altp-help-btn ${usedPhone ? 'opacity-30' : ''}`}>
-                    <span className="text-base sm:text-xl">📞</span>
-                  </button>
-                </div>
+                {/* Action Buttons - Larger for projector */}
+                {gameMode === GAME_MODES.GAMESHOW && (
+                  <div className="mt-2 sm:mt-3 lg:mt-6 flex justify-center gap-1.5 sm:gap-3 lg:gap-5">
+                    {/* Trợ giúp */}
+                    <button onClick={use5050} disabled={used5050 || isLocked}
+                      className={`altp-help-btn w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 ${used5050 ? 'opacity-30' : ''}`}>
+                      <span className="text-[9px] sm:text-sm lg:text-lg font-black">50:50</span>
+                    </button>
+                    <button onClick={useAudience} disabled={usedAudience || isLocked}
+                      className={`altp-help-btn w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 ${usedAudience ? 'opacity-30' : ''}`}>
+                      <span className="text-sm sm:text-xl lg:text-3xl">👥</span>
+                    </button>
+                    <button onClick={usePhone} disabled={usedPhone || isLocked}
+                      className={`altp-help-btn w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 ${usedPhone ? 'opacity-30' : ''}`}>
+                      <span className="text-sm sm:text-xl lg:text-3xl">📞</span>
+                    </button>
+                  </div>
+                )}
 
-                {/* Lock / Next Button - Compact */}
-                <div className="mt-2 sm:mt-4 text-center pb-2">
+                {/* Lock / Next Button - Larger for projector */}
+                <div className="mt-2 sm:mt-3 lg:mt-6 text-center pb-2">
                   {!isLocked && selectedAnswer !== null && (
-                    <button onClick={lockAnswer} className="altp-action-btn text-sm sm:text-base md:text-lg px-4 sm:px-6 py-2 sm:py-3">
+                    <button onClick={lockAnswer} className="altp-action-btn text-xs sm:text-base md:text-lg lg:text-2xl px-3 sm:px-6 lg:px-10 py-1.5 sm:py-3 lg:py-4">
                       ✓ CHỐT ĐÁP ÁN
                     </button>
                   )}
-                  
+
                   {isLocked && !isRevealed && (
-                    <div className="flex flex-col items-center gap-1 sm:gap-2">
-                      <p className="text-yellow-400 text-sm sm:text-lg font-bold animate-pulse">Đang chờ kết quả...</p>
-                      <div className="flex justify-center gap-1 sm:gap-2">
-                        <span className="w-2 h-2 sm:w-3 sm:h-3 bg-orange-400 rounded-full animate-bounce"></span>
-                        <span className="w-2 h-2 sm:w-3 sm:h-3 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></span>
-                        <span className="w-2 h-2 sm:w-3 sm:h-3 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></span>
+                    <div className="flex flex-col items-center gap-1 lg:gap-3">
+                      <p className="text-yellow-400 text-xs sm:text-lg lg:text-2xl font-bold animate-pulse">Đang chờ kết quả...</p>
+                      <div className="flex justify-center gap-1 lg:gap-2">
+                        <span className="w-1.5 h-1.5 sm:w-3 sm:h-3 lg:w-4 lg:h-4 bg-orange-400 rounded-full animate-bounce"></span>
+                        <span className="w-1.5 h-1.5 sm:w-3 sm:h-3 lg:w-4 lg:h-4 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></span>
+                        <span className="w-1.5 h-1.5 sm:w-3 sm:h-3 lg:w-4 lg:h-4 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></span>
                       </div>
                     </div>
                   )}
-                  
+
                   {isRevealed && (
                     <div className="animate-fadeIn">
-                      <p className={`text-lg sm:text-2xl md:text-3xl font-black mb-2 drop-shadow-lg ${selectedAnswer === currentQuestion.correct ? 'text-green-400' : 'text-red-400'}`}>
+                      <p className={`text-base sm:text-2xl md:text-3xl lg:text-5xl font-black mb-1.5 lg:mb-4 drop-shadow-lg ${selectedAnswer === currentQuestion.correct ? 'text-green-400' : 'text-red-400'}`}>
                         {selectedAnswer === currentQuestion.correct ? '🎉 CHÍNH XÁC!' : `❌ Đáp án: ${['A', 'B', 'C', 'D'][currentQuestion.correct]}`}
                       </p>
-                      <button onClick={nextQuestion} className="altp-action-btn text-sm sm:text-base md:text-lg px-4 sm:px-6 py-2 sm:py-3">
-                        {currentIndex + 1 >= questions.length ? '🏁 XEM KẾT QUẢ' : '➡️ CÂU TIẾP THEO'}
+                      <button onClick={nextQuestion} className="altp-action-btn text-xs sm:text-base md:text-lg lg:text-2xl px-3 sm:px-6 lg:px-10 py-1.5 sm:py-3 lg:py-4">
+                        {currentIndex + 1 >= questions.length ? '🏁 KẾT QUẢ' : '➡️ TIẾP'}
                       </button>
                     </div>
                   )}
                 </div>
               </div>
 
-              {/* Right Side - Prize Ladder - Hidden on mobile, shown on lg */}
-              <div className="hidden lg:block w-48 flex-shrink-0 pr-4">
-                <div className="altp-prize-ladder">
-                  {[...PRIZE_LEVELS].reverse().map((prize, i) => {
-                    const realIndex = PRIZE_LEVELS.length - 1 - i;
-                    const isCurrent = realIndex === currentIndex;
-                    const isPassed = realIndex < currentIndex;
-                    const isMilestone = realIndex === 4 || realIndex === 9 || realIndex === 14;
-                    
-                    return (
-                      <div key={i} className={`altp-prize-item ${isCurrent ? 'current' : ''} ${isPassed ? 'passed' : ''} ${isMilestone ? 'milestone' : ''}`}>
-                        <span className="prize-number">{realIndex + 1}</span>
-                        <span className="prize-value">{prize}</span>
-                      </div>
-                    );
-                  })}
+              {/* Right Side - Prize Ladder - Only in Game Show mode, Hidden on mobile */}
+              {gameMode === GAME_MODES.GAMESHOW && (
+                <div className="hidden lg:block w-48 flex-shrink-0 pr-4">
+                  <div className="altp-prize-ladder">
+                    {[...PRIZE_LEVELS].reverse().map((prize, i) => {
+                      const realIndex = PRIZE_LEVELS.length - 1 - i;
+                      const isCurrent = realIndex === currentIndex;
+                      const isPassed = realIndex < currentIndex;
+                      const isMilestone = realIndex === 4 || realIndex === 9 || realIndex === 14;
+
+                      return (
+                        <div key={i} className={`altp-prize-item ${isCurrent ? 'current' : ''} ${isPassed ? 'passed' : ''} ${isMilestone ? 'milestone' : ''}`}>
+                          <span className="prize-number">{realIndex + 1}</span>
+                          <span className="prize-value">{prize}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
@@ -907,17 +1001,40 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
             </div>
           </div>
           <div className="text-center">
+            {/* Mode badge */}
+            <div className="mb-2">
+              <span className={`px-3 py-1 rounded-full text-sm font-bold ${
+                gameMode === GAME_MODES.GAMESHOW
+                  ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+                  : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+              }`}>
+                {gameMode === GAME_MODES.GAMESHOW ? '🎬 Game Show' : '📋 Chơi tất cả'}
+              </span>
+            </div>
+
             <div className="text-7xl mb-4">
               {score >= questions.length * 0.8 ? '🏆' : score >= questions.length * 0.5 ? '🌟' : '💪'}
             </div>
             <h1 className="text-4xl font-black text-yellow-400 mb-4">
               {score >= questions.length * 0.8 ? 'TRIỆU PHÚ!' : score >= questions.length * 0.5 ? 'XUẤT SẮC!' : 'CỐ GẮNG!'}
             </h1>
-            <div className="text-5xl font-black text-white mb-3">
-              💰 {score > 0 ? PRIZE_LEVELS[Math.min(score - 1, PRIZE_LEVELS.length - 1)] : '0đ'}
-            </div>
+
+            {/* Game Show mode: show prize money */}
+            {gameMode === GAME_MODES.GAMESHOW && (
+              <div className="text-5xl font-black text-white mb-3">
+                💰 {score > 0 ? PRIZE_LEVELS[Math.min(score - 1, PRIZE_LEVELS.length - 1)] : '0đ'}
+              </div>
+            )}
+
+            {/* Quick mode: show percentage */}
+            {gameMode === GAME_MODES.QUICK && (
+              <div className="text-5xl font-black text-white mb-3">
+                {Math.round((score / questions.length) * 100)}%
+              </div>
+            )}
+
             <p className="text-xl text-blue-200 mb-8">{score}/{questions.length} câu đúng</p>
-            
+
             <div className="flex gap-4 justify-center">
               <button
                 onClick={() => {
@@ -957,7 +1074,10 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
           to { opacity: 1; transform: translateY(0); }
         }
         .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
-        
+
+        /* Hide scrollbar for line numbers */
+        .line-numbers::-webkit-scrollbar { display: none; }
+
         .altp-bg {
           background: linear-gradient(180deg, #0a1628 0%, #1a237e 40%, #311b92 70%, #1a1a2e 100%);
         }
@@ -1028,13 +1148,33 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
           flex: 1;
           text-align: left;
           font-size: 0.75rem;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          line-height: 1.3;
         }
         @media (min-width: 640px) {
           .altp-answer-text {
-            font-size: 0.9rem;
+            font-size: 1rem;
           }
         }
-        
+        @media (min-width: 768px) {
+          .altp-answer-text {
+            font-size: 1.125rem;
+          }
+        }
+        @media (min-width: 1024px) {
+          .altp-answer-text {
+            font-size: 1.5rem;
+          }
+        }
+        @media (min-width: 1280px) {
+          .altp-answer-text {
+            font-size: 1.75rem;
+          }
+        }
+
         .altp-action-btn {
           padding: 0.5rem 1.5rem;
           background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
@@ -1063,15 +1203,16 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
         .altp-answer-btn {
           display: flex;
           align-items: center;
-          gap: 0.25rem;
-          padding: 0.5rem 0.75rem;
+          gap: 0.2rem;
+          padding: 0.4rem 0.5rem;
           border-radius: 4px;
           font-weight: 600;
           transition: all 0.2s;
           cursor: pointer;
           position: relative;
           clip-path: polygon(2% 0%, 98% 0%, 100% 50%, 98% 100%, 2% 100%, 0% 50%);
-          min-height: 40px;
+          min-height: 36px;
+          overflow: hidden;
         }
         @media (min-width: 640px) {
           .altp-answer-btn {
@@ -1086,6 +1227,21 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
             gap: 0.75rem;
             padding: 1rem 1.5rem;
             min-height: 64px;
+          }
+        }
+        @media (min-width: 1024px) {
+          .altp-answer-btn {
+            gap: 1rem;
+            padding: 1.25rem 2rem;
+            min-height: 80px;
+            border-radius: 8px;
+          }
+        }
+        @media (min-width: 1280px) {
+          .altp-answer-btn {
+            gap: 1.25rem;
+            padding: 1.5rem 2.5rem;
+            min-height: 100px;
           }
         }
         
@@ -1121,13 +1277,13 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
         
         .altp-question-box {
           background: linear-gradient(90deg, transparent 0%, rgba(26,35,126,0.95) 5%, rgba(40,53,147,0.95) 50%, rgba(26,35,126,0.95) 95%, transparent 100%);
-          border-top: 3px solid #ff9800;
-          border-bottom: 3px solid #ff9800;
-          padding: 0.75rem 1.5rem;
+          border-top: 2px solid #ff9800;
+          border-bottom: 2px solid #ff9800;
+          padding: 0.5rem 0.75rem;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.75rem;
+          gap: 0.5rem;
           clip-path: polygon(3% 0%, 97% 0%, 100% 50%, 97% 100%, 3% 100%, 0% 50%);
           box-shadow: 0 0 30px rgba(255,152,0,0.3);
         }
@@ -1139,7 +1295,21 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
             gap: 1.5rem;
           }
         }
-        
+        @media (min-width: 1024px) {
+          .altp-question-box {
+            border-top: 5px solid #ff9800;
+            border-bottom: 5px solid #ff9800;
+            padding: 2rem 4rem;
+            gap: 2rem;
+          }
+        }
+        @media (min-width: 1280px) {
+          .altp-question-box {
+            padding: 2.5rem 5rem;
+            gap: 2.5rem;
+          }
+        }
+
         .altp-prize-ladder {
           display: flex;
           flex-direction: column;

@@ -1772,10 +1772,10 @@ function TimerContent({
           )}
 
           {/* Time Display */}
-          <div className="p-10 sm:p-16 text-center">
+          <div className="p-6 sm:p-10 text-center overflow-hidden">
             {/* Timer numbers - Clean & Bold */}
             <div 
-              className={`font-mono font-black tabular-nums tracking-tight
+              className={`font-mono font-black tabular-nums tracking-tight whitespace-nowrap
                 ${isFinished ? 'text-red-500' : 
                   remainingTime <= 10 && isRunning ? 'text-red-500' : 
                   remainingTime <= 30 && isRunning ? 'text-orange-500' : 
@@ -1783,7 +1783,9 @@ function TimerContent({
                 }
                 ${remainingTime <= 5 && isRunning && !isPaused ? 'animate-pulse' : ''}`}
               style={{ 
-                fontSize: 'clamp(5rem, 22vw, 14rem)',
+                fontSize: (isRunning || isFinished ? remainingTime >= 3600 : getTotalSeconds() >= 3600)
+                  ? 'clamp(3rem, 14vw, 10rem)' 
+                  : 'clamp(4rem, 18vw, 12rem)',
                 lineHeight: 1,
                 textShadow: remainingTime <= 10 && isRunning 
                   ? '0 0 40px rgba(239, 68, 68, 0.3)' 

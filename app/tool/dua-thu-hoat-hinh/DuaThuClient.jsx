@@ -98,7 +98,7 @@ const getCommentaries = (animalType) => {
       `🎙️ Mặt ${animalName} nào cũng quyết tâm! Máu lửa quá!`,
       // Tình huống bất ngờ
       `🎙️ 3... 2... 1... Ủa đợi chút... À xong rồi! PHÓNG!`,
-      `🎙️ Tưởng chưa bắt đầu ai ngờ đã xuất phát rồi!`,
+      `🎙️ Ủa tưởng chưa bắt đầu mà mọi người phóng rồi!`,
     ],
     leading: [
       // So sánh hài hước
@@ -134,9 +134,9 @@ const getCommentaries = (animalType) => {
       // Phóng đại
       '🎯 {name} bật turbo! Tưởng đang xem Fast & Furious!',
       '⚡ {name} vượt! Tốc độ này phải đo bằng vận tốc ánh sáng!',
-      '🚀 {name} phóng! NASA muốn tuyển về làm tên lửa!',
+      '🚀 {name} phóng! Quá nhanh quá nguy hiểm!',
       // Tự sự hài
-      '😤 {name} vượt rồi! Ôi trời ơi tôi muốn hét lên!',
+      '😤 {name} vượt rồi! lêu lêu bà già!',
       '🌪️ {name} như cơn lốc! làm tôi bị sốc!',
       // Câu hỏi tu từ
       '🔥 {name} bứt tốc! ai chơi lại?',

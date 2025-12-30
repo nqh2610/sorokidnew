@@ -528,7 +528,13 @@ export default function OChuGame() {
   // === GAME ACTIONS ===
   const handleStartGame = useCallback(() => {
     setSetupError('');
-    
+
+    // Validate keyword question (topic)
+    if (!topic.trim()) {
+      setSetupError('⚠️ Vui lòng nhập câu hỏi về từ khóa!');
+      return;
+    }
+
     // Validate keyword
     const kw = keywordInput.trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
     if (!kw) {
@@ -732,7 +738,7 @@ export default function OChuGame() {
   }, [questions, keyword, generateGridWithKeyword]);
 
   const loadSampleData = useCallback(() => {
-    setTopic('Địa lý Việt Nam');
+    setTopic('Thành phố nào là thủ đô của Việt Nam?');
     setKeywordInput('HANOI');
     setQuestionsInput(`Loài hoa nở vào mùa thu ở Hà Nội | HOASUA
 Tên gọi cũ của Việt Nam | ANNAM
@@ -764,19 +770,22 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN`);
               </div>
             )}
 
-            {/* Topic - Optional */}
+            {/* Topic / Keyword Question - Required */}
             <div className="mb-3">
               <label className="block text-sm font-medium text-gray-600 mb-1">
-                📌 Chủ đề <span className="text-gray-400">(không bắt buộc)</span>
+                🎯 Chủ đề / Câu hỏi chủ đề <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
-                placeholder="Ví dụ: Địa lý Việt Nam, Lịch sử, Toán học..."
+                placeholder="Ví dụ: Địa lý Việt Nam hoặc Thành phố nào là thủ đô?"
                 className="w-full p-2.5 border-2 border-gray-200 rounded-xl text-sm
                   focus:border-teal-400 focus:ring-2 focus:ring-teal-100"
               />
+              <p className="text-xs text-gray-500 mt-1">
+                💡 Chủ đề hoặc câu hỏi gợi ý để học sinh đoán từ khóa
+              </p>
             </div>
 
             {/* Keyword - Required */}
@@ -844,10 +853,10 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
               <div className="flex-1" />
               <button
                 onClick={handleStartGame}
-                disabled={!keywordInput.trim() || !questionsInput.trim()}
+                disabled={!topic.trim() || !keywordInput.trim() || !questionsInput.trim()}
                 className={`px-6 py-2.5 rounded-xl font-bold text-white transition-all
-                  ${keywordInput.trim() && questionsInput.trim()
-                    ? 'bg-gradient-to-r from-teal-500 to-cyan-600 hover:shadow-lg' 
+                  ${topic.trim() && keywordInput.trim() && questionsInput.trim()
+                    ? 'bg-gradient-to-r from-teal-500 to-cyan-600 hover:shadow-lg'
                     : 'bg-gray-300 cursor-not-allowed'}`}>
                 🎮 Bắt đầu chơi
               </button>
@@ -1064,7 +1073,7 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
               {/* Progress indicator */}
               <div className="hidden sm:flex items-center gap-1.5 bg-white/10 px-2 py-1 rounded-lg">
                 <div className="w-20 h-2 bg-white/20 rounded-full overflow-hidden">
-                  <div 
+                  <div
                     className="h-full bg-gradient-to-r from-green-400 to-emerald-500 transition-all duration-500"
                     style={{ width: `${(revealedRows.length / questions.length) * 100}%` }}
                   />
@@ -1072,13 +1081,13 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
                 <span className="text-white/80 text-xs font-bold">{revealedRows.length}/{questions.length}</span>
               </div>
             </div>
-            
-            {topic && (
-              <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full shadow-lg">
-                <span className="font-black text-sm">🎯 {topic}</span>
-              </div>
-            )}
-            
+
+            {/* Brand Logo - Center */}
+            <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-1.5 pointer-events-none select-none" aria-hidden="true">
+              <LogoIcon size={22} />
+              <span className="text-sm font-bold tracking-tight text-white/70">SoroKid</span>
+            </div>
+
             <div className="flex items-center gap-1.5">
               <button onClick={() => setSoundEnabled(!soundEnabled)}
                 className={`p-1.5 rounded-lg ${soundEnabled ? 'bg-green-500 text-white' : 'bg-white/20 text-white/50'}`}
@@ -1103,12 +1112,23 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
             </div>
           </div>
 
+          {/* KEYWORD QUESTION - Large & Centered for Projector */}
+          {topic && (
+            <div className="mb-2 flex-shrink-0 relative z-10">
+              <div className="bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 rounded-xl px-4 py-3 shadow-xl">
+                <p className="text-white font-black text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-tight drop-shadow-lg">
+                  {topic.includes('?') ? '' : '🎯 '}{topic}
+                </p>
+              </div>
+            </div>
+          )}
+
           {/* MAIN AREA */}
           <div className="flex-1 flex flex-col lg:flex-row gap-2 relative z-10 min-h-0 overflow-hidden">
-            
+
             {/* LEFT: Grid + Question Overlay */}
             <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
-              
+
               {/* Grid Container */}
               <div className="flex-1 flex items-center justify-center bg-white/5 backdrop-blur rounded-xl p-2 min-h-0 overflow-auto relative">
                 <div className="inline-block">
@@ -1283,7 +1303,16 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
                     {revealedRows.length}/{questions.length} gợi ý
                   </span>
                 </div>
-                
+
+                {/* Keyword Question - Prominent Display */}
+                {topic && (
+                  <div className="bg-white/20 rounded-lg p-2 mb-3 border border-white/30">
+                    <p className="text-white font-bold text-sm text-center leading-snug">
+                      {topic.includes('?') ? '' : '🎯 '}{topic}
+                    </p>
+                  </div>
+                )}
+
                 {/* Keyword Display */}
                 <div className="flex justify-center gap-1 mb-3 flex-wrap flex-1 items-center">
                   {keyword.split('').map((char, i) => {
@@ -1387,14 +1416,6 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
             }
             .animate-shake { animation: shake 0.3s ease-in-out; }
           `}</style>
-          
-          {/* Brand Logo - Góc trên trái, dưới top bar */}
-          <div className="absolute top-14 left-3 z-[100] pointer-events-none select-none" aria-hidden="true">
-            <div className="flex items-center gap-1.5 opacity-50">
-              <LogoIcon size={20} />
-              <span className="text-xs font-bold tracking-tight text-white/80">SoroKid</span>
-            </div>
-          </div>
         </div>
       )}
     </ToolLayout>

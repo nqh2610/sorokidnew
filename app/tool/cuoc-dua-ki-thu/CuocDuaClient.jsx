@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import ToolLayout from '@/components/ToolLayout/ToolLayout';
+import Logo from '@/components/Logo/Logo';
 
 // ==================== CONSTANTS ====================
 const STORAGE_KEYS = {
@@ -667,7 +668,7 @@ export default function CuocDuaClient() {
 
   // ==================== RENDER ====================
   return (
-    <ToolLayout>
+    <ToolLayout toolName="Cuộc Đua Kì Thú" toolIcon="🏁" showBrandLogo={false}>
       <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100">
       
       {/* ==================== CUSTOM DIALOG ==================== */}
@@ -848,14 +849,13 @@ export default function CuocDuaClient() {
                 <span>🏁</span><span className="hidden xs:inline">Kết thúc</span>
               </button>
             </div>
-            
-            {/* Race Title - Hidden on very small screens */}
-            <div className="hidden sm:flex items-center gap-2">
-              <span className="text-xl sm:text-2xl">🏆</span>
-              <span className="text-gray-800 font-black text-sm sm:text-lg tracking-wide hidden md:block">CUỘC ĐUA KÌ THÚ</span>
+
+            {/* Center: Brand Logo */}
+            <div className="hidden sm:flex items-center">
+              <Logo size="sm" showText={true} />
             </div>
-            
-            {/* Search & Controls - Responsive */}
+
+            {/* Right: Search & Controls */}
             <div className="flex items-center gap-1 sm:gap-2">
               <div className="relative">
                 <input
@@ -863,7 +863,7 @@ export default function CuocDuaClient() {
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                   placeholder="🔍 Tìm..."
-                  className="h-8 sm:h-9 w-20 sm:w-32 md:w-40 px-2 sm:px-3 rounded-lg border-2 border-gray-200 focus:border-emerald-400 focus:outline-none text-xs sm:text-sm transition-all"
+                  className="h-8 sm:h-9 w-32 sm:w-40 md:w-52 px-2 sm:px-3 rounded-lg border-2 border-gray-200 focus:border-emerald-400 focus:outline-none text-xs sm:text-sm transition-all"
                 />
                 {searchText && (
                   <button
@@ -877,8 +877,8 @@ export default function CuocDuaClient() {
               <button
                 onClick={() => setSortBy(sortBy === 'score' ? 'id' : 'score')}
                 className={`h-8 sm:h-9 px-2 sm:px-3 rounded-lg text-xs sm:text-sm font-medium flex items-center gap-1 transition-all ${
-                  sortBy === 'score' 
-                    ? 'bg-amber-100 text-amber-700' 
+                  sortBy === 'score'
+                    ? 'bg-amber-100 text-amber-700'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
@@ -888,8 +888,8 @@ export default function CuocDuaClient() {
               <button
                 onClick={() => setSoundEnabled(!soundEnabled)}
                 className={`h-8 sm:h-9 px-2 sm:px-3 rounded-lg text-xs sm:text-sm font-medium flex items-center gap-1 transition-all ${
-                  soundEnabled 
-                    ? 'bg-green-100 text-green-700' 
+                  soundEnabled
+                    ? 'bg-green-100 text-green-700'
                     : 'bg-gray-100 text-gray-400'
                 }`}
               >
@@ -1047,15 +1047,15 @@ export default function CuocDuaClient() {
           </div>
 
           {/* ===== BOTTOM PANEL - Responsive Control ===== */}
-          <div className={`fixed left-0 right-0 z-30 transition-all duration-300 ${showControls ? 'bottom-0' : '-bottom-20'}`}>
-            {/* Toggle Button */}
+          <div className={`fixed left-0 right-0 z-30 transition-all duration-300 ${showControls ? 'bottom-0' : '-bottom-14'}`}>
+            {/* Toggle Button - Attached to panel */}
             <button
               onClick={() => setShowControls(!showControls)}
-              className="absolute -top-8 sm:-top-9 left-1/2 transform -translate-x-1/2 bg-white px-3 sm:px-5 py-1.5 sm:py-2 rounded-t-xl border-2 border-b-0 border-emerald-300 shadow-lg text-emerald-600 hover:bg-emerald-50 transition-colors font-bold text-xs sm:text-sm"
+              className="absolute -top-8 sm:-top-9 left-1/2 transform -translate-x-1/2 bg-white px-4 sm:px-5 py-1.5 sm:py-2 rounded-t-xl border-2 border-b-0 border-emerald-300 shadow-lg text-emerald-600 hover:bg-emerald-50 transition-colors font-bold text-xs sm:text-sm"
             >
               {showControls ? '▼ Ẩn' : '▲ Hiện'}
             </button>
-            
+
             <div className="bg-white/95 backdrop-blur border-t-2 border-emerald-300 shadow-2xl">
               <div className="px-2 sm:px-4 py-1.5 sm:py-2">
                 {/* Single row layout - evenly distributed */}

@@ -79,7 +79,7 @@ const getCommentaries = (animalType) => {
   return {
     start: [
       // So sánh hài hước
-      `🎙️ Xuất phát! Các ${plural} lao đi như được mẹ gọi về ăn cơm!`,
+      `🎙️ Xuất phát! Các ${plural} lao đi vun vút!`,
       `🎙️ Và họ đi! Nhanh như wifi nhà hàng xóm vậy!`,
       // Phóng đại
       `🎙️ BOOOM! Cuộc đua thế kỷ bắt đầu! Cả vũ trụ đang theo dõi!`,
@@ -102,64 +102,64 @@ const getCommentaries = (animalType) => {
     ],
     leading: [
       // So sánh hài hước
-      `🔥 {name} dẫn đầu! ${action.charAt(0).toUpperCase() + action.slice(1)} nhanh như shipper giao đồ ăn!`,
-      `👑 {name} đang bay! Nhanh hơn cả tin đồn lan truyền!`,
-      `🚀 {name} phóng như rocket Elon Musk vậy!`,
+      `🔥 {name} dẫn đầu! ${action.charAt(0).toUpperCase() + action.slice(1)} nhanh quá xá!`,
+      `👑 {name} đang bay! làm tim tôi lung lay!`,
+      `🚀 {name} phóng nhanh vượt ẩu!`,
       // Phóng đại
       `⚡ {name} nhanh đến nỗi tôi không thấy chân đâu luôn!`,
-      `💪 {name} dẫn đầu cách xa... khoảng 3 năm ánh sáng!`,
-      `🌟 {name} tỏa sáng hơn cả mặt trời lúc 12 giờ trưa!`,
+      `💪 {name} dẫn đầu cách xa... khoảng 300 năm ánh sáng!`,
+      `🌟 {name} sáng chói mà hơi sói trán!`,
       // Tự sự hài - BLV hồi hộp
-      `😎 {name} số 1! Tôi muốn làm fan cứng luôn rồi!`,
-      `🏃 {name} đẹp quá! Tim tôi tan chảy mất tiêu!`,
-      `🦸 {name} ơi, cho xin chữ ký được không?`,
+      `😎 {name} số 1! number one!`,
+      `🏃 {name} rất ngầu, như đang đi tàu!`,
+      `🦸 {name} ơi, cho em xin chữ ký được không?`,
       // Câu hỏi tu từ
-      `💨 {name} dẫn đầu! Ai mà theo kịp đây chứ?`,
-      `🤩 {name} ngon quá! Có ai dám cản không?`,
+      `💨 {name} đang dẫn đầu! bỏ xa 5 vạn 9 ngàn cây?`,
+      `🤩 {name} đang lao vút! Có ai dám cản không?`,
       // Nhân hóa - vịt có suy nghĩ
       `🎯 {name} đang nghĩ: "Các em đuổi đi, anh đợi!"`,
       `😏 {name} quay lại nhìn: "Sao đi chậm thế các bạn?"`,
       // Chơi chữ
-      `🔥 {name} dẫn đầu! Đầu là đầu, cuối là... ai đó!`,
-      `👑 {name} vô đối! Đối thủ chỉ biết nhìn theo!`,
+      `🔥 {name} dẫn đầu! thì ai dẫn đuôi!`,
+      `👑 {name} nhìn lên không có đối thủ, á vấp cục đá!`,
       // Bất ngờ
       `⚡ Ủa {name} đâu rồi? À đằng trước kia! Nhanh quá!`,
-      `🌟 {name} đi nhanh quá tôi tưởng lag màn hình!`,
+      `🌟 {name} phóng nhanh quá tôi tưởng gắn động cơ!`,
     ],
     overtake: [
       // So sánh hài hước
       '😱 {name} vượt lên! Nhanh như tia chớp vậy!',
-      '🔄 {name} lật kèo! Giống phim hoạt hình hay quá!',
-      '💨 {name} vượt mặt! Mượt như quảng cáo dầu gội!',
+      '🔄 {name} lật kèo! dù hơi bèo nhèo!',
+      '💨 {name} tóc mượt như sunsil bồ kết!',
       // Phóng đại
       '🎯 {name} bật turbo! Tưởng đang xem Fast & Furious!',
       '⚡ {name} vượt! Tốc độ này phải đo bằng vận tốc ánh sáng!',
       '🚀 {name} phóng! NASA muốn tuyển về làm tên lửa!',
       // Tự sự hài
       '😤 {name} vượt rồi! Ôi trời ơi tôi muốn hét lên!',
-      '🌪️ {name} như cơn lốc! Mắt tôi không theo kịp!',
+      '🌪️ {name} như cơn lốc! làm tôi bị sốc!',
       // Câu hỏi tu từ
-      '🔥 {name} bứt tốc! Ai cho phép nhanh thế?',
+      '🔥 {name} bứt tốc! ai chơi lại?',
       '⚔️ {name} vượt mặt! Có chơi hack không vậy?',
       // Nhân hóa - đối thoại
       '💥 {name} vượt! Đối thủ: "Ủa bạn đi đâu vậy?"',
       '🎪 {name} lên top! Các bạn khác: "Không công bằng!"',
       // Bất ngờ
-      '🏆 Tưởng ai ngờ {name}! Bất ngờ chưa!',
-      '⚡ {name} vượt lên! Kịch bản nào đây?',
+      '🏆 Ai ngờ là {name}! Bất ngờ chưa bà già!',
+      '⚡ {name} vượt lên! trên mọi đối thủ?',
       // Chơi chữ
       '💨 {name} tăng ga! Ga nào? Ga Hà Nội!',
       '🔥 {name} bứt phá! Phá kỷ lục hay phá tim tôi?',
     ],
     tired: [
       // So sánh hài hước
-      '😓 {name} đuối! Mệt như chạy thể dục 10 vòng sân!',
-      '💦 {name} thở hổn hển! Giống tôi leo cầu thang tầng 5!',
+      '😓 {name} đuối! Mệt như mới chạy 10 vòng trái đất!',
+      '💦 {name} thở hổn hển! Như vừa leo núi!',
       '🥵 {name} kiệt sức! Như điện thoại 1% pin vậy!',
       // Phóng đại
       '😴 {name} muốn ngủ! Chắc tối qua thức chơi game!',
-      '🥱 {name} ngáp! Miệng há to như cá mập!',
-      '😩 {name} hết xăng! Cần đổ 100 lít ngay!',
+      '🥱 {name} mệt xỉu! Cần nghỉ ngơi ngay!',
+      '😩 {name} hết xăng! Đổ đầy bình đi anh zai!',
       // Tự sự hài
       '💤 {name} mệt quá! Tôi nhìn cũng thấy mệt lây!',
       '😵 {name} sắp xỉu! Gọi xe cứu thương chưa?',
@@ -173,15 +173,15 @@ const getCommentaries = (animalType) => {
       '😓 Ủa {name} đâu rồi? À kia! Sao đi chậm vậy?',
       '💀 {name} kiệt! Phải chi mang theo Red Bull!',
       // Chơi chữ
-      '🥵 {name} đuối! Đuối như cá... à không, cá bơi giỏi mà!',
+      '🥵 {name} đuối! Đuối như con cá chuối!',
     ],
     collision: [
       // So sánh hài hước
-      '💥 {name} đụng đá! Đau như đạp trúng lego!',
-      '😵 {name} va chạm! Giống xe đụng trong công viên!',
+      '💥 {name} đụng đá! làm trái tim băng giá!',
+      '😵 {name} đụng là chạm! chưa ngán ai!',
       '🤕 {name} văng! Bay xa như bóng bay tuột tay!',
       // Phóng đại
-      '💫 {name} thấy sao bay! Đếm được 100 ngôi sao!',
+      '💫 {name} thấy sao bay! lên xe ngay!',
       '🤯 {name} đâm sầm! Tiếng vang cả vũ trụ!',
       // Tự sự hài
       '😵‍💫 {name} chóng mặt! Tôi nhìn cũng muốn xỉu!',
@@ -206,12 +206,12 @@ const getCommentaries = (animalType) => {
       '⚔️ Nảy lửa! Nóng hơn cả bếp gas đang xào!',
       // Phóng đại
       '😱 Sát sàn sạt! Không lọt được sợi tóc!',
-      '🥶 Lạnh gáy! Tôi sởn da gà cả người!',
-      '🎢 Hồi hộp! Tim tôi đập 200 nhịp/phút!',
+      '🥶 Lạnh giá! tưởng tôi là con cá!',
+      '🎢 Hồi hộp! Tim tôi đập như trống trận!',
       // Tự sự hài
       '💓 Đua từng milimet! Tôi không dám thở luôn!',
       '🤯 Không tin nổi! Tay tôi run cầm không được mic!',
-      '😤 Ai cũng quyết! Tôi muốn khóc!',
+      '😤 Tôi muốn khóc lên cho thoả nỗi nhớ!',
       // Câu hỏi tu từ
       '🫣 Ai thắng đây? Thần cũng không đoán được!',
       '🎬 Kịch tính quá! Đạo diễn nào viết kịch bản?',
@@ -224,14 +224,14 @@ const getCommentaries = (animalType) => {
     ],
     halfway: [
       // So sánh hài hước
-      '🏁 Qua nửa đường! Còn nửa đường nữa như thi đại học ấy!',
-      '⏰ 50%! Giống download file ở giữa chừng!',
+      '🏁 Qua nửa đường! Ai tỏ tường!',
+      '⏰ Mới 50%! Mà ngỡ như đã 100% chia đôi',
       // Phóng đại
       '🎯 Nửa chặng! Nửa còn lại sẽ BÙNG NỔ!',
       '🔥 Qua nửa! Drama chưa bắt đầu đâu!',
       // Tự sự hài
-      '📍 Halfway! Tim tôi chỉ mới đập 50% thôi!',
-      '⚡ 50% done! Tôi đã hết 90% năng lượng rồi!',
+      '📍 Mới nửa đường thôi à!',
+      '⚡ 50% done! Tôi đã hết cạn 90% pin rồi!',
       // Câu hỏi tu từ
       '🏁 Nửa đường rồi! Ai sẽ bung sức đây?',
       '🔥 Qua nửa! Bao giờ mới có drama?',
@@ -264,7 +264,7 @@ const getCommentaries = (animalType) => {
     ],
     boost: [
       // So sánh hài hước
-      '🚀 {name} bật turbo! Nhanh như bấm nút skip quảng cáo!',
+      '🚀 {name} bật chế độ tăng động!',
       '⚡ {name} tăng tốc! Giống xe đua F1 vậy!',
       '💨 {name} bay! Máy bay cũng phải gọi bằng cụ!',
       // Phóng đại
@@ -272,18 +272,18 @@ const getCommentaries = (animalType) => {
       '🚀 {name} phóng! Vượt qua cả tốc độ ánh sáng!',
       // Tự sự hài
       '⚡ {name} bứt tốc! Mắt tôi không theo kịp!',
-      '💨 {name} tăng ga! Wow! Amazing! Incredible!',
+      '💨 {name} tăng ga! Wow! Amazing! gút chóp!',
       // Nhân hóa
-      '🔥 {name} nghĩ: "Giờ mới show hàng thật!"',
+      '🔥 {name} nghĩ: "Giờ mới show sức mạnh!"',
       '🚀 {name}: "Các bạn, tạm biệt nhé!"',
       // Bất ngờ
-      '⚡ Ủa {name} đâu rồi? Nhanh quá mất tiêu!',
+      '⚡ Ủa {name} mất tiêu đâu? á đăng trước kìa',
     ],
     slowdown: [
       // So sánh hài hước
-      '🌊 {name} gặp khó! Chậm như loading game crack!',
-      '😓 {name} slow motion! Giống phim chạy chậm!',
-      '🐌 {name} mất đà! Chậm hơn cả ốc sên!',
+      '🌊 {name} Chậm quá! Chậm như wifi nhà tôi vậy!',
+      '😓 {name} slow motion! Giống phim cô dâu 8 tuổi!',
+      '🐌 {name} mất đà! ô là la!',
       // Tự sự hài
       '📉 {name} giảm tốc! Ôi không! Sao lại thế!',
       '🐢 {name} chậm lại! Tôi muốn khóc!',
@@ -295,21 +295,21 @@ const getCommentaries = (animalType) => {
     ],
     comeback: [
       // So sánh hài hước
-      '🔥 {name} hồi sinh! Như phượng hoàng từ tro tàn!',
-      '💪 {name} comeback! Giống phim siêu anh hùng!',
-      '😤 {name} quay lại! Đúng kiểu "chờ đã, chưa xong đâu"!',
+      '🔥 {name} hồi sinh! từ vũng sình!',
+      '💪 {name} comeback! quá xác oách!',
+      '😤 {name} quay lại! "chờ đã, chưa xong đâu"!',
       // Phóng đại
-      '⚡ {name} phục hận! Sức mạnh từ đâu ra vậy!',
-      '🎯 {name} trở lại! Từ cõi chết sống dậy!',
+      '⚡ {name} phục hận! như con rận!',
+      '🎯 {name} sẽ trở lại! dù có thất bại!',
       // Tự sự hài
-      '🔥 {name} hồi phục! Tôi tin rồi! Tôi tin rồi!',
+      '🔥 {name} hồi phục! tăng tốc thôi',
       '💪 {name} bùng nổ! Nước mắt tôi rơi!',
       // Nhân hóa
-      '😤 {name} nghĩ: "Tưởng tao chết hả? Đùa à!"',
-      '⚡ {name}: "Tao chưa xong đâu nhé!"',
+      '😤 {name} nghĩ: "Tui sẽ thắng!"',
+      '⚡ {name}: "Quá xá đã!"',
       // Bất ngờ
       '🔥 Tưởng hết hy vọng! Ai ngờ {name} quay lại!',
-      '💪 {name} comeback! Plot twist không ai ngờ!',
+      '💪 {name} comeback! không ai ngờ!',
       // Chơi chữ
       '😤 {name} trở lại! Come back hay back come? Kệ!',
     ],
@@ -317,7 +317,7 @@ const getCommentaries = (animalType) => {
       // So sánh hài hước
       '🍀 {name} may quá! Như trúng số vậy!',
       '✨ {name} thoát nạn! May như có bùa!',
-      '😅 {name} né được! Phản xạ như mèo!',
+      '😅 {name} né được! Phản xạ như như chớp!',
       // Tự sự hài
       '🙏 {name} may! Ông bà phù hộ chắc luôn!',
       '🍀 {name} thoát! Tim tôi rớt rồi nhặt lại!',
@@ -832,23 +832,21 @@ export default function DuaThuHoatHinh() {
         fading: false
       };
       
-      // Play audio1 muted immediately to unlock AND start buffering
-      audio1.volume = 0.65; // Set target volume, will play with this after countdown
-      audio1.play().then(() => {
-        console.log('🎵 Audio1 unlocked and playing');
-      }).catch(e => {
-        console.log('🎵 Unlock failed:', e.message);
-      });
+      // Play audio1 immediately to unlock AND start buffering
+      // Nếu sound bị tắt trong setup → volume = 0 (chạy ngầm)
+      // Nếu sound bật → volume = 0.65
+      audio1.volume = soundEnabledRef.current ? 0.65 : 0;
+      audio1.play().catch(() => {});
       
       // Load audio2 for crossfade later
       audio2.load();
       
     } catch (e) {
-      console.log('Preload failed:', e);
+      // Preload failed silently
     }
   }, []);
 
-  // Crossfade to next audio
+  // Crossfade to next audio - smoother 3 second transition
   const doCrossfade = useCallback(() => {
     const ref = bgMusicRef.current;
     if (!ref || !ref.audios || ref.fading) return;
@@ -865,15 +863,17 @@ export default function DuaThuHoatHinh() {
     nextAudio.volume = 0;
     nextAudio.play().catch(() => {});
     
-    // Crossfade 2 seconds
+    // Crossfade 3 seconds (30 steps x 100ms) - smoother equal power crossfade
     let step = 0;
+    const totalSteps = 30;
     const interval = setInterval(() => {
       step++;
-      const p = step / 20;
+      const p = step / totalSteps;
+      // Equal power crossfade for smoother transition
       curr.volume = 0.65 * Math.cos(p * Math.PI / 2);
       nextAudio.volume = 0.65 * Math.sin(p * Math.PI / 2);
       
-      if (step >= 20) {
+      if (step >= totalSteps) {
         clearInterval(interval);
         curr.pause();
         curr.currentTime = 0;
@@ -889,12 +889,34 @@ export default function DuaThuHoatHinh() {
     if (!soundEnabledRef.current) return;
     
     const ref = bgMusicRef.current;
-    if (!ref || !ref.audios) return;
     
-    // Audio already playing from preloadBgMusic, just ensure volume
-    ref.audios[ref.active].volume = 0.65;
+    // If no audio ref exists (e.g., sound was disabled during preload), create new
+    if (!ref || !ref.audios) {
+      const audio1 = new Audio('/tool/duavit/dua_vit.mp3');
+      const audio2 = new Audio('/tool/duavit/dua_vit.mp3');
+      audio1.preload = 'auto';
+      audio2.preload = 'auto';
+      
+      bgMusicRef.current = {
+        audios: [audio1, audio2],
+        active: 0,
+        fading: false
+      };
+      
+      audio1.volume = 0.65;
+      audio1.play().catch(() => {});
+      
+      audio2.load();
+    } else {
+      // Audio already exists, ensure volume and play if paused
+      const activeAudio = ref.audios[ref.active];
+      activeAudio.volume = 0.65;
+      if (activeAudio.paused) {
+        activeAudio.play().catch(() => {});
+      }
+    }
     
-    // Setup crossfade checker
+    // Setup crossfade checker - check 4 seconds before end for smoother loop
     if (bgMusicIntervalRef.current) clearInterval(bgMusicIntervalRef.current);
     
     bgMusicIntervalRef.current = setInterval(() => {
@@ -902,16 +924,20 @@ export default function DuaThuHoatHinh() {
       if (!r || !r.audios) return;
       
       const curr = r.audios[r.active];
-      // Crossfade 3 seconds before end
-      if (curr.duration && curr.currentTime >= curr.duration - 3 && !r.fading) {
+      // Only crossfade if:
+      // 1. Duration is valid (> 10 seconds to ensure file loaded properly)
+      // 2. We're 4 seconds from the end
+      // 3. Not already fading
+      const duration = curr.duration;
+      if (duration && !isNaN(duration) && duration > 10 && curr.currentTime >= duration - 4 && !r.fading) {
         doCrossfade();
       }
-    }, 500);
+    }, 500); // Check every 500ms
     
   }, [doCrossfade]);
 
-  // Stop background music
-  const stopBgMusic = useCallback((fadeOut = true) => {
+  // Stop background music with smooth fade out
+  const stopBgMusic = useCallback((fadeOut = true, fadeDuration = 1500) => {
     if (bgMusicIntervalRef.current) {
       clearInterval(bgMusicIntervalRef.current);
       bgMusicIntervalRef.current = null;
@@ -920,55 +946,101 @@ export default function DuaThuHoatHinh() {
     const ref = bgMusicRef.current;
     if (!ref) return;
     
-    if (ref.audios) {
-      const curr = ref.audios[ref.active];
-      if (fadeOut && curr.volume > 0) {
-        let vol = curr.volume;
+    // Calculate fade step based on duration (updates every 50ms)
+    const fadeSteps = fadeDuration / 50;
+    
+    // Handle format: { audios: [audio1, audio2], activeIndex }
+    if (ref.audios && Array.isArray(ref.audios)) {
+      const activeAudio = ref.audios[ref.active || ref.activeIndex || 0];
+      if (fadeOut && activeAudio && activeAudio.volume > 0) {
+        const startVol = activeAudio.volume;
+        let step = 0;
         const fade = setInterval(() => {
-          vol -= 0.1;
-          if (vol <= 0) {
+          step++;
+          // Use exponential curve for more natural fade out
+          const progress = step / fadeSteps;
+          activeAudio.volume = startVol * Math.pow(1 - progress, 2);
+          
+          if (step >= fadeSteps || activeAudio.volume <= 0.01) {
             clearInterval(fade);
-            ref.audios.forEach(a => { a.pause(); a.currentTime = 0; });
-          } else {
-            curr.volume = vol;
+            ref.audios.forEach(a => { 
+              if (a) { a.pause(); a.currentTime = 0; a.src = ''; }
+            });
+            bgMusicRef.current = null;
           }
         }, 50);
       } else {
-        ref.audios.forEach(a => { a.pause(); a.currentTime = 0; });
+        ref.audios.forEach(a => { 
+          if (a) { a.pause(); a.currentTime = 0; a.src = ''; }
+        });
+        bgMusicRef.current = null;
       }
-    } else if (ref instanceof Audio) {
+    } 
+    // Handle single Audio element
+    else if (ref instanceof Audio) {
       if (fadeOut && ref.volume > 0) {
-        let vol = ref.volume;
+        const startVol = ref.volume;
+        let step = 0;
         const fade = setInterval(() => {
-          vol -= 0.1;
-          if (vol <= 0) {
+          step++;
+          const progress = step / fadeSteps;
+          ref.volume = startVol * Math.pow(1 - progress, 2);
+          
+          if (step >= fadeSteps || ref.volume <= 0.01) {
             clearInterval(fade);
             ref.pause();
             ref.currentTime = 0;
-          } else {
-            ref.volume = vol;
+            ref.src = '';
+            bgMusicRef.current = null;
           }
         }, 50);
       } else {
         ref.pause();
         ref.currentTime = 0;
+        ref.src = '';
+        bgMusicRef.current = null;
       }
     }
   }, []);
 
   // Stop/Start background music when sound toggle changes
   useEffect(() => {
+    const ref = bgMusicRef.current;
+    
     if (!soundEnabled) {
-      // Tắt ngay lập tức khi user tắt sound (không fade out)
-      stopBgMusic(false);
+      // Tắt âm thanh: chỉ giảm volume về 0, không dừng audio
+      // Audio vẫn tiếp tục chạy ngầm để khi bật lại sẽ tiếp tục từ vị trí hiện tại
+      if (ref && ref.audios) {
+        ref.audios.forEach(a => {
+          if (a) a.volume = 0;
+        });
+      }
     } else if (isRacing) {
-      // Restart background music if sound is re-enabled during race
-      startBgMusic();
+      // Bật âm thanh trong game
+      if (ref && ref.audios) {
+        // Audio đang chạy ngầm, chỉ cần tăng volume lên
+        const activeAudio = ref.audios[ref.active || 0];
+        if (activeAudio) {
+          activeAudio.volume = 0.65;
+          // Nếu audio bị pause (trường hợp lỗi), play lại
+          if (activeAudio.paused) {
+            activeAudio.play().catch(() => {});
+          }
+        }
+      } else {
+        // Chưa có audio (sound bị tắt từ setup), tạo mới
+        startBgMusic();
+      }
     }
-  }, [soundEnabled, isRacing, stopBgMusic, startBgMusic]);
+  }, [soundEnabled, isRacing, startBgMusic]);
 
   // Show commentary - dynamic based on animal type với hệ thống chống lặp
   const usedCommentariesRef = useRef({});
+  
+  // Số lượng câu slang trong mỗi type (các câu slang nằm ở đầu array)
+  const SLANG_COUNT = {
+    random: 27, // Số câu slang mạng xã hội trong random array
+  };
   
   const showCommentary = useCallback((type, name = '') => {
     const commentaries = getCommentaries(animalType);
@@ -993,15 +1065,33 @@ export default function DuaThuHoatHinh() {
       if (availableMessages.length === 0) availableMessages = messages; // fallback
     }
     
-    // Chọn random từ các câu chưa dùng
-    const randomIdx = Math.floor(Math.random() * availableMessages.length);
-    const originalIdx = messages.indexOf(availableMessages[randomIdx]);
+    // Ưu tiên slang 60% cho type 'random'
+    let selectedMessage;
+    const slangCount = SLANG_COUNT[type] || 0;
+    
+    if (type === 'random' && slangCount > 0 && Math.random() < 0.6) {
+      // 60% cơ hội chọn từ các câu slang (đầu array)
+      const slangMessages = availableMessages.filter((msg, idx) => {
+        const originalIdx = messages.indexOf(msg);
+        return originalIdx < slangCount;
+      });
+      if (slangMessages.length > 0) {
+        selectedMessage = slangMessages[Math.floor(Math.random() * slangMessages.length)];
+      }
+    }
+    
+    // Nếu chưa chọn được (không phải random hoặc không có slang available), chọn bình thường
+    if (!selectedMessage) {
+      selectedMessage = availableMessages[Math.floor(Math.random() * availableMessages.length)];
+    }
+    
+    const originalIdx = messages.indexOf(selectedMessage);
     usedCommentariesRef.current[type].push(originalIdx);
     
     // Use shortName if available
     const displayName = name.includes(' ') ? getShortName(name) : name;
     // Wrap name with markers for highlighting: [[name]]
-    const msg = availableMessages[randomIdx]
+    const msg = selectedMessage
       .replace('{name}', displayName ? `[[${displayName}]]` : '');
     setCommentary(msg);
     
@@ -1201,10 +1291,10 @@ export default function DuaThuHoatHinh() {
           }
         }
         
-        // Random commentary để liên tục từ đầu tới cuối (mỗi 70 frames ~ 1.2s)
-        // Tăng chance lên 40% để bình luận dày hơn
-        if (frameCount % 70 === 0 && maxPos > 5 && maxPos < 95) {
-          if (Math.random() < 0.4) {
+        // Random commentary (slang + hài) - TĂNG TẦN SUẤT MẠNH
+        // Mỗi 45 frames (~0.75s) với 55% cơ hội để bình luận dày và vui hơn
+        if (frameCount % 45 === 0 && maxPos > 5 && maxPos < 95) {
+          if (Math.random() < 0.55) {
             showCommentary('random');
           }
         }
@@ -1572,7 +1662,7 @@ export default function DuaThuHoatHinh() {
             raceFinished = true;
             setWinner(racer);
             setIsRacing(false);
-            stopBgMusic(); // Stop background music
+            stopBgMusic(true, 2000); // Stop background music with 2 second fade out
             showCommentary('final', racer.name);
             playSound('win');
           }
@@ -1667,25 +1757,39 @@ export default function DuaThuHoatHinh() {
   
   // Cleanup helper function - stop all audio immediately
   const stopAllAudioImmediate = useCallback(() => {
+    // Clear any intervals
     if (bgMusicIntervalRef.current) {
       clearInterval(bgMusicIntervalRef.current);
       bgMusicIntervalRef.current = null;
     }
-    if (bgMusicRef.current) {
-      if (Array.isArray(bgMusicRef.current)) {
-        bgMusicRef.current.forEach(a => {
-          if (a) {
-            a.ontimeupdate = null;
-            a.pause();
-            a.currentTime = 0;
-          }
-        });
-      } else if (bgMusicRef.current instanceof Audio) {
-        bgMusicRef.current.pause();
-        bgMusicRef.current.currentTime = 0;
-      } else {
-        bgMusicRef.current.close?.();
-      }
+    
+    if (!bgMusicRef.current) return;
+    
+    // Handle format: { audios: [audio1, audio2], ... }
+    if (bgMusicRef.current.audios && Array.isArray(bgMusicRef.current.audios)) {
+      bgMusicRef.current.audios.forEach(a => {
+        if (a instanceof Audio) {
+          a.pause();
+          a.currentTime = 0;
+          a.src = ''; // Release resource
+        }
+      });
+      bgMusicRef.current = null;
+      return;
+    }
+    
+    // Handle single Audio element
+    if (bgMusicRef.current instanceof Audio) {
+      bgMusicRef.current.pause();
+      bgMusicRef.current.currentTime = 0;
+      bgMusicRef.current.src = ''; // Release resource
+      bgMusicRef.current = null;
+      return;
+    }
+    
+    // Handle AudioContext
+    if (bgMusicRef.current.close) {
+      bgMusicRef.current.close();
       bgMusicRef.current = null;
     }
   }, []);
@@ -1697,44 +1801,72 @@ export default function DuaThuHoatHinh() {
       stopAllAudioImmediate();
     };
     
+    // Handle popstate (browser back/forward)
+    const handlePopState = () => {
+      stopAllAudioImmediate();
+    };
+    
     // Handle visibility change (switch tab)
     const handleVisibilityChange = () => {
-      if (document.hidden && bgMusicRef.current) {
+      if (!bgMusicRef.current) return;
+      
+      // Get active audio element
+      let activeAudio = null;
+      if (bgMusicRef.current.audios && Array.isArray(bgMusicRef.current.audios)) {
+        activeAudio = bgMusicRef.current.audios[bgMusicRef.current.active || 0];
+      } else if (bgMusicRef.current instanceof Audio) {
+        activeAudio = bgMusicRef.current;
+      }
+      
+      if (!activeAudio) return;
+      
+      if (document.hidden) {
         // Pause when tab is hidden
-        if (Array.isArray(bgMusicRef.current)) {
-          const activeAudio = bgMusicRef.current[bgMusicRef.current.activeIndex || 0];
-          if (activeAudio) activeAudio.pause();
-        } else if (bgMusicRef.current instanceof Audio) {
-          bgMusicRef.current.pause();
-        }
-      } else if (!document.hidden && soundEnabled && isRacing && bgMusicRef.current) {
+        activeAudio.pause();
+      } else if (soundEnabled && isRacing) {
         // Resume when tab is visible again
-        if (Array.isArray(bgMusicRef.current)) {
-          const activeAudio = bgMusicRef.current[bgMusicRef.current.activeIndex || 0];
-          if (activeAudio) activeAudio.play().catch(() => {});
-        } else if (bgMusicRef.current instanceof Audio) {
-          bgMusicRef.current.play().catch(() => {});
-        }
+        activeAudio.play().catch(() => {});
       }
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener('popstate', handlePopState);
     document.addEventListener('visibilitychange', handleVisibilityChange);
     
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener('popstate', handlePopState);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
-      
+    };
+  }, [soundEnabled, isRacing]);
+
+  // Cleanup on unmount only - separate effect with empty deps
+  useEffect(() => {
+    return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
-      stopAllAudioImmediate();
+      // Stop all audio when component unmounts
+      if (bgMusicIntervalRef.current) {
+        clearInterval(bgMusicIntervalRef.current);
+      }
+      if (bgMusicRef.current) {
+        if (bgMusicRef.current.audios) {
+          bgMusicRef.current.audios.forEach(a => {
+            if (a) { a.pause(); a.src = ''; }
+          });
+        } else if (bgMusicRef.current instanceof Audio) {
+          bgMusicRef.current.pause();
+          bgMusicRef.current.src = '';
+        }
+        bgMusicRef.current = null;
+      }
       // Clear commentary timeout
       if (commentaryTimeoutRef.current) {
         clearTimeout(commentaryTimeoutRef.current);
       }
     };
-  }, [soundEnabled, isRacing, stopAllAudioImmediate]);
+  }, []); // Empty deps = only run on unmount
 
   // Start race and switch to racing screen
   const handleStartRace = useCallback(() => {

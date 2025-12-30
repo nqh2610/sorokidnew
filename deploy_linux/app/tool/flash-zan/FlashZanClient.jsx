@@ -31,7 +31,7 @@ export default function FlashZan() {
         await flashDisplayRef.current.requestFullscreen();
       }
     } catch (err) {
-      console.log('Fullscreen not supported');
+      // Fullscreen not supported
     }
   }, []);
 
@@ -42,7 +42,7 @@ export default function FlashZan() {
         await document.exitFullscreen();
       }
     } catch (err) {
-      console.log('Exit fullscreen error');
+      // Exit fullscreen error
     }
   }, []);
 

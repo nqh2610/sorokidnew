@@ -4,8 +4,8 @@ import { useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import Logo from '@/components/Logo/Logo';
 
-// Bookmark/Save Button Component
-function SaveBookmarkButton() {
+// Action Buttons Component - Compact inline version
+function ActionButtons() {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [isMac, setIsMac] = useState(false);
@@ -16,35 +16,28 @@ function SaveBookmarkButton() {
 
   const shortcut = isMac ? '⌘+D' : 'Ctrl+D';
 
-  // Nút "Lưu Bookmark" - Hiện toast ngắn gọn
   const handleSaveBookmark = useCallback(() => {
-    // Check if already installed as PWA
     if (window.matchMedia('(display-mode: standalone)').matches) {
       setToastMessage('✅ Đã cài trên thiết bị!');
       setShowToast(true);
       setTimeout(() => setShowToast(false), 2000);
       return;
     }
-    
-    // Show short toast with keyboard shortcut
     setToastMessage(`⭐ Nhấn ${shortcut} để lưu ngay!`);
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
   }, [shortcut]);
 
-  // Nút "Chia sẻ" - Share hoặc Copy link
   const handleShare = useCallback(() => {
     const url = window.location.href;
     const title = 'Toolbox Giáo Viên - SoroKid';
     const text = 'Bộ sưu tập trò chơi quốc dân cho lớp học - Miễn phí!';
 
-    // Try Web Share API first (mobile)
     if (navigator.share) {
       navigator.share({ title, text, url }).catch(() => {});
       return;
     }
 
-    // Desktop: copy to clipboard
     navigator.clipboard.writeText(url).then(() => {
       setToastMessage('✅ Đã copy link!');
       setShowToast(true);
@@ -53,39 +46,35 @@ function SaveBookmarkButton() {
   }, []);
 
   return (
-    <div className="relative inline-flex items-center gap-2">
-      {/* Save Bookmark Button */}
+    <div className="relative inline-flex items-center gap-1.5">
       <button
         onClick={handleSaveBookmark}
-        className="inline-flex items-center gap-2 px-4 py-2 
-          bg-gradient-to-r from-amber-400 to-orange-500 
-          text-white text-sm font-semibold rounded-full shadow-md
-          hover:shadow-lg hover:scale-105 transition-all duration-300"
+        className="inline-flex items-center gap-1.5 px-3 py-1.5
+          text-amber-600 text-sm font-medium rounded-lg
+          hover:bg-amber-50 transition-all"
+        title={`Lưu Bookmark (${shortcut})`}
       >
         <span>⭐</span>
-        <span>Lưu Bookmark</span>
-        <kbd className="hidden sm:inline px-1.5 py-0.5 bg-white/20 text-xs rounded">{shortcut}</kbd>
+        <span className="hidden sm:inline">Lưu</span>
       </button>
 
-      {/* Share Button */}
       <button
         onClick={handleShare}
-        className="inline-flex items-center gap-2 px-4 py-2 
-          bg-white border border-gray-200
-          text-gray-600 text-sm font-medium rounded-full
-          hover:bg-gray-50 hover:border-gray-300 transition-all"
+        className="inline-flex items-center gap-1.5 px-3 py-1.5
+          text-gray-500 text-sm font-medium rounded-lg
+          hover:bg-gray-100 transition-all"
+        title="Chia sẻ"
       >
         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
             d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
         </svg>
-        <span>Chia sẻ</span>
+        <span className="hidden sm:inline">Chia sẻ</span>
       </button>
 
-      {/* Toast */}
       {showToast && (
         <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 z-50
-          px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-xl shadow-xl
+          px-3 py-1.5 bg-gray-900 text-white text-sm font-medium rounded-lg shadow-xl
           whitespace-nowrap animate-fade-in">
           {toastMessage}
         </div>
@@ -94,8 +83,33 @@ function SaveBookmarkButton() {
   );
 }
 
+// Category configuration
+const categories = [
+  { id: 'all', name: 'Tất cả', icon: '🧰', description: 'Tất cả công cụ' },
+  { id: 'teambuilding', name: 'Vui vẻ - Teambuilding', icon: '🎉', description: 'Họp nhóm, workshop, tạo không khí' },
+  { id: 'thi-dua', name: 'Thi đua & cho điểm', icon: '🏆', description: 'Chấm điểm, thi đua nhóm' },
+  { id: 'ngau-nhien', name: 'Ngẫu nhiên – công bằng', icon: '🎲', description: 'Chọn ngẫu nhiên, công bằng' },
+  { id: 'to-chuc', name: 'Tổ chức lớp học', icon: '📋', description: 'Quản lý, tổ chức lớp' },
+  { id: 'on-tap', name: 'Ôn tập – game kiến thức', icon: '🎮', description: 'Game ôn bài, kiểm tra' },
+  { id: 'hoc-ca-nhan', name: 'Học cá nhân', icon: '📚', description: 'Luyện tập cá nhân' },
+];
+
 // Tool data configuration - Each tool has its unique color theme
 const tools = [
+  {
+    id: 'cuoc-dua-ki-thu',
+    name: 'Cuộc Đua Kì Thú',
+    description: 'Thi đua điểm số - Ai dẫn đầu? Ai tăng nhanh nhất?',
+    icon: '🏁',
+    color: 'from-orange-500 to-red-600',
+    bgColor: 'bg-gradient-to-br from-orange-500 via-red-500 to-pink-600',
+    iconBg: 'from-yellow-300 to-orange-400',
+    textColor: 'text-white',
+    descColor: 'text-orange-100',
+    badge: '🏆 THI ĐUA',
+    theme: 'dark',
+    categories: ['thi-dua', 'to-chuc', 'teambuilding'],
+  },
   {
     id: 'chiec-non-ky-dieu',
     name: 'Chiếc Nón Kỳ Diệu',
@@ -108,58 +122,7 @@ const tools = [
     descColor: 'text-fuchsia-100',
     badge: '🔥 HOT',
     theme: 'dark',
-  },
-  {
-    id: 'dua-thu-hoat-hinh',
-    name: 'Đua Vịt Sông Nước',
-    description: 'Nhập tên học sinh, hàng trăm vịt cùng đua trên sông, hồi hộp!',
-    icon: '🦆',
-    color: 'from-cyan-400 to-blue-500',
-    bgColor: 'bg-gradient-to-br from-cyan-500 to-blue-600',
-    iconBg: 'from-yellow-300 to-amber-400',
-    textColor: 'text-white',
-    descColor: 'text-cyan-100',
-    badge: '🌊 VUI',
-    theme: 'dark',
-  },
-  {
-    id: 'flash-zan',
-    name: 'Flash ZAN',
-    description: 'Luyện tính nhẩm nhanh với flash số, phù hợp Soroban & Anzan',
-    icon: '⚡',
-    color: 'from-amber-400 to-orange-500',
-    bgColor: 'bg-gradient-to-br from-gray-900 to-gray-800',
-    iconBg: 'from-amber-400 to-orange-500',
-    textColor: 'text-amber-400',
-    descColor: 'text-gray-300',
-    badge: '⚡ FLASH',
-    theme: 'flash',
-  },
-  {
-    id: 'dong-ho-bam-gio',
-    name: 'Đồng Hồ Bấm Giờ',
-    description: 'Timer đếm ngược với âm thanh, hiển thị to rõ cho lớp học',
-    icon: '⏱️',
-    color: 'from-sky-400 to-blue-500',
-    bgColor: 'bg-gradient-to-br from-sky-500 to-blue-600',
-    iconBg: 'from-white to-sky-100',
-    textColor: 'text-white',
-    descColor: 'text-sky-100',
-    badge: null,
-    theme: 'dark',
-  },
-  {
-    id: 'chia-nhom',
-    name: 'Chia Nhóm',
-    description: 'Chia nhóm ngẫu nhiên theo số nhóm hoặc số người, chọn nhóm trưởng tự động',
-    icon: '👥',
-    color: 'from-violet-500 to-purple-600',
-    bgColor: 'bg-gradient-to-br from-violet-500 to-purple-600',
-    iconBg: 'from-violet-300 to-purple-400',
-    textColor: 'text-white',
-    descColor: 'text-violet-100',
-    badge: '✨ MỚI',
-    theme: 'dark',
+    categories: ['ngau-nhien', 'teambuilding'],
   },
   {
     id: 'boc-tham',
@@ -173,19 +136,7 @@ const tools = [
     descColor: 'text-rose-100',
     badge: '🎰 HỒI HỘP',
     theme: 'dark',
-  },
-  {
-    id: 'ban-tinh-soroban',
-    name: 'Bàn Tính Soroban',
-    description: 'Bàn tính ảo miễn phí để học sinh luyện tập, hỗ trợ kéo thả hạt',
-    icon: '🧮',
-    color: 'from-amber-600 to-orange-700',
-    bgColor: 'bg-gradient-to-br from-amber-700 to-orange-800',
-    iconBg: 'from-amber-300 to-yellow-400',
-    textColor: 'text-amber-100',
-    descColor: 'text-amber-200',
-    badge: '🧮 CLASSIC',
-    theme: 'dark',
+    categories: ['ngau-nhien', 'to-chuc', 'teambuilding'],
   },
   {
     id: 'den-may-man',
@@ -199,6 +150,63 @@ const tools = [
     descColor: 'text-emerald-100',
     badge: '🍀 MAY MẮN',
     theme: 'dark',
+    categories: ['ngau-nhien', 'teambuilding'],
+  },
+  {
+    id: 'xuc-xac',
+    name: 'Xúc Xắc 3D',
+    description: 'Thảy xúc xắc 3D sống động! Chọn 1 hoặc 2 xúc xắc, tối ưu cho máy chiếu',
+    icon: '🎲',
+    color: 'from-purple-500 to-pink-600',
+    bgColor: 'bg-gradient-to-br from-purple-600 via-pink-600 to-rose-600',
+    iconBg: 'from-purple-300 to-pink-400',
+    textColor: 'text-white',
+    descColor: 'text-purple-100',
+    badge: '✨ 3D',
+    theme: 'dark',
+    categories: ['ngau-nhien', 'teambuilding'],
+  },
+  {
+    id: 'dua-thu-hoat-hinh',
+    name: 'Đua Vịt Sông Nước',
+    description: 'Nhập tên học sinh, hàng trăm vịt cùng đua trên sông, hồi hộp!',
+    icon: '🦆',
+    color: 'from-cyan-400 to-blue-500',
+    bgColor: 'bg-gradient-to-br from-cyan-500 to-blue-600',
+    iconBg: 'from-yellow-300 to-amber-400',
+    textColor: 'text-white',
+    descColor: 'text-cyan-100',
+    badge: '🌊 VUI',
+    theme: 'dark',
+    categories: ['ngau-nhien', 'teambuilding'],
+  },
+  {
+    id: 'chia-nhom',
+    name: 'Chia Nhóm',
+    description: 'Chia nhóm ngẫu nhiên theo số nhóm hoặc số người, chọn nhóm trưởng tự động',
+    icon: '👥',
+    color: 'from-violet-500 to-purple-600',
+    bgColor: 'bg-gradient-to-br from-violet-500 to-purple-600',
+    iconBg: 'from-violet-300 to-purple-400',
+    textColor: 'text-white',
+    descColor: 'text-violet-100',
+    badge: '✨ MỚI',
+    theme: 'dark',
+    categories: ['to-chuc', 'teambuilding'],
+  },
+  {
+    id: 'dong-ho-bam-gio',
+    name: 'Đồng Hồ Bấm Giờ',
+    description: 'Timer đếm ngược với âm thanh, hiển thị to rõ cho lớp học',
+    icon: '⏱️',
+    color: 'from-sky-400 to-blue-500',
+    bgColor: 'bg-gradient-to-br from-sky-500 to-blue-600',
+    iconBg: 'from-white to-sky-100',
+    textColor: 'text-white',
+    descColor: 'text-sky-100',
+    badge: null,
+    theme: 'dark',
+    categories: ['to-chuc', 'hoc-ca-nhan', 'teambuilding'],
   },
   {
     id: 'ai-la-trieu-phu',
@@ -213,32 +221,7 @@ const tools = [
     isALTP: true,
     badge: '🏆 GAME SHOW',
     theme: 'altp',
-  },
-  {
-    id: 'cuoc-dua-ki-thu',
-    name: 'Cuộc Đua Kì Thú',
-    description: 'Thi đua điểm số - Ai dẫn đầu? Ai tăng nhanh nhất?',
-    icon: '🏁',
-    color: 'from-orange-500 to-red-600',
-    bgColor: 'bg-gradient-to-br from-orange-500 via-red-500 to-pink-600',
-    iconBg: 'from-yellow-300 to-orange-400',
-    textColor: 'text-white',
-    descColor: 'text-orange-100',
-    badge: '🏆 THI ĐUA',
-    theme: 'dark',
-  },
-  {
-    id: 'xuc-xac',
-    name: 'Xúc Xắc 3D',
-    description: 'Thảy xúc xắc 3D sống động! Chọn 1 hoặc 2 xúc xắc, tối ưu cho máy chiếu',
-    icon: '🎲',
-    color: 'from-purple-500 to-pink-600',
-    bgColor: 'bg-gradient-to-br from-purple-600 via-pink-600 to-rose-600',
-    iconBg: 'from-purple-300 to-pink-400',
-    textColor: 'text-white',
-    descColor: 'text-purple-100',
-    badge: '✨ 3D',
-    theme: 'dark',
+    category: 'on-tap',
   },
   {
     id: 'o-chu',
@@ -252,18 +235,53 @@ const tools = [
     descColor: 'text-teal-100',
     badge: '✨ MỚI',
     theme: 'dark',
+    category: 'on-tap',
+  },
+  {
+    id: 'flash-zan',
+    name: 'Flash ZAN',
+    description: 'Luyện tính nhẩm nhanh với flash số, phù hợp Soroban & Anzan',
+    icon: '⚡',
+    color: 'from-amber-400 to-orange-500',
+    bgColor: 'bg-gradient-to-br from-gray-900 to-gray-800',
+    iconBg: 'from-amber-400 to-orange-500',
+    textColor: 'text-amber-400',
+    descColor: 'text-gray-300',
+    badge: '⚡ FLASH',
+    theme: 'flash',
+    category: 'on-tap',
+  },
+  {
+    id: 'ban-tinh-soroban',
+    name: 'Bàn Tính Soroban',
+    description: 'Bàn tính ảo miễn phí để học sinh luyện tập, hỗ trợ kéo thả hạt',
+    icon: '🧮',
+    color: 'from-amber-600 to-orange-700',
+    bgColor: 'bg-gradient-to-br from-amber-700 to-orange-800',
+    iconBg: 'from-amber-300 to-yellow-400',
+    textColor: 'text-amber-100',
+    descColor: 'text-amber-200',
+    badge: '🧮 CLASSIC',
+    theme: 'dark',
+    category: 'hoc-ca-nhan',
   },
 ];
 
+// Helper to check if tool belongs to category (supports both single and multiple categories)
+const toolBelongsToCategory = (tool, categoryId) => {
+  if (tool.categories) {
+    return tool.categories.includes(categoryId);
+  }
+  return tool.category === categoryId;
+};
+
 export default function ToolboxPage() {
-  const [filter, setFilter] = useState('all'); // 'all', 'active', 'coming'
-  
-  const activeTools = tools.filter(t => !t.comingSoon);
-  const comingSoonTools = tools.filter(t => t.comingSoon);
-  
-  const filteredTools = filter === 'all' ? tools 
-    : filter === 'active' ? activeTools 
-    : comingSoonTools;
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  // Filter tools by selected category
+  const filteredTools = selectedCategory === 'all'
+    ? tools
+    : tools.filter(t => toolBelongsToCategory(t, selectedCategory));
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-violet-50 via-white to-pink-50">
@@ -294,66 +312,43 @@ export default function ToolboxPage() {
         </div>
       </header>
 
-      {/* Hero Section - Compact but Complete */}
-      <section className="py-6 sm:py-8 text-center px-4">
-        <div className="max-w-4xl mx-auto">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-violet-100 text-violet-700 
-            rounded-full text-sm font-medium mb-3">
-            <span>🧰</span>
-            <span>Miễn phí • Không cần đăng nhập</span>
-          </div>
-          
-          {/* Title */}
-          <h1 className="text-3xl sm:text-4xl font-black text-gray-800 mb-2">
-            <span className="bg-gradient-to-r from-violet-600 to-pink-600 bg-clip-text text-transparent">
-              Toolbox Giáo Viên
+      {/* Hero Section - Responsive */}
+      <section className="pt-4 sm:pt-5 pb-3 sm:pb-4 text-center px-4">
+        <div className="max-w-5xl mx-auto">
+          {/* Title Row */}
+          <div className="flex items-center justify-center gap-2 mb-1">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-black">
+              <span className="bg-gradient-to-r from-violet-600 to-pink-600 bg-clip-text text-transparent">
+                Toolbox Giáo Viên
+              </span>
+            </h1>
+            <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full">
+              Miễn phí
             </span>
-          </h1>
-          
-          {/* Subtitle */}
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-3">
-            Bộ sưu tập <strong>trò chơi quốc dân</strong> phổ biến nhất trong lớp học Việt Nam! 🎉
-          </p>
-
-          {/* CTA Message + Buttons */}
-          <p className="text-sm text-gray-500 mb-3">
-            📌 Một đường link - Đủ công cụ cho mọi lớp học, cuộc họp, thuyết trình!
-          </p>
-          
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
-            <SaveBookmarkButton />
           </div>
 
-          {/* Filter Tabs */}
-          <div className="inline-flex items-center gap-1.5 p-1 bg-gray-100 rounded-full">
-            <button
-              onClick={() => setFilter('all')}
-              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all
-                ${filter === 'all' 
-                  ? 'bg-white text-violet-600 shadow-sm' 
-                  : 'text-gray-600 hover:text-gray-800'}`}
-            >
-              Tất cả ({tools.length})
-            </button>
-            <button
-              onClick={() => setFilter('active')}
-              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all
-                ${filter === 'active' 
-                  ? 'bg-white text-emerald-600 shadow-sm' 
-                  : 'text-gray-600 hover:text-gray-800'}`}
-            >
-              ✅ Sẵn sàng ({activeTools.length})
-            </button>
-            <button
-              onClick={() => setFilter('coming')}
-              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all
-                ${filter === 'coming' 
-                  ? 'bg-white text-amber-600 shadow-sm' 
-                  : 'text-gray-600 hover:text-gray-800'}`}
-            >
-              🚀 Sắp ra ({comingSoonTools.length})
-            </button>
+          {/* Subtitle + Actions - Stack on mobile */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-gray-500 text-sm mb-3">
+            <span className="text-xs sm:text-sm">Trò chơi & công cụ phổ biến nhất cho lớp học</span>
+            <span className="hidden sm:inline text-gray-300">•</span>
+            <ActionButtons />
+          </div>
+
+          {/* Category Tabs - Wrap on mobile, horizontal on desktop */}
+          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all
+                  ${selectedCategory === cat.id
+                    ? 'bg-gradient-to-r from-violet-500 to-pink-500 text-white shadow-md'
+                    : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'}`}
+              >
+                <span>{cat.icon}</span>
+                <span>{cat.name}</span>
+              </button>
+            ))}
           </div>
         </div>
       </section>
