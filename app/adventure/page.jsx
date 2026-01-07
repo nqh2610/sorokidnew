@@ -90,25 +90,32 @@ export default function AdventurePageV3() {
   // 🚀 TỐI ƯU: Dùng cached progress nếu còn valid (trong 2 phút)
   // Giảm API calls khi user quay lại Adventure map
   useEffect(() => {
-    if (session?.user) {
-      const cached = sessionStorage.getItem('adventureProgress');
-      if (cached) {
-        try {
-          const { data, timestamp } = JSON.parse(cached);
-          // Cache còn valid trong 2 phút
-          if (Date.now() - timestamp < 2 * 60 * 1000) {
-            console.log('🚀 Using cached adventure progress');
-            applyProgressData(data);
-            setLoading(false);
-            return;
-          }
-        } catch (e) {
-          sessionStorage.removeItem('adventureProgress');
-        }
-      }
-      fetchProgress();
+    // Chờ session load xong
+    if (status === 'loading') return;
+    
+    // Nếu chưa đăng nhập, không cần fetch
+    if (!session?.user) {
+      setLoading(false);
+      return;
     }
-  }, [session]);
+    
+    const cached = sessionStorage.getItem('adventureProgress');
+    if (cached) {
+      try {
+        const { data, timestamp } = JSON.parse(cached);
+        // Cache còn valid trong 2 phút
+        if (Date.now() - timestamp < 2 * 60 * 1000) {
+          console.log('🚀 Using cached adventure progress');
+          applyProgressData(data);
+          setLoading(false);
+          return;
+        }
+      } catch (e) {
+        sessionStorage.removeItem('adventureProgress');
+      }
+    }
+    fetchProgress();
+  }, [session, status]);
   
   // 🚀 TỐI ƯU: Tách riêng logic apply data để tái sử dụng
   const applyProgressData = (data) => {
@@ -159,8 +166,24 @@ export default function AdventurePageV3() {
   };
   
   const fetchProgress = async () => {
+    // Timeout 5s - nếu API chậm quá thì show map với default state
+    const timeoutId = setTimeout(() => {
+      console.warn('⚠️ API timeout, using default state');
+      const defaultStatuses = {};
+      ADDSUB_STAGES.forEach((stage, index) => {
+        defaultStatuses[stage.stageId] = index === 0 ? 'current' : 'locked';
+      });
+      MULDIV_STAGES.forEach(stage => {
+        defaultStatuses[stage.stageId] = 'locked';
+      });
+      setStageStatuses(defaultStatuses);
+      setLoading(false);
+    }, 5000);
+    
     try {
       const res = await fetch('/api/adventure/game-progress');
+      clearTimeout(timeoutId);
+      
       if (res.ok) {
         const data = await res.json();
         
@@ -189,6 +212,7 @@ export default function AdventurePageV3() {
         setStageStatuses(defaultStatuses);
       }
     } catch (error) {
+      clearTimeout(timeoutId);
       console.error('Error fetching progress:', error);
       // Error - set default: màn đầu tiên mở
       const defaultStatuses = {};

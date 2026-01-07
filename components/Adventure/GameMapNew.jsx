@@ -1238,8 +1238,51 @@ export default function GameMapNew({
   
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-cyan-400 to-blue-600">
-        <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }} className="text-6xl">⏳</motion.div>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-amber-100 via-orange-100 to-yellow-100">
+        {/* Cú Soro animation */}
+        <motion.div 
+          className="text-8xl mb-4"
+          animate={{ 
+            y: [0, -10, 0],
+            rotate: [0, 5, -5, 0]
+          }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          🦉
+        </motion.div>
+        
+        {/* Bản đồ nhỏ */}
+        <motion.div 
+          className="text-4xl mb-6"
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 1, repeat: Infinity }}
+        >
+          🗺️
+        </motion.div>
+        
+        {/* Loading text */}
+        <motion.h2 
+          className="text-2xl font-bold text-amber-800 mb-2"
+          animate={{ opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          Đang mở cửa Kho Báu...
+        </motion.h2>
+        <p className="text-amber-600 text-sm">Cú Soro đang chuẩn bị hành trình cho con!</p>
+        
+        {/* Animated icons */}
+        <div className="flex gap-4 mt-6">
+          {['✨', '💎', '🏆'].map((emoji, i) => (
+            <motion.span
+              key={i}
+              className="text-2xl"
+              animate={{ y: [0, -8, 0], opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 1, delay: i * 0.2, repeat: Infinity }}
+            >
+              {emoji}
+            </motion.span>
+          ))}
+        </div>
       </div>
     );
   }
