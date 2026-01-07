@@ -3316,6 +3316,11 @@ function PracticePageContent() {
               </div>
             )}
           </div>
+          
+          {/* Footer */}
+          <p className="text-white/40 text-[10px] sm:text-xs text-center mt-4">
+            © 2025 SoroKid - Học toán tư duy cùng bàn tính Soroban
+          </p>
         </div>
       </div>
     );
@@ -3694,6 +3699,15 @@ function PracticePageContent() {
           message={milestoneData?.message}
           starsEarned={milestoneData?.starsEarned || 0}
         />
+      )}
+      
+      {/* Footer - chỉ hiện ở màn chọn mode và kết quả */}
+      {(!mode || gameComplete) && (
+        <div className="fixed bottom-2 left-0 right-0 z-10 text-center pointer-events-none">
+          <p className="text-white/30 text-[10px] sm:text-xs">
+            © 2025 SoroKid - Học toán tư duy cùng bàn tính Soroban
+          </p>
+        </div>
       )}
     </div>
   );

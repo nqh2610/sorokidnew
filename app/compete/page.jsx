@@ -3816,6 +3816,15 @@ function CompetePageContent() {
           starsEarned={milestoneData?.starsEarned || 0}
         />
       )}
+      
+      {/* Footer - chỉ hiện ở màn chọn mode và kết quả */}
+      {(!gameStarted || gameComplete) && (
+        <div className="fixed bottom-2 left-0 right-0 z-10 text-center pointer-events-none">
+          <p className="text-white/30 text-[10px] sm:text-xs">
+            © 2025 SoroKid - Học toán tư duy cùng bàn tính Soroban
+          </p>
+        </div>
+      )}
     </div>
   );
 }
