@@ -866,6 +866,55 @@ export function getZoneById(zoneId) {
 }
 
 /**
+ * Lấy index của zone (để so sánh thứ tự)
+ */
+export function getZoneIndex(zoneId) {
+  return GAME_ZONES_MULDIV.findIndex(z => z.zoneId === zoneId);
+}
+
+/**
+ * Lấy zone chứa stage theo stageId
+ */
+export function getZoneForStage(stageId) {
+  const stage = getStageById(stageId);
+  if (!stage) return null;
+  return getZoneById(stage.zoneId);
+}
+
+/**
+ * So sánh 2 zone, trả về zone có index cao hơn
+ */
+export function getHigherZone(zoneId1, zoneId2) {
+  const idx1 = getZoneIndex(zoneId1);
+  const idx2 = getZoneIndex(zoneId2);
+  if (idx1 === -1) return zoneId2;
+  if (idx2 === -1) return zoneId1;
+  return idx1 >= idx2 ? zoneId1 : zoneId2;
+}
+
+/**
+ * Tìm zone cao nhất từ danh sách completed stages
+ */
+export function getHighestZoneFromStages(completedStageIds) {
+  if (!completedStageIds || completedStageIds.length === 0) {
+    return GAME_ZONES_MULDIV[0]?.zoneId || null;
+  }
+  
+  let highestZoneIndex = 0;
+  completedStageIds.forEach(stageId => {
+    const stage = getStageById(stageId);
+    if (stage) {
+      const zoneIndex = getZoneIndex(stage.zoneId);
+      if (zoneIndex > highestZoneIndex) {
+        highestZoneIndex = zoneIndex;
+      }
+    }
+  });
+  
+  return GAME_ZONES_MULDIV[highestZoneIndex]?.zoneId || GAME_ZONES_MULDIV[0]?.zoneId;
+}
+
+/**
  * Lấy stage tiếp theo
  */
 export function getNextStage(currentStageId) {

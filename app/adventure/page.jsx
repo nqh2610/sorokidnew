@@ -7,8 +7,14 @@ import GameMapNew from '@/components/Adventure/GameMapNew';
 import { useUpgradeModal } from '@/components/UpgradeModal';
 
 // Import config files
-import { GAME_STAGES as ADDSUB_STAGES, GAME_ZONES as ADDSUB_ZONES } from '@/config/adventure-stages-addsub.config';
-import { GAME_STAGES_MULDIV as MULDIV_STAGES, GAME_ZONES_MULDIV as MULDIV_ZONES } from '@/config/adventure-stages-muldiv.config';
+import { 
+  GAME_STAGES as ADDSUB_STAGES, 
+  GAME_ZONES as ADDSUB_ZONES 
+} from '@/config/adventure-stages-addsub.config';
+import { 
+  GAME_STAGES_MULDIV as MULDIV_STAGES, 
+  GAME_ZONES_MULDIV as MULDIV_ZONES 
+} from '@/config/adventure-stages-muldiv.config';
 
 // Helper: Kiểm tra tier
 function getRequiredTierForLevel(levelId) {
@@ -63,6 +69,7 @@ export default function AdventurePageV3() {
   const [hasCertComplete, setHasCertComplete] = useState(false);
   const [userStats, setUserStats] = useState(null);
   const [returnZone, setReturnZone] = useState(null);
+  const [highestZone, setHighestZone] = useState(null); // Zone cao nhất đã hoàn thành
 
   // Đọc return zone info khi quay lại từ màn chơi
   useEffect(() => {
@@ -122,24 +129,28 @@ export default function AdventurePageV3() {
     const statuses = {};
     const completedStages = data.completedStages || [];
     
-    // Process AddSub stages
+    // Process AddSub stages và tìm current stage
+    let addSubCurrentStage = null;
     ADDSUB_STAGES.forEach((stage, index) => {
       if (completedStages.includes(stage.stageId)) {
         statuses[stage.stageId] = 'completed';
       } else if (index === 0 || completedStages.includes(ADDSUB_STAGES[index - 1]?.stageId)) {
         statuses[stage.stageId] = 'current';
+        if (!addSubCurrentStage) addSubCurrentStage = stage;
       } else {
         statuses[stage.stageId] = 'locked';
       }
     });
     
-    // Process MulDiv stages
+    // Process MulDiv stages và tìm current stage
+    let mulDivCurrentStage = null;
     if (data.certificates?.includes('addSub')) {
       MULDIV_STAGES.forEach((stage, index) => {
         if (completedStages.includes(stage.stageId)) {
           statuses[stage.stageId] = 'completed';
         } else if (index === 0 || completedStages.includes(MULDIV_STAGES[index - 1]?.stageId)) {
           statuses[stage.stageId] = 'current';
+          if (!mulDivCurrentStage) mulDivCurrentStage = stage;
         } else {
           statuses[stage.stageId] = 'locked';
         }
@@ -153,6 +164,31 @@ export default function AdventurePageV3() {
     setStageStatuses(statuses);
     setHasCertAddSub(data.certificates?.includes('addSub') || false);
     setHasCertComplete(data.certificates?.includes('complete') || false);
+    
+    // 🎯 Tìm zone đang chơi (zone chứa current stage)
+    // Ưu tiên MulDiv nếu đã có cert AddSub và đang chơi MulDiv
+    // Nếu không thì hiện AddSub
+    if (mulDivCurrentStage) {
+      // Người chơi đã có cert và đang ở đảo MulDiv
+      setHighestZone({ mapType: 'muldiv', zoneId: mulDivCurrentStage.zoneId });
+    } else if (addSubCurrentStage) {
+      // Người chơi đang ở đảo AddSub
+      setHighestZone({ mapType: 'addsub', zoneId: addSubCurrentStage.zoneId });
+    } else if (ADDSUB_ZONES.length > 0) {
+      // Fallback: zone đầu tiên
+      setHighestZone({ mapType: 'addsub', zoneId: ADDSUB_ZONES[0].zoneId });
+    }
+    
+    // Lưu vào localStorage để debug
+    try {
+      localStorage.setItem('sorokid_current_zone', JSON.stringify({
+        addsub: addSubCurrentStage?.zoneId || null,
+        muldiv: mulDivCurrentStage?.zoneId || null,
+        timestamp: Date.now()
+      }));
+    } catch (e) {
+      console.warn('Could not save current zone to localStorage');
+    }
     
     if (data.user) {
       setUserStats({
@@ -313,6 +349,9 @@ export default function AdventurePageV3() {
     return null;
   }
 
+  // 🎯 Xác định zone khởi đầu: ưu tiên returnZone (từ chơi trở về), sau đó highestZone
+  const initialZone = returnZone || highestZone;
+
   return (
     <>
       {/* 🔒 Upgrade Modal */}
@@ -329,7 +368,7 @@ export default function AdventurePageV3() {
         onStageClick={handleStageClick}
         isLoading={loading}
         userStats={userStats}
-        returnZone={returnZone}
+        returnZone={initialZone}
       />
     </>
   );
