@@ -366,7 +366,27 @@ function CompetePageContent() {
   const searchParams = useSearchParams();
   const toast = useToast();
   const { showUpgradeModal, UpgradeModalComponent } = useUpgradeModal();
-  const { play } = useGameSound();
+  const { play, playMusic, stopMusic } = useGameSound();
+
+  // 🎵 Start battle music when entering compete
+  useEffect(() => {
+    // Start battle music on first interaction
+    const startMusic = () => {
+      playMusic('battle');
+      document.removeEventListener('click', startMusic);
+      document.removeEventListener('touchstart', startMusic);
+    };
+    
+    document.addEventListener('click', startMusic, { once: true });
+    document.addEventListener('touchstart', startMusic, { once: true });
+    
+    // Cleanup: stop music when leaving
+    return () => {
+      document.removeEventListener('click', startMusic);
+      document.removeEventListener('touchstart', startMusic);
+      stopMusic(true);
+    };
+  }, [playMusic, stopMusic]);
 
   // Get mode from URL query params
   const modeFromUrl = searchParams.get('mode');

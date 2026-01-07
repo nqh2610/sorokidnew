@@ -4,6 +4,7 @@ import SessionProvider from '../components/SessionProvider';
 import { ToastProvider } from '../components/Toast/ToastContext';
 import { AchievementProvider } from '../components/AchievementPopup';
 import GoogleAnalytics from '../components/Analytics/GoogleAnalytics';
+import { SoundProvider } from '../lib/SoundContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -190,11 +191,13 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <GoogleAnalytics />
         <SessionProvider>
-          <ToastProvider>
-            <AchievementProvider>
-              {children}
-            </AchievementProvider>
-          </ToastProvider>
+          <SoundProvider>
+            <ToastProvider>
+              <AchievementProvider>
+                {children}
+              </AchievementProvider>
+            </ToastProvider>
+          </SoundProvider>
         </SessionProvider>
       </body>
     </html>

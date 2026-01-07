@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Logo from '@/components/Logo/Logo';
 import { useGameSound } from '@/lib/useGameSound';
 import { initSoundSystem } from '@/lib/soundManager';
+import SoundSettingsPanel from '@/components/SoundSettings/SoundSettingsPanel';
 
 // Import narrative config
 import { STORY_OVERVIEW, GAMEPLAY_NARRATIVES } from '@/config/narrative.config';
@@ -1034,7 +1035,7 @@ export default function GameMapNew({
   returnZone = null
 }) {
   const router = useRouter();
-  const { play } = useGameSound();
+  const { play, playMusic, stopMusic, changeTheme } = useGameSound();
 
   // Khởi tạo map và zone từ returnZone nếu có
   const [currentMap, setCurrentMap] = useState(() => {
@@ -1072,10 +1073,28 @@ export default function GameMapNew({
   const stages = currentMap === 'addsub' ? addSubStages : mulDivStages;
   const zones = currentMap === 'addsub' ? addSubZones : mulDivZones;
   
-  // 🔊 Initialize sound system on mount
+  // 🔊 Initialize sound system and start background music
   useEffect(() => {
     initSoundSystem();
-  }, []);
+    
+    // Start adventure music when map loads (after user interaction)
+    const startMusic = () => {
+      playMusic('adventure');
+      // Remove listener after first interaction
+      document.removeEventListener('click', startMusic);
+      document.removeEventListener('touchstart', startMusic);
+    };
+    
+    document.addEventListener('click', startMusic, { once: true });
+    document.addEventListener('touchstart', startMusic, { once: true });
+    
+    // Cleanup: stop music when leaving map
+    return () => {
+      document.removeEventListener('click', startMusic);
+      document.removeEventListener('touchstart', startMusic);
+      stopMusic(true);
+    };
+  }, [playMusic, stopMusic]);
 
   // 🦉 Kiểm tra xem người dùng đã xem prologue chưa
   useEffect(() => {
@@ -1566,6 +1585,11 @@ export default function GameMapNew({
       )}
       
       <CuSoro message={cuSoroMessage} isVisible={cuSoroVisible} onToggle={() => setCuSoroVisible(!cuSoroVisible)} />
+      
+      {/* 🔊 Sound Settings Button */}
+      <div className="fixed bottom-12 right-3 sm:right-4 z-40">
+        <SoundSettingsPanel compact className="shadow-lg shadow-black/30" />
+      </div>
       
       {/* 🦉 Prologue Modal - Màn hình intro cho người mới */}
       <AnimatePresence>
