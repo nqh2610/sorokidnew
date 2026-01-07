@@ -501,6 +501,50 @@ function CompetePageContent() {
         if (Date.now() - gameModeData.timestamp < 30 * 60 * 1000) {
           setGameMode(gameModeData);
           console.log('[Compete] Game mode active:', gameModeData);
+          
+          // 🚀 AUTO-START: Từ Adventure → tự động bắt đầu với 10 câu mặc định
+          if (gameModeData.from === 'adventure' && gameModeData.mode && !selectedArena) {
+            const mode = gameModeData.mode;
+            const difficulty = gameModeData.difficulty || 1;
+            const questions = 10; // Mặc định 10 câu
+            
+            // Tạo arena và bắt đầu ngay
+            const autoArena = createArena(mode, difficulty, questions);
+            setSelectedArena(autoArena);
+            setTotalChallenges(questions);
+            
+            // Delay nhỏ rồi start game
+            setTimeout(() => {
+              // Start game trực tiếp
+              const actualMode = mode === 'mentalMath' ? getRandomMentalMode() : mode;
+              setProblem(generateProblem(actualMode, difficulty));
+              setSorobanValue(0);
+              setMentalAnswer('');
+              setResult(null);
+              timerRef.current = 0;
+              totalTimeRef.current = 0;
+              setDisplayTimer(0);
+              setSessionStats({ stars: 0, correct: 0, total: 0, totalTime: 0 });
+              setStreak(0);
+              setMaxStreak(0);
+              setCurrentChallenge(1);
+              setChallengeResults([]);
+              setGameComplete(false);
+              setGameStarted(true);
+              setSorobanKey(prev => prev + 1);
+              
+              if (mode === 'mentalMath') {
+                setTimeout(() => mentalInputRef.current?.focus(), 100);
+              }
+              
+              // Nếu là Flash Anzan, bắt đầu flow khác
+              if (mode === 'flashAnzan') {
+                startFlashChallenge();
+              }
+              
+              console.log('[Compete] Auto-started from Adventure:', { mode, difficulty, questions });
+            }, 100);
+          }
         }
       } catch (e) {
         console.error('[Compete] Error parsing game mode:', e);
@@ -515,12 +559,52 @@ function CompetePageContent() {
         if (Date.now() - autoStartData.timestamp < 30 * 60 * 1000) {
           setGameMode(autoStartData);
           console.log('[Compete] Auto-start game mode active:', autoStartData);
+          
+          // 🚀 AUTO-START: Từ /compete/auto → cũng tự động bắt đầu
+          if (autoStartData.from === 'adventure' && autoStartData.mode && !selectedArena) {
+            const mode = autoStartData.mode;
+            const difficulty = autoStartData.difficulty || 1;
+            const questions = autoStartData.questions || 10;
+            
+            const autoArena = createArena(mode, difficulty, questions);
+            setSelectedArena(autoArena);
+            setTotalChallenges(questions);
+            
+            setTimeout(() => {
+              const actualMode = mode === 'mentalMath' ? getRandomMentalMode() : mode;
+              setProblem(generateProblem(actualMode, difficulty));
+              setSorobanValue(0);
+              setMentalAnswer('');
+              setResult(null);
+              timerRef.current = 0;
+              totalTimeRef.current = 0;
+              setDisplayTimer(0);
+              setSessionStats({ stars: 0, correct: 0, total: 0, totalTime: 0 });
+              setStreak(0);
+              setMaxStreak(0);
+              setCurrentChallenge(1);
+              setChallengeResults([]);
+              setGameComplete(false);
+              setGameStarted(true);
+              setSorobanKey(prev => prev + 1);
+              
+              if (mode === 'mentalMath') {
+                setTimeout(() => mentalInputRef.current?.focus(), 100);
+              }
+              
+              if (mode === 'flashAnzan') {
+                startFlashChallenge();
+              }
+              
+              console.log('[Compete] Auto-started from /compete/auto:', { mode, difficulty, questions });
+            }, 100);
+          }
         }
       } catch (e) {
         console.error('[Compete] Error parsing auto-start:', e);
       }
     }
-  }, [status]);
+  }, [status, selectedArena]);
 
   // Fetch user tier
   useEffect(() => {
@@ -2813,20 +2897,43 @@ function CompetePageContent() {
             </div>
           </div>
           
-          <div className="flex gap-2">
+          {/* Thông báo điều kiện qua màn - chỉ hiện khi từ Adventure */}
+          {gameMode?.from === 'adventure' && (
+            <div className={`p-3 rounded-xl text-center text-sm font-medium mb-3 ${accuracy >= 70 ? 'bg-green-500/20 text-green-300 border border-green-500/30' : 'bg-orange-500/20 text-orange-300 border border-orange-500/30'}`}>
+              {accuracy >= 70 ? (
+                <span>✅ Đã qua màn! Cần ≥70% để mở khóa màn tiếp theo</span>
+              ) : (
+                <span>⚠️ Chưa đạt! Cần ≥70% chính xác để qua màn (hiện tại: {accuracy}%)</span>
+              )}
+            </div>
+          )}
+          
+          {/* Buttons - khác nhau tùy từ Adventure hay Menu */}
+          {gameMode?.from === 'adventure' ? (
+            /* Từ Adventure: chỉ có nút Về Map */
             <button
-              onClick={playAgain}
-              className="flex-1 py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:scale-105 transition-transform text-sm"
+              onClick={handleBackToGame}
+              className="w-full py-3 px-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:scale-105 transition-transform text-sm"
             >
-              🔄 Thi lại
+              🎮 Về Map Phiêu Lưu
             </button>
-            <button
-              onClick={backToArenaDetail}
-              className="flex-1 py-3 px-4 bg-white/20 text-white font-bold rounded-xl hover:bg-white/30 transition-colors text-sm"
-            >
-              🏆 Xem BXH
-            </button>
-          </div>
+          ) : (
+            /* Từ Menu: có đầy đủ các nút */
+            <div className="flex gap-2">
+              <button
+                onClick={playAgain}
+                className="flex-1 py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:scale-105 transition-transform text-sm"
+              >
+                🔄 Thi lại
+              </button>
+              <button
+                onClick={backToArenaDetail}
+                className="flex-1 py-3 px-4 bg-white/20 text-white font-bold rounded-xl hover:bg-white/30 transition-colors text-sm"
+              >
+                🏆 Xem BXH
+              </button>
+            </div>
+          )}
         </div>
       </div>
     );

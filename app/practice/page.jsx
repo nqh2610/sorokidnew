@@ -2712,63 +2712,97 @@ function PracticePageContent() {
               </div>
             </div>
             
-            {/* Action buttons */}
-            <div className="flex" style={{ gap: 'clamp(6px, 1.5vmin, 16px)' }}>
-              <button
-                onClick={restartFlashGame}
-                className="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-[1.5vmin] hover:brightness-110 active:scale-95 transition-all shadow-lg flex items-center justify-center"
-                style={{ 
-                  padding: 'clamp(8px, 2vmin, 16px) clamp(12px, 2vmin, 20px)',
-                  fontSize: 'clamp(12px, 2vmin, 18px)',
-                  gap: 'clamp(4px, 1vmin, 10px)'
-                }}
-              >
-                <RotateCcw style={{ width: 'clamp(14px, 2.5vmin, 22px)', height: 'clamp(14px, 2.5vmin, 22px)' }} /> Chơi lại
-              </button>
-              <button
-                onClick={() => {
-                  setFlashLevel(null);
-                  setFlashPhase('idle');
-                  setGameComplete(false);
-                }}
-                className="flex-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold rounded-[1.5vmin] hover:brightness-110 active:scale-95 transition-all shadow-lg flex items-center justify-center"
-                style={{ 
-                  padding: 'clamp(8px, 2vmin, 16px) clamp(12px, 2vmin, 20px)',
-                  fontSize: 'clamp(12px, 2vmin, 18px)',
-                  gap: 'clamp(4px, 1vmin, 10px)'
-                }}
-              >
-                📋 Đổi cấp
-              </button>
-            </div>
-            
-            {/* Next level suggestion */}
-            {accuracy >= 70 && flashLevel !== 'bigBang' && (
+            {/* Thông báo điều kiện qua màn - chỉ hiện khi từ Adventure */}
+            {gameMode?.from === 'adventure' && (
               <div 
-                className="bg-purple-500/20 border border-purple-400/30 rounded-[1vmin]"
-                style={{ marginTop: 'clamp(8px, 1.5vmin, 16px)', padding: 'clamp(6px, 1vmin, 12px)' }}
+                className={`rounded-[1vmin] text-center font-medium ${accuracy >= 70 ? 'bg-green-500/20 text-green-300 border border-green-500/30' : 'bg-orange-500/20 text-orange-300 border border-orange-500/30'}`}
+                style={{ padding: 'clamp(6px, 1vmin, 12px)', marginBottom: 'clamp(8px, 1.5vmin, 16px)', fontSize: 'clamp(10px, 1.5vmin, 14px)' }}
               >
-                <p className="text-purple-300 font-medium text-center" style={{ fontSize: 'clamp(9px, 1.5vmin, 14px)' }}>
-                  🚀 Sẵn sàng thử thách cao hơn? 🚀
-                </p>
+                {accuracy >= 70 ? (
+                  <span>✅ Đã qua màn! Cần ≥70% để mở khóa màn tiếp theo</span>
+                ) : (
+                  <span>⚠️ Chưa đạt! Cần ≥70% để qua màn (hiện tại: {accuracy}%)</span>
+                )}
               </div>
             )}
-          </div>
-          
-          {/* Home button */}
-          <div className="text-center" style={{ marginTop: 'clamp(8px, 2vmin, 20px)', paddingBottom: 'clamp(8px, 2vmin, 20px)' }}>
-            <button
-              onClick={handleBack}
-              className="bg-white/10 border border-white/20 text-white font-medium rounded-[1vmin] hover:bg-white/20 transition-all"
-              style={{
-                padding: 'clamp(6px, 1.2vmin, 12px) clamp(12px, 2.5vmin, 28px)',
-                fontSize: 'clamp(11px, 1.8vmin, 16px)'
-              }}
-            >
-              {gameMode?.from === 'adventure' ? '🎮 Quay lại Game' : '🏠 Về trang luyện tập'}
-            </button>
+            
+            {/* Action buttons - khác nhau tùy từ Adventure hay Menu */}
+            {gameMode?.from === 'adventure' ? (
+              /* Từ Adventure: chỉ có nút Về Map */
+              <button
+                onClick={handleBackToGame}
+                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-[1.5vmin] hover:brightness-110 active:scale-95 transition-all shadow-lg"
+                style={{ 
+                  padding: 'clamp(10px, 2.5vmin, 20px)',
+                  fontSize: 'clamp(12px, 2vmin, 18px)'
+                }}
+              >
+                🎮 Về Map Phiêu Lưu
+              </button>
+            ) : (
+              /* Từ Menu: có đầy đủ các nút */
+              <>
+                <div className="flex" style={{ gap: 'clamp(6px, 1.5vmin, 16px)' }}>
+                  <button
+                    onClick={restartFlashGame}
+                    className="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-[1.5vmin] hover:brightness-110 active:scale-95 transition-all shadow-lg flex items-center justify-center"
+                    style={{ 
+                      padding: 'clamp(8px, 2vmin, 16px) clamp(12px, 2vmin, 20px)',
+                      fontSize: 'clamp(12px, 2vmin, 18px)',
+                      gap: 'clamp(4px, 1vmin, 10px)'
+                    }}
+                  >
+                    <RotateCcw style={{ width: 'clamp(14px, 2.5vmin, 22px)', height: 'clamp(14px, 2.5vmin, 22px)' }} /> Chơi lại
+                  </button>
+                  <button
+                    onClick={() => {
+                      setFlashLevel(null);
+                      setFlashPhase('idle');
+                      setGameComplete(false);
+                    }}
+                    className="flex-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold rounded-[1.5vmin] hover:brightness-110 active:scale-95 transition-all shadow-lg flex items-center justify-center"
+                    style={{ 
+                      padding: 'clamp(8px, 2vmin, 16px) clamp(12px, 2vmin, 20px)',
+                      fontSize: 'clamp(12px, 2vmin, 18px)',
+                      gap: 'clamp(4px, 1vmin, 10px)'
+                    }}
+                  >
+                    📋 Đổi cấp
+                  </button>
+                </div>
+                
+                {/* Next level suggestion */}
+                {accuracy >= 70 && flashLevel !== 'bigBang' && (
+                  <div 
+                    className="bg-purple-500/20 border border-purple-400/30 rounded-[1vmin]"
+                    style={{ marginTop: 'clamp(8px, 1.5vmin, 16px)', padding: 'clamp(6px, 1vmin, 12px)' }}
+                  >
+                    <p className="text-purple-300 font-medium text-center" style={{ fontSize: 'clamp(9px, 1.5vmin, 14px)' }}>
+                      🚀 Sẵn sàng thử thách cao hơn? 🚀
+                    </p>
+                  </div>
+                )}
+                
+                {/* Home button */}
+                <div className="text-center" style={{ marginTop: 'clamp(8px, 2vmin, 20px)' }}>
+                  <button
+                    onClick={handleBack}
+                    className="bg-white/10 border border-white/20 text-white font-medium rounded-[1vmin] hover:bg-white/20 transition-all"
+                    style={{
+                      padding: 'clamp(6px, 1.2vmin, 12px) clamp(12px, 2.5vmin, 28px)',
+                      fontSize: 'clamp(11px, 1.8vmin, 16px)'
+                    }}
+                  >
+                    🏠 Về trang luyện tập
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
+        
+        {/* Padding bottom for safe area */}
+        <div style={{ paddingBottom: 'clamp(8px, 2vmin, 20px)' }}></div>
       </div>
     );
   }
@@ -3234,20 +3268,44 @@ function PracticePageContent() {
             </div>
           </div>
           
+          {/* Thông báo điều kiện qua màn - chỉ hiện khi từ Adventure */}
+          {gameMode?.from === 'adventure' && (
+            <div className={`p-3 rounded-xl text-center text-sm font-medium mb-3 ${accuracy >= 70 ? 'bg-green-500/20 text-green-300 border border-green-500/30' : 'bg-orange-500/20 text-orange-300 border border-orange-500/30'}`}>
+              {accuracy >= 70 ? (
+                <span>✅ Đã qua màn! Cần ≥70% để mở khóa màn tiếp theo</span>
+              ) : (
+                <span>⚠️ Chưa đạt! Cần ≥70% chính xác để qua màn (hiện tại: {accuracy}%)</span>
+              )}
+            </div>
+          )}
+          
           {/* Buttons */}
-          <div className="flex gap-2 sm:gap-3">
-            <button
-              onClick={restartGame}
-              className="flex-1 py-2.5 sm:py-3 px-3 sm:px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:scale-105 transition-transform text-sm sm:text-base"
-            >
-              🔄 Chơi lại
-            </button>
-            <button
-              onClick={handleBack}
-              className="flex-1 py-2.5 sm:py-3 px-3 sm:px-4 bg-white/20 text-white font-bold rounded-xl hover:bg-white/30 transition-colors text-sm sm:text-base"
-            >
-              {gameMode?.from === 'adventure' ? '🎮 Quay lại Game' : '📋 Chọn mode'}
-            </button>
+          <div className="space-y-2">
+            {/* Từ Adventure: chỉ có nút Về Map */}
+            {gameMode?.from === 'adventure' ? (
+              <button
+                onClick={handleBackToGame}
+                className="w-full py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:scale-105 transition-transform text-sm sm:text-base"
+              >
+                🎮 Về Map Phiêu Lưu
+              </button>
+            ) : (
+              /* Từ Menu: có đầy đủ các nút */
+              <div className="flex gap-2 sm:gap-3">
+                <button
+                  onClick={restartGame}
+                  className="flex-1 py-2.5 sm:py-3 px-3 sm:px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:scale-105 transition-transform text-sm sm:text-base"
+                >
+                  🔄 Chơi lại
+                </button>
+                <button
+                  onClick={handleBack}
+                  className="flex-1 py-2.5 sm:py-3 px-3 sm:px-4 bg-white/20 text-white font-bold rounded-xl hover:bg-white/30 transition-colors text-sm sm:text-base"
+                >
+                  📋 Chọn mode
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

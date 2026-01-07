@@ -760,34 +760,58 @@ export default function LessonPage() {
               </div>
             )}
 
+            {/* Thông báo điều kiện qua màn - chỉ hiện khi từ Adventure */}
+            {gameMode?.from === 'adventure' && (
+              <div className={`p-3 rounded-xl text-center text-sm font-medium ${accuracy >= 70 ? 'bg-green-100 text-green-700 border border-green-300' : 'bg-orange-100 text-orange-700 border border-orange-300'}`}>
+                {accuracy >= 70 ? (
+                  <span>✅ Đã qua màn! Cần ≥70% để mở khóa màn tiếp theo</span>
+                ) : (
+                  <span>⚠️ Chưa đạt! Cần ≥70% chính xác để qua màn (hiện tại: {accuracy}%)</span>
+                )}
+              </div>
+            )}
+
             {/* Nút hành động */}
             <div className="space-y-2">
-              {nextLessonInfo && (
+              {/* Từ Adventure: chỉ có nút Về Map */}
+              {gameMode?.from === 'adventure' ? (
                 <button
-                  onClick={goToNextLesson}
-                  className="w-full py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl font-bold text-lg hover:shadow-lg hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
+                  onClick={handleBackToGame}
+                  className="w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-bold text-lg hover:shadow-lg hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
                 >
-                  Tiếp tục học
-                  <ArrowRight size={20} />
+                  🎮 Về Map Phiêu Lưu
                 </button>
+              ) : (
+                /* Từ Menu: có đầy đủ các nút */
+                <>
+                  {nextLessonInfo && (
+                    <button
+                      onClick={goToNextLesson}
+                      className="w-full py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl font-bold text-lg hover:shadow-lg hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
+                    >
+                      Tiếp tục học
+                      <ArrowRight size={20} />
+                    </button>
+                  )}
+                  
+                  <div className="flex gap-2">
+                    <button
+                      onClick={resetLesson}
+                      className="flex-1 py-3 bg-amber-100 text-amber-700 rounded-xl font-bold hover:bg-amber-200 transition-all flex items-center justify-center gap-2"
+                    >
+                      <RotateCcw size={16} />
+                      Làm lại
+                    </button>
+                    <button
+                      onClick={handleBack}
+                      className="flex-1 py-3 bg-gray-100 text-gray-600 rounded-xl font-bold hover:bg-gray-200 transition-all flex items-center justify-center gap-2"
+                    >
+                      <Home size={16} />
+                      Menu
+                    </button>
+                  </div>
+                </>
               )}
-              
-              <div className="flex gap-2">
-                <button
-                  onClick={resetLesson}
-                  className="flex-1 py-3 bg-amber-100 text-amber-700 rounded-xl font-bold hover:bg-amber-200 transition-all flex items-center justify-center gap-2"
-                >
-                  <RotateCcw size={16} />
-                  Làm lại
-                </button>
-                <button
-                  onClick={handleBack}
-                  className="flex-1 py-3 bg-gray-100 text-gray-600 rounded-xl font-bold hover:bg-gray-200 transition-all flex items-center justify-center gap-2"
-                >
-                  <Home size={16} />
-                  {gameMode?.from === 'adventure' ? '🎮 Game' : 'Menu'}
-                </button>
-              </div>
             </div>
           </div>
         </div>
