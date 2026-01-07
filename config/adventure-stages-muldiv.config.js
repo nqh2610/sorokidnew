@@ -636,20 +636,20 @@ export const GAME_STAGES_MULDIV = [
     bossType: 'compete',
     isFinalBoss: true,
     name: '👑 BOSS CUỐI - Đại Chiến Tứ Phép',
-    description: 'Thi đấu Tứ Phép • Siêu Huyền Thoại • 40 câu • 30+ đúng',
+    description: 'Thi đấu Tứ Phép • Cao Thủ • 25 câu • 18+ đúng',
     icon: '👑',
-    link: '/compete/auto?mode=mixed&difficulty=6&questions=40',
+    link: '/compete/auto?mode=mixed&difficulty=4&questions=25',
     competeInfo: {
       mode: 'mixed',
       modeName: 'Tứ Phép Thần',
-      difficulty: 6,
-      difficultyName: 'Siêu Huyền Thoại',
-      questions: 40,
-      minCorrect: 30,
-      arenaId: 'mixed-6-40'
+      difficulty: 4,
+      difficultyName: 'Cao Thủ',
+      questions: 25,
+      minCorrect: 18,
+      arenaId: 'mixed-4-25'
     },
     unlockCondition: { type: 'stage', stageId: 104 },
-    completeCondition: { type: 'compete', arenaId: 'mixed-6-40', minCorrect: 30 }
+    completeCondition: { type: 'compete', arenaId: 'mixed-4-25', minCorrect: 18 }
   },
   
   // Stage 106: BOSS CUỐI 2 - Siêu Trí Tuệ Tứ Phép
@@ -660,18 +660,18 @@ export const GAME_STAGES_MULDIV = [
     bossType: 'practice',
     isFinalBoss: true,
     name: '👑 BOSS CUỐI - Siêu Trí Tuệ Tứ Phép',
-    description: 'Luyện Siêu Trí Tuệ • Cao Thủ • 20 bài đúng',
+    description: 'Luyện Siêu Trí Tuệ • Dũng Sĩ • 15 bài đúng',
     icon: '👑',
-    link: '/practice/auto?mode=mentalMath&difficulty=4',
+    link: '/practice/auto?mode=mentalMath&difficulty=3',
     practiceInfo: {
       mode: 'mentalMath',
       modeName: 'Siêu Trí Tuệ',
-      difficulty: 4,
-      difficultyName: 'Cao Thủ',
-      minCorrect: 20
+      difficulty: 3,
+      difficultyName: 'Dũng Sĩ',
+      minCorrect: 15
     },
     unlockCondition: { type: 'stage', stageId: 105 },
-    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 4, minCorrect: 20 }
+    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 3, minCorrect: 15 }
   },
   
   // Stage 107: BOSS CUỐI 3 - Tia Chớp Tối Thượng
@@ -682,18 +682,18 @@ export const GAME_STAGES_MULDIV = [
     bossType: 'practice',
     isFinalBoss: true,
     name: '👑 BOSS CUỐI - Tia Chớp Tối Thượng',
-    description: 'Luyện Flash Anzan • Sao Băng • 15 bài đúng',
+    description: 'Luyện Flash Anzan • Tia Chớp • 10 bài đúng',
     icon: '👑',
-    link: '/practice/auto?mode=flashAnzan&difficulty=4',
+    link: '/practice/auto?mode=flashAnzan&difficulty=3',
     practiceInfo: {
       mode: 'flashAnzan',
       modeName: 'Tia Chớp',
-      difficulty: 4,
-      difficultyName: 'Sao Băng',
-      minCorrect: 15
+      difficulty: 3,
+      difficultyName: 'Tia Chớp',
+      minCorrect: 10
     },
     unlockCondition: { type: 'stage', stageId: 106 },
-    completeCondition: { type: 'practice', mode: 'flashAnzan', difficulty: 4, minCorrect: 15 }
+    completeCondition: { type: 'practice', mode: 'flashAnzan', difficulty: 3, minCorrect: 10 }
   },
   
   // Stage 108: KHO BÁU - Nhận Chứng Chỉ Toàn Diện

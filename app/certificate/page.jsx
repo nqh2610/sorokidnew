@@ -231,6 +231,7 @@ function CertificateCard({ certType, data, userTier, onClaim, claiming }) {
   // Icon và màu cho từng loại requirement
   const getRequirementStyle = (type) => {
     const styles = {
+      certificate: { icon: '🎖️', color: 'amber', label: 'Chứng chỉ tiên quyết' },
       lessons: { icon: '📚', color: 'blue', label: 'Học' },
       practice: { icon: '🎯', color: 'purple', label: 'Luyện tập' },
       compete: { icon: '⚔️', color: 'red', label: 'Thi đấu' },
@@ -429,6 +430,19 @@ function RequirementRow({ type, detail, style }) {
   // Render chi tiết cho từng loại
   const renderDetail = () => {
     switch (type) {
+      case 'certificate':
+        return (
+          <div className="text-sm">
+            <div className="flex justify-between mb-1">
+              <span className="text-gray-600">Yêu cầu tiên quyết</span>
+              <span className={`font-bold ${isComplete ? 'text-green-600' : 'text-orange-600'}`}>
+                {isComplete ? '✓ Đã có' : '✗ Chưa có'}
+              </span>
+            </div>
+            <div className="text-xs text-gray-500">{detail.description}</div>
+          </div>
+        );
+      
       case 'lessons':
         return (
           <div className="text-sm">

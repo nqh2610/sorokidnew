@@ -1070,20 +1070,20 @@ export const GAME_STAGES = [
     bossType: 'compete',
     isFinalBoss: true,
     name: '👑 BOSS CUỐI - Đại Chiến Cộng Trừ',
-    description: 'Thi đấu Cộng Trừ Mix • Huyền Thoại • 30 câu • 22+ đúng',
+    description: 'Thi đấu Cộng Trừ Mix • Cao Thủ • 20 câu • 14+ đúng',
     icon: '👑',
-    link: '/compete/auto?mode=addSubMixed&difficulty=5&questions=30',
+    link: '/compete/auto?mode=addSubMixed&difficulty=4&questions=20',
     competeInfo: {
       mode: 'addSubMixed',
       modeName: 'Cộng Trừ Mix',
-      difficulty: 5,
-      difficultyName: 'Huyền Thoại',
-      questions: 30,
-      minCorrect: 22,
-      arenaId: 'addSubMixed-5-30'
+      difficulty: 4,
+      difficultyName: 'Cao Thủ',
+      questions: 20,
+      minCorrect: 14,
+      arenaId: 'addSubMixed-4-20'
     },
     unlockCondition: { type: 'stage', stageId: 64 },
-    completeCondition: { type: 'compete', arenaId: 'addSubMixed-5-30', minCorrect: 22 }
+    completeCondition: { type: 'compete', arenaId: 'addSubMixed-4-20', minCorrect: 14 }
   },
   
   // Stage 66: BOSS CUỐI 2 - Siêu Trí Tuệ Ultimate
@@ -1094,18 +1094,18 @@ export const GAME_STAGES = [
     bossType: 'practice',
     isFinalBoss: true,
     name: '👑 BOSS CUỐI - Siêu Trí Tuệ Ultimate',
-    description: 'Luyện Siêu Trí Tuệ • Dũng Sĩ • 15 bài đúng',
+    description: 'Luyện Siêu Trí Tuệ • Chiến Binh • 10 bài đúng',
     icon: '👑',
-    link: '/practice/auto?mode=mentalMath&difficulty=3',
+    link: '/practice/auto?mode=mentalMath&difficulty=2',
     practiceInfo: {
       mode: 'mentalMath',
       modeName: 'Siêu Trí Tuệ',
-      difficulty: 3,
-      difficultyName: 'Dũng Sĩ',
-      minCorrect: 15
+      difficulty: 2,
+      difficultyName: 'Chiến Binh',
+      minCorrect: 10
     },
     unlockCondition: { type: 'stage', stageId: 65 },
-    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 3, minCorrect: 15 }
+    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 2, minCorrect: 10 }
   },
   
   // Stage 67: BOSS CUỐI 3 - Tia Chớp Ultimate
@@ -1116,18 +1116,18 @@ export const GAME_STAGES = [
     bossType: 'practice',
     isFinalBoss: true,
     name: '👑 BOSS CUỐI - Tia Chớp Ultimate',
-    description: 'Luyện Flash Anzan • Tia Chớp • 10 bài đúng',
+    description: 'Luyện Flash Anzan • Ánh Nến • 5 bài đúng',
     icon: '👑',
-    link: '/practice/auto?mode=flashAnzan&difficulty=3',
+    link: '/practice/auto?mode=flashAnzan&difficulty=1',
     practiceInfo: {
       mode: 'flashAnzan',
       modeName: 'Tia Chớp',
-      difficulty: 3,
-      difficultyName: 'Tia Chớp',
-      minCorrect: 10
+      difficulty: 1,
+      difficultyName: 'Ánh Nến',
+      minCorrect: 5
     },
     unlockCondition: { type: 'stage', stageId: 66 },
-    completeCondition: { type: 'practice', mode: 'flashAnzan', difficulty: 3, minCorrect: 10 }
+    completeCondition: { type: 'practice', mode: 'flashAnzan', difficulty: 1, minCorrect: 5 }
   },
   
   // Stage 68: KHO BÁU - Nhận Chứng Chỉ
