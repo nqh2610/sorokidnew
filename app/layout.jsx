@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import SessionProvider from '../components/SessionProvider';
 import { ToastProvider } from '../components/Toast/ToastContext';
+import { AchievementProvider } from '../components/AchievementPopup';
 import GoogleAnalytics from '../components/Analytics/GoogleAnalytics';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -190,7 +191,9 @@ export default function RootLayout({ children }) {
         <GoogleAnalytics />
         <SessionProvider>
           <ToastProvider>
-            {children}
+            <AchievementProvider>
+              {children}
+            </AchievementProvider>
           </ToastProvider>
         </SessionProvider>
       </body>
