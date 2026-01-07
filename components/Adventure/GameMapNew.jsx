@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Logo from '@/components/Logo/Logo';
 import { useGameSound } from '@/lib/useGameSound';
+import { initSoundSystem } from '@/lib/soundManager';
 
 // Import narrative config
 import { STORY_OVERVIEW, GAMEPLAY_NARRATIVES } from '@/config/narrative.config';
@@ -1070,6 +1071,11 @@ export default function GameMapNew({
 
   const stages = currentMap === 'addsub' ? addSubStages : mulDivStages;
   const zones = currentMap === 'addsub' ? addSubZones : mulDivZones;
+  
+  // 🔊 Initialize sound system on mount
+  useEffect(() => {
+    initSoundSystem();
+  }, []);
 
   // 🦉 Kiểm tra xem người dùng đã xem prologue chưa
   useEffect(() => {
