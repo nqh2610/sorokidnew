@@ -13,6 +13,7 @@ import SorobanBoard from '@/components/Soroban/SorobanBoard';
 import { calculateCompeteStars } from '@/lib/gamification';
 import { MilestoneCelebration } from '@/components/SoftUpgradeTrigger';
 import GameModeHeader from '@/components/GameModeHeader/GameModeHeader';
+import { useGameSound } from '@/lib/useGameSound';
 
 // Helper to parse avatar index from database
 const getAvatarIndex = (user) => {
@@ -362,6 +363,7 @@ function CompetePageContent() {
   const searchParams = useSearchParams();
   const toast = useToast();
   const { showUpgradeModal, UpgradeModalComponent } = useUpgradeModal();
+  const { play } = useGameSound();
 
   // Get mode from URL query params
   const modeFromUrl = searchParams.get('mode');
@@ -1183,6 +1185,8 @@ function CompetePageContent() {
       const streakBonus = streakMessages.find(s => s.streak === newStreak);
       if (streakBonus) {
         celebData = { ...celebData, streakBonus };
+        // 🔊 Play combo sound when streak milestone reached
+        play('combo');
       }
       
       setCelebrationData(celebData);

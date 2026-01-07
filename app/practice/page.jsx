@@ -12,6 +12,7 @@ import SorobanBoard from '@/components/Soroban/SorobanBoard';
 import { calculatePracticeStars } from '@/lib/gamification';
 import { MilestoneCelebration } from '@/components/SoftUpgradeTrigger';
 import GameModeHeader from '@/components/GameModeHeader/GameModeHeader';
+import { useGameSound } from '@/lib/useGameSound';
 
 const TOTAL_CHALLENGES = 10; // Mỗi màn có 10 thử thách
 
@@ -283,6 +284,7 @@ function PracticePageContent() {
   const searchParams = useSearchParams();
   const toast = useToast();
   const { showUpgradeModal, UpgradeModalComponent } = useUpgradeModal();
+  const { play } = useGameSound();
 
   // Get mode and difficulty from URL query params
   const modeFromUrl = searchParams.get('mode');
@@ -1080,6 +1082,11 @@ function PracticePageContent() {
     if (newStreak > maxStreak) setMaxStreak(newStreak);
     setStreak(newStreak);
     
+    // 🔊 Play combo sound when streak reaches milestones (3, 5, 7, 10)
+    if ([3, 5, 7, 10].includes(newStreak)) {
+      play('combo');
+    }
+    
     setChallengeResults(prev => [...prev, isCorrect ? 'correct' : 'wrong']);
     setSessionStats(prev => ({
       stars: prev.stars + starsEarned,
@@ -1197,6 +1204,8 @@ function PracticePageContent() {
       const streakBonus = streakMessages.find(s => s.streak === newStreak);
       if (streakBonus) {
         celebData = { ...celebData, streakBonus };
+        // 🔊 Play combo sound when streak milestone reached
+        play('combo');
       }
       
       setCelebrationData(celebData);

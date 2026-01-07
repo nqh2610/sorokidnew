@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
+import { useGameSound } from '@/lib/useGameSound';
 
 // Hiệu ứng ăn mừng với confetti và pháo hoa
 export default function CelebrationEffect({ 
@@ -237,10 +238,12 @@ export default function CelebrationEffect({
 // Component hiệu ứng khi trả lời đúng 1 câu
 export function CorrectAnswerEffect({ show, onComplete }) {
   const [visible, setVisible] = useState(false);
+  const { play } = useGameSound();
 
   useEffect(() => {
     if (show) {
       setVisible(true);
+      play('correct'); // 🔊 Play correct answer sound
       const timer = setTimeout(() => {
         setVisible(false);
         onComplete?.();
@@ -322,10 +325,12 @@ export function CorrectAnswerEffect({ show, onComplete }) {
 // Component hiệu ứng khi trả lời sai
 export function WrongAnswerEffect({ show, onComplete }) {
   const [visible, setVisible] = useState(false);
+  const { play } = useGameSound();
 
   useEffect(() => {
     if (show) {
       setVisible(true);
+      play('wrong'); // 🔊 Play wrong answer sound
       const timer = setTimeout(() => {
         setVisible(false);
         onComplete?.();

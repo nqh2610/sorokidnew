@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Trophy, Star, Crown, Map, Flag, Sparkles, Award, Zap } from 'lucide-react';
+import { useGameSound } from '@/lib/useGameSound';
 
 /**
  * 🏆 AchievementPopup - Hiển thị thành tựu đạt được
@@ -25,10 +26,27 @@ export default function AchievementPopup({ type, data, onClose, show }) {
   const [phase, setPhase] = useState(0);
   const [particles, setParticles] = useState([]);
   const [confetti, setConfetti] = useState([]);
+  const { play } = useGameSound();
 
   useEffect(() => {
     setMounted(true);
   }, []);
+  
+  // 🔊 Play sound when achievement popup shows
+  useEffect(() => {
+    if (show) {
+      // Chọn sound phù hợp với loại achievement
+      if (type?.includes('certificate')) {
+        play('certificateEarned');
+      } else if (type === 'boss') {
+        play('bossDefeat');
+      } else if (type === 'zone') {
+        play('zoneComplete');
+      } else {
+        play('stageComplete');
+      }
+    }
+  }, [show, type, play]);
 
   const createParticles = useCallback(() => {
     const config = ACHIEVEMENT_CONFIG[type] || ACHIEVEMENT_CONFIG.stage;

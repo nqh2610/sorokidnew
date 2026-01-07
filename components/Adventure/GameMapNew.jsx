@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Logo from '@/components/Logo/Logo';
+import { useGameSound } from '@/lib/useGameSound';
 
 // Import narrative config
 import { STORY_OVERVIEW, GAMEPLAY_NARRATIVES } from '@/config/narrative.config';
@@ -1032,6 +1033,7 @@ export default function GameMapNew({
   returnZone = null
 }) {
   const router = useRouter();
+  const { play } = useGameSound();
 
   // Khởi tạo map và zone từ returnZone nếu có
   const [currentMap, setCurrentMap] = useState(() => {
@@ -1040,12 +1042,23 @@ export default function GameMapNew({
     }
     return 'addsub';
   });
-  const [activeZoneId, setActiveZoneId] = useState(() => {
+  const [activeZoneId, setActiveZoneIdState] = useState(() => {
     if (returnZone?.zoneId) {
       return returnZone.zoneId;
     }
     return null;
   });
+  
+  // 🔊 Wrapper để play sound khi zone thay đổi
+  const setActiveZoneId = useCallback((zoneId) => {
+    setActiveZoneIdState(prev => {
+      if (prev !== zoneId && prev !== null) {
+        play('stageSelect'); // Play click sound when changing zones
+      }
+      return zoneId;
+    });
+  }, [play]);
+  
   const [selectedStage, setSelectedStage] = useState(null);
   const [cuSoroMessage, setCuSoroMessage] = useState('');
   const [cuSoroVisible, setCuSoroVisible] = useState(true);
@@ -1192,14 +1205,19 @@ export default function GameMapNew({
     setCuSoroMessage(message);
     setCuSoroVisible(true);
     setSelectedStage(stage);
-  }, [stageStatuses]);
+    
+    // 🔊 Play sound when selecting stage
+    play('stageSelect');
+  }, [stageStatuses, play]);
   
   const handleStartStage = useCallback(() => {
     if (selectedStage?.link) {
+      // 🔊 Play game start sound
+      play('gameStart');
       onStageClick ? onStageClick(selectedStage) : router.push(selectedStage.link);
     }
     setSelectedStage(null);
-  }, [selectedStage, router, onStageClick]);
+  }, [selectedStage, router, onStageClick, play]);
   
   // Generate random stars for background - phải ở trước điều kiện return
   const stars = useMemo(() => 
