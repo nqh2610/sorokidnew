@@ -318,21 +318,28 @@ export default function AdventurePageV3() {
       stageIcon: stage.icon,
       stageId: stage.stageId,
       stageType: stage.type,
+      // 🔧 FIX: Thêm mode và difficulty cho practice/compete auto-start
+      mode: stage.practiceInfo?.mode || stage.competeInfo?.mode || null,
+      difficulty: stage.practiceInfo?.difficulty || stage.competeInfo?.difficulty || 1,
+      questions: stage.competeInfo?.questions || 10,
       timestamp: Date.now()
     };
 
     // Lưu vào sessionStorage dựa vào loại stage
     if (stage.type === 'lesson') {
       sessionStorage.setItem('learnGameMode', JSON.stringify(gameModeData));
+      router.push(stage.link);
     } else if (stage.type === 'boss' && stage.bossType === 'practice') {
-      // Practice đã có auto page xử lý, nhưng thêm zone info
+      // 🚀 Practice: Lưu data và đi thẳng đến /practice (không cần qua /practice/auto)
       sessionStorage.setItem('practiceGameMode', JSON.stringify(gameModeData));
+      router.push('/practice');
     } else if (stage.type === 'boss' && stage.bossType === 'compete') {
-      // Compete đã có auto page xử lý, nhưng thêm zone info
+      // 🚀 Compete: Lưu data và đi thẳng đến /compete (không cần qua /compete/auto)
       sessionStorage.setItem('competeGameMode', JSON.stringify(gameModeData));
+      router.push('/compete');
+    } else {
+      router.push(stage.link);
     }
-
-    router.push(stage.link);
   }, [router, userStats, showUpgradeModal]);
   
   // Auth check

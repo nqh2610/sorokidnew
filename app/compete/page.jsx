@@ -533,6 +533,7 @@ function CompetePageContent() {
   // 🎮 GAME MODE: Đọc game mode info từ sessionStorage (từ Adventure Map)
   useEffect(() => {
     if (status !== 'authenticated') return;
+    if (selectedArena || selectedMode) return; // Đã có arena/mode rồi, không auto-start nữa
 
     // Check competeGameMode (set từ Adventure handleStageClick)
     const gameModeRaw = sessionStorage.getItem('competeGameMode');
@@ -545,10 +546,10 @@ function CompetePageContent() {
           console.log('[Compete] Game mode active:', gameModeData);
           
           // 🚀 AUTO-START: Từ Adventure → tự động bắt đầu với 10 câu mặc định
-          if (gameModeData.from === 'adventure' && gameModeData.mode && !selectedArena) {
+          if (gameModeData.from === 'adventure' && gameModeData.mode) {
             const mode = gameModeData.mode;
             const difficulty = gameModeData.difficulty || 1;
-            const questions = 10; // Mặc định 10 câu
+            const questions = gameModeData.questions || 10;
             
             // Tạo arena và bắt đầu ngay
             const autoArena = createArena(mode, difficulty, questions);
@@ -593,17 +594,17 @@ function CompetePageContent() {
       }
     }
 
-    // Check competeAutoStart (set từ /compete/auto page)
+    // Fallback: Check competeAutoStart (set từ /compete/auto page)
     const autoStartRaw = sessionStorage.getItem('competeAutoStart');
     if (autoStartRaw && !gameModeRaw) {
       try {
         const autoStartData = JSON.parse(autoStartRaw);
         if (Date.now() - autoStartData.timestamp < 30 * 60 * 1000) {
           setGameMode(autoStartData);
-          console.log('[Compete] Auto-start game mode active:', autoStartData);
+          console.log('[Compete] Auto-start from competeAutoStart:', autoStartData);
           
           // 🚀 AUTO-START: Từ /compete/auto → cũng tự động bắt đầu
-          if (autoStartData.from === 'adventure' && autoStartData.mode && !selectedArena) {
+          if (autoStartData.from === 'adventure' && autoStartData.mode) {
             const mode = autoStartData.mode;
             const difficulty = autoStartData.difficulty || 1;
             const questions = autoStartData.questions || 10;
@@ -646,7 +647,7 @@ function CompetePageContent() {
         console.error('[Compete] Error parsing auto-start:', e);
       }
     }
-  }, [status, selectedArena]);
+  }, [status, selectedArena, selectedMode]);
 
   // Fetch user tier
   useEffect(() => {

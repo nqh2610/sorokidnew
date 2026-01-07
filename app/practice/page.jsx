@@ -460,8 +460,9 @@ function PracticePageContent() {
   // 🎯 AUTO-START: Kiểm tra sessionStorage từ Adventure Map
   useEffect(() => {
     if (status !== 'authenticated') return;
+    if (mode) return; // Đã có mode rồi, không auto-start nữa
 
-    // Kiểm tra game mode từ Adventure page
+    // Kiểm tra game mode từ Adventure page (ưu tiên này trước)
     const gameModeRaw = sessionStorage.getItem('practiceGameMode');
     if (gameModeRaw) {
       try {
@@ -470,12 +471,33 @@ function PracticePageContent() {
         if (Date.now() - gameModeData.timestamp < 30 * 60 * 1000) {
           setGameMode(gameModeData);
           console.log('[Practice] Game mode active:', gameModeData);
+          
+          // 🚀 AUTO-START: Từ Adventure → tự động bắt đầu ngay
+          if (gameModeData.from === 'adventure' && gameModeData.mode) {
+            const autoMode = gameModeData.mode;
+            const autoDiff = gameModeData.difficulty || 1;
+            
+            console.log('[Practice] Auto-starting from Adventure:', { mode: autoMode, difficulty: autoDiff });
+            
+            // Set difficulty
+            setDifficulty(autoDiff);
+            
+            // Trigger auto-start
+            setAutoStartPending({
+              mode: autoMode,
+              difficulty: autoDiff,
+              from: 'adventure'
+            });
+            
+            return; // Không cần check practiceAutoStart nữa
+          }
         }
       } catch (e) {
         console.error('[Practice] Game mode parse error:', e);
       }
     }
 
+    // Fallback: Check practiceAutoStart (từ /practice/auto page)
     const autoStartRaw = sessionStorage.getItem('practiceAutoStart');
     if (!autoStartRaw) return;
 
@@ -491,7 +513,7 @@ function PracticePageContent() {
       // Clear sessionStorage ngay để tránh loop
       sessionStorage.removeItem('practiceAutoStart');
 
-      console.log('[Practice] Auto-start from Adventure:', autoStart);
+      console.log('[Practice] Auto-start from practiceAutoStart:', autoStart);
 
       // Nếu từ adventure, cập nhật game mode với data đầy đủ hơn
       if (autoStart.from === 'adventure') {
@@ -510,7 +532,7 @@ function PracticePageContent() {
       console.error('[Practice] Auto-start error:', error);
       sessionStorage.removeItem('practiceAutoStart');
     }
-  }, [status]);
+  }, [status, mode]);
 
   // Fetch user tier
   useEffect(() => {

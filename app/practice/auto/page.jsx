@@ -50,15 +50,42 @@ export default function AutoPracticePage() {
       return;
     }
 
+    // 🔧 FIX: Merge data từ practiceGameMode (đã được adventure page lưu trước đó)
+    // practiceGameMode chứa đầy đủ zoneId, stageId, mapType
+    let mergedZoneId = zoneId;
+    let mergedMapType = mapType;
+    let mergedStageId = null;
+    let mergedStageName = stageName;
+    let mergedStageIcon = stageIcon;
+
+    try {
+      const gameModeRaw = sessionStorage.getItem('practiceGameMode');
+      if (gameModeRaw) {
+        const gameModeData = JSON.parse(gameModeRaw);
+        // Chỉ merge nếu data còn valid (trong 5 phút)
+        if (Date.now() - gameModeData.timestamp < 5 * 60 * 1000) {
+          mergedZoneId = gameModeData.zoneId || mergedZoneId;
+          mergedMapType = gameModeData.mapType || mergedMapType;
+          mergedStageId = gameModeData.stageId || mergedStageId;
+          mergedStageName = gameModeData.stageName || mergedStageName;
+          mergedStageIcon = gameModeData.stageIcon || mergedStageIcon;
+          console.log('[Practice Auto] Merged with practiceGameMode:', gameModeData);
+        }
+      }
+    } catch (e) {
+      console.error('[Practice Auto] Error reading practiceGameMode:', e);
+    }
+
     // Lưu vào sessionStorage để Practice page đọc
     const autoStartData = {
       mode,
       difficulty: parseInt(difficulty),
       from,
-      zoneId,
-      mapType,
-      stageName: decodeURIComponent(stageName),
-      stageIcon: decodeURIComponent(stageIcon),
+      zoneId: mergedZoneId,
+      mapType: mergedMapType,
+      stageId: mergedStageId,
+      stageName: decodeURIComponent(mergedStageName),
+      stageIcon: decodeURIComponent(mergedStageIcon),
       timestamp: Date.now()
     };
 
