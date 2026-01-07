@@ -288,29 +288,24 @@ function PracticePageContent() {
   const { showUpgradeModal, UpgradeModalComponent } = useUpgradeModal();
   const { play, playMusic, stopMusic } = useGameSound();
 
-  // 🎵 Start battle music when entering practice
-  useEffect(() => {
-    let musicStarted = false;
-    
-    // Start battle music on first interaction
-    const startMusic = () => {
-      if (musicStarted) return;
-      musicStarted = true;
-      setTimeout(() => playMusic('battle'), 100);
-    };
-    
-    document.addEventListener('click', startMusic);
-    document.addEventListener('touchstart', startMusic);
-    document.addEventListener('keydown', startMusic);
-    
-    // Cleanup: stop music when leaving
-    return () => {
-      document.removeEventListener('click', startMusic);
-      document.removeEventListener('touchstart', startMusic);
-      document.removeEventListener('keydown', startMusic);
-      stopMusic(true);
-    };
-  }, []); // Empty deps - only run once
+  // 🎵 Background music disabled - chỉ giữ sound effects
+  // useEffect(() => {
+  //   let musicStarted = false;
+  //   const startMusic = () => {
+  //     if (musicStarted) return;
+  //     musicStarted = true;
+  //     setTimeout(() => playMusic('battle'), 100);
+  //   };
+  //   document.addEventListener('click', startMusic);
+  //   document.addEventListener('touchstart', startMusic);
+  //   document.addEventListener('keydown', startMusic);
+  //   return () => {
+  //     document.removeEventListener('click', startMusic);
+  //     document.removeEventListener('touchstart', startMusic);
+  //     document.removeEventListener('keydown', startMusic);
+  //     stopMusic(true);
+  //   };
+  // }, []);
 
   // Get mode and difficulty from URL query params
   const modeFromUrl = searchParams.get('mode');
@@ -710,17 +705,6 @@ function PracticePageContent() {
     }
   }, [mode, mentalSubMode, result, mentalAnswer]);
 
-  if (status === 'loading') {
-    return (
-      <div className="h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
-        <div className="text-center">
-          <div className="text-6xl animate-bounce mb-4">⚔️</div>
-          <div className="text-white font-bold">Đang tải...</div>
-        </div>
-      </div>
-    );
-  }
-
   const generateProblem = (modeType, diff) => {
     const randRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -917,6 +901,7 @@ function PracticePageContent() {
   };
 
   // 🎯 AUTO-START: Xử lý khi có autoStartPending từ Adventure Map
+  // ⚠️ Tier check đã được thực hiện trên map (adventure/page.jsx) trước khi navigate đến đây
   useEffect(() => {
     if (!autoStartPending) return;
     
@@ -924,26 +909,6 @@ function PracticePageContent() {
     setAutoStartPending(null); // Clear ngay để tránh chạy lại
     
     console.log('[Practice] Starting auto mode:', autoMode, 'difficulty:', autoDiff);
-    
-    // 🔒 TIER CHECK: Kiểm tra quyền truy cập mode
-    if (!canAccessMode(userTier, autoMode)) {
-      const requiredTier = getRequiredTierForMode(autoMode);
-      showUpgradeModal({
-        feature: `Chế độ ${modeInfo[autoMode]?.title || autoMode} yêu cầu gói ${getTierDisplayName(requiredTier)} trở lên`
-      });
-      router.push('/adventure');
-      return;
-    }
-    
-    // 🔒 TIER CHECK: Kiểm tra quyền truy cập difficulty
-    if (!canAccessDifficulty(userTier, autoDiff)) {
-      const requiredTier = getRequiredTierForDifficulty(autoDiff);
-      showUpgradeModal({
-        feature: `Cấp độ ${autoDiff} yêu cầu gói ${getTierDisplayName(requiredTier)} trở lên`
-      });
-      router.push('/adventure');
-      return;
-    }
     
     // Đặc biệt xử lý các mode cần chọn thêm
     if (autoMode === 'mentalMath') {
@@ -977,6 +942,18 @@ function PracticePageContent() {
     setSorobanKey(prev => prev + 1);
     
   }, [autoStartPending, difficulty]);
+
+  // 🔄 Loading state - phải đặt sau tất cả hooks
+  if (status === 'loading') {
+    return (
+      <div className="h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
+        <div className="text-center">
+          <div className="text-6xl animate-bounce mb-4">⚔️</div>
+          <div className="text-white font-bold">Đang tải...</div>
+        </div>
+      </div>
+    );
+  }
 
   // ================== FLASH ANZAN FUNCTIONS ==================
 
@@ -1148,6 +1125,13 @@ function PracticePageContent() {
       play('combo');
     }
     
+    // 🔊 Play sound theo kết quả
+    if (isCorrect) {
+      play('correctFast'); // Flash Anzan luôn yêu cầu nhanh
+    } else {
+      play('wrong');
+    }
+    
     setChallengeResults(prev => [...prev, isCorrect ? 'correct' : 'wrong']);
     setSessionStats(prev => ({
       stars: prev.stars + starsEarned,
@@ -1183,6 +1167,14 @@ function PracticePageContent() {
   const nextFlashChallenge = () => {
     if (currentChallenge >= TOTAL_CHALLENGES) {
       setGameComplete(true);
+      
+      // 🔊 Play victory sound cho Flash Anzan
+      const accuracy = sessionStats.correct / sessionStats.total;
+      if (accuracy >= 0.8) {
+        play('levelCompletePerfect');
+      } else {
+        play('levelComplete');
+      }
       return;
     }
     
@@ -1269,10 +1261,21 @@ function PracticePageContent() {
         play('combo');
       }
       
+      // 🔊 Play sound theo tốc độ làm bài
+      if (speedTier === speedTiers.godlike || speedTier === speedTiers.fast) {
+        play('correctFast'); // "Tuyệt vời!" sparkle
+      } else if (speedTier === speedTiers.good) {
+        play('correctGood'); // "Giỏi lắm!" cheerful
+      } else {
+        play('correctSlow'); // "Được rồi" gentle
+      }
+      
       setCelebrationData(celebData);
       setCelebration('correct');
       setStreak(newStreak);
     } else {
+      // 🔊 Play wrong sound
+      play('wrong');
       setStreak(0);
     }
 
@@ -1344,7 +1347,15 @@ function PracticePageContent() {
       // Hoàn thành màn chơi
       setGameComplete(true);
       
-      // 🚀 TỐI ƯU: Gửi batch results khi game kết thúc
+      // � Play victory sound - xuất sắc nếu đúng >= 80%
+      const accuracy = sessionStats.correct / sessionStats.total;
+      if (accuracy >= 0.8) {
+        play('levelCompletePerfect'); // 🏅 Grand victory fanfare
+      } else {
+        play('levelComplete'); // 🎉 Normal victory
+      }
+      
+      // �🚀 TỐI ƯU: Gửi batch results khi game kết thúc
       submitBatchResults();
       
       // 🚀 TỐI ƯU: Invalidate adventure cache khi hoàn thành practice

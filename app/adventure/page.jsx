@@ -265,19 +265,28 @@ export default function AdventurePageV3() {
   };
   
   // Handle stage click - Lưu game mode info trước khi navigate
-  const handleStageClick = useCallback((stage) => {
+  // Nhận closeModal callback để đóng modal trước khi hiện upgrade popup
+  const handleStageClick = useCallback((stage, closeModal) => {
     if (!stage.link) return;
     
     const userTier = userStats?.tier || 'free';
+    
+    // Helper: Hiện upgrade popup sau khi đóng modal
+    const showUpgradeAndStay = (message) => {
+      // Đóng modal stage trước
+      if (closeModal) closeModal();
+      // Hiện popup upgrade sau một chút delay để modal đóng xong
+      setTimeout(() => {
+        showUpgradeModal({ feature: message });
+      }, 150);
+    };
     
     // 🔒 TIER CHECK: Kiểm tra quyền truy cập stage
     if (stage.type === 'lesson' && stage.levelId) {
       // Kiểm tra level cho bài học
       const requiredTier = getRequiredTierForLevel(stage.levelId);
       if (!canAccessTier(userTier, requiredTier)) {
-        showUpgradeModal({
-          feature: `Level ${stage.levelId} yêu cầu gói ${getTierDisplayName(requiredTier)} trở lên`
-        });
+        showUpgradeAndStay(`Level ${stage.levelId} yêu cầu gói ${getTierDisplayName(requiredTier)} trở lên`);
         return;
       }
     } else if (stage.type === 'boss') {
@@ -288,9 +297,7 @@ export default function AdventurePageV3() {
       if (mode) {
         const requiredTierForMode = getRequiredTierForMode(mode);
         if (!canAccessTier(userTier, requiredTierForMode)) {
-          showUpgradeModal({
-            feature: `Chế độ ${mode} yêu cầu gói ${getTierDisplayName(requiredTierForMode)} trở lên`
-          });
+          showUpgradeAndStay(`Chế độ ${mode} yêu cầu gói ${getTierDisplayName(requiredTierForMode)} trở lên`);
           return;
         }
       }
@@ -298,12 +305,12 @@ export default function AdventurePageV3() {
       // Kiểm tra difficulty
       const requiredTierForDiff = getRequiredTierForDifficulty(difficulty);
       if (!canAccessTier(userTier, requiredTierForDiff)) {
-        showUpgradeModal({
-          feature: `Cấp độ ${difficulty} yêu cầu gói ${getTierDisplayName(requiredTierForDiff)} trở lên`
-        });
+        showUpgradeAndStay(`Cấp độ ${difficulty} yêu cầu gói ${getTierDisplayName(requiredTierForDiff)} trở lên`);
         return;
       }
     }
+    
+    // ✅ PASSED TIER CHECK - navigate to stage
     
     // Xác định map type dựa trên stageId
     const isMulDiv = typeof stage.stageId === 'string' && stage.stageId.startsWith('md-');

@@ -513,11 +513,17 @@ function PathDots({ direction, isCompleted }) {
   );
 }
 
-// ===== ZONE TABS - Với scroll indicator và auto-scroll =====
+// ===== ZONE TABS - Với scroll indicator, auto-scroll và drag to scroll =====
 function ZoneTabs({ zones, activeZoneId, onSelect, zoneProgress }) {
   const scrollRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
+  
+  // Drag to scroll state
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const hasDraggedRef = useRef(false); // Track if actually dragged (moved more than 5px)
   
   // Check scroll position
   const checkScroll = useCallback(() => {
@@ -546,6 +552,74 @@ function ZoneTabs({ zones, activeZoneId, onSelect, zoneProgress }) {
     }
   };
   
+  // Drag handlers for mouse
+  const handleMouseDown = (e) => {
+    if (!scrollRef.current) return;
+    setIsDragging(true);
+    hasDraggedRef.current = false;
+    setStartX(e.pageX - scrollRef.current.offsetLeft);
+    setScrollLeft(scrollRef.current.scrollLeft);
+    scrollRef.current.style.cursor = 'grabbing';
+  };
+  
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    if (scrollRef.current) {
+      scrollRef.current.style.cursor = 'grab';
+    }
+  };
+  
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      setIsDragging(false);
+      if (scrollRef.current) {
+        scrollRef.current.style.cursor = 'grab';
+      }
+    }
+  };
+  
+  const handleMouseMove = (e) => {
+    if (!isDragging || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5; // Scroll speed multiplier
+    // Mark as dragged if moved more than 5px
+    if (Math.abs(walk) > 5) {
+      hasDraggedRef.current = true;
+    }
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+  
+  // Touch handlers for mobile
+  const handleTouchStart = (e) => {
+    if (!scrollRef.current) return;
+    setIsDragging(true);
+    hasDraggedRef.current = false;
+    setStartX(e.touches[0].pageX - scrollRef.current.offsetLeft);
+    setScrollLeft(scrollRef.current.scrollLeft);
+  };
+  
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+  
+  const handleTouchMove = (e) => {
+    if (!isDragging || !scrollRef.current) return;
+    const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    if (Math.abs(walk) > 5) {
+      hasDraggedRef.current = true;
+    }
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+  
+  // Handle zone click - only if not dragged
+  const handleZoneClick = (zoneId) => {
+    if (!hasDraggedRef.current) {
+      onSelect(zoneId);
+    }
+  };
+  
   return (
     <div className="relative px-2 sm:px-4">
       {/* Left scroll arrow */}
@@ -563,11 +637,18 @@ function ZoneTabs({ zones, activeZoneId, onSelect, zoneProgress }) {
         )}
       </AnimatePresence>
       
-      {/* Scrollable tabs */}
+      {/* Scrollable tabs - with drag to scroll */}
       <div 
         ref={scrollRef}
         onScroll={checkScroll}
-        className="overflow-x-auto pb-3 px-6 scrollbar-hide scroll-smooth"
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        onMouseMove={handleMouseMove}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onTouchMove={handleTouchMove}
+        className="overflow-x-auto pb-3 px-6 scrollbar-hide scroll-smooth cursor-grab select-none"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         <div className="flex gap-2 sm:gap-3 min-w-max">
@@ -579,7 +660,7 @@ function ZoneTabs({ zones, activeZoneId, onSelect, zoneProgress }) {
             return (
               <motion.button
                 key={zone.zoneId}
-                onClick={() => onSelect(zone.zoneId)}
+                onClick={() => handleZoneClick(zone.zoneId)}
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 className={`
@@ -880,12 +961,16 @@ function GameHeader({ totalStages, completedStages, userStats }) {
   const trialDays = getTrialDaysLeft();
   const tier = userStats?.tier || 'free';
 
-  // Tier badge config
+  // Tier badge config - phải khớp với tier values trong database
   const tierConfig = {
     free: { label: 'Miễn phí', icon: '🌟', bg: 'from-gray-400 to-gray-500' },
     trial: { label: `Dùng thử`, icon: '🔥', bg: 'from-orange-400 to-red-500', showDays: true },
-    nangcao: { label: 'Nâng Cao', icon: '⭐', bg: 'from-amber-400 to-yellow-500' },
-    premium: { label: 'Premium', icon: '💎', bg: 'from-purple-400 to-pink-500' }
+    basic: { label: 'Cơ Bản', icon: '✓', bg: 'from-blue-400 to-cyan-500' },
+    advanced: { label: 'Nâng Cao', icon: '⭐', bg: 'from-violet-500 to-fuchsia-500' },
+    vip: { label: 'VIP', icon: '👑', bg: 'from-amber-400 to-orange-500' },
+    // Legacy keys for backward compatibility
+    nangcao: { label: 'Nâng Cao', icon: '⭐', bg: 'from-violet-500 to-fuchsia-500' },
+    premium: { label: 'VIP', icon: '👑', bg: 'from-amber-400 to-orange-500' }
   };
 
   const currentTier = tierConfig[tier] || tierConfig.free;
@@ -1073,36 +1158,11 @@ export default function GameMapNew({
   const stages = currentMap === 'addsub' ? addSubStages : mulDivStages;
   const zones = currentMap === 'addsub' ? addSubZones : mulDivZones;
   
-  // 🔊 Initialize sound system and start background music
+  // 🔊 Initialize sound system (background music disabled)
   useEffect(() => {
     initSoundSystem();
-    
-    let musicStarted = false;
-    
-    // Start adventure music when map loads (after user interaction)
-    const startMusic = async () => {
-      if (musicStarted) return;
-      musicStarted = true;
-      
-      // Small delay to ensure AudioContext is ready
-      setTimeout(() => {
-        playMusic('adventure');
-      }, 100);
-    };
-    
-    // Add listeners for user interaction
-    document.addEventListener('click', startMusic);
-    document.addEventListener('touchstart', startMusic);
-    document.addEventListener('keydown', startMusic);
-    
-    // Cleanup: stop music when leaving map
-    return () => {
-      document.removeEventListener('click', startMusic);
-      document.removeEventListener('touchstart', startMusic);
-      document.removeEventListener('keydown', startMusic);
-      stopMusic(true);
-    };
-  }, []); // Empty deps - only run once on mount
+    // Background music disabled - chỉ giữ sound effects
+  }, []);
 
   // 🦉 Kiểm tra xem người dùng đã xem prologue chưa
   useEffect(() => {
@@ -1247,9 +1307,13 @@ export default function GameMapNew({
     if (selectedStage?.link) {
       // 🔊 Play game start sound
       play('gameStart');
-      onStageClick ? onStageClick(selectedStage) : router.push(selectedStage.link);
+      // 🔧 FIX: Truyền closeModal callback để tier check có thể đóng modal trước khi hiện upgrade popup
+      const closeModal = () => setSelectedStage(null);
+      onStageClick ? onStageClick(selectedStage, closeModal) : router.push(selectedStage.link);
+    } else {
+      // Không có link thì đóng modal
+      setSelectedStage(null);
     }
-    setSelectedStage(null);
   }, [selectedStage, router, onStageClick, play]);
   
   // Generate random stars for background - phải ở trước điều kiện return

@@ -368,29 +368,24 @@ function CompetePageContent() {
   const { showUpgradeModal, UpgradeModalComponent } = useUpgradeModal();
   const { play, playMusic, stopMusic } = useGameSound();
 
-  // 🎵 Start battle music when entering compete
-  useEffect(() => {
-    let musicStarted = false;
-    
-    // Start battle music on first interaction
-    const startMusic = () => {
-      if (musicStarted) return;
-      musicStarted = true;
-      setTimeout(() => playMusic('battle'), 100);
-    };
-    
-    document.addEventListener('click', startMusic);
-    document.addEventListener('touchstart', startMusic);
-    document.addEventListener('keydown', startMusic);
-    
-    // Cleanup: stop music when leaving
-    return () => {
-      document.removeEventListener('click', startMusic);
-      document.removeEventListener('touchstart', startMusic);
-      document.removeEventListener('keydown', startMusic);
-      stopMusic(true);
-    };
-  }, []); // Empty deps - only run once
+  // 🎵 Background music disabled - chỉ giữ sound effects
+  // useEffect(() => {
+  //   let musicStarted = false;
+  //   const startMusic = () => {
+  //     if (musicStarted) return;
+  //     musicStarted = true;
+  //     setTimeout(() => playMusic('battle'), 100);
+  //   };
+  //   document.addEventListener('click', startMusic);
+  //   document.addEventListener('touchstart', startMusic);
+  //   document.addEventListener('keydown', startMusic);
+  //   return () => {
+  //     document.removeEventListener('click', startMusic);
+  //     document.removeEventListener('touchstart', startMusic);
+  //     document.removeEventListener('keydown', startMusic);
+  //     stopMusic(true);
+  //   };
+  // }, []);
 
   // Get mode from URL query params
   const modeFromUrl = searchParams.get('mode');
@@ -546,6 +541,7 @@ function CompetePageContent() {
           console.log('[Compete] Game mode active:', gameModeData);
           
           // 🚀 AUTO-START: Từ Adventure → tự động bắt đầu với 10 câu mặc định
+          // ⚠️ Tier check đã được thực hiện trên map (adventure/page.jsx) trước khi navigate đến đây
           if (gameModeData.from === 'adventure' && gameModeData.mode) {
             const mode = gameModeData.mode;
             const difficulty = gameModeData.difficulty || 1;
@@ -1108,9 +1104,16 @@ function CompetePageContent() {
       setStreak(prev => {
         const newStreak = prev + 1;
         setMaxStreak(current => Math.max(current, newStreak));
+        // 🔊 Play combo sound when streak reaches milestones
+        if ([3, 5, 7, 10].includes(newStreak)) {
+          play('combo');
+        }
         return newStreak;
       });
       setChallengeResults(prev => [...prev, 'correct']);
+      
+      // 🔊 Play correct sound
+      play('correctFast');
       
       // Tính sao
       const config = flashLevelsCompete.find(l => l.level === selectedArena.difficulty) || flashLevelsCompete[0];
@@ -1132,6 +1135,10 @@ function CompetePageContent() {
     } else {
       setStreak(0);
       setChallengeResults(prev => [...prev, 'wrong']);
+      
+      // 🔊 Play wrong sound
+      play('wrong');
+      
       setSessionStats(prev => ({
         ...prev,
         total: prev.total + 1,
@@ -1149,6 +1156,15 @@ function CompetePageContent() {
   const nextFlashChallenge = () => {
     if (currentChallenge >= totalChallenges) {
       setGameComplete(true);
+      
+      // 🔊 Play victory sound cho Flash Anzan
+      const accuracy = sessionStats.correct / sessionStats.total;
+      if (accuracy >= 0.8) {
+        play('levelCompletePerfect');
+      } else {
+        play('levelComplete');
+      }
+      
       submitResult();
       return;
     }
@@ -1230,10 +1246,21 @@ function CompetePageContent() {
         play('combo');
       }
       
+      // 🔊 Play sound theo tốc độ làm bài
+      if (speedTier === speedTiers.godlike || speedTier === speedTiers.fast) {
+        play('correctFast'); // "Tuyệt vời!" sparkle
+      } else if (speedTier === speedTiers.good) {
+        play('correctGood'); // "Giỏi lắm!" cheerful
+      } else {
+        play('correctSlow'); // "Được rồi" gentle
+      }
+      
       setCelebrationData(celebData);
       setCelebration('correct');
       setStreak(newStreak);
     } else {
+      // 🔊 Play wrong sound
+      play('wrong');
       setStreak(0);
     }
 
@@ -1248,6 +1275,14 @@ function CompetePageContent() {
   const goToNextChallenge = () => {
     if (currentChallenge >= totalChallenges) {
       setGameComplete(true);
+      
+      // 🔊 Play victory sound - xuất sắc nếu đúng >= 80%
+      const accuracy = sessionStats.correct / sessionStats.total;
+      if (accuracy >= 0.8) {
+        play('levelCompletePerfect'); // 🏅 Grand victory fanfare
+      } else {
+        play('levelComplete'); // 🎉 Normal victory
+      }
       
       // Trigger milestone celebration cho free users với hiệu suất tốt (>70%)
       if (userTier === 'free' && sessionStats.correct >= Math.floor(totalChallenges * 0.7)) {
