@@ -963,10 +963,10 @@ function GameHeader({ totalStages, completedStages, userStats }) {
         {/* Right: Progress */}
         <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
           <div className="hidden sm:flex items-center gap-1.5 bg-violet-100 rounded-full px-2 py-1">
-            <div className="w-12 sm:w-16 h-1.5 bg-violet-200 rounded-full overflow-hidden">
+            <div className="w-12 sm:w-20 md:w-32 lg:w-40 h-1.5 md:h-2 bg-violet-200 rounded-full overflow-hidden">
               <motion.div className="h-full bg-gradient-to-r from-violet-500 to-pink-500 rounded-full" initial={{ width: 0 }} animate={{ width: `${progress}%` }} />
             </div>
-            <span className="text-violet-700 text-[10px] font-medium">{progress}%</span>
+            <span className="text-violet-700 text-[10px] md:text-xs font-medium">{progress}%</span>
           </div>
           {/* Mobile: just show completed count */}
           <div className="sm:hidden flex items-center gap-0.5 bg-violet-100 rounded-full px-1.5 py-0.5">
