@@ -13,6 +13,8 @@ import { useUpgradeModal } from '@/components/UpgradeModal';
 import { parseMultiplicationProblem } from '@/lib/soroban-multiplication-guide';
 import { parseDivisionProblem } from '@/lib/soroban-division-guide';
 import { parseAdditionSubtractionProblem } from '@/lib/soroban-addition-subtraction-guide';
+import { getNextZoneAfterStage as getNextZoneAddSub } from '@/config/adventure-stages-addsub.config';
+import { getNextZoneAfterStage as getNextZoneMulDiv } from '@/config/adventure-stages-muldiv.config';
 
 // ===== COMPONENT HIỂN THỊ LÝ THUYẾT CẢI TIẾN =====
 function TheoryContent({ theory }) {
@@ -298,10 +300,23 @@ export default function LessonPage() {
   const [gameMode, setGameMode] = useState(null);
 
   // 🎮 GAME MODE: Helper function để quay về Adventure với đúng zone
-  const handleBackToGame = () => {
+  // Nếu vượt qua màn cuối của zone -> tự động chuyển sang zone mới
+  const handleBackToGame = (passed = false) => {
     if (gameMode?.zoneId) {
+      let targetZoneId = gameMode.zoneId;
+      
+      // Nếu đã pass và đây là màn cuối zone -> chuyển sang zone tiếp theo
+      if (passed && gameMode.stageId) {
+        const getNextZone = gameMode.mapType === 'muldiv' ? getNextZoneMulDiv : getNextZoneAddSub;
+        const nextZone = getNextZone(gameMode.stageId);
+        if (nextZone) {
+          targetZoneId = nextZone.zoneId;
+          console.log('🎯 Auto-navigating to next zone:', targetZoneId);
+        }
+      }
+      
       sessionStorage.setItem('adventureReturnZone', JSON.stringify({
-        zoneId: gameMode.zoneId,
+        zoneId: targetZoneId,
         mapType: gameMode.mapType || 'addsub',
         timestamp: Date.now()
       }));
@@ -314,7 +329,7 @@ export default function LessonPage() {
   // 🎮 GAME MODE: Helper để xử lý back button
   const handleBack = () => {
     if (gameMode?.from === 'adventure') {
-      handleBackToGame();
+      handleBackToGame(false);
     } else {
       router.push('/learn');
     }
@@ -581,7 +596,7 @@ export default function LessonPage() {
       // Nếu hết bài trong level
       // Game mode: quay về adventure map
       if (gameMode?.from === 'adventure') {
-        handleBackToGame();
+        handleBackToGame(true); // passed = true khi hoàn thành bài
       } else {
         router.push('/learn');
       }
@@ -776,7 +791,7 @@ export default function LessonPage() {
               {/* Từ Adventure: chỉ có nút Về Map */}
               {gameMode?.from === 'adventure' ? (
                 <button
-                  onClick={handleBackToGame}
+                  onClick={() => handleBackToGame(accuracy >= 70)}
                   className="w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-bold text-lg hover:shadow-lg hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
                 >
                   🎮 Về Map Phiêu Lưu

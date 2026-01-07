@@ -875,6 +875,41 @@ export function getNextStage(currentStageId) {
 }
 
 /**
+ * Lấy zone tiếp theo sau zone hiện tại
+ */
+export function getNextZone(currentZoneId) {
+  const currentIndex = GAME_ZONES_MULDIV.findIndex(z => z.zoneId === currentZoneId);
+  if (currentIndex === -1 || currentIndex === GAME_ZONES_MULDIV.length - 1) return null;
+  return GAME_ZONES_MULDIV[currentIndex + 1];
+}
+
+/**
+ * Kiểm tra stage có phải màn cuối của zone không
+ */
+export function isLastStageOfZone(stageId) {
+  const stage = getStageById(stageId);
+  if (!stage) return false;
+  
+  const zone = getZoneById(stage.zoneId);
+  if (!zone) return false;
+  
+  return zone.stageRange && stage.stageId === zone.stageRange[1];
+}
+
+/**
+ * Lấy zone tiếp theo dựa vào stageId vừa hoàn thành
+ */
+export function getNextZoneAfterStage(stageId) {
+  const stage = getStageById(stageId);
+  if (!stage) return null;
+  
+  if (isLastStageOfZone(stageId)) {
+    return getNextZone(stage.zoneId);
+  }
+  return null;
+}
+
+/**
  * Kiểm tra có chứng chỉ cộng trừ không (yêu cầu để mở đảo này)
  */
 export function requiresAddSubCertificate() {

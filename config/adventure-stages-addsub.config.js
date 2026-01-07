@@ -1356,6 +1356,43 @@ export function getNextStage(currentStageId) {
 }
 
 /**
+ * Lấy zone tiếp theo sau zone hiện tại
+ */
+export function getNextZone(currentZoneId) {
+  const currentIndex = GAME_ZONES.findIndex(z => z.zoneId === currentZoneId);
+  if (currentIndex === -1 || currentIndex === GAME_ZONES.length - 1) return null;
+  return GAME_ZONES[currentIndex + 1];
+}
+
+/**
+ * Kiểm tra stage có phải màn cuối của zone không
+ */
+export function isLastStageOfZone(stageId) {
+  const stage = getStageById(stageId);
+  if (!stage) return false;
+  
+  const zone = getZoneById(stage.zoneId);
+  if (!zone) return false;
+  
+  // stageRange là [start, end], kiểm tra xem stageId có phải end không
+  return zone.stageRange && stage.stageId === zone.stageRange[1];
+}
+
+/**
+ * Lấy zone tiếp theo dựa vào stageId vừa hoàn thành
+ * Nếu là màn cuối zone, trả về zone tiếp theo
+ */
+export function getNextZoneAfterStage(stageId) {
+  const stage = getStageById(stageId);
+  if (!stage) return null;
+  
+  if (isLastStageOfZone(stageId)) {
+    return getNextZone(stage.zoneId);
+  }
+  return null; // Chưa phải màn cuối, giữ nguyên zone
+}
+
+/**
  * Kiểm tra stage có phải boss không
  */
 export function isBossStage(stageId) {

@@ -13,6 +13,8 @@ import { calculatePracticeStars } from '@/lib/gamification';
 import { MilestoneCelebration } from '@/components/SoftUpgradeTrigger';
 import GameModeHeader from '@/components/GameModeHeader/GameModeHeader';
 import { useGameSound } from '@/lib/useGameSound';
+import { getNextZoneAfterStage as getNextZoneAddSub } from '@/config/adventure-stages-addsub.config';
+import { getNextZoneAfterStage as getNextZoneMulDiv } from '@/config/adventure-stages-muldiv.config';
 
 const TOTAL_CHALLENGES = 10; // Mỗi màn có 10 thử thách
 
@@ -366,10 +368,23 @@ function PracticePageContent() {
   const [gameMode, setGameMode] = useState(null);
 
   // 🎮 GAME MODE: Helper function để quay về Adventure với đúng zone
-  const handleBackToGame = () => {
+  // Nếu vượt qua màn cuối của zone -> tự động chuyển sang zone mới
+  const handleBackToGame = (passed = false) => {
     if (gameMode?.zoneId) {
+      let targetZoneId = gameMode.zoneId;
+      
+      // Nếu đã pass và đây là màn cuối zone -> chuyển sang zone tiếp theo
+      if (passed && gameMode.stageId) {
+        const getNextZone = gameMode.mapType === 'muldiv' ? getNextZoneMulDiv : getNextZoneAddSub;
+        const nextZone = getNextZone(gameMode.stageId);
+        if (nextZone) {
+          targetZoneId = nextZone.zoneId;
+          console.log('🎯 Auto-navigating to next zone:', targetZoneId);
+        }
+      }
+      
       sessionStorage.setItem('adventureReturnZone', JSON.stringify({
-        zoneId: gameMode.zoneId,
+        zoneId: targetZoneId,
         mapType: gameMode.mapType || 'addsub',
         timestamp: Date.now()
       }));
@@ -383,7 +398,7 @@ function PracticePageContent() {
   // 🎮 GAME MODE: Helper để xử lý back button
   const handleBack = () => {
     if (gameMode?.from === 'adventure') {
-      handleBackToGame();
+      handleBackToGame(false);
     } else {
       setMode(null);
     }
@@ -2739,7 +2754,7 @@ function PracticePageContent() {
             {gameMode?.from === 'adventure' ? (
               /* Từ Adventure: chỉ có nút Về Map */
               <button
-                onClick={handleBackToGame}
+                onClick={() => handleBackToGame(accuracy >= 70)}
                 className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-[1.5vmin] hover:brightness-110 active:scale-95 transition-all shadow-lg"
                 style={{ 
                   padding: 'clamp(10px, 2.5vmin, 20px)',
@@ -3293,7 +3308,7 @@ function PracticePageContent() {
             {/* Từ Adventure: chỉ có nút Về Map */}
             {gameMode?.from === 'adventure' ? (
               <button
-                onClick={handleBackToGame}
+                onClick={() => handleBackToGame(accuracy >= 70)}
                 className="w-full py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:scale-105 transition-transform text-sm sm:text-base"
               >
                 🎮 Về Map Phiêu Lưu
