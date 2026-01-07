@@ -1,0 +1,139 @@
+/**
+ * 📝 BLOG LAYOUT
+ * 
+ * Layout riêng cho phần blog
+ * - Header giống hệt trang chủ (cùng padding, cùng vị trí)
+ * - Thêm thanh categories navigation
+ * - Footer giữ nguyên từ trang chính
+ */
+
+'use client';
+
+import { useRef, useState, useEffect } from 'react';
+import Link from 'next/link';
+import Logo from '@/components/Logo/Logo';
+import MainNav from '@/components/MainNav/MainNav';
+import categoriesData from '@/content/blog/categories.json';
+
+// Load categories từ JSON file
+const categories = categoriesData.categories;
+
+// Scroll Arrow Button Component
+function ScrollArrow({ direction, onClick, visible }) {
+  if (!visible) return null;
+  
+  return (
+    <button
+      onClick={onClick}
+      className={`absolute ${direction === 'left' ? 'left-0' : 'right-0'} top-1/2 -translate-y-1/2 z-20 w-7 h-7 flex items-center justify-center bg-white/95 backdrop-blur shadow-md rounded-full border border-violet-200 text-violet-600 hover:bg-violet-50 transition-all sm:hidden`}
+      aria-label={direction === 'left' ? 'Cuộn sang trái' : 'Cuộn sang phải'}
+    >
+      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        {direction === 'left' ? (
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        ) : (
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        )}
+      </svg>
+    </button>
+  );
+}
+
+export default function BlogLayout({ children }) {
+  const scrollRef = useRef(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(false);
+
+  // Check scroll position
+  const checkScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    
+    setShowLeftArrow(el.scrollLeft > 10);
+    setShowRightArrow(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
+  };
+
+  useEffect(() => {
+    checkScroll();
+    window.addEventListener('resize', checkScroll);
+    return () => window.removeEventListener('resize', checkScroll);
+  }, []);
+
+  const scroll = (direction) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    
+    const scrollAmount = direction === 'left' ? -150 : 150;
+    el.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  };
+  
+  return (
+    <div className="min-h-screen flex flex-col bg-slate-100">
+      {/* Main Navigation */}
+      <MainNav />
+
+      {/* Categories Navigation */}
+      <div className="border-b border-violet-100 bg-violet-50/80">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6 relative">
+            {/* Scroll Arrows */}
+            <ScrollArrow direction="left" onClick={() => scroll('left')} visible={showLeftArrow} />
+            <ScrollArrow direction="right" onClick={() => scroll('right')} visible={showRightArrow} />
+            
+            {/* Gradient fades */}
+            {showLeftArrow && <div className="absolute left-7 top-0 bottom-0 w-4 bg-gradient-to-r from-violet-50 to-transparent pointer-events-none z-10 sm:hidden" />}
+            {showRightArrow && <div className="absolute right-7 top-0 bottom-0 w-4 bg-gradient-to-l from-violet-50 to-transparent pointer-events-none z-10 sm:hidden" />}
+            
+            <nav 
+              ref={scrollRef}
+              onScroll={checkScroll}
+              className="flex items-center gap-1 py-2.5 sm:py-3 overflow-x-auto scrollbar-hide px-1 sm:px-0" 
+              aria-label="Danh mục blog"
+            >
+              <Link 
+                href="/blog"
+                className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium text-violet-700 hover:text-violet-800 hover:bg-violet-100 rounded-full transition-all whitespace-nowrap"
+              >
+                Tất cả
+              </Link>
+              {categories.map((cat) => (
+                <Link 
+                  key={cat.slug}
+                  href={`/blog/danh-muc/${cat.slug}`}
+                  className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm text-violet-600 hover:text-violet-800 hover:bg-violet-100 rounded-full transition-all whitespace-nowrap"
+                >
+                  {cat.name}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </div>
+
+      {/* Main Content */}
+      <main className="flex-grow">
+        {children}
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-8 sm:py-12" role="contentinfo">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-3">
+              <Logo size="md" />
+              <span className="text-gray-400" aria-hidden="true">|</span>
+              <span className="text-gray-400">Học toán tính nhanh vui như chơi game</span>
+            </div>
+            <nav aria-label="Footer navigation">
+              <ul className="flex flex-wrap justify-center gap-6 text-gray-400">
+                <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
+                <li><Link href="/tool" className="hover:text-white transition-colors flex items-center gap-1">🧰 Toolbox Giáo Viên</Link></li>
+              </ul>
+            </nav>
+          </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+            <p>© 2025 SoroKid - Học toán tư duy cùng bàn tính Soroban</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}

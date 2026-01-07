@@ -1,0 +1,105 @@
+{
+  "slug": "ong-ba-day-con-sai-cach",
+  "title": "Ông bà dạy con theo kiểu cũ – mình không biết nói sao",
+  "description": "Ông dạy con học thuộc bảng cửu chương. Mình muốn con hiểu bản chất. Hai thế hệ, hai cách dạy.",
+  "category": "phu-huynh-kem-con-hoc-toan",
+  "keywords": [
+    "ông bà dạy cháu",
+    "mâu thuẫn cách dạy",
+    "phương pháp dạy toán"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/ong-day-chau.jpg",
+  "imageAlt": "Ông châu Á ngồi dạy cháu học bài",
+  "readingTime": 6,
+  "categoryOrder": 3,
+  "order": 11,
+  "content": {
+    "intro": "\"7 × 8 bằng mấy?\" – Ông hỏi. Con ấp úng. \"56 chứ mấy! Học thuộc đi!\" – Ông bảo. Mình nghe mà không biết can thiệp thế nào. Mình muốn con hiểu, ông muốn con nhớ.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Hai cách dạy khác nhau"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ông bà thế hệ trước học toán theo kiểu: đọc, nhớ, lặp lại. Học thuộc lòng. Không sai, vì thời đó ai cũng học thế."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình muốn con hiểu 7 × 8 là 7 nhóm, mỗi nhóm 8 cái. Không chỉ nhớ kết quả."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Khó xử thế nào?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không muốn nói ông sai. Ông thương cháu, ông dành thời gian dạy cháu. Mình biết ơn điều đó."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhưng mình cũng lo con học theo kiểu nhồi nhét, sau này gặp bài khó sẽ không biết làm."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Đây không phải vấn đề ai đúng ai sai. Đây là hai thế hệ với hai cách tiếp cận. Cả hai đều yêu thương con."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách mình giải quyết"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Cảm ơn ông bà:** Mình nói với ông bà rằng mình biết ơn ông bà dạy con. Không phê phán cách dạy."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. \"Bổ sung\" thêm:** Mình cho con học Soroban qua Sorokid ngoài giờ ông dạy. Con vừa có nền tảng từ ông, vừa có phương pháp mới."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Để ông bà dạy những thứ khác:** Mình nhờ ông kể chuyện, dạy con về đời sống. Toán để app lo."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bây giờ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình vừa biết đọc thuộc bảng cửu chương (ông dạy), vừa hiểu bản chất phép nhân (app dạy)."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ông bà vui vì được dạy cháu. Mình yên tâm vì con có nền tảng tốt. Không ai bị tổn thương."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Không cần tranh luận ai đúng. Hãy tìm cách kết hợp. Con được lợi từ cả hai cách."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Nên nói thẳng với ông bà không?",
+      "answer": "Không nên nói ông bà sai. Thay vào đó, bổ sung phương pháp mới cho con mà không phủ nhận công lao của ông bà."
+    },
+    {
+      "question": "Học thuộc có hại không?",
+      "answer": "Không hại nếu kết hợp với hiểu bản chất. Trẻ cần cả hai: nhớ nhanh kết quả và hiểu tại sao."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid giúp con hiểu bản chất toán qua hình ảnh, bổ sung cho cách học truyền thống.",
+    "buttonText": "Tìm hiểu thêm",
+    "buttonLink": "/register"
+  }
+}

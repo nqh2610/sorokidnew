@@ -1,0 +1,48 @@
+name: Build Complete App for Linux
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Build Next.js
+        run: npm run build
+        env:
+          DATABASE_URL: "mysql://fake:fake@localhost:3306/fake"
+          NEXTAUTH_SECRET: "build-secret-key"
+          NEXTAUTH_URL: "http://localhost:3000"
+
+      - name: Create deployment package
+        run: |
+          mkdir -p deploy/.next
+          cp -r .next/standalone/* deploy/
+          cp -r .next/static deploy/.next/static
+          cp -r node_modules/.prisma deploy/node_modules/.prisma 2>/dev/null || true
+          cp server.js deploy/
+          cp -r prisma deploy/
+          cp .env.example deploy/
+          tar -czf sorokids-complete.tar.gz deploy
+
+      - name: Upload complete build
+        uses: actions/upload-artifact@v4
+        with:
+          name: sorokids-complete
+          path: sorokids-complete.tar.gz
+          retention-days: 7

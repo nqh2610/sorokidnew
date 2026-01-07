@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <!-- Gradient chính từ logo -->
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F7FFF"/>
+      <stop offset="50%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    
+    <!-- Text gradient horizontal -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4F7FFF"/>
+      <stop offset="50%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    
+    <!-- Background gradient - Bright and fresh -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E0E7FF"/>
+      <stop offset="50%" stop-color="#EDE9FE"/>
+      <stop offset="100%" stop-color="#FCE7F3"/>
+    </linearGradient>
+    
+    <!-- Soft decorative gradient -->
+    <radialGradient id="softGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
+    </radialGradient>
+    
+    <!-- Glow filter for text - REMOVED for cleaner PNG export -->
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Soft glow center -->
+  <ellipse cx="600" cy="315" rx="600" ry="350" fill="url(#softGlow)"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="1100" cy="100" r="150" fill="#8B5CF6" opacity="0.08"/>
+  <circle cx="100" cy="530" r="120" fill="#EC4899" opacity="0.08"/>
+  <circle cx="1000" cy="500" r="80" fill="#4F7FFF" opacity="0.06"/>
+  
+  <!-- Left side - Logo large -->
+  <g transform="translate(100, 165)">
+    <svg width="300" height="300" viewBox="0 0 100 100">
+      <rect x="0" y="0" width="100" height="100" rx="22" fill="url(#mainGradient)"/>
+      <circle cx="50" cy="30" r="8" fill="#F9A8D4"/>
+      <rect x="22" y="46" width="56" height="6" rx="3" fill="white" fill-opacity="0.95"/>
+      <circle cx="30" cy="66" r="8" fill="#FBBF24"/>
+      <circle cx="50" cy="66" r="8" fill="#FBBF24"/>
+      <circle cx="70" cy="66" r="8" fill="#FBBF24"/>
+    </svg>
+  </g>
+  
+  <!-- Right side - Content -->
+  <g transform="translate(480, 150)">
+    <!-- Brand name - Clean gradient text without blur -->
+    <text x="0" y="80" font-family="Arial Black, sans-serif" font-size="95" font-weight="900" fill="url(#textGradient)">
+      SoroKid
+    </text>
+    
+    <!-- Underline gradient -->
+    <rect x="0" y="105" width="420" height="8" rx="4" fill="url(#mainGradient)"/>
+    
+    <!-- Tagline -->
+    <text x="0" y="160" font-family="Arial, sans-serif" font-size="28" font-weight="600" fill="#4B5563">
+      Học Soroban Online
+    </text>
+    
+    <!-- Sub tagline -->
+    <text x="0" y="200" font-family="Arial, sans-serif" font-size="24" fill="#6B7280">
+      Tính nhẩm siêu nhanh cho trẻ 6-12 tuổi
+    </text>
+    
+    <!-- Features -->
+    <g transform="translate(0, 250)">
+      <rect x="-10" y="-15" width="620" height="60" rx="15" fill="white" opacity="0.7"/>
+      
+      <g transform="translate(20, 15)">
+        <text x="0" y="0" font-size="24">🇯🇵</text>
+        <text x="35" y="0" font-family="Arial, sans-serif" font-size="16" fill="#4B5563">Nhật Bản</text>
+      </g>
+      
+      <g transform="translate(160, 15)">
+        <text x="0" y="0" font-size="24">🎮</text>
+        <text x="35" y="0" font-family="Arial, sans-serif" font-size="16" fill="#4B5563">Game hóa</text>
+      </g>
+      
+      <g transform="translate(300, 15)">
+        <text x="0" y="0" font-size="24">🏆</text>
+        <text x="35" y="0" font-family="Arial, sans-serif" font-size="16" fill="#4B5563">Thi đấu</text>
+      </g>
+      
+      <g transform="translate(430, 15)">
+        <text x="0" y="0" font-size="24">📜</text>
+        <text x="35" y="0" font-family="Arial, sans-serif" font-size="16" fill="#4B5563">Chứng chỉ</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Website URL -->
+  <g transform="translate(1050, 580)">
+    <rect x="-80" y="-25" width="160" height="40" rx="20" fill="url(#mainGradient)"/>
+    <text x="0" y="5" font-family="Arial, sans-serif" font-size="18" font-weight="600" fill="white" text-anchor="middle">
+      sorokid.com
+    </text>
+  </g>
+  
+  <!-- Top accent line -->
+  <rect y="0" width="1200" height="6" fill="url(#mainGradient)"/>
+  
+  <!-- Bottom accent line -->
+  <rect y="624" width="1200" height="6" fill="url(#mainGradient)"/>
+</svg>

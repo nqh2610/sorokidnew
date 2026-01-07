@@ -1,0 +1,101 @@
+{
+  "slug": "con-dem-tren-ngon-tay-co-sao-khong",
+  "title": "Con đếm trên ngón tay – mình từng lo lắm, giờ thì hết",
+  "description": "Thấy con lớp 2 vẫn đếm tay, mình sợ con bị chậm. Nhưng tìm hiểu xong mình bình tĩnh hơn nhiều.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "trẻ đếm ngón tay",
+    "finger math",
+    "soroban và finger math"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-dem-ngon-tay.jpg",
+  "imageAlt": "Bé châu Á đếm trên ngón tay khi làm bài",
+  "readingTime": 6,
+  "categoryOrder": 1,
+  "order": 25,
+  "content": {
+    "intro": "\"Mẹ ơi, 7 + 5 là bao nhiêu?\" – Con mình xòe tay ra đếm. Mình thấy con lớp 2 rồi mà vẫn thế, lo quá. Lên mạng tìm hiểu, đọc mấy bài về \"Finger Math\" với \"Soroban\", mình mới hiểu hơn.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Đếm tay có phải là dở?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình từng nghĩ thế. Nhưng hóa ra đếm tay là cách tự nhiên nhất để trẻ hiểu số. Trẻ cần \"sờ\" được số, không chỉ nhìn."
+      },
+      {
+        "type": "paragraph",
+        "text": "Vấn đề là nếu con cứ đếm tay mãi đến lớp 3, lớp 4 thì sẽ chậm. Vì tay chỉ có 10 ngón."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Finger Math là gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Finger Math (hay Chisanbop) là phương pháp dùng ngón tay để tính đến 99. Mỗi ngón có giá trị khác nhau. Nghe hay, nhưng mình thấy khó nhớ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình học thử, nhầm liên tục vì nhớ sai giá trị ngón nào. Mình bỏ cuộc sau 2 tuần."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Rồi mình biết Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban cũng dùng tay, nhưng khác. Tay di chuyển hạt trên bàn tính. Con \"thấy\" được số thay đổi."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sau khi quen, con hình dung bàn tính trong đầu. Tay không cần làm gì, não tự tính."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Mình thấy Soroban như \"bước tiến\" từ đếm tay. Con vẫn dùng tay, nhưng theo cách có hệ thống hơn, dễ phát triển thành tính nhẩm."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "3 tháng sau"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình giờ ít đếm tay hơn. Những phép tính đơn giản con làm trong đầu được. 8 + 7, con không còn xòe tay ra nữa."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không ép con bỏ đếm tay hoàn toàn. Đôi khi con vẫn dùng. Nhưng mình thấy con đang tiến bộ."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Nếu con bạn đang đếm tay, đừng la mắng. Đó là cách tự nhiên. Hãy cho con công cụ tốt hơn để \"tốt nghiệp\" khỏi đếm tay."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Con lớp 2 vẫn đếm tay có bình thường không?",
+      "answer": "Bình thường. Nhiều trẻ lớp 2, 3 vẫn đếm tay. Tuy nhiên nếu đến lớp 4, 5 vẫn thế thì cần hỗ trợ."
+    },
+    {
+      "question": "Soroban và Finger Math khác nhau thế nào?",
+      "answer": "Finger Math dùng ngón tay với giá trị gán sẵn. Soroban dùng bàn tính, sau đó hình dung trong đầu. Soroban dễ phát triển thành tính nhẩm hơn."
+    }
+  ],
+  "cta": {
+    "text": "Nếu muốn con \"tốt nghiệp\" đếm tay tự nhiên, thử cho con học Soroban với Sorokid.",
+    "buttonText": "Dùng thử miễn phí",
+    "buttonLink": "/register"
+  }
+}

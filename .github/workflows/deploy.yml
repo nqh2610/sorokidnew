@@ -1,0 +1,90 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Build Next.js
+        run: npm run build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+
+      - name: Create deployment package
+        run: |
+          mkdir -p deploy
+          cp -r .next/standalone/* deploy/
+          cp -r .next/static deploy/.next/static
+          cp -r public deploy/public 2>/dev/null || true
+          cp package.json deploy/
+          cp ecosystem.config.js deploy/
+          cp prisma/schema.prisma deploy/
+          tar -czf deploy.tar.gz deploy
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nextjs-build
+          path: deploy.tar.gz
+          retention-days: 7
+
+      # Option 1: Deploy via FTP
+      - name: Deploy to FTP Server
+        if: ${{ vars.DEPLOY_METHOD == 'ftp' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./deploy/
+          server-dir: ${{ secrets.FTP_PATH }}
+
+      # Option 2: Deploy via SSH/SCP
+      - name: Deploy via SSH
+        if: ${{ vars.DEPLOY_METHOD == 'ssh' }}
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "deploy.tar.gz"
+          target: ${{ secrets.SSH_PATH }}
+
+      - name: Execute remote commands
+        if: ${{ vars.DEPLOY_METHOD == 'ssh' }}
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ${{ secrets.SSH_PATH }}
+            tar -xzf deploy.tar.gz
+            cd deploy
+            npm install --production
+            npx prisma migrate deploy
+            pm2 restart sorokids || pm2 start server.js --name sorokids

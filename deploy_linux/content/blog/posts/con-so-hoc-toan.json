@@ -1,0 +1,463 @@
+{
+  "slug": "con-so-hoc-toan",
+  "title": "Con sợ học toán: Hành trình giúp con từ khóc mỗi tối đến tự giác làm bài",
+  "description": "Con khóc mỗi khi làm bài toán, né tránh, nói 'con ghét toán'. Mình chia sẻ cách đã giúp con hết sợ và bắt đầu thích học toán sau 3 tháng.",
+  "category": "con-gap-kho-khan-hoc-toan",
+  "keywords": [
+    "con sợ học toán",
+    "con ghét toán",
+    "trẻ sợ toán",
+    "làm sao để con hết sợ toán",
+    "con khóc khi học toán",
+    "giúp con thích học toán",
+    "tâm lý trẻ sợ toán"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-05T11:00:00.000Z",
+  "createdAt": "2026-01-05",
+  "image": "/blog/con-so-hoc-toan.jpg",
+  "imageAlt": "Mẹ an ủi con khi làm bài toán",
+  "readingTime": 13,
+  "categoryOrder": 3,
+  "order": 1,
+  "author": {
+    "name": "Chị Thảo",
+    "role": "Mẹ bé lớp 2"
+  },
+  "content": {
+    "intro": "7 giờ tối. Giờ làm bài tập. Con nhìn thấy quyển vở toán trên bàn, mặt con xịu xuống. 'Mẹ ơi, con đau bụng.' Mình biết con không đau bụng thật. Đây là lần thứ 4 trong tuần con tìm cớ để không phải làm toán. Hôm thì đau đầu, hôm thì mệt, hôm thì buồn ngủ. Khi mình nói 'Con làm bài toán đi', con bật khóc. Khóc thật sự. Như thể mình bắt con làm điều gì đó kinh khủng lắm.",
+    "sections": [
+      {
+        "type": "paragraph",
+        "text": "Mình ngồi đó, nhìn con khóc, và tự hỏi: 'Mình đã làm gì sai? Tại sao con sợ toán đến mức này?' Con mình không phải đứa trẻ lười. Con chăm làm bài Tiếng Việt, thích vẽ, thích đọc truyện. Chỉ riêng toán – con sợ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sau 3 tháng tìm hiểu và thử nhiều cách, con mình đã thay đổi. Không phải thay đổi 180 độ như trong phim. Nhưng con không còn khóc nữa. Con tự giác mở vở toán. Có hôm con còn hỏi: 'Mẹ ơi, cho con làm thêm bài nữa được không?' Mình suýt rơi nước mắt."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Nếu con bạn cũng đang sợ toán, ghét toán, khóc mỗi khi làm bài – bạn không cô đơn. Và con bạn có thể thay đổi được. Bài viết này là những gì mình đã học được."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Dấu hiệu nhận biết con sợ học toán"
+      },
+      {
+        "type": "paragraph",
+        "text": "Trước khi tìm cách giúp con, mình cần nhận ra con đang sợ. Không phải lúc nào con cũng nói thẳng 'con sợ toán'. Nhiều khi con thể hiện qua hành vi."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Dấu hiệu rõ ràng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Khóc hoặc cáu gắt** khi phải làm bài toán",
+          "**Nói thẳng:** 'Con ghét toán', 'Con không biết làm', 'Con dốt toán'",
+          "**Tìm cớ né tránh:** đau bụng, mệt, buồn ngủ... mỗi khi đến giờ học toán",
+          "**Làm qua loa** để xong nhanh, không quan tâm đúng sai"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Dấu hiệu tinh tế hơn"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Im lặng bất thường** khi học toán, trong khi học môn khác thì vui vẻ",
+          "**Cắn móng tay, vặn vẹo** – dấu hiệu lo lắng",
+          "**Nói 'con không hiểu' ngay khi nhìn đề** – chưa đọc đã chịu thua",
+          "**So sánh với bạn:** 'Bạn A giỏi toán lắm, con không bằng được'"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Con mình có hầu hết các dấu hiệu trên. Mình từng nghĩ con lười, con không tập trung. Nhưng thực ra con đang sợ. Và khi sợ, não sẽ 'đóng cửa', không tiếp nhận được thông tin mới."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tại sao con sợ học toán? – Nguyên nhân mình tìm ra"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình dành thời gian nói chuyện với con, quan sát con, và tự nhìn lại cách mình dạy con. Đây là những nguyên nhân mình nhận ra."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Con từng bị sai và bị la mắng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây là lỗi của mình. Có lần con làm sai 3 bài liên tiếp, mình nóng, nói: 'Sao con không tập trung? Dễ thế mà cũng sai!' Con khóc. Và từ đó, mỗi lần làm toán, con sợ sai → sợ bị la → sợ toán."
+      },
+      {
+        "type": "paragraph",
+        "text": "Não trẻ ghi nhớ cảm xúc tiêu cực rất lâu. Chỉ cần vài lần bị la khi làm sai toán, con sẽ liên kết 'toán = đau khổ' trong vô thức."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Con bị hổng kiến thức từ trước"
+      },
+      {
+        "type": "paragraph",
+        "text": "Toán là môn tích lũy. Nếu con không vững phép cộng, con sẽ khó học phép nhân. Nếu con không hiểu khái niệm 'nhóm số', con sẽ loay hoay với phép tính có nhớ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình hổng ở phần 'bạn của 10' (các cặp số cộng lại bằng 10). Vì hổng chỗ này, con gặp khó với mọi phép cộng có nhớ → làm sai nhiều → sợ."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Con bị so sánh với người khác"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình từng nói: 'Bạn A tính nhanh lắm, sao con chậm thế?' Mình nghĩ nói vậy sẽ khích lệ con cố gắng. Sai hoàn toàn. Con cảm thấy mình thua kém → mất tự tin → sợ thử → sợ toán."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Con chưa được khen đúng cách"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình chỉ khen khi con làm đúng: 'Con giỏi quá!' Nhưng khi con làm sai, mình im lặng hoặc sửa ngay. Con học được rằng: chỉ khi làm đúng mới được yêu thương → áp lực phải đúng → sợ sai → sợ toán."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Nhìn lại, mình nhận ra nhiều lỗi là từ mình. Không phải con dốt. Con chỉ đang phản ứng với những gì con đã trải qua. Và nếu mình thay đổi cách tiếp cận, con có thể thay đổi."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách mình giúp con hết sợ học toán – Hành trình 3 tháng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây là những gì mình đã làm. Không hoàn hảo, có lúc thất bại, nhưng cuối cùng thấy kết quả."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Bước 1: Xin lỗi con và thay đổi cách nói chuyện"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình ngồi xuống, ôm con, nói: 'Mẹ xin lỗi vì đã la con khi con làm sai. Sai là bình thường. Ai cũng sai. Từ nay mẹ hứa sẽ không la con nữa.' Con nhìn mình, hơi ngạc nhiên, rồi gật đầu."
+      },
+      {
+        "type": "paragraph",
+        "text": "Từ đó, mình thay đổi cách nói:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Thay vì:** 'Sao con sai?' → **Nói:** 'Bài này hơi khó nhỉ, mình cùng xem lại nhé'",
+          "**Thay vì:** 'Con không tập trung!' → **Nói:** 'Con thử nghỉ 5 phút rồi làm tiếp nhé'",
+          "**Thay vì:** 'Dễ thế mà cũng không biết' → **Nói:** 'Mẹ giải thích lại cho con nhé'"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Bước 2: Tìm chỗ con bị hổng và bù đắp"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con làm lại các bài toán cơ bản từ lớp trước. Phát hiện con hổng ở phần 'bạn của 10'. Mình dành 2 tuần chỉ luyện cái này: 1+9, 2+8, 3+7... bằng flashcard, bằng game, bằng hỏi miệng."
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi con vững phần này, các phép tính có nhớ bỗng dễ hơn hẳn. Con ít sai hơn → tự tin hơn → bớt sợ."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Bước 3: Bắt đầu từ cái con làm được"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thay vì cho con làm bài mới (khó), mình cho con làm lại bài cũ (dễ) trước. Con làm đúng → mình khen → con vui → não 'mở cửa'. Sau đó mới đưa bài mới vào."
+      },
+      {
+        "type": "paragraph",
+        "text": "Quy tắc của mình: mỗi buổi học, 70% bài dễ (con đã biết), 30% bài mới. Đảm bảo con luôn có cảm giác thành công."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Bước 4: Khen quá trình, không chỉ kết quả"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình học cách khen khác:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "'Con tập trung tốt lắm!' (khen quá trình)",
+          "'Con viết số đẹp hơn hôm qua!' (khen tiến bộ so với chính con)",
+          "'Con thử cách mới, mẹ thấy hay đó!' (khen việc dám thử)",
+          "'Bài này khó mà con vẫn cố gắng làm, mẹ tự hào!' (khen nỗ lực)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình hạn chế nói 'Con giỏi quá!' vì câu này chỉ khen khi đúng. Thay vào đó, khen việc con cố gắng, bất kể đúng hay sai."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Bước 5: Biến toán thành trò chơi"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình thích chơi game. Mình tải app Sorokid, cho con 'chơi toán' thay vì 'học toán'. App có điểm, có sao, có level – đúng kiểu game con thích. Con không còn cảm giác đang học, mà đang chơi."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cũng chơi cùng con: thi đua ai tính nhanh hơn (mình cố tình thua), đố nhau khi đi siêu thị (3 gói bánh 15k, hết bao nhiêu tiền?). Toán xuất hiện trong cuộc sống, không chỉ trong vở."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Bước 6: Cho con thời gian và không so sánh"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình tự hứa: không bao giờ so sánh con với ai khác nữa. Chỉ so sánh con với chính con ngày hôm qua. 'Hôm nay con tính nhanh hơn hôm qua 2 giây!' – câu này hiệu quả hơn 'Bạn A tính nhanh hơn con' rất nhiều."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Quy tắc vàng của mình: Trước khi nhận xét con, hãy nghĩ 'Mình nói câu này, con sẽ cảm thấy thế nào?' Nếu câu trả lời là 'tự ti, buồn, sợ' – đừng nói."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết quả sau 3 tháng giúp con hết sợ toán"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình chia sẻ timeline thực tế để bạn có kỳ vọng đúng."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Tháng 1: Vẫn còn sợ, nhưng bớt khóc"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con vẫn không thích toán, nhưng không còn khóc mỗi tối. Có lẽ vì mình không la nữa. Con bắt đầu nói: 'Bài này khó quá mẹ ơi' thay vì 'Con không biết làm'. Đó là tiến bộ – con bắt đầu diễn đạt thay vì khóc."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Tháng 2: Bắt đầu tự giác"
+      },
+      {
+        "type": "paragraph",
+        "text": "Có hôm con tự mở vở toán ra làm mà không cần nhắc. Mình suýt ngã ngửa. Hỏi thì con nói: 'Con muốn lên level trên app.' À, hóa ra con muốn chơi game (Sorokid) nên chịu làm bài để được chơi. Động lực gì cũng được, miễn con chịu học."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Tháng 3: Có dấu hiệu thích"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con hỏi: 'Mẹ ơi, cho con làm thêm bài nữa được không?' Mình không tin vào tai mình. Con còn khoe với bà: 'Con tính nhanh lắm bà ơi!' – điều mà trước đây con sẽ không bao giờ nói vì con nghĩ mình dốt toán."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Tâm lý:** Từ sợ → chấp nhận → bắt đầu thích",
+          "**Hành vi:** Từ khóc, né tránh → tự giác, chủ động",
+          "**Điểm số:** Từ 6-7 điểm → 8-9 điểm",
+          "**Tự tin:** Con dám giơ tay phát biểu, dám nói 'con làm được'"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Con mình không trở thành thiên tài toán. Nhưng con hết sợ. Con dám thử. Con không còn nghĩ mình dốt. Với mình, đó là thành công lớn nhất."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Những sai lầm mình từng mắc"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình chia sẻ để bạn tránh lặp lại."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Ép con học khi con đang khóc"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi con khóc, não đang ở trạng thái 'chiến hay chạy', không thể tiếp thu gì. Ép con học lúc đó chỉ làm con sợ hơn. Bài học: khi con khóc, dừng lại, ôm con, để con bình tĩnh rồi mới tiếp tục."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. La mắng khi con làm sai"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây là lỗi lớn nhất của mình. Sai là cơ hội để học, không phải để bị phạt. Khi mình la, con học được rằng 'sai = bị phạt' → sợ sai → không dám thử → không học được gì."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. So sánh con với bạn bè"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mỗi đứa trẻ có tốc độ riêng. So sánh chỉ khiến con thêm tự ti. Chỉ so sánh con với chính con ngày hôm qua."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Kỳ vọng thay đổi nhanh"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình từng nghĩ thay đổi cách dạy 1-2 tuần là con hết sợ. Sai. Cần ít nhất 2-3 tháng kiên trì. Nỗi sợ hình thành qua thời gian, cũng cần thời gian để tan biến."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Công cụ hỗ trợ giúp con hết sợ toán"
+      },
+      {
+        "type": "paragraph",
+        "text": "Những công cụ mình đã dùng và thấy hiệu quả."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. App học toán có game hóa"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình dùng Sorokid cho con. Điểm hay là nó biến việc học thành chơi game – có điểm, có sao, có level, có thử thách. Con không cảm thấy đang 'học' mà đang 'chơi'. Não liên kết 'toán = vui' thay vì 'toán = khổ'."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Flashcard và trò chơi"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình in flashcard, chơi 'ai nhanh hơn' với con. Thi đua vui vẻ, không áp lực. Mình cố tình thua để con thấy mình cũng 'tính chậm', không phải chỉ con."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Toán trong đời sống"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đi siêu thị: 'Con ơi, 3 gói bánh 15k, hết bao nhiêu tiền?' Chia bánh cho cả nhà: '12 cái bánh, 4 người, mỗi người mấy cái?' Toán xuất hiện tự nhiên, không phải trong vở → con thấy toán có ích → bớt ghét."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Bí quyết của mình: đừng bắt đầu bằng vở bài tập. Bắt đầu bằng game, bằng trò chơi, bằng cuộc sống. Khi con đã hết sợ, quay lại vở bài tập sẽ dễ hơn nhiều."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lời khuyên cho phụ huynh có con sợ toán"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Đừng đổ lỗi cho con.** Con không lười, không dốt. Con đang sợ. Và sợ là phản ứng tự nhiên khi não cảm thấy bị đe dọa.",
+          "**Nhìn lại cách mình đã dạy con.** Có khi nào mình la mắng, so sánh, tạo áp lực không? Nếu có, hãy thay đổi từ mình trước.",
+          "**Kiên nhẫn.** Nỗi sợ không biến mất sau 1 tuần. Cần ít nhất 2-3 tháng kiên trì để thấy thay đổi.",
+          "**Tìm cách làm toán vui hơn.** Game, app, trò chơi, cuộc sống – bất cứ cách nào để con thấy toán không đáng sợ.",
+          "**Khen quá trình, không chỉ kết quả.** Con cố gắng = đáng khen, bất kể đúng hay sai."
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Câu hỏi thường gặp về con sợ học toán"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Con sợ học toán có phải vì con dốt không?",
+      "answer": "Không. Sợ toán và dốt toán là hai điều khác nhau. Nhiều trẻ sợ toán vì từng bị la mắng khi làm sai, bị so sánh với bạn, hoặc bị hổng kiến thức từ trước. Khi sợ, não 'đóng cửa', không tiếp thu được → làm sai nhiều hơn → tưởng mình dốt. Thực ra con không dốt, chỉ đang sợ."
+    },
+    {
+      "question": "Làm sao biết con đang sợ toán hay chỉ lười học?",
+      "answer": "Quan sát cảm xúc của con. Nếu con khóc, cáu gắt, tìm cớ né tránh, nói 'con ghét toán', 'con không biết làm' ngay khi nhìn đề – đó là dấu hiệu sợ. Trẻ lười thường không có phản ứng cảm xúc mạnh, chỉ đơn giản là không muốn làm. Trẻ sợ có biểu hiện lo lắng rõ ràng."
+    },
+    {
+      "question": "Con sợ toán từ lâu rồi, giờ có muộn để thay đổi không?",
+      "answer": "Không muộn. Não trẻ có khả năng thay đổi rất tốt (neuroplasticity). Dù con đã sợ toán nhiều năm, vẫn có thể thay đổi nếu tiếp cận đúng cách. Tuy nhiên, sợ càng lâu thì cần thời gian phục hồi càng lâu. Kiên nhẫn là chìa khóa."
+    },
+    {
+      "question": "Mình nên làm gì khi con khóc vì không làm được bài toán?",
+      "answer": "Dừng lại ngay. Không ép con làm tiếp khi con đang khóc vì não lúc đó không thể tiếp thu. Ôm con, để con bình tĩnh, nói: 'Không sao, bài này khó, mình nghỉ một chút rồi làm sau nhé.' Khi con đã bình tĩnh (có thể là sau 10-15 phút hoặc hôm sau), hãy quay lại với bài dễ hơn trước."
+    },
+    {
+      "question": "Có nên cho con nghỉ học toán một thời gian để hết sợ không?",
+      "answer": "Không nên nghỉ hoàn toàn, nhưng nên giảm áp lực. Thay vì làm bài tập nặng, hãy chuyển sang game toán, trò chơi, hoặc toán trong cuộc sống. Mục tiêu là giữ con tiếp xúc với toán nhưng theo cách vui vẻ, không áp lực. Khi con đã bớt sợ, từ từ đưa bài tập trở lại."
+    },
+    {
+      "question": "App nào giúp con hết sợ toán?",
+      "answer": "Nên chọn app có game hóa (điểm, sao, level) để con cảm thấy đang chơi chứ không phải học. Sorokid là một lựa chọn tốt vì có lộ trình từ dễ đến khó, có phần thưởng để tạo động lực, và có báo cáo để phụ huynh theo dõi. Quan trọng là chọn app con thích, vì con chỉ học được khi con muốn học."
+    },
+    {
+      "question": "Sorokid giúp con hết sợ toán như thế nào?",
+      "answer": "Sorokid biến việc học toán thành trò chơi với điểm số, huy hiệu, và các level. Con được bắt đầu từ bài dễ, tự tin với thành công nhỏ, rồi dần dần làm bài khó hơn. App không 'phạt' khi con sai mà chỉ cho con làm lại. Cách tiếp cận này giúp con liên kết 'toán = vui' thay vì 'toán = sợ'."
+    },
+    {
+      "question": "Phụ huynh không giỏi toán có thể giúp con hết sợ toán không?",
+      "answer": "Được. Việc giúp con hết sợ không cần phụ huynh giỏi toán. Quan trọng là thái độ: không la mắng khi con sai, khen quá trình thay vì kết quả, kiên nhẫn đồng hành. Phần kiến thức toán có thể dùng app hoặc video hỗ trợ. Phần tâm lý – chỉ có bố mẹ mới làm được."
+    },
+    {
+      "question": "Mất bao lâu để con hết sợ toán?",
+      "answer": "Thường cần 2-3 tháng kiên trì để thấy thay đổi rõ rệt. Tháng đầu, con có thể vẫn sợ nhưng bớt khóc. Tháng 2, con bắt đầu chấp nhận và tự giác hơn. Tháng 3 trở đi, con có thể bắt đầu thích. Tuy nhiên, thời gian phụ thuộc vào mức độ sợ ban đầu và sự kiên trì của phụ huynh."
+    },
+    {
+      "question": "Con học Sorokid thì có cần bố mẹ ngồi cạnh không?",
+      "answer": "Nên có, đặc biệt giai đoạn đầu. Dù Sorokid thiết kế để con tự học, nhưng sự hiện diện của bố mẹ giúp con cảm thấy an toàn, được hỗ trợ. Không cần dạy con (app sẽ hướng dẫn), chỉ cần ngồi cạnh, động viên, khen khi con cố gắng. 15 phút ngồi cùng con mỗi ngày tạo khác biệt lớn."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid giúp con học toán như chơi game – có điểm, có sao, có phần thưởng. Không áp lực, không la mắng. Con sẽ dần dần thích toán hơn.",
+    "buttonText": "Cho con thử chơi toán miễn phí",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Con sợ học toán: Hành trình giúp con từ khóc mỗi tối đến tự giác làm bài",
+    "description": "Con khóc mỗi khi làm bài toán, né tránh, nói 'con ghét toán'. Mình chia sẻ cách đã giúp con hết sợ và bắt đầu thích học toán sau 3 tháng.",
+    "keywords": "con sợ học toán, con ghét toán, trẻ sợ toán, làm sao để con hết sợ toán, con khóc khi học toán, giúp con thích học toán, tâm lý trẻ sợ toán"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-05",
+    "author": "Chị Thảo"
+  }
+}

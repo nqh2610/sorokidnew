@@ -1,0 +1,810 @@
+﻿[
+    {
+        "File":  "10-phut-moi-ngay-phu-huynh-nen-lam-gi-khi-con-hoc-toan",
+        "Title":  "10 phút mỗi tối – mình chỉ cần làm vậy thôi",
+        "TitleLen":  43,
+        "Desc":  "Trước đây mình ngồi kèm con 2 tiếng mỗi tối. Bây giờ mình chỉ dành 10 phút – nhưng đúng cách. Và kết quả tốt hơn hẳn.",
+        "DescLen":  117,
+        "Keywords":  "10 phút học toán mỗi ngày, phụ huynh hỗ trợ con học toán, cách giúp con học toán"
+    },
+    {
+        "File":  "ba-khong-biet-soroban-van-kem-con-duoc",
+        "Title":  "Chồng mình không biết Soroban – nhưng lại là người \"kèm\" con giỏi nhất",
+        "TitleLen":  70,
+        "Desc":  "Anh ấy không biết \u0027bạn của 5\u0027 là gì. Nhưng cách anh ấy đồng hành với con lại hiệu quả hơn mình nghĩ.",
+        "DescLen":  100,
+        "Keywords":  "phụ huynh không biết soroban, kèm con học soroban, ba dạy con soroban, học soroban tại nhà"
+    },
+    {
+        "File":  "ba-viec-phu-huynh-chi-nen-lam-khi-con-hoc",
+        "Title":  "Ba việc mình làm bây giờ – thay vì ngồi kèm con",
+        "TitleLen":  47,
+        "Desc":  "Trước mình làm nhiều lắm: ngồi cạnh, sửa bài, giảng giải, la mắng. Bây giờ mình chỉ làm 3 việc. Và mọi thứ nhẹ nhàng hơn nhiều.",
+        "DescLen":  127,
+        "Keywords":  "phụ huynh nên làm gì khi con học, cách hỗ trợ con học toán, sai lầm khi kèm con học"
+    },
+    {
+        "File":  "ban-tin-bang-soroban-ao-hay-ban-that",
+        "Title":  "Bàn tính Soroban – Mua bàn thật hay dùng bàn ảo?",
+        "TitleLen":  48,
+        "Desc":  "Mình từng mua bàn tính Soroban thật cho con. Giờ thì chuyển sang bàn ảo. Đây là lý do.",
+        "DescLen":  86,
+        "Keywords":  "bàn tính Soroban, Soroban thật hay ảo, mua Soroban"
+    },
+    {
+        "File":  "bang-cuu-chuong-hoc-thuoc-hay-hieu",
+        "Title":  "Bảng cửu chương – con nên học thuộc hay cần hiểu? Mình đã chọn cả hai",
+        "TitleLen":  69,
+        "Desc":  "Ông bà bảo phải học thuộc. Sách bảo phải hiểu bản chất. Mình rối không biết theo ai.",
+        "DescLen":  84,
+        "Keywords":  "bảng cửu chương, học thuộc bảng nhân, dạy con phép nhân"
+    },
+    {
+        "File":  "bieu-dien-so-hang-chuc-tram-soroban",
+        "Title":  "Biểu diễn số hàng chục, trăm, nghìn trên Soroban",
+        "TitleLen":  48,
+        "Desc":  "Sau khi học số 0-9, con cần biết cách biểu diễn số lớn hơn. Bài này hướng dẫn cách đọc số 2-3-4 chữ số trên Soroban.",
+        "DescLen":  116,
+        "Keywords":  "số hàng chục soroban, cách đọc số lớn trên soroban, biểu diễn số nhiều chữ số soroban, số hàng trăm soroban"
+    },
+    {
+        "File":  "bo-ban-khong-biet-day-con-hoc-toan",
+        "Title":  "Bố bận cả ngày – nhưng vẫn muốn đóng góp việc học của con",
+        "TitleLen":  57,
+        "Desc":  "Chồng mình đi làm từ sáng đến tối. Không có thời gian kèm con. Nhưng anh ấy tìm được cách khác để tham gia.",
+        "DescLen":  107,
+        "Keywords":  "bố bận không kèm con, bố tham gia việc học, vai trò của bố"
+    },
+    {
+        "File":  "bo-me-can-hoc-soroban-de-day-con-khong",
+        "Title":  "Bố mẹ có cần biết Soroban mới dạy được con không? – Không đâu",
+        "TitleLen":  61,
+        "Desc":  "Mình không biết Soroban. Mình lo không kèm được con. Nhưng hóa ra không cần.",
+        "DescLen":  76,
+        "Keywords":  "bố mẹ không biết soroban, kèm con học soroban, phụ huynh hỗ trợ con"
+    },
+    {
+        "File":  "cach-bieu-dien-so-tren-soroban",
+        "Title":  "Cách biểu diễn số 0-9 trên Soroban – Bài học đầu tiên của con",
+        "TitleLen":  61,
+        "Desc":  "Hướng dẫn chi tiết cách đọc và biểu diễn số từ 0 đến 9 trên bàn tính Soroban. Có bảng minh họa và bài tập cho con luyện.",
+        "DescLen":  120,
+        "Keywords":  "cách đếm soroban, biểu diễn số soroban, số trên bàn tính soroban, cách đọc số soroban"
+    },
+    {
+        "File":  "cach-cam-va-tu-the-hoc-soroban",
+        "Title":  "Cách cầm Soroban và tư thế học đúng – Nền tảng quan trọng nhất",
+        "TitleLen":  62,
+        "Desc":  "Cầm Soroban sai cách khiến con học chậm và dễ nản. Mình chia sẻ cách cầm đúng, tư thế ngồi chuẩn mà thầy cô dạy.",
+        "DescLen":  112,
+        "Keywords":  "cách cầm soroban, tư thế học soroban, cách gạt hạt soroban, cách sử dụng soroban"
+    },
+    {
+        "File":  "cach-day-con-hoc-toan-ma-khong-can-giao-vien",
+        "Title":  "Cách dạy con học toán mà không cần giáo viên",
+        "TitleLen":  44,
+        "Desc":  "Mình không có tiền thuê gia sư. Nhưng con vẫn học toán tốt. Đây là cách mình làm.",
+        "DescLen":  81,
+        "Keywords":  "dạy con học toán, không cần gia sư, tự dạy con toán"
+    },
+    {
+        "File":  "cau-tao-ban-tinh-soroban",
+        "Title":  "Cấu tạo bàn tính Soroban – Phụ huynh cần biết gì trước khi cho con học?",
+        "TitleLen":  71,
+        "Desc":  "Bàn tính Soroban gồm những bộ phận nào? Mình giải thích đơn giản để phụ huynh hiểu và có thể hỗ trợ con ngay từ đầu.",
+        "DescLen":  116,
+        "Keywords":  "cấu tạo soroban, bàn tính soroban gồm những gì, các bộ phận soroban, cấu tạo bàn tính soroban"
+    },
+    {
+        "File":  "chia-san-bai-toan-lam-con-soi-nao",
+        "Title":  "Bài toán chia sẻ làm con mình rối – đây là cách mình giúp",
+        "TitleLen":  57,
+        "Desc":  "\"Mẹ ơi, 24 chia 6 là sao?\" Con hỏi, mình giải thích mãi không hiểu. Rồi mình tìm cách khác.",
+        "DescLen":  91,
+        "Keywords":  "dạy con phép chia, trẻ khó học chia, cách giải thích phép chia"
+    },
+    {
+        "File":  "cho-con-hoc-them-hay-tu-hoc-o-nha",
+        "Title":  "Cho con học thêm hay tự học ở nhà? – Mình cân nhắc rồi chọn",
+        "TitleLen":  59,
+        "Desc":  "Học thêm tốn tiền, tốn thời gian. Tự học ở nhà thì ai dạy? Mình phân tích ưu nhược điểm.",
+        "DescLen":  88,
+        "Keywords":  "học thêm hay tự học, so sánh học thêm, con học ở nhà"
+    },
+    {
+        "File":  "chon-lop-soroban-hay-hoc-online",
+        "Title":  "Lớp học, gia sư hay online – mình đã chọn cách nào cho con?",
+        "TitleLen":  59,
+        "Desc":  "Khi quyết định cho con học Soroban, mình phân vân: đi lớp, mời gia sư, hay học online? Đây là cách mình cân nhắc và lựa chọn.",
+        "DescLen":  125,
+        "Keywords":  "học soroban ở đâu, lớp học soroban, học soroban online hay offline"
+    },
+    {
+        "File":  "con-4-tuoi-hoc-soroban-co-som-qua-khong",
+        "Title":  "Con 4 tuổi – mình phân vân không biết cho học Soroban sớm có tốt không",
+        "TitleLen":  70,
+        "Desc":  "Nghe nói càng học sớm càng tốt. Nhưng 4 tuổi liệu có quá nhỏ? Mình tìm hiểu và đây là kết luận.",
+        "DescLen":  95,
+        "Keywords":  "4 tuổi học soroban, học soroban sớm, tuổi bắt đầu soroban"
+    },
+    {
+        "File":  "con-biet-tinh-nhung-doc-de-khong-hieu",
+        "Title":  "Con biết tính nhưng đọc đề không hiểu – hóa ra không phải lỗi toán",
+        "TitleLen":  66,
+        "Desc":  "Con tính nhanh lắm, nhưng gặp bài toán có lời văn là bí. Mình từng nghĩ con dốt toán – hóa ra con gặp khó ở chỗ khác.",
+        "DescLen":  117,
+        "Keywords":  "con không hiểu đề toán, trẻ khó đọc hiểu toán có lời văn, con biết tính nhưng không hiểu đề"
+    },
+    {
+        "File":  "con-dem-tren-ngon-tay-co-sao-khong",
+        "Title":  "Con đếm trên ngón tay – mình từng lo lắm, giờ thì hết",
+        "TitleLen":  53,
+        "Desc":  "Thấy con lớp 2 vẫn đếm tay, mình sợ con bị chậm. Nhưng tìm hiểu xong mình bình tĩnh hơn nhiều.",
+        "DescLen":  94,
+        "Keywords":  "trẻ đếm ngón tay, finger math, soroban và finger math"
+    },
+    {
+        "File":  "con-ghet-toan-chi-thich-doc-sach",
+        "Title":  "Con ghét toán, chỉ thích đọc sách – mình từng lo con \"lệch\"",
+        "TitleLen":  59,
+        "Desc":  "Con mình đọc sách cả ngày nhưng mở vở toán là than thở. Mình từng nghĩ phải ép con học đều.",
+        "DescLen":  91,
+        "Keywords":  "trẻ thiên văn ghét toán, con không thích học toán, cân bằng văn toán"
+    },
+    {
+        "File":  "con-hay-lam-sai-phep-tinh-don-gian",
+        "Title":  "Con hay làm sai phép tính đơn giản – mình từng tức giận, giờ hiểu hơn",
+        "TitleLen":  69,
+        "Desc":  "3 + 4 = 8. Con viết thế. Mình tức: sao dễ thế mà cũng sai? Rồi mình tìm hiểu và thấy thương con.",
+        "DescLen":  96,
+        "Keywords":  "trẻ hay làm sai toán, lỗi tính toán đơn giản, con cẩu thả"
+    },
+    {
+        "File":  "con-hay-lam-sai-phep-tru-co-nho",
+        "Title":  "Con hay làm sai phép trừ có nhớ – Mình chỉ con kiểu này",
+        "TitleLen":  55,
+        "Desc":  "Phép trừ có nhớ là cơn ác mộng của nhiều trẻ lớp 2-3. Con mình cũng vậy, nhưng giờ đã khác.",
+        "DescLen":  91,
+        "Keywords":  "phép trừ có nhớ, con sai phép trừ, dạy trừ có nhớ"
+    },
+    {
+        "File":  "con-hay-quen-bang-cuu-chuong",
+        "Title":  "Con học thuộc bảng cửu chương rồi lại quên – mình đã thử cách khác",
+        "TitleLen":  66,
+        "Desc":  "Tối nào cũng đọc bảng cửu chương, sáng mai kiểm tra lại quên. Mình từng nghĩ con kém trí nhớ – hóa ra do cách học.",
+        "DescLen":  114,
+        "Keywords":  "con quên bảng cửu chương, cách học thuộc bảng cửu chương, trẻ không nhớ bảng nhân"
+    },
+    {
+        "File":  "con-hoc-soroban-co-giup-thi-vao-lop-6-khong",
+        "Title":  "Con học Soroban có giúp thi vào lớp 6 không?",
+        "TitleLen":  44,
+        "Desc":  "Nhiều mẹ hỏi mình: Soroban có giúp con thi vào trường chuyên không? Mình chia sẻ kinh nghiệm.",
+        "DescLen":  93,
+        "Keywords":  "Soroban thi lớp 6, thi vào trường chuyên, Soroban lợi ích"
+    },
+    {
+        "File":  "con-hoc-soroban-nhung-diem-toan-van-thap",
+        "Title":  "Con học Soroban 3 tháng mà điểm vẫn thế – mình từng muốn bỏ cuộc",
+        "TitleLen":  64,
+        "Desc":  "Mình thất vọng lắm. Học tốn tiền tốn công mà kết quả không thấy đâu. Cho đến khi mình hiểu ra điều này.",
+        "DescLen":  103,
+        "Keywords":  "học soroban có giúp gì không, con học soroban không tiến bộ, soroban có hiệu quả không, điểm toán vẫn thấp"
+    },
+    {
+        "File":  "con-hoc-soroban-nhung-khong-thich-luyen-tap",
+        "Title":  "Con học Soroban nhưng không thích luyện tập – Mình làm thế này",
+        "TitleLen":  62,
+        "Desc":  "Học Soroban cần luyện tập đều đặn. Nhưng con mình cứ lười. Mình phải tìm cách.",
+        "DescLen":  78,
+        "Keywords":  "con lười luyện Soroban, tạo động lực học Soroban, Soroban hàng ngày"
+    },
+    {
+        "File":  "con-hoc-soroban-nhung-o-truong-day-cach-khac",
+        "Title":  "Con học Soroban nhưng ở trường dạy khác – có bị loạn không?",
+        "TitleLen":  59,
+        "Desc":  "Con mình học Soroban ở nhà, nhưng trường dạy đặt tính. Mình lo con bị nhầm lẫn.",
+        "DescLen":  79,
+        "Keywords":  "soroban và toán trường, hai cách học khác nhau, con bị loạn cách tính"
+    },
+    {
+        "File":  "con-hoc-toan-cham-co-that-la-do-con",
+        "Title":  "Con học toán chậm hơn bạn – mình đã lo sai chỗ",
+        "TitleLen":  46,
+        "Desc":  "Mình từng so sánh con với bạn bè, lo lắng vì con \"chậm\". Cho đến khi mình hiểu: mỗi đứa trẻ có tốc độ riêng, và \"chậm\" không có nghĩa là \"kém\".",
+        "DescLen":  143,
+        "Keywords":  "con học toán chậm, trẻ học toán chậm, con tiếp thu chậm"
+    },
+    {
+        "File":  "con-hoc-toan-gioi-nhung-khong-thich-toan",
+        "Title":  "Con học toán giỏi nhưng không thích toán – Có sao không?",
+        "TitleLen":  56,
+        "Desc":  "Con mình điểm toán cao nhưng hay nói ghét toán. Mình lo quá nên tìm hiểu.",
+        "DescLen":  73,
+        "Keywords":  "con giỏi toán nhưng ghét toán, không thích toán, tạo hứng thú học toán"
+    },
+    {
+        "File":  "con-hoc-toan-online-co-tot-khong",
+        "Title":  "Mình lo con học online – nhưng 6 tháng sau thì hết lo",
+        "TitleLen":  53,
+        "Desc":  "Ban đầu mình sợ con học online sẽ lười, không hiệu quả. Thử rồi mình thấy khác.",
+        "DescLen":  79,
+        "Keywords":  "học toán online, app học toán, con học qua điện thoại"
+    },
+    {
+        "File":  "con-hoc-toan-tot-nhung-giai-toan-do-cham",
+        "Title":  "Con tính toán nhanh nhưng giải toán đố chậm – vấn đề ở đâu?",
+        "TitleLen":  59,
+        "Desc":  "Con mình tính nhẩm giỏi lắm. Nhưng gặp bài toán đố là chịu. Mình tìm hiểu mới biết tại sao.",
+        "DescLen":  91,
+        "Keywords":  "giải toán đố, tính toán giỏi nhưng giải đề kém, phân tích đề toán"
+    },
+    {
+        "File":  "con-hoc-toan-tot-o-truong-nhung-ve-nha-khong-lam-duoc",
+        "Title":  "Con học toán tốt ở trường nhưng về nhà không làm được?",
+        "TitleLen":  54,
+        "Desc":  "Cô giáo khen con hiểu bài. Nhưng tối ôn bài thì con quên hết. Mình tìm ra nguyên nhân.",
+        "DescLen":  86,
+        "Keywords":  "con quên bài nhanh, học tốt ở trường kém ở nhà, con không nhớ bài"
+    },
+    {
+        "File":  "con-khoc-moi-khi-lam-bai-toan",
+        "Title":  "Con khóc mỗi khi mở vở toán – mình đau lòng không biết làm gì",
+        "TitleLen":  61,
+        "Desc":  "Thấy con sợ toán đến mức khóc, mình tự hỏi mình đã làm gì sai. Đây là hành trình mình giúp con.",
+        "DescLen":  95,
+        "Keywords":  "trẻ sợ toán, con khóc khi làm toán, lo lắng toán học"
+    },
+    {
+        "File":  "con-khong-nghe-loi-khi-bo-me-day-toan",
+        "Title":  "Con không nghe lời khi bố mẹ dạy toán – mình đã làm sai gì?",
+        "TitleLen":  59,
+        "Desc":  "Cô giáo nói con ngoan, nhưng về nhà mình dạy thì con cãi lại, khóc lóc. Mình từng nghĩ con hư – hóa ra vấn đề ở mình.",
+        "DescLen":  117,
+        "Keywords":  "con không nghe lời khi học toán, dạy con học toán bị cãi, con phản kháng khi học"
+    },
+    {
+        "File":  "con-khong-tap-trung-khi-hoc-toan",
+        "Title":  "Con không tập trung nổi 5 phút khi học toán – mình từng nghĩ con bị tăng động",
+        "TitleLen":  77,
+        "Desc":  "Ngồi học 2 phút là con ngọ nguậy. Mình lo con bị ADHD. Nhưng tìm hiểu xong mình thấy khác.",
+        "DescLen":  90,
+        "Keywords":  "trẻ không tập trung, con mất tập trung học toán, tăng động hay lười"
+    },
+    {
+        "File":  "con-khong-thich-hoc-chi-thich-choi",
+        "Title":  "Con chỉ thích chơi, không thích học – mình từng lo, giờ thì khác",
+        "TitleLen":  64,
+        "Desc":  "Con mình 6 tuổi chỉ muốn chơi. Ép học là khóc. Mình tìm cách biến học thành chơi.",
+        "DescLen":  81,
+        "Keywords":  "trẻ không thích học, con chỉ thích chơi, học qua chơi"
+    },
+    {
+        "File":  "con-lam-toan-cham-hon-ban",
+        "Title":  "Con làm bài chậm, bạn nộp rồi con chưa xong – mình từng rất lo",
+        "TitleLen":  62,
+        "Desc":  "Cả lớp nộp bài, con vẫn cắm cúi làm. Cô giáo nhắc, con càng run. Mình đã hiểu vấn đề không nằm ở \u0027chậm\u0027.",
+        "DescLen":  104,
+        "Keywords":  "con làm toán chậm, trẻ làm bài chậm hơn bạn, con không kịp làm bài kiểm tra"
+    },
+    {
+        "File":  "con-lam-toan-dung-nhung-cham",
+        "Title":  "Con làm toán đúng nhưng chậm – Có cần lo không?",
+        "TitleLen":  47,
+        "Desc":  "Con tính đúng nhưng mất rất lâu. Làm bài kiểm tra thường thiếu thời gian. Mình lo quá.",
+        "DescLen":  86,
+        "Keywords":  "con làm toán chậm, làm bài kiểm tra không kịp, tăng tốc độ tính toán"
+    },
+    {
+        "File":  "con-lop-1-chua-biet-cong-tru-tram-vi",
+        "Title":  "Con lớp 1 chưa biết cộng trừ trong phạm vi 10 – mình có lo quá không?",
+        "TitleLen":  69,
+        "Desc":  "Bạn bè cộng trừ nhoay nhoáy, con mình còn đếm ngón tay. Mình so sánh rồi lo lắng.",
+        "DescLen":  81,
+        "Keywords":  "con lớp 1 chậm toán, trẻ chưa biết cộng trừ, lo lắng con học toán"
+    },
+    {
+        "File":  "con-lop-1-khong-nhan-mat-so",
+        "Title":  "Con lớp 1 không nhận mặt số – mình từng nghĩ con chậm",
+        "TitleLen":  53,
+        "Desc":  "Con không phân biệt được số 6 và số 9. Mình lo quá. Nhưng hóa ra đây là chuyện bình thường.",
+        "DescLen":  91,
+        "Keywords":  "trẻ không nhận mặt số, con lớp 1 khó học toán, dạy con nhận số"
+    },
+    {
+        "File":  "con-lop-3-van-dem-tay-binh-thuong-khong",
+        "Title":  "Con lớp 3 vẫn đếm tay – mình lo quá hỏi hết mọi người",
+        "TitleLen":  53,
+        "Desc":  "Lớp 3 rồi mà con vẫn xòe tay ra đếm. Bạn bè làm nhanh hơn. Mình hỏi khắp nơi để hiểu.",
+        "DescLen":  85,
+        "Keywords":  "lớp 3 đếm tay, trẻ tính toán bằng ngón tay, dạy con bỏ đếm tay"
+    },
+    {
+        "File":  "con-noi-con-ghet-toan-minh-da-phan-ung-sai",
+        "Title":  "Con nói \"con ghét toán\" – mình đã phản ứng sai thế nào?",
+        "TitleLen":  55,
+        "Desc":  "Lần đầu nghe con nói ghét toán, mình hoảng. Mình cố thuyết phục, ép học thêm – và làm mọi thứ tệ hơn. Đây là bài học của mình.",
+        "DescLen":  126,
+        "Keywords":  "con ghét học toán, trẻ không thích toán, làm sao khi con ghét toán"
+    },
+    {
+        "File":  "con-so-hoc-toan-phu-huynh-dang-lam-sai-o-dau",
+        "Title":  "Con sợ toán – mình đã vô tình làm gì sai?",
+        "TitleLen":  41,
+        "Desc":  "Mình từng nghĩ con sợ toán là do con yếu. Cho đến khi nhìn lại những gì mình nói, mình mới hiểu: đôi khi vấn đề không phải ở con.",
+        "DescLen":  129,
+        "Keywords":  "con sợ học toán, trẻ sợ toán, tại sao con sợ toán"
+    },
+    {
+        "File":  "con-so-kiem-tra-toan",
+        "Title":  "Con sợ kiểm tra toán đến mức đau bụng – mình mới hiểu vì sao",
+        "TitleLen":  60,
+        "Desc":  "Mỗi lần sắp thi toán, con kêu đau bụng, đau đầu. Mình tưởng con giả vờ – hóa ra là thật.",
+        "DescLen":  88,
+        "Keywords":  "con sợ kiểm tra toán, trẻ lo lắng khi thi, con đau bụng trước khi thi"
+    },
+    {
+        "File":  "con-so-toan-vi-me-tung-la-con",
+        "Title":  "Con sợ toán vì mẹ từng la con – Mình nhận ra muộn",
+        "TitleLen":  49,
+        "Desc":  "Mình hay la con khi con làm sai toán. Hóa ra đó là nguyên nhân con sợ học.",
+        "DescLen":  74,
+        "Keywords":  "con sợ toán, la con khi học, tâm lý học toán"
+    },
+    {
+        "File":  "con-thi-tot-nhung-lam-bai-tap-thi-sai",
+        "Title":  "Con thi thì tốt, làm bài tập thì sai – mình từng không hiểu",
+        "TitleLen":  59,
+        "Desc":  "Kiểm tra được 9 điểm. Bài tập về nhà sai lung tung. Mình tưởng con cố tình, hóa ra không phải.",
+        "DescLen":  94,
+        "Keywords":  "con làm bài tập sai, thi tốt bài tập kém, tập trung khi làm bài"
+    },
+    {
+        "File":  "con-tinh-cong-tru-cham-qua",
+        "Title":  "Con tính cộng trừ chậm quá – bạn bè làm xong con còn đang đếm",
+        "TitleLen":  61,
+        "Desc":  "Mình thấy con làm bài kiểm tra, bạn nộp hết rồi con mới được nửa. Mình đau lòng.",
+        "DescLen":  80,
+        "Keywords":  "trẻ tính toán chậm, con làm toán chậm, cải thiện tốc độ tính toán"
+    },
+    {
+        "File":  "con-tinh-nham-hay-sai-do-dau",
+        "Title":  "Con tính nhẩm hay sai – Do đâu và sửa thế nào?",
+        "TitleLen":  46,
+        "Desc":  "Mình cho con tính nhẩm thì sai hoài. Tưởng con kém toán, hóa ra không phải.",
+        "DescLen":  75,
+        "Keywords":  "con tính nhẩm sai, rèn tính nhẩm cho con, cách tính nhẩm nhanh"
+    },
+    {
+        "File":  "con-tinh-toan-can-than-nhung-hay-doc-nham-de-bai",
+        "Title":  "Con tính toán cẩn thận nhưng hay đọc nhầm đề bài",
+        "TitleLen":  48,
+        "Desc":  "Bài kiểm tra về, mình tưởng con tính sai. Hóa ra con đọc nhầm đề.",
+        "DescLen":  65,
+        "Keywords":  "con đọc nhầm đề, sai vì đọc đề, rèn đọc hiểu đề toán"
+    },
+    {
+        "File":  "con-trai-va-con-gai-hoc-toan-khac-nhau-khong",
+        "Title":  "Con trai và con gái học toán khác nhau không? – Sự thật mình tìm hiểu được",
+        "TitleLen":  74,
+        "Desc":  "\"Con gái không giỏi toán bằng con trai\" – mình từng nghe câu này. Tìm hiểu xong mình thấy khác.",
+        "DescLen":  95,
+        "Keywords":  "con gái học toán, giới tính và học toán, định kiến giới trong học tập"
+    },
+    {
+        "File":  "dau-hieu-con-can-ho-tro-them-ve-toan",
+        "Title":  "5 dấu hiệu con cần được hỗ trợ thêm về toán – mình từng bỏ qua",
+        "TitleLen":  62,
+        "Desc":  "Mình từng nghĩ con ổn. Đến khi cô giáo gọi điện mình mới biết. Đây là những dấu hiệu cần chú ý.",
+        "DescLen":  95,
+        "Keywords":  "dấu hiệu khó học toán, con cần hỗ trợ toán, nhận biết vấn đề học toán"
+    },
+    {
+        "File":  "day-con-toan-khong-can-giao-vien",
+        "Title":  "Mình không đủ tiền cho con học thêm – nhưng con vẫn học tốt",
+        "TitleLen":  59,
+        "Desc":  "Học thêm đắt quá. Mình tìm cách khác để con vẫn có nền tảng toán tốt mà không tốn kém.",
+        "DescLen":  86,
+        "Keywords":  "học toán không cần gia sư, tự dạy con toán, tiết kiệm chi phí học thêm"
+    },
+    {
+        "File":  "day-con-toan-qua-tro-choi-hang-ngay",
+        "Title":  "Mình dạy con toán lúc đi siêu thị – không ai biết đang học",
+        "TitleLen":  58,
+        "Desc":  "Không cần sách vở, không cần bàn học. Toán ở khắp nơi nếu bạn biết cách.",
+        "DescLen":  72,
+        "Keywords":  "dạy toán qua trò chơi, toán trong đời sống, học toán vui"
+    },
+    {
+        "File":  "dong-hanh-cung-con-hoc-toan-la-gi",
+        "Title":  "Mình từng nghĩ đồng hành là ngồi kèm con học – hóa ra sai hoàn toàn",
+        "TitleLen":  67,
+        "Desc":  "Trước đây mình ngồi cạnh con mỗi tối, sửa từng bài, nhắc từng chữ. Tưởng là đồng hành, hóa ra mình đang biến giờ học thành giờ căng thẳng cho cả hai.",
+        "DescLen":  149,
+        "Keywords":  "đồng hành cùng con học toán, cách đồng hành con học, hỗ trợ con học toán, phụ huynh kèm con học"
+    },
+    {
+        "File":  "flashcard-soroban-co-can-thiet-khong",
+        "Title":  "Mình từng mua flashcard Soroban – đây là điều mình học được",
+        "TitleLen":  59,
+        "Desc":  "Thấy người ta khoe flashcard, mình cũng mua. Dùng xong mới hiểu khi nào cần, khi nào không.",
+        "DescLen":  91,
+        "Keywords":  "flashcard soroban, học soroban tại nhà, công cụ học soroban"
+    },
+    {
+        "File":  "hai-chi-em-hoc-toan-khac-nhau",
+        "Title":  "Hai chị em nhà mình học toán hoàn toàn khác – cùng mẹ mà sao thế?",
+        "TitleLen":  65,
+        "Desc":  "Chị giỏi toán từ nhỏ. Em sợ toán. Mình phải tìm cách khác nhau cho từng con.",
+        "DescLen":  76,
+        "Keywords":  "hai con học khác nhau, dạy từng con khác nhau, con này giỏi con kia yếu"
+    },
+    {
+        "File":  "he-nay-cho-con-hoc-gi-de-khong-quen-toan",
+        "Title":  "Hè này cho con học gì để không quên toán? – Mình chọn cách nhẹ nhàng",
+        "TitleLen":  68,
+        "Desc":  "3 tháng hè, con chơi thả ga. Đến năm học mới quên sạch. Mình tìm cách duy trì mà không áp lực.",
+        "DescLen":  94,
+        "Keywords":  "học hè cho bé, không quên toán kỳ nghỉ, duy trì học hè"
+    },
+    {
+        "File":  "hoc-soroban-co-can-biet-tieng-nhat-khong",
+        "Title":  "Học Soroban có cần biết tiếng Nhật không? – Câu hỏi mình từng thắc mắc",
+        "TitleLen":  70,
+        "Desc":  "Soroban từ Nhật Bản. Mình lo không biết tiếng Nhật có học được không. Đây là câu trả lời.",
+        "DescLen":  89,
+        "Keywords":  "soroban tiếng Việt, học soroban không biết tiếng Nhật, soroban cho người Việt"
+    },
+    {
+        "File":  "hoc-soroban-co-can-mua-ban-tinh-khong",
+        "Title":  "Học Soroban có cần mua bàn tính không? – Mình đã mua rồi đây là review",
+        "TitleLen":  70,
+        "Desc":  "Thấy người ta khoe bàn tính đẹp, mình cũng mua. Dùng xong mới biết cần hay không.",
+        "DescLen":  81,
+        "Keywords":  "mua bàn tính soroban, bàn tính soroban cho bé, dụng cụ học soroban"
+    },
+    {
+        "File":  "hoc-soroban-mat-bao-lau-de-tinh-nham-duoc",
+        "Title":  "Học Soroban bao lâu thì con tính nhẩm được? Đừng kỳ vọng như mình",
+        "TitleLen":  65,
+        "Desc":  "Mình từng nghĩ 2-3 tháng là con tính nhẩm vèo vèo. Thực tế khác xa. Đây là lộ trình thực tế mình thấy từ con mình.",
+        "DescLen":  114,
+        "Keywords":  "học soroban bao lâu, lộ trình học soroban, các cấp độ soroban"
+    },
+    {
+        "File":  "hoc-soroban-online-co-phu-hop-cho-phu-huynh-ban-ron",
+        "Title":  "Mình đi làm cả ngày – làm sao kèm con học Soroban?",
+        "TitleLen":  50,
+        "Desc":  "Mình từng nghĩ học Soroban phải có người ngồi kèm. Hóa ra con có thể tự học online – và mình theo dõi từ xa.",
+        "DescLen":  108,
+        "Keywords":  "học soroban online, soroban cho phụ huynh bận, học soroban tại nhà"
+    },
+    {
+        "File":  "hoc-toan-moi-ngay-15-phut-co-hieu-qua",
+        "Title":  "Cho con học toán 15 phút/ngày – tưởng ít nhưng hiệu quả bất ngờ",
+        "TitleLen":  63,
+        "Desc":  "Mình từng nghĩ phải học nhiều mới giỏi. Hóa ra 15 phút đều đặn còn hơn 2 tiếng cuối tuần.",
+        "DescLen":  89,
+        "Keywords":  "học toán 15 phút, học đều đặn, phương pháp học hiệu quả"
+    },
+    {
+        "File":  "hoc-toan-nhu-choi-game-co-thuc-su-hieu-qua",
+        "Title":  "Con mình học toán trên app – tưởng chơi game hóa ra học thật",
+        "TitleLen":  60,
+        "Desc":  "Mình từng nghi ngờ: học mà như chơi thì học được gì? Cho đến khi thấy con tự ngồi làm bài mà không ai bắt.",
+        "DescLen":  106,
+        "Keywords":  "học toán như chơi game, gamification học toán, ứng dụng học toán cho trẻ"
+    },
+    {
+        "File":  "kem-con-hoc-toan-ma-hai-me-con-cai-nhau",
+        "Title":  "Kèm con học toán mà hai mẹ con cãi nhau – mình quyết định dừng lại",
+        "TitleLen":  66,
+        "Desc":  "Mỗi tối kèm con học là một trận chiến. Cuối cùng mình chọn cách khác.",
+        "DescLen":  69,
+        "Keywords":  "kèm con học toán, mẹ con cãi nhau vì bài tập, dạy con không stress"
+    },
+    {
+        "File":  "khen-con-khi-hoc-toan-nhu-the-nao",
+        "Title":  "Mình từng khen con sai cách – bây giờ mới biết khen đúng",
+        "TitleLen":  56,
+        "Desc":  "\"Con giỏi quá!\" – Tưởng đang động viên, hóa ra đang gây hại. Mình học cách khen khác.",
+        "DescLen":  85,
+        "Keywords":  "khen con học giỏi, động viên con đúng cách, tâm lý trẻ học toán"
+    },
+    {
+        "File":  "khi-nao-phu-huynh-nen-dung-cong-cu-ho-tro",
+        "Title":  "Mình đã cố tự kèm con – đến khi nào thì nên dừng?",
+        "TitleLen":  49,
+        "Desc":  "Mình từng nghĩ: tự kèm con là trách nhiệm. Nhưng khi căng thẳng leo thang, mình nhận ra: có lúc cần tìm công cụ hỗ trợ.",
+        "DescLen":  119,
+        "Keywords":  "công cụ hỗ trợ học toán, khi nào nên dùng ứng dụng học, ứng dụng học toán cho trẻ"
+    },
+    {
+        "File":  "khong-co-thoi-gian-kem-con-hoc",
+        "Title":  "Đi làm về 7h tối – mình không có sức kèm con học nữa",
+        "TitleLen":  52,
+        "Desc":  "Về đến nhà đã mệt nhoài. Ăn xong muốn ngủ. Kèm con học là cực hình. Đây là cách mình giải quyết.",
+        "DescLen":  96,
+        "Keywords":  "bận không kèm con được, phụ huynh đi làm, con tự học"
+    },
+    {
+        "File":  "lam-gi-khi-con-chan-hoc-soroban",
+        "Title":  "Con học Soroban được 2 tháng rồi chán – mình làm thế này",
+        "TitleLen":  56,
+        "Desc":  "Ban đầu con hào hứng lắm. Sau 2 tháng bắt đầu chán. Mình không ép, mình tìm cách khác.",
+        "DescLen":  86,
+        "Keywords":  "con chán học soroban, duy trì động lực học, con bỏ học giữa chừng"
+    },
+    {
+        "File":  "lam-sao-biet-con-hoc-soroban-dung-huong",
+        "Title":  "Làm sao biết con đang học Soroban đúng hướng?",
+        "TitleLen":  45,
+        "Desc":  "Con học được 3 tháng rồi, mình không biết tiến bộ hay chậm. Đây là cách mình quan sát và những dấu hiệu mình thấy.",
+        "DescLen":  114,
+        "Keywords":  "con học soroban có tiến bộ không, dấu hiệu học soroban đúng, theo dõi tiến độ học soroban"
+    },
+    {
+        "File":  "lam-sao-de-con-hoc-toan-khong-ap-luc",
+        "Title":  "Con học toán mà không khóc – hóa ra có thể",
+        "TitleLen":  42,
+        "Desc":  "Trước đây mình không tin. Học mà không ép thì con có tự giác không? Nhưng sau khi thử thay đổi cách tiếp cận, mình thấy: có thể.",
+        "DescLen":  128,
+        "Keywords":  "học toán không áp lực, con học toán không căng thẳng, cách học toán nhẹ nhàng"
+    },
+    {
+        "File":  "lam-sao-de-con-tu-giac-hoc-toan",
+        "Title":  "5 cách mình làm để con tự giác học toán mà không cần nhắc",
+        "TitleLen":  57,
+        "Desc":  "Từ chỗ phải nhắc 10 lần, giờ con tự mở app học. Mình chia sẻ những gì đã làm.",
+        "DescLen":  77,
+        "Keywords":  "con tự giác học, dạy con kỷ luật, không cần nhắc học"
+    },
+    {
+        "File":  "lo-trinh-hoc-soroban-cho-tre",
+        "Title":  "Lộ trình học Soroban cho trẻ – Từ zero đến tính nhẩm",
+        "TitleLen":  52,
+        "Desc":  "Học Soroban bao lâu? Nên bắt đầu từ đâu? Bài này chia sẻ lộ trình học Soroban hoàn chỉnh cho trẻ từ 5-12 tuổi.",
+        "DescLen":  110,
+        "Keywords":  "lộ trình học soroban, học soroban bao lâu, khi nào cho con học soroban, các cấp độ soroban"
+    },
+    {
+        "File":  "may-tuoi-cho-con-hoc-soroban-la-phu-hop",
+        "Title":  "Con mấy tuổi thì nên học Soroban? Mình đã tìm hiểu thế này",
+        "TitleLen":  58,
+        "Desc":  "Mình từng hỏi: 5 tuổi hay 7 tuổi? Sớm quá có hại không? Muộn quá có kịp không? Đây là những gì mình tìm hiểu được.",
+        "DescLen":  114,
+        "Keywords":  "mấy tuổi học soroban, độ tuổi học soroban, con bao nhiêu tuổi học soroban"
+    },
+    {
+        "File":  "may-tuoi-hoc-soroban-la-tot-nhat",
+        "Title":  "Mình cho con học Soroban lúc 7 tuổi – có muộn không?",
+        "TitleLen":  52,
+        "Desc":  "Nghe nói 4-5 tuổi học là tốt nhất. Con mình 7 tuổi rồi. Mình lo đã muộn.",
+        "DescLen":  72,
+        "Keywords":  "mấy tuổi học soroban, tuổi học soroban tốt nhất, con 7 tuổi học soroban"
+    },
+    {
+        "File":  "minh-do-toan-nhung-van-muon-con-gioi-toan",
+        "Title":  "Mình dở toán từ nhỏ – sợ con giống mình nên lo quá",
+        "TitleLen":  50,
+        "Desc":  "Hồi nhỏ mình sợ toán kinh khủng. Giờ mình lo con sẽ \"di truyền\" nỗi sợ đó.",
+        "DescLen":  74,
+        "Keywords":  "mẹ dở toán, di truyền sợ toán, dạy con khi mình không giỏi"
+    },
+    {
+        "File":  "minh-phan-van-kumon-hay-soroban",
+        "Title":  "Mình từng mất cả tuần phân vân giữa Kumon và Soroban",
+        "TitleLen":  52,
+        "Desc":  "Hỏi ai cũng nói phương pháp đó tốt. Mình không biết tin ai. Đây là cách mình quyết định cuối cùng.",
+        "DescLen":  98,
+        "Keywords":  "kumon hay soroban, so sánh kumon soroban, chọn phương pháp học toán"
+    },
+    {
+        "File":  "ong-ba-day-con-sai-cach",
+        "Title":  "Ông bà dạy con theo kiểu cũ – mình không biết nói sao",
+        "TitleLen":  53,
+        "Desc":  "Ông dạy con học thuộc bảng cửu chương. Mình muốn con hiểu bản chất. Hai thế hệ, hai cách dạy.",
+        "DescLen":  93,
+        "Keywords":  "ông bà dạy cháu, mâu thuẫn cách dạy, phương pháp dạy toán"
+    },
+    {
+        "File":  "phep-chia-tren-soroban",
+        "Title":  "Phép chia trên Soroban – Hướng dẫn chi tiết cho phụ huynh",
+        "TitleLen":  57,
+        "Desc":  "Phép chia là phép tính khó nhất trên Soroban. Bài này hướng dẫn cách chia cơ bản với ví dụ từng bước.",
+        "DescLen":  101,
+        "Keywords":  "phép chia soroban, chia trên bàn tính soroban, cách chia soroban, chia có dư soroban"
+    },
+    {
+        "File":  "phep-cong-co-nho-thuc-hanh-soroban",
+        "Title":  "Phép cộng có nhớ trên Soroban – Thực hành với ví dụ cụ thể",
+        "TitleLen":  58,
+        "Desc":  "Sau khi học Bạn của 5 và Bạn của 10, con cần thực hành kết hợp cả hai. Bài này có nhiều ví dụ chi tiết từng bước.",
+        "DescLen":  113,
+        "Keywords":  "cộng có nhớ soroban, phép cộng nâng cao soroban, thực hành cộng soroban, bài tập cộng soroban"
+    },
+    {
+        "File":  "phep-cong-don-gian-tren-soroban",
+        "Title":  "Phép cộng đơn giản trên Soroban – Bước đầu tiên",
+        "TitleLen":  47,
+        "Desc":  "Hướng dẫn cách cộng trên Soroban khi tổng nhỏ hơn 10. Từng bước chi tiết, dễ hiểu cho phụ huynh và trẻ mới học.",
+        "DescLen":  111,
+        "Keywords":  "phép cộng soroban, cách cộng trên soroban, cộng soroban cho người mới, học cộng soroban"
+    },
+    {
+        "File":  "phep-nhan-tren-soroban",
+        "Title":  "Phép nhân trên Soroban – Hướng dẫn từng bước cho phụ huynh",
+        "TitleLen":  58,
+        "Desc":  "Phép nhân trên Soroban khác với nhân trên giấy. Bài này hướng dẫn cách nhân 1 chữ số, 2 chữ số với ví dụ chi tiết.",
+        "DescLen":  114,
+        "Keywords":  "phép nhân soroban, nhân trên bàn tính soroban, cách nhân soroban, bảng cửu chương soroban"
+    },
+    {
+        "File":  "phep-tru-co-muon-soroban",
+        "Title":  "Phép trừ có mượn trên Soroban – Thực hành chi tiết",
+        "TitleLen":  50,
+        "Desc":  "Phép trừ có mượn ngược lại với cộng có nhớ. Khi cột hiện tại không đủ trừ, cần mượn từ cột bên trái.",
+        "DescLen":  100,
+        "Keywords":  "trừ có mượn soroban, phép trừ nâng cao soroban, trừ mượn hàng chục soroban, bài tập trừ soroban"
+    },
+    {
+        "File":  "phep-tru-don-gian-tren-soroban",
+        "Title":  "Phép trừ đơn giản trên Soroban – Ngược lại với cộng",
+        "TitleLen":  51,
+        "Desc":  "Hướng dẫn cách trừ trên Soroban khi số bị trừ đủ hạt. Quy tắc đơn giản: trừ = gạt hạt ra xa thanh ngang.",
+        "DescLen":  104,
+        "Keywords":  "phép trừ soroban, cách trừ trên soroban, trừ soroban cho người mới, học trừ soroban"
+    },
+    {
+        "File":  "phu-huynh-co-nen-truc-tiep-day-con-hoc-toan-khong",
+        "Title":  "Mình đã cố làm giáo viên của con – và đây là bài học",
+        "TitleLen":  52,
+        "Desc":  "Mình từng nghĩ: con mình thì mình phải dạy. Nhưng sau nhiều tháng căng thẳng, mình nhận ra: không nhất thiết phải vậy.",
+        "DescLen":  118,
+        "Keywords":  "phụ huynh dạy con học toán, có nên tự dạy con toán, kèm con học toán tại nhà"
+    },
+    {
+        "File":  "phu-huynh-khong-gioi-toan-co-kem-con-hoc-duoc-khong",
+        "Title":  "Mình dốt toán từ nhỏ – giờ làm sao kèm con?",
+        "TitleLen":  43,
+        "Desc":  "Mình đã lo lắng rất nhiều vì bản thân không giỏi toán. Nhưng rồi mình nhận ra: con không cần mình giỏi – con cần mình quan tâm.",
+        "DescLen":  127,
+        "Keywords":  "phụ huynh không giỏi toán, bố mẹ dốt toán, cách hỗ trợ con học toán"
+    },
+    {
+        "File":  "quy-tac-ban-cua-10-soroban",
+        "Title":  "Quy tắc \u0027Bạn của 10\u0027 trong Soroban – Vượt qua giới hạn 1 cột",
+        "TitleLen":  60,
+        "Desc":  "Bạn của 10 giúp con tính khi kết quả vượt quá 9. Đây là bước quan trọng để làm phép tính nhiều chữ số.",
+        "DescLen":  102,
+        "Keywords":  "bạn của 10 soroban, quy tắc bạn 10, cộng có nhớ soroban, phép cộng sang hàng chục soroban"
+    },
+    {
+        "File":  "quy-tac-ban-cua-5-soroban",
+        "Title":  "Quy tắc \u0027Bạn của 5\u0027 trong Soroban – Bí quyết cộng trừ nhanh",
+        "TitleLen":  59,
+        "Desc":  "Bạn của 5 là quy tắc quan trọng nhất khi học Soroban. Hiểu được nó, con sẽ vượt qua rào cản lớn nhất của phép cộng trừ.",
+        "DescLen":  119,
+        "Keywords":  "bạn của 5 soroban, quy tắc bạn 5, công thức bạn 5 soroban, cách cộng có nhớ soroban"
+    },
+    {
+        "File":  "sai-lam-pho-bien-khi-hoc-soroban",
+        "Title":  "10 sai lầm phổ biến khi học Soroban – Phụ huynh cần biết",
+        "TitleLen":  56,
+        "Desc":  "Học Soroban không khó, nhưng nhiều phụ huynh và trẻ mắc những sai lầm khiến việc học kém hiệu quả. Bài này liệt kê 10 sai lầm phổ biến nhất.",
+        "DescLen":  140,
+        "Keywords":  "sai lầm học soroban, lỗi thường gặp soroban, học soroban sai cách, cách học soroban hiệu quả"
+    },
+    {
+        "File":  "sai-lam-pho-bien-khi-kem-con-hoc-toan",
+        "Title":  "5 sai lầm mình từng mắc khi kèm con học toán – và cách mình sửa",
+        "TitleLen":  63,
+        "Desc":  "Nhìn lại, mình thấy mình đã làm sai nhiều thứ khi kèm con. Những sai lầm này khiến cả hai đều mệt – mà con cũng không tiến bộ.",
+        "DescLen":  126,
+        "Keywords":  "sai lầm khi dạy con học toán, lỗi phụ huynh khi kèm con, cách kèm con học toán hiệu quả"
+    },
+    {
+        "File":  "soroban-cho-nguoi-lon-co-hoc-duoc-khong",
+        "Title":  "Mình 35 tuổi tập Soroban – để hiểu con đang học gì",
+        "TitleLen":  50,
+        "Desc":  "Con học mà mình không biết nó là gì. Mình quyết định tự học thử. Đây là trải nghiệm của mình.",
+        "DescLen":  93,
+        "Keywords":  "soroban cho người lớn, phụ huynh học soroban, tự học soroban"
+    },
+    {
+        "File":  "soroban-co-giup-con-lam-toan-truong-tot-hon",
+        "Title":  "Học Soroban có giúp điểm toán ở trường cao hơn không? – Đây là thực tế",
+        "TitleLen":  70,
+        "Desc":  "Nhiều người hỏi mình: con học Soroban thì điểm toán trường có tăng không? Mình chia sẻ thật.",
+        "DescLen":  92,
+        "Keywords":  "soroban và điểm toán, học soroban giỏi toán, soroban có hiệu quả không"
+    },
+    {
+        "File":  "soroban-co-that-su-tot-nhu-loi-don",
+        "Title":  "Soroban có thật sự tốt như lời đồn? Mình kể thật",
+        "TitleLen":  48,
+        "Desc":  "Sau 1 năm cho con học, mình thấy Soroban có nhiều điểm tốt – nhưng cũng không phải thần dược. Đây là đánh giá thật của mình.",
+        "DescLen":  124,
+        "Keywords":  "soroban có tốt không, ưu nhược điểm soroban, học soroban có hiệu quả không"
+    },
+    {
+        "File":  "soroban-giup-tre-tinh-nham-tot-hon-nhu-the-nao",
+        "Title":  "Con mình tính nhẩm nhanh hơn – mình nghĩ là nhờ Soroban",
+        "TitleLen":  55,
+        "Desc":  "Mình không chắc chắn 100%, nhưng sau vài tháng học Soroban, con tính nhẩm nhanh hơn hẳn. Đây là những gì mình quan sát được.",
+        "DescLen":  124,
+        "Keywords":  "soroban tính nhẩm, trẻ tính nhẩm nhanh, phương pháp tính nhẩm"
+    },
+    {
+        "File":  "soroban-la-gi-vi-sao-phu-hop-voi-tre-tieu-hoc",
+        "Title":  "Mình từng thắc mắc: Soroban là gì mà nhiều người cho con học thế?",
+        "TitleLen":  65,
+        "Desc":  "Mình cũng không biết Soroban là gì – cho đến khi tìm hiểu và thử cho con học. Đây là những gì mình hiểu được.",
+        "DescLen":  109,
+        "Keywords":  "soroban là gì, bàn tính soroban, học soroban có tốt không"
+    },
+    {
+        "File":  "soroban-tot-cho-nao-phai-khong",
+        "Title":  "Soroban tốt cho não – mình tìm hiểu kỹ xem có thật không",
+        "TitleLen":  56,
+        "Desc":  "Nghe quảng cáo nói Soroban phát triển não. Mình tra cứu nghiên cứu xem có đúng không.",
+        "DescLen":  85,
+        "Keywords":  "soroban phát triển não, lợi ích của soroban, nghiên cứu về soroban"
+    },
+    {
+        "File":  "tao-thoi-quen-hoc-toan-cho-con",
+        "Title":  "Mình mất 3 tuần để con có thói quen học toán – đây là cách",
+        "TitleLen":  58,
+        "Desc":  "Ban đầu phải nhắc từng ngày. Giờ con tự mở app học mà không cần ai nói. Bí quyết rất đơn giản.",
+        "DescLen":  94,
+        "Keywords":  "tạo thói quen học, con tự giác học, dạy con kỷ luật"
+    },
+    {
+        "File":  "tinh-nham-co-can-thiet-khong",
+        "Title":  "Có máy tính rồi, tính nhẩm còn cần không? – Mình từng nghĩ không",
+        "TitleLen":  64,
+        "Desc":  "Thời đại điện thoại, ai cũng có máy tính. Vậy sao phải tính nhẩm? Mình tìm hiểu và thay đổi suy nghĩ.",
+        "DescLen":  101,
+        "Keywords":  "tính nhẩm có cần thiết, kỹ năng tính nhẩm, lợi ích tính nhẩm"
+    },
+    {
+        "File":  "tinh-nham-soroban-anzan",
+        "Title":  "Tính nhẩm Soroban (Anzan) – Đỉnh cao của học Soroban",
+        "TitleLen":  52,
+        "Desc":  "Anzan là tính nhẩm bằng cách hình dung Soroban trong đầu. Đây là mục tiêu cao nhất khi học Soroban.",
+        "DescLen":  99,
+        "Keywords":  "tính nhẩm soroban, anzan là gì, flash anzan, tính nhẩm nhanh soroban"
+    },
+    {
+        "File":  "tre-hieu-dong-can-ho-tro-hoc-toan-the-nao",
+        "Title":  "Con mình hiếu động quá – học toán 5 phút là ngọ nguậy. Mình làm thế này",
+        "TitleLen":  71,
+        "Desc":  "Con không ngồi yên được. Bắt ngồi học là chạy. Mình tìm cách phù hợp với con.",
+        "DescLen":  77,
+        "Keywords":  "trẻ hiếu động học toán, con không ngồi yên, phương pháp cho trẻ hiếu động"
+    },
+    {
+        "File":  "tu-so-toan-den-yeu-toan-6-thang-hoc-soroban",
+        "Title":  "6 tháng trước con khóc vì toán – giờ con đòi học mỗi ngày",
+        "TitleLen":  57,
+        "Desc":  "Mình không tin nổi sự thay đổi của con. Từ đứa trẻ sợ toán đến khóc, giờ tự mở app học. Đây là chuyện thật.",
+        "DescLen":  107,
+        "Keywords":  "con sợ toán, học soroban có hiệu quả không, con ghét toán, giúp con yêu toán"
+    },
+    {
+        "File":  "ucmas-vs-soroban-online-minh-chon-gi",
+        "Title":  "UCMAS hay Soroban online – cuối cùng mình chọn cái không ngờ",
+        "TitleLen":  60,
+        "Desc":  "Mình từng định cho con học UCMAS. Nhưng sau khi tìm hiểu kỹ, mình lại quyết định khác.",
+        "DescLen":  86,
+        "Keywords":  "ucmas hay soroban, so sánh ucmas soroban, học toán tư duy"
+    },
+    {
+        "File":  "vi-sao-cang-kem-con-hoc-toan-ca-nha-cang-met",
+        "Title":  "Mình đã ngồi kèm con học toán đến mức cả hai đều khóc",
+        "TitleLen":  53,
+        "Desc":  "Tối nào cũng vậy – bắt đầu bằng hy vọng, kết thúc bằng la hét. Mình tưởng mình đang giúp con, hóa ra mình đang làm cả nhà thêm mệt.",
+        "DescLen":  131,
+        "Keywords":  "kèm con học toán mệt, dạy con học toán căng thẳng, phụ huynh kèm con học"
+    }
+]

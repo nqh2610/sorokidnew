@@ -1,0 +1,317 @@
+{
+  "slug": "cach-bieu-dien-so-tren-soroban",
+  "title": "Cách biểu diễn số 0-9 trên Soroban – Bài học đầu tiên của con",
+  "description": "Hướng dẫn chi tiết cách đọc và biểu diễn số từ 0 đến 9 trên bàn tính Soroban. Có bảng minh họa và bài tập cho con luyện.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "cách đếm soroban",
+    "biểu diễn số soroban",
+    "số trên bàn tính soroban",
+    "cách đọc số soroban"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-27T14:04:18.456Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/tre-bieu-dien-so-tren-soroban.jpg",
+  "readingTime": 6,
+  "content": {
+    "intro": "Học Soroban bắt đầu từ việc đọc số. Nếu con không biểu diễn được số, không thể học cộng trừ. Đây là bài học đầu tiên – và cũng là nền tảng cho mọi thứ về sau.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Quy tắc cơ bản"
+      },
+      {
+        "type": "paragraph",
+        "text": "Trên mỗi thanh dọc (1 cột) của Soroban:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Hạt trời (phía trên thanh ngang):** 1 hạt, giá trị = 5",
+          "**Hạt đất (phía dưới thanh ngang):** 4 hạt, mỗi hạt = 1"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Cách đọc số: Chỉ đếm những hạt ÁP SÁT vào thanh ngang."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Hạt trời gạt xuống (áp thanh ngang) → cộng 5",
+          "Hạt đất gạt lên (áp thanh ngang) → cộng số hạt",
+          "Hạt ở xa thanh ngang → không tính"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Mẹo nhớ: \"Áp vào = có giá trị. Rời ra = không tính.\""
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bảng biểu diễn số 0-9"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dưới đây là cách biểu diễn từng số trên 1 cột Soroban:"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Số",
+          "Hạt trời (5)",
+          "Hạt đất (1)",
+          "Mô tả"
+        ],
+        "rows": [
+          [
+            "0",
+            "Lên (xa)",
+            "Xuống (xa)",
+            "Không hạt nào áp thanh ngang"
+          ],
+          [
+            "1",
+            "Lên (xa)",
+            "1 hạt áp",
+            "1 hạt đất gạt lên"
+          ],
+          [
+            "2",
+            "Lên (xa)",
+            "2 hạt áp",
+            "2 hạt đất gạt lên"
+          ],
+          [
+            "3",
+            "Lên (xa)",
+            "3 hạt áp",
+            "3 hạt đất gạt lên"
+          ],
+          [
+            "4",
+            "Lên (xa)",
+            "4 hạt áp",
+            "4 hạt đất gạt lên"
+          ],
+          [
+            "5",
+            "Xuống (áp)",
+            "Xuống (xa)",
+            "Chỉ hạt trời áp thanh ngang"
+          ],
+          [
+            "6",
+            "Xuống (áp)",
+            "1 hạt áp",
+            "Hạt trời + 1 hạt đất = 5+1"
+          ],
+          [
+            "7",
+            "Xuống (áp)",
+            "2 hạt áp",
+            "Hạt trời + 2 hạt đất = 5+2"
+          ],
+          [
+            "8",
+            "Xuống (áp)",
+            "3 hạt áp",
+            "Hạt trời + 3 hạt đất = 5+3"
+          ],
+          [
+            "9",
+            "Xuống (áp)",
+            "4 hạt áp",
+            "Hạt trời + 4 hạt đất = 5+4"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách gạt từng số"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Số 0"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tất cả hạt ở xa thanh ngang. Hạt trời ở trên, 4 hạt đất ở dưới. Đây là trạng thái \"reset\" của Soroban."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Số 1-4"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chỉ dùng hạt đất. Dùng ngón cái gạt hạt đất lên áp thanh ngang."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Số 1: Gạt 1 hạt đất lên",
+          "Số 2: Gạt 2 hạt đất lên",
+          "Số 3: Gạt 3 hạt đất lên",
+          "Số 4: Gạt 4 hạt đất lên (hết hạt đất)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Số 5"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chỉ dùng hạt trời. Dùng ngón trỏ gạt hạt trời xuống áp thanh ngang. Tất cả hạt đất ở xa."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Số 6-9"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dùng cả hạt trời và hạt đất."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Số 6: Hạt trời xuống + 1 hạt đất lên = 5 + 1",
+          "Số 7: Hạt trời xuống + 2 hạt đất lên = 5 + 2",
+          "Số 8: Hạt trời xuống + 3 hạt đất lên = 5 + 3",
+          "Số 9: Hạt trời xuống + 4 hạt đất lên = 5 + 4"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Số lớn nhất trên 1 cột là 9 (= 5 + 4). Muốn biểu diễn số 10 trở lên phải dùng thêm cột bên trái."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bài tập cho con"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Bài 1: Gạt số theo thứ tự"
+      },
+      {
+        "type": "paragraph",
+        "text": "Yêu cầu con gạt: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 0"
+      },
+      {
+        "type": "paragraph",
+        "text": "Lặp lại 5-10 lần. Mục đích: quen động tác gạt."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Bài 2: Gạt số ngẫu nhiên"
+      },
+      {
+        "type": "paragraph",
+        "text": "Phụ huynh đọc số bất kỳ, con gạt trên Soroban."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ví dụ: \"7\" → con gạt hạt trời xuống + 2 hạt đất lên."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Bài 3: Đọc số từ Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "Phụ huynh gạt số trên Soroban, con nhìn và đọc số đó."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ví dụ: Gạt hạt trời + 3 hạt đất → con đọc \"8\"."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Bài 4: So sánh số"
+      },
+      {
+        "type": "paragraph",
+        "text": "Gạt 2 số trên 2 cột khác nhau, hỏi con số nào lớn hơn."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lỗi thường gặp"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Nhầm số 4 và số 9:** Số 4 chỉ có hạt đất, số 9 có cả hạt trời",
+          "**Đếm sai hạt:** Nhớ chỉ đếm hạt ÁP thanh ngang",
+          "**Quên hạt trời = 5:** Hay nhầm hạt trời = 1"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mẹo giúp con nhớ nhanh"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**0-4:** Chỉ có hạt đất (đếm = bao nhiêu hạt)",
+          "**5:** Chỉ có hạt trời",
+          "**6-9:** Hạt trời + hạt đất (5 + số hạt đất)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi con thành thạo số 0-9, có thể chuyển sang học số hàng chục, trăm."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Đừng vội. Cho con luyện số 0-9 thật thành thạo (2-3 ngày) trước khi học tiếp. Nền tảng vững = học nhanh về sau."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con luyện trên Sorokid. App có bài tập nhận diện số, con nhìn Soroban và chọn đáp án. Học như chơi game."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Số lớn nhất trên 1 cột Soroban là bao nhiêu?",
+      "answer": "Số 9. Vì 1 hạt trời (=5) + 4 hạt đất (=4) = 9. Muốn biểu diễn số 10 trở lên phải dùng thêm cột bên trái."
+    },
+    {
+      "question": "Con hay nhầm số 4 và số 9, làm sao?",
+      "answer": "Nhắc con: Số 4 KHÔNG có hạt trời (chỉ 4 hạt đất). Số 9 CÓ hạt trời + 4 hạt đất. Nhìn hạt trời trước để phân biệt."
+    },
+    {
+      "question": "Luyện số 0-9 bao lâu thì đủ?",
+      "answer": "Khoảng 2-3 ngày nếu luyện mỗi ngày 15-20 phút. Khi con gạt và đọc số không cần suy nghĩ thì có thể học tiếp."
+    },
+    {
+      "question": "Có cần học theo thứ tự 0-1-2-3... không?",
+      "answer": "Ban đầu nên học theo thứ tự để quen. Sau đó luyện ngẫu nhiên để con nhớ chắc, không phụ thuộc vào thứ tự."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có bài tập luyện nhận diện số, giúp con thuộc nhanh mà không chán.",
+    "buttonText": "Cho con thử",
+    "buttonLink": "/register"
+  },
+  "imageAlt": "Trẻ em học cách biểu diễn số trên bàn tính Soroban",
+  "categoryOrder": 1,
+  "order": 4
+}

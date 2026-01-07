@@ -1,0 +1,100 @@
+{
+  "slug": "dau-hieu-con-can-ho-tro-them-ve-toan",
+  "title": "5 dấu hiệu con cần được hỗ trợ thêm về toán – mình từng bỏ qua",
+  "description": "Mình từng nghĩ con ổn. Đến khi cô giáo gọi điện mình mới biết. Đây là những dấu hiệu cần chú ý.",
+  "category": "con-gap-kho-khan-hoc-toan",
+  "keywords": [
+    "dấu hiệu khó học toán",
+    "con cần hỗ trợ toán",
+    "nhận biết vấn đề học toán"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/me-lo-lang-ve-con.jpg",
+  "imageAlt": "Mẹ châu Á quan sát con gái đang làm bài toán khó với vẻ băn khoăn",
+  "readingTime": 6,
+  "categoryOrder": 2,
+  "order": 15,
+  "content": {
+    "intro": "Con mình điểm toán không tệ – 6, 7 điểm. Mình nghĩ vậy là ổn. Đến khi cô giáo nói \"con cần hỗ trợ thêm\", mình mới giật mình.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "5 dấu hiệu mình đã bỏ qua"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Con tránh né môn toán:** \"Mẹ ơi, mai con nghỉ toán được không?\" Con tìm cớ để không làm bài toán."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Mất quá nhiều thời gian:** Bài tập 15 phút con làm 1 tiếng. Không phải vì chơi, mà vì con đang vật lộn."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Hay nói \"con không biết\":** Chưa đọc đề đã nói không biết. Đó là cách con tự bảo vệ mình."
+      },
+      {
+        "type": "paragraph",
+        "text": "**4. Kết quả bấp bênh:** Hôm được 8, hôm được 5. Không ổn định là dấu hiệu nền tảng chưa vững."
+      },
+      {
+        "type": "paragraph",
+        "text": "**5. Sợ hãi khi nhắc đến toán:** Thay đổi biểu cảm khi nghe từ \"toán\". Lo lắng trước bài kiểm tra."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Điểm số không nói hết. Hãy quan sát hành vi và cảm xúc của con với toán."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình làm gì khi nhận ra?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Không trách con:** Mình nhận ra đây là vấn đề cần giải quyết, không phải lỗi của con."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Tìm gốc rễ:** Hóa ra con yếu phép cộng trừ có nhớ. Nền tảng chưa vững."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Bổ sung nền tảng:** Cho con học Sorokid từ đầu. Xây lại từ phép cộng đơn giản."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "6 tháng sau"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình tự tin hơn hẳn. Điểm ổn định 8-9. Quan trọng hơn: con không còn sợ toán."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Nhận ra sớm để hỗ trợ sớm. Đừng đợi đến khi điểm kém mới hành động."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Điểm 6-7 có cần lo không?",
+      "answer": "Tùy vào hành vi của con. Nếu con tự tin, làm bài đều đặn thì ổn. Nếu con sợ hãi, né tránh thì cần hỗ trợ."
+    },
+    {
+      "question": "Hỗ trợ bằng cách nào?",
+      "answer": "Tìm phần con yếu, bổ sung từ nền tảng. Dùng app học tập hoặc gia sư. Quan trọng nhất là tạo tâm lý thoải mái."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid giúp xây nền tảng vững từ đầu, bổ sung phần con còn yếu.",
+    "buttonText": "Xây nền tảng cho con",
+    "buttonLink": "/register"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "slug": "con-lop-3-van-dem-tay-binh-thuong-khong",
+  "title": "Con lớp 3 vẫn đếm tay – mình lo quá hỏi hết mọi người",
+  "description": "Lớp 3 rồi mà con vẫn xòe tay ra đếm. Bạn bè làm nhanh hơn. Mình hỏi khắp nơi để hiểu.",
+  "category": "con-gap-kho-khan-hoc-toan",
+  "keywords": [
+    "lớp 3 đếm tay",
+    "trẻ tính toán bằng ngón tay",
+    "dạy con bỏ đếm tay"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-dem-tay-lop-3.jpg",
+  "imageAlt": "Bé châu Á ngồi học với hai bàn tay đang đếm",
+  "readingTime": 6,
+  "categoryOrder": 2,
+  "order": 10,
+  "content": {
+    "intro": "Lớp 3, cô giao phép tính: 47 + 28. Con mình ngồi... xòe tay ra đếm. Mình nhìn qua thấy bạn con viết luôn kết quả. Mình lo. Mình hỏi cô giáo, hỏi bác sĩ, hỏi google.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cô giáo nói gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Con không có vấn đề gì đâu chị. Con hiểu bài, làm đúng. Chỉ là cách tính của con chậm hơn bạn.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Cô khuyên mình cho con luyện tập tính nhẩm nhiều hơn."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình tìm hiểu thêm"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đếm tay là cách tự nhiên để trẻ \"sờ\" được số. Nhưng đến lớp 3, nếu con vẫn phụ thuộc vào đếm tay, có thể con chưa có phương pháp tính nhẩm."
+      },
+      {
+        "type": "paragraph",
+        "text": "Không phải con dở. Chỉ là con chưa được dạy cách khác."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Nhiều trẻ đếm tay đến lớp 3-4. Không phải vấn đề bệnh lý. Chỉ cần có phương pháp phù hợp là con bỏ được."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình giúp con như thế nào?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Cho con học Soroban:** Thay vì đếm tay, con dùng bàn tính. Sau một thời gian, con hình dung bàn tính trong đầu."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Không cấm đếm tay:** Mình không nói \"đừng đếm tay\". Mình chỉ cho con công cụ mới. Con tự bỏ khi quen."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Tập hàng ngày:** 15 phút mỗi ngày với Sorokid. Nhất quán hơn là tập nhiều một lúc."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "5 tháng sau"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình bớt đếm tay hẳn. Những phép cộng trừ trong phạm vi 20, con làm trong đầu được."
+      },
+      {
+        "type": "paragraph",
+        "text": "Phép tính 2 chữ số, con vẫn cần suy nghĩ, nhưng không còn xòe tay ra nữa."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Đếm tay không phải thói quen xấu. Nó là bước đệm. Hãy cho con công cụ tốt hơn để \"tốt nghiệp\" đếm tay."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Lớp 3 vẫn đếm tay có bình thường không?",
+      "answer": "Bình thường, nhưng nên bắt đầu giúp con có phương pháp khác. Đếm tay giới hạn tốc độ khi phép tính phức tạp hơn."
+    },
+    {
+      "question": "Có nên cấm con đếm tay không?",
+      "answer": "Không nên cấm. Thay vào đó, cho con phương pháp mới như Soroban. Con sẽ tự bỏ khi thấy cách mới hiệu quả hơn."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid giúp con chuyển từ đếm tay sang tính nhẩm một cách tự nhiên.",
+    "buttonText": "Cho con học thử",
+    "buttonLink": "/register"
+  }
+}

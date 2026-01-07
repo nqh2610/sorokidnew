@@ -1,0 +1,243 @@
+{
+  "slug": "con-biet-tinh-nhung-doc-de-khong-hieu",
+  "title": "Con biết tính nhưng đọc đề không hiểu – hóa ra không phải lỗi toán",
+  "description": "Con tính nhanh lắm, nhưng gặp bài toán có lời văn là bí. Mình từng nghĩ con dốt toán – hóa ra con gặp khó ở chỗ khác.",
+  "category": "con-gap-kho-khan-hoc-toan",
+  "keywords": [
+    "con không hiểu đề toán",
+    "trẻ khó đọc hiểu toán có lời văn",
+    "con biết tính nhưng không hiểu đề"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-28T05:50:15.645Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/con-biet-tinh-nhung-khong-hieu-de.jpg",
+  "readingTime": 6,
+  "content": {
+    "intro": "\"Mẹ ơi, con không biết làm bài này.\" – Con đưa đề toán. Mình đọc: \"Lan có 24 cái kẹo, cho Hoa 8 cái, hỏi Lan còn mấy cái?\" – Quá dễ mà? Mình hỏi con: \"24 trừ 8 bằng mấy?\" – \"16 ạ.\" – Con trả lời ngay. Vậy tại sao con không làm được?",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vấn đề không phải ở toán"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con tính cộng trừ nhân chia tốt. Cho phép tính, con làm nhanh. Nhưng cho đề bài bằng chữ, con bí."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình quan sát và thấy: con không biết đề bài đang hỏi gì. Con đọc xong, không biết phải cộng hay trừ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Vấn đề không phải toán. Vấn đề là đọc hiểu."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Nhiều trẻ giỏi tính nhưng gặp khó với toán có lời văn. Đó không phải con dốt toán – con đang cần hỗ trợ ở kỹ năng đọc hiểu."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tại sao đọc đề toán lại khó?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đề toán có lời văn đòi hỏi nhiều bước:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Đọc hiểu từng câu:** Hiểu từ ngữ, hiểu ý nghĩa.",
+          "**Lọc thông tin:** Bỏ qua những chi tiết không cần thiết.",
+          "**Xác định phép tính:** \"Cho đi\" = trừ. \"Thêm vào\" = cộng.",
+          "**Thực hiện tính toán:** Cộng, trừ, nhân, chia.",
+          "**Trả lời đúng câu hỏi:** Đơn vị, cách viết câu trả lời."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "5 bước trong 1 bài toán. Trẻ có thể làm được bước 4 (tính toán) nhưng vấp ở bước 1-3 (đọc hiểu)."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Những từ khóa hay gây nhầm"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình để ý con hay bị \"lừa\" bởi những từ như:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**\"Còn lại\":** Con nghĩ là cộng, thực ra là trừ.",
+          "**\"Thêm\":** Đôi khi là cộng, đôi khi là nhân.",
+          "**\"Gấp\":** Con không hiểu \"gấp\" nghĩa là nhân.",
+          "**\"Hơn\" vs \"Nhiều hơn\":** Con nhầm lẫn cách dùng."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Nếu con không hiểu từ khóa, con sẽ chọn sai phép tính."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách mình giúp con"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Dạy con \"dịch\" đề toán"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình dạy con đọc đề và gạch chân:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Đỏ:** Số liệu quan trọng (24 cái kẹo, 8 cái).",
+          "**Xanh:** Từ khóa chỉ phép tính (cho đi = trừ).",
+          "**Vàng:** Câu hỏi (hỏi... còn mấy cái)."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Ban đầu mình làm cùng con. Sau đó con tự làm."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Lập \"từ điển\" phép tính"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cùng con liệt kê những từ hay gặp:"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Từ khóa",
+          "Phép tính"
+        ],
+        "rows": [
+          [
+            "cho, mất, bớt, còn lại",
+            "Trừ"
+          ],
+          [
+            "thêm, được cho, tặng",
+            "Cộng"
+          ],
+          [
+            "gấp, mỗi... có...",
+            "Nhân"
+          ],
+          [
+            "chia đều, mỗi phần",
+            "Chia"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Dán lên bàn học. Mỗi khi làm bài, con nhìn vào để đối chiếu."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Đọc đề to lên"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con đọc đề thành tiếng, không đọc thầm. Khi đọc to, con buộc phải chậm lại và hiểu từng từ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sau khi đọc xong, mình hỏi: \"Bài này cho cái gì? Hỏi cái gì?\" – Con phải trả lời bằng miệng trước khi làm."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Vẽ sơ đồ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Với những bài phức tạp, mình dạy con vẽ ra:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Vẽ thanh ngang biểu diễn tổng.",
+          "Chia thành các phần theo đề bài.",
+          "Nhìn hình để hiểu bài hỏi gì."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Hình ảnh giúp con \"nhìn thấy\" bài toán thay vì chỉ đọc chữ."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Luyện đọc sách mỗi ngày"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đọc hiểu đề toán liên quan đến khả năng đọc hiểu văn bản nói chung. Mình cho con đọc truyện, sách mỗi tối 15 phút."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sau khi đọc, mình hỏi: \"Chuyện gì xảy ra? Ai làm gì?\" – Cách hỏi này giống cách phân tích đề toán."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tiến bộ của con"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sau khoảng 3 tháng, con đã đỡ hẳn. Không phải con làm đúng 100%, nhưng con biết cách tiếp cận đề bài."
+      },
+      {
+        "type": "paragraph",
+        "text": "Điều quan trọng: con không còn \"đứng hình\" khi nhìn đề nữa. Con biết phải làm gì."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Đọc hiểu là kỹ năng, không phải năng khiếu. Luyện tập đúng cách sẽ tiến bộ."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Con tính nhanh mà sao đọc đề không hiểu?",
+      "answer": "Tính toán và đọc hiểu là 2 kỹ năng khác nhau. Một số trẻ giỏi số học nhưng gặp khó ở ngôn ngữ. Cần luyện riêng kỹ năng đọc hiểu đề."
+    },
+    {
+      "question": "Có nên đọc đề hộ con không?",
+      "answer": "Ban đầu có thể đọc cùng con, nhưng dần dần phải để con tự đọc. Đọc hộ không giải quyết gốc vấn đề."
+    },
+    {
+      "question": "Kỹ năng đọc hiểu liên quan gì đến toán?",
+      "answer": "Toán có lời văn đòi hỏi phải hiểu ngôn ngữ. Trẻ đọc ít sách thường gặp khó với dạng bài này vì vốn từ hạn chế."
+    },
+    {
+      "question": "Bao lâu thì con tiến bộ?",
+      "answer": "Tùy mức độ. Thường 2-3 tháng luyện tập đều đặn sẽ thấy cải thiện. Quan trọng là kiên nhẫn và luyện đúng cách."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có bài tập toán đa dạng giúp con luyện cả tính toán lẫn tư duy logic. Phù hợp để con luyện nền tảng.",
+    "buttonText": "Cho con luyện thử",
+    "buttonLink": "/register"
+  },
+  "imageAlt": "Trẻ em châu Á cần hỗ trợ đọc hiểu đề toán",
+  "categoryOrder": 2,
+  "order": 5
+}

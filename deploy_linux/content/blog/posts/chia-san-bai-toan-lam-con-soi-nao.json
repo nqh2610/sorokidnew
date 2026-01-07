@@ -1,0 +1,105 @@
+{
+  "slug": "chia-san-bai-toan-lam-con-soi-nao",
+  "title": "Bài toán chia sẻ làm con mình rối – đây là cách mình giúp",
+  "description": "\"Mẹ ơi, 24 chia 6 là sao?\" Con hỏi, mình giải thích mãi không hiểu. Rồi mình tìm cách khác.",
+  "category": "cach-giup-con-hoc-toan-nhe-nhang",
+  "keywords": [
+    "dạy con phép chia",
+    "trẻ khó học chia",
+    "cách giải thích phép chia"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-hoc-phep-chia.jpg",
+  "imageAlt": "Bé châu Á đang chia kẹo thành từng nhóm",
+  "readingTime": 6,
+  "categoryOrder": 4,
+  "order": 11,
+  "content": {
+    "intro": "\"24 chia 6 là chia 24 thành 6 phần bằng nhau...\" – Mình giải thích. Con ngơ ngác. \"Con không hiểu.\" Mình giải thích lại. Vẫn không. Mình bắt đầu sốt ruột.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vì sao phép chia khó?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cộng trừ nhân con còn \"thấy\" được: 3 + 4 là thêm vào. Nhưng chia thì trừu tượng hơn."
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Chia thành 6 phần\" – Con không hình dung được \"phần\" là gì."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách mình giúp con"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Dùng đồ vật thật:** Mình lấy 24 viên kẹo. \"Con chia cho 6 bạn, mỗi bạn mấy viên?\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Con chia từng viên một. \"Bạn 1 được 1, bạn 2 được 1...\" Lặp lại đến khi hết."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cuối cùng con đếm: mỗi bạn có 4 viên. \"Vậy 24 chia 6 bằng 4!\" – Con tự nói."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Trẻ cần \"sờ\" được toán trước khi hiểu trừu tượng. Đừng giải thích bằng lời, hãy cho con làm."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Sau khi con hiểu khái niệm"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con luyện tập trên Sorokid. App có hình ảnh bàn tính, giúp con \"thấy\" phép chia."
+      },
+      {
+        "type": "paragraph",
+        "text": "Dần dần con không cần kẹo nữa. Con hình dung trong đầu được."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bây giờ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình làm phép chia 2 chữ số được. Không nhanh lắm, nhưng hiểu bản chất."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình thấy hành trình từ \"không hiểu\" đến \"hiểu\" đáng giá hơn kết quả."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Nếu con chưa hiểu, không phải con dở. Chỉ là cần cách giải thích khác. Dùng đồ vật, dùng hình ảnh."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Trẻ mấy tuổi học phép chia?",
+      "answer": "Thường lớp 2-3 bắt đầu học chia cơ bản. Nhưng có thể giới thiệu khái niệm sớm hơn qua trò chơi chia đồ vật."
+    },
+    {
+      "question": "Làm sao để con không sợ phép chia?",
+      "answer": "Bắt đầu từ đồ vật thật, trò chơi. Để con \"chia\" kẹo, bánh, đồ chơi trước khi học số."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid dạy phép chia qua hình ảnh bàn tính, giúp con \"thấy\" được phép chia.",
+    "buttonText": "Cho con học thử",
+    "buttonLink": "/register"
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "slug": "phep-nhan-tren-soroban",
+  "title": "Phép nhân trên Soroban – Hướng dẫn từng bước cho phụ huynh",
+  "description": "Phép nhân trên Soroban khác với nhân trên giấy. Bài này hướng dẫn cách nhân 1 chữ số, 2 chữ số với ví dụ chi tiết.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "phép nhân soroban",
+    "nhân trên bàn tính soroban",
+    "cách nhân soroban",
+    "bảng cửu chương soroban"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-31T03:14:13.241Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/phu-huynh-day-phep-nhan-soroban.jpg",
+  "readingTime": 9,
+  "content": {
+    "intro": "Phép nhân trên Soroban yêu cầu con đã thành thạo cộng có nhớ và thuộc bảng cửu chương. Cách nhân trên Soroban giúp con hiểu sâu hơn bản chất của phép nhân.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Yêu cầu trước khi học nhân"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Thuộc bảng cửu chương:** Từ bảng 2 đến bảng 9",
+          "**Thành thạo cộng có nhớ:** Vì nhân = cộng nhiều lần",
+          "**Hiểu giá trị hàng:** Hàng đơn vị, chục, trăm..."
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Nếu con chưa thuộc bảng cửu chương, nên học thuộc trước. Soroban không thay thế việc học thuộc bảng cửu chương."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Nguyên tắc nhân trên Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khác với cộng/trừ, phép nhân trên Soroban thực hiện từ PHẢI sang TRÁI (từ hàng nhỏ đến lớn) của số bị nhân."
+      },
+      {
+        "type": "paragraph",
+        "text": "Quy trình:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đặt số nhân ở bên trái Soroban (nhớ trong đầu hoặc đặt riêng)",
+          "Đặt số bị nhân ở giữa-phải Soroban",
+          "Nhân từng chữ số của số bị nhân (từ phải sang trái) với số nhân",
+          "Kết quả xuất hiện dần ở bên phải"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vị trí đặt kết quả"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây là phần quan trọng nhất khi nhân:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Chữ số hàng đơn vị nhân:** Kết quả đặt ở 2 cột bên phải số bị nhân",
+          "**Chữ số hàng chục nhân:** Kết quả đặt ở 3 cột bên phải số bị nhân",
+          "**Quy tắc chung:** Khoảng cách = vị trí hàng + 1"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ 1: 23 × 4 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 1: Setup**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Số nhân: 4 (nhớ trong đầu)",
+          "Đặt 23 ở cột 5-6 (từ trái): Cột 5 = 2, cột 6 = 3",
+          "Kết quả sẽ xuất hiện ở cột 7-8"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 2: Nhân chữ số hàng đơn vị (3 × 4 = 12)**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "3 × 4 = 12",
+          "Đặt 12 vào cột 7-8: Cột 7 = 1, cột 8 = 2",
+          "Xóa số 3 ở cột 6"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 3: Nhân chữ số hàng chục (2 × 4 = 8)**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "2 × 4 = 8",
+          "Cộng 8 vào cột 7 (vì 2 ở hàng chục): 1 + 8 = 9",
+          "Xóa số 2 ở cột 5"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Cột 7 = 9, cột 8 = 2. Tổng = 92. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ 2: 45 × 6 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 1: Setup**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Số nhân: 6",
+          "Đặt 45: Cột 5 = 4, cột 6 = 5"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 2: Nhân 5 × 6 = 30**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đặt 30 vào cột 7-8: Cột 7 = 3, cột 8 = 0",
+          "Xóa 5 ở cột 6"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 3: Nhân 4 × 6 = 24**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Cộng 24 vào cột 6-7",
+          "Cột 6: 0 + 2 = 2",
+          "Cột 7: 3 + 4 = 7",
+          "Xóa 4 ở cột 5"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Cột 6 = 2, cột 7 = 7, cột 8 = 0. Tổng = 270. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ 3: 23 × 14 = ? (Nhân 2 chữ số × 2 chữ số)"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 1: Setup**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Số nhân: 14",
+          "Đặt 23: Cột 4 = 2, cột 5 = 3"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 2: Nhân 23 với chữ số 4 (hàng đơn vị của 14)**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "3 × 4 = 12 → Đặt vào cột 6-7",
+          "2 × 4 = 8 → Cộng vào cột 6: 1 + 8 = 9"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Trạng thái: Cột 6 = 9, cột 7 = 2"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 3: Nhân 23 với chữ số 1 (hàng chục của 14)**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "3 × 1 = 3 → Cộng vào cột 6: 9 + 3 = 12 (có nhớ!)",
+          "Cột 6 = 2, nhớ 1 sang cột 5",
+          "2 × 1 = 2 → Cộng vào cột 5: 0 + 2 + 1(nhớ) = 3"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Cột 5 = 3, cột 6 = 2, cột 7 = 2. Tổng = 322. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mẹo nhân nhanh"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Thuộc bảng cửu chương:** Đây là nền tảng, không có đường tắt",
+          "**Nhân từ phải sang trái:** Ngược với cộng/trừ",
+          "**Xóa số sau khi nhân:** Để không nhầm",
+          "**Kiểm tra độ lớn:** 23 × 4 ≈ 20 × 4 = 80, nên kết quả phải gần 80-100"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bài tập thực hành"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mức 1: 1 chữ số × 1 chữ số"
+      },
+      {
+        "type": "paragraph",
+        "text": "7×8, 6×9, 8×7, 9×6, 5×8"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mức 2: 2 chữ số × 1 chữ số"
+      },
+      {
+        "type": "paragraph",
+        "text": "23×4, 45×6, 67×3, 89×2, 56×7"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mức 3: 2 chữ số × 2 chữ số"
+      },
+      {
+        "type": "paragraph",
+        "text": "12×34, 23×45, 34×56, 45×67, 56×78"
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Phép nhân khó hơn cộng/trừ. Đừng vội, cho con luyện từ từ. Khi thuộc bảng cửu chương và thành thạo cộng, học nhân sẽ dễ hơn."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con luyện nhân trên Sorokid. App có chế độ luyện bảng cửu chương trước, sau đó mới vào phép nhân thực tế."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Con chưa thuộc bảng cửu chương có học nhân Soroban được không?",
+      "answer": "Khó. Soroban yêu cầu thuộc bảng cửu chương vì mỗi bước nhân đều tra kết quả từ bảng. Nên học thuộc bảng cửu chương trước."
+    },
+    {
+      "question": "Nhân trên Soroban khác nhân trên giấy như thế nào?",
+      "answer": "Giấy: viết từng tích riêng rồi cộng. Soroban: cộng dồn trực tiếp, không cần viết ra. Nhanh hơn và rèn tính nhẩm."
+    },
+    {
+      "question": "Tại sao nhân từ phải sang trái, khác với cộng?",
+      "answer": "Để kết quả xuất hiện đúng vị trí và không bị trùng với số đang nhân. Đây là cách tối ưu trên Soroban."
+    },
+    {
+      "question": "Bao lâu thì con nhân nhanh được?",
+      "answer": "Tùy mức độ luyện tập. Thường 3-6 tháng để nhân 2 chữ số × 2 chữ số thành thạo."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có bài tập phép nhân từ cơ bản đến nâng cao, với hình ảnh trực quan giúp con hiểu cách đặt kết quả.",
+    "buttonText": "Cho con luyện thử",
+    "buttonLink": "/register"
+  },
+  "imageAlt": "Phụ huynh châu Á dạy con phép nhân trên Soroban tại nhà",
+  "categoryOrder": 1,
+  "order": 12
+}

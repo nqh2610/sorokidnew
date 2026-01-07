@@ -1,0 +1,373 @@
+{
+  "slug": "quy-tac-ban-cua-10-soroban",
+  "title": "Quy tắc 'Bạn của 10' trong Soroban – Vượt qua giới hạn 1 cột",
+  "description": "Bạn của 10 giúp con tính khi kết quả vượt quá 9. Đây là bước quan trọng để làm phép tính nhiều chữ số.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "bạn của 10 soroban",
+    "quy tắc bạn 10",
+    "cộng có nhớ soroban",
+    "phép cộng sang hàng chục soroban"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-28T05:50:29.569Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/hoc-quy-tac-ban-cua-10.jpg",
+  "readingTime": 7,
+  "content": {
+    "intro": "Khi con học 8 + 5, kết quả là 13 – vượt quá 9 của 1 cột. Lúc này cần \"Bạn của 10\" để chuyển 10 đơn vị thành 1 chục. Đây là quy tắc quan trọng thứ hai sau Bạn của 5.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bạn của 10 là gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Bạn của 10\" là các cặp số cộng lại bằng 10:"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Số",
+          "Bạn của nó",
+          "Tổng"
+        ],
+        "rows": [
+          [
+            "1",
+            "9",
+            "1 + 9 = 10"
+          ],
+          [
+            "2",
+            "8",
+            "2 + 8 = 10"
+          ],
+          [
+            "3",
+            "7",
+            "3 + 7 = 10"
+          ],
+          [
+            "4",
+            "6",
+            "4 + 6 = 10"
+          ],
+          [
+            "5",
+            "5",
+            "5 + 5 = 10"
+          ],
+          [
+            "6",
+            "4",
+            "6 + 4 = 10"
+          ],
+          [
+            "7",
+            "3",
+            "7 + 3 = 10"
+          ],
+          [
+            "8",
+            "2",
+            "8 + 2 = 10"
+          ],
+          [
+            "9",
+            "1",
+            "9 + 1 = 10"
+          ]
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Mẹo nhớ: 1-9, 2-8, 3-7, 4-6, 5-5. Tổng luôn bằng 10."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Khi nào dùng Bạn của 10?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dùng khi kết quả phép cộng vượt quá 9 (cần sang hàng bên trái) hoặc phép trừ cần mượn từ hàng bên trái."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Trường hợp CỘNG (tổng > 9)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi cộng X mà tổng vượt quá 9:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Thêm 1 vào cột bên trái (hàng chục)",
+          "Trừ bạn của X ở cột hiện tại"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Công thức: +X = +10 - (10-X) = +1 ở cột trái, -(10-X) ở cột hiện tại"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Trường hợp TRỪ (cần mượn)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi trừ X mà cột hiện tại không đủ:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bớt 1 từ cột bên trái (hàng chục)",
+          "Cộng bạn của X ở cột hiện tại"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Công thức: -X = -10 + (10-X) = -1 ở cột trái, +(10-X) ở cột hiện tại"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ cộng với Bạn của 10"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Ví dụ: 8 + 5 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tình huống:** Cột đơn vị có 8. Cộng 5, kết quả = 13, vượt quá 9."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cách làm:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bạn của 5 (trong bộ 10) là 5 (vì 5 + 5 = 10)",
+          "Thêm 1 vào cột hàng chục (cột bên trái)",
+          "Trừ 5 ở cột đơn vị (gạt hạt trời lên)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Cột chục = 1, cột đơn vị = 8 - 5 = 3. Tổng = 13. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Ví dụ: 7 + 6 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tình huống:** Cột đơn vị có 7. Cộng 6, kết quả = 13."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cách làm:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bạn của 6 (trong bộ 10) là 4",
+          "Thêm 1 vào cột hàng chục",
+          "Trừ 4 ở cột đơn vị"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Cột chục = 1, cột đơn vị = 7 - 4 = 3. Tổng = 13. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bảng cộng với Bạn của 10"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Phép tính",
+          "Bạn của số cộng",
+          "Động tác"
+        ],
+        "rows": [
+          [
+            "8 + 5",
+            "Bạn của 5 = 5",
+            "+1 cột trái, -5 cột hiện tại"
+          ],
+          [
+            "7 + 6",
+            "Bạn của 6 = 4",
+            "+1 cột trái, -4 cột hiện tại"
+          ],
+          [
+            "9 + 3",
+            "Bạn của 3 = 7",
+            "+1 cột trái, -7 cột hiện tại"
+          ],
+          [
+            "6 + 7",
+            "Bạn của 7 = 3",
+            "+1 cột trái, -3 cột hiện tại"
+          ],
+          [
+            "8 + 4",
+            "Bạn của 4 = 6",
+            "+1 cột trái, -6 cột hiện tại"
+          ],
+          [
+            "9 + 9",
+            "Bạn của 9 = 1",
+            "+1 cột trái, -1 cột hiện tại"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ trừ với Bạn của 10"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Ví dụ: 13 - 5 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tình huống:** Cột chục = 1, cột đơn vị = 3. Muốn trừ 5, nhưng cột đơn vị chỉ có 3."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cách làm:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bạn của 5 = 5",
+          "Bớt 1 từ cột hàng chục (1 → 0)",
+          "Cộng 5 vào cột đơn vị (3 + 5 = 8)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Cột chục = 0, cột đơn vị = 8. Tổng = 8. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Ví dụ: 32 - 7 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tình huống:** Cột chục = 3, cột đơn vị = 2. Trừ 7, nhưng cột đơn vị chỉ có 2."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cách làm:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bạn của 7 = 3",
+          "Bớt 1 từ cột hàng chục (3 → 2)",
+          "Cộng 3 vào cột đơn vị (2 + 3 = 5)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Cột chục = 2, cột đơn vị = 5. Tổng = 25. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết hợp Bạn của 5 và Bạn của 10"
+      },
+      {
+        "type": "paragraph",
+        "text": "Có những phép tính cần dùng CẢ HAI quy tắc. Ví dụ: 8 + 7."
+      },
+      {
+        "type": "paragraph",
+        "text": "Đang có 8 (= 5 + 3 hạt đất). Cộng 7:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Tổng = 15, vượt quá 9 → dùng Bạn của 10",
+          "Bạn của 7 = 3 → +1 cột trái, -3 cột hiện tại",
+          "Nhưng cột hiện tại có 8, trừ 3 chỉ còn 5 (hạt trời)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Kết quả: Cột chục = 1, cột đơn vị = 5. Tổng = 15. ✓"
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Một số phép tính cần kết hợp Bạn của 5 VÀ Bạn của 10 trong 1 động tác. Điều này sẽ học ở bài thực hành nâng cao."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mẹo nhớ nhanh"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Thuộc các cặp:** 1-9, 2-8, 3-7, 4-6, 5-5",
+          "**Cộng vượt 9:** Thêm 1 cột trái, trừ bạn cột hiện tại",
+          "**Trừ không đủ:** Bớt 1 cột trái, cộng bạn cột hiện tại"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Bạn của 10 phức tạp hơn Bạn của 5 vì liên quan đến 2 cột. Cho con luyện từ từ, mỗi ngày vài bài. Đừng ép con học nhanh."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con luyện Bạn của 10 trên Sorokid. App hiển thị rõ 2 cột, con thấy được sự thay đổi ở cả hàng chục và hàng đơn vị."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Khác nhau giữa Bạn của 5 và Bạn của 10?",
+      "answer": "Bạn của 5: Xử lý trong 1 cột (0-9), dùng hạt trời. Bạn của 10: Xử lý giữa 2 cột, khi kết quả vượt 9 hoặc cần mượn."
+    },
+    {
+      "question": "Con hay nhầm Bạn của 5 với Bạn của 10, phải làm sao?",
+      "answer": "Luyện riêng từng quy tắc. Khi thuần thục cả hai mới trộn lẫn. Nhắc con nhìn kết quả: dưới 10 = Bạn của 5, từ 10 trở lên = Bạn của 10."
+    },
+    {
+      "question": "Có cần thuộc lòng bảng Bạn của 10 không?",
+      "answer": "Có. Nhưng chỉ cần nhớ 5 cặp: 1-9, 2-8, 3-7, 4-6, 5-5. Luyện nhiều sẽ thành phản xạ."
+    },
+    {
+      "question": "Bao lâu thì con thuần thục Bạn của 10?",
+      "answer": "Khoảng 2-3 tuần nếu luyện đều đặn mỗi ngày. Đây là quy tắc khó, cần kiên nhẫn."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có bài tập luyện Bạn của 10 với hình ảnh 2 cột rõ ràng, giúp con hiểu cách \"nhớ\" sang hàng bên trái.",
+    "buttonText": "Cho con luyện thử",
+    "buttonLink": "/register"
+  },
+  "imageAlt": "Trẻ em học quy tắc bạn của 10 trên Soroban",
+  "categoryOrder": 1,
+  "order": 8
+}

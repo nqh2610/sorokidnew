@@ -1,0 +1,105 @@
+{
+  "slug": "con-hoc-toan-online-co-tot-khong",
+  "title": "Mình lo con học online – nhưng 6 tháng sau thì hết lo",
+  "description": "Ban đầu mình sợ con học online sẽ lười, không hiệu quả. Thử rồi mình thấy khác.",
+  "category": "cach-giup-con-hoc-toan-nhe-nhang",
+  "keywords": [
+    "học toán online",
+    "app học toán",
+    "con học qua điện thoại"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-31T03:13:52.579Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-hoc-online.jpg",
+  "imageAlt": "Bé châu Á học qua tablet với vẻ tập trung",
+  "readingTime": 6,
+  "categoryOrder": 4,
+  "order": 8,
+  "content": {
+    "intro": "\"Cho con chơi điện thoại à?\" – Mẹ chồng hỏi khi thấy con mình học trên tablet. Mình giải thích mãi bà không hiểu. Nhưng 6 tháng sau, bà thấy con tiến bộ thì không nói gì nữa.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình cũng từng nghi ngờ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình lo: con chơi game núp bóng học bài. Con nghiện điện thoại. Con không tập trung."
+      },
+      {
+        "type": "paragraph",
+        "text": "Những lo lắng đó không phải vô căn cứ. Nhiều app \"học tập\" thực ra chỉ là game được đóng gói lại."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình tìm app kỹ trước khi cho con dùng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình chọn Sorokid vì:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Có nội dung giáo dục thật:** Dạy Soroban – phương pháp tính nhẩm của Nhật. Không phải game đội lốt."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Có giới hạn thời gian:** App tự dừng sau 15-20 phút. Con không thể \"chơi\" cả ngày."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Có báo cáo cho bố mẹ:** Mình xem được con học gì, đúng sai ra sao."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Vấn đề không phải học online hay offline. Vấn đề là chất lượng app và cách quản lý thời gian."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "6 tháng sau"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình tính nhẩm nhanh hơn hẳn. Không phải vì \"chơi điện thoại\", mà vì học đều đặn mỗi ngày."
+      },
+      {
+        "type": "paragraph",
+        "text": "Con cũng tự giác hơn. Không cần mình nhắc nhiều. Con biết học 15 phút xong là tắt."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lời khuyên cho phụ huynh"
+      },
+      {
+        "type": "paragraph",
+        "text": "- Chọn app kỹ, đọc review, thử trước khi cho con dùng.\n- Đặt giới hạn thời gian rõ ràng.\n- Xem báo cáo để biết con học thật hay \"chơi\".\n- Không để điện thoại thay thế hoàn toàn bố mẹ."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Học online không xấu. Xấu là khi không quản lý. App tốt + quy tắc rõ = hiệu quả."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Học online có hại mắt không?",
+      "answer": "Nếu học đúng thời gian (15-20 phút) và có khoảng cách hợp lý, không ảnh hưởng nhiều. Sau khi học nên cho con nghỉ mắt."
+    },
+    {
+      "question": "Sao biết con học thật hay chơi?",
+      "answer": "App tốt có báo cáo tiến độ. Bạn xem con hoàn thành bao nhiêu bài, đúng bao nhiêu phần trăm, thời gian học bao lâu."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có báo cáo chi tiết cho bố mẹ. Bạn luôn biết con đang học gì.",
+    "buttonText": "Tìm hiểu thêm",
+    "buttonLink": "/register"
+  }
+}

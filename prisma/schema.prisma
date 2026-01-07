@@ -1,0 +1,362 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x", "debian-openssl-3.0.x", "debian-openssl-1.1.x", "rhel-openssl-3.0.x", "rhel-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                      String                   @id @default(uuid())
+  email                   String                   @unique
+  username                String                   @unique
+  password                String
+  name                    String
+  phone                   String?                  @db.VarChar(50)
+  avatar                  String?
+  level                   Int                      @default(1)
+  totalStars              Int                      @default(0)
+  diamonds                Int                      @default(5)
+  streak                  Int                      @default(0)
+  lastLoginDate           DateTime?
+  role                    String                   @default("student")
+  parentId                String?
+  createdAt               DateTime                 @default(now())
+  updatedAt               DateTime                 @updatedAt
+  totalEXP                Int                      @default(0)
+  tier                    String                   @default("free")
+  tierPurchasedAt         DateTime?
+  isProfileComplete       Boolean                  @default(true)
+  trialExpiresAt          DateTime?
+  certificateProgress     CertificateProgress[]
+  certificates            Certificate[]
+  challengeParticipations ChallengeParticipation[]
+  challenges              Challenge[]              @relation("ChallengeCreator")
+  competeResults          CompeteResult[]
+  exercises               ExerciseResult[]
+  friendOf                Friend[]                 @relation("FriendOf")
+  friends                 Friend[]                 @relation("UserFriends")
+  notifications           Notification[]
+  paymentOrders           PaymentOrder[]
+  progress                Progress[]
+  purchases               Purchase[]
+  achievements            UserAchievement[]
+  quests                  UserQuest[]
+
+  @@map("users")
+}
+
+model Progress {
+  id          String    @id @default(uuid())
+  userId      String
+  levelId     Int
+  lessonId    Int
+  completed   Boolean   @default(false)
+  starsEarned Int       @default(0)
+  timeSpent   Int       @default(0)
+  accuracy    Float     @default(0)
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, levelId, lessonId])
+  @@map("progress")
+}
+
+model ExerciseResult {
+  id            String   @id @default(uuid())
+  userId        String
+  exerciseType  String
+  difficulty    Int
+  problem       String
+  userAnswer    String
+  correctAnswer String
+  isCorrect     Boolean
+  timeTaken     Int
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@map("exercise_results")
+}
+
+model Achievement {
+  id          String            @id @default(uuid())
+  name        String            @unique
+  description String
+  icon        String
+  category    String
+  requirement String
+  stars       Int               @default(0)
+  diamonds    Int               @default(0)
+  createdAt   DateTime          @default(now())
+  users       UserAchievement[]
+
+  @@map("achievements")
+}
+
+model UserAchievement {
+  id            String      @id @default(uuid())
+  userId        String
+  achievementId String
+  unlockedAt    DateTime    @default(now())
+  achievement   Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, achievementId])
+  @@index([achievementId], map: "user_achievements_achievementId_fkey")
+  @@map("user_achievements")
+}
+
+model Level {
+  id          Int      @id
+  name        String
+  icon        String
+  description String?  @db.Text
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("levels")
+}
+
+model Lesson {
+  id          String   @id @default(uuid())
+  levelId     Int
+  lessonId    Int
+  title       String
+  description String   @db.Text
+  content     String   @db.LongText
+  difficulty  Int      @default(1)
+  duration    Int      @default(15)
+  stars       Int      @default(10)
+  videoUrl    String?
+  order       Int
+  isLocked    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([levelId, lessonId])
+  @@map("lessons")
+}
+
+model Quest {
+  id          String      @id @default(uuid())
+  title       String
+  description String
+  type        String
+  category    String
+  requirement String
+  stars       Int         @default(50)
+  diamonds    Int         @default(10)
+  expiresAt   DateTime?
+  isActive    Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  users       UserQuest[]
+
+  @@map("quests")
+}
+
+model UserQuest {
+  id        String    @id @default(uuid())
+  userId    String
+  questId   String
+  progress  Int       @default(0)
+  completed Boolean   @default(false)
+  claimedAt DateTime?
+  createdAt DateTime  @default(now())
+  quest     Quest     @relation(fields: [questId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, questId])
+  @@index([questId], map: "user_quests_questId_fkey")
+  @@map("user_quests")
+}
+
+model ShopItem {
+  id          String     @id @default(uuid())
+  name        String
+  description String
+  icon        String
+  category    String
+  price       Int
+  type        String
+  data        String     @db.Text
+  isActive    Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  purchases   Purchase[]
+
+  @@map("shop_items")
+}
+
+model Purchase {
+  id          String   @id @default(uuid())
+  userId      String
+  itemId      String
+  quantity    Int      @default(1)
+  totalPrice  Int
+  purchasedAt DateTime @default(now())
+  item        ShopItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([itemId], map: "purchases_itemId_fkey")
+  @@index([userId], map: "purchases_userId_fkey")
+  @@map("purchases")
+}
+
+model Friend {
+  id         String    @id @default(uuid())
+  userId     String
+  friendId   String
+  status     String    @default("pending")
+  createdAt  DateTime  @default(now())
+  acceptedAt DateTime?
+  friend     User      @relation("FriendOf", fields: [friendId], references: [id], onDelete: Cascade)
+  user       User      @relation("UserFriends", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, friendId])
+  @@index([friendId], map: "friends_friendId_fkey")
+  @@map("friends")
+}
+
+model Challenge {
+  id           String                   @id @default(uuid())
+  title        String
+  description  String
+  creatorId    String
+  type         String
+  difficulty   Int
+  rules        String                   @db.Text
+  starsPrize   Int
+  status       String                   @default("active")
+  startAt      DateTime
+  endAt        DateTime
+  createdAt    DateTime                 @default(now())
+  participants ChallengeParticipation[]
+  creator      User                     @relation("ChallengeCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+
+  @@index([creatorId], map: "challenges_creatorId_fkey")
+  @@map("challenges")
+}
+
+model ChallengeParticipation {
+  id          String    @id @default(uuid())
+  userId      String
+  challengeId String
+  score       Int       @default(0)
+  rank        Int?
+  completed   Boolean   @default(false)
+  joinedAt    DateTime  @default(now())
+  completedAt DateTime?
+  challenge   Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, challengeId])
+  @@index([challengeId], map: "challenge_participations_challengeId_fkey")
+  @@map("challenge_participations")
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  type      String
+  title     String
+  message   String
+  data      String?  @db.Text
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead, createdAt])
+  @@map("notifications")
+}
+
+model CompeteResult {
+  id        String   @id @default(uuid())
+  userId    String
+  arenaId   String
+  correct   Int
+  totalTime Float
+  stars     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, arenaId])
+  @@index([arenaId, correct, totalTime])
+  @@map("compete_results")
+}
+
+model PaymentOrder {
+  id              String    @id @default(uuid())
+  orderCode       String    @unique
+  userId          String
+  tier            String
+  amount          Int
+  status          String    @default("pending")
+  transactionId   String?
+  paidAmount      Int?
+  paidAt          DateTime?
+  expiresAt       DateTime
+  note            String?   @db.Text
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  previousTier    String?
+  transactionType String    @default("new")
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([orderCode])
+  @@index([status])
+  @@map("payment_orders")
+}
+
+model Certificate {
+  id            String   @id @default(uuid())
+  userId        String
+  certType      String
+  recipientName String
+  honorTitle    String
+  isExcellent   Boolean  @default(false)
+  code          String   @unique
+  issuedAt      DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([code])
+  @@map("certificates")
+}
+
+model CertificateProgress {
+  id                 String    @id
+  userId             String
+  certType           String
+  lessonsProgress    String    @db.Text
+  practiceProgress   String    @db.Text
+  competeProgress    String    @db.Text
+  mentalMathProgress String    @db.Text
+  totalRequired      Int
+  totalCompleted     Int       @default(0)
+  percentComplete    Float     @default(0)
+  isCompleted        Boolean   @default(false)
+  completedAt        DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime
+  flashProgress      String?   @db.Text
+  user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, certType])
+  @@map("certificate_progress")
+}
+
+model SystemSettings {
+  key       String   @id
+  value     String   @db.LongText
+  updatedAt DateTime
+
+  @@map("system_settings")
+}

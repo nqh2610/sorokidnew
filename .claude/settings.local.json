@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(node check-lessons-local.js:*)",
+      "Bash(node test-multiplication-guide.js:*)",
+      "Bash(node analyze-multiplication-lessons.js:*)",
+      "Bash(node:*)",
+      "Bash(cat:*)",
+      "Bash(del \"f:\\\\Recovered_18_49_43\\\\New Volume\\(E\\)\\\\sorokids\\\\sorokid_github\\\\test-multiplication-guide.js\")",
+      "Bash(npm run build:*)",
+      "Bash(npx next lint:*)",
+      "Bash(npx prisma generate:*)",
+      "Bash(npx next build)",
+      "Bash(ls:*)",
+      "Bash(npm install:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)"
+    ]
+  }
+}

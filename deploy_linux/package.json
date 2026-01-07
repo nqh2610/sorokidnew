@@ -1,0 +1,52 @@
+{
+  "name": "sorokid",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "dev:clean": "rimraf .next && next dev",
+    "build": "prisma generate && next build",
+    "postinstall": "prisma generate",
+    "start": "next start",
+    "start:prod": "cross-env NODE_ENV=production next start",
+    "start:server": "cross-env NODE_ENV=production node server.js",
+    "clean": "rimraf .next node_modules/.cache",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate deploy",
+    "lint": "next lint",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "prisma:seed": "node prisma/seed.js"
+  },
+  "prisma": {
+    "seed": "node prisma/seed-lessons.js"
+  },
+  "dependencies": {
+    "@dicebear/collection": "^9.2.4",
+    "@dicebear/core": "^9.2.4",
+    "@prisma/client": "^5.11.0",
+    "bcryptjs": "^2.4.3",
+    "cross-env": "^7.0.3",
+    "dotenv": "^17.2.3",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^3.0.4",
+    "lucide-react": "^0.263.1",
+    "next": "14.2.0",
+    "next-auth": "^4.24.0",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "14.2.0",
+    "postcss": "^8.4.0",
+    "prisma": "^5.11.0",
+    "rimraf": "^6.1.2",
+    "tailwindcss": "^3.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0 || >=22.0.0"
+  }
+}

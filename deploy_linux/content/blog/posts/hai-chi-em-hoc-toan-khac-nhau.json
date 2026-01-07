@@ -1,0 +1,109 @@
+{
+  "slug": "hai-chi-em-hoc-toan-khac-nhau",
+  "title": "Hai chị em nhà mình học toán hoàn toàn khác – cùng mẹ mà sao thế?",
+  "description": "Chị giỏi toán từ nhỏ. Em sợ toán. Mình phải tìm cách khác nhau cho từng con.",
+  "category": "phu-huynh-kem-con-hoc-toan",
+  "keywords": [
+    "hai con học khác nhau",
+    "dạy từng con khác nhau",
+    "con này giỏi con kia yếu"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/hai-chi-em.jpg",
+  "imageAlt": "Hai chị em châu Á đang ngồi học bài",
+  "readingTime": 6,
+  "categoryOrder": 3,
+  "order": 13,
+  "content": {
+    "intro": "Chị lớp 3, toán luôn 9-10. Em lớp 1, khóc mỗi khi làm bài. Hai đứa cùng cha mẹ, cùng cách dạy, sao lại khác vậy?",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình từng dùng một cách cho cả hai"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cách dạy chị hiệu quả, mình áp dụng cho em. Nhưng em không tiếp thu. Em khóc, mình stress."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình tự hỏi: \"Tại sao cùng một phương pháp lại không hiệu quả?\"."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình nhận ra: mỗi con là một cá thể"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chị học tốt qua nghe giảng. Em học tốt qua hình ảnh và vận động."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chị tự giác, ngồi yên được lâu. Em hiếu động, cần nghỉ giữa chừng."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cùng bố mẹ, nhưng hai con hoàn toàn khác nhau."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Mỗi con cần phương pháp riêng. Không có công thức chung cho tất cả."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình thay đổi thế nào"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Với chị:** Tiếp tục cách cũ. Ngồi học 30 phút, đọc sách, làm bài tập."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Với em:** Cho học Sorokid – có hình ảnh, animation. Học 10 phút thôi. Cho nghỉ giữa chừng."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không so sánh hai con. \"Sao chị làm được mà em không?\" – Câu này mình không bao giờ nói."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bây giờ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Em mình tiến bộ dần. Không giỏi như chị, nhưng không còn khóc. Đó là thắng lợi."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình học được: công bằng không phải dạy giống nhau, mà là dạy theo cách phù hợp với từng con."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Đừng so sánh hai con. Hãy hiểu từng con và tìm phương pháp phù hợp cho mỗi đứa."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Hai con học khác nhau có bình thường không?",
+      "answer": "Hoàn toàn bình thường. Mỗi trẻ có cách tiếp thu riêng, dù cùng cha mẹ, cùng môi trường."
+    },
+    {
+      "question": "Có nên cho hai con học cùng phương pháp không?",
+      "answer": "Không nhất thiết. Quan sát từng con để biết con học tốt theo cách nào, rồi điều chỉnh."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid tự điều chỉnh theo tốc độ của từng con.",
+    "buttonText": "Cho con thử",
+    "buttonLink": "/register"
+  }
+}

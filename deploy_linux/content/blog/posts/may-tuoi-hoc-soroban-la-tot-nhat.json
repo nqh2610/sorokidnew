@@ -1,0 +1,105 @@
+{
+  "slug": "may-tuoi-hoc-soroban-la-tot-nhat",
+  "title": "Mình cho con học Soroban lúc 7 tuổi – có muộn không?",
+  "description": "Nghe nói 4-5 tuổi học là tốt nhất. Con mình 7 tuổi rồi. Mình lo đã muộn.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "mấy tuổi học soroban",
+    "tuổi học soroban tốt nhất",
+    "con 7 tuổi học soroban"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-7-tuoi-hoc-soroban.jpg",
+  "imageAlt": "Bé 7 tuổi châu Á đang học với bàn tính Soroban",
+  "readingTime": 5,
+  "categoryOrder": 1,
+  "order": 30,
+  "content": {
+    "intro": "\"4-6 tuổi là giai đoạn vàng để học Soroban.\" – Mình đọc được câu này khi con mình đã 7 tuổi. Mình hơi tiếc: \"Sao mình không biết sớm hơn?\"",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "\"Giai đoạn vàng\" nghĩa là gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "4-6 tuổi não trẻ phát triển nhanh nhất. Học gì cũng dễ tiếp thu. Nhưng không có nghĩa sau 6 tuổi là không học được."
+      },
+      {
+        "type": "paragraph",
+        "text": "7, 8, 9 tuổi vẫn học tốt. Chỉ là có thể mất thêm một chút thời gian so với trẻ nhỏ hơn."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình cho con học Sorokid lúc 7 tuổi"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ban đầu mình lo. Nhưng sau 2 tháng, con học tốt. Con tiếp thu nhanh vì đã biết số, biết cộng trừ cơ bản."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lợi thế của trẻ lớn hơn: hiểu lý thuyết nhanh, biết tự học, ngồi yên lâu hơn."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Không có \"quá muộn\" với Soroban. Trẻ 10 tuổi, thậm chí người lớn vẫn học được. Quan trọng là bắt đầu."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Độ tuổi phù hợp cho từng mục tiêu"
+      },
+      {
+        "type": "paragraph",
+        "text": "**4-6 tuổi:** Học để phát triển não, làm quen với số. Không kỳ vọng cao."
+      },
+      {
+        "type": "paragraph",
+        "text": "**7-9 tuổi:** Học để hỗ trợ toán trường, rèn tính nhẩm. Hiệu quả rõ rệt."
+      },
+      {
+        "type": "paragraph",
+        "text": "**10+ tuổi:** Vẫn học được, nhưng cần kiên nhẫn hơn. Thường học vì mục tiêu cụ thể."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết quả của con mình"
+      },
+      {
+        "type": "paragraph",
+        "text": "1 năm học Sorokid, con tính nhẩm 2 chữ số được. Điểm toán ở trường cũng tốt hơn."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không còn tiếc vì \"biết muộn\" nữa. Quan trọng là đã bắt đầu."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Đừng lo \"muộn quá\". Thời điểm tốt nhất là ngay bây giờ. Mỗi ngày không bắt đầu mới là muộn thêm."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Con 10 tuổi có học Soroban được không?",
+      "answer": "Được. Trẻ lớn hiểu nhanh hơn, chỉ cần kiên nhẫn luyện tập. Nhiều trẻ 10-12 tuổi vẫn học tốt."
+    },
+    {
+      "question": "Mấy tuổi là quá nhỏ để học?",
+      "answer": "Dưới 4 tuổi thường khó tập trung đủ lâu. 4-5 tuổi là độ tuổi có thể bắt đầu làm quen."
+    }
+  ],
+  "cta": {
+    "text": "Bắt đầu học Soroban ngay hôm nay với Sorokid.",
+    "buttonText": "Cho con thử miễn phí",
+    "buttonLink": "/register"
+  }
+}

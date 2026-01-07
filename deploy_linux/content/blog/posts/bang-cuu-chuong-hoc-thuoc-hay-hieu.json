@@ -1,0 +1,105 @@
+{
+  "slug": "bang-cuu-chuong-hoc-thuoc-hay-hieu",
+  "title": "Bảng cửu chương – con nên học thuộc hay cần hiểu? Mình đã chọn cả hai",
+  "description": "Ông bà bảo phải học thuộc. Sách bảo phải hiểu bản chất. Mình rối không biết theo ai.",
+  "category": "cach-giup-con-hoc-toan-nhe-nhang",
+  "keywords": [
+    "bảng cửu chương",
+    "học thuộc bảng nhân",
+    "dạy con phép nhân"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-hoc-bang-cuu-chuong.jpg",
+  "imageAlt": "Bé châu Á đang đọc bảng cửu chương",
+  "readingTime": 6,
+  "categoryOrder": 4,
+  "order": 12,
+  "content": {
+    "intro": "\"Hai nhân hai bằng bốn, hai nhân ba bằng sáu...\" – Con mình đọc như hát. Nhưng hỏi \"2 × 3 nghĩa là gì?\", con không trả lời được. Mình bắt đầu lo.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Hai quan điểm"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Học thuộc:** Ông bà, thầy cô thế hệ trước khuyên đọc nhiều đến khi thuộc. Thực dụng: làm bài nhanh."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Hiểu bản chất:** Sách dạy mới khuyên phải hiểu 2 × 3 là \"2 nhóm, mỗi nhóm 3 cái\". Hiểu để áp dụng linh hoạt."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình nhận ra: cần CẢ HAI"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hiểu bản chất để biết tại sao. Học thuộc để làm nhanh."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nếu chỉ hiểu mà không thuộc: mỗi lần 7 × 8 lại phải tính lại, quá chậm."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nếu chỉ thuộc mà không hiểu: gặp bài toán lạ không biết làm."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Không cần chọn một trong hai. Trẻ cần hiểu trước, rồi luyện tập đến khi thuộc."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách mình làm"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 1 – Hiểu:** Dùng đồ vật. \"Con có 3 hộp, mỗi hộp 4 kẹo. Tổng mấy kẹo?\" Con đếm: 12."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 2 – Luyện:** Cho con học Sorokid. App lặp đi lặp lại các phép nhân. Con thuộc dần mà không cần đọc."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 3 – Kiểm tra:** Hỏi random: \"6 × 7?\" Nếu con trả lời trong 3 giây là đã thuộc."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết quả"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình vừa thuộc bảng cửu chương, vừa hiểu bản chất. Gặp bài lạ con vẫn biết cách làm."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Hiểu để biết tại sao. Thuộc để làm nhanh. Kết hợp cả hai là tốt nhất."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Nên học thuộc bảng cửu chương lúc nào?",
+      "answer": "Sau khi con hiểu khái niệm phép nhân. Thường từ lớp 2-3. Đừng học thuộc trước khi hiểu."
+    },
+    {
+      "question": "Có cần thuộc bảng cửu chương đến 9?",
+      "answer": "Thuộc đến 9 × 9 là đủ. Bảng 10, 11, 12 có thể suy ra từ bảng nhỏ hơn."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid giúp con vừa hiểu vừa thuộc bảng cửu chương qua luyện tập hàng ngày.",
+    "buttonText": "Cho con học thử",
+    "buttonLink": "/register"
+  }
+}

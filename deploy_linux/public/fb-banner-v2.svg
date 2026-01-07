@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 312">
+  <defs>
+    <!-- Gradient chính từ logo -->
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F7FFF"/>
+      <stop offset="50%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    
+    <!-- Gradient cho text -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4F7FFF"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+    
+    <!-- Beautiful gradient background - Brighter -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="35%" stop-color="#8B5CF6"/>
+      <stop offset="70%" stop-color="#D946EF"/>
+      <stop offset="100%" stop-color="#F472B6"/>
+    </linearGradient>
+    
+    <!-- Overlay gradient for depth -->
+    <linearGradient id="overlayGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.1"/>
+    </linearGradient>
+    
+    <!-- Decorative circles -->
+    <radialGradient id="glowWhite" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    
+    <radialGradient id="glowPink" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F093FB" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#F093FB" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="820" height="312" fill="url(#bgGradient)"/>
+  <rect width="820" height="312" fill="url(#overlayGradient)"/>
+  
+  <!-- Decorative glows -->
+  <circle cx="750" cy="50" r="150" fill="url(#glowWhite)"/>
+  <circle cx="80" cy="280" r="120" fill="url(#glowPink)"/>
+  <circle cx="400" cy="156" r="200" fill="url(#glowWhite)" opacity="0.1"/>
+  
+  <!-- Decorative shapes -->
+  <circle cx="720" cy="250" r="40" fill="white" opacity="0.08"/>
+  <circle cx="50" cy="50" r="30" fill="white" opacity="0.1"/>
+  <circle cx="600" cy="30" r="20" fill="white" opacity="0.12"/>
+  
+  <!-- Bottom wave decoration -->
+  <path d="M0 280 Q200 250 400 280 T820 260 L820 312 L0 312 Z" fill="white" opacity="0.05"/>
+  
+  <!-- Top accent line -->
+  <rect width="820" height="4" fill="white" opacity="0.3"/>
+  
+  <!-- Left side - Logo gốc từ Logo.jsx -->
+  <g transform="translate(30, 80)">
+    <!-- Logo icon - copy từ Logo.jsx -->
+    <svg x="0" y="0" width="150" height="150" viewBox="0 0 100 100">
+      <!-- Background với bo góc -->
+      <rect x="0" y="0" width="100" height="100" rx="22" fill="url(#mainGradient)"/>
+      
+      <!-- 1 hạt trời phía trên - màu hồng nhạt -->
+      <circle cx="50" cy="30" r="8" fill="#F9A8D4"/>
+      
+      <!-- Thanh ngang ở giữa -->
+      <rect x="22" y="46" width="56" height="6" rx="3" fill="white" fill-opacity="0.95"/>
+      
+      <!-- 3 hạt đất phía dưới - màu vàng cam -->
+      <circle cx="30" cy="66" r="8" fill="#FBBF24"/>
+      <circle cx="50" cy="66" r="8" fill="#FBBF24"/>
+      <circle cx="70" cy="66" r="8" fill="#FBBF24"/>
+    </svg>
+  </g>
+  
+  <!-- Middle - Main content -->
+  <g transform="translate(200, 35)">
+    <!-- Logo text with glow effect -->
+    <text x="2" y="52" font-family="Arial Black, sans-serif" font-size="56" font-weight="900" fill="#000" opacity="0.2">
+      SoroKid
+    </text>
+    <text x="0" y="50" font-family="Arial Black, sans-serif" font-size="56" font-weight="900" fill="white">
+      SoroKid
+    </text>
+    <text x="0" y="50" font-family="Arial Black, sans-serif" font-size="56" font-weight="900" fill="url(#mainGradient)" opacity="0.3">
+      SoroKid
+    </text>
+    
+    <!-- Main slogan -->
+    <text x="0" y="90" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="white">
+      Thần đồng tính nhẩm trong tầm tay!
+    </text>
+    
+    <!-- Sub tagline -->
+    <text x="0" y="120" font-family="Arial, sans-serif" font-size="15" fill="white" opacity="0.9">
+      Chỉ 15 phút/ngày • Chơi mà học, học mà chơi
+    </text>
+    
+    <!-- Stats highlight -->
+    <g transform="translate(0, 145)">
+      <rect x="-12" y="-8" width="340" height="38" rx="10" fill="white" opacity="0.25"/>
+      <text x="0" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="white">
+        ⭐ 10.000+ học sinh đã tính nhẩm nhanh hơn
+      </text>
+    </g>
+    
+    <!-- Features row - Bài học, Luyện tập, Thi đấu -->
+    <g transform="translate(0, 200)">
+      <!-- Feature 1 - Bài học -->
+      <g>
+        <rect x="-5" y="-10" width="105" height="50" rx="12" fill="white" opacity="0.2"/>
+        <text x="8" y="16" font-size="22">📚</text>
+        <text x="38" y="14" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="white">Bài học</text>
+        <text x="38" y="30" font-family="Arial, sans-serif" font-size="10" fill="white" opacity="0.9">Dễ đến Khó</text>
+      </g>
+      
+      <!-- Feature 2 - Luyện tập -->
+      <g transform="translate(125, 0)">
+        <rect x="-5" y="-10" width="115" height="50" rx="12" fill="white" opacity="0.2"/>
+        <text x="8" y="16" font-size="22">🎯</text>
+        <text x="38" y="14" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="white">Luyện tập</text>
+        <text x="38" y="30" font-family="Arial, sans-serif" font-size="10" fill="white" opacity="0.9">1000+ bài tập</text>
+      </g>
+      
+      <!-- Feature 3 - Thi đấu -->
+      <g transform="translate(250, 0)">
+        <rect x="-5" y="-10" width="105" height="50" rx="12" fill="white" opacity="0.2"/>
+        <text x="8" y="16" font-size="22">🏆</text>
+        <text x="38" y="14" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="white">Thi đấu</text>
+        <text x="38" y="30" font-family="Arial, sans-serif" font-size="10" fill="white" opacity="0.9">Arena PvP</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Right side - CTA area -->
+  <g transform="translate(580, 40)">
+    <!-- Japan badge -->
+    <rect x="0" y="0" width="180" height="36" rx="18" fill="white" opacity="0.95"/>
+    <text x="90" y="24" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#1F2937" text-anchor="middle">
+      🇯🇵 Soroban Nhật Bản
+    </text>
+    
+    <!-- Benefits badges -->
+    <g transform="translate(0, 48)">
+      <rect x="0" y="0" width="180" height="28" rx="14" fill="white" opacity="0.2"/>
+      <text x="90" y="19" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="white" text-anchor="middle">
+        🧠 Toán tư duy
+      </text>
+    </g>
+    
+    <g transform="translate(0, 82)">
+      <rect x="0" y="0" width="180" height="28" rx="14" fill="white" opacity="0.2"/>
+      <text x="90" y="19" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="white" text-anchor="middle">
+        ⚡ Tính nhẩm siêu nhanh
+      </text>
+    </g>
+    
+    <g transform="translate(0, 116)">
+      <rect x="0" y="0" width="180" height="28" rx="14" fill="white" opacity="0.2"/>
+      <text x="90" y="19" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="white" text-anchor="middle">
+        🎯 Phát triển não bộ
+      </text>
+    </g>
+    
+    <!-- CTA Button -->
+    <rect x="5" y="155" width="170" height="50" rx="25" fill="white"/>
+    <text x="90" y="186" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#7C3AED" text-anchor="middle">
+      Học thử ngay! →
+    </text>
+    
+    <!-- Website -->
+    <text x="90" y="225" font-family="Arial, sans-serif" font-size="12" font-weight="500" fill="white" opacity="0.9" text-anchor="middle">
+      sorokid.com
+    </text>
+  </g>
+  
+  <!-- Decorative elements -->
+  <g opacity="0.4">
+    <circle cx="550" cy="280" r="4" fill="white"/>
+    <circle cx="570" cy="260" r="3" fill="white"/>
+    <circle cx="180" cy="30" r="5" fill="white"/>
+    <circle cx="30" cy="150" r="4" fill="white"/>
+  </g>
+</svg>

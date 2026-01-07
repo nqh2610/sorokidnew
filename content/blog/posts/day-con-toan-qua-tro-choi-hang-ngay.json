@@ -1,0 +1,117 @@
+{
+  "slug": "day-con-toan-qua-tro-choi-hang-ngay",
+  "title": "Mình dạy con toán lúc đi siêu thị – không ai biết đang học",
+  "description": "Không cần sách vở, không cần bàn học. Toán ở khắp nơi nếu bạn biết cách.",
+  "category": "cach-giup-con-hoc-toan-nhe-nhang",
+  "keywords": [
+    "dạy toán qua trò chơi",
+    "toán trong đời sống",
+    "học toán vui"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-29T22:46:27.949Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/me-con-di-sieu-thi.jpg",
+  "imageAlt": "Mẹ và con châu Á đi siêu thị cùng nhau",
+  "readingTime": 6,
+  "categoryOrder": 4,
+  "order": 7,
+  "content": {
+    "intro": "\"Mẹ ơi, cái này bao nhiêu tiền?\" – \"20 ngàn. Mẹ cho con 50 ngàn, con tính tiền thừa nhé?\" – Đó là cách mình \"dạy\" con toán ở siêu thị. Con không biết là đang học.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Toán ở đâu trong cuộc sống?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Siêu thị:** Tính tiền, so sánh giá, đếm số lượng."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Nấu ăn:** Đong bột, đếm trứng, chia phần bánh."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Xe cộ:** Đếm xe đỏ, tính thời gian đến nơi."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Chơi game:** Điểm số, level, thời gian còn lại."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vì sao cách này hiệu quả?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Không áp lực:** Con không biết đang \"học\", nên không sợ sai."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Có ý nghĩa:** Tính tiền siêu thị có \"mục đích\" thực sự, không phải làm bài cho xong."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Lặp lại tự nhiên:** Mỗi lần đi chợ là một lần ôn tập. Không cần đặt lịch."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Con không ghét toán. Con ghét ngồi làm bài tập. Nếu toán là trò chơi, con sẽ thích."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Một số \"trò chơi\" mình hay dùng"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Ai tính nhanh hơn:** Mình hỏi con: \"Mẹ mua 3 chai sữa, mỗi chai 12 ngàn, hết bao nhiêu?\" Ai trả lời trước thắng."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Đếm xe:** Trên đường đi, ai đếm được nhiều xe màu đỏ hơn."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Chia bánh:** \"Con có 12 cái kẹo, chia cho 3 bạn, mỗi bạn mấy cái?\""
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết hợp với app"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con học Sorokid 15 phút mỗi ngày để có nền tảng. Còn những lúc đi chơi, mình \"ôn bài\" qua trò chơi."
+      },
+      {
+        "type": "paragraph",
+        "text": "Con vừa có kiến thức từ app, vừa biết áp dụng trong thực tế."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Bạn không cần là giáo viên để dạy con toán. Chỉ cần biến toán thành trò chơi trong cuộc sống."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Trẻ mấy tuổi áp dụng được?",
+      "answer": "Từ 4-5 tuổi đã có thể bắt đầu với đếm số, so sánh nhiều ít. Tăng độ khó theo tuổi."
+    },
+    {
+      "question": "Con không hứng thú thì sao?",
+      "answer": "Đừng ép. Nếu con không muốn chơi, thôi. Hôm khác thử lại. Quan trọng là giữ không khí vui vẻ."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid dạy con nền tảng, bạn dạy con áp dụng. Kết hợp là hoàn hảo.",
+    "buttonText": "Cho con học thử",
+    "buttonLink": "/register"
+  }
+}

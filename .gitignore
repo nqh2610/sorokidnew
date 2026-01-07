@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Standalone output
+.next/standalone/
+
+# Logs
+*.log
+npm-debug.log*
+logs/*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Debug/temp files
+nul
+
+# Test files
+test-api.js
+
+# QA Auto Test (isolated testing - not for production)
+qa-tests/
+test-results/
+playwright-report/
+coverage/
+*.test.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
