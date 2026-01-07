@@ -290,23 +290,27 @@ function PracticePageContent() {
 
   // 🎵 Start battle music when entering practice
   useEffect(() => {
+    let musicStarted = false;
+    
     // Start battle music on first interaction
     const startMusic = () => {
-      playMusic('battle');
-      document.removeEventListener('click', startMusic);
-      document.removeEventListener('touchstart', startMusic);
+      if (musicStarted) return;
+      musicStarted = true;
+      setTimeout(() => playMusic('battle'), 100);
     };
     
-    document.addEventListener('click', startMusic, { once: true });
-    document.addEventListener('touchstart', startMusic, { once: true });
+    document.addEventListener('click', startMusic);
+    document.addEventListener('touchstart', startMusic);
+    document.addEventListener('keydown', startMusic);
     
     // Cleanup: stop music when leaving
     return () => {
       document.removeEventListener('click', startMusic);
       document.removeEventListener('touchstart', startMusic);
+      document.removeEventListener('keydown', startMusic);
       stopMusic(true);
     };
-  }, [playMusic, stopMusic]);
+  }, []); // Empty deps - only run once
 
   // Get mode and difficulty from URL query params
   const modeFromUrl = searchParams.get('mode');

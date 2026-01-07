@@ -1077,24 +1077,32 @@ export default function GameMapNew({
   useEffect(() => {
     initSoundSystem();
     
+    let musicStarted = false;
+    
     // Start adventure music when map loads (after user interaction)
-    const startMusic = () => {
-      playMusic('adventure');
-      // Remove listener after first interaction
-      document.removeEventListener('click', startMusic);
-      document.removeEventListener('touchstart', startMusic);
+    const startMusic = async () => {
+      if (musicStarted) return;
+      musicStarted = true;
+      
+      // Small delay to ensure AudioContext is ready
+      setTimeout(() => {
+        playMusic('adventure');
+      }, 100);
     };
     
-    document.addEventListener('click', startMusic, { once: true });
-    document.addEventListener('touchstart', startMusic, { once: true });
+    // Add listeners for user interaction
+    document.addEventListener('click', startMusic);
+    document.addEventListener('touchstart', startMusic);
+    document.addEventListener('keydown', startMusic);
     
     // Cleanup: stop music when leaving map
     return () => {
       document.removeEventListener('click', startMusic);
       document.removeEventListener('touchstart', startMusic);
+      document.removeEventListener('keydown', startMusic);
       stopMusic(true);
     };
-  }, [playMusic, stopMusic]);
+  }, []); // Empty deps - only run once on mount
 
   // 🦉 Kiểm tra xem người dùng đã xem prologue chưa
   useEffect(() => {
