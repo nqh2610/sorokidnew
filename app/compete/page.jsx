@@ -401,6 +401,7 @@ function CompetePageContent() {
   const [currentUserData, setCurrentUserData] = useState(null);
   const [totalPlayers, setTotalPlayers] = useState(0);
   const [totalChallenges, setTotalChallenges] = useState(10);
+  const [isCheckingAutoStart, setIsCheckingAutoStart] = useState(true); // 🔧 FIX: Tránh nháy màn chọn mode
   
   // States cho game
   const [gameStarted, setGameStarted] = useState(false);
@@ -527,8 +528,14 @@ function CompetePageContent() {
 
   // 🎮 GAME MODE: Đọc game mode info từ sessionStorage (từ Adventure Map)
   useEffect(() => {
-    if (status !== 'authenticated') return;
-    if (selectedArena || selectedMode) return; // Đã có arena/mode rồi, không auto-start nữa
+    if (status !== 'authenticated') {
+      return;
+    }
+    if (selectedArena || selectedMode) {
+      // Đã có arena/mode rồi, không auto-start nữa
+      setIsCheckingAutoStart(false);
+      return;
+    }
 
     // Check competeGameMode (set từ Adventure handleStageClick)
     const gameModeRaw = sessionStorage.getItem('competeGameMode');
@@ -551,6 +558,7 @@ function CompetePageContent() {
             const autoArena = createArena(mode, difficulty, questions);
             setSelectedArena(autoArena);
             setTotalChallenges(questions);
+            setIsCheckingAutoStart(false); // 🔧 FIX: Đã xử lý xong
             
             // Delay nhỏ rồi start game
             setTimeout(() => {
@@ -583,6 +591,8 @@ function CompetePageContent() {
               
               console.log('[Compete] Auto-started from Adventure:', { mode, difficulty, questions });
             }, 100);
+            
+            return; // Đã xử lý xong
           }
         }
       } catch (e) {
@@ -608,6 +618,7 @@ function CompetePageContent() {
             const autoArena = createArena(mode, difficulty, questions);
             setSelectedArena(autoArena);
             setTotalChallenges(questions);
+            setIsCheckingAutoStart(false); // 🔧 FIX: Đã xử lý xong
             
             setTimeout(() => {
               const actualMode = mode === 'mentalMath' ? getRandomMentalMode() : mode;
@@ -637,12 +648,17 @@ function CompetePageContent() {
               
               console.log('[Compete] Auto-started from /compete/auto:', { mode, difficulty, questions });
             }, 100);
+            
+            return; // Đã xử lý xong
           }
         }
       } catch (e) {
         console.error('[Compete] Error parsing auto-start:', e);
       }
     }
+    
+    // Không có auto-start data, hiện màn chọn mode
+    setIsCheckingAutoStart(false);
   }, [status, selectedArena, selectedMode]);
 
   // Fetch user tier
@@ -1457,7 +1473,20 @@ function CompetePageContent() {
   const currentModeInfo = selectedArena ? modeInfo[selectedArena.mode] : null;
 
   // Màn hình chọn MODE - EPIC GAMING STYLE
+  // 🔧 FIX: Hiện loading nếu đang check auto-start để tránh nháy màn chọn mode
   if (!selectedMode) {
+    // Nếu đang check auto-start từ Adventure, hiện loading thay vì màn chọn mode
+    if (isCheckingAutoStart) {
+      return (
+        <div className="h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900">
+          <div className="text-center">
+            <div className="text-6xl animate-bounce mb-4">🏆</div>
+            <div className="text-white font-bold">Đang chuẩn bị đấu trường...</div>
+          </div>
+        </div>
+      );
+    }
+    
     return (
       <div className="min-h-[100dvh] bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 overflow-x-hidden relative">
         {/* Animated Background Effects */}

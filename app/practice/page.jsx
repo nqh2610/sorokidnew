@@ -382,6 +382,7 @@ function PracticePageContent() {
 
   // 🎯 AUTO-START: State để theo dõi việc tự động bắt đầu
   const [autoStartPending, setAutoStartPending] = useState(null);
+  const [isCheckingAutoStart, setIsCheckingAutoStart] = useState(true); // 🔧 FIX: Tránh nháy màn chọn mode
 
   // 🎮 GAME MODE: Theo dõi nếu đang chơi từ Adventure Map
   const [gameMode, setGameMode] = useState(null);
@@ -454,8 +455,15 @@ function PracticePageContent() {
 
   // 🎯 AUTO-START: Kiểm tra sessionStorage từ Adventure Map
   useEffect(() => {
-    if (status !== 'authenticated') return;
-    if (mode) return; // Đã có mode rồi, không auto-start nữa
+    if (status !== 'authenticated') {
+      // Chưa authenticated, tiếp tục chờ
+      return;
+    }
+    if (mode) {
+      // Đã có mode rồi, không auto-start nữa
+      setIsCheckingAutoStart(false);
+      return;
+    }
 
     // Kiểm tra game mode từ Adventure page (ưu tiên này trước)
     const gameModeRaw = sessionStorage.getItem('practiceGameMode');
@@ -477,14 +485,14 @@ function PracticePageContent() {
             // Set difficulty
             setDifficulty(autoDiff);
             
-            // Trigger auto-start
+            // Trigger auto-start (sẽ set mode trong useEffect khác)
             setAutoStartPending({
               mode: autoMode,
               difficulty: autoDiff,
               from: 'adventure'
             });
             
-            return; // Không cần check practiceAutoStart nữa
+            return; // Không cần check practiceAutoStart nữa - giữ isCheckingAutoStart = true
           }
         }
       } catch (e) {
@@ -494,7 +502,11 @@ function PracticePageContent() {
 
     // Fallback: Check practiceAutoStart (từ /practice/auto page)
     const autoStartRaw = sessionStorage.getItem('practiceAutoStart');
-    if (!autoStartRaw) return;
+    if (!autoStartRaw) {
+      // Không có auto-start data, hiện màn chọn mode
+      setIsCheckingAutoStart(false);
+      return;
+    }
 
     try {
       const autoStart = JSON.parse(autoStartRaw);
@@ -502,6 +514,7 @@ function PracticePageContent() {
       // Kiểm tra timestamp (chỉ valid trong 30s)
       if (Date.now() - autoStart.timestamp > 30000) {
         sessionStorage.removeItem('practiceAutoStart');
+        setIsCheckingAutoStart(false);
         return;
       }
 
@@ -526,6 +539,7 @@ function PracticePageContent() {
     } catch (error) {
       console.error('[Practice] Auto-start error:', error);
       sessionStorage.removeItem('practiceAutoStart');
+      setIsCheckingAutoStart(false);
     }
   }, [status, mode]);
 
@@ -907,6 +921,7 @@ function PracticePageContent() {
     
     const { mode: autoMode, difficulty: autoDiff } = autoStartPending;
     setAutoStartPending(null); // Clear ngay để tránh chạy lại
+    setIsCheckingAutoStart(false); // 🔧 FIX: Đã xử lý xong auto-start
     
     console.log('[Practice] Starting auto mode:', autoMode, 'difficulty:', autoDiff);
     
@@ -2889,7 +2904,20 @@ function PracticePageContent() {
   }
 
   // Mode selection screen - EPIC GAMING with dynamic shapes and animations
+  // 🔧 FIX: Hiện loading nếu đang check auto-start để tránh nháy màn chọn mode
   if (!mode) {
+    // Nếu đang check auto-start từ Adventure, hiện loading thay vì màn chọn mode
+    if (isCheckingAutoStart) {
+      return (
+        <div className="h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
+          <div className="text-center">
+            <div className="text-6xl animate-bounce mb-4">⚔️</div>
+            <div className="text-white font-bold">Đang chuẩn bị...</div>
+          </div>
+        </div>
+      );
+    }
+    
     const difficultyLevels = [
       { level: 1, label: 'Tập Sự', emoji: '🐣', color: 'from-green-400 to-emerald-500', desc: 'Số 1 chữ số' },
       { level: 2, label: 'Chiến Binh', emoji: '⚔️', color: 'from-blue-400 to-cyan-500', desc: 'Số 2 chữ số' },
