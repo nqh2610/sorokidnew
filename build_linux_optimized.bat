@@ -89,16 +89,38 @@ if exist "%PROJECT_DIR%public" (
 echo [8/10] Toi uu Prisma binaries cho Linux...
 
 set "PRISMA_CLIENT=%OUTPUT_DIR%\node_modules\.prisma\client"
+set "PRISMA_NEXT=%OUTPUT_DIR%\.next\server"
 set "SOURCE_PRISMA=%PROJECT_DIR%node_modules\.prisma\client"
 
-:: Copy Linux binaries tu source
+:: Tao thu muc neu chua co
+if not exist "%PRISMA_CLIENT%" mkdir "%PRISMA_CLIENT%"
+if not exist "%PRISMA_NEXT%" mkdir "%PRISMA_NEXT%"
+
+:: Copy Linux binaries vao node_modules/.prisma/client
 if exist "%SOURCE_PRISMA%\libquery_engine-debian-openssl-1.1.x.so.node" (
     copy /Y "%SOURCE_PRISMA%\libquery_engine-debian-openssl-1.1.x.so.node" "%PRISMA_CLIENT%\" >nul
-    echo     [OK] Copied debian-openssl-1.1.x
+    echo     [OK] Copied debian-openssl-1.1.x to node_modules/.prisma/client
 )
 if exist "%SOURCE_PRISMA%\libquery_engine-debian-openssl-3.0.x.so.node" (
     copy /Y "%SOURCE_PRISMA%\libquery_engine-debian-openssl-3.0.x.so.node" "%PRISMA_CLIENT%\" >nul
-    echo     [OK] Copied debian-openssl-3.0.x
+    echo     [OK] Copied debian-openssl-3.0.x to node_modules/.prisma/client
+)
+
+:: Copy Linux binaries vao .next/server (Next.js standalone can o day)
+if exist "%SOURCE_PRISMA%\libquery_engine-debian-openssl-1.1.x.so.node" (
+    copy /Y "%SOURCE_PRISMA%\libquery_engine-debian-openssl-1.1.x.so.node" "%PRISMA_NEXT%\" >nul
+    echo     [OK] Copied debian-openssl-1.1.x to .next/server
+)
+if exist "%SOURCE_PRISMA%\libquery_engine-debian-openssl-3.0.x.so.node" (
+    copy /Y "%SOURCE_PRISMA%\libquery_engine-debian-openssl-3.0.x.so.node" "%PRISMA_NEXT%\" >nul
+    echo     [OK] Copied debian-openssl-3.0.x to .next/server
+)
+
+:: Copy schema.prisma vao .next/server (can thiet cho Prisma)
+if exist "%SOURCE_PRISMA%\schema.prisma" (
+    copy /Y "%SOURCE_PRISMA%\schema.prisma" "%PRISMA_NEXT%\" >nul
+    copy /Y "%SOURCE_PRISMA%\schema.prisma" "%PRISMA_CLIENT%\" >nul
+    echo     [OK] Copied schema.prisma
 )
 
 :: Xoa Windows binaries
@@ -151,6 +173,16 @@ if exist "%PROJECT_DIR%components\Analytics" (
 if exist "%PROJECT_DIR%components\ToolLayout" (
     xcopy "%PROJECT_DIR%components\ToolLayout" "%OUTPUT_DIR%\components\ToolLayout\" /E /I /Q /Y >nul
     echo     [OK] components/ToolLayout (Loading skeleton + Layout)
+)
+
+:: Copy Adventure components (BAT BUOC cho /adventure - Kho bau tri thuc)
+if exist "%PROJECT_DIR%components\Adventure" (
+    xcopy "%PROJECT_DIR%components\Adventure" "%OUTPUT_DIR%\components\Adventure\" /E /I /Q /Y >nul
+    echo     [OK] components/Adventure (Game map, Rewards)
+)
+if exist "%PROJECT_DIR%components\Narrative" (
+    xcopy "%PROJECT_DIR%components\Narrative" "%OUTPUT_DIR%\components\Narrative\" /E /I /Q /Y >nul
+    echo     [OK] components/Narrative (Story, Dialog)
 )
 
 :: Copy content folder (BLOG DATA - BAT BUOC)
@@ -265,13 +297,25 @@ echo === Tool Components ===
 if exist "%OUTPUT_DIR%\components\ToolLayout" (echo [OK] components/ToolLayout/ - Tool layout + loading) else (echo [INFO] ToolLayout bundled in .next)
 
 echo.
+echo === Adventure Components (Kho bau tri thuc) ===
+if exist "%OUTPUT_DIR%\components\Adventure" (echo [OK] components/Adventure/ - Game map, Rewards) else (echo [INFO] Adventure bundled in .next)
+if exist "%OUTPUT_DIR%\components\Narrative" (echo [OK] components/Narrative/ - Story, Dialog) else (echo [INFO] Narrative bundled in .next)
+if exist "%OUTPUT_DIR%\config\adventure.config.js" (echo [OK] config/adventure.config.js - Adventure game config) else (echo [THIEU] config/adventure.config.js)
+if exist "%OUTPUT_DIR%\lib\adventureSounds.js" (echo [OK] lib/adventureSounds.js - Sound effects) else (echo [INFO] adventureSounds bundled in .next)
+
+echo.
 echo === Prisma ===
 if exist "%OUTPUT_DIR%\prisma\schema.prisma" (echo [OK] prisma/schema.prisma) else (echo [THIEU] prisma/schema.prisma)
 
 echo.
-echo === Prisma Linux Binaries ===
+echo === Prisma Linux Binaries (node_modules/.prisma/client) ===
 if exist "%PRISMA_CLIENT%\libquery_engine-debian-openssl-1.1.x.so.node" (echo [OK] debian-openssl-1.1.x) else (echo [THIEU] debian-openssl-1.1.x)
 if exist "%PRISMA_CLIENT%\libquery_engine-debian-openssl-3.0.x.so.node" (echo [OK] debian-openssl-3.0.x) else (echo [THIEU] debian-openssl-3.0.x)
+
+echo.
+echo === Prisma Linux Binaries (.next/server) ===
+if exist "%OUTPUT_DIR%\.next\server\libquery_engine-debian-openssl-1.1.x.so.node" (echo [OK] .next/server/debian-openssl-1.1.x) else (echo [THIEU] .next/server/debian-openssl-1.1.x)
+if exist "%OUTPUT_DIR%\.next\server\libquery_engine-debian-openssl-3.0.x.so.node" (echo [OK] .next/server/debian-openssl-3.0.x) else (echo [THIEU] .next/server/debian-openssl-3.0.x)
 
 :: Tinh dung luong
 echo.
@@ -292,6 +336,12 @@ echo   - DB connection_limit=8 (toi uu cho shared host)
 echo   - UV_THREADPOOL_SIZE=4 (trong ecosystem.config.js)
 echo   - Memory limit 500M
 echo   - Progressive loading dashboard (giam 80%% queries)
+echo.
+echo   CHUC NANG BAO GOM:
+echo   - Dashboard, Learn, Practice, Compete
+echo   - Adventure (Kho bau tri thuc) - MOI
+echo   - Toolbox (13+ cong cu) - MOI
+echo   - Blog system
 echo.
 echo   HUONG DAN DEPLOY:
 echo   1. Upload thu muc deploy_linux len host

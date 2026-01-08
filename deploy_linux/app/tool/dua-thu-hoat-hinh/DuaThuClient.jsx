@@ -44,13 +44,13 @@ const ANIMAL_TYPES = {
     speedBase: 1.0,
   },
   fish: {
-    emoji: '🐟',
-    name: 'Cá',
-    sound: 'Blub blub!',
-    goSound: 'BÕM!',
+    emoji: '🐡',
+    name: 'Cá nóc',
+    sound: 'Phù phù!',
+    goSound: 'PHÙ!',
     action: 'bơi',
-    habitat: 'sông',
-    plural: 'cá',
+    habitat: 'biển',
+    plural: 'cá nóc',
     flipX: true,
     moveVerb: 'bơi',
     speedBase: 1.0,
@@ -67,6 +67,17 @@ const ANIMAL_TYPES = {
     moveVerb: 'trườn',
     speedBase: 1.0,
   },
+};
+
+// Helper function để render animal (component hoặc emoji)
+const renderAnimal = (animalType, size = '1em') => {
+  const animal = ANIMAL_TYPES[animalType];
+  if (!animal) return null;
+  if (animal.component) {
+    const Comp = animal.component;
+    return <Comp size={size} />;
+  }
+  return animal.emoji;
 };
 
 // Hàm tạo bình luận động theo loài vật - ĐA DẠNG KỸ THUẬT HÀI HƯỚC
@@ -1126,13 +1137,13 @@ export default function DuaThuHoatHinh() {
   const startRace = useCallback(() => {
     if (isRacing || racers.length < 2) return;
     
-    // Speed multiplier based on raceSpeed setting (5 levels)
+    // Speed multiplier based on raceSpeed setting (5 levels) - GIẢM TỐC ĐỘ
     const speedMultipliers = {
-      'very-slow': 0.7,
-      'slow': 1.2,
-      'normal': 2.0,
-      'fast': 3.5,
-      'very-fast': 5.5
+      'very-slow': 0.35,
+      'slow': 0.6,
+      'normal': 1.0,
+      'fast': 1.8,
+      'very-fast': 2.8
     };
     const speedMultiplier = speedMultipliers[raceSpeed] || 1;
     
@@ -1238,11 +1249,18 @@ export default function DuaThuHoatHinh() {
   const runRace = useCallback(() => {
     let raceFinished = false;
     let frameCount = 0;
-    
-    const animate = () => {
+    let lastFrameTime = performance.now();
+    const TARGET_FRAME_TIME = 16.67; // 60fps baseline
+
+    const animate = (currentTime) => {
       if (raceFinished) return;
       frameCount++;
       const now = Date.now();
+
+      // Calculate delta time for frame-rate independent movement
+      const deltaTime = currentTime - lastFrameTime;
+      lastFrameTime = currentTime;
+      const timeScale = Math.min(deltaTime / TARGET_FRAME_TIME, 3); // Cap at 3x to prevent huge jumps
       
       // Update race time
       if (raceStartTimeRef.current) {
@@ -1649,8 +1667,8 @@ export default function DuaThuHoatHinh() {
             return;
           }
           
-          // Update position
-          newPositions[racer.id] = Math.min(100, currentPos + speed);
+          // Update position (multiply by timeScale for frame-rate independence)
+          newPositions[racer.id] = Math.min(100, currentPos + speed * timeScale);
           
           // Show fatigue effect
           if (state.fatigue > 30 && !newEffects[racer.id]) {
@@ -1992,9 +2010,9 @@ export default function DuaThuHoatHinh() {
                   </div>
                   <div className="grid grid-cols-5 gap-1">
                     {[
-                      { value: 'very-slow', label: '🐌', name: 'Rất chậm' },
-                      { value: 'slow', label: '🐢', name: 'Chậm' },
-                      { value: 'normal', label: '🦆', name: 'Vừa' },
+                      { value: 'very-slow', label: '🚶', name: 'Rất chậm' },
+                      { value: 'slow', label: '🏃', name: 'Chậm' },
+                      { value: 'normal', label: '🚗', name: 'Vừa' },
                       { value: 'fast', label: '🚀', name: 'Nhanh' },
                       { value: 'very-fast', label: '⚡', name: 'Turbo' },
                     ].map(option => (
@@ -2002,13 +2020,13 @@ export default function DuaThuHoatHinh() {
                         key={option.value}
                         onClick={() => setRaceSpeed(option.value)}
                         title={option.name}
-                        className={`py-1 px-1 rounded-lg font-medium transition-all text-center
-                          ${raceSpeed === option.value 
-                            ? 'bg-blue-500 text-white shadow-md scale-105' 
-                            : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'}`}
+                        className={`py-1.5 px-1 rounded-lg font-medium transition-colors text-center border
+                          ${raceSpeed === option.value
+                            ? 'bg-blue-500 text-white shadow-md border-blue-400'
+                            : 'bg-white text-gray-600 hover:bg-gray-100 border-gray-200'}`}
                       >
-                        <div className="text-lg leading-none">{option.label}</div>
-                        <div className="text-[10px] mt-0.5 leading-none">{option.name}</div>
+                        <div className="text-lg leading-none h-6 flex items-center justify-center">{option.label}</div>
+                        <div className="text-[10px] mt-0.5 leading-none whitespace-nowrap">{option.name}</div>
                       </button>
                     ))}
                   </div>
@@ -2027,11 +2045,13 @@ export default function DuaThuHoatHinh() {
                         onClick={() => setAnimalType(key)}
                         title={animal.name}
                         className={`py-1.5 px-1 rounded-lg font-medium transition-all text-center
-                          ${animalType === key 
-                            ? 'bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-md scale-105' 
+                          ${animalType === key
+                            ? 'bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-md scale-105'
                             : 'bg-white text-gray-600 hover:bg-amber-50 border border-amber-200'}`}
                       >
-                        <div className="text-xl">{animal.emoji}</div>
+                        <div className="text-xl">
+                          {renderAnimal(key, '1.25em')}
+                        </div>
                       </button>
                     ))}
                   </div>
@@ -2339,8 +2359,8 @@ export default function DuaThuHoatHinh() {
         {/* Race info - Top center */}
         {(isRacing || winner) && !countdown && (
           <div className="absolute top-4 left-1/2 -translate-x-1/2 z-25
-            bg-black/70 text-white px-8 py-3 rounded-full font-bold text-2xl">
-            ⏱️ {raceTime}s | {ANIMAL_TYPES[animalType].emoji} {racers.length} {ANIMAL_TYPES[animalType].plural}
+            bg-black/70 text-white px-8 py-3 rounded-full font-bold text-2xl flex items-center gap-2">
+            ⏱️ {raceTime}s | {renderAnimal(animalType, '1.2em')} {racers.length} {ANIMAL_TYPES[animalType].plural}
           </div>
         )}
 
@@ -2484,15 +2504,17 @@ export default function DuaThuHoatHinh() {
                   )}
                   
                   {/* Animal - facing right toward finish line */}
-                  <div 
+                  <div
                     className="filter drop-shadow-lg"
-                    style={{ 
+                    style={{
                       fontSize: duckSize,
                       opacity: isStunned ? 0.6 : 1,
                       transform: ANIMAL_TYPES[animalType].flipX ? 'scaleX(-1)' : 'none',
+                      display: 'inline-block',
+                      willChange: 'transform',
                     }}
                   >
-                    {ANIMAL_TYPES[animalType].emoji}
+                    {renderAnimal(animalType, duckSize)}
                   </div>
                   
                   {/* Color band */}
@@ -2644,10 +2666,10 @@ export default function DuaThuHoatHinh() {
               <div className="winner-content relative z-10">
                 {/* Left section: Icon + Trophy */}
                 <div className="winner-icon-section">
-                  <div className="winner-animal text-5xl sm:text-6xl mb-1 animate-bounce" style={{ 
-                    transform: ANIMAL_TYPES[animalType].flipX ? 'scaleX(-1)' : 'none' 
+                  <div className="winner-animal text-5xl sm:text-6xl mb-1 animate-bounce" style={{
+                    transform: ANIMAL_TYPES[animalType].flipX ? 'scaleX(-1)' : 'none'
                   }}>
-                    {ANIMAL_TYPES[animalType].emoji}
+                    {renderAnimal(animalType, '1em')}
                   </div>
                   <div className="winner-trophy text-3xl sm:text-4xl mb-1 animate-pulse">🏆</div>
                 </div>
@@ -2655,14 +2677,14 @@ export default function DuaThuHoatHinh() {
                 {/* Middle section: Winner info */}
                 <div className="winner-info-section">
                   <h2 className="winner-title text-2xl sm:text-3xl font-black text-gray-800 mb-1 animate-pulse">🎉 VÔ ĐỊCH! 🎉</h2>
-                  
+
                   <div className="winner-name-badge inline-block px-4 py-1.5 rounded-full text-lg sm:text-xl font-bold text-white mb-2 animate-bounce"
                     style={{ backgroundColor: winner.color, boxShadow: `0 0 20px ${winner.color}` }}>
                     {winner.name}
                   </div>
-                  
-                  <div className="winner-stats text-gray-500 text-sm">
-                    ⏱️ {raceTime}s | {ANIMAL_TYPES[animalType].emoji} {racers.length} {ANIMAL_TYPES[animalType].plural}
+
+                  <div className="winner-stats text-gray-500 text-sm flex items-center justify-center gap-1">
+                    ⏱️ {raceTime}s | {renderAnimal(animalType, '1.2em')} {racers.length} {ANIMAL_TYPES[animalType].plural}
                   </div>
                 </div>
                 

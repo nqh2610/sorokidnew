@@ -425,10 +425,20 @@ const PathDots = memo(function PathDots({ direction, isCompleted, isReversed = f
   }
   
   // Horizontal: mũi tên theo hướng hiển thị trên màn hình
-  // Hàng bình thường (1,2,3): sang phải ›
-  // Hàng reversed (6,5,4 trên màn hình): sang trái ‹ (vì đường đi thực là 4→5→6)
+  // Hàng bình thường (1,2,3): sang phải › (mũi tên ở cuối)
+  // Hàng reversed (6,5,4 trên màn hình): sang trái ‹ (mũi tên ở đầu, vì đường đi thực là 4→5→6)
   return (
     <div className="flex items-center justify-center px-0.5 sm:px-1 gap-0.5 sm:gap-1">
+      {/* Mũi tên ở đầu khi reversed (chỉ về trái) */}
+      {isReversed && (
+        <motion.span 
+          className={`text-xs sm:text-sm font-bold ${arrowColor}`}
+          animate={{ x: [0, -2, 0] }}
+          transition={{ duration: 1, repeat: Infinity }}
+        >
+          ‹
+        </motion.span>
+      )}
       {[...Array(3)].map((_, i) => (
         <motion.div 
           key={i} 
@@ -438,14 +448,16 @@ const PathDots = memo(function PathDots({ direction, isCompleted, isReversed = f
           className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${dotColor}`}
         />
       ))}
-      {/* Mũi tên theo hướng hiển thị */}
-      <motion.span 
-        className={`text-xs sm:text-sm font-bold ${arrowColor}`}
-        animate={{ x: isReversed ? [0, -2, 0] : [0, 2, 0] }}
-        transition={{ duration: 1, repeat: Infinity }}
-      >
-        {isReversed ? '‹' : '›'}
-      </motion.span>
+      {/* Mũi tên ở cuối khi không reversed (chỉ về phải) */}
+      {!isReversed && (
+        <motion.span 
+          className={`text-xs sm:text-sm font-bold ${arrowColor}`}
+          animate={{ x: [0, 2, 0] }}
+          transition={{ duration: 1, repeat: Infinity }}
+        >
+          ›
+        </motion.span>
+      )}
     </div>
   );
 });
@@ -657,41 +669,92 @@ function StageGrid({ stages, stageStatuses, onStageClick }) {
     rows.push(stages.slice(i, i + 3));
   }
   
+  // Component invisible spacer - giữ chỗ để layout zigzag hoạt động đúng
+  const InvisibleSpacer = ({ withDots = false }) => (
+    <div className="flex flex-col items-center">
+      <div className="flex items-center">
+        {/* Spacer có cùng kích thước với StageNode */}
+        <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 opacity-0" />
+        {withDots && <div className="px-0.5 sm:px-1 w-10 sm:w-14 opacity-0" />}
+      </div>
+    </div>
+  );
+  
   return (
     <div className="flex flex-col items-center gap-1 py-4 sm:py-6">
       {rows.map((row, rowIdx) => {
         const isReversed = rowIdx % 2 === 1;
-        const displayRow = isReversed ? [...row].reverse() : row;
         const isLastRow = rowIdx === rows.length - 1;
+        const isFirstRow = rowIdx === 0;
+        
         // Stage cuối hàng (trước khi reverse) để check completed cho vertical dots
         const lastStageInRow = row[row.length - 1];
         const lastStageCompleted = stageStatuses[lastStageInRow?.stageId] === 'completed';
+        
+        // Tính số spacers cần thêm để giữ vị trí zigzag
+        const spacersNeeded = 3 - row.length;
+        
+        // Tạo display row với spacers
+        // - Hàng không reversed: thêm spacers ở cuối (stages ở trái)
+        // - Hàng reversed: thêm spacers ở đầu (trong displayRow, sau khi reverse)
+        //   Vì reversed nên spacers ở đầu displayRow = ở cuối của row gốc về mặt hiển thị
+        //   Để stage đầu logic (4,5...) ở bên phải, cần thêm spacers vào đầu displayRow
+        const displayRow = isReversed ? [...row].reverse() : row;
+        
+        // Tính vị trí stage cuối logic (để đặt vertical dots)
+        // Khi không reversed: stage cuối ở vị trí row.length - 1
+        // Khi reversed: stage cuối ở vị trí 0 của displayRow (sau spacers nếu có)
+        const lastStageDisplayIndex = isReversed ? spacersNeeded : row.length - 1;
+        
+        // Tính vị trí stage đầu logic của hàng TIẾP THEO (để biết vertical dots chỉ đi đâu)
+        // Hàng tiếp theo: nếu hàng này không reversed → hàng sau reversed → stage đầu ở bên phải
+        //                 nếu hàng này reversed → hàng sau không reversed → stage đầu ở bên trái
+        // Vertical dots cần được đặt ở vị trí tương ứng
         
         return (
           <div key={rowIdx} className="flex flex-col items-center">
             {/* Row của stages */}
             <div className="flex items-start justify-center">
+              {/* Thêm spacers ở đầu cho hàng reversed (để stage đầu logic ở bên phải) */}
+              {isReversed && spacersNeeded > 0 && [...Array(spacersNeeded)].map((_, i) => (
+                <InvisibleSpacer key={`spacer-start-${i}`} withDots={i < spacersNeeded - 1} />
+              ))}
+              
               {displayRow.map((stage, colIdx) => {
+                // Tính index thực trong display (bao gồm spacers)
+                const displayIdx = isReversed ? spacersNeeded + colIdx : colIdx;
                 const actualIndex = rowIdx * 3 + (isReversed ? row.length - 1 - colIdx : colIdx);
                 const status = stageStatuses[stage.stageId] || 'locked';
-                const isLastInRow = colIdx === displayRow.length - 1;
+                const isLastInDisplayRow = colIdx === displayRow.length - 1;
                 const currentCompleted = status === 'completed';
                 
+                // Stage cuối logic: ở vị trí lastStageDisplayIndex
+                const isLastLogicalStage = displayIdx === lastStageDisplayIndex;
+                
+                // Kiểm tra có cần hiện dots ngang không
+                // - Không hiện nếu là stage cuối trong displayRow VÀ không có spacers sau
+                const hasMoreAfter = !isLastInDisplayRow || (!isReversed && spacersNeeded > 0);
+                const showHorizontalDots = !isLastInDisplayRow;
+                
                 return (
-                  <div key={stage.stageId} className="flex items-center">
-                    <StageNode stage={stage} status={status} onClick={onStageClick} index={actualIndex} />
-                    {!isLastInRow && <PathDots direction="horizontal" isCompleted={currentCompleted} isReversed={isReversed} />}
+                  <div key={stage.stageId} className="flex flex-col items-center">
+                    <div className="flex items-center">
+                      <StageNode stage={stage} status={status} onClick={onStageClick} index={actualIndex} />
+                      {showHorizontalDots && <PathDots direction="horizontal" isCompleted={currentCompleted} isReversed={isReversed} />}
+                    </div>
+                    {/* Vertical dots - đặt ngay dưới stage cuối logic của hàng */}
+                    {!isLastRow && isLastLogicalStage && (
+                      <PathDots direction="vertical" isCompleted={lastStageCompleted} />
+                    )}
                   </div>
                 );
               })}
+              
+              {/* Thêm spacers ở cuối cho hàng không reversed */}
+              {!isReversed && spacersNeeded > 0 && [...Array(spacersNeeded)].map((_, i) => (
+                <InvisibleSpacer key={`spacer-end-${i}`} withDots={false} />
+              ))}
             </div>
-            
-            {/* Vertical dots - căn theo vị trí stage cuối hàng */}
-            {!isLastRow && (
-              <div className={`flex w-full ${isReversed ? 'justify-start' : 'justify-end'}`} style={{ paddingLeft: isReversed ? '10%' : 0, paddingRight: isReversed ? 0 : '10%' }}>
-                <PathDots direction="vertical" isCompleted={lastStageCompleted} />
-              </div>
-            )}
           </div>
         );
       })}

@@ -28,6 +28,7 @@
     "bcryptjs": "^2.4.3",
     "cross-env": "^7.0.3",
     "dotenv": "^17.2.3",
+    "framer-motion": "^12.24.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.4",
     "lucide-react": "^0.263.1",
