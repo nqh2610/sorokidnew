@@ -302,6 +302,8 @@ export default function LessonPage() {
   // 🎮 GAME MODE: Helper function để quay về Adventure với đúng zone
   // Nếu vượt qua màn cuối của zone -> tự động chuyển sang zone mới
   const handleBackToGame = (passed = false) => {
+    console.log('🎮 [Learn] handleBackToGame called:', { passed, gameMode });
+    
     if (gameMode?.zoneId) {
       let targetZoneId = gameMode.zoneId;
       
@@ -315,11 +317,15 @@ export default function LessonPage() {
         }
       }
       
-      sessionStorage.setItem('adventureReturnZone', JSON.stringify({
+      const returnData = {
         zoneId: targetZoneId,
         mapType: gameMode.mapType || 'addsub',
         timestamp: Date.now()
-      }));
+      };
+      console.log('🎯 [Learn] Saving adventureReturnZone:', returnData);
+      sessionStorage.setItem('adventureReturnZone', JSON.stringify(returnData));
+    } else {
+      console.warn('⚠️ [Learn] gameMode.zoneId is missing:', gameMode);
     }
     // Clear game mode data
     sessionStorage.removeItem('learnGameMode');
@@ -334,6 +340,38 @@ export default function LessonPage() {
       router.push('/learn');
     }
   };
+
+  // 🎯 BROWSER BACK: Lưu zone info khi unmount để xử lý browser back button
+  useEffect(() => {
+    // Lưu function để dùng trong cleanup
+    const saveReturnZone = () => {
+      const gameModeRaw = sessionStorage.getItem('learnGameMode');
+      if (gameModeRaw) {
+        try {
+          const gm = JSON.parse(gameModeRaw);
+          if (gm.from === 'adventure' && gm.zoneId) {
+            sessionStorage.setItem('adventureReturnZone', JSON.stringify({
+              zoneId: gm.zoneId,
+              mapType: gm.mapType || 'addsub',
+              timestamp: Date.now()
+            }));
+          }
+        } catch (e) {}
+      }
+    };
+
+    // Handle browser back button (popstate)
+    const handlePopState = () => {
+      saveReturnZone();
+    };
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      // Cleanup: lưu zone khi unmount (browser back hoặc navigation)
+      saveReturnZone();
+    };
+  }, []);
 
   // Filter bỏ các câu hỏi explore có target=0 (vì soroban bắt đầu từ 0, sẽ auto-pass)
   const filteredPractices = useMemo(() => {

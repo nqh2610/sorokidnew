@@ -76,7 +76,7 @@ export const GAME_STAGES = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Làng - Thử Thách Cộng',
-    description: 'Luyện Phép Cộng • Tập Sự • 10 bài đúng',
+    description: 'Luyện Phép Cộng • Tập Sự • 8 bài đúng',
     icon: '👹',
     link: '/practice/auto?mode=addition&difficulty=1',
     practiceInfo: {
@@ -84,10 +84,10 @@ export const GAME_STAGES = [
       modeName: 'Phép Cộng',
       difficulty: 1,
       difficultyName: 'Tập Sự',
-      minCorrect: 10
+      minCorrect: 8
     },
     unlockCondition: { type: 'lesson', levelId: 1, lessonId: 4 },
-    completeCondition: { type: 'practice', mode: 'addition', difficulty: 1, minCorrect: 10 }
+    completeCondition: { type: 'practice', mode: 'addition', difficulty: 1, minCorrect: 8 }
   },
 
   // ============================================================
@@ -132,25 +132,25 @@ export const GAME_STAGES = [
     unlockCondition: { type: 'lesson', levelId: 2, lessonId: 2 }
   },
   
-  // Stage 9: BOSS - Luyện tập Cộng nâng cao
+  // Stage 9: BOSS - Luyện tập Cộng (1 chữ số)
   {
     stageId: 9,
     zoneId: 'forest',
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Cộng Đơn',
-    description: 'Luyện Phép Cộng • Chiến Binh • 15 bài đúng',
+    description: 'Luyện Phép Cộng • Tập Sự • 12 bài đúng',
     icon: '👹',
-    link: '/practice/auto?mode=addition&difficulty=2',
+    link: '/practice/auto?mode=addition&difficulty=1',
     practiceInfo: {
       mode: 'addition',
       modeName: 'Phép Cộng',
-      difficulty: 2,
-      difficultyName: 'Chiến Binh',
-      minCorrect: 15
+      difficulty: 1,
+      difficultyName: 'Tập Sự',
+      minCorrect: 12
     },
     unlockCondition: { type: 'lesson', levelId: 2, lessonId: 3 },
-    completeCondition: { type: 'practice', mode: 'addition', difficulty: 2, minCorrect: 15 }
+    completeCondition: { type: 'practice', mode: 'addition', difficulty: 1, minCorrect: 12 }
   },
   
   // Stage 10-12: Học Level 3 (Bạn Nhỏ Cộng)
@@ -191,27 +191,27 @@ export const GAME_STAGES = [
     unlockCondition: { type: 'lesson', levelId: 3, lessonId: 2 }
   },
   
-  // Stage 13: BOSS - Thi đấu Cộng
+  // Stage 13: BOSS - Thi đấu Cộng (1 chữ số)
   {
     stageId: 13,
     zoneId: 'forest',
     type: 'boss',
     bossType: 'compete',
     name: '🏆 Đấu Trường Rừng Xanh',
-    description: 'Thi đấu Cộng • Chiến Binh • 10 câu • 6+ đúng',
+    description: 'Thi đấu Cộng • Tập Sự • 10 câu • 7+ đúng',
     icon: '🏆',
-    link: '/compete/auto?mode=addition&difficulty=2&questions=10',
+    link: '/compete/auto?mode=addition&difficulty=1&questions=10',
     competeInfo: {
       mode: 'addition',
       modeName: 'Phép Cộng',
-      difficulty: 2,
-      difficultyName: 'Chiến Binh',
+      difficulty: 1,
+      difficultyName: 'Tập Sự',
       questions: 10,
-      minCorrect: 6,
-      arenaId: 'addition-2-10'
+      minCorrect: 7,
+      arenaId: 'addition-1-10'
     },
     unlockCondition: { type: 'lesson', levelId: 3, lessonId: 3 },
-    completeCondition: { type: 'compete', arenaId: 'addition-2-10', minCorrect: 6 }
+    completeCondition: { type: 'compete', arenaId: 'addition-1-10', minCorrect: 7 }
   },
 
   // ============================================================
@@ -263,7 +263,7 @@ export const GAME_STAGES = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Trừ',
-    description: 'Luyện Phép Trừ • Tập Sự • 15 bài đúng',
+    description: 'Luyện Phép Trừ • Tập Sự • 10 bài đúng',
     icon: '👹',
     link: '/practice/auto?mode=subtraction&difficulty=1',
     practiceInfo: {
@@ -271,10 +271,10 @@ export const GAME_STAGES = [
       modeName: 'Phép Trừ',
       difficulty: 1,
       difficultyName: 'Tập Sự',
-      minCorrect: 15
+      minCorrect: 10
     },
     unlockCondition: { type: 'lesson', levelId: 4, lessonId: 3 },
-    completeCondition: { type: 'practice', mode: 'subtraction', difficulty: 1, minCorrect: 15 }
+    completeCondition: { type: 'practice', mode: 'subtraction', difficulty: 1, minCorrect: 10 }
   },
   
   // Stage 18: Học bài 4.4 - MIX
@@ -356,25 +356,25 @@ export const GAME_STAGES = [
     unlockCondition: { type: 'lesson', levelId: 5, lessonId: 2 }
   },
   
-  // Stage 23: BOSS - Luyện Cộng qua 10
+  // Stage 23: BOSS - Luyện Cộng qua 10 (Bạn Lớn = 2 chữ số)
   {
     stageId: 23,
     zoneId: 'hill',
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Cộng Qua 10',
-    description: 'Luyện Phép Cộng • Dũng Sĩ • 15 bài đúng',
+    description: 'Luyện Phép Cộng • Chiến Binh • 12 bài đúng',
     icon: '👹',
-    link: '/practice/auto?mode=addition&difficulty=3',
+    link: '/practice/auto?mode=addition&difficulty=2',
     practiceInfo: {
       mode: 'addition',
       modeName: 'Phép Cộng',
-      difficulty: 3,
-      difficultyName: 'Dũng Sĩ',
-      minCorrect: 15
+      difficulty: 2,
+      difficultyName: 'Chiến Binh',
+      minCorrect: 12
     },
     unlockCondition: { type: 'lesson', levelId: 5, lessonId: 3 },
-    completeCondition: { type: 'practice', mode: 'addition', difficulty: 3, minCorrect: 15 }
+    completeCondition: { type: 'practice', mode: 'addition', difficulty: 2, minCorrect: 12 }
   },
   
   // Stage 24-27: Học Level 6 (Bạn Lớn Trừ)
@@ -511,7 +511,7 @@ export const GAME_STAGES = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Kết Hợp',
-    description: 'Luyện Cộng Trừ Mix • Chiến Binh • 20 bài đúng',
+    description: 'Luyện Cộng Trừ Mix • Chiến Binh • 12 bài đúng',
     icon: '👹',
     link: '/practice/auto?mode=addSubMixed&difficulty=2',
     practiceInfo: {
@@ -519,10 +519,10 @@ export const GAME_STAGES = [
       modeName: 'Cộng Trừ Mix',
       difficulty: 2,
       difficultyName: 'Chiến Binh',
-      minCorrect: 20
+      minCorrect: 12
     },
     unlockCondition: { type: 'lesson', levelId: 7, lessonId: 4 },
-    completeCondition: { type: 'practice', mode: 'addSubMixed', difficulty: 2, minCorrect: 20 }
+    completeCondition: { type: 'practice', mode: 'addSubMixed', difficulty: 2, minCorrect: 12 }
   },
   
   // Stage 34: BOSS - Đấu Trường Cộng Trừ
@@ -549,13 +549,13 @@ export const GAME_STAGES = [
   },
 
   // ============================================================
-  // 🏰 ZONE 6: VƯƠNG QUỐC SỐ LỚN (Level 8-9-10)
+  // 🏙️ ZONE 6: THÀNH PHỐ 2-3 CHỮ SỐ (Level 8-9)
   // ============================================================
   
   // Stage 35-37: Học Level 8 (Số 2 chữ số)
   {
     stageId: 35,
-    zoneId: 'kingdom',
+    zoneId: 'city-numbers',
     type: 'lesson',
     levelId: 8,
     lessonId: 1,
@@ -567,7 +567,7 @@ export const GAME_STAGES = [
   },
   {
     stageId: 36,
-    zoneId: 'kingdom',
+    zoneId: 'city-numbers',
     type: 'lesson',
     levelId: 8,
     lessonId: 2,
@@ -579,7 +579,7 @@ export const GAME_STAGES = [
   },
   {
     stageId: 37,
-    zoneId: 'kingdom',
+    zoneId: 'city-numbers',
     type: 'lesson',
     levelId: 8,
     lessonId: 3,
@@ -593,11 +593,11 @@ export const GAME_STAGES = [
   // Stage 38: BOSS - Luyện 2 chữ số
   {
     stageId: 38,
-    zoneId: 'kingdom',
+    zoneId: 'city-numbers',
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss 2 Chữ Số',
-    description: 'Luyện Cộng Trừ Mix • Dũng Sĩ • 15 bài đúng',
+    description: 'Luyện Cộng Trừ Mix • Dũng Sĩ • 12 bài đúng',
     icon: '👹',
     link: '/practice/auto?mode=addSubMixed&difficulty=3',
     practiceInfo: {
@@ -605,16 +605,16 @@ export const GAME_STAGES = [
       modeName: 'Cộng Trừ Mix',
       difficulty: 3,
       difficultyName: 'Dũng Sĩ',
-      minCorrect: 15
+      minCorrect: 12
     },
     unlockCondition: { type: 'lesson', levelId: 8, lessonId: 3 },
-    completeCondition: { type: 'practice', mode: 'addSubMixed', difficulty: 3, minCorrect: 15 }
+    completeCondition: { type: 'practice', mode: 'addSubMixed', difficulty: 3, minCorrect: 12 }
   },
   
   // Stage 39-41: Học Level 9 (Số 3 chữ số)
   {
     stageId: 39,
-    zoneId: 'kingdom',
+    zoneId: 'city-numbers',
     type: 'lesson',
     levelId: 9,
     lessonId: 1,
@@ -626,7 +626,7 @@ export const GAME_STAGES = [
   },
   {
     stageId: 40,
-    zoneId: 'kingdom',
+    zoneId: 'city-numbers',
     type: 'lesson',
     levelId: 9,
     lessonId: 2,
@@ -638,7 +638,7 @@ export const GAME_STAGES = [
   },
   {
     stageId: 41,
-    zoneId: 'kingdom',
+    zoneId: 'city-numbers',
     type: 'lesson',
     levelId: 9,
     lessonId: 3,
@@ -652,7 +652,7 @@ export const GAME_STAGES = [
   // Stage 42: BOSS - Thi đấu 3 chữ số
   {
     stageId: 42,
-    zoneId: 'kingdom',
+    zoneId: 'city-numbers',
     type: 'boss',
     bossType: 'compete',
     name: '🏆 Đấu Trường 3 Chữ Số',
@@ -671,6 +671,10 @@ export const GAME_STAGES = [
     unlockCondition: { type: 'lesson', levelId: 9, lessonId: 3 },
     completeCondition: { type: 'compete', arenaId: 'addSubMixed-3-10', minCorrect: 7 }
   },
+  
+  // ============================================================
+  // 🏰 ZONE 7: VƯƠNG QUỐC SỐ LỚN (Level 10 - Số 4 chữ số)
+  // ============================================================
   
   // Stage 43-46: Học Level 10 (Số 4 chữ số)
   {
@@ -729,7 +733,7 @@ export const GAME_STAGES = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Số Lớn',
-    description: 'Luyện Cộng Trừ Mix • Cao Thủ • 20 bài đúng',
+    description: 'Luyện Cộng Trừ Mix • Cao Thủ • 12 bài đúng',
     icon: '👹',
     link: '/practice/auto?mode=addSubMixed&difficulty=4',
     practiceInfo: {
@@ -737,10 +741,10 @@ export const GAME_STAGES = [
       modeName: 'Cộng Trừ Mix',
       difficulty: 4,
       difficultyName: 'Cao Thủ',
-      minCorrect: 20
+      minCorrect: 12
     },
     unlockCondition: { type: 'lesson', levelId: 10, lessonId: 4 },
-    completeCondition: { type: 'practice', mode: 'addSubMixed', difficulty: 4, minCorrect: 20 }
+    completeCondition: { type: 'practice', mode: 'addSubMixed', difficulty: 4, minCorrect: 12 }
   },
   
   // Stage 48: BOSS - Đấu Trường Số Lớn
@@ -767,7 +771,7 @@ export const GAME_STAGES = [
   },
 
   // ============================================================
-  // 🧠 ZONE 7: THÁP SIÊU TRÍ TUỆ (Level 15.1, 16.1 - Tính nhẩm)
+  // 🧠 ZONE 8: THÁP SIÊU TRÍ TUỆ (Level 15.1, 16.1 - Tính nhẩm)
   // ============================================================
   
   // Stage 49: Học 15.1 - Cộng trừ nhẩm cơ bản
@@ -791,7 +795,7 @@ export const GAME_STAGES = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Anzan Cơ Bản',
-    description: 'Luyện Siêu Trí Tuệ • Tập Sự • 10 bài đúng',
+    description: 'Luyện Siêu Trí Tuệ • Tập Sự • 6 bài đúng',
     icon: '👹',
     link: '/practice/auto?mode=mentalMath&difficulty=1',
     practiceInfo: {
@@ -799,10 +803,10 @@ export const GAME_STAGES = [
       modeName: 'Siêu Trí Tuệ',
       difficulty: 1,
       difficultyName: 'Tập Sự',
-      minCorrect: 10
+      minCorrect: 6
     },
     unlockCondition: { type: 'lesson', levelId: 15, lessonId: 1 },
-    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 1, minCorrect: 10 }
+    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 1, minCorrect: 6 }
   },
   
   // Stage 51: Học 16.1 - Cộng trừ nhẩm nâng cao
@@ -826,7 +830,7 @@ export const GAME_STAGES = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Anzan Nâng Cao',
-    description: 'Luyện Siêu Trí Tuệ • Chiến Binh • 15 bài đúng',
+    description: 'Luyện Siêu Trí Tuệ • Chiến Binh • 8 bài đúng',
     icon: '👹',
     link: '/practice/auto?mode=mentalMath&difficulty=2',
     practiceInfo: {
@@ -834,10 +838,10 @@ export const GAME_STAGES = [
       modeName: 'Siêu Trí Tuệ',
       difficulty: 2,
       difficultyName: 'Chiến Binh',
-      minCorrect: 15
+      minCorrect: 8
     },
     unlockCondition: { type: 'lesson', levelId: 16, lessonId: 1 },
-    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 2, minCorrect: 15 }
+    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 2, minCorrect: 8 }
   },
   
   // Stage 53: BOSS - Đấu Trường Siêu Trí Tuệ
@@ -847,7 +851,7 @@ export const GAME_STAGES = [
     type: 'boss',
     bossType: 'compete',
     name: '🏆 Đấu Trường Siêu Trí Tuệ',
-    description: 'Thi đấu Siêu Trí Tuệ • Chiến Binh • 10 câu • 7+ đúng',
+    description: 'Thi đấu Siêu Trí Tuệ • Chiến Binh • 10 câu • 5+ đúng',
     icon: '🏆',
     link: '/compete/auto?mode=mentalMath&difficulty=2&questions=10',
     competeInfo: {
@@ -856,15 +860,15 @@ export const GAME_STAGES = [
       difficulty: 2,
       difficultyName: 'Chiến Binh',
       questions: 10,
-      minCorrect: 7,
+      minCorrect: 5,
       arenaId: 'mentalMath-2-10'
     },
     unlockCondition: { type: 'stage', stageId: 52 },
-    completeCondition: { type: 'compete', arenaId: 'mentalMath-2-10', minCorrect: 7 }
+    completeCondition: { type: 'compete', arenaId: 'mentalMath-2-10', minCorrect: 5 }
   },
 
   // ============================================================
-  // ⚡ ZONE 8: ĐỀN TỐC ĐỘ (Level 17.1 - Tốc độ cộng trừ)
+  // ⚡ ZONE 9: ĐỀN TỐC ĐỘ (Level 17.1 - Tốc độ cộng trừ)
   // ============================================================
   
   // Stage 54: Học 17.1 - Cộng trừ tốc độ
@@ -926,7 +930,7 @@ export const GAME_STAGES = [
   },
 
   // ============================================================
-  // ⚡ ZONE 9: ĐỈNH TIA CHỚP (Level 18.1-18.5 - Flash Anzan)
+  // ⚡ ZONE 10: ĐỈNH TIA CHỚP (Level 18.1-18.5 - Flash Anzan)
   // ============================================================
   
   // Stage 57-59: Học Flash cơ bản
@@ -1021,7 +1025,7 @@ export const GAME_STAGES = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Tia Chớp Nâng Cao',
-    description: 'Luyện Flash Anzan • Ánh Trăng • 10 bài đúng',
+    description: 'Luyện Flash Anzan • Ánh Trăng • 5 bài đúng',
     icon: '👹',
     link: '/practice/auto?mode=flashAnzan&difficulty=2',
     practiceInfo: {
@@ -1029,10 +1033,10 @@ export const GAME_STAGES = [
       modeName: 'Tia Chớp',
       difficulty: 2,
       difficultyName: 'Ánh Trăng',
-      minCorrect: 10
+      minCorrect: 5
     },
     unlockCondition: { type: 'lesson', levelId: 18, lessonId: 5 },
-    completeCondition: { type: 'practice', mode: 'flashAnzan', difficulty: 2, minCorrect: 10 }
+    completeCondition: { type: 'practice', mode: 'flashAnzan', difficulty: 2, minCorrect: 5 }
   },
   
   // Stage 64: BOSS - Đấu Trường Tia Chớp
@@ -1042,7 +1046,7 @@ export const GAME_STAGES = [
     type: 'boss',
     bossType: 'compete',
     name: '🏆 Đấu Trường Tia Chớp',
-    description: 'Thi đấu Flash Anzan • Ánh Trăng • 10 câu • 7+ đúng',
+    description: 'Thi đấu Flash Anzan • Ánh Trăng • 10 câu • 5+ đúng',
     icon: '🏆',
     link: '/compete/auto?mode=flashAnzan&difficulty=2&questions=10',
     competeInfo: {
@@ -1051,15 +1055,15 @@ export const GAME_STAGES = [
       difficulty: 2,
       difficultyName: 'Ánh Trăng',
       questions: 10,
-      minCorrect: 7,
+      minCorrect: 5,
       arenaId: 'flashAnzan-2-10'
     },
     unlockCondition: { type: 'stage', stageId: 63 },
-    completeCondition: { type: 'compete', arenaId: 'flashAnzan-2-10', minCorrect: 7 }
+    completeCondition: { type: 'compete', arenaId: 'flashAnzan-2-10', minCorrect: 5 }
   },
 
   // ============================================================
-  // 🏆 ZONE 10: LÂU ĐÀI KHO BÁU CỘNG TRỪ (Boss Cuối + Chứng Chỉ)
+  // 🏆 ZONE 11: LÂU ĐÀI KHO BÁU CỘNG TRỪ (Boss Cuối + Chứng Chỉ)
   // ============================================================
   
   // Stage 65: BOSS CUỐI 1 - Đại Chiến Cộng Trừ
@@ -1094,7 +1098,7 @@ export const GAME_STAGES = [
     bossType: 'practice',
     isFinalBoss: true,
     name: '👑 BOSS CUỐI - Siêu Trí Tuệ Ultimate',
-    description: 'Luyện Siêu Trí Tuệ • Chiến Binh • 10 bài đúng',
+    description: 'Luyện Siêu Trí Tuệ • Chiến Binh • 8 bài đúng',
     icon: '👑',
     link: '/practice/auto?mode=mentalMath&difficulty=2',
     practiceInfo: {
@@ -1102,10 +1106,10 @@ export const GAME_STAGES = [
       modeName: 'Siêu Trí Tuệ',
       difficulty: 2,
       difficultyName: 'Chiến Binh',
-      minCorrect: 10
+      minCorrect: 8
     },
     unlockCondition: { type: 'stage', stageId: 65 },
-    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 2, minCorrect: 10 }
+    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 2, minCorrect: 8 }
   },
   
   // Stage 67: BOSS CUỐI 3 - Tia Chớp Ultimate
@@ -1156,8 +1160,9 @@ export const GAME_STAGES = [
 export const GAME_ZONES = [
   {
     zoneId: 'village',
-    name: '🏘️ Làng Bàn Tính Thần Kỳ',
-    subtitle: 'Nơi khởi đầu hành trình',
+    order: 1,
+    name: '🏘️ Chặng 1: Làng Khởi Đầu',
+    subtitle: 'Làm quen Soroban',
     description: 'Làm quen với bàn tính Soroban - công cụ tính toán thần kỳ!',
     icon: '🏘️',
     color: 'from-green-400 to-emerald-500',
@@ -1172,8 +1177,9 @@ export const GAME_ZONES = [
   },
   {
     zoneId: 'forest',
-    name: '🌲 Rừng Phép Cộng',
-    subtitle: 'Nơi các con số gộp lại',
+    order: 2,
+    name: '🌲 Chặng 2: Rừng Phép Cộng',
+    subtitle: 'Học cộng & Bạn Nhỏ',
     description: 'Học phép cộng và bí kíp Bạn Nhỏ (tổng 5)!',
     icon: '🌲',
     color: 'from-emerald-400 to-green-600',
@@ -1188,8 +1194,9 @@ export const GAME_ZONES = [
   },
   {
     zoneId: 'valley',
-    name: '🏔️ Thung Lũng Phép Trừ',
-    subtitle: 'Nơi con số nhỏ đi',
+    order: 3,
+    name: '🏔️ Chặng 3: Thung Lũng Phép Trừ',
+    subtitle: 'Học trừ & Bạn Nhỏ',
     description: 'Học phép trừ và Bạn Nhỏ khi trừ!',
     icon: '🏔️',
     color: 'from-blue-400 to-cyan-500',
@@ -1204,8 +1211,9 @@ export const GAME_ZONES = [
   },
   {
     zoneId: 'hill',
-    name: '⭐ Đồi Bạn Lớn',
-    subtitle: 'Bí mật của số 10',
+    order: 4,
+    name: '⭐ Chặng 4: Đồi Bạn Lớn',
+    subtitle: 'Bí mật số 10',
     description: 'Học công thức Bạn Lớn - chìa khóa để tính toán qua 10!',
     icon: '⭐',
     color: 'from-yellow-400 to-orange-500',
@@ -1220,8 +1228,9 @@ export const GAME_ZONES = [
   },
   {
     zoneId: 'tower',
-    name: '🏛️ Đài Kết Hợp',
-    subtitle: 'Nơi sức mạnh hội tụ',
+    order: 5,
+    name: '🏛️ Chặng 5: Đài Kết Hợp',
+    subtitle: 'Bạn Nhỏ + Bạn Lớn',
     description: 'Kết hợp Bạn Nhỏ và Bạn Lớn để giải quyết mọi phép tính!',
     icon: '🏛️',
     color: 'from-purple-400 to-pink-500',
@@ -1231,29 +1240,48 @@ export const GAME_ZONES = [
     totalBoss: 2,
     story: {
       intro: 'Đài Kết Hợp - nơi Bạn Nhỏ và Bạn Lớn hợp sức tạo nên phép thuật!',
-      complete: 'Tuyệt đỉnh! Con đã thành thạo kết hợp. Vương Quốc Số Lớn đang chờ!'
+      complete: 'Tuyệt đỉnh! Con đã thành thạo kết hợp. Thành Phố Số đang chờ!'
+    }
+  },
+  {
+    zoneId: 'city-numbers',
+    order: 6,
+    name: '🏙️ Chặng 6: Thành Phố Số Lớn',
+    subtitle: 'Số 2-3 chữ số',
+    description: 'Chinh phục cộng trừ với số 2 và 3 chữ số!',
+    icon: '🏙️',
+    color: 'from-cyan-400 to-blue-500',
+    bgImage: '/images/zones/city-numbers.jpg',
+    levels: [8, 9],
+    stageRange: [35, 42],
+    totalBoss: 2,
+    story: {
+      intro: 'Thành Phố 2-3 Chữ Số - nơi con học cách tính với hàng chục và hàng trăm!',
+      complete: 'Xuất sắc! Con đã thành thạo số 2-3 chữ số. Vương Quốc Số Lớn đang chờ!'
     }
   },
   {
     zoneId: 'kingdom',
-    name: '🏰 Vương Quốc Số Lớn',
-    subtitle: 'Thế giới của hàng trăm, hàng nghìn',
-    description: 'Chinh phục cộng trừ với số 2, 3, 4 chữ số!',
+    order: 7,
+    name: '🏰 Chặng 7: Vương Quốc Nghìn',
+    subtitle: 'Số 4 chữ số',
+    description: 'Chinh phục cộng trừ với số 4 chữ số - đỉnh cao số lớn!',
     icon: '🏰',
-    color: 'from-indigo-400 to-blue-600',
+    color: 'from-indigo-400 to-purple-600',
     bgImage: '/images/zones/kingdom.jpg',
-    levels: [8, 9, 10],
-    stageRange: [35, 48],
-    totalBoss: 4,
+    levels: [10],
+    stageRange: [43, 48],
+    totalBoss: 2,
     story: {
-      intro: 'Vương Quốc Số Lớn - nơi những con số khổng lồ ngự trị!',
+      intro: 'Vương Quốc Số Lớn - nơi những con số hàng nghìn ngự trị!',
       complete: 'Vĩ đại! Con đã làm chủ số lớn. Tháp Siêu Trí Tuệ đang chờ con!'
     }
   },
   {
     zoneId: 'mental-tower',
-    name: '🧠 Tháp Siêu Trí Tuệ',
-    subtitle: 'Tính toán bằng tâm trí!',
+    order: 8,
+    name: '🧠 Chặng 8: Tháp Tính Nhẩm',
+    subtitle: 'Anzan cơ bản',
     description: 'Rèn luyện Anzan - tính nhẩm bằng Soroban trong đầu!',
     icon: '🧠',
     color: 'from-violet-400 to-purple-600',
@@ -1269,8 +1297,9 @@ export const GAME_ZONES = [
   },
   {
     zoneId: 'speed-temple',
-    name: '⚡ Đền Tốc Độ',
-    subtitle: 'Nhanh như chớp!',
+    order: 9,
+    name: '⚡ Chặng 9: Đền Tốc Độ',
+    subtitle: 'Thử thách thời gian',
     description: 'Tính toán với thời gian giới hạn - thử thách phản xạ!',
     icon: '⚡',
     color: 'from-orange-400 to-red-500',
@@ -1286,8 +1315,9 @@ export const GAME_ZONES = [
   },
   {
     zoneId: 'flash-peak',
-    name: '⚡ Đỉnh Tia Chớp',
-    subtitle: 'Tốc độ ánh sáng!',
+    order: 10,
+    name: '⚡ Chặng 10: Đỉnh Tia Chớp',
+    subtitle: 'Flash Anzan',
     description: 'Flash Anzan - đỉnh cao của tính nhẩm Soroban!',
     icon: '⚡',
     color: 'from-yellow-300 to-amber-500',
@@ -1303,8 +1333,9 @@ export const GAME_ZONES = [
   },
   {
     zoneId: 'treasure-castle',
-    name: '🏆 Lâu Đài Kho Báu',
-    subtitle: 'Đích đến cuối cùng!',
+    order: 11,
+    name: '🏆 ĐÍCH ĐẾN: Lâu Đài Kho Báu',
+    subtitle: 'Nhận Chứng Chỉ!',
     description: 'Vượt qua 3 Boss Cuối để nhận Chứng Chỉ Cộng Trừ!',
     icon: '🏆',
     color: 'from-amber-300 via-yellow-400 to-orange-500',

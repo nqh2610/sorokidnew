@@ -390,6 +390,8 @@ function PracticePageContent() {
   // 🎮 GAME MODE: Helper function để quay về Adventure với đúng zone
   // Nếu vượt qua màn cuối của zone -> tự động chuyển sang zone mới
   const handleBackToGame = (passed = false) => {
+    console.log('🎮 handleBackToGame called:', { passed, gameMode });
+    
     if (gameMode?.zoneId) {
       let targetZoneId = gameMode.zoneId;
       
@@ -403,11 +405,15 @@ function PracticePageContent() {
         }
       }
       
-      sessionStorage.setItem('adventureReturnZone', JSON.stringify({
+      const returnData = {
         zoneId: targetZoneId,
         mapType: gameMode.mapType || 'addsub',
         timestamp: Date.now()
-      }));
+      };
+      console.log('🎯 Saving adventureReturnZone:', returnData);
+      sessionStorage.setItem('adventureReturnZone', JSON.stringify(returnData));
+    } else {
+      console.warn('⚠️ gameMode.zoneId is missing:', gameMode);
     }
     // Clear game mode data
     sessionStorage.removeItem('practiceGameMode');
@@ -423,6 +429,38 @@ function PracticePageContent() {
       setMode(null);
     }
   };
+
+  // 🎯 BROWSER BACK: Lưu zone info khi unmount để xử lý browser back button
+  useEffect(() => {
+    // Lưu function để dùng trong cleanup
+    const saveReturnZone = () => {
+      const gameModeRaw = sessionStorage.getItem('practiceGameMode');
+      if (gameModeRaw) {
+        try {
+          const gm = JSON.parse(gameModeRaw);
+          if (gm.from === 'adventure' && gm.zoneId) {
+            sessionStorage.setItem('adventureReturnZone', JSON.stringify({
+              zoneId: gm.zoneId,
+              mapType: gm.mapType || 'addsub',
+              timestamp: Date.now()
+            }));
+          }
+        } catch (e) {}
+      }
+    };
+
+    // Handle browser back button (popstate)
+    const handlePopState = () => {
+      saveReturnZone();
+    };
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      // Cleanup: lưu zone khi unmount (browser back hoặc navigation)
+      saveReturnZone();
+    };
+  }, []);
 
   useEffect(() => {
     if (status === 'unauthenticated') router.push('/login');

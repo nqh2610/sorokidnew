@@ -20,7 +20,14 @@ export async function GET(request) {
     }
 
     const userId = session.user.id;
-    console.log('🎮 Adventure API called for user:', userId);
+
+    // 🚀 PERF: Chỉ log trong development
+    const isDev = process.env.NODE_ENV === 'development';
+    // 🚀 PERF: Chỉ trả về debug info khi có query param hoặc dev mode
+    const { searchParams } = new URL(request.url);
+    const showDebug = isDev || searchParams.get('debug') === 'true';
+
+    if (isDev) console.log('🎮 Adventure API called for user:', userId);
 
     // Lấy dữ liệu từ DB
     let user, lessonProgress, exerciseResults, competeResults, certificates;
@@ -58,7 +65,7 @@ export async function GET(request) {
         select: { certType: true, issuedAt: true }
       })
     ]);
-      console.log('📊 DB Data loaded:', { lessons: lessonProgress.length, exercises: exerciseResults.length, compete: competeResults.length });
+      if (isDev) console.log('📊 DB Data loaded:', { lessons: lessonProgress.length, exercises: exerciseResults.length, compete: competeResults.length });
     } catch (dbError) {
       console.error('❌ DB Error:', dbError);
       return NextResponse.json({ error: 'Database error', message: dbError.message }, { status: 500 });
@@ -254,7 +261,8 @@ export async function GET(request) {
       }
     });
 
-    return NextResponse.json({
+    // 🚀 PERF: Response object - chỉ include debug khi cần
+    const response = {
       success: true,
       user: {
         name: user?.name,
@@ -269,40 +277,40 @@ export async function GET(request) {
       completedStages,
       stageStars,
       completedZones,
-      certificates: certificates.map(c => c.certType), // Trả về list certTypes
+      certificates: certificates.map(c => c.certType),
       totalXP: totalXP + (user?.totalStars || 0),
       totalCoins,
       stats: {
         totalStages: allStages.length,
         completed: completedStages.length,
         percentage: Math.round((completedStages.length / allStages.length) * 100)
-      },
-      // DEBUG - detailed
-      debug: {
+      }
+    };
+
+    // 🚀 PERF: Chỉ thêm debug info trong development hoặc khi có ?debug=true
+    if (showDebug) {
+      response.debug = {
         lessonCount: lessonProgress.length,
         exerciseCount: exerciseResults.length,
         competeCount: competeResults.length,
-        // Hiển thị các lessons đã học (levelId-lessonId)
         lessonsInDB: lessonProgress.slice(0, 20).map(p => `${p.levelId}-${p.lessonId} (completed=${p.completed})`),
-        // Hiển thị các arenaId đã thi đấu
         competeArenas: competeResults.slice(0, 10).map(c => `${c.arenaId} (${c.correct}đúng)`),
-        // Hiển thị các exercise types đã luyện
         exerciseTypes: [...new Set(exerciseResults.map(e => `${e.exerciseType}-${e.difficulty}`))].slice(0, 10),
-        // Config yêu cầu những levelId-lessonId nào cho 5 stages đầu
         configExpects: GAME_STAGES.slice(0, 8).map(s => ({
           stageId: s.stageId,
           type: s.type,
           key: s.type === 'lesson' ? `${s.levelId}-${s.lessonId}` : (s.practiceInfo ? `${s.practiceInfo.mode}-${s.practiceInfo.difficulty}` : null)
         })),
-        // Kiểm tra stage 1 cụ thể
         stage1Check: {
           configLevelId: GAME_STAGES[0].levelId,
           configLessonId: GAME_STAGES[0].lessonId,
           expectedKey: `${GAME_STAGES[0].levelId}-${GAME_STAGES[0].lessonId}`,
           foundInDB: lessonMap.has(`${GAME_STAGES[0].levelId}-${GAME_STAGES[0].lessonId}`)
         }
-      }
-    });
+      };
+    }
+
+    return NextResponse.json(response);
 
   } catch (error) {
     console.error('Error fetching game progress:', error);

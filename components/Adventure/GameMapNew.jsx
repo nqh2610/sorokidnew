@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -11,6 +11,10 @@ import SoundSettingsPanel from '@/components/SoundSettings/SoundSettingsPanel';
 
 // Import narrative config
 import { STORY_OVERVIEW, GAMEPLAY_NARRATIVES } from '@/config/narrative.config';
+
+// 🎨 Import game decorations
+import MapDecorations from './MapDecorations';
+import TreasureChestReveal from './TreasureChestReveal';
 
 // ============================================================
 // 🎮 GAME MAP - Đi Tìm Kho Báu Tri Thức
@@ -32,7 +36,7 @@ const getChapterNarrative = (chapterIndex, type = 'entering') => {
   return '';
 };
 
-// ===== PROLOGUE MODAL - Màn hình intro cho người mới =====
+// ===== PROLOGUE MODAL - OPTIMIZED =====
 function PrologueModal({ isOpen, onClose, onComplete }) {
   const [currentScene, setCurrentScene] = useState(0);
   const scenes = STORY_OVERVIEW?.prologue?.scenes || [];
@@ -57,39 +61,40 @@ function PrologueModal({ isOpen, onClose, onComplete }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      transition={{ duration: 0.15 }} // 🚀 Faster
       className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
     >
       <motion.div
-        initial={{ scale: 0.8, y: 50 }}
-        animate={{ scale: 1, y: 0 }}
-        exit={{ scale: 0.8, y: 50 }}
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.2, ease: [0.34, 1.56, 0.64, 1] }} // 🚀 Snappy easing
         className="w-full max-w-md bg-gradient-to-b from-indigo-900 to-purple-900 rounded-3xl overflow-hidden shadow-2xl border-2 border-amber-400/50"
       >
         {/* Scene illustration area */}
         <div className="relative h-48 bg-gradient-to-b from-indigo-800/50 to-transparent flex items-center justify-center">
-          {/* Floating stars */}
-          {[...Array(8)].map((_, i) => (
-            <motion.div
+          {/* 🚀 REDUCED: Only 4 stars with CSS animation instead of 8 with Framer */}
+          {[...Array(4)].map((_, i) => (
+            <div
               key={i}
-              className="absolute text-yellow-300"
+              className="absolute text-yellow-300 animate-pulse"
               style={{ 
-                left: `${10 + Math.random() * 80}%`, 
-                top: `${10 + Math.random() * 70}%`,
-                fontSize: 10 + Math.random() * 14
+                left: `${15 + i * 22}%`, 
+                top: `${20 + (i % 2) * 40}%`,
+                fontSize: 12 + i * 4,
+                animationDelay: `${i * 0.3}s`
               }}
-              animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.2, 0.8] }}
-              transition={{ duration: 2 + Math.random(), repeat: Infinity, delay: i * 0.3 }}
             >
               ✦
-            </motion.div>
+            </div>
           ))}
           
-          {/* Main icon based on scene */}
+          {/* Main icon based on scene - 🚀 Simpler animation */}
           <motion.div
             key={currentScene}
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: 'spring', stiffness: 200 }}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
             className="text-7xl"
           >
             {currentScene === 0 && '💎'}
@@ -103,8 +108,9 @@ function PrologueModal({ isOpen, onClose, onComplete }) {
         <div className="p-6">
           <motion.p
             key={currentScene}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }} // 🚀 Faster
             className="text-white text-center text-lg leading-relaxed font-medium"
           >
             {scene.narrative}
@@ -115,19 +121,18 @@ function PrologueModal({ isOpen, onClose, onComplete }) {
             {scenes.map((_, idx) => (
               <div
                 key={idx}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  idx === currentScene ? 'bg-amber-400 w-6' : 'bg-white/30'
+                className={`h-2 rounded-full transition-all duration-200 ${
+                  idx === currentScene ? 'bg-amber-400 w-6' : 'bg-white/30 w-2'
                 }`}
               />
             ))}
           </div>
           
-          {/* Button */}
+          {/* Button - 🚀 Only tap animation */}
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.97 }}
             onClick={handleNext}
-            className="w-full mt-6 py-3 bg-gradient-to-r from-amber-400 to-orange-500 text-white font-bold rounded-xl shadow-lg"
+            className="w-full mt-6 py-3 bg-gradient-to-r from-amber-400 to-orange-500 text-white font-bold rounded-xl shadow-lg active:brightness-90 transition-all"
           >
             {currentScene < scenes.length - 1 ? 'Tiếp tục →' : '🚀 Bắt đầu phiêu lưu!'}
           </motion.button>
@@ -151,149 +156,107 @@ function PrologueModal({ isOpen, onClose, onComplete }) {
   );
 }
 
-// ===== FLOATING CÚ SORO - Nhân vật dẫn chuyện với nhiều animation =====
+// ===== FLOATING CÚ SORO - WITH STORYTELLING ANIMATIONS =====
 function CuSoro({ message, isVisible, onToggle }) {
+  // Animation states cho cú sinh động hơn
+  const [isBlinking, setIsBlinking] = useState(false);
+  const [isWaving, setIsWaving] = useState(false);
+  
+  // Cú chớp mắt ngẫu nhiên
+  useEffect(() => {
+    const blinkInterval = setInterval(() => {
+      setIsBlinking(true);
+      setTimeout(() => setIsBlinking(false), 150);
+    }, 3000 + Math.random() * 2000);
+    return () => clearInterval(blinkInterval);
+  }, []);
+  
+  // Cú vẫy tay khi có message mới
+  useEffect(() => {
+    if (message && isVisible) {
+      setIsWaving(true);
+      const timer = setTimeout(() => setIsWaving(false), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [message, isVisible]);
+  
   return (
     <motion.div
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50"
-      initial={{ scale: 0, y: 100 }}
-      animate={{ scale: 1, y: 0 }}
-      transition={{ type: 'spring', stiffness: 200, delay: 0.5 }}
+      className="fixed bottom-6 right-4 sm:bottom-8 sm:right-6 z-50"
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.3, ease: 'easeOut', delay: 0.3 }}
     >
-      {/* Sparkles floating around Cú Soro */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute text-yellow-300"
-            style={{ 
-              left: `${10 + Math.random() * 80}%`, 
-              top: `${Math.random() * 90}%`,
-              fontSize: 8 + Math.random() * 10
-            }}
-            animate={{
-              opacity: [0, 1, 0],
-              scale: [0.5, 1.2, 0.5],
-              y: [0, -15, 0],
-              rotate: [0, 180, 360]
-            }}
-            transition={{
-              duration: 2 + Math.random(),
-              repeat: Infinity,
-              delay: i * 0.4
-            }}
-          >
-            ✦
-          </motion.div>
-        ))}
-      </div>
-      
-      {/* Speech bubble - Hiển thị bên TRÁI Cú Soro để không che nội dung */}
+      {/* Speech bubble - Điều chỉnh vị trí để không bị cắt */}
       <AnimatePresence>
         {isVisible && message && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, x: 20 }}
+            initial={{ opacity: 0, scale: 0.9, x: 10 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
-            exit={{ opacity: 0, scale: 0.8, x: 20 }}
-            onClick={() => onToggle()} // Click để đóng
-            className="absolute bottom-2 sm:bottom-4 right-full mr-2 sm:mr-3 w-48 sm:w-56 md:w-64 p-2.5 sm:p-4 bg-white rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden cursor-pointer hover:bg-gray-50 transition-colors"
+            exit={{ opacity: 0, scale: 0.9, x: 10 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            onClick={() => onToggle()}
+            className="absolute bottom-full right-0 mb-3 w-52 sm:w-60 md:w-72 p-3 sm:p-4 bg-white rounded-2xl shadow-2xl cursor-pointer hover:bg-amber-50 transition-colors"
             style={{ 
-              border: '2px solid #fbbf24',
-              transformOrigin: 'right center'
+              border: '3px solid #fbbf24',
+              transformOrigin: 'bottom right'
             }}
           >
-            {/* Shimmer effect on bubble */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-100/50 to-transparent"
-              animate={{ x: ['-100%', '100%'] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-            />
-            {/* Mũi tên chỉ sang phải (về phía Cú) */}
-            <div className="absolute top-1/2 -right-2 sm:-right-2.5 -translate-y-1/2 w-3 sm:w-4 h-3 sm:h-4 bg-white border-r-2 border-t-2 border-amber-400 rotate-45" />
-            <p className="text-gray-700 text-xs sm:text-sm font-medium leading-relaxed relative z-10">{message}</p>
-            <div className="flex items-center justify-between mt-1.5 sm:mt-2 relative z-10">
-              <span className="text-[9px] sm:text-[10px] text-gray-400">Chạm để đóng</span>
-              <span className="text-amber-500 text-[9px] sm:text-[10px]">🦉 Cú Soro</span>
+            {/* Mũi tên chỉ xuống */}
+            <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white border-r-3 border-b-3 border-amber-400 rotate-45" />
+            
+            <p className="text-gray-700 text-xs sm:text-sm font-medium leading-relaxed">{message}</p>
+            <div className="flex items-center justify-between mt-2">
+              <span className="text-[10px] text-gray-400">Chạm để đóng</span>
+              <span className="text-amber-600 text-[10px] font-semibold">🦉 Cú Soro</span>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
       
-      {/* Cú character - Responsive với rainbow glow */}
+      {/* Cú character với animations sinh động */}
       <motion.button
         onClick={onToggle}
-        whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
         whileTap={{ scale: 0.95 }}
-        animate={{ y: [0, -6, 0] }}
-        transition={{ y: { duration: 2, repeat: Infinity } }}
+        animate={isWaving ? { rotate: [0, -5, 5, -5, 0] } : {}}
+        transition={{ duration: 0.5 }}
         className="relative"
       >
-        {/* Rainbow glow effect - nhỏ hơn trên mobile */}
-        <motion.div
-          className="absolute inset-0 rounded-full"
-          style={{
-            background: 'conic-gradient(from 0deg, #f472b6, #fb923c, #facc15, #4ade80, #22d3ee, #a78bfa, #f472b6)',
-            filter: 'blur(12px)',
-            width: '120%',
-            height: '120%',
-            left: '-10%',
-            top: '-10%'
-          }}
-          animate={{ 
-            opacity: [0.4, 0.7, 0.4], 
-            scale: [0.9, 1.1, 0.9],
-            rotate: [0, 360]
-          }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
+        {/* Glow effect */}
+        <motion.div 
+          className="absolute inset-0 rounded-full bg-amber-400/30 blur-xl"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          style={{ width: '130%', height: '130%', left: '-15%', top: '-15%' }}
         />
         
-        {/* Inner glow effect */}
+        {/* Main body */}
         <motion.div 
-          className="absolute inset-0 bg-amber-400 rounded-full blur-lg sm:blur-xl"
-          animate={{ opacity: [0.4, 0.7, 0.4], scale: [0.9, 1.1, 0.9] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-        
-        {/* Main body - Responsive */}
-        <motion.div 
-          className="relative w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-amber-300 via-amber-400 to-orange-500 rounded-full flex items-center justify-center shadow-2xl border-2 sm:border-4 border-white"
-          animate={{ boxShadow: ['0 0 15px rgba(251, 191, 36, 0.5)', '0 0 30px rgba(251, 191, 36, 0.8)', '0 0 15px rgba(251, 191, 36, 0.5)'] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          className="relative w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-amber-300 via-amber-400 to-orange-500 rounded-full flex items-center justify-center shadow-2xl border-3 border-white"
+          animate={{ y: [0, -3, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <motion.span 
-            className="text-2xl sm:text-4xl md:text-5xl"
-            animate={{ rotate: [0, -5, 5, 0] }}
-            transition={{ duration: 3, repeat: Infinity }}
-          >
+          {/* Cú emoji với hiệu ứng chớp mắt */}
+          <span className="text-3xl sm:text-4xl" style={{ filter: isBlinking ? 'brightness(0.8)' : 'none' }}>
             🦉
-          </motion.span>
-        </motion.div>
-        
-        {/* Name tag */}
-        <motion.div 
-          className="absolute -bottom-5 sm:-bottom-7 left-0 right-0 flex justify-center"
-          animate={{ y: [0, -2, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[8px] sm:text-[9px] md:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded-full shadow-lg whitespace-nowrap">
-            Cú Soro
           </span>
         </motion.div>
         
-        {/* Notification badge với pulse ring */}
+        {/* Name tag */}
+        <div className="absolute -bottom-6 left-1/2 -translate-x-1/2">
+          <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[9px] sm:text-[10px] font-bold px-2 py-1 rounded-full shadow-lg whitespace-nowrap">
+            Cú Soro
+          </span>
+        </div>
+        
+        {/* Notification badge */}
         {message && !isVisible && (
-          <motion.div
-            animate={{ scale: [1, 1.3, 1] }}
+          <motion.div 
+            className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full border-2 border-white flex items-center justify-center shadow-lg"
+            animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 0.5, repeat: Infinity }}
-            className="absolute -top-1 -right-1 w-7 h-7 bg-red-500 rounded-full border-3 border-white flex items-center justify-center shadow-lg"
           >
             <span className="text-white text-xs font-bold">!</span>
-            {/* Pulse ring animation */}
-            <motion.div
-              className="absolute inset-0 bg-red-400 rounded-full"
-              animate={{ scale: [1, 2.5], opacity: [0.6, 0] }}
-              transition={{ duration: 1, repeat: Infinity }}
-            />
           </motion.div>
         )}
       </motion.button>
@@ -301,8 +264,9 @@ function CuSoro({ message, isVisible, onToggle }) {
   );
 }
 
-// ===== STAGE NODE =====
-function StageNode({ stage, status, onClick, index }) {
+// ===== STAGE NODE - OPTIMIZED =====
+// 🚀 PERF: memo để tránh re-render khi parent render nhưng props không đổi
+const StageNode = memo(function StageNode({ stage, status, onClick, index }) {
   const isLocked = status === 'locked';
   const isCurrent = status === 'current';
   const isCompleted = status === 'completed';
@@ -356,45 +320,29 @@ function StageNode({ stage, status, onClick, index }) {
   return (
     <motion.div
       className="flex flex-col items-center relative group"
-      initial={{ scale: 0, y: 20 }}
-      animate={{ scale: 1, y: 0 }}
-      transition={{ delay: index * 0.06, type: 'spring', stiffness: 200 }}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ delay: index * 0.03, duration: 0.2, ease: 'easeOut' }} // 🚀 Faster stagger, no spring
     >
-      {/* Current indicator - bouncing arrow */}
+      {/* Current indicator - bouncing arrow - 🚀 CSS animation instead */}
       {isCurrent && (
-        <motion.div
-          animate={{ y: [0, -8, 0] }}
-          transition={{ duration: 0.5, repeat: Infinity }}
-          className="absolute -top-10 sm:-top-14 left-1/2 -translate-x-1/2 z-20"
-        >
+        <div className="absolute -top-10 sm:-top-14 left-1/2 -translate-x-1/2 z-20 animate-bounce">
           <div className="px-2 sm:px-4 py-1 sm:py-2 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full shadow-lg border-2 border-white">
             <span className="text-[10px] sm:text-sm font-black text-white">🎮 CHƠI!</span>
           </div>
           <div className="w-0 h-0 border-l-4 sm:border-l-8 border-r-4 sm:border-r-8 border-t-4 sm:border-t-8 border-transparent border-t-orange-500 mx-auto" />
-        </motion.div>
+        </div>
       )}
       
-      {/* Glow effect for current */}
+      {/* 🚀 Glow effect for current - SIMPLIFIED to 1 layer with CSS */}
       {style.glow && (
-        <>
-          <motion.div
-            className="absolute rounded-full bg-yellow-400 -inset-3 sm:-inset-4"
-            animate={{ scale: [1, 1.2, 1], opacity: [0.6, 0.2, 0.6] }}
-            transition={{ duration: 1, repeat: Infinity }}
-          />
-          <motion.div
-            className="absolute rounded-full bg-orange-300 -inset-2 sm:-inset-3"
-            animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
-            transition={{ duration: 0.8, repeat: Infinity, delay: 0.2 }}
-          />
-        </>
+        <div className="absolute rounded-full bg-yellow-400/50 -inset-3 sm:-inset-4 animate-pulse" />
       )}
       
       {/* Main button - Responsive w/h */}
       <motion.button
         onClick={() => onClick(stage)}
-        whileHover={{ scale: 1.1, rotate: [-2, 2, 0] }}
-        whileTap={{ scale: 0.95 }}
+        whileTap={{ scale: 0.95 }} // 🚀 Removed whileHover rotate animation
         className={`
           relative rounded-full bg-gradient-to-br ${style.bg}
           ${isBoss || isTreasure ? 'w-14 h-14 sm:w-[72px] sm:h-[72px] md:w-20 md:h-20' : 'w-12 h-12 sm:w-[64px] sm:h-[64px] md:w-[72px] md:h-[72px]'}
@@ -402,87 +350,52 @@ function StageNode({ stage, status, onClick, index }) {
           flex items-center justify-center
           border-2 sm:border-4 ${isLocked ? 'border-white/50' : 'border-white'}
           cursor-pointer
-          transition-transform
+          hover:scale-110 active:scale-95 transition-transform duration-150
         `}
       >
         {/* Shine effect */}
         <div className="absolute inset-1 rounded-full bg-gradient-to-br from-white/50 via-white/20 to-transparent" />
         
-        {/* Icon - Locked hiện ?, Boss hiện 🐲 */}
-        <motion.span 
-          className={`relative ${isBoss || isTreasure ? 'text-2xl sm:text-4xl' : 'text-xl sm:text-3xl'} ${isLocked ? 'opacity-80' : ''}`}
-          animate={isCurrent ? { rotate: [0, -10, 10, 0] } : isLocked ? { scale: [1, 1.1, 1] } : {}}
-          transition={{ duration: isCurrent ? 0.5 : 2, repeat: Infinity, repeatDelay: isCurrent ? 1 : 0 }}
-        >
+        {/* Icon - 🚀 Removed infinite animations, only current has subtle animation */}
+        <span className={`relative ${isBoss || isTreasure ? 'text-2xl sm:text-4xl' : 'text-xl sm:text-3xl'} ${isLocked ? 'opacity-80' : ''} ${isCurrent ? 'animate-pulse' : ''}`}>
           {isLocked 
             ? (isBoss ? '🐲' : isTreasure ? '🎁' : '❓') 
             : (isBoss ? '👹' : stage.icon)
           }
-        </motion.span>
+        </span>
         
         {/* Number badge - Responsive */}
         <div className={`absolute -top-0.5 sm:-top-1 -left-0.5 sm:-left-1 w-5 h-5 sm:w-7 sm:h-7 ${style.iconBg} rounded-full flex items-center justify-center border sm:border-2 border-white shadow-lg`}>
           <span className="text-[9px] sm:text-xs font-black text-white drop-shadow">{index + 1}</span>
         </div>
         
-        {/* Completed star with animation and confetti effect */}
+        {/* 🚀 Completed star - SIMPLIFIED: removed confetti particles */}
         {isCompleted && (
-          <>
-            {/* Mini confetti particles */}
-            {[...Array(4)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-2 h-2 rounded-full"
-                style={{
-                  background: ['#fbbf24', '#f472b6', '#4ade80', '#60a5fa'][i],
-                  left: '50%',
-                  top: '50%'
-                }}
-                animate={{
-                  x: [0, (i % 2 === 0 ? 1 : -1) * (15 + i * 8)],
-                  y: [0, -20 - i * 5, 10],
-                  opacity: [0, 1, 0],
-                  scale: [0.5, 1, 0.3]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 0.5,
-                  repeatDelay: 3
-                }}
-              />
-            ))}
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              className="absolute -bottom-0.5 sm:-bottom-1 -right-0.5 sm:-right-1"
-            >
-              <motion.div
-                animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full flex items-center justify-center border sm:border-2 border-white shadow-lg"
-              >
-                <span className="text-[10px] sm:text-sm">⭐</span>
-              </motion.div>
-            </motion.div>
-          </>
+          <div className="absolute -bottom-0.5 sm:-bottom-1 -right-0.5 sm:-right-1 w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full flex items-center justify-center border sm:border-2 border-white shadow-lg">
+            <span className="text-[10px] sm:text-sm">⭐</span>
+          </div>
         )}
       </motion.button>
       
-      {/* Name - Responsive */}
-      <p className={`mt-1.5 sm:mt-2 md:mt-3 text-[8px] sm:text-[10px] md:text-xs font-bold text-center leading-tight drop-shadow-md ${
+      {/* Name - Hiển thị đầy đủ, không cắt */}
+      <p className={`mt-1.5 sm:mt-2 md:mt-3 text-[9px] sm:text-[11px] md:text-xs font-bold text-center leading-tight drop-shadow-md ${
         isLocked ? 'text-white/70' : isCurrent ? 'text-yellow-200' : 'text-white'
       }`}
-      style={{ maxWidth: 80, minHeight: '2em', wordBreak: 'keep-all' }}
+      style={{ 
+        maxWidth: 110,
+        wordBreak: 'keep-all',
+        whiteSpace: 'normal'
+      }}
       >
         {stage.name}
       </p>
     </motion.div>
   );
-}
+});
 
 // ===== PATH DOTS - Đường nối các màn =====
-function PathDots({ direction, isCompleted }) {
+// 🚀 PERF: memo để tránh re-render không cần thiết
+const PathDots = memo(function PathDots({ direction, isCompleted }) {
   const count = direction === 'horizontal' ? 3 : 2;
   return (
     <div className={`flex ${direction === 'vertical' ? 'flex-col h-8 sm:h-12' : 'w-8 sm:w-14 md:w-20'} items-center justify-center gap-0.5 sm:gap-1`}>
@@ -511,7 +424,7 @@ function PathDots({ direction, isCompleted }) {
       )}
     </div>
   );
-}
+});
 
 // ===== ZONE TABS - Với scroll indicator, auto-scroll và drag to scroll =====
 function ZoneTabs({ zones, activeZoneId, onSelect, zoneProgress }) {
@@ -622,13 +535,14 @@ function ZoneTabs({ zones, activeZoneId, onSelect, zoneProgress }) {
   
   return (
     <div className="relative px-2 sm:px-4">
-      {/* Left scroll arrow */}
+      {/* Left scroll arrow - 🚀 SIMPLIFIED: CSS transition only */}
       <AnimatePresence>
         {showLeftArrow && (
           <motion.button
-            initial={{ opacity: 0, x: 10 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 10 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
             onClick={() => scroll(-1)}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-8 h-8 bg-white/90 rounded-full shadow-lg flex items-center justify-center hover:bg-white transition-colors"
           >
@@ -658,14 +572,15 @@ function ZoneTabs({ zones, activeZoneId, onSelect, zoneProgress }) {
             const isComplete = progress.percent === 100;
             
             return (
+              // 🚀 SIMPLIFIED: Only tap animation, CSS hover
               <motion.button
                 key={zone.zoneId}
                 onClick={() => handleZoneClick(zone.zoneId)}
-                whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 className={`
                   flex-shrink-0 px-3 sm:px-4 py-2.5 sm:py-3 rounded-2xl font-bold text-xs sm:text-sm 
-                  flex items-center gap-2 transition-all whitespace-nowrap border-2
+                  flex items-center gap-2 transition-all duration-150 whitespace-nowrap border-2
+                  hover:scale-[1.02] active:scale-[0.98]
                   ${isActive 
                     ? 'bg-white text-indigo-600 shadow-xl shadow-white/40 border-yellow-400 scale-105' 
                     : 'bg-white/25 text-white hover:bg-white/35 border-white/40'
@@ -681,14 +596,9 @@ function ZoneTabs({ zones, activeZoneId, onSelect, zoneProgress }) {
                 `}>
                   {progress.completed}/{progress.total}
                 </div>
+                {/* 🚀 SIMPLIFIED: Static star instead of animated */}
                 {isComplete && (
-                  <motion.span 
-                    className="text-sm sm:text-base"
-                    animate={{ rotate: [0, 15, -15, 0], scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    ⭐
-                  </motion.span>
+                  <span className="text-sm sm:text-base">⭐</span>
                 )}
               </motion.button>
             );
@@ -696,13 +606,14 @@ function ZoneTabs({ zones, activeZoneId, onSelect, zoneProgress }) {
         </div>
       </div>
       
-      {/* Right scroll arrow */}
+      {/* Right scroll arrow - 🚀 SIMPLIFIED: CSS transition only */}
       <AnimatePresence>
         {showRightArrow && (
           <motion.button
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -10 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
             onClick={() => scroll(1)}
             className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-8 h-8 bg-white/90 rounded-full shadow-lg flex items-center justify-center hover:bg-white transition-colors"
           >
@@ -757,7 +668,7 @@ function StageGrid({ stages, stageStatuses, onStageClick }) {
   );
 }
 
-// ===== STAGE MODAL - Responsive =====
+// ===== STAGE MODAL - Responsive & OPTIMIZED =====
 function StageModal({ stage, status, onClose, onStart }) {
   if (!stage) return null;
   const isBoss = stage.type === 'boss';
@@ -769,32 +680,28 @@ function StageModal({ stage, status, onClose, onStart }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      transition={{ duration: 0.15 }} // 🚀 Faster fade
       onClick={onClose}
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm"
     >
-      {/* Background confetti for completed stages - less on mobile */}
+      {/* Background confetti - REDUCED to 6 particles, simpler animation */}
       {status === 'completed' && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(12)].map((_, i) => (
+          {[...Array(6)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-2 h-2 sm:w-3 sm:h-3 rounded-full"
+              className="absolute w-2 h-2 rounded-full"
               style={{
                 background: ['#fbbf24', '#f472b6', '#4ade80', '#60a5fa', '#a78bfa'][i % 5],
-                left: `${Math.random() * 100}%`,
+                left: `${15 + i * 14}%`,
                 top: '-10px'
               }}
-              animate={{
-                y: [0, window?.innerHeight || 800],
-                x: [0, (Math.random() - 0.5) * 200],
-                rotate: [0, 360 * (Math.random() > 0.5 ? 1 : -1)],
-                opacity: [1, 1, 0]
-              }}
+              animate={{ y: [0, 600], opacity: [1, 0] }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: 2,
                 repeat: Infinity,
-                delay: i * 0.2,
-                ease: 'easeIn'
+                delay: i * 0.3,
+                ease: 'linear' // 🚀 Linear = less CPU
               }}
             />
           ))}
@@ -802,87 +709,42 @@ function StageModal({ stage, status, onClose, onStart }) {
       )}
       
       <motion.div
-        initial={{ scale: 0.5, y: 100, rotateY: -30 }}
-        animate={{ scale: 1, y: 0, rotateY: 0 }}
-        exit={{ scale: 0.5, y: 100, rotateY: 30 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.2, ease: [0.34, 1.56, 0.64, 1] }} // 🚀 Snappy overshoot easing
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-[320px] sm:max-w-sm bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl relative"
+        className="w-full max-w-[320px] sm:max-w-sm bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl relative border-3 border-yellow-400"
       >
-        {/* Rainbow border animation */}
-        <motion.div
-          className="absolute inset-0 rounded-3xl"
-          style={{
-            background: 'linear-gradient(90deg, #f472b6, #fb923c, #facc15, #4ade80, #22d3ee, #a78bfa, #f472b6)',
-            backgroundSize: '200% 100%',
-            padding: '3px'
-          }}
-          animate={{
-            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-          }}
-          transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-        />
+        {/* 🚀 REMOVED: Rainbow border animation - replaced with static border */}
         
         {/* Inner content */}
-        <div className="relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden m-[3px]">
+        <div className="relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden">
           <div className={`p-4 sm:p-6 bg-gradient-to-br ${
             isBoss ? 'from-rose-500 to-red-600' :
             isTreasure ? 'from-purple-500 to-violet-600' :
             status === 'completed' ? 'from-emerald-500 to-green-600' :
             'from-blue-500 to-indigo-600'
           } relative overflow-hidden`}>
-            {/* Sparkles in header - hidden on mobile */}
-            <div className="hidden sm:block">
-              {[...Array(5)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute text-yellow-200"
-                  style={{
-                    left: `${15 + i * 18}%`,
-                    top: `${20 + (i % 2) * 40}%`,
-                    fontSize: 10 + Math.random() * 8
-                  }}
-                  animate={{
-                    opacity: [0.3, 0.8, 0.3],
-                    scale: [0.8, 1.2, 0.8],
-                    rotate: [0, 180, 360]
-                  }}
-                  transition={{
-                    duration: 2 + Math.random(),
-                    repeat: Infinity,
-                    delay: i * 0.3
-                  }}
-                >
-                  ✦
-                </motion.div>
-              ))}
-            </div>
+            {/* 🚀 REMOVED: Sparkles in header - too many animations */}
             
             <motion.div 
-              animate={{ rotate: [0, -10, 10, 0], scale: [1, 1.1, 1] }} 
-              transition={{ duration: 2, repeat: Infinity }} 
+              animate={{ scale: [1, 1.1, 1] }} // 🚀 Simpler: only scale, no rotate
+              transition={{ duration: 1.5, repeat: Infinity }} 
               className="text-4xl sm:text-6xl text-center mb-1 sm:mb-2 relative z-10"
             >
               {stage.icon}
             </motion.div>
             <h3 className="text-lg sm:text-xl font-black text-white text-center relative z-10">{stage.name}</h3>
             {status === 'completed' && (
-              <motion.p 
-                className="text-white/80 text-center text-sm mt-1 relative z-10"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
-              >
+              <p className="text-white/80 text-center text-sm mt-1 relative z-10">
                 ⭐ Đã hoàn thành ⭐
-              </motion.p>
+              </p>
             )}
             {isLocked && (
-              <motion.p 
-                className="text-white/90 text-center text-sm mt-1 relative z-10"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
+              <p className="text-white/90 text-center text-sm mt-1 relative z-10">
                 🔒 Màn chơi chưa mở khóa
-              </motion.p>
+              </p>
             )}
           </div>
           
@@ -897,9 +759,8 @@ function StageModal({ stage, status, onClose, onStart }) {
                 </div>
                 <motion.button 
                   onClick={onClose} 
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 text-white font-bold shadow-lg text-sm sm:text-base"
+                  whileTap={{ scale: 0.97 }} // 🚀 Only tap feedback, no hover
+                  className="w-full py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 text-white font-bold shadow-lg text-sm sm:text-base active:brightness-90 transition-all"
                 >
                   Đã hiểu! 👍
                 </motion.button>
@@ -907,29 +768,22 @@ function StageModal({ stage, status, onClose, onStart }) {
             ) : (
               <>
                 <p className="text-gray-600 text-center mb-4 sm:mb-6 text-sm sm:text-base">{stage.description}</p>
-                <div className="flex gap-2 sm:gap-2 sm:gap-3">
+                <div className="flex gap-2 sm:gap-3">
                   <motion.button 
                     onClick={onClose} 
-                    whileHover={{ scale: 1.02, backgroundColor: '#e5e7eb' }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex-1 py-2.5 sm:py-3 rounded-xl bg-gray-100 text-gray-600 font-bold transition-colors text-sm sm:text-base"
+                    whileTap={{ scale: 0.97 }}
+                    className="flex-1 py-2.5 sm:py-3 rounded-xl bg-gray-100 text-gray-600 font-bold text-sm sm:text-base active:bg-gray-200 transition-colors"
                   >
                     Đóng
                   </motion.button>
                   <motion.button
-                    whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}
-                    whileTap={{ scale: 0.95 }}
+                    whileTap={{ scale: 0.97 }}
                     onClick={onStart}
-                    className={`flex-1 py-2.5 sm:py-3 rounded-xl font-bold text-white shadow-lg relative overflow-hidden text-sm sm:text-base ${
+                    className={`flex-1 py-2.5 sm:py-3 rounded-xl font-bold text-white shadow-lg relative overflow-hidden text-sm sm:text-base active:brightness-90 transition-all ${
                       status === 'completed' ? 'bg-gradient-to-r from-emerald-500 to-green-600' : 'bg-gradient-to-r from-blue-500 to-indigo-600'
                     }`}
                   >
-                    {/* Button shimmer */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                      animate={{ x: ['-100%', '100%'] }}
-                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
-                    />
+                    {/* 🚀 REMOVED: Shimmer effect - too heavy */}
                     <span className="relative z-10">
                       {status === 'completed' ? '🔄 Chơi lại' : '▶️ Bắt đầu'}
                     </span>
@@ -1126,14 +980,18 @@ export default function GameMapNew({
   // Khởi tạo map và zone từ returnZone nếu có
   const [currentMap, setCurrentMap] = useState(() => {
     if (returnZone?.mapType) {
+      console.log('🎯 GameMapNew INIT: mapType from returnZone =', returnZone.mapType);
       return returnZone.mapType;
     }
+    console.log('🎯 GameMapNew INIT: default mapType = addsub');
     return 'addsub';
   });
   const [activeZoneId, setActiveZoneIdState] = useState(() => {
     if (returnZone?.zoneId) {
+      console.log('🎯 GameMapNew INIT: zoneId from returnZone =', returnZone.zoneId);
       return returnZone.zoneId;
     }
+    console.log('🎯 GameMapNew INIT: zoneId = null');
     return null;
   });
   
@@ -1150,14 +1008,24 @@ export default function GameMapNew({
   const [selectedStage, setSelectedStage] = useState(null);
   const [cuSoroMessage, setCuSoroMessage] = useState('');
   const [cuSoroVisible, setCuSoroVisible] = useState(true);
-  const [initialZoneSet, setInitialZoneSet] = useState(!!returnZone?.zoneId);
   
   // 🦉 State cho Prologue (màn intro)
   const [showPrologue, setShowPrologue] = useState(false);
   const [lastActiveZoneId, setLastActiveZoneId] = useState(null);
+  
+  // 🏆 State cho Treasure Chest Reveal
+  const [showTreasureReveal, setShowTreasureReveal] = useState(false);
+  const [treasureCertType, setTreasureCertType] = useState('addsub'); // 'addsub' | 'complete'
 
-  const stages = currentMap === 'addsub' ? addSubStages : mulDivStages;
-  const zones = currentMap === 'addsub' ? addSubZones : mulDivZones;
+  // 🚀 PERF: useMemo để tránh re-create arrays mỗi render
+  const stages = useMemo(() =>
+    currentMap === 'addsub' ? addSubStages : mulDivStages,
+    [currentMap, addSubStages, mulDivStages]
+  );
+  const zones = useMemo(() =>
+    currentMap === 'addsub' ? addSubZones : mulDivZones,
+    [currentMap, addSubZones, mulDivZones]
+  );
   
   // 🔊 Initialize sound system (background music disabled)
   useEffect(() => {
@@ -1177,22 +1045,54 @@ export default function GameMapNew({
     }
   }, [isLoading]);
 
-  // Reset activeZoneId khi chuyển map (chỉ nếu không phải lần đầu với returnZone)
+  // 🎯 Reset activeZoneId khi chuyển map
+  // QUAN TRỌNG: Nếu có returnZone và đây là lần mount đầu tiên, giữ nguyên zone đã set
+  // 🚀 PERF: useRef thay vì useState vì flags này không cần trigger re-render
+  const hasInitializedRef = useRef(false);
+  const returnZoneAppliedRef = useRef(false);
+
   useEffect(() => {
-    if (zones.length > 0 && !initialZoneSet) {
-      // Tìm zone có current stage hoặc lấy zone đầu tiên
-      const currentStage = stages.find(s => stageStatuses[s.stageId] === 'current');
-      if (currentStage) {
-        setActiveZoneId(currentStage.zoneId);
-      } else {
-        setActiveZoneId(zones[0].zoneId);
+    if (zones.length === 0) return;
+
+    // Lần mount đầu tiên
+    if (!hasInitializedRef.current) {
+      hasInitializedRef.current = true;
+
+      // Nếu có returnZone -> đánh dấu đã apply và giữ nguyên
+      if (returnZone?.zoneId) {
+        console.log('🎯 ReturnZone applied:', returnZone.zoneId, 'mapType:', returnZone.mapType);
+        returnZoneAppliedRef.current = true;
+        // activeZoneId đã được set từ useState initial value
+        return;
       }
+
+      // Không có returnZone -> tìm zone có current stage
+      if (!activeZoneId) {
+        const currentStage = stages.find(s => stageStatuses[s.stageId] === 'current');
+        if (currentStage) {
+          setActiveZoneId(currentStage.zoneId);
+        } else {
+          setActiveZoneId(zones[0].zoneId);
+        }
+      }
+      return;
     }
-    // Sau lần đầu, cho phép reset bình thường
-    if (initialZoneSet) {
-      setInitialZoneSet(false);
+
+    // Nếu returnZone vừa được apply và currentMap khớp với returnZone.mapType -> giữ nguyên zone
+    if (returnZoneAppliedRef.current && returnZone?.mapType === currentMap) {
+      console.log('🎯 Keeping returnZone after map change:', activeZoneId);
+      returnZoneAppliedRef.current = false; // Reset flag sau khi đã apply
+      return;
     }
-  }, [currentMap]); // Chỉ chạy khi currentMap thay đổi
+
+    // Các lần sau (khi chuyển map thủ công): reset về zone hiện tại hoặc zone đầu
+    const currentStage = stages.find(s => stageStatuses[s.stageId] === 'current');
+    if (currentStage) {
+      setActiveZoneId(currentStage.zoneId);
+    } else {
+      setActiveZoneId(zones[0].zoneId);
+    }
+  }, [currentMap, zones.length]); // Chỉ chạy khi currentMap hoặc zones thay đổi
   
   const zoneProgress = useMemo(() => {
     const progress = {};
@@ -1220,8 +1120,15 @@ export default function GameMapNew({
     }
   }, [zones, activeZoneId]);
   
-  const activeZone = zones.find(z => z.zoneId === activeZoneId);
-  const activeStages = stages.filter(s => s.zoneId === activeZoneId);
+  // 🚀 PERF: useMemo cho activeZone và activeStages
+  const activeZone = useMemo(() =>
+    zones.find(z => z.zoneId === activeZoneId),
+    [zones, activeZoneId]
+  );
+  const activeStages = useMemo(() =>
+    stages.filter(s => s.zoneId === activeZoneId),
+    [stages, activeZoneId]
+  );
   
   // 🦉 Logic hiển thị lời dẫn Cú Soro theo ngữ cảnh
   useEffect(() => {
@@ -1271,12 +1178,56 @@ export default function GameMapNew({
     setCuSoroVisible(true);
   }, []);
   
-  const totalStages = stages.length;
-  const completedStages = stages.filter(s => stageStatuses[s.stageId] === 'completed').length;
+  // 🚀 PERF: useMemo cho computed stats - tránh tính lại mỗi render
+  const { totalStages, completedStagesCount, mapProgress } = useMemo(() => {
+    const total = stages.length;
+    const completed = stages.filter(s => stageStatuses[s.stageId] === 'completed').length;
+    return {
+      totalStages: total,
+      completedStagesCount: completed,
+      mapProgress: total > 0 ? Math.round((completed / total) * 100) : 0
+    };
+  }, [stages, stageStatuses]);
+  
+  // 🏆 Handle mở treasure chest
+  const handleTreasureClick = useCallback(() => {
+    // Xác định loại chứng chỉ
+    if (currentMap === 'addsub' && hasCertAddSub) {
+      setTreasureCertType('addsub');
+      setShowTreasureReveal(true);
+      play('levelComplete');
+    } else if (hasCertComplete) {
+      setTreasureCertType('complete');
+      setShowTreasureReveal(true);
+      play('levelCompletePerfect');
+    }
+  }, [currentMap, hasCertAddSub, hasCertComplete, play]);
+  
+  // 🏆 Handle xem chi tiết chứng chỉ - navigate đến trang certificate
+  const handleViewCertificate = useCallback(() => {
+    // Navigate đến trang certificate list để xem/download
+    router.push('/certificate');
+  }, [router]);
   
   // 🦉 Khi click vào stage, hiện lời dẫn phù hợp
   const handleStageClick = useCallback((stage) => {
     const status = stageStatuses[stage.stageId];
+    const stageIdStr = String(stage.stageId || '');
+    
+    // 🏆 TREASURE STAGE: Check nếu đây là stage kho báu/chứng chỉ
+    // Stage IDs: cert-addsub-final, cert-complete-final
+    const isTreasureStage = stageIdStr.startsWith('cert-') || 
+                           stage.type === 'treasure' || 
+                           stage.type === 'certificate';
+    
+    if (isTreasureStage && status === 'completed') {
+      // Mở hiệu ứng rương kho báu
+      const isAddSubCert = stageIdStr.includes('addsub');
+      setTreasureCertType(isAddSubCert ? 'addsub' : 'complete');
+      setShowTreasureReveal(true);
+      play('levelComplete');
+      return;
+    }
     
     // 🔒 TIER CHECK: Kiểm tra quyền truy cập trước khi mở modal
     // Chỉ check nếu stage không bị locked (locked thì không cần check tier)
@@ -1301,6 +1252,8 @@ export default function GameMapNew({
         message = "Hãy khám phá bí mật ẩn giấu bên trong! Soro sẽ đi cùng con!";
       } else if (stage.type === 'boss') {
         message = "Thử thách lớn đang chờ! Tập trung và dùng hết sức mạnh của con nhé!";
+      } else if (isTreasureStage) {
+        message = "Kho báu tri thức đang chờ! Hãy chinh phục nó nhé!";
       } else {
         message = getRandomMessage(GAMEPLAY_NARRATIVES?.beforeQuestion) || 
                   "Sẵn sàng cho thử thách mới chưa? Soro tin con làm được!";
@@ -1313,7 +1266,7 @@ export default function GameMapNew({
     
     // 🔊 Play sound when selecting stage
     play('stageSelect');
-  }, [stageStatuses, play, onTierCheck]);
+  }, [stageStatuses, play, onTierCheck, currentMap]);
   
   const handleStartStage = useCallback(() => {
     if (selectedStage?.link) {
@@ -1325,16 +1278,7 @@ export default function GameMapNew({
     setSelectedStage(null);
   }, [selectedStage, router, onStageClick, play]);
   
-  // Generate random stars for background - phải ở trước điều kiện return
-  const stars = useMemo(() => 
-    [...Array(30)].map((_, i) => ({
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      size: 8 + Math.random() * 12,
-      delay: Math.random() * 3,
-      duration: 2 + Math.random() * 2
-    })), []
-  );
+  // 🚀 REMOVED: Random stars useMemo - not needed anymore (using CSS)
   
   if (isLoading) {
     return (
@@ -1389,149 +1333,48 @@ export default function GameMapNew({
   
   return (
     <div className="min-h-screen bg-gradient-to-b from-cyan-400 via-blue-500 to-indigo-600 relative overflow-hidden">
-      {/* Floating stars background */}
+      {/* 🚀 OPTIMIZED: Background decorations with CSS animations */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {stars.map((star, i) => (
-          <motion.div
+        {/* 🚀 REDUCED: Only 10 stars with CSS animation instead of 30 with Framer */}
+        {[...Array(10)].map((_, i) => (
+          <div
             key={i}
-            className="absolute text-yellow-200"
-            style={{ left: star.left, top: star.top, fontSize: star.size }}
-            animate={{ 
-              opacity: [0.4, 1, 0.4],
-              scale: [1, 1.4, 1],
-            }}
-            transition={{ 
-              duration: star.duration, 
-              repeat: Infinity,
-              delay: star.delay
+            className="absolute text-yellow-200/70 animate-pulse"
+            style={{ 
+              left: `${8 + i * 9}%`, 
+              top: `${10 + (i % 4) * 22}%`, 
+              fontSize: 10 + (i % 3) * 6,
+              animationDelay: `${i * 0.3}s`,
+              animationDuration: `${2 + (i % 3)}s`
             }}
           >
             ✦
-          </motion.div>
+          </div>
         ))}
         
-        {/* Floating clouds */}
-        <motion.div
-          className="absolute text-7xl opacity-30"
+        {/* 🚀 SIMPLIFIED: 2 clouds with CSS animation */}
+        <div
+          className="absolute text-7xl opacity-20 animate-cloud-slow"
           style={{ top: '8%', left: '-10%' }}
-          animate={{ x: ['0%', '120%'] }}
-          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
         >
           ☁️
-        </motion.div>
-        <motion.div
-          className="absolute text-5xl opacity-25"
-          style={{ top: '25%', left: '-5%' }}
-          animate={{ x: ['0%', '130%'] }}
-          transition={{ duration: 35, repeat: Infinity, ease: 'linear', delay: 8 }}
+        </div>
+        <div
+          className="absolute text-5xl opacity-15 animate-cloud-slow"
+          style={{ top: '30%', left: '-5%', animationDelay: '10s' }}
         >
           ☁️
-        </motion.div>
-        <motion.div
-          className="absolute text-6xl opacity-20"
-          style={{ top: '50%', left: '-8%' }}
-          animate={{ x: ['0%', '125%'] }}
-          transition={{ duration: 45, repeat: Infinity, ease: 'linear', delay: 15 }}
-        >
-          ☁️
-        </motion.div>
+        </div>
         
-        {/* Floating sparkle icons - NEW! */}
-        <motion.div
-          className="absolute text-3xl"
-          style={{ top: '15%', right: '10%' }}
-          animate={{ 
-            y: [0, -20, 0], 
-            rotate: [0, 360],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          💎
-        </motion.div>
-        <motion.div
-          className="absolute text-2xl"
-          style={{ top: '35%', left: '8%' }}
-          animate={{ 
-            y: [0, -15, 0],
-            x: [0, 10, 0],
-            rotate: [0, -15, 15, 0]
-          }}
-          transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-        >
-          🌟
-        </motion.div>
-        <motion.div
-          className="absolute text-4xl"
-          style={{ top: '60%', right: '5%' }}
-          animate={{ 
-            y: [0, -25, 0],
-            scale: [1, 1.3, 1]
-          }}
-          transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-        >
-          🏆
-        </motion.div>
-        <motion.div
-          className="absolute text-2xl"
-          style={{ top: '75%', left: '12%' }}
-          animate={{ 
-            rotate: [0, 360],
-            scale: [0.8, 1.2, 0.8]
-          }}
-          transition={{ duration: 6, repeat: Infinity, delay: 2 }}
-        >
-          ✨
-        </motion.div>
-        <motion.div
-          className="absolute text-3xl"
-          style={{ top: '45%', right: '15%' }}
-          animate={{ 
-            y: [0, -30, 0],
-            x: [0, -10, 0]
-          }}
-          transition={{ duration: 4.5, repeat: Infinity, delay: 1.5 }}
-        >
-          ⭐
-        </motion.div>
+        {/* 🚀 REDUCED: Only 3 floating icons with simpler animations */}
+        <div className="absolute text-3xl animate-float" style={{ top: '15%', right: '10%' }}>💎</div>
+        <div className="absolute text-4xl animate-float" style={{ top: '60%', right: '5%', animationDelay: '1s' }}>🏆</div>
+        <div className="absolute text-2xl animate-float" style={{ top: '40%', left: '8%', animationDelay: '2s' }}>✨</div>
         
-        {/* Rising bubbles effect */}
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={`bubble-${i}`}
-            className="absolute w-4 h-4 bg-white/20 rounded-full"
-            style={{ 
-              left: `${10 + i * 12}%`,
-              bottom: '-20px'
-            }}
-            animate={{ 
-              y: [0, -800],
-              opacity: [0.6, 0],
-              scale: [1, 0.5]
-            }}
-            transition={{ 
-              duration: 8 + i * 2,
-              repeat: Infinity,
-              delay: i * 1.5,
-              ease: 'easeOut'
-            }}
-          />
-        ))}
-        
-        {/* Shimmer lines */}
-        <motion.div
-          className="absolute top-20 left-0 w-1/2 h-1 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-          animate={{ x: ['-100%', '200%'] }}
-          transition={{ duration: 3, repeat: Infinity, repeatDelay: 5 }}
-        />
-        <motion.div
-          className="absolute top-40 right-0 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-yellow-200/40 to-transparent"
-          animate={{ x: ['100%', '-200%'] }}
-          transition={{ duration: 4, repeat: Infinity, repeatDelay: 7, delay: 2 }}
-        />
+        {/* 🚀 REMOVED: Rising bubbles, shimmer lines - too heavy */}
       </div>
       
-      <GameHeader totalStages={totalStages} completedStages={completedStages} userStats={userStats} />
+      <GameHeader totalStages={totalStages} completedStages={completedStagesCount} userStats={userStats} />
       
       {/* Title with animation - Responsive */}
       <div className="text-center py-3 sm:py-5 relative z-10 px-4">
@@ -1666,6 +1509,18 @@ export default function GameMapNew({
       )}
       
       <CuSoro message={cuSoroMessage} isVisible={cuSoroVisible} onToggle={() => setCuSoroVisible(!cuSoroVisible)} />
+      
+      {/* 🎨 Map Decorations - Icon trang trí nhẹ nhàng */}
+      <MapDecorations />
+      
+      {/* 🏆 Treasure Chest Reveal - Hiệu ứng mở kho báu */}
+      <TreasureChestReveal
+        isOpen={showTreasureReveal}
+        onClose={() => setShowTreasureReveal(false)}
+        certificateType={treasureCertType}
+        userName={userStats?.name || userStats?.displayName}
+        onViewCertificate={handleViewCertificate}
+      />
       
       {/* 🔊 Sound Settings Button */}
       <div className="fixed bottom-12 right-3 sm:right-4 z-40">

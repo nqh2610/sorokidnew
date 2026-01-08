@@ -65,7 +65,7 @@ export const GAME_STAGES_MULDIV = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Nhân Cơ Bản',
-    description: 'Luyện Phép Nhân • Tập Sự • 10 bài đúng',
+    description: 'Luyện Phép Nhân • Tập Sự • 8 bài đúng',
     icon: '👹',
     link: '/practice/auto?mode=multiplication&difficulty=1',
     practiceInfo: {
@@ -73,10 +73,10 @@ export const GAME_STAGES_MULDIV = [
       modeName: 'Phép Nhân',
       difficulty: 1,
       difficultyName: 'Tập Sự',
-      minCorrect: 10
+      minCorrect: 8
     },
     unlockCondition: { type: 'lesson', levelId: 11, lessonId: 3 },
-    completeCondition: { type: 'practice', mode: 'multiplication', difficulty: 1, minCorrect: 10 }
+    completeCondition: { type: 'practice', mode: 'multiplication', difficulty: 1, minCorrect: 8 }
   },
   
   // Stage 73-75: Học Level 12 (Bảng nhân 8-9)
@@ -147,7 +147,7 @@ export const GAME_STAGES_MULDIV = [
   // Stage 77-79: Học Level 13 (Chia cơ bản)
   {
     stageId: 77,
-    zoneId: 'lake-divide',
+    zoneId: 'lake-divide-basic',
     type: 'lesson',
     levelId: 13,
     lessonId: 1,
@@ -159,7 +159,7 @@ export const GAME_STAGES_MULDIV = [
   },
   {
     stageId: 78,
-    zoneId: 'lake-divide',
+    zoneId: 'lake-divide-basic',
     type: 'lesson',
     levelId: 13,
     lessonId: 2,
@@ -171,7 +171,7 @@ export const GAME_STAGES_MULDIV = [
   },
   {
     stageId: 79,
-    zoneId: 'lake-divide',
+    zoneId: 'lake-divide-basic',
     type: 'lesson',
     levelId: 13,
     lessonId: 3,
@@ -185,11 +185,11 @@ export const GAME_STAGES_MULDIV = [
   // Stage 80: BOSS - Luyện Chia cơ bản
   {
     stageId: 80,
-    zoneId: 'lake-divide',
+    zoneId: 'lake-divide-basic',
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Chia Cơ Bản',
-    description: 'Luyện Phép Chia • Tập Sự • 10 bài đúng',
+    description: 'Luyện Phép Chia • Tập Sự • 8 bài đúng',
     icon: '👹',
     link: '/practice/auto?mode=division&difficulty=1',
     practiceInfo: {
@@ -197,16 +197,16 @@ export const GAME_STAGES_MULDIV = [
       modeName: 'Phép Chia',
       difficulty: 1,
       difficultyName: 'Tập Sự',
-      minCorrect: 10
+      minCorrect: 8
     },
     unlockCondition: { type: 'lesson', levelId: 13, lessonId: 3 },
-    completeCondition: { type: 'practice', mode: 'division', difficulty: 1, minCorrect: 10 }
+    completeCondition: { type: 'practice', mode: 'division', difficulty: 1, minCorrect: 8 }
   },
   
   // Stage 81-84: Học Level 14 (Chia nâng cao)
   {
     stageId: 81,
-    zoneId: 'lake-divide',
+    zoneId: 'lake-divide-advanced',
     type: 'lesson',
     levelId: 14,
     lessonId: 1,
@@ -218,7 +218,7 @@ export const GAME_STAGES_MULDIV = [
   },
   {
     stageId: 82,
-    zoneId: 'lake-divide',
+    zoneId: 'lake-divide-advanced',
     type: 'lesson',
     levelId: 14,
     lessonId: 2,
@@ -230,7 +230,7 @@ export const GAME_STAGES_MULDIV = [
   },
   {
     stageId: 83,
-    zoneId: 'lake-divide',
+    zoneId: 'lake-divide-advanced',
     type: 'lesson',
     levelId: 14,
     lessonId: 3,
@@ -242,7 +242,7 @@ export const GAME_STAGES_MULDIV = [
   },
   {
     stageId: 84,
-    zoneId: 'lake-divide',
+    zoneId: 'lake-divide-advanced',
     type: 'lesson',
     levelId: 14,
     lessonId: 4,
@@ -256,11 +256,11 @@ export const GAME_STAGES_MULDIV = [
   // Stage 85: BOSS - Luyện Chia nâng cao
   {
     stageId: 85,
-    zoneId: 'lake-divide',
+    zoneId: 'lake-divide-advanced',
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Chia Nâng Cao',
-    description: 'Luyện Phép Chia • Chiến Binh • 15 bài đúng',
+    description: 'Luyện Phép Chia • Chiến Binh • 10 bài đúng',
     icon: '👹',
     link: '/practice/auto?mode=division&difficulty=2',
     practiceInfo: {
@@ -268,16 +268,16 @@ export const GAME_STAGES_MULDIV = [
       modeName: 'Phép Chia',
       difficulty: 2,
       difficultyName: 'Chiến Binh',
-      minCorrect: 15
+      minCorrect: 10
     },
     unlockCondition: { type: 'lesson', levelId: 14, lessonId: 4 },
-    completeCondition: { type: 'practice', mode: 'division', difficulty: 2, minCorrect: 15 }
+    completeCondition: { type: 'practice', mode: 'division', difficulty: 2, minCorrect: 10 }
   },
   
   // Stage 86: BOSS - Thi đấu Chia
   {
     stageId: 86,
-    zoneId: 'lake-divide',
+    zoneId: 'lake-divide-advanced',
     type: 'boss',
     bossType: 'compete',
     name: '🏆 Đấu Trường Hồ Chia',
@@ -308,7 +308,7 @@ export const GAME_STAGES_MULDIV = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Nhân Chia Mix',
-    description: 'Luyện Nhân Chia Mix • Chiến Binh • 20 bài đúng',
+    description: 'Luyện Nhân Chia Mix • Chiến Binh • 12 bài đúng',
     icon: '👹',
     link: '/practice/auto?mode=mulDiv&difficulty=2',
     practiceInfo: {
@@ -316,10 +316,10 @@ export const GAME_STAGES_MULDIV = [
       modeName: 'Nhân Chia Mix',
       difficulty: 2,
       difficultyName: 'Chiến Binh',
-      minCorrect: 20
+      minCorrect: 12
     },
     unlockCondition: { type: 'stage', stageId: 86 },
-    completeCondition: { type: 'practice', mode: 'mulDiv', difficulty: 2, minCorrect: 20 }
+    completeCondition: { type: 'practice', mode: 'mulDiv', difficulty: 2, minCorrect: 12 }
   },
   
   // Stage 88: BOSS - Luyện Tứ Phép
@@ -329,18 +329,18 @@ export const GAME_STAGES_MULDIV = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Tứ Phép Thần',
-    description: 'Luyện Tứ Phép • Dũng Sĩ • 20 bài đúng',
+    description: 'Luyện Tứ Phép • Chiến Binh • 12 bài đúng',
     icon: '👹',
-    link: '/practice/auto?mode=mixed&difficulty=3',
+    link: '/practice/auto?mode=mixed&difficulty=2',
     practiceInfo: {
       mode: 'mixed',
       modeName: 'Tứ Phép Thần',
-      difficulty: 3,
-      difficultyName: 'Dũng Sĩ',
-      minCorrect: 20
+      difficulty: 2,
+      difficultyName: 'Chiến Binh',
+      minCorrect: 12
     },
     unlockCondition: { type: 'stage', stageId: 87 },
-    completeCondition: { type: 'practice', mode: 'mixed', difficulty: 3, minCorrect: 20 }
+    completeCondition: { type: 'practice', mode: 'mixed', difficulty: 2, minCorrect: 12 }
   },
   
   // Stage 89: BOSS - Thi đấu Tứ Phép
@@ -350,20 +350,20 @@ export const GAME_STAGES_MULDIV = [
     type: 'boss',
     bossType: 'compete',
     name: '🏆 Đấu Trường Tứ Phép',
-    description: 'Thi đấu Tứ Phép • Dũng Sĩ • 15 câu • 10+ đúng',
+    description: 'Thi đấu Tứ Phép • Chiến Binh • 15 câu • 9+ đúng',
     icon: '🏆',
-    link: '/compete/auto?mode=mixed&difficulty=3&questions=15',
+    link: '/compete/auto?mode=mixed&difficulty=2&questions=15',
     competeInfo: {
       mode: 'mixed',
       modeName: 'Tứ Phép Thần',
-      difficulty: 3,
-      difficultyName: 'Dũng Sĩ',
+      difficulty: 2,
+      difficultyName: 'Chiến Binh',
       questions: 15,
-      minCorrect: 10,
-      arenaId: 'mixed-3-15'
+      minCorrect: 9,
+      arenaId: 'mixed-2-15'
     },
     unlockCondition: { type: 'stage', stageId: 88 },
-    completeCondition: { type: 'compete', arenaId: 'mixed-3-15', minCorrect: 10 }
+    completeCondition: { type: 'compete', arenaId: 'mixed-2-15', minCorrect: 9 }
   },
 
   // ============================================================
@@ -403,18 +403,18 @@ export const GAME_STAGES_MULDIV = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Nhân Chia Nhẩm Cơ Bản',
-    description: 'Luyện Nhân Chia Mix • Dũng Sĩ • 15 bài đúng',
+    description: 'Luyện Nhân Chia Mix • Tập Sự • 6 bài đúng',
     icon: '👹',
-    link: '/practice/auto?mode=mulDiv&difficulty=3',
+    link: '/practice/auto?mode=mulDiv&difficulty=1',
     practiceInfo: {
       mode: 'mulDiv',
       modeName: 'Nhân Chia Mix',
-      difficulty: 3,
-      difficultyName: 'Dũng Sĩ',
-      minCorrect: 15
+      difficulty: 1,
+      difficultyName: 'Tập Sự',
+      minCorrect: 6
     },
     unlockCondition: { type: 'lesson', levelId: 15, lessonId: 3 },
-    completeCondition: { type: 'practice', mode: 'mulDiv', difficulty: 3, minCorrect: 15 }
+    completeCondition: { type: 'practice', mode: 'mulDiv', difficulty: 1, minCorrect: 6 }
   },
   
   // Stage 93-94: Học 16.2, 16.3 (Nhân Chia nhẩm nâng cao)
@@ -450,18 +450,18 @@ export const GAME_STAGES_MULDIV = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Nhân Chia Nhẩm Nâng Cao',
-    description: 'Luyện Nhân Chia Mix • Cao Thủ • 20 bài đúng',
+    description: 'Luyện Nhân Chia Mix • Chiến Binh • 8 bài đúng',
     icon: '👹',
-    link: '/practice/auto?mode=mulDiv&difficulty=4',
+    link: '/practice/auto?mode=mulDiv&difficulty=2',
     practiceInfo: {
       mode: 'mulDiv',
       modeName: 'Nhân Chia Mix',
-      difficulty: 4,
-      difficultyName: 'Cao Thủ',
-      minCorrect: 20
+      difficulty: 2,
+      difficultyName: 'Chiến Binh',
+      minCorrect: 8
     },
     unlockCondition: { type: 'lesson', levelId: 16, lessonId: 3 },
-    completeCondition: { type: 'practice', mode: 'mulDiv', difficulty: 4, minCorrect: 20 }
+    completeCondition: { type: 'practice', mode: 'mulDiv', difficulty: 2, minCorrect: 8 }
   },
 
   // ============================================================
@@ -501,18 +501,18 @@ export const GAME_STAGES_MULDIV = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Tốc Độ Nhân Chia',
-    description: 'Luyện Nhân Chia Mix • Huyền Thoại • 25 bài đúng',
+    description: 'Luyện Nhân Chia Mix • Chiến Binh • 10 bài đúng',
     icon: '👹',
-    link: '/practice/auto?mode=mulDiv&difficulty=5',
+    link: '/practice/auto?mode=mulDiv&difficulty=2',
     practiceInfo: {
       mode: 'mulDiv',
       modeName: 'Nhân Chia Mix',
-      difficulty: 5,
-      difficultyName: 'Huyền Thoại',
-      minCorrect: 25
+      difficulty: 2,
+      difficultyName: 'Chiến Binh',
+      minCorrect: 10
     },
     unlockCondition: { type: 'lesson', levelId: 17, lessonId: 3 },
-    completeCondition: { type: 'practice', mode: 'mulDiv', difficulty: 5, minCorrect: 25 }
+    completeCondition: { type: 'practice', mode: 'mulDiv', difficulty: 2, minCorrect: 10 }
   },
   
   // Stage 99: BOSS - Thi đấu Tốc độ Nhân Chia
@@ -522,20 +522,20 @@ export const GAME_STAGES_MULDIV = [
     type: 'boss',
     bossType: 'compete',
     name: '🏆 Đấu Trường Tốc Độ Nhân Chia',
-    description: 'Thi đấu Nhân Chia Mix • Huyền Thoại • 20 câu • 15+ đúng',
+    description: 'Thi đấu Nhân Chia Mix • Chiến Binh • 20 câu • 12+ đúng',
     icon: '🏆',
-    link: '/compete/auto?mode=mulDiv&difficulty=5&questions=20',
+    link: '/compete/auto?mode=mulDiv&difficulty=2&questions=20',
     competeInfo: {
       mode: 'mulDiv',
       modeName: 'Nhân Chia Mix',
-      difficulty: 5,
-      difficultyName: 'Huyền Thoại',
+      difficulty: 2,
+      difficultyName: 'Chiến Binh',
       questions: 20,
-      minCorrect: 15,
-      arenaId: 'mulDiv-5-20'
+      minCorrect: 12,
+      arenaId: 'mulDiv-2-20'
     },
     unlockCondition: { type: 'stage', stageId: 98 },
-    completeCondition: { type: 'compete', arenaId: 'mulDiv-5-20', minCorrect: 15 }
+    completeCondition: { type: 'compete', arenaId: 'mulDiv-2-20', minCorrect: 12 }
   },
 
   // ============================================================
@@ -587,18 +587,18 @@ export const GAME_STAGES_MULDIV = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Tứ Phép Ultimate',
-    description: 'Luyện Tứ Phép • Huyền Thoại • 30 bài đúng',
+    description: 'Luyện Tứ Phép • Dũng Sĩ • 12 bài đúng',
     icon: '👹',
-    link: '/practice/auto?mode=mixed&difficulty=5',
+    link: '/practice/auto?mode=mixed&difficulty=3',
     practiceInfo: {
       mode: 'mixed',
       modeName: 'Tứ Phép Thần',
-      difficulty: 5,
-      difficultyName: 'Huyền Thoại',
-      minCorrect: 30
+      difficulty: 3,
+      difficultyName: 'Dũng Sĩ',
+      minCorrect: 12
     },
     unlockCondition: { type: 'lesson', levelId: 17, lessonId: 4 },
-    completeCondition: { type: 'practice', mode: 'mixed', difficulty: 5, minCorrect: 30 }
+    completeCondition: { type: 'practice', mode: 'mixed', difficulty: 3, minCorrect: 12 }
   },
   
   // Stage 104: BOSS - Thi đấu Tứ Phép Ultimate
@@ -608,20 +608,20 @@ export const GAME_STAGES_MULDIV = [
     type: 'boss',
     bossType: 'compete',
     name: '🏆 Đấu Trường Tứ Phép Ultimate',
-    description: 'Thi đấu Tứ Phép • Huyền Thoại • 25 câu • 18+ đúng',
+    description: 'Thi đấu Tứ Phép • Dũng Sĩ • 25 câu • 15+ đúng',
     icon: '🏆',
-    link: '/compete/auto?mode=mixed&difficulty=5&questions=25',
+    link: '/compete/auto?mode=mixed&difficulty=3&questions=25',
     competeInfo: {
       mode: 'mixed',
       modeName: 'Tứ Phép Thần',
-      difficulty: 5,
-      difficultyName: 'Huyền Thoại',
+      difficulty: 3,
+      difficultyName: 'Dũng Sĩ',
       questions: 25,
-      minCorrect: 18,
-      arenaId: 'mixed-5-25'
+      minCorrect: 15,
+      arenaId: 'mixed-3-25'
     },
     unlockCondition: { type: 'stage', stageId: 103 },
-    completeCondition: { type: 'compete', arenaId: 'mixed-5-25', minCorrect: 18 }
+    completeCondition: { type: 'compete', arenaId: 'mixed-3-25', minCorrect: 15 }
   },
 
   // ============================================================
@@ -636,20 +636,20 @@ export const GAME_STAGES_MULDIV = [
     bossType: 'compete',
     isFinalBoss: true,
     name: '👑 BOSS CUỐI - Đại Chiến Tứ Phép',
-    description: 'Thi đấu Tứ Phép • Cao Thủ • 25 câu • 18+ đúng',
+    description: 'Thi đấu Tứ Phép • Dũng Sĩ • 25 câu • 15+ đúng',
     icon: '👑',
-    link: '/compete/auto?mode=mixed&difficulty=4&questions=25',
+    link: '/compete/auto?mode=mixed&difficulty=3&questions=25',
     competeInfo: {
       mode: 'mixed',
       modeName: 'Tứ Phép Thần',
-      difficulty: 4,
-      difficultyName: 'Cao Thủ',
+      difficulty: 3,
+      difficultyName: 'Dũng Sĩ',
       questions: 25,
-      minCorrect: 18,
-      arenaId: 'mixed-4-25'
+      minCorrect: 15,
+      arenaId: 'mixed-3-25-final'
     },
     unlockCondition: { type: 'stage', stageId: 104 },
-    completeCondition: { type: 'compete', arenaId: 'mixed-4-25', minCorrect: 18 }
+    completeCondition: { type: 'compete', arenaId: 'mixed-3-25-final', minCorrect: 15 }
   },
   
   // Stage 106: BOSS CUỐI 2 - Siêu Trí Tuệ Tứ Phép
@@ -660,18 +660,18 @@ export const GAME_STAGES_MULDIV = [
     bossType: 'practice',
     isFinalBoss: true,
     name: '👑 BOSS CUỐI - Siêu Trí Tuệ Tứ Phép',
-    description: 'Luyện Siêu Trí Tuệ • Dũng Sĩ • 15 bài đúng',
+    description: 'Luyện Siêu Trí Tuệ • Chiến Binh • 8 bài đúng',
     icon: '👑',
-    link: '/practice/auto?mode=mentalMath&difficulty=3',
+    link: '/practice/auto?mode=mentalMath&difficulty=2',
     practiceInfo: {
       mode: 'mentalMath',
       modeName: 'Siêu Trí Tuệ',
-      difficulty: 3,
-      difficultyName: 'Dũng Sĩ',
-      minCorrect: 15
+      difficulty: 2,
+      difficultyName: 'Chiến Binh',
+      minCorrect: 8
     },
     unlockCondition: { type: 'stage', stageId: 105 },
-    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 3, minCorrect: 15 }
+    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 2, minCorrect: 8 }
   },
   
   // Stage 107: BOSS CUỐI 3 - Tia Chớp Tối Thượng
@@ -682,18 +682,18 @@ export const GAME_STAGES_MULDIV = [
     bossType: 'practice',
     isFinalBoss: true,
     name: '👑 BOSS CUỐI - Tia Chớp Tối Thượng',
-    description: 'Luyện Flash Anzan • Tia Chớp • 10 bài đúng',
+    description: 'Luyện Flash Anzan • Ánh Trăng • 5 bài đúng',
     icon: '👑',
-    link: '/practice/auto?mode=flashAnzan&difficulty=3',
+    link: '/practice/auto?mode=flashAnzan&difficulty=2',
     practiceInfo: {
       mode: 'flashAnzan',
       modeName: 'Tia Chớp',
-      difficulty: 3,
-      difficultyName: 'Tia Chớp',
-      minCorrect: 10
+      difficulty: 2,
+      difficultyName: 'Ánh Trăng',
+      minCorrect: 5
     },
     unlockCondition: { type: 'stage', stageId: 106 },
-    completeCondition: { type: 'practice', mode: 'flashAnzan', difficulty: 3, minCorrect: 10 }
+    completeCondition: { type: 'practice', mode: 'flashAnzan', difficulty: 2, minCorrect: 5 }
   },
   
   // Stage 108: KHO BÁU - Nhận Chứng Chỉ Toàn Diện
@@ -722,8 +722,9 @@ export const GAME_STAGES_MULDIV = [
 export const GAME_ZONES_MULDIV = [
   {
     zoneId: 'cave-multiply',
-    name: '✖️ Hang Phép Nhân',
-    subtitle: 'Sức mạnh nhân đôi, nhân ba!',
+    order: 1,
+    name: '✖️ Chặng 1: Hang Phép Nhân',
+    subtitle: 'Bảng cửu chương',
     description: 'Học bảng cửu chương và phép nhân trên Soroban!',
     icon: '✖️',
     color: 'from-orange-400 to-red-500',
@@ -734,29 +735,48 @@ export const GAME_ZONES_MULDIV = [
     requiresCertificate: 'addSub',
     story: {
       intro: 'Hang Phép Nhân - nơi con học cách nhân số lên nhiều lần!',
-      complete: 'Phi thường! Con đã nắm vững phép nhân. Hồ Phép Chia đang chờ đón!'
+      complete: 'Phi thường! Con đã nắm vững phép nhân. Hồ Chia Cơ Bản đang chờ đón!'
     }
   },
   {
-    zoneId: 'lake-divide',
-    name: '➗ Hồ Phép Chia',
-    subtitle: 'Chia đều, chia sẻ!',
-    description: 'Học phép chia - phép ngược của phép nhân!',
+    zoneId: 'lake-divide-basic',
+    order: 2,
+    name: '➗ Chặng 2: Hồ Chia Cơ Bản',
+    subtitle: 'Chia cho 2-7',
+    description: 'Học phép chia cơ bản - chia cho các số nhỏ!',
     icon: '➗',
     color: 'from-cyan-400 to-teal-500',
     bgImage: '/images/zones/lake.jpg',
-    levels: [13, 14],
-    stageRange: [77, 86],
-    totalBoss: 3,
+    levels: [13],
+    stageRange: [77, 80],
+    totalBoss: 1,
     story: {
-      intro: 'Hồ Phép Chia - nơi con học cách chia số thành nhiều phần!',
+      intro: 'Hồ Chia Cơ Bản - nơi con học chia số thành nhiều phần!',
+      complete: 'Giỏi lắm! Con đã nắm chia cơ bản. Hồ Chia Nâng Cao đang chờ!'
+    }
+  },
+  {
+    zoneId: 'lake-divide-advanced',
+    order: 3,
+    name: '➗ Chặng 3: Hồ Chia Nâng Cao',
+    subtitle: 'Chia số 2 chữ số',
+    description: 'Chia cho 8-9 và chia số lớn!',
+    icon: '➗',
+    color: 'from-teal-400 to-cyan-600',
+    bgImage: '/images/zones/lake-deep.jpg',
+    levels: [14],
+    stageRange: [81, 86],
+    totalBoss: 2,
+    story: {
+      intro: 'Hồ Chia Nâng Cao - thử thách chia với số lớn hơn!',
       complete: 'Xuất sắc! Con đã thành thạo Nhân và Chia. Đấu Trường Tứ Phép đang chờ!'
     }
   },
   {
     zoneId: 'arena-four',
-    name: '⚔️ Đấu Trường Tứ Phép',
-    subtitle: 'Thử thách tứ phép!',
+    order: 4,
+    name: '⚔️ Chặng 4: Đấu Trường Tứ Phép',
+    subtitle: 'Cộng Trừ Nhân Chia',
     description: 'Luyện tập và thi đấu cả 4 phép tính!',
     icon: '⚔️',
     color: 'from-rose-400 to-pink-600',
@@ -766,53 +786,56 @@ export const GAME_ZONES_MULDIV = [
     totalBoss: 3,
     story: {
       intro: 'Đấu Trường Tứ Phép - thử thách dành cho những nhà vô địch!',
-      complete: 'Con đã chinh phục Tứ Phép! Tháp Trí Tuệ Nhân Chia đang chờ!'
+      complete: 'Con đã chinh phục Tứ Phép! Tháp Tính Nhẩm đang chờ!'
     }
   },
   {
     zoneId: 'mental-muldiv',
-    name: '🧠 Tháp Trí Tuệ Nhân Chia',
-    subtitle: 'Nhân chia bằng tâm trí!',
+    order: 5,
+    name: '🧠 Chặng 5: Tháp Tính Nhẩm',
+    subtitle: 'Anzan Nhân Chia',
     description: 'Tính nhẩm Nhân Chia không cần bàn tính!',
     icon: '🧠',
     color: 'from-purple-400 to-indigo-600',
     bgImage: '/images/zones/mental-tower-gold.jpg',
     levels: [15, 16],
-    lessonIds: [[2, 3], [2, 3]], // Chỉ lesson 2, 3 của mỗi level
+    lessonIds: [[2, 3], [2, 3]],
     stageRange: [90, 95],
     totalBoss: 2,
     story: {
-      intro: 'Tháp Trí Tuệ Nhân Chia - rèn luyện Anzan Nhân Chia!',
+      intro: 'Tháp Tính Nhẩm - rèn luyện Anzan Nhân Chia!',
       complete: 'Siêu phàm! Con đã tính nhẩm Nhân Chia. Đền Tốc Độ đang chờ!'
     }
   },
   {
     zoneId: 'speed-muldiv',
-    name: '⚡ Đền Tốc Độ Nhân Chia',
-    subtitle: 'Nhân chia siêu tốc!',
+    order: 6,
+    name: '⚡ Chặng 6: Đền Tốc Độ',
+    subtitle: 'Nhân Chia siêu tốc',
     description: 'Nhân chia với thời gian giới hạn!',
     icon: '⚡',
     color: 'from-amber-400 to-orange-600',
     bgImage: '/images/zones/speed-temple-gold.jpg',
     levels: [17],
-    lessonIds: [[2, 3]], // Lesson 2, 3
+    lessonIds: [[2, 3]],
     stageRange: [96, 99],
     totalBoss: 2,
     story: {
-      intro: 'Đền Tốc Độ Nhân Chia - thử thách tốc độ Nhân Chia!',
+      intro: 'Đền Tốc Độ - thử thách tốc độ Nhân Chia!',
       complete: 'Nhanh như chớp! Đỉnh Hỗn Hợp đang chờ con!'
     }
   },
   {
     zoneId: 'mixed-peak',
-    name: '🎯 Đỉnh Hỗn Hợp',
-    subtitle: 'Tứ phép hoàn hảo!',
+    order: 7,
+    name: '🎯 Chặng 7: Đỉnh Hỗn Hợp',
+    subtitle: 'Tứ phép hoàn hảo',
     description: 'Hỗn hợp 4 phép tính ở mức cao nhất!',
     icon: '🎯',
     color: 'from-fuchsia-400 to-purple-600',
     bgImage: '/images/zones/mixed-peak.jpg',
     levels: [15, 16, 17],
-    lessonIds: [[4], [4], [4]], // Chỉ lesson 4 của mỗi level
+    lessonIds: [[4], [4], [4]],
     stageRange: [100, 104],
     totalBoss: 2,
     story: {
@@ -822,8 +845,9 @@ export const GAME_ZONES_MULDIV = [
   },
   {
     zoneId: 'supreme-castle',
-    name: '👑 Lâu Đài Tối Thượng',
-    subtitle: 'Đỉnh cao cuối cùng!',
+    order: 8,
+    name: '👑 ĐÍCH ĐẾN: Lâu Đài Tối Thượng',
+    subtitle: 'Chứng Chỉ Toàn Diện!',
     description: 'Vượt qua 3 Boss Cuối để nhận Chứng Chỉ Toàn Diện!',
     icon: '👑',
     color: 'from-amber-300 via-yellow-400 to-red-500',

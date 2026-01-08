@@ -101,6 +101,29 @@
     animation: fadeIn 0.2s ease-out;
   }
 
+  /* ===== GAME MAP OPTIMIZED ANIMATIONS ===== */
+  /* GPU-accelerated animations using only transform/opacity */
+  
+  @keyframes cloud-slow {
+    0% { transform: translateX(-10%); }
+    100% { transform: translateX(120vw); }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+  
+  .animate-cloud-slow {
+    animation: cloud-slow 40s linear infinite;
+    will-change: transform;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+    will-change: transform;
+  }
+  
   /* ===== GAME ANIMATIONS ===== */
   @keyframes float-slow {
     0%, 100% { transform: translateY(0) rotate(0deg); }

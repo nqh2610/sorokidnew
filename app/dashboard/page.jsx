@@ -3,7 +3,7 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useEffect, useState, useCallback, useMemo, lazy, Suspense } from 'react';
+import { useEffect, useState, useCallback, useMemo, useRef, lazy, Suspense } from 'react';
 import { Star, Zap, Trophy, ChevronRight, Play, Clock, ChevronDown, ChevronUp, Sparkles, Gift, Award, Loader2 } from 'lucide-react';
 import LevelBadge from '@/components/LevelBadge/LevelBadge';
 import TopBar from '@/components/TopBar/TopBar';
@@ -61,7 +61,10 @@ export default function DashboardPage() {
   const [useFallback, setUseFallback] = useState(false);
   
   const [showDetailedStats, setShowDetailedStats] = useState(false);
-  
+
+  // 🚀 PERF: AbortController để cancel requests khi unmount
+  const activityAbortRef = useRef(null);
+
   // Hook hiệu ứng nhận thưởng
   const { showReward, RewardPopupComponent } = useRewardPopup();
 
@@ -151,14 +154,25 @@ export default function DashboardPage() {
   // === PHASE 3: ACTIVITY (Load on expand) ===
   const fetchActivity = async () => {
     if (activity || activityLoading) return;
+
+    // 🚀 PERF: Cancel previous request if any
+    if (activityAbortRef.current) {
+      activityAbortRef.current.abort();
+    }
+    activityAbortRef.current = new AbortController();
+
     try {
       setActivityLoading(true);
-      const response = await fetch('/api/dashboard/activity');
+      const response = await fetch('/api/dashboard/activity', {
+        signal: activityAbortRef.current.signal
+      });
       const data = await response.json();
       if (data.success) {
         setActivity(data);
       }
     } catch (error) {
+      // 🚀 PERF: Ignore abort errors
+      if (error.name === 'AbortError') return;
       console.error('[Dashboard] Activity fetch error:', error);
     } finally {
       setActivityLoading(false);
@@ -192,6 +206,13 @@ export default function DashboardPage() {
     } else if (status === 'authenticated') {
       fetchEssential();
     }
+
+    // 🚀 PERF: Cleanup - cancel pending requests khi unmount
+    return () => {
+      if (activityAbortRef.current) {
+        activityAbortRef.current.abort();
+      }
+    };
   }, [status, router, fetchEssential]);
 
   // Load activity when expanding stats - chỉ chạy 1 lần khi mở
@@ -519,95 +540,161 @@ export default function DashboardPage() {
         {/* 🗺️ ĐI TÌM KHO BÁU TRI THỨC - GAME CHÍNH */}
         <Link
           href="/adventure"
-          className="group relative block overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300"
+          className="group relative block overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl hover:shadow-[0_20px_60px_-15px_rgba(251,191,36,0.5)] transform hover:-translate-y-3 hover:scale-[1.02] transition-all duration-500"
         >
-          {/* Animated Background gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 animate-gradient-shift" />
+          {/* Multi-layer Animated Background */}
+          <div className="absolute inset-0">
+            {/* Base gradient - animated */}
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-400 via-orange-500 to-rose-600 animate-gradient-shift" />
+            {/* Secondary overlay for depth */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-yellow-400/30 via-transparent to-purple-500/20" />
+            {/* Radial glow in center */}
+            <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-yellow-300/40 rounded-full blur-3xl animate-pulse" />
+          </div>
           
-          {/* Particle effects */}
-          <div className="absolute inset-0 overflow-hidden">
-            {/* Floating sparkles */}
-            <div className="absolute top-3 left-4 text-2xl animate-float-slow">✨</div>
-            <div className="absolute top-6 right-20 text-xl animate-float-medium">⭐</div>
-            <div className="absolute bottom-8 left-16 text-lg animate-float-fast">💫</div>
-            <div className="absolute top-1/2 left-8 text-xl animate-pulse">🌟</div>
-            <div className="absolute bottom-4 right-32 text-lg animate-float-slow delay-500">💎</div>
+          {/* 🌟 PARTICLE MAGIC EFFECTS */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {/* Floating gems & sparkles */}
+            <div className="absolute top-2 left-3 text-2xl animate-float-slow">💎</div>
+            <div className="absolute top-4 left-1/4 text-xl animate-bounce-slow delay-100">✨</div>
+            <div className="absolute top-8 right-1/4 text-lg animate-float-medium">🌟</div>
+            <div className="absolute top-3 right-1/3 text-2xl animate-wiggle">⭐</div>
+            <div className="absolute bottom-12 left-8 text-xl animate-float-fast">💫</div>
+            <div className="absolute bottom-20 left-1/4 text-lg animate-pulse delay-300">✨</div>
+            <div className="absolute top-1/3 left-6 text-2xl animate-bounce-slow delay-500">🪙</div>
             
-            {/* Treasure map icon with glow */}
-            <div className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2">
+            {/* Animated coins trail */}
+            <div className="absolute bottom-6 right-1/2 text-xl animate-float-slow delay-200">🪙</div>
+            <div className="absolute bottom-10 right-1/3 text-lg animate-float-medium delay-400">🪙</div>
+            
+            {/* Treasure chest HERO - positioned right side */}
+            <div className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-10">
               <div className="relative">
-                {/* Glow effect */}
-                <div className="absolute inset-0 text-7xl sm:text-8xl blur-md opacity-50 group-hover:opacity-80 transition-opacity">
-                  🗺️
+                {/* Glow rings */}
+                <div className="absolute inset-0 -m-4 bg-yellow-300/30 rounded-full blur-xl animate-ping opacity-75" style={{ animationDuration: '2s' }} />
+                <div className="absolute inset-0 -m-2 bg-amber-400/40 rounded-full blur-lg animate-pulse" />
+                
+                {/* Main treasure chest */}
+                <div className="relative text-6xl sm:text-7xl md:text-8xl group-hover:scale-110 group-hover:-rotate-6 transition-all duration-700 drop-shadow-2xl animate-bounce-slow filter">
+                  🏴‍☠️
                 </div>
-                {/* Main icon */}
-                <div className="relative text-6xl sm:text-7xl group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 drop-shadow-2xl animate-bounce-slow">
-                  🗺️
+                
+                {/* Opening lid effect on hover */}
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-4xl opacity-0 group-hover:opacity-100 group-hover:-translate-y-4 transition-all duration-500">
+                  💰
                 </div>
               </div>
             </div>
             
-            {/* Treasure chest floating */}
-            <div className="absolute left-1/2 bottom-2 text-3xl animate-float-medium group-hover:scale-110 transition-transform">
-              🏆
+            {/* Decorative map elements */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-3xl animate-float-medium group-hover:scale-125 transition-transform">
+              🗺️
             </div>
             
-            {/* Pattern overlay */}
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CjxyZWN0IHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0ibm9uZSIvPgo8Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIxLjUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPgo8L3N2Zz4=')] opacity-40" />
+            {/* Compass */}
+            <div className="absolute top-4 right-4 text-2xl animate-spin-slow opacity-70">
+              🧭
+            </div>
             
-            {/* Gradient overlay for text */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/10 to-transparent" />
+            {/* Pattern overlay - treasure map style */}
+            <div className="absolute inset-0 opacity-20" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }} />
+            
+            {/* Left side gradient for better text contrast */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
           </div>
 
-          {/* Content */}
-          <div className="relative p-5 sm:p-6">
-            {/* Header badges */}
+          {/* 📝 CONTENT */}
+          <div className="relative p-5 sm:p-6 md:p-7 min-h-[180px] sm:min-h-[200px]">
+            {/* Header section */}
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-2xl sm:text-3xl animate-wiggle">🦉</span>
-              <span className="px-2.5 py-1 bg-gradient-to-r from-yellow-300 to-amber-400 text-amber-900 rounded-full text-xs font-black uppercase tracking-wide shadow-lg animate-pulse">
-                🎮 Game
-              </span>
-              <span className="px-2 py-0.5 bg-green-400 text-green-900 rounded-full text-[10px] font-bold">
-                HOT
-              </span>
+              {/* Mascot with animation */}
+              <div className="relative">
+                <div className="text-3xl sm:text-4xl animate-wiggle filter drop-shadow-lg">🦉</div>
+                <div className="absolute -top-1 -right-1 text-sm animate-bounce">💬</div>
+              </div>
+              
+              {/* Badges */}
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <span className="px-3 py-1 bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-300 text-amber-900 rounded-full text-xs font-black uppercase tracking-wide shadow-lg animate-pulse border border-yellow-200">
+                  🎮 Phiêu Lưu
+                </span>
+                <span className="px-2 py-1 bg-gradient-to-r from-green-400 to-emerald-500 text-white rounded-full text-[10px] font-bold shadow-md animate-bounce-slow">
+                  🔥 HOT
+                </span>
+                <span className="hidden sm:inline-flex px-2 py-1 bg-gradient-to-r from-purple-400 to-pink-500 text-white rounded-full text-[10px] font-bold shadow-md">
+                  ⭐ NEW
+                </span>
+              </div>
             </div>
             
-            {/* Game title */}
-            <h3 className="text-2xl sm:text-3xl font-black text-white drop-shadow-lg mb-2 leading-tight">
-              Đi Tìm Kho Báu
-              <span className="block text-yellow-200 text-xl sm:text-2xl">Tri Thức</span>
-            </h3>
+            {/* Game title - more impactful */}
+            <div className="mb-4">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)] leading-tight tracking-tight">
+                <span className="inline-block animate-pulse">🏝️</span> Đi Tìm{' '}
+                <span className="relative inline-block">
+                  <span className="text-yellow-200 drop-shadow-[0_0_20px_rgba(253,224,71,0.5)]">Kho Báu</span>
+                  <span className="absolute -inset-1 bg-yellow-400/20 blur-md rounded-lg -z-10" />
+                </span>
+              </h3>
+              <p className="text-lg sm:text-xl font-bold text-amber-100 mt-1 tracking-wide">
+                🌟 Tri Thức Soroban
+              </p>
+            </div>
             
-            <p className="text-white/90 text-sm sm:text-base max-w-[200px] mb-4">
-              Cùng <span className="font-bold text-yellow-200">Cú Soro</span> khám phá vùng đất bí ẩn!
+            {/* Description with character */}
+            <p className="text-white/95 text-sm sm:text-base max-w-[220px] mb-4 leading-relaxed">
+              Cùng <span className="font-bold text-yellow-200 bg-yellow-400/20 px-1 rounded">Cú Soro</span> khám phá 
+              <span className="font-semibold text-amber-100"> 2 hòn đảo</span> bí ẩn và chinh phục các thử thách!
             </p>
             
-            {/* Game stats */}
+            {/* Game features - more visual */}
             <div className="flex flex-wrap items-center gap-2">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/25 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/30">
-                <span>🏘️</span>
-                <span>10 Vùng đất</span>
+              <div className="flex items-center gap-1.5 px-3 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-white text-xs sm:text-sm font-semibold border border-white/30 shadow-inner">
+                <span className="text-base">🏝️</span>
+                <span>2 Đảo</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/25 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/30">
-                <span>🎁</span>
-                <span>Kho báu</span>
+              <div className="flex items-center gap-1.5 px-3 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-white text-xs sm:text-sm font-semibold border border-white/30 shadow-inner">
+                <span className="text-base">🗺️</span>
+                <span>19 Vùng đất</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-3 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-white text-xs sm:text-sm font-semibold border border-white/30 shadow-inner">
+                <span className="text-base">👹</span>
+                <span>30+ Boss</span>
+              </div>
+              <div className="hidden sm:flex items-center gap-1.5 px-3 py-2 bg-gradient-to-r from-yellow-400/30 to-amber-400/30 backdrop-blur-sm rounded-xl text-yellow-100 text-xs sm:text-sm font-semibold border border-yellow-300/40 shadow-inner">
+                <span className="text-base">🏆</span>
+                <span>Chứng chỉ</span>
               </div>
             </div>
 
-            {/* Play button */}
-            <div className="absolute right-3 sm:right-4 bottom-3 sm:bottom-4">
-              <div className="px-4 py-2 bg-white rounded-full text-orange-600 font-bold text-sm shadow-lg group-hover:bg-yellow-300 group-hover:scale-110 group-hover:shadow-xl transition-all duration-300 flex items-center gap-2">
-                <span>Chơi ngay</span>
-                <ChevronRight className="group-hover:translate-x-1 transition-transform" size={18} />
+            {/* CTA Play button - enhanced */}
+            <div className="absolute right-3 sm:right-5 bottom-3 sm:bottom-5">
+              <div className="relative">
+                {/* Glow effect behind button */}
+                <div className="absolute inset-0 bg-yellow-400 rounded-full blur-lg opacity-50 group-hover:opacity-100 transition-opacity" />
+                
+                {/* Button */}
+                <div className="relative px-5 py-2.5 bg-gradient-to-r from-white to-yellow-50 rounded-full text-orange-600 font-bold text-sm sm:text-base shadow-xl group-hover:from-yellow-300 group-hover:to-amber-400 group-hover:text-amber-900 group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300 flex items-center gap-2 border-2 border-yellow-200/50">
+                  <Play size={18} className="fill-current" />
+                  <span>Chơi ngay!</span>
+                  <ChevronRight className="group-hover:translate-x-1.5 transition-transform" size={18} />
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Animated border glow */}
-          <div className="absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-yellow-300/50 group-hover:border-yellow-300 transition-colors" />
+          {/* Animated border with gradient */}
+          <div className="absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-yellow-300/40 group-hover:border-yellow-300 transition-all duration-500" />
+          <div className="absolute inset-[3px] rounded-2xl sm:rounded-3xl border border-white/10" />
           
-          {/* Shimmer effect */}
-          <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-1000" />
+          {/* Shimmer sweep effect */}
+          <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-1000 ease-out" />
+          
+          {/* Corner decorations */}
+          <div className="absolute top-0 left-0 w-16 h-16 bg-gradient-to-br from-yellow-300/30 to-transparent rounded-br-full" />
+          <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-rose-500/30 to-transparent rounded-tl-full" />
         </Link>
 
         {/* Nhiệm vụ hôm nay */}

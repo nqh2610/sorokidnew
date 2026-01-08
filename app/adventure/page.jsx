@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import GameMapNew from '@/components/Adventure/GameMapNew';
@@ -69,25 +69,32 @@ export default function AdventurePageV3() {
   const [hasCertComplete, setHasCertComplete] = useState(false);
   const [userStats, setUserStats] = useState(null);
   const [returnZone, setReturnZone] = useState(null);
+  const [returnZoneLoaded, setReturnZoneLoaded] = useState(false); // 🎯 Track khi đã đọc xong
   const [highestZone, setHighestZone] = useState(null); // Zone cao nhất đã hoàn thành
 
-  // Đọc return zone info khi quay lại từ màn chơi
+  // 🚀 PERF: AbortController để cancel request khi unmount
+  const abortControllerRef = useRef(null);
+
+  // 🎯 FIX: Đọc returnZone trong useEffect (sau khi mount) để tránh SSR issues
   useEffect(() => {
-    const returnData = sessionStorage.getItem('adventureReturnZone');
-    if (returnData) {
-      try {
+    try {
+      const returnData = sessionStorage.getItem('adventureReturnZone');
+      if (returnData) {
         const parsed = JSON.parse(returnData);
         // Chỉ sử dụng nếu data còn mới (trong 5 phút)
         if (Date.now() - parsed.timestamp < 5 * 60 * 1000) {
+          console.log('🎯 ReturnZone loaded from sessionStorage:', parsed.zoneId, parsed.mapType);
           setReturnZone(parsed);
         }
         // Xóa sau khi đọc
         sessionStorage.removeItem('adventureReturnZone');
-      } catch (e) {
-        console.error('Error parsing return zone:', e);
       }
+    } catch (e) {
+      console.error('Error reading returnZone:', e);
     }
-
+    // Đánh dấu đã đọc xong (dù có data hay không)
+    setReturnZoneLoaded(true);
+    
     // Clear game mode data khi vào Adventure
     sessionStorage.removeItem('learnGameMode');
     sessionStorage.removeItem('practiceGameMode');
@@ -99,13 +106,13 @@ export default function AdventurePageV3() {
   useEffect(() => {
     // Chờ session load xong
     if (status === 'loading') return;
-    
+
     // Nếu chưa đăng nhập, không cần fetch
     if (!session?.user) {
       setLoading(false);
       return;
     }
-    
+
     const cached = sessionStorage.getItem('adventureProgress');
     if (cached) {
       try {
@@ -122,6 +129,13 @@ export default function AdventurePageV3() {
       }
     }
     fetchProgress();
+
+    // 🚀 PERF: Cleanup - cancel pending request khi unmount
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
   }, [session, status]);
   
   // 🚀 TỐI ƯU: Tách riêng logic apply data để tái sử dụng
@@ -202,9 +216,16 @@ export default function AdventurePageV3() {
   };
   
   const fetchProgress = async () => {
+    // 🚀 PERF: Cancel previous request if any
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    abortControllerRef.current = new AbortController();
+
     // Timeout 5s - nếu API chậm quá thì show map với default state
     const timeoutId = setTimeout(() => {
       console.warn('⚠️ API timeout, using default state');
+      abortControllerRef.current?.abort();
       const defaultStatuses = {};
       ADDSUB_STAGES.forEach((stage, index) => {
         defaultStatuses[stage.stageId] = index === 0 ? 'current' : 'locked';
@@ -215,25 +236,27 @@ export default function AdventurePageV3() {
       setStageStatuses(defaultStatuses);
       setLoading(false);
     }, 5000);
-    
+
     try {
-      const res = await fetch('/api/adventure/game-progress');
+      const res = await fetch('/api/adventure/game-progress', {
+        signal: abortControllerRef.current.signal
+      });
       clearTimeout(timeoutId);
-      
+
       if (res.ok) {
         const data = await res.json();
-        
+
         // DEBUG LOG - xem trong browser console
         console.log('🎮 Adventure API Response:', data);
         console.log('📊 Completed stages:', data.completedStages);
         console.log('🔍 Debug info:', data.debug);
-        
+
         // 🚀 TỐI ƯU: Cache progress vào sessionStorage
         sessionStorage.setItem('adventureProgress', JSON.stringify({
           data,
           timestamp: Date.now()
         }));
-        
+
         // Apply data using shared function
         applyProgressData(data);
       } else {
@@ -249,6 +272,11 @@ export default function AdventurePageV3() {
       }
     } catch (error) {
       clearTimeout(timeoutId);
+      // 🚀 PERF: Ignore abort errors (expected behavior)
+      if (error.name === 'AbortError') {
+        console.log('🚀 Fetch aborted (component unmounted or new request)');
+        return;
+      }
       console.error('Error fetching progress:', error);
       // Error - set default: màn đầu tiên mở
       const defaultStatuses = {};
@@ -361,8 +389,19 @@ export default function AdventurePageV3() {
     return null;
   }
 
+  // 🎯 Chờ returnZone được load xong trước khi render GameMapNew
+  // Tránh render với returnZone=null rồi mới update
+  if (!returnZoneLoaded) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-900">
+        <div className="text-6xl animate-bounce">🗺️</div>
+      </div>
+    );
+  }
+
   // 🎯 Xác định zone khởi đầu: ưu tiên returnZone (từ chơi trở về), sau đó highestZone
   const initialZone = returnZone || highestZone;
+  console.log('🎯 Adventure render with initialZone:', initialZone);
 
   return (
     <>
