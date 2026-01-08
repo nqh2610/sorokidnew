@@ -723,7 +723,7 @@ export const GAME_ZONES_MULDIV = [
   {
     zoneId: 'cave-multiply',
     order: 1,
-    name: '✖️ Chặng 1: Hang Phép Nhân',
+    name: 'Chặng 1: Hang Phép Nhân',
     subtitle: 'Bảng cửu chương',
     description: 'Học bảng cửu chương và phép nhân trên Soroban!',
     icon: '✖️',
@@ -741,7 +741,7 @@ export const GAME_ZONES_MULDIV = [
   {
     zoneId: 'lake-divide-basic',
     order: 2,
-    name: '➗ Chặng 2: Hồ Chia Cơ Bản',
+    name: 'Chặng 2: Hồ Chia Cơ Bản',
     subtitle: 'Chia cho 2-7',
     description: 'Học phép chia cơ bản - chia cho các số nhỏ!',
     icon: '➗',
@@ -758,7 +758,7 @@ export const GAME_ZONES_MULDIV = [
   {
     zoneId: 'lake-divide-advanced',
     order: 3,
-    name: '➗ Chặng 3: Hồ Chia Nâng Cao',
+    name: 'Chặng 3: Hồ Chia Nâng Cao',
     subtitle: 'Chia số 2 chữ số',
     description: 'Chia cho 8-9 và chia số lớn!',
     icon: '➗',
@@ -775,7 +775,7 @@ export const GAME_ZONES_MULDIV = [
   {
     zoneId: 'arena-four',
     order: 4,
-    name: '⚔️ Chặng 4: Đấu Trường Tứ Phép',
+    name: 'Chặng 4: Đấu Trường Tứ Phép',
     subtitle: 'Cộng Trừ Nhân Chia',
     description: 'Luyện tập và thi đấu cả 4 phép tính!',
     icon: '⚔️',
@@ -792,7 +792,7 @@ export const GAME_ZONES_MULDIV = [
   {
     zoneId: 'mental-muldiv',
     order: 5,
-    name: '🧠 Chặng 5: Tháp Tính Nhẩm',
+    name: 'Chặng 5: Tháp Tính Nhẩm',
     subtitle: 'Anzan Nhân Chia',
     description: 'Tính nhẩm Nhân Chia không cần bàn tính!',
     icon: '🧠',
@@ -810,7 +810,7 @@ export const GAME_ZONES_MULDIV = [
   {
     zoneId: 'speed-muldiv',
     order: 6,
-    name: '⚡ Chặng 6: Đền Tốc Độ',
+    name: 'Chặng 6: Đền Tốc Độ',
     subtitle: 'Nhân Chia siêu tốc',
     description: 'Nhân chia với thời gian giới hạn!',
     icon: '⚡',
@@ -828,7 +828,7 @@ export const GAME_ZONES_MULDIV = [
   {
     zoneId: 'mixed-peak',
     order: 7,
-    name: '🎯 Chặng 7: Đỉnh Hỗn Hợp',
+    name: 'Chặng 7: Đỉnh Hỗn Hợp',
     subtitle: 'Tứ phép hoàn hảo',
     description: 'Hỗn hợp 4 phép tính ở mức cao nhất!',
     icon: '🎯',
@@ -846,7 +846,7 @@ export const GAME_ZONES_MULDIV = [
   {
     zoneId: 'supreme-castle',
     order: 8,
-    name: '👑 ĐÍCH ĐẾN: Lâu Đài Tối Thượng',
+    name: 'ĐÍCH ĐẾN: Lâu Đài Tối Thượng',
     subtitle: 'Chứng Chỉ Toàn Diện!',
     description: 'Vượt qua 3 Boss Cuối để nhận Chứng Chỉ Toàn Diện!',
     icon: '👑',

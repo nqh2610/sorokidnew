@@ -1161,7 +1161,7 @@ export const GAME_ZONES = [
   {
     zoneId: 'village',
     order: 1,
-    name: '🏘️ Chặng 1: Làng Khởi Đầu',
+    name: 'Chặng 1: Làng Khởi Đầu',
     subtitle: 'Làm quen Soroban',
     description: 'Làm quen với bàn tính Soroban - công cụ tính toán thần kỳ!',
     icon: '🏘️',
@@ -1178,7 +1178,7 @@ export const GAME_ZONES = [
   {
     zoneId: 'forest',
     order: 2,
-    name: '🌲 Chặng 2: Rừng Phép Cộng',
+    name: 'Chặng 2: Rừng Phép Cộng',
     subtitle: 'Học cộng & Bạn Nhỏ',
     description: 'Học phép cộng và bí kíp Bạn Nhỏ (tổng 5)!',
     icon: '🌲',
@@ -1195,7 +1195,7 @@ export const GAME_ZONES = [
   {
     zoneId: 'valley',
     order: 3,
-    name: '🏔️ Chặng 3: Thung Lũng Phép Trừ',
+    name: 'Chặng 3: Thung Lũng Phép Trừ',
     subtitle: 'Học trừ & Bạn Nhỏ',
     description: 'Học phép trừ và Bạn Nhỏ khi trừ!',
     icon: '🏔️',
@@ -1212,7 +1212,7 @@ export const GAME_ZONES = [
   {
     zoneId: 'hill',
     order: 4,
-    name: '⭐ Chặng 4: Đồi Bạn Lớn',
+    name: 'Chặng 4: Đồi Bạn Lớn',
     subtitle: 'Bí mật số 10',
     description: 'Học công thức Bạn Lớn - chìa khóa để tính toán qua 10!',
     icon: '⭐',
@@ -1229,7 +1229,7 @@ export const GAME_ZONES = [
   {
     zoneId: 'tower',
     order: 5,
-    name: '🏛️ Chặng 5: Đài Kết Hợp',
+    name: 'Chặng 5: Đài Kết Hợp',
     subtitle: 'Bạn Nhỏ + Bạn Lớn',
     description: 'Kết hợp Bạn Nhỏ và Bạn Lớn để giải quyết mọi phép tính!',
     icon: '🏛️',
@@ -1246,7 +1246,7 @@ export const GAME_ZONES = [
   {
     zoneId: 'city-numbers',
     order: 6,
-    name: '🏙️ Chặng 6: Thành Phố Số Lớn',
+    name: 'Chặng 6: Thành Phố Số Lớn',
     subtitle: 'Số 2-3 chữ số',
     description: 'Chinh phục cộng trừ với số 2 và 3 chữ số!',
     icon: '🏙️',
@@ -1263,7 +1263,7 @@ export const GAME_ZONES = [
   {
     zoneId: 'kingdom',
     order: 7,
-    name: '🏰 Chặng 7: Vương Quốc Nghìn',
+    name: 'Chặng 7: Vương Quốc Nghìn',
     subtitle: 'Số 4 chữ số',
     description: 'Chinh phục cộng trừ với số 4 chữ số - đỉnh cao số lớn!',
     icon: '🏰',
@@ -1280,7 +1280,7 @@ export const GAME_ZONES = [
   {
     zoneId: 'mental-tower',
     order: 8,
-    name: '🧠 Chặng 8: Tháp Tính Nhẩm',
+    name: 'Chặng 8: Tháp Tính Nhẩm',
     subtitle: 'Anzan cơ bản',
     description: 'Rèn luyện Anzan - tính nhẩm bằng Soroban trong đầu!',
     icon: '🧠',
@@ -1298,7 +1298,7 @@ export const GAME_ZONES = [
   {
     zoneId: 'speed-temple',
     order: 9,
-    name: '⚡ Chặng 9: Đền Tốc Độ',
+    name: 'Chặng 9: Đền Tốc Độ',
     subtitle: 'Thử thách thời gian',
     description: 'Tính toán với thời gian giới hạn - thử thách phản xạ!',
     icon: '⚡',
@@ -1316,7 +1316,7 @@ export const GAME_ZONES = [
   {
     zoneId: 'flash-peak',
     order: 10,
-    name: '⚡ Chặng 10: Đỉnh Tia Chớp',
+    name: 'Chặng 10: Đỉnh Tia Chớp',
     subtitle: 'Flash Anzan',
     description: 'Flash Anzan - đỉnh cao của tính nhẩm Soroban!',
     icon: '⚡',
@@ -1334,7 +1334,7 @@ export const GAME_ZONES = [
   {
     zoneId: 'treasure-castle',
     order: 11,
-    name: '🏆 ĐÍCH ĐẾN: Lâu Đài Kho Báu',
+    name: 'ĐÍCH ĐẾN: Lâu Đài Kho Báu',
     subtitle: 'Nhận Chứng Chỉ!',
     description: 'Vượt qua 3 Boss Cuối để nhận Chứng Chỉ Cộng Trừ!',
     icon: '🏆',

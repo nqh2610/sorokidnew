@@ -587,7 +587,8 @@ function ZoneTabs({ zones, activeZoneId, onSelect, zoneProgress }) {
                   }
                 `}
               >
-                {/* Tên zone - không có icon để tránh trùng với Zone Card */}
+                {/* Icon + Tên zone */}
+                <span className="text-base sm:text-lg">{zone.icon}</span>
                 <span className="font-bold">{zone.name}</span>
                 {/* Progress badge */}
                 <div className={`
@@ -645,12 +646,13 @@ function StageGrid({ stages, stageStatuses, onStageClick }) {
                 const actualIndex = rowIdx * 3 + (isReversed ? row.length - 1 - colIdx : colIdx);
                 const status = stageStatuses[stage.stageId] || 'locked';
                 const isLastInRow = colIdx === displayRow.length - 1;
-                const prevCompleted = actualIndex > 0 && stageStatuses[stages[actualIndex - 1]?.stageId] === 'completed';
+                // 🔧 FIX: Dot xanh khi stage HIỆN TẠI đã completed (không phải stage trước)
+                const currentCompleted = status === 'completed';
                 
                 return (
                   <div key={stage.stageId} className="flex items-center">
                     <StageNode stage={stage} status={status} onClick={onStageClick} index={actualIndex} />
-                    {!isLastInRow && <PathDots direction="horizontal" isCompleted={prevCompleted} />}
+                    {!isLastInRow && <PathDots direction="horizontal" isCompleted={currentCompleted} />}
                   </div>
                 );
               })}
