@@ -70,18 +70,14 @@ export async function GET(request) {
     // Tính level info (không query)
     const levelInfo = getLevelInfo(user.totalStars || 0);
 
-    // === QUERY 2 & 3: Progress + Lessons (để tìm next lesson) ===
-    const [userProgress, allLessons] = await Promise.all([
-      prisma.progress.findMany({
-        where: { userId },
-        select: {
-          levelId: true,
-          lessonId: true,
-          completed: true,
-          starsEarned: true
-        }
-      }),
-      prisma.lesson.findMany({
+    // === QUERY 2: User Progress ===
+    // === QUERY 3: Lessons - 🚀 PERF: Cache lessons vì không thay đổi thường xuyên ===
+    const lessonsCacheKey = 'all_lessons';
+    let allLessons = cache.get(lessonsCacheKey);
+
+    // Nếu chưa có cache lessons, query và cache 10 phút
+    if (!allLessons) {
+      allLessons = await prisma.lesson.findMany({
         select: {
           levelId: true,
           lessonId: true,
@@ -89,8 +85,20 @@ export async function GET(request) {
           duration: true
         },
         orderBy: [{ levelId: 'asc' }, { lessonId: 'asc' }]
-      })
-    ]);
+      });
+      cache.set(lessonsCacheKey, allLessons, 600); // Cache 10 phút
+    }
+
+    // Query progress riêng (không cache vì thay đổi theo user)
+    const userProgress = await prisma.progress.findMany({
+      where: { userId },
+      select: {
+        levelId: true,
+        lessonId: true,
+        completed: true,
+        starsEarned: true
+      }
+    });
 
     // Tìm next lesson
     const nextLesson = findNextLesson(allLessons, userProgress);

@@ -71,152 +71,93 @@ export async function GET(request) {
       return NextResponse.json({ error: 'Database error', message: dbError.message }, { status: 500 });
     }
 
-    // Map completed lessons to stage IDs
+    // 🚀 PERF: Pre-index tất cả data bằng Map để O(1) lookup thay vì O(n) filter/find
     const completedStages = [];
     const stageStars = {};
-    
-    // Tạo map để tra cứu nhanh - chỉ lấy những bài đã completed
+
+    // Map 1: Lessons - key: "levelId-lessonId"
     const lessonMap = new Map();
     lessonProgress.forEach(p => {
-      // Coi như completed nếu có record (vì user đã học qua)
-      // Hoặc check field completed nếu có
       if (p.completed !== false) {
         lessonMap.set(`${p.levelId}-${p.lessonId}`, p.starsEarned || 3);
       }
     });
-    
-    // Kiểm tra từng stage
-    GAME_STAGES.forEach(stage => {
-      let isCompleted = false;
-      let stars = 0;
-      
-      if (stage.type === 'lesson') {
-        // Stage học: kiểm tra Progress table
-        const key = `${stage.levelId}-${stage.lessonId}`;
-        if (lessonMap.has(key)) {
-          isCompleted = true;
-          stars = lessonMap.get(key);
-        }
-      } 
-      else if (stage.type === 'boss' && stage.bossType === 'practice') {
-        // Boss Luyện tập: kiểm tra ExerciseResult
-        const condition = stage.completeCondition || stage.practiceInfo;
-        if (condition) {
-          const relevantExercises = exerciseResults.filter(e => 
-            e.exerciseType === condition.mode && 
-            e.difficulty === condition.difficulty
-          );
-          
-          // Đếm số câu đúng
-          const correctCount = relevantExercises.filter(e => e.isCorrect).length;
-          const minCorrect = condition.minCorrect || 10;
-          
-          if (correctCount >= minCorrect) {
-            isCompleted = true;
-            stars = correctCount >= minCorrect + 5 ? 3 : (correctCount >= minCorrect + 2 ? 2 : 1);
-          }
-        }
-      }
-      else if (stage.type === 'boss' && stage.bossType === 'compete') {
-        // Boss Thi đấu: kiểm tra CompeteResult
-        // Config dùng competeInfo, fallback sang completeCondition
-        const condition = stage.competeInfo || stage.completeCondition;
-        if (condition) {
-          // Tìm kết quả thi đấu phù hợp
-          const relevantCompete = competeResults.find(c => {
-            // Match arenaId format: "mode-difficulty-questions" hoặc tên arena
-            if (c.arenaId === condition.arenaId) return true;
-            if (c.arenaId === `${condition.mode}-${condition.difficulty}-${condition.questions}`) return true;
-            return false;
-          });
 
-          if (relevantCompete) {
-            // Lấy minCorrect từ config (ưu tiên) hoặc tính từ minPercent
-            const total = condition.questions || parseInt(relevantCompete.arenaId.split('-').pop()) || 10;
-            const minCorrect = condition.minCorrect || Math.ceil((condition.minPercent || 60) * total / 100);
+    // Map 2: Exercises - key: "mode-difficulty", value: { total, correct }
+    const exerciseMap = new Map();
+    exerciseResults.forEach(e => {
+      const key = `${e.exerciseType}-${e.difficulty}`;
+      if (!exerciseMap.has(key)) {
+        exerciseMap.set(key, { total: 0, correct: 0 });
+      }
+      const stats = exerciseMap.get(key);
+      stats.total++;
+      if (e.isCorrect) stats.correct++;
+    });
 
-            if (relevantCompete.correct >= minCorrect) {
-              isCompleted = true;
-              // Tính stars dựa trên số câu đúng
-              const correctRatio = relevantCompete.correct / total;
-              stars = relevantCompete.stars || (correctRatio >= 0.9 ? 3 : correctRatio >= 0.7 ? 2 : 1);
-            }
-          }
-        }
-      }
-      else if (stage.type === 'treasure' || stage.type === 'milestone') {
-        // Stage chứng chỉ: kiểm tra Certificate
-        const certType = stage.link?.split('type=')[1] || stage.certType;
-        const hasCert = certificates.some(c => c.certType === certType);
-        if (hasCert) {
-          isCompleted = true;
-          stars = 3;
-        }
-      }
-      
-      if (isCompleted) {
-        completedStages.push(stage.stageId);
-        stageStars[stage.stageId] = stars;
+    // Map 3: Compete results - key: arenaId
+    const competeMap = new Map();
+    competeResults.forEach(c => {
+      // Lưu theo arenaId, chỉ giữ kết quả tốt nhất
+      if (!competeMap.has(c.arenaId) || c.correct > competeMap.get(c.arenaId).correct) {
+        competeMap.set(c.arenaId, c);
       }
     });
-    
-    // =============== XỬ LÝ MULDIV STAGES ===============
-    // Tạo helper function để check stage
+
+    // Set 4: Certificates - chỉ cần check tồn tại
+    const certSet = new Set(certificates.map(c => c.certType));
+
+    // 🚀 PERF: Helper function dùng chung cho cả GAME_STAGES và MULDIV_STAGES
     const checkStageCompletion = (stage) => {
       let isCompleted = false;
       let stars = 0;
-      
+
       if (stage.type === 'lesson') {
+        // O(1) lookup thay vì tạo key mỗi lần
         const key = `${stage.levelId}-${stage.lessonId}`;
         if (lessonMap.has(key)) {
           isCompleted = true;
           stars = lessonMap.get(key);
         }
-      } 
+      }
       else if (stage.type === 'boss' && stage.bossType === 'practice') {
         const condition = stage.completeCondition || stage.practiceInfo;
         if (condition) {
-          const relevantExercises = exerciseResults.filter(e => 
-            e.exerciseType === condition.mode && 
-            e.difficulty === condition.difficulty
-          );
-          const correctCount = relevantExercises.filter(e => e.isCorrect).length;
-          const minCorrect = condition.minCorrect || 10;
-          
-          if (correctCount >= minCorrect) {
-            isCompleted = true;
-            stars = correctCount >= minCorrect + 5 ? 3 : (correctCount >= minCorrect + 2 ? 2 : 1);
+          // O(1) lookup thay vì filter() O(n)
+          const key = `${condition.mode}-${condition.difficulty}`;
+          const stats = exerciseMap.get(key);
+          if (stats) {
+            const minCorrect = condition.minCorrect || 10;
+            if (stats.correct >= minCorrect) {
+              isCompleted = true;
+              stars = stats.correct >= minCorrect + 5 ? 3 : (stats.correct >= minCorrect + 2 ? 2 : 1);
+            }
           }
         }
       }
       else if (stage.type === 'boss' && stage.bossType === 'compete') {
-        // Config dùng competeInfo, fallback sang completeCondition
         const condition = stage.competeInfo || stage.completeCondition;
         if (condition) {
-          const relevantCompete = competeResults.find(c => {
-            if (c.arenaId === condition.arenaId) return true;
-            if (c.arenaId === `${condition.mode}-${condition.difficulty}-${condition.questions}`) return true;
-            return false;
-          });
+          // O(1) lookup thay vì find() O(n)
+          const arenaKey = condition.arenaId || `${condition.mode}-${condition.difficulty}-${condition.questions}`;
+          const result = competeMap.get(arenaKey);
 
-          if (relevantCompete) {
-            // Lấy minCorrect từ config (ưu tiên) hoặc tính từ minPercent
-            const total = condition.questions || parseInt(relevantCompete.arenaId.split('-').pop()) || 10;
+          if (result) {
+            const total = condition.questions || parseInt(result.arenaId.split('-').pop()) || 10;
             const minCorrect = condition.minCorrect || Math.ceil((condition.minPercent || 60) * total / 100);
 
-            if (relevantCompete.correct >= minCorrect) {
+            if (result.correct >= minCorrect) {
               isCompleted = true;
-              // Tính stars dựa trên số câu đúng
-              const correctRatio = relevantCompete.correct / total;
-              stars = relevantCompete.stars || (correctRatio >= 0.9 ? 3 : correctRatio >= 0.7 ? 2 : 1);
+              const correctRatio = result.correct / total;
+              stars = result.stars || (correctRatio >= 0.9 ? 3 : correctRatio >= 0.7 ? 2 : 1);
             }
           }
         }
       }
       else if (stage.type === 'treasure' || stage.type === 'milestone') {
+        // O(1) lookup thay vì some() O(n)
         const certType = stage.link?.split('type=')[1] || stage.certType;
-        const hasCert = certificates.some(c => c.certType === certType);
-        if (hasCert) {
+        if (certSet.has(certType)) {
           isCompleted = true;
           stars = 3;
         }
@@ -224,8 +165,18 @@ export async function GET(request) {
 
       return { isCompleted, stars };
     };
-    
-    // Kiểm tra MulDiv stages
+
+    // 🚀 PERF: Xử lý cả 2 GAME_STAGES với cùng 1 function (DRY code)
+    GAME_STAGES.forEach(stage => {
+      const { isCompleted, stars } = checkStageCompletion(stage);
+      if (isCompleted) {
+        completedStages.push(stage.stageId);
+        stageStars[stage.stageId] = stars;
+      }
+    });
+
+    // =============== XỬ LÝ MULDIV STAGES ===============
+    // 🚀 PERF: Dùng lại checkStageCompletion function (DRY - không duplicate code)
     GAME_STAGES_MULDIV.forEach(stage => {
       const { isCompleted, stars } = checkStageCompletion(stage);
       if (isCompleted) {

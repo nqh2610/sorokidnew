@@ -144,14 +144,15 @@ export const POST = withApiProtection(async (request) => {
       }
     }
 
-    // Lấy thông tin level hiện tại
-    const updatedUser = await prisma.user.findUnique({
-      where: { id: session.user.id }
-    });
-    const levelInfo = getLevelInfo(updatedUser?.totalStars || 0);
+    // 🚀 PERF: Tính levelInfo từ data đã có, KHÔNG query lại DB
+    // Nếu đã cập nhật stars thì dùng newTotalStars, không thì dùng currentUser
+    const finalTotalStars = (completed && starsToAdd > 0)
+      ? (currentUser?.totalStars || 0) + starsToAdd
+      : (currentUser?.totalStars || 0);
+    const levelInfo = getLevelInfo(finalTotalStars);
 
-    return NextResponse.json({ 
-      progress, 
+    return NextResponse.json({
+      progress,
       success: true,
       isNewRecord: shouldUpdateLessonStars,
       oldLessonStars,

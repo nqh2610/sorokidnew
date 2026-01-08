@@ -79,29 +79,35 @@ export async function POST(request) {
       return { competeResult, isNewRecord };
     });
 
-    // 🔧 TỐI ƯU: Lấy rank với query tối ưu (giới hạn top 100)
-    const allResults = await prisma.competeResult.findMany({
-      where: { arenaId },
-      select: { userId: true, correct: true, totalTime: true },
-      orderBy: [
-        { correct: 'desc' },
-        { totalTime: 'asc' }
-      ],
-      take: 100 // Giới hạn để tiết kiệm resources
-    });
+    // 🚀 PERF: Tính rank bằng COUNT thay vì load toàn bộ data
+    // Query 1: Đếm số người có kết quả TỐT HƠN user hiện tại
+    // Query 2: Đếm tổng số người chơi (unique users)
+    const [betterCount, uniqueUsers] = await Promise.all([
+      // Đếm users có correct > userCorrect, hoặc correct = userCorrect nhưng time < userTime
+      prisma.competeResult.count({
+        where: {
+          arenaId,
+          OR: [
+            { correct: { gt: correct } },
+            {
+              correct: correct,
+              totalTime: { lt: totalTime }
+            }
+          ],
+          // Loại trừ chính user hiện tại
+          NOT: { userId: session.user.id }
+        }
+      }),
+      // Đếm unique users trong arena này (dùng groupBy rồi đếm length)
+      prisma.competeResult.groupBy({
+        by: ['userId'],
+        where: { arenaId }
+      })
+    ]);
 
-    // Lọc kết quả tốt nhất của mỗi user
-    const bestResults = [];
-    const seenUsers = new Set();
-    
-    for (const r of allResults) {
-      if (!seenUsers.has(r.userId)) {
-        seenUsers.add(r.userId);
-        bestResults.push(r);
-      }
-    }
-
-    const rank = bestResults.findIndex(r => r.userId === session.user.id) + 1;
+    // Rank = số người tốt hơn + 1
+    const rank = betterCount + 1;
+    const totalPlayers = uniqueUsers.length;
 
     // Invalidate cache
     invalidateUserCache(session.user.id);
@@ -109,8 +115,8 @@ export async function POST(request) {
     return NextResponse.json({
       success: true,
       result: result.competeResult,
-      rank: rank || '>100',
-      totalPlayers: seenUsers.size,
+      rank,
+      totalPlayers,
       isNewRecord: result.isNewRecord
     });
   } catch (error) {
