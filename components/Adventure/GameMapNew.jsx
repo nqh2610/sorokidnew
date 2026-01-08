@@ -395,33 +395,57 @@ const StageNode = memo(function StageNode({ stage, status, onClick, index }) {
 
 // ===== PATH DOTS - Đường nối các màn =====
 // 🚀 PERF: memo để tránh re-render không cần thiết
-const PathDots = memo(function PathDots({ direction, isCompleted }) {
-  const count = direction === 'horizontal' ? 3 : 2;
+const PathDots = memo(function PathDots({ direction, isCompleted, isReversed = false }) {
+  const dotColor = isCompleted ? 'bg-emerald-400 shadow-emerald-400/50 shadow-md' : 'bg-white/50';
+  const arrowColor = isCompleted ? 'text-emerald-400' : 'text-white/50';
+  
+  if (direction === 'vertical') {
+    // Vertical: 3 dots + arrow xuống
+    return (
+      <div className="flex flex-col items-center justify-center py-0.5 gap-0.5 sm:gap-1">
+        {[...Array(3)].map((_, i) => (
+          <motion.div 
+            key={i} 
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: i * 0.08, duration: 0.2 }}
+            className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${dotColor}`}
+          />
+        ))}
+        {/* Mũi tên xuống */}
+        <motion.span 
+          className={`text-xs sm:text-sm font-bold ${arrowColor}`}
+          animate={{ y: [0, 2, 0] }}
+          transition={{ duration: 1, repeat: Infinity }}
+        >
+          ↓
+        </motion.span>
+      </div>
+    );
+  }
+  
+  // Horizontal: mũi tên theo hướng hiển thị trên màn hình
+  // Hàng bình thường (1,2,3): sang phải ›
+  // Hàng reversed (6,5,4 trên màn hình): sang trái ‹ (vì đường đi thực là 4→5→6)
   return (
-    <div className={`flex ${direction === 'vertical' ? 'flex-col h-8 sm:h-12' : 'w-8 sm:w-14 md:w-20'} items-center justify-center gap-0.5 sm:gap-1`}>
-      {[...Array(count)].map((_, i) => (
+    <div className="flex items-center justify-center px-0.5 sm:px-1 gap-0.5 sm:gap-1">
+      {[...Array(3)].map((_, i) => (
         <motion.div 
           key={i} 
           initial={{ scale: 0, opacity: 0 }}
-          animate={{ 
-            scale: 1, 
-            opacity: 1,
-            backgroundColor: isCompleted ? '#34d399' : 'rgba(255,255,255,0.6)'
-          }}
-          transition={{ delay: i * 0.15, duration: 0.3 }}
-          className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full ${isCompleted ? 'bg-emerald-400 shadow-emerald-400/50 shadow-md' : 'bg-white/60'}`}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: i * 0.08, duration: 0.2 }}
+          className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${dotColor}`}
         />
       ))}
-      {/* Mũi tên chỉ hướng */}
-      {direction === 'horizontal' && (
-        <motion.span 
-          className={`text-xs ${isCompleted ? 'text-emerald-400' : 'text-white/50'}`}
-          animate={{ x: [0, 3, 0] }}
-          transition={{ duration: 1, repeat: Infinity }}
-        >
-          ›
-        </motion.span>
-      )}
+      {/* Mũi tên theo hướng hiển thị */}
+      <motion.span 
+        className={`text-xs sm:text-sm font-bold ${arrowColor}`}
+        animate={{ x: isReversed ? [0, -2, 0] : [0, 2, 0] }}
+        transition={{ duration: 1, repeat: Infinity }}
+      >
+        {isReversed ? '‹' : '›'}
+      </motion.span>
     </div>
   );
 });
@@ -634,33 +658,38 @@ function StageGrid({ stages, stageStatuses, onStageClick }) {
   }
   
   return (
-    <div className="flex flex-col items-center gap-4 sm:gap-6 md:gap-8 py-4 sm:py-6">
+    <div className="flex flex-col items-center gap-1 py-4 sm:py-6">
       {rows.map((row, rowIdx) => {
         const isReversed = rowIdx % 2 === 1;
         const displayRow = isReversed ? [...row].reverse() : row;
+        const isLastRow = rowIdx === rows.length - 1;
+        // Stage cuối hàng (trước khi reverse) để check completed cho vertical dots
+        const lastStageInRow = row[row.length - 1];
+        const lastStageCompleted = stageStatuses[lastStageInRow?.stageId] === 'completed';
         
         return (
-          <div key={rowIdx}>
-            <div className="flex items-start justify-center gap-1 sm:gap-2 md:gap-4">
+          <div key={rowIdx} className="flex flex-col items-center">
+            {/* Row của stages */}
+            <div className="flex items-start justify-center">
               {displayRow.map((stage, colIdx) => {
                 const actualIndex = rowIdx * 3 + (isReversed ? row.length - 1 - colIdx : colIdx);
                 const status = stageStatuses[stage.stageId] || 'locked';
                 const isLastInRow = colIdx === displayRow.length - 1;
-                // 🔧 FIX: Dot xanh khi stage HIỆN TẠI đã completed (không phải stage trước)
                 const currentCompleted = status === 'completed';
                 
                 return (
                   <div key={stage.stageId} className="flex items-center">
                     <StageNode stage={stage} status={status} onClick={onStageClick} index={actualIndex} />
-                    {!isLastInRow && <PathDots direction="horizontal" isCompleted={currentCompleted} />}
+                    {!isLastInRow && <PathDots direction="horizontal" isCompleted={currentCompleted} isReversed={isReversed} />}
                   </div>
                 );
               })}
             </div>
             
-            {rowIdx < rows.length - 1 && (
-              <div className={`flex ${isReversed ? 'justify-start ml-6 sm:ml-10 md:ml-12' : 'justify-end mr-6 sm:mr-10 md:mr-12'} my-1 sm:my-2`}>
-                <PathDots direction="vertical" isCompleted={stageStatuses[row[row.length - 1]?.stageId] === 'completed'} />
+            {/* Vertical dots - căn theo vị trí stage cuối hàng */}
+            {!isLastRow && (
+              <div className={`flex w-full ${isReversed ? 'justify-start' : 'justify-end'}`} style={{ paddingLeft: isReversed ? '10%' : 0, paddingRight: isReversed ? 0 : '10%' }}>
+                <PathDots direction="vertical" isCompleted={lastStageCompleted} />
               </div>
             )}
           </div>
