@@ -400,41 +400,74 @@ function CuSoro({ message, isVisible, onToggle }) {
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.3, ease: 'easeOut', delay: 0.3 }}
     >
-      {/* Speech bubble - Điều chỉnh vị trí để không bị cắt */}
+      {/* Speech bubble - Bong bóng thoại đơn giản, sạch sẽ */}
       <AnimatePresence>
         {isVisible && message && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: 10 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            exit={{ opacity: 0, scale: 0.9, x: 10 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 10 }}
+            transition={{ duration: 0.2 }}
             onClick={() => onToggle()}
-            className="absolute bottom-full right-0 mb-3 w-60 sm:w-72 md:w-80 lg:w-96 bg-white rounded-2xl shadow-2xl cursor-pointer hover:bg-amber-50 transition-colors overflow-hidden"
-            style={{ 
-              border: '3px solid #fbbf24',
-              transformOrigin: 'bottom right'
-            }}
+            className="absolute bottom-20 sm:bottom-24 right-0 w-60 sm:w-72 cursor-pointer"
           >
-            {/* Progress bar - hiển thị thời gian còn lại */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-amber-100">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-amber-400 to-orange-500"
-                style={{ width: `${autoHideProgress}%` }}
-                transition={{ duration: 0.1 }}
-              />
+            {/* Main bubble */}
+            <div 
+              className="relative bg-gradient-to-br from-white to-amber-50 rounded-3xl p-3 sm:p-4 hover:from-amber-50 hover:to-orange-50 transition-all"
+              style={{
+                boxShadow: '0 4px 20px rgba(251, 191, 36, 0.25), 0 2px 8px rgba(0,0,0,0.1)',
+                border: '2px solid #fcd34d'
+              }}
+            >
+              {/* Progress bar */}
+              <div className="absolute top-2 left-3 right-3 sm:left-4 sm:right-4 h-1.5 bg-amber-100 rounded-full overflow-hidden">
+                <motion.div 
+                  className="h-full bg-gradient-to-r from-amber-400 to-orange-400 rounded-full"
+                  style={{ width: `${autoHideProgress}%` }}
+                />
+              </div>
+              
+              {/* Message */}
+              <p className="text-gray-700 text-sm sm:text-base font-medium leading-relaxed mt-2">
+                {message}
+              </p>
+              
+              {/* Footer */}
+              <div className="flex items-center justify-between mt-2 sm:mt-3 text-xs text-gray-400">
+                <span>👆 Chạm để đóng</span>
+                <span className="text-amber-600 font-bold">🦉 Cú Soro</span>
+              </div>
             </div>
             
-            {/* Mũi tên chỉ xuống */}
-            <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white border-r-3 border-b-3 border-amber-400 rotate-45" />
-            
-            <div className="p-3 sm:p-4 pt-4 sm:pt-5">
-              <p className="text-gray-700 text-sm sm:text-base md:text-lg font-medium leading-relaxed font-[var(--font-quicksand)]">{message}</p>
-              <div className="flex items-center justify-between mt-2 sm:mt-3">
-                <span className="text-xs sm:text-sm text-gray-400 flex items-center gap-1 font-[var(--font-quicksand)]">
-                  <span>👆</span> Chạm để đóng
-                </span>
-                <span className="text-amber-600 text-xs sm:text-sm font-semibold font-[var(--font-quicksand)]">🦉 Cú Soro</span>
-              </div>
+            {/* Tail - Đuôi bong bóng kiểu comic với 3 hình tròn */}
+            <div className="absolute -bottom-2 right-4 sm:right-6 flex items-end gap-1">
+              <motion.div 
+                className="w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-br from-white to-amber-50 rounded-full"
+                style={{ 
+                  boxShadow: '0 2px 6px rgba(251, 191, 36, 0.3)',
+                  border: '2px solid #fcd34d'
+                }}
+                animate={{ y: [0, -1, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+              />
+              <motion.div 
+                className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-white to-amber-50 rounded-full -mb-1"
+                style={{ 
+                  boxShadow: '0 2px 4px rgba(251, 191, 36, 0.3)',
+                  border: '2px solid #fcd34d'
+                }}
+                animate={{ y: [0, -1, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: 0.1 }}
+              />
+              <motion.div 
+                className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-br from-white to-amber-50 rounded-full -mb-2"
+                style={{ 
+                  boxShadow: '0 1px 3px rgba(251, 191, 36, 0.3)',
+                  border: '1.5px solid #fcd34d'
+                }}
+                animate={{ y: [0, -1, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+              />
             </div>
           </motion.div>
         )}
@@ -1878,18 +1911,14 @@ export default function GameMapNew({
   // 🦉 Khi click vào stage, hiện lời dẫn phù hợp
   const handleStageClick = useCallback((stage) => {
     const status = stageStatuses[stage.stageId];
-    const stageIdStr = String(stage.stageId || '');
     
     // 🏆 TREASURE STAGE: Check nếu đây là stage kho báu/chứng chỉ
-    // Stage IDs: cert-addsub-final, cert-complete-final
-    const isTreasureStage = stageIdStr.startsWith('cert-') || 
-                           stage.type === 'treasure' || 
-                           stage.type === 'certificate';
+    const isTreasureStage = stage.type === 'treasure' || stage.type === 'certificate';
     
     if (isTreasureStage && status === 'completed') {
-      // Mở hiệu ứng rương kho báu
-      const isAddSubCert = stageIdStr.includes('addsub');
-      setTreasureCertType(isAddSubCert ? 'addsub' : 'complete');
+      // Mở hiệu ứng rương kho báu - dùng certificateInfo từ stage config
+      const certType = stage.certificateInfo?.certType || (currentMap === 'addsub' ? 'addsub' : 'complete');
+      setTreasureCertType(certType);
       setShowTreasureReveal(true);
       play('levelComplete');
       return;
