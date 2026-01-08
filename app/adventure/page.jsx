@@ -264,30 +264,19 @@ export default function AdventurePageV3() {
     }
   };
   
-  // Handle stage click - Lưu game mode info trước khi navigate
-  // Nhận closeModal callback để đóng modal trước khi hiện upgrade popup
-  const handleStageClick = useCallback((stage, closeModal) => {
-    if (!stage.link) return;
-    
+  // 🔒 TIER CHECK: Kiểm tra quyền truy cập stage TRƯỚC khi mở modal
+  // Return true nếu có quyền, false nếu không (đã hiện popup upgrade)
+  const handleTierCheck = useCallback((stage) => {
     const userTier = userStats?.tier || 'free';
     
-    // Helper: Hiện upgrade popup sau khi đóng modal
-    const showUpgradeAndStay = (message) => {
-      // Đóng modal stage trước
-      if (closeModal) closeModal();
-      // Hiện popup upgrade sau một chút delay để modal đóng xong
-      setTimeout(() => {
-        showUpgradeModal({ feature: message });
-      }, 150);
-    };
-    
-    // 🔒 TIER CHECK: Kiểm tra quyền truy cập stage
     if (stage.type === 'lesson' && stage.levelId) {
       // Kiểm tra level cho bài học
       const requiredTier = getRequiredTierForLevel(stage.levelId);
       if (!canAccessTier(userTier, requiredTier)) {
-        showUpgradeAndStay(`Level ${stage.levelId} yêu cầu gói ${getTierDisplayName(requiredTier)} trở lên`);
-        return;
+        showUpgradeModal({ 
+          feature: `Level ${stage.levelId} yêu cầu gói ${getTierDisplayName(requiredTier)} trở lên` 
+        });
+        return false;
       }
     } else if (stage.type === 'boss') {
       // Kiểm tra mode cho boss
@@ -297,20 +286,29 @@ export default function AdventurePageV3() {
       if (mode) {
         const requiredTierForMode = getRequiredTierForMode(mode);
         if (!canAccessTier(userTier, requiredTierForMode)) {
-          showUpgradeAndStay(`Chế độ ${mode} yêu cầu gói ${getTierDisplayName(requiredTierForMode)} trở lên`);
-          return;
+          showUpgradeModal({ 
+            feature: `Chế độ ${mode} yêu cầu gói ${getTierDisplayName(requiredTierForMode)} trở lên` 
+          });
+          return false;
         }
       }
       
       // Kiểm tra difficulty
       const requiredTierForDiff = getRequiredTierForDifficulty(difficulty);
       if (!canAccessTier(userTier, requiredTierForDiff)) {
-        showUpgradeAndStay(`Cấp độ ${difficulty} yêu cầu gói ${getTierDisplayName(requiredTierForDiff)} trở lên`);
-        return;
+        showUpgradeModal({ 
+          feature: `Cấp độ ${difficulty} yêu cầu gói ${getTierDisplayName(requiredTierForDiff)} trở lên` 
+        });
+        return false;
       }
     }
     
-    // ✅ PASSED TIER CHECK - navigate to stage
+    return true; // Có quyền truy cập
+  }, [userStats, showUpgradeModal]);
+  
+  // Handle stage click - Lưu game mode info và navigate (không cần check tier nữa - đã check trước khi mở modal)
+  const handleStageClick = useCallback((stage) => {
+    if (!stage.link) return;
     
     // Xác định map type dựa trên stageId
     const isMulDiv = typeof stage.stageId === 'string' && stage.stageId.startsWith('md-');
@@ -337,17 +335,17 @@ export default function AdventurePageV3() {
       sessionStorage.setItem('learnGameMode', JSON.stringify(gameModeData));
       router.push(stage.link);
     } else if (stage.type === 'boss' && stage.bossType === 'practice') {
-      // 🚀 Practice: Lưu data và đi thẳng đến /practice (không cần qua /practice/auto)
+      // 🚀 Practice: Lưu data và đi thẳng đến /practice
       sessionStorage.setItem('practiceGameMode', JSON.stringify(gameModeData));
       router.push('/practice');
     } else if (stage.type === 'boss' && stage.bossType === 'compete') {
-      // 🚀 Compete: Lưu data và đi thẳng đến /compete (không cần qua /compete/auto)
+      // 🚀 Compete: Lưu data và đi thẳng đến /compete
       sessionStorage.setItem('competeGameMode', JSON.stringify(gameModeData));
       router.push('/compete');
     } else {
       router.push(stage.link);
     }
-  }, [router, userStats, showUpgradeModal]);
+  }, [router]);
   
   // Auth check
   if (status === 'loading') {
@@ -380,6 +378,7 @@ export default function AdventurePageV3() {
         hasCertAddSub={hasCertAddSub}
         hasCertComplete={hasCertComplete}
         onStageClick={handleStageClick}
+        onTierCheck={handleTierCheck}
         isLoading={loading}
         userStats={userStats}
         returnZone={initialZone}

@@ -1115,6 +1115,7 @@ export default function GameMapNew({
   hasCertAddSub = false,
   hasCertComplete = false,
   onStageClick,
+  onTierCheck, // 🔒 Callback để check tier trước khi mở modal - return true nếu OK, false nếu cần upgrade
   isLoading = false,
   userStats = null,
   returnZone = null
@@ -1277,6 +1278,17 @@ export default function GameMapNew({
   const handleStageClick = useCallback((stage) => {
     const status = stageStatuses[stage.stageId];
     
+    // 🔒 TIER CHECK: Kiểm tra quyền truy cập trước khi mở modal
+    // Chỉ check nếu stage không bị locked (locked thì không cần check tier)
+    if (status !== 'locked' && onTierCheck) {
+      const canAccess = onTierCheck(stage);
+      if (!canAccess) {
+        // Không đủ quyền - onTierCheck đã hiện upgrade popup rồi
+        play('stageSelect'); // Vẫn play sound
+        return;
+      }
+    }
+    
     // Lấy lời dẫn theo loại stage và trạng thái
     let message = '';
     if (status === 'locked') {
@@ -1301,19 +1313,16 @@ export default function GameMapNew({
     
     // 🔊 Play sound when selecting stage
     play('stageSelect');
-  }, [stageStatuses, play]);
+  }, [stageStatuses, play, onTierCheck]);
   
   const handleStartStage = useCallback(() => {
     if (selectedStage?.link) {
       // 🔊 Play game start sound
       play('gameStart');
-      // 🔧 FIX: Truyền closeModal callback để tier check có thể đóng modal trước khi hiện upgrade popup
-      const closeModal = () => setSelectedStage(null);
-      onStageClick ? onStageClick(selectedStage, closeModal) : router.push(selectedStage.link);
-    } else {
-      // Không có link thì đóng modal
-      setSelectedStage(null);
+      // Tier đã được check trước khi mở modal rồi, chỉ cần navigate
+      onStageClick ? onStageClick(selectedStage) : router.push(selectedStage.link);
     }
+    setSelectedStage(null);
   }, [selectedStage, router, onStageClick, play]);
   
   // Generate random stars for background - phải ở trước điều kiện return
