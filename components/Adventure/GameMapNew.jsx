@@ -3,8 +3,12 @@
 import { useState, useEffect, useCallback, useMemo, useRef, memo } from 'react';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
+import { LogOut, ChevronDown } from 'lucide-react';
 import Logo from '@/components/Logo/Logo';
+import { MonsterAvatar } from '@/components/MonsterAvatar';
+import ConfirmDialog from '@/components/ConfirmDialog/ConfirmDialog';
 import { useGameSound } from '@/lib/useGameSound';
 import { initSoundSystem } from '@/lib/soundManager';
 import SoundSettingsPanel from '@/components/SoundSettings/SoundSettingsPanel';
@@ -1047,9 +1051,31 @@ function StageModal({ stage, status, onClose, onStart }) {
   );
 }
 
-// ===== HEADER - Hiển thị Tier, Streak, Stars, Diamonds =====
-function GameHeader({ totalStages, completedStages, userStats }) {
+// ===== HEADER - Giống hệt TopBar Dashboard =====
+function GameHeader({ totalStages, completedStages, userStats, session }) {
   const progress = totalStages > 0 ? Math.round((completedStages / totalStages) * 100) : 0;
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [showLogoutDialog, setShowLogoutDialog] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    if (showDropdown) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [showDropdown]);
 
   // Tính số ngày dùng thử còn lại
   const getTrialDaysLeft = () => {
@@ -1064,108 +1090,283 @@ function GameHeader({ totalStages, completedStages, userStats }) {
   const trialDays = getTrialDaysLeft();
   const tier = userStats?.tier || 'free';
 
-  // Tier badge config - phải khớp với tier values trong database
-  const tierConfig = {
-    free: { label: 'Miễn phí', icon: '🌟', bg: 'from-gray-400 to-gray-500' },
-    trial: { label: `Dùng thử`, icon: '🔥', bg: 'from-orange-400 to-red-500', showDays: true },
-    basic: { label: 'Cơ Bản', icon: '✓', bg: 'from-blue-400 to-cyan-500' },
-    advanced: { label: 'Nâng Cao', icon: '⭐', bg: 'from-violet-500 to-fuchsia-500' },
-    vip: { label: 'VIP', icon: '👑', bg: 'from-amber-400 to-orange-500' },
-    // Legacy keys for backward compatibility
-    nangcao: { label: 'Nâng Cao', icon: '⭐', bg: 'from-violet-500 to-fuchsia-500' },
-    premium: { label: 'VIP', icon: '👑', bg: 'from-amber-400 to-orange-500' }
+  // Helper to parse avatar index from database
+  const getAvatarIndex = () => {
+    if (!userStats?.avatar) return null;
+    const parsed = parseInt(userStats.avatar, 10);
+    return isNaN(parsed) ? null : parsed;
   };
 
-  const currentTier = tierConfig[tier] || tierConfig.free;
+  // Tier badge component giống TopBar
+  const getTierBadge = () => {
+    switch (tier) {
+      case 'vip':
+        return (
+          <span className="px-2 py-0.5 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-bold rounded-full">
+            👑 VIP
+          </span>
+        );
+      case 'premium':
+      case 'advanced':
+      case 'nangcao':
+        return (
+          <span className="px-2 py-0.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white text-xs font-bold rounded-full">
+            ⭐ Nâng Cao
+          </span>
+        );
+      case 'basic':
+        return (
+          <span className="px-2 py-0.5 bg-gradient-to-r from-blue-400 to-cyan-500 text-white text-xs font-bold rounded-full">
+            ✓ Cơ Bản
+          </span>
+        );
+      case 'trial':
+        return (
+          <span className="px-2 py-0.5 bg-gradient-to-r from-orange-400 to-red-500 text-white text-xs font-bold rounded-full">
+            🔥 Dùng thử {trialDays > 0 && `(${trialDays}d)`}
+          </span>
+        );
+      default:
+        return (
+          <span className="px-2 py-0.5 bg-gray-200 text-gray-600 text-xs font-bold rounded-full">
+            Miễn Phí
+          </span>
+        );
+    }
+  };
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm shadow-lg border-b border-violet-100">
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 py-1.5 sm:py-2 flex items-center justify-between">
-        {/* Left: Logo link to dashboard - icon on mobile, with text on larger screens */}
-        <Link href="/dashboard" className="flex-shrink-0">
-          {/* Mobile: chỉ icon */}
-          <div className="sm:hidden">
-            <Logo size="sm" showText={false} />
-          </div>
-          {/* Desktop: có chữ với gradient gốc */}
-          <div className="hidden sm:block">
-            <Logo size="sm" showText={true} />
-          </div>
-        </Link>
-        
-        {/* Center: Stats */}
-        <div className="flex items-center gap-1 sm:gap-2 flex-1 justify-center">
-          {/* Tier Badge */}
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className={`flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-gradient-to-r ${currentTier.bg} shadow-md`}
-          >
-            <span className="text-xs sm:text-sm">{currentTier.icon}</span>
-            <span className="text-[9px] sm:text-xs font-bold text-white hidden xs:inline">{currentTier.label}</span>
-            {currentTier.showDays && trialDays > 0 && (
-              <span className="text-[9px] sm:text-xs font-bold text-white">{trialDays}d</span>
-            )}
-          </motion.div>
-          
-          {/* Streak */}
-          {userStats?.streak > 0 && (
-            <motion.div 
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-0.5 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-orange-500/90 shadow-md"
-            >
-              <motion.span 
-                className="text-xs sm:text-sm"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
+    <>
+      {/* Logout Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={showLogoutDialog}
+        onClose={() => setShowLogoutDialog(false)}
+        onConfirm={() => signOut({ callbackUrl: '/' })}
+        title="Đăng xuất?"
+        message="Bạn có chắc chắn muốn đăng xuất khỏi tài khoản?"
+        confirmText="Đăng xuất"
+        cancelText="Hủy"
+        type="warning"
+      />
+
+      <header className="bg-white/90 backdrop-blur-lg shadow-lg sticky top-0 z-50 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3">
+          <div className="flex items-center justify-between gap-2">
+            {/* Logo - Click để về Dashboard */}
+            <Link href="/dashboard" className="flex items-center gap-2 hover:opacity-80 transition-opacity flex-shrink-0">
+              <Logo size="md" showText={false} />
+              <h1 className="hidden sm:block text-xl font-bold bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
+                SoroKid
+              </h1>
+            </Link>
+
+            {/* Desktop Stats bar */}
+            <div className="hidden md:flex items-center gap-2 lg:gap-3">
+              {/* Tier Badge Desktop */}
+              <Link 
+                href="/pricing"
+                className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-violet-50 to-pink-50 rounded-xl border border-violet-100 hover:shadow-md transition-all"
               >
-                🔥
-              </motion.span>
-              <span className="text-[10px] sm:text-xs font-bold text-white">{userStats.streak}</span>
-            </motion.div>
-          )}
-          
-          {/* Stars */}
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-0.5 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-amber-400 shadow-md"
-          >
-            <span className="text-xs sm:text-sm">⭐</span>
-            <span className="text-[10px] sm:text-xs font-bold text-white">
-              {(userStats?.totalStars || 0).toLocaleString()}
-            </span>
-          </motion.div>
-          
-          {/* Diamonds - dùng icon rõ ràng hơn */}
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-0.5 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-sky-400 shadow-md"
-          >
-            <motion.span 
-              className="text-xs sm:text-sm"
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              💠
-            </motion.span>
-            <span className="text-[10px] sm:text-xs font-bold text-white">{userStats?.diamonds || 0}</span>
-          </motion.div>
-        </div>
-        
-        {/* Right: Progress */}
-        <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
-          <div className="hidden sm:flex items-center gap-1.5 bg-violet-100 rounded-full px-2 py-1">
-            <div className="w-12 sm:w-20 md:w-32 lg:w-40 h-1.5 md:h-2 bg-violet-200 rounded-full overflow-hidden">
-              <motion.div className="h-full bg-gradient-to-r from-violet-500 to-pink-500 rounded-full" initial={{ width: 0 }} animate={{ width: `${progress}%` }} />
+                {getTierBadge()}
+              </Link>
+
+              {/* Streak */}
+              <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl border border-orange-100">
+                <span className="text-lg">🔥</span>
+                <div className="text-right">
+                  <span className="font-bold text-orange-600">{userStats?.streak || 0}</span>
+                  <span className="text-xs text-orange-500 ml-1">ngày</span>
+                </div>
+              </div>
+
+              {/* Stars */}
+              <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-yellow-50 to-amber-50 rounded-xl border border-yellow-100">
+                <span className="text-lg">⭐</span>
+                <div className="text-right">
+                  <span className="font-bold text-yellow-600">{(userStats?.totalStars || 0).toLocaleString()}</span>
+                  <span className="text-xs text-yellow-500 ml-1">sao</span>
+                </div>
+              </div>
+
+              {/* Diamonds */}
+              <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl border border-cyan-100">
+                <span className="text-lg">💎</span>
+                <div className="text-right">
+                  <span className="font-bold text-cyan-600">{(userStats?.diamonds || 0).toLocaleString()}</span>
+                  <span className="text-xs text-cyan-500 ml-1">kim cương</span>
+                </div>
+              </div>
+
+              {/* Progress - Desktop */}
+              <div className="hidden lg:flex items-center gap-1.5 bg-violet-100 rounded-full px-3 py-1.5">
+                <div className="w-20 xl:w-32 h-2 bg-violet-200 rounded-full overflow-hidden">
+                  <motion.div 
+                    className="h-full bg-gradient-to-r from-violet-500 to-pink-500 rounded-full" 
+                    initial={{ width: 0 }} 
+                    animate={{ width: `${progress}%` }} 
+                  />
+                </div>
+                <span className="text-violet-700 text-xs font-medium">{progress}%</span>
+              </div>
             </div>
-            <span className="text-violet-700 text-[10px] md:text-xs font-medium">{progress}%</span>
-          </div>
-          {/* Mobile: just show completed count */}
-          <div className="sm:hidden flex items-center gap-1 bg-violet-100 rounded-full px-2 py-1">
-            <span className="text-xs font-bold text-violet-700">{completedStages}/{totalStages}</span>
+
+            {/* Mobile: Compact Stats Pill + Avatar + Logout */}
+            <div className="flex md:hidden items-center gap-1.5 flex-1 justify-end">
+              {/* Progress on mobile - compact */}
+              <div className="flex items-center gap-1 bg-violet-100 rounded-full px-2 py-1">
+                <span className="text-[10px] xs:text-xs font-bold text-violet-700">{progress}%</span>
+              </div>
+
+              {/* Compact stats in one pill */}
+              <div className="flex items-center bg-gray-50 rounded-full px-2 py-1 gap-2">
+                <span className="flex items-center gap-0.5 text-xs">
+                  <span>🔥</span>
+                  <span className="font-semibold text-orange-600">{userStats?.streak || 0}</span>
+                </span>
+                <span className="w-px h-3 bg-gray-300"></span>
+                <span className="flex items-center gap-0.5 text-xs">
+                  <span>⭐</span>
+                  <span className="font-semibold text-yellow-600">{(userStats?.totalStars || 0).toLocaleString()}</span>
+                </span>
+                <span className="w-px h-3 bg-gray-300"></span>
+                <span className="flex items-center gap-0.5 text-xs">
+                  <span>💎</span>
+                  <span className="font-semibold text-cyan-600">{(userStats?.diamonds || 0).toLocaleString()}</span>
+                </span>
+              </div>
+
+              {/* Avatar - direct link to profile page */}
+              <Link 
+                href="/profile"
+                className="flex-shrink-0 active:scale-95 transition-transform"
+              >
+                <MonsterAvatar 
+                  seed={session?.user?.id || session?.user?.email || 'default'}
+                  avatarIndex={getAvatarIndex()}
+                  size={36}
+                  className="border-2 border-violet-200"
+                  showBorder={false}
+                />
+              </Link>
+
+              {/* Logout shortcut button */}
+              <button
+                onClick={() => setShowLogoutDialog(true)}
+                className="flex-shrink-0 w-9 h-9 flex items-center justify-center bg-red-50 hover:bg-red-100 active:bg-red-200 rounded-full transition-colors"
+                title="Đăng xuất"
+              >
+                <LogOut size={16} className="text-red-500" />
+              </button>
+            </div>
+
+            {/* Desktop: User dropdown */}
+            <div className="hidden md:flex items-center gap-3">
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  onClick={() => setShowDropdown(!showDropdown)}
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-gray-100 transition-colors"
+                >
+                  <MonsterAvatar 
+                    seed={session?.user?.id || session?.user?.email || 'default'}
+                    avatarIndex={getAvatarIndex()}
+                    size={36}
+                    className="border-2 border-violet-200"
+                    showBorder={false}
+                  />
+                  <div className="text-left">
+                    <span className="text-sm font-semibold text-gray-800">
+                      {userStats?.name || session?.user?.name || 'User'}
+                    </span>
+                    <div className="text-xs text-gray-500">
+                      {userStats?.levelInfo?.icon} {userStats?.levelInfo?.name || `Cấp ${userStats?.level || 1}`}
+                    </div>
+                  </div>
+                  <ChevronDown size={16} className={`text-gray-400 transition-transform ${showDropdown ? 'rotate-180' : ''}`} />
+                </button>
+
+                {/* Desktop: Dropdown menu */}
+                {showDropdown && (
+                  <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
+                    <Link
+                      href="/dashboard"
+                      onClick={() => setShowDropdown(false)}
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
+                    >
+                      <span>📊</span>
+                      <span className="text-gray-700">Bảng điều khiển</span>
+                    </Link>
+                    <Link
+                      href="/learn"
+                      onClick={() => setShowDropdown(false)}
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
+                    >
+                      <span>📚</span>
+                      <span className="text-gray-700">Học tập</span>
+                    </Link>
+                    <Link
+                      href="/practice"
+                      onClick={() => setShowDropdown(false)}
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
+                    >
+                      <span>🎯</span>
+                      <span className="text-gray-700">Luyện tập</span>
+                    </Link>
+                    <Link
+                      href="/compete"
+                      onClick={() => setShowDropdown(false)}
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
+                    >
+                      <span>🏆</span>
+                      <span className="text-gray-700">Thi đấu</span>
+                    </Link>
+                    <hr className="my-2" />
+                    <Link
+                      href="/profile"
+                      onClick={() => setShowDropdown(false)}
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
+                    >
+                      <span>👤</span>
+                      <span className="text-gray-700">Hồ sơ</span>
+                    </Link>
+                    {(tier === 'vip' || tier === 'advanced' || tier === 'nangcao') && (
+                      <Link
+                        href="/certificate"
+                        onClick={() => setShowDropdown(false)}
+                        className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
+                      >
+                        <span>🏅</span>
+                        <span className="text-gray-700">Chứng chỉ</span>
+                      </Link>
+                    )}
+                    <hr className="my-2" />
+                    {session?.user?.role === 'admin' && (
+                      <Link
+                        href="/admin"
+                        onClick={() => setShowDropdown(false)}
+                        className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
+                      >
+                        <span>⚙️</span>
+                        <span className="text-gray-700">Quản trị</span>
+                      </Link>
+                    )}
+                    <button
+                      onClick={() => {
+                        setShowDropdown(false);
+                        setShowLogoutDialog(true);
+                      }}
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-red-50 transition-colors text-red-600 w-full"
+                    >
+                      <LogOut size={18} />
+                      <span>Đăng xuất</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 }
 
@@ -1367,6 +1568,7 @@ export default function GameMapNew({
   returnZone = null
 }) {
   const router = useRouter();
+  const { data: session } = useSession();
   const { play, playMusic, stopMusic, changeTheme } = useGameSound();
 
   // Khởi tạo map và zone từ returnZone nếu có
@@ -1766,7 +1968,7 @@ export default function GameMapNew({
         {/* 🚀 REMOVED: Rising bubbles, shimmer lines - too heavy */}
       </div>
       
-      <GameHeader totalStages={totalStages} completedStages={completedStagesCount} userStats={userStats} />
+      <GameHeader totalStages={totalStages} completedStages={completedStagesCount} userStats={userStats} session={session} />
       
       {/* Title with animation - Responsive for all screens */}
       <div className="text-center py-1.5 xs:py-2 sm:py-3 md:py-5 relative z-10 px-2 xs:px-4">

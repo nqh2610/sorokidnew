@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import GameMapNew from '@/components/Adventure/GameMapNew';
 import { useUpgradeModal } from '@/components/UpgradeModal';
+import { getLevelInfo } from '@/lib/gamification';
 
 // Import config files
 import { 
@@ -205,12 +206,24 @@ export default function AdventurePageV3() {
     }
     
     if (data.user) {
+      // Tính levelInfo từ totalStars
+      const levelInfo = getLevelInfo(data.user.totalStars || 0);
+      
       setUserStats({
+        name: data.user.name || '',
+        avatar: data.user.avatar, // Thêm avatar để hiển thị đúng MonsterAvatar
         tier: data.user.tier || 'free',
         totalStars: data.user.totalStars || 0,
         diamonds: data.user.diamonds || 0,
         streak: data.user.streak || 0,
-        trialExpiresAt: data.user.trialExpiresAt
+        trialExpiresAt: data.user.trialExpiresAt,
+        level: levelInfo.level,
+        levelInfo: {
+          level: levelInfo.level,
+          name: levelInfo.name,
+          icon: levelInfo.icon,
+          progressPercent: levelInfo.progressPercent
+        }
       });
     }
   };

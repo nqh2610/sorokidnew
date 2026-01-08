@@ -723,7 +723,7 @@ export default function DashboardPage() {
               </div>
               <div className="hidden sm:flex items-center gap-1.5 px-3 py-2 bg-gradient-to-r from-yellow-400/30 to-amber-400/30 backdrop-blur-sm rounded-xl text-yellow-100 text-xs md:text-sm font-semibold border border-yellow-300/40 shadow-inner">
                 <span className="text-base">🏆</span>
-                <span>Chứng chỉ</span>
+                <span>Kho báu</span>
               </div>
             </div>
 
