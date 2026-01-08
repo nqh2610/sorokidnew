@@ -27,7 +27,7 @@ export async function GET(request) {
       return NextResponse.json({ error: 'Arena ID required' }, { status: 400 });
     }
 
-    // 🔧 TỐI ƯU: Cache leaderboard 10s
+    // 🚀 PERF: Cache leaderboard 5 phút (leaderboard ít thay đổi)
     const bestResults = await getOrSet(
       `compete_leaderboard_${arenaId}`,
       async () => {
@@ -74,7 +74,7 @@ export async function GET(request) {
         }
         return bestResultsList;
       },
-      10 // Cache 10s
+      300 // 🚀 PERF: Cache 5 phút (300s)
     );
 
     const userId = session.user.id;

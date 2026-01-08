@@ -231,35 +231,51 @@ function timeoutPromise(ms, fallback) {
 
 // Thống kê tiến độ học tập - TỐI ƯU: Batch queries
 async function getProgressStats(userId) {
-  // 🔧 TỐI ƯU: Batch tất cả queries cùng lúc
-  const [progress, lessons, levelsFromDB] = await Promise.all([
-    prisma.progress.findMany({
-      where: { userId },
-      select: {
-        levelId: true,
-        lessonId: true,
-        completed: true,
-        starsEarned: true,
-        timeSpent: true,
-        accuracy: true
-      }
-    }),
-    prisma.lesson.findMany({
-      select: {
-        id: true,
-        levelId: true,
-        lessonId: true,
-        title: true,
-        description: true,
-        stars: true
-      },
-      orderBy: [{ levelId: 'asc' }, { lessonId: 'asc' }]
-    }),
-    prisma.level.findMany({
-      select: { id: true, name: true, icon: true },
-      orderBy: { order: 'asc' }
-    })
-  ]);
+  // 🚀 PERF: Cache lessons và levels (static data, không thay đổi)
+  const lessonsCacheKey = 'static_lessons_full';
+  const levelsCacheKey = 'static_levels';
+
+  let lessons = cache.get(lessonsCacheKey);
+  let levelsFromDB = cache.get(levelsCacheKey);
+
+  // Query và cache static data nếu chưa có (TTL 30 phút)
+  if (!lessons || !levelsFromDB) {
+    const [fetchedLessons, fetchedLevels] = await Promise.all([
+      prisma.lesson.findMany({
+        select: {
+          id: true,
+          levelId: true,
+          lessonId: true,
+          title: true,
+          description: true,
+          stars: true
+        },
+        orderBy: [{ levelId: 'asc' }, { lessonId: 'asc' }]
+      }),
+      prisma.level.findMany({
+        select: { id: true, name: true, icon: true },
+        orderBy: { order: 'asc' }
+      })
+    ]);
+
+    lessons = fetchedLessons;
+    levelsFromDB = fetchedLevels;
+    cache.set(lessonsCacheKey, lessons, 1800); // 30 phút
+    cache.set(levelsCacheKey, levelsFromDB, 1800);
+  }
+
+  // Query progress (user-specific, không cache)
+  const progress = await prisma.progress.findMany({
+    where: { userId },
+    select: {
+      levelId: true,
+      lessonId: true,
+      completed: true,
+      starsEarned: true,
+      timeSpent: true,
+      accuracy: true
+    }
+  });
   
   // Tạo map levelId -> level info
   const levelMap = new Map(levelsFromDB.map(l => [l.id, l]));
@@ -939,45 +955,57 @@ async function getLeaderboardRank(userId) {
   };
 }
 
-// Biểu đồ hoạt động 7 ngày - TỐI ƯU: Giảm từ 21 queries xuống 3 queries
+// Biểu đồ hoạt động 7 ngày - TỐI ƯU: 3 queries + Map pre-grouping (O(n) thay vì O(7*n))
 async function getActivityChart(userId) {
   const today = new Date();
   today.setHours(23, 59, 59, 999);
-  
+
   const weekAgo = new Date(today);
   weekAgo.setDate(weekAgo.getDate() - 6);
   weekAgo.setHours(0, 0, 0, 0);
 
   // 🔧 TỐI ƯU: Batch query tất cả data trong 7 ngày cùng lúc
   const [progressData, exerciseData, competeData] = await Promise.all([
-    // Progress stars trong 7 ngày
     prisma.progress.findMany({
-      where: {
-        userId,
-        completedAt: { gte: weekAgo, lte: today }
-      },
+      where: { userId, completedAt: { gte: weekAgo, lte: today } },
       select: { completedAt: true, starsEarned: true }
     }),
-    // Exercise results trong 7 ngày
     prisma.exerciseResult.findMany({
-      where: {
-        userId,
-        isCorrect: true,
-        createdAt: { gte: weekAgo, lte: today }
-      },
+      where: { userId, isCorrect: true, createdAt: { gte: weekAgo, lte: today } },
       select: { createdAt: true }
     }),
-    // Compete results trong 7 ngày
     prisma.competeResult.findMany({
-      where: {
-        userId,
-        createdAt: { gte: weekAgo, lte: today }
-      },
+      where: { userId, createdAt: { gte: weekAgo, lte: today } },
       select: { createdAt: true, stars: true }
     })
   ]);
 
-  // Group data theo ngày
+  // 🚀 PERF: Pre-group by date using Map - O(n) một lần thay vì O(7*n) filter mỗi ngày
+  const progressByDate = new Map();
+  const exerciseByDate = new Map();
+  const competeByDate = new Map();
+
+  // Group progress stars by date
+  progressData.forEach(p => {
+    if (p.completedAt) {
+      const dateStr = p.completedAt.toISOString().split('T')[0];
+      progressByDate.set(dateStr, (progressByDate.get(dateStr) || 0) + (p.starsEarned || 0));
+    }
+  });
+
+  // Group exercise count by date (10 stars each)
+  exerciseData.forEach(e => {
+    const dateStr = e.createdAt.toISOString().split('T')[0];
+    exerciseByDate.set(dateStr, (exerciseByDate.get(dateStr) || 0) + 1);
+  });
+
+  // Group compete stars by date
+  competeData.forEach(c => {
+    const dateStr = c.createdAt.toISOString().split('T')[0];
+    competeByDate.set(dateStr, (competeByDate.get(dateStr) || 0) + (c.stars || 0));
+  });
+
+  // Build result array - O(7) lookups thay vì O(7*n) filters
   const dayNames = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
   const days = [];
 
@@ -985,21 +1013,10 @@ async function getActivityChart(userId) {
     const date = new Date(today);
     date.setDate(date.getDate() - i);
     const dateStr = date.toISOString().split('T')[0];
-    
-    // Tính stars từ progress
-    const progressStars = progressData
-      .filter(p => p.completedAt && p.completedAt.toISOString().split('T')[0] === dateStr)
-      .reduce((sum, p) => sum + (p.starsEarned || 0), 0);
-    
-    // Tính stars từ exercises (10 stars mỗi câu đúng)
-    const exerciseStars = exerciseData
-      .filter(e => e.createdAt.toISOString().split('T')[0] === dateStr)
-      .length * 10;
-    
-    // Tính stars từ compete
-    const competeStars = competeData
-      .filter(c => c.createdAt.toISOString().split('T')[0] === dateStr)
-      .reduce((sum, c) => sum + (c.stars || 0), 0);
+
+    const progressStars = progressByDate.get(dateStr) || 0;
+    const exerciseStars = (exerciseByDate.get(dateStr) || 0) * 10;
+    const competeStars = competeByDate.get(dateStr) || 0;
 
     days.push({
       day: dayNames[date.getDay()],

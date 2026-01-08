@@ -7,14 +7,16 @@ import { useEffect, useState, useCallback, useMemo, useRef, lazy, Suspense } fro
 import { Star, Zap, Trophy, ChevronRight, Play, Clock, ChevronDown, ChevronUp, Sparkles, Gift, Award, Loader2 } from 'lucide-react';
 import LevelBadge from '@/components/LevelBadge/LevelBadge';
 import TopBar from '@/components/TopBar/TopBar';
-import ActivityChart from '@/components/Dashboard/ActivityChart';
 import StatsCards from '@/components/Dashboard/StatsCards';
 import QuestList from '@/components/Dashboard/QuestList';
-import AchievementList from '@/components/Dashboard/AchievementList';
-import ProgressByLevel from '@/components/Dashboard/ProgressByLevel';
-import CertificateProgress from '@/components/Dashboard/CertificateProgress';
 import RewardPopup, { useRewardPopup } from '@/components/RewardPopup/RewardPopup';
 import TrialDaysBadge from '@/components/TrialDaysBadge/TrialDaysBadge';
+
+// 🚀 PERF: Lazy load secondary components (giảm ~40KB initial bundle)
+const ActivityChart = lazy(() => import('@/components/Dashboard/ActivityChart'));
+const AchievementList = lazy(() => import('@/components/Dashboard/AchievementList'));
+const ProgressByLevel = lazy(() => import('@/components/Dashboard/ProgressByLevel'));
+const CertificateProgress = lazy(() => import('@/components/Dashboard/CertificateProgress'));
 
 /**
  * 🚀 PROGRESSIVE LOADING DASHBOARD
@@ -223,23 +225,55 @@ export default function DashboardPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showDetailedStats]); // Chỉ depend on showDetailedStats để tránh loop
 
-  // === DATA HELPERS ===
-  // Merge essential data với các phần đã load
-  const user = useFallback ? fallbackData?.user : essential?.user;
-  const nextLesson = useFallback ? fallbackData?.nextLesson : essential?.nextLesson;
+  // === DATA HELPERS - 🚀 PERF: useMemo để tránh recalculate mỗi render ===
+  const user = useMemo(() =>
+    useFallback ? fallbackData?.user : essential?.user,
+    [useFallback, fallbackData?.user, essential?.user]
+  );
+
+  const nextLesson = useMemo(() =>
+    useFallback ? fallbackData?.nextLesson : essential?.nextLesson,
+    [useFallback, fallbackData?.nextLesson, essential?.nextLesson]
+  );
+
   const quickStats = essential?.quickStats;
-  
+
   // Secondary data - use fallback if progressive not loaded
-  // QuestList cần quests.active và quests.completedCount
-  const questsData = quests || (useFallback ? fallbackData?.quests : null);
-  const certificatesData = certificates || (useFallback ? { earned: fallbackData?.certificates?.earned, inProgress: fallbackData?.certificates?.inProgress } : null);
-  const achievementsData = achievements || (useFallback ? fallbackData?.achievements : null);
-  
+  const questsData = useMemo(() =>
+    quests || (useFallback ? fallbackData?.quests : null),
+    [quests, useFallback, fallbackData?.quests]
+  );
+
+  const certificatesData = useMemo(() =>
+    certificates || (useFallback ? { earned: fallbackData?.certificates?.earned, inProgress: fallbackData?.certificates?.inProgress } : null),
+    [certificates, useFallback, fallbackData?.certificates?.earned, fallbackData?.certificates?.inProgress]
+  );
+
+  const achievementsData = useMemo(() =>
+    achievements || (useFallback ? fallbackData?.achievements : null),
+    [achievements, useFallback, fallbackData?.achievements]
+  );
+
   // Activity - only from activity API or fallback
-  const activityChart = activity?.activityChart || fallbackData?.activityChart;
-  const progress = useFallback ? fallbackData?.progress : null;
-  const exercise = useFallback ? fallbackData?.exercise : null;
-  const compete = useFallback ? fallbackData?.compete : null;
+  const activityChart = useMemo(() =>
+    activity?.activityChart || fallbackData?.activityChart,
+    [activity?.activityChart, fallbackData?.activityChart]
+  );
+
+  const progress = useMemo(() =>
+    useFallback ? fallbackData?.progress : null,
+    [useFallback, fallbackData?.progress]
+  );
+
+  const exercise = useMemo(() =>
+    useFallback ? fallbackData?.exercise : null,
+    [useFallback, fallbackData?.exercise]
+  );
+
+  const compete = useMemo(() =>
+    useFallback ? fallbackData?.compete : null,
+    [useFallback, fallbackData?.compete]
+  );
 
   // Refresh all data
   const refreshData = useCallback(() => {
@@ -704,18 +738,22 @@ export default function DashboardPage() {
           <QuestList quests={questsData} onClaimReward={handleClaimReward} />
         ) : null}
 
-        {/* Tiến độ chứng chỉ */}
+        {/* Tiến độ chứng chỉ - 🚀 PERF: Lazy loaded */}
         {certificatesLoading ? (
           <SectionSkeleton />
         ) : certificatesData ? (
-          <CertificateProgress certificates={certificatesData} />
+          <Suspense fallback={<SectionSkeleton />}>
+            <CertificateProgress certificates={certificatesData} />
+          </Suspense>
         ) : null}
 
-        {/* Thành tích */}
+        {/* Thành tích - 🚀 PERF: Lazy loaded */}
         {achievementsLoading ? (
           <SectionSkeleton />
         ) : achievementsData ? (
-          <AchievementList achievements={achievementsData} allAchievements={achievementsData?.all || achievementsData?.unlocked} />
+          <Suspense fallback={<SectionSkeleton />}>
+            <AchievementList achievements={achievementsData} allAchievements={achievementsData?.all || achievementsData?.unlocked} />
+          </Suspense>
         ) : null}
 
         {/* Thống kê chi tiết - CUỐI CÙNG */}
@@ -747,12 +785,14 @@ export default function DashboardPage() {
                 </div>
               ) : (
                 <>
-                  {/* Activity Chart */}
+                  {/* Activity Chart - 🚀 PERF: Lazy loaded */}
                   <div>
                     <h4 className="font-bold text-gray-700 mb-3 flex items-center gap-2">
                       <span>📈</span> Hoạt động 7 ngày qua
                     </h4>
-                    <ActivityChart data={activityChart || activity?.activityChart || []} compact={true} />
+                    <Suspense fallback={<div className="h-32 bg-gray-100 rounded-lg animate-pulse" />}>
+                      <ActivityChart data={activityChart || activity?.activityChart || []} compact={true} />
+                    </Suspense>
                   </div>
 
                   {/* Stats Cards */}
@@ -770,13 +810,15 @@ export default function DashboardPage() {
                     </div>
                   )}
 
-                  {/* Progress by Level - Hiển thị tên bài học */}
+                  {/* Progress by Level - Hiển thị tên bài học - 🚀 PERF: Lazy loaded */}
                   {progress && (
                     <div>
                       <h4 className="font-bold text-gray-700 mb-3 flex items-center gap-2">
                         <span>📚</span> Tiến độ học tập
                       </h4>
-                      <ProgressByLevel progress={progress} compact={true} showLessonNames={true} />
+                      <Suspense fallback={<div className="h-24 bg-gray-100 rounded-lg animate-pulse" />}>
+                        <ProgressByLevel progress={progress} compact={true} showLessonNames={true} />
+                      </Suspense>
                     </div>
                   )}
 

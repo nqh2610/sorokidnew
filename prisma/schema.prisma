@@ -63,6 +63,7 @@ model Progress {
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, levelId, lessonId])
+  @@index([userId, completed]) // 🚀 PERF: Query completed lessons nhanh hơn
   @@map("progress")
 }
 
@@ -174,6 +175,7 @@ model UserQuest {
 
   @@unique([userId, questId])
   @@index([questId], map: "user_quests_questId_fkey")
+  @@index([userId, completed]) // 🚀 PERF: Query user's completed quests nhanh hơn
   @@map("user_quests")
 }
 
@@ -288,6 +290,7 @@ model CompeteResult {
 
   @@unique([userId, arenaId])
   @@index([arenaId, correct, totalTime])
+  @@index([userId, createdAt]) // 🚀 PERF: Query user history nhanh hơn
   @@map("compete_results")
 }
 

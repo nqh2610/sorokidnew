@@ -9,6 +9,8 @@
 const nextConfig = {
   images: {
     domains: ['localhost', 'api.dicebear.com', 'robohash.org'],
+    // 🚀 PERF: Bật AVIF format - giảm 30-40% so với WebP
+    formats: ['image/avif', 'image/webp'],
     // Tối ưu images
     minimumCacheTTL: 60 * 60 * 24, // 24 hours
     deviceSizes: [640, 750, 828, 1080], // Giảm sizes để tiết kiệm disk
@@ -118,8 +120,11 @@ const nextConfig = {
   experimental: {
     // 🔧 TỐI ƯU BUNDLE SIZE: Optimize các package imports lớn
     optimizePackageImports: [
-      'lucide-react',    // Icon library - tree shake unused icons
-      'react-dom',       // React DOM utilities
+      'lucide-react',      // Icon library - tree shake unused icons
+      'react-dom',         // React DOM utilities
+      'framer-motion',     // Animation library - tree shake unused
+      'date-fns',          // Date utilities - tree shake unused functions
+      '@prisma/client',    // Prisma client
     ],
     
     // 🔧 Server Actions optimization
