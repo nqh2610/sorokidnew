@@ -28,33 +28,73 @@ import TreasureChestReveal from './TreasureChestReveal';
 // ===== CUSTOM HOOK: useSwipeZone - Swipe gesture để chuyển zone =====
 function useSwipeZone({ zones, activeZoneId, onChangeZone }) {
   const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
   const touchEndX = useRef(0);
+  const touchEndY = useRef(0);
   const isDragging = useRef(false);
-  const minSwipeDistance = 50; // Minimum swipe distance in pixels
+  
+  // Responsive thresholds - smaller screens need smaller swipe distance
+  const getMinSwipeDistance = () => {
+    if (typeof window === 'undefined') return 30;
+    const width = window.innerWidth;
+    if (width < 400) return 25;  // Very small phones - rất nhạy
+    if (width < 640) return 30;  // Small phones
+    if (width < 768) return 35;  // Large phones
+    return 50;                    // Tablets and desktop
+  };
+  
+  const maxClickDistance = 8; // If movement < 8px, it's definitely a click
   
   const handleTouchStart = useCallback((e) => {
     touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+    touchEndX.current = e.touches[0].clientX;
+    touchEndY.current = e.touches[0].clientY;
     isDragging.current = true;
   }, []);
   
   const handleTouchMove = useCallback((e) => {
     if (!isDragging.current) return;
     touchEndX.current = e.touches[0].clientX;
+    touchEndY.current = e.touches[0].clientY;
   }, []);
   
   const handleTouchEnd = useCallback(() => {
     if (!isDragging.current) return;
     isDragging.current = false;
     
-    const swipeDistance = touchStartX.current - touchEndX.current;
+    const dx = touchStartX.current - touchEndX.current;
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(touchStartY.current - touchEndY.current);
+    const minSwipeDistance = getMinSwipeDistance();
+    
+    // If barely moved, it's a click - let child elements handle it
+    if (absDx < maxClickDistance && absDy < maxClickDistance) {
+      touchStartX.current = 0;
+      touchEndX.current = 0;
+      return;
+    }
+    
+    // If vertical movement is more than horizontal, it's a scroll - don't swipe
+    if (absDy > absDx) {
+      touchStartX.current = 0;
+      touchEndX.current = 0;
+      return;
+    }
+    
+    // Check minimum swipe distance for horizontal
+    if (absDx < minSwipeDistance) {
+      touchStartX.current = 0;
+      touchEndX.current = 0;
+      return;
+    }
+    
     const currentIndex = zones.findIndex(z => z.zoneId === activeZoneId);
     
-    if (Math.abs(swipeDistance) < minSwipeDistance) return;
-    
-    if (swipeDistance > 0 && currentIndex < zones.length - 1) {
+    if (dx > 0 && currentIndex < zones.length - 1) {
       // Swipe left -> next zone
       onChangeZone(zones[currentIndex + 1].zoneId);
-    } else if (swipeDistance < 0 && currentIndex > 0) {
+    } else if (dx < 0 && currentIndex > 0) {
       // Swipe right -> previous zone
       onChangeZone(zones[currentIndex - 1].zoneId);
     }
@@ -66,27 +106,57 @@ function useSwipeZone({ zones, activeZoneId, onChangeZone }) {
   
   // Mouse drag support for desktop testing
   const handleMouseDown = useCallback((e) => {
+    // Ignore if clicking on a button or interactive element
+    if (e.target.closest('button, a, [role="button"]')) {
+      return;
+    }
     touchStartX.current = e.clientX;
+    touchStartY.current = e.clientY;
+    touchEndX.current = e.clientX;
+    touchEndY.current = e.clientY;
     isDragging.current = true;
   }, []);
   
   const handleMouseMove = useCallback((e) => {
     if (!isDragging.current) return;
     touchEndX.current = e.clientX;
+    touchEndY.current = e.clientY;
   }, []);
   
   const handleMouseUp = useCallback(() => {
     if (!isDragging.current) return;
     isDragging.current = false;
     
-    const swipeDistance = touchStartX.current - touchEndX.current;
+    const dx = touchStartX.current - touchEndX.current;
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(touchStartY.current - touchEndY.current);
+    const minSwipeDistance = getMinSwipeDistance();
+    
+    // If barely moved, it's a click
+    if (absDx < maxClickDistance && absDy < maxClickDistance) {
+      touchStartX.current = 0;
+      touchEndX.current = 0;
+      return;
+    }
+    
+    // If vertical movement is more than horizontal, don't swipe
+    if (absDy > absDx) {
+      touchStartX.current = 0;
+      touchEndX.current = 0;
+      return;
+    }
+    
+    if (absDx < minSwipeDistance) {
+      touchStartX.current = 0;
+      touchEndX.current = 0;
+      return;
+    }
+    
     const currentIndex = zones.findIndex(z => z.zoneId === activeZoneId);
     
-    if (Math.abs(swipeDistance) < minSwipeDistance) return;
-    
-    if (swipeDistance > 0 && currentIndex < zones.length - 1) {
+    if (dx > 0 && currentIndex < zones.length - 1) {
       onChangeZone(zones[currentIndex + 1].zoneId);
-    } else if (swipeDistance < 0 && currentIndex > 0) {
+    } else if (dx < 0 && currentIndex > 0) {
       onChangeZone(zones[currentIndex - 1].zoneId);
     }
     
@@ -1370,9 +1440,8 @@ function GameHeader({ totalStages, completedStages, userStats, session }) {
   );
 }
 
-// ===== SWIPEABLE ZONE AREA - Vuốt trái/phải để chuyển zone =====
+// ===== ZONE AREA - Chỉ hiển thị UI, swipe đã xử lý ở main component =====
 function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, activeStages, stageStatuses, onChangeZone, onStageClick }) {
-  const { swipeHandlers } = useSwipeZone({ zones, activeZoneId, onChangeZone });
   const currentIndex = zones.findIndex(z => z.zoneId === activeZoneId);
   const hasPrev = currentIndex > 0;
   const hasNext = currentIndex < zones.length - 1;
@@ -1380,11 +1449,9 @@ function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, acti
   if (!activeZone) return null;
   
   return (
-    <div 
-      className="max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto px-2 xs:px-3 sm:px-4 py-2 xs:py-3 sm:py-4 relative z-10"
-      {...swipeHandlers}
-      style={{ touchAction: 'pan-y' }} // Allow vertical scroll, capture horizontal swipe
-    >
+    <div className="w-full relative z-10">
+    {/* Inner container giới hạn width cho nội dung */}
+    <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto px-2 xs:px-3 sm:px-4 py-2 xs:py-3 sm:py-4">
       {/* Swipe hint indicator - only on mobile/tablet */}
       <div className="flex items-center justify-center gap-2 xs:gap-3 mb-1.5 xs:mb-2 md:hidden">
         <motion.button
@@ -1509,6 +1576,8 @@ function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, acti
       </motion.div>
       
       <StageGrid stages={activeStages} stageStatuses={stageStatuses} onStageClick={onStageClick} />
+    </div>
+    {/* Close outer swipe wrapper */}
     </div>
   );
 }
@@ -1644,6 +1713,9 @@ export default function GameMapNew({
   // 🚀 PERF: useRef thay vì useState vì flags này không cần trigger re-render
   const hasInitializedRef = useRef(false);
   const returnZoneAppliedRef = useRef(false);
+  
+  // 👆 SWIPE TOÀN MÀN HÌNH - Gọi hook ở main component để swipe anywhere
+  const { swipeHandlers } = useSwipeZone({ zones, activeZoneId, onChangeZone: setActiveZoneId });
 
   useEffect(() => {
     if (zones.length === 0) return;
@@ -1926,7 +1998,11 @@ export default function GameMapNew({
   }
   
   return (
-    <div className="min-h-screen min-h-[100dvh] bg-gradient-to-b from-cyan-400 via-blue-500 to-indigo-600 relative overflow-hidden">
+    <div 
+      className="min-h-screen min-h-[100dvh] bg-gradient-to-b from-cyan-400 via-blue-500 to-indigo-600 relative overflow-hidden"
+      {...swipeHandlers}
+      style={{ touchAction: 'pan-y' }} // Allow vertical scroll, capture horizontal swipe
+    >
       {/* 🚀 OPTIMIZED: Background decorations with CSS animations */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* 🚀 REDUCED: Only 8 stars with CSS animation - fewer on mobile */}
