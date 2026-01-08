@@ -583,50 +583,74 @@ export default function DashboardPage() {
             {/* Secondary overlay for depth */}
             <div className="absolute inset-0 bg-gradient-to-tr from-yellow-400/30 via-transparent to-purple-500/20" />
             {/* Radial glow in center */}
-            <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-yellow-300/40 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-40 sm:w-64 h-40 sm:h-64 bg-yellow-300/40 rounded-full blur-3xl animate-pulse" />
           </div>
           
           {/* 🌟 PARTICLE MAGIC EFFECTS */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {/* Floating gems & sparkles */}
-            <div className="absolute top-2 left-3 text-2xl animate-float-slow">💎</div>
-            <div className="absolute top-4 left-1/4 text-xl animate-bounce-slow delay-100">✨</div>
-            <div className="absolute top-8 right-1/4 text-lg animate-float-medium">🌟</div>
-            <div className="absolute top-3 right-1/3 text-2xl animate-wiggle">⭐</div>
-            <div className="absolute bottom-12 left-8 text-xl animate-float-fast">💫</div>
-            <div className="absolute bottom-20 left-1/4 text-lg animate-pulse delay-300">✨</div>
-            <div className="absolute top-1/3 left-6 text-2xl animate-bounce-slow delay-500">🪙</div>
+            {/* Floating gems & sparkles - smaller on mobile */}
+            <div className="absolute top-2 left-3 text-lg sm:text-2xl animate-float-slow">💎</div>
+            <div className="absolute top-4 left-1/4 text-base sm:text-xl animate-bounce-slow delay-100">✨</div>
+            <div className="absolute top-8 right-1/4 text-sm sm:text-lg animate-float-medium hidden sm:block">🌟</div>
+            <div className="absolute top-3 right-1/3 text-lg sm:text-2xl animate-wiggle hidden sm:block">⭐</div>
+            <div className="absolute bottom-16 sm:bottom-12 left-8 text-base sm:text-xl animate-float-fast">💫</div>
+            <div className="absolute bottom-24 sm:bottom-20 left-1/4 text-sm sm:text-lg animate-pulse delay-300 hidden sm:block">✨</div>
+            <div className="absolute top-1/3 left-6 text-lg sm:text-2xl animate-bounce-slow delay-500 hidden sm:block">🪙</div>
             
-            {/* Animated coins trail */}
-            <div className="absolute bottom-6 right-1/2 text-xl animate-float-slow delay-200">🪙</div>
-            <div className="absolute bottom-10 right-1/3 text-lg animate-float-medium delay-400">🪙</div>
+            {/* Animated coins trail - hidden on small screens */}
+            <div className="absolute bottom-6 right-1/2 text-base sm:text-xl animate-float-slow delay-200 hidden sm:block">🪙</div>
+            <div className="absolute bottom-10 right-1/3 text-sm sm:text-lg animate-float-medium delay-400 hidden sm:block">🪙</div>
             
-            {/* Treasure chest HERO - positioned right side */}
-            <div className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-10">
+            {/* Treasure chest HERO - positioned right side, responsive size */}
+            <div className="absolute right-1 sm:right-6 top-1/3 sm:top-1/2 -translate-y-1/2 z-10">
               <div className="relative">
                 {/* Glow rings */}
-                <div className="absolute inset-0 -m-4 bg-yellow-300/30 rounded-full blur-xl animate-ping opacity-75" style={{ animationDuration: '2s' }} />
-                <div className="absolute inset-0 -m-2 bg-amber-400/40 rounded-full blur-lg animate-pulse" />
+                <div className="absolute inset-0 -m-4 sm:-m-5 bg-yellow-300/40 rounded-full blur-xl animate-ping opacity-75" style={{ animationDuration: '2s' }} />
+                <div className="absolute inset-0 -m-2 sm:-m-3 bg-amber-400/50 rounded-full blur-lg animate-pulse" />
                 
-                {/* Main treasure chest */}
-                <div className="relative text-6xl sm:text-7xl md:text-8xl group-hover:scale-110 group-hover:-rotate-6 transition-all duration-700 drop-shadow-2xl animate-bounce-slow filter">
-                  🏴‍☠️
+                {/* Antique treasure chest composition */}
+                <div className="relative group-hover:scale-110 transition-all duration-700 drop-shadow-2xl">
+                  {/* Main antique amphora/treasure vessel */}
+                  <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl animate-bounce-slow filter drop-shadow-lg">
+                    🏺
+                  </div>
+                  {/* Ancient key - treasure chest feel */}
+                  <div className="absolute -bottom-1 sm:-bottom-2 left-1/2 -translate-x-1/2 text-2xl sm:text-3xl md:text-4xl animate-wiggle">
+                    🗝️
+                  </div>
+                  {/* Floating gems and gold */}
+                  <div className="absolute -top-3 sm:-top-4 left-1/2 -translate-x-1/2 text-2xl sm:text-3xl md:text-4xl animate-bounce" style={{ animationDelay: '0.1s' }}>
+                    💎
+                  </div>
+                  <div className="absolute top-0 -left-2 sm:-left-3 text-xl sm:text-2xl md:text-3xl animate-pulse" style={{ animationDelay: '0.3s' }}>
+                    🪙
+                  </div>
+                  <div className="absolute top-0 -right-2 sm:-right-3 text-xl sm:text-2xl md:text-3xl animate-pulse" style={{ animationDelay: '0.5s' }}>
+                    💰
+                  </div>
+                  {/* Sparkles for magic feel */}
+                  <div className="absolute top-1/2 -left-4 sm:-left-5 text-base sm:text-xl animate-float-slow">
+                    ✨
+                  </div>
+                  <div className="absolute top-1/4 -right-4 sm:-right-5 text-base sm:text-xl animate-float-medium">
+                    ⭐
+                  </div>
                 </div>
                 
-                {/* Opening lid effect on hover */}
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-4xl opacity-0 group-hover:opacity-100 group-hover:-translate-y-4 transition-all duration-500">
+                {/* Opening lid effect on hover - hidden on small mobile */}
+                <div className="absolute -top-2 sm:-top-3 left-1/2 -translate-x-1/2 text-2xl sm:text-4xl opacity-0 group-hover:opacity-100 group-hover:-translate-y-4 transition-all duration-500 hidden sm:block">
                   💰
                 </div>
               </div>
             </div>
             
-            {/* Decorative map elements */}
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-3xl animate-float-medium group-hover:scale-125 transition-transform">
+            {/* Decorative map elements - hidden on very small screens */}
+            <div className="absolute bottom-14 sm:bottom-3 left-1/2 -translate-x-1/2 text-xl sm:text-3xl animate-float-medium group-hover:scale-125 transition-transform hidden sm:block">
               🗺️
             </div>
             
-            {/* Compass */}
-            <div className="absolute top-4 right-4 text-2xl animate-spin-slow opacity-70">
+            {/* Compass - smaller on mobile */}
+            <div className="absolute top-3 sm:top-4 right-3 sm:right-4 text-lg sm:text-2xl animate-spin-slow opacity-70 hidden sm:block">
               🧭
             </div>
             
@@ -636,25 +660,25 @@ export default function DashboardPage() {
             }} />
             
             {/* Left side gradient for better text contrast */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent" />
           </div>
 
           {/* 📝 CONTENT */}
-          <div className="relative p-5 sm:p-6 md:p-7 min-h-[180px] sm:min-h-[200px]">
+          <div className="relative p-4 sm:p-6 md:p-7 flex flex-col min-h-[200px] sm:min-h-[200px]">
             {/* Header section */}
-            <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-3">
               {/* Mascot with animation */}
               <div className="relative">
-                <div className="text-3xl sm:text-4xl animate-wiggle filter drop-shadow-lg">🦉</div>
-                <div className="absolute -top-1 -right-1 text-sm animate-bounce">💬</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl animate-wiggle filter drop-shadow-lg">🦉</div>
+                <div className="absolute -top-1 -right-1 text-xs sm:text-sm animate-bounce">💬</div>
               </div>
               
               {/* Badges */}
-              <div className="flex items-center gap-1.5 flex-wrap">
-                <span className="px-3 py-1 bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-300 text-amber-900 rounded-full text-xs font-black uppercase tracking-wide shadow-lg animate-pulse border border-yellow-200">
+              <div className="flex items-center gap-1 sm:gap-1.5 flex-wrap">
+                <span className="px-2 sm:px-3 py-0.5 sm:py-1 bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-300 text-amber-900 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-wide shadow-lg animate-pulse border border-yellow-200">
                   🎮 Phiêu Lưu
                 </span>
-                <span className="px-2 py-1 bg-gradient-to-r from-green-400 to-emerald-500 text-white rounded-full text-[10px] font-bold shadow-md animate-bounce-slow">
+                <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-gradient-to-r from-green-400 to-emerald-500 text-white rounded-full text-[9px] sm:text-[10px] font-bold shadow-md animate-bounce-slow">
                   🔥 HOT
                 </span>
                 <span className="hidden sm:inline-flex px-2 py-1 bg-gradient-to-r from-purple-400 to-pink-500 text-white rounded-full text-[10px] font-bold shadow-md">
@@ -664,56 +688,56 @@ export default function DashboardPage() {
             </div>
             
             {/* Game title - more impactful */}
-            <div className="mb-4">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)] leading-tight tracking-tight">
+            <div className="mb-1.5 sm:mb-4">
+              <h3 className="text-lg sm:text-3xl md:text-4xl font-black text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)] leading-tight tracking-tight">
                 <span className="inline-block animate-pulse">🏝️</span> Đi Tìm{' '}
                 <span className="relative inline-block">
                   <span className="text-yellow-200 drop-shadow-[0_0_20px_rgba(253,224,71,0.5)]">Kho Báu</span>
                   <span className="absolute -inset-1 bg-yellow-400/20 blur-md rounded-lg -z-10" />
                 </span>
               </h3>
-              <p className="text-lg sm:text-xl font-bold text-amber-100 mt-1 tracking-wide">
+              <p className="text-xs sm:text-lg md:text-xl font-bold text-amber-100 mt-0.5 sm:mt-1 tracking-wide">
                 🌟 Tri Thức Soroban
               </p>
             </div>
             
-            {/* Description with character */}
-            <p className="text-white/95 text-sm sm:text-base max-w-[220px] mb-4 leading-relaxed">
-              Cùng <span className="font-bold text-yellow-200 bg-yellow-400/20 px-1 rounded">Cú Soro</span> khám phá 
+            {/* Description with character - responsive width */}
+            <p className="text-white/95 text-[11px] sm:text-sm md:text-base max-w-[160px] sm:max-w-[220px] mb-2 sm:mb-4 leading-snug sm:leading-relaxed">
+              Cùng <span className="font-bold text-yellow-200 bg-yellow-400/20 px-0.5 rounded">Cú Soro</span> khám phá 
               <span className="font-semibold text-amber-100"> 2 hòn đảo</span> bí ẩn và chinh phục các thử thách!
             </p>
             
-            {/* Game features - more visual */}
-            <div className="flex flex-wrap items-center gap-2">
-              <div className="flex items-center gap-1.5 px-3 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-white text-xs sm:text-sm font-semibold border border-white/30 shadow-inner">
-                <span className="text-base">🏝️</span>
+            {/* Game features - responsive layout */}
+            <div className="flex flex-wrap items-center gap-1 sm:gap-2 mb-2 sm:mb-0">
+              <div className="flex items-center gap-0.5 sm:gap-1.5 px-1.5 sm:px-3 py-1 sm:py-2 bg-white/20 backdrop-blur-sm rounded-md sm:rounded-xl text-white text-[9px] sm:text-xs md:text-sm font-semibold border border-white/30 shadow-inner">
+                <span className="text-xs sm:text-base">🏝️</span>
                 <span>2 Đảo</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-white text-xs sm:text-sm font-semibold border border-white/30 shadow-inner">
-                <span className="text-base">🗺️</span>
+              <div className="flex items-center gap-0.5 sm:gap-1.5 px-1.5 sm:px-3 py-1 sm:py-2 bg-white/20 backdrop-blur-sm rounded-md sm:rounded-xl text-white text-[9px] sm:text-xs md:text-sm font-semibold border border-white/30 shadow-inner">
+                <span className="text-xs sm:text-base">🗺️</span>
                 <span>19 Vùng đất</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-white text-xs sm:text-sm font-semibold border border-white/30 shadow-inner">
-                <span className="text-base">👹</span>
+              <div className="flex items-center gap-0.5 sm:gap-1.5 px-1.5 sm:px-3 py-1 sm:py-2 bg-white/20 backdrop-blur-sm rounded-md sm:rounded-xl text-white text-[9px] sm:text-xs md:text-sm font-semibold border border-white/30 shadow-inner">
+                <span className="text-xs sm:text-base">👹</span>
                 <span>30+ Boss</span>
               </div>
-              <div className="hidden sm:flex items-center gap-1.5 px-3 py-2 bg-gradient-to-r from-yellow-400/30 to-amber-400/30 backdrop-blur-sm rounded-xl text-yellow-100 text-xs sm:text-sm font-semibold border border-yellow-300/40 shadow-inner">
+              <div className="hidden sm:flex items-center gap-1.5 px-3 py-2 bg-gradient-to-r from-yellow-400/30 to-amber-400/30 backdrop-blur-sm rounded-xl text-yellow-100 text-xs md:text-sm font-semibold border border-yellow-300/40 shadow-inner">
                 <span className="text-base">🏆</span>
                 <span>Chứng chỉ</span>
               </div>
             </div>
 
-            {/* CTA Play button - enhanced */}
-            <div className="absolute right-3 sm:right-5 bottom-3 sm:bottom-5">
-              <div className="relative">
+            {/* CTA Play button - mobile: in-flow, desktop: absolute positioned */}
+            <div className="mt-auto pt-1.5 sm:pt-0 sm:absolute sm:right-5 sm:bottom-5">
+              <div className="relative inline-block">
                 {/* Glow effect behind button */}
                 <div className="absolute inset-0 bg-yellow-400 rounded-full blur-lg opacity-50 group-hover:opacity-100 transition-opacity" />
                 
                 {/* Button */}
-                <div className="relative px-5 py-2.5 bg-gradient-to-r from-white to-yellow-50 rounded-full text-orange-600 font-bold text-sm sm:text-base shadow-xl group-hover:from-yellow-300 group-hover:to-amber-400 group-hover:text-amber-900 group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300 flex items-center gap-2 border-2 border-yellow-200/50">
-                  <Play size={18} className="fill-current" />
+                <div className="relative px-3 sm:px-5 py-1.5 sm:py-2.5 bg-gradient-to-r from-white to-yellow-50 rounded-full text-orange-600 font-bold text-xs sm:text-base shadow-xl group-hover:from-yellow-300 group-hover:to-amber-400 group-hover:text-amber-900 group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300 flex items-center gap-1 sm:gap-2 border-2 border-yellow-200/50">
+                  <Play size={14} className="fill-current sm:w-[18px] sm:h-[18px]" />
                   <span>Chơi ngay!</span>
-                  <ChevronRight className="group-hover:translate-x-1.5 transition-transform" size={18} />
+                  <ChevronRight className="group-hover:translate-x-1.5 transition-transform w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" />
                 </div>
               </div>
             </div>

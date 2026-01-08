@@ -1,4 +1,4 @@
-import { Inter } from 'next/font/google';
+import { Inter, Quicksand } from 'next/font/google';
 import './globals.css';
 import SessionProvider from '../components/SessionProvider';
 import { ToastProvider } from '../components/Toast/ToastContext';
@@ -7,6 +7,13 @@ import GoogleAnalytics from '../components/Analytics/GoogleAnalytics';
 import { SoundProvider } from '../lib/SoundContext';
 
 const inter = Inter({ subsets: ['latin'] });
+
+// Font Quicksand cho lời nói thân thiện (Cú Soro)
+const quicksand = Quicksand({ 
+  subsets: ['latin', 'vietnamese'],
+  variable: '--font-quicksand',
+  weight: ['400', '500', '600', '700']
+});
 
 export const metadata = {
   metadataBase: new URL('https://sorokid.com'),
@@ -188,7 +195,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="vi">
-      <body className={inter.className}>
+      <body className={`${inter.className} ${quicksand.variable}`}>
         <GoogleAnalytics />
         <SessionProvider>
           <SoundProvider>
