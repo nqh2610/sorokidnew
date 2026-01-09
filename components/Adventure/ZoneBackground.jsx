@@ -238,18 +238,107 @@ const FloatingElement = memo(function FloatingElement({ emoji, position, delay =
 });
 
 /**
- * Animated cloud - bay qua lại từ trái sang phải
+ * Animated cloud - đám mây có hình dạng thực sự
+ * Tạo bằng nhiều hình tròn chồng lên nhau
  */
-const Cloud = memo(function Cloud({ className, delay = 0, duration = 30, direction = 'ltr' }) {
+const Cloud = memo(function Cloud({ size = 'md', delay = 0, duration = 30, direction = 'ltr', top = '10%', color = 'white' }) {
   const animName = direction === 'rtl' ? 'cloudDriftRTL' : 'cloudDrift';
+  
+  // Kích thước mây theo size
+  const sizes = {
+    sm: { scale: 0.6, opacity: 0.5 },
+    md: { scale: 0.8, opacity: 0.6 },
+    lg: { scale: 1, opacity: 0.7 }
+  };
+  const { scale, opacity } = sizes[size] || sizes.md;
+  
   return (
     <div 
-      className={`absolute rounded-full blur-xl pointer-events-none ${className}`}
+      className="absolute pointer-events-none"
       style={{
+        top,
         animation: `${animName} ${duration}s linear infinite`,
-        animationDelay: `${delay}s`
+        animationDelay: `${delay}s`,
+        transform: `scale(${scale})`,
+        opacity
       }}
-    />
+    >
+      {/* Đám mây được tạo từ nhiều hình tròn */}
+      <div className="relative" style={{ width: '120px', height: '50px' }}>
+        {/* Phần chính giữa mây */}
+        <div 
+          className="absolute rounded-full"
+          style={{ 
+            width: '50px', 
+            height: '50px', 
+            left: '35px', 
+            top: '0',
+            backgroundColor: color,
+            boxShadow: `0 0 20px ${color}`
+          }} 
+        />
+        {/* Phần trái */}
+        <div 
+          className="absolute rounded-full"
+          style={{ 
+            width: '40px', 
+            height: '40px', 
+            left: '10px', 
+            top: '10px',
+            backgroundColor: color,
+            boxShadow: `0 0 15px ${color}`
+          }} 
+        />
+        {/* Phần phải */}
+        <div 
+          className="absolute rounded-full"
+          style={{ 
+            width: '45px', 
+            height: '45px', 
+            left: '65px', 
+            top: '8px',
+            backgroundColor: color,
+            boxShadow: `0 0 15px ${color}`
+          }} 
+        />
+        {/* Phần trái nhỏ */}
+        <div 
+          className="absolute rounded-full"
+          style={{ 
+            width: '30px', 
+            height: '30px', 
+            left: '0', 
+            top: '18px',
+            backgroundColor: color,
+            boxShadow: `0 0 10px ${color}`
+          }} 
+        />
+        {/* Phần phải nhỏ */}
+        <div 
+          className="absolute rounded-full"
+          style={{ 
+            width: '35px', 
+            height: '35px', 
+            left: '90px', 
+            top: '15px',
+            backgroundColor: color,
+            boxShadow: `0 0 10px ${color}`
+          }} 
+        />
+        {/* Phần đáy - kết nối tất cả */}
+        <div 
+          className="absolute rounded-full"
+          style={{ 
+            width: '100px', 
+            height: '25px', 
+            left: '10px', 
+            top: '28px',
+            backgroundColor: color,
+            boxShadow: `0 0 15px ${color}`
+          }} 
+        />
+      </div>
+    </div>
   );
 });
 
@@ -355,10 +444,10 @@ function ZoneBackground({ zoneId, progress = 0 }) {
         }}
       />
       
-      {/* ☁️ MÂY BAY QUA LẠI - 3 đám mây với tốc độ khác nhau */}
-      <Cloud className={`${theme.cloudColor} w-40 h-16 top-8`} delay={0} duration={35} direction="ltr" />
-      <Cloud className={`${theme.cloudColor} w-56 h-20 top-24`} delay={10} duration={45} direction="rtl" />
-      <Cloud className={`${theme.cloudColor} w-36 h-14 top-40`} delay={20} duration={40} direction="ltr" />
+      {/* ☁️ MÂY BAY QUA LẠI - 3 đám mây hình dạng thực với tốc độ khác nhau */}
+      <Cloud size="md" top="5%" delay={0} duration={40} direction="ltr" />
+      <Cloud size="lg" top="12%" delay={12} duration={50} direction="rtl" />
+      <Cloud size="sm" top="22%" delay={25} duration={35} direction="ltr" />
       
       {/* 🦋 FLYING ELEMENTS - chim, bướm, lá... bay qua màn hình */}
       {flyingItems.map((item, i) => (
