@@ -14,7 +14,7 @@ import { motion } from 'framer-motion';
 const ZONE_THEMES = {
   // Làng Khởi Đầu - Màu xanh lá tươi, cây cối, mái nhà
   village: {
-    gradient: 'from-green-400 via-emerald-400 to-green-500',
+    gradient: 'from-green-500 via-emerald-500 to-green-600',
     elements: ['🏠', '🌳', '🌻', '🏡', '🌸', '🦋'],
     cloudColor: 'bg-white/40',
     groundColor: 'from-green-600 to-green-700',
@@ -34,7 +34,7 @@ const ZONE_THEMES = {
   
   // Thung Lũng Phép Trừ - Xanh dương nhạt, núi, sương mù
   valley: {
-    gradient: 'from-blue-400 via-cyan-500 to-blue-500',
+    gradient: 'from-blue-500 via-cyan-600 to-blue-600',
     elements: ['🏔️', '⛰️', '🌊', '🦅', '☁️', '❄️'],
     cloudColor: 'bg-white/50',
     groundColor: 'from-blue-600 to-blue-700',
@@ -44,7 +44,7 @@ const ZONE_THEMES = {
   
   // Đồi Bạn Lớn - Vàng cam, đồng cỏ, cầu vồng
   hill: {
-    gradient: 'from-yellow-400 via-orange-400 to-amber-500',
+    gradient: 'from-amber-500 via-orange-500 to-amber-600',
     elements: ['🌈', '🌾', '🌻', '🐝', '🦋', '☀️'],
     cloudColor: 'bg-white/50',
     groundColor: 'from-yellow-600 to-orange-600',
@@ -104,7 +104,7 @@ const ZONE_THEMES = {
   
   // Đỉnh Tia Chớp - Vàng sáng, điện
   'flash-peak': {
-    gradient: 'from-yellow-300 via-amber-400 to-orange-500',
+    gradient: 'from-amber-500 via-amber-600 to-orange-600',
     elements: ['⚡', '✨', '💫', '🌟', '⭐', '🔆'],
     cloudColor: 'bg-yellow-100/50',
     groundColor: 'from-amber-600 to-orange-700',
@@ -114,7 +114,7 @@ const ZONE_THEMES = {
   
   // Lâu Đài Kho Báu - Vàng hoàng kim
   'treasure-castle': {
-    gradient: 'from-amber-300 via-yellow-400 to-orange-500',
+    gradient: 'from-amber-500 via-yellow-600 to-orange-600',
     elements: ['🏆', '💎', '👑', '🎁', '🌟', '💰'],
     cloudColor: 'bg-yellow-100/60',
     groundColor: 'from-amber-700 to-orange-800',
@@ -132,7 +132,7 @@ const ZONE_THEMES = {
     particleColor: '#fda4af'
   },
   'divide-lake': {
-    gradient: 'from-teal-400 via-cyan-500 to-blue-500',
+    gradient: 'from-teal-500 via-cyan-600 to-blue-600',
     elements: ['🏝️', '➗', '🐬', '🌊', '🐠', '🏖️'],
     cloudColor: 'bg-teal-200/40',
     groundColor: 'from-teal-600 to-cyan-700',
@@ -148,7 +148,7 @@ const ZONE_THEMES = {
     particleColor: '#7dd3fc'
   },
   'arena-4ops': {
-    gradient: 'from-red-500 via-orange-500 to-amber-500',
+    gradient: 'from-red-600 via-orange-600 to-amber-600',
     elements: ['🏟️', '⚔️', '🛡️', '🎯', '🏅', '🔥'],
     cloudColor: 'bg-red-200/40',
     groundColor: 'from-red-800 to-orange-800',
@@ -164,7 +164,7 @@ const ZONE_THEMES = {
     particleColor: '#d946ef'
   },
   'speed-4ops': {
-    gradient: 'from-orange-400 via-red-500 to-pink-500',
+    gradient: 'from-orange-600 via-red-600 to-pink-600',
     elements: ['⚡', '🔥', '💥', '⏱️', '🚀', '💫'],
     cloudColor: 'bg-orange-200/40',
     groundColor: 'from-red-700 to-pink-800',
