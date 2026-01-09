@@ -271,90 +271,93 @@ const Cloud = memo(function Cloud({ size = 'md', delay = 0, duration = 30, direc
   const { scale, opacity } = sizes[size] || sizes.md;
   
   return (
+    // Wrapper cho animation di chuyển - KHÔNG có transform khác
     <div 
       className="absolute pointer-events-none"
       style={{
         top,
+        left: '-150px', // Bắt đầu từ ngoài màn hình bên trái
         animation: `${animName} ${duration}s linear infinite`,
         animationDelay: `${delay}s`,
-        transform: `scale(${scale})`,
-        opacity
       }}
     >
-      {/* Đám mây được tạo từ nhiều hình tròn */}
-      <div className="relative" style={{ width: '120px', height: '50px' }}>
-        {/* Phần chính giữa mây */}
-        <div 
-          className="absolute rounded-full"
-          style={{ 
-            width: '50px', 
-            height: '50px', 
-            left: '35px', 
-            top: '0',
-            backgroundColor: color,
-            boxShadow: `0 0 20px ${color}`
-          }} 
-        />
-        {/* Phần trái */}
-        <div 
-          className="absolute rounded-full"
-          style={{ 
-            width: '40px', 
-            height: '40px', 
-            left: '10px', 
-            top: '10px',
-            backgroundColor: color,
-            boxShadow: `0 0 15px ${color}`
-          }} 
-        />
-        {/* Phần phải */}
-        <div 
-          className="absolute rounded-full"
-          style={{ 
-            width: '45px', 
-            height: '45px', 
-            left: '65px', 
-            top: '8px',
-            backgroundColor: color,
-            boxShadow: `0 0 15px ${color}`
-          }} 
-        />
-        {/* Phần trái nhỏ */}
-        <div 
-          className="absolute rounded-full"
-          style={{ 
-            width: '30px', 
-            height: '30px', 
-            left: '0', 
-            top: '18px',
-            backgroundColor: color,
-            boxShadow: `0 0 10px ${color}`
-          }} 
-        />
-        {/* Phần phải nhỏ */}
-        <div 
-          className="absolute rounded-full"
-          style={{ 
-            width: '35px', 
-            height: '35px', 
-            left: '90px', 
-            top: '15px',
-            backgroundColor: color,
-            boxShadow: `0 0 10px ${color}`
-          }} 
-        />
-        {/* Phần đáy - kết nối tất cả */}
-        <div 
-          className="absolute rounded-full"
-          style={{ 
-            width: '100px', 
-            height: '25px', 
-            left: '10px', 
-            top: '28px',
-            backgroundColor: color,
-            boxShadow: `0 0 15px ${color}`
-          }} 
-        />
+      {/* Inner div cho scale - tách riêng để không conflict với animation */}
+      <div style={{ transform: `scale(${scale})`, opacity }}>
+        {/* Đám mây được tạo từ nhiều hình tròn */}
+        <div className="relative" style={{ width: '120px', height: '50px' }}>
+          {/* Phần chính giữa mây */}
+          <div 
+            className="absolute rounded-full"
+            style={{ 
+              width: '50px', 
+              height: '50px', 
+              left: '35px', 
+              top: '0',
+              backgroundColor: color,
+              boxShadow: `0 0 20px ${color}`
+            }} 
+          />
+          {/* Phần trái */}
+          <div 
+            className="absolute rounded-full"
+            style={{ 
+              width: '40px', 
+              height: '40px', 
+              left: '10px', 
+              top: '10px',
+              backgroundColor: color,
+              boxShadow: `0 0 15px ${color}`
+            }} 
+          />
+          {/* Phần phải */}
+          <div 
+            className="absolute rounded-full"
+            style={{ 
+              width: '45px', 
+              height: '45px', 
+              left: '65px', 
+              top: '8px',
+              backgroundColor: color,
+              boxShadow: `0 0 15px ${color}`
+            }} 
+          />
+          {/* Phần trái nhỏ */}
+          <div 
+            className="absolute rounded-full"
+            style={{ 
+              width: '30px', 
+              height: '30px', 
+              left: '0', 
+              top: '18px',
+              backgroundColor: color,
+              boxShadow: `0 0 10px ${color}`
+            }} 
+          />
+          {/* Phần phải nhỏ */}
+          <div 
+            className="absolute rounded-full"
+            style={{ 
+              width: '35px', 
+              height: '35px', 
+              left: '90px', 
+              top: '15px',
+              backgroundColor: color,
+              boxShadow: `0 0 10px ${color}`
+            }} 
+          />
+          {/* Phần đáy - kết nối tất cả */}
+          <div 
+            className="absolute rounded-full"
+            style={{ 
+              width: '100px', 
+              height: '25px', 
+              left: '10px', 
+              top: '28px',
+              backgroundColor: color,
+              boxShadow: `0 0 15px ${color}`
+            }} 
+          />
+        </div>
       </div>
     </div>
   );
@@ -362,16 +365,23 @@ const Cloud = memo(function Cloud({ size = 'md', delay = 0, duration = 30, direc
 
 /**
  * Flying element - chim, bướm, lá... bay qua màn hình
+ * LTR: bay từ trái sang phải, mặt quay phải
+ * RTL: bay từ phải sang trái, mặt quay trái (flip)
  */
 const FlyingElement = memo(function FlyingElement({ emoji, top, delay = 0, duration = 20, direction = 'ltr' }) {
-  const animName = direction === 'rtl' ? 'flyAcrossRTL' : 'flyAcross';
+  const isRTL = direction === 'rtl';
+  
   return (
     <div 
       className="absolute text-2xl sm:text-3xl opacity-60 pointer-events-none select-none"
       style={{
         top,
-        animation: `${animName} ${duration}s linear infinite`,
-        animationDelay: `${delay}s`
+        left: isRTL ? 'auto' : '-10%',
+        right: isRTL ? '-10%' : 'auto',
+        animation: `${isRTL ? 'flyAcrossRTL' : 'flyAcross'} ${duration}s linear infinite`,
+        animationDelay: `${delay}s`,
+        // RTL: flip mặt để bay đúng hướng
+        transform: isRTL ? 'scaleX(-1)' : 'none'
       }}
     >
       {emoji}
@@ -503,59 +513,37 @@ function ZoneBackground({ zoneId, progress = 0 }) {
         
         @keyframes cloudDrift {
           0% { 
-            transform: translateX(-120%); 
+            left: -150px;
           }
           100% { 
-            transform: translateX(calc(100vw + 20%)); 
+            left: 100vw;
           }
         }
         
         @keyframes cloudDriftRTL {
           0% { 
-            transform: translateX(calc(100vw + 20%)); 
+            left: 100vw;
           }
           100% { 
-            transform: translateX(-120%); 
+            left: -150px;
           }
         }
         
         @keyframes flyAcross {
           0% { 
             left: -10%;
-            transform: translateY(0px);
-          }
-          25% {
-            transform: translateY(-15px);
-          }
-          50% {
-            transform: translateY(5px);
-          }
-          75% {
-            transform: translateY(-10px);
           }
           100% { 
             left: 110%;
-            transform: translateY(0px);
           }
         }
         
         @keyframes flyAcrossRTL {
           0% { 
             right: -10%;
-            transform: translateY(0px) scaleX(-1);
-          }
-          25% {
-            transform: translateY(-15px) scaleX(-1);
-          }
-          50% {
-            transform: translateY(5px) scaleX(-1);
-          }
-          75% {
-            transform: translateY(-10px) scaleX(-1);
           }
           100% { 
             right: 110%;
-            transform: translateY(0px) scaleX(-1);
           }
         }
       `}</style>
