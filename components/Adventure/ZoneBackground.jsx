@@ -133,8 +133,9 @@ const ZONE_THEMES = {
     particleColor: '#fde047' // yellow-300
   },
   
-  // === MULDIV ZONES ===
-  'multiply-cave': {
+  // === MULDIV ZONES === (zoneId khớp với config/adventure-stages-muldiv.config.js)
+  // Hang Động Phép Nhân - Đỏ cam, hang động, lửa
+  'cave-multiply': {
     gradient: 'from-rose-500 via-red-500 to-orange-500',
     elements: ['🌋', '✖️', '🔥', '💎', '⛏️', '🦎'],
     flyingElements: ['🔥', '🦇'],
@@ -143,16 +144,18 @@ const ZONE_THEMES = {
     accentColor: 'text-rose-200',
     particleColor: '#fda4af'
   },
-  'divide-lake': {
+  // Hồ Phép Chia Cơ Bản - Xanh teal, hồ nước, cá heo
+  'lake-divide-basic': {
     gradient: 'from-teal-500 via-cyan-600 to-blue-600',
     elements: ['🏝️', '➗', '🐬', '🌊', '🐠', '🏖️'],
-    flyingElements: ['🐦', '🦛'],
+    flyingElements: ['🐦', '🦢'],
     cloudColor: 'bg-teal-200/40',
     groundColor: 'from-teal-600 to-cyan-700',
     accentColor: 'text-teal-200',
     particleColor: '#5eead4'
   },
-  'divide-advanced': {
+  // Hồ Phép Chia Nâng Cao - Xanh đậm, băng giá
+  'lake-divide-advanced': {
     gradient: 'from-sky-500 via-blue-600 to-indigo-600',
     elements: ['🌀', '➗', '🐳', '💧', '🧊', '❄️'],
     flyingElements: ['❄️', '🐦'],
@@ -161,7 +164,8 @@ const ZONE_THEMES = {
     accentColor: 'text-sky-200',
     particleColor: '#7dd3fc'
   },
-  'arena-4ops': {
+  // Đấu Trường 4 Phép Tính - Đỏ cam, năng lượng
+  'arena-four': {
     gradient: 'from-red-600 via-orange-600 to-amber-600',
     elements: ['🏟️', '⚔️', '🛡️', '🎯', '🏅', '🔥'],
     flyingElements: ['🔥', '⭐'],
@@ -170,7 +174,8 @@ const ZONE_THEMES = {
     accentColor: 'text-red-200',
     particleColor: '#f87171'
   },
-  'mental-4ops': {
+  // Tháp Tính Nhẩm Nhân Chia - Tím hồng, trí tuệ
+  'mental-muldiv': {
     gradient: 'from-fuchsia-500 via-purple-600 to-violet-700',
     elements: ['🧠', '💜', '🔮', '✨', '🌌', '💎'],
     flyingElements: ['✨', '💫'],
@@ -179,7 +184,8 @@ const ZONE_THEMES = {
     accentColor: 'text-purple-200',
     particleColor: '#d946ef'
   },
-  'speed-4ops': {
+  // Đền Tốc Độ Nhân Chia - Cam đỏ, năng lượng cao
+  'speed-muldiv': {
     gradient: 'from-orange-600 via-red-600 to-pink-600',
     elements: ['⚡', '🔥', '💥', '⏱️', '🚀', '💫'],
     flyingElements: ['🚀', '⚡'],
@@ -188,6 +194,7 @@ const ZONE_THEMES = {
     accentColor: 'text-orange-200',
     particleColor: '#fb7185'
   },
+  // Đỉnh Hỗn Hợp - Tím hồng, cầu vồng
   'mixed-peak': {
     gradient: 'from-violet-500 via-purple-600 to-pink-600',
     elements: ['🌈', '🎆', '✨', '💫', '🌟', '🎇'],
@@ -197,6 +204,7 @@ const ZONE_THEMES = {
     accentColor: 'text-violet-200',
     particleColor: '#c084fc'
   },
+  // Lâu Đài Tối Thượng - Vàng hoàng kim
   'supreme-castle': {
     gradient: 'from-amber-400 via-yellow-500 to-orange-600',
     elements: ['👑', '🏆', '💎', '🎊', '🌟', '🎖️'],

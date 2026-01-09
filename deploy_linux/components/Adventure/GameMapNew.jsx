@@ -16,9 +16,11 @@ import SoundSettingsPanel from '@/components/SoundSettings/SoundSettingsPanel';
 // Import narrative config
 import { STORY_OVERVIEW, GAMEPLAY_NARRATIVES } from '@/config/narrative.config';
 
-// 🎨 Import game decorations
+// 🎨 Import game decorations & effects
 import MapDecorations from './MapDecorations';
 import TreasureChestReveal from './TreasureChestReveal';
+import ZoneBackground from './ZoneBackground';
+import RewardEffects, { StageCompleteEffect } from './RewardEffects';
 
 // ============================================================
 // 🎮 GAME MAP - Đi Tìm Kho Báu Tri Thức
@@ -1764,6 +1766,12 @@ export default function GameMapNew({
   // 🏆 State cho Treasure Chest Reveal
   const [showTreasureReveal, setShowTreasureReveal] = useState(false);
   const [treasureCertType, setTreasureCertType] = useState('addsub'); // 'addsub' | 'complete'
+  
+  // 🎉 State cho Reward Effects
+  const [showRewardEffect, setShowRewardEffect] = useState(false);
+  const [rewardType, setRewardType] = useState('complete'); // 'complete' | 'star' | 'coin' | 'levelUp'
+  const [rewardStars, setRewardStars] = useState(0);
+  const [rewardMessage, setRewardMessage] = useState('');
 
   // 🚀 PERF: useMemo để tránh re-create arrays mỗi render
   const stages = useMemo(() =>
@@ -1955,6 +1963,14 @@ export default function GameMapNew({
     setCuSoroVisible(true);
   }, []);
   
+  // 🎉 Function để trigger reward effect - có thể gọi từ bên ngoài
+  const triggerReward = useCallback(({ type = 'complete', stars = 0, message = '' }) => {
+    setRewardType(type);
+    setRewardStars(stars);
+    setRewardMessage(message);
+    setShowRewardEffect(true);
+  }, []);
+  
   // 🚀 PERF: useMemo cho computed stats - tránh tính lại mỗi render
   const { totalStages, completedStagesCount, mapProgress } = useMemo(() => {
     const total = stages.length;
@@ -2106,50 +2122,12 @@ export default function GameMapNew({
   
   return (
     <div 
-      className="min-h-screen min-h-[100dvh] bg-gradient-to-b from-cyan-400 via-blue-500 to-indigo-600 relative overflow-hidden"
+      className="min-h-screen min-h-[100dvh] relative overflow-hidden"
       {...swipeHandlers}
       style={{ touchAction: 'pan-y' }} // Allow vertical scroll, capture horizontal swipe
     >
-      {/* 🚀 OPTIMIZED: Background decorations with CSS animations */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* 🚀 REDUCED: Only 8 stars with CSS animation - fewer on mobile */}
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute text-yellow-200/70 animate-pulse hidden xs:block"
-            style={{ 
-              left: `${8 + i * 11}%`, 
-              top: `${10 + (i % 4) * 22}%`, 
-              fontSize: 8 + (i % 3) * 5,
-              animationDelay: `${i * 0.3}s`,
-              animationDuration: `${2 + (i % 3)}s`
-            }}
-          >
-            ✦
-          </div>
-        ))}
-        
-        {/* 🚀 SIMPLIFIED: 2 clouds with CSS animation - hidden on very small screens */}
-        <div
-          className="absolute text-5xl sm:text-6xl md:text-7xl opacity-20 animate-cloud-slow hidden xs:block"
-          style={{ top: '8%', left: '-10%' }}
-        >
-          ☁️
-        </div>
-        <div
-          className="absolute text-4xl sm:text-5xl opacity-15 animate-cloud-slow hidden sm:block"
-          style={{ top: '30%', left: '-5%', animationDelay: '10s' }}
-        >
-          ☁️
-        </div>
-        
-        {/* 🚀 REDUCED: Only 3 floating icons with simpler animations - responsive sizes */}
-        <div className="absolute text-xl xs:text-2xl sm:text-3xl animate-float hidden xs:block" style={{ top: '15%', right: '10%' }}>💎</div>
-        <div className="absolute text-2xl xs:text-3xl sm:text-4xl animate-float hidden xs:block" style={{ top: '60%', right: '5%', animationDelay: '1s' }}>🏆</div>
-        <div className="absolute text-lg xs:text-xl sm:text-2xl animate-float hidden sm:block" style={{ top: '40%', left: '8%', animationDelay: '2s' }}>✨</div>
-        
-        {/* 🚀 REMOVED: Rising bubbles, shimmer lines - too heavy */}
-      </div>
+      {/* 🎨 Zone Background - Thay đổi theo zone - bao gồm gradient, clouds, decorations */}
+      <ZoneBackground zoneId={activeZoneId} progress={zoneProgress[activeZoneId]?.percent || 0} />
       
       <GameHeader totalStages={totalStages} completedStages={completedStagesCount} userStats={userStats} session={session} />
       
@@ -2224,6 +2202,15 @@ export default function GameMapNew({
       
       {/* 🎨 Map Decorations - Icon trang trí nhẹ nhàng */}
       <MapDecorations />
+      
+      {/* 🎉 Reward Effects - Hiệu ứng thưởng khi hoàn thành */}
+      <RewardEffects 
+        show={showRewardEffect} 
+        type={rewardType}
+        starsEarned={rewardStars}
+        message={rewardMessage}
+        onComplete={() => setShowRewardEffect(false)} 
+      />
       
       {/* 🏆 Treasure Chest Reveal - Hiệu ứng mở kho báu */}
       <TreasureChestReveal
