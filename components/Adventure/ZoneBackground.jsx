@@ -16,6 +16,7 @@ const ZONE_THEMES = {
   village: {
     gradient: 'from-green-500 via-emerald-500 to-green-600',
     elements: ['🏠', '🌳', '🌻', '🏡', '🌸', '🦋'],
+    flyingElements: ['🦋', '🐦'],
     cloudColor: 'bg-white/40',
     groundColor: 'from-green-600 to-green-700',
     accentColor: 'text-emerald-200',
@@ -26,6 +27,7 @@ const ZONE_THEMES = {
   forest: {
     gradient: 'from-emerald-500 via-green-600 to-emerald-700',
     elements: ['🌲', '🍃', '🌿', '🦊', '🐿️', '🍄'],
+    flyingElements: ['🍃', '🦜'],
     cloudColor: 'bg-emerald-200/30',
     groundColor: 'from-emerald-700 to-emerald-800',
     accentColor: 'text-green-200',
@@ -36,6 +38,7 @@ const ZONE_THEMES = {
   valley: {
     gradient: 'from-blue-500 via-cyan-600 to-blue-600',
     elements: ['🏔️', '⛰️', '🌊', '🦅', '☁️', '❄️'],
+    flyingElements: ['🦅', '❄️'],
     cloudColor: 'bg-white/50',
     groundColor: 'from-blue-600 to-blue-700',
     accentColor: 'text-cyan-200',
@@ -46,6 +49,7 @@ const ZONE_THEMES = {
   hill: {
     gradient: 'from-amber-500 via-orange-500 to-amber-600',
     elements: ['🌈', '🌾', '🌻', '🐝', '🦋', '☀️'],
+    flyingElements: ['🐝', '🦋'],
     cloudColor: 'bg-white/50',
     groundColor: 'from-yellow-600 to-orange-600',
     accentColor: 'text-yellow-200',
@@ -56,6 +60,7 @@ const ZONE_THEMES = {
   tower: {
     gradient: 'from-purple-500 via-pink-500 to-violet-600',
     elements: ['🏛️', '✨', '💫', '🔮', '🌙', '⭐'],
+    flyingElements: ['✨', '💫'],
     cloudColor: 'bg-purple-200/40',
     groundColor: 'from-purple-700 to-violet-800',
     accentColor: 'text-pink-200',
@@ -66,6 +71,7 @@ const ZONE_THEMES = {
   'city-numbers': {
     gradient: 'from-cyan-500 via-blue-500 to-indigo-500',
     elements: ['🏙️', '🌃', '🔢', '💯', '🏢', '✨'],
+    flyingElements: ['✨', '🚀'],
     cloudColor: 'bg-blue-200/40',
     groundColor: 'from-blue-700 to-indigo-700',
     accentColor: 'text-cyan-200',
@@ -76,6 +82,7 @@ const ZONE_THEMES = {
   kingdom: {
     gradient: 'from-indigo-500 via-purple-600 to-violet-700',
     elements: ['🏰', '👑', '🗝️', '🦁', '🎺', '⚜️'],
+    flyingElements: ['🐦', '⭐'],
     cloudColor: 'bg-violet-200/40',
     groundColor: 'from-indigo-800 to-purple-900',
     accentColor: 'text-violet-200',
@@ -86,6 +93,7 @@ const ZONE_THEMES = {
   'mental-tower': {
     gradient: 'from-violet-500 via-purple-600 to-fuchsia-600',
     elements: ['🧠', '💭', '🔮', '✨', '🌌', '💫'],
+    flyingElements: ['✨', '💭'],
     cloudColor: 'bg-fuchsia-200/30',
     groundColor: 'from-purple-800 to-fuchsia-900',
     accentColor: 'text-fuchsia-200',
@@ -96,6 +104,7 @@ const ZONE_THEMES = {
   'speed-temple': {
     gradient: 'from-orange-500 via-red-500 to-rose-600',
     elements: ['⚡', '🔥', '💥', '🌟', '⏱️', '🚀'],
+    flyingElements: ['🚀', '⚡'],
     cloudColor: 'bg-orange-200/40',
     groundColor: 'from-red-700 to-rose-800',
     accentColor: 'text-orange-200',
@@ -106,6 +115,7 @@ const ZONE_THEMES = {
   'flash-peak': {
     gradient: 'from-amber-500 via-amber-600 to-orange-600',
     elements: ['⚡', '✨', '💫', '🌟', '⭐', '🔆'],
+    flyingElements: ['⚡', '⭐'],
     cloudColor: 'bg-yellow-100/50',
     groundColor: 'from-amber-600 to-orange-700',
     accentColor: 'text-yellow-100',
@@ -116,6 +126,7 @@ const ZONE_THEMES = {
   'treasure-castle': {
     gradient: 'from-amber-500 via-yellow-600 to-orange-600',
     elements: ['🏆', '💎', '👑', '🎁', '🌟', '💰'],
+    flyingElements: ['🌟', '💎'],
     cloudColor: 'bg-yellow-100/60',
     groundColor: 'from-amber-700 to-orange-800',
     accentColor: 'text-amber-100',
@@ -126,6 +137,7 @@ const ZONE_THEMES = {
   'multiply-cave': {
     gradient: 'from-rose-500 via-red-500 to-orange-500',
     elements: ['🌋', '✖️', '🔥', '💎', '⛏️', '🦎'],
+    flyingElements: ['🔥', '🦇'],
     cloudColor: 'bg-rose-200/40',
     groundColor: 'from-rose-700 to-red-800',
     accentColor: 'text-rose-200',
@@ -134,6 +146,7 @@ const ZONE_THEMES = {
   'divide-lake': {
     gradient: 'from-teal-500 via-cyan-600 to-blue-600',
     elements: ['🏝️', '➗', '🐬', '🌊', '🐠', '🏖️'],
+    flyingElements: ['🐦', '🦛'],
     cloudColor: 'bg-teal-200/40',
     groundColor: 'from-teal-600 to-cyan-700',
     accentColor: 'text-teal-200',
@@ -142,6 +155,7 @@ const ZONE_THEMES = {
   'divide-advanced': {
     gradient: 'from-sky-500 via-blue-600 to-indigo-600',
     elements: ['🌀', '➗', '🐳', '💧', '🧊', '❄️'],
+    flyingElements: ['❄️', '🐦'],
     cloudColor: 'bg-sky-200/40',
     groundColor: 'from-blue-700 to-indigo-800',
     accentColor: 'text-sky-200',
@@ -150,6 +164,7 @@ const ZONE_THEMES = {
   'arena-4ops': {
     gradient: 'from-red-600 via-orange-600 to-amber-600',
     elements: ['🏟️', '⚔️', '🛡️', '🎯', '🏅', '🔥'],
+    flyingElements: ['🔥', '⭐'],
     cloudColor: 'bg-red-200/40',
     groundColor: 'from-red-800 to-orange-800',
     accentColor: 'text-red-200',
@@ -158,6 +173,7 @@ const ZONE_THEMES = {
   'mental-4ops': {
     gradient: 'from-fuchsia-500 via-purple-600 to-violet-700',
     elements: ['🧠', '💜', '🔮', '✨', '🌌', '💎'],
+    flyingElements: ['✨', '💫'],
     cloudColor: 'bg-fuchsia-200/30',
     groundColor: 'from-purple-800 to-violet-900',
     accentColor: 'text-purple-200',
@@ -166,6 +182,7 @@ const ZONE_THEMES = {
   'speed-4ops': {
     gradient: 'from-orange-600 via-red-600 to-pink-600',
     elements: ['⚡', '🔥', '💥', '⏱️', '🚀', '💫'],
+    flyingElements: ['🚀', '⚡'],
     cloudColor: 'bg-orange-200/40',
     groundColor: 'from-red-700 to-pink-800',
     accentColor: 'text-orange-200',
@@ -174,6 +191,7 @@ const ZONE_THEMES = {
   'mixed-peak': {
     gradient: 'from-violet-500 via-purple-600 to-pink-600',
     elements: ['🌈', '🎆', '✨', '💫', '🌟', '🎇'],
+    flyingElements: ['✨', '🦋'],
     cloudColor: 'bg-violet-200/40',
     groundColor: 'from-purple-800 to-pink-800',
     accentColor: 'text-violet-200',
@@ -182,6 +200,7 @@ const ZONE_THEMES = {
   'supreme-castle': {
     gradient: 'from-amber-400 via-yellow-500 to-orange-600',
     elements: ['👑', '🏆', '💎', '🎊', '🌟', '🎖️'],
+    flyingElements: ['🌟', '💎'],
     cloudColor: 'bg-yellow-100/60',
     groundColor: 'from-amber-700 to-orange-800',
     accentColor: 'text-amber-100',
@@ -193,6 +212,7 @@ const ZONE_THEMES = {
 const DEFAULT_THEME = {
   gradient: 'from-blue-400 via-blue-500 to-indigo-600',
   elements: ['⭐', '✨', '🌟', '💫', '🎯', '🎮'],
+  flyingElements: ['🦋', '🐦'],
   cloudColor: 'bg-white/40',
   groundColor: 'from-blue-700 to-indigo-800',
   accentColor: 'text-blue-200',
@@ -218,17 +238,37 @@ const FloatingElement = memo(function FloatingElement({ emoji, position, delay =
 });
 
 /**
- * Animated cloud
+ * Animated cloud - bay qua lại từ trái sang phải
  */
-const Cloud = memo(function Cloud({ className, delay = 0 }) {
+const Cloud = memo(function Cloud({ className, delay = 0, duration = 30, direction = 'ltr' }) {
+  const animName = direction === 'rtl' ? 'cloudDriftRTL' : 'cloudDrift';
   return (
     <div 
       className={`absolute rounded-full blur-xl pointer-events-none ${className}`}
       style={{
-        animation: `cloudDrift ${30 + delay * 5}s linear infinite`,
-        animationDelay: `${delay * 3}s`
+        animation: `${animName} ${duration}s linear infinite`,
+        animationDelay: `${delay}s`
       }}
     />
+  );
+});
+
+/**
+ * Flying element - chim, bướm, lá... bay qua màn hình
+ */
+const FlyingElement = memo(function FlyingElement({ emoji, top, delay = 0, duration = 20, direction = 'ltr' }) {
+  const animName = direction === 'rtl' ? 'flyAcrossRTL' : 'flyAcross';
+  return (
+    <div 
+      className="absolute text-2xl sm:text-3xl opacity-60 pointer-events-none select-none"
+      style={{
+        top,
+        animation: `${animName} ${duration}s linear infinite`,
+        animationDelay: `${delay}s`
+      }}
+    >
+      {emoji}
+    </div>
   );
 });
 
@@ -290,6 +330,16 @@ function ZoneBackground({ zoneId, progress = 0 }) {
       { position: { right: '7%', bottom: '45%' }, delay: 1.5 }
     ];
   }, []);
+
+  // Flying elements - mây, chim, bướm bay qua màn hình
+  const flyingItems = useMemo(() => {
+    const flyingEmojis = theme.flyingElements || ['🦋', '🐦'];
+    return [
+      { emoji: flyingEmojis[0], top: '12%', delay: 0, duration: 25, direction: 'ltr' },
+      { emoji: flyingEmojis[1] || flyingEmojis[0], top: '35%', delay: 8, duration: 30, direction: 'rtl' },
+      { emoji: flyingEmojis[0], top: '55%', delay: 15, duration: 28, direction: 'ltr' },
+    ];
+  }, [theme.flyingElements]);
   
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
@@ -305,8 +355,15 @@ function ZoneBackground({ zoneId, progress = 0 }) {
         }}
       />
       
-      {/* Chỉ 1 cloud đại diện */}
-      <Cloud className={`${theme.cloudColor} w-48 h-24 top-16 -left-16`} delay={0} />
+      {/* ☁️ MÂY BAY QUA LẠI - 3 đám mây với tốc độ khác nhau */}
+      <Cloud className={`${theme.cloudColor} w-40 h-16 top-8`} delay={0} duration={35} direction="ltr" />
+      <Cloud className={`${theme.cloudColor} w-56 h-20 top-24`} delay={10} duration={45} direction="rtl" />
+      <Cloud className={`${theme.cloudColor} w-36 h-14 top-40`} delay={20} duration={40} direction="ltr" />
+      
+      {/* 🦋 FLYING ELEMENTS - chim, bướm, lá... bay qua màn hình */}
+      {flyingItems.map((item, i) => (
+        <FlyingElement key={`fly-${i}`} {...item} />
+      ))}
       
       {/* Floating decorative elements - đã giảm xuống 4 */}
       {elements.map((el, i) => (
@@ -317,8 +374,6 @@ function ZoneBackground({ zoneId, progress = 0 }) {
       {sparkles.map((sparkle, i) => (
         <Sparkle key={i} color={theme.particleColor} {...sparkle} />
       ))}
-      
-      {/* XÓA: Ground gradient - gây khó chịu ở footer */}
       
       {/* Progress glow effect - chỉ khi progress > 70% */}
       {progress > 70 && (
@@ -347,10 +402,59 @@ function ZoneBackground({ zoneId, progress = 0 }) {
         
         @keyframes cloudDrift {
           0% { 
-            transform: translateX(-100%); 
+            transform: translateX(-120%); 
           }
           100% { 
-            transform: translateX(100vw); 
+            transform: translateX(calc(100vw + 20%)); 
+          }
+        }
+        
+        @keyframes cloudDriftRTL {
+          0% { 
+            transform: translateX(calc(100vw + 20%)); 
+          }
+          100% { 
+            transform: translateX(-120%); 
+          }
+        }
+        
+        @keyframes flyAcross {
+          0% { 
+            left: -10%;
+            transform: translateY(0px);
+          }
+          25% {
+            transform: translateY(-15px);
+          }
+          50% {
+            transform: translateY(5px);
+          }
+          75% {
+            transform: translateY(-10px);
+          }
+          100% { 
+            left: 110%;
+            transform: translateY(0px);
+          }
+        }
+        
+        @keyframes flyAcrossRTL {
+          0% { 
+            right: -10%;
+            transform: translateY(0px) scaleX(-1);
+          }
+          25% {
+            transform: translateY(-15px) scaleX(-1);
+          }
+          50% {
+            transform: translateY(5px) scaleX(-1);
+          }
+          75% {
+            transform: translateY(-10px) scaleX(-1);
+          }
+          100% { 
+            right: 110%;
+            transform: translateY(0px) scaleX(-1);
           }
         }
       `}</style>
