@@ -321,6 +321,7 @@ function CuSoro({ message, isVisible, onToggle }) {
   // Animation states cho cú sinh động hơn
   const [isBlinking, setIsBlinking] = useState(false);
   const [isWaving, setIsWaving] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false); // Trạng thái thu nhỏ
   const [autoHideProgress, setAutoHideProgress] = useState(100); // Progress bar 100% -> 0%
   const autoHideTimerRef = useRef(null);
   const progressIntervalRef = useRef(null);
@@ -388,66 +389,142 @@ function CuSoro({ message, isVisible, onToggle }) {
   useEffect(() => {
     if (message && isVisible) {
       setIsWaving(true);
+      setIsMinimized(false); // Tự động mở rộng khi có message mới
       const timer = setTimeout(() => setIsWaving(false), 1000);
       return () => clearTimeout(timer);
     }
   }, [message, isVisible]);
+
+  // Toggle minimize state
+  const handleMinimize = (e) => {
+    e.stopPropagation();
+    setIsMinimized(!isMinimized);
+  };
+  
+  // Khi minimize thì hiện icon nhỏ ở góc
+  if (isMinimized) {
+    return (
+      <motion.button
+        className="fixed bottom-3 right-3 z-50 w-10 h-10 bg-gradient-to-br from-amber-300 to-orange-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white"
+        onClick={handleMinimize}
+        whileTap={{ scale: 0.95 }}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: 'spring' }}
+      >
+        <span className="text-lg">🦉</span>
+        {/* Badge khi có message chưa đọc */}
+        {message && (
+          <motion.div 
+            className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white flex items-center justify-center"
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ duration: 0.5, repeat: Infinity }}
+          >
+            <span className="text-white text-[8px] font-bold">!</span>
+          </motion.div>
+        )}
+      </motion.button>
+    );
+  }
   
   return (
     <motion.div
-      className="fixed bottom-6 right-4 sm:bottom-8 sm:right-6 z-50"
+      className="fixed bottom-4 right-3 xs:bottom-6 xs:right-4 sm:bottom-8 sm:right-6 z-50"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.3, ease: 'easeOut', delay: 0.3 }}
     >
-      {/* Speech bubble - Điều chỉnh vị trí để không bị cắt */}
+      {/* Speech bubble - Bong bóng thoại đơn giản, sạch sẽ */}
       <AnimatePresence>
         {isVisible && message && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: 10 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            exit={{ opacity: 0, scale: 0.9, x: 10 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 10 }}
+            transition={{ duration: 0.2 }}
             onClick={() => onToggle()}
-            className="absolute bottom-full right-0 mb-3 w-60 sm:w-72 md:w-80 lg:w-96 bg-white rounded-2xl shadow-2xl cursor-pointer hover:bg-amber-50 transition-colors overflow-hidden"
-            style={{ 
-              border: '3px solid #fbbf24',
-              transformOrigin: 'bottom right'
-            }}
+            className="absolute bottom-16 xs:bottom-20 sm:bottom-24 right-0 w-52 xs:w-60 sm:w-72 cursor-pointer"
           >
-            {/* Progress bar - hiển thị thời gian còn lại */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-amber-100">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-amber-400 to-orange-500"
-                style={{ width: `${autoHideProgress}%` }}
-                transition={{ duration: 0.1 }}
-              />
+            {/* Main bubble */}
+            <div 
+              className="relative bg-gradient-to-br from-white to-amber-50 rounded-2xl xs:rounded-3xl p-2.5 xs:p-3 sm:p-4 hover:from-amber-50 hover:to-orange-50 transition-all"
+              style={{
+                boxShadow: '0 4px 20px rgba(251, 191, 36, 0.25), 0 2px 8px rgba(0,0,0,0.1)',
+                border: '2px solid #fcd34d'
+              }}
+            >
+              {/* Progress bar */}
+              <div className="absolute top-1.5 xs:top-2 left-2.5 right-2.5 xs:left-3 xs:right-3 sm:left-4 sm:right-4 h-1 xs:h-1.5 bg-amber-100 rounded-full overflow-hidden">
+                <motion.div 
+                  className="h-full bg-gradient-to-r from-amber-400 to-orange-400 rounded-full"
+                  style={{ width: `${autoHideProgress}%` }}
+                />
+              </div>
+              
+              {/* Message */}
+              <p className="text-gray-700 text-xs xs:text-sm sm:text-base font-medium leading-relaxed mt-1.5 xs:mt-2">
+                {message}
+              </p>
+              
+              {/* Footer */}
+              <div className="flex items-center justify-between mt-1.5 xs:mt-2 sm:mt-3 text-[10px] xs:text-xs text-gray-400">
+                <span>👆 Chạm để đóng</span>
+                <span className="text-amber-600 font-bold">🦉 Cú Soro</span>
+              </div>
             </div>
             
-            {/* Mũi tên chỉ xuống */}
-            <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white border-r-3 border-b-3 border-amber-400 rotate-45" />
-            
-            <div className="p-3 sm:p-4 pt-4 sm:pt-5">
-              <p className="text-gray-700 text-sm sm:text-base md:text-lg font-medium leading-relaxed font-[var(--font-quicksand)]">{message}</p>
-              <div className="flex items-center justify-between mt-2 sm:mt-3">
-                <span className="text-xs sm:text-sm text-gray-400 flex items-center gap-1 font-[var(--font-quicksand)]">
-                  <span>👆</span> Chạm để đóng
-                </span>
-                <span className="text-amber-600 text-xs sm:text-sm font-semibold font-[var(--font-quicksand)]">🦉 Cú Soro</span>
-              </div>
+            {/* Tail - Đuôi bong bóng kiểu comic với 3 hình tròn - dịch sang trái để không bị Cú che */}
+            <div className="absolute -bottom-2 right-12 xs:right-14 sm:right-16 flex items-end gap-1">
+              <motion.div 
+                className="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 bg-gradient-to-br from-white to-amber-50 rounded-full"
+                style={{ 
+                  boxShadow: '0 2px 6px rgba(251, 191, 36, 0.3)',
+                  border: '2px solid #fcd34d'
+                }}
+                animate={{ y: [0, -1, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+              />
+              <motion.div 
+                className="w-2 h-2 xs:w-2.5 xs:h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-white to-amber-50 rounded-full -mb-1"
+                style={{ 
+                  boxShadow: '0 2px 4px rgba(251, 191, 36, 0.3)',
+                  border: '2px solid #fcd34d'
+                }}
+                animate={{ y: [0, -1, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: 0.1 }}
+              />
+              <motion.div 
+                className="w-1.5 h-1.5 xs:w-1.5 xs:h-1.5 sm:w-2 sm:h-2 bg-gradient-to-br from-white to-amber-50 rounded-full -mb-2"
+                style={{ 
+                  boxShadow: '0 1px 3px rgba(251, 191, 36, 0.3)',
+                  border: '1.5px solid #fcd34d'
+                }}
+                animate={{ y: [0, -1, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+              />
             </div>
           </motion.div>
         )}
       </AnimatePresence>
       
       {/* Cú character với animations sinh động */}
-      <motion.button
-        onClick={onToggle}
+      <motion.div
         whileTap={{ scale: 0.95 }}
         animate={isWaving ? { rotate: [0, -5, 5, -5, 0] } : {}}
         transition={{ duration: 0.5 }}
         className="relative"
       >
+        {/* Nút minimize - ẩn cú để xem nội dung */}
+        <motion.button
+          onClick={handleMinimize}
+          className="absolute -top-1 -left-1 w-5 h-5 xs:w-6 xs:h-6 bg-gray-700/80 hover:bg-gray-600 rounded-full flex items-center justify-center z-10 shadow-md"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          title="Thu nhỏ Cú Soro"
+        >
+          <span className="text-white text-[10px] xs:text-xs">✕</span>
+        </motion.button>
+        
         {/* Glow effect */}
         <motion.div 
           className="absolute inset-0 rounded-full bg-amber-400/30 blur-xl"
@@ -456,36 +533,37 @@ function CuSoro({ message, isVisible, onToggle }) {
           style={{ width: '130%', height: '130%', left: '-15%', top: '-15%' }}
         />
         
-        {/* Main body */}
-        <motion.div 
-          className="relative w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-amber-300 via-amber-400 to-orange-500 rounded-full flex items-center justify-center shadow-2xl border-3 border-white"
+        {/* Main body - nhỏ hơn trên mobile */}
+        <motion.button
+          onClick={onToggle}
+          className="relative w-14 h-14 xs:w-16 xs:h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-amber-300 via-amber-400 to-orange-500 rounded-full flex items-center justify-center shadow-2xl border-3 border-white"
           animate={{ y: [0, -3, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         >
           {/* Cú emoji với hiệu ứng chớp mắt */}
-          <span className="text-3xl sm:text-4xl" style={{ filter: isBlinking ? 'brightness(0.8)' : 'none' }}>
+          <span className="text-2xl xs:text-3xl sm:text-4xl" style={{ filter: isBlinking ? 'brightness(0.8)' : 'none' }}>
             🦉
           </span>
-        </motion.div>
+        </motion.button>
         
         {/* Name tag */}
-        <div className="absolute -bottom-6 left-1/2 -translate-x-1/2">
-          <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[9px] sm:text-[10px] font-bold px-2 py-1 rounded-full shadow-lg whitespace-nowrap">
-            {message && !isVisible ? '👆 Chạm để đọc' : 'Cú Soro'}
+        <div className="absolute -bottom-5 xs:-bottom-6 left-1/2 -translate-x-1/2">
+          <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[8px] xs:text-[9px] sm:text-[10px] font-bold px-1.5 xs:px-2 py-0.5 xs:py-1 rounded-full shadow-lg whitespace-nowrap">
+            {message && !isVisible ? '👆 Đọc' : 'Cú Soro'}
           </span>
         </div>
         
         {/* Notification badge - khi có message nhưng đang ẩn */}
         {message && !isVisible && (
           <motion.div 
-            className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full border-2 border-white flex items-center justify-center shadow-lg"
+            className="absolute -top-1 -right-1 w-5 h-5 xs:w-6 xs:h-6 bg-red-500 rounded-full border-2 border-white flex items-center justify-center shadow-lg"
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 0.5, repeat: Infinity }}
           >
-            <span className="text-white text-xs font-bold">!</span>
+            <span className="text-white text-[10px] xs:text-xs font-bold">!</span>
           </motion.div>
         )}
-      </motion.button>
+      </motion.div>
     </motion.div>
   );
 }
@@ -550,31 +628,31 @@ const StageNode = memo(function StageNode({ stage, status, onClick, index }) {
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: index * 0.03, duration: 0.2, ease: 'easeOut' }} // 🚀 Faster stagger, no spring
     >
-      {/* Current indicator - bouncing arrow - 🚀 CSS animation instead */}
+      {/* Current indicator - bouncing arrow - 🚀 CSS animation instead - LARGER for mobile */}
       {isCurrent && (
-        <div className="absolute -top-8 xs:-top-10 sm:-top-12 md:-top-14 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-          <div className="flex items-center justify-center gap-0.5 xs:gap-1 px-2 xs:px-2.5 sm:px-3 md:px-4 py-1 xs:py-1.5 sm:py-2 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full shadow-lg border-2 border-white whitespace-nowrap">
-            <span className="text-[10px] xs:text-xs sm:text-sm md:text-base">🎮</span>
-            <span className="text-[9px] xs:text-[11px] sm:text-xs md:text-sm font-black text-white tracking-tight">CHƠI!</span>
+        <div className="absolute -top-10 xs:-top-12 sm:-top-14 md:-top-16 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+          <div className="flex items-center justify-center gap-1 px-3 xs:px-3.5 sm:px-4 md:px-5 py-1.5 xs:py-2 sm:py-2.5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full shadow-lg border-2 border-white whitespace-nowrap">
+            <span className="text-sm xs:text-base sm:text-lg md:text-xl">🎮</span>
+            <span className="text-xs xs:text-sm sm:text-base md:text-lg font-black text-white tracking-tight">CHƠI!</span>
           </div>
-          <div className="w-0 h-0 border-l-4 xs:border-l-5 sm:border-l-6 md:border-l-8 border-r-4 xs:border-r-5 sm:border-r-6 md:border-r-8 border-t-4 xs:border-t-5 sm:border-t-6 md:border-t-8 border-transparent border-t-orange-500 mx-auto" />
+          <div className="w-0 h-0 border-l-6 xs:border-l-7 sm:border-l-8 md:border-l-10 border-r-6 xs:border-r-7 sm:border-r-8 md:border-r-10 border-t-6 xs:border-t-7 sm:border-t-8 md:border-t-10 border-transparent border-t-orange-500 mx-auto" />
         </div>
       )}
       
-      {/* 🚀 Glow effect for current - SIMPLIFIED to 1 layer with CSS */}
+      {/* 🚀 Glow effect for current - SIMPLIFIED to 1 layer with CSS - LARGER for mobile */}
       {style.glow && (
-        <div className="absolute rounded-full bg-yellow-400/50 -inset-2 xs:-inset-3 sm:-inset-4 animate-pulse" />
+        <div className="absolute rounded-full bg-yellow-400/50 -inset-3 xs:-inset-4 sm:-inset-5 animate-pulse" />
       )}
       
-      {/* Main button - Responsive w/h for all screen sizes */}
+      {/* Main button - Responsive w/h for all screen sizes - LARGER for mobile */}
       <motion.button
         onClick={() => onClick(stage)}
         whileTap={{ scale: 0.95 }} // 🚀 Removed whileHover rotate animation
         className={`
           relative rounded-full bg-gradient-to-br ${style.bg}
           ${isBoss || isTreasure 
-            ? 'w-11 h-11 xs:w-14 xs:h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24' 
-            : 'w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20'}
+            ? 'w-14 h-14 xs:w-16 xs:h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-24 lg:h-24' 
+            : 'w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-20 lg:h-20'}
           shadow-xl ${style.shadow}
           flex items-center justify-center
           border-2 sm:border-3 md:border-4 ${isLocked ? 'border-white/50' : 'border-white'}
@@ -585,35 +663,36 @@ const StageNode = memo(function StageNode({ stage, status, onClick, index }) {
         {/* Shine effect */}
         <div className="absolute inset-1 rounded-full bg-gradient-to-br from-white/50 via-white/20 to-transparent" />
         
-        {/* Icon - 🚀 Removed infinite animations, only current has subtle animation */}
-        <span className={`relative ${isBoss || isTreasure ? 'text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl' : 'text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl'} ${isLocked ? 'opacity-80' : ''} ${isCurrent ? 'animate-pulse' : ''}`}>
+        {/* Icon - 🚀 Removed infinite animations, only current has subtle animation - LARGER for mobile */}
+        <span className={`relative ${isBoss || isTreasure ? 'text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl' : 'text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl'} ${isLocked ? 'opacity-80' : ''} ${isCurrent ? 'animate-pulse' : ''}`}>
           {isLocked 
             ? (isBoss ? '🐲' : isTreasure ? '🎁' : '❓') 
             : (isBoss ? '👹' : stage.icon)
           }
         </span>
         
-        {/* Number badge - Responsive for all screens */}
-        <div className={`absolute -top-0.5 xs:-top-0.5 sm:-top-1 -left-0.5 xs:-left-0.5 sm:-left-1 w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 ${style.iconBg} rounded-full flex items-center justify-center border sm:border-2 border-white shadow-lg`}>
-          <span className="text-[7px] xs:text-[8px] sm:text-[10px] md:text-xs font-black text-white drop-shadow">{index + 1}</span>
+        {/* Number badge - Responsive for all screens - LARGER for mobile */}
+        <div className={`absolute -top-0.5 xs:-top-1 sm:-top-1 -left-0.5 xs:-left-1 sm:-left-1 w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 ${style.iconBg} rounded-full flex items-center justify-center border-2 border-white shadow-lg`}>
+          <span className="text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-black text-white drop-shadow">{index + 1}</span>
         </div>
         
-        {/* 🚀 Completed star - SIMPLIFIED: removed confetti particles */}
+        {/* 🚀 Completed star - SIMPLIFIED: removed confetti particles - LARGER for mobile */}
         {isCompleted && (
-          <div className="absolute -bottom-0.5 sm:-bottom-1 -right-0.5 sm:-right-1 w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full flex items-center justify-center border sm:border-2 border-white shadow-lg">
-            <span className="text-[8px] xs:text-[10px] sm:text-xs md:text-sm">⭐</span>
+          <div className="absolute -bottom-0.5 sm:-bottom-1 -right-0.5 sm:-right-1 w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full flex items-center justify-center border-2 border-white shadow-lg">
+            <span className="text-[10px] xs:text-xs sm:text-sm md:text-base">⭐</span>
           </div>
         )}
       </motion.button>
       
-      {/* Name - Hiển thị đầy đủ, không cắt */}
-      <p className={`mt-1 xs:mt-1.5 sm:mt-2 md:mt-3 text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-bold text-center leading-tight drop-shadow-md ${
+      {/* Name - Hiển thị đầy đủ, không cắt - LARGER for mobile */}
+      <p className={`mt-1.5 xs:mt-2 sm:mt-2.5 md:mt-3 text-[10px] xs:text-xs sm:text-sm md:text-base font-bold text-center leading-tight drop-shadow-md ${
         isLocked ? 'text-white/70' : isCurrent ? 'text-yellow-200' : 'text-white'
       }`}
       style={{ 
-        maxWidth: 90,
-        wordBreak: 'keep-all',
-        whiteSpace: 'normal'
+        maxWidth: 120, // Tăng từ 110 lên 120 để tên stage dài không bị cắt
+        wordBreak: 'break-word', // Cho phép xuống dòng khi cần
+        whiteSpace: 'normal',
+        hyphens: 'auto'
       }}
       >
         {stage.name}
@@ -629,21 +708,21 @@ const PathDots = memo(function PathDots({ direction, isCompleted, isReversed = f
   const arrowColor = isCompleted ? 'text-emerald-400' : 'text-white/50';
   
   if (direction === 'vertical') {
-    // Vertical: 3 dots + arrow xuống
+    // Vertical: 3 dots + arrow xuống - LARGER for mobile
     return (
-      <div className="flex flex-col items-center justify-center py-0.5 gap-[2px] xs:gap-0.5 sm:gap-1">
+      <div className="flex flex-col items-center justify-center py-0.5 gap-0.5 xs:gap-1 sm:gap-1.5">
         {[...Array(3)].map((_, i) => (
           <motion.div 
             key={i} 
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: i * 0.08, duration: 0.2 }}
-            className={`w-1 h-1 xs:w-1.5 xs:h-1.5 sm:w-2 sm:h-2 rounded-full ${dotColor}`}
+            className={`w-1.5 h-1.5 xs:w-2 xs:h-2 sm:w-2.5 sm:h-2.5 rounded-full ${dotColor}`}
           />
         ))}
         {/* Mũi tên xuống */}
         <motion.span 
-          className={`text-[10px] xs:text-xs sm:text-sm font-bold ${arrowColor}`}
+          className={`text-sm xs:text-base sm:text-lg font-bold ${arrowColor}`}
           animate={{ y: [0, 2, 0] }}
           transition={{ duration: 1, repeat: Infinity }}
         >
@@ -843,8 +922,8 @@ function ZoneTabs({ zones, activeZoneId, onSelect, zoneProgress }) {
                 onClick={() => handleZoneClick(zone.zoneId)}
                 whileTap={{ scale: 0.98 }}
                 className={`
-                  flex-shrink-0 px-2 xs:px-3 sm:px-4 py-2 xs:py-2.5 sm:py-3 rounded-xl xs:rounded-2xl font-bold text-[10px] xs:text-xs sm:text-sm 
-                  flex items-center gap-1 xs:gap-1.5 sm:gap-2 transition-all duration-150 whitespace-nowrap border-2
+                  flex-shrink-0 px-3 xs:px-4 sm:px-5 py-2.5 xs:py-3 sm:py-3.5 rounded-xl xs:rounded-2xl font-bold text-xs xs:text-sm sm:text-base 
+                  flex items-center gap-1.5 xs:gap-2 sm:gap-2.5 transition-all duration-150 whitespace-nowrap border-2
                   hover:scale-[1.02] active:scale-[0.98]
                   ${isActive 
                     ? 'bg-white text-indigo-600 shadow-xl shadow-white/40 border-yellow-400 scale-105' 
@@ -853,18 +932,18 @@ function ZoneTabs({ zones, activeZoneId, onSelect, zoneProgress }) {
                 `}
               >
                 {/* Icon + Tên zone */}
-                <span className="text-sm xs:text-base sm:text-lg">{zone.icon}</span>
+                <span className="text-base xs:text-lg sm:text-xl">{zone.icon}</span>
                 <span className="font-bold">{zone.name}</span>
                 {/* Progress badge */}
                 <div className={`
-                  px-1.5 py-0.5 xs:px-2 sm:px-2.5 sm:py-1 rounded-full text-[8px] xs:text-[10px] sm:text-xs font-black
+                  px-2 py-0.5 xs:px-2.5 xs:py-1 sm:px-3 sm:py-1 rounded-full text-[10px] xs:text-xs sm:text-sm font-black
                   ${isActive ? 'bg-indigo-100 text-indigo-600' : 'bg-white/30 text-white'}
                 `}>
                   {progress.completed}/{progress.total}
                 </div>
                 {/* 🚀 SIMPLIFIED: Static star instead of animated */}
                 {isComplete && (
-                  <span className="text-xs xs:text-sm sm:text-base">⭐</span>
+                  <span className="text-sm xs:text-base sm:text-lg">⭐</span>
                 )}
               </motion.button>
             );
@@ -898,19 +977,20 @@ function StageGrid({ stages, stageStatuses, onStageClick }) {
     rows.push(stages.slice(i, i + 3));
   }
   
-  // Component invisible spacer - giữ chỗ để layout zigzag hoạt động đúng
+  // Component invisible spacer - giữ chỗ để layout zigzag hoạt động đúng - LARGER for mobile
   const InvisibleSpacer = ({ withDots = false }) => (
     <div className="flex flex-col items-center">
       <div className="flex items-center">
-        {/* Spacer có cùng kích thước với StageNode */}
-        <div className="w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 opacity-0" />
-        {withDots && <div className="px-0.5 sm:px-1 w-8 xs:w-10 sm:w-12 md:w-14 opacity-0" />}
+        {/* Spacer có cùng kích thước với StageNode - UPDATED to match new sizes */}
+        <div className="w-14 h-14 xs:w-16 xs:h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-24 lg:h-24 opacity-0" />
+        {withDots && <div className="px-1 sm:px-1.5 w-10 xs:w-12 sm:w-14 md:w-16 opacity-0" />}
       </div>
     </div>
   );
   
   return (
-    <div className="flex flex-col items-center gap-0.5 xs:gap-1 sm:gap-1.5 md:gap-2 py-2 xs:py-3 sm:py-4 md:py-6">
+    // pb-24 xs:pb-28 để tạo khoảng trống cho Cú Soro ở góc dưới phải không che stages
+    <div className="flex flex-col items-center gap-0.5 xs:gap-1 sm:gap-1.5 md:gap-2 py-2 xs:py-3 sm:py-4 md:py-6 pb-24 xs:pb-28 sm:pb-20">
       {rows.map((row, rowIdx) => {
         const isReversed = rowIdx % 2 === 1;
         const isLastRow = rowIdx === rows.length - 1;
@@ -1280,30 +1360,33 @@ function GameHeader({ totalStages, completedStages, userStats, session }) {
               </div>
             </div>
 
-            {/* Mobile: Compact Stats Pill + Avatar + Logout */}
-            <div className="flex md:hidden items-center gap-1.5 flex-1 justify-end">
+            {/* Mobile: Compact Stats Pill + Sound + Avatar + Logout */}
+            <div className="flex md:hidden items-center gap-1 xs:gap-1.5 flex-1 justify-end overflow-hidden">
               {/* Progress on mobile - compact */}
-              <div className="flex items-center gap-1 bg-violet-100 rounded-full px-2 py-1">
-                <span className="text-[10px] xs:text-xs font-bold text-violet-700">{progress}%</span>
+              <div className="flex items-center bg-violet-100 rounded-full px-1.5 xs:px-2 py-0.5 xs:py-1">
+                <span className="text-[9px] xs:text-[10px] font-bold text-violet-700">{progress}%</span>
               </div>
 
-              {/* Compact stats in one pill */}
-              <div className="flex items-center bg-gray-50 rounded-full px-2 py-1 gap-2">
-                <span className="flex items-center gap-0.5 text-xs">
+              {/* Compact stats in one pill - ẩn trên màn hình rất nhỏ */}
+              <div className="hidden xs:flex items-center bg-gray-50 rounded-full px-1.5 py-0.5 gap-1.5">
+                <span className="flex items-center gap-0.5 text-[10px] xs:text-xs">
                   <span>🔥</span>
                   <span className="font-semibold text-orange-600">{userStats?.streak || 0}</span>
                 </span>
-                <span className="w-px h-3 bg-gray-300"></span>
-                <span className="flex items-center gap-0.5 text-xs">
+                <span className="w-px h-2.5 bg-gray-300"></span>
+                <span className="flex items-center gap-0.5 text-[10px] xs:text-xs">
                   <span>⭐</span>
                   <span className="font-semibold text-yellow-600">{(userStats?.totalStars || 0).toLocaleString()}</span>
                 </span>
-                <span className="w-px h-3 bg-gray-300"></span>
-                <span className="flex items-center gap-0.5 text-xs">
+                <span className="w-px h-2.5 bg-gray-300"></span>
+                <span className="flex items-center gap-0.5 text-[10px] xs:text-xs">
                   <span>💎</span>
                   <span className="font-semibold text-cyan-600">{(userStats?.diamonds || 0).toLocaleString()}</span>
                 </span>
               </div>
+
+              {/* 🔊 Sound Toggle - Mobile */}
+              <SoundSettingsPanel compact variant="header" />
 
               {/* Avatar - direct link to profile page */}
               <Link 
@@ -1313,24 +1396,27 @@ function GameHeader({ totalStages, completedStages, userStats, session }) {
                 <MonsterAvatar 
                   seed={session?.user?.id || session?.user?.email || 'default'}
                   avatarIndex={getAvatarIndex()}
-                  size={36}
+                  size={32}
                   className="border-2 border-violet-200"
                   showBorder={false}
                 />
               </Link>
 
-              {/* Logout shortcut button */}
+              {/* Logout shortcut button - nhỏ hơn */}
               <button
                 onClick={() => setShowLogoutDialog(true)}
-                className="flex-shrink-0 w-9 h-9 flex items-center justify-center bg-red-50 hover:bg-red-100 active:bg-red-200 rounded-full transition-colors"
+                className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-red-50 hover:bg-red-100 active:bg-red-200 rounded-full transition-colors"
                 title="Đăng xuất"
               >
-                <LogOut size={16} className="text-red-500" />
+                <LogOut size={14} className="text-red-500" />
               </button>
             </div>
 
-            {/* Desktop: User dropdown */}
+            {/* Desktop: Sound Toggle + User dropdown */}
             <div className="hidden md:flex items-center gap-3">
+              {/* 🔊 Sound Toggle - Desktop */}
+              <SoundSettingsPanel compact variant="header" />
+              
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setShowDropdown(!showDropdown)}
@@ -1452,29 +1538,29 @@ function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, acti
     <div className="w-full relative z-10">
     {/* Inner container giới hạn width cho nội dung */}
     <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto px-2 xs:px-3 sm:px-4 py-2 xs:py-3 sm:py-4">
-      {/* Swipe hint indicator - only on mobile/tablet */}
-      <div className="flex items-center justify-center gap-2 xs:gap-3 mb-1.5 xs:mb-2 md:hidden">
+      {/* Swipe hint indicator - only on mobile/tablet - LARGER for mobile */}
+      <div className="flex items-center justify-center gap-2.5 xs:gap-3 mb-2 xs:mb-2.5 md:hidden">
         <motion.button
           onClick={() => hasPrev && onChangeZone(zones[currentIndex - 1].zoneId)}
           disabled={!hasPrev}
-          className={`flex items-center gap-1 px-2 xs:px-3 py-1 xs:py-1.5 rounded-full text-xs xs:text-sm font-semibold transition-all ${
+          className={`flex items-center gap-1.5 px-3 xs:px-4 py-1.5 xs:py-2 rounded-full text-sm xs:text-base font-semibold transition-all ${
             hasPrev ? 'bg-white/25 text-white active:bg-white/40 shadow-sm' : 'bg-white/10 text-white/30'
           }`}
           whileTap={hasPrev ? { scale: 0.95 } : undefined}
         >
-          <span className="text-base">‹</span>
+          <span className="text-lg xs:text-xl">‹</span>
           <span className="hidden xs:inline">Trước</span>
         </motion.button>
         
-        <div className="flex items-center gap-1.5 xs:gap-2">
+        <div className="flex items-center gap-2 xs:gap-2.5">
           {zones.map((zone, idx) => (
             <button
               key={zone.zoneId}
               onClick={() => onChangeZone(zone.zoneId)}
               className={`rounded-full transition-all ${
                 idx === currentIndex 
-                  ? 'bg-white w-4 xs:w-5 h-2 xs:h-2.5 shadow-sm' 
-                  : 'bg-white/40 w-2 xs:w-2.5 h-2 xs:h-2.5 hover:bg-white/60'
+                  ? 'bg-white w-5 xs:w-6 h-2.5 xs:h-3 shadow-sm' 
+                  : 'bg-white/40 w-2.5 xs:w-3 h-2.5 xs:h-3 hover:bg-white/60'
               }`}
             />
           ))}
@@ -1483,19 +1569,19 @@ function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, acti
         <motion.button
           onClick={() => hasNext && onChangeZone(zones[currentIndex + 1].zoneId)}
           disabled={!hasNext}
-          className={`flex items-center gap-1 px-2 xs:px-3 py-1 xs:py-1.5 rounded-full text-xs xs:text-sm font-semibold transition-all ${
+          className={`flex items-center gap-1.5 px-3 xs:px-4 py-1.5 xs:py-2 rounded-full text-sm xs:text-base font-semibold transition-all ${
             hasNext ? 'bg-white/25 text-white active:bg-white/40 shadow-sm' : 'bg-white/10 text-white/30'
           }`}
           whileTap={hasNext ? { scale: 0.95 } : undefined}
         >
           <span className="hidden xs:inline">Sau</span>
-          <span className="text-base">›</span>
+          <span className="text-lg xs:text-xl">›</span>
         </motion.button>
       </div>
       
       {/* Swipe instruction - show once on small screens */}
-      <div className="text-center mb-1.5 xs:mb-2 md:hidden">
-        <p className="text-white/60 text-[10px] xs:text-xs font-medium">
+      <div className="text-center mb-2 xs:mb-2.5 md:hidden">
+        <p className="text-white/60 text-xs xs:text-sm font-medium">
           👆 Vuốt trái/phải để chuyển vùng
         </p>
       </div>
@@ -1507,7 +1593,7 @@ function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, acti
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: -20 }}
         transition={{ duration: 0.2 }}
-        className="relative rounded-2xl xs:rounded-3xl p-[3px] xs:p-[4px] mb-3 xs:mb-4 sm:mb-6"
+        className="relative rounded-2xl xs:rounded-3xl p-[3px] xs:p-1 mb-4 xs:mb-5 sm:mb-6"
       >
         {/* Animated rainbow border */}
         <motion.div
@@ -1523,7 +1609,7 @@ function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, acti
         />
         
         {/* Inner content */}
-        <div className={`rounded-[14px] xs:rounded-[18px] sm:rounded-[20px] p-2.5 xs:p-3 sm:p-4 md:p-5 lg:p-6 bg-gradient-to-br ${activeZone.color} relative overflow-hidden`}>
+        <div className={`rounded-[14px] xs:rounded-[18px] sm:rounded-[20px] p-3 xs:p-4 sm:p-5 md:p-6 lg:p-7 bg-gradient-to-br ${activeZone.color} relative overflow-hidden`}>
           {/* Shimmer overlay */}
           <motion.div
             className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
@@ -1531,22 +1617,22 @@ function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, acti
             transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
           />
           
-          <div className="flex items-center gap-2 xs:gap-2.5 sm:gap-3 md:gap-4 relative z-10">
+          <div className="flex items-center gap-2.5 xs:gap-3 sm:gap-4 md:gap-5 relative z-10">
             <motion.div 
               whileHover={{ rotate: [0, -10, 10, 0] }}
               animate={{ scale: [1, 1.08, 1], rotate: [0, 5, -5, 0] }}
               transition={{ duration: 3, repeat: Infinity }}
-              className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white/30 rounded-lg xs:rounded-xl sm:rounded-2xl flex items-center justify-center shadow-inner flex-shrink-0 backdrop-blur-sm"
+              className="w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white/30 rounded-xl xs:rounded-2xl sm:rounded-2xl flex items-center justify-center shadow-inner flex-shrink-0 backdrop-blur-sm"
             >
-              <span className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl">{activeZone.icon}</span>
+              <span className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl">{activeZone.icon}</span>
             </motion.div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-black text-white drop-shadow truncate">{activeZone.name}</h2>
-              <p className="text-white/80 text-[10px] xs:text-xs sm:text-sm truncate">{activeZone.subtitle}</p>
+              <h2 className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-white drop-shadow truncate">{activeZone.name}</h2>
+              <p className="text-white/80 text-xs xs:text-sm sm:text-base truncate">{activeZone.subtitle}</p>
             </div>
             <div className="text-right flex-shrink-0">
               <motion.p 
-                className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-white drop-shadow"
+                className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white drop-shadow"
                 key={zoneProgress[activeZoneId]?.completed}
                 initial={{ scale: 1.5, color: '#fef08a' }}
                 animate={{ scale: 1, color: '#ffffff' }}
@@ -1554,10 +1640,10 @@ function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, acti
               >
                 {zoneProgress[activeZoneId]?.completed || 0}/{zoneProgress[activeZoneId]?.total || 0}
               </motion.p>
-              <p className="text-white/70 text-[9px] xs:text-[10px] sm:text-xs">hoàn thành</p>
+              <p className="text-white/70 text-[10px] xs:text-xs sm:text-sm">hoàn thành</p>
             </div>
           </div>
-          <div className="mt-2 xs:mt-2.5 sm:mt-3 md:mt-4 h-1.5 xs:h-2 sm:h-2.5 md:h-3 bg-white/40 rounded-full overflow-hidden relative z-10 shadow-inner">
+          <div className="mt-2.5 xs:mt-3 sm:mt-4 md:mt-5 h-2 xs:h-2.5 sm:h-3 md:h-4 bg-white/40 rounded-full overflow-hidden relative z-10 shadow-inner">
             <motion.div
               className="h-full bg-white rounded-full shadow-md relative overflow-hidden"
               initial={{ width: 0 }}
@@ -1585,18 +1671,18 @@ function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, acti
 // ===== MAP SELECTOR - Responsive =====
 function MapSelector({ currentMap, onSelect, hasCertAddSub }) {
   return (
-    <div className="flex justify-center gap-1.5 xs:gap-2 sm:gap-3 mb-2 xs:mb-3 sm:mb-4 px-2">
+    <div className="flex justify-center gap-2 xs:gap-3 sm:gap-4 mb-2.5 xs:mb-3 sm:mb-4 px-2">
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => onSelect('addsub')}
-        className={`px-2 xs:px-3 sm:px-4 md:px-5 py-1.5 xs:py-2 sm:py-2.5 rounded-lg xs:rounded-xl sm:rounded-2xl font-bold text-[10px] xs:text-xs sm:text-sm flex items-center gap-1 xs:gap-1.5 sm:gap-2 transition-all ${
+        className={`px-3 xs:px-4 sm:px-5 md:px-6 py-2 xs:py-2.5 sm:py-3 rounded-xl xs:rounded-2xl sm:rounded-2xl font-bold text-xs xs:text-sm sm:text-base flex items-center gap-1.5 xs:gap-2 sm:gap-2.5 transition-all ${
           currentMap === 'addsub'
             ? 'bg-gradient-to-r from-green-400 to-emerald-500 text-white shadow-lg shadow-green-400/30'
             : 'bg-white/10 text-white/70 hover:bg-white/20'
         }`}
       >
-        <span className="text-sm xs:text-base sm:text-lg">➕➖</span>
+        <span className="text-base xs:text-lg sm:text-xl">➕➖</span>
         <span>Cộng Trừ</span>
       </motion.button>
       
@@ -1605,7 +1691,7 @@ function MapSelector({ currentMap, onSelect, hasCertAddSub }) {
         whileTap={hasCertAddSub ? { scale: 0.95 } : undefined}
         onClick={() => hasCertAddSub && onSelect('muldiv')}
         disabled={!hasCertAddSub}
-        className={`px-2 xs:px-3 sm:px-4 md:px-5 py-1.5 xs:py-2 sm:py-2.5 rounded-lg xs:rounded-xl sm:rounded-2xl font-bold text-[10px] xs:text-xs sm:text-sm flex items-center gap-1 xs:gap-1.5 sm:gap-2 transition-all ${
+        className={`px-3 xs:px-4 sm:px-5 md:px-6 py-2 xs:py-2.5 sm:py-3 rounded-xl xs:rounded-2xl sm:rounded-2xl font-bold text-xs xs:text-sm sm:text-base flex items-center gap-1.5 xs:gap-2 sm:gap-2.5 transition-all ${
           currentMap === 'muldiv'
             ? 'bg-gradient-to-r from-orange-400 to-amber-500 text-white shadow-lg shadow-orange-400/30'
             : !hasCertAddSub
@@ -1613,9 +1699,9 @@ function MapSelector({ currentMap, onSelect, hasCertAddSub }) {
               : 'bg-white/10 text-white/70 hover:bg-white/20'
         }`}
       >
-        <span className="text-sm xs:text-base sm:text-lg">✖️➗</span>
+        <span className="text-base xs:text-lg sm:text-xl">✖️➗</span>
         <span>Nhân Chia</span>
-        {!hasCertAddSub && <span className="text-[10px] xs:text-xs sm:text-sm">🔒</span>}
+        {!hasCertAddSub && <span className="text-xs xs:text-sm sm:text-base">🔒</span>}
       </motion.button>
     </div>
   );
@@ -1670,11 +1756,10 @@ export default function GameMapNew({
   
   const [selectedStage, setSelectedStage] = useState(null);
   const [cuSoroMessage, setCuSoroMessage] = useState('');
-  const [cuSoroVisible, setCuSoroVisible] = useState(true);
+  const [cuSoroVisible, setCuSoroVisible] = useState(false); // Mặc định ẩn, chỉ hiện khi có message mới
   
   // 🦉 State cho Prologue (màn intro)
   const [showPrologue, setShowPrologue] = useState(false);
-  const [lastActiveZoneId, setLastActiveZoneId] = useState(null);
   
   // 🏆 State cho Treasure Chest Reveal
   const [showTreasureReveal, setShowTreasureReveal] = useState(false);
@@ -1797,43 +1882,69 @@ export default function GameMapNew({
   );
   
   // 🦉 Logic hiển thị lời dẫn Cú Soro theo ngữ cảnh
+  // Chỉ TỰ ĐỘNG hiện 1 lần duy nhất cho mỗi zone - lưu vào localStorage
+  // User có thể click Cú để xem/ẩn lời thoại bất cứ lúc nào
+  
+  // Tạo message cho zone hiện tại (chạy mỗi khi zone thay đổi)
   useEffect(() => {
     if (!activeZone) return;
     
     // Xác định chapter index từ zone
     const zoneIndex = zones.findIndex(z => z.zoneId === activeZoneId);
-    const chapterIndex = zoneIndex + 1; // Chapter bắt đầu từ 1
+    const chapterIndex = zoneIndex + 1;
     
     // Kiểm tra progress của zone
     const progress = zoneProgress[activeZoneId];
     const isZoneComplete = progress?.percent === 100;
-    const isNewZone = lastActiveZoneId !== activeZoneId;
     
     let message = '';
     
-    if (isNewZone) {
-      // Khi chuyển sang zone mới
-      if (isZoneComplete) {
-        // Zone đã hoàn thành
-        message = activeZone?.story?.complete || 
-                  `Tuyệt vời! Con đã chinh phục ${activeZone.name}! 🌟`;
-      } else if (progress?.completed === 0) {
-        // Zone chưa bắt đầu - lời chào khi vào zone
-        const chapterNarrative = getChapterNarrative(chapterIndex, 'entering');
-        message = chapterNarrative || 
-                  activeZone?.story?.intro || 
-                  `Chào mừng đến ${activeZone.name}! Hãy bắt đầu khám phá nào!`;
-      } else {
-        // Zone đang làm dở
-        message = activeZone?.story?.mission || 
-                  `Tiếp tục hành trình tại ${activeZone.name} nào! Còn ${progress.total - progress.completed} thử thách đang chờ!`;
-      }
-      
-      setLastActiveZoneId(activeZoneId);
-      setCuSoroMessage(message);
-      setCuSoroVisible(true);
+    // Tạo message cho zone
+    if (isZoneComplete) {
+      message = activeZone?.story?.complete || 
+                `Tuyệt vời! Con đã chinh phục ${activeZone.name}! 🌟`;
+    } else if (progress?.completed === 0) {
+      const chapterNarrative = getChapterNarrative(chapterIndex, 'entering');
+      message = chapterNarrative || 
+                activeZone?.story?.intro || 
+                `Chào mừng đến ${activeZone.name}! Hãy bắt đầu khám phá nào!`;
+    } else {
+      message = activeZone?.story?.mission || 
+                `Tiếp tục hành trình tại ${activeZone.name} nào! Còn ${progress.total - progress.completed} thử thách đang chờ!`;
     }
-  }, [activeZoneId, activeZone, zoneProgress, lastActiveZoneId, zones]);
+    
+    // Luôn cập nhật message để user click Cú có thể xem
+    setCuSoroMessage(message);
+  }, [activeZoneId, activeZone, zoneProgress, zones]);
+  
+  // Effect riêng để xử lý tự động hiện - CHỈ chạy khi chuyển zone
+  const prevZoneKeyRef = useRef(null);
+  useEffect(() => {
+    if (!activeZone) return;
+    
+    const zoneMessageKey = `${currentMap}_${activeZoneId}`;
+    
+    // Chỉ xử lý khi THỰC SỰ chuyển sang zone KHÁC
+    if (prevZoneKeyRef.current === zoneMessageKey) return;
+    prevZoneKeyRef.current = zoneMessageKey;
+    
+    // Đọc localStorage xem đã xem zone này chưa
+    let viewedSet = new Set();
+    try {
+      const saved = localStorage.getItem('sorokid_viewed_zone_messages');
+      if (saved) viewedSet = new Set(JSON.parse(saved));
+    } catch {}
+    
+    // Nếu CHƯA từng xem zone này → tự động hiện và đánh dấu đã xem
+    if (!viewedSet.has(zoneMessageKey)) {
+      setCuSoroVisible(true);
+      viewedSet.add(zoneMessageKey);
+      try {
+        localStorage.setItem('sorokid_viewed_zone_messages', JSON.stringify([...viewedSet]));
+      } catch {}
+    }
+    // Nếu đã xem rồi → KHÔNG tự động hiện (user click Cú để xem nếu muốn)
+  }, [activeZoneId, currentMap, activeZone]); // Chỉ depend vào zone và map
   
   // 🦉 Callback khi hoàn thành prologue
   const handlePrologueComplete = useCallback(() => {
@@ -1878,18 +1989,14 @@ export default function GameMapNew({
   // 🦉 Khi click vào stage, hiện lời dẫn phù hợp
   const handleStageClick = useCallback((stage) => {
     const status = stageStatuses[stage.stageId];
-    const stageIdStr = String(stage.stageId || '');
     
     // 🏆 TREASURE STAGE: Check nếu đây là stage kho báu/chứng chỉ
-    // Stage IDs: cert-addsub-final, cert-complete-final
-    const isTreasureStage = stageIdStr.startsWith('cert-') || 
-                           stage.type === 'treasure' || 
-                           stage.type === 'certificate';
+    const isTreasureStage = stage.type === 'treasure' || stage.type === 'certificate';
     
     if (isTreasureStage && status === 'completed') {
-      // Mở hiệu ứng rương kho báu
-      const isAddSubCert = stageIdStr.includes('addsub');
-      setTreasureCertType(isAddSubCert ? 'addsub' : 'complete');
+      // Mở hiệu ứng rương kho báu - dùng certificateInfo từ stage config
+      const certType = stage.certificateInfo?.certType || (currentMap === 'addsub' ? 'addsub' : 'complete');
+      setTreasureCertType(certType);
       setShowTreasureReveal(true);
       play('levelComplete');
       return;
@@ -2126,11 +2233,6 @@ export default function GameMapNew({
         userName={userStats?.name || userStats?.displayName}
         onViewCertificate={handleViewCertificate}
       />
-      
-      {/* 🔊 Sound Settings Button */}
-      <div className="fixed bottom-12 right-3 sm:right-4 z-40">
-        <SoundSettingsPanel compact className="shadow-lg shadow-black/30" />
-      </div>
       
       {/* 🦉 Prologue Modal - Màn hình intro cho người mới */}
       <AnimatePresence>
