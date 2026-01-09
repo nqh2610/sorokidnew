@@ -420,14 +420,11 @@ function ZoneBackground({ zoneId, progress = 0 }) {
     ];
   }, []);
 
-  // Flying elements - mây, chim, bướm bay qua màn hình
-  const flyingItems = useMemo(() => {
+  // Flying elements - CHỈ 1 con vật bay nhẹ nhàng, không lạm dụng
+  const flyingItem = useMemo(() => {
     const flyingEmojis = theme.flyingElements || ['🦋', '🐦'];
-    return [
-      { emoji: flyingEmojis[0], top: '12%', delay: 0, duration: 25, direction: 'ltr' },
-      { emoji: flyingEmojis[1] || flyingEmojis[0], top: '35%', delay: 8, duration: 30, direction: 'rtl' },
-      { emoji: flyingEmojis[0], top: '55%', delay: 15, duration: 28, direction: 'ltr' },
-    ];
+    // Chỉ 1 element bay chậm, nhẹ nhàng - top 25% để tránh bị topbar che
+    return { emoji: flyingEmojis[0], top: '25%', delay: 5, duration: 35, direction: 'ltr' };
   }, [theme.flyingElements]);
   
   return (
@@ -444,15 +441,12 @@ function ZoneBackground({ zoneId, progress = 0 }) {
         }}
       />
       
-      {/* ☁️ MÂY BAY QUA LẠI - 3 đám mây hình dạng thực với tốc độ khác nhau */}
-      <Cloud size="md" top="5%" delay={0} duration={40} direction="ltr" />
-      <Cloud size="lg" top="12%" delay={12} duration={50} direction="rtl" />
-      <Cloud size="sm" top="22%" delay={25} duration={35} direction="ltr" />
+      {/* ☁️ MÂY - chỉ 2 đám, bay chậm nhẹ nhàng, tránh bị topbar che */}
+      <Cloud size="md" top="15%" delay={0} duration={60} direction="ltr" />
+      <Cloud size="sm" top="30%" delay={20} duration={50} direction="rtl" />
       
-      {/* 🦋 FLYING ELEMENTS - chim, bướm, lá... bay qua màn hình */}
-      {flyingItems.map((item, i) => (
-        <FlyingElement key={`fly-${i}`} {...item} />
-      ))}
+      {/* 🦋 CHỈ 1 flying element - vừa đủ vui mắt */}
+      <FlyingElement {...flyingItem} />
       
       {/* Floating decorative elements - đã giảm xuống 4 */}
       {elements.map((el, i) => (
