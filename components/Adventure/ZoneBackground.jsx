@@ -263,34 +263,32 @@ const Sparkle = memo(function Sparkle({ color, delay, position }) {
 function ZoneBackground({ zoneId, progress = 0 }) {
   const theme = ZONE_THEMES[zoneId] || DEFAULT_THEME;
   
-  // Memoize element positions
+  // Memoize element positions - GIẢM SỐ LƯỢNG, chỉ 4 elements
   const elements = useMemo(() => {
     const positions = [
-      { top: '12%', left: '5%' },
-      { top: '20%', right: '8%' },
-      { top: '35%', left: '3%' },
-      { top: '50%', right: '5%' },
-      { bottom: '35%', left: '6%' },
-      { bottom: '25%', right: '4%' }
+      { top: '15%', left: '8%' },
+      { top: '25%', right: '10%' },
+      { bottom: '40%', left: '6%' },
+      { bottom: '30%', right: '8%' }
     ];
     
-    return theme.elements.map((emoji, i) => ({
+    // Chỉ lấy 4 elements đầu tiên, không chồng chéo
+    return theme.elements.slice(0, 4).map((emoji, i) => ({
       emoji,
-      position: positions[i % positions.length],
-      delay: i * 0.5,
-      size: i < 2 ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl'
+      position: positions[i],
+      delay: i * 0.8,
+      size: 'text-3xl sm:text-4xl'
     }));
   }, [theme.elements]);
   
-  // Memoize sparkle positions
+  // Giảm sparkles xuống 4
   const sparkles = useMemo(() => {
-    return [...Array(8)].map((_, i) => ({
-      position: {
-        left: `${10 + (i * 12)}%`,
-        top: `${15 + (i % 4) * 20}%`
-      },
-      delay: i * 0.4
-    }));
+    return [
+      { position: { left: '5%', top: '35%' }, delay: 0 },
+      { position: { right: '5%', top: '45%' }, delay: 0.5 },
+      { position: { left: '7%', bottom: '55%' }, delay: 1 },
+      { position: { right: '7%', bottom: '45%' }, delay: 1.5 }
+    ];
   }, []);
   
   return (
@@ -298,41 +296,37 @@ function ZoneBackground({ zoneId, progress = 0 }) {
       {/* Main gradient background */}
       <div className={`absolute inset-0 bg-gradient-to-br ${theme.gradient}`} />
       
-      {/* Overlay pattern */}
+      {/* Subtle overlay pattern */}
       <div 
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-5"
         style={{
           backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
+          backgroundSize: '50px 50px'
         }}
       />
       
-      {/* Animated clouds */}
-      <Cloud className={`${theme.cloudColor} w-64 h-32 top-10 -left-20`} delay={0} />
-      <Cloud className={`${theme.cloudColor} w-48 h-24 top-32 -right-10`} delay={2} />
-      <Cloud className={`${theme.cloudColor} w-56 h-28 top-1/3 -left-16`} delay={4} />
-      <Cloud className={`${theme.cloudColor} w-40 h-20 bottom-1/3 -right-12`} delay={1} />
+      {/* Chỉ 1 cloud đại diện */}
+      <Cloud className={`${theme.cloudColor} w-48 h-24 top-16 -left-16`} delay={0} />
       
-      {/* Floating decorative elements */}
+      {/* Floating decorative elements - đã giảm xuống 4 */}
       {elements.map((el, i) => (
         <FloatingElement key={i} {...el} />
       ))}
       
-      {/* Sparkle particles */}
+      {/* Sparkle particles - đã giảm xuống 4 */}
       {sparkles.map((sparkle, i) => (
         <Sparkle key={i} color={theme.particleColor} {...sparkle} />
       ))}
       
-      {/* Ground gradient - subtle */}
-      <div className={`absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t ${theme.groundColor} opacity-30`} />
+      {/* XÓA: Ground gradient - gây khó chịu ở footer */}
       
-      {/* Progress glow effect - more intense as progress increases */}
-      {progress > 50 && (
+      {/* Progress glow effect - chỉ khi progress > 70% */}
+      {progress > 70 && (
         <div 
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: `radial-gradient(circle at 50% 50%, ${theme.particleColor}20 0%, transparent 50%)`,
-            opacity: (progress - 50) / 100
+            background: `radial-gradient(circle at 50% 50%, ${theme.particleColor}15 0%, transparent 40%)`,
+            opacity: (progress - 70) / 60
           }}
         />
       )}
@@ -344,10 +338,10 @@ function ZoneBackground({ zoneId, progress = 0 }) {
             transform: translateY(0px) rotate(0deg); 
           }
           25% { 
-            transform: translateY(-12px) rotate(5deg); 
+            transform: translateY(-10px) rotate(3deg); 
           }
           75% { 
-            transform: translateY(-6px) rotate(-3deg); 
+            transform: translateY(-5px) rotate(-2deg); 
           }
         }
         
