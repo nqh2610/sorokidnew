@@ -1502,113 +1502,99 @@ export function calculateZoneProgress(zoneId, completedStageIds) {
 // ============================================================
 
 /**
- * Tự động tạo lessonFilter từ GAME_STAGES
- * Quét tất cả stages type='lesson' và group theo levelId
+ * 🚀 TỐI ƯU: Single-pass scan qua GAME_STAGES
+ * Thay vì 5 lần duyệt riêng biệt, chỉ duyệt 1 lần và extract tất cả data
+ * Performance: O(n) thay vì O(5n)
  */
-function generateLessonFilter() {
-  const filter = {};
-  const levels = new Set();
+function generateCertDataFromStages() {
+  // Kết quả cho lessons
+  const lessonFilter = {};
+  const lessonLevels = new Set();
+  let totalLessons = 0;
+  let totalBosses = 0;
   
-  GAME_STAGES.forEach(stage => {
-    if (stage.type === 'lesson' && stage.levelId && stage.lessonId) {
-      levels.add(stage.levelId);
-      if (!filter[stage.levelId]) {
-        filter[stage.levelId] = [];
+  // Kết quả cho practice
+  const practiceModes = new Set();
+  let practiceMinDifficulty = 999;
+  let practiceMinCorrect = 0;
+  
+  // Kết quả cho compete
+  const competeModes = new Set();
+  let competeMinDifficulty = 999;
+  let competeMinCorrect = 0;
+  
+  // 🔥 Single pass - duyệt 1 lần duy nhất
+  for (const stage of GAME_STAGES) {
+    if (stage.type === 'lesson') {
+      totalLessons++;
+      if (stage.levelId && stage.lessonId) {
+        lessonLevels.add(stage.levelId);
+        if (!lessonFilter[stage.levelId]) {
+          lessonFilter[stage.levelId] = [];
+        }
+        if (!lessonFilter[stage.levelId].includes(stage.lessonId)) {
+          lessonFilter[stage.levelId].push(stage.lessonId);
+        }
       }
-      if (!filter[stage.levelId].includes(stage.lessonId)) {
-        filter[stage.levelId].push(stage.lessonId);
+    } else if (stage.type === 'boss') {
+      totalBosses++;
+      
+      // Practice boss
+      if (stage.bossType === 'practice' && stage.practiceInfo) {
+        practiceModes.add(stage.practiceInfo.mode);
+        if (stage.practiceInfo.difficulty < practiceMinDifficulty) {
+          practiceMinDifficulty = stage.practiceInfo.difficulty;
+        }
+        if (stage.practiceInfo.minCorrect > practiceMinCorrect) {
+          practiceMinCorrect = stage.practiceInfo.minCorrect;
+        }
+      }
+      
+      // Compete boss
+      if (stage.bossType === 'compete' && stage.competeInfo) {
+        competeModes.add(stage.competeInfo.mode);
+        if (stage.competeInfo.difficulty < competeMinDifficulty) {
+          competeMinDifficulty = stage.competeInfo.difficulty;
+        }
+        if (stage.competeInfo.minCorrect > competeMinCorrect) {
+          competeMinCorrect = stage.competeInfo.minCorrect;
+        }
       }
     }
-  });
+  }
   
-  // Sort lessonIds trong mỗi level
-  Object.keys(filter).forEach(levelId => {
-    filter[levelId].sort((a, b) => a - b);
-  });
-  
-  return {
-    levels: Array.from(levels).sort((a, b) => a - b),
-    lessonFilter: filter
-  };
-}
-
-/**
- * Tự động tạo practice modes từ GAME_STAGES (boss type='practice')
- */
-function generatePracticeModes() {
-  const modes = new Set();
-  let minDifficulty = 999;
-  let minCorrect = 0;
-  
-  GAME_STAGES.forEach(stage => {
-    if (stage.type === 'boss' && stage.bossType === 'practice' && stage.practiceInfo) {
-      modes.add(stage.practiceInfo.mode);
-      if (stage.practiceInfo.difficulty < minDifficulty) {
-        minDifficulty = stage.practiceInfo.difficulty;
-      }
-      if (stage.practiceInfo.minCorrect > minCorrect) {
-        minCorrect = stage.practiceInfo.minCorrect;
-      }
-    }
-  });
+  // Sort lessonIds
+  for (const levelId of Object.keys(lessonFilter)) {
+    lessonFilter[levelId].sort((a, b) => a - b);
+  }
   
   return {
-    modes: Array.from(modes),
-    minDifficulty: minDifficulty === 999 ? 1 : minDifficulty,
-    minCorrect: minCorrect || 8
+    lessons: {
+      levels: Array.from(lessonLevels).sort((a, b) => a - b),
+      lessonFilter
+    },
+    practice: {
+      modes: Array.from(practiceModes),
+      minDifficulty: practiceMinDifficulty === 999 ? 1 : practiceMinDifficulty,
+      minCorrect: practiceMinCorrect || 8
+    },
+    compete: {
+      modes: Array.from(competeModes),
+      minDifficulty: competeMinDifficulty === 999 ? 2 : competeMinDifficulty,
+      minCorrect: competeMinCorrect || 6
+    },
+    totalLessons,
+    totalBosses
   };
-}
-
-/**
- * Tự động tạo compete modes từ GAME_STAGES (boss type='compete')
- */
-function generateCompeteModes() {
-  const modes = new Set();
-  let minDifficulty = 999;
-  let minCorrect = 0;
-  
-  GAME_STAGES.forEach(stage => {
-    if (stage.type === 'boss' && stage.bossType === 'compete' && stage.competeInfo) {
-      modes.add(stage.competeInfo.mode);
-      if (stage.competeInfo.difficulty < minDifficulty) {
-        minDifficulty = stage.competeInfo.difficulty;
-      }
-      if (stage.competeInfo.minCorrect > minCorrect) {
-        minCorrect = stage.competeInfo.minCorrect;
-      }
-    }
-  });
-  
-  return {
-    modes: Array.from(modes),
-    minDifficulty: minDifficulty === 999 ? 2 : minDifficulty,
-    minCorrect: minCorrect || 6
-  };
-}
-
-/**
- * Đếm tổng số lessons
- */
-function countTotalLessons() {
-  return GAME_STAGES.filter(s => s.type === 'lesson').length;
-}
-
-/**
- * Đếm tổng số boss
- */
-function countTotalBosses() {
-  return GAME_STAGES.filter(s => s.type === 'boss').length;
 }
 
 /**
  * 🎖️ CHỨNG CHỈ CỘNG TRỪ - Tự động từ game config
  */
 export const CERT_REQUIREMENTS_ADDSUB = (() => {
-  const lessonData = generateLessonFilter();
-  const practiceData = generatePracticeModes();
-  const competeData = generateCompeteModes();
-  const totalLessons = countTotalLessons();
-  const totalBosses = countTotalBosses();
+  // 🚀 Single-pass: 1 lần duyệt thay vì 5 lần
+  const certData = generateCertDataFromStages();
+  const { lessons: lessonData, practice: practiceData, compete: competeData, totalLessons, totalBosses } = certData;
   
   return {
     certType: 'addSub',
