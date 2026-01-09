@@ -13,7 +13,7 @@ import { useSoundContext } from '@/lib/SoundContext';
  * - Chọn theme nhạc
  */
 
-export default function SoundSettingsPanel({ compact = false, className = '' }) {
+export default function SoundSettingsPanel({ compact = false, variant = 'default', className = '' }) {
   const {
     soundEnabled,
     musicEnabled,
@@ -42,6 +42,26 @@ export default function SoundSettingsPanel({ compact = false, className = '' }) 
 
   // Compact mode - chỉ hiện icon toggle
   if (compact) {
+    // Variant styles cho compact mode
+    const getCompactStyles = () => {
+      if (variant === 'bright') {
+        // Style sáng, nổi bật cho nền tối/gradient
+        return soundEnabled
+          ? 'bg-amber-500 text-white hover:bg-amber-600 shadow-lg'
+          : 'bg-gray-500 text-white hover:bg-gray-600 shadow-lg';
+      }
+      if (variant === 'header') {
+        // Style cho header trắng - nổi bật với màu sắc rõ ràng
+        return soundEnabled
+          ? 'bg-green-100 text-green-600 hover:bg-green-200 border border-green-200'
+          : 'bg-gray-100 text-gray-400 hover:bg-gray-200 border border-gray-200';
+      }
+      // Default style
+      return soundEnabled 
+        ? 'bg-violet-500/20 text-violet-300 hover:bg-violet-500/30' 
+        : 'bg-gray-600/20 text-gray-500 hover:bg-gray-600/30';
+    };
+    
     return (
       <button
         onClick={() => {
@@ -50,11 +70,7 @@ export default function SoundSettingsPanel({ compact = false, className = '' }) 
             play('click');
           }
         }}
-        className={`p-2 rounded-full transition-all ${
-          soundEnabled 
-            ? 'bg-violet-500/20 text-violet-300 hover:bg-violet-500/30' 
-            : 'bg-gray-600/20 text-gray-500 hover:bg-gray-600/30'
-        } ${className}`}
+        className={`p-2 rounded-full transition-all ${getCompactStyles()} ${className}`}
         title={soundEnabled ? 'Tắt âm thanh' : 'Bật âm thanh'}
       >
         {soundEnabled ? (
