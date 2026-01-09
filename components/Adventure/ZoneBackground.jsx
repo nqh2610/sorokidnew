@@ -17,7 +17,7 @@ const ZONE_THEMES = {
   // Làng Khởi Đầu - Xanh lá dịu, dễ nhìn
   village: {
     gradient: 'from-green-600 via-emerald-600 to-green-700',
-    elements: ['🏠', '🌳', '🌻', '🏡', '🌸', '🦋'],
+    elements: ['🧮', '🌳', '✨', '📜', '🌸', '🔢'],
     flyingElements: ['🦋', '🐦'],
     cloudColor: 'bg-white/40',
     groundColor: 'from-green-600 to-green-700',
