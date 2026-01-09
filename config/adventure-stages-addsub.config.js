@@ -1495,3 +1495,171 @@ export function calculateZoneProgress(zoneId, completedStageIds) {
   const completed = zoneStages.filter(s => completedStageIds.includes(s.stageId)).length;
   return Math.round((completed / zoneStages.length) * 100);
 }
+
+// ============================================================
+// 🎖️ CERTIFICATE REQUIREMENTS - TỰ ĐỘNG TỪ GAME CONFIG
+// Được generate từ GAME_STAGES và GAME_ZONES
+// ============================================================
+
+/**
+ * Tự động tạo lessonFilter từ GAME_STAGES
+ * Quét tất cả stages type='lesson' và group theo levelId
+ */
+function generateLessonFilter() {
+  const filter = {};
+  const levels = new Set();
+  
+  GAME_STAGES.forEach(stage => {
+    if (stage.type === 'lesson' && stage.levelId && stage.lessonId) {
+      levels.add(stage.levelId);
+      if (!filter[stage.levelId]) {
+        filter[stage.levelId] = [];
+      }
+      if (!filter[stage.levelId].includes(stage.lessonId)) {
+        filter[stage.levelId].push(stage.lessonId);
+      }
+    }
+  });
+  
+  // Sort lessonIds trong mỗi level
+  Object.keys(filter).forEach(levelId => {
+    filter[levelId].sort((a, b) => a - b);
+  });
+  
+  return {
+    levels: Array.from(levels).sort((a, b) => a - b),
+    lessonFilter: filter
+  };
+}
+
+/**
+ * Tự động tạo practice modes từ GAME_STAGES (boss type='practice')
+ */
+function generatePracticeModes() {
+  const modes = new Set();
+  let minDifficulty = 999;
+  let minCorrect = 0;
+  
+  GAME_STAGES.forEach(stage => {
+    if (stage.type === 'boss' && stage.bossType === 'practice' && stage.practiceInfo) {
+      modes.add(stage.practiceInfo.mode);
+      if (stage.practiceInfo.difficulty < minDifficulty) {
+        minDifficulty = stage.practiceInfo.difficulty;
+      }
+      if (stage.practiceInfo.minCorrect > minCorrect) {
+        minCorrect = stage.practiceInfo.minCorrect;
+      }
+    }
+  });
+  
+  return {
+    modes: Array.from(modes),
+    minDifficulty: minDifficulty === 999 ? 1 : minDifficulty,
+    minCorrect: minCorrect || 8
+  };
+}
+
+/**
+ * Tự động tạo compete modes từ GAME_STAGES (boss type='compete')
+ */
+function generateCompeteModes() {
+  const modes = new Set();
+  let minDifficulty = 999;
+  let minCorrect = 0;
+  
+  GAME_STAGES.forEach(stage => {
+    if (stage.type === 'boss' && stage.bossType === 'compete' && stage.competeInfo) {
+      modes.add(stage.competeInfo.mode);
+      if (stage.competeInfo.difficulty < minDifficulty) {
+        minDifficulty = stage.competeInfo.difficulty;
+      }
+      if (stage.competeInfo.minCorrect > minCorrect) {
+        minCorrect = stage.competeInfo.minCorrect;
+      }
+    }
+  });
+  
+  return {
+    modes: Array.from(modes),
+    minDifficulty: minDifficulty === 999 ? 2 : minDifficulty,
+    minCorrect: minCorrect || 6
+  };
+}
+
+/**
+ * Đếm tổng số lessons
+ */
+function countTotalLessons() {
+  return GAME_STAGES.filter(s => s.type === 'lesson').length;
+}
+
+/**
+ * Đếm tổng số boss
+ */
+function countTotalBosses() {
+  return GAME_STAGES.filter(s => s.type === 'boss').length;
+}
+
+/**
+ * 🎖️ CHỨNG CHỈ CỘNG TRỪ - Tự động từ game config
+ */
+export const CERT_REQUIREMENTS_ADDSUB = (() => {
+  const lessonData = generateLessonFilter();
+  const practiceData = generatePracticeModes();
+  const competeData = generateCompeteModes();
+  const totalLessons = countTotalLessons();
+  const totalBosses = countTotalBosses();
+  
+  return {
+    certType: 'addSub',
+    name: 'Chứng chỉ Cộng Trừ Soroban',
+    description: 'Chứng nhận năng lực Cộng Trừ hoàn chỉnh: Bàn tính + Siêu Trí Tuệ + Tốc Độ + Tia Chớp',
+    icon: '🎖️',
+    requiredTier: 'basic',
+    // Metadata từ game config
+    metadata: {
+      totalStages: GAME_STAGES.length,
+      totalZones: GAME_ZONES.length,
+      totalLessons,
+      totalBosses,
+      certificateZone: GAME_ZONES.find(z => z.hasCertificate)?.zoneId || 'treasure-castle'
+    },
+    requirements: {
+      lessons: {
+        ...lessonData,
+        weight: 30,
+        description: `Học: ${totalLessons} bài học từ các Level trong game`
+      },
+      practice: {
+        modes: practiceData.modes.length > 0 ? practiceData.modes : ['addition', 'subtraction', 'addSubMixed'],
+        minDifficulty: Math.max(practiceData.minDifficulty, 2),
+        minCorrect: 15,
+        weight: 25,
+        description: 'Luyện tập: Cộng, Trừ, Cộng Trừ Mix cấp 2+, mỗi mode 15 bài đúng'
+      },
+      mentalMath: {
+        minCorrect: 10,
+        weight: 10,
+        description: 'Siêu Trí Tuệ: 10 bài đúng (Cộng Trừ nhẩm)'
+      },
+      flashAnzan: {
+        minLevel: 1,
+        minCorrect: 5,
+        weight: 10,
+        description: 'Tia Chớp: cấp Ánh Nến trở lên, 5 bài đúng'
+      },
+      compete: {
+        modes: competeData.modes.length > 0 ? competeData.modes : ['addition', 'subtraction', 'addSubMixed'],
+        minDifficulty: Math.max(competeData.minDifficulty, 2),
+        minCorrect: 6,
+        weight: 15,
+        description: 'Thi đấu: Cộng, Trừ, Cộng Trừ Mix đạt 6+ câu đúng'
+      },
+      accuracy: {
+        minAccuracy: 70,
+        weight: 10,
+        description: 'Độ chính xác tổng từ 70% trở lên'
+      }
+    }
+  };
+})();

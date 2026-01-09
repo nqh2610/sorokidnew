@@ -6,174 +6,24 @@ import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
 import cache, { CACHE_TTL } from '@/lib/cache';
 import { getEffectiveTierSync, getTrialSettings } from '@/lib/tierSystem';
 
+// 🎖️ Import certificate requirements TỰ ĐỘNG từ game config
+import { CERT_REQUIREMENTS_ADDSUB } from '@/config/adventure-stages-addsub.config';
+import { CERT_REQUIREMENTS_COMPLETE } from '@/config/adventure-stages-muldiv.config';
+
 export const dynamic = 'force-dynamic';
 
 /**
  * Cấu hình yêu cầu cho từng loại chứng chỉ
  * 
- * 🗺️ Đồng bộ với Game Map:
- * - adventure-stages-addsub.config.js: Chứng chỉ Cộng Trừ (68 stages)
- * - adventure-stages-muldiv.config.js: Chứng chỉ Toàn Diện (40 stages)
+ * 🗺️ TỰ ĐỘNG ĐỒNG BỘ với Game Map:
+ * - adventure-stages-addsub.config.js: Chứng chỉ Cộng Trừ
+ * - adventure-stages-muldiv.config.js: Chứng chỉ Toàn Diện
+ * 
+ * Khi thay đổi game config, certificate requirements sẽ TỰ ĐỘNG cập nhật!
  */
 const CERT_REQUIREMENTS = {
-  // ============================================================
-  // 🎖️ CHỨNG CHỈ CỘNG TRỪ (Basic+)
-  // Lộ trình: 11 Zone, 68 stages, 25 boss
-  // Đồng bộ với: config/adventure-stages-addsub.config.js
-  // ============================================================
-  addSub: {
-    name: 'Chứng chỉ Cộng Trừ Soroban',
-    description: 'Chứng nhận năng lực Cộng Trừ hoàn chỉnh: Bàn tính + Siêu Trí Tuệ + Tốc Độ + Tia Chớp',
-    icon: '🎖️',
-    requiredTier: 'basic',
-    requirements: {
-      // Đồng bộ với GAME_STAGES trong adventure-stages-addsub.config.js
-      // Zone 1: Level 1 (4 lessons) - Làng Khởi Đầu
-      // Zone 2: Level 2-3 (6 lessons) - Rừng Phép Cộng
-      // Zone 3: Level 4 (4 lessons) - Thung Lũng Phép Trừ
-      // Zone 4: Level 5-6 (7 lessons) - Đồi Bạn Lớn
-      // Zone 5: Level 7 (4 lessons) - Đài Kết Hợp
-      // Zone 6: Level 8-9 (6 lessons) - Thành Phố Số Lớn
-      // Zone 7: Level 10 (4 lessons) - Vương Quốc Nghìn
-      // Zone 8: Level 15.1, 16.1 (2 lessons) - Tháp Tính Nhẩm
-      // Zone 9: Level 17.1 (1 lesson) - Đền Tốc Độ
-      // Zone 10: Level 18.1-5 (5 lessons) - Đỉnh Tia Chớp
-      // Zone 11: 3 Boss cuối + Kho báu
-      lessons: {
-        levels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 16, 17, 18],
-        // Đồng bộ chính xác với số lessons trong game config
-        lessonFilter: {
-          1: [1, 2, 3, 4],    // Làm quen Soroban, số 1-4, số 5-9, số 10-99
-          2: [1, 2, 3],       // Cộng đủ hạt, Cộng hạt Trời, Luyện tập cộng dễ
-          3: [1, 2, 3],       // Làm quen Bạn Nhỏ, Cộng Bạn Nhỏ, Luyện Bạn Nhỏ Cộng
-          4: [1, 2, 3, 4],    // Trừ đơn giản, Trừ Bạn Nhỏ, Luyện Bạn Nhỏ Trừ, MIX
-          5: [1, 2, 3],       // Làm quen Bạn Lớn, Cộng Bạn Lớn, Luyện Bạn Lớn Cộng
-          6: [1, 2, 3, 4],    // Trừ Bạn Lớn, Trừ qua chục NC, Luyện Bạn Lớn Trừ, MIX
-          7: [1, 2, 3, 4],    // Cộng kết hợp, Trừ kết hợp, Tổng hợp, Ôn tập
-          8: [1, 2, 3],       // Cộng 2 số không nhớ, có nhớ, Trừ 2 chữ số
-          9: [1, 2, 3],       // Số 100-999, Cộng 3 chữ số, Trừ 3 chữ số
-          10: [1, 2, 3, 4],   // Số 1000-9999, Cộng 4 chữ số, Trừ 4 chữ số, Ôn tập
-          15: [1],            // Cộng trừ nhẩm cơ bản (Anzan)
-          16: [1],            // Cộng trừ nhẩm nâng cao (Anzan)
-          17: [1],            // Cộng trừ tốc độ
-          18: [1, 2, 3, 4, 5] // Flash Anzan các cấp
-        },
-        weight: 30,
-        description: 'Học: 35 bài Level 1-10 + 2 bài Anzan + 1 bài Tốc độ + 5 bài Flash'
-      },
-      practice: {
-        modes: ['addition', 'subtraction', 'addSubMixed'],
-        minDifficulty: 2,
-        minCorrect: 15,
-        weight: 25,
-        description: 'Luyện tập: Cộng, Trừ, Cộng Trừ Mix cấp 2+, mỗi mode 15 bài đúng'
-      },
-      // Yêu cầu mới: Siêu Trí Tuệ Cộng Trừ (Zone 7)
-      mentalMath: {
-        minCorrect: 10,
-        weight: 10,
-        description: 'Siêu Trí Tuệ: 10 bài đúng (Cộng Trừ nhẩm)'
-      },
-      // Yêu cầu mới: Flash Anzan (Zone 9)
-      flashAnzan: {
-        minLevel: 1, // Ánh Nến
-        minCorrect: 5,
-        weight: 10,
-        description: 'Tia Chớp: cấp Ánh Nến trở lên, 5 bài đúng'
-      },
-      compete: {
-        modes: ['addition', 'subtraction', 'addSubMixed'],
-        minDifficulty: 2,
-        minCorrect: 6,
-        weight: 15,
-        description: 'Thi đấu: Cộng, Trừ, Cộng Trừ Mix đạt 6+ câu đúng'
-      },
-      accuracy: {
-        minAccuracy: 70,
-        weight: 10,
-        description: 'Độ chính xác tổng từ 70% trở lên'
-      }
-    }
-  },
-  
-  // ============================================================
-  // 👑 CHỨNG CHỈ SOROBAN TOÀN DIỆN (Advanced+)
-  // Yêu cầu: Có Chứng chỉ Cộng Trừ trước
-  // Lộ trình: 8 Zone, 40 stages, 18 boss
-  // Đồng bộ với: config/adventure-stages-muldiv.config.js
-  // ============================================================
-  complete: {
-    name: 'Chứng chỉ Soroban Toàn Diện',
-    description: 'Master Soroban: Cộng Trừ Nhân Chia + Siêu Trí Tuệ Tứ Phép + Tia Chớp',
-    icon: '👑',
-    requiredTier: 'advanced',
-    prerequisite: 'addSub', // Yêu cầu có chứng chỉ Cộng Trừ trước
-    requirements: {
-      // Yêu cầu có chứng chỉ Cộng Trừ
-      certificate: {
-        required: 'addSub',
-        weight: 10,
-        description: 'Tiên quyết: Đã có Chứng chỉ Cộng Trừ'
-      },
-      // Đồng bộ với GAME_STAGES_MULDIV trong adventure-stages-muldiv.config.js
-      // Zone 1: Level 11-12 (6 lessons) - Hang Phép Nhân
-      // Zone 2: Level 13 (3 lessons) - Hồ Chia Cơ Bản
-      // Zone 3: Level 14 (4 lessons) - Hồ Chia Nâng Cao
-      // Zone 4: Đấu trường Tứ Phép (boss only)
-      // Zone 5: Level 15.2-3, 16.2-3 (4 lessons) - Tháp Tính Nhẩm
-      // Zone 6: Level 17.2-3 (2 lessons) - Đền Tốc Độ
-      // Zone 7: Level 15.4, 16.4, 17.4 (3 lessons) - Đỉnh Hỗn Hợp
-      // Zone 8: 3 Boss cuối + Kho báu
-      lessons: {
-        levels: [11, 12, 13, 14, 15, 16, 17],
-        // Đồng bộ chính xác với số lessons trong game config (22 lessons tổng)
-        lessonFilter: {
-          11: [1, 2, 3],      // Khái niệm nhân, Nhân 2-4, Nhân 5-7
-          12: [1, 2, 3],      // Nhân 8-9, Nhân số 2 chữ số, Luyện tập nhân
-          13: [1, 2, 3],      // Khái niệm chia, Chia 2-4, Chia 5-7
-          14: [1, 2, 3, 4],   // Chia 8-9, Chia 2 chữ số, Luyện chia, MIX Nhân Chia
-          15: [2, 3, 4],      // Nhân nhẩm CB, Chia nhẩm CB, Hỗn hợp 4 phép CB
-          16: [2, 3, 4],      // Nhân nhẩm NC, Chia nhẩm NC, Hỗn hợp 4 phép NC
-          17: [2, 3, 4]       // Nhân tốc độ, Chia tốc độ, Hỗn hợp tốc độ
-        },
-        weight: 20,
-        description: 'Học: 13 bài Nhân Chia (11-14) + 9 bài Anzan/Tốc độ (15-17)'
-      },
-      practice: {
-        modes: ['multiplication', 'division', 'mulDiv', 'mixed'],
-        minDifficulty: 3, // Dũng Sĩ trở lên
-        minCorrect: 15,
-        weight: 20,
-        description: 'Luyện tập: Nhân, Chia, Nhân Chia Mix, Tứ Phép cấp 3+, mỗi mode 15 bài đúng'
-      },
-      // Siêu Trí Tuệ Tứ Phép
-      mentalMath: {
-        minCorrect: 15,
-        minDifficulty: 3, // Dũng Sĩ
-        weight: 10,
-        description: 'Siêu Trí Tuệ Tứ Phép: 15 bài đúng cấp Dũng Sĩ+'
-      },
-      // Tia Chớp nâng cao
-      flashAnzan: {
-        minLevel: 3, // Tia Chớp
-        minCorrect: 10,
-        weight: 10,
-        description: 'Tia Chớp: cấp Tia Chớp trở lên, 10 bài đúng'
-      },
-      compete: {
-        modes: ['multiplication', 'division', 'mulDiv', 'mixed'],
-        minDifficulty: 3, // Dũng Sĩ
-        minCorrect: 7,
-        weight: 20,
-        description: 'Thi đấu: Nhân, Chia, Nhân Chia Mix, Tứ Phép cấp 3+, đạt 7+ câu đúng'
-      },
-      accuracy: {
-        minAccuracy: 75,
-        weight: 10,
-        description: 'Độ chính xác tổng từ 75% trở lên'
-      }
-    }
-  }
+  addSub: CERT_REQUIREMENTS_ADDSUB,
+  complete: CERT_REQUIREMENTS_COMPLETE
 };
 
 /**

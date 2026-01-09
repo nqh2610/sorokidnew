@@ -1002,3 +1002,178 @@ export function getTotalStages() {
 export function getTotalBosses() {
   return GAME_STAGES_MULDIV.filter(s => s.type === 'boss').length;
 }
+
+// ============================================================
+// 👑 CERTIFICATE REQUIREMENTS - TỰ ĐỘNG TỪ GAME CONFIG
+// Được generate từ GAME_STAGES_MULDIV và GAME_ZONES_MULDIV
+// ============================================================
+
+/**
+ * Tự động tạo lessonFilter từ GAME_STAGES_MULDIV
+ */
+function generateLessonFilter() {
+  const filter = {};
+  const levels = new Set();
+  
+  GAME_STAGES_MULDIV.forEach(stage => {
+    if (stage.type === 'lesson' && stage.levelId && stage.lessonId) {
+      levels.add(stage.levelId);
+      if (!filter[stage.levelId]) {
+        filter[stage.levelId] = [];
+      }
+      if (!filter[stage.levelId].includes(stage.lessonId)) {
+        filter[stage.levelId].push(stage.lessonId);
+      }
+    }
+  });
+  
+  // Sort lessonIds trong mỗi level
+  Object.keys(filter).forEach(levelId => {
+    filter[levelId].sort((a, b) => a - b);
+  });
+  
+  return {
+    levels: Array.from(levels).sort((a, b) => a - b),
+    lessonFilter: filter
+  };
+}
+
+/**
+ * Tự động tạo practice modes từ GAME_STAGES_MULDIV
+ */
+function generatePracticeModes() {
+  const modes = new Set();
+  let minDifficulty = 999;
+  let minCorrect = 0;
+  
+  GAME_STAGES_MULDIV.forEach(stage => {
+    if (stage.type === 'boss' && stage.bossType === 'practice' && stage.practiceInfo) {
+      modes.add(stage.practiceInfo.mode);
+      if (stage.practiceInfo.difficulty < minDifficulty) {
+        minDifficulty = stage.practiceInfo.difficulty;
+      }
+      if (stage.practiceInfo.minCorrect > minCorrect) {
+        minCorrect = stage.practiceInfo.minCorrect;
+      }
+    }
+  });
+  
+  return {
+    modes: Array.from(modes),
+    minDifficulty: minDifficulty === 999 ? 1 : minDifficulty,
+    minCorrect: minCorrect || 8
+  };
+}
+
+/**
+ * Tự động tạo compete modes từ GAME_STAGES_MULDIV
+ */
+function generateCompeteModes() {
+  const modes = new Set();
+  let minDifficulty = 999;
+  let minCorrect = 0;
+  
+  GAME_STAGES_MULDIV.forEach(stage => {
+    if (stage.type === 'boss' && stage.bossType === 'compete' && stage.competeInfo) {
+      modes.add(stage.competeInfo.mode);
+      if (stage.competeInfo.difficulty < minDifficulty) {
+        minDifficulty = stage.competeInfo.difficulty;
+      }
+      if (stage.competeInfo.minCorrect > minCorrect) {
+        minCorrect = stage.competeInfo.minCorrect;
+      }
+    }
+  });
+  
+  return {
+    modes: Array.from(modes),
+    minDifficulty: minDifficulty === 999 ? 3 : minDifficulty,
+    minCorrect: minCorrect || 7
+  };
+}
+
+/**
+ * Đếm tổng số lessons
+ */
+function countTotalLessons() {
+  return GAME_STAGES_MULDIV.filter(s => s.type === 'lesson').length;
+}
+
+/**
+ * Đếm tổng số boss trong config
+ */
+function countTotalBossesInConfig() {
+  return GAME_STAGES_MULDIV.filter(s => s.type === 'boss').length;
+}
+
+/**
+ * 👑 CHỨNG CHỈ TOÀN DIỆN - Tự động từ game config
+ */
+export const CERT_REQUIREMENTS_COMPLETE = (() => {
+  const lessonData = generateLessonFilter();
+  const practiceData = generatePracticeModes();
+  const competeData = generateCompeteModes();
+  const totalLessons = countTotalLessons();
+  const totalBosses = countTotalBossesInConfig();
+  
+  return {
+    certType: 'complete',
+    name: 'Chứng chỉ Soroban Toàn Diện',
+    description: 'Master Soroban: Cộng Trừ Nhân Chia + Siêu Trí Tuệ Tứ Phép + Tia Chớp',
+    icon: '👑',
+    requiredTier: 'advanced',
+    prerequisite: 'addSub', // Yêu cầu có chứng chỉ Cộng Trừ trước
+    // Metadata từ game config
+    metadata: {
+      totalStages: GAME_STAGES_MULDIV.length,
+      totalZones: GAME_ZONES_MULDIV.length,
+      totalLessons,
+      totalBosses,
+      certificateZone: GAME_ZONES_MULDIV.find(z => z.hasCertificate)?.zoneId || 'supreme-castle'
+    },
+    requirements: {
+      // Yêu cầu có chứng chỉ Cộng Trừ
+      certificate: {
+        required: 'addSub',
+        weight: 10,
+        description: 'Tiên quyết: Đã có Chứng chỉ Cộng Trừ'
+      },
+      lessons: {
+        ...lessonData,
+        weight: 20,
+        description: `Học: ${totalLessons} bài Nhân Chia + Anzan/Tốc độ từ game`
+      },
+      practice: {
+        modes: practiceData.modes.length > 0 ? practiceData.modes : ['multiplication', 'division', 'mulDiv', 'mixed'],
+        minDifficulty: Math.max(practiceData.minDifficulty, 3),
+        minCorrect: 15,
+        weight: 20,
+        description: 'Luyện tập: Nhân, Chia, Nhân Chia Mix, Tứ Phép cấp 3+, mỗi mode 15 bài đúng'
+      },
+      mentalMath: {
+        minCorrect: 15,
+        minDifficulty: 3,
+        weight: 10,
+        description: 'Siêu Trí Tuệ Tứ Phép: 15 bài đúng cấp Dũng Sĩ+'
+      },
+      flashAnzan: {
+        minLevel: 3,
+        minCorrect: 10,
+        weight: 10,
+        description: 'Tia Chớp: cấp Tia Chớp trở lên, 10 bài đúng'
+      },
+      compete: {
+        modes: competeData.modes.length > 0 ? competeData.modes : ['multiplication', 'division', 'mulDiv', 'mixed'],
+        minDifficulty: Math.max(competeData.minDifficulty, 3),
+        minCorrect: 7,
+        weight: 20,
+        description: 'Thi đấu: Nhân, Chia, Nhân Chia Mix, Tứ Phép cấp 3+, đạt 7+ câu đúng'
+      },
+      accuracy: {
+        minAccuracy: 75,
+        weight: 10,
+        description: 'Độ chính xác tổng từ 75% trở lên'
+      }
+    }
+  };
+})();
