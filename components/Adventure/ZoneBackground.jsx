@@ -49,13 +49,13 @@ const ZONE_THEMES = {
   
   // Đồi Bạn Lớn - Cam ấm, không chói
   hill: {
-    gradient: 'from-amber-600 via-orange-600 to-amber-700',
+    gradient: 'from-amber-700 via-orange-700 to-amber-800',
     elements: ['🌈', '🌾', '🌻', '🐝', '🦋', '☀️'],
     flyingElements: ['🐝', '🦋'],
     cloudColor: 'bg-white/50',
-    groundColor: 'from-yellow-600 to-orange-600',
+    groundColor: 'from-yellow-700 to-orange-700',
     accentColor: 'text-yellow-200',
-    particleColor: '#fcd34d'
+    particleColor: '#f59e0b'
   },
   
   // Đài Kết Hợp - Tím hồng dịu
@@ -104,48 +104,48 @@ const ZONE_THEMES = {
   
   // Đền Tốc Độ - Cam đỏ năng lượng (tối hơn)
   'speed-temple': {
-    gradient: 'from-orange-600 via-red-600 to-rose-700',
+    gradient: 'from-orange-700 via-red-700 to-rose-800',
     elements: ['⚡', '🔥', '💥', '🌟', '⏱️', '🚀'],
     flyingElements: ['🚀', '⚡'],
     cloudColor: 'bg-orange-200/40',
-    groundColor: 'from-red-700 to-rose-800',
+    groundColor: 'from-red-800 to-rose-900',
     accentColor: 'text-orange-200',
-    particleColor: '#fb923c'
+    particleColor: '#ea580c'
   },
   
   // Đỉnh Tia Chớp - Amber đậm, điện (khác treasure-castle)
   'flash-peak': {
-    gradient: 'from-amber-600 via-yellow-700 to-orange-700',
+    gradient: 'from-amber-700 via-yellow-800 to-orange-800',
     elements: ['⚡', '✨', '💫', '🌟', '⭐', '🔆'],
     flyingElements: ['⚡', '⭐'],
     cloudColor: 'bg-amber-100/40',
-    groundColor: 'from-amber-600 to-orange-700',
+    groundColor: 'from-amber-700 to-orange-800',
     accentColor: 'text-yellow-100',
-    particleColor: '#fbbf24'
+    particleColor: '#d97706'
   },
   
   // Lâu Đài Kho Báu - Vàng đất, ấm áp
   'treasure-castle': {
-    gradient: 'from-yellow-700 via-amber-700 to-orange-700',
+    gradient: 'from-yellow-800 via-amber-800 to-orange-800',
     elements: ['🏆', '💎', '👑', '🎁', '🌟', '💰'],
     flyingElements: ['🌟', '💎'],
     cloudColor: 'bg-yellow-100/50',
-    groundColor: 'from-amber-700 to-orange-800',
+    groundColor: 'from-amber-800 to-orange-900',
     accentColor: 'text-amber-100',
-    particleColor: '#f59e0b'
+    particleColor: '#b45309'
   },
   
   // ============ MULDIV ZONES ============
   
   // Hang Động Phép Nhân - Đỏ đậm hang động
   'cave-multiply': {
-    gradient: 'from-rose-600 via-red-600 to-orange-600',
+    gradient: 'from-rose-700 via-red-700 to-orange-700',
     elements: ['🌋', '✖️', '🔥', '💎', '⛏️', '🦎'],
     flyingElements: ['🔥', '🦇'],
     cloudColor: 'bg-rose-200/40',
-    groundColor: 'from-rose-700 to-red-800',
+    groundColor: 'from-rose-800 to-red-900',
     accentColor: 'text-rose-200',
-    particleColor: '#fda4af'
+    particleColor: '#fb7185'
   },
   
   // Hồ Phép Chia Cơ Bản - Teal dịu mát
@@ -172,13 +172,13 @@ const ZONE_THEMES = {
   
   // Đấu Trường 4 Phép Tính - Đỏ đậm mạnh mẽ
   'arena-four': {
-    gradient: 'from-red-700 via-orange-700 to-amber-700',
+    gradient: 'from-red-800 via-orange-800 to-amber-800',
     elements: ['🏟️', '⚔️', '🛡️', '🎯', '🏅', '🔥'],
     flyingElements: ['🔥', '⭐'],
     cloudColor: 'bg-red-200/40',
-    groundColor: 'from-red-800 to-orange-800',
+    groundColor: 'from-red-900 to-orange-900',
     accentColor: 'text-red-200',
-    particleColor: '#f87171'
+    particleColor: '#ef4444'
   },
   
   // Tháp Tính Nhẩm Nhân Chia - Tím indigo khác mental-tower
@@ -194,13 +194,13 @@ const ZONE_THEMES = {
   
   // Đền Tốc Độ Nhân Chia - Hồng đỏ khác speed-temple
   'speed-muldiv': {
-    gradient: 'from-rose-600 via-pink-700 to-red-700',
+    gradient: 'from-rose-700 via-pink-800 to-red-800',
     elements: ['⚡', '🔥', '💥', '⏱️', '🚀', '💫'],
     flyingElements: ['🚀', '⚡'],
     cloudColor: 'bg-rose-200/40',
-    groundColor: 'from-rose-700 to-red-800',
+    groundColor: 'from-rose-800 to-red-900',
     accentColor: 'text-rose-200',
-    particleColor: '#fb7185'
+    particleColor: '#f43f5e'
   },
   
   // Đỉnh Hỗn Hợp - Tím hồng gradient đẹp
@@ -216,7 +216,7 @@ const ZONE_THEMES = {
   
   // Lâu Đài Tối Thượng - Vàng đậm hoàng gia
   'supreme-castle': {
-    gradient: 'from-amber-600 via-yellow-700 to-orange-700',
+    gradient: 'from-amber-700 via-yellow-800 to-orange-800',
     elements: ['👑', '🏆', '💎', '🎊', '🌟', '🎖️'],
     flyingElements: ['🌟', '💎'],
     cloudColor: 'bg-yellow-100/60',
