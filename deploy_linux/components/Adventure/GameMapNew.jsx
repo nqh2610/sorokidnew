@@ -2127,7 +2127,7 @@ export default function GameMapNew({
       style={{ touchAction: 'pan-y' }} // Allow vertical scroll, capture horizontal swipe
     >
       {/* 🎨 Zone Background - Thay đổi theo zone - bao gồm gradient, clouds, decorations */}
-      <ZoneBackground zoneId={activeZoneId} progress={zoneProgress[activeZoneId]?.percent || 0} />
+      <ZoneBackground key={activeZoneId} zoneId={activeZoneId} progress={zoneProgress[activeZoneId]?.percent || 0} />
       
       <GameHeader totalStages={totalStages} completedStages={completedStagesCount} userStats={userStats} session={session} />
       

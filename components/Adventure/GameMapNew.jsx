@@ -20,7 +20,7 @@ import { STORY_OVERVIEW, GAMEPLAY_NARRATIVES } from '@/config/narrative.config';
 import MapDecorations from './MapDecorations';
 import TreasureChestReveal from './TreasureChestReveal';
 import ZoneBackground from './ZoneBackground';
-import RewardEffects, { StageCompleteEffect } from './RewardEffects';
+import RewardEffects, { StageCompleteEffect, ZoneCompleteCelebration, ZoneIntroDialog, ZoneLockedDialog } from './RewardEffects';
 
 // ============================================================
 // 🎮 GAME MAP - Đi Tìm Kho Báu Tri Thức
@@ -1731,18 +1731,14 @@ export default function GameMapNew({
   // Khởi tạo map và zone từ returnZone nếu có
   const [currentMap, setCurrentMap] = useState(() => {
     if (returnZone?.mapType) {
-      console.log('🎯 GameMapNew INIT: mapType from returnZone =', returnZone.mapType);
       return returnZone.mapType;
     }
-    console.log('🎯 GameMapNew INIT: default mapType = addsub');
     return 'addsub';
   });
   const [activeZoneId, setActiveZoneIdState] = useState(() => {
     if (returnZone?.zoneId) {
-      console.log('🎯 GameMapNew INIT: zoneId from returnZone =', returnZone.zoneId);
       return returnZone.zoneId;
     }
-    console.log('🎯 GameMapNew INIT: zoneId = null');
     return null;
   });
   
@@ -1772,6 +1768,18 @@ export default function GameMapNew({
   const [rewardType, setRewardType] = useState('complete'); // 'complete' | 'star' | 'coin' | 'levelUp'
   const [rewardStars, setRewardStars] = useState(0);
   const [rewardMessage, setRewardMessage] = useState('');
+  
+  // 🏆 State cho Zone Complete Celebration
+  const [showZoneCelebration, setShowZoneCelebration] = useState(false);
+  const [celebrationZone, setCelebrationZone] = useState(null);
+  
+  // 📖 State cho Zone Intro Dialog  
+  const [showZoneIntro, setShowZoneIntro] = useState(false);
+  const [introZone, setIntroZone] = useState(null);
+  
+  // 🔒 State cho Zone Locked Dialog (khi zone trước chưa hoàn thành)
+  const [showZoneLocked, setShowZoneLocked] = useState(false);
+  const [lockedZoneInfo, setLockedZoneInfo] = useState(null); // { currentZone, prevZone, prevProgress }
 
   // 🚀 PERF: useMemo để tránh re-create arrays mỗi render
   const stages = useMemo(() =>
@@ -1819,7 +1827,6 @@ export default function GameMapNew({
 
       // Nếu có returnZone -> đánh dấu đã apply và giữ nguyên
       if (returnZone?.zoneId) {
-        console.log('🎯 ReturnZone applied:', returnZone.zoneId, 'mapType:', returnZone.mapType);
         returnZoneAppliedRef.current = true;
         // activeZoneId đã được set từ useState initial value
         return;
@@ -1839,7 +1846,6 @@ export default function GameMapNew({
 
     // Nếu returnZone vừa được apply và currentMap khớp với returnZone.mapType -> giữ nguyên zone
     if (returnZoneAppliedRef.current && returnZone?.mapType === currentMap) {
-      console.log('🎯 Keeping returnZone after map change:', activeZoneId);
       returnZoneAppliedRef.current = false; // Reset flag sau khi đã apply
       return;
     }
@@ -1927,32 +1933,79 @@ export default function GameMapNew({
   
   // Effect riêng để xử lý tự động hiện - CHỈ chạy khi chuyển zone
   const prevZoneKeyRef = useRef(null);
+  const prevZoneProgressRef = useRef({}); // Track progress để detect hoàn thành zone
+  
   useEffect(() => {
     if (!activeZone) return;
     
     const zoneMessageKey = `${currentMap}_${activeZoneId}`;
+    const progress = zoneProgress[activeZoneId];
+    const prevProgress = prevZoneProgressRef.current[activeZoneId];
+    
+    // 🏆 CHECK: Zone vừa hoàn thành (progress từ <100 lên 100)
+    if (progress?.percent === 100 && prevProgress?.percent < 100) {
+      // Trigger celebration!
+      setCelebrationZone(activeZone);
+      setShowZoneCelebration(true);
+      // Update ref
+      prevZoneProgressRef.current[activeZoneId] = { ...progress };
+      return;
+    }
+    
+    // Update progress ref
+    if (progress) {
+      prevZoneProgressRef.current[activeZoneId] = { ...progress };
+    }
     
     // Chỉ xử lý khi THỰC SỰ chuyển sang zone KHÁC
     if (prevZoneKeyRef.current === zoneMessageKey) return;
     prevZoneKeyRef.current = zoneMessageKey;
     
-    // Đọc localStorage xem đã xem zone này chưa
-    let viewedSet = new Set();
+    // 🔒 CHECK: Tìm zone đầu tiên chưa hoàn thành (zone đang chơi)
+    const currentZoneIndex = zones.findIndex(z => z.zoneId === activeZoneId);
+    
+    // Tìm zone đầu tiên chưa hoàn thành 100%
+    let playingZone = null;
+    let playingZoneProgress = null;
+    for (let i = 0; i < zones.length; i++) {
+      const zp = zoneProgress[zones[i].zoneId];
+      if (!zp || zp.percent < 100) {
+        playingZone = zones[i];
+        playingZoneProgress = zp || { completed: 0, total: 0, percent: 0 };
+        break;
+      }
+    }
+    
+    // Nếu zone hiện tại không phải zone đang chơi (có zone trước chưa hoàn thành)
+    const playingZoneIndex = playingZone ? zones.findIndex(z => z.zoneId === playingZone.zoneId) : 0;
+    if (playingZone && currentZoneIndex > playingZoneIndex) {
+      setLockedZoneInfo({
+        currentZone: activeZone,
+        prevZone: playingZone, // Zone đang chơi (chưa hoàn thành)
+        prevProgress: playingZoneProgress
+      });
+      setShowZoneLocked(true);
+      return; // Không hiện intro dialog
+    }
+    
+    // Đọc localStorage xem đã xem intro zone này chưa
+    let viewedIntros = new Set();
     try {
-      const saved = localStorage.getItem('sorokid_viewed_zone_messages');
-      if (saved) viewedSet = new Set(JSON.parse(saved));
+      const saved = localStorage.getItem('sorokid_viewed_zone_intros');
+      if (saved) viewedIntros = new Set(JSON.parse(saved));
     } catch {}
     
-    // Nếu CHƯA từng xem zone này → tự động hiện và đánh dấu đã xem
-    if (!viewedSet.has(zoneMessageKey)) {
-      setCuSoroVisible(true);
-      viewedSet.add(zoneMessageKey);
+    // 📖 Nếu CHƯA từng xem intro zone này VÀ chưa hoàn thành zone → hiện ZoneIntroDialog
+    if (!viewedIntros.has(zoneMessageKey) && progress?.percent < 100) {
+      setIntroZone(activeZone);
+      setShowZoneIntro(true);
+      // Đánh dấu đã xem
+      viewedIntros.add(zoneMessageKey);
       try {
-        localStorage.setItem('sorokid_viewed_zone_messages', JSON.stringify([...viewedSet]));
+        localStorage.setItem('sorokid_viewed_zone_intros', JSON.stringify([...viewedIntros]));
       } catch {}
     }
-    // Nếu đã xem rồi → KHÔNG tự động hiện (user click Cú để xem nếu muốn)
-  }, [activeZoneId, currentMap, activeZone]); // Chỉ depend vào zone và map
+  }, [activeZoneId, currentMap, activeZone, zoneProgress, zones]); // Thêm zones để check prev zone
   
   // 🦉 Callback khi hoàn thành prologue
   const handlePrologueComplete = useCallback(() => {
@@ -2072,50 +2125,9 @@ export default function GameMapNew({
   if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-amber-100 via-orange-100 to-yellow-100">
-        {/* Cú Soro animation */}
-        <motion.div 
-          className="text-8xl mb-4"
-          animate={{ 
-            y: [0, -10, 0],
-            rotate: [0, 5, -5, 0]
-          }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          🦉
-        </motion.div>
-        
-        {/* Bản đồ nhỏ */}
-        <motion.div 
-          className="text-4xl mb-6"
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 1, repeat: Infinity }}
-        >
-          🗺️
-        </motion.div>
-        
-        {/* Loading text */}
-        <motion.h2 
-          className="text-2xl font-bold text-amber-800 mb-2"
-          animate={{ opacity: [0.7, 1, 0.7] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          Đang mở cửa Kho Báu...
-        </motion.h2>
-        <p className="text-amber-600 text-sm">Cú Soro đang chuẩn bị hành trình cho con!</p>
-        
-        {/* Animated icons */}
-        <div className="flex gap-4 mt-6">
-          {['✨', '💎', '🏆'].map((emoji, i) => (
-            <motion.span
-              key={i}
-              className="text-2xl"
-              animate={{ y: [0, -8, 0], opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 1, delay: i * 0.2, repeat: Infinity }}
-            >
-              {emoji}
-            </motion.span>
-          ))}
-        </div>
+        {/* Simple loading - hiện nhanh */}
+        <div className="text-6xl mb-4 animate-bounce">🦉</div>
+        <div className="text-xl font-bold text-amber-800">Đang tải...</div>
       </div>
     );
   }
@@ -2210,6 +2222,51 @@ export default function GameMapNew({
         starsEarned={rewardStars}
         message={rewardMessage}
         onComplete={() => setShowRewardEffect(false)} 
+      />
+      
+      {/* 🏆 Zone Complete Celebration - Hiệu ứng chiến thắng khi hoàn thành zone */}
+      <ZoneCompleteCelebration
+        show={showZoneCelebration}
+        zoneName={celebrationZone?.name || ''}
+        zoneIcon={celebrationZone?.icon || '🏆'}
+        message={celebrationZone?.story?.complete || `Tuyệt vời! Con đã chinh phục ${celebrationZone?.name}!`}
+        onComplete={() => {
+          setShowZoneCelebration(false);
+          setCelebrationZone(null);
+        }}
+      />
+      
+      {/* 📖 Zone Intro Dialog - Dialog giới thiệu khi vào zone mới */}
+      <ZoneIntroDialog
+        show={showZoneIntro}
+        zoneName={introZone?.name || ''}
+        zoneIcon={introZone?.icon || '🏝️'}
+        zoneSubtitle={introZone?.subtitle || ''}
+        introMessage={introZone?.story?.intro || `Chào mừng đến ${introZone?.name}! Hành trình mới đang chờ đón con!`}
+        onComplete={() => {
+          setShowZoneIntro(false);
+          setIntroZone(null);
+        }}
+      />
+      
+      {/* 🔒 Zone Locked Dialog - Khi zone trước chưa hoàn thành */}
+      <ZoneLockedDialog
+        show={showZoneLocked}
+        currentZone={lockedZoneInfo?.currentZone}
+        prevZone={lockedZoneInfo?.prevZone}
+        prevProgress={lockedZoneInfo?.prevProgress}
+        onGoBack={() => {
+          // Chuyển về zone trước đó
+          if (lockedZoneInfo?.prevZone?.zoneId) {
+            setActiveZoneId(lockedZoneInfo.prevZone.zoneId);
+          }
+          setShowZoneLocked(false);
+          setLockedZoneInfo(null);
+        }}
+        onClose={() => {
+          setShowZoneLocked(false);
+          setLockedZoneInfo(null);
+        }}
       />
       
       {/* 🏆 Treasure Chest Reveal - Hiệu ứng mở kho báu */}

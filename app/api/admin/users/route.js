@@ -3,6 +3,217 @@ import { getServerSession } from 'next-auth';
 import { authOptions, hashPassword } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 
+// 🎮 Import game config để tính tiến độ
+import { GAME_STAGES, GAME_ZONES } from '@/config/adventure-stages-addsub.config';
+import { GAME_STAGES_MULDIV, GAME_ZONES_MULDIV } from '@/config/adventure-stages-muldiv.config';
+
+/**
+ * 🎮 Tính tiến độ game cho tất cả users từ data đã fetch
+ * Không cần bảng mới - dùng progress, exercises, compete, certificates
+ */
+function calculateGameProgress(userIds, allProgress, allExercises, allCompete, allCerts) {
+  const resultMap = new Map();
+  
+  // Group data by userId để lookup nhanh
+  const progressByUser = new Map();
+  const exercisesByUser = new Map();
+  const competeByUser = new Map();
+  const certsByUser = new Map();
+  
+  allProgress.forEach(p => {
+    if (!progressByUser.has(p.userId)) progressByUser.set(p.userId, []);
+    progressByUser.get(p.userId).push(p);
+  });
+  
+  allExercises.forEach(e => {
+    if (!exercisesByUser.has(e.userId)) exercisesByUser.set(e.userId, []);
+    exercisesByUser.get(e.userId).push(e);
+  });
+  
+  allCompete.forEach(c => {
+    if (!competeByUser.has(c.userId)) competeByUser.set(c.userId, []);
+    competeByUser.get(c.userId).push(c);
+  });
+  
+  allCerts.forEach(c => {
+    if (!certsByUser.has(c.userId)) certsByUser.set(c.userId, []);
+    certsByUser.get(c.userId).push(c);
+  });
+  
+  // Tính cho mỗi user
+  for (const userId of userIds) {
+    const userProgress = progressByUser.get(userId) || [];
+    const userExercises = exercisesByUser.get(userId) || [];
+    const userCompete = competeByUser.get(userId) || [];
+    const userCerts = certsByUser.get(userId) || [];
+    
+    // 🎮 hasPlayed = true nếu có BẤT KỲ hoạt động nào
+    const hasPlayed = userProgress.length > 0 || userExercises.length > 0 || userCompete.length > 0;
+    
+    // Tạo completion maps
+    const completedLessons = new Map();
+    const startedLessons = new Map(); // Lessons đã bắt đầu (dù chưa complete)
+    userProgress.forEach(p => {
+      const key = `${p.levelId}-${p.lessonId}`;
+      startedLessons.set(key, true);
+      if (p.completed) {
+        completedLessons.set(key, true);
+      }
+    });
+    
+    // Map exercises thành sets
+    const passedExercises = new Set();
+    const attemptedExercises = new Set(); // Đã thử (dù đúng hay sai)
+    userExercises.forEach(e => {
+      attemptedExercises.add(`${e.exerciseType}-${e.difficulty}`);
+      if (e.isCorrect) {
+        passedExercises.add(`${e.exerciseType}-${e.difficulty}`);
+      }
+    });
+    
+    // Map compete results
+    const passedArenas = new Set();
+    const attemptedArenas = new Set(); // Đã thi (dù pass hay fail)
+    userCompete.forEach(c => {
+      attemptedArenas.add(c.arenaId);
+      if (c.correct >= 8) { // 8/10 correct = pass
+        passedArenas.add(c.arenaId);
+      }
+    });
+    
+    // Map certs
+    const earnedCerts = new Set(userCerts.map(c => c.certType));
+    
+    // Tính highest stage cho AddSub và MulDiv
+    let highestAddSub = 0;
+    let highestMulDiv = 0;
+    let totalCompleted = 0;
+    let currentStage = 0; // Stage đang làm (chưa hoàn thành)
+    
+    // Check AddSub stages (1-88)
+    for (const stage of GAME_STAGES) {
+      if (checkStageCompleted(stage, completedLessons, passedExercises, passedArenas, earnedCerts)) {
+        highestAddSub = Math.max(highestAddSub, stage.stage);
+        totalCompleted++;
+      } else if (checkStageStarted(stage, startedLessons, attemptedExercises, attemptedArenas)) {
+        // Stage đã bắt đầu nhưng chưa hoàn thành
+        currentStage = Math.max(currentStage, stage.stage);
+      }
+    }
+    
+    // Check MulDiv stages (89-138)
+    for (const stage of GAME_STAGES_MULDIV) {
+      if (checkStageCompleted(stage, completedLessons, passedExercises, passedArenas, earnedCerts)) {
+        highestMulDiv = Math.max(highestMulDiv, stage.stage);
+        totalCompleted++;
+      } else if (checkStageStarted(stage, startedLessons, attemptedExercises, attemptedArenas)) {
+        currentStage = Math.max(currentStage, stage.stage);
+      }
+    }
+    
+    // Tìm zone cao nhất
+    let highestZone = null;
+    const highestStage = Math.max(highestAddSub, highestMulDiv, currentStage);
+    
+    if (highestStage > 0) {
+      // Tìm trong AddSub zones trước
+      if (highestAddSub > 0 || (currentStage > 0 && currentStage <= 88)) {
+        const stageToFind = highestAddSub || currentStage;
+        for (const zone of GAME_ZONES) {
+          if (stageToFind >= zone.startStage && stageToFind <= zone.endStage) {
+            highestZone = zone.name;
+            break;
+          }
+        }
+      }
+      // Nếu MulDiv cao hơn, tìm trong MulDiv zones
+      if (highestMulDiv > highestAddSub && highestMulDiv > 0) {
+        for (const zone of GAME_ZONES_MULDIV) {
+          if (highestMulDiv >= zone.startStage && highestMulDiv <= zone.endStage) {
+            highestZone = zone.name;
+            break;
+          }
+        }
+      }
+    }
+    
+    resultMap.set(userId, {
+      hasPlayed, // Đã sửa: true nếu có bất kỳ hoạt động nào
+      highestStage,
+      highestZone,
+      currentZone: highestZone, // Alias cho zone hiện tại
+      totalStages: totalCompleted,
+      addSubStage: highestAddSub,
+      mulDivStage: highestMulDiv,
+      currentStage, // Stage đang làm (nếu có)
+      startedLessons: startedLessons.size,
+      attemptedExercises: attemptedExercises.size,
+      attemptedArenas: attemptedArenas.size
+    });
+  }
+  
+  return resultMap;
+}
+
+/**
+ * Check nếu một stage đã BẮT ĐẦU (user đã thử làm requirement)
+ */
+function checkStageStarted(stage, startedLessons, attemptedExercises, attemptedArenas) {
+  const req = stage.requirements;
+  if (!req) return false;
+  
+  // Check nếu đã bắt đầu lesson
+  if (req.lesson) {
+    const key = `${req.lesson.levelId}-${req.lesson.lessonId}`;
+    if (startedLessons.has(key)) return true;
+  }
+  
+  // Check nếu đã thử practice
+  if (req.practice) {
+    const key = `${req.practice.type}-${req.practice.difficulty}`;
+    if (attemptedExercises.has(key)) return true;
+  }
+  
+  // Check nếu đã thử arena
+  if (req.arena) {
+    if (attemptedArenas.has(req.arena)) return true;
+  }
+  
+  return false;
+}
+
+/**
+ * Check nếu một stage đã hoàn thành
+ */
+function checkStageCompleted(stage, completedLessons, passedExercises, passedArenas, earnedCerts) {
+  const req = stage.requirements;
+  if (!req) return false;
+  
+  // Check lesson requirement
+  if (req.lesson) {
+    const key = `${req.lesson.levelId}-${req.lesson.lessonId}`;
+    if (!completedLessons.has(key)) return false;
+  }
+  
+  // Check practice requirement
+  if (req.practice) {
+    const key = `${req.practice.type}-${req.practice.difficulty}`;
+    if (!passedExercises.has(key)) return false;
+  }
+  
+  // Check arena requirement
+  if (req.arena) {
+    if (!passedArenas.has(req.arena)) return false;
+  }
+  
+  // Check certificate requirement
+  if (req.certificate) {
+    if (!earnedCerts.has(req.certificate)) return false;
+  }
+  
+  return true;
+}
+
 // GET /api/admin/users - Lấy danh sách người dùng
 export async function GET(request) {
   try {
@@ -99,6 +310,29 @@ export async function GET(request) {
       _count: { _all: true }
     });
 
+    // 🎮 Lấy dữ liệu để tính tiến độ game (stage cao nhất)
+    const [allProgress, allExercises, allCompete, allCerts] = await Promise.all([
+      prisma.progress.findMany({
+        where: { userId: { in: userIds } },
+        select: { userId: true, levelId: true, lessonId: true, completed: true }
+      }),
+      prisma.exerciseResult.findMany({
+        where: { userId: { in: userIds } },
+        select: { userId: true, exerciseType: true, difficulty: true, isCorrect: true }
+      }),
+      prisma.competeResult.findMany({
+        where: { userId: { in: userIds } },
+        select: { userId: true, arenaId: true, correct: true }
+      }),
+      prisma.certificate.findMany({
+        where: { userId: { in: userIds } },
+        select: { userId: true, certType: true }
+      })
+    ]);
+
+    // 🎮 Tính stage cao nhất cho mỗi user
+    const gameProgressMap = calculateGameProgress(userIds, allProgress, allExercises, allCompete, allCerts);
+
     // Map aggregates để lookup nhanh
     const competeMap = new Map(competeAggregates.map(a => [a.userId, a._sum.correct || 0]));
     const exerciseMap = new Map(exerciseAggregates.map(a => [a.userId, {
@@ -111,6 +345,16 @@ export async function GET(request) {
     const usersWithTier = users.map(user => {
       // 🔧 TỐI ƯU: Lấy từ aggregate maps thay vì load records
       const totalCorrect = competeMap.get(user.id) || 0;
+
+      // 🎮 Lấy tiến độ game
+      const gameProgress = gameProgressMap.get(user.id) || { 
+        hasPlayed: false, 
+        highestStage: 0, 
+        highestZone: null,
+        totalStages: 0,
+        addSubStage: 0,
+        mulDivStage: 0
+      };
 
       // 🔧 TỐI ƯU: Lấy từ aggregate maps
       const exerciseStats = exerciseMap.get(user.id) || { count: 0, totalTime: 0 };
@@ -155,7 +399,16 @@ export async function GET(request) {
         totalExercises,
         correctExercises,
         accuracy,        // Độ chính xác (%)
-        avgSpeed         // Tốc độ trung bình (giây/bài)
+        avgSpeed,        // Tốc độ trung bình (giây/bài)
+        // 🎮 Tiến độ game
+        gameProgress: {
+          hasPlayed: gameProgress.hasPlayed,
+          highestStage: gameProgress.highestStage,
+          highestZone: gameProgress.highestZone,
+          totalStages: gameProgress.totalStages,
+          addSubStage: gameProgress.addSubStage,
+          mulDivStage: gameProgress.mulDivStage
+        }
       };
     });
 

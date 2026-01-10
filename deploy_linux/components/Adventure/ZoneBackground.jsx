@@ -12,194 +12,212 @@ import { motion } from 'framer-motion';
  * Cấu hình theme cho từng zone
  */
 const ZONE_THEMES = {
-  // Làng Khởi Đầu - Màu xanh lá tươi, cây cối, mái nhà
+  // ============ ADDSUB ZONES ============
+  
+  // Làng Khởi Đầu - Cổ điển, khởi nguồn tri thức
   village: {
-    gradient: 'from-green-500 via-emerald-500 to-green-600',
-    elements: ['🏠', '🌳', '🌻', '🏡', '🌸', '🦋'],
+    gradient: 'from-green-600 via-emerald-600 to-green-700',
+    elements: ['🧮', '📜', '🏺', '⭐', '🔢', '∞'],
     flyingElements: ['🦋', '🐦'],
     cloudColor: 'bg-white/40',
     groundColor: 'from-green-600 to-green-700',
     accentColor: 'text-emerald-200',
-    particleColor: '#86efac' // green-300
+    particleColor: '#86efac'
   },
   
-  // Rừng Phép Cộng - Xanh đậm, cây lớn, ánh sáng xuyên qua
+  // Rừng Phép Cộng - Huyền bí cổ xưa
   forest: {
-    gradient: 'from-emerald-500 via-green-600 to-emerald-700',
-    elements: ['🌲', '🍃', '🌿', '🦊', '🐿️', '🍄'],
+    gradient: 'from-emerald-600 via-green-700 to-emerald-800',
+    elements: ['🏛️', '📿', '🗿', '🌿', '✨', '🔮'],
     flyingElements: ['🍃', '🦜'],
     cloudColor: 'bg-emerald-200/30',
     groundColor: 'from-emerald-700 to-emerald-800',
     accentColor: 'text-green-200',
-    particleColor: '#a7f3d0' // emerald-200
+    particleColor: '#a7f3d0'
   },
   
-  // Thung Lũng Phép Trừ - Xanh dương nhạt, núi, sương mù
+  // Thung Lũng Phép Trừ - Vũ trụ băng giá
   valley: {
-    gradient: 'from-blue-500 via-cyan-600 to-blue-600',
-    elements: ['🏔️', '⛰️', '🌊', '🦅', '☁️', '❄️'],
-    flyingElements: ['🦅', '❄️'],
+    gradient: 'from-blue-600 via-cyan-700 to-blue-700',
+    elements: ['🛸', '🪐', '🌌', '💎', '❄️', '✨'],
+    flyingElements: ['🛸', '❄️'],
     cloudColor: 'bg-white/50',
     groundColor: 'from-blue-600 to-blue-700',
     accentColor: 'text-cyan-200',
-    particleColor: '#a5f3fc' // cyan-200
+    particleColor: '#a5f3fc'
   },
   
-  // Đồi Bạn Lớn - Vàng cam, đồng cỏ, cầu vồng
+  // Đồi Bạn Lớn - Toán học vui nhộn
   hill: {
-    gradient: 'from-amber-500 via-orange-500 to-amber-600',
-    elements: ['🌈', '🌾', '🌻', '🐝', '🦋', '☀️'],
-    flyingElements: ['🐝', '🦋'],
+    gradient: 'from-amber-700 via-orange-700 to-amber-800',
+    elements: ['➕', '➖', '🔢', '💯', '⭐', '🎯'],
+    flyingElements: ['🦋', '⭐'],
     cloudColor: 'bg-white/50',
-    groundColor: 'from-yellow-600 to-orange-600',
+    groundColor: 'from-yellow-700 to-orange-700',
     accentColor: 'text-yellow-200',
-    particleColor: '#fde047' // yellow-300
+    particleColor: '#f59e0b'
   },
   
-  // Đài Kết Hợp - Tím hồng, đền đài, bí ẩn
+  // Đài Kết Hợp - Đền thờ cổ đại huyền bí
   tower: {
-    gradient: 'from-purple-500 via-pink-500 to-violet-600',
-    elements: ['🏛️', '✨', '💫', '🔮', '🌙', '⭐'],
+    gradient: 'from-purple-600 via-pink-600 to-violet-700',
+    elements: ['🏛️', '🔮', '📜', '🗝️', '🌙', '⭐'],
     flyingElements: ['✨', '💫'],
     cloudColor: 'bg-purple-200/40',
     groundColor: 'from-purple-700 to-violet-800',
     accentColor: 'text-pink-200',
-    particleColor: '#f0abfc' // fuchsia-300
+    particleColor: '#f0abfc'
   },
   
-  // Thành Phố Số Lớn - Xanh cyan, hiện đại
+  // Thành Phố Số Lớn - Tương lai hiện đại
   'city-numbers': {
-    gradient: 'from-cyan-500 via-blue-500 to-indigo-500',
-    elements: ['🏙️', '🌃', '🔢', '💯', '🏢', '✨'],
-    flyingElements: ['✨', '🚀'],
+    gradient: 'from-cyan-600 via-blue-600 to-indigo-600',
+    elements: ['🚀', '🛸', '💯', '🔢', '🤖', '⚡'],
+    flyingElements: ['🚀', '🛸'],
     cloudColor: 'bg-blue-200/40',
     groundColor: 'from-blue-700 to-indigo-700',
     accentColor: 'text-cyan-200',
-    particleColor: '#7dd3fc' // sky-300
+    particleColor: '#7dd3fc'
   },
   
-  // Vương Quốc Nghìn - Tím hoàng gia
+  // Vương Quốc Nghìn - Lâu đài hoàng gia cổ
   kingdom: {
-    gradient: 'from-indigo-500 via-purple-600 to-violet-700',
-    elements: ['🏰', '👑', '🗝️', '🦁', '🎺', '⚜️'],
+    gradient: 'from-indigo-600 via-purple-700 to-violet-800',
+    elements: ['🏰', '👑', '🗝️', '⚔️', '🛡️', '⚜️'],
     flyingElements: ['🐦', '⭐'],
     cloudColor: 'bg-violet-200/40',
     groundColor: 'from-indigo-800 to-purple-900',
     accentColor: 'text-violet-200',
-    particleColor: '#c4b5fd' // violet-300
+    particleColor: '#c4b5fd'
   },
   
-  // Tháp Tính Nhẩm - Tím sâu, trí tuệ
+  // Tháp Tính Nhẩm - Vũ trụ trí tuệ
   'mental-tower': {
-    gradient: 'from-violet-500 via-purple-600 to-fuchsia-600',
-    elements: ['🧠', '💭', '🔮', '✨', '🌌', '💫'],
-    flyingElements: ['✨', '💭'],
+    gradient: 'from-violet-600 via-purple-700 to-fuchsia-700',
+    elements: ['🧠', '🪐', '🌌', '🔮', '∞', '💫'],
+    flyingElements: ['✨', '🛸'],
     cloudColor: 'bg-fuchsia-200/30',
     groundColor: 'from-purple-800 to-fuchsia-900',
     accentColor: 'text-fuchsia-200',
-    particleColor: '#e879f9' // fuchsia-400
+    particleColor: '#e879f9'
   },
   
-  // Đền Tốc Độ - Cam đỏ, năng lượng
+  // Đền Tốc Độ - Tàu vũ trụ tốc độ cao
   'speed-temple': {
-    gradient: 'from-orange-500 via-red-500 to-rose-600',
-    elements: ['⚡', '🔥', '💥', '🌟', '⏱️', '🚀'],
+    gradient: 'from-orange-700 via-red-700 to-rose-800',
+    elements: ['🚀', '⚡', '💥', '🛸', '⏱️', '🌟'],
     flyingElements: ['🚀', '⚡'],
     cloudColor: 'bg-orange-200/40',
-    groundColor: 'from-red-700 to-rose-800',
+    groundColor: 'from-red-800 to-rose-900',
     accentColor: 'text-orange-200',
-    particleColor: '#fb923c' // orange-400
+    particleColor: '#ea580c'
   },
   
-  // Đỉnh Tia Chớp - Vàng sáng, điện
+  // Đỉnh Tia Chớp - Năng lượng vũ trụ
   'flash-peak': {
-    gradient: 'from-amber-500 via-amber-600 to-orange-600',
-    elements: ['⚡', '✨', '💫', '🌟', '⭐', '🔆'],
+    gradient: 'from-amber-700 via-yellow-800 to-orange-800',
+    elements: ['⚡', '🌟', '💫', '🔆', '✨', '🛸'],
     flyingElements: ['⚡', '⭐'],
-    cloudColor: 'bg-yellow-100/50',
-    groundColor: 'from-amber-600 to-orange-700',
-    accentColor: 'text-yellow-100',
-    particleColor: '#fcd34d' // amber-300
-  },
-  
-  // Lâu Đài Kho Báu - Vàng hoàng kim
-  'treasure-castle': {
-    gradient: 'from-amber-500 via-yellow-600 to-orange-600',
-    elements: ['🏆', '💎', '👑', '🎁', '🌟', '💰'],
-    flyingElements: ['🌟', '💎'],
-    cloudColor: 'bg-yellow-100/60',
+    cloudColor: 'bg-amber-100/40',
     groundColor: 'from-amber-700 to-orange-800',
-    accentColor: 'text-amber-100',
-    particleColor: '#fde047' // yellow-300
+    accentColor: 'text-yellow-100',
+    particleColor: '#d97706'
   },
   
-  // === MULDIV ZONES ===
-  'multiply-cave': {
-    gradient: 'from-rose-500 via-red-500 to-orange-500',
-    elements: ['🌋', '✖️', '🔥', '💎', '⛏️', '🦎'],
+  // Lâu Đài Kho Báu - Cổ vật hoàng kim
+  'treasure-castle': {
+    gradient: 'from-yellow-800 via-amber-800 to-orange-800',
+    elements: ['🏺', '💎', '👑', '🗝️', '📜', '⚱️'],
+    flyingElements: ['✨', '💎'],
+    cloudColor: 'bg-yellow-100/50',
+    groundColor: 'from-amber-800 to-orange-900',
+    accentColor: 'text-amber-100',
+    particleColor: '#b45309'
+  },
+  
+  // ============ MULDIV ZONES ============
+  
+  // Hang Động Phép Nhân - Đền cổ trong hang
+  'cave-multiply': {
+    gradient: 'from-rose-700 via-red-700 to-orange-700',
+    elements: ['🏺', '✖️', '💎', '🗿', '🔥', '⚱️'],
     flyingElements: ['🔥', '🦇'],
     cloudColor: 'bg-rose-200/40',
-    groundColor: 'from-rose-700 to-red-800',
+    groundColor: 'from-rose-800 to-red-900',
     accentColor: 'text-rose-200',
-    particleColor: '#fda4af'
+    particleColor: '#fb7185'
   },
-  'divide-lake': {
-    gradient: 'from-teal-500 via-cyan-600 to-blue-600',
-    elements: ['🏝️', '➗', '🐬', '🌊', '🐠', '🏖️'],
-    flyingElements: ['🐦', '🦛'],
+  
+  // Hồ Phép Chia Cơ Bản - Đại dương vũ trụ
+  'lake-divide-basic': {
+    gradient: 'from-teal-600 via-cyan-700 to-blue-700',
+    elements: ['🛸', '➗', '🪐', '🌊', '💎', '✨'],
+    flyingElements: ['🛸', '🐦'],
     cloudColor: 'bg-teal-200/40',
     groundColor: 'from-teal-600 to-cyan-700',
     accentColor: 'text-teal-200',
     particleColor: '#5eead4'
   },
-  'divide-advanced': {
-    gradient: 'from-sky-500 via-blue-600 to-indigo-600',
-    elements: ['🌀', '➗', '🐳', '💧', '🧊', '❄️'],
-    flyingElements: ['❄️', '🐦'],
+  
+  // Hồ Phép Chia Nâng Cao - Băng giá ngoài hành tinh
+  'lake-divide-advanced': {
+    gradient: 'from-sky-600 via-blue-700 to-indigo-700',
+    elements: ['🌌', '➗', '🪐', '💎', '🧊', '❄️'],
+    flyingElements: ['❄️', '🛸'],
     cloudColor: 'bg-sky-200/40',
     groundColor: 'from-blue-700 to-indigo-800',
     accentColor: 'text-sky-200',
     particleColor: '#7dd3fc'
   },
-  'arena-4ops': {
-    gradient: 'from-red-600 via-orange-600 to-amber-600',
-    elements: ['🏟️', '⚔️', '🛡️', '🎯', '🏅', '🔥'],
+  
+  // Đấu Trường 4 Phép Tính - Colosseum cổ đại
+  'arena-four': {
+    gradient: 'from-red-800 via-orange-800 to-amber-800',
+    elements: ['🏛️', '⚔️', '🛡️', '🏺', '🔥', '⚜️'],
     flyingElements: ['🔥', '⭐'],
     cloudColor: 'bg-red-200/40',
-    groundColor: 'from-red-800 to-orange-800',
+    groundColor: 'from-red-900 to-orange-900',
     accentColor: 'text-red-200',
-    particleColor: '#f87171'
+    particleColor: '#ef4444'
   },
-  'mental-4ops': {
-    gradient: 'from-fuchsia-500 via-purple-600 to-violet-700',
-    elements: ['🧠', '💜', '🔮', '✨', '🌌', '💎'],
-    flyingElements: ['✨', '💫'],
-    cloudColor: 'bg-fuchsia-200/30',
-    groundColor: 'from-purple-800 to-violet-900',
-    accentColor: 'text-purple-200',
-    particleColor: '#d946ef'
+  
+  // Tháp Tính Nhẩm Nhân Chia - Thiên văn cổ đại
+  'mental-muldiv': {
+    gradient: 'from-indigo-600 via-violet-700 to-purple-700',
+    elements: ['🧠', '🔭', '🪐', '🌌', '∞', '💫'],
+    flyingElements: ['✨', '🛸'],
+    cloudColor: 'bg-indigo-200/30',
+    groundColor: 'from-indigo-800 to-purple-900',
+    accentColor: 'text-indigo-200',
+    particleColor: '#a5b4fc'
   },
-  'speed-4ops': {
-    gradient: 'from-orange-600 via-red-600 to-pink-600',
-    elements: ['⚡', '🔥', '💥', '⏱️', '🚀', '💫'],
+  
+  // Đền Tốc Độ Nhân Chia - Công nghệ tương lai
+  'speed-muldiv': {
+    gradient: 'from-rose-700 via-pink-800 to-red-800',
+    elements: ['🚀', '⚡', '🤖', '⏱️', '🛸', '💫'],
     flyingElements: ['🚀', '⚡'],
-    cloudColor: 'bg-orange-200/40',
-    groundColor: 'from-red-700 to-pink-800',
-    accentColor: 'text-orange-200',
-    particleColor: '#fb7185'
+    cloudColor: 'bg-rose-200/40',
+    groundColor: 'from-rose-800 to-red-900',
+    accentColor: 'text-rose-200',
+    particleColor: '#f43f5e'
   },
+  
+  // Đỉnh Hỗn Hợp - Thiên đường toán học
   'mixed-peak': {
-    gradient: 'from-violet-500 via-purple-600 to-pink-600',
-    elements: ['🌈', '🎆', '✨', '💫', '🌟', '🎇'],
+    gradient: 'from-violet-600 via-purple-700 to-pink-700',
+    elements: ['∞', '🔮', '✨', '💫', '🌟', '🪐'],
     flyingElements: ['✨', '🦋'],
     cloudColor: 'bg-violet-200/40',
     groundColor: 'from-purple-800 to-pink-800',
     accentColor: 'text-violet-200',
     particleColor: '#c084fc'
   },
+  
+  // Lâu Đài Tối Thượng - Cung điện vĩ đại
   'supreme-castle': {
-    gradient: 'from-amber-400 via-yellow-500 to-orange-600',
-    elements: ['👑', '🏆', '💎', '🎊', '🌟', '🎖️'],
+    gradient: 'from-amber-700 via-yellow-800 to-orange-800',
+    elements: ['🏰', '👑', '💎', '🏺', '⚜️', '🗝️'],
     flyingElements: ['🌟', '💎'],
     cloudColor: 'bg-yellow-100/60',
     groundColor: 'from-amber-700 to-orange-800',
@@ -253,90 +271,93 @@ const Cloud = memo(function Cloud({ size = 'md', delay = 0, duration = 30, direc
   const { scale, opacity } = sizes[size] || sizes.md;
   
   return (
+    // Wrapper cho animation di chuyển - KHÔNG có transform khác
     <div 
       className="absolute pointer-events-none"
       style={{
         top,
+        left: '-150px', // Bắt đầu từ ngoài màn hình bên trái
         animation: `${animName} ${duration}s linear infinite`,
         animationDelay: `${delay}s`,
-        transform: `scale(${scale})`,
-        opacity
       }}
     >
-      {/* Đám mây được tạo từ nhiều hình tròn */}
-      <div className="relative" style={{ width: '120px', height: '50px' }}>
-        {/* Phần chính giữa mây */}
-        <div 
-          className="absolute rounded-full"
-          style={{ 
-            width: '50px', 
-            height: '50px', 
-            left: '35px', 
-            top: '0',
-            backgroundColor: color,
-            boxShadow: `0 0 20px ${color}`
-          }} 
-        />
-        {/* Phần trái */}
-        <div 
-          className="absolute rounded-full"
-          style={{ 
-            width: '40px', 
-            height: '40px', 
-            left: '10px', 
-            top: '10px',
-            backgroundColor: color,
-            boxShadow: `0 0 15px ${color}`
-          }} 
-        />
-        {/* Phần phải */}
-        <div 
-          className="absolute rounded-full"
-          style={{ 
-            width: '45px', 
-            height: '45px', 
-            left: '65px', 
-            top: '8px',
-            backgroundColor: color,
-            boxShadow: `0 0 15px ${color}`
-          }} 
-        />
-        {/* Phần trái nhỏ */}
-        <div 
-          className="absolute rounded-full"
-          style={{ 
-            width: '30px', 
-            height: '30px', 
-            left: '0', 
-            top: '18px',
-            backgroundColor: color,
-            boxShadow: `0 0 10px ${color}`
-          }} 
-        />
-        {/* Phần phải nhỏ */}
-        <div 
-          className="absolute rounded-full"
-          style={{ 
-            width: '35px', 
-            height: '35px', 
-            left: '90px', 
-            top: '15px',
-            backgroundColor: color,
-            boxShadow: `0 0 10px ${color}`
-          }} 
-        />
-        {/* Phần đáy - kết nối tất cả */}
-        <div 
-          className="absolute rounded-full"
-          style={{ 
-            width: '100px', 
-            height: '25px', 
-            left: '10px', 
-            top: '28px',
-            backgroundColor: color,
-            boxShadow: `0 0 15px ${color}`
-          }} 
-        />
+      {/* Inner div cho scale - tách riêng để không conflict với animation */}
+      <div style={{ transform: `scale(${scale})`, opacity }}>
+        {/* Đám mây được tạo từ nhiều hình tròn */}
+        <div className="relative" style={{ width: '120px', height: '50px' }}>
+          {/* Phần chính giữa mây */}
+          <div 
+            className="absolute rounded-full"
+            style={{ 
+              width: '50px', 
+              height: '50px', 
+              left: '35px', 
+              top: '0',
+              backgroundColor: color,
+              boxShadow: `0 0 20px ${color}`
+            }} 
+          />
+          {/* Phần trái */}
+          <div 
+            className="absolute rounded-full"
+            style={{ 
+              width: '40px', 
+              height: '40px', 
+              left: '10px', 
+              top: '10px',
+              backgroundColor: color,
+              boxShadow: `0 0 15px ${color}`
+            }} 
+          />
+          {/* Phần phải */}
+          <div 
+            className="absolute rounded-full"
+            style={{ 
+              width: '45px', 
+              height: '45px', 
+              left: '65px', 
+              top: '8px',
+              backgroundColor: color,
+              boxShadow: `0 0 15px ${color}`
+            }} 
+          />
+          {/* Phần trái nhỏ */}
+          <div 
+            className="absolute rounded-full"
+            style={{ 
+              width: '30px', 
+              height: '30px', 
+              left: '0', 
+              top: '18px',
+              backgroundColor: color,
+              boxShadow: `0 0 10px ${color}`
+            }} 
+          />
+          {/* Phần phải nhỏ */}
+          <div 
+            className="absolute rounded-full"
+            style={{ 
+              width: '35px', 
+              height: '35px', 
+              left: '90px', 
+              top: '15px',
+              backgroundColor: color,
+              boxShadow: `0 0 10px ${color}`
+            }} 
+          />
+          {/* Phần đáy - kết nối tất cả */}
+          <div 
+            className="absolute rounded-full"
+            style={{ 
+              width: '100px', 
+              height: '25px', 
+              left: '10px', 
+              top: '28px',
+              backgroundColor: color,
+              boxShadow: `0 0 15px ${color}`
+            }} 
+          />
+        </div>
       </div>
     </div>
   );
@@ -344,16 +365,23 @@ const Cloud = memo(function Cloud({ size = 'md', delay = 0, duration = 30, direc
 
 /**
  * Flying element - chim, bướm, lá... bay qua màn hình
+ * LTR: bay từ trái sang phải, mặt quay phải
+ * RTL: bay từ phải sang trái, mặt quay trái (flip)
  */
 const FlyingElement = memo(function FlyingElement({ emoji, top, delay = 0, duration = 20, direction = 'ltr' }) {
-  const animName = direction === 'rtl' ? 'flyAcrossRTL' : 'flyAcross';
+  const isRTL = direction === 'rtl';
+  
   return (
     <div 
       className="absolute text-2xl sm:text-3xl opacity-60 pointer-events-none select-none"
       style={{
         top,
-        animation: `${animName} ${duration}s linear infinite`,
-        animationDelay: `${delay}s`
+        left: isRTL ? 'auto' : '-10%',
+        right: isRTL ? '-10%' : 'auto',
+        animation: `${isRTL ? 'flyAcrossRTL' : 'flyAcross'} ${duration}s linear infinite`,
+        animationDelay: `${delay}s`,
+        // RTL: flip mặt để bay đúng hướng
+        transform: isRTL ? 'scaleX(-1)' : 'none'
       }}
     >
       {emoji}
@@ -485,59 +513,37 @@ function ZoneBackground({ zoneId, progress = 0 }) {
         
         @keyframes cloudDrift {
           0% { 
-            transform: translateX(-120%); 
+            left: -150px;
           }
           100% { 
-            transform: translateX(calc(100vw + 20%)); 
+            left: 100vw;
           }
         }
         
         @keyframes cloudDriftRTL {
           0% { 
-            transform: translateX(calc(100vw + 20%)); 
+            left: 100vw;
           }
           100% { 
-            transform: translateX(-120%); 
+            left: -150px;
           }
         }
         
         @keyframes flyAcross {
           0% { 
             left: -10%;
-            transform: translateY(0px);
-          }
-          25% {
-            transform: translateY(-15px);
-          }
-          50% {
-            transform: translateY(5px);
-          }
-          75% {
-            transform: translateY(-10px);
           }
           100% { 
             left: 110%;
-            transform: translateY(0px);
           }
         }
         
         @keyframes flyAcrossRTL {
           0% { 
             right: -10%;
-            transform: translateY(0px) scaleX(-1);
-          }
-          25% {
-            transform: translateY(-15px) scaleX(-1);
-          }
-          50% {
-            transform: translateY(5px) scaleX(-1);
-          }
-          75% {
-            transform: translateY(-10px) scaleX(-1);
           }
           100% { 
             right: 110%;
-            transform: translateY(0px) scaleX(-1);
           }
         }
       `}</style>

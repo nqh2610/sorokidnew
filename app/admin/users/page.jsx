@@ -25,7 +25,8 @@ const SORT_OPTIONS = [
   { value: 'name', label: '🔤 Theo tên' },
   { value: 'level', label: '📊 Theo level' },
   { value: 'stars', label: '⭐ Theo sao' },
-  { value: 'lastActive', label: '🕐 Hoạt động gần đây' }
+  { value: 'lastActive', label: '🕐 Hoạt động gần đây' },
+  { value: 'gameStage', label: '🎮 Theo stage game' }
 ];
 
 const BULK_ACTIONS = [
@@ -188,6 +189,9 @@ export default function UsersPage() {
         break;
       case 'lastActive':
         result.sort((a, b) => new Date(b.lastLoginDate || 0) - new Date(a.lastLoginDate || 0));
+        break;
+      case 'gameStage':
+        result.sort((a, b) => (b.gameProgress?.highestStage || 0) - (a.gameProgress?.highestStage || 0));
         break;
     }
     
@@ -806,6 +810,12 @@ export default function UsersPage() {
                             <span className="text-cyan-400">💎 {user.diamonds || 0}</span>
                             <span className="text-orange-400">🔥 {user.streak || 0}</span>
                           </div>
+                          {/* 🎮 Game Stage */}
+                          {user.gameProgress?.hasPlayed && (
+                            <div className="text-xs text-green-400">
+                              🎮 Stage {user.gameProgress.highestStage}
+                            </div>
+                          )}
                         </div>
                       </td>
                       <td className="px-4 py-4">
@@ -992,8 +1002,10 @@ export default function UsersPage() {
                     <div className="text-slate-500 text-xs">Sao</div>
                   </div>
                   <div className="bg-slate-700/50 rounded-lg py-2">
-                    <div className="text-orange-400 font-bold">🔥{user.streak || 0}</div>
-                    <div className="text-slate-500 text-xs">Streak</div>
+                    <div className={`font-bold ${user.gameProgress?.hasPlayed ? 'text-green-400' : 'text-slate-500'}`}>
+                      🎮{user.gameProgress?.highestStage || 0}
+                    </div>
+                    <div className="text-slate-500 text-xs">Stage</div>
                   </div>
                 </div>
                 
@@ -1488,6 +1500,58 @@ export default function UsersPage() {
                     <div className="text-slate-400 text-[10px] sm:text-xs">TB/câu</div>
                   </div>
                 </div>
+              </div>
+
+              {/* 🎮 Game Progress Section */}
+              <div className="bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-xl p-3 sm:p-4 border border-amber-500/30 mb-3 sm:mb-4">
+                <div className="text-amber-400 text-xs sm:text-sm font-medium mb-2">🎮 Tiến độ phiêu lưu</div>
+                {detailModal.gameProgress?.hasPlayed ? (
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between p-2 bg-slate-700/50 rounded-lg">
+                      <span className="text-slate-300 text-xs">Stage cao nhất</span>
+                      <span className="text-amber-400 font-bold">
+                        {detailModal.gameProgress.highestStage || 0}
+                        {detailModal.gameProgress.currentStage > 0 && detailModal.gameProgress.highestStage === 0 && (
+                          <span className="text-yellow-300 ml-1">(đang chơi #{detailModal.gameProgress.currentStage})</span>
+                        )}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between p-2 bg-slate-700/50 rounded-lg">
+                      <span className="text-slate-300 text-xs">Vùng đất</span>
+                      <span className="text-amber-400 font-medium capitalize">{detailModal.gameProgress.highestZone?.replace(/-/g, ' ') || detailModal.gameProgress.currentZone?.replace(/-/g, ' ') || '-'}</span>
+                    </div>
+                    {/* Chi tiết hoạt động */}
+                    <div className="grid grid-cols-3 gap-1 text-center">
+                      <div className="bg-slate-700/50 rounded-lg p-1.5">
+                        <div className="text-blue-400 font-bold text-xs">{detailModal.gameProgress.startedLessons || 0}</div>
+                        <div className="text-slate-500 text-[8px]">Bài học</div>
+                      </div>
+                      <div className="bg-slate-700/50 rounded-lg p-1.5">
+                        <div className="text-green-400 font-bold text-xs">{detailModal.gameProgress.attemptedExercises || 0}</div>
+                        <div className="text-slate-500 text-[8px]">Luyện tập</div>
+                      </div>
+                      <div className="bg-slate-700/50 rounded-lg p-1.5">
+                        <div className="text-red-400 font-bold text-xs">{detailModal.gameProgress.attemptedArenas || 0}</div>
+                        <div className="text-slate-500 text-[8px]">Đấu trường</div>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="bg-slate-700/50 rounded-lg p-2 text-center">
+                        <div className="text-green-400 font-bold">{detailModal.gameProgress.addSubStage || 0}</div>
+                        <div className="text-slate-400 text-[10px]">Cộng/Trừ</div>
+                      </div>
+                      <div className="bg-slate-700/50 rounded-lg p-2 text-center">
+                        <div className="text-purple-400 font-bold">{detailModal.gameProgress.mulDivStage || 0}</div>
+                        <div className="text-slate-400 text-[10px]">Nhân/Chia</div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center py-3 text-slate-500 text-xs">
+                    <span className="text-2xl">🚫</span>
+                    <div className="mt-1">Chưa chơi phiêu lưu</div>
+                  </div>
+                )}
               </div>
 
               {/* Info Details */}

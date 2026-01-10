@@ -390,8 +390,6 @@ function PracticePageContent() {
   // 🎮 GAME MODE: Helper function để quay về Adventure với đúng zone
   // Nếu vượt qua màn cuối của zone -> tự động chuyển sang zone mới
   const handleBackToGame = (passed = false) => {
-    console.log('🎮 handleBackToGame called:', { passed, gameMode });
-    
     if (gameMode?.zoneId) {
       let targetZoneId = gameMode.zoneId;
       
@@ -401,7 +399,6 @@ function PracticePageContent() {
         const nextZone = getNextZone(gameMode.stageId);
         if (nextZone) {
           targetZoneId = nextZone.zoneId;
-          console.log('🎯 Auto-navigating to next zone:', targetZoneId);
         }
       }
       
@@ -410,7 +407,6 @@ function PracticePageContent() {
         mapType: gameMode.mapType || 'addsub',
         timestamp: Date.now()
       };
-      console.log('🎯 Saving adventureReturnZone:', returnData);
       sessionStorage.setItem('adventureReturnZone', JSON.stringify(returnData));
     } else {
       console.warn('⚠️ gameMode.zoneId is missing:', gameMode);
@@ -466,32 +462,9 @@ function PracticePageContent() {
     if (status === 'unauthenticated') router.push('/login');
   }, [status, router]);
 
-  // 🔗 AUTO-START FROM URL: Xử lý query params từ Adventure links
-  useEffect(() => {
-    if (status !== 'authenticated') return;
-    if (mode) return; // Đã chọn mode rồi
-    
-    if (modeFromUrl && modeInfo[modeFromUrl]) {
-      console.log('[Practice] Auto-start from URL:', { mode: modeFromUrl, difficulty: difficultyFromUrl });
-      
-      // Set difficulty từ URL
-      if (difficultyFromUrl) {
-        const diff = parseInt(difficultyFromUrl, 10);
-        if (diff >= 1 && diff <= 6) {
-          setDifficulty(diff);
-        }
-      }
-      
-      // Set autoStartPending để trigger chọn mode
-      setAutoStartPending({
-        mode: modeFromUrl,
-        difficulty: difficultyFromUrl ? parseInt(difficultyFromUrl, 10) : 1,
-        fromUrl: true
-      });
-    }
-  }, [status, modeFromUrl, difficultyFromUrl, mode]);
-
   // 🎯 AUTO-START: Kiểm tra sessionStorage từ Adventure Map
+  // ⚠️ QUAN TRỌNG: useEffect này phải chạy TRƯỚC useEffect xử lý URL params
+  // để ưu tiên auto-start từ Adventure Map
   useEffect(() => {
     if (status !== 'authenticated') {
       // Chưa authenticated, tiếp tục chờ
@@ -503,6 +476,169 @@ function PracticePageContent() {
       return;
     }
 
+    // Helper function để start game trực tiếp
+    const startGameDirectly = (autoMode, autoDiff) => {
+      setDifficulty(autoDiff);
+      // KHÔNG set isCheckingAutoStart = false ở đây - giữ loading cho đến khi setTimeout xong
+      
+      // Delay nhỏ rồi start game (đảm bảo state đã update)
+      setTimeout(() => {
+        // 🧠 MENTAL MATH: Cần set mentalSubMode và gọi startMentalMode
+        if (autoMode === 'mentalMath') {
+          setMode('mentalMath');
+          setMentalSubMode('addSubMixed'); // Mặc định dùng Cộng Trừ Mix
+          setIsCheckingAutoStart(false);
+          // Start game với subMode
+          const actualSubMode = 'addSubMixed';
+          setProblem(generateProblem(actualSubMode, autoDiff));
+          setSorobanValue(0);
+          setMentalAnswer('');
+          setResult(null);
+          timerRef.current = 0;
+          setDisplayTimer(0);
+          setSessionStats({ stars: 0, correct: 0, total: 0, totalTime: 0 });
+          setStreak(0);
+          setMaxStreak(0);
+          setCurrentChallenge(1);
+          setChallengeResults([]);
+          setGameComplete(false);
+          setSorobanKey(prev => prev + 1);
+          setTimeout(() => mentalInputRef.current?.focus(), 100);
+          return;
+        }
+        
+        // ⚡ FLASH ANZAN: Cần set flashLevel và các states khác, rồi start
+        if (autoMode === 'flashAnzan') {
+          setMode('flashAnzan');
+          setFlashSelectedDigits(1); // Mặc định 1 chữ số
+          setFlashSelectedOperation('addition'); // Mặc định phép cộng
+          setFlashModeStep('speed'); // Đã chọn xong digits và operation
+          setIsCheckingAutoStart(false);
+          
+          // Start flash anzan với level đầu tiên (anhNen - Ánh Nến)
+          const levelId = 'anhNen';
+          const config = flashLevels.find(l => l.id === levelId);
+          if (config) {
+            setFlashLevel(levelId);
+            setFlashPhase('countdown');
+            setFlashCountdown(3);
+            setFlashAnswer('');
+            setFlashCurrentIndex(0);
+            setFlashShowingNumber(null);
+            setFlashShowingOperation(null);
+            
+            // Sử dụng số chữ số và phép toán mặc định
+            const selectedDigits = 1;
+            const selectedOperation = 'addition';
+            
+            // Generate flash numbers inline
+            const digits = selectedDigits;
+            const operationMode = selectedOperation;
+            const count = config.numbers[0] + Math.floor(Math.random() * (config.numbers[1] - config.numbers[0] + 1));
+            const numbers = [];
+            const operations = [];
+            const maxDigit = Math.pow(10, digits) - 1;
+            const minDigit = digits === 1 ? 1 : Math.pow(10, digits - 1);
+            let runningTotal = 0;
+            
+            for (let i = 0; i < count; i++) {
+              let num = Math.floor(Math.random() * (maxDigit - minDigit + 1)) + minDigit;
+              if (operationMode === 'addition') {
+                operations.push('+');
+                numbers.push(num);
+                runningTotal += num;
+              } else {
+                if (i === 0) {
+                  operations.push('+');
+                  numbers.push(num);
+                  runningTotal += num;
+                } else {
+                  const maxSubtractAllowed = Math.floor(runningTotal * 0.7);
+                  const canSubtract = maxSubtractAllowed >= minDigit;
+                  const shouldSubtract = canSubtract && Math.random() < 0.4;
+                  if (shouldSubtract) {
+                    const safeMax = Math.min(maxDigit, maxSubtractAllowed);
+                    num = Math.floor(Math.random() * (safeMax - minDigit + 1)) + minDigit;
+                    operations.push('-');
+                    numbers.push(num);
+                    runningTotal -= num;
+                  } else {
+                    operations.push('+');
+                    numbers.push(num);
+                    runningTotal += num;
+                  }
+                }
+              }
+            }
+            
+            setFlashNumbers(numbers);
+            setFlashOperations(operations);
+            
+            // Tính đáp án đúng
+            let correctAnswer = 0;
+            for (let i = 0; i < numbers.length; i++) {
+              if (operations[i] === '+') {
+                correctAnswer += numbers[i];
+              } else {
+                correctAnswer -= numbers[i];
+              }
+            }
+            setFlashCorrectAnswer(correctAnswer);
+            
+            // 🔧 FIX: Thêm countdown interval (thiếu trong code trước)
+            let countdownValue = 3;
+            const countdownInterval = setInterval(() => {
+              countdownValue--;
+              setFlashCountdown(countdownValue);
+              if (countdownValue === 0) {
+                clearInterval(countdownInterval);
+                // Bắt đầu hiện số sau khi countdown xong
+                setTimeout(() => {
+                  setFlashPhase('showing');
+                  // Gọi showFlashNumber với closure của numbers, operations, config
+                  const showNumber = (index) => {
+                    if (index >= numbers.length) {
+                      setFlashPhase('answer');
+                      setFlashShowingNumber(null);
+                      setFlashShowingOperation(null);
+                      setTimeout(() => flashInputRef.current?.focus(), 100);
+                      return;
+                    }
+                    setFlashCurrentIndex(index);
+                    setFlashShowingNumber(numbers[index]);
+                    setFlashShowingOperation(operations[index]);
+                    const speed = (config.speed[0] + config.speed[1]) / 2;
+                    flashTimeoutRef.current = setTimeout(() => {
+                      showNumber(index + 1);
+                    }, speed * 1000);
+                  };
+                  showNumber(0);
+                }, 500);
+              }
+            }, 1000);
+          }
+          return;
+        }
+        
+        // Mode thường - bắt đầu ngay
+        setMode(autoMode);
+        setIsCheckingAutoStart(false);
+        setProblem(generateProblem(autoMode, autoDiff));
+        setSorobanValue(0);
+        setMentalAnswer('');
+        setResult(null);
+        timerRef.current = 0;
+        setDisplayTimer(0);
+        setSessionStats({ stars: 0, correct: 0, total: 0, totalTime: 0 });
+        setStreak(0);
+        setMaxStreak(0);
+        setCurrentChallenge(1);
+        setChallengeResults([]);
+        setGameComplete(false);
+        setSorobanKey(prev => prev + 1);
+      }, 100);
+    };
+
     // Kiểm tra game mode từ Adventure page (ưu tiên này trước)
     const gameModeRaw = sessionStorage.getItem('practiceGameMode');
     if (gameModeRaw) {
@@ -511,26 +647,14 @@ function PracticePageContent() {
         // Chỉ valid trong 30 phút
         if (Date.now() - gameModeData.timestamp < 30 * 60 * 1000) {
           setGameMode(gameModeData);
-          console.log('[Practice] Game mode active:', gameModeData);
           
           // 🚀 AUTO-START: Từ Adventure → tự động bắt đầu ngay
           if (gameModeData.from === 'adventure' && gameModeData.mode) {
             const autoMode = gameModeData.mode;
             const autoDiff = gameModeData.difficulty || 1;
             
-            console.log('[Practice] Auto-starting from Adventure:', { mode: autoMode, difficulty: autoDiff });
-            
-            // Set difficulty
-            setDifficulty(autoDiff);
-            
-            // Trigger auto-start (sẽ set mode trong useEffect khác)
-            setAutoStartPending({
-              mode: autoMode,
-              difficulty: autoDiff,
-              from: 'adventure'
-            });
-            
-            return; // Không cần check practiceAutoStart nữa - giữ isCheckingAutoStart = true
+            startGameDirectly(autoMode, autoDiff);
+            return; // Đã xử lý xong
           }
         }
       } catch (e) {
@@ -559,8 +683,6 @@ function PracticePageContent() {
       // Clear sessionStorage ngay để tránh loop
       sessionStorage.removeItem('practiceAutoStart');
 
-      console.log('[Practice] Auto-start from practiceAutoStart:', autoStart);
-
       // Nếu từ adventure, cập nhật game mode với data đầy đủ hơn
       if (autoStart.from === 'adventure') {
         setGameMode(prev => ({
@@ -568,9 +690,15 @@ function PracticePageContent() {
           ...autoStart,
           from: 'adventure'
         }));
+        
+        // 🚀 AUTO-START: Start game trực tiếp
+        if (autoStart.mode) {
+          startGameDirectly(autoStart.mode, autoStart.difficulty || 1);
+          return;
+        }
       }
 
-      // Lưu để xử lý sau khi có generateProblem
+      // Fallback: Dùng autoStartPending cho trường hợp khác
       setAutoStartPending(autoStart);
       setDifficulty(autoStart.difficulty || 1);
 
@@ -580,6 +708,31 @@ function PracticePageContent() {
       setIsCheckingAutoStart(false);
     }
   }, [status, mode]);
+
+  // 🔗 AUTO-START FROM URL: Xử lý query params (fallback khi không có sessionStorage)
+  // Chỉ set autoStartPending để user có thể thấy mode được pre-select
+  useEffect(() => {
+    if (status !== 'authenticated') return;
+    if (mode) return; // Đã chọn mode rồi (từ sessionStorage hoặc user click)
+    if (isCheckingAutoStart) return; // Đang check sessionStorage, chưa xử lý xong
+    
+    if (modeFromUrl && modeInfo[modeFromUrl]) {
+      // Set difficulty từ URL
+      if (difficultyFromUrl) {
+        const diff = parseInt(difficultyFromUrl, 10);
+        if (diff >= 1 && diff <= 6) {
+          setDifficulty(diff);
+        }
+      }
+      
+      // Set autoStartPending để trigger chọn mode
+      setAutoStartPending({
+        mode: modeFromUrl,
+        difficulty: difficultyFromUrl ? parseInt(difficultyFromUrl, 10) : 1,
+        fromUrl: true
+      });
+    }
+  }, [status, modeFromUrl, difficultyFromUrl, mode, isCheckingAutoStart]);
 
   // Fetch user tier
   useEffect(() => {
@@ -960,8 +1113,6 @@ function PracticePageContent() {
     const { mode: autoMode, difficulty: autoDiff } = autoStartPending;
     setAutoStartPending(null); // Clear ngay để tránh chạy lại
     setIsCheckingAutoStart(false); // 🔧 FIX: Đã xử lý xong auto-start
-    
-    console.log('[Practice] Starting auto mode:', autoMode, 'difficulty:', autoDiff);
     
     // Đặc biệt xử lý các mode cần chọn thêm
     if (autoMode === 'mentalMath') {

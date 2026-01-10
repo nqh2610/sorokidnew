@@ -69,7 +69,6 @@ export default function AutoPracticePage() {
           mergedStageId = gameModeData.stageId || mergedStageId;
           mergedStageName = gameModeData.stageName || mergedStageName;
           mergedStageIcon = gameModeData.stageIcon || mergedStageIcon;
-          console.log('[Practice Auto] Merged with practiceGameMode:', gameModeData);
         }
       }
     } catch (e) {

@@ -461,8 +461,6 @@ function CompetePageContent() {
   // 🎮 GAME MODE: Helper function để quay về Adventure với đúng zone
   // Nếu vượt qua màn cuối của zone -> tự động chuyển sang zone mới
   const handleBackToGame = (passed = false) => {
-    console.log('🎮 [Compete] handleBackToGame called:', { passed, gameMode });
-    
     if (gameMode?.zoneId) {
       let targetZoneId = gameMode.zoneId;
       
@@ -472,7 +470,6 @@ function CompetePageContent() {
         const nextZone = getNextZone(gameMode.stageId);
         if (nextZone) {
           targetZoneId = nextZone.zoneId;
-          console.log('🎯 Auto-navigating to next zone:', targetZoneId);
         }
       }
       
@@ -481,7 +478,6 @@ function CompetePageContent() {
         mapType: gameMode.mapType || 'addsub',
         timestamp: Date.now()
       };
-      console.log('🎯 [Compete] Saving adventureReturnZone:', returnData);
       sessionStorage.setItem('adventureReturnZone', JSON.stringify(returnData));
     } else {
       console.warn('⚠️ [Compete] gameMode.zoneId is missing:', gameMode);
@@ -552,29 +548,21 @@ function CompetePageContent() {
     if (status === 'unauthenticated') router.push('/login');
   }, [status, router]);
 
-  // 🔗 AUTO-START FROM URL: Xử lý query params từ Adventure links
-  useEffect(() => {
-    if (status !== 'authenticated') return;
-    if (selectedMode) return; // Đã chọn mode rồi
-
-    if (modeFromUrl && modeInfo[modeFromUrl]) {
-      console.log('[Compete] Auto-start from URL:', { mode: modeFromUrl });
-      // Tự động chọn mode từ URL
-      setSelectedMode(modeFromUrl);
-    }
-  }, [status, modeFromUrl, selectedMode]);
-
   // 🎮 GAME MODE: Đọc game mode info từ sessionStorage (từ Adventure Map)
+  // ⚠️ QUAN TRỌNG: useEffect này phải chạy TRƯỚC useEffect xử lý URL params
+  // để ưu tiên auto-start từ Adventure Map
   useEffect(() => {
     if (status !== 'authenticated') {
       return;
     }
-    if (selectedArena || selectedMode) {
-      // Đã có arena/mode rồi, không auto-start nữa
+    if (selectedArena) {
+      // Đã có arena rồi (game đang chơi), không auto-start nữa
       setIsCheckingAutoStart(false);
       return;
     }
 
+    // 🔧 FIX: Check competeGameMode TRƯỚC, không check selectedMode ở đây
+    // Vì useEffect URL params có thể đã set selectedMode trước
     // Check competeGameMode (set từ Adventure handleStageClick)
     const gameModeRaw = sessionStorage.getItem('competeGameMode');
     if (gameModeRaw) {
@@ -583,7 +571,6 @@ function CompetePageContent() {
         // Check if data is recent (within 30 minutes)
         if (Date.now() - gameModeData.timestamp < 30 * 60 * 1000) {
           setGameMode(gameModeData);
-          console.log('[Compete] Game mode active:', gameModeData);
           
           // 🚀 AUTO-START: Từ Adventure → tự động bắt đầu với 10 câu mặc định
           // ⚠️ Tier check đã được thực hiện trên map (adventure/page.jsx) trước khi navigate đến đây
@@ -592,11 +579,27 @@ function CompetePageContent() {
             const difficulty = gameModeData.difficulty || 1;
             const questions = gameModeData.questions || 10;
             
-            // Tạo arena và bắt đầu ngay
+            // Tạo arena và bắt đầu ngay - SET TẤT CẢ STATES để bypass toàn bộ màn chọn
             const autoArena = createArena(mode, difficulty, questions);
+            setSelectedMode(mode); // 🔧 Bypass màn chọn mode
+            setSelectedDifficulty(difficulty); // 🔧 Bypass màn chọn difficulty
+            setSelectedQuestionCount(questions); // 🔧 Bypass màn chọn số câu
             setSelectedArena(autoArena);
             setTotalChallenges(questions);
-            setIsCheckingAutoStart(false); // 🔧 FIX: Đã xử lý xong
+            
+            // 🧠 MENTAL MATH: Set mentalSubMode để bypass màn chọn sub-mode
+            if (mode === 'mentalMath') {
+              setMentalSubMode('addSubMixed'); // Mặc định dùng Cộng Trừ Mix
+            }
+            
+            // ⚡ FLASH ANZAN: Set các states để bypass màn chọn digits/operation/speed
+            if (mode === 'flashAnzan') {
+              setFlashSelectedDigits(1); // Mặc định 1 chữ số
+              setFlashSelectedOperation('addition'); // Mặc định phép cộng
+              setFlashModeStep('speed'); // Đã chọn xong digits và operation
+            }
+            
+            // KHÔNG set isCheckingAutoStart = false ở đây - giữ loading cho đến khi setTimeout xong
             
             // Delay nhỏ rồi start game
             setTimeout(() => {
@@ -616,18 +619,17 @@ function CompetePageContent() {
               setChallengeResults([]);
               setGameComplete(false);
               setGameStarted(true);
+              setIsCheckingAutoStart(false); // 🔧 Set sau khi game đã start
               setSorobanKey(prev => prev + 1);
               
               if (mode === 'mentalMath') {
                 setTimeout(() => mentalInputRef.current?.focus(), 100);
               }
               
-              // Nếu là Flash Anzan, bắt đầu flow khác
+              // Nếu là Flash Anzan, bắt đầu flow khác - TRUYỀN difficulty trực tiếp
               if (mode === 'flashAnzan') {
-                startFlashChallenge();
+                startFlashChallenge(difficulty);
               }
-              
-              console.log('[Compete] Auto-started from Adventure:', { mode, difficulty, questions });
             }, 100);
             
             return; // Đã xử lý xong
@@ -645,7 +647,6 @@ function CompetePageContent() {
         const autoStartData = JSON.parse(autoStartRaw);
         if (Date.now() - autoStartData.timestamp < 30 * 60 * 1000) {
           setGameMode(autoStartData);
-          console.log('[Compete] Auto-start from competeAutoStart:', autoStartData);
           
           // 🚀 AUTO-START: Từ /compete/auto → cũng tự động bắt đầu
           if (autoStartData.from === 'adventure' && autoStartData.mode) {
@@ -654,9 +655,25 @@ function CompetePageContent() {
             const questions = autoStartData.questions || 10;
             
             const autoArena = createArena(mode, difficulty, questions);
+            setSelectedMode(mode); // 🔧 Bypass màn chọn mode
+            setSelectedDifficulty(difficulty); // 🔧 Bypass màn chọn difficulty
+            setSelectedQuestionCount(questions); // 🔧 Bypass màn chọn số câu
             setSelectedArena(autoArena);
             setTotalChallenges(questions);
-            setIsCheckingAutoStart(false); // 🔧 FIX: Đã xử lý xong
+            
+            // 🧠 MENTAL MATH: Set mentalSubMode để bypass màn chọn sub-mode
+            if (mode === 'mentalMath') {
+              setMentalSubMode('addSubMixed'); // Mặc định dùng Cộng Trừ Mix
+            }
+            
+            // ⚡ FLASH ANZAN: Set các states để bypass màn chọn digits/operation/speed
+            if (mode === 'flashAnzan') {
+              setFlashSelectedDigits(1); // Mặc định 1 chữ số
+              setFlashSelectedOperation('addition'); // Mặc định phép cộng
+              setFlashModeStep('speed'); // Đã chọn xong digits và operation
+            }
+            
+            // KHÔNG set isCheckingAutoStart = false ở đây - giữ loading cho đến khi setTimeout xong
             
             setTimeout(() => {
               const actualMode = mode === 'mentalMath' ? getRandomMentalMode() : mode;
@@ -674,17 +691,17 @@ function CompetePageContent() {
               setChallengeResults([]);
               setGameComplete(false);
               setGameStarted(true);
+              setIsCheckingAutoStart(false); // 🔧 Set sau khi game đã start
               setSorobanKey(prev => prev + 1);
               
               if (mode === 'mentalMath') {
                 setTimeout(() => mentalInputRef.current?.focus(), 100);
               }
               
+              // Nếu là Flash Anzan, bắt đầu flow khác - TRUYỀN difficulty trực tiếp
               if (mode === 'flashAnzan') {
-                startFlashChallenge();
+                startFlashChallenge(difficulty);
               }
-              
-              console.log('[Compete] Auto-started from /compete/auto:', { mode, difficulty, questions });
             }, 100);
             
             return; // Đã xử lý xong
@@ -695,9 +712,22 @@ function CompetePageContent() {
       }
     }
     
-    // Không có auto-start data, hiện màn chọn mode
+    // Không có auto-start data từ sessionStorage, hiện màn chọn mode
     setIsCheckingAutoStart(false);
-  }, [status, selectedArena, selectedMode]);
+  }, [status, selectedArena]);
+
+  // 🔗 AUTO-START FROM URL: Xử lý query params (fallback khi không có sessionStorage)
+  // Chỉ set mode để user chọn tiếp các bước khác
+  useEffect(() => {
+    if (status !== 'authenticated') return;
+    if (selectedMode) return; // Đã chọn mode rồi (từ sessionStorage hoặc user click)
+    if (isCheckingAutoStart) return; // Đang check sessionStorage, chưa set mode
+
+    if (modeFromUrl && modeInfo[modeFromUrl]) {
+      // Chỉ set mode, user sẽ chọn tiếp difficulty và số câu
+      setSelectedMode(modeFromUrl);
+    }
+  }, [status, modeFromUrl, selectedMode, isCheckingAutoStart]);
 
   // Fetch user tier
   useEffect(() => {
@@ -980,7 +1010,13 @@ function CompetePageContent() {
   };
 
   const startGame = () => {
-    // 🔒 TIER CHECK: Kiểm tra quyền truy cập mode
+    // �️ NULL CHECK: Kiểm tra selectedArena có tồn tại không
+    if (!selectedArena) {
+      console.error('startGame: selectedArena is null');
+      return;
+    }
+    
+    // �🔒 TIER CHECK: Kiểm tra quyền truy cập mode
     if (!canAccessMode(userTier, selectedArena.mode)) {
       const requiredTier = getRequiredTierForMode(selectedArena.mode);
       showUpgradeModal({
@@ -1027,9 +1063,12 @@ function CompetePageContent() {
 
   // ========== FLASH ANZAN FUNCTIONS ==========
   // Chỉ hỗ trợ 'addition' và 'mixed' - kết quả LUÔN DƯƠNG cho học sinh tiểu học
-  const startFlashChallenge = () => {
+  const startFlashChallenge = (overrideDifficulty = null) => {
+    // Lấy difficulty từ tham số hoặc từ selectedArena
+    const difficulty = overrideDifficulty ?? selectedArena?.difficulty ?? 1;
+    
     // Lấy config từ flashLevelsCompete dựa trên difficulty
-    const config = flashLevelsCompete.find(l => l.level === selectedArena.difficulty) || flashLevelsCompete[0];
+    const config = flashLevelsCompete.find(l => l.level === difficulty) || flashLevelsCompete[0];
 
     // Sử dụng số chữ số và phép toán đã chọn
     const digits = flashSelectedDigits || 1;
@@ -1170,7 +1209,7 @@ function CompetePageContent() {
       play('correctFast');
       
       // Tính sao
-      const config = flashLevelsCompete.find(l => l.level === selectedArena.difficulty) || flashLevelsCompete[0];
+      const config = flashLevelsCompete.find(l => l.level === selectedArena?.difficulty) || flashLevelsCompete[0];
       const baseStars = config.stars || 2;
       const bonusMultiplier = config.bonusMultiplier || 1;
       const earnedStars = Math.round(baseStars * bonusMultiplier);
@@ -1270,7 +1309,7 @@ function CompetePageContent() {
     }
     
     // Tính sao tạm thời cho hiển thị instant feedback
-    const instantStars = isCorrect ? Math.round((1 + selectedArena.difficulty) * speedTier.multiplier) : 0;
+    const instantStars = isCorrect ? Math.round((1 + (selectedArena?.difficulty || 1)) * speedTier.multiplier) : 0;
 
     setChallengeResults(prev => [...prev, isCorrect ? 'correct' : 'wrong']);
 
@@ -1356,8 +1395,8 @@ function CompetePageContent() {
     }
     
     setCurrentChallenge(prev => prev + 1);
-    const actualMode = selectedArena.mode === 'mentalMath' ? getMentalMode() : selectedArena.mode;
-    setProblem(generateProblem(actualMode, selectedArena.difficulty));
+    const actualMode = selectedArena?.mode === 'mentalMath' ? getMentalMode() : selectedArena?.mode;
+    setProblem(generateProblem(actualMode, selectedArena?.difficulty || 1));
     setSorobanValue(0);
     setMentalAnswer('');
     setResult(null);
@@ -1365,7 +1404,7 @@ function CompetePageContent() {
     setDisplayTimer(0);
     setSorobanKey(prev => prev + 1);
     
-    if (selectedArena.mode === 'mentalMath') {
+    if (selectedArena?.mode === 'mentalMath') {
       setTimeout(() => mentalInputRef.current?.focus(), 100);
     }
   };

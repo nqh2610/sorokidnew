@@ -14,10 +14,10 @@ import { motion } from 'framer-motion';
 const ZONE_THEMES = {
   // ============ ADDSUB ZONES ============
   
-  // Làng Khởi Đầu - Xanh lá dịu, dễ nhìn
+  // Làng Khởi Đầu - Cổ điển, khởi nguồn tri thức
   village: {
     gradient: 'from-green-600 via-emerald-600 to-green-700',
-    elements: ['🧮', '🌳', '✨', '📜', '🌸', '🔢'],
+    elements: ['🧮', '📜', '🏺', '⭐', '🔢', '∞'],
     flyingElements: ['🦋', '🐦'],
     cloudColor: 'bg-white/40',
     groundColor: 'from-green-600 to-green-700',
@@ -25,10 +25,10 @@ const ZONE_THEMES = {
     particleColor: '#86efac'
   },
   
-  // Rừng Phép Cộng - Xanh đậm, cây lớn
+  // Rừng Phép Cộng - Huyền bí cổ xưa
   forest: {
     gradient: 'from-emerald-600 via-green-700 to-emerald-800',
-    elements: ['🌲', '🍃', '🌿', '🦊', '🐿️', '🍄'],
+    elements: ['🏛️', '📿', '🗿', '🌿', '✨', '🔮'],
     flyingElements: ['🍃', '🦜'],
     cloudColor: 'bg-emerald-200/30',
     groundColor: 'from-emerald-700 to-emerald-800',
@@ -36,32 +36,32 @@ const ZONE_THEMES = {
     particleColor: '#a7f3d0'
   },
   
-  // Thung Lũng Phép Trừ - Xanh dương mát mẻ
+  // Thung Lũng Phép Trừ - Vũ trụ băng giá
   valley: {
     gradient: 'from-blue-600 via-cyan-700 to-blue-700',
-    elements: ['🏔️', '⛰️', '🌊', '🦅', '☁️', '❄️'],
-    flyingElements: ['🦅', '❄️'],
+    elements: ['🛸', '🪐', '🌌', '💎', '❄️', '✨'],
+    flyingElements: ['🛸', '❄️'],
     cloudColor: 'bg-white/50',
     groundColor: 'from-blue-600 to-blue-700',
     accentColor: 'text-cyan-200',
     particleColor: '#a5f3fc'
   },
   
-  // Đồi Bạn Lớn - Cam ấm, không chói
+  // Đồi Bạn Lớn - Toán học vui nhộn
   hill: {
     gradient: 'from-amber-700 via-orange-700 to-amber-800',
-    elements: ['🌈', '🌾', '🌻', '🐝', '🦋', '☀️'],
-    flyingElements: ['🐝', '🦋'],
+    elements: ['➕', '➖', '🔢', '💯', '⭐', '🎯'],
+    flyingElements: ['🦋', '⭐'],
     cloudColor: 'bg-white/50',
     groundColor: 'from-yellow-700 to-orange-700',
     accentColor: 'text-yellow-200',
     particleColor: '#f59e0b'
   },
   
-  // Đài Kết Hợp - Tím hồng dịu
+  // Đài Kết Hợp - Đền thờ cổ đại huyền bí
   tower: {
     gradient: 'from-purple-600 via-pink-600 to-violet-700',
-    elements: ['🏛️', '✨', '💫', '🔮', '🌙', '⭐'],
+    elements: ['🏛️', '🔮', '📜', '🗝️', '🌙', '⭐'],
     flyingElements: ['✨', '💫'],
     cloudColor: 'bg-purple-200/40',
     groundColor: 'from-purple-700 to-violet-800',
@@ -69,21 +69,21 @@ const ZONE_THEMES = {
     particleColor: '#f0abfc'
   },
   
-  // Thành Phố Số Lớn - Xanh indigo hiện đại
+  // Thành Phố Số Lớn - Tương lai hiện đại
   'city-numbers': {
     gradient: 'from-cyan-600 via-blue-600 to-indigo-600',
-    elements: ['🏙️', '🌃', '🔢', '💯', '🏢', '✨'],
-    flyingElements: ['✨', '🚀'],
+    elements: ['🚀', '🛸', '💯', '🔢', '🤖', '⚡'],
+    flyingElements: ['🚀', '🛸'],
     cloudColor: 'bg-blue-200/40',
     groundColor: 'from-blue-700 to-indigo-700',
     accentColor: 'text-cyan-200',
     particleColor: '#7dd3fc'
   },
   
-  // Vương Quốc Nghìn - Tím hoàng gia đậm
+  // Vương Quốc Nghìn - Lâu đài hoàng gia cổ
   kingdom: {
     gradient: 'from-indigo-600 via-purple-700 to-violet-800',
-    elements: ['🏰', '👑', '🗝️', '🦁', '🎺', '⚜️'],
+    elements: ['🏰', '👑', '🗝️', '⚔️', '🛡️', '⚜️'],
     flyingElements: ['🐦', '⭐'],
     cloudColor: 'bg-violet-200/40',
     groundColor: 'from-indigo-800 to-purple-900',
@@ -91,21 +91,21 @@ const ZONE_THEMES = {
     particleColor: '#c4b5fd'
   },
   
-  // Tháp Tính Nhẩm - Tím sâu trí tuệ
+  // Tháp Tính Nhẩm - Vũ trụ trí tuệ
   'mental-tower': {
     gradient: 'from-violet-600 via-purple-700 to-fuchsia-700',
-    elements: ['🧠', '💭', '🔮', '✨', '🌌', '💫'],
-    flyingElements: ['✨', '💭'],
+    elements: ['🧠', '🪐', '🌌', '🔮', '∞', '💫'],
+    flyingElements: ['✨', '🛸'],
     cloudColor: 'bg-fuchsia-200/30',
     groundColor: 'from-purple-800 to-fuchsia-900',
     accentColor: 'text-fuchsia-200',
     particleColor: '#e879f9'
   },
   
-  // Đền Tốc Độ - Cam đỏ năng lượng (tối hơn)
+  // Đền Tốc Độ - Tàu vũ trụ tốc độ cao
   'speed-temple': {
     gradient: 'from-orange-700 via-red-700 to-rose-800',
-    elements: ['⚡', '🔥', '💥', '🌟', '⏱️', '🚀'],
+    elements: ['🚀', '⚡', '💥', '🛸', '⏱️', '🌟'],
     flyingElements: ['🚀', '⚡'],
     cloudColor: 'bg-orange-200/40',
     groundColor: 'from-red-800 to-rose-900',
@@ -113,10 +113,10 @@ const ZONE_THEMES = {
     particleColor: '#ea580c'
   },
   
-  // Đỉnh Tia Chớp - Amber đậm, điện (khác treasure-castle)
+  // Đỉnh Tia Chớp - Năng lượng vũ trụ
   'flash-peak': {
     gradient: 'from-amber-700 via-yellow-800 to-orange-800',
-    elements: ['⚡', '✨', '💫', '🌟', '⭐', '🔆'],
+    elements: ['⚡', '🌟', '💫', '🔆', '✨', '🛸'],
     flyingElements: ['⚡', '⭐'],
     cloudColor: 'bg-amber-100/40',
     groundColor: 'from-amber-700 to-orange-800',
@@ -124,11 +124,11 @@ const ZONE_THEMES = {
     particleColor: '#d97706'
   },
   
-  // Lâu Đài Kho Báu - Vàng đất, ấm áp
+  // Lâu Đài Kho Báu - Cổ vật hoàng kim
   'treasure-castle': {
     gradient: 'from-yellow-800 via-amber-800 to-orange-800',
-    elements: ['🏆', '💎', '👑', '🎁', '🌟', '💰'],
-    flyingElements: ['🌟', '💎'],
+    elements: ['🏺', '💎', '👑', '🗝️', '📜', '⚱️'],
+    flyingElements: ['✨', '💎'],
     cloudColor: 'bg-yellow-100/50',
     groundColor: 'from-amber-800 to-orange-900',
     accentColor: 'text-amber-100',
@@ -137,10 +137,10 @@ const ZONE_THEMES = {
   
   // ============ MULDIV ZONES ============
   
-  // Hang Động Phép Nhân - Đỏ đậm hang động
+  // Hang Động Phép Nhân - Đền cổ trong hang
   'cave-multiply': {
     gradient: 'from-rose-700 via-red-700 to-orange-700',
-    elements: ['🌋', '✖️', '🔥', '💎', '⛏️', '🦎'],
+    elements: ['🏺', '✖️', '💎', '🗿', '🔥', '⚱️'],
     flyingElements: ['🔥', '🦇'],
     cloudColor: 'bg-rose-200/40',
     groundColor: 'from-rose-800 to-red-900',
@@ -148,32 +148,32 @@ const ZONE_THEMES = {
     particleColor: '#fb7185'
   },
   
-  // Hồ Phép Chia Cơ Bản - Teal dịu mát
+  // Hồ Phép Chia Cơ Bản - Đại dương vũ trụ
   'lake-divide-basic': {
     gradient: 'from-teal-600 via-cyan-700 to-blue-700',
-    elements: ['🏝️', '➗', '🐬', '🌊', '🐠', '🏖️'],
-    flyingElements: ['🐦', '🦢'],
+    elements: ['🛸', '➗', '🪐', '🌊', '💎', '✨'],
+    flyingElements: ['🛸', '🐦'],
     cloudColor: 'bg-teal-200/40',
     groundColor: 'from-teal-600 to-cyan-700',
     accentColor: 'text-teal-200',
     particleColor: '#5eead4'
   },
   
-  // Hồ Phép Chia Nâng Cao - Xanh băng giá
+  // Hồ Phép Chia Nâng Cao - Băng giá ngoài hành tinh
   'lake-divide-advanced': {
     gradient: 'from-sky-600 via-blue-700 to-indigo-700',
-    elements: ['🌀', '➗', '🐳', '💧', '🧊', '❄️'],
-    flyingElements: ['❄️', '🐦'],
+    elements: ['🌌', '➗', '🪐', '💎', '🧊', '❄️'],
+    flyingElements: ['❄️', '🛸'],
     cloudColor: 'bg-sky-200/40',
     groundColor: 'from-blue-700 to-indigo-800',
     accentColor: 'text-sky-200',
     particleColor: '#7dd3fc'
   },
   
-  // Đấu Trường 4 Phép Tính - Đỏ đậm mạnh mẽ
+  // Đấu Trường 4 Phép Tính - Colosseum cổ đại
   'arena-four': {
     gradient: 'from-red-800 via-orange-800 to-amber-800',
-    elements: ['🏟️', '⚔️', '🛡️', '🎯', '🏅', '🔥'],
+    elements: ['🏛️', '⚔️', '🛡️', '🏺', '🔥', '⚜️'],
     flyingElements: ['🔥', '⭐'],
     cloudColor: 'bg-red-200/40',
     groundColor: 'from-red-900 to-orange-900',
@@ -181,21 +181,21 @@ const ZONE_THEMES = {
     particleColor: '#ef4444'
   },
   
-  // Tháp Tính Nhẩm Nhân Chia - Tím indigo khác mental-tower
+  // Tháp Tính Nhẩm Nhân Chia - Thiên văn cổ đại
   'mental-muldiv': {
     gradient: 'from-indigo-600 via-violet-700 to-purple-700',
-    elements: ['🧠', '💜', '🔮', '✨', '🌌', '💎'],
-    flyingElements: ['✨', '💫'],
+    elements: ['🧠', '🔭', '🪐', '🌌', '∞', '💫'],
+    flyingElements: ['✨', '🛸'],
     cloudColor: 'bg-indigo-200/30',
     groundColor: 'from-indigo-800 to-purple-900',
     accentColor: 'text-indigo-200',
     particleColor: '#a5b4fc'
   },
   
-  // Đền Tốc Độ Nhân Chia - Hồng đỏ khác speed-temple
+  // Đền Tốc Độ Nhân Chia - Công nghệ tương lai
   'speed-muldiv': {
     gradient: 'from-rose-700 via-pink-800 to-red-800',
-    elements: ['⚡', '🔥', '💥', '⏱️', '🚀', '💫'],
+    elements: ['🚀', '⚡', '🤖', '⏱️', '🛸', '💫'],
     flyingElements: ['🚀', '⚡'],
     cloudColor: 'bg-rose-200/40',
     groundColor: 'from-rose-800 to-red-900',
@@ -203,10 +203,10 @@ const ZONE_THEMES = {
     particleColor: '#f43f5e'
   },
   
-  // Đỉnh Hỗn Hợp - Tím hồng gradient đẹp
+  // Đỉnh Hỗn Hợp - Thiên đường toán học
   'mixed-peak': {
     gradient: 'from-violet-600 via-purple-700 to-pink-700',
-    elements: ['🌈', '🎆', '✨', '💫', '🌟', '🎇'],
+    elements: ['∞', '🔮', '✨', '💫', '🌟', '🪐'],
     flyingElements: ['✨', '🦋'],
     cloudColor: 'bg-violet-200/40',
     groundColor: 'from-purple-800 to-pink-800',
@@ -214,10 +214,10 @@ const ZONE_THEMES = {
     particleColor: '#c084fc'
   },
   
-  // Lâu Đài Tối Thượng - Vàng đậm hoàng gia
+  // Lâu Đài Tối Thượng - Cung điện vĩ đại
   'supreme-castle': {
     gradient: 'from-amber-700 via-yellow-800 to-orange-800',
-    elements: ['👑', '🏆', '💎', '🎊', '🌟', '🎖️'],
+    elements: ['🏰', '👑', '💎', '🏺', '⚜️', '🗝️'],
     flyingElements: ['🌟', '💎'],
     cloudColor: 'bg-yellow-100/60',
     groundColor: 'from-amber-700 to-orange-800',

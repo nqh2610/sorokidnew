@@ -70,7 +70,6 @@ export default function AutoCompetePage() {
           mergedStageId = gameModeData.stageId || mergedStageId;
           mergedStageName = gameModeData.stageName || mergedStageName;
           mergedStageIcon = gameModeData.stageIcon || mergedStageIcon;
-          console.log('[Compete Auto] Merged with competeGameMode:', gameModeData);
         }
       }
     } catch (e) {
