@@ -1933,32 +1933,42 @@ export default function GameMapNew({
   
   // Effect riêng để xử lý tự động hiện - CHỈ chạy khi chuyển zone
   const prevZoneKeyRef = useRef(null);
-  const prevZoneProgressRef = useRef({}); // Track progress để detect hoàn thành zone
+  const isFirstMountRef = useRef(true); // Track lần mount đầu tiên
   
   useEffect(() => {
     if (!activeZone) return;
     
     const zoneMessageKey = `${currentMap}_${activeZoneId}`;
     const progress = zoneProgress[activeZoneId];
-    const prevProgress = prevZoneProgressRef.current[activeZoneId];
     
-    // 🏆 CHECK: Zone vừa hoàn thành (progress từ <100 lên 100)
-    if (progress?.percent === 100 && prevProgress?.percent < 100) {
-      // Trigger celebration!
-      setCelebrationZone(activeZone);
-      setShowZoneCelebration(true);
-      // Update ref
-      prevZoneProgressRef.current[activeZoneId] = { ...progress };
-      return;
-    }
-    
-    // Update progress ref
-    if (progress) {
-      prevZoneProgressRef.current[activeZoneId] = { ...progress };
+    // 🏆 CHECK: Zone hoàn thành 100% và chưa từng xem celebration
+    if (progress?.percent === 100) {
+      // Đọc localStorage xem đã xem celebration zone này chưa
+      let viewedCelebrations = new Set();
+      try {
+        const saved = localStorage.getItem('sorokid_viewed_zone_celebrations');
+        if (saved) viewedCelebrations = new Set(JSON.parse(saved));
+      } catch {}
+      
+      // Nếu CHƯA từng xem celebration → hiện!
+      if (!viewedCelebrations.has(zoneMessageKey)) {
+        setCelebrationZone(activeZone);
+        setShowZoneCelebration(true);
+        // Đánh dấu đã xem
+        viewedCelebrations.add(zoneMessageKey);
+        try {
+          localStorage.setItem('sorokid_viewed_zone_celebrations', JSON.stringify([...viewedCelebrations]));
+        } catch {}
+        return;
+      }
     }
     
     // Chỉ xử lý khi THỰC SỰ chuyển sang zone KHÁC
     if (prevZoneKeyRef.current === zoneMessageKey) return;
+    
+    // 🚫 KHÔNG hiện locked dialog khi lần đầu mount (vừa quay về từ màn chơi)
+    const wasFirstMount = isFirstMountRef.current;
+    isFirstMountRef.current = false;
     prevZoneKeyRef.current = zoneMessageKey;
     
     // 🔒 CHECK: Tìm zone đầu tiên chưa hoàn thành (zone đang chơi)
@@ -1979,6 +1989,10 @@ export default function GameMapNew({
     // Nếu zone hiện tại không phải zone đang chơi (có zone trước chưa hoàn thành)
     const playingZoneIndex = playingZone ? zones.findIndex(z => z.zoneId === playingZone.zoneId) : 0;
     if (playingZone && currentZoneIndex > playingZoneIndex) {
+      // 🚫 KHÔNG hiện locked dialog khi vừa quay về từ màn chơi (first mount)
+      if (wasFirstMount) {
+        return; // Skip - user vừa quay về, không spam popup
+      }
       setLockedZoneInfo({
         currentZone: activeZone,
         prevZone: playingZone, // Zone đang chơi (chưa hoàn thành)
@@ -1996,7 +2010,8 @@ export default function GameMapNew({
     } catch {}
     
     // 📖 Nếu CHƯA từng xem intro zone này VÀ chưa hoàn thành zone → hiện ZoneIntroDialog
-    if (!viewedIntros.has(zoneMessageKey) && progress?.percent < 100) {
+    // 🚫 KHÔNG hiện khi vừa quay về từ màn chơi (first mount)
+    if (!wasFirstMount && !viewedIntros.has(zoneMessageKey) && progress?.percent < 100) {
       setIntroZone(activeZone);
       setShowZoneIntro(true);
       // Đánh dấu đã xem
