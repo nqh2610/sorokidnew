@@ -3,11 +3,12 @@
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { PlayCircle, Lock, CheckCircle, Star, Clock, ChevronRight, BookOpen, Crown, Sparkles } from 'lucide-react';
+import { useEffect, useState, useCallback, useRef } from 'react';
+import { PlayCircle, Lock, CheckCircle, Star, Clock, ChevronRight, BookOpen, Crown, Sparkles, ChevronLeft } from 'lucide-react';
 import TopBar from '@/components/TopBar/TopBar';
 import StarBadge from '@/components/Rewards/StarBadge';
 import { useUpgradeModal } from '@/components/UpgradeModal';
+import { useSwipeNavigation } from '@/lib/useSwipeNavigation';
 
 // Fallback colors cho levels (nếu database không có)
 const LEVEL_COLORS = {
@@ -53,8 +54,67 @@ export default function LearnPage() {
   const [userTier, setUserTier] = useState('free');
   const [maxLevel, setMaxLevel] = useState(5);
   
+  // Refs cho auto-scroll tabs
+  const tabsContainerRef = useRef(null);
+  const tabRefs = useRef({});
+  
   // Hook modal nâng cấp tinh tế
   const { showUpgradeModal, UpgradeModalComponent } = useUpgradeModal();
+
+  // Navigation functions
+  const goToPrevLevel = useCallback(() => {
+    const currentIndex = levels.findIndex(l => l.id === selectedLevel);
+    if (currentIndex > 0) {
+      const prevLevel = levels[currentIndex - 1];
+      if (prevLevel.isLocked) {
+        showUpgradeModal({
+          requiredTier: 'advanced',
+          feature: `Level ${prevLevel.id}: ${prevLevel.name}`,
+          currentTier: userTier
+        });
+      } else {
+        setSelectedLevel(prevLevel.id);
+      }
+    }
+  }, [levels, selectedLevel, userTier, showUpgradeModal]);
+
+  const goToNextLevel = useCallback(() => {
+    const currentIndex = levels.findIndex(l => l.id === selectedLevel);
+    if (currentIndex < levels.length - 1) {
+      const nextLevel = levels[currentIndex + 1];
+      if (nextLevel.isLocked) {
+        showUpgradeModal({
+          requiredTier: 'advanced',
+          feature: `Level ${nextLevel.id}: ${nextLevel.name}`,
+          currentTier: userTier
+        });
+      } else {
+        setSelectedLevel(nextLevel.id);
+      }
+    }
+  }, [levels, selectedLevel, userTier, showUpgradeModal]);
+
+  // Swipe hook - hỗ trợ cả touch và mouse
+  const { swipeHandlers } = useSwipeNavigation(goToNextLevel, goToPrevLevel);
+
+  // Auto-scroll tab vào view khi selectedLevel thay đổi
+  useEffect(() => {
+    if (selectedLevel && tabRefs.current[selectedLevel] && tabsContainerRef.current) {
+      const tab = tabRefs.current[selectedLevel];
+      const container = tabsContainerRef.current;
+      
+      // Tính toán vị trí để scroll tab vào giữa màn hình
+      const tabRect = tab.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      
+      const scrollLeft = tab.offsetLeft - (containerRect.width / 2) + (tabRect.width / 2);
+      
+      container.scrollTo({
+        left: Math.max(0, scrollLeft),
+        behavior: 'smooth'
+      });
+    }
+  }, [selectedLevel]);
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -149,7 +209,10 @@ export default function LearnPage() {
   const tierInfo = TIER_INFO[userTier] || TIER_INFO.free;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50">
+    <div 
+      className="min-h-screen bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50"
+      {...swipeHandlers}
+    >
       {/* Unified TopBar */}
       <TopBar showStats={true} />
 
@@ -163,7 +226,7 @@ export default function LearnPage() {
         </div>
 
         {/* Level Selector - Horizontal Scroll */}
-        <div className="mb-6 overflow-x-auto pb-2">
+        <div className="mb-6 overflow-x-auto pb-2" ref={tabsContainerRef}>
           <div className="flex gap-2 min-w-max">
             {levels.map((level) => {
               const levelColor = level.color || LEVEL_COLORS[level.id] || 'from-gray-400 to-gray-500';
@@ -172,6 +235,7 @@ export default function LearnPage() {
               return (
                 <button
                   key={level.id}
+                  ref={(el) => { tabRefs.current[level.id] = el; }}
                   onClick={() => {
                     if (isLocked) {
                       showUpgradeModal({
@@ -213,45 +277,131 @@ export default function LearnPage() {
 
         {/* Current Level Info */}
         {currentLevel && (
-          <div className={`bg-gradient-to-r ${currentLevelColor} rounded-2xl p-6 shadow-xl mb-6 text-white`}>
-            <div className="flex items-center justify-between flex-wrap gap-4">
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-4xl">{currentLevel.icon}</span>
-                  <div>
-                    <h2 className="text-2xl font-bold">🏰 Màn {selectedLevel}: {currentLevel.name}</h2>
-                    <p className="text-white/80">{currentLevel.description}</p>
-                  </div>
-                </div>
+          <div 
+            className={`bg-gradient-to-r ${currentLevelColor} rounded-2xl p-4 sm:p-6 shadow-xl mb-6 text-white`}
+          >
+            {/* Swipe hint - mobile only */}
+            <div className="lg:hidden text-center text-[10px] text-white/70 mb-1">
+              ← vuốt trái/phải để chuyển màn →
+            </div>
+
+            {/* Header: Icon + Title */}
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-3xl sm:text-4xl">{currentLevel.icon}</span>
+              <h2 className="text-lg sm:text-2xl font-bold flex-1">Màn {selectedLevel}: {currentLevel.name}</h2>
+            </div>
+            
+            {/* Stats Row - centered, không bị che */}
+            <div className="flex items-center justify-center gap-6 mb-3">
+              <div className="text-center">
+                <div className="text-2xl sm:text-3xl font-bold">{completedLessons}/{lessons.length}</div>
+                <div className="text-[10px] sm:text-xs text-white/80">Nhiệm vụ</div>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="text-center">
-                  <div className="text-2xl font-bold">{completedLessons}/{lessons.length}</div>
-                  <div className="text-xs text-white/80">Nhiệm vụ</div>
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-1 text-2xl sm:text-3xl font-bold">
+                  <Star size={18} className="sm:w-5 sm:h-5" fill="white" />
+                  {totalStars}/{maxStars}
                 </div>
-                <div className="text-center">
-                  <div className="flex items-center gap-1 text-2xl font-bold">
-                    <Star size={20} fill="white" />
-                    {totalStars}/{maxStars}
-                  </div>
-                  <div className="text-xs text-white/80">Sao</div>
-                </div>
+                <div className="text-[10px] sm:text-xs text-white/80">Sao</div>
               </div>
             </div>
+
             {/* Progress bar */}
-            <div className="mt-4 bg-white/30 rounded-full h-3">
+            <div className="bg-white/30 rounded-full h-2 sm:h-3">
               <div 
-                className="bg-white rounded-full h-3 transition-all duration-500 relative overflow-hidden"
+                className="bg-white rounded-full h-2 sm:h-3 transition-all duration-500 relative overflow-hidden"
                 style={{ width: `${lessons.length > 0 ? (completedLessons / lessons.length) * 100 : 0}%` }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-pulse"></div>
               </div>
             </div>
-            <p className="text-xs text-white/80 mt-2 text-center">
+            <p className="text-[10px] sm:text-xs text-white/80 mt-1.5 text-center">
               {completedLessons === lessons.length && lessons.length > 0 
-                ? '🎉 Đã hoàn thành màn này! Tuyệt vời!'
-                : `💪 Còn ${lessons.length - completedLessons} nhiệm vụ nữa thôi!`}
+                ? '🎉 Đã hoàn thành màn này!'
+                : `💪 Còn ${lessons.length - completedLessons} nhiệm vụ nữa!`}
             </p>
+            
+            {/* Navigation: Arrows + Dots - mobile only */}
+            <div className="lg:hidden flex items-center justify-center gap-2 mt-3">
+              {/* Prev button */}
+              <button 
+                onClick={goToPrevLevel}
+                disabled={levels.findIndex(l => l.id === selectedLevel) === 0}
+                className={`p-2 rounded-full bg-white/20 transition-all ${
+                  levels.findIndex(l => l.id === selectedLevel) === 0 ? 'opacity-30' : 'hover:bg-white/30 active:scale-90'
+                }`}
+              >
+                <ChevronLeft size={18} className="text-white" />
+              </button>
+              
+              {/* Dots - chỉ hiện 5 dots xung quanh current */}
+              <div className="flex items-center gap-1.5">
+                {(() => {
+                  const currentIdx = levels.findIndex(l => l.id === selectedLevel);
+                  const totalLevels = levels.length;
+                  
+                  // Hiện tối đa 5 dots
+                  let startIdx = Math.max(0, currentIdx - 2);
+                  let endIdx = Math.min(totalLevels - 1, startIdx + 4);
+                  startIdx = Math.max(0, endIdx - 4);
+                  
+                  const dots = [];
+                  
+                  if (startIdx > 0) {
+                    dots.push(<span key="start" className="text-white/50 text-xs">...</span>);
+                  }
+                  
+                  for (let i = startIdx; i <= endIdx; i++) {
+                    const level = levels[i];
+                    dots.push(
+                      <button
+                        key={level.id}
+                        onClick={() => {
+                          if (level.isLocked) {
+                            showUpgradeModal({
+                              requiredTier: 'advanced',
+                              feature: `Level ${level.id}: ${level.name}`,
+                              currentTier: userTier
+                            });
+                          } else {
+                            setSelectedLevel(level.id);
+                          }
+                        }}
+                        className={`w-2.5 h-2.5 rounded-full transition-all ${
+                          level.id === selectedLevel 
+                            ? 'bg-white scale-125' 
+                            : level.isLocked 
+                              ? 'bg-white/30' 
+                              : 'bg-white/60'
+                        }`}
+                      />
+                    );
+                  }
+                  
+                  if (endIdx < totalLevels - 1) {
+                    dots.push(<span key="end" className="text-white/50 text-xs">...</span>);
+                  }
+                  
+                  return dots;
+                })()}
+              </div>
+              
+              {/* Next button */}
+              <button 
+                onClick={goToNextLevel}
+                disabled={levels.findIndex(l => l.id === selectedLevel) === levels.length - 1}
+                className={`p-2 rounded-full bg-white/20 transition-all ${
+                  levels.findIndex(l => l.id === selectedLevel) === levels.length - 1 ? 'opacity-30' : 'hover:bg-white/30 active:scale-90'
+                }`}
+              >
+                <ChevronRight size={18} className="text-white" />
+              </button>
+            </div>
+            
+            {/* Level number indicator - mobile */}
+            <div className="lg:hidden text-center text-xs text-white/70 mt-1">
+              {levels.findIndex(l => l.id === selectedLevel) + 1} / {levels.length}
+            </div>
           </div>
         )}
 

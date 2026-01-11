@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useCallback, useMemo, useRef, memo } from 'react';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
@@ -578,6 +578,9 @@ const StageNode = memo(function StageNode({ stage, status, onClick, index }) {
   const isCompleted = status === 'completed';
   const isBoss = stage.type === 'boss';
   const isTreasure = stage.type === 'treasure';
+  // 🆕 Phân biệt boss practice và boss compete (đấu trường)
+  const isCompeteBoss = isBoss && stage.bossType === 'compete';
+  const isPracticeBoss = isBoss && stage.bossType === 'practice';
   
   // Màu sắc tươi sáng - ngay cả locked cũng có màu pastel
   const getStyle = () => {
@@ -593,10 +596,24 @@ const StageNode = memo(function StageNode({ stage, status, onClick, index }) {
       iconBg: 'bg-emerald-600',
       glow: false
     };
+    // 🆕 Đấu trường (compete) - màu tím khi thắng, xám khi chưa thắng
+    if (isCompeteBoss) return {
+      bg: isLocked ? 'from-gray-400 to-gray-500' : 'from-purple-500 to-indigo-600',
+      shadow: isLocked ? 'shadow-gray-400/40' : 'shadow-purple-400/40',
+      iconBg: isLocked ? 'bg-gray-500' : 'bg-purple-700',
+      glow: false
+    };
+    // 🆕 Boss luyện tập (practice) - màu đỏ/cam khi thắng, xám khi chưa thắng
+    if (isPracticeBoss) return {
+      bg: isLocked ? 'from-gray-400 to-gray-500' : 'from-orange-500 to-red-600',
+      shadow: isLocked ? 'shadow-gray-400/40' : 'shadow-orange-400/40',
+      iconBg: isLocked ? 'bg-gray-500' : 'bg-red-600',
+      glow: false
+    };
     if (isBoss) return {
-      bg: isLocked ? 'from-rose-200 to-rose-300' : 'from-rose-400 to-red-500',
-      shadow: 'shadow-rose-400/40',
-      iconBg: isLocked ? 'bg-rose-300' : 'bg-rose-600',
+      bg: isLocked ? 'from-gray-400 to-gray-500' : 'from-rose-400 to-red-500',
+      shadow: isLocked ? 'shadow-gray-400/40' : 'shadow-rose-400/40',
+      iconBg: isLocked ? 'bg-gray-500' : 'bg-rose-600',
       glow: false
     };
     if (isTreasure) return {
@@ -618,6 +635,20 @@ const StageNode = memo(function StageNode({ stage, status, onClick, index }) {
       iconBg: 'bg-blue-600',
       glow: false
     };
+  };
+  
+  // 🆕 Icon cho từng loại boss
+  const getBossIcon = () => {
+    if (isCompeteBoss) {
+      // Đấu trường: Rồng
+      return isLocked ? '🐲' : '🐉';
+    }
+    if (isPracticeBoss) {
+      // Boss luyện tập: Ninja / Quái vật
+      return isLocked ? '🥷' : '👹';
+    }
+    // Fallback cho boss không xác định
+    return isLocked ? '🐲' : '👹';
   };
   
   const style = getStyle();
@@ -668,8 +699,8 @@ const StageNode = memo(function StageNode({ stage, status, onClick, index }) {
         {/* Icon - 🚀 Removed infinite animations, only current has subtle animation - LARGER for mobile */}
         <span className={`relative ${isBoss || isTreasure ? 'text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl' : 'text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl'} ${isLocked ? 'opacity-80' : ''} ${isCurrent ? 'animate-pulse' : ''}`}>
           {isLocked 
-            ? (isBoss ? '🐲' : isTreasure ? '🎁' : '❓') 
-            : (isBoss ? '👹' : stage.icon)
+            ? (isBoss ? getBossIcon() : isTreasure ? '🎁' : '❓') 
+            : (isBoss ? getBossIcon() : stage.icon)
           }
         </span>
         
@@ -1079,6 +1110,26 @@ function StageModal({ stage, status, onClose, onStart }) {
   const isBoss = stage.type === 'boss';
   const isTreasure = stage.type === 'treasure';
   const isLocked = status === 'locked';
+  // 🆕 Phân biệt boss types
+  const isCompeteBoss = isBoss && stage.bossType === 'compete';
+  const isPracticeBoss = isBoss && stage.bossType === 'practice';
+  
+  // 🆕 Icon cho modal
+  const getModalIcon = () => {
+    if (isCompeteBoss) return isLocked ? '🐲' : '🐉';  // Rồng
+    if (isPracticeBoss) return isLocked ? '🥷' : '👹';  // Ninja/Quái vật
+    return stage.icon;
+  };
+  
+  // 🆕 Màu gradient cho modal header
+  const getHeaderGradient = () => {
+    if (isCompeteBoss) return 'from-purple-500 to-indigo-600';
+    if (isPracticeBoss) return 'from-orange-500 to-red-600';
+    if (isBoss) return 'from-rose-500 to-red-600';
+    if (isTreasure) return 'from-purple-500 to-violet-600';
+    if (status === 'completed') return 'from-emerald-500 to-green-600';
+    return 'from-blue-500 to-indigo-600';
+  };
   
   return (
     <motion.div
@@ -1125,12 +1176,7 @@ function StageModal({ stage, status, onClose, onStart }) {
         
         {/* Inner content */}
         <div className="relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden">
-          <div className={`p-4 sm:p-6 bg-gradient-to-br ${
-            isBoss ? 'from-rose-500 to-red-600' :
-            isTreasure ? 'from-purple-500 to-violet-600' :
-            status === 'completed' ? 'from-emerald-500 to-green-600' :
-            'from-blue-500 to-indigo-600'
-          } relative overflow-hidden`}>
+          <div className={`p-4 sm:p-6 bg-gradient-to-br ${getHeaderGradient()} relative overflow-hidden`}>
             {/* 🚀 REMOVED: Sparkles in header - too many animations */}
             
             <motion.div 
@@ -1138,7 +1184,7 @@ function StageModal({ stage, status, onClose, onStart }) {
               transition={{ duration: 1.5, repeat: Infinity }} 
               className="text-4xl sm:text-6xl text-center mb-1 sm:mb-2 relative z-10"
             >
-              {stage.icon}
+              {getModalIcon()}
             </motion.div>
             <h3 className="text-lg sm:text-xl font-black text-white text-center relative z-10">{stage.name}</h3>
             {status === 'completed' && (
