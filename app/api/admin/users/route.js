@@ -61,24 +61,25 @@ function calculateGameProgress(userIds, allProgress, allExercises, allCompete, a
       }
     });
     
-    // Map exercises thành sets
-    const passedExercises = new Set();
+    // 🔧 SỬA: Đếm số correct cho mỗi mode-difficulty combo (để check minCorrect)
+    const exerciseCorrectCounts = new Map(); // key -> count of correct
     const attemptedExercises = new Set(); // Đã thử (dù đúng hay sai)
     userExercises.forEach(e => {
-      attemptedExercises.add(`${e.exerciseType}-${e.difficulty}`);
+      const key = `${e.exerciseType}-${e.difficulty}`;
+      attemptedExercises.add(key);
       if (e.isCorrect) {
-        passedExercises.add(`${e.exerciseType}-${e.difficulty}`);
+        exerciseCorrectCounts.set(key, (exerciseCorrectCounts.get(key) || 0) + 1);
       }
     });
     
-    // Map compete results
-    const passedArenas = new Set();
+    // 🔧 SỬA: Đếm điểm compete cho mỗi arena (để check minCorrect)
+    const competeScores = new Map(); // arenaId -> max correct score
     const attemptedArenas = new Set(); // Đã thi (dù pass hay fail)
     userCompete.forEach(c => {
       attemptedArenas.add(c.arenaId);
-      if (c.correct >= 8) { // 8/10 correct = pass
-        passedArenas.add(c.arenaId);
-      }
+      // Lưu điểm cao nhất cho mỗi arena
+      const currentMax = competeScores.get(c.arenaId) || 0;
+      competeScores.set(c.arenaId, Math.max(currentMax, c.correct || 0));
     });
     
     // Map certs
@@ -91,23 +92,26 @@ function calculateGameProgress(userIds, allProgress, allExercises, allCompete, a
     let currentStage = 0; // Stage đang làm (chưa hoàn thành)
     
     // Check AddSub stages (1-88)
+    // 🔧 SỬA: Dùng stageId thay vì stage, pass đúng params mới
     for (const stage of GAME_STAGES) {
-      if (checkStageCompleted(stage, completedLessons, passedExercises, passedArenas, earnedCerts)) {
-        highestAddSub = Math.max(highestAddSub, stage.stage);
+      const stageNum = stage.stageId || stage.stage || 0;
+      if (checkStageCompleted(stage, completedLessons, exerciseCorrectCounts, competeScores, earnedCerts)) {
+        highestAddSub = Math.max(highestAddSub, stageNum);
         totalCompleted++;
       } else if (checkStageStarted(stage, startedLessons, attemptedExercises, attemptedArenas)) {
         // Stage đã bắt đầu nhưng chưa hoàn thành
-        currentStage = Math.max(currentStage, stage.stage);
+        currentStage = Math.max(currentStage, stageNum);
       }
     }
     
     // Check MulDiv stages (89-138)
     for (const stage of GAME_STAGES_MULDIV) {
-      if (checkStageCompleted(stage, completedLessons, passedExercises, passedArenas, earnedCerts)) {
-        highestMulDiv = Math.max(highestMulDiv, stage.stage);
+      const stageNum = stage.stageId || stage.stage || 0;
+      if (checkStageCompleted(stage, completedLessons, exerciseCorrectCounts, competeScores, earnedCerts)) {
+        highestMulDiv = Math.max(highestMulDiv, stageNum);
         totalCompleted++;
       } else if (checkStageStarted(stage, startedLessons, attemptedExercises, attemptedArenas)) {
-        currentStage = Math.max(currentStage, stage.stage);
+        currentStage = Math.max(currentStage, stageNum);
       }
     }
     
@@ -157,26 +161,28 @@ function calculateGameProgress(userIds, allProgress, allExercises, allCompete, a
 
 /**
  * Check nếu một stage đã BẮT ĐẦU (user đã thử làm requirement)
+ * 🔧 SỬA: Đọc đúng cấu trúc stage config (type, levelId, completeCondition)
  */
 function checkStageStarted(stage, startedLessons, attemptedExercises, attemptedArenas) {
-  const req = stage.requirements;
-  if (!req) return false;
-  
-  // Check nếu đã bắt đầu lesson
-  if (req.lesson) {
-    const key = `${req.lesson.levelId}-${req.lesson.lessonId}`;
-    if (startedLessons.has(key)) return true;
+  // Stage lesson: check xem đã bắt đầu học chưa
+  if (stage.type === 'lesson' && stage.levelId && stage.lessonId) {
+    const key = `${stage.levelId}-${stage.lessonId}`;
+    return startedLessons.has(key);
   }
+  
+  // Stage boss: check completeCondition
+  const cond = stage.completeCondition;
+  if (!cond) return false;
   
   // Check nếu đã thử practice
-  if (req.practice) {
-    const key = `${req.practice.type}-${req.practice.difficulty}`;
-    if (attemptedExercises.has(key)) return true;
+  if (cond.type === 'practice' && cond.mode && cond.difficulty) {
+    const key = `${cond.mode}-${cond.difficulty}`;
+    return attemptedExercises.has(key);
   }
   
-  // Check nếu đã thử arena
-  if (req.arena) {
-    if (attemptedArenas.has(req.arena)) return true;
+  // Check nếu đã thử compete/arena
+  if ((cond.type === 'compete' || cond.type === 'arena') && cond.arenaId) {
+    return attemptedArenas.has(cond.arenaId);
   }
   
   return false;
@@ -184,34 +190,42 @@ function checkStageStarted(stage, startedLessons, attemptedExercises, attemptedA
 
 /**
  * Check nếu một stage đã hoàn thành
+ * 🔧 SỬA: Đọc đúng cấu trúc stage config + check minCorrect
+ * @param exerciseCorrectCounts Map<string, number> - đếm số câu đúng cho mỗi mode-difficulty
+ * @param competeScores Map<string, number> - điểm cao nhất cho mỗi arenaId
  */
-function checkStageCompleted(stage, completedLessons, passedExercises, passedArenas, earnedCerts) {
-  const req = stage.requirements;
-  if (!req) return false;
-  
-  // Check lesson requirement
-  if (req.lesson) {
-    const key = `${req.lesson.levelId}-${req.lesson.lessonId}`;
-    if (!completedLessons.has(key)) return false;
+function checkStageCompleted(stage, completedLessons, exerciseCorrectCounts, competeScores, earnedCerts) {
+  // Stage lesson: check completed trong progress
+  if (stage.type === 'lesson' && stage.levelId && stage.lessonId) {
+    const key = `${stage.levelId}-${stage.lessonId}`;
+    return completedLessons.has(key);
   }
   
-  // Check practice requirement
-  if (req.practice) {
-    const key = `${req.practice.type}-${req.practice.difficulty}`;
-    if (!passedExercises.has(key)) return false;
+  // Stage boss/special: check completeCondition
+  const cond = stage.completeCondition;
+  if (!cond) return false;
+  
+  // Check practice requirement - phải đạt minCorrect số câu đúng
+  if (cond.type === 'practice' && cond.mode && cond.difficulty) {
+    const key = `${cond.mode}-${cond.difficulty}`;
+    const correctCount = exerciseCorrectCounts.get(key) || 0;
+    const minRequired = cond.minCorrect || 8;
+    return correctCount >= minRequired;
   }
   
-  // Check arena requirement
-  if (req.arena) {
-    if (!passedArenas.has(req.arena)) return false;
+  // Check compete/arena requirement - phải đạt minCorrect điểm
+  if ((cond.type === 'compete' || cond.type === 'arena') && cond.arenaId) {
+    const score = competeScores.get(cond.arenaId) || 0;
+    const minRequired = cond.minCorrect || 7;
+    return score >= minRequired;
   }
   
   // Check certificate requirement
-  if (req.certificate) {
-    if (!earnedCerts.has(req.certificate)) return false;
+  if (cond.type === 'certificate' && cond.certType) {
+    return earnedCerts.has(cond.certType);
   }
   
-  return true;
+  return false;
 }
 
 // GET /api/admin/users - Lấy danh sách người dùng
@@ -405,9 +419,14 @@ export async function GET(request) {
           hasPlayed: gameProgress.hasPlayed,
           highestStage: gameProgress.highestStage,
           highestZone: gameProgress.highestZone,
+          currentZone: gameProgress.currentZone,
           totalStages: gameProgress.totalStages,
           addSubStage: gameProgress.addSubStage,
-          mulDivStage: gameProgress.mulDivStage
+          mulDivStage: gameProgress.mulDivStage,
+          currentStage: gameProgress.currentStage,
+          startedLessons: gameProgress.startedLessons,
+          attemptedExercises: gameProgress.attemptedExercises,
+          attemptedArenas: gameProgress.attemptedArenas
         }
       };
     });

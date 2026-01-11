@@ -2271,7 +2271,10 @@ export default function GameMapNew({
         onStageClick={handleStageClick}
       />
       
-      <CuSoro message={cuSoroMessage} isVisible={cuSoroVisible} onToggle={() => setCuSoroVisible(!cuSoroVisible)} />
+      {/* 🦉 Cú Soro - Ẩn khi có modal mở để không bị che */}
+      {!selectedStage && !showPrologue && !showZoneIntro && !showZoneLocked && (
+        <CuSoro message={cuSoroMessage} isVisible={cuSoroVisible} onToggle={() => setCuSoroVisible(!cuSoroVisible)} />
+      )}
       
       {/* 🎨 Map Decorations - Icon trang trí nhẹ nhàng */}
       <MapDecorations />

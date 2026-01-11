@@ -26,7 +26,7 @@ const SORT_OPTIONS = [
   { value: 'level', label: '📊 Theo level' },
   { value: 'stars', label: '⭐ Theo sao' },
   { value: 'lastActive', label: '🕐 Hoạt động gần đây' },
-  { value: 'gameStage', label: '🎮 Theo stage game' }
+  { value: 'gameStage', label: '🎮 Theo màn phiêu lưu' }
 ];
 
 const BULK_ACTIONS = [
@@ -813,7 +813,7 @@ export default function UsersPage() {
                           {/* 🎮 Game Stage */}
                           {user.gameProgress?.hasPlayed && (
                             <div className="text-xs text-green-400">
-                              🎮 Stage {user.gameProgress.highestStage}
+                              🎮 Màn {user.gameProgress.highestStage}
                             </div>
                           )}
                         </div>
@@ -1005,7 +1005,7 @@ export default function UsersPage() {
                     <div className={`font-bold ${user.gameProgress?.hasPlayed ? 'text-green-400' : 'text-slate-500'}`}>
                       🎮{user.gameProgress?.highestStage || 0}
                     </div>
-                    <div className="text-slate-500 text-xs">Stage</div>
+                    <div className="text-slate-500 text-xs">Màn</div>
                   </div>
                 </div>
                 
@@ -1508,7 +1508,7 @@ export default function UsersPage() {
                 {detailModal.gameProgress?.hasPlayed ? (
                   <div className="space-y-2">
                     <div className="flex items-center justify-between p-2 bg-slate-700/50 rounded-lg">
-                      <span className="text-slate-300 text-xs">Stage cao nhất</span>
+                      <span className="text-slate-300 text-xs">Màn cao nhất (1-138)</span>
                       <span className="text-amber-400 font-bold">
                         {detailModal.gameProgress.highestStage || 0}
                         {detailModal.gameProgress.currentStage > 0 && detailModal.gameProgress.highestStage === 0 && (
@@ -1537,12 +1537,12 @@ export default function UsersPage() {
                     </div>
                     <div className="grid grid-cols-2 gap-2">
                       <div className="bg-slate-700/50 rounded-lg p-2 text-center">
-                        <div className="text-green-400 font-bold">{detailModal.gameProgress.addSubStage || 0}</div>
-                        <div className="text-slate-400 text-[10px]">Cộng/Trừ</div>
+                        <div className="text-green-400 font-bold">{detailModal.gameProgress.addSubStage || 0}/88</div>
+                        <div className="text-slate-400 text-[10px]">Màn Cộng/Trừ</div>
                       </div>
                       <div className="bg-slate-700/50 rounded-lg p-2 text-center">
-                        <div className="text-purple-400 font-bold">{detailModal.gameProgress.mulDivStage || 0}</div>
-                        <div className="text-slate-400 text-[10px]">Nhân/Chia</div>
+                        <div className="text-purple-400 font-bold">{detailModal.gameProgress.mulDivStage || 0}/50</div>
+                        <div className="text-slate-400 text-[10px]">Màn Nhân/Chia</div>
                       </div>
                     </div>
                   </div>
