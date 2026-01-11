@@ -41,7 +41,7 @@ export default function AutoPracticePage() {
     const validModes = [
       'addition', 'subtraction', 'addSubMixed',
       'multiplication', 'division', 'mulDiv', 'mixed',
-      'mentalMath', 'flashAnzan'
+      'mentalMath', 'flashAnzan', 'create'
     ];
 
     if (!mode || !validModes.includes(mode)) {

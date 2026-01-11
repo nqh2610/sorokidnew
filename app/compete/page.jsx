@@ -427,6 +427,10 @@ function CompetePageContent() {
   // Mental Math sub-mode state
   const [mentalSubMode, setMentalSubMode] = useState(null);
   
+  // 🔧 FIX: Ngăn auto-check ngay sau khi chuyển câu (tránh false positive khi làm nhanh)
+  const problemChangeTimeRef = useRef(0);
+  const AUTO_CHECK_DELAY = 300; // ms - delay tối thiểu sau khi chuyển câu mới được auto-check
+  
   // User tier state
   const [userTier, setUserTier] = useState('free');
   
@@ -603,6 +607,9 @@ function CompetePageContent() {
             
             // Delay nhỏ rồi start game
             setTimeout(() => {
+              // 🔧 FIX: Đánh dấu thời điểm bắt đầu game
+              problemChangeTimeRef.current = Date.now();
+              
               // Start game trực tiếp
               const actualMode = mode === 'mentalMath' ? getRandomMentalMode() : mode;
               setProblem(generateProblem(actualMode, difficulty));
@@ -676,6 +683,9 @@ function CompetePageContent() {
             // KHÔNG set isCheckingAutoStart = false ở đây - giữ loading cho đến khi setTimeout xong
             
             setTimeout(() => {
+              // 🔧 FIX: Đánh dấu thời điểm bắt đầu game
+              problemChangeTimeRef.current = Date.now();
+              
               const actualMode = mode === 'mentalMath' ? getRandomMentalMode() : mode;
               setProblem(generateProblem(actualMode, difficulty));
               setSorobanValue(0);
@@ -1034,6 +1044,9 @@ function CompetePageContent() {
       return;
     }
     
+    // 🔧 FIX: Đánh dấu thời điểm bắt đầu game
+    problemChangeTimeRef.current = Date.now();
+    
     const actualMode = selectedArena.mode === 'mentalMath' ? getMentalMode() : selectedArena.mode;
     setProblem(generateProblem(actualMode, selectedArena.difficulty));
     setSorobanValue(0);
@@ -1269,7 +1282,9 @@ function CompetePageContent() {
 
   const handleSorobanChange = (value) => {
     setSorobanValue(value);
-    if (value === problem?.answer && result === null) {
+    // 🔧 FIX: Thêm delay check để tránh false positive khi chuyển câu nhanh
+    const timeSinceProblemChange = Date.now() - problemChangeTimeRef.current;
+    if (value === problem?.answer && result === null && timeSinceProblemChange >= AUTO_CHECK_DELAY) {
       autoCheckAnswer(value);
     }
   };
@@ -1393,6 +1408,9 @@ function CompetePageContent() {
       submitResult();
       return;
     }
+    
+    // 🔧 FIX: Đánh dấu thời điểm chuyển câu
+    problemChangeTimeRef.current = Date.now();
     
     setCurrentChallenge(prev => prev + 1);
     const actualMode = selectedArena?.mode === 'mentalMath' ? getMentalMode() : selectedArena?.mode;

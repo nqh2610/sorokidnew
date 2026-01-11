@@ -772,9 +772,11 @@ export const GAME_STAGES = [
 
   // ============================================================
   // 🧠 ZONE 8: THÁP SIÊU TRÍ TUỆ (Level 15.1, 16.1 - Tính nhẩm)
+  // Sắp xếp: 1 số < 2 số, Cộng < Trừ < Mix
+  // Mỗi boss luyện tập có 1 boss thi đấu tương ứng
   // ============================================================
   
-  // Stage 49: Học 15.1 - Cộng trừ nhẩm cơ bản
+  // Stage 49: Học 15.1 - Cộng trừ nhẩm cơ bản (1 chữ số)
   {
     stageId: 49,
     zoneId: 'mental-tower',
@@ -782,25 +784,26 @@ export const GAME_STAGES = [
     levelId: 15,
     lessonId: 1,
     name: '🧠 Cộng trừ nhẩm cơ bản',
-    description: 'Nền tảng Anzan - tính nhẩm Soroban',
+    description: 'Nền tảng Anzan - tính nhẩm Soroban 1 chữ số',
     icon: '📚',
     link: '/learn/15/1',
     unlockCondition: { type: 'stage', stageId: 48 }
   },
   
-  // Stage 50: BOSS - Luyện Siêu Trí Tuệ cơ bản
+  // Stage 50-51: Siêu Trí Tuệ 1 số - Phép Cộng (Luyện + Thi đấu)
   {
     stageId: 50,
     zoneId: 'mental-tower',
     type: 'boss',
     bossType: 'practice',
-    name: '👹 Boss Anzan Cơ Bản',
-    description: 'Luyện Siêu Trí Tuệ • Tập Sự • 6 bài đúng',
-    icon: '👹',
-    link: '/practice/auto?mode=mentalMath&difficulty=1',
+    name: '🧠 Luyện STT 1 Số Cộng',
+    description: 'Siêu Trí Tuệ • 1 chữ số • Phép Cộng • 6 bài đúng',
+    icon: '🧠',
+    link: '/practice/auto?mode=mentalMath&difficulty=1&subMode=addition',
     practiceInfo: {
       mode: 'mentalMath',
       modeName: 'Siêu Trí Tuệ',
+      subMode: 'addition',
       difficulty: 1,
       difficultyName: 'Tập Sự',
       minCorrect: 6
@@ -808,11 +811,126 @@ export const GAME_STAGES = [
     unlockCondition: { type: 'lesson', levelId: 15, lessonId: 1 },
     completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 1, minCorrect: 6 }
   },
-  
-  // Stage 51: Học 16.1 - Cộng trừ nhẩm nâng cao
   {
     stageId: 51,
     zoneId: 'mental-tower',
+    type: 'boss',
+    bossType: 'compete',
+    name: '🏆 Đấu Trường STT 1 Số Cộng',
+    description: 'Thi đấu STT • 1 số • Cộng • 8 câu • 5+ đúng',
+    icon: '🏆',
+    link: '/compete/auto?mode=mentalMath&difficulty=1&subMode=addition&questions=8',
+    competeInfo: {
+      mode: 'mentalMath',
+      modeName: 'Siêu Trí Tuệ',
+      subMode: 'addition',
+      difficulty: 1,
+      difficultyName: 'Tập Sự',
+      questions: 8,
+      minCorrect: 5,
+      arenaId: 'mentalMath-1-add-8'
+    },
+    unlockCondition: { type: 'stage', stageId: 50 },
+    completeCondition: { type: 'compete', arenaId: 'mentalMath-1-add-8', minCorrect: 5 }
+  },
+  
+  // Stage 52-53: Siêu Trí Tuệ 1 số - Phép Trừ (Luyện + Thi đấu)
+  {
+    stageId: 52,
+    zoneId: 'mental-tower',
+    type: 'boss',
+    bossType: 'practice',
+    name: '🧠 Luyện STT 1 Số Trừ',
+    description: 'Siêu Trí Tuệ • 1 chữ số • Phép Trừ • 6 bài đúng',
+    icon: '🧠',
+    link: '/practice/auto?mode=mentalMath&difficulty=1&subMode=subtraction',
+    practiceInfo: {
+      mode: 'mentalMath',
+      modeName: 'Siêu Trí Tuệ',
+      subMode: 'subtraction',
+      difficulty: 1,
+      difficultyName: 'Tập Sự',
+      minCorrect: 6
+    },
+    unlockCondition: { type: 'stage', stageId: 51 },
+    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 1, minCorrect: 6 }
+  },
+  {
+    stageId: 53,
+    zoneId: 'mental-tower',
+    type: 'boss',
+    bossType: 'compete',
+    name: '🏆 Đấu Trường STT 1 Số Trừ',
+    description: 'Thi đấu STT • 1 số • Trừ • 8 câu • 5+ đúng',
+    icon: '🏆',
+    link: '/compete/auto?mode=mentalMath&difficulty=1&subMode=subtraction&questions=8',
+    competeInfo: {
+      mode: 'mentalMath',
+      modeName: 'Siêu Trí Tuệ',
+      subMode: 'subtraction',
+      difficulty: 1,
+      difficultyName: 'Tập Sự',
+      questions: 8,
+      minCorrect: 5,
+      arenaId: 'mentalMath-1-sub-8'
+    },
+    unlockCondition: { type: 'stage', stageId: 52 },
+    completeCondition: { type: 'compete', arenaId: 'mentalMath-1-sub-8', minCorrect: 5 }
+  },
+  
+  // Stage 54-55: Siêu Trí Tuệ 1 số - Mix (Luyện + Thi đấu)
+  {
+    stageId: 54,
+    zoneId: 'mental-tower',
+    type: 'boss',
+    bossType: 'practice',
+    name: '🧠 Luyện STT 1 Số Mix',
+    description: 'Siêu Trí Tuệ • 1 chữ số • Cộng Trừ Mix • 8 bài đúng',
+    icon: '🧠',
+    link: '/practice/auto?mode=mentalMath&difficulty=1&subMode=addSubMixed',
+    practiceInfo: {
+      mode: 'mentalMath',
+      modeName: 'Siêu Trí Tuệ',
+      subMode: 'addSubMixed',
+      difficulty: 1,
+      difficultyName: 'Tập Sự',
+      minCorrect: 8
+    },
+    unlockCondition: { type: 'stage', stageId: 53 },
+    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 1, minCorrect: 8 }
+  },
+  {
+    stageId: 55,
+    zoneId: 'mental-tower',
+    type: 'boss',
+    bossType: 'compete',
+    name: '🏆 Đấu Trường STT 1 Số Mix',
+    description: 'Thi đấu STT • 1 số • Mix • 10 câu • 6+ đúng',
+    icon: '🏆',
+    link: '/compete/auto?mode=mentalMath&difficulty=1&subMode=addSubMixed&questions=10',
+    competeInfo: {
+      mode: 'mentalMath',
+      modeName: 'Siêu Trí Tuệ',
+      subMode: 'addSubMixed',
+      difficulty: 1,
+      difficultyName: 'Tập Sự',
+      questions: 10,
+      minCorrect: 6,
+      arenaId: 'mentalMath-1-mix-10'
+    },
+    unlockCondition: { type: 'stage', stageId: 54 },
+    completeCondition: { type: 'compete', arenaId: 'mentalMath-1-mix-10', minCorrect: 6 }
+  },
+  
+  // ============================================================
+  // 🧠 ZONE 9: THÁP TRÍ TUỆ NÂNG CAO (Level 16.1 - Tính nhẩm 2 số)
+  // Sắp xếp: Cộng < Trừ < Mix
+  // ============================================================
+  
+  // Stage 56: Học 16.1 - Cộng trừ nhẩm nâng cao (2 chữ số)
+  {
+    stageId: 56,
+    zoneId: 'mental-tower-advanced',
     type: 'lesson',
     levelId: 16,
     lessonId: 1,
@@ -820,60 +938,149 @@ export const GAME_STAGES = [
     description: 'Tính nhẩm số 2 chữ số',
     icon: '📚',
     link: '/learn/16/1',
-    unlockCondition: { type: 'stage', stageId: 50 }
+    unlockCondition: { type: 'stage', stageId: 55 }
   },
   
-  // Stage 52: BOSS - Luyện Siêu Trí Tuệ nâng cao
+  // Stage 57-58: Siêu Trí Tuệ 2 số - Phép Cộng (Luyện + Thi đấu)
   {
-    stageId: 52,
-    zoneId: 'mental-tower',
+    stageId: 57,
+    zoneId: 'mental-tower-advanced',
     type: 'boss',
     bossType: 'practice',
-    name: '👹 Boss Anzan Nâng Cao',
-    description: 'Luyện Siêu Trí Tuệ • Chiến Binh • 8 bài đúng',
-    icon: '👹',
-    link: '/practice/auto?mode=mentalMath&difficulty=2',
+    name: '🧠 Luyện STT 2 Số Cộng',
+    description: 'Siêu Trí Tuệ • 2 chữ số • Phép Cộng • 6 bài đúng',
+    icon: '🧠',
+    link: '/practice/auto?mode=mentalMath&difficulty=2&subMode=addition',
     practiceInfo: {
       mode: 'mentalMath',
       modeName: 'Siêu Trí Tuệ',
+      subMode: 'addition',
+      difficulty: 2,
+      difficultyName: 'Chiến Binh',
+      minCorrect: 6
+    },
+    unlockCondition: { type: 'lesson', levelId: 16, lessonId: 1 },
+    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 2, minCorrect: 6 }
+  },
+  {
+    stageId: 58,
+    zoneId: 'mental-tower-advanced',
+    type: 'boss',
+    bossType: 'compete',
+    name: '🏆 Đấu Trường STT 2 Số Cộng',
+    description: 'Thi đấu STT • 2 số • Cộng • 8 câu • 5+ đúng',
+    icon: '🏆',
+    link: '/compete/auto?mode=mentalMath&difficulty=2&subMode=addition&questions=8',
+    competeInfo: {
+      mode: 'mentalMath',
+      modeName: 'Siêu Trí Tuệ',
+      subMode: 'addition',
+      difficulty: 2,
+      difficultyName: 'Chiến Binh',
+      questions: 8,
+      minCorrect: 5,
+      arenaId: 'mentalMath-2-add-8'
+    },
+    unlockCondition: { type: 'stage', stageId: 57 },
+    completeCondition: { type: 'compete', arenaId: 'mentalMath-2-add-8', minCorrect: 5 }
+  },
+  
+  // Stage 59-60: Siêu Trí Tuệ 2 số - Phép Trừ (Luyện + Thi đấu)
+  {
+    stageId: 59,
+    zoneId: 'mental-tower-advanced',
+    type: 'boss',
+    bossType: 'practice',
+    name: '🧠 Luyện STT 2 Số Trừ',
+    description: 'Siêu Trí Tuệ • 2 chữ số • Phép Trừ • 6 bài đúng',
+    icon: '🧠',
+    link: '/practice/auto?mode=mentalMath&difficulty=2&subMode=subtraction',
+    practiceInfo: {
+      mode: 'mentalMath',
+      modeName: 'Siêu Trí Tuệ',
+      subMode: 'subtraction',
+      difficulty: 2,
+      difficultyName: 'Chiến Binh',
+      minCorrect: 6
+    },
+    unlockCondition: { type: 'stage', stageId: 58 },
+    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 2, minCorrect: 6 }
+  },
+  {
+    stageId: 60,
+    zoneId: 'mental-tower-advanced',
+    type: 'boss',
+    bossType: 'compete',
+    name: '🏆 Đấu Trường STT 2 Số Trừ',
+    description: 'Thi đấu STT • 2 số • Trừ • 8 câu • 5+ đúng',
+    icon: '🏆',
+    link: '/compete/auto?mode=mentalMath&difficulty=2&subMode=subtraction&questions=8',
+    competeInfo: {
+      mode: 'mentalMath',
+      modeName: 'Siêu Trí Tuệ',
+      subMode: 'subtraction',
+      difficulty: 2,
+      difficultyName: 'Chiến Binh',
+      questions: 8,
+      minCorrect: 5,
+      arenaId: 'mentalMath-2-sub-8'
+    },
+    unlockCondition: { type: 'stage', stageId: 59 },
+    completeCondition: { type: 'compete', arenaId: 'mentalMath-2-sub-8', minCorrect: 5 }
+  },
+  
+  // Stage 61-62: Siêu Trí Tuệ 2 số - Mix (Luyện + Thi đấu)
+  {
+    stageId: 61,
+    zoneId: 'mental-tower-advanced',
+    type: 'boss',
+    bossType: 'practice',
+    name: '🧠 Luyện STT 2 Số Mix',
+    description: 'Siêu Trí Tuệ • 2 chữ số • Cộng Trừ Mix • 8 bài đúng',
+    icon: '🧠',
+    link: '/practice/auto?mode=mentalMath&difficulty=2&subMode=addSubMixed',
+    practiceInfo: {
+      mode: 'mentalMath',
+      modeName: 'Siêu Trí Tuệ',
+      subMode: 'addSubMixed',
       difficulty: 2,
       difficultyName: 'Chiến Binh',
       minCorrect: 8
     },
-    unlockCondition: { type: 'lesson', levelId: 16, lessonId: 1 },
+    unlockCondition: { type: 'stage', stageId: 60 },
     completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 2, minCorrect: 8 }
   },
-  
-  // Stage 53: BOSS - Đấu Trường Siêu Trí Tuệ
   {
-    stageId: 53,
-    zoneId: 'mental-tower',
+    stageId: 62,
+    zoneId: 'mental-tower-advanced',
     type: 'boss',
     bossType: 'compete',
-    name: '🏆 Đấu Trường Siêu Trí Tuệ',
-    description: 'Thi đấu Siêu Trí Tuệ • Chiến Binh • 10 câu • 5+ đúng',
+    name: '🏆 Đấu Trường STT 2 Số Mix',
+    description: 'Thi đấu STT • 2 số • Mix • 10 câu • 6+ đúng',
     icon: '🏆',
-    link: '/compete/auto?mode=mentalMath&difficulty=2&questions=10',
+    link: '/compete/auto?mode=mentalMath&difficulty=2&subMode=addSubMixed&questions=10',
     competeInfo: {
       mode: 'mentalMath',
       modeName: 'Siêu Trí Tuệ',
+      subMode: 'addSubMixed',
       difficulty: 2,
       difficultyName: 'Chiến Binh',
       questions: 10,
-      minCorrect: 5,
-      arenaId: 'mentalMath-2-10'
+      minCorrect: 6,
+      arenaId: 'mentalMath-2-mix-10'
     },
-    unlockCondition: { type: 'stage', stageId: 52 },
-    completeCondition: { type: 'compete', arenaId: 'mentalMath-2-10', minCorrect: 5 }
+    unlockCondition: { type: 'stage', stageId: 61 },
+    completeCondition: { type: 'compete', arenaId: 'mentalMath-2-mix-10', minCorrect: 6 }
   },
 
   // ============================================================
-  // ⚡ ZONE 9: ĐỀN TỐC ĐỘ (Level 17.1 - Tốc độ cộng trừ)
+  // ⚡ ZONE 9: ĐỀN TỐC ĐỘ (Level 17.1 - Tốc độ cộng trừ - Bàn phím tối đa 4 số)
+  // Sắp xếp: 3 số < 4 số
   // ============================================================
   
-  // Stage 54: Học 17.1 - Cộng trừ tốc độ
+  // Stage 63: Học 17.1 - Cộng trừ tốc độ
   {
-    stageId: 54,
+    stageId: 63,
     zoneId: 'speed-temple',
     type: 'lesson',
     levelId: 17,
@@ -882,108 +1089,198 @@ export const GAME_STAGES = [
     description: 'Tính nhẩm với thời gian giới hạn',
     icon: '📚',
     link: '/learn/17/1',
-    unlockCondition: { type: 'stage', stageId: 53 }
+    unlockCondition: { type: 'stage', stageId: 62 }
   },
   
-  // Stage 55: BOSS - Luyện Tốc Độ
+  // Stage 64-65: Tốc Độ 3 số (Luyện + Thi đấu)
   {
-    stageId: 55,
+    stageId: 64,
     zoneId: 'speed-temple',
     type: 'boss',
     bossType: 'practice',
-    name: '👹 Boss Tốc Độ',
-    description: 'Luyện Cộng Trừ Mix • Huyền Thoại • 25 bài đúng',
-    icon: '👹',
-    link: '/practice/auto?mode=addSubMixed&difficulty=5',
+    name: '⚡ Luyện Tốc Độ 3 Số',
+    description: 'Luyện Cộng Trừ Mix • Dũng Sĩ • 15 bài đúng',
+    icon: '⚡',
+    link: '/practice/auto?mode=addSubMixed&difficulty=3',
     practiceInfo: {
       mode: 'addSubMixed',
       modeName: 'Cộng Trừ Mix',
-      difficulty: 5,
-      difficultyName: 'Huyền Thoại',
-      minCorrect: 25
+      difficulty: 3,
+      difficultyName: 'Dũng Sĩ',
+      minCorrect: 15
     },
     unlockCondition: { type: 'lesson', levelId: 17, lessonId: 1 },
-    completeCondition: { type: 'practice', mode: 'addSubMixed', difficulty: 5, minCorrect: 25 }
+    completeCondition: { type: 'practice', mode: 'addSubMixed', difficulty: 3, minCorrect: 15 }
   },
-  
-  // Stage 56: BOSS - Đấu Trường Tốc Độ
   {
-    stageId: 56,
+    stageId: 65,
     zoneId: 'speed-temple',
     type: 'boss',
     bossType: 'compete',
-    name: '🏆 Đấu Trường Tốc Độ',
-    description: 'Thi đấu Cộng Trừ Mix • Huyền Thoại • 20 câu • 15+ đúng',
+    name: '🏆 Đấu Trường Tốc Độ 3 Số',
+    description: 'Thi đấu Cộng Trừ Mix • Dũng Sĩ • 12 câu • 8+ đúng',
     icon: '🏆',
-    link: '/compete/auto?mode=addSubMixed&difficulty=5&questions=20',
+    link: '/compete/auto?mode=addSubMixed&difficulty=3&questions=12',
     competeInfo: {
       mode: 'addSubMixed',
       modeName: 'Cộng Trừ Mix',
-      difficulty: 5,
-      difficultyName: 'Huyền Thoại',
-      questions: 20,
-      minCorrect: 15,
-      arenaId: 'addSubMixed-5-20'
+      difficulty: 3,
+      difficultyName: 'Dũng Sĩ',
+      questions: 12,
+      minCorrect: 8,
+      arenaId: 'addSubMixed-3-12'
     },
-    unlockCondition: { type: 'stage', stageId: 55 },
-    completeCondition: { type: 'compete', arenaId: 'addSubMixed-5-20', minCorrect: 15 }
+    unlockCondition: { type: 'stage', stageId: 64 },
+    completeCondition: { type: 'compete', arenaId: 'addSubMixed-3-12', minCorrect: 8 }
+  },
+  
+  // Stage 66-67: Tốc Độ 4 số (Luyện + Thi đấu)
+  {
+    stageId: 66,
+    zoneId: 'speed-temple',
+    type: 'boss',
+    bossType: 'practice',
+    name: '⚡ Luyện Tốc Độ 4 Số',
+    description: 'Luyện Cộng Trừ Mix • Cao Thủ • 20 bài đúng',
+    icon: '⚡',
+    link: '/practice/auto?mode=addSubMixed&difficulty=4',
+    practiceInfo: {
+      mode: 'addSubMixed',
+      modeName: 'Cộng Trừ Mix',
+      difficulty: 4,
+      difficultyName: 'Cao Thủ',
+      minCorrect: 20
+    },
+    unlockCondition: { type: 'stage', stageId: 65 },
+    completeCondition: { type: 'practice', mode: 'addSubMixed', difficulty: 4, minCorrect: 20 }
+  },
+  {
+    stageId: 67,
+    zoneId: 'speed-temple',
+    type: 'boss',
+    bossType: 'compete',
+    name: '🏆 Đấu Trường Tốc Độ 4 Số',
+    description: 'Thi đấu Cộng Trừ Mix • Cao Thủ • 15 câu • 10+ đúng',
+    icon: '🏆',
+    link: '/compete/auto?mode=addSubMixed&difficulty=4&questions=15',
+    competeInfo: {
+      mode: 'addSubMixed',
+      modeName: 'Cộng Trừ Mix',
+      difficulty: 4,
+      difficultyName: 'Cao Thủ',
+      questions: 15,
+      minCorrect: 10,
+      arenaId: 'addSubMixed-4-15'
+    },
+    unlockCondition: { type: 'stage', stageId: 66 },
+    completeCondition: { type: 'compete', arenaId: 'addSubMixed-4-15', minCorrect: 10 }
   },
 
   // ============================================================
-  // ⚡ ZONE 10: ĐỈNH TIA CHỚP (Level 18.1-18.5 - Flash Anzan)
+  // ⚡ ZONE 11: ĐỈNH ÁNH NẺN (Level 18.1-18.3 - Flash 1 số)
+  // Sắp xếp: Cộng → Trừ → Mix ở mức Ánh Nến
   // ============================================================
   
-  // Stage 57-59: Học Flash cơ bản
+  // Stage 68: Học 18.1 - Nhớ số nhanh
   {
-    stageId: 57,
-    zoneId: 'flash-peak',
+    stageId: 68,
+    zoneId: 'flash-peak-candle',
     type: 'lesson',
     levelId: 18,
     lessonId: 1,
-    name: '🧠 Nhớ số nhanh',
+    name: '⚡ Nhớ số nhanh',
     description: 'Nhớ số 1-2 chữ số hiện nhanh',
     icon: '📚',
     link: '/learn/18/1',
-    unlockCondition: { type: 'stage', stageId: 56 }
+    unlockCondition: { type: 'stage', stageId: 67 }
   },
+  
+  // Stage 69: Học 18.2 - Cộng 2-3 số
   {
-    stageId: 58,
-    zoneId: 'flash-peak',
+    stageId: 69,
+    zoneId: 'flash-peak-candle',
     type: 'lesson',
     levelId: 18,
     lessonId: 2,
-    name: '🧠 Cộng 2-3 số',
+    name: '⚡ Cộng 2-3 số nhanh',
     description: 'Xem 2-3 số liên tiếp, cộng dồn',
     icon: '📚',
     link: '/learn/18/2',
     unlockCondition: { type: 'lesson', levelId: 18, lessonId: 1 }
   },
-  {
-    stageId: 59,
-    zoneId: 'flash-peak',
-    type: 'lesson',
-    levelId: 18,
-    lessonId: 3,
-    name: '🧠 Cộng trừ hỗn hợp',
-    description: '3-4 số với phép trừ',
-    icon: '📚',
-    link: '/learn/18/3',
-    unlockCondition: { type: 'lesson', levelId: 18, lessonId: 2 }
-  },
   
-  // Stage 60: BOSS - Luyện Flash cơ bản
+  // Stage 70-71: Flash 1 số Ánh Nến - Cộng (Luyện + Thi đấu)
   {
-    stageId: 60,
-    zoneId: 'flash-peak',
+    stageId: 70,
+    zoneId: 'flash-peak-candle',
     type: 'boss',
     bossType: 'practice',
-    name: '👹 Boss Tia Chớp Cơ Bản',
-    description: 'Luyện Flash Anzan • Ánh Nến • 5 bài đúng',
-    icon: '👹',
-    link: '/practice/auto?mode=flashAnzan&difficulty=1',
+    name: '⚡ Luyện Flash 1 Số Cộng',
+    description: 'Flash Anzan • 1 số • Ánh Nến • Phép Cộng • 5 bài đúng',
+    icon: '⚡',
+    link: '/practice/auto?mode=flashAnzan&difficulty=1&subMode=addition',
     practiceInfo: {
       mode: 'flashAnzan',
       modeName: 'Tia Chớp',
+      subMode: 'addition',
+      difficulty: 1,
+      difficultyName: 'Ánh Nến',
+      minCorrect: 5
+    },
+    unlockCondition: { type: 'lesson', levelId: 18, lessonId: 2 },
+    completeCondition: { type: 'practice', mode: 'flashAnzan', difficulty: 1, minCorrect: 5 }
+  },
+  {
+    stageId: 71,
+    zoneId: 'flash-peak-candle',
+    type: 'boss',
+    bossType: 'compete',
+    name: '🏆 Đấu Flash 1 Số Cộng',
+    description: 'Thi đấu Flash • 1 số • Cộng • 8 câu • 5+ đúng',
+    icon: '🏆',
+    link: '/compete/auto?mode=flashAnzan&difficulty=1&subMode=addition&questions=8',
+    competeInfo: {
+      mode: 'flashAnzan',
+      modeName: 'Tia Chớp',
+      subMode: 'addition',
+      difficulty: 1,
+      difficultyName: 'Ánh Nến',
+      questions: 8,
+      minCorrect: 5,
+      arenaId: 'flash-1-add-8'
+    },
+    unlockCondition: { type: 'stage', stageId: 70 },
+    completeCondition: { type: 'compete', arenaId: 'flash-1-add-8', minCorrect: 5 }
+  },
+  
+  // Stage 72: Học 18.3 - Cộng trừ hỗn hợp nhanh
+  {
+    stageId: 72,
+    zoneId: 'flash-peak-candle',
+    type: 'lesson',
+    levelId: 18,
+    lessonId: 3,
+    name: '⚡ Cộng trừ hỗn hợp nhanh',
+    description: '3-4 số với phép trừ',
+    icon: '📚',
+    link: '/learn/18/3',
+    unlockCondition: { type: 'stage', stageId: 71 }
+  },
+  
+  // Stage 73-74: Flash 1 số Ánh Nến - Trừ (Luyện + Thi đấu)
+  {
+    stageId: 73,
+    zoneId: 'flash-peak-candle',
+    type: 'boss',
+    bossType: 'practice',
+    name: '⚡ Luyện Flash 1 Số Trừ',
+    description: 'Flash Anzan • 1 số • Ánh Nến • Phép Trừ • 5 bài đúng',
+    icon: '⚡',
+    link: '/practice/auto?mode=flashAnzan&difficulty=1&subMode=subtraction',
+    practiceInfo: {
+      mode: 'flashAnzan',
+      modeName: 'Tia Chớp',
+      subMode: 'subtraction',
       difficulty: 1,
       difficultyName: 'Ánh Nến',
       minCorrect: 5
@@ -991,23 +1288,94 @@ export const GAME_STAGES = [
     unlockCondition: { type: 'lesson', levelId: 18, lessonId: 3 },
     completeCondition: { type: 'practice', mode: 'flashAnzan', difficulty: 1, minCorrect: 5 }
   },
-  
-  // Stage 61-62: Học Flash nâng cao
   {
-    stageId: 61,
-    zoneId: 'flash-peak',
+    stageId: 74,
+    zoneId: 'flash-peak-candle',
+    type: 'boss',
+    bossType: 'compete',
+    name: '🏆 Đấu Flash 1 Số Trừ',
+    description: 'Thi đấu Flash • 1 số • Trừ • 8 câu • 5+ đúng',
+    icon: '🏆',
+    link: '/compete/auto?mode=flashAnzan&difficulty=1&subMode=subtraction&questions=8',
+    competeInfo: {
+      mode: 'flashAnzan',
+      modeName: 'Tia Chớp',
+      subMode: 'subtraction',
+      difficulty: 1,
+      difficultyName: 'Ánh Nến',
+      questions: 8,
+      minCorrect: 5,
+      arenaId: 'flash-1-sub-8'
+    },
+    unlockCondition: { type: 'stage', stageId: 73 },
+    completeCondition: { type: 'compete', arenaId: 'flash-1-sub-8', minCorrect: 5 }
+  },
+  
+  // Stage 75-76: Flash 1 số Ánh Nến - Mix (Luyện + Thi đấu)
+  {
+    stageId: 75,
+    zoneId: 'flash-peak-candle',
+    type: 'boss',
+    bossType: 'practice',
+    name: '⚡ Luyện Flash 1 Số Mix',
+    description: 'Flash Anzan • 1 số • Ánh Nến • Cộng Trừ Mix • 6 bài đúng',
+    icon: '⚡',
+    link: '/practice/auto?mode=flashAnzan&difficulty=1&subMode=addSubMixed',
+    practiceInfo: {
+      mode: 'flashAnzan',
+      modeName: 'Tia Chớp',
+      subMode: 'addSubMixed',
+      difficulty: 1,
+      difficultyName: 'Ánh Nến',
+      minCorrect: 6
+    },
+    unlockCondition: { type: 'stage', stageId: 74 },
+    completeCondition: { type: 'practice', mode: 'flashAnzan', difficulty: 1, minCorrect: 6 }
+  },
+  {
+    stageId: 76,
+    zoneId: 'flash-peak-candle',
+    type: 'boss',
+    bossType: 'compete',
+    name: '🏆 Đấu Flash 1 Số Mix',
+    description: 'Thi đấu Flash • 1 số • Mix • 10 câu • 6+ đúng',
+    icon: '🏆',
+    link: '/compete/auto?mode=flashAnzan&difficulty=1&subMode=addSubMixed&questions=10',
+    competeInfo: {
+      mode: 'flashAnzan',
+      modeName: 'Tia Chớp',
+      subMode: 'addSubMixed',
+      difficulty: 1,
+      difficultyName: 'Ánh Nến',
+      questions: 10,
+      minCorrect: 6,
+      arenaId: 'flash-1-mix-10'
+    },
+    unlockCondition: { type: 'stage', stageId: 75 },
+    completeCondition: { type: 'compete', arenaId: 'flash-1-mix-10', minCorrect: 6 }
+  },
+  
+  // ============================================================
+  // ⚡ ZONE 12: ĐỈNH ÁNH TRĂNG (Level 18.4-18.5 - Flash 2 số)
+  // Sắp xếp: Cộng → Trừ → Mix với tốc độ cao hơn
+  // ============================================================
+  
+  // Stage 77-78: Học Flash nâng cao
+  {
+    stageId: 77,
+    zoneId: 'flash-peak-moon',
     type: 'lesson',
     levelId: 18,
     lessonId: 4,
-    name: '🧠 Flash Anzan nhanh',
+    name: '⚡ Flash Anzan nhanh',
     description: '4-5 số với tốc độ 0.8-1 giây',
     icon: '📚',
     link: '/learn/18/4',
-    unlockCondition: { type: 'stage', stageId: 60 }
+    unlockCondition: { type: 'stage', stageId: 76 }
   },
   {
-    stageId: 62,
-    zoneId: 'flash-peak',
+    stageId: 78,
+    zoneId: 'flash-peak-moon',
     type: 'lesson',
     levelId: 18,
     lessonId: 5,
@@ -1018,19 +1386,20 @@ export const GAME_STAGES = [
     unlockCondition: { type: 'lesson', levelId: 18, lessonId: 4 }
   },
   
-  // Stage 63: BOSS - Luyện Flash nâng cao
+  // Stage 79-80: Flash 2 số Ánh Trăng - Cộng (Luyện + Thi đấu)
   {
-    stageId: 63,
-    zoneId: 'flash-peak',
+    stageId: 79,
+    zoneId: 'flash-peak-moon',
     type: 'boss',
     bossType: 'practice',
-    name: '👹 Boss Tia Chớp Nâng Cao',
-    description: 'Luyện Flash Anzan • Ánh Trăng • 5 bài đúng',
-    icon: '👹',
-    link: '/practice/auto?mode=flashAnzan&difficulty=2',
+    name: '⚡ Luyện Flash 2 Số Cộng',
+    description: 'Flash Anzan • 2 số • Ánh Trăng • Phép Cộng • 5 bài đúng',
+    icon: '⚡',
+    link: '/practice/auto?mode=flashAnzan&difficulty=2&subMode=addition',
     practiceInfo: {
       mode: 'flashAnzan',
       modeName: 'Tia Chớp',
+      subMode: 'addition',
       difficulty: 2,
       difficultyName: 'Ánh Trăng',
       minCorrect: 5
@@ -1038,37 +1407,125 @@ export const GAME_STAGES = [
     unlockCondition: { type: 'lesson', levelId: 18, lessonId: 5 },
     completeCondition: { type: 'practice', mode: 'flashAnzan', difficulty: 2, minCorrect: 5 }
   },
-  
-  // Stage 64: BOSS - Đấu Trường Tia Chớp
   {
-    stageId: 64,
-    zoneId: 'flash-peak',
+    stageId: 80,
+    zoneId: 'flash-peak-moon',
     type: 'boss',
     bossType: 'compete',
-    name: '🏆 Đấu Trường Tia Chớp',
-    description: 'Thi đấu Flash Anzan • Ánh Trăng • 10 câu • 5+ đúng',
+    name: '🏆 Đấu Flash 2 Số Cộng',
+    description: 'Thi đấu Flash • 2 số • Cộng • 8 câu • 5+ đúng',
     icon: '🏆',
-    link: '/compete/auto?mode=flashAnzan&difficulty=2&questions=10',
+    link: '/compete/auto?mode=flashAnzan&difficulty=2&subMode=addition&questions=8',
     competeInfo: {
       mode: 'flashAnzan',
       modeName: 'Tia Chớp',
+      subMode: 'addition',
+      difficulty: 2,
+      difficultyName: 'Ánh Trăng',
+      questions: 8,
+      minCorrect: 5,
+      arenaId: 'flash-2-add-8'
+    },
+    unlockCondition: { type: 'stage', stageId: 79 },
+    completeCondition: { type: 'compete', arenaId: 'flash-2-add-8', minCorrect: 5 }
+  },
+  
+  // Stage 81-82: Flash 2 số Ánh Trăng - Trừ (Luyện + Thi đấu)
+  {
+    stageId: 81,
+    zoneId: 'flash-peak-moon',
+    type: 'boss',
+    bossType: 'practice',
+    name: '⚡ Luyện Flash 2 Số Trừ',
+    description: 'Flash Anzan • 2 số • Ánh Trăng • Phép Trừ • 5 bài đúng',
+    icon: '⚡',
+    link: '/practice/auto?mode=flashAnzan&difficulty=2&subMode=subtraction',
+    practiceInfo: {
+      mode: 'flashAnzan',
+      modeName: 'Tia Chớp',
+      subMode: 'subtraction',
+      difficulty: 2,
+      difficultyName: 'Ánh Trăng',
+      minCorrect: 5
+    },
+    unlockCondition: { type: 'stage', stageId: 80 },
+    completeCondition: { type: 'practice', mode: 'flashAnzan', difficulty: 2, minCorrect: 5 }
+  },
+  {
+    stageId: 82,
+    zoneId: 'flash-peak-moon',
+    type: 'boss',
+    bossType: 'compete',
+    name: '🏆 Đấu Flash 2 Số Trừ',
+    description: 'Thi đấu Flash • 2 số • Trừ • 8 câu • 5+ đúng',
+    icon: '🏆',
+    link: '/compete/auto?mode=flashAnzan&difficulty=2&subMode=subtraction&questions=8',
+    competeInfo: {
+      mode: 'flashAnzan',
+      modeName: 'Tia Chớp',
+      subMode: 'subtraction',
+      difficulty: 2,
+      difficultyName: 'Ánh Trăng',
+      questions: 8,
+      minCorrect: 5,
+      arenaId: 'flash-2-sub-8'
+    },
+    unlockCondition: { type: 'stage', stageId: 81 },
+    completeCondition: { type: 'compete', arenaId: 'flash-2-sub-8', minCorrect: 5 }
+  },
+  
+  // Stage 83-84: Flash 2 số Ánh Trăng - Mix (Luyện + Thi đấu)
+  {
+    stageId: 83,
+    zoneId: 'flash-peak-moon',
+    type: 'boss',
+    bossType: 'practice',
+    name: '⚡ Luyện Flash 2 Số Mix',
+    description: 'Flash Anzan • 2 số • Ánh Trăng • Cộng Trừ Mix • 6 bài đúng',
+    icon: '⚡',
+    link: '/practice/auto?mode=flashAnzan&difficulty=2&subMode=addSubMixed',
+    practiceInfo: {
+      mode: 'flashAnzan',
+      modeName: 'Tia Chớp',
+      subMode: 'addSubMixed',
+      difficulty: 2,
+      difficultyName: 'Ánh Trăng',
+      minCorrect: 6
+    },
+    unlockCondition: { type: 'stage', stageId: 82 },
+    completeCondition: { type: 'practice', mode: 'flashAnzan', difficulty: 2, minCorrect: 6 }
+  },
+  {
+    stageId: 84,
+    zoneId: 'flash-peak-moon',
+    type: 'boss',
+    bossType: 'compete',
+    name: '🏆 Đấu Flash 2 Số Mix',
+    description: 'Thi đấu Flash • 2 số • Mix • 10 câu • 6+ đúng',
+    icon: '🏆',
+    link: '/compete/auto?mode=flashAnzan&difficulty=2&subMode=addSubMixed&questions=10',
+    competeInfo: {
+      mode: 'flashAnzan',
+      modeName: 'Tia Chớp',
+      subMode: 'addSubMixed',
       difficulty: 2,
       difficultyName: 'Ánh Trăng',
       questions: 10,
-      minCorrect: 5,
-      arenaId: 'flashAnzan-2-10'
+      minCorrect: 6,
+      arenaId: 'flash-2-mix-10'
     },
-    unlockCondition: { type: 'stage', stageId: 63 },
-    completeCondition: { type: 'compete', arenaId: 'flashAnzan-2-10', minCorrect: 5 }
+    unlockCondition: { type: 'stage', stageId: 83 },
+    completeCondition: { type: 'compete', arenaId: 'flash-2-mix-10', minCorrect: 6 }
   },
 
   // ============================================================
   // 🏆 ZONE 11: LÂU ĐÀI KHO BÁU CỘNG TRỪ (Boss Cuối + Chứng Chỉ)
+  // 3 Boss Cuối tổng hợp tất cả mode + Certificate
   // ============================================================
   
-  // Stage 65: BOSS CUỐI 1 - Đại Chiến Cộng Trừ
+  // Stage 85: BOSS CUỐI 1 - Đại Chiến Cộng Trừ Mix (Bàn phím)
   {
-    stageId: 65,
+    stageId: 85,
     zoneId: 'treasure-castle',
     type: 'boss',
     bossType: 'compete',
@@ -1084,59 +1541,65 @@ export const GAME_STAGES = [
       difficultyName: 'Cao Thủ',
       questions: 20,
       minCorrect: 14,
-      arenaId: 'addSubMixed-4-20'
+      arenaId: 'final-addSubMixed-4-20'
     },
-    unlockCondition: { type: 'stage', stageId: 64 },
-    completeCondition: { type: 'compete', arenaId: 'addSubMixed-4-20', minCorrect: 14 }
+    unlockCondition: { type: 'stage', stageId: 84 },
+    completeCondition: { type: 'compete', arenaId: 'final-addSubMixed-4-20', minCorrect: 14 }
   },
   
-  // Stage 66: BOSS CUỐI 2 - Siêu Trí Tuệ Ultimate
+  // Stage 86: BOSS CUỐI 2 - Siêu Trí Tuệ Ultimate
   {
-    stageId: 66,
+    stageId: 86,
     zoneId: 'treasure-castle',
     type: 'boss',
-    bossType: 'practice',
+    bossType: 'compete',
     isFinalBoss: true,
     name: '👑 BOSS CUỐI - Siêu Trí Tuệ Ultimate',
-    description: 'Luyện Siêu Trí Tuệ • Chiến Binh • 8 bài đúng',
+    description: 'Thi đấu STT • 2 số • Mix • 15 câu • 10+ đúng',
     icon: '👑',
-    link: '/practice/auto?mode=mentalMath&difficulty=2',
-    practiceInfo: {
+    link: '/compete/auto?mode=mentalMath&difficulty=2&subMode=addSubMixed&questions=15',
+    competeInfo: {
       mode: 'mentalMath',
       modeName: 'Siêu Trí Tuệ',
+      subMode: 'addSubMixed',
       difficulty: 2,
       difficultyName: 'Chiến Binh',
-      minCorrect: 8
+      questions: 15,
+      minCorrect: 10,
+      arenaId: 'final-mentalMath-2-mix-15'
     },
-    unlockCondition: { type: 'stage', stageId: 65 },
-    completeCondition: { type: 'practice', mode: 'mentalMath', difficulty: 2, minCorrect: 8 }
+    unlockCondition: { type: 'stage', stageId: 85 },
+    completeCondition: { type: 'compete', arenaId: 'final-mentalMath-2-mix-15', minCorrect: 10 }
   },
   
-  // Stage 67: BOSS CUỐI 3 - Tia Chớp Ultimate
+  // Stage 87: BOSS CUỐI 3 - Tia Chớp Ultimate
   {
-    stageId: 67,
+    stageId: 87,
     zoneId: 'treasure-castle',
     type: 'boss',
-    bossType: 'practice',
+    bossType: 'compete',
     isFinalBoss: true,
     name: '👑 BOSS CUỐI - Tia Chớp Ultimate',
-    description: 'Luyện Flash Anzan • Ánh Nến • 5 bài đúng',
+    description: 'Thi đấu Flash • 2 số • Mix • 12 câu • 8+ đúng',
     icon: '👑',
-    link: '/practice/auto?mode=flashAnzan&difficulty=1',
-    practiceInfo: {
+    link: '/compete/auto?mode=flashAnzan&difficulty=2&subMode=addSubMixed&questions=12',
+    competeInfo: {
       mode: 'flashAnzan',
       modeName: 'Tia Chớp',
-      difficulty: 1,
-      difficultyName: 'Ánh Nến',
-      minCorrect: 5
+      subMode: 'addSubMixed',
+      difficulty: 2,
+      difficultyName: 'Ánh Trăng',
+      questions: 12,
+      minCorrect: 8,
+      arenaId: 'final-flash-2-mix-12'
     },
-    unlockCondition: { type: 'stage', stageId: 66 },
-    completeCondition: { type: 'practice', mode: 'flashAnzan', difficulty: 1, minCorrect: 5 }
+    unlockCondition: { type: 'stage', stageId: 86 },
+    completeCondition: { type: 'compete', arenaId: 'final-flash-2-mix-12', minCorrect: 8 }
   },
   
-  // Stage 68: KHO BÁU - Nhận Chứng Chỉ
+  // Stage 88: KHO BÁU - Nhận Chứng Chỉ
   {
-    stageId: 68,
+    stageId: 88,
     zoneId: 'treasure-castle',
     type: 'treasure',
     name: '🏅 KHO BÁU - CHỨNG CHỈ CỘNG TRỪ',
@@ -1148,14 +1611,22 @@ export const GAME_STAGES = [
       title: 'Chứng Chỉ Tính Nhẩm Cộng Trừ',
       description: 'Chứng nhận năng lực tính nhẩm cộng trừ trên bàn tính Soroban'
     },
-    unlockCondition: { type: 'stage', stageId: 67 },
+    unlockCondition: { type: 'stage', stageId: 87 },
     completeCondition: { type: 'certificate', certType: 'addSub' }
   },
 ];
 
 // ============================================================
 // 🗺️ ZONES CONFIG - Thông tin các vùng đất
+// Import từ zone-stories.config.js để lấy background, floating objects, stories
 // ============================================================
+
+import { 
+  getZoneBackground, 
+  getZoneFloatingObjects, 
+  getZoneStory,
+  getVictoryEffect 
+} from './zone-stories.config.js';
 
 export const GAME_ZONES = [
   {
@@ -1170,9 +1641,14 @@ export const GAME_ZONES = [
     levels: [1],
     stageRange: [1, 5],
     totalBoss: 1,
+    // Thêm theme và floating objects
+    theme: 'ancient',
+    floatingObjects: ['📜', '🪶', '✒️', '📚', '🕯️'],
+    bgGradient: 'linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%)',
+    victoryEffect: 'confetti',
     story: {
-      intro: 'Chào mừng đến Làng Bàn Tính! Đây là nơi con bắt đầu hành trình tìm Kho Báu Tri Thức!',
-      complete: 'Tuyệt vời! Con đã nắm vững cách dùng Soroban. Rừng Phép Cộng đang chờ đón!'
+      intro: 'Hú hú! Chào mừng con đến Làng Bàn Tính Thần Kỳ! Ta là Cú Soro, sẽ dẫn con đi tìm Kho Báu Tri Thức! Trước tiên, hãy học cách sử dụng bàn tính Soroban - công cụ kỳ diệu giúp con tính toán siêu nhanh! 🦉✨',
+      complete: 'Hú hú! Tuyệt vời lắm! Con đã nắm vững cách sử dụng Soroban rồi! Giờ hãy tiến vào Rừng Phép Cộng - nơi những con số đang chờ được gộp lại với nhau! 🌟'
     }
   },
   {
@@ -1187,9 +1663,14 @@ export const GAME_ZONES = [
     levels: [2, 3],
     stageRange: [6, 13],
     totalBoss: 2,
+    // Thêm theme và floating objects
+    theme: 'nature',
+    floatingObjects: ['🍃', '🍄', '✨', '🦋', '🌸'],
+    bgGradient: 'linear-gradient(135deg, #C8E6C9 0%, #A5D6A7 100%)',
+    victoryEffect: 'fireworks',
     story: {
-      intro: 'Con đã đến Rừng Phép Cộng! Những con số ở đây muốn được gộp lại với nhau.',
-      complete: 'Xuất sắc! Con đã thuần thục phép cộng. Thung Lũng Phép Trừ đang chờ!'
+      intro: 'Chào mừng đến Rừng Phép Cộng! 🌲 Ở đây, những con số rất thích được gộp lại với nhau. Con sẽ học bí kíp "Bạn Nhỏ" - một phép thuật cộng kỳ diệu với tổng bằng 5! Sẵn sàng chưa?',
+      complete: 'Phi thường! Con đã làm chủ Rừng Phép Cộng và học được bí kíp Bạn Nhỏ! Phía trước là Thung Lũng Phép Trừ - nơi con sẽ học cách làm số nhỏ đi. Tiến lên nào! 🏔️'
     }
   },
   {
@@ -1204,9 +1685,14 @@ export const GAME_ZONES = [
     levels: [4],
     stageRange: [14, 19],
     totalBoss: 2,
+    // Thêm theme và floating objects
+    theme: 'math',
+    floatingObjects: ['1️⃣', '2️⃣', '3️⃣', '➕', '➖'],
+    bgGradient: 'linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%)',
+    victoryEffect: 'stars',
     story: {
-      intro: 'Chào mừng đến Thung Lũng Phép Trừ! Ở đây con sẽ học cách làm số nhỏ đi.',
-      complete: 'Giỏi lắm! Con đã chinh phục Thung Lũng. Đồi Bạn Lớn đang chờ đợi!'
+      intro: 'Hú hú! Con đã đến Thung Lũng Phép Trừ! 🏔️ Ở vùng đất này, con sẽ học cách làm số nhỏ đi bằng phép trừ. Bí kíp Bạn Nhỏ cũng sẽ giúp con ở đây đấy! Cùng khám phá nhé!',
+      complete: 'Xuất sắc! Con đã chinh phục Thung Lũng Phép Trừ! Phía trước là Đồi Bạn Lớn - nơi ẩn chứa bí mật quan trọng về con số 10. Hành trình ngày càng thú vị! 🌟'
     }
   },
   {
@@ -1221,9 +1707,14 @@ export const GAME_ZONES = [
     levels: [5, 6],
     stageRange: [20, 28],
     totalBoss: 2,
+    // Thêm theme và floating objects
+    theme: 'battle',
+    floatingObjects: ['🏳️', '🛡️', '⚔️', '🎯', '🏅'],
+    bgGradient: 'linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%)',
+    victoryEffect: 'rainbow',
     story: {
-      intro: 'Đồi Bạn Lớn - nơi cất giữ bí mật quan trọng: công thức tạo số 10!',
-      complete: 'Phi thường! Con đã nắm vững Bạn Lớn. Đài Kết Hợp đang chờ đợi!'
+      intro: 'Chào mừng đến Đồi Bạn Lớn! ⭐ Đây là nơi ẩn chứa bí mật quan trọng nhất: Công thức Bạn Lớn - chìa khóa để tính toán qua 10! Khi nắm vững Bạn Lớn, con sẽ tính được mọi phép tính!',
+      complete: 'Vĩ đại! Con đã làm chủ công thức Bạn Lớn! Đây là bước ngoặt quan trọng trong hành trình. Giờ hãy đến Đài Kết Hợp - nơi Bạn Nhỏ và Bạn Lớn sẽ hợp sức! 🏛️'
     }
   },
   {
@@ -1238,9 +1729,14 @@ export const GAME_ZONES = [
     levels: [7],
     stageRange: [29, 34],
     totalBoss: 2,
+    // Thêm theme và floating objects
+    theme: 'mechanical',
+    floatingObjects: ['⚙️', '🕰️', '🔩', '🧲', '📐'],
+    bgGradient: 'linear-gradient(135deg, #ECEFF1 0%, #CFD8DC 100%)',
+    victoryEffect: 'golden',
     story: {
-      intro: 'Đài Kết Hợp - nơi Bạn Nhỏ và Bạn Lớn hợp sức tạo nên phép thuật!',
-      complete: 'Tuyệt đỉnh! Con đã thành thạo kết hợp. Thành Phố Số đang chờ!'
+      intro: 'Hú hú! Con đã đến Đài Kết Hợp! 🏛️ Đây là nơi phép thuật thật sự xảy ra - Bạn Nhỏ và Bạn Lớn sẽ kết hợp sức mạnh để giải quyết mọi phép tính phức tạp! Sẵn sàng học điều kỳ diệu?',
+      complete: 'Tuyệt đỉnh! Con đã thành thạo nghệ thuật kết hợp Bạn Nhỏ và Bạn Lớn! Phía trước là Thành Phố Số Lớn - nơi con sẽ chinh phục những con số hàng chục, hàng trăm! 🏙️'
     }
   },
   {
@@ -1255,9 +1751,14 @@ export const GAME_ZONES = [
     levels: [8, 9],
     stageRange: [35, 42],
     totalBoss: 2,
+    // Thêm theme và floating objects
+    theme: 'technology',
+    floatingObjects: ['🤖', '📱', '💻', '🔌', '💡'],
+    bgGradient: 'linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%)',
+    victoryEffect: 'city-lights',
     story: {
-      intro: 'Thành Phố 2-3 Chữ Số - nơi con học cách tính với hàng chục và hàng trăm!',
-      complete: 'Xuất sắc! Con đã thành thạo số 2-3 chữ số. Vương Quốc Số Lớn đang chờ!'
+      intro: 'Chào mừng đến Thành Phố Số Lớn! 🏙️ Nơi đây những con số 2 và 3 chữ số sinh sống. Con sẽ học cách cộng trừ với hàng chục và hàng trăm - kỹ năng cần thiết cho mọi nhà toán học!',
+      complete: 'Xuất sắc! Con đã làm chủ Thành Phố Số Lớn! Giờ hãy tiến vào Vương Quốc Nghìn - nơi những con số hàng nghìn đang chờ đón vị anh hùng trẻ tuổi! 👑'
     }
   },
   {
@@ -1272,68 +1773,134 @@ export const GAME_ZONES = [
     levels: [10],
     stageRange: [43, 48],
     totalBoss: 2,
+    // Thêm theme và floating objects
+    theme: 'royal',
+    floatingObjects: ['👑', '💎', '🏰', '⭐', '🎭'],
+    bgGradient: 'linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%)',
+    victoryEffect: 'royal',
     story: {
-      intro: 'Vương Quốc Số Lớn - nơi những con số hàng nghìn ngự trị!',
-      complete: 'Vĩ đại! Con đã làm chủ số lớn. Tháp Siêu Trí Tuệ đang chờ con!'
+      intro: 'Hú hú! Con đã đến Vương Quốc Nghìn! 🏰 Đây là vương quốc của những con số hàng nghìn hùng mạnh. Chỉ những người thực sự giỏi mới có thể chinh phục nơi này. Con có dám thử thách không?',
+      complete: 'Vĩ đại! Con đã trở thành bậc thầy của Vương Quốc Nghìn! Nhưng hành trình chưa kết thúc - Tháp Trí Tuệ đang chờ con học kỹ năng siêu phàm: TÍNH NHẨM! 🧠'
     }
   },
   {
     zoneId: 'mental-tower',
     order: 8,
-    name: 'Chặng 8: Tháp Tính Nhẩm',
-    subtitle: 'Anzan cơ bản',
-    description: 'Rèn luyện Anzan - tính nhẩm bằng Soroban trong đầu!',
+    name: 'Chặng 8: Tháp Trí Tuệ 1 Số',
+    subtitle: 'Siêu Trí Tuệ Cơ Bản',
+    description: 'Rèn luyện Anzan - tính nhẩm số 1 chữ số!',
     icon: '🧠',
-    color: 'from-violet-400 to-purple-600',
+    color: 'from-violet-400 to-purple-500',
     bgImage: '/images/zones/mental-tower.jpg',
-    levels: [15, 16],
-    lessonIds: [[1], [1]], // Chỉ lesson 1 của mỗi level
-    stageRange: [49, 53],
-    totalBoss: 3,
+    levels: [15],
+    lessonIds: [[1]],
+    stageRange: [49, 55],
+    totalBoss: 6,
+    // Thêm theme và floating objects
+    theme: 'brain',
+    floatingObjects: ['🧠', '💡', '🔢', '💭', '✨'],
+    bgGradient: 'linear-gradient(135deg, #E8EAF6 0%, #C5CAE9 100%)',
+    victoryEffect: 'mind-blast',
     story: {
-      intro: 'Tháp Siêu Trí Tuệ - nơi con học tính toán không cần bàn tính!',
-      complete: 'Siêu phàm! Con đã đạt đến cảnh giới tính nhẩm. Đền Tốc Độ đang chờ!'
+      intro: 'Chào mừng đến Tháp Trí Tuệ! 🧠 Đây là nơi con học kỹ năng thần kỳ: TÍNH NHẨM (Anzan)! Thay vì dùng bàn tính thực, con sẽ tưởng tượng Soroban trong đầu. Hãy bắt đầu với số 1 chữ số!',
+      complete: 'Siêu phàm! Con đã làm chủ tính nhẩm số 1 chữ số! Giờ hãy thử thách Tháp Trí Tuệ Nâng Cao - tính nhẩm số 2 chữ số. Con có dám không? ⚡'
+    }
+  },
+  {
+    zoneId: 'mental-tower-advanced',
+    order: 9,
+    name: 'Chặng 9: Tháp Trí Tuệ 2 Số',
+    subtitle: 'Siêu Trí Tuệ Nâng Cao',
+    description: 'Tính nhẩm với số 2 chữ số - cảnh giới cao hơn!',
+    icon: '🧠',
+    color: 'from-purple-500 to-indigo-600',
+    bgImage: '/images/zones/mental-tower-advanced.jpg',
+    levels: [16],
+    lessonIds: [[1]],
+    stageRange: [56, 62],
+    totalBoss: 6,
+    // Thêm theme và floating objects
+    theme: 'transcendent',
+    floatingObjects: ['🧠', '⚡', '🌊', '🔮', '💫'],
+    bgGradient: 'linear-gradient(135deg, #EDE7F6 0%, #D1C4E9 100%)',
+    victoryEffect: 'mind-power',
+    story: {
+      intro: 'Hú hú! Tháp Trí Tuệ Nâng Cao! 🧠⚡ Đây là cảnh giới cao hơn của tính nhẩm. Con sẽ tính nhẩm với số 2 chữ số - chỉ những người có trí tuệ đặc biệt mới làm được!',
+      complete: 'Vượt trội! Con đã đạt cảnh giới tính nhẩm số 2 chữ số! Phía trước là Đền Tốc Độ - nơi thử thách phản xạ và tốc độ! Sẵn sàng chưa? 🏃‍♂️'
     }
   },
   {
     zoneId: 'speed-temple',
-    order: 9,
-    name: 'Chặng 9: Đền Tốc Độ',
+    order: 10,
+    name: 'Chặng 10: Đền Tốc Độ',
     subtitle: 'Thử thách thời gian',
-    description: 'Tính toán với thời gian giới hạn - thử thách phản xạ!',
+    description: 'Tính toán với thời gian giới hạn - thử thách phản xạ! (Tối đa 4 chữ số)',
     icon: '⚡',
     color: 'from-orange-400 to-red-500',
     bgImage: '/images/zones/speed-temple.jpg',
     levels: [17],
-    lessonIds: [[1]], // Chỉ lesson 1
-    stageRange: [54, 56],
-    totalBoss: 2,
+    lessonIds: [[1]],
+    stageRange: [63, 67],
+    totalBoss: 4,
+    // Thêm theme và floating objects
+    theme: 'speed',
+    floatingObjects: ['⚡', '⏱️', '🚀', '💨', '🏃'],
+    bgGradient: 'linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%)',
+    victoryEffect: 'lightning',
     story: {
       intro: 'Đền Tốc Độ - nơi thử thách giới hạn phản xạ của con!',
-      complete: 'Nhanh như chớp! Con đã sẵn sàng cho Đỉnh Tia Chớp!'
+      complete: 'Nhanh như chớp! Con đã sẵn sàng cho Đỉnh Ánh Nến!'
     }
   },
   {
-    zoneId: 'flash-peak',
-    order: 10,
-    name: 'Chặng 10: Đỉnh Tia Chớp',
-    subtitle: 'Flash Anzan',
-    description: 'Flash Anzan - đỉnh cao của tính nhẩm Soroban!',
-    icon: '⚡',
-    color: 'from-yellow-300 to-amber-500',
-    bgImage: '/images/zones/lightning-peak.jpg',
+    zoneId: 'flash-peak-candle',
+    order: 11,
+    name: 'Chặng 11: Đỉnh Ánh Nến',
+    subtitle: 'Flash 1 Số',
+    description: 'Flash Anzan cấp Ánh Nến - số 1 chữ số!',
+    icon: '🕯️',
+    color: 'from-yellow-300 to-orange-400',
+    bgImage: '/images/zones/flash-candle.jpg',
     levels: [18],
-    lessonIds: [[1, 2, 3, 4, 5]], // Tất cả lessons
-    stageRange: [57, 64],
-    totalBoss: 3,
+    lessonIds: [[1, 2, 3]],
+    stageRange: [68, 76],
+    totalBoss: 6,
+    // Thêm theme và floating objects
+    theme: 'candle',
+    floatingObjects: ['🕯️', '🔥', '✨', '💫', '⭐'],
+    bgGradient: 'linear-gradient(135deg, #FFFDE7 0%, #FFF9C4 100%)',
+    victoryEffect: 'fireworks',
     story: {
-      intro: 'Đỉnh Tia Chớp - thử thách cuối cùng dành cho bậc thầy Soroban!',
+      intro: 'Đỉnh Ánh Nến - Flash Anzan với số 1 chữ số!',
+      complete: 'Xuất sắc! Con đã chinh phục Flash 1 số. Đỉnh Ánh Trăng đang chờ!'
+    }
+  },
+  {
+    zoneId: 'flash-peak-moon',
+    order: 12,
+    name: 'Chặng 12: Đỉnh Ánh Trăng',
+    subtitle: 'Flash 2 Số',
+    description: 'Flash Anzan cấp Ánh Trăng - số 2 chữ số siêu tốc!',
+    icon: '🌙',
+    color: 'from-amber-400 to-yellow-500',
+    bgImage: '/images/zones/flash-moon.jpg',
+    levels: [18],
+    lessonIds: [[4, 5]],
+    stageRange: [77, 84],
+    totalBoss: 6,
+    // Thêm theme và floating objects
+    theme: 'cosmic',
+    floatingObjects: ['🌙', '🌟', '✨', '💫', '🔥'],
+    bgGradient: 'linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%)',
+    victoryEffect: 'flash-explosion',
+    story: {
+      intro: 'Đỉnh Ánh Trăng - Flash Anzan với số 2 chữ số siêu tốc!',
       complete: 'HUYỀN THOẠI! Con đã chinh phục Flash Anzan! Lâu Đài Kho Báu đang chờ!'
     }
   },
   {
     zoneId: 'treasure-castle',
-    order: 11,
+    order: 13,
     name: 'ĐÍCH ĐẾN: Lâu Đài Kho Báu',
     subtitle: 'Nhận Chứng Chỉ!',
     description: 'Vượt qua 3 Boss Cuối để nhận Chứng Chỉ Cộng Trừ!',
@@ -1341,10 +1908,15 @@ export const GAME_ZONES = [
     color: 'from-amber-300 via-yellow-400 to-orange-500',
     bgImage: '/images/zones/treasure-castle.jpg',
     levels: [],
-    stageRange: [65, 68],
+    stageRange: [85, 88],
     totalBoss: 3,
     hasCertificate: true,
     certificateType: 'addSub',
+    // Thêm theme và floating objects
+    theme: 'treasure',
+    floatingObjects: ['💰', '💎', '🏆', '🎖️', '🗝️'],
+    bgGradient: 'linear-gradient(135deg, #FFF8E1 0%, #FFD54F 50%, #FF8F00 100%)',
+    victoryEffect: 'grand-finale',
     story: {
       intro: '🎊 Chào mừng đến Lâu Đài Kho Báu - đích đến của hành trình Cộng Trừ!',
       complete: '🎉🏆 CHÚC MỪNG! Con đã đạt được KHO BÁU và CHỨNG CHỈ TÍNH NHẨM CỘNG TRỪ! 🏆🎉'

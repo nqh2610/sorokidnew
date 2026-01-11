@@ -69,25 +69,29 @@ export const GAME_STAGES = [
     unlockCondition: { type: 'lesson', levelId: 1, lessonId: 3 }
   },
   
-  // Stage 5: BOSS - Luyện tập Cộng
+  // Stage 5: BOSS - Luyện tập TẠO SỐ (không phải phép cộng!)
+  // Zone 1 chỉ học biểu diễn số, chưa học phép tính
   {
     stageId: 5,
     zoneId: 'village',
     type: 'boss',
     bossType: 'practice',
-    name: '👹 Boss Làng - Thử Thách Cộng',
-    description: 'Luyện Phép Cộng • Tập Sự • 8 bài đúng',
+    name: '👹 Boss Làng - Thử Thách Tạo Số',
+    description: 'Luyện Tạo Số • Tập Sự • 8 bài đúng',
     icon: '👹',
-    link: '/practice/auto?mode=addition&difficulty=1',
+    link: '/practice/auto?mode=create&difficulty=1',
     practiceInfo: {
-      mode: 'addition',
-      modeName: 'Phép Cộng',
+      mode: 'create',           // Chế độ TẠO SỐ, không phải addition
+      modeName: 'Tạo Số',
       difficulty: 1,
       difficultyName: 'Tập Sự',
-      minCorrect: 8
+      minCorrect: 8,
+      // 🆕 Skill config - chỉ tạo số, không có phép tính
+      skillLevel: 'create-number',
+      digits: 1
     },
     unlockCondition: { type: 'lesson', levelId: 1, lessonId: 4 },
-    completeCondition: { type: 'practice', mode: 'addition', difficulty: 1, minCorrect: 8 }
+    completeCondition: { type: 'practice', mode: 'create', difficulty: 1, minCorrect: 8 }
   },
 
   // ============================================================
@@ -132,25 +136,30 @@ export const GAME_STAGES = [
     unlockCondition: { type: 'lesson', levelId: 2, lessonId: 2 }
   },
   
-  // Stage 9: BOSS - Luyện tập Cộng (1 chữ số)
+  // Stage 9: BOSS - Luyện tập Cộng CƠ BẢN (chỉ cộng đủ hạt)
+  // Ở đây học sinh mới học cộng đủ hạt + cộng với hạt Trời
+  // CHƯA học Bạn Nhỏ nên chỉ sinh bài cộng cơ bản
   {
     stageId: 9,
     zoneId: 'forest',
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Cộng Đơn',
-    description: 'Luyện Phép Cộng • Tập Sự • 12 bài đúng',
+    description: 'Luyện Phép Cộng cơ bản • 8 bài đúng',
     icon: '👹',
-    link: '/practice/auto?mode=addition&difficulty=1',
+    link: '/practice/auto?mode=addition&difficulty=1&skill=basic-add',
     practiceInfo: {
       mode: 'addition',
       modeName: 'Phép Cộng',
       difficulty: 1,
       difficultyName: 'Tập Sự',
-      minCorrect: 12
+      minCorrect: 8,
+      // 🆕 Skill config - CHỈ cộng cơ bản (đủ hạt)
+      skillLevel: 'basic-add',
+      digits: 1
     },
     unlockCondition: { type: 'lesson', levelId: 2, lessonId: 3 },
-    completeCondition: { type: 'practice', mode: 'addition', difficulty: 1, minCorrect: 12 }
+    completeCondition: { type: 'practice', mode: 'addition', difficulty: 1, minCorrect: 8 }
   },
   
   // Stage 10-12: Học Level 3 (Bạn Nhỏ Cộng)
@@ -191,16 +200,17 @@ export const GAME_STAGES = [
     unlockCondition: { type: 'lesson', levelId: 3, lessonId: 2 }
   },
   
-  // Stage 13: BOSS - Thi đấu Cộng (1 chữ số)
+  // Stage 13: BOSS - Thi đấu Cộng (cơ bản + Bạn Nhỏ)
+  // Ở đây học sinh đã học xong Bạn Nhỏ Cộng
   {
     stageId: 13,
     zoneId: 'forest',
     type: 'boss',
     bossType: 'compete',
     name: '🏆 Đấu Trường Rừng Xanh',
-    description: 'Thi đấu Cộng • Tập Sự • 10 câu • 7+ đúng',
+    description: 'Thi đấu Cộng (Bạn Nhỏ) • 10 câu • 7+ đúng',
     icon: '🏆',
-    link: '/compete/auto?mode=addition&difficulty=1&questions=10',
+    link: '/compete/auto?mode=addition&difficulty=1&questions=10&skill=friend5-add',
     competeInfo: {
       mode: 'addition',
       modeName: 'Phép Cộng',
@@ -208,7 +218,10 @@ export const GAME_STAGES = [
       difficultyName: 'Tập Sự',
       questions: 10,
       minCorrect: 7,
-      arenaId: 'addition-1-10'
+      arenaId: 'addition-1-10',
+      // 🆕 Skill config - cộng cơ bản + Bạn Nhỏ (KHÔNG có Bạn Lớn)
+      skillLevel: ['basic-add', 'friend5-add'],
+      digits: 1
     },
     unlockCondition: { type: 'lesson', levelId: 3, lessonId: 3 },
     completeCondition: { type: 'compete', arenaId: 'addition-1-10', minCorrect: 7 }
@@ -256,22 +269,26 @@ export const GAME_STAGES = [
     unlockCondition: { type: 'lesson', levelId: 4, lessonId: 2 }
   },
   
-  // Stage 17: BOSS - Luyện tập Trừ
+  // Stage 17: BOSS - Luyện tập Trừ (cơ bản + Bạn Nhỏ)
+  // Ở đây học sinh đã học trừ cơ bản + Bạn Nhỏ Trừ
   {
     stageId: 17,
     zoneId: 'valley',
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Trừ',
-    description: 'Luyện Phép Trừ • Tập Sự • 10 bài đúng',
+    description: 'Luyện Phép Trừ (Bạn Nhỏ) • 10 bài đúng',
     icon: '👹',
-    link: '/practice/auto?mode=subtraction&difficulty=1',
+    link: '/practice/auto?mode=subtraction&difficulty=1&skill=friend5-sub',
     practiceInfo: {
       mode: 'subtraction',
       modeName: 'Phép Trừ',
       difficulty: 1,
       difficultyName: 'Tập Sự',
-      minCorrect: 10
+      minCorrect: 10,
+      // 🆕 Skill config - trừ cơ bản + Bạn Nhỏ (KHÔNG có Bạn Lớn)
+      skillLevel: ['basic-sub', 'friend5-sub'],
+      digits: 1
     },
     unlockCondition: { type: 'lesson', levelId: 4, lessonId: 3 },
     completeCondition: { type: 'practice', mode: 'subtraction', difficulty: 1, minCorrect: 10 }
@@ -363,7 +380,7 @@ export const GAME_STAGES = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Cộng Qua 10',
-    description: 'Luyện Phép Cộng • Chiến Binh • 12 bài đúng',
+    description: 'Luyện Phép Cộng • Chiến Binh • 8 bài đúng',
     icon: '👹',
     link: '/practice/auto?mode=addition&difficulty=2',
     practiceInfo: {
@@ -371,10 +388,10 @@ export const GAME_STAGES = [
       modeName: 'Phép Cộng',
       difficulty: 2,
       difficultyName: 'Chiến Binh',
-      minCorrect: 12
+      minCorrect: 8
     },
     unlockCondition: { type: 'lesson', levelId: 5, lessonId: 3 },
-    completeCondition: { type: 'practice', mode: 'addition', difficulty: 2, minCorrect: 12 }
+    completeCondition: { type: 'practice', mode: 'addition', difficulty: 2, minCorrect: 8 }
   },
   
   // Stage 24-27: Học Level 6 (Bạn Lớn Trừ)
@@ -511,7 +528,7 @@ export const GAME_STAGES = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss Kết Hợp',
-    description: 'Luyện Cộng Trừ Mix • Chiến Binh • 12 bài đúng',
+    description: 'Luyện Cộng Trừ Mix • Chiến Binh • 8 bài đúng',
     icon: '👹',
     link: '/practice/auto?mode=addSubMixed&difficulty=2',
     practiceInfo: {
@@ -519,10 +536,10 @@ export const GAME_STAGES = [
       modeName: 'Cộng Trừ Mix',
       difficulty: 2,
       difficultyName: 'Chiến Binh',
-      minCorrect: 12
+      minCorrect: 8
     },
     unlockCondition: { type: 'lesson', levelId: 7, lessonId: 4 },
-    completeCondition: { type: 'practice', mode: 'addSubMixed', difficulty: 2, minCorrect: 12 }
+    completeCondition: { type: 'practice', mode: 'addSubMixed', difficulty: 2, minCorrect: 8 }
   },
   
   // Stage 34: BOSS - Đấu Trường Cộng Trừ
@@ -597,7 +614,7 @@ export const GAME_STAGES = [
     type: 'boss',
     bossType: 'practice',
     name: '👹 Boss 2 Chữ Số',
-    description: 'Luyện Cộng Trừ Mix • Dũng Sĩ • 12 bài đúng',
+    description: 'Luyện Cộng Trừ Mix • Dũng Sĩ • 8 bài đúng',
     icon: '👹',
     link: '/practice/auto?mode=addSubMixed&difficulty=3',
     practiceInfo: {
@@ -605,10 +622,10 @@ export const GAME_STAGES = [
       modeName: 'Cộng Trừ Mix',
       difficulty: 3,
       difficultyName: 'Dũng Sĩ',
-      minCorrect: 12
+      minCorrect: 8
     },
     unlockCondition: { type: 'lesson', levelId: 8, lessonId: 3 },
-    completeCondition: { type: 'practice', mode: 'addSubMixed', difficulty: 3, minCorrect: 12 }
+    completeCondition: { type: 'practice', mode: 'addSubMixed', difficulty: 3, minCorrect: 8 }
   },
   
   // Stage 39-41: Học Level 9 (Số 3 chữ số)

@@ -15,6 +15,8 @@ import GameModeHeader from '@/components/GameModeHeader/GameModeHeader';
 import { useGameSound } from '@/lib/useGameSound';
 import { getNextZoneAfterStage as getNextZoneAddSub } from '@/config/adventure-stages-addsub.config';
 import { getNextZoneAfterStage as getNextZoneMulDiv } from '@/config/adventure-stages-muldiv.config';
+// 🆕 Import skill-based problem generator cho Adventure mode
+import { generateAdditionProblem, generateSubtractionProblem, generateMixedProblem, generateCreateNumberProblem } from '@/lib/soroban-problem-generator';
 
 const TOTAL_CHALLENGES = 10; // Mỗi màn có 10 thử thách
 
@@ -332,6 +334,10 @@ function PracticePageContent() {
   const [mentalSubMode, setMentalSubMode] = useState(null); // Sub-mode cho Siêu Trí Tuệ
   const mentalInputRef = useRef(null);
   
+  // 🔧 FIX: Ngăn auto-check ngay sau khi chuyển câu (tránh false positive khi làm nhanh)
+  const problemChangeTimeRef = useRef(0);
+  const AUTO_CHECK_DELAY = 300; // ms - delay tối thiểu sau khi chuyển câu mới được auto-check
+  
   // User tier state
   const [userTier, setUserTier] = useState('free');
   
@@ -475,9 +481,15 @@ function PracticePageContent() {
       setIsCheckingAutoStart(false);
       return;
     }
+    // 🔧 FIX: Nếu đã có gameMode state (đã xử lý rồi), skip
+    if (gameMode) {
+      setIsCheckingAutoStart(false);
+      return;
+    }
 
     // Helper function để start game trực tiếp
-    const startGameDirectly = (autoMode, autoDiff) => {
+    // 🆕 Thêm gameModeData để pass vào generateProblem (vì state chưa update kịp)
+    const startGameDirectly = (autoMode, autoDiff, gameModeData = null) => {
       setDifficulty(autoDiff);
       // KHÔNG set isCheckingAutoStart = false ở đây - giữ loading cho đến khi setTimeout xong
       
@@ -490,7 +502,7 @@ function PracticePageContent() {
           setIsCheckingAutoStart(false);
           // Start game với subMode
           const actualSubMode = 'addSubMixed';
-          setProblem(generateProblem(actualSubMode, autoDiff));
+          setProblem(generateProblem(actualSubMode, autoDiff, gameModeData));
           setSorobanValue(0);
           setMentalAnswer('');
           setResult(null);
@@ -623,7 +635,12 @@ function PracticePageContent() {
         // Mode thường - bắt đầu ngay
         setMode(autoMode);
         setIsCheckingAutoStart(false);
-        setProblem(generateProblem(autoMode, autoDiff));
+        
+        // 🔧 FIX: Đánh dấu thời điểm bắt đầu game để ngăn auto-check quá sớm
+        problemChangeTimeRef.current = Date.now();
+        
+        // 🆕 Pass gameModeData để generateProblem có thể dùng skillLevel
+        setProblem(generateProblem(autoMode, autoDiff, gameModeData));
         setSorobanValue(0);
         setMentalAnswer('');
         setResult(null);
@@ -653,7 +670,12 @@ function PracticePageContent() {
             const autoMode = gameModeData.mode;
             const autoDiff = gameModeData.difficulty || 1;
             
-            startGameDirectly(autoMode, autoDiff);
+            // 🔧 FIX: Clear sessionStorage NGAY để tránh chạy lại khi useEffect re-run
+            // (Giữ lại data trong state gameMode, chỉ xóa khỏi sessionStorage)
+            sessionStorage.removeItem('practiceGameMode');
+            
+            // 🆕 Pass gameModeData để generateProblem có skillLevel
+            startGameDirectly(autoMode, autoDiff, gameModeData);
             return; // Đã xử lý xong
           }
         }
@@ -693,7 +715,8 @@ function PracticePageContent() {
         
         // 🚀 AUTO-START: Start game trực tiếp
         if (autoStart.mode) {
-          startGameDirectly(autoStart.mode, autoStart.difficulty || 1);
+          // 🆕 Pass autoStart để generateProblem có skillLevel
+          startGameDirectly(autoStart.mode, autoStart.difficulty || 1, autoStart);
           return;
         }
       }
@@ -707,7 +730,7 @@ function PracticePageContent() {
       sessionStorage.removeItem('practiceAutoStart');
       setIsCheckingAutoStart(false);
     }
-  }, [status, mode]);
+  }, [status, mode, gameMode]); // 🔧 FIX: Thêm gameMode để check đúng
 
   // 🔗 AUTO-START FROM URL: Xử lý query params (fallback khi không có sessionStorage)
   // Chỉ set autoStartPending để user có thể thấy mode được pre-select
@@ -910,7 +933,63 @@ function PracticePageContent() {
     }
   }, [mode, mentalSubMode, result, mentalAnswer]);
 
-  const generateProblem = (modeType, diff) => {
+  // 🆕 SKILL-BASED GENERATOR: Sinh bài theo kỹ năng Soroban đã học (chỉ khi vào từ Adventure)
+  const generateSkillBasedProblem = (modeType, skillLevel, digits = 1) => {
+    // 🆕 MODE CREATE: Tạo số trên Soroban (không có phép tính)
+    if (modeType === 'create' || skillLevel === 'create-number') {
+      const result = generateCreateNumberProblem(digits);
+      return {
+        type: 'create',
+        target: result.target,
+        numbers: [result.target],
+        operations: [],
+        answer: result.answer,
+        displayProblem: result.display,
+        recommendedTime: digits * 10 + 20,
+        technique: result.technique
+      };
+    }
+    
+    // Nếu có skillLevel từ Adventure, dùng generator theo skill
+    if (skillLevel) {
+      const skills = Array.isArray(skillLevel) ? skillLevel : [skillLevel];
+      const randomSkill = skills[Math.floor(Math.random() * skills.length)];
+      
+      let result;
+      if (modeType === 'addition' || randomSkill.includes('add')) {
+        result = generateAdditionProblem(randomSkill, digits);
+      } else if (modeType === 'subtraction' || randomSkill.includes('sub')) {
+        result = generateSubtractionProblem(randomSkill, digits);
+      } else if (modeType === 'addSubMixed') {
+        result = generateMixedProblem(skills, digits);
+      } else {
+        // Fallback cho các mode khác
+        return null;
+      }
+      
+      // Convert format để tương thích với code hiện tại
+      return {
+        numbers: [result.a, result.b],
+        operations: [],
+        answer: result.answer,
+        displayProblem: result.display,
+        recommendedTime: digits * 10 + 15,
+        technique: result.technique // Thông tin kỹ thuật Soroban dùng
+      };
+    }
+    
+    return null; // Không có skillLevel, dùng generator cũ
+  };
+
+  const generateProblem = (modeType, diff, gameModeOverride = null) => {
+    // 🆕 CHECK: Nếu đang chơi từ Adventure và có skillLevel, dùng skill-based generator
+    const gm = gameModeOverride || gameMode;
+    if (gm?.from === 'adventure' && gm?.skillLevel) {
+      const skillProblem = generateSkillBasedProblem(modeType, gm.skillLevel, gm.digits || diff);
+      if (skillProblem) return skillProblem;
+    }
+    
+    // === LOGIC CŨ: Sinh bài random theo difficulty (cho truy cập trực tiếp) ===
     const randRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
     // Độ khó theo số chữ số: 1⭐=1 chữ số, 2⭐=2 chữ số, ...
@@ -1406,7 +1485,9 @@ function PracticePageContent() {
   const handleSorobanChange = (value) => {
     setSorobanValue(value);
     // Auto-check khi đáp án đúng
-    if (value === problem?.answer && result === null) {
+    // 🔧 FIX: Thêm delay check để tránh false positive khi chuyển câu nhanh
+    const timeSinceProblemChange = Date.now() - problemChangeTimeRef.current;
+    if (value === problem?.answer && result === null && timeSinceProblemChange >= AUTO_CHECK_DELAY) {
       autoCheckAnswer(value);
     }
   };
@@ -1589,6 +1670,9 @@ function PracticePageContent() {
       actualMode = mode;
     }
     
+    // 🔧 FIX: Đánh dấu thời điểm chuyển câu để ngăn auto-check quá sớm
+    problemChangeTimeRef.current = Date.now();
+    
     setProblem(generateProblem(actualMode, difficulty));
     setSorobanValue(0);
     setMentalAnswer('');
@@ -1630,6 +1714,9 @@ function PracticePageContent() {
     } else {
       actualMode = mode;
     }
+    
+    // 🔧 FIX: Đánh dấu thời điểm chuyển câu
+    problemChangeTimeRef.current = Date.now();
     
     setProblem(generateProblem(actualMode, difficulty));
     setSorobanValue(0);
@@ -3757,49 +3844,71 @@ function PracticePageContent() {
       {/* Problem display - Compact & Bold */}
       <div className="flex-shrink-0 bg-white/10 backdrop-blur">
         <div className="max-w-6xl mx-auto px-2 sm:px-4 py-2 sm:py-3 flex items-center justify-center gap-2 sm:gap-4">
-          {/* Problem */}
-          <div className="text-white font-black text-xl sm:text-3xl md:text-4xl">
-            {problem?.displayProblem}
-          </div>
-          
-          {/* Equals */}
-          <div className="text-white/60 text-xl sm:text-3xl md:text-4xl">=</div>
-          
-          {/* Answer box - khác nhau cho Soroban vs Mental */}
-          {isMentalMode ? (
-            // Input cho mode Siêu Trí Tuệ - ẩn bàn phím mặc định, dùng bàn phím ảo
-            <input
-              ref={mentalInputRef}
-              type="text"
-              inputMode="none"
-              readOnly
-              value={mentalAnswer}
-              onKeyDown={handleMentalKeyDown}
-              disabled={result !== null}
-              placeholder="?"
-              autoComplete="off"
-              style={{ width: `${Math.max(3, mentalAnswer.length + 2)}ch` }}
-              className={`font-black text-xl sm:text-3xl md:text-4xl px-2 sm:px-3 py-1 sm:py-2 rounded-xl sm:rounded-2xl text-center transition-all outline-none caret-transparent ${
-                result === true
-                  ? 'bg-green-500 text-white shadow-lg shadow-green-500/50' 
-                  : showingAnswer
-                    ? 'bg-yellow-500 text-white'
-                    : 'bg-white text-purple-700 shadow-lg ring-2 sm:ring-4 ring-white/50'
-              }`}
-            />
+          {/* Problem / Target */}
+          {mode === 'create' ? (
+            // 🆕 MODE CREATE: Hiển thị số cần tạo, không có dấu =
+            <>
+              <div className="text-white/80 text-sm sm:text-lg">🎯 Tạo số:</div>
+              <div className="text-white font-black text-3xl sm:text-5xl md:text-6xl">
+                {problem?.target}
+              </div>
+              <div className={`text-lg sm:text-2xl px-3 py-1 rounded-lg ${
+                sorobanValue === problem?.target 
+                  ? 'bg-green-500 text-white animate-pulse' 
+                  : sorobanValue > 0 
+                    ? 'bg-white/30 text-white' 
+                    : 'bg-white/10 text-white/50'
+              }`}>
+                {sorobanValue > 0 ? sorobanValue : '?'}
+              </div>
+            </>
           ) : (
-            // Display box cho Soroban mode
-            <div className={`font-black text-xl sm:text-3xl md:text-4xl px-4 sm:px-6 py-1 sm:py-2 rounded-xl sm:rounded-2xl min-w-[80px] sm:min-w-[100px] text-center transition-all ${
-              result === true
-                ? 'bg-green-500 text-white shadow-lg shadow-green-500/50' 
-                : showingAnswer
-                  ? 'bg-yellow-500 text-white'
-                  : hasInput 
-                    ? 'bg-white text-purple-700 shadow-lg' 
-                    : 'bg-white/20 text-white/50'
-            }`}>
-              {showingAnswer ? problem?.answer : (hasInput ? sorobanValue : '?')}
-            </div>
+            // Mode tính toán bình thường
+            <>
+              <div className="text-white font-black text-xl sm:text-3xl md:text-4xl">
+                {problem?.displayProblem}
+              </div>
+              
+              {/* Equals */}
+              <div className="text-white/60 text-xl sm:text-3xl md:text-4xl">=</div>
+              
+              {/* Answer box - khác nhau cho Soroban vs Mental */}
+              {isMentalMode ? (
+                // Input cho mode Siêu Trí Tuệ - ẩn bàn phím mặc định, dùng bàn phím ảo
+                <input
+                  ref={mentalInputRef}
+                  type="text"
+                  inputMode="none"
+                  readOnly
+                  value={mentalAnswer}
+                  onKeyDown={handleMentalKeyDown}
+                  disabled={result !== null}
+                  placeholder="?"
+                  autoComplete="off"
+                  style={{ width: `${Math.max(3, mentalAnswer.length + 2)}ch` }}
+                  className={`font-black text-xl sm:text-3xl md:text-4xl px-2 sm:px-3 py-1 sm:py-2 rounded-xl sm:rounded-2xl text-center transition-all outline-none caret-transparent ${
+                    result === true
+                      ? 'bg-green-500 text-white shadow-lg shadow-green-500/50' 
+                      : showingAnswer
+                        ? 'bg-yellow-500 text-white'
+                        : 'bg-white text-purple-700 shadow-lg ring-2 sm:ring-4 ring-white/50'
+                  }`}
+                />
+              ) : (
+                // Display box cho Soroban mode
+                <div className={`font-black text-xl sm:text-3xl md:text-4xl px-4 sm:px-6 py-1 sm:py-2 rounded-xl sm:rounded-2xl min-w-[80px] sm:min-w-[100px] text-center transition-all ${
+                  result === true
+                    ? 'bg-green-500 text-white shadow-lg shadow-green-500/50' 
+                    : showingAnswer
+                      ? 'bg-yellow-500 text-white'
+                      : hasInput 
+                        ? 'bg-white text-purple-700 shadow-lg' 
+                        : 'bg-white/20 text-white/50'
+                }`}>
+                  {showingAnswer ? problem?.answer : (hasInput ? sorobanValue : '?')}
+                </div>
+              )}
+            </>
           )}
           
           {/* Timer */}

@@ -363,6 +363,9 @@ export default function AdventurePageV3() {
       mode: stage.practiceInfo?.mode || stage.competeInfo?.mode || null,
       difficulty: stage.practiceInfo?.difficulty || stage.competeInfo?.difficulty || 1,
       questions: stage.competeInfo?.questions || 10,
+      // 🆕 SKILL LEVEL: Thêm skillLevel để sinh bài theo kỹ năng đã học
+      skillLevel: stage.practiceInfo?.skillLevel || stage.competeInfo?.skillLevel || null,
+      digits: stage.practiceInfo?.digits || stage.competeInfo?.digits || 1,
       timestamp: Date.now()
     };
 
