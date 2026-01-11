@@ -596,24 +596,24 @@ const StageNode = memo(function StageNode({ stage, status, onClick, index }) {
       iconBg: 'bg-emerald-600',
       glow: false
     };
-    // 🆕 Đấu trường (compete) - màu tím/vàng hoàng gia
+    // 🆕 Đấu trường (compete) - màu tím khi thắng, xám khi chưa thắng
     if (isCompeteBoss) return {
-      bg: isLocked ? 'from-purple-200 to-purple-300' : 'from-purple-500 to-indigo-600',
-      shadow: 'shadow-purple-400/40',
-      iconBg: isLocked ? 'bg-purple-300' : 'bg-purple-700',
+      bg: isLocked ? 'from-gray-400 to-gray-500' : 'from-purple-500 to-indigo-600',
+      shadow: isLocked ? 'shadow-gray-400/40' : 'shadow-purple-400/40',
+      iconBg: isLocked ? 'bg-gray-500' : 'bg-purple-700',
       glow: false
     };
-    // 🆕 Boss luyện tập (practice) - màu đỏ/cam
+    // 🆕 Boss luyện tập (practice) - màu đỏ/cam khi thắng, xám khi chưa thắng
     if (isPracticeBoss) return {
-      bg: isLocked ? 'from-orange-200 to-orange-300' : 'from-orange-500 to-red-600',
-      shadow: 'shadow-orange-400/40',
-      iconBg: isLocked ? 'bg-orange-300' : 'bg-red-600',
+      bg: isLocked ? 'from-gray-400 to-gray-500' : 'from-orange-500 to-red-600',
+      shadow: isLocked ? 'shadow-gray-400/40' : 'shadow-orange-400/40',
+      iconBg: isLocked ? 'bg-gray-500' : 'bg-red-600',
       glow: false
     };
     if (isBoss) return {
-      bg: isLocked ? 'from-rose-200 to-rose-300' : 'from-rose-400 to-red-500',
-      shadow: 'shadow-rose-400/40',
-      iconBg: isLocked ? 'bg-rose-300' : 'bg-rose-600',
+      bg: isLocked ? 'from-gray-400 to-gray-500' : 'from-rose-400 to-red-500',
+      shadow: isLocked ? 'shadow-gray-400/40' : 'shadow-rose-400/40',
+      iconBg: isLocked ? 'bg-gray-500' : 'bg-rose-600',
       glow: false
     };
     if (isTreasure) return {
