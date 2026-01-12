@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { MonsterAvatar } from '@/components/MonsterAvatar';
@@ -136,9 +136,12 @@ export default function CompleteProfilePage() {
       // 🔧 FIX: Đánh dấu đã hoàn tất để useEffect không redirect sai
       setProfileCompleted(true);
 
-      // 🔧 FIX: Redirect đến dashboard
-      // API đã set cookie profile_just_completed để middleware skip check
-      window.location.href = '/dashboard';
+      // 🔧 FIX: SignOut để xóa session cũ, sau đó redirect về login
+      // Khi đăng nhập lại, session sẽ có isProfileComplete = true
+      await signOut({ redirect: false });
+      
+      // Redirect về login với thông báo thành công
+      window.location.href = '/login?registered=1';
       // Không return, không finally - giữ loading overlay cho đến khi redirect xong
     } catch (err) {
       setError(err.message);

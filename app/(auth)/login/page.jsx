@@ -2,7 +2,7 @@
 
 import { signIn } from 'next-auth/react';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Lock, Eye, EyeOff, User } from 'lucide-react';
 import { useToast } from '@/components/Toast/ToastContext';
@@ -43,6 +43,7 @@ async function openExternalBrowser(url) {
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const toast = useToast();
   const [identifier, setIdentifier] = useState(''); // email hoặc username
   const [password, setPassword] = useState('');
@@ -51,11 +52,20 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [isNativeApp, setIsNativeApp] = useState(false);
+  const [registeredSuccess, setRegisteredSuccess] = useState(false);
 
   // Detect Capacitor on mount
   useEffect(() => {
     setIsNativeApp(isCapacitorApp());
-  }, []);
+    
+    // Check if user just registered successfully
+    if (searchParams.get('registered') === '1') {
+      setRegisteredSuccess(true);
+      toast.success('Đăng ký thành công! Vui lòng đăng nhập để tiếp tục 🎉');
+      // Clean URL
+      window.history.replaceState({}, '', '/login');
+    }
+  }, [searchParams, toast]);
 
   const validateForm = () => {
     const newErrors = {};
