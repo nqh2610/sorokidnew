@@ -3,15 +3,15 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import ToolLayout from '@/components/ToolLayout/ToolLayout';
 import Logo from '@/components/Logo/Logo';
+import { loadGameSettings, saveGameSettings, migrateFromOldKeys, GAME_IDS } from '@/lib/gameStorage';
 
 // ==================== CONSTANTS ====================
-const STORAGE_KEYS = {
-  MODE: 'race_mode',
-  RACERS: 'race_racers',
-  CHAR_TYPE: 'race_char_type',
-  HISTORY: 'race_history',
-  GROUPS: 'race_groups',
-  NUM_GROUPS: 'race_num_groups',
+// Default settings cho localStorage - rút gọn key
+const DEFAULT_SETTINGS = {
+  m: 'individual', // mode
+  c: 'cars',       // charType
+  r: [],           // racers
+  h: [],           // history
 };
 
 // Mở rộng icons cho 50+ học sinh
@@ -156,48 +156,73 @@ export default function CuocDuaClient() {
   
   const closeDialog = () => setDialogConfig(null);
 
-  // ==================== LOAD/SAVE ====================
-  useEffect(() => {
-    const savedMode = localStorage.getItem(STORAGE_KEYS.MODE);
-    const savedRacers = localStorage.getItem(STORAGE_KEYS.RACERS);
-    const savedCharType = localStorage.getItem(STORAGE_KEYS.CHAR_TYPE);
-    const savedHistory = localStorage.getItem(STORAGE_KEYS.HISTORY);
+  // Ref to track if settings changed (to avoid unnecessary saves)
+  const settingsChangedRef = useRef(false);
 
-    if (savedMode) setMode(savedMode);
-    if (savedCharType) setCharType(savedCharType);
-    if (savedRacers) {
-      try {
-        const parsed = JSON.parse(savedRacers);
-        if (parsed.length > 0) {
-          setRacers(parsed);
-          setScreen('race');
+  // ==================== LOAD/SAVE - TỐI ƯU ====================
+  // Load settings khi mount (chỉ 1 lần)
+  useEffect(() => {
+    // Migrate từ keys cũ nếu có
+    migrateFromOldKeys(GAME_IDS.CUOC_DUA_KI_THU, 
+      ['race_mode', 'race_racers', 'race_char_type', 'race_history', 'race_groups', 'race_num_groups'],
+      (oldData) => {
+        // Transform old data to new format
+        const newSettings = { ...DEFAULT_SETTINGS };
+        if (oldData['race_mode']) newSettings.m = oldData['race_mode'];
+        if (oldData['race_char_type']) newSettings.c = oldData['race_char_type'];
+        if (oldData['race_racers']) {
+          try { newSettings.r = JSON.parse(oldData['race_racers']); } catch (e) {}
         }
-      } catch (e) {}
+        if (oldData['race_history']) {
+          try { newSettings.h = JSON.parse(oldData['race_history']); } catch (e) {}
+        }
+        return newSettings;
+      }
+    );
+
+    // Load từ storage mới
+    const saved = loadGameSettings(GAME_IDS.CUOC_DUA_KI_THU, DEFAULT_SETTINGS);
+    if (saved.m) setMode(saved.m);
+    if (saved.c) setCharType(saved.c);
+    if (saved.r && saved.r.length > 0) {
+      setRacers(saved.r);
+      setScreen('race');
     }
-    if (savedHistory) {
-      try {
-        setHistory(JSON.parse(savedHistory));
-      } catch (e) {}
-    }
+    if (saved.h) setHistory(saved.h);
   }, []);
 
-  useEffect(() => {
-    if (racers.length > 0) {
-      localStorage.setItem(STORAGE_KEYS.RACERS, JSON.stringify(racers));
-    }
-  }, [racers]);
+  // Hàm lưu settings - chỉ gọi khi cần
+  const saveSettingsNow = useCallback(() => {
+    saveGameSettings(GAME_IDS.CUOC_DUA_KI_THU, {
+      m: mode,
+      c: charType,
+      r: racers,
+      h: history.slice(-50), // Giới hạn history 50 entries
+    });
+  }, [mode, charType, racers, history]);
 
+  // Auto-save khi thoát trang
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.MODE, mode);
-  }, [mode]);
+    const handleBeforeUnload = () => {
+      if (racers.length > 0) {
+        saveSettingsNow();
+      }
+    };
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.CHAR_TYPE, charType);
-  }, [charType]);
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden' && racers.length > 0) {
+        saveSettingsNow();
+      }
+    };
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.HISTORY, JSON.stringify(history));
-  }, [history]);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [saveSettingsNow, racers.length]);
 
   // ==================== AUDIO ====================
   const getAudioContext = useCallback(() => {
@@ -398,6 +423,14 @@ export default function CuocDuaClient() {
     setViewMode('individual');
     setGroups([]);
     setScreen('race');
+    
+    // LƯU SETTINGS KHI BẮT ĐẦU CUỘC ĐUA
+    saveGameSettings(GAME_IDS.CUOC_DUA_KI_THU, {
+      m: mode,
+      c: charType,
+      r: newRacers,
+      h: [],
+    });
   };
 
   // Tự động chia nhóm
@@ -629,9 +662,8 @@ export default function CuocDuaClient() {
         setSelectedRacer(null);
         setSuggestedRacer(null);
         setShowSummary(false);
-        localStorage.removeItem(STORAGE_KEYS.RACERS);
-        localStorage.removeItem(STORAGE_KEYS.HISTORY);
-        localStorage.removeItem(STORAGE_KEYS.GROUPS);
+        // Xóa localStorage data
+        saveGameSettings(GAME_IDS.CUOC_DUA_KI_THU, { ...DEFAULT_SETTINGS, m: mode, c: charType });
         setScreen('setup');
         closeDialog();
       }

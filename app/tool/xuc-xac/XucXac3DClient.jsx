@@ -2,6 +2,15 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import ToolLayout from '../../../components/ToolLayout/ToolLayout';
+import { useGameSettings } from '@/lib/useGameSettings';
+import { GAME_IDS } from '@/lib/gameStorage';
+
+// Default settings cho xúc xắc
+const DEFAULT_SETTINGS = {
+  dc: 2,      // diceCount
+  col: '#ffffff', // diceColor  
+  snd: 1,     // soundEnabled (1/0)
+};
 
 // Cấu hình chấm bi cho mỗi mặt xúc xắc (1-6)
 const DOT_PATTERNS = {
@@ -178,13 +187,25 @@ const Dice3D = ({ value, isRolling, delay = 0, diceColor = '#ffffff', dotColor =
 };
 
 export default function XucXac3DClient() {
-  const [diceCount, setDiceCount] = useState(2);
+  // Load saved settings
+  const { settings, updateSettings } = useGameSettings(GAME_IDS.XUC_XAC, DEFAULT_SETTINGS);
+  
+  const [diceCount, setDiceCount] = useState(settings.dc);
   const [results, setResults] = useState([null, null]);
   const [isRolling, setIsRolling] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(true);
-  const [diceColor, setDiceColor] = useState('#ffffff');
+  const [soundEnabled, setSoundEnabled] = useState(settings.snd === 1);
+  const [diceColor, setDiceColor] = useState(settings.col);
   
   const audioContextRef = useRef(null);
+
+  // Sync settings khi thay đổi
+  useEffect(() => {
+    updateSettings({
+      dc: diceCount,
+      col: diceColor,
+      snd: soundEnabled ? 1 : 0,
+    });
+  }, [diceCount, diceColor, soundEnabled, updateSettings]);
 
   // Màu xúc xắc options
   const DICE_COLORS = [

@@ -130,7 +130,7 @@ export default function BlogLayout({ children }) {
             </nav>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-            <p>© 2025 SoroKid - Học toán tư duy cùng bàn tính Soroban</p>
+            <p>© {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban</p>
           </div>
         </div>
       </footer>

@@ -17,6 +17,18 @@ import { getNextZoneAfterStage as getNextZoneAddSub } from '@/config/adventure-s
 import { getNextZoneAfterStage as getNextZoneMulDiv } from '@/config/adventure-stages-muldiv.config';
 // 🆕 Import skill-based problem generator cho Adventure mode
 import { generateAdditionProblem, generateSubtractionProblem, generateMixedProblem, generateCreateNumberProblem } from '@/lib/soroban-problem-generator';
+import { useGameSettings } from '@/lib/useGameSettings';
+import { GAME_IDS } from '@/lib/gameStorage';
+
+// Default settings cho Practice - chỉ lưu preferences
+const DEFAULT_PRACTICE_SETTINGS = {
+  m: null,       // mode - 'addition', 'subtraction', etc.
+  d: 1,          // difficulty (1-6)
+  msm: null,     // mentalSubMode
+  // Flash Anzan prefs
+  fd: null,      // flashSelectedDigits
+  fo: null,      // flashSelectedOperation
+};
 
 const TOTAL_CHALLENGES = 10; // Mỗi màn có 10 thử thách
 
@@ -289,6 +301,12 @@ function PracticePageContent() {
   const toast = useToast();
   const { showUpgradeModal, UpgradeModalComponent } = useUpgradeModal();
   const { play, playMusic, stopMusic } = useGameSound();
+  
+  // 📦 Load saved preferences
+  const { settings: savedSettings, updateSettings: updateSavedSettings, saveNow } = useGameSettings(
+    GAME_IDS.PRACTICE, 
+    DEFAULT_PRACTICE_SETTINGS
+  );
 
   // 🎵 Background music disabled - chỉ giữ sound effects
   // useEffect(() => {
@@ -313,6 +331,7 @@ function PracticePageContent() {
   const modeFromUrl = searchParams.get('mode');
   const difficultyFromUrl = searchParams.get('difficulty');
 
+  // 📦 Initialize state từ saved settings nếu không có URL params
   const [mode, setMode] = useState(null);
   const [difficulty, setDifficulty] = useState(1);
   const [problem, setProblem] = useState(null);
@@ -3695,7 +3714,7 @@ function PracticePageContent() {
           
           {/* Footer */}
           <p className="text-white/40 text-[10px] sm:text-xs text-center mt-4">
-            © 2025 SoroKid - Học toán tư duy cùng bàn tính Soroban
+            © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
           </p>
         </div>
       </div>
@@ -4103,7 +4122,7 @@ function PracticePageContent() {
       {(!mode || gameComplete) && (
         <div className="fixed bottom-2 left-0 right-0 z-10 text-center pointer-events-none">
           <p className="text-white/30 text-[10px] sm:text-xs">
-            © 2025 SoroKid - Học toán tư duy cùng bàn tính Soroban
+            © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
           </p>
         </div>
       )}

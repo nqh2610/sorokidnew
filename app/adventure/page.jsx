@@ -192,17 +192,6 @@ export default function AdventurePageV3() {
       setHighestZone({ mapType: 'addsub', zoneId: ADDSUB_ZONES[0].zoneId });
     }
     
-    // Lưu vào localStorage để debug
-    try {
-      localStorage.setItem('sorokid_current_zone', JSON.stringify({
-        addsub: addSubCurrentStage?.zoneId || null,
-        muldiv: mulDivCurrentStage?.zoneId || null,
-        timestamp: Date.now()
-      }));
-    } catch (e) {
-      console.warn('Could not save current zone to localStorage');
-    }
-    
     if (data.user) {
       // Tính levelInfo từ totalStars
       const levelInfo = getLevelInfo(data.user.totalStars || 0);

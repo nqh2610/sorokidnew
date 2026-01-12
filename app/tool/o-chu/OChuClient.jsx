@@ -3,6 +3,16 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import ToolLayout from '@/components/ToolLayout/ToolLayout';
 import { LogoIcon } from '@/components/Logo/Logo';
+import { useGameSettings } from '@/lib/useGameSettings';
+import { GAME_IDS } from '@/lib/gameStorage';
+
+// Default settings cho ô chữ
+const DEFAULT_SETTINGS = {
+  tp: '',    // topic - chủ đề
+  kw: '',    // keyword - từ khóa
+  qs: '',    // questionsInput - câu hỏi & đáp án
+  snd: 1,    // soundEnabled (1/0)
+};
 
 // Màu sắc vui nhộn cho các hàng
 const ROW_COLORS = [
@@ -19,16 +29,19 @@ const ROW_COLORS = [
 ];
 
 export default function OChuGame() {
+  // Load saved settings
+  const { settings, updateSettings } = useGameSettings(GAME_IDS.O_CHU, DEFAULT_SETTINGS);
+  
   // === STATES ===
   const [phase, setPhase] = useState('setup'); // 'setup' | 'play'
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [cellSize, setCellSize] = useState(48); // Dynamic cell size
   const gameContainerRef = useRef(null);
   
-  // Setup inputs
-  const [topic, setTopic] = useState('');
-  const [keywordInput, setKeywordInput] = useState('');
-  const [questionsInput, setQuestionsInput] = useState('');
+  // Setup inputs - load từ saved settings
+  const [topic, setTopic] = useState(settings.tp);
+  const [keywordInput, setKeywordInput] = useState(settings.kw);
+  const [questionsInput, setQuestionsInput] = useState(settings.qs);
   const [setupError, setSetupError] = useState('');
   
   // Game states
@@ -39,7 +52,19 @@ export default function OChuGame() {
   const [currentQuestion, setCurrentQuestion] = useState(-1);
   const [revealedRows, setRevealedRows] = useState([]);
   const [gameComplete, setGameComplete] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [soundEnabled, setSoundEnabled] = useState(settings.snd === 1);
+  
+  // Sync settings khi thay đổi setup inputs
+  useEffect(() => {
+    if (phase === 'setup') {
+      updateSettings({
+        tp: topic,
+        kw: keywordInput,
+        qs: questionsInput,
+        snd: soundEnabled ? 1 : 0,
+      });
+    }
+  }, [topic, keywordInput, questionsInput, soundEnabled, phase, updateSettings]);
   
   // Đoán từ khóa
   const [keywordGuess, setKeywordGuess] = useState('');

@@ -864,7 +864,7 @@ export default function LessonPage() {
             
             {/* Footer */}
             <p className="text-gray-400 text-[10px] text-center pt-2">
-              © 2025 SoroKid - Học toán tư duy cùng bàn tính Soroban
+              © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
             </p>
           </div>
         </div>

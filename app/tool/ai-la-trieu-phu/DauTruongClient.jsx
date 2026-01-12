@@ -3,19 +3,19 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import ToolLayout from '@/components/ToolLayout/ToolLayout';
 import { LogoIcon } from '@/components/Logo/Logo';
-
-// localStorage keys
-const STORAGE_KEYS = {
-  QUESTIONS: 'altp_questions',
-  NUM_QUESTIONS: 'altp_num_questions',
-  GAME_STATE: 'altp_game_state',
-  GAME_MODE: 'altp_game_mode'
-};
+import { loadGameSettings, saveGameSettings, GAME_IDS } from '@/lib/gameStorage';
 
 // Game modes
 const GAME_MODES = {
   GAMESHOW: 'gameshow', // 15 câu chuẩn ALTP với thang tiền thưởng
   QUICK: 'quick'        // Chơi hết câu hỏi, không giới hạn số lượng
+};
+
+// Default settings cho localStorage
+const DEFAULT_SETTINGS = {
+  q: '',        // questionsText
+  n: 15,        // numQuestions  
+  m: 'gameshow' // gameMode
 };
 
 // Prize money levels - 15 câu chuẩn ALTP
@@ -268,18 +268,20 @@ export default function AiLaTrieuPhu() {
     } catch (e) {}
   }, []);
 
-  // ==================== LOCALSTORAGE ====================
+  // ==================== LOCALSTORAGE - TỐI ƯU ====================
+  // Load settings khi mount (chỉ 1 lần)
   useEffect(() => {
-    const savedQuestions = localStorage.getItem(STORAGE_KEYS.QUESTIONS);
-    const savedNum = localStorage.getItem(STORAGE_KEYS.NUM_QUESTIONS);
-    const savedGameState = localStorage.getItem(STORAGE_KEYS.GAME_STATE);
+    const saved = loadGameSettings(GAME_IDS.AI_LA_TRIEU_PHU, DEFAULT_SETTINGS);
+    if (saved.q) setQuestionsText(saved.q);
+    if (saved.n) setNumQuestions(saved.n);
+    if (saved.m) setGameMode(saved.m);
     
-    if (savedQuestions) setQuestionsText(savedQuestions);
-    if (savedNum) setNumQuestions(parseInt(savedNum) || 15);
-    
-    if (savedGameState) {
-      try {
-        const gs = JSON.parse(savedGameState);
+    // Check game state đang dở (lưu riêng vì là session state)
+    try {
+      const sessionKey = 'sorokid:altp:session';
+      const sessionData = localStorage.getItem(sessionKey);
+      if (sessionData) {
+        const gs = JSON.parse(sessionData);
         if (gs.questions?.length > 0) {
           setQuestions(gs.questions);
           setCurrentIndex(gs.currentIndex || 0);
@@ -291,29 +293,30 @@ export default function AiLaTrieuPhu() {
           setScreen('game');
           showToast('🔄 Khôi phục game đang dở');
         }
-      } catch (e) {}
-    }
+      }
+    } catch (e) {}
   }, [showToast]);
 
-  useEffect(() => {
-    if (questionsText) localStorage.setItem(STORAGE_KEYS.QUESTIONS, questionsText);
-  }, [questionsText]);
+  // Lưu settings chỉ khi user bấm "Bắt đầu" game
+  const saveSettingsNow = useCallback(() => {
+    saveGameSettings(GAME_IDS.AI_LA_TRIEU_PHU, {
+      q: questionsText,
+      n: numQuestions,
+      m: gameMode
+    });
+  }, [questionsText, numQuestions, gameMode]);
 
+  // Lưu session state khi đang chơi (để có thể tiếp tục)
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.NUM_QUESTIONS, numQuestions.toString());
-  }, [numQuestions]);
-
-  useEffect(() => {
+    const sessionKey = 'sorokid:altp:session';
     if (screen === 'game' && questions.length > 0) {
-      localStorage.setItem(STORAGE_KEYS.GAME_STATE, JSON.stringify({
+      localStorage.setItem(sessionKey, JSON.stringify({
         questions, currentIndex, score, used5050, usedAudience, usedPhone, gameMode
       }));
+    } else if (screen === 'result' || screen === 'setup') {
+      localStorage.removeItem(sessionKey);
     }
   }, [screen, questions, currentIndex, score, used5050, usedAudience, usedPhone, gameMode]);
-
-  useEffect(() => {
-    if (screen === 'result') localStorage.removeItem(STORAGE_KEYS.GAME_STATE);
-  }, [screen]);
 
   // ==================== SMART PARSE QUESTIONS ====================
   // Detect delimiter in text (|, ;, tab, or multiple spaces)
@@ -450,6 +453,9 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
       }
       return;
     }
+
+    // LƯU SETTINGS KHI BẮT ĐẦU GAME
+    saveSettingsNow();
 
     // Xác định mode: nếu truyền vào thì dùng, không thì tự động
     const selectedMode = mode || (parsed.length === 15 ? GAME_MODES.GAMESHOW : GAME_MODES.QUICK);
@@ -606,7 +612,8 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
     setHidden5050([]);
     setAudienceVotes(null);
     setPhoneHint(null);
-    localStorage.removeItem(STORAGE_KEYS.GAME_STATE);
+    // Xóa session state cũ
+    try { localStorage.removeItem('sorokid:altp:session'); } catch (e) {}
   }, [exitFullscreen]);
 
   // Parse results with error info
@@ -679,7 +686,7 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
                   <button onClick={() => setShowAIPrompt(true)} className="text-xs px-2 py-0.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full hover:opacity-90">
                     🤖 AI
                   </button>
-                  <button onClick={() => { setQuestionsText(''); localStorage.removeItem(STORAGE_KEYS.QUESTIONS); }} className="text-xs px-2 py-0.5 bg-red-100 text-red-600 rounded-full hover:bg-red-200">
+                  <button onClick={() => setQuestionsText('')} className="text-xs px-2 py-0.5 bg-red-100 text-red-600 rounded-full hover:bg-red-200">
                     🗑️
                   </button>
                   <button

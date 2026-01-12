@@ -366,7 +366,7 @@ export default function ToolboxPage() {
             <Logo size="sm" showText={true} />
             <span className="hidden sm:inline text-gray-300">|</span>
             <p className="text-sm text-gray-500">
-              © 2025 SoroKid - Học toán tính nhanh vui như chơi game 🎮
+              © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
             </p>
           </div>
         </div>

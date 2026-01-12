@@ -2,6 +2,8 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import ToolLayout, { useFullscreen } from '@/components/ToolLayout/ToolLayout';
+import { useGameSettings } from '@/lib/useGameSettings';
+import { GAME_IDS } from '@/lib/gameStorage';
 
 // Preset thời gian
 const PRESETS = [
@@ -74,11 +76,22 @@ const SOUND_MODES = [
   { id: 'drone_om', label: '🕉️ Om Drone', description: 'Om liên tục', bgSound: 'drone_om', category: 'meditation' },
 ];
 
+// Default settings
+const DEFAULT_SETTINGS = {
+  h: 0,         // hours
+  m: 1,         // minutes
+  s: 0,         // seconds
+  snd: 'none',  // soundMode
+};
+
 export default function DongHoBamGio() {
-  // Time settings
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(1);
-  const [seconds, setSeconds] = useState(0);
+  // Load settings
+  const { settings, updateSettings } = useGameSettings(GAME_IDS.DONG_HO_BAM_GIO, DEFAULT_SETTINGS);
+
+  // Time settings - khởi tạo từ settings
+  const [hours, setHours] = useState(settings.h);
+  const [minutes, setMinutes] = useState(settings.m);
+  const [seconds, setSeconds] = useState(settings.s);
   
   // Runtime state
   const [remainingTime, setRemainingTime] = useState(0);
@@ -87,13 +100,18 @@ export default function DongHoBamGio() {
   const [isFinished, setIsFinished] = useState(false);
   
   // Settings
-  const [soundMode, setSoundMode] = useState('none');
+  const [soundMode, setSoundMode] = useState(settings.snd);
   const [soundTab, setSoundTab] = useState('basic'); // Tab âm thanh đang chọn
   
   const intervalRef = useRef(null);
   const audioContextRef = useRef(null);
   const bgSoundRef = useRef(null); // Nhạc nền
   const bgNoiseRef = useRef(null); // Noise generator
+
+  // Sync settings khi thay đổi (auto-save khi unmount)
+  useEffect(() => {
+    updateSettings({ h: hours, m: minutes, s: seconds, snd: soundMode });
+  }, [hours, minutes, seconds, soundMode, updateSettings]);
 
   // Stop background sound
   const stopBgSound = useCallback(() => {

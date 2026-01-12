@@ -80,14 +80,14 @@ export async function middleware(request) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
-  // Kiểm tra complete-profile
+  // Kiểm tra complete-profile cho Google users
   if (token && !pathname.startsWith('/complete-profile') && !pathname.startsWith('/api')) {
-    // Kiểm tra xem user đã hoàn thành profile chưa
-    if (!token.profileCompleted && !token.name) {
+    // Kiểm tra xem user đã hoàn thành profile chưa (isProfileComplete = false)
+    if (token.isProfileComplete === false) {
       // Cho phép một số route không cần complete profile
-      const allowedWithoutProfile = ['/', '/logout', '/pricing'];
-      if (!allowedWithoutProfile.includes(pathname)) {
-        // return NextResponse.redirect(new URL('/complete-profile', request.url));
+      const allowedWithoutProfile = ['/', '/logout', '/pricing', '/login', '/register'];
+      if (!allowedWithoutProfile.includes(pathname) && isProtectedRoute) {
+        return NextResponse.redirect(new URL('/complete-profile', request.url));
       }
     }
   }

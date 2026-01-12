@@ -220,7 +220,7 @@ export default function ToolLayout({
             </Link>
             <div className="hidden sm:block w-px h-5 bg-gray-300" />
             <p className="text-xs sm:text-sm text-gray-500 text-center">
-              © 2025 SoroKid - Học toán tính nhanh vui như chơi game 🎮
+              © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
             </p>
           </div>
         </footer>

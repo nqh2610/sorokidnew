@@ -2,6 +2,8 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import ToolLayout from '@/components/ToolLayout/ToolLayout';
+import { useGameSettings } from '@/lib/useGameSettings';
+import { GAME_IDS } from '@/lib/gameStorage';
 
 // Các màu cho wheel segments - rực rỡ hơn
 const SEGMENT_COLORS = [
@@ -11,26 +13,42 @@ const SEGMENT_COLORS = [
   '#55EFC4', '#FFEAA7', '#DFE6E9', '#81ECEC'
 ];
 
+// Default settings
+const DEFAULT_SETTINGS = {
+  txt: '',        // inputText
+  m: 'text',      // mode
+  min: 1,         // minNumber
+  max: 10,        // maxNumber
+  rm: true,       // removeAfterSpin
+  snd: 1,         // soundEnabled
+};
+
 export default function ChiecNonKyDieu() {
-  // States
-  const [inputText, setInputText] = useState('');
+  // Load settings từ localStorage
+  const { settings, updateSettings, saveNow } = useGameSettings(
+    GAME_IDS.CHIEC_NON_KY_DIEU,
+    DEFAULT_SETTINGS
+  );
+
+  // States từ settings
+  const [inputText, setInputText] = useState(settings.txt);
   const [items, setItems] = useState([]);
   const [originalItems, setOriginalItems] = useState([]);
   const [isSpinning, setIsSpinning] = useState(false);
   const [result, setResult] = useState(null);
   const [rotation, setRotation] = useState(0);
-  const [removeAfterSpin, setRemoveAfterSpin] = useState(true);
+  const [removeAfterSpin, setRemoveAfterSpin] = useState(settings.rm);
   const [showResult, setShowResult] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [soundEnabled, setSoundEnabled] = useState(settings.snd === 1);
   
   // Mode: 'text' hoặc 'number'
-  const [mode, setMode] = useState('text');
-  const [minNumber, setMinNumber] = useState(1);
-  const [maxNumber, setMaxNumber] = useState(10);
+  const [mode, setMode] = useState(settings.m);
+  const [minNumber, setMinNumber] = useState(settings.min);
+  const [maxNumber, setMaxNumber] = useState(settings.max);
   
   // String states for better mobile UX - cho phép xóa tự do
-  const [minNumberInput, setMinNumberInput] = useState('1');
-  const [maxNumberInput, setMaxNumberInput] = useState('10');
+  const [minNumberInput, setMinNumberInput] = useState(String(settings.min));
+  const [maxNumberInput, setMaxNumberInput] = useState(String(settings.max));
   
   const wheelRef = useRef(null);
   const spinTimeoutRef = useRef(null);
@@ -41,6 +59,18 @@ export default function ChiecNonKyDieu() {
   const tickTimeoutRef = useRef(null);
   const tickCountRef = useRef(0);
   const soundEnabledRef = useRef(soundEnabled);
+
+  // Sync settings khi state thay đổi (không ghi ngay, chỉ cập nhật memory)
+  useEffect(() => {
+    updateSettings({
+      txt: inputText,
+      m: mode,
+      min: minNumber,
+      max: maxNumber,
+      rm: removeAfterSpin,
+      snd: soundEnabled ? 1 : 0,
+    });
+  }, [inputText, mode, minNumber, maxNumber, removeAfterSpin, soundEnabled, updateSettings]);
 
   // Keep ref in sync with state for immediate toggle
   useEffect(() => {

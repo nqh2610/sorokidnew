@@ -3,6 +3,16 @@
 import { useState, useRef, useCallback, useEffect, useMemo } from 'react';
 import ToolLayout from '@/components/ToolLayout/ToolLayout';
 import { LogoIcon } from '@/components/Logo/Logo';
+import { useGameSettings } from '@/lib/useGameSettings';
+import { GAME_IDS } from '@/lib/gameStorage';
+
+// Default settings cho đua thú hoạt hình
+const DEFAULT_SETTINGS = {
+  txt: '',       // inputText - danh sách tên
+  at: 'duck',    // animalType  
+  spd: 'normal', // raceSpeed
+  snd: 1,        // soundEnabled (1/0)
+};
 
 // Các loài vật có thể đua - emoji hướng đầu về đích (phải)
 // flipX: true = cần lật ngang để quay đầu sang phải
@@ -565,8 +575,11 @@ const getShortName = (fullName) => {
 };
 
 export default function DuaThuHoatHinh() {
+  // Load saved settings
+  const { settings, updateSettings } = useGameSettings(GAME_IDS.DUA_THU_HOAT_HINH, DEFAULT_SETTINGS);
+  
   // Input state
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState(settings.txt);
   const [racers, setRacers] = useState([]);
   
   // Race state
@@ -577,17 +590,27 @@ export default function DuaThuHoatHinh() {
   const [winner, setWinner] = useState(null);
   const [topRacers, setTopRacers] = useState([]);
   const [events, setEvents] = useState([]);
-  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [soundEnabled, setSoundEnabled] = useState(settings.snd === 1);
   const [countdown, setCountdown] = useState(null);
   const [raceTime, setRaceTime] = useState(0);
-  const [raceSpeed, setRaceSpeed] = useState('normal'); // 'slow', 'normal', 'fast'
-  const [animalType, setAnimalType] = useState('duck'); // 'duck', 'turtle', 'crab', 'fish', 'snail'
+  const [raceSpeed, setRaceSpeed] = useState(settings.spd);
+  const [animalType, setAnimalType] = useState(settings.at);
   const [commentary, setCommentary] = useState('');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [lastLeader, setLastLeader] = useState(null);
   const [duplicateNames, setDuplicateNames] = useState([]); // Tên trùng
   const [isPortrait, setIsPortrait] = useState(false); // Track orientation for mobile
   const [obstacles, setObstacles] = useState(() => generateRandomObstacles()); // Random obstacles mỗi lần đua
+  
+  // Sync settings khi thay đổi (chỉ save các thiết lập, không save racing state)
+  useEffect(() => {
+    updateSettings({
+      txt: inputText,
+      at: animalType,
+      spd: raceSpeed,
+      snd: soundEnabled ? 1 : 0,
+    });
+  }, [inputText, animalType, raceSpeed, soundEnabled, updateSettings]);
   
   const animationRef = useRef(null);
   const containerRef = useRef(null);
