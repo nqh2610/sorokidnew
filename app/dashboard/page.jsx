@@ -39,8 +39,21 @@ const SectionSkeleton = ({ className = "" }) => (
 );
 
 export default function DashboardPage() {
-  const { data: session, status } = useSession();
+  const { data: session, status, update } = useSession();
   const router = useRouter();
+  
+  // 🔧 Xóa query param justCompleted và refresh session sau khi vào dashboard
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    if (url.searchParams.get('justCompleted') === '1') {
+      // Xóa query param khỏi URL (không reload)
+      url.searchParams.delete('justCompleted');
+      window.history.replaceState({}, '', url.pathname);
+      
+      // Refresh session để cập nhật JWT token với isProfileComplete = true
+      update();
+    }
+  }, [update]);
   
   // === PROGRESSIVE STATE ===
   // Phase 1: Essential (critical path)

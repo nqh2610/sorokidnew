@@ -136,19 +136,9 @@ export default function CompleteProfilePage() {
       // 🔧 FIX: Đánh dấu đã hoàn tất để useEffect không redirect sai
       setProfileCompleted(true);
 
-      // 🔧 FIX: Gọi update() để trigger JWT refresh (không cần tham số)
-      // NextAuth sẽ tự động gọi JWT callback với trigger='update'
-      try {
-        await update();
-      } catch (updateErr) {
-        console.log('Session update error (ignored):', updateErr);
-      }
-
-      // Redirect sau khi session đã được cập nhật
-      // Dùng setTimeout để đảm bảo session có thời gian propagate
-      setTimeout(() => {
-        window.location.href = '/dashboard';
-      }, 100);
+      // 🔧 FIX: Redirect với query param để middleware skip profile check
+      // JWT cookie cần thời gian để refresh, nên dùng query param bypass
+      window.location.href = '/dashboard?justCompleted=1';
       // Không return, không finally - giữ loading overlay cho đến khi redirect xong
     } catch (err) {
       setError(err.message);
