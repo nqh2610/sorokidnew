@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/authOptions';
 import prisma from '@/lib/prisma';
 
 export async function GET(request) {
@@ -12,9 +14,17 @@ export async function GET(request) {
 
     const normalizedUsername = username.trim().toLowerCase();
 
-    // Kiểm tra username có tồn tại không
-    const existingUser = await prisma.user.findUnique({
-      where: { username: normalizedUsername },
+    // Lấy session của user hiện tại
+    const session = await getServerSession(authOptions);
+    const currentUserEmail = session?.user?.email;
+
+    // Kiểm tra username có tồn tại không (loại trừ user hiện tại)
+    const existingUser = await prisma.user.findFirst({
+      where: { 
+        username: normalizedUsername,
+        // Loại trừ user hiện tại nếu đã đăng nhập
+        ...(currentUserEmail && { NOT: { email: currentUserEmail } })
+      },
       select: { id: true }
     });
 
