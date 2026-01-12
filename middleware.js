@@ -70,17 +70,8 @@ export async function middleware(request) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // Nếu đã đăng nhập mà vào guest route -> redirect to dashboard
-  if (isGuestRoute && token) {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
-  }
-
-  // Nếu là admin route mà không phải admin -> redirect to dashboard
-  if (isAdminRoute && token && token.role !== 'admin') {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
-  }
-
-  // Kiểm tra complete-profile cho Google users
+  // Kiểm tra complete-profile cho Google users TRƯỚC KHI check guest routes
+  // Để user chưa hoàn tất profile có thể vào login/register đổi tài khoản
   if (token && !pathname.startsWith('/complete-profile') && !pathname.startsWith('/api')) {
     // Kiểm tra xem user đã hoàn thành profile chưa
     // isNewGoogleUser = true: Google user mới chưa có trong DB
@@ -88,10 +79,27 @@ export async function middleware(request) {
     if (token.isNewGoogleUser === true || token.isProfileComplete === false) {
       // Cho phép một số route không cần complete profile
       const allowedWithoutProfile = ['/', '/logout', '/pricing', '/login', '/register'];
-      if (!allowedWithoutProfile.includes(pathname) && isProtectedRoute) {
+      
+      // Nếu vào protected route mà chưa hoàn tất profile -> redirect
+      if (isProtectedRoute && !allowedWithoutProfile.includes(pathname)) {
         return NextResponse.redirect(new URL('/complete-profile', request.url));
       }
+      
+      // Cho phép vào login/register để đổi tài khoản (không redirect về dashboard)
+      if (isGuestRoute) {
+        return NextResponse.next();
+      }
     }
+  }
+
+  // Nếu đã đăng nhập VÀ đã hoàn tất profile mà vào guest route -> redirect to dashboard
+  if (isGuestRoute && token) {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
+  }
+
+  // Nếu là admin route mà không phải admin -> redirect to dashboard
+  if (isAdminRoute && token && token.role !== 'admin') {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   // Thêm user info vào headers để các route có thể sử dụng
