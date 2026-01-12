@@ -33,7 +33,22 @@ export async function GET(request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const userId = session.user.id;
+    // 🔧 FIX: Tìm user bằng email nếu không có id (trường hợp vừa đăng ký)
+    let userId = session.user.id;
+    
+    if (!userId && session.user.email) {
+      const userByEmail = await prisma.user.findUnique({
+        where: { email: session.user.email },
+        select: { id: true }
+      });
+      if (userByEmail) {
+        userId = userByEmail.id;
+      }
+    }
+    
+    if (!userId) {
+      return NextResponse.json({ error: 'User ID not found' }, { status: 404 });
+    }
     
     // Check cache first
     const cacheKey = `essential:${userId}`;

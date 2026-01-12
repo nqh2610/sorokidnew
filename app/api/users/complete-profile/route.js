@@ -138,10 +138,22 @@ export async function POST(request) {
     // 🔧 Xóa cache để session lấy data mới từ DB
     invalidateUserCache(userEmail);
 
-    return NextResponse.json({
+    // 🔧 Set cookie để middleware biết vừa hoàn tất profile
+    // Cookie này sẽ được xóa sau khi dashboard load
+    const response = NextResponse.json({
       success: true,
       user: resultUser
     });
+    
+    // Set cookie với maxAge 60 giây (đủ thời gian redirect)
+    response.cookies.set('profile_just_completed', '1', {
+      maxAge: 60,
+      path: '/',
+      httpOnly: false, // Client có thể xóa
+      sameSite: 'lax'
+    });
+    
+    return response;
   } catch (error) {
     console.error('Complete profile error:', error);
     return NextResponse.json(

@@ -73,14 +73,14 @@ export async function middleware(request) {
   // Kiểm tra complete-profile cho Google users TRƯỚC KHI check guest routes
   // Để user chưa hoàn tất profile có thể vào login/register đổi tài khoản
   if (token && !pathname.startsWith('/complete-profile') && !pathname.startsWith('/api')) {
-    // 🔧 Skip profile check nếu vừa hoàn tất đăng ký (có query param)
-    // Query param sẽ được xóa sau khi dashboard load
-    const justCompleted = request.nextUrl.searchParams.get('justCompleted') === '1';
+    // 🔧 Skip profile check nếu vừa hoàn tất đăng ký (có cookie từ API)
+    // Cookie được set bởi API complete-profile
+    const profileJustCompleted = request.cookies.get('profile_just_completed')?.value === '1';
     
     // Kiểm tra xem user đã hoàn thành profile chưa
     // isNewGoogleUser = true: Google user mới chưa có trong DB
     // isProfileComplete = false: User có trong DB nhưng chưa hoàn tất profile
-    if (!justCompleted && (token.isNewGoogleUser === true || token.isProfileComplete === false)) {
+    if (!profileJustCompleted && (token.isNewGoogleUser === true || token.isProfileComplete === false)) {
       // Cho phép một số route không cần complete profile
       const allowedWithoutProfile = ['/', '/logout', '/pricing', '/login', '/register'];
       

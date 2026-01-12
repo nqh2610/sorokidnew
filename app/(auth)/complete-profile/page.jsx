@@ -136,9 +136,9 @@ export default function CompleteProfilePage() {
       // 🔧 FIX: Đánh dấu đã hoàn tất để useEffect không redirect sai
       setProfileCompleted(true);
 
-      // 🔧 FIX: Redirect với query param để middleware skip profile check
-      // JWT cookie cần thời gian để refresh, nên dùng query param bypass
-      window.location.href = '/dashboard?justCompleted=1';
+      // 🔧 FIX: Redirect đến dashboard
+      // API đã set cookie profile_just_completed để middleware skip check
+      window.location.href = '/dashboard';
       // Không return, không finally - giữ loading overlay cho đến khi redirect xong
     } catch (err) {
       setError(err.message);

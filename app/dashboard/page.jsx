@@ -42,13 +42,11 @@ export default function DashboardPage() {
   const { data: session, status, update } = useSession();
   const router = useRouter();
   
-  // 🔧 Xóa query param justCompleted và refresh session sau khi vào dashboard
+  // 🔧 Xóa cookie profile_just_completed và refresh session sau khi vào dashboard
   useEffect(() => {
-    const url = new URL(window.location.href);
-    if (url.searchParams.get('justCompleted') === '1') {
-      // Xóa query param khỏi URL (không reload)
-      url.searchParams.delete('justCompleted');
-      window.history.replaceState({}, '', url.pathname);
+    // Xóa cookie bằng cách set maxAge = 0
+    if (document.cookie.includes('profile_just_completed')) {
+      document.cookie = 'profile_just_completed=; path=/; max-age=0';
       
       // Refresh session để cập nhật JWT token với isProfileComplete = true
       update();
