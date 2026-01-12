@@ -4,6 +4,14 @@ import { useState, useEffect, useMemo } from 'react';
 import { MonsterAvatar } from '@/components/MonsterAvatar';
 import AdminConfirmDialog from '@/components/Admin/AdminConfirmDialog';
 
+// 🔧 Helper function to calculate level from total stars (same as Dashboard)
+function calculateLevelFromStars(totalStars) {
+  if (!totalStars || totalStars <= 0) return 1;
+  let level = Math.floor((totalStars + 50) / 150);
+  // Ensure minimum level 1
+  return Math.max(1, level);
+}
+
 // =============================================
 // CONSTANTS
 // =============================================
@@ -803,7 +811,7 @@ export default function UsersPage() {
                       <td className="px-4 py-4">
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
-                            <span className="text-white font-medium">Lv.{user.level || 1}</span>
+                            <span className="text-white font-medium">Lv.{calculateLevelFromStars(user.totalStars)}</span>
                             <span className="text-amber-400 text-sm">⭐ {user.totalStars || 0}</span>
                           </div>
                           <div className="flex items-center gap-2 text-xs">
@@ -909,7 +917,7 @@ export default function UsersPage() {
                   {/* Stats */}
                   <div className="grid grid-cols-4 gap-2 mb-3 text-center">
                     <div className="bg-slate-800/50 rounded-lg p-1.5">
-                      <div className="text-white font-bold text-sm">Lv.{user.level || 1}</div>
+                      <div className="text-white font-bold text-sm">Lv.{calculateLevelFromStars(user.totalStars)}</div>
                       <div className="text-[10px] text-slate-500">Level</div>
                     </div>
                     <div className="bg-slate-800/50 rounded-lg p-1.5">
@@ -994,7 +1002,7 @@ export default function UsersPage() {
                 
                 <div className="grid grid-cols-3 gap-2 text-center text-sm mb-3">
                   <div className="bg-slate-700/50 rounded-lg py-2">
-                    <div className="text-white font-bold">Lv.{user.level || 1}</div>
+                    <div className="text-white font-bold">Lv.{calculateLevelFromStars(user.totalStars)}</div>
                     <div className="text-slate-500 text-xs">Level</div>
                   </div>
                   <div className="bg-slate-700/50 rounded-lg py-2">
@@ -1438,7 +1446,7 @@ export default function UsersPage() {
               {/* Main Stats - Simplified */}
               <div className="grid grid-cols-4 gap-2 mb-3 sm:mb-4">
                 <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl p-2 sm:p-3 text-center border border-purple-500/30">
-                  <div className="text-lg sm:text-xl font-bold text-white">Lv.{detailModal.level || 1}</div>
+                  <div className="text-lg sm:text-xl font-bold text-white">Lv.{calculateLevelFromStars(detailModal.totalStars)}</div>
                   <div className="text-purple-400 text-[10px] sm:text-xs">Level</div>
                 </div>
                 <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-xl p-2 sm:p-3 text-center border border-amber-500/30">
