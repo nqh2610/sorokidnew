@@ -59,33 +59,23 @@ export async function POST(request) {
     const normalizedUsername = username.trim().toLowerCase();
     const userEmail = session.user.email;
 
-    // 🔧 TỐI ƯU: Gộp 3 queries thành 1 query duy nhất
-    // Kiểm tra user tồn tại + username trùng + phone trùng trong 1 lần
-    const [existingUser, conflictCheck] = await Promise.all([
-      // Query 1: Kiểm tra user hiện tại có tồn tại
-      prisma.user.findUnique({
-        where: { email: userEmail },
-        select: { id: true }
-      }),
-      // Query 2: Kiểm tra username hoặc phone đã được dùng bởi user khác
-      prisma.user.findFirst({
-        where: {
-          OR: [
-            { username: normalizedUsername },
-            { phone: cleanPhone }
-          ],
-          NOT: { email: userEmail }
-        },
-        select: { username: true, phone: true }
-      })
-    ]);
+    // Kiểm tra user đã tồn tại trong DB chưa
+    const existingUser = await prisma.user.findUnique({
+      where: { email: userEmail },
+      select: { id: true }
+    });
 
-    if (!existingUser) {
-      return NextResponse.json(
-        { error: 'Không tìm thấy tài khoản. Vui lòng đăng nhập lại.' },
-        { status: 404 }
-      );
-    }
+    // Kiểm tra username hoặc phone đã được dùng bởi user khác
+    const conflictCheck = await prisma.user.findFirst({
+      where: {
+        OR: [
+          { username: normalizedUsername },
+          { phone: cleanPhone }
+        ],
+        NOT: { email: userEmail }
+      },
+      select: { username: true, phone: true }
+    });
 
     if (conflictCheck) {
       if (conflictCheck.username === normalizedUsername) {
@@ -102,30 +92,55 @@ export async function POST(request) {
       }
     }
 
-    // Update user profile - chỉ 1 query
-    const updatedUser = await prisma.user.update({
-      where: { email: userEmail },
-      data: {
-        name: name.trim(),
-        username: normalizedUsername,
-        phone: cleanPhone,
-        isProfileComplete: true,
-      },
-      select: {
-        id: true,
-        email: true,
-        name: true,
-        username: true,
-        isProfileComplete: true,
-      }
-    });
+    let resultUser;
+
+    if (existingUser) {
+      // User đã tồn tại -> UPDATE
+      resultUser = await prisma.user.update({
+        where: { email: userEmail },
+        data: {
+          name: name.trim(),
+          username: normalizedUsername,
+          phone: cleanPhone,
+          isProfileComplete: true,
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          username: true,
+          isProfileComplete: true,
+        }
+      });
+    } else {
+      // User CHƯA tồn tại (Google user mới) -> CREATE
+      resultUser = await prisma.user.create({
+        data: {
+          email: userEmail,
+          name: name.trim(),
+          username: normalizedUsername,
+          phone: cleanPhone,
+          avatar: session.user.image || '',
+          password: '', // Google user không cần password
+          role: userEmail === 'nqh2610@gmail.com' ? 'admin' : 'student',
+          isProfileComplete: true,
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          username: true,
+          isProfileComplete: true,
+        }
+      });
+    }
 
     // 🔧 Xóa cache để session lấy data mới từ DB
     invalidateUserCache(userEmail);
 
     return NextResponse.json({
       success: true,
-      user: updatedUser
+      user: resultUser
     });
   } catch (error) {
     console.error('Complete profile error:', error);

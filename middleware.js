@@ -82,8 +82,10 @@ export async function middleware(request) {
 
   // Kiểm tra complete-profile cho Google users
   if (token && !pathname.startsWith('/complete-profile') && !pathname.startsWith('/api')) {
-    // Kiểm tra xem user đã hoàn thành profile chưa (isProfileComplete = false)
-    if (token.isProfileComplete === false) {
+    // Kiểm tra xem user đã hoàn thành profile chưa
+    // isNewGoogleUser = true: Google user mới chưa có trong DB
+    // isProfileComplete = false: User có trong DB nhưng chưa hoàn tất profile
+    if (token.isNewGoogleUser === true || token.isProfileComplete === false) {
       // Cho phép một số route không cần complete profile
       const allowedWithoutProfile = ['/', '/logout', '/pricing', '/login', '/register'];
       if (!allowedWithoutProfile.includes(pathname) && isProtectedRoute) {
