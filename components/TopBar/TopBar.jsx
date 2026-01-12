@@ -87,6 +87,13 @@ export default function TopBar({ showStats = true }) {
   const fetchUserStats = async () => {
     try {
       const profileRes = await fetch('/api/user/profile');
+      
+      // 🔧 DEBUG: Log response status
+      if (!profileRes.ok) {
+        console.warn('TopBar: Profile API returned', profileRes.status);
+        return;
+      }
+      
       const profileData = await profileRes.json();
       
       if (profileData.user) {

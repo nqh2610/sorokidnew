@@ -116,13 +116,16 @@ export default function AdventurePageV3() {
     const cached = sessionStorage.getItem('adventureProgress');
     if (cached) {
       try {
-        const { data, timestamp } = JSON.parse(cached);
-        // Cache còn valid trong 5 phút (tăng từ 2 phút)
-        if (Date.now() - timestamp < 5 * 60 * 1000) {
+        const { data, timestamp, userId } = JSON.parse(cached);
+        // 🔧 FIX: Kiểm tra cache có đúng user không
+        // Cache còn valid trong 5 phút VÀ đúng user
+        if (Date.now() - timestamp < 5 * 60 * 1000 && userId === session.user.id) {
           applyProgressData(data);
           setLoading(false);
           return;
         }
+        // Cache không hợp lệ hoặc sai user -> xóa
+        sessionStorage.removeItem('adventureProgress');
       } catch (e) {
         sessionStorage.removeItem('adventureProgress');
       }
@@ -249,10 +252,11 @@ export default function AdventurePageV3() {
         const data = await res.json();
 
 
-        // 🚀 TỐI ƯU: Cache progress vào sessionStorage
+        // 🚀 TỐI ƯU: Cache progress vào sessionStorage (kèm userId để tránh conflict)
         sessionStorage.setItem('adventureProgress', JSON.stringify({
           data,
-          timestamp: Date.now()
+          timestamp: Date.now(),
+          userId: session?.user?.id // 🔧 Thêm userId để validate cache
         }));
 
         // Apply data using shared function
