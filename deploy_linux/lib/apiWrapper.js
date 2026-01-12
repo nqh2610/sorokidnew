@@ -62,26 +62,15 @@ export function withApiProtection(handler, options = {}) {
         }
       }
 
-      // 1. Check capacity (soft - không block cứng)
+      // 1. Check capacity - KHÔNG REJECT ngay, cho phép overflow nhẹ
       if (!skipLimiter) {
-        acquired = await requestLimiter.acquire();
+        const acquireResult = await requestLimiter.acquire();
+        acquired = acquireResult?.allowed !== false;
         
-        if (!acquired) {
-          // Server busy - graceful response
-          return NextResponse.json(
-            { 
-              error: 'Server đang bận. Vui lòng thử lại sau.',
-              code: 'SERVER_BUSY',
-              retryAfter: 5
-            },
-            { 
-              status: 503,
-              headers: {
-                'Retry-After': '5',
-                'Cache-Control': 'no-store'
-              }
-            }
-          );
+        // Chỉ log warning khi busy, không reject
+        if (acquireResult?.reason === 'SERVER_BUSY') {
+          console.warn('[API] Server busy, but allowing request');
+          acquired = true;
         }
       }
 

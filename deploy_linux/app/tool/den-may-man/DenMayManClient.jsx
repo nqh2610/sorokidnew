@@ -2,6 +2,17 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import ToolLayout, { useFullscreen } from '@/components/ToolLayout/ToolLayout';
+import { useGameSettings } from '@/lib/useGameSettings';
+import { GAME_IDS } from '@/lib/gameStorage';
+
+// Default settings
+const DEFAULT_SETTINGS = {
+  lm: 2,        // lightMode
+  gc: 50,       // greenChance
+  yc: 33,       // yellowChance
+  sp: 0,        // showProbability
+  snd: 1,       // soundEnabled
+};
 
 export default function DenMayMan() {
   return (
@@ -14,20 +25,34 @@ export default function DenMayMan() {
 function DenMayManContent() {
   const { exitFullscreen } = useFullscreen();
   
+  // Load settings
+  const { settings, updateSettings } = useGameSettings(GAME_IDS.DEN_MAY_MAN, DEFAULT_SETTINGS);
+  
   const [isSpinning, setIsSpinning] = useState(false);
   const [result, setResult] = useState(null);
-  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [soundEnabled, setSoundEnabled] = useState(settings.snd === 1);
   const [activeLight, setActiveLight] = useState(null);
   const [countdown, setCountdown] = useState(null);
   
-  const [lightMode, setLightMode] = useState(2);
-  const [greenChance, setGreenChance] = useState(50); // 2-đèn: 50/50 cân bằng
-  const [yellowChance, setYellowChance] = useState(33); // 3-đèn: 33.4/33.3/33.3 cân bằng
-  const [showProbability, setShowProbability] = useState(false); // Mặc định ẩn tỷ lệ
+  const [lightMode, setLightMode] = useState(settings.lm);
+  const [greenChance, setGreenChance] = useState(settings.gc);
+  const [yellowChance, setYellowChance] = useState(settings.yc);
+  const [showProbability, setShowProbability] = useState(settings.sp === 1);
   
   const audioContextRef = useRef(null);
   const flickerIntervalRef = useRef(null);
   const countdownRef = useRef(null);
+
+  // Sync settings
+  useEffect(() => {
+    updateSettings({
+      lm: lightMode,
+      gc: greenChance,
+      yc: yellowChance,
+      sp: showProbability ? 1 : 0,
+      snd: soundEnabled ? 1 : 0,
+    });
+  }, [lightMode, greenChance, yellowChance, showProbability, soundEnabled, updateSettings]);
 
   const redChance = lightMode === 2 ? 100 - greenChance : 100 - greenChance - yellowChance;
 

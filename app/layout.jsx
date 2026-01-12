@@ -5,6 +5,8 @@ import { ToastProvider } from '../components/Toast/ToastContext';
 import { AchievementProvider } from '../components/AchievementPopup';
 import GoogleAnalytics from '../components/Analytics/GoogleAnalytics';
 import { SoundProvider } from '../lib/SoundContext';
+import Script from 'next/script';
+import CapacitorDeepLinkHandler from '../components/CapacitorDeepLinkHandler';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -176,13 +178,22 @@ export const metadata = {
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
-      { url: '/logo.png', type: 'image/png', sizes: '512x512' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icons/icon-192x192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icons/icon-512x512.png', type: 'image/png', sizes: '512x512' },
     ],
     apple: [
-      { url: '/logo.png', type: 'image/png', sizes: '180x180' },
+      { url: '/icons/icon-180x180.png', type: 'image/png', sizes: '180x180' },
     ],
     shortcut: '/favicon.ico',
+  },
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Sorokid',
+  },
+  formatDetection: {
+    telephone: false,
   },
   other: {
     'apple-mobile-web-app-title': 'Sorokid',
@@ -195,17 +206,43 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="vi">
+      <head>
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Sorokid" />
+        <link rel="apple-touch-icon" href="/icons/icon-180x180.png" />
+        <link rel="apple-touch-startup-image" href="/icons/icon-512x512.png" />
+      </head>
       <body className={`${inter.className} ${quicksand.variable}`}>
         <GoogleAnalytics />
         <SessionProvider>
           <SoundProvider>
             <ToastProvider>
               <AchievementProvider>
+                <CapacitorDeepLinkHandler />
                 {children}
               </AchievementProvider>
             </ToastProvider>
           </SoundProvider>
         </SessionProvider>
+        
+        {/* Service Worker Registration */}
+        <Script id="register-sw" strategy="afterInteractive">
+          {`
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                  .then(function(registration) {
+                    console.log('✅ ServiceWorker registered:', registration.scope);
+                  })
+                  .catch(function(err) {
+                    console.log('❌ ServiceWorker registration failed:', err);
+                  });
+              });
+            }
+          `}
+        </Script>
       </body>
     </html>
   );

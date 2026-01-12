@@ -145,8 +145,8 @@ export async function GET(request) {
       }
     };
 
-    // Cache 60s
-    cache.set(cacheKey, response, 60000);
+    // 🔧 TỐI ƯU: Cache 45s - cân bằng giữa performance và freshness
+    cache.set(cacheKey, response, 45000);
 
     return NextResponse.json(response);
 

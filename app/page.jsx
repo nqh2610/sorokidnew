@@ -809,7 +809,13 @@ import {
 import Logo from '@/components/Logo/Logo';
 import MainNav from '@/components/MainNav/MainNav';
 
-// 🔧 DYNAMIC IMPORTS: Chỉ load Soroban components ở client khi cần
+// � PWA Install Banner (client component)
+const PWAInstallBanner = dynamic(
+  () => import('@/components/PWAInstaller/PWAInstaller'),
+  { ssr: false }
+);
+
+// �🔧 DYNAMIC IMPORTS: Chỉ load Soroban components ở client khi cần
 // Giảm ~30% initial JS bundle
 const SorobanBoard = dynamic(
   () => import('@/components/Soroban/SorobanBoard'),
@@ -942,6 +948,11 @@ export default function HomePage() {
                 <Sparkles className="w-5 h-5" />
                 Đăng ký ngay
               </Link>
+            </div>
+
+            {/* 📱 Banner cài app - chỉ hiện trên điện thoại */}
+            <div className="max-w-md mx-auto mb-8 px-4">
+              <PWAInstallBanner />
             </div>
 
             {/* Benefits badges - Điểm khác biệt của Sorokid */}

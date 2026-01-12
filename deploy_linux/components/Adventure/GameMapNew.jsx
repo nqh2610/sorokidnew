@@ -2362,7 +2362,7 @@ export default function GameMapNew({
       {/* Footer */}
       <div className="fixed bottom-2 left-0 right-0 z-10 text-center pointer-events-none">
         <p className="text-white/25 text-[10px] sm:text-xs drop-shadow-sm">
-          © 2025 SoroKid - Học toán tư duy cùng bàn tính Soroban
+          © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
         </p>
       </div>
     </div>

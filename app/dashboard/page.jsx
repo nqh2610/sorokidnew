@@ -11,6 +11,7 @@ import StatsCards from '@/components/Dashboard/StatsCards';
 import QuestList from '@/components/Dashboard/QuestList';
 import RewardPopup, { useRewardPopup } from '@/components/RewardPopup/RewardPopup';
 import TrialDaysBadge from '@/components/TrialDaysBadge/TrialDaysBadge';
+import PWAInstallBanner from '@/components/PWAInstaller/PWAInstaller';
 
 // 🚀 PERF: Lazy load secondary components (giảm ~40KB initial bundle)
 const ActivityChart = lazy(() => import('@/components/Dashboard/ActivityChart'));
@@ -93,14 +94,15 @@ export default function DashboardPage() {
     }
   }, []);
 
-  // === PHASE 2: SECONDARY DATA (Parallel, after essential) ===
+  // === PHASE 2: SECONDARY DATA (Staggered để giảm spike) ===
+  // 🔧 TỐI ƯU: Staggered loading - không gây spike lên server
   const fetchSecondaryData = useCallback(() => {
-    // Load quests
+    // Load quests ngay (nhẹ nhất)
     fetchQuests();
-    // Load certificates (thường hay xem)
-    fetchCertificates();
-    // Achievements load sau 300ms để ưu tiên trên
-    setTimeout(() => fetchAchievements(), 300);
+    // Load certificates sau 300ms 
+    setTimeout(() => fetchCertificates(), 300);
+    // Achievements load sau 600ms
+    setTimeout(() => fetchAchievements(), 600);
   }, []);
 
   const fetchQuests = async () => {
@@ -495,6 +497,9 @@ export default function DashboardPage() {
             </div>
           </Link>
         )}
+
+        {/* 📱 Banner cài app - chỉ hiện trên điện thoại */}
+        <PWAInstallBanner />
 
         {/* Quick Actions - 3 CHỨC NĂNG CHÍNH */}
         <div className="grid grid-cols-3 gap-2 sm:gap-4">

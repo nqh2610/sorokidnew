@@ -2,10 +2,19 @@
 
 import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import ToolLayout, { useFullscreen } from '@/components/ToolLayout/ToolLayout';
+import { useGameSettings } from '@/lib/useGameSettings';
+import { GAME_IDS } from '@/lib/gameStorage';
+
+// Default settings
+const DEFAULT_SETTINGS = {
+  txt: '',      // inputText
+  hid: 0,       // isListHidden
+  snd: 1,       // soundEnabled
+};
 
 export default function BocTham() {
   return (
-    <ToolLayout toolName="Bốc Thăm Ngẫu Nhiên" toolIcon="�">
+    <ToolLayout toolName="Bốc Thăm Ngẫu Nhiên" toolIcon="🎫">
       <BocThamContent />
     </ToolLayout>
   );
@@ -14,20 +23,28 @@ export default function BocTham() {
 function BocThamContent() {
   const { exitFullscreen } = useFullscreen();
   
+  // Load settings
+  const { settings, updateSettings } = useGameSettings(GAME_IDS.BOC_THAM, DEFAULT_SETTINGS);
+  
   // Input
-  const [inputText, setInputText] = useState('');
-  const [isListHidden, setIsListHidden] = useState(false); // Ẩn danh sách (quà bí mật)
+  const [inputText, setInputText] = useState(settings.txt);
+  const [isListHidden, setIsListHidden] = useState(settings.hid === 1);
   
   // Results
   const [pickedPerson, setPickedPerson] = useState(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [animatingNames, setAnimatingNames] = useState([]);
-  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [soundEnabled, setSoundEnabled] = useState(settings.snd === 1);
   
   // Audio context
   const audioContextRef = useRef(null);
   const spinTimeoutRef = useRef(null);
+
+  // Sync settings khi thay đổi (auto-save khi unmount)
+  useEffect(() => {
+    updateSettings({ txt: inputText, hid: isListHidden ? 1 : 0, snd: soundEnabled ? 1 : 0 });
+  }, [inputText, isListHidden, soundEnabled, updateSettings]);
 
   // Compute names count
   const nameCount = useMemo(() => {

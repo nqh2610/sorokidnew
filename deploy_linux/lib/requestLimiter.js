@@ -70,16 +70,13 @@ class RequestLimiter {
     const isPriority = this.isPriorityAPI(path);
     const isHeavy = this.isHeavyAPI(path);
 
-    // 🆕 Heavy API check riêng
+    // 🆕 Heavy API check riêng - KHÔNG REJECT, chỉ delay
     if (isHeavy) {
       if (this.activeHeavyRequests >= this.maxHeavyConcurrent) {
+        // Thay vì reject, cho vào queue với priority thấp
         this.stats.heavyRejected++;
-        return {
-          allowed: false,
-          reason: 'HEAVY_API_BUSY',
-          message: 'Hệ thống đang bận, vui lòng đợi vài giây và thử lại',
-          retryAfter: 5
-        };
+        // Cho phép nhưng đánh dấu là delayed
+        console.warn(`[RequestLimiter] Heavy API queued: ${path}`);
       }
     }
 

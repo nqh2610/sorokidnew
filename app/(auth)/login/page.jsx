@@ -1,12 +1,45 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Lock, Eye, EyeOff, User } from 'lucide-react';
 import { useToast } from '@/components/Toast/ToastContext';
 import Logo from '@/components/Logo/Logo';
+
+// 🔧 Detect if running in Capacitor WebView
+function isCapacitorApp() {
+  if (typeof window === 'undefined') return false;
+  // Check for Capacitor
+  return !!(window.Capacitor?.isNativePlatform?.() || window.Capacitor?.isNative);
+}
+
+// 🔧 Open URL in external browser (for OAuth in Capacitor)
+async function openExternalBrowser(url) {
+  if (typeof window === 'undefined') return;
+  
+  try {
+    // Try Capacitor Browser plugin first
+    if (window.Capacitor?.Plugins?.Browser) {
+      await window.Capacitor.Plugins.Browser.open({ 
+        url,
+        windowName: '_system', // Force external browser
+        presentationStyle: 'fullscreen'
+      });
+      return true;
+    }
+    
+    // Fallback: window.open with _system target
+    window.open(url, '_system');
+    return true;
+  } catch (error) {
+    console.error('Failed to open external browser:', error);
+    // Last fallback: direct navigation
+    window.location.href = url;
+    return true;
+  }
+}
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,6 +50,12 @@ export default function LoginPage() {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+  const [isNativeApp, setIsNativeApp] = useState(false);
+
+  // Detect Capacitor on mount
+  useEffect(() => {
+    setIsNativeApp(isCapacitorApp());
+  }, []);
 
   const validateForm = () => {
     const newErrors = {};
@@ -93,9 +132,29 @@ export default function LoginPage() {
           {/* Google Login Button */}
           <button
             type="button"
-            onClick={() => {
+            onClick={async () => {
               setGoogleLoading(true);
-              signIn('google', { callbackUrl: '/dashboard' });
+              
+              if (isNativeApp) {
+                // 🔧 Trong Capacitor app: mở external browser
+                // Google OAuth không cho phép login từ WebView
+                const baseUrl = 'https://sorokid.com'; // Production URL
+                const googleAuthUrl = `${baseUrl}/api/auth/signin/google?callbackUrl=${encodeURIComponent(baseUrl + '/dashboard')}`;
+                
+                try {
+                  await openExternalBrowser(googleAuthUrl);
+                  // Show instruction
+                  toast.info('Đang mở trình duyệt để đăng nhập Google...');
+                  // Reset loading sau 3s vì user sẽ quay lại app sau khi login
+                  setTimeout(() => setGoogleLoading(false), 3000);
+                } catch (error) {
+                  toast.error('Không thể mở trình duyệt. Vui lòng thử lại!');
+                  setGoogleLoading(false);
+                }
+              } else {
+                // Web browser: sử dụng NextAuth bình thường
+                signIn('google', { callbackUrl: '/dashboard' });
+              }
             }}
             disabled={loading || googleLoading}
             className="w-full py-3 bg-white border-2 border-gray-200 text-gray-700 rounded-xl font-semibold shadow-sm hover:shadow-md hover:border-gray-300 hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"

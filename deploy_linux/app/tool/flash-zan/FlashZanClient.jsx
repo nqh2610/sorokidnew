@@ -3,13 +3,35 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import ToolLayout from '@/components/ToolLayout/ToolLayout';
 import { LogoIcon } from '@/components/Logo/Logo';
+import { useGameSettings } from '@/lib/useGameSettings';
+import { GAME_IDS } from '@/lib/gameStorage';
+
+// Default settings - rút gọn key để tiết kiệm storage
+const DEFAULT_SETTINGS = {
+  op: 'add',    // operationType: 'add' | 'addSubtract'
+  d: 1,         // digitCount: 1 | 2
+  f: 5,         // flashCount: 5-30
+  spd: 1.5,     // speed: 0.1-5 seconds
+};
 
 export default function FlashZan() {
-  // Settings
-  const [operationType, setOperationType] = useState('add'); // 'add' | 'addSubtract'
-  const [digitCount, setDigitCount] = useState(1); // 1 | 2
-  const [flashCount, setFlashCount] = useState(5); // 5-30
-  const [speed, setSpeed] = useState(1.5); // 0.1-5 seconds, default vừa phải
+  // Settings với auto-save - chỉ lưu khi user thoát hoặc bấm "Bắt đầu"
+  const { settings, updateSettings, saveNow } = useGameSettings(
+    GAME_IDS.FLASH_ZAN, 
+    DEFAULT_SETTINGS
+  );
+
+  // Destructure settings để dùng trong component
+  const operationType = settings.op;
+  const digitCount = settings.d;
+  const flashCount = settings.f;
+  const speed = settings.spd;
+
+  // Setters - update local state, auto-save khi unmount
+  const setOperationType = (val) => updateSettings({ op: val });
+  const setDigitCount = (val) => updateSettings({ d: val });
+  const setFlashCount = (val) => updateSettings({ f: val });
+  const setSpeed = (val) => updateSettings({ spd: val });
   
   // Runtime state
   const [isRunning, setIsRunning] = useState(false);
@@ -106,8 +128,11 @@ export default function FlashZan() {
     return sequence;
   }, [flashCount, digitCount, operationType, generateNumber]);
 
-  // Start flash
+  // Start flash - LƯU SETTINGS NGAY KHI BẮT ĐẦU
   const startFlash = useCallback(async () => {
+    // Lưu settings ngay khi user bấm bắt đầu
+    saveNow();
+    
     const sequence = generateSequence();
     setNumbers(sequence);
     setCurrentIndex(0);

@@ -190,12 +190,12 @@ async function fetchDashboardData(userId) {
   let activityData = []; // 🔥 Activity chart giờ là optional, không ảnh hưởng streak
 
   try {
-    // Timeout ngắn cho optional data
+    // Timeout ngắn hơn cho optional data - fail fast
     const optionalPromise = Promise.all([
-      Promise.race([getCompeteStats(userId), timeoutPromise(3000, { totalArenas: 0 })]),
-      Promise.race([getLeaderboardRank(userId), timeoutPromise(2000, { rank: null })]),
-      Promise.race([getCertificateProgress(userId), timeoutPromise(2000, { total: 0, earned: 0 })]),
-      Promise.race([getActivityChart(userId), timeoutPromise(2000, [])]), // 🔥 Activity chart với timeout
+      Promise.race([getCompeteStats(userId), timeoutPromise(1500, { totalArenas: 0 })]),
+      Promise.race([getLeaderboardRank(userId), timeoutPromise(1000, { rank: null })]),
+      Promise.race([getCertificateProgress(userId), timeoutPromise(1000, { total: 0, earned: 0 })]),
+      Promise.race([getActivityChart(userId), timeoutPromise(1000, [])]), // Activity chart với timeout ngắn
     ]);
 
     [competeData, leaderboardData, certificateData, activityData] = await optionalPromise;

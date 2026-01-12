@@ -11,18 +11,18 @@ import Image from 'next/image';
 export default function Logo({ size = 'md', showText = true, className = '' }) {
   const gradientId = useId();
   const sizes = {
-    xs: { icon: 24, text: 'text-sm' },
-    sm: { icon: 32, text: 'text-base' },
-    md: { icon: 40, text: 'text-xl' },
-    lg: { icon: 56, text: 'text-2xl' },
-    xl: { icon: 72, text: 'text-3xl' },
-    '2xl': { icon: 96, text: 'text-4xl' },
+    xs: { icon: 24, text: 'text-xs', gap: 'gap-1' },
+    sm: { icon: 28, text: 'text-sm', gap: 'gap-1.5' },
+    md: { icon: 36, text: 'text-lg', gap: 'gap-2' },
+    lg: { icon: 48, text: 'text-xl', gap: 'gap-2' },
+    xl: { icon: 64, text: 'text-2xl', gap: 'gap-3' },
+    '2xl': { icon: 80, text: 'text-3xl', gap: 'gap-3' },
   };
 
-  const { icon: iconSize, text: textSize } = sizes[size] || sizes.md;
+  const { icon: iconSize, text: textSize, gap } = sizes[size] || sizes.md;
 
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
+    <div className={`flex items-center ${gap} ${className}`}>
       {/* Logo Icon */}
       <div 
         className="relative flex-shrink-0 rounded-xl overflow-hidden"

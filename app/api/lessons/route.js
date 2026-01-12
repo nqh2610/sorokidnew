@@ -27,7 +27,7 @@ export async function GET(request) {
     // Lấy userId từ session
     const userId = session.user?.id;
 
-    // 🔧 TỐI ƯU: Cache lessons (ít thay đổi)
+    // 🔧 TỐI ƯU: Cache lessons 3 phút (data tĩnh)
     const lessons = await getOrSet(
       CACHE_KEYS.LESSONS(levelId),
       async () => {
@@ -49,7 +49,7 @@ export async function GET(request) {
           orderBy: [{ levelId: 'asc' }, { order: 'asc' }]
         });
       },
-      CACHE_TTL.LONG // 1 minute cache
+      180000 // 3 phút cache
     );
 
     // Get user progress for these lessons (không cache vì thay đổi)

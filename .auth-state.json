@@ -1,0 +1,69 @@
+{
+  "cookies": [
+    {
+      "name": "_ga_XDTSB8TT72",
+      "value": "GS2.1.s1768221252$o1$g0$t1768221252$j60$l0$h0",
+      "domain": "localhost",
+      "path": "/",
+      "expires": 1802781252.488963,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga",
+      "value": "GA1.1.191126217.1768221252",
+      "domain": "localhost",
+      "path": "/",
+      "expires": 1802781252.489858,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "next-auth.csrf-token",
+      "value": "91daa9f7e29cd9be85704ba795002ea8416128462e3b0e85d5390459fc68a230%7Ce75d4394b025ab3b1aaa4cca6c0a34f5ed06aeb3e6cc6773bca8891381d38ce0",
+      "domain": "localhost",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "next-auth.callback-url",
+      "value": "http%3A%2F%2Flocalhost%3A3000%2Flogin",
+      "domain": "localhost",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "next-auth.session-token",
+      "value": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..F0KdUWPSvoY7fuHa.M-pRVbNDtaJVax9yUrj3HbZ5ljC97zXEn680BWAOU0QLXrc5MCYTlKmX3t-UFHEPGVyFc3GhLD-15yULnaH_Lwpb_eT3xc5QjalxkfzRURXra2_RdjEwE6c0YQcNvreTxZU78bcigh2gd90Y21_95pWBH22-OUMI2RETHVLPcEdGjm7W_aH7OkktM80IdIie_Qs3SRx8Cj2nxNzz22QrSRUdxhWI3PaEW174skdzblbUQWx8Rg9fT23H_pJRBUAtPhfRmUrWLDXrXnFoGkn-YtXzBPac3jBPobfcNzWPWygJoX_oHo-nqyN0R1ysj2elSVlVmR2zZYSOhjUBR-89UbzS5DePfeQteoiO7AJFzK-T4-4Bjn4VukncnbnnpaWTles.l9VfGlqfBTT9aMAc4o1Lfg",
+      "domain": "localhost",
+      "path": "/",
+      "expires": 1770813257.037878,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "http://localhost:3000",
+      "localStorage": [
+        {
+          "name": "sorokid_sound_prefs",
+          "value": "{\"soundEnabled\":true,\"musicEnabled\":true,\"musicVolume\":0.5,\"sfxVolume\":0.8}"
+        },
+        {
+          "name": "nextauth.message",
+          "value": "{\"event\":\"session\",\"data\":{\"trigger\":\"getSession\"},\"timestamp\":1768221252}"
+        }
+      ]
+    }
+  ]
+}

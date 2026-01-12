@@ -35,7 +35,7 @@ export async function GET(request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // 🔧 TỐI ƯU: Cache levels và lesson counts (tĩnh, không thay đổi)
+    // 🔧 TỐI ƯU: Cache levels và lesson counts (tĩnh) - 5 phút
     const [levels, lessonCounts] = await Promise.all([
       getOrSet('all_levels', async () => {
         return prisma.level.findMany({

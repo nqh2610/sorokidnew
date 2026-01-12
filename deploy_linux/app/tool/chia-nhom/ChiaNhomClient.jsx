@@ -1,7 +1,9 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import ToolLayout, { useFullscreen } from '@/components/ToolLayout/ToolLayout';
+import { useGameSettings } from '@/lib/useGameSettings';
+import { GAME_IDS } from '@/lib/gameStorage';
 
 // Màu sắc cho các nhóm
 const GROUP_COLORS = [
@@ -17,6 +19,15 @@ const GROUP_COLORS = [
   { bg: 'bg-teal-100', border: 'border-teal-300', text: 'text-teal-700', header: 'bg-teal-500', accent: '#14b8a6' },
 ];
 
+// Default settings
+const DEFAULT_SETTINGS = {
+  txt: '',        // inputText
+  dm: 'byGroup',  // divideMode
+  gc: 2,          // groupCount
+  ppg: 3,         // personsPerGroup
+  al: 1,          // autoLeader
+};
+
 export default function ChiaNhom() {
   return (
     <ToolLayout toolName="Chia Nhóm Ngẫu Nhiên" toolIcon="👥">
@@ -28,19 +39,33 @@ export default function ChiaNhom() {
 function ChiaNhomContent() {
   const { exitFullscreen } = useFullscreen();
   
+  // Load settings
+  const { settings, updateSettings } = useGameSettings(GAME_IDS.CHIA_NHOM, DEFAULT_SETTINGS);
+  
   // Input
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState(settings.txt);
   
   // Mode: 'byGroup' = chia theo số nhóm, 'byPerson' = chia theo số người/nhóm
-  const [divideMode, setDivideMode] = useState('byGroup');
-  const [groupCount, setGroupCount] = useState(2);
-  const [personsPerGroup, setPersonsPerGroup] = useState(3);
-  const [autoLeader, setAutoLeader] = useState(true);
+  const [divideMode, setDivideMode] = useState(settings.dm);
+  const [groupCount, setGroupCount] = useState(settings.gc);
+  const [personsPerGroup, setPersonsPerGroup] = useState(settings.ppg);
+  const [autoLeader, setAutoLeader] = useState(settings.al === 1);
   
   // Results
   const [groups, setGroups] = useState([]);
   const [isAnimating, setIsAnimating] = useState(false);
   const [showResults, setShowResults] = useState(false);
+
+  // Sync settings khi thay đổi
+  useEffect(() => {
+    updateSettings({
+      txt: inputText,
+      dm: divideMode,
+      gc: groupCount,
+      ppg: personsPerGroup,
+      al: autoLeader ? 1 : 0,
+    });
+  }, [inputText, divideMode, groupCount, personsPerGroup, autoLeader, updateSettings]);
 
   // Compute names count
   const nameCount = useMemo(() => {

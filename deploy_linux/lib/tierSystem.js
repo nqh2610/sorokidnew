@@ -271,6 +271,7 @@ export function clearTrialSettingsCache() {
 
 /**
  * Lấy trial settings từ database (có cache)
+ * 🔧 TỐI ƯU: Tăng cache TTL và thêm fallback
  */
 export async function getTrialSettings() {
   const now = Date.now();
@@ -286,14 +287,19 @@ export async function getTrialSettings() {
     if (settings) {
       cachedTrialSettings = JSON.parse(settings.value);
       cacheTime = now;
-      console.log('[TierSystem] Trial settings loaded from DB:', cachedTrialSettings);
       return cachedTrialSettings;
     }
   } catch (error) {
     console.error('Error fetching trial settings:', error);
+    // 🔧 TỐI ƯU: Nếu có cached cũ, dùng nó thay vì default
+    if (cachedTrialSettings) {
+      return cachedTrialSettings;
+    }
   }
 
-  console.log('[TierSystem] Using default trial settings:', DEFAULT_TRIAL_SETTINGS);
+  // Cache default settings để không query lại
+  cachedTrialSettings = DEFAULT_TRIAL_SETTINGS;
+  cacheTime = now;
   return DEFAULT_TRIAL_SETTINGS;
 }
 
