@@ -95,7 +95,3 @@ export default function CapacitorDeepLinkHandler() {
   // Component này không render gì
   return null;
 }
-
-  // Component này không render gì
-  return null;
-}
