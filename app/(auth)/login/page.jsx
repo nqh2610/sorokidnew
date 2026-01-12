@@ -4,7 +4,7 @@ import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Mail, Lock, Eye, EyeOff, Sparkles, User } from 'lucide-react';
+import { Lock, Eye, EyeOff, User } from 'lucide-react';
 import { useToast } from '@/components/Toast/ToastContext';
 import Logo from '@/components/Logo/Logo';
 
@@ -68,59 +68,29 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-violet-500 to-pink-500 flex items-center justify-center p-3 sm:p-4 relative overflow-hidden">
-      {/* Floating decorations */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-blue-400 rounded-full opacity-30 animate-bounce" style={{ animationDuration: '3s' }}></div>
-      <div className="absolute top-40 right-20 w-16 h-16 bg-violet-400 rounded-full opacity-30 animate-bounce" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }}></div>
-      <div className="absolute bottom-32 left-20 w-12 h-12 bg-pink-400 rounded-full opacity-30 animate-bounce" style={{ animationDuration: '2s', animationDelay: '1s' }}></div>
-      <div className="absolute bottom-20 right-10 w-24 h-24 bg-purple-400 rounded-full opacity-30 animate-bounce" style={{ animationDuration: '3.5s' }}></div>
-      
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-violet-500 to-pink-500 flex items-center justify-center p-4">
       {/* Google Loading Overlay */}
       {googleLoading && (
         <div className="fixed inset-0 bg-gradient-to-br from-blue-500 via-violet-500 to-pink-500 z-50 flex flex-col items-center justify-center">
-          <div className="bg-white/20 backdrop-blur-md rounded-3xl p-8 text-center">
-            <div className="w-16 h-16 border-4 border-white/30 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
-            <h2 className="text-white text-xl font-bold mb-2">Đang kết nối với Google...</h2>
+          <div className="bg-white/20 backdrop-blur-md rounded-2xl p-6 text-center">
+            <div className="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin mx-auto mb-3"></div>
+            <h2 className="text-white text-lg font-bold mb-1">Đang kết nối với Google...</h2>
             <p className="text-white/80 text-sm">Vui lòng chờ trong giây lát</p>
           </div>
         </div>
       )}
 
-      {/* Soroban beads decoration */}
-      <div className="absolute top-10 right-1/4 flex gap-2 opacity-30">
-        <div className="w-4 h-4 bg-amber-400 rounded-full"></div>
-        <div className="w-4 h-4 bg-amber-400 rounded-full"></div>
-        <div className="w-4 h-4 bg-amber-400 rounded-full"></div>
-      </div>
-      <div className="absolute bottom-10 left-1/4 flex gap-2 opacity-30">
-        <div className="w-4 h-4 bg-violet-300 rounded-full"></div>
-        <div className="w-4 h-4 bg-amber-400 rounded-full"></div>
-        <div className="w-4 h-4 bg-amber-400 rounded-full"></div>
-      </div>
-
-      <div className="max-w-md w-full relative z-10">
-        <div className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-8 border border-white/20">
+      <div className="w-full max-w-sm">
+        <div className="bg-white rounded-2xl shadow-2xl p-6">
           {/* Header */}
-          <div className="text-center mb-6 sm:mb-8">
-            <Link href="/" className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4 cursor-pointer">
-              <div className="transform hover:scale-110 transition-transform duration-300">
-                <Logo size="lg" showText={false} />
-              </div>
-              <span className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
-                SoroKid
-              </span>
-            </Link>
-            <p className="text-gray-600 flex items-center justify-center gap-2 mb-4 sm:mb-6 text-sm sm:text-base">
-              <span className="text-xl">🎮</span> 
-              <span className="font-medium">Học toán tính nhanh vui như chơi Game!</span>
-            </p>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 via-violet-100 to-pink-100 rounded-full">
-              <Sparkles size={18} className="text-violet-600" />
-              <span className="text-violet-700 font-semibold">Đăng nhập</span>
-            </div>
-          </div>
+          <Link href="/" className="flex items-center justify-center gap-2 mb-5">
+            <Logo size="md" showText={false} />
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
+              SoroKid
+            </span>
+          </Link>
 
-          {/* Google Login Button - ĐƯA LÊN TRÊN */}
+          {/* Google Login Button */}
           <button
             type="button"
             onClick={() => {
@@ -128,7 +98,7 @@ export default function LoginPage() {
               signIn('google', { callbackUrl: '/dashboard' });
             }}
             disabled={loading || googleLoading}
-            className="w-full py-3.5 bg-white border-2 border-gray-200 text-gray-700 rounded-xl font-semibold text-base shadow-sm hover:shadow-md hover:border-gray-300 hover:bg-gray-50 transform hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 mb-4"
+            className="w-full py-3 bg-white border-2 border-gray-200 text-gray-700 rounded-xl font-semibold shadow-sm hover:shadow-md hover:border-gray-300 hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
           >
             {googleLoading ? (
               <>
@@ -149,17 +119,17 @@ export default function LoginPage() {
           </button>
 
           {/* Divider */}
-          <div className="my-4 flex items-center gap-4">
+          <div className="my-4 flex items-center gap-3">
             <div className="flex-1 h-px bg-gray-200"></div>
-            <span className="text-gray-400 text-sm">hoặc đăng nhập bằng email</span>
+            <span className="text-gray-400 text-xs">hoặc</span>
             <div className="flex-1 h-px bg-gray-200"></div>
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-gray-700 font-semibold mb-2 flex items-center gap-2">
-                <User size={18} className="text-violet-600" />
+              <label className="block text-gray-700 font-medium mb-1.5 text-sm flex items-center gap-1.5">
+                <User size={16} className="text-violet-500" />
                 Email hoặc Tên đăng nhập
               </label>
               <input
@@ -169,23 +139,21 @@ export default function LoginPage() {
                   setIdentifier(e.target.value);
                   if (errors.identifier) setErrors({ ...errors, identifier: '' });
                 }}
-                className={`w-full px-4 py-3.5 border-2 rounded-xl focus:outline-none transition-all bg-gray-50 focus:bg-white ${
+                className={`w-full px-3 py-2.5 border-2 rounded-lg focus:outline-none transition-all text-sm ${
                   errors.identifier 
-                    ? 'border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200' 
-                    : 'border-gray-200 focus:border-violet-500 focus:ring-2 focus:ring-violet-200'
+                    ? 'border-red-400 focus:border-red-500' 
+                    : 'border-gray-200 focus:border-violet-500'
                 }`}
-                placeholder="email@example.com hoặc username"
+                placeholder="email@example.com"
               />
               {errors.identifier && (
-                <p className="mt-2 text-sm text-red-500 flex items-center gap-1">
-                  <span>⚠️</span> {errors.identifier}
-                </p>
+                <p className="mt-1 text-xs text-red-500">{errors.identifier}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-gray-700 font-semibold mb-2 flex items-center gap-2">
-                <Lock size={18} className="text-violet-600" />
+              <label className="block text-gray-700 font-medium mb-1.5 text-sm flex items-center gap-1.5">
+                <Lock size={16} className="text-violet-500" />
                 Mật khẩu
               </label>
               <div className="relative">
@@ -196,34 +164,29 @@ export default function LoginPage() {
                     setPassword(e.target.value);
                     if (errors.password) setErrors({ ...errors, password: '' });
                   }}
-                  className={`w-full px-4 py-3.5 pr-12 border-2 rounded-xl focus:outline-none transition-all bg-gray-50 focus:bg-white ${
+                  className={`w-full px-3 py-2.5 pr-10 border-2 rounded-lg focus:outline-none transition-all text-sm ${
                     errors.password 
-                      ? 'border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200' 
-                      : 'border-gray-200 focus:border-violet-500 focus:ring-2 focus:ring-violet-200'
+                      ? 'border-red-400 focus:border-red-500' 
+                      : 'border-gray-200 focus:border-violet-500'
                   }`}
                   placeholder="••••••••"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-violet-500 transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-violet-500"
                 >
-                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
               {errors.password && (
-                <p className="mt-2 text-sm text-red-500 flex items-center gap-1">
-                  <span>⚠️</span> {errors.password}
-                </p>
+                <p className="mt-1 text-xs text-red-500">{errors.password}</p>
               )}
             </div>
 
-            {/* Forgot Password Link */}
+            {/* Forgot Password */}
             <div className="text-right">
-              <Link 
-                href="/forgot-password" 
-                className="text-sm text-violet-600 hover:text-violet-700 hover:underline"
-              >
+              <Link href="/forgot-password" className="text-xs text-violet-600 hover:underline">
                 Quên mật khẩu?
               </Link>
             </div>
@@ -231,42 +194,32 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-4 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none relative overflow-hidden group"
+              className="w-full py-3 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white rounded-lg font-bold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                {loading ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                    Đang đăng nhập...
-                  </>
-                ) : (
-                  <>
-                    🚀 Đăng nhập
-                  </>
-                )}
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-violet-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              {loading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                  Đang đăng nhập...
+                </span>
+              ) : (
+                '🚀 Đăng nhập'
+              )}
             </button>
           </form>
 
           {/* Footer */}
-          <div className="mt-6 text-center">
-            <p className="text-gray-600">
-              Chưa có tài khoản?{' '}
-              <Link 
-                href="/register" 
-                className="text-violet-600 font-bold hover:text-pink-500 transition-colors"
-              >
-                Đăng ký ngay ✨
-              </Link>
-            </p>
-          </div>
+          <p className="mt-4 text-center text-sm text-gray-600">
+            Chưa có tài khoản?{' '}
+            <Link href="/register" className="text-violet-600 font-semibold hover:text-pink-500">
+              Đăng ký ngay
+            </Link>
+          </p>
         </div>
 
-        {/* Bottom decoration */}
-        <div className="text-center mt-6 text-white/70 text-sm">
-          <p>© {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban</p>
-        </div>
+        {/* Copyright */}
+        <p className="text-center mt-4 text-white/70 text-xs">
+          © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
+        </p>
       </div>
     </div>
   );

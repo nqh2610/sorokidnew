@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Logo from '@/components/Logo/Logo';
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
@@ -36,15 +37,20 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-violet-500 to-pink-500 flex items-center justify-center p-4">
+      <div className="w-full max-w-sm">
         {/* Card */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
+        <div className="bg-white rounded-2xl shadow-2xl p-6">
           {/* Logo */}
-          <div className="text-center mb-8">
-            <div className="text-5xl mb-3">🧮</div>
-            <h1 className="text-2xl font-bold text-gray-800">Quên mật khẩu</h1>
-            <p className="text-gray-500 mt-2">
+          <Link href="/" className="flex items-center justify-center gap-2 mb-4">
+            <Logo size="md" showText={false} />
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
+              SoroKid
+            </span>
+          </Link>
+          <div className="text-center mb-5">
+            <h1 className="text-xl font-bold text-gray-800">Quên mật khẩu</h1>
+            <p className="text-gray-500 text-sm mt-1">
               Nhập email để nhận link đặt lại mật khẩu
             </p>
           </div>
@@ -67,7 +73,7 @@ export default function ForgotPasswordPage() {
               </p>
               <Link 
                 href="/login"
-                className="inline-block px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl font-medium hover:opacity-90 transition-opacity"
+                className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white rounded-xl font-medium hover:opacity-90 transition-opacity"
               >
                 Quay lại đăng nhập
               </Link>
@@ -82,7 +88,7 @@ export default function ForgotPasswordPage() {
               )}
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">
                   Email
                 </label>
                 <input
@@ -91,14 +97,14 @@ export default function ForgotPasswordPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="email@example.com"
                   required
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all outline-none"
+                  className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-violet-500 focus:outline-none transition-all text-sm"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full py-3 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white rounded-lg font-bold hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <>
@@ -116,7 +122,7 @@ export default function ForgotPasswordPage() {
               <div className="text-center pt-4 border-t border-gray-100">
                 <Link 
                   href="/login" 
-                  className="text-purple-600 hover:text-purple-700 font-medium"
+                  className="text-violet-600 hover:text-pink-500 font-medium text-sm"
                 >
                   ← Quay lại đăng nhập
                 </Link>
@@ -126,7 +132,7 @@ export default function ForgotPasswordPage() {
         </div>
 
         {/* Footer */}
-        <p className="text-center text-white/80 text-sm mt-6">
+        <p className="text-center text-white/70 text-xs mt-4">
           © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
         </p>
       </div>
