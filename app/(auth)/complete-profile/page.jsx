@@ -129,8 +129,19 @@ export default function CompleteProfilePage() {
         throw new Error(data.error || 'Có lỗi xảy ra');
       }
 
-      // Redirect ngay lập tức - KHÔNG cần update session, KHÔNG tắt loading
-      // Session sẽ tự refresh khi vào dashboard
+      // 🔧 FIX: Cập nhật session TRƯỚC khi redirect
+      // Để các useEffect không nhận nhầm isProfileComplete = false
+      await update({
+        ...session,
+        user: {
+          ...session.user,
+          isProfileComplete: true,
+          name: formData.name.trim(),
+          username: formData.username.trim().toLowerCase()
+        }
+      });
+
+      // Redirect sau khi session đã được cập nhật
       window.location.href = '/dashboard';
       // Không return, không finally - giữ loading overlay cho đến khi redirect xong
     } catch (err) {
