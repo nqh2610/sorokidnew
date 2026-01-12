@@ -6,7 +6,13 @@ import { AchievementProvider } from '../components/AchievementPopup';
 import GoogleAnalytics from '../components/Analytics/GoogleAnalytics';
 import { SoundProvider } from '../lib/SoundContext';
 import Script from 'next/script';
-import CapacitorDeepLinkHandler from '../components/CapacitorDeepLinkHandler';
+import dynamic from 'next/dynamic';
+
+// Dynamic import để tránh lỗi SSR với Capacitor plugins
+const CapacitorDeepLinkHandler = dynamic(
+  () => import('../components/CapacitorDeepLinkHandler'),
+  { ssr: false }
+);
 
 const inter = Inter({ subsets: ['latin'] });
 

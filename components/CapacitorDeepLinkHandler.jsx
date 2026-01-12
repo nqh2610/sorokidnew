@@ -1,34 +1,38 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
 
 /**
  * CapacitorDeepLinkHandler
  * Component này xử lý deep links khi user quay lại app từ OAuth
+ * Chỉ hoạt động trong Capacitor app, không ảnh hưởng web
  */
 export default function CapacitorDeepLinkHandler() {
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const [isCapacitor, setIsCapacitor] = useState(false);
 
   useEffect(() => {
-    // Chỉ chạy trong Capacitor app
+    // Check if running in Capacitor - chỉ check một lần khi mount
     if (typeof window === 'undefined') return;
     
-    const isCapacitor = !!(
+    const capacitorDetected = !!(
       window.Capacitor?.isNativePlatform?.() || 
-      window.Capacitor?.isNative ||
-      navigator.userAgent?.includes('SorokidApp')
+      window.Capacitor?.isNative
     );
     
-    if (!isCapacitor) return;
+    setIsCapacitor(capacitorDetected);
+    
+    // Nếu không phải Capacitor app, không làm gì cả
+    if (!capacitorDetected) {
+      return;
+    }
 
     let appListener = null;
 
     const initDeepLinkHandler = async () => {
       try {
-        // Dynamic import để tránh lỗi SSR
+        // Dynamic import để tránh lỗi SSR và chỉ load khi cần
         const { App } = await import('@capacitor/app');
         
         // Lắng nghe khi app được mở qua URL (deep link)
@@ -67,25 +71,14 @@ export default function CapacitorDeepLinkHandler() {
         const launchUrl = await App.getLaunchUrl();
         if (launchUrl?.url) {
           console.log('[DeepLink] App launched with URL:', launchUrl.url);
-          
-          try {
-            const urlObj = new URL(launchUrl.url);
-            const path = urlObj.pathname;
-            
-            if (path.includes('/dashboard') || urlObj.searchParams.has('code')) {
-              // Redirect về dashboard nếu có session
-              if (status === 'authenticated') {
-                router.push('/dashboard');
-              }
-            }
-          } catch (error) {
-            console.error('[DeepLink] Error parsing launch URL:', error);
-          }
         }
         
         console.log('[DeepLink] Handler initialized');
       } catch (error) {
-        console.log('[DeepLink] Not in Capacitor environment:', error.message);
+        // Không log error trên web vì đây là expected behavior
+        if (capacitorDetected) {
+          console.error('[DeepLink] Error:', error.message);
+        }
       }
     };
 
@@ -97,7 +90,11 @@ export default function CapacitorDeepLinkHandler() {
         appListener.remove();
       }
     };
-  }, [router, status]);
+  }, [router]);
+
+  // Component này không render gì
+  return null;
+}
 
   // Component này không render gì
   return null;
