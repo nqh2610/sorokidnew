@@ -215,41 +215,13 @@ echo [10/10] Tao file .env...
 del /q "%OUTPUT_DIR%\.env" 2>nul
 del /q "%OUTPUT_DIR%\.env.production" 2>nul
 
-:: Tao .env moi voi RUNTIME_ENV=shared
-:: Copy tu template de tranh van de ky tu dac biet trong CMD
-if exist ".env.production.template" (
-    copy /Y ".env.production.template" "%OUTPUT_DIR%\.env"
-    echo   - Da copy .env tu template
+:: Copy truc tiep tu .env.example de luon dong bo
+if exist ".env.example" (
+    copy /Y ".env.example" "%OUTPUT_DIR%\.env"
+    echo   - Da copy .env tu .env.example (luon dong bo)
 ) else (
-    :: Fallback: Tao .env day du
-    echo # Database - MySQL> "%OUTPUT_DIR%\.env"
-    echo DATABASE_URL="mysql://nhsortag_soro:dNu6PJPiiLo66XWz@sorokid.com:3306/nhsortag_sorokids?connection_limit=8&pool_timeout=15">> "%OUTPUT_DIR%\.env"
-    echo.>> "%OUTPUT_DIR%\.env"
-    echo # NextAuth>> "%OUTPUT_DIR%\.env"
-    echo NEXTAUTH_URL="https://sorokid.com">> "%OUTPUT_DIR%\.env"
-    echo NEXTAUTH_SECRET="wstVe5DkkFHKqTosIMpgwjRWUigLJgbYg8n04+qWjv8=">> "%OUTPUT_DIR%\.env"
-    echo.>> "%OUTPUT_DIR%\.env"
-    echo # Google OAuth - QUAN TRONG cho dang nhap Google>> "%OUTPUT_DIR%\.env"
-    echo GOOGLE_CLIENT_ID="59358628213-i3o1ip29ommfquuukb8jvka5311n5bdm.apps.googleusercontent.com">> "%OUTPUT_DIR%\.env"
-    echo GOOGLE_CLIENT_SECRET="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">> "%OUTPUT_DIR%\.env"
-    echo.>> "%OUTPUT_DIR%\.env"
-    echo # Node environment>> "%OUTPUT_DIR%\.env"
-    echo NODE_ENV="production">> "%OUTPUT_DIR%\.env"
-    echo.>> "%OUTPUT_DIR%\.env"
-    echo # RUNTIME CONFIG>> "%OUTPUT_DIR%\.env"
-    echo RUNTIME_ENV="shared">> "%OUTPUT_DIR%\.env"
-    echo.>> "%OUTPUT_DIR%\.env"
-    echo # Server>> "%OUTPUT_DIR%\.env"
-    echo PORT=3000>> "%OUTPUT_DIR%\.env"
-    echo HOSTNAME="0.0.0.0">> "%OUTPUT_DIR%\.env"
-    echo.>> "%OUTPUT_DIR%\.env"
-    echo # SSL (de trong neu dung reverse proxy)>> "%OUTPUT_DIR%\.env"
-    echo SSL_KEY_PATH="">> "%OUTPUT_DIR%\.env"
-    echo SSL_CERT_PATH="">> "%OUTPUT_DIR%\.env"
-    echo.>> "%OUTPUT_DIR%\.env"
-    echo # App path for PM2>> "%OUTPUT_DIR%\.env"
-    echo APP_PATH="/var/www/sorokid">> "%OUTPUT_DIR%\.env"
-    echo   - Tao .env day du (connection_limit=8, pool_timeout=15)
+    echo   [CANH BAO] Khong tim thay .env.example!
+    echo   - Vui long tao file .env.example truoc khi build
 )
 
 echo.
