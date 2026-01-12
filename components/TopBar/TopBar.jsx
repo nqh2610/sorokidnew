@@ -7,6 +7,7 @@ import { LogOut, Star, ChevronDown } from 'lucide-react';
 import Logo from '@/components/Logo/Logo';
 import ConfirmDialog from '@/components/ConfirmDialog/ConfirmDialog';
 import { MonsterAvatar } from '@/components/MonsterAvatar';
+import { getLevelInfo } from '@/lib/gamification';
 
 export default function TopBar({ showStats = true }) {
   const { data: session } = useSession();
@@ -58,16 +59,16 @@ export default function TopBar({ showStats = true }) {
         
         const newTotalStars = (prev.totalStars || 0) + stars;
         
+        // 🔧 FIX: Luôn tính lại level từ totalStars để đảm bảo đồng bộ
+        const levelInfo = getLevelInfo(newTotalStars);
+        
         const updatedStats = {
           ...prev,
           totalStars: newTotalStars,
-          diamonds: (prev.diamonds || 0) + diamonds
+          diamonds: (prev.diamonds || 0) + diamonds,
+          level: newLevel || levelInfo.level, // Ưu tiên newLevel nếu có, không thì tính từ stars
+          levelInfo: levelInfo
         };
-        
-        // Update level nếu có
-        if (newLevel) {
-          updatedStats.level = newLevel;
-        }
         
         return updatedStats;
       });
