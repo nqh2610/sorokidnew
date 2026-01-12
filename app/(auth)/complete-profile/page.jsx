@@ -21,6 +21,7 @@ export default function CompleteProfilePage() {
   const [step, setStep] = useState(1);
   const [checkingUsername, setCheckingUsername] = useState(false);
   const [usernameAvailable, setUsernameAvailable] = useState(null);
+  const [profileCompleted, setProfileCompleted] = useState(false); // Flag để tránh redirect loop
 
   // Set name from session when loaded
   useEffect(() => {
@@ -31,12 +32,15 @@ export default function CompleteProfilePage() {
 
   // Redirect nếu chưa đăng nhập hoặc đã hoàn thiện profile
   useEffect(() => {
+    // Nếu vừa hoàn tất profile, không check redirect nữa
+    if (profileCompleted || isLoading) return;
+    
     if (status === 'unauthenticated') {
       router.push('/login');
     } else if (status === 'authenticated' && session?.user?.isProfileComplete) {
       router.push('/dashboard');
     }
-  }, [status, session, router]);
+  }, [status, session, router, profileCompleted, isLoading]);
 
   // Debounce check username availability
   useEffect(() => {
@@ -129,20 +133,22 @@ export default function CompleteProfilePage() {
         throw new Error(data.error || 'Có lỗi xảy ra');
       }
 
-      // 🔧 FIX: Cập nhật session TRƯỚC khi redirect
-      // Để các useEffect không nhận nhầm isProfileComplete = false
-      await update({
-        ...session,
-        user: {
-          ...session.user,
-          isProfileComplete: true,
-          name: formData.name.trim(),
-          username: formData.username.trim().toLowerCase()
-        }
-      });
+      // 🔧 FIX: Đánh dấu đã hoàn tất để useEffect không redirect sai
+      setProfileCompleted(true);
+
+      // 🔧 FIX: Gọi update() để trigger JWT refresh (không cần tham số)
+      // NextAuth sẽ tự động gọi JWT callback với trigger='update'
+      try {
+        await update();
+      } catch (updateErr) {
+        console.log('Session update error (ignored):', updateErr);
+      }
 
       // Redirect sau khi session đã được cập nhật
-      window.location.href = '/dashboard';
+      // Dùng setTimeout để đảm bảo session có thời gian propagate
+      setTimeout(() => {
+        window.location.href = '/dashboard';
+      }, 100);
       // Không return, không finally - giữ loading overlay cho đến khi redirect xong
     } catch (err) {
       setError(err.message);
