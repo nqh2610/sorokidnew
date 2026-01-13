@@ -17,7 +17,6 @@ import {
   Camera
 } from 'lucide-react';
 import TopBar from '@/components/TopBar/TopBar';
-import BottomNav from '@/components/Navigation/BottomNav';
 import ConfirmDialog from '@/components/ConfirmDialog/ConfirmDialog';
 import { MonsterAvatar } from '@/components/MonsterAvatar';
 import AvatarSelector from '@/components/AvatarSelector/AvatarSelector';
@@ -167,8 +166,8 @@ export default function ProfilePage() {
         onSelect={handleAvatarSelect}
       />
 
-      <main className="min-h-screen bg-gradient-to-b from-blue-50 via-violet-50 to-pink-50 pb-24">
-        <div className="max-w-2xl mx-auto px-4 py-6">
+      <main className="bg-gradient-to-b from-blue-50 via-violet-50 to-pink-50 pb-4">
+        <div className="max-w-2xl mx-auto px-4 py-4">
           
           {/* Profile Card */}
           <div className="bg-white rounded-3xl shadow-lg p-6 mb-6">
@@ -373,8 +372,6 @@ export default function ProfilePage() {
           </div>
         </div>
       </main>
-
-      <BottomNav />
     </>
   );
 }
