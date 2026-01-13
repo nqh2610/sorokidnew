@@ -818,7 +818,7 @@ async function getQuestStats(userId, calculatedStreak = 0) {
 
 /**
  * 🔧 Pre-load tất cả data cần thiết cho quest progress trong 1 batch
- * Giảm từ 20-50 queries xuống còn 4 queries
+ * Giảm từ 20-50 queries xuống còn 6 queries
  * @param {string} userId - User ID
  * @param {number} calculatedStreak - Streak đã tính từ activity data
  */
@@ -829,7 +829,7 @@ async function preloadQuestData(userId, calculatedStreak = 0) {
   const weekStart = new Date(today);
   weekStart.setDate(weekStart.getDate() - weekStart.getDay());
 
-  const [progressToday, progressWeek, exercisesToday, exercisesWeek, allLessons] = await Promise.all([
+  const [progressToday, progressWeek, exercisesToday, exercisesWeek, allLessons, userProgress, correctExercisesWeek] = await Promise.all([
     // Progress hoàn thành hôm nay
     prisma.progress.count({
       where: { userId, completed: true, completedAt: { gte: today } }
@@ -846,18 +846,46 @@ async function preloadQuestData(userId, calculatedStreak = 0) {
     prisma.exerciseResult.count({
       where: { userId, createdAt: { gte: weekStart } }
     }),
-    // Tổng số lessons
-    prisma.lesson.count()
-    // 🔥 Không cần query user.streak nữa - dùng calculatedStreak từ parameter
+    // Tổng số lessons (grouped by level)
+    prisma.lesson.groupBy({
+      by: ['levelId'],
+      _count: true
+    }),
+    // User progress (grouped by level) - để tính complete_levels
+    prisma.progress.groupBy({
+      by: ['levelId'],
+      where: { userId, completed: true },
+      _count: true
+    }),
+    // Exercises đúng tuần này - cho perfect_exercises
+    prisma.exerciseResult.count({
+      where: { userId, isCorrect: true, createdAt: { gte: weekStart } }
+    })
   ]);
+
+  // Tính số levels đã hoàn thành
+  const lessonsByLevel = {};
+  allLessons.forEach(l => { lessonsByLevel[l.levelId] = l._count; });
+  
+  const progressByLevel = {};
+  userProgress.forEach(p => { progressByLevel[p.levelId] = p._count; });
+  
+  let completedLevels = 0;
+  for (const levelId in lessonsByLevel) {
+    if ((progressByLevel[levelId] || 0) >= lessonsByLevel[levelId]) {
+      completedLevels++;
+    }
+  }
 
   return {
     progressToday,
     progressWeek,
     exercisesToday,
     exercisesWeek,
-    totalLessons: allLessons,
-    streak: calculatedStreak // 🔥 Dùng streak đã tính từ activity
+    totalLessons: Object.values(lessonsByLevel).reduce((a, b) => a + b, 0),
+    completedLevels,
+    correctExercisesWeek,
+    streak: calculatedStreak
   };
 }
 
@@ -882,9 +910,20 @@ function calculateQuestProgressSync(data, requirement) {
     
     case 'accurate_exercises':
     case 'perfect_exercises':
+      // Dùng correct exercises từ preloaded data
+      return Math.min(isWeekly ? data.correctExercisesWeek : data.exercisesToday, count);
+    
     case 'speed_exercises':
-      // Trả về giá trị estimate (không query thêm)
+      // Estimate từ exercises (không có data time)
       return Math.min(isDaily ? data.exercisesToday : data.exercisesWeek, count);
+    
+    case 'complete_levels':
+      // Dùng completedLevels từ preloaded data
+      return Math.min(data.completedLevels || 0, count);
+    
+    case 'accuracy_streak':
+      // Estimate từ correct exercises (không track streak chính xác)
+      return Math.min(data.correctExercisesWeek || 0, count);
     
     default:
       return 0;

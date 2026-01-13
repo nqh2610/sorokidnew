@@ -208,11 +208,11 @@ export const GET = withTimeout(async (request) => {
 }, 10000); // 10s timeout
 
 // Helper function to check achievements
-// 🔧 TỐI ƯU: Giảm queries và thêm early return
+// 🔧 TỐI ƯU: Giảm queries, batch check nhiều loại achievement
 async function checkAchievements(userId) {
   try {
-    // 🔧 FIX: Query nhẹ hơn - chỉ lấy fields cần thiết
-    const [user, unlockedIds, allAchievements] = await Promise.all([
+    // 🔧 FIX: Query tất cả data cần thiết trong 1 batch (5 queries parallel)
+    const [user, unlockedIds, allAchievements, threeStarCount, totalLessons] = await Promise.all([
       prisma.user.findUnique({
         where: { id: userId },
         select: {
@@ -232,7 +232,13 @@ async function checkAchievements(userId) {
       }),
       prisma.achievement.findMany({
         select: { id: true, name: true, requirement: true, stars: true, diamonds: true }
-      })
+      }),
+      // Đếm lessons đạt 3 sao
+      prisma.progress.count({
+        where: { userId, completed: true, starsEarned: 3 }
+      }),
+      // Tổng số lessons
+      prisma.lesson.count()
     ]);
 
     if (!user) return;
@@ -243,12 +249,14 @@ async function checkAchievements(userId) {
     // 🔧 FIX: Early return nếu không có achievement mới để check
     if (pendingAchievements.length === 0) return;
     
-    // 🔧 FIX: Giới hạn chỉ check 3 achievements mỗi lần để không block
-    const achievementsToCheck = pendingAchievements.slice(0, 3);
+    // Precompute data
+    const unlockedCount = unlockedIds.length;
+    const totalAchievements = allAchievements.length;
+    
+    // 🔧 FIX: Check TẤT CẢ pending achievements (không giới hạn 3)
     const achievementsToUnlock = [];
 
-    for (const achievement of achievementsToCheck) {
-      // 🔧 Safe JSON parse với fallback
+    for (const achievement of pendingAchievements) {
       let req = {};
       try {
         req = achievement.requirement ? JSON.parse(achievement.requirement) : {};
@@ -260,18 +268,43 @@ async function checkAchievements(userId) {
       let shouldUnlock = false;
       const targetCount = req.count || 0;
 
-      // 🔧 FIX BUG: Chỉ unlock khi target > 0 VÀ đạt target
       switch (req.type) {
+        // === LEARNING ===
         case 'complete_lessons':
           shouldUnlock = targetCount > 0 && user._count.progress >= targetCount;
           break;
+        case 'complete_all_lessons':
+          shouldUnlock = totalLessons > 0 && user._count.progress >= totalLessons;
+          break;
+          
+        // === STREAK ===
         case 'streak':
           shouldUnlock = targetCount > 0 && user.streak >= targetCount;
           break;
+          
+        // === EXERCISES ===
         case 'complete_exercises':
           shouldUnlock = targetCount > 0 && user._count.exercises >= targetCount;
           break;
-        // Skip complex checks to keep it fast
+          
+        // === MASTERY (3 sao) ===
+        case 'three_star_lessons':
+          shouldUnlock = targetCount > 0 && threeStarCount >= targetCount;
+          break;
+        case 'three_star_all_lessons':
+          shouldUnlock = totalLessons > 0 && threeStarCount >= totalLessons;
+          break;
+          
+        // === META ACHIEVEMENTS ===
+        case 'unlock_achievements':
+          shouldUnlock = targetCount > 0 && unlockedCount >= targetCount;
+          break;
+        case 'unlock_all_achievements':
+          // Đặc biệt: không đếm chính nó
+          shouldUnlock = totalAchievements > 1 && unlockedCount >= (totalAchievements - 1);
+          break;
+          
+        // Skip complex checks (compete, speed, etc.) - sẽ check ở nơi khác
         default:
           continue;
       }
@@ -303,7 +336,6 @@ async function checkAchievements(userId) {
       ]);
     }
   } catch (error) {
-    // 🔧 FIX: Fail fast - không propagate error
     console.error('Error checking achievements:', error.message);
   }
 }

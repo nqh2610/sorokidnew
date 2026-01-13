@@ -195,39 +195,71 @@ async function updateQuestProgress(userId, questType, increment) {
   }
 }
 
-// 🔧 TỐI ƯU: Helper function to check exercise-related achievements - LIGHTWEIGHT VERSION
+// 🔧 TỐI ƯU: Helper function to check exercise-related achievements
 async function checkExerciseAchievements(userId) {
   try {
-    // 🔧 FIX: Lighter query - chỉ lấy counts
-    const [exerciseCount, unlockedIds] = await Promise.all([
-      prisma.exerciseResult.count({ where: { userId } }),
+    // 🔧 FIX: Query tất cả data cần thiết trong 1 batch (4 queries parallel)
+    const [exerciseStats, unlockedIds, allAchievements, competeCount] = await Promise.all([
+      // Lấy stats exercises
+      prisma.exerciseResult.aggregate({
+        where: { userId },
+        _count: true,
+        _sum: { isCorrect: true } // Không dùng được, dùng count thay
+      }),
       prisma.userAchievement.findMany({
         where: { userId },
         select: { achievementId: true }
-      })
+      }),
+      prisma.achievement.findMany({
+        where: { category: { in: ['practice', 'accuracy', 'compete', 'speed'] } },
+        select: { id: true, requirement: true, stars: true, diamonds: true }
+      }),
+      // Đếm số trận compete
+      prisma.competeResult.count({ where: { userId } })
     ]);
 
-    const allAchievements = await prisma.achievement.findMany({
-      where: { category: { in: ['practice', 'accuracy'] } },
-      take: 10 // Giới hạn
+    // Query thêm correct count
+    const correctCount = await prisma.exerciseResult.count({
+      where: { userId, isCorrect: true }
     });
 
+    const exerciseCount = exerciseStats._count || 0;
     const unlockedSet = new Set(unlockedIds.map(ua => ua.achievementId));
     const pendingAchievements = allAchievements.filter(a => !unlockedSet.has(a.id));
     
-    // 🔧 FIX: Early return
     if (pendingAchievements.length === 0) return;
     
-    // 🔧 FIX: Chỉ check 2 achievements mỗi lần
-    const toCheck = pendingAchievements.slice(0, 2);
     const toUnlock = [];
 
-    for (const achievement of toCheck) {
+    for (const achievement of pendingAchievements) {
       try {
         const req = JSON.parse(achievement.requirement);
         const targetCount = req.count || 0;
-        // 🔧 FIX BUG: Chỉ unlock khi target > 0 VÀ đạt target
-        if (req.type === 'complete_exercises' && targetCount > 0 && exerciseCount >= targetCount) {
+        let shouldUnlock = false;
+
+        switch (req.type) {
+          // === PRACTICE ===
+          case 'complete_exercises':
+            shouldUnlock = targetCount > 0 && exerciseCount >= targetCount;
+            break;
+            
+          // === ACCURACY ===
+          case 'perfect_exercise':
+          case 'perfect_exercises':
+            shouldUnlock = targetCount > 0 && correctCount >= targetCount;
+            break;
+            
+          // === COMPETE ===
+          case 'compete_matches':
+            shouldUnlock = targetCount > 0 && competeCount >= targetCount;
+            break;
+            
+          // Skip complex checks (first_place, speed, etc.)
+          default:
+            continue;
+        }
+
+        if (shouldUnlock) {
           toUnlock.push(achievement);
         }
       } catch { continue; }

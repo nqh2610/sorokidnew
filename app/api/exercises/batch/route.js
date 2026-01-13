@@ -163,33 +163,50 @@ async function updateQuestProgress(userId, questType, increment) {
 // Helper: Check exercise achievements
 async function checkExerciseAchievements(userId) {
   try {
-    const [exerciseCount, unlockedIds] = await Promise.all([
+    // 🔧 FIX: Query tất cả data cần thiết trong 1 batch
+    const [exerciseCount, correctCount, unlockedIds, allAchievements, competeCount] = await Promise.all([
       prisma.exerciseResult.count({ where: { userId } }),
+      prisma.exerciseResult.count({ where: { userId, isCorrect: true } }),
       prisma.userAchievement.findMany({
         where: { userId },
         select: { achievementId: true }
-      })
+      }),
+      prisma.achievement.findMany({
+        where: { category: { in: ['practice', 'accuracy', 'compete', 'speed'] } },
+        select: { id: true, requirement: true, stars: true, diamonds: true }
+      }),
+      prisma.competeResult.count({ where: { userId } })
     ]);
-
-    const allAchievements = await prisma.achievement.findMany({
-      where: { category: { in: ['practice', 'accuracy'] } },
-      take: 10
-    });
 
     const unlockedSet = new Set(unlockedIds.map(ua => ua.achievementId));
     const pendingAchievements = allAchievements.filter(a => !unlockedSet.has(a.id));
     
     if (pendingAchievements.length === 0) return;
     
-    const toCheck = pendingAchievements.slice(0, 2);
     const toUnlock = [];
 
-    for (const achievement of toCheck) {
+    for (const achievement of pendingAchievements) {
       try {
         const req = JSON.parse(achievement.requirement);
         const targetCount = req.count || 0;
-        // 🔧 FIX BUG: Chỉ unlock khi target > 0 VÀ đạt target
-        if (req.type === 'complete_exercises' && targetCount > 0 && exerciseCount >= targetCount) {
+        let shouldUnlock = false;
+
+        switch (req.type) {
+          case 'complete_exercises':
+            shouldUnlock = targetCount > 0 && exerciseCount >= targetCount;
+            break;
+          case 'perfect_exercise':
+          case 'perfect_exercises':
+            shouldUnlock = targetCount > 0 && correctCount >= targetCount;
+            break;
+          case 'compete_matches':
+            shouldUnlock = targetCount > 0 && competeCount >= targetCount;
+            break;
+          default:
+            continue;
+        }
+
+        if (shouldUnlock) {
           toUnlock.push(achievement);
         }
       } catch { continue; }
