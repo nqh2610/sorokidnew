@@ -519,16 +519,15 @@ export default function FlashZan() {
               </div>
             )}
 
-            {/* Hint chạm - Chỉ hiện lần đầu khi chưa tạm dừng */}
-            {isRunning && !isPaused && currentIndex <= 1 && (
-              <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2
-                px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full
-                text-white/70 text-xs sm:text-sm animate-pulse" onClick={(e) => e.stopPropagation()}>
-                👆 Chạm màn hình để tạm dừng
+            {/* Hint/Pause indicator - Cùng vị trí, toggle theo trạng thái */}
+            {isRunning && !isPaused && (
+              <div className="absolute top-20 sm:top-24 left-1/2 -translate-x-1/2
+                px-4 py-2 bg-white/15 backdrop-blur-sm rounded-full
+                text-white/80 text-sm sm:text-base animate-pulse">
+                👆 Chạm để tạm dừng
               </div>
             )}
 
-            {/* Pause indicator - Giữa trên màn hình, dễ nhìn */}
             {isPaused && (
               <div className="absolute top-20 sm:top-24 left-1/2 -translate-x-1/2
                 px-4 py-2 sm:px-5 sm:py-3 bg-amber-500/95 backdrop-blur-sm rounded-xl
