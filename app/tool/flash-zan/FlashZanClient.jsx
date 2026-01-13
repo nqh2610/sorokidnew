@@ -361,19 +361,31 @@ export default function FlashZan() {
         {(isRunning || isFinished) && (
           <div 
             ref={flashDisplayRef}
+            onClick={() => {
+              // Click vào màn hình để tạm dừng/tiếp tục (chỉ khi đang chạy)
+              if (isRunning && !isFinished) {
+                togglePause();
+              }
+            }}
             className="fixed inset-0 z-50 bg-gradient-to-br from-gray-900 via-violet-900 to-pink-900
-              flex flex-col items-center justify-center">
+              flex flex-col items-center justify-center cursor-pointer select-none">
             
             {/* Top bar with ESC hint */}
             <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-4 py-3
-              bg-gradient-to-b from-black/60 to-transparent">
+              bg-gradient-to-b from-black/60 to-transparent" onClick={(e) => e.stopPropagation()}>
               <div className="text-white/80 text-sm">
                 ⚡ Flash ZAN
               </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm 
-                rounded-full text-white/80 text-sm">
-                <kbd className="px-2 py-0.5 bg-white/20 rounded font-mono font-bold text-xs">ESC</kbd>
-                <span>để thoát</span>
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm 
+                  rounded-full text-white/80 text-sm">
+                  <span>👆 Chạm để tạm dừng</span>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm 
+                  rounded-full text-white/80 text-sm">
+                  <kbd className="px-2 py-0.5 bg-white/20 rounded font-mono font-bold text-xs">ESC</kbd>
+                  <span>để thoát</span>
+                </div>
               </div>
               <button
                 onClick={stopFlash}
@@ -512,14 +524,7 @@ export default function FlashZan() {
 
             {/* Controls during flash */}
             {isRunning && (
-              <div className="absolute bottom-8 flex gap-4">
-                <button
-                  onClick={togglePause}
-                  className="px-6 py-3 bg-white/20 hover:bg-white/30 text-white 
-                    font-semibold rounded-full transition-all"
-                >
-                  {isPaused ? '▶️ Tiếp tục' : '⏸️ Tạm dừng'}
-                </button>
+              <div className="absolute bottom-8 flex gap-4" onClick={(e) => e.stopPropagation()}>
                 <button
                   onClick={stopFlash}
                   className="px-6 py-3 bg-red-500/80 hover:bg-red-500 text-white 
@@ -530,13 +535,14 @@ export default function FlashZan() {
               </div>
             )}
 
-            {/* Pause overlay */}
+            {/* Pause indicator - Nhỏ gọn ở góc, KHÔNG che số */}
             {isPaused && (
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-8xl mb-4">⏸️</div>
-                  <h3 className="text-4xl font-bold text-white">TẠM DỪNG</h3>
-                </div>
+              <div className="absolute top-24 left-1/2 -translate-x-1/2 
+                px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full
+                flex items-center gap-3 animate-pulse">
+                <span className="text-2xl">⏸️</span>
+                <span className="text-white font-bold text-lg">TẠM DỪNG</span>
+                <span className="text-white/70 text-sm">• Chạm để tiếp tục</span>
               </div>
             )}
 
