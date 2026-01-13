@@ -4,6 +4,11 @@
  * Layout cho tất cả trang tool với SEO metadata
  * Tối ưu cho: Google, Bing, AI Search
  * 
+ * 🚀 TỐI ƯU SHARED HOSTING:
+ * - Layout này được render tĩnh với metadata SEO
+ * - Client components trong page.jsx load sau hydration
+ * - 0 DB queries, 0 server process
+ * 
  * ĐỐI TƯỢNG SỬ DỤNG:
  * - GIÁO VIÊN: Tạo lớp học sôi nổi, học sinh tham gia chủ động
  * - PHỤ HUYNH: Tự tạo bài tập, chơi cùng con học tại nhà
@@ -14,6 +19,11 @@
  * - Toolbox ban đầu xây dựng cho giáo viên dạy Soroban
  * - Mở rộng cho giáo viên, phụ huynh, thuyết trình, họp nhóm
  */
+
+// ============ STATIC CONFIG ============
+// Force static generation cho layout
+export const dynamic = 'force-static';
+export const revalidate = false; // Không cần revalidate - static hoàn toàn
 
 export const metadata = {
   title: {

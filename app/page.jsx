@@ -1,18 +1,30 @@
 /**
- * 🚀 HOMEPAGE - STATIC GENERATION
+ * 🚀 HOMEPAGE - STATIC GENERATION + ISR
  * 
- * TỐI ƯU:
- * - Loại bỏ 'use client' cho phần lớn page (SSG)
- * - Dynamic import cho Soroban components (chỉ load khi cần)
- * - Giảm TTFB và LCP đáng kể
+ * TỐI ƯU CHO SHARED HOSTING:
+ * - Static Generation: HTML được build sẵn, 0 process runtime
+ * - ISR: Tự động rebuild mỗi 1 giờ nếu có request
+ * - Không query MySQL khi user truy cập
+ * - Bot Google crawl HTML sẵn có
  * 
  * SEO:
  * - Structured data JSON-LD
  * - Semantic HTML (header, main, section, footer)
  * - Proper heading hierarchy (h1 > h2 > h3)
+ * 
+ * PROCESS COUNT: 0 (sau khi build)
  */
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+
+// ============ STATIC GENERATION CONFIG ============
+// Revalidate mỗi 1 giờ (3600 giây)
+// Trang sẽ được rebuild tự động nếu có request sau 1 giờ
+export const revalidate = 3600;
+
+// Force static generation - QUAN TRỌNG!
+// Đảm bảo trang luôn được static, không dynamic
+export const dynamic = 'force-static';
 import Script from 'next/script';
 import { getAllPosts, formatDate, calculateReadingTime } from '@/lib/blog';
 import BlogImage from '@/components/Blog/BlogImage';

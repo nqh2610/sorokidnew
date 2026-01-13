@@ -12,7 +12,13 @@
  * - "team maker online" - global
  * - "random team generator" - popular
  * - "group randomizer" - educational
+ * 
+ * 🚀 TỐI ƯU: Static generation - 0 server process
  */
+
+// ============ STATIC CONFIG ============
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata = {
   title: 'Chia Nhóm Ngẫu Nhiên Online - Random Group Generator | Miễn Phí',

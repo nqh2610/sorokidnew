@@ -12,7 +12,13 @@
  * - "crossword generator" - popular
  * - "crossword puzzle maker" - educational
  * - "create crossword online" - global
+ * 
+ * 🚀 TỐI ƯU: Static generation - 0 server process
  */
+
+// ============ STATIC CONFIG ============
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata = {
   title: 'Trò Chơi Ô Chữ Online - Crossword Maker | Tạo Crossword Miễn Phí',

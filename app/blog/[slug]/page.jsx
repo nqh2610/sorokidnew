@@ -7,6 +7,11 @@
  * - Block trấn an phụ huynh
  * - CTA mềm cuối bài
  * - JSON-LD Schema cho SEO
+ * 
+ * 🚀 TỐI ƯU SHARED HOSTING:
+ * - Static Generation với generateStaticParams
+ * - ISR: Revalidate mỗi 1 giờ
+ * - 0 process runtime cho SEO pages
  */
 
 import Link from 'next/link';
@@ -23,6 +28,10 @@ import {
   generateFAQSchema
 } from '@/lib/blog';
 import BlogImage from '@/components/Blog/BlogImage';
+
+// ============ ISR CONFIG ============
+// Revalidate mỗi 1 giờ (3600 giây)
+export const revalidate = 3600;
 
 // Generate static params for all published posts
 export async function generateStaticParams() {

@@ -199,17 +199,24 @@ export default function FlashZan() {
     }, 0);
   }, [numbers]);
 
-  // ESC key handler
+  // Keyboard handler - ESC to exit, Space/Enter to pause/resume
   useEffect(() => {
-    const handleEsc = (e) => {
+    const handleKeyDown = (e) => {
+      // ESC to exit
       if (e.key === 'Escape' && (isRunning || isFinished)) {
         stopFlash();
+        return;
+      }
+      // Space or Enter to pause/resume (only when running, not finished)
+      if ((e.key === ' ' || e.key === 'Enter') && isRunning && !isFinished) {
+        e.preventDefault(); // Prevent page scroll on space
+        togglePause();
       }
     };
 
-    document.addEventListener('keydown', handleEsc);
-    return () => document.removeEventListener('keydown', handleEsc);
-  }, [isRunning, isFinished, stopFlash]);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isRunning, isFinished, stopFlash, togglePause]);
 
   // Cleanup
   useEffect(() => {
@@ -361,39 +368,48 @@ export default function FlashZan() {
         {(isRunning || isFinished) && (
           <div 
             ref={flashDisplayRef}
-            className="fixed inset-0 z-50 bg-gradient-to-br from-gray-900 via-violet-900 to-pink-900
-              flex flex-col items-center justify-center">
+            onClick={() => {
+              // Click vào màn hình để tạm dừng/tiếp tục (chỉ khi đang chạy)
+              if (isRunning && !isFinished) {
+                togglePause();
+              }
+            }}
+            className="fixed inset-0 z-[9999] bg-gradient-to-br from-gray-900 via-violet-900 to-pink-900
+              flex flex-col items-center justify-center cursor-pointer select-none">
             
-            {/* Top bar with ESC hint */}
-            <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-4 py-3
-              bg-gradient-to-b from-black/60 to-transparent">
-              <div className="text-white/80 text-sm">
-                ⚡ Flash ZAN
+            {/* Top bar - Responsive & Clean */}
+            <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3
+              bg-gradient-to-b from-black/70 to-transparent" onClick={(e) => e.stopPropagation()}>
+              
+              {/* Left: Logo + Title */}
+              <div className="text-white/90 text-sm sm:text-base flex items-center gap-1.5">
+                <span className="text-base sm:text-lg">⚡</span>
+                <span className="font-semibold hidden xs:inline">Flash ZAN</span>
               </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm 
-                rounded-full text-white/80 text-sm">
-                <kbd className="px-2 py-0.5 bg-white/20 rounded font-mono font-bold text-xs">ESC</kbd>
-                <span>để thoát</span>
+              
+              {/* Center: Progress counter */}
+              <div className="absolute left-1/2 -translate-x-1/2 text-white font-bold text-sm sm:text-base">
+                {currentIndex} / {numbers.length}
               </div>
+              
+              {/* Right: Exit button */}
               <button
                 onClick={stopFlash}
                 className="px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white text-sm
-                  rounded-lg transition-all"
+                  rounded-lg transition-all flex items-center gap-1"
               >
-                ✕ Thoát
+                <span>✕</span>
+                <span className="hidden sm:inline">Thoát</span>
               </button>
             </div>
             
             {/* Progress bar */}
-            <div className="absolute top-14 left-4 right-4">
-              <div className="h-2 bg-white/20 rounded-full overflow-hidden">
+            <div className="absolute top-11 sm:top-14 left-3 right-3 sm:left-4 sm:right-4">
+              <div className="h-1.5 sm:h-2 bg-white/20 rounded-full overflow-hidden">
                 <div 
                   className="h-full bg-gradient-to-r from-yellow-400 to-orange-500 transition-all duration-300"
                   style={{ width: `${(currentIndex / numbers.length) * 100}%` }}
                 />
-              </div>
-              <div className="text-white/60 text-sm mt-2 text-center">
-                {currentIndex} / {numbers.length}
               </div>
             </div>
 
@@ -460,91 +476,88 @@ export default function FlashZan() {
               </div>
             )}
 
-            {/* Answer Display - SUPER BIG for projector */}
+            {/* Answer Display - Responsive & Centered Layout */}
             {isFinished && showAnswer && (
-              <div className="text-center animate-bounceIn">
-                <div className="text-4xl sm:text-5xl text-white/70 mb-4 font-bold">
-                  🎯 ĐÁP ÁN
-                </div>
-                <div 
-                  className="font-black text-transparent bg-clip-text 
-                    bg-gradient-to-r from-yellow-300 via-green-300 to-cyan-300
-                    animate-pulse"
-                  style={{
-                    fontSize: 'min(35vw, 35vh, 400px)',
-                    lineHeight: 1,
-                    textShadow: '0 0 80px rgba(255,255,255,0.5), 0 0 160px rgba(74,222,128,0.4)'
-                  }}
-                >
-                  {calculateAnswer()}
+              <div className="flex flex-col items-center justify-center h-full w-full px-4 animate-bounceIn">
+                {/* Main content wrapper - căn giữa tuyệt đối */}
+                <div className="flex flex-col items-center justify-center flex-1 w-full max-w-4xl">
+                  {/* Answer number - Lớn nhất, nổi bật nhất */}
+                  <div 
+                    className="font-black text-transparent bg-clip-text 
+                      bg-gradient-to-r from-yellow-300 via-green-300 to-cyan-300
+                      leading-none"
+                    style={{
+                      fontSize: 'clamp(80px, 25vw, 300px)',
+                    }}
+                  >
+                    {calculateAnswer()}
+                  </div>
+                  
+                  {/* Summary - phía dưới số */}
+                  <div className="mt-2 sm:mt-4 text-sm sm:text-lg md:text-xl text-white/70">
+                    Tổng {numbers.length} số: {numbers.map(n => n.display).join(' ')}
+                  </div>
                 </div>
                 
-                {/* Summary */}
-                <div className="mt-8 text-xl text-white/60">
-                  Tổng {numbers.length} số: {numbers.map(n => n.display).join(' ')}
-                </div>
-                
-                <div className="flex gap-4 justify-center mt-8">
-                  <button
-                    onClick={() => setShowAnswer(false)}
-                    className="px-6 py-3 bg-white/20 hover:bg-white/30 text-white 
-                      font-semibold rounded-full text-lg transition-all"
-                  >
-                    ← Ẩn đáp án
-                  </button>
-                  <button
-                    onClick={startFlash}
-                    className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 
-                      text-white font-bold rounded-full text-xl hover:shadow-lg transition-all"
-                  >
-                    🔄 Làm lại
-                  </button>
-                  <button
-                    onClick={stopFlash}
-                    className="px-6 py-3 bg-white/20 hover:bg-white/30 text-white 
-                      font-semibold rounded-full text-lg transition-all"
-                  >
-                    ⚙️ Cài đặt
-                  </button>
+                {/* Buttons - cố định ở bottom */}
+                <div className="w-full pb-6 sm:pb-8">
+                  <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
+                    <button
+                      onClick={() => setShowAnswer(false)}
+                      className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/20 hover:bg-white/30 text-white 
+                        font-semibold rounded-full text-sm sm:text-base transition-all"
+                    >
+                      ← Ẩn
+                    </button>
+                    <button
+                      onClick={startFlash}
+                      className="px-6 py-2.5 sm:px-8 sm:py-3 bg-gradient-to-r from-yellow-400 to-orange-500 
+                        text-white font-bold rounded-full text-sm sm:text-lg hover:shadow-lg transition-all"
+                    >
+                      🔄 Làm lại
+                    </button>
+                    <button
+                      onClick={stopFlash}
+                      className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/20 hover:bg-white/30 text-white 
+                        font-semibold rounded-full text-sm sm:text-base transition-all"
+                    >
+                      ⚙️ Cài đặt
+                    </button>
+                  </div>
                 </div>
               </div>
             )}
 
-            {/* Controls during flash */}
-            {isRunning && (
-              <div className="absolute bottom-8 flex gap-4">
-                <button
-                  onClick={togglePause}
-                  className="px-6 py-3 bg-white/20 hover:bg-white/30 text-white 
-                    font-semibold rounded-full transition-all"
-                >
-                  {isPaused ? '▶️ Tiếp tục' : '⏸️ Tạm dừng'}
-                </button>
-                <button
-                  onClick={stopFlash}
-                  className="px-6 py-3 bg-red-500/80 hover:bg-red-500 text-white 
-                    font-semibold rounded-full transition-all"
-                >
-                  ⏹️ Dừng
-                </button>
+            {/* Hint/Pause indicator - Cùng vị trí, toggle theo trạng thái */}
+            {isRunning && !isPaused && (
+              <div className="absolute top-16 sm:top-20 left-1/2 -translate-x-1/2
+                px-3 py-1.5 sm:px-4 sm:py-2 bg-white/15 backdrop-blur-sm rounded-full
+                text-white/70 text-xs sm:text-sm animate-pulse text-center">
+                <span className="sm:hidden">👆 Chạm để dừng</span>
+                <span className="hidden sm:inline">Nhấn Space hoặc Click để tạm dừng</span>
               </div>
             )}
 
-            {/* Pause overlay */}
             {isPaused && (
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-8xl mb-4">⏸️</div>
-                  <h3 className="text-4xl font-bold text-white">TẠM DỪNG</h3>
+              <div className="absolute top-16 sm:top-20 left-1/2 -translate-x-1/2
+                px-3 py-1.5 sm:px-4 sm:py-2 bg-amber-500/95 backdrop-blur-sm rounded-xl
+                flex items-center gap-2 shadow-xl">
+                <span className="text-base sm:text-lg">⏸️</span>
+                <div className="text-left">
+                  <div className="text-white font-bold text-xs sm:text-sm">TẠM DỪNG</div>
+                  <div className="text-white/80 text-[10px] sm:text-xs">
+                    <span className="sm:hidden">Chạm để tiếp tục</span>
+                    <span className="hidden sm:inline">Space/Click để tiếp tục</span>
+                  </div>
                 </div>
               </div>
             )}
 
-            {/* LOGO SOROKID - Góc dưới trái */}
-            <div className="absolute bottom-3 left-3 z-[5] pointer-events-none select-none" aria-hidden="true">
-              <div className="flex items-center gap-1.5 opacity-60">
-                <LogoIcon size={22} />
-                <span className="text-xs font-bold tracking-tight text-white/80">SoroKid</span>
+            {/* Logo SoroKid - Góc dưới trái, không che nội dung */}
+            <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 pointer-events-none select-none">
+              <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-black/30 backdrop-blur-sm">
+                <LogoIcon size={18} />
+                <span className="text-xs font-bold text-white/80">SoroKid</span>
               </div>
             </div>
           </div>

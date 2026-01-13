@@ -12,7 +12,13 @@
  * - "team scoreboard" - popular
  * - "classroom points tracker" - educational
  * - "gamification classroom" - global
+ * 
+ * 🚀 TỐI ƯU: Static generation - 0 server process
  */
+
+// ============ STATIC CONFIG ============
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata = {
   title: 'Cuộc Đua Kì Thú - Classroom Scoreboard | Chấm Điểm Nhóm Miễn Phí',

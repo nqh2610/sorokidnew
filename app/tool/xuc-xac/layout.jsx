@@ -12,7 +12,13 @@
  * - "roll dice online" - popular
  * - "virtual dice" - global
  * - "3d dice roller" - trending
+ * 
+ * 🚀 TỐI ƯU: Static generation - 0 server process
  */
+
+// ============ STATIC CONFIG ============
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata = {
   title: 'Xúc Xắc 3D Online - Dice Roller | Lắc Xúc Xắc Ảo Miễn Phí',

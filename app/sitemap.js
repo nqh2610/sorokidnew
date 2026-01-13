@@ -29,6 +29,8 @@ const TOOL_PAGES = [
   { path: '/tool/ai-la-trieu-phu', priority: 0.8, changefreq: 'monthly' },
   { path: '/tool/cuoc-dua-ki-thu', priority: 0.8, changefreq: 'monthly' },
   { path: '/tool/xuc-xac', priority: 0.8, changefreq: 'monthly' },
+  { path: '/tool/o-chu', priority: 0.8, changefreq: 'monthly' },
+  { path: '/tool/chia-nhom-boc-tham', priority: 0.8, changefreq: 'monthly' },
 ];
 
 export default async function sitemap() {
@@ -52,18 +54,7 @@ export default async function sitemap() {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
-    {
-      url: `${BASE_URL}/learn`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/leaderboard`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.6,
-    },
+    // /learn, /practice, /adventure, /leaderboard - KHÔNG đưa vào sitemap vì cần login
   ];
 
   // 2. Tool pages - các trang công cụ giáo viên

@@ -37,34 +37,35 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Invalid phone number' }, { status: 400 });
     }
 
-    // 🔧 Kiểm tra email đã tồn tại
-    const existingEmail = await prisma.user.findUnique({
-      where: { email },
-      select: { id: true }
+    // � TỐI ƯU: Gộp 3 queries thành 1 query duy nhất
+    // Thay vì query email, username, phone riêng lẻ
+    // Dùng findFirst với OR để check tất cả trong 1 lần
+    const existingUser = await prisma.user.findFirst({
+      where: {
+        OR: [
+          { email: email.toLowerCase() },
+          { username: username.toLowerCase() },
+          { phone: cleanPhone },
+        ],
+      },
+      select: {
+        email: true,
+        username: true,
+        phone: true,
+      },
     });
 
-    if (existingEmail) {
-      return NextResponse.json({ error: 'Email already exists' }, { status: 409 });
-    }
-
-    // 🔧 Kiểm tra username đã tồn tại
-    const existingUsername = await prisma.user.findUnique({
-      where: { username },
-      select: { id: true }
-    });
-
-    if (existingUsername) {
-      return NextResponse.json({ error: 'Username already exists' }, { status: 409 });
-    }
-
-    // 🔧 Kiểm tra số điện thoại đã tồn tại
-    const existingPhone = await prisma.user.findFirst({
-      where: { phone: cleanPhone },
-      select: { id: true }
-    });
-
-    if (existingPhone) {
-      return NextResponse.json({ error: 'Phone already exists' }, { status: 409 });
+    if (existingUser) {
+      // Xác định field nào bị trùng để trả về lỗi cụ thể
+      if (existingUser.email === email.toLowerCase()) {
+        return NextResponse.json({ error: 'Email already exists' }, { status: 409 });
+      }
+      if (existingUser.username === username.toLowerCase()) {
+        return NextResponse.json({ error: 'Username already exists' }, { status: 409 });
+      }
+      if (existingUser.phone === cleanPhone) {
+        return NextResponse.json({ error: 'Phone already exists' }, { status: 409 });
+      }
     }
 
     // 🔧 TỐI ƯU: Hash password với cost factor 10 (cân bằng bảo mật/hiệu năng)

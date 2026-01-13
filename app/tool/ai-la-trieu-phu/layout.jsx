@@ -12,7 +12,13 @@
  * - "millionaire quiz game" - popular
  * - "quiz game for classroom" - educational
  * - "trivia game online" - global
+ * 
+ * 🚀 TỐI ƯU: Static generation - 0 server process
  */
+
+// ============ STATIC CONFIG ============
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata = {
   title: 'Ai Là Triệu Phú Online - Who Wants to Be a Millionaire | Quiz Game Miễn Phí',

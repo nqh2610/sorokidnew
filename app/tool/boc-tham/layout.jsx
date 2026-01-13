@@ -12,7 +12,13 @@
  * - "name picker wheel" - popular
  * - "random student picker" - educational
  * - "lucky draw online" - global
+ * 
+ * 🚀 TỐI ƯU: Static generation - 0 server process
  */
+
+// ============ STATIC CONFIG ============
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata = {
   title: 'Bốc Thăm Ngẫu Nhiên Online - Random Name Picker | Rút Thăm Miễn Phí',

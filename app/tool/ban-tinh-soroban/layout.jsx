@@ -12,7 +12,13 @@
  * - "online abacus" - popular
  * - "japanese abacus online" - educational
  * - "abacus simulator" - global
+ * 
+ * 🚀 TỐI ƯU: Static generation - 0 server process
  */
+
+// ============ STATIC CONFIG ============
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata = {
   title: 'Bàn Tính Soroban Online - Virtual Abacus Miễn Phí | Luyện Tập Soroban',

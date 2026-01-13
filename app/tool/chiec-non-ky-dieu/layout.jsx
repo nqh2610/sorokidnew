@@ -7,7 +7,13 @@
  * - "picker wheel" - 1,500 searches/month (international)
  * - "wheel of names" - 1,200 searches/month (international)
  * - "spin the wheel" - 2,800 searches/month (international)
+ * 
+ * 🚀 TỐI ƯU: Static generation - 0 server process
  */
+
+// ============ STATIC CONFIG ============
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata = {
   title: 'Chiếc Nón Kỳ Diệu Online - Vòng Quay May Mắn | Quay Số Ngẫu Nhiên Miễn Phí',

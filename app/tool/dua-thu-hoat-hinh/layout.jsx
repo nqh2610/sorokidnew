@@ -12,7 +12,13 @@
  * - "horse race game classroom" - educational
  * - "classroom racing game" - teachers
  * - "animal race game online" - global
+ * 
+ * 🚀 TỐI ƯU: Static generation - 0 server process
  */
+
+// ============ STATIC CONFIG ============
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata = {
   title: 'Đua Vịt Sông Nước - Game Đua Thú Online | Trò Chơi Lớp Học Miễn Phí',

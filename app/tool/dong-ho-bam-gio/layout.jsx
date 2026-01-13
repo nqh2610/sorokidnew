@@ -12,7 +12,13 @@
  * - "countdown timer online" - global
  * - "pomodoro timer" - popular
  * - "online timer for teachers" - educational
+ * 
+ * 🚀 TỐI ƯU: Static generation - 0 server process
  */
+
+// ============ STATIC CONFIG ============
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata = {
   title: 'Đồng Hồ Bấm Giờ Online - Timer Đếm Ngược Cho Lớp Học | Miễn Phí',

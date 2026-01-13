@@ -12,7 +12,13 @@
  * - "red light green light game" - popular
  * - "ice breaker games for classroom" - educational
  * - "lucky game online" - global
+ * 
+ * 🚀 TỐI ƯU: Static generation - 0 server process
  */
+
+// ============ STATIC CONFIG ============
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata = {
   title: 'Đèn May Mắn Online - Traffic Light Game | Ice Breaker Lớp Học Miễn Phí',

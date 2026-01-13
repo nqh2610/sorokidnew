@@ -12,7 +12,13 @@
  * - "mental math trainer" - educational
  * - "soroban flash cards" - global
  * - "abacus mental math" - trending
+ * 
+ * 🚀 TỐI ƯU: Static generation - 0 server process
  */
+
+// ============ STATIC CONFIG ============
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata = {
   title: 'Flash ZAN - Luyện Tính Nhẩm Nhanh Online | Flash Anzan Miễn Phí',

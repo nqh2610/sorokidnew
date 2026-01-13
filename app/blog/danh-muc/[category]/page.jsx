@@ -5,6 +5,11 @@
  * - Mobile-first, 1 cột
  * - Filter theo category
  * - Phân trang (SEO friendly)
+ * 
+ * 🚀 TỐI ƯU SHARED HOSTING:
+ * - Static Generation với generateStaticParams
+ * - ISR: Revalidate mỗi 30 phút
+ * - 0 process runtime
  */
 
 import Link from 'next/link';
@@ -12,6 +17,10 @@ import { notFound } from 'next/navigation';
 import { getPaginatedPosts, getCategories, getCategoryBySlug, formatDate, calculateReadingTime } from '@/lib/blog';
 import Pagination from '@/components/Blog/Pagination';
 import BlogImage from '@/components/Blog/BlogImage';
+
+// ============ ISR CONFIG ============
+// Revalidate mỗi 30 phút (1800 giây)
+export const revalidate = 1800;
 
 const POSTS_PER_PAGE = 9;
 

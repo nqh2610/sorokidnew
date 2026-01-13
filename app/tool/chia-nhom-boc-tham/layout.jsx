@@ -1,6 +1,12 @@
 /**
  * 🎲 Chia Nhóm & Bốc Thăm - SEO Metadata
+ * 
+ * 🚀 TỐI ƯU: Static generation - 0 server process
  */
+
+// ============ STATIC CONFIG ============
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata = {
   title: 'Chia Nhóm & Bốc Thăm - Tool 2 Trong 1 Cho Giáo Viên | SoroKid',

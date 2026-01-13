@@ -18,9 +18,11 @@ export default function robots() {
           '/dashboard/',
           '/profile/',
           '/edit-profile/',
-          '/practice/',
-          '/compete/',
-          '/certificate/',
+          '/learn/',       // Cần login
+          '/practice/',    // Cần login
+          '/compete/',     // Cần login
+          '/adventure/',   // Cần login
+          '/certificate/', // Cần login
           '/login',
           '/register',
           '/forgot-password',

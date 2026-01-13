@@ -1,12 +1,24 @@
 import { Suspense } from 'react';
 
+/**
+ * 🎮 ADVENTURE LAYOUT
+ * 
+ * ⚠️ LƯU Ý: Trang này CẦN LOGIN
+ * - KHÔNG index trên Google
+ * - KHÔNG đưa vào sitemap
+ */
+
 export const metadata = {
-  title: 'Đi Tìm Kho Báu Tri Thức - SoroKids Game',
-  description: 'Cùng Cú Soro khám phá vùng đất bí ẩn và tìm Kho Báu Tri Thức! Game học Soroban hấp dẫn dành cho trẻ em.',
-  openGraph: {
-    title: 'Đi Tìm Kho Báu Tri Thức - SoroKids Game',
-    description: 'Cùng Cú Soro khám phá vùng đất bí ẩn và tìm Kho Báu Tri Thức!',
-    type: 'website',
+  title: 'Đi Tìm Kho Báu Tri Thức | Sorokid',
+  description: 'Game học Soroban hấp dẫn dành cho trẻ em.',
+  // KHÔNG INDEX - trang cần login
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
   },
 };
 

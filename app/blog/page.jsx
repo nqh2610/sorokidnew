@@ -7,12 +7,21 @@
  * - Phân loại theo danh mục
  * - Phân trang (SEO friendly)
  * - SEO optimized
+ * 
+ * 🚀 TỐI ƯU SHARED HOSTING:
+ * - ISR: Revalidate mỗi 30 phút
+ * - Static HTML cho bot crawl
+ * - 0 process khi user truy cập
  */
 
 import Link from 'next/link';
 import { getPaginatedPosts, getAllPosts, getCategories, formatDate, calculateReadingTime } from '@/lib/blog';
 import Pagination from '@/components/Blog/Pagination';
 import BlogImage from '@/components/Blog/BlogImage';
+
+// ============ ISR CONFIG ============
+// Revalidate mỗi 30 phút (1800 giây)
+export const revalidate = 1800;
 
 const POSTS_PER_PAGE = 9;
 
