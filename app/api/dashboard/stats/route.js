@@ -770,7 +770,9 @@ async function getQuestStats(userId, calculatedStreak = 0) {
 
     // 🔧 FIX: Tính progress từ preloaded data (không query DB)
     const realProgress = calculateQuestProgressSync(preloadedData, requirement);
-    const isCompleted = realProgress >= (requirement.count || 0);
+    const targetCount = requirement.count || 0;
+    // 🔧 FIX BUG: Chỉ completed khi target > 0 VÀ progress >= target
+    const isCompleted = targetCount > 0 && realProgress >= targetCount;
 
     // 🔧 FIX: Thu thập upsert thay vì execute ngay
     if (realProgress > 0 || isCompleted) {

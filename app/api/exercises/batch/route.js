@@ -141,13 +141,15 @@ async function updateQuestProgress(userId, questType, increment) {
 
     const upsertOps = relevantQuests.slice(0, 3).map(quest => {
       const req = JSON.parse(quest.requirement);
+      const targetCount = req.count || 0;
       const userQuest = userQuests.find(uq => uq.questId === quest.id);
       const newProgress = (userQuest?.progress || 0) + increment;
-      const completed = newProgress >= req.count;
+      // 🔧 FIX BUG: Chỉ completed khi target > 0 VÀ progress >= target
+      const completed = targetCount > 0 && newProgress >= targetCount;
 
       return prisma.userQuest.upsert({
         where: { userId_questId: { userId, questId: quest.id } },
-        create: { userId, questId: quest.id, progress: increment, completed: increment >= req.count },
+        create: { userId, questId: quest.id, progress: increment, completed: targetCount > 0 && increment >= targetCount },
         update: { progress: newProgress, completed }
       });
     });

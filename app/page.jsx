@@ -15,7 +15,7 @@
  * PROCESS COUNT: 0 (sau khi build)
  */
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
+import dynamicImport from 'next/dynamic';
 
 // ============ STATIC GENERATION CONFIG ============
 // Revalidate mỗi 1 giờ (3600 giây)
@@ -822,14 +822,14 @@ import Logo from '@/components/Logo/Logo';
 import MainNav from '@/components/MainNav/MainNav';
 
 // � PWA Install Banner (client component)
-const PWAInstallBanner = dynamic(
+const PWAInstallBanner = dynamicImport(
   () => import('@/components/PWAInstaller/PWAInstaller'),
   { ssr: false }
 );
 
 // �🔧 DYNAMIC IMPORTS: Chỉ load Soroban components ở client khi cần
 // Giảm ~30% initial JS bundle
-const SorobanBoard = dynamic(
+const SorobanBoard = dynamicImport(
   () => import('@/components/Soroban/SorobanBoard'),
   { 
     ssr: false,
