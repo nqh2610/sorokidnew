@@ -66,139 +66,196 @@ export default function LeaderboardPage() {
   const top3 = leaderboard.slice(0, 3);
   const rest = leaderboard.slice(3, 10);
 
+  // Podium heights cho desktop
   const podiumHeights = {
-    0: 'h-32 sm:h-40',  // 1st place
-    1: 'h-24 sm:h-32',  // 2nd place
-    2: 'h-16 sm:h-24'   // 3rd place
+    0: 'h-28 md:h-36',  // 1st place
+    1: 'h-20 md:h-28',  // 2nd place
+    2: 'h-14 md:h-20'   // 3rd place
   };
+
+  // Podium order: [2nd, 1st, 3rd] cho desktop
+  const podiumOrder = [1, 0, 2];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50">
       <TopBar showStats={true} />
       
-      <div className="max-w-6xl mx-auto p-4 sm:p-6">
-        <div className="text-center mb-6 sm:mb-8">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
+      <div className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6">
+        {/* Header */}
+        <div className="text-center mb-5 sm:mb-6 md:mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
             🏆 Bảng Xếp Hạng 🏆
           </h2>
           <p className="text-sm sm:text-base text-gray-600">Top học viên xuất sắc nhất</p>
         </div>
 
-        {/* Top 3 Podium */}
-        <div className="mb-6 sm:mb-8 flex items-end justify-center gap-2 sm:gap-4">
-          {/* 2nd Place */}
-          {top3[1] && (
-            <div className="flex-1 max-w-xs">
-              <div className="bg-gradient-to-br from-gray-200 to-gray-400 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center shadow-xl">
-                <div className="text-4xl sm:text-6xl mb-2 sm:mb-3">🥈</div>
-                <div className="flex justify-center mb-2">
+        {/* Top 3 - Mobile: Vertical cards, Desktop: Podium */}
+        <div className="mb-5 sm:mb-6 md:mb-8">
+          
+          {/* Mobile Layout: Vertical cards */}
+          <div className="md:hidden space-y-3">
+            {top3.map((player, index) => {
+              const medals = ['🥇', '🥈', '🥉'];
+              const bgColors = [
+                'bg-gradient-to-r from-yellow-100 to-yellow-200 border-yellow-400',
+                'bg-gradient-to-r from-gray-100 to-gray-200 border-gray-400',
+                'bg-gradient-to-r from-orange-100 to-orange-200 border-orange-400'
+              ];
+              const textColors = ['text-yellow-700', 'text-gray-700', 'text-orange-700'];
+              
+              return (
+                <div key={player.id} 
+                  className={`${bgColors[index]} border-2 rounded-2xl p-3 flex items-center gap-3 shadow-lg`}>
+                  {/* Rank */}
+                  <div className="text-3xl flex-shrink-0">{medals[index]}</div>
+                  
+                  {/* Avatar */}
                   <MonsterAvatar 
-                    seed={top3[1].id || top3[1].email}
-                    avatarIndex={getAvatarIndex(top3[1])}
-                    size={56}
-                    className="border-2 border-gray-500"
+                    seed={player.id || player.email}
+                    avatarIndex={getAvatarIndex(player)}
+                    size={48}
                     showBorder={false}
                   />
+                  
+                  {/* Info */}
+                  <div className="flex-1 min-w-0">
+                    <div className="font-bold text-gray-800 truncate">{player.name}</div>
+                    <LevelBadgeInline totalStars={player.totalStars || 0} />
+                  </div>
+                  
+                  {/* Stars */}
+                  <div className={`text-lg font-bold ${textColors[index]} flex-shrink-0`}>
+                    ⭐ {(player.totalStars || 0).toLocaleString()}
+                  </div>
                 </div>
-                <div className="text-lg sm:text-xl font-bold text-gray-800 truncate" title={top3[1].name}>
-                  {top3[1].name}
-                </div>
-                <div className="my-2">
-                  <LevelBadgeInline totalStars={top3[1].totalStars || 0} />
-                </div>
-                <div className="text-xl sm:text-2xl font-bold text-gray-700">⭐ {(top3[1].totalStars || 0).toLocaleString()}</div>
-              </div>
-              <div className={`${podiumHeights[1]} bg-gradient-to-b from-gray-300 to-gray-400 rounded-t-2xl sm:rounded-t-3xl mt-2`} />
-            </div>
-          )}
+              );
+            })}
+          </div>
 
-          {/* 1st Place */}
-          {top3[0] && (
-            <div className="flex-1 max-w-xs">
-              <div className="bg-gradient-to-br from-yellow-200 to-yellow-500 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center shadow-2xl relative">
-                <div className="absolute -top-4 sm:-top-6 left-1/2 -translate-x-1/2 animate-bounce text-3xl sm:text-4xl">
-                  👑
+          {/* Desktop Layout: Podium */}
+          <div className="hidden md:flex items-end justify-center gap-3 lg:gap-4">
+            {podiumOrder.map((playerIndex) => {
+              const player = top3[playerIndex];
+              if (!player) return null;
+              
+              const isFirst = playerIndex === 0;
+              const isSecond = playerIndex === 1;
+              
+              const podiumStyles = {
+                0: {
+                  card: 'bg-gradient-to-br from-yellow-200 to-yellow-400',
+                  podium: 'bg-gradient-to-b from-yellow-400 to-yellow-600',
+                  medal: '🏆',
+                  medalSize: 'text-5xl lg:text-6xl',
+                  textColor: 'text-yellow-800',
+                  avatarSize: 60,
+                  crown: true
+                },
+                1: {
+                  card: 'bg-gradient-to-br from-gray-200 to-gray-400',
+                  podium: 'bg-gradient-to-b from-gray-300 to-gray-400',
+                  medal: '🥈',
+                  medalSize: 'text-4xl lg:text-5xl',
+                  textColor: 'text-gray-700',
+                  avatarSize: 52,
+                  crown: false
+                },
+                2: {
+                  card: 'bg-gradient-to-br from-orange-200 to-orange-400',
+                  podium: 'bg-gradient-to-b from-orange-300 to-orange-500',
+                  medal: '🥉',
+                  medalSize: 'text-4xl lg:text-5xl',
+                  textColor: 'text-orange-700',
+                  avatarSize: 52,
+                  crown: false
+                }
+              };
+              
+              const style = podiumStyles[playerIndex];
+              
+              return (
+                <div key={player.id} className={`flex-1 max-w-[200px] ${isFirst ? 'order-2' : isSecond ? 'order-1' : 'order-3'}`}>
+                  <div className={`${style.card} rounded-2xl p-4 lg:p-5 text-center shadow-xl relative`}>
+                    {/* Crown for 1st */}
+                    {style.crown && (
+                      <div className="absolute -top-5 left-1/2 -translate-x-1/2 animate-bounce text-2xl lg:text-3xl">
+                        👑
+                      </div>
+                    )}
+                    
+                    {/* Medal */}
+                    <div className={`${style.medalSize} mb-2`}>{style.medal}</div>
+                    
+                    {/* Avatar */}
+                    <div className="flex justify-center mb-2">
+                      <MonsterAvatar 
+                        seed={player.id || player.email}
+                        avatarIndex={getAvatarIndex(player)}
+                        size={style.avatarSize}
+                        showBorder={false}
+                      />
+                    </div>
+                    
+                    {/* Name */}
+                    <div className="font-bold text-gray-800 truncate text-base lg:text-lg" title={player.name}>
+                      {player.name}
+                    </div>
+                    
+                    {/* Level Badge */}
+                    <div className="my-1.5">
+                      <LevelBadgeInline totalStars={player.totalStars || 0} />
+                    </div>
+                    
+                    {/* Stars */}
+                    <div className={`text-lg lg:text-xl font-bold ${style.textColor}`}>
+                      ⭐ {(player.totalStars || 0).toLocaleString()}
+                    </div>
+                  </div>
+                  
+                  {/* Podium */}
+                  <div className={`${podiumHeights[playerIndex]} ${style.podium} rounded-t-2xl mt-2`} />
                 </div>
-                <div className="text-5xl sm:text-7xl mb-2 sm:mb-3">🏆</div>
-                <div className="flex justify-center mb-2">
-                  <MonsterAvatar 
-                    seed={top3[0].id || top3[0].email}
-                    avatarIndex={getAvatarIndex(top3[0])}
-                    size={64}
-                    className="border-2 border-yellow-600"
-                    showBorder={false}
-                  />
-                </div>
-                <div className="text-xl sm:text-2xl font-bold text-gray-800 truncate" title={top3[0].name}>
-                  {top3[0].name}
-                </div>
-                <div className="my-2">
-                  <LevelBadgeInline totalStars={top3[0].totalStars || 0} />
-                </div>
-                <div className="text-2xl sm:text-3xl font-bold text-yellow-800">⭐ {(top3[0].totalStars || 0).toLocaleString()}</div>
-              </div>
-              <div className={`${podiumHeights[0]} bg-gradient-to-b from-yellow-400 to-yellow-600 rounded-t-2xl sm:rounded-t-3xl mt-2`} />
-            </div>
-          )}
-
-          {/* 3rd Place */}
-          {top3[2] && (
-            <div className="flex-1 max-w-xs">
-              <div className="bg-gradient-to-br from-orange-200 to-orange-400 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center shadow-xl">
-                <div className="text-4xl sm:text-6xl mb-2 sm:mb-3">🥉</div>
-                <div className="flex justify-center mb-2">
-                  <MonsterAvatar 
-                    seed={top3[2].id || top3[2].email}
-                    avatarIndex={getAvatarIndex(top3[2])}
-                    size={56}
-                    className="border-2 border-orange-500"
-                    showBorder={false}
-                  />
-                </div>
-                <div className="text-lg sm:text-xl font-bold text-gray-800 truncate" title={top3[2].name}>
-                  {top3[2].name}
-                </div>
-                <div className="my-2">
-                  <LevelBadgeInline totalStars={top3[2].totalStars || 0} />
-                </div>
-                <div className="text-xl sm:text-2xl font-bold text-orange-700">⭐ {(top3[2].totalStars || 0).toLocaleString()}</div>
-              </div>
-              <div className={`${podiumHeights[2]} bg-gradient-to-b from-orange-300 to-orange-500 rounded-t-2xl sm:rounded-t-3xl mt-2`} />
-            </div>
-          )}
+              );
+            })}
+          </div>
         </div>
 
         {/* Top 4-10 */}
         {rest.length > 0 && (
-          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden">
-            <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-4 sm:p-6 text-white">
-              <h3 className="text-xl sm:text-2xl font-bold">Top 10</h3>
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div className="bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-3 sm:p-4 text-white">
+              <h3 className="text-lg sm:text-xl font-bold">Top 4-10</h3>
             </div>
-            <div className="divide-y">
+            <div className="divide-y divide-gray-100">
               {rest.map((player, i) => (
                 <div
                   key={player.id}
-                  className="flex items-center justify-between p-4 sm:p-6 hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-3 p-3 sm:p-4 hover:bg-gray-50 transition-colors"
                 >
-                  <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
-                      {i + 4}
-                    </div>
-                    <MonsterAvatar 
-                      seed={player.id || player.email}
-                      avatarIndex={getAvatarIndex(player)}
-                      size={44}
-                      className="border-2 border-blue-200 flex-shrink-0"
-                      showBorder={false}
-                    />
-                    <div className="min-w-0 flex-1">
-                      <div className="font-bold text-base sm:text-lg text-gray-800 truncate" title={player.name}>
-                        {player.name}
-                      </div>
-                      <LevelBadgeInline totalStars={player.totalStars || 0} />
-                    </div>
+                  {/* Rank number */}
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full 
+                    flex items-center justify-center text-white font-bold text-sm sm:text-base flex-shrink-0">
+                    {i + 4}
                   </div>
-                  <div className="text-lg sm:text-xl font-bold text-purple-600 flex-shrink-0">
+                  
+                  {/* Avatar */}
+                  <MonsterAvatar 
+                    seed={player.id || player.email}
+                    avatarIndex={getAvatarIndex(player)}
+                    size={40}
+                    showBorder={false}
+                  />
+                  
+                  {/* Name & Level */}
+                  <div className="flex-1 min-w-0">
+                    <div className="font-bold text-sm sm:text-base text-gray-800 truncate" title={player.name}>
+                      {player.name}
+                    </div>
+                    <LevelBadgeInline totalStars={player.totalStars || 0} />
+                  </div>
+                  
+                  {/* Stars */}
+                  <div className="text-base sm:text-lg font-bold text-purple-600 flex-shrink-0">
                     ⭐ {(player.totalStars || 0).toLocaleString()}
                   </div>
                 </div>

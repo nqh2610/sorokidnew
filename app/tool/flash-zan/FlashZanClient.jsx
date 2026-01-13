@@ -199,17 +199,24 @@ export default function FlashZan() {
     }, 0);
   }, [numbers]);
 
-  // ESC key handler
+  // Keyboard handler - ESC to exit, Space/Enter to pause/resume
   useEffect(() => {
-    const handleEsc = (e) => {
+    const handleKeyDown = (e) => {
+      // ESC to exit
       if (e.key === 'Escape' && (isRunning || isFinished)) {
         stopFlash();
+        return;
+      }
+      // Space or Enter to pause/resume (only when running, not finished)
+      if ((e.key === ' ' || e.key === 'Enter') && isRunning && !isFinished) {
+        e.preventDefault(); // Prevent page scroll on space
+        togglePause();
       }
     };
 
-    document.addEventListener('keydown', handleEsc);
-    return () => document.removeEventListener('keydown', handleEsc);
-  }, [isRunning, isFinished, stopFlash]);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isRunning, isFinished, stopFlash, togglePause]);
 
   // Cleanup
   useEffect(() => {
@@ -367,7 +374,7 @@ export default function FlashZan() {
                 togglePause();
               }
             }}
-            className="fixed inset-0 z-50 bg-gradient-to-br from-gray-900 via-violet-900 to-pink-900
+            className="fixed inset-0 z-[9999] bg-gradient-to-br from-gray-900 via-violet-900 to-pink-900
               flex flex-col items-center justify-center cursor-pointer select-none">
             
             {/* Top bar - Responsive & Clean */}
@@ -469,78 +476,90 @@ export default function FlashZan() {
               </div>
             )}
 
-            {/* Answer Display - SUPER BIG for projector */}
+            {/* Answer Display - Responsive & Centered Layout */}
             {isFinished && showAnswer && (
-              <div className="text-center animate-bounceIn">
-                <div className="text-4xl sm:text-5xl text-white/70 mb-4 font-bold">
-                  🎯 ĐÁP ÁN
-                </div>
-                <div 
-                  className="font-black text-transparent bg-clip-text 
-                    bg-gradient-to-r from-yellow-300 via-green-300 to-cyan-300
-                    animate-pulse"
-                  style={{
-                    fontSize: 'min(35vw, 35vh, 400px)',
-                    lineHeight: 1,
-                    textShadow: '0 0 80px rgba(255,255,255,0.5), 0 0 160px rgba(74,222,128,0.4)'
-                  }}
-                >
-                  {calculateAnswer()}
+              <div className="flex flex-col items-center justify-center h-full w-full px-4 animate-bounceIn">
+                {/* Main content wrapper - căn giữa tuyệt đối */}
+                <div className="flex flex-col items-center justify-center flex-1 w-full max-w-4xl">
+                  {/* Answer number - Lớn nhất, nổi bật nhất */}
+                  <div 
+                    className="font-black text-transparent bg-clip-text 
+                      bg-gradient-to-r from-yellow-300 via-green-300 to-cyan-300
+                      leading-none"
+                    style={{
+                      fontSize: 'clamp(80px, 25vw, 300px)',
+                    }}
+                  >
+                    {calculateAnswer()}
+                  </div>
+                  
+                  {/* Summary - phía dưới số */}
+                  <div className="mt-2 sm:mt-4 text-sm sm:text-lg md:text-xl text-white/70">
+                    Tổng {numbers.length} số: {numbers.map(n => n.display).join(' ')}
+                  </div>
                 </div>
                 
-                {/* Summary */}
-                <div className="mt-8 text-xl text-white/60">
-                  Tổng {numbers.length} số: {numbers.map(n => n.display).join(' ')}
-                </div>
-                
-                <div className="flex gap-4 justify-center mt-8">
-                  <button
-                    onClick={() => setShowAnswer(false)}
-                    className="px-6 py-3 bg-white/20 hover:bg-white/30 text-white 
-                      font-semibold rounded-full text-lg transition-all"
-                  >
-                    ← Ẩn đáp án
-                  </button>
-                  <button
-                    onClick={startFlash}
-                    className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 
-                      text-white font-bold rounded-full text-xl hover:shadow-lg transition-all"
-                  >
-                    🔄 Làm lại
-                  </button>
-                  <button
-                    onClick={stopFlash}
-                    className="px-6 py-3 bg-white/20 hover:bg-white/30 text-white 
-                      font-semibold rounded-full text-lg transition-all"
-                  >
-                    ⚙️ Cài đặt
-                  </button>
+                {/* Buttons - cố định ở bottom */}
+                <div className="w-full pb-6 sm:pb-8">
+                  <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
+                    <button
+                      onClick={() => setShowAnswer(false)}
+                      className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/20 hover:bg-white/30 text-white 
+                        font-semibold rounded-full text-sm sm:text-base transition-all"
+                    >
+                      ← Ẩn
+                    </button>
+                    <button
+                      onClick={startFlash}
+                      className="px-6 py-2.5 sm:px-8 sm:py-3 bg-gradient-to-r from-yellow-400 to-orange-500 
+                        text-white font-bold rounded-full text-sm sm:text-lg hover:shadow-lg transition-all"
+                    >
+                      🔄 Làm lại
+                    </button>
+                    <button
+                      onClick={stopFlash}
+                      className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/20 hover:bg-white/30 text-white 
+                        font-semibold rounded-full text-sm sm:text-base transition-all"
+                    >
+                      ⚙️ Cài đặt
+                    </button>
+                  </div>
                 </div>
               </div>
             )}
 
             {/* Hint/Pause indicator - Cùng vị trí, toggle theo trạng thái */}
             {isRunning && !isPaused && (
-              <div className="absolute top-20 sm:top-24 left-1/2 -translate-x-1/2
-                px-4 py-2 bg-white/15 backdrop-blur-sm rounded-full
-                text-white/80 text-sm sm:text-base animate-pulse">
-                👆 Chạm để tạm dừng
+              <div className="absolute top-16 sm:top-20 left-1/2 -translate-x-1/2
+                px-3 py-1.5 sm:px-4 sm:py-2 bg-white/15 backdrop-blur-sm rounded-full
+                text-white/70 text-xs sm:text-sm animate-pulse text-center">
+                <span className="sm:hidden">👆 Chạm để dừng</span>
+                <span className="hidden sm:inline">Nhấn Space hoặc Click để tạm dừng</span>
               </div>
             )}
 
             {isPaused && (
-              <div className="absolute top-20 sm:top-24 left-1/2 -translate-x-1/2
-                px-4 py-2 sm:px-5 sm:py-3 bg-amber-500/95 backdrop-blur-sm rounded-xl
+              <div className="absolute top-16 sm:top-20 left-1/2 -translate-x-1/2
+                px-3 py-1.5 sm:px-4 sm:py-2 bg-amber-500/95 backdrop-blur-sm rounded-xl
                 flex items-center gap-2 shadow-xl">
-                <span className="text-lg sm:text-xl">⏸️</span>
+                <span className="text-base sm:text-lg">⏸️</span>
                 <div className="text-left">
-                  <div className="text-white font-bold text-sm sm:text-base">TẠM DỪNG</div>
-                  <div className="text-white/80 text-xs sm:text-sm">Chạm để tiếp tục</div>
+                  <div className="text-white font-bold text-xs sm:text-sm">TẠM DỪNG</div>
+                  <div className="text-white/80 text-[10px] sm:text-xs">
+                    <span className="sm:hidden">Chạm để tiếp tục</span>
+                    <span className="hidden sm:inline">Space/Click để tiếp tục</span>
+                  </div>
                 </div>
               </div>
             )}
 
-            {/* Logo đã có ở top bar - không cần thêm */}
+            {/* Logo SoroKid - Góc dưới trái, không che nội dung */}
+            <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 pointer-events-none select-none">
+              <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-black/30 backdrop-blur-sm">
+                <LogoIcon size={18} />
+                <span className="text-xs font-bold text-white/80">SoroKid</span>
+              </div>
+            </div>
           </div>
         )}
       </div>
