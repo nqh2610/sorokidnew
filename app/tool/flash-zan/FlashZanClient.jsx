@@ -528,26 +528,20 @@ export default function FlashZan() {
               </div>
             )}
 
-            {/* Pause indicator - Góc dưới phải, nhỏ gọn, KHÔNG che số */}
+            {/* Pause indicator - Giữa trên màn hình, dễ nhìn */}
             {isPaused && (
-              <div className="absolute bottom-4 right-3 sm:bottom-6 sm:right-4
-                px-3 py-2 sm:px-4 sm:py-3 bg-amber-500/95 backdrop-blur-sm rounded-xl
+              <div className="absolute top-20 sm:top-24 left-1/2 -translate-x-1/2
+                px-4 py-2 sm:px-5 sm:py-3 bg-amber-500/95 backdrop-blur-sm rounded-xl
                 flex items-center gap-2 shadow-xl">
                 <span className="text-lg sm:text-xl">⏸️</span>
                 <div className="text-left">
-                  <div className="text-white font-bold text-xs sm:text-sm">TẠM DỪNG</div>
-                  <div className="text-white/80 text-[10px] sm:text-xs">Chạm để tiếp tục</div>
+                  <div className="text-white font-bold text-sm sm:text-base">TẠM DỪNG</div>
+                  <div className="text-white/80 text-xs sm:text-sm">Chạm để tiếp tục</div>
                 </div>
               </div>
             )}
 
-            {/* LOGO SOROKID - Góc dưới trái, chỉ hiện 1 */}
-            <div className="absolute bottom-3 left-3 z-[5] pointer-events-none select-none" aria-hidden="true">
-              <div className="flex items-center gap-1 opacity-50">
-                <LogoIcon size={18} />
-                <span className="text-[10px] sm:text-xs font-bold text-white/70 hidden sm:inline">SoroKid</span>
-              </div>
-            </div>
+            {/* Logo đã có ở top bar - không cần thêm */}
           </div>
         )}
       </div>
