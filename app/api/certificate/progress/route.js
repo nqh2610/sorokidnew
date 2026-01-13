@@ -239,19 +239,21 @@ function calculateProgress(config, progressData, exerciseData, competeData, user
   // 2. Tính tiến độ Practice
   if (req.practice) {
     const modeStats = {};
+    const minCorrectTarget = req.practice.minCorrect || 0;
     req.practice.modes.forEach(mode => {
       const modeExercises = exerciseData.filter(
         e => e.exerciseType === mode && e.difficulty >= req.practice.minDifficulty && e.isCorrect
       );
       modeStats[mode] = {
         correct: modeExercises.length,
-        isComplete: modeExercises.length >= req.practice.minCorrect
+        // 🔧 FIX: Chỉ complete khi target > 0 VÀ đạt target
+        isComplete: minCorrectTarget > 0 && modeExercises.length >= minCorrectTarget
       };
     });
 
     const completedModes = Object.values(modeStats).filter(s => s.isComplete).length;
     const totalModes = req.practice.modes.length;
-    const percent = (completedModes / totalModes) * req.practice.weight;
+    const percent = totalModes > 0 ? (completedModes / totalModes) * req.practice.weight : 0;
 
     details.practice = {
       modes: modeStats,
@@ -262,7 +264,8 @@ function calculateProgress(config, progressData, exerciseData, competeData, user
       percent: Math.round(percent * 10) / 10,
       maxPercent: req.practice.weight,
       description: req.practice.description,
-      isComplete: completedModes >= totalModes
+      // 🔧 FIX: Chỉ complete khi totalModes > 0
+      isComplete: totalModes > 0 && completedModes >= totalModes
     };
     totalPercent += percent;
 
@@ -286,8 +289,10 @@ function calculateProgress(config, progressData, exerciseData, competeData, user
       e => e.exerciseType === 'mentalMath' && e.isCorrect
     );
     const correct = mentalExercises.length;
-    const isComplete = correct >= req.mentalMath.minCorrect;
-    const percent = isComplete ? req.mentalMath.weight : (correct / req.mentalMath.minCorrect) * req.mentalMath.weight;
+    const minCorrectTarget = req.mentalMath.minCorrect || 0;
+    // 🔧 FIX: Chỉ complete khi target > 0 VÀ đạt target
+    const isComplete = minCorrectTarget > 0 && correct >= minCorrectTarget;
+    const percent = isComplete ? req.mentalMath.weight : (minCorrectTarget > 0 ? (correct / minCorrectTarget) * req.mentalMath.weight : 0);
 
     details.mentalMath = {
       correct,
@@ -317,8 +322,10 @@ function calculateProgress(config, progressData, exerciseData, competeData, user
       return level >= req.flashAnzan.minLevel && e.isCorrect;
     });
     const correct = flashExercises.length;
-    const isComplete = correct >= req.flashAnzan.minCorrect;
-    const percent = isComplete ? req.flashAnzan.weight : (correct / req.flashAnzan.minCorrect) * req.flashAnzan.weight;
+    const minCorrectTarget = req.flashAnzan.minCorrect || 0;
+    // 🔧 FIX: Chỉ complete khi target > 0 VÀ đạt target
+    const isComplete = minCorrectTarget > 0 && correct >= minCorrectTarget;
+    const percent = isComplete ? req.flashAnzan.weight : (minCorrectTarget > 0 ? (correct / minCorrectTarget) * req.flashAnzan.weight : 0);
 
     const levelNames = { 1: 'Ánh Nến', 2: 'Ánh Trăng', 3: 'Tia Chớp', 4: 'Sao Băng', 5: 'Big Bang' };
 
@@ -346,13 +353,15 @@ function calculateProgress(config, progressData, exerciseData, competeData, user
   // 5. Tính tiến độ Compete
   if (req.compete) {
     const modeStats = {};
+    const minCompeteCorrect = req.compete.minCorrect || 0;
     req.compete.modes.forEach(mode => {
       // arenaId format: "mode-difficulty-questionCount"
       const modeCompetes = competeData.filter(c => {
         const [arenaMode, arenaDiff] = c.arenaId.split('-');
+        // 🔧 FIX: Chỉ count khi minCorrect > 0
         return arenaMode === mode && 
                parseInt(arenaDiff) >= req.compete.minDifficulty &&
-               c.correct >= req.compete.minCorrect;
+               minCompeteCorrect > 0 && c.correct >= minCompeteCorrect;
       });
       modeStats[mode] = {
         bestCorrect: modeCompetes.length > 0 ? Math.max(...modeCompetes.map(c => c.correct)) : 0,
@@ -363,7 +372,7 @@ function calculateProgress(config, progressData, exerciseData, competeData, user
 
     const completedModes = Object.values(modeStats).filter(s => s.isComplete).length;
     const totalModes = req.compete.modes.length;
-    const percent = (completedModes / totalModes) * req.compete.weight;
+    const percent = totalModes > 0 ? (completedModes / totalModes) * req.compete.weight : 0;
 
     details.compete = {
       modes: modeStats,
@@ -374,7 +383,8 @@ function calculateProgress(config, progressData, exerciseData, competeData, user
       percent: Math.round(percent * 10) / 10,
       maxPercent: req.compete.weight,
       description: req.compete.description,
-      isComplete: completedModes >= totalModes
+      // 🔧 FIX: Chỉ complete khi totalModes > 0
+      isComplete: totalModes > 0 && completedModes >= totalModes
     };
     totalPercent += percent;
 
@@ -397,7 +407,9 @@ function calculateProgress(config, progressData, exerciseData, competeData, user
     const totalExercises = exerciseData.length;
     const correctExercises = exerciseData.filter(e => e.isCorrect).length;
     const accuracy = totalExercises > 0 ? Math.round((correctExercises / totalExercises) * 100) : 0;
-    const isComplete = accuracy >= req.accuracy.minAccuracy;
+    const minAccuracyTarget = req.accuracy.minAccuracy || 0;
+    // 🔧 FIX: Chỉ complete khi target > 0 VÀ đạt target
+    const isComplete = minAccuracyTarget > 0 && accuracy >= minAccuracyTarget;
     const percent = isComplete ? req.accuracy.weight : 0;
 
     details.accuracy = {
@@ -422,8 +434,10 @@ function calculateProgress(config, progressData, exerciseData, competeData, user
   // 7. Tính Streak (nếu có yêu cầu)
   if (req.streak) {
     const currentStreak = userStreak || 0;
-    const isComplete = currentStreak >= req.streak.minDays;
-    const percent = isComplete ? req.streak.weight : (currentStreak / req.streak.minDays) * req.streak.weight;
+    const minDaysTarget = req.streak.minDays || 0;
+    // 🔧 FIX: Chỉ complete khi target > 0 VÀ đạt target
+    const isComplete = minDaysTarget > 0 && currentStreak >= minDaysTarget;
+    const percent = isComplete ? req.streak.weight : (minDaysTarget > 0 ? (currentStreak / minDaysTarget) * req.streak.weight : 0);
 
     details.streak = {
       current: currentStreak,
