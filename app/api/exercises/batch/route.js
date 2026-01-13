@@ -163,7 +163,7 @@ async function updateQuestProgress(userId, questType, increment) {
 // Helper: Check exercise achievements
 async function checkExerciseAchievements(userId) {
   try {
-    // 🔧 FIX: Query tất cả data cần thiết trong 1 batch
+    // 🔧 FIX: Query tất cả data cần thiết trong 1 batch (5 queries parallel)
     const [exerciseCount, correctCount, unlockedIds, allAchievements, competeCount] = await Promise.all([
       prisma.exerciseResult.count({ where: { userId } }),
       prisma.exerciseResult.count({ where: { userId, isCorrect: true } }),
@@ -172,7 +172,7 @@ async function checkExerciseAchievements(userId) {
         select: { achievementId: true }
       }),
       prisma.achievement.findMany({
-        where: { category: { in: ['practice', 'accuracy', 'compete', 'speed'] } },
+        where: { category: { in: ['practice', 'accuracy', 'compete'] } },
         select: { id: true, requirement: true, stars: true, diamonds: true }
       }),
       prisma.competeResult.count({ where: { userId } })

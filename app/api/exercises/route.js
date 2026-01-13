@@ -198,32 +198,26 @@ async function updateQuestProgress(userId, questType, increment) {
 // 🔧 TỐI ƯU: Helper function to check exercise-related achievements
 async function checkExerciseAchievements(userId) {
   try {
-    // 🔧 FIX: Query tất cả data cần thiết trong 1 batch (4 queries parallel)
-    const [exerciseStats, unlockedIds, allAchievements, competeCount] = await Promise.all([
-      // Lấy stats exercises
-      prisma.exerciseResult.aggregate({
-        where: { userId },
-        _count: true,
-        _sum: { isCorrect: true } // Không dùng được, dùng count thay
-      }),
+    // 🔧 FIX: Query tất cả data cần thiết trong 1 batch (5 queries parallel)
+    const [exerciseCount, correctCount, unlockedIds, allAchievements, competeCount] = await Promise.all([
+      // Tổng số exercises
+      prisma.exerciseResult.count({ where: { userId } }),
+      // Số exercises đúng
+      prisma.exerciseResult.count({ where: { userId, isCorrect: true } }),
+      // Achievements đã unlock
       prisma.userAchievement.findMany({
         where: { userId },
         select: { achievementId: true }
       }),
+      // Tất cả achievements liên quan
       prisma.achievement.findMany({
-        where: { category: { in: ['practice', 'accuracy', 'compete', 'speed'] } },
+        where: { category: { in: ['practice', 'accuracy', 'compete'] } },
         select: { id: true, requirement: true, stars: true, diamonds: true }
       }),
-      // Đếm số trận compete
+      // Số trận compete
       prisma.competeResult.count({ where: { userId } })
     ]);
 
-    // Query thêm correct count
-    const correctCount = await prisma.exerciseResult.count({
-      where: { userId, isCorrect: true }
-    });
-
-    const exerciseCount = exerciseStats._count || 0;
     const unlockedSet = new Set(unlockedIds.map(ua => ua.achievementId));
     const pendingAchievements = allAchievements.filter(a => !unlockedSet.has(a.id));
     
