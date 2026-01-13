@@ -187,7 +187,9 @@ async function checkExerciseAchievements(userId) {
     for (const achievement of toCheck) {
       try {
         const req = JSON.parse(achievement.requirement);
-        if (req.type === 'complete_exercises' && exerciseCount >= req.count) {
+        const targetCount = req.count || 0;
+        // 🔧 FIX BUG: Chỉ unlock khi target > 0 VÀ đạt target
+        if (req.type === 'complete_exercises' && targetCount > 0 && exerciseCount >= targetCount) {
           toUnlock.push(achievement);
         }
       } catch { continue; }

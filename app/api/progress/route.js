@@ -258,16 +258,18 @@ async function checkAchievements(userId) {
       }
       
       let shouldUnlock = false;
+      const targetCount = req.count || 0;
 
+      // 🔧 FIX BUG: Chỉ unlock khi target > 0 VÀ đạt target
       switch (req.type) {
         case 'complete_lessons':
-          shouldUnlock = user._count.progress >= req.count;
+          shouldUnlock = targetCount > 0 && user._count.progress >= targetCount;
           break;
         case 'streak':
-          shouldUnlock = user.streak >= req.count;
+          shouldUnlock = targetCount > 0 && user.streak >= targetCount;
           break;
         case 'complete_exercises':
-          shouldUnlock = user._count.exercises >= req.count;
+          shouldUnlock = targetCount > 0 && user._count.exercises >= targetCount;
           break;
         // Skip complex checks to keep it fast
         default:
