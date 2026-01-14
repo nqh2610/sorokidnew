@@ -124,14 +124,53 @@ export async function middleware(request) {
     return NextResponse.next();
   }
 
-  // 🌍 I18N: Detect locale từ URL
-  // URL gốc = tiếng Việt (đã index), /en/... = tiếng Anh
-  const locale = getLocaleFromPath(pathname);
+  // 🌍 I18N: Detect locale
+  // Ưu tiên: 1. URL prefix (/en/) → 2. Cookie đã lưu → 3. Browser language → 4. Default (vi)
+  const urlLocale = getLocaleFromPath(pathname);
+  const savedLocale = request.cookies.get(I18N_COOKIE)?.value;
+  const browserLocale = detectLocaleFromHeader(request.headers.get('accept-language'));
+  
+  // Xác định locale cuối cùng
+  let locale;
+  let shouldRedirect = false;
+  
+  if (urlLocale === 'en') {
+    // User đang ở URL /en/... → dùng EN
+    locale = 'en';
+  } else if (savedLocale && I18N_LOCALES.includes(savedLocale)) {
+    // User có cookie đã lưu → redirect đến locale đã lưu nếu khác với URL hiện tại
+    locale = savedLocale;
+    // Nếu cookie = 'en' nhưng URL là tiếng Việt (không có /en/) → redirect sang /en/
+    if (savedLocale === 'en' && urlLocale === 'vi') {
+      shouldRedirect = true;
+    }
+  } else {
+    // Lần đầu tiên → detect từ browser
+    locale = browserLocale;
+    // Nếu browser là EN nhưng URL là VI → redirect sang /en/
+    if (locale === 'en' && urlLocale === 'vi') {
+      shouldRedirect = true;
+    }
+  }
+  
+  // 🔥 Redirect user đến đúng locale nếu cần
+  if (shouldRedirect && locale === 'en') {
+    const newUrl = new URL(`/en${pathname === '/' ? '' : pathname}`, request.url);
+    newUrl.search = request.nextUrl.search; // Giữ query params
+    const redirectResponse = NextResponse.redirect(newUrl);
+    // Lưu locale vào cookie
+    redirectResponse.cookies.set(I18N_COOKIE, locale, {
+      path: '/',
+      maxAge: 365 * 24 * 60 * 60, // 1 năm
+      sameSite: 'lax',
+    });
+    return redirectResponse;
+  }
   
   // 🔥 Nếu là /en/... → rewrite về URL gốc + set cookie EN
   // Ví dụ: /en/blog → rewrite to /blog, set cookie = 'en'
   let rewriteUrl = null;
-  if (locale === 'en') {
+  if (urlLocale === 'en') {
     const pathWithoutEn = removeLocalePrefix(pathname);
     rewriteUrl = new URL(pathWithoutEn, request.url);
   }
