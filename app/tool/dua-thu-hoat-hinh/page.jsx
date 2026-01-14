@@ -15,9 +15,8 @@ const DuaThuClient = dynamic(
     ssr: false,
     loading: () => (
       <ToolLoadingSkeleton 
-        toolName="Đua Vịt Sông Nước"
+        toolKey="animalRace"
         toolIcon="🦆"
-        message="Đang chuẩn bị đường đua..."
       />
     ),
   }

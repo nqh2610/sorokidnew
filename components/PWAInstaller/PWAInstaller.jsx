@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Download, Share, Smartphone } from 'lucide-react';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 /**
  * 📱 PWA INSTALL BANNER
@@ -10,6 +11,7 @@ import { Download, Share, Smartphone } from 'lucide-react';
  * - Nếu user gỡ app rồi cài lại, banner sẽ hiện lại bình thường
  */
 export default function PWAInstallBanner() {
+  const { t } = useI18n();
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isIOS, setIsIOS] = useState(false);
   const [showTip, setShowTip] = useState(false);
@@ -93,8 +95,8 @@ export default function PWAInstallBanner() {
               <span className="text-xl">✅</span>
             </div>
             <div className="flex-1">
-              <p className="text-white font-bold text-sm">Đã cài Sorokid App!</p>
-              <p className="text-white/80 text-xs">Cảm ơn bạn 💜</p>
+              <p className="text-white font-bold text-sm">{t('pwa.installed')}</p>
+              <p className="text-white/80 text-xs">{t('pwa.thanks')}</p>
             </div>
           </div>
         </div>
@@ -116,8 +118,8 @@ export default function PWAInstallBanner() {
               <span className="text-xl">🦉</span>
             </div>
             <div>
-              <h3 className="text-white font-bold text-sm">Tải App Sorokid</h3>
-              <p className="text-white/80 text-xs">Học Soroban mọi lúc</p>
+              <h3 className="text-white font-bold text-sm">{t('pwa.downloadApp')}</h3>
+              <p className="text-white/80 text-xs">{t('pwa.learnAnytime')}</p>
             </div>
           </div>
           <button
@@ -125,7 +127,7 @@ export default function PWAInstallBanner() {
             className="w-full py-2.5 bg-white text-violet-600 rounded-xl font-bold text-sm shadow flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
           >
             <Download size={16} />
-            Cài đặt App
+            {t('pwa.installApp')}
           </button>
         </div>
 
@@ -135,15 +137,15 @@ export default function PWAInstallBanner() {
             <span className="text-2xl">🦉</span>
           </div>
           <div className="flex-1">
-            <h3 className="text-white font-bold">Tải App Sorokid</h3>
-            <p className="text-white/80 text-sm">Học Soroban mọi lúc mọi nơi</p>
+            <h3 className="text-white font-bold">{t('pwa.downloadApp')}</h3>
+            <p className="text-white/80 text-sm">{t('pwa.learnAnytimeAnywhere')}</p>
           </div>
           <button
             onClick={handleInstall}
             className="px-6 py-2.5 bg-white text-violet-600 rounded-xl font-bold text-sm shadow hover:shadow-lg hover:bg-violet-50 active:scale-95 transition-all flex items-center gap-2"
           >
             <Download size={16} />
-            Cài đặt
+            {t('pwa.install')}
           </button>
         </div>
       </div>
@@ -157,18 +159,18 @@ export default function PWAInstallBanner() {
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-gray-800 font-bold text-sm mb-2">
-                {isIOS ? 'Cài trên iPhone/iPad:' : 'Cài trên Android:'}
+                {isIOS ? t('pwa.iosTitle') : t('pwa.androidTitle')}
               </p>
               <div className="space-y-1.5 text-xs text-gray-600">
                 {isIOS ? (
                   <>
-                    <p>1. Nhấn nút <strong className="text-blue-600">Chia sẻ</strong> <Share size={12} className="inline text-blue-600" /></p>
-                    <p>2. Chọn <strong>"Thêm vào MH chính"</strong></p>
+                    <p>{t('pwa.iosStep1')} <strong className="text-blue-600">{t('pwa.share')}</strong> <Share size={12} className="inline text-blue-600" /> {t('pwa.button')}</p>
+                    <p>{t('pwa.iosStep2')} <strong>&quot;{t('pwa.addToHome')}&quot;</strong></p>
                   </>
                 ) : (
                   <>
-                    <p>1. Nhấn <strong>⋮</strong> góc phải trên</p>
-                    <p>2. Chọn <strong>"Cài đặt ứng dụng"</strong></p>
+                    <p>{t('pwa.androidStep1')} <strong>{t('pwa.menuIcon')}</strong> {t('pwa.topRight')}</p>
+                    <p>{t('pwa.androidStep2')} <strong>&quot;{t('pwa.installAppOption')}&quot;</strong></p>
                   </>
                 )}
               </div>
@@ -178,7 +180,7 @@ export default function PWAInstallBanner() {
             onClick={() => setShowTip(false)}
             className="mt-3 w-full py-2 text-xs text-gray-500 hover:bg-gray-50 rounded-lg"
           >
-            Đã hiểu ✓
+            {t('pwa.gotIt')}
           </button>
         </div>
       )}

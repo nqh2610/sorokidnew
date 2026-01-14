@@ -2,13 +2,14 @@
 
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { PlayCircle, Lock, CheckCircle, Star, Clock, ChevronRight, BookOpen, Crown, Sparkles, ChevronLeft } from 'lucide-react';
 import TopBar from '@/components/TopBar/TopBar';
 import StarBadge from '@/components/Rewards/StarBadge';
 import { useUpgradeModal } from '@/components/UpgradeModal';
 import { useSwipeNavigation } from '@/lib/useSwipeNavigation';
+import { useI18n } from '@/lib/i18n/I18nContext';
+import { useLocalizedUrl } from '@/components/LocalizedLink';
 
 // Fallback colors cho levels (nếu database không có)
 const LEVEL_COLORS = {
@@ -32,19 +33,29 @@ const LEVEL_COLORS = {
   18: 'from-amber-500 to-orange-500',
 };
 
-// Tier info
-const TIER_INFO = {
-  free: { name: 'Miễn phí', color: 'from-gray-400 to-gray-500', icon: '🆓', maxLevel: 5 },
-  basic: { name: 'Cơ Bản', color: 'from-blue-400 to-blue-600', icon: '⭐', maxLevel: 10 },
-  advanced: { name: 'Nâng Cao', color: 'from-purple-500 to-pink-500', icon: '💎', maxLevel: 18 },
-  vip: { name: 'VIP', color: 'from-amber-400 to-orange-500', icon: '👑', maxLevel: 18 }
+// Tier info config (text loaded via i18n)
+const TIER_CONFIG = {
+  free: { color: 'from-gray-400 to-gray-500', icon: '🆓', maxLevel: 5 },
+  basic: { color: 'from-blue-400 to-blue-600', icon: '⭐', maxLevel: 10 },
+  advanced: { color: 'from-purple-500 to-pink-500', icon: '💎', maxLevel: 18 },
+  vip: { color: 'from-amber-400 to-orange-500', icon: '👑', maxLevel: 18 }
 };
 
+// Helper to get tier info with i18n
+const getTierInfo = (t) => ({
+  free: { name: t('tier.free'), ...TIER_CONFIG.free },
+  basic: { name: t('tier.basic'), ...TIER_CONFIG.basic },
+  advanced: { name: t('tier.advanced'), ...TIER_CONFIG.advanced },
+  vip: { name: t('tier.vip'), ...TIER_CONFIG.vip }
+});
+
 export default function LearnPage() {
+  const { t } = useI18n();
   const { status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
   const levelFromUrl = searchParams.get('level');
+  const localizeUrl = useLocalizedUrl();
   
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [levels, setLevels] = useState([]);
@@ -118,9 +129,9 @@ export default function LearnPage() {
 
   useEffect(() => {
     if (status === 'unauthenticated') {
-      router.push('/login');
+      router.push(localizeUrl('/login'));
     }
-  }, [status, router]);
+  }, [status, router, localizeUrl]);
 
   // Fetch levels từ database
   useEffect(() => {
@@ -194,7 +205,7 @@ export default function LearnPage() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
         <div className="text-center">
           <div className="text-5xl animate-spin mb-4">🧮</div>
-          <p className="text-gray-600">Đang tải bài học...</p>
+          <p className="text-gray-600">{t('learn.loading')}</p>
         </div>
       </div>
     );
@@ -206,6 +217,7 @@ export default function LearnPage() {
   const maxStars = lessons.reduce((sum, l) => sum + (l.stars || 3), 0);
   const rawTotalStars = lessons.reduce((sum, l) => sum + (l.starsEarned || 0), 0);
   const totalStars = Math.min(rawTotalStars, maxStars);
+  const TIER_INFO = getTierInfo(t);
   const tierInfo = TIER_INFO[userTier] || TIER_INFO.free;
 
   return (
@@ -220,8 +232,8 @@ export default function LearnPage() {
         {/* Title */}
         <div className="bg-white rounded-2xl p-6 shadow-xl mb-6">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">🎮 Hành trình chinh phục Soroban</h1>
-            <p className="text-gray-600">{levels.length} màn chơi • Từ người mới đến siêu sao!</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">🎮 {t('learn.journeyTitle')}</h1>
+            <p className="text-gray-600">{levels.length} {t('learn.levels')} • {t('learn.journeyDesc')}</p>
           </div>
         </div>
 
@@ -457,7 +469,7 @@ export default function LearnPage() {
                         ? 'opacity-50 cursor-not-allowed' 
                         : 'hover:bg-gray-50 cursor-pointer hover:scale-[1.01]'
                     }`}
-                    onClick={() => !isLocked && router.push(`/learn/${lesson.levelId}/${lesson.lessonId}`)}
+                    onClick={() => !isLocked && router.push(localizeUrl(`/learn/${lesson.levelId}/${lesson.lessonId}`))}
                   >
                     {/* Lesson Number */}
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg ${

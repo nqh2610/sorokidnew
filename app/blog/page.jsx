@@ -14,7 +14,7 @@
  * - 0 process khi user truy cập
  */
 
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink/LocalizedLink';
 import { getPaginatedPosts, getAllPosts, getCategories, formatDate, calculateReadingTime } from '@/lib/blog';
 import Pagination from '@/components/Blog/Pagination';
 import BlogImage from '@/components/Blog/BlogImage';
@@ -77,7 +77,7 @@ const CategoryIcon = ({ icon, className }) => {
 function ArticleCard({ post, category, featured = false }) {
   return (
     <article className={`bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300 group ${featured ? 'lg:flex' : 'flex flex-col h-full'}`}>
-      <Link href={`/blog/${post.slug}`} className={`block ${featured ? 'lg:flex lg:w-full' : 'flex flex-col h-full'}`}>
+      <LocalizedLink href={`/blog/${post.slug}`} className={`block ${featured ? 'lg:flex lg:w-full' : 'flex flex-col h-full'}`}>
         {/* Thumbnail */}
         <div className={`relative bg-gradient-to-br from-violet-100 to-pink-100 ${featured ? 'lg:w-2/5 h-48 sm:h-56 lg:h-auto min-h-[200px]' : 'h-40 sm:h-48'}`}>
           <div className="w-full h-full relative">
@@ -128,7 +128,7 @@ function ArticleCard({ post, category, featured = false }) {
             </span>
           </div>
         </div>
-      </Link>
+      </LocalizedLink>
     </article>
   );
 }
@@ -136,7 +136,7 @@ function ArticleCard({ post, category, featured = false }) {
 // Category Card Component
 function CategoryCard({ category }) {
   return (
-    <Link 
+    <LocalizedLink 
       href={`/blog/danh-muc/${category.slug}`}
       className="flex flex-col p-4 bg-white rounded-xl border border-gray-100 hover:border-violet-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 group"
     >
@@ -152,7 +152,7 @@ function CategoryCard({ category }) {
       <p className="text-xs text-gray-500 line-clamp-2 leading-relaxed">
         {category.description || 'Xem bài viết'}
       </p>
-    </Link>
+    </LocalizedLink>
   );
 }
 
@@ -274,18 +274,18 @@ export default function BlogPage({ searchParams }) {
               Sorokid giúp con tự học toán qua trò chơi – phụ huynh đỡ phải kèm mà con vẫn tiến bộ.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
+              <LocalizedLink 
                 href="/register"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-violet-600 font-bold rounded-xl hover:bg-gray-100 transition-colors shadow-xl"
               >
                 Cho con thử miễn phí
-              </Link>
-              <Link 
+              </LocalizedLink>
+              <LocalizedLink 
                 href="/"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white/20 backdrop-blur text-white font-medium rounded-xl hover:bg-white/30 transition-colors border border-white/30"
               >
                 Tìm hiểu thêm về Sorokid
-              </Link>
+              </LocalizedLink>
             </div>
           </div>
         </section>

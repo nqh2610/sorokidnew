@@ -9,20 +9,20 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export const metadata = {
-  title: 'Chia Nhóm & Bốc Thăm - Tool 2 Trong 1 Cho Giáo Viên | SoroKid',
-  description: 'Công cụ chia nhóm ngẫu nhiên kết hợp bốc thăm học sinh. Tự động chọn nhóm trưởng, animation đẹp mắt. Miễn phí, không cần đăng nhập.',
+  title: 'Group Maker & Name Picker - 2-in-1 Tool for Teachers | SoroKid',
+  description: 'Random group generator combined with student picker. Auto-select team leaders, beautiful animations. Free, no login required.',
   keywords: [
-    'chia nhóm ngẫu nhiên',
-    'bốc thăm học sinh', 
-    'tool chia nhóm',
+    'random group generator',
+    'student picker', 
+    'group maker tool',
     'random team generator',
-    'tool giáo viên',
-    'chia nhóm lớp học',
+    'teacher tools',
+    'classroom group maker',
     'random student picker'
   ],
   openGraph: {
-    title: 'Chia Nhóm & Bốc Thăm - Tool 2 Trong 1',
-    description: 'Chia nhóm ngẫu nhiên + Bốc thăm học sinh trong cùng 1 tool. Tiện lợi cho giáo viên!',
+    title: 'Group Maker & Name Picker - 2-in-1 Tool',
+    description: 'Random group generator + Student picker in one tool. Convenient for teachers!',
     type: 'website',
     images: ['/blog/chia-nhom-hoc-sinh.jpg'],
   },

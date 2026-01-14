@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { useLocalizedUrl } from '@/components/LocalizedLink';
 
 /**
  * 🎯 AUTO-START PRACTICE PAGE
@@ -15,6 +16,7 @@ import { useSession } from 'next-auth/react';
 export default function AutoPracticePage() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const localizeUrl = useLocalizedUrl();
   const searchParams = useSearchParams();
   
   const [loading, setLoading] = useState(true);
@@ -24,7 +26,7 @@ export default function AutoPracticePage() {
     if (status === 'loading') return;
     
     if (status === 'unauthenticated') {
-      router.push('/login');
+      router.push(localizeUrl('/login'));
       return;
     }
 
@@ -91,9 +93,9 @@ export default function AutoPracticePage() {
     sessionStorage.setItem('practiceAutoStart', JSON.stringify(autoStartData));
     
     // Redirect đến Practice page
-    router.replace('/practice');
+    router.replace(localizeUrl('/practice'));
     
-  }, [status, router, searchParams]);
+  }, [status, router, localizeUrl, searchParams]);
 
   // Loading state
   if (loading && !error) {
@@ -127,7 +129,7 @@ export default function AutoPracticePage() {
           <h2 className="text-xl font-bold text-gray-800 mb-2">Có lỗi xảy ra</h2>
           <p className="text-gray-600 mb-4">{error}</p>
           <button
-            onClick={() => router.push('/adventure')}
+            onClick={() => router.push(localizeUrl('/adventure'))}
             className="px-6 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors"
           >
             Quay lại Map

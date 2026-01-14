@@ -21,8 +21,8 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export const metadata = {
-  title: 'Đua Vịt Sông Nước - Game Đua Thú Online | Trò Chơi Lớp Học Miễn Phí',
-  description: 'Đua Vịt Sông Nước - Game đua thú hồi hộp MIỄN PHÍ cho lớp học. Nhập tên học sinh, bắt đầu cuộc đua sôi động với vịt, rùa, cua, cá. Hoạt động khởi động tiết học vui nhộn! Duck race game online.',
+  title: 'Animal Race Game - Online Racing Game | Free Classroom Game',
+  description: 'Animal Race - FREE exciting racing game for classroom. Enter student names, start a lively race with ducks, turtles, crabs, fish. Fun lesson warm-up activity! Duck race game online.',
   keywords: [
     // Primary keywords
     'đua vịt',
@@ -56,8 +56,8 @@ export const metadata = {
     'trò chơi máy chiếu',
   ],
   openGraph: {
-    title: 'Đua Vịt Sông Nước - Game Đua Thú Vui Nhộn Cho Lớp Học',
-    description: 'Game đua vịt hồi hộp! Nhập tên học sinh và bắt đầu cuộc đua sôi động. Miễn phí, không cần đăng nhập!',
+    title: 'Animal Race - Fun Racing Game for Classroom',
+    description: 'Exciting animal racing game! Enter student names and start a lively race. Free, no login required!',
     url: 'https://sorokid.com/tool/dua-thu-hoat-hinh',
     siteName: 'SoroKid Toolbox',
     images: [
@@ -73,8 +73,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Đua Vịt Sông Nước - Game Đua Thú Online',
-    description: 'Game đua vịt hồi hộp cho lớp học. Nhập tên và bắt đầu đua!',
+    title: 'Animal Race - Online Racing Game',
+    description: 'Exciting animal racing game for classroom. Enter names and start racing!',
     images: ['/blog/dua-thu-hoat-hinh-game-dua-ngua-tao-dong-luc-hoc-tap.png'],
   },
   alternates: {

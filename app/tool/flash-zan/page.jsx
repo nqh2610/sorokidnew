@@ -15,9 +15,8 @@ const FlashZanClient = dynamic(
     ssr: false,
     loading: () => (
       <ToolLoadingSkeleton 
-        toolName="Flash ZAN"
+        toolKey="flashAnzan"
         toolIcon="⚡"
-        message="Đang chuẩn bị flash số..."
       />
     ),
   }

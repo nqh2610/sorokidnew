@@ -1,8 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, BookOpen, Dumbbell, Trophy, User } from 'lucide-react';
+import { LocalizedLink } from '@/components/LocalizedLink';
+import { getPathWithoutLocale } from '@/lib/i18n/config';
 
 /**
  * 📱 BOTTOM NAVIGATION BAR (Cải tiến cho học sinh tiểu học)
@@ -11,40 +12,41 @@ import { Home, BookOpen, Dumbbell, Trophy, User } from 'lucide-react';
  * - Emoji to, rõ ràng
  * - Active state nổi bật
  * - Màu sắc theo thương hiệu
+ * - 🌍 Locale-aware navigation
  */
 
 const navItems = [
   { 
     href: '/dashboard', 
-    label: 'Nhà', 
+    label: 'Home', 
     emoji: '🏠',
     activeColor: 'text-purple-600',
     activeBg: 'bg-purple-50'
   },
   { 
     href: '/learn', 
-    label: 'Học', 
+    label: 'Learn', 
     emoji: '📚',
     activeColor: 'text-blue-600',
     activeBg: 'bg-blue-50'
   },
   { 
     href: '/practice', 
-    label: 'Luyện', 
+    label: 'Practice', 
     emoji: '💪',
     activeColor: 'text-orange-600',
     activeBg: 'bg-orange-50'
   },
   { 
     href: '/compete', 
-    label: 'Đấu', 
+    label: 'Compete', 
     emoji: '🏆',
     activeColor: 'text-pink-600',
     activeBg: 'bg-pink-50'
   },
   { 
     href: '/profile', 
-    label: 'Tôi', 
+    label: 'Profile', 
     emoji: '👤',
     activeColor: 'text-green-600',
     activeBg: 'bg-green-50'
@@ -57,8 +59,11 @@ const HIDDEN_PATHS = ['/login', '/register', '/admin', '/onboarding'];
 export default function BottomNav() {
   const pathname = usePathname();
   
+  // 🌍 Lấy path không có locale prefix để so sánh
+  const cleanPathname = getPathWithoutLocale(pathname || '/');
+  
   // Ẩn trên các trang không cần
-  const shouldHide = HIDDEN_PATHS.some(path => pathname?.startsWith(path));
+  const shouldHide = HIDDEN_PATHS.some(path => cleanPathname?.startsWith(path));
   if (shouldHide) return null;
 
   return (
@@ -77,11 +82,12 @@ export default function BottomNav() {
       ">
         <div className="flex items-center justify-around h-[68px] px-1">
           {navItems.map((item) => {
-            const isActive = pathname === item.href || 
-              (item.href !== '/dashboard' && pathname?.startsWith(item.href + '/'));
+            // 🌍 So sánh với path không có locale
+            const isActive = cleanPathname === item.href || 
+              (item.href !== '/dashboard' && cleanPathname?.startsWith(item.href + '/'));
             
             return (
-              <Link
+              <LocalizedLink
                 key={item.href}
                 href={item.href}
                 prefetch={true}
@@ -120,7 +126,7 @@ export default function BottomNav() {
                     ${item.activeColor.replace('text-', 'bg-')}
                   `} />
                 )}
-              </Link>
+              </LocalizedLink>
             );
           })}
         </div>

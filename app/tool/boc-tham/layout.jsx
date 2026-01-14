@@ -21,8 +21,8 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export const metadata = {
-  title: 'Bốc Thăm Ngẫu Nhiên Online - Random Name Picker | Rút Thăm Miễn Phí',
-  description: 'Bốc Thăm Ngẫu Nhiên Online - Random name picker MIỄN PHÍ với hiệu ứng slot machine hồi hộp. Random student picker cho lớp học, lucky draw online. Không cần đăng nhập!',
+  title: 'Random Name Picker Online - Lucky Draw | Free Picker',
+  description: 'Random Name Picker Online - FREE name picker with exciting slot machine effect. Random student picker for classroom, lucky draw online. No login required!',
   keywords: [
     // Primary keywords
     'bốc thăm ngẫu nhiên',
@@ -58,8 +58,8 @@ export const metadata = {
     'lucky picker',
   ],
   openGraph: {
-    title: 'Bốc Thăm Ngẫu Nhiên - Random Name Picker Online Miễn Phí',
-    description: 'Random name picker với hiệu ứng slot machine! Random student picker cho lớp học. Miễn phí!',
+    title: 'Random Name Picker - Free Online Picker',
+    description: 'Random name picker with slot machine effect! Random student picker for classroom. Free!',
     url: 'https://sorokid.com/tool/boc-tham',
     siteName: 'SoroKid Toolbox',
     images: [
@@ -75,8 +75,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bốc Thăm - Random Name Picker Online',
-    description: 'Random name picker với hiệu ứng slot machine. Miễn phí!',
+    title: 'Random Name Picker Online',
+    description: 'Random name picker with slot machine effect. Free!',
     images: ['/blog/boc-tham-kiem-tra-mieng-cong-bang-cho-tat-ca.png'],
   },
   alternates: {

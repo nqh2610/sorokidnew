@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { X, ArrowRight, Rocket } from 'lucide-react';
+import { useLocalizedUrl } from '@/components/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 /**
  * Modal nâng cấp - Compact & Effective Design
@@ -10,9 +12,11 @@ import { X, ArrowRight, Rocket } from 'lucide-react';
 export default function UpgradeModal({ 
   isOpen, 
   onClose, 
-  feature = 'tính năng này',
+  feature,
 }) {
   const router = useRouter();
+  const localizeUrl = useLocalizedUrl();
+  const { t } = useI18n();
   const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
@@ -25,6 +29,8 @@ export default function UpgradeModal({
   }, [isOpen]);
 
   if (!isVisible && !isOpen) return null;
+
+  const displayFeature = feature || t('upgrade.fullExperience');
 
   return (
     <div 
@@ -67,12 +73,12 @@ export default function UpgradeModal({
           
           {/* Headline */}
           <h3 className="text-white text-xl font-bold mb-2">
-            Mở khóa toàn bộ!
+            {t('upgrade.unlockEverything')}
           </h3>
           
           {/* Feature được yêu cầu */}
           <p className="text-white/70 text-sm mb-5 line-clamp-2">
-            {feature}
+            {displayFeature}
           </p>
 
           {/* 4 Benefits - Compact */}
@@ -81,29 +87,29 @@ export default function UpgradeModal({
               <div className="flex items-center gap-3">
                 <span className="text-xl">🧒</span>
                 <div>
-                  <div className="text-white font-semibold text-sm">Thần đồng toán học</div>
-                  <div className="text-white/60 text-xs">18 cấp độ chinh phục</div>
+                  <div className="text-white font-semibold text-sm">{t('upgrade.mathProdigy')}</div>
+                  <div className="text-white/60 text-xs">{t('upgrade.levels18')}</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-xl">🧠</span>
                 <div>
-                  <div className="text-white font-semibold text-sm">Siêu Trí Tuệ</div>
-                  <div className="text-white/60 text-xs">Tính nhẩm siêu nhanh</div>
+                  <div className="text-white font-semibold text-sm">{t('competeScreen.mentalMathTitle')}</div>
+                  <div className="text-white/60 text-xs">{t('upgrade.mentalMath')}</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-xl">⚡</span>
                 <div>
                   <div className="text-white font-semibold text-sm">Flash Anzan</div>
-                  <div className="text-white/60 text-xs">Phát triển não phải</div>
+                  <div className="text-white/60 text-xs">{t('competeScreen.mentalMathHint')}</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-xl">📜</span>
                 <div>
-                  <div className="text-white font-semibold text-sm">Chứng chỉ Sorokid</div>
-                  <div className="text-white/60 text-xs">Công nhận năng lực</div>
+                  <div className="text-white font-semibold text-sm">{t('upgrade.certificates2')}</div>
+                  <div className="text-white/60 text-xs">{t('certificate.subtitle')}</div>
                 </div>
               </div>
             </div>
@@ -111,18 +117,18 @@ export default function UpgradeModal({
 
           {/* Social proof */}
           <p className="text-white/50 text-xs mb-4">
-            🔥 500+ học viên đã nâng cấp
+            {t('upgrade.studentCount')}
           </p>
 
           {/* CTA Button */}
           <button
             onClick={() => {
               onClose();
-              router.push('/pricing');
+              router.push(localizeUrl('/pricing'));
             }}
             className="w-full py-3.5 bg-white text-purple-600 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-50 hover:shadow-lg active:scale-[0.98] transition-all group"
           >
-            <span>Xem ưu đãi</span>
+            <span>{t('upgrade.viewOffers')}</span>
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </button>
           
@@ -131,7 +137,7 @@ export default function UpgradeModal({
             onClick={onClose}
             className="w-full py-2 text-white/40 text-xs mt-3 hover:text-white/60 transition-colors"
           >
-            Để sau
+            {t('upgrade.maybeLater')}
           </button>
         </div>
       </div>
@@ -146,7 +152,7 @@ export function useUpgradeModal() {
     feature: ''
   });
 
-  const showUpgradeModal = ({ feature = 'tính năng này' }) => {
+  const showUpgradeModal = ({ feature }) => {
     setModalState({
       isOpen: true,
       feature

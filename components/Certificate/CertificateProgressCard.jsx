@@ -1,7 +1,7 @@
 'use client';
 
 import { Award, Lock, CheckCircle, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink/LocalizedLink';
 
 /**
  * CertificateProgressCard - Card hiển thị tiến độ đạt chứng chỉ
@@ -35,13 +35,13 @@ export default function CertificateProgressCard({
               Đã hoàn thành
             </p>
           </div>
-          <Link
+          <LocalizedLink
             href={`/certificate/${certificateCode}`}
             className="px-4 py-2 bg-amber-500 text-white rounded-lg font-medium hover:bg-amber-600 transition-colors flex items-center gap-2"
           >
             Xem
             <ArrowRight size={16} />
-          </Link>
+          </LocalizedLink>
         </div>
       </div>
     );

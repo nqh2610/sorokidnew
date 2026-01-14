@@ -13,6 +13,7 @@ import { useUpgradeModal } from '@/components/UpgradeModal';
 import { parseMultiplicationProblem } from '@/lib/soroban-multiplication-guide';
 import { parseDivisionProblem } from '@/lib/soroban-division-guide';
 import { parseAdditionSubtractionProblem } from '@/lib/soroban-addition-subtraction-guide';
+import { useLocalizedUrl } from '@/components/LocalizedLink';
 import { getNextZoneAfterStage as getNextZoneAddSub } from '@/config/adventure-stages-addsub.config';
 import { getNextZoneAfterStage as getNextZoneMulDiv } from '@/config/adventure-stages-muldiv.config';
 
@@ -265,6 +266,7 @@ export default function LessonPage() {
   const params = useParams();
   const toast = useToast();
   const { showUpgradeModal, UpgradeModalComponent } = useUpgradeModal();
+  const localizeUrl = useLocalizedUrl();
   const levelId = parseInt(params.levelId);
   const lessonId = parseInt(params.lessonId);
 
@@ -325,7 +327,7 @@ export default function LessonPage() {
     }
     // Clear game mode data
     sessionStorage.removeItem('learnGameMode');
-    router.push('/adventure');
+    router.push(localizeUrl('/adventure'));
   };
 
   // 🎮 GAME MODE: Helper để xử lý back button
@@ -333,7 +335,7 @@ export default function LessonPage() {
     if (gameMode?.from === 'adventure') {
       handleBackToGame(false);
     } else {
-      router.push('/learn');
+      router.push(localizeUrl('/learn'));
     }
   };
 
@@ -422,9 +424,9 @@ export default function LessonPage() {
 
   useEffect(() => {
     if (status === 'unauthenticated') {
-      router.push('/login');
+      router.push(localizeUrl('/login'));
     }
-  }, [status, router]);
+  }, [status, router, localizeUrl]);
 
   // 🔒 TIER CHECK: Fetch tier và kiểm tra quyền truy cập
   useEffect(() => {
@@ -444,7 +446,7 @@ export default function LessonPage() {
             feature: `Level ${levelId} yêu cầu gói ${getTierDisplayName(requiredTier)} trở lên`
           });
           // Chuyển về trang learn sau khi hiện modal
-          router.push('/learn');
+          router.push(localizeUrl('/learn'));
           return;
         }
         
@@ -624,21 +626,21 @@ export default function LessonPage() {
     // Kiểm tra bài tiếp theo có tồn tại không
     const nextLesson = allLessons.find(l => l.lessonId === lessonId + 1);
     if (nextLesson) {
-      router.push(`/learn/${levelId}/${lessonId + 1}`);
+      router.push(localizeUrl(`/learn/${levelId}/${lessonId + 1}`));
     } else {
       // Nếu hết bài trong level
       // Game mode: quay về adventure map
       if (gameMode?.from === 'adventure') {
         handleBackToGame(true); // passed = true khi hoàn thành bài
       } else {
-        router.push('/learn');
+        router.push(localizeUrl('/learn'));
       }
     }
   };
 
   const goToPrevLesson = () => {
     if (lessonId > 1) {
-      router.push(`/learn/${levelId}/${lessonId - 1}`);
+      router.push(localizeUrl(`/learn/${levelId}/${lessonId - 1}`));
     }
   };
 
@@ -943,7 +945,7 @@ export default function LessonPage() {
             {allLessons.map((l, index) => (
               <button
                 key={l.lessonId}
-                onClick={() => router.push(`/learn/${levelId}/${l.lessonId}`)}
+                onClick={() => router.push(localizeUrl(`/learn/${levelId}/${l.lessonId}`))}
                 className={`w-full p-2 rounded-xl text-left flex items-center gap-2 mb-1 transition-all ${
                   l.lessonId === lessonId 
                     ? 'bg-purple-100 border-2 border-purple-400' 
@@ -1370,7 +1372,7 @@ export default function LessonPage() {
                 <button
                   key={l.lessonId}
                   onClick={() => {
-                    router.push(`/learn/${levelId}/${l.lessonId}`);
+                    router.push(localizeUrl(`/learn/${levelId}/${l.lessonId}`));
                     setShowLessonMenu(false);
                   }}
                   className={`w-full p-3 rounded-xl text-left flex items-center gap-3 mb-1 transition-all ${

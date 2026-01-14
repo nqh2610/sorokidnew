@@ -1,14 +1,30 @@
 'use client';
 
+import { useI18n } from '@/lib/i18n/I18nContext';
+
 /**
  * Loading skeleton cho các tool pages
  * Hiển thị trong khi tool đang được load (dynamic import)
+ * 
+ * @param {string} toolKey - Key để tra cứu name từ dictionary (e.g., 'luckyLight', 'spinWheel')
+ * @param {string} toolName - Fallback name nếu không dùng toolKey
+ * @param {string} toolIcon - Icon emoji
+ * @param {string} message - Fallback message nếu không dùng toolKey
  */
 export default function ToolLoadingSkeleton({ 
-  toolName = 'Đang tải...', 
+  toolKey,
+  toolName, 
   toolIcon = '⏳',
-  message = 'Đang chuẩn bị công cụ...'
+  message
 }) {
+  const { t } = useI18n();
+  
+  // Nếu có toolKey, tra cứu từ toolbox.tools dictionary
+  const displayName = toolKey 
+    ? t(`toolbox.tools.${toolKey}.name`) 
+    : (toolName || t('toolLayout.loading'));
+  const displayMessage = message || t('toolLayout.preparing');
+  
   return (
     <div className="min-h-screen bg-gradient-to-b from-violet-50 via-white to-pink-50">
       {/* Skeleton Header */}
@@ -25,10 +41,10 @@ export default function ToolLoadingSkeleton({
               <span className="text-xl sm:text-2xl lg:text-3xl">{toolIcon}</span>
               <div className="flex flex-col items-start">
                 <span className="text-[9px] sm:text-[10px] lg:text-xs text-violet-500 font-medium">
-                  Toolbox Giáo Viên
+                  {t('toolLayout.teacherToolbox')}
                 </span>
                 <span className="text-sm sm:text-lg lg:text-xl font-bold text-gray-800">
-                  {toolName}
+                  {displayName}
                 </span>
               </div>
             </div>
@@ -55,10 +71,10 @@ export default function ToolLoadingSkeleton({
 
           {/* Loading text */}
           <p className="text-lg sm:text-xl text-gray-600 font-medium mb-2">
-            {message}
+            {displayMessage}
           </p>
           <p className="text-sm text-gray-400">
-            Vui lòng đợi trong giây lát...
+            {t('toolLayout.pleaseWait')}
           </p>
 
           {/* Skeleton content boxes */}

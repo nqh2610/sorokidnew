@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { Clock, AlertCircle } from 'lucide-react';
+import { useI18n } from '@/lib/i18n/I18nContext';
+import LocalizedLink from '@/components/LocalizedLink/LocalizedLink';
 
 /**
  * Component hiển thị số ngày dùng thử còn lại
@@ -12,6 +14,7 @@ import { Clock, AlertCircle } from 'lucide-react';
  * - User không có trial (trialExpiresAt = null)
  */
 export default function TrialDaysBadge() {
+  const { t } = useI18n();
   const [trialInfo, setTrialInfo] = useState(null);
   const [userTier, setUserTier] = useState(null);
 
@@ -46,10 +49,10 @@ export default function TrialDaysBadge() {
 
   // Map tier name sang tiếng Việt
   const tierNames = {
-    'advanced': 'Nâng cao',
-    'premium': 'Premium',
-    'basic': 'Cơ bản',
-    'free': 'Miễn phí'
+    'advanced': t('tierBadge.advanced'),
+    'premium': t('tierBadge.premium'),
+    'basic': t('tierBadge.basic'),
+    'free': t('tierBadge.free')
   };
 
   const tierName = tierNames[trialInfo.trialTier] || trialInfo.trialTier;
@@ -65,22 +68,22 @@ export default function TrialDaysBadge() {
   // Còn 0 ngày - hiển thị giờ:phút + mời nâng cấp tinh tế
   if (daysRemaining === 0) {
     return (
-      <a href="/pricing" className="inline-flex items-center gap-1 text-xs text-red-500 hover:text-red-400 transition-colors cursor-pointer" title="Xem các gói học">
+      <LocalizedLink href="/pricing" className="inline-flex items-center gap-1 text-xs text-red-500 hover:text-red-400 transition-colors cursor-pointer" title={t('tierBadge.viewPlans')}>
         <span>
-          ⏰ Học thử còn {hoursRemaining}h {minutesRemaining}p · Nâng cấp ngay!
+          ⏰ {t('trialBadge.trialRemaining', { hours: hoursRemaining, minutes: minutesRemaining })} · {t('trialBadge.upgradeNow')}
         </span>
-      </a>
+      </LocalizedLink>
     );
   }
   
   // Còn 1 ngày - thông báo thân thiện
   if (daysRemaining === 1) {
     return (
-      <a href="/pricing" className="inline-flex items-center gap-1 text-xs text-orange-500 hover:text-orange-400 transition-colors cursor-pointer" title="Xem các gói học">
+      <LocalizedLink href="/pricing" className="inline-flex items-center gap-1 text-xs text-orange-500 hover:text-orange-400 transition-colors cursor-pointer" title={t('tierBadge.viewPlans')}>
         <span>
-          🌟 Ngày cuối học thử · Xem gói học
+          🌟 {t('trialBadge.lastDay')} · {t('trialBadge.viewPlans')}
         </span>
-      </a>
+      </LocalizedLink>
     );
   }
   
@@ -89,7 +92,7 @@ export default function TrialDaysBadge() {
     return (
       <span className="inline-flex items-center gap-1 text-xs text-yellow-500">
         <span>
-          🎁 Học thử còn {daysRemaining} ngày
+          🎁 {t('trialBadge.trialDays', { days: daysRemaining })}
         </span>
       </span>
     );
@@ -99,7 +102,7 @@ export default function TrialDaysBadge() {
   return (
     <span className="inline-flex items-center gap-1 text-xs text-purple-500">
       <span>
-        🎉 Học thử còn {daysRemaining} ngày
+        🎉 {t('trialBadge.trialDays', { days: daysRemaining })}
       </span>
     </span>
   );

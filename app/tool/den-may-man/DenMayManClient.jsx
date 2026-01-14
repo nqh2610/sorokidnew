@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import ToolLayout, { useFullscreen } from '@/components/ToolLayout/ToolLayout';
+import { useI18n } from '@/lib/i18n/I18nContext';
 import { useGameSettings } from '@/lib/useGameSettings';
 import { GAME_IDS } from '@/lib/gameStorage';
 
@@ -15,8 +16,9 @@ const DEFAULT_SETTINGS = {
 };
 
 export default function DenMayMan() {
+  const { t } = useI18n();
   return (
-    <ToolLayout toolName="Đèn May Mắn" toolIcon="🚦">
+    <ToolLayout toolName={t('toolbox.tools.luckyLight.name')} toolIcon="🚦">
       <DenMayManContent />
     </ToolLayout>
   );
@@ -24,6 +26,7 @@ export default function DenMayMan() {
 
 function DenMayManContent() {
   const { exitFullscreen } = useFullscreen();
+  const { t } = useI18n();
   
   // Load settings
   const { settings, updateSettings } = useGameSettings(GAME_IDS.DEN_MAY_MAN, DEFAULT_SETTINGS);
@@ -217,9 +220,9 @@ function DenMayManContent() {
 
   const getResultText = () => {
     switch (result) {
-      case 'green': return { title: '🎉 AN TOÀN! 🎉', sub: 'May mắn rồi! Thoát phạt!' };
-      case 'yellow': return { title: '⚡ THỬ THÁCH! ⚡', sub: 'Trả lời câu hỏi để thoát!' };
-      case 'red': return { title: '💥 BỊ PHẠT! 💥', sub: 'Ôi không! Phải chịu phạt rồi!' };
+      case 'green': return { title: '🎉 ' + t('toolbox.luckyLight.safe') + ' 🎉', sub: t('toolbox.luckyLight.safeDesc') };
+      case 'yellow': return { title: '⚡ ' + t('toolbox.luckyLight.challenge') + ' ⚡', sub: t('toolbox.luckyLight.challengeDesc') };
+      case 'red': return { title: '💥 ' + t('toolbox.luckyLight.punished') + ' 💥', sub: t('toolbox.luckyLight.punishedDesc') };
       default: return null;
     }
   };
@@ -234,7 +237,7 @@ function DenMayManContent() {
       <div className="w-full lg:w-64 flex-shrink-0 space-y-2 order-2 lg:order-1">
         {/* Mode Selection - Compact */}
         <div className="bg-white rounded-xl shadow-md p-3 border border-gray-100">
-          <h3 className="text-sm font-bold text-gray-800 mb-2">🚦 Chế độ đèn</h3>
+          <h3 className="text-sm font-bold text-gray-800 mb-2">🚦 {t('toolbox.luckyLight.lightMode')}</h3>
           <div className="flex gap-2">
             <button
               onClick={() => setLightMode(2)}
@@ -246,7 +249,7 @@ function DenMayManContent() {
                 <span className="w-3 h-3 rounded-full bg-red-500"></span>
                 <span className="w-3 h-3 rounded-full bg-green-500"></span>
               </div>
-              <div className="text-xs font-semibold">2 Đèn</div>
+              <div className="text-xs font-semibold">{t('toolbox.luckyLight.twoLights')}</div>
             </button>
             <button
               onClick={() => setLightMode(3)}
@@ -259,7 +262,7 @@ function DenMayManContent() {
                 <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
                 <span className="w-3 h-3 rounded-full bg-green-500"></span>
               </div>
-              <div className="text-xs font-semibold">3 Đèn</div>
+              <div className="text-xs font-semibold">{t('toolbox.luckyLight.threeLights')}</div>
             </button>
           </div>
         </div>
@@ -269,12 +272,12 @@ function DenMayManContent() {
           <label className="flex items-center gap-2 cursor-pointer mb-2">
             <input type="checkbox" checked={soundEnabled} onChange={(e) => setSoundEnabled(e.target.checked)}
               className="w-4 h-4 text-violet-500 rounded" />
-            <span className="text-sm font-medium text-gray-700">{soundEnabled ? '🔊 Bật' : '🔇 Tắt'}</span>
+            <span className="text-sm font-medium text-gray-700">{soundEnabled ? '🔊' : '🔇'} {t('toolbox.luckyLight.sound')}</span>
           </label>
           <div className="text-[10px] text-gray-500 flex flex-wrap gap-x-3">
-            <span>🟢 An toàn</span>
-            {lightMode === 3 && <span>🟡 Thử thách</span>}
-            <span>🔴 Phạt</span>
+            <span>🟢 {t('toolbox.luckyLight.safeLabel')}</span>
+            {lightMode === 3 && <span>🟡 {t('toolbox.luckyLight.challengeLabel')}</span>}
+            <span>🔴 {t('toolbox.luckyLight.punishLabel')}</span>
           </div>
         </div>
       </div>
@@ -301,7 +304,7 @@ function DenMayManContent() {
                   <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
                   {result === 'red' && <div className="absolute inset-0 flex items-center justify-center text-6xl sm:text-7xl lg:text-8xl animate-bounce">😱</div>}
                 </div>
-                <span className="text-lg sm:text-xl lg:text-2xl font-bold text-red-400">Đỏ</span>
+                <span className="text-lg sm:text-xl lg:text-2xl font-bold text-red-400">{t('toolbox.luckyLight.red')}</span>
               </div>
               <div className="text-center">
                 <div className={`relative w-36 h-36 sm:w-48 sm:h-48 lg:w-56 lg:h-56 rounded-full transition-all duration-300 mb-2
@@ -311,7 +314,7 @@ function DenMayManContent() {
                   <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
                   {result === 'green' && <div className="absolute inset-0 flex items-center justify-center text-6xl sm:text-7xl lg:text-8xl animate-bounce">🎉</div>}
                 </div>
-                <span className="text-lg sm:text-xl lg:text-2xl font-bold text-green-400">Xanh</span>
+                <span className="text-lg sm:text-xl lg:text-2xl font-bold text-green-400">{t('toolbox.luckyLight.green')}</span>
               </div>
             </div>
           ) : (
@@ -325,7 +328,7 @@ function DenMayManContent() {
                   <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
                   {result === 'red' && <div className="absolute inset-0 flex items-center justify-center text-5xl sm:text-6xl lg:text-7xl animate-bounce">😱</div>}
                 </div>
-                <span className="text-base sm:text-lg lg:text-xl font-bold text-red-400">Đỏ</span>
+                <span className="text-base sm:text-lg lg:text-xl font-bold text-red-400">{t('toolbox.luckyLight.red')}</span>
               </div>
               <div className="text-center">
                 <div className={`relative w-28 h-28 sm:w-36 sm:h-36 lg:w-44 lg:h-44 rounded-full transition-all duration-300 mb-2
@@ -335,7 +338,7 @@ function DenMayManContent() {
                   <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
                   {result === 'yellow' && <div className="absolute inset-0 flex items-center justify-center text-5xl sm:text-6xl lg:text-7xl animate-bounce">🤔</div>}
                 </div>
-                <span className="text-base sm:text-lg lg:text-xl font-bold text-yellow-400">Vàng</span>
+                <span className="text-base sm:text-lg lg:text-xl font-bold text-yellow-400">{t('toolbox.luckyLight.yellow')}</span>
               </div>
               <div className="text-center">
                 <div className={`relative w-28 h-28 sm:w-36 sm:h-36 lg:w-44 lg:h-44 rounded-full transition-all duration-300 mb-2
@@ -345,7 +348,7 @@ function DenMayManContent() {
                   <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
                   {result === 'green' && <div className="absolute inset-0 flex items-center justify-center text-5xl sm:text-6xl lg:text-7xl animate-bounce">🎉</div>}
                 </div>
-                <span className="text-base sm:text-lg lg:text-xl font-bold text-green-400">Xanh</span>
+                <span className="text-base sm:text-lg lg:text-xl font-bold text-green-400">{t('toolbox.luckyLight.green')}</span>
               </div>
             </div>
           )}
@@ -374,14 +377,14 @@ function DenMayManContent() {
           {!isSpinning && !result && countdown === null && (
             <button onClick={handlePress}
               className="mt-3 px-8 sm:px-12 py-3 sm:py-4 text-lg sm:text-2xl font-black text-white bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-600 hover:to-pink-600 rounded-full shadow-xl hover:scale-105 active:scale-95 transition-all animate-pulse">
-              🎰 BẤM!
+              🎰 {t('toolbox.luckyLight.press')}
             </button>
           )}
 
           {/* Action Button */}
           {result && (
             <button onClick={handleReset} className="mt-2 px-5 py-1.5 bg-white/90 hover:bg-white text-gray-700 text-sm font-bold rounded-full shadow-lg hover:scale-105 transition-all">
-              🔄 Chơi lại
+              🔄 {t('toolbox.luckyLight.playAgain')}
             </button>
           )}
         </div>

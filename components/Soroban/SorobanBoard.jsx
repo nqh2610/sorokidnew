@@ -6,7 +6,7 @@ import { HelpCircle, Lightbulb, RotateCcw } from 'lucide-react';
 // Cấu hình mặc định - 9 cột cho số lên đến hàng trăm triệu
 const DEFAULT_NUM_COLUMNS = 9;
 const MOBILE_NUM_COLUMNS = 7; // Số cột cho mobile (< 640px)
-const ALL_COLUMN_LABELS = ['Tr.Tr', 'Ch.Tr', 'Triệu', 'Tr.N', 'Ch.N', 'Nghìn', 'Trăm', 'Chục', 'Đ.vị'];
+const ALL_COLUMN_LABELS = ['Hun.M', 'Ten.M', 'Million', 'Hun.T', 'Ten.T', 'Thous.', 'Hund.', 'Tens', 'Units'];
 
 // Ngưỡng kéo tối thiểu để trigger action (pixels)
 const DRAG_THRESHOLD = 15;
@@ -89,23 +89,23 @@ export default function SorobanBoard({
 
   const tutorials = [
     {
-      title: 'Chào mừng đến với Soroban!',
-      description: 'Bàn tính Soroban có 9 cột, mỗi cột đại diện cho một hàng số từ đơn vị đến trăm triệu.',
+      title: 'Welcome to Soroban!',
+      description: 'The Soroban abacus has 9 columns, each representing a place value from units to hundred millions.',
       highlight: null
     },
     {
-      title: 'Hạt trên (Heaven Bead)',
-      description: 'Hạt màu đỏ ở trên có giá trị là 5. Click vào để đẩy xuống.',
+      title: 'Heaven Bead',
+      description: 'The red bead on top has a value of 5. Click to push it down.',
       highlight: 'heaven'
     },
     {
-      title: 'Hạt dưới (Earth Beads)',
-      description: 'Mỗi hạt màu vàng ở dưới có giá trị là 1. Click vào để đẩy lên.',
+      title: 'Earth Beads',
+      description: 'Each yellow bead below has a value of 1. Click to push them up.',
       highlight: 'earth'
     },
     {
-      title: 'Thử tạo số!',
-      description: 'Hãy thử tạo số 3 bằng cách đẩy 3 hạt dưới lên ở cột đơn vị (cột phải cùng).',
+      title: 'Try making a number!',
+      description: 'Try to make the number 3 by pushing 3 earth beads up in the units column (rightmost).',
       highlight: null
     }
   ];
@@ -291,7 +291,7 @@ export default function SorobanBoard({
 
   const showHintForTarget = () => {
     if (targetNumber === undefined) {
-      setHint('Hãy thử tạo các số khác nhau bằng cách click vào các hạt!');
+      setHint('Try making different numbers by clicking on the beads!');
       return;
     }
 
@@ -300,13 +300,13 @@ export default function SorobanBoard({
     const digit = digits[colIndex];
 
     if (digit === 0) {
-      setHint('Đảm bảo tất cả hạt ở vị trí ban đầu cho số 0');
+      setHint('Make sure all beads are in rest position for 0');
     } else if (digit <= 4) {
-      setHint(`Đẩy ${digit} hạt dưới lên ở cột đơn vị`);
+      setHint(`Push ${digit} earth bead(s) up in the units column`);
     } else if (digit === 5) {
-      setHint('Đẩy hạt trên xuống ở cột đơn vị');
+      setHint('Push the heaven bead down in the units column');
     } else {
-      setHint(`Đẩy hạt trên xuống và ${digit - 5} hạt dưới lên ở cột đơn vị`);
+      setHint(`Push the heaven bead down and ${digit - 5} earth bead(s) up in the units column`);
     }
   };
 
@@ -345,7 +345,7 @@ export default function SorobanBoard({
                 disabled={tutorialStep === 0}
                 className="px-6 py-3 bg-gray-200 rounded-full font-bold hover:bg-gray-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Quay lại
+                Back
               </button>
 
               <div className="flex gap-2">
@@ -363,7 +363,7 @@ export default function SorobanBoard({
                 onClick={nextTutorialStep}
                 className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-bold hover:shadow-lg transition-all"
               >
-                {tutorialStep === tutorials.length - 1 ? 'Hoàn thành' : 'Tiếp theo'}
+                {tutorialStep === tutorials.length - 1 ? 'Done' : 'Next'}
               </button>
             </div>
           </div>
@@ -395,14 +395,14 @@ export default function SorobanBoard({
                   <button
                     onClick={() => setShowTutorial(true)}
                     className="p-1 bg-blue-500 text-white rounded hover:bg-blue-600 active:scale-95 transition-colors"
-                    title="Hướng dẫn"
+                    title="Tutorial"
                   >
                     <HelpCircle size={14} />
                   </button>
                   <button
                     onClick={showHintForTarget}
                     className="p-1 bg-amber-500 text-white rounded hover:bg-amber-600 active:scale-95 transition-colors"
-                    title="Gợi ý"
+                    title="Hint"
                   >
                     <Lightbulb size={14} />
                   </button>

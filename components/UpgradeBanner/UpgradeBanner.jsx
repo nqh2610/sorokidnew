@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import { LocalizedLink } from '@/components/LocalizedLink';
 import { Crown, Star, Zap, ArrowRight, X } from 'lucide-react';
 import { getTierInfo, formatPrice, PRICING } from '@/lib/tierSystem';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 /**
  * UpgradeBanner - Banner nhắc nhở nâng cấp
@@ -16,6 +17,7 @@ export default function UpgradeBanner({
   compact = false 
 }) {
   const [dismissed, setDismissed] = useState(false);
+  const { t } = useI18n();
 
   if (dismissed || currentTier !== 'free') return null;
 
@@ -37,15 +39,15 @@ export default function UpgradeBanner({
         <div className="flex items-center gap-3">
           <div className="text-2xl">👑</div>
           <div className="flex-1">
-            <p className="font-bold text-sm">Nâng cấp Premium</p>
-            <p className="text-xs text-white/80">Mở khóa tất cả bài học!</p>
+            <p className="font-bold text-sm">{t('common.premium')}</p>
+            <p className="text-xs text-white/80">{t('upgrade.unlockAll')}</p>
           </div>
-          <Link
+          <LocalizedLink
             href="/pricing"
             className="px-3 py-1.5 bg-white text-purple-600 rounded-lg font-bold text-xs hover:bg-purple-50 transition-colors"
           >
-            Xem ngay
-          </Link>
+            {t('upgrade.viewNow')}
+          </LocalizedLink>
         </div>
       </div>
     );
@@ -69,38 +71,38 @@ export default function UpgradeBanner({
           <div className="text-5xl">🚀</div>
           <div className="flex-1">
             <h3 className="text-xl font-black mb-2">
-              Mở khóa toàn bộ bài học!
+              {t('upgrade.unlockAllFull')}
             </h3>
             <p className="text-white/90 text-sm mb-4">
               {lessonLimit 
-                ? `Bạn đã hoàn thành ${lessonLimit} bài học miễn phí. `
+                ? `${t('upgrade.completedFree', { count: lessonLimit })} `
                 : ''}
-              Nâng cấp Premium để truy cập tất cả nội dung và nhận chứng chỉ hoàn thành!
+              {t('upgrade.upgradeDesc')}
             </p>
 
             {/* Features preview */}
             <div className="flex flex-wrap gap-2 mb-4">
               <span className="inline-flex items-center gap-1 px-2 py-1 bg-white/20 rounded-full text-xs">
-                <Star size={12} /> Tất cả bài học
+                <Star size={12} /> {t('upgrade.allLessons')}
               </span>
               <span className="inline-flex items-center gap-1 px-2 py-1 bg-white/20 rounded-full text-xs">
-                <Crown size={12} /> Chứng chỉ
+                <Crown size={12} /> {t('upgrade.certificates')}
               </span>
               <span className="inline-flex items-center gap-1 px-2 py-1 bg-white/20 rounded-full text-xs">
-                <Zap size={12} /> Không giới hạn
+                <Zap size={12} /> {t('upgrade.unlimited')}
               </span>
             </div>
 
             <div className="flex items-center gap-3">
-              <Link
+              <LocalizedLink
                 href="/pricing"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-purple-600 rounded-xl font-bold hover:bg-purple-50 transition-all hover:scale-105 shadow-lg"
               >
-                Nâng cấp ngay
+                {t('upgrade.upgradeNow')}
                 <ArrowRight size={16} />
-              </Link>
+              </LocalizedLink>
               <span className="text-white/70 text-sm">
-                Chỉ từ {formatPrice(PRICING.premium['1_month'].price)}/tháng
+                {t('upgrade.startingAt')} {formatPrice(PRICING.premium['1_month'].price)}{t('upgrade.perMonth')}
               </span>
             </div>
           </div>

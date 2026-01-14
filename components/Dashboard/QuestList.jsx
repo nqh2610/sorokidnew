@@ -1,21 +1,24 @@
 'use client';
 
 import { Gift, CheckCircle, Clock } from 'lucide-react';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 /**
  * QuestList - Danh sách nhiệm vụ đang hoạt động
  */
 export default function QuestList({ quests, onClaimReward, compact = false }) {
+  const { t } = useI18n();
+  
   if (!quests?.active || quests.active.length === 0) {
     return (
       <div className={`bg-white rounded-2xl sm:rounded-3xl ${compact ? 'p-4' : 'p-6'} shadow-xl h-full`}>
         <h3 className={`${compact ? 'text-base' : 'text-lg sm:text-xl'} font-bold text-gray-800 mb-4 flex items-center gap-2`}>
           <span className={compact ? 'text-xl' : 'text-2xl'}>🎯</span>
-          Nhiệm vụ hôm nay
+          {t('dashboard.dailyQuests')}
         </h3>
         <div className={`text-center ${compact ? 'py-4' : 'py-8'} text-gray-500`}>
           <div className={compact ? 'text-3xl mb-2' : 'text-4xl mb-3'}>🎉</div>
-          <p className={compact ? 'text-sm' : ''}>Bạn đã hoàn thành tất cả nhiệm vụ!</p>
+          <p className={compact ? 'text-sm' : ''}>{t('quest.allCompleted')}</p>
         </div>
       </div>
     );
@@ -29,11 +32,11 @@ export default function QuestList({ quests, onClaimReward, compact = false }) {
       <div className="flex items-center justify-between mb-3">
         <h3 className={`${compact ? 'text-base' : 'text-lg sm:text-xl'} font-bold text-gray-800 flex items-center gap-2`}>
           <span className={compact ? 'text-xl' : 'text-2xl'}>🎯</span>
-          Nhiệm vụ
+          {t('quest.title')}
         </h3>
         {quests.completedCount > 0 && (
           <span className="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium animate-pulse">
-            {quests.completedCount} chờ nhận
+            {quests.completedCount} {t('quest.waiting')}
           </span>
         )}
       </div>
@@ -106,7 +109,7 @@ export default function QuestList({ quests, onClaimReward, compact = false }) {
                   className={`mt-2 w-full ${compact ? 'py-1.5 text-xs' : 'py-2 text-sm'} bg-gradient-to-r from-green-400 to-green-500 text-white rounded-xl font-bold hover:from-green-500 hover:to-green-600 transition-all flex items-center justify-center gap-1`}
                 >
                   <Gift size={compact ? 12 : 16} />
-                  Nhận thưởng
+                  {t('quest.claimReward')}
                 </button>
               )}
             </div>
@@ -117,7 +120,7 @@ export default function QuestList({ quests, onClaimReward, compact = false }) {
       {/* Xem thêm nếu compact và còn nhiệm vụ */}
       {compact && quests.totalActive > 3 && (
         <p className="text-center text-sm text-purple-600 mt-3 font-medium">
-          +{quests.totalActive - 3} nhiệm vụ khác
+          +{quests.totalActive - 3} {t('quest.moreQuests')}
         </p>
       )}
     </div>

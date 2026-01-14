@@ -21,8 +21,8 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export const metadata = {
-  title: 'Xúc Xắc 3D Online - Dice Roller | Lắc Xúc Xắc Ảo Miễn Phí',
-  description: 'Xúc Xắc 3D Online - Dice roller MIỄN PHÍ với hiệu ứng 3D đẹp mắt. Roll dice online, hỗ trợ 1-6 viên xúc xắc, âm thanh lăn chân thực. Virtual dice cho lớp học, board game online!',
+  title: '3D Dice Roller Online | Free Virtual Dice',
+  description: '3D Dice Roller Online - FREE dice roller with beautiful 3D effects. Roll dice online, supports 1-6 dice, realistic rolling sounds. Virtual dice for classroom, online board games!',
   keywords: [
     // Primary keywords
     'xúc xắc online',
@@ -59,8 +59,8 @@ export const metadata = {
     'random number',
   ],
   openGraph: {
-    title: 'Xúc Xắc 3D - Dice Roller Online Miễn Phí',
-    description: 'Roll dice online - Lắc xúc xắc 3D với hiệu ứng đẹp mắt. Virtual dice hỗ trợ 1-6 viên. Miễn phí!',
+    title: '3D Dice Roller - Free Online Virtual Dice',
+    description: 'Roll dice online - 3D dice with beautiful effects. Virtual dice supports 1-6 dice. Free!',
     url: 'https://sorokid.com/tool/xuc-xac',
     siteName: 'SoroKid Toolbox',
     images: [
@@ -76,8 +76,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Xúc Xắc 3D - Dice Roller Online',
-    description: 'Virtual dice - Lắc xúc xắc 3D đẹp mắt. Miễn phí, không cần đăng nhập!',
+    title: '3D Dice Roller Online',
+    description: 'Virtual dice - Roll beautiful 3D dice. Free, no login required!',
     images: ['/blog/xuc-xac-3d-cong-cu-random-vui-nhon-trong-lop-hoc.png'],
   },
   alternates: {

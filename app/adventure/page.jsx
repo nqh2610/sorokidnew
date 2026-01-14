@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import GameMapNew from '@/components/Adventure/GameMapNew';
 import { useUpgradeModal } from '@/components/UpgradeModal';
 import { getLevelInfo } from '@/lib/gamification';
+import { useLocalizedUrl } from '@/components/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 // Import config files
 import { 
@@ -50,9 +52,9 @@ function canAccessTier(userTier, requiredTier) {
   return (tierOrder[userTier] || 0) >= (tierOrder[requiredTier] || 0);
 }
 
-function getTierDisplayName(tier) {
-  const names = { free: 'Miễn Phí', basic: 'Cơ Bản', advanced: 'Nâng Cao', vip: 'VIP' };
-  return names[tier] || tier;
+function getTierDisplayName(tier, t) {
+  const key = `tier.${tier}`;
+  return t(key) || tier;
 }
 
 /**
@@ -60,9 +62,11 @@ function getTierDisplayName(tier) {
  * Game map hoàn toàn mới với 2 đảo: Cộng Trừ & Nhân Chia
  */
 export default function AdventurePageV3() {
+  const { t } = useI18n();
   const { data: session, status } = useSession();
   const router = useRouter();
   const { showUpgradeModal, UpgradeModalComponent } = useUpgradeModal();
+  const localizeUrl = useLocalizedUrl();
   
   const [loading, setLoading] = useState(true);
   const [stageStatuses, setStageStatuses] = useState({});
@@ -303,7 +307,7 @@ export default function AdventurePageV3() {
       const requiredTier = getRequiredTierForLevel(stage.levelId);
       if (!canAccessTier(userTier, requiredTier)) {
         showUpgradeModal({ 
-          feature: `Level ${stage.levelId} yêu cầu gói ${getTierDisplayName(requiredTier)} trở lên` 
+          feature: t('adventure.levelRequiresTier', { level: stage.levelId, tier: getTierDisplayName(requiredTier, t) })
         });
         return false;
       }
@@ -316,7 +320,7 @@ export default function AdventurePageV3() {
         const requiredTierForMode = getRequiredTierForMode(mode);
         if (!canAccessTier(userTier, requiredTierForMode)) {
           showUpgradeModal({ 
-            feature: `Chế độ ${mode} yêu cầu gói ${getTierDisplayName(requiredTierForMode)} trở lên` 
+            feature: t('adventure.modeRequiresTier', { mode: mode, tier: getTierDisplayName(requiredTierForMode, t) })
           });
           return false;
         }
@@ -326,14 +330,14 @@ export default function AdventurePageV3() {
       const requiredTierForDiff = getRequiredTierForDifficulty(difficulty);
       if (!canAccessTier(userTier, requiredTierForDiff)) {
         showUpgradeModal({ 
-          feature: `Cấp độ ${difficulty} yêu cầu gói ${getTierDisplayName(requiredTierForDiff)} trở lên` 
+          feature: t('adventure.difficultyRequiresTier', { difficulty: difficulty, tier: getTierDisplayName(requiredTierForDiff, t) })
         });
         return false;
       }
     }
     
     return true; // Có quyền truy cập
-  }, [userStats, showUpgradeModal]);
+  }, [userStats, showUpgradeModal, t]);
   
   // Handle stage click - Lưu game mode info và navigate (không cần check tier nữa - đã check trước khi mở modal)
   const handleStageClick = useCallback((stage) => {
@@ -365,19 +369,19 @@ export default function AdventurePageV3() {
     // Lưu vào sessionStorage dựa vào loại stage
     if (stage.type === 'lesson') {
       sessionStorage.setItem('learnGameMode', JSON.stringify(gameModeData));
-      router.push(stage.link);
+      router.push(localizeUrl(stage.link));
     } else if (stage.type === 'boss' && stage.bossType === 'practice') {
       // 🚀 Practice: Lưu data và đi thẳng đến /practice
       sessionStorage.setItem('practiceGameMode', JSON.stringify(gameModeData));
-      router.push('/practice');
+      router.push(localizeUrl('/practice'));
     } else if (stage.type === 'boss' && stage.bossType === 'compete') {
       // 🚀 Compete: Lưu data và đi thẳng đến /compete
       sessionStorage.setItem('competeGameMode', JSON.stringify(gameModeData));
-      router.push('/compete');
+      router.push(localizeUrl('/compete'));
     } else {
-      router.push(stage.link);
+      router.push(localizeUrl(stage.link));
     }
-  }, [router]);
+  }, [router, localizeUrl]);
   
   // Auth check
   if (status === 'loading') {
@@ -389,7 +393,7 @@ export default function AdventurePageV3() {
   }
 
   if (!session) {
-    router.push('/login');
+    router.push(localizeUrl('/login'));
     return null;
   }
 

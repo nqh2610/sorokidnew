@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import ToolLayout from '@/components/ToolLayout/ToolLayout';
+import LocalizedLink from '@/components/LocalizedLink/LocalizedLink';
 import { LogoIcon } from '@/components/Logo/Logo';
 import { loadGameSettings, saveGameSettings, GAME_IDS } from '@/lib/gameStorage';
 
@@ -793,9 +794,9 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
 
             {/* Back link */}
             <div className="text-center mt-2">
-              <a href="/tool" className="text-gray-400 hover:text-violet-600 text-sm">
+              <LocalizedLink href="/tool" className="text-gray-400 hover:text-violet-600 text-sm">
                 ← Toolbox
-              </a>
+              </LocalizedLink>
             </div>
           </div>
 

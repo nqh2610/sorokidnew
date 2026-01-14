@@ -1,12 +1,13 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink/LocalizedLink';
 import MainNav from '@/components/MainNav/MainNav';
 import Logo from '@/components/Logo/Logo';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 // Action Buttons Component - Compact inline version
-function ActionButtons() {
+function ActionButtons({ t }) {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [isMac, setIsMac] = useState(false);
@@ -19,20 +20,20 @@ function ActionButtons() {
 
   const handleSaveBookmark = useCallback(() => {
     if (window.matchMedia('(display-mode: standalone)').matches) {
-      setToastMessage('✅ Đã cài trên thiết bị!');
+      setToastMessage(t('toolbox.toast.installed'));
       setShowToast(true);
       setTimeout(() => setShowToast(false), 2000);
       return;
     }
-    setToastMessage(`⭐ Nhấn ${shortcut} để lưu ngay!`);
+    setToastMessage(t('toolbox.toast.saveHint', { shortcut }));
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
-  }, [shortcut]);
+  }, [shortcut, t]);
 
   const handleShare = useCallback(() => {
     const url = window.location.href;
-    const title = 'Toolbox Giáo Viên - SoroKid';
-    const text = 'Bộ sưu tập trò chơi quốc dân cho lớp học - Miễn phí!';
+    const title = t('toolbox.shareTitle');
+    const text = t('toolbox.shareText');
 
     if (navigator.share) {
       navigator.share({ title, text, url }).catch(() => {});
@@ -40,11 +41,11 @@ function ActionButtons() {
     }
 
     navigator.clipboard.writeText(url).then(() => {
-      setToastMessage('✅ Đã copy link!');
+      setToastMessage(t('toolbox.toast.copied'));
       setShowToast(true);
       setTimeout(() => setShowToast(false), 2000);
     });
-  }, []);
+  }, [t]);
 
   return (
     <div className="relative inline-flex items-center gap-1.5">
@@ -53,10 +54,10 @@ function ActionButtons() {
         className="inline-flex items-center gap-1.5 px-3 py-1.5
           text-amber-600 text-sm font-medium rounded-lg
           hover:bg-amber-50 transition-all"
-        title={`Lưu Bookmark (${shortcut})`}
+        title={`${t('toolbox.saveBookmark')} (${shortcut})`}
       >
         <span>⭐</span>
-        <span className="hidden sm:inline">Lưu</span>
+        <span className="hidden sm:inline">{t('common.save')}</span>
       </button>
 
       <button
@@ -64,13 +65,13 @@ function ActionButtons() {
         className="inline-flex items-center gap-1.5 px-3 py-1.5
           text-gray-500 text-sm font-medium rounded-lg
           hover:bg-gray-100 transition-all"
-        title="Chia sẻ"
+        title={t('common.share')}
       >
         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
             d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
         </svg>
-        <span className="hidden sm:inline">Chia sẻ</span>
+        <span className="hidden sm:inline">{t('common.share')}</span>
       </button>
 
       {showToast && (
@@ -85,134 +86,139 @@ function ActionButtons() {
 }
 
 // Category configuration
-const categories = [
-  { id: 'all', name: 'Tất cả', icon: '🧰', description: 'Tất cả công cụ' },
-  { id: 'teambuilding', name: 'Vui vẻ - Teambuilding', icon: '🎉', description: 'Họp nhóm, workshop, tạo không khí' },
-  { id: 'thi-dua', name: 'Thi đua & cho điểm', icon: '🏆', description: 'Chấm điểm, thi đua nhóm' },
-  { id: 'ngau-nhien', name: 'Ngẫu nhiên – công bằng', icon: '🎲', description: 'Chọn ngẫu nhiên, công bằng' },
-  { id: 'to-chuc', name: 'Tổ chức lớp học', icon: '📋', description: 'Quản lý, tổ chức lớp' },
-  { id: 'on-tap', name: 'Ôn tập – game kiến thức', icon: '🎮', description: 'Game ôn bài, kiểm tra' },
-  { id: 'hoc-ca-nhan', name: 'Học cá nhân', icon: '📚', description: 'Luyện tập cá nhân' },
+const categoriesConfig = [
+  { id: 'all', icon: '🧰', nameKey: 'toolbox.categories.all' },
+  { id: 'teambuilding', icon: '🎉', nameKey: 'toolbox.categories.teambuilding' },
+  { id: 'thi-dua', icon: '🏆', nameKey: 'toolbox.categories.competition' },
+  { id: 'ngau-nhien', icon: '🎲', nameKey: 'toolbox.categories.random' },
+  { id: 'to-chuc', icon: '📋', nameKey: 'toolbox.categories.organize' },
+  { id: 'on-tap', icon: '🎮', nameKey: 'toolbox.categories.review' },
+  { id: 'hoc-ca-nhan', icon: '📚', nameKey: 'toolbox.categories.individual' },
 ];
 
+const getCategories = (t) => categoriesConfig.map(cat => ({
+  ...cat,
+  name: t(cat.nameKey)
+}));
+
 // Tool data configuration - Each tool has its unique color theme
-const tools = [
+const toolsConfig = [
   {
     id: 'cuoc-dua-ki-thu',
-    name: 'Cuộc Đua Kì Thú',
-    description: 'Bảng thi đua trực quan, tạo động lực cho cả lớp',
+    nameKey: 'toolbox.tools.raceGame.name',
+    descKey: 'toolbox.tools.raceGame.description',
     icon: '🏁',
     color: 'from-orange-500 to-red-600',
     bgColor: 'bg-gradient-to-br from-orange-500 via-red-500 to-pink-600',
     iconBg: 'from-yellow-300 to-orange-400',
     textColor: 'text-white',
     descColor: 'text-orange-100',
-    badge: '🏆 THI ĐUA',
+    badgeKey: 'toolbox.badges.competition',
     theme: 'dark',
     categories: ['thi-dua', 'to-chuc', 'teambuilding'],
   },
   {
     id: 'chiec-non-ky-dieu',
-    name: 'Chiếc Nón Kỳ Diệu',
-    description: 'Gọi tên học sinh ngẫu nhiên, công bằng',
+    nameKey: 'toolbox.tools.spinWheel.name',
+    descKey: 'toolbox.tools.spinWheel.description',
     icon: '🎡',
     color: 'from-fuchsia-500 to-purple-600',
     bgColor: 'bg-gradient-to-br from-fuchsia-600 to-purple-700',
     iconBg: 'from-fuchsia-400 to-purple-500',
     textColor: 'text-white',
     descColor: 'text-fuchsia-100',
-    badge: '🔥 HOT',
+    badgeKey: 'toolbox.badges.hot',
     theme: 'dark',
     categories: ['ngau-nhien', 'teambuilding'],
   },
   {
     id: 'boc-tham',
-    name: 'Bốc Thăm',
-    description: 'Rút thăm tên, câu hỏi, phần thưởng',
+    nameKey: 'toolbox.tools.randomPicker.name',
+    descKey: 'toolbox.tools.randomPicker.description',
     icon: '🎫',
     color: 'from-rose-500 to-pink-600',
     bgColor: 'bg-gradient-to-br from-rose-500 to-pink-600',
     iconBg: 'from-rose-300 to-pink-400',
     textColor: 'text-white',
     descColor: 'text-rose-100',
-    badge: '🎰 HỒI HỘP',
+    badgeKey: 'toolbox.badges.exciting',
     theme: 'dark',
     categories: ['ngau-nhien', 'to-chuc', 'teambuilding'],
   },
   {
     id: 'den-may-man',
-    name: 'Đèn May Mắn',
-    description: 'Chọn ngẫu nhiên bằng đèn xanh-đỏ',
+    nameKey: 'toolbox.tools.luckyLight.name',
+    descKey: 'toolbox.tools.luckyLight.description',
     icon: '🚦',
     color: 'from-emerald-500 to-green-600',
     bgColor: 'bg-gradient-to-br from-emerald-600 to-green-700',
     iconBg: 'from-emerald-300 to-green-400',
     textColor: 'text-white',
     descColor: 'text-emerald-100',
-    badge: '🍀 MAY MẮN',
+    badgeKey: 'toolbox.badges.lucky',
     theme: 'dark',
     categories: ['ngau-nhien', 'teambuilding'],
   },
   {
     id: 'xuc-xac',
-    name: 'Xúc Xắc 3D',
-    description: 'Xúc xắc 3D cho máy chiếu, dễ nhìn',
+    nameKey: 'toolbox.tools.dice.name',
+    descKey: 'toolbox.tools.dice.description',
     icon: '🎲',
     color: 'from-purple-500 to-pink-600',
     bgColor: 'bg-gradient-to-br from-purple-600 via-pink-600 to-rose-600',
     iconBg: 'from-purple-300 to-pink-400',
     textColor: 'text-white',
     descColor: 'text-purple-100',
-    badge: '✨ 3D',
+    badgeKey: 'toolbox.badges.3d',
     theme: 'dark',
     categories: ['ngau-nhien', 'teambuilding'],
   },
   {
     id: 'dua-thu-hoat-hinh',
-    name: 'Đua Vịt Sông Nước',
-    description: 'Cuộc đua hoạt hình vui nhộn cho lớp',
+    nameKey: 'toolbox.tools.animalRace.name',
+    descKey: 'toolbox.tools.animalRace.description',
     icon: '🦆',
     color: 'from-cyan-400 to-blue-500',
     bgColor: 'bg-gradient-to-br from-cyan-500 to-blue-600',
     iconBg: 'from-yellow-300 to-amber-400',
     textColor: 'text-white',
     descColor: 'text-cyan-100',
-    badge: '🌊 VUI',
+    badgeKey: 'toolbox.badges.fun',
     theme: 'dark',
     categories: ['ngau-nhien', 'teambuilding'],
   },
   {
     id: 'chia-nhom',
-    name: 'Chia Nhóm',
-    description: 'Chia nhóm ngẫu nhiên, tự chọn nhóm trưởng',
+    nameKey: 'toolbox.tools.groupMaker.name',
+    descKey: 'toolbox.tools.groupMaker.description',
     icon: '👥',
     color: 'from-violet-500 to-purple-600',
     bgColor: 'bg-gradient-to-br from-violet-500 to-purple-600',
     iconBg: 'from-violet-300 to-purple-400',
     textColor: 'text-white',
     descColor: 'text-violet-100',
-    badge: '✨ MỚI',
+    badgeKey: 'toolbox.badges.new',
     theme: 'dark',
     categories: ['to-chuc', 'teambuilding'],
   },
   {
     id: 'dong-ho-bam-gio',
-    name: 'Đồng Hồ Bấm Giờ',
-    description: 'Đếm ngược to rõ, âm thanh báo hết giờ',
+    nameKey: 'toolbox.tools.timer.name',
+    descKey: 'toolbox.tools.timer.description',
     icon: '⏱️',
     color: 'from-sky-400 to-blue-500',
     bgColor: 'bg-gradient-to-br from-sky-500 to-blue-600',
     iconBg: 'from-white to-sky-100',
     textColor: 'text-white',
     descColor: 'text-sky-100',
-    badge: null,
+    badgeKey: null,
     theme: 'dark',
     categories: ['to-chuc', 'hoc-ca-nhan', 'teambuilding'],
   },
   {
     id: 'ai-la-trieu-phu',
-    name: 'Ai Là Triệu Phú',
-    description: 'Game show ôn bài với 50:50, trợ giúp',
+    nameKey: 'toolbox.tools.millionaire.name',
+    descKey: 'toolbox.tools.millionaire.description',
     icon: '💎',
     color: 'from-blue-900 to-indigo-900',
     bgColor: 'bg-gradient-to-br from-blue-950 to-indigo-950',
@@ -220,53 +226,61 @@ const tools = [
     textColor: 'text-amber-400',
     descColor: 'text-blue-200',
     isALTP: true,
-    badge: '🏆 GAME SHOW',
+    badgeKey: 'toolbox.badges.gameShow',
     theme: 'altp',
     category: 'on-tap',
   },
   {
     id: 'o-chu',
-    name: 'Trò Chơi Ô Chữ',
-    description: 'Tạo ô chữ theo chủ đề bài học',
+    nameKey: 'toolbox.tools.crossword.name',
+    descKey: 'toolbox.tools.crossword.description',
     icon: '🔤',
     color: 'from-teal-500 to-cyan-600',
     bgColor: 'bg-gradient-to-br from-teal-600 to-cyan-700',
     iconBg: 'from-teal-300 to-cyan-400',
     textColor: 'text-white',
     descColor: 'text-teal-100',
-    badge: '✨ MỚI',
+    badgeKey: 'toolbox.badges.new',
     theme: 'dark',
     category: 'on-tap',
   },
   {
     id: 'flash-zan',
-    name: 'Flash ZAN',
-    description: 'Luyện tính nhẩm Soroban & Anzan',
+    nameKey: 'toolbox.tools.flashAnzan.name',
+    descKey: 'toolbox.tools.flashAnzan.description',
     icon: '⚡',
     color: 'from-amber-400 to-orange-500',
     bgColor: 'bg-gradient-to-br from-gray-900 to-gray-800',
     iconBg: 'from-amber-400 to-orange-500',
     textColor: 'text-amber-400',
     descColor: 'text-gray-300',
-    badge: '⚡ FLASH',
+    badgeKey: 'toolbox.badges.flash',
     theme: 'flash',
     category: 'on-tap',
   },
   {
     id: 'ban-tinh-soroban',
-    name: 'Bàn Tính Soroban',
-    description: 'Bàn tính ảo cho học sinh luyện tập',
+    nameKey: 'toolbox.tools.soroban.name',
+    descKey: 'toolbox.tools.soroban.description',
     icon: '🧮',
     color: 'from-amber-600 to-orange-700',
     bgColor: 'bg-gradient-to-br from-amber-700 to-orange-800',
     iconBg: 'from-amber-300 to-yellow-400',
     textColor: 'text-amber-100',
     descColor: 'text-amber-200',
-    badge: '🧮 CLASSIC',
+    badgeKey: 'toolbox.badges.classic',
     theme: 'dark',
     category: 'hoc-ca-nhan',
   },
 ];
+
+// Helper function to get tools with translated text
+const getTools = (t) => toolsConfig.map(tool => ({
+  ...tool,
+  name: t(tool.nameKey),
+  description: t(tool.descKey),
+  badge: tool.badgeKey ? t(tool.badgeKey) : null,
+}));
 
 // Helper to check if tool belongs to category (supports both single and multiple categories)
 const toolBelongsToCategory = (tool, categoryId) => {
@@ -277,12 +291,17 @@ const toolBelongsToCategory = (tool, categoryId) => {
 };
 
 export default function ToolboxPage() {
+  const { t } = useI18n();
   const [selectedCategory, setSelectedCategory] = useState('all');
+  
+  // Get translated categories and tools
+  const categories = getCategories(t);
+  const tools = getTools(t);
 
   // Filter tools by selected category
   const filteredTools = selectedCategory === 'all'
     ? tools
-    : tools.filter(t => toolBelongsToCategory(t, selectedCategory));
+    : tools.filter(tool => toolBelongsToCategory(tool, selectedCategory));
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-violet-50 via-white to-pink-50">
@@ -296,19 +315,19 @@ export default function ToolboxPage() {
           <div className="flex items-center justify-center gap-2 mb-1">
             <h1 className="text-xl sm:text-2xl md:text-3xl font-black">
               <span className="bg-gradient-to-r from-violet-600 to-pink-600 bg-clip-text text-transparent">
-                Toolbox Giáo Viên
+                {t('toolbox.title')}
               </span>
             </h1>
             <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full">
-              Miễn phí
+              {t('common.free')}
             </span>
           </div>
 
           {/* Subtitle + Actions - Stack on mobile */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-gray-500 text-sm mb-3">
-            <span className="text-xs sm:text-sm">Trò chơi & công cụ phổ biến nhất cho lớp học</span>
+            <span className="text-xs sm:text-sm">{t('toolbox.subtitle')}</span>
             <span className="hidden sm:inline text-gray-300">•</span>
-            <ActionButtons />
+            <ActionButtons t={t} />
           </div>
 
           {/* Category Tabs - Wrap on mobile, horizontal on desktop */}
@@ -334,7 +353,7 @@ export default function ToolboxPage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {filteredTools.map((tool, index) => (
-            <ToolCard key={tool.id} tool={tool} index={index} />
+            <ToolCard key={tool.id} tool={tool} index={index} t={t} />
           ))}
         </div>
 
@@ -345,16 +364,16 @@ export default function ToolboxPage() {
             border border-violet-100/50 rounded-full shadow-sm">
             <p className="text-gray-600">
               <span className="font-semibold bg-gradient-to-r from-violet-600 to-pink-500 bg-clip-text text-transparent">SoroKid</span>
-              {' '}- Công cụ dạy Soroban cá nhân hoá cho từng học sinh
+              {' '}- {t('toolbox.sorokidIntro')}
             </p>
-            <Link 
+            <LocalizedLink 
               href="/"
               className="px-4 py-1.5 bg-gradient-to-r from-violet-500 to-pink-500 
                 hover:from-violet-600 hover:to-pink-600
                 text-white text-sm font-medium rounded-full transition-all"
             >
-              Khám phá →
-            </Link>
+              {t('toolbox.explore')} →
+            </LocalizedLink>
           </div>
         </div>
       </main>
@@ -366,7 +385,7 @@ export default function ToolboxPage() {
             <Logo size="sm" showText={true} />
             <span className="hidden sm:inline text-gray-300">|</span>
             <p className="text-sm text-gray-500">
-              © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
+              © {new Date().getFullYear()} SoroKid - {t('footer.copyright')}
             </p>
           </div>
         </div>
@@ -377,8 +396,8 @@ export default function ToolboxPage() {
 }
 
 // Tool Card Component
-function ToolCard({ tool, index }) {
-  const CardWrapper = tool.comingSoon ? 'div' : Link;
+function ToolCard({ tool, index, t }) {
+  const CardWrapper = tool.comingSoon ? 'div' : LocalizedLink;
   const cardProps = tool.comingSoon 
     ? {} 
     : { href: `/tool/${tool.id}` };
@@ -386,6 +405,23 @@ function ToolCard({ tool, index }) {
   const isDark = tool.theme === 'dark' || tool.theme === 'altp' || tool.theme === 'flash';
   const isALTP = tool.isALTP;
   const isFlash = tool.theme === 'flash';
+  
+  // Get badge style based on badgeKey
+  const getBadgeStyle = () => {
+    const key = tool.badgeKey || '';
+    if (key.includes('hot')) return 'bg-red-500 text-white animate-pulse';
+    if (key.includes('new')) return 'bg-white/90 text-violet-600';
+    if (key.includes('flash')) return 'bg-amber-400 text-gray-900 animate-pulse';
+    if (key.includes('fun')) return 'bg-white/90 text-cyan-600';
+    if (key.includes('exciting')) return 'bg-white/90 text-rose-600';
+    if (key.includes('classic')) return 'bg-amber-200 text-amber-800';
+    if (key.includes('lucky')) return 'bg-white/90 text-emerald-600';
+    if (key.includes('comingSoon')) return 'bg-white/30 text-white';
+    if (key.includes('gameShow')) return 'bg-gradient-to-r from-amber-400 to-yellow-500 text-blue-900 font-black';
+    if (key.includes('competition')) return 'bg-white/90 text-orange-600';
+    if (key.includes('3d')) return 'bg-white/90 text-purple-600';
+    return 'bg-white/90 text-gray-600';
+  };
 
   return (
     <CardWrapper
@@ -400,17 +436,7 @@ function ToolCard({ tool, index }) {
       {/* Badge */}
       {tool.badge && (
         <div className="absolute top-4 right-4 z-10">
-          <span className={`px-3 py-1.5 text-xs font-bold rounded-full shadow-md
-            ${tool.badge.includes('HOT') ? 'bg-red-500 text-white animate-pulse' : ''}
-            ${tool.badge.includes('MỚI') ? 'bg-white/90 text-violet-600' : ''}
-            ${tool.badge.includes('FLASH') ? 'bg-amber-400 text-gray-900 animate-pulse' : ''}
-            ${tool.badge.includes('VUI') ? 'bg-white/90 text-cyan-600' : ''}
-            ${tool.badge.includes('HỒI HỘP') ? 'bg-white/90 text-rose-600' : ''}
-            ${tool.badge.includes('CLASSIC') ? 'bg-amber-200 text-amber-800' : ''}
-            ${tool.badge.includes('MAY MẮN') ? 'bg-white/90 text-emerald-600' : ''}
-            ${tool.badge.includes('COMING SOON') ? 'bg-white/30 text-white' : ''}
-            ${tool.badge.includes('GAME SHOW') ? 'bg-gradient-to-r from-amber-400 to-yellow-500 text-blue-900 font-black' : ''}
-          `}>
+          <span className={`px-3 py-1.5 text-xs font-bold rounded-full shadow-md ${getBadgeStyle()}`}>
             {tool.badge}
           </span>
         </div>
@@ -461,7 +487,7 @@ function ToolCard({ tool, index }) {
           : 'bg-white/20 backdrop-blur-sm text-white border border-white/30'} 
         font-semibold rounded-full
         ${tool.comingSoon ? '' : 'group-hover:shadow-lg group-hover:scale-105'} transition-all duration-300`}>
-        <span>{tool.comingSoon ? 'Sắp ra mắt' : isALTP ? 'Chơi ngay!' : 'Mở tool'}</span>
+        <span>{tool.comingSoon ? t('toolbox.comingSoon') : isALTP ? t('toolbox.playNow') : t('toolbox.openTool')}</span>
         {!tool.comingSoon && (
           <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
             fill="none" viewBox="0 0 24 24" stroke="currentColor">

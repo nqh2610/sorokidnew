@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import { LocalizedLink } from '@/components/LocalizedLink';
 import { TIERS } from '@/lib/tierSystem';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 /**
  * TrialBanner - Hiển thị banner thông báo trial
@@ -15,6 +16,7 @@ import { TIERS } from '@/lib/tierSystem';
  */
 export default function TrialBanner({ trialInfo }) {
   const [dismissed, setDismissed] = useState(false);
+  const { t } = useI18n();
   
   // Không có trial info hoặc chưa từng có trial → không hiện gì
   if (!trialInfo || !trialInfo.hadTrial) {
@@ -35,19 +37,19 @@ export default function TrialBanner({ trialInfo }) {
           <div className="flex items-center gap-3">
             <span className="text-2xl">😢</span>
             <div>
-              <p className="font-semibold">Thời gian dùng thử đã kết thúc</p>
+              <p className="font-semibold">{t('trial.ended')}</p>
               <p className="text-sm text-white/80">
-                Bạn đã hết thời gian dùng thử gói {tierInfo.displayName}. Nâng cấp để tiếp tục học với đầy đủ tính năng!
+                {t('trial.endedDesc', { tier: tierInfo.displayName })}
               </p>
             </div>
           </div>
           <div className="flex gap-2">
-            <Link
+            <LocalizedLink
               href="/pricing"
               className="px-4 py-2 bg-purple-500 text-white rounded-lg font-medium hover:bg-purple-600 transition-colors"
             >
-              🚀 Nâng cấp ngay
-            </Link>
+              {t('trial.upgradeNow')}
+            </LocalizedLink>
             <button
               onClick={() => setDismissed(true)}
               className="px-3 py-2 text-white/70 hover:text-white transition-colors"
@@ -88,31 +90,31 @@ export default function TrialBanner({ trialInfo }) {
           <span className="text-2xl">{getIcon()}</span>
           <div>
             <p className="font-semibold">
-              Đang dùng thử gói {tierInfo.icon} {tierInfo.displayName}
+              {t('trial.inProgress')} {tierInfo.icon} {tierInfo.displayName}
             </p>
             <p className="text-sm text-white/90">
               {daysRemaining <= 2 
-                ? `⚠️ Chỉ còn ${daysRemaining} ngày - Nâng cấp ngay để không bị gián đoạn!`
-                : `Còn ${daysRemaining} ngày trải nghiệm full tính năng`
+                ? t('trial.warningLastDays', { days: daysRemaining })
+                : t('trial.daysRemaining', { days: daysRemaining })
               }
             </p>
           </div>
         </div>
 
         {/* Right: CTA Button */}
-        <Link
+        <LocalizedLink
           href="/pricing"
           className="px-4 py-2 bg-white text-purple-600 rounded-lg font-medium hover:bg-purple-50 transition-colors shadow-md whitespace-nowrap"
         >
-          {daysRemaining <= 2 ? '🚀 Nâng cấp ngay' : '💎 Xem các gói'}
-        </Link>
+          {daysRemaining <= 2 ? t('trial.upgradeNow') : t('trial.viewPlans')}
+        </LocalizedLink>
       </div>
 
       {/* Progress bar */}
       <div className="mt-3">
         <div className="flex justify-between text-xs text-white/80 mb-1">
-          <span>Thời gian dùng thử</span>
-          <span>{daysRemaining} ngày còn lại</span>
+          <span>{t('trial.period')}</span>
+          <span>{t('trial.daysLeft', { days: daysRemaining })}</span>
         </div>
         <div className="h-2 bg-white/30 rounded-full overflow-hidden">
           <div 
@@ -129,6 +131,8 @@ export default function TrialBanner({ trialInfo }) {
  * TrialBannerCompact - Phiên bản nhỏ gọn cho Navigation/Sidebar
  */
 export function TrialBannerCompact({ trialInfo }) {
+  const { t } = useI18n();
+  
   if (!trialInfo || !trialInfo.isActive) {
     return null;
   }
@@ -137,7 +141,7 @@ export function TrialBannerCompact({ trialInfo }) {
   const tierInfo = TIERS[trialTier] || TIERS.advanced;
 
   return (
-    <Link
+    <LocalizedLink
       href="/pricing"
       className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
         daysRemaining <= 2
@@ -148,8 +152,8 @@ export function TrialBannerCompact({ trialInfo }) {
       }`}
     >
       <span>{tierInfo.icon}</span>
-      <span>Trial: {daysRemaining} ngày</span>
-    </Link>
+      <span>{t('trial.badge', { days: daysRemaining })}</span>
+    </LocalizedLink>
   );
 }
 
@@ -157,25 +161,27 @@ export function TrialBannerCompact({ trialInfo }) {
  * TrialExpiredBanner - Hiển thị khi trial đã hết hạn
  */
 export function TrialExpiredBanner({ onDismiss }) {
+  const { t } = useI18n();
+  
   return (
     <div className="bg-gradient-to-r from-gray-700 to-gray-800 rounded-xl p-4 text-white shadow-lg">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div className="flex items-center gap-3">
           <span className="text-2xl">😢</span>
           <div>
-            <p className="font-semibold">Thời gian dùng thử đã kết thúc</p>
+            <p className="font-semibold">{t('trial.ended')}</p>
             <p className="text-sm text-white/80">
-              Nâng cấp ngay để tiếp tục học với đầy đủ tính năng
+              {t('upgrade.fullExperience')}
             </p>
           </div>
         </div>
         <div className="flex gap-2">
-          <Link
+          <LocalizedLink
             href="/pricing"
             className="px-4 py-2 bg-purple-500 text-white rounded-lg font-medium hover:bg-purple-600 transition-colors"
           >
-            🚀 Nâng cấp ngay
-          </Link>
+            {t('trial.upgradeNow')}
+          </LocalizedLink>
           {onDismiss && (
             <button
               onClick={onDismiss}

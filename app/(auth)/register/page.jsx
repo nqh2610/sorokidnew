@@ -3,10 +3,11 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
-import Link from 'next/link';
 import { User, Mail, Lock, UserCircle, Eye, EyeOff, Award, Phone } from 'lucide-react';
 import { useToast } from '@/components/Toast/ToastContext';
 import Logo from '@/components/Logo/Logo';
+import { LocalizedLink, useLocalizedUrl } from '@/components/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 // 🔧 Detect if running in Capacitor WebView
 function isCapacitorApp() {
@@ -39,6 +40,8 @@ async function openExternalBrowser(url) {
 export default function RegisterPage() {
   const router = useRouter();
   const toast = useToast();
+  const localizeUrl = useLocalizedUrl();
+  const { t } = useI18n();
   const [formData, setFormData] = useState({
     name: '',
     username: '',
@@ -71,51 +74,46 @@ export default function RegisterPage() {
     const newErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Vui lòng nhập họ tên';
+      newErrors.name = t('auth.validation.nameRequired');
     } else if (formData.name.trim().length < 2) {
-      newErrors.name = 'Họ tên phải có ít nhất 2 ký tự';
+      newErrors.name = t('auth.validation.nameMinLength');
     }
 
     if (!formData.username.trim()) {
-      newErrors.username = 'Vui lòng nhập tên đăng nhập';
+      newErrors.username = t('auth.validation.usernameRequired');
     } else if (formData.username.trim().length < 3) {
-      newErrors.username = 'Tên đăng nhập phải có ít nhất 3 ký tự';
+      newErrors.username = t('auth.validation.usernameMinLength');
     } else if (!/^[a-zA-Z0-9_]+$/.test(formData.username)) {
-      newErrors.username = 'Tên đăng nhập chỉ chứa chữ, số và gạch dưới';
+      newErrors.username = t('auth.validation.usernameFormat');
     }
 
     if (!formData.email) {
-      newErrors.email = 'Vui lòng nhập email';
+      newErrors.email = t('auth.validation.emailRequired');
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Email không hợp lệ';
+      newErrors.email = t('auth.validation.emailInvalid');
     }
 
-    // Validate số điện thoại Việt Nam
+    // Validate phone number
     if (!formData.phone) {
-      newErrors.phone = 'Vui lòng nhập số điện thoại';
+      newErrors.phone = t('auth.validation.phoneRequired');
     } else {
-      // Chuẩn hóa số điện thoại (loại bỏ khoảng trắng, dấu gạch)
       const cleanPhone = formData.phone.replace(/[\s\-\.]/g, '');
-      // Regex cho số điện thoại Việt Nam:
-      // - Bắt đầu bằng 0 hoặc +84 hoặc 84
-      // - Tiếp theo là các đầu số hợp lệ (3, 5, 7, 8, 9)
-      // - Tổng cộng 10 số (nếu bắt đầu bằng 0) hoặc 11-12 số (nếu có +84/84)
       const vietnamPhoneRegex = /^(0|\+84|84)(3[2-9]|5[2689]|7[0-9]|8[1-9]|9[0-9])[0-9]{7}$/;
       if (!vietnamPhoneRegex.test(cleanPhone)) {
-        newErrors.phone = 'Số điện thoại không hợp lệ (VD: 0901234567)';
+        newErrors.phone = t('auth.validation.phoneInvalid');
       }
     }
 
     if (!formData.password) {
-      newErrors.password = 'Vui lòng nhập mật khẩu';
+      newErrors.password = t('auth.validation.passwordRequired');
     } else if (formData.password.length < 6) {
-      newErrors.password = 'Mật khẩu phải có ít nhất 6 ký tự';
+      newErrors.password = t('auth.validation.passwordMinLength');
     }
 
     if (!formData.confirmPassword) {
-      newErrors.confirmPassword = 'Vui lòng xác nhận mật khẩu';
+      newErrors.confirmPassword = t('auth.validation.confirmRequired');
     } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Mật khẩu không khớp';
+      newErrors.confirmPassword = t('auth.validation.passwordMismatch');
     }
 
     setErrors(newErrors);
@@ -126,7 +124,7 @@ export default function RegisterPage() {
     e.preventDefault();
 
     if (!validateForm()) {
-      toast.error('Vui lòng kiểm tra lại thông tin!');
+      toast.error(t('auth.register.checkInfo'));
       return;
     }
 
@@ -151,34 +149,33 @@ export default function RegisterPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        // Chuyển thông báo lỗi thành thân thiện với người dùng
-        let friendlyError = 'Đăng ký thất bại. Vui lòng thử lại!';
+        let friendlyError = t('auth.register.error');
         if (data.error === 'Email already exists') {
-          friendlyError = 'Email này đã được sử dụng!';
-          setErrors(prev => ({ ...prev, email: 'Email này đã được sử dụng' }));
+          friendlyError = t('auth.validation.emailExists');
+          setErrors(prev => ({ ...prev, email: t('auth.validation.emailExists') }));
         } else if (data.error === 'Username already exists') {
-          friendlyError = 'Tên đăng nhập này đã được sử dụng!';
-          setErrors(prev => ({ ...prev, username: 'Tên đăng nhập này đã được sử dụng' }));
+          friendlyError = t('auth.validation.usernameExists');
+          setErrors(prev => ({ ...prev, username: t('auth.validation.usernameExists') }));
         } else if (data.error === 'Phone already exists') {
-          friendlyError = 'Số điện thoại này đã được sử dụng!';
-          setErrors(prev => ({ ...prev, phone: 'Số điện thoại này đã được sử dụng' }));
+          friendlyError = t('auth.validation.phoneExists');
+          setErrors(prev => ({ ...prev, phone: t('auth.validation.phoneExists') }));
         } else if (data.error?.includes('email')) {
-          friendlyError = 'Email không hợp lệ!';
+          friendlyError = t('auth.validation.emailInvalid');
         } else if (data.error?.includes('password')) {
-          friendlyError = 'Mật khẩu không hợp lệ!';
+          friendlyError = t('auth.validation.passwordInvalid');
         } else if (data.error?.includes('phone')) {
-          friendlyError = 'Số điện thoại không hợp lệ!';
+          friendlyError = t('auth.validation.phoneInvalid');
         }
         toast.error(friendlyError);
         return;
       }
 
-      toast.success('Đăng ký thành công! 🎉');
+      toast.success(t('auth.register.success'));
       setTimeout(() => {
-        router.push('/login');
+        router.push(localizeUrl('/login'));
       }, 1000);
     } catch (error) {
-      toast.error('Đã xảy ra lỗi. Vui lòng thử lại!');
+      toast.error(t('auth.register.error'));
     } finally {
       setLoading(false);
     }
@@ -191,8 +188,8 @@ export default function RegisterPage() {
         <div className="fixed inset-0 bg-gradient-to-br from-blue-500 via-violet-500 to-pink-500 z-50 flex flex-col items-center justify-center">
           <div className="bg-white/20 backdrop-blur-md rounded-2xl p-6 text-center">
             <div className="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin mx-auto mb-3"></div>
-            <h2 className="text-white text-lg font-bold mb-1">Đang kết nối với Google...</h2>
-            <p className="text-white/80 text-sm">Vui lòng chờ trong giây lát</p>
+            <h2 className="text-white text-lg font-bold mb-1">{t('auth.login.googleLoading')}</h2>
+            <p className="text-white/80 text-sm">{t('auth.login.googleWait')}</p>
           </div>
         </div>
       )}
@@ -200,12 +197,12 @@ export default function RegisterPage() {
       <div className="w-full max-w-sm">
         <div className="bg-white rounded-2xl shadow-2xl p-5 max-h-[85vh] overflow-y-auto">
           {/* Header */}
-          <Link href="/" className="flex items-center justify-center gap-2 mb-4">
+          <LocalizedLink href="/" className="flex items-center justify-center gap-2 mb-4">
             <Logo size="md" showText={false} />
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
               SoroKid
             </span>
-          </Link>
+          </LocalizedLink>
 
           {/* Google Register Button */}
           <button
@@ -216,18 +213,18 @@ export default function RegisterPage() {
               if (isNativeApp) {
                 // 🔧 Trong Capacitor app: mở external browser
                 const baseUrl = 'https://sorokid.com';
-                const googleAuthUrl = `${baseUrl}/api/auth/signin/google?callbackUrl=${encodeURIComponent(baseUrl + '/dashboard')}`;
+                const googleAuthUrl = `${baseUrl}/api/auth/signin/google?callbackUrl=${encodeURIComponent(baseUrl + localizeUrl('/dashboard'))}`;
                 
                 try {
                   await openExternalBrowser(googleAuthUrl);
-                  toast.info('Đang mở trình duyệt để đăng ký Google...');
+                  toast.info(t('auth.login.openingBrowser'));
                   setTimeout(() => setGoogleLoading(false), 3000);
                 } catch (error) {
-                  toast.error('Không thể mở trình duyệt. Vui lòng thử lại!');
+                  toast.error(t('auth.login.browserError'));
                   setGoogleLoading(false);
                 }
               } else {
-                signIn('google', { callbackUrl: '/dashboard' });
+                signIn('google', { callbackUrl: localizeUrl('/dashboard') });
               }
             }}
             disabled={loading || googleLoading}
@@ -236,7 +233,7 @@ export default function RegisterPage() {
             {googleLoading ? (
               <>
                 <div className="w-5 h-5 border-2 border-gray-300 border-t-violet-500 rounded-full animate-spin"></div>
-                <span>Đang chuyển hướng...</span>
+                <span>{t('auth.login.redirecting')}</span>
               </>
             ) : (
               <>
@@ -246,7 +243,7 @@ export default function RegisterPage() {
                   <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                   <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                 </svg>
-                Đăng ký nhanh với Google
+                {t('auth.register.googleButton')}
               </>
             )}
           </button>
@@ -254,18 +251,18 @@ export default function RegisterPage() {
           {/* Divider */}
           <div className="my-3 flex items-center gap-3">
             <div className="flex-1 h-px bg-gray-200"></div>
-            <span className="text-gray-400 text-xs">hoặc</span>
+            <span className="text-gray-400 text-xs">{t('auth.register.or')}</span>
             <div className="flex-1 h-px bg-gray-200"></div>
           </div>
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-3">
-            {/* Họ tên */}
+            {/* Name */}
             <div>
               <label className="block text-gray-700 font-medium mb-1 text-sm flex items-center gap-1.5">
                 <User size={15} className="text-violet-500" />
-                Họ tên
-                <span className="text-xs text-amber-600 ml-1">(hiển trên chứng chỉ)</span>
+                {t('auth.register.fullName')}
+                <span className="text-xs text-amber-600 ml-1">({t('auth.register.displayOnCertificate')})</span>
               </label>
               <input
                 type="text"
@@ -277,18 +274,18 @@ export default function RegisterPage() {
                     ? 'border-red-400 focus:border-red-500' 
                     : 'border-gray-200 focus:border-violet-500'
                 }`}
-                placeholder="Nguyễn Văn A"
+                placeholder={t('auth.register.fullNamePlaceholder')}
               />
               {errors.name && (
                 <p className="mt-1 text-xs text-red-500">{errors.name}</p>
               )}
             </div>
 
-            {/* Tên đăng nhập */}
+            {/* Username */}
             <div>
               <label className="block text-gray-700 font-medium mb-1 text-sm flex items-center gap-1.5">
                 <UserCircle size={15} className="text-violet-500" />
-                Tên đăng nhập
+                {t('auth.register.username')}
               </label>
               <input
                 type="text"
@@ -300,7 +297,7 @@ export default function RegisterPage() {
                     ? 'border-red-400 focus:border-red-500' 
                     : 'border-gray-200 focus:border-violet-500'
                 }`}
-                placeholder="nguyenvana"
+                placeholder={t('auth.register.usernamePlaceholder')}
               />
               {errors.username && (
                 <p className="mt-1 text-xs text-red-500">{errors.username}</p>
@@ -330,11 +327,11 @@ export default function RegisterPage() {
               )}
             </div>
 
-            {/* Số điện thoại */}
+            {/* Phone */}
             <div>
               <label className="block text-gray-700 font-medium mb-1 text-sm flex items-center gap-1.5">
                 <Phone size={15} className="text-violet-500" />
-                Số điện thoại
+                {t('auth.register.phone')}
               </label>
               <input
                 type="tel"
@@ -346,18 +343,18 @@ export default function RegisterPage() {
                     ? 'border-red-400 focus:border-red-500'
                     : 'border-gray-200 focus:border-violet-500'
                 }`}
-                placeholder="0901234567"
+                placeholder={t('auth.register.phonePlaceholder')}
               />
               {errors.phone && (
                 <p className="mt-1 text-xs text-red-500">{errors.phone}</p>
               )}
             </div>
 
-            {/* Mật khẩu */}
+            {/* Password */}
             <div>
               <label className="block text-gray-700 font-medium mb-1 text-sm flex items-center gap-1.5">
                 <Lock size={15} className="text-violet-500" />
-                Mật khẩu
+                {t('auth.register.password')}
               </label>
               <div className="relative">
                 <input
@@ -385,11 +382,11 @@ export default function RegisterPage() {
               )}
             </div>
 
-            {/* Xác nhận mật khẩu */}
+            {/* Confirm Password */}
             <div>
               <label className="block text-gray-700 font-medium mb-1 text-sm flex items-center gap-1.5">
                 <Lock size={15} className="text-violet-500" />
-                Xác nhận mật khẩu
+                {t('auth.register.confirmPassword')}
               </label>
               <div className="relative">
                 <input
@@ -426,26 +423,26 @@ export default function RegisterPage() {
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
                   <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                  Đang đăng ký...
+                  {t('auth.register.submitting')}
                 </span>
               ) : (
-                '🚀 Đăng ký ngay'
+                t('auth.register.submit')
               )}
             </button>
           </form>
 
           {/* Footer */}
           <p className="mt-4 text-center text-sm text-gray-600">
-            Đã có tài khoản?{' '}
-            <Link href="/login" className="text-violet-600 font-semibold hover:text-pink-500">
-              Đăng nhập
-            </Link>
+            {t('auth.register.haveAccount')}{' '}
+            <LocalizedLink href="/login" className="text-violet-600 font-semibold hover:text-pink-500">
+              {t('auth.register.signIn')}
+            </LocalizedLink>
           </p>
         </div>
 
         {/* Copyright */}
         <p className="text-center mt-4 text-white/70 text-xs">
-          © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
+          © {new Date().getFullYear()} SoroKid - {t('auth.login.copyright')}
         </p>
       </div>
     </div>

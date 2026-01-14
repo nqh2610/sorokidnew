@@ -2,7 +2,6 @@
 
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
 import { useEffect, useState, useRef, Suspense } from 'react';
 import { ArrowLeft, Trophy, Zap, Clock, SkipForward, RotateCcw } from 'lucide-react';
 import { useToast } from '@/components/Toast/ToastContext';
@@ -15,12 +14,14 @@ import GameModeHeader from '@/components/GameModeHeader/GameModeHeader';
 import { useGameSound } from '@/lib/useGameSound';
 import { getNextZoneAfterStage as getNextZoneAddSub } from '@/config/adventure-stages-addsub.config';
 import { getNextZoneAfterStage as getNextZoneMulDiv } from '@/config/adventure-stages-muldiv.config';
-// 🆕 Import skill-based problem generator cho Adventure mode
+// 🆕 Import skill-based problem generator for Adventure mode
 import { generateAdditionProblem, generateSubtractionProblem, generateMixedProblem, generateCreateNumberProblem } from '@/lib/soroban-problem-generator';
 import { useGameSettings } from '@/lib/useGameSettings';
 import { GAME_IDS } from '@/lib/gameStorage';
+import { LocalizedLink, useLocalizedUrl } from '@/components/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
-// Default settings cho Practice - chỉ lưu preferences
+// Default settings for Practice - only save preferences
 const DEFAULT_PRACTICE_SETTINGS = {
   m: null,       // mode - 'addition', 'subtraction', etc.
   d: 1,          // difficulty (1-6)
@@ -30,95 +31,109 @@ const DEFAULT_PRACTICE_SETTINGS = {
   fo: null,      // flashSelectedOperation
 };
 
-const TOTAL_CHALLENGES = 10; // Mỗi màn có 10 thử thách
+const TOTAL_CHALLENGES = 10; // 10 challenges per game
 
-// Thông điệp động viên game hóa theo tốc độ
-const speedTiers = {
+// Speed tier configuration (text loaded from i18n)
+const speedTierConfig = {
   godlike: {
-    threshold: 0.25, // ≤25% thời gian
+    threshold: 0.25,
     multiplier: 3,
-    messages: [
-      { text: 'THẦN TỐC!', emoji: '⚡' },
-      { text: 'SIÊU NHANH!', emoji: '💨' },
-      { text: 'KHÔNG THỂ TIN!', emoji: '🤯' },
-      { text: 'ĐỈNH CỦA ĐỈNH!', emoji: '🏆' },
-    ],
     color: 'from-cyan-400 to-blue-500',
     textColor: 'text-cyan-400'
   },
   fast: {
-    threshold: 0.5, // ≤50% thời gian
+    threshold: 0.5,
     multiplier: 2,
-    messages: [
-      { text: 'NHANH NHƯ CHỚP!', emoji: '🚀' },
-      { text: 'TỐC ĐỘ ÁNH SÁNG!', emoji: '✨' },
-      { text: 'SIÊU TỐC!', emoji: '💫' },
-      { text: 'QUÁI VẬT TỐC ĐỘ!', emoji: '🐆' },
-    ],
     color: 'from-green-400 to-emerald-500',
     textColor: 'text-green-400'
   },
   good: {
-    threshold: 0.75, // ≤75% thời gian
+    threshold: 0.75,
     multiplier: 1.5,
-    messages: [
-      { text: 'XUẤT SẮC!', emoji: '🌟' },
-      { text: 'TUYỆT VỜI!', emoji: '🎉' },
-      { text: 'GIỎI LẮM!', emoji: '👏' },
-      { text: 'CỪ KHÔI!', emoji: '💪' },
-    ],
     color: 'from-yellow-400 to-orange-500',
     textColor: 'text-yellow-400'
   },
   normal: {
-    threshold: 1, // >75% thời gian
+    threshold: 1,
     multiplier: 1,
-    messages: [
-      { text: 'ĐÚNG RỒI!', emoji: '✅' },
-      { text: 'CHÍNH XÁC!', emoji: '✓' },
-      { text: 'TỐT LẮM!', emoji: '👍' },
-      { text: 'HAY LẮM!', emoji: '😊' },
-    ],
     color: 'from-gray-400 to-gray-500',
     textColor: 'text-white'
   }
 };
 
-const streakMessages = [
-  { streak: 3, text: 'COMBO x3!', emoji: '🔥' },
-  { streak: 5, text: 'UNSTOPPABLE!', emoji: '💥' },
-  { streak: 7, text: 'DOMINATING!', emoji: '👑' },
-  { streak: 10, text: 'LEGENDARY!', emoji: '🏆' },
-];
+// Helper to get speed tier messages from i18n
+function getSpeedTiers(t) {
+  const tiers = t('practiceScreen.speedTiers', { returnObjects: true });
+  const emojis = {
+    godlike: ['⚡', '💨', '🤯', '🏆'],
+    fast: ['🚀', '✨', '💫', '🐆'],
+    good: ['🌟', '🎉', '👏', '💪'],
+    normal: ['✅', '✓', '👍', '😊']
+  };
+  
+  return Object.keys(speedTierConfig).reduce((acc, tier) => {
+    const messages = tiers?.[tier] || [];
+    acc[tier] = {
+      ...speedTierConfig[tier],
+      messages: messages.map((text, i) => ({ text, emoji: emojis[tier][i] || '✨' }))
+    };
+    return acc;
+  }, {});
+}
 
-const difficultyInfo = {
-  1: { label: 'Tập Sự', emoji: '🐣' },
-  2: { label: 'Chiến Binh', emoji: '⚔️' },
-  3: { label: 'Dũng Sĩ', emoji: '🛡️' },
-  4: { label: 'Cao Thủ', emoji: '🔥' },
-  5: { label: 'Huyền Thoại', emoji: '👑' },
-  6: { label: 'Siêu Huyền Thoại', emoji: '💎' }
-};
+// Streak messages (keys match i18n)
+const streakThresholds = [3, 5, 7, 10];
+const streakEmojis = { 3: '🔥', 5: '💥', 7: '👑', 10: '🏆' };
 
-const modeInfo = {
-  addition: { title: 'Siêu Cộng', icon: '🌟', symbol: '+', color: 'from-emerald-500 to-green-600' },
-  subtraction: { title: 'Siêu Trừ', icon: '👾', symbol: '-', color: 'from-blue-500 to-cyan-600' },
-  addSubMixed: { title: 'Cộng Trừ Mix', icon: '⚔️', symbol: '±', color: 'from-teal-500 to-emerald-600' },
-  multiplication: { title: 'Siêu Nhân', icon: '✨', symbol: '×', color: 'from-purple-500 to-pink-600' },
-  division: { title: 'Siêu Chia', icon: '🍕', symbol: '÷', color: 'from-rose-500 to-red-600' },
-  mulDiv: { title: 'Nhân Chia Mix', icon: '🎩', symbol: '×÷', color: 'from-amber-500 to-orange-600' },
-  mixed: { title: 'Tứ Phép Thần', icon: '👑', symbol: '∞', color: 'from-indigo-500 to-purple-600' },
-  mentalMath: { title: 'Siêu Trí Tuệ', icon: '🧠', symbol: '💭', color: 'from-violet-500 to-fuchsia-600', isMental: true },
-  flashAnzan: { title: 'Tia Chớp', icon: '⚡', symbol: '💫', color: 'from-yellow-500 to-orange-600', isFlash: true },
-};
+// Helper to get streak messages from i18n
+function getStreakMessages(t) {
+  const msgs = t('practiceScreen.streakMessages') || {};
+  return streakThresholds.map(streak => ({
+    streak,
+    emoji: streakEmojis[streak],
+    text: msgs[streak] || `COMBO x${streak}!`
+  }));
+}
 
-// Cấu hình các cấp độ Flash Anzan - LIGHT SPEED THEME (Tốc độ ánh sáng)
-// CHỈ CÓ TỐC ĐỘ - Số chữ số và phép toán được chọn riêng
-const flashLevels = [
+// Helper to get difficulty info from i18n
+function getDifficultyInfo(t) {
+  const diffEmojis = { 1: '🐣', 2: '⚔️', 3: '🛡️', 4: '🔥', 5: '👑', 6: '💎' };
+  return [1, 2, 3, 4, 5, 6].reduce((acc, level) => {
+    acc[level] = { 
+      label: t(`practiceScreen.difficulty.${level}`), 
+      emoji: diffEmojis[level] 
+    };
+    return acc;
+  }, {});
+}
+
+// Helper to get mode info from i18n
+function getModeInfo(t) {
+  const modeConfig = {
+    addition: { icon: '🌟', symbol: '+', color: 'from-emerald-500 to-green-600' },
+    subtraction: { icon: '👾', symbol: '-', color: 'from-blue-500 to-cyan-600' },
+    addSubMixed: { icon: '⚔️', symbol: '±', color: 'from-teal-500 to-emerald-600' },
+    multiplication: { icon: '✨', symbol: '×', color: 'from-purple-500 to-pink-600' },
+    division: { icon: '🍕', symbol: '÷', color: 'from-rose-500 to-red-600' },
+    mulDiv: { icon: '🎩', symbol: '×÷', color: 'from-amber-500 to-orange-600' },
+    mixed: { icon: '👑', symbol: '∞', color: 'from-indigo-500 to-purple-600' },
+    mentalMath: { icon: '🧠', symbol: '💭', color: 'from-violet-500 to-fuchsia-600', isMental: true },
+    flashAnzan: { icon: '⚡', symbol: '💫', color: 'from-yellow-500 to-orange-600', isFlash: true },
+  };
+  
+  return Object.keys(modeConfig).reduce((acc, mode) => {
+    acc[mode] = {
+      ...modeConfig[mode],
+      title: t(`practiceScreen.modes.${mode}`)
+    };
+    return acc;
+  }, {});
+}
+
+// Flash Anzan level configuration (text loaded from i18n)
+const flashLevelConfig = [
   {
     id: 'anhNen',
-    name: 'Ánh Nến',
-    subtitle: 'Lung linh dịu dàng',
     emoji: '🕯️',
     color: 'from-amber-400 to-orange-500',
     bgColor: 'from-amber-50 to-orange-50',
@@ -127,16 +142,12 @@ const flashLevels = [
     speed: [3, 3],
     stars: 2,
     difficultyLevel: 1,
-    tagline: 'Khởi đầu ấm áp',
     rank: '⭐',
-    rankLabel: 'Tập Sự',
     rankColor: 'from-amber-500 to-orange-600',
     bonusMultiplier: 1
   },
   {
     id: 'anhTrang',
-    name: 'Ánh Trăng',
-    subtitle: 'Huyền ảo đêm thanh',
     emoji: '🌙',
     color: 'from-slate-300 to-blue-400',
     bgColor: 'from-slate-50 to-blue-50',
@@ -145,16 +156,12 @@ const flashLevels = [
     speed: [2.5, 2.5],
     stars: 4,
     difficultyLevel: 2,
-    tagline: 'Bước tiếp vững chắc',
     rank: '⭐⭐',
-    rankLabel: 'Chiến Binh',
     rankColor: 'from-slate-400 to-blue-500',
     bonusMultiplier: 1.5
   },
   {
     id: 'tiaChop',
-    name: 'Tia Chớp',
-    subtitle: 'Lóe sáng chớp nhoáng',
     emoji: '⚡',
     color: 'from-yellow-400 to-amber-500',
     bgColor: 'from-yellow-50 to-amber-50',
@@ -163,16 +170,12 @@ const flashLevels = [
     speed: [2, 2],
     stars: 6,
     difficultyLevel: 3,
-    tagline: 'Nhanh như chớp!',
     rank: '⭐⭐⭐',
-    rankLabel: 'Dũng Sĩ',
     rankColor: 'from-yellow-500 to-amber-600',
     bonusMultiplier: 2
   },
   {
     id: 'saoBang',
-    name: 'Sao Băng',
-    subtitle: 'Vụt sáng khoảnh khắc',
     emoji: '☄️',
     color: 'from-purple-500 to-pink-600',
     bgColor: 'from-purple-50 to-pink-50',
@@ -181,16 +184,12 @@ const flashLevels = [
     speed: [1.5, 1.5],
     stars: 8,
     difficultyLevel: 4,
-    tagline: '🔥 SIÊU TỐC 🔥',
     rank: '⭐⭐⭐⭐',
-    rankLabel: 'Huyền Thoại',
     rankColor: 'from-purple-500 to-pink-600',
     bonusMultiplier: 3
   },
   {
     id: 'bigBang',
-    name: 'BIG BANG',
-    subtitle: 'Vụ nổ khai sinh vũ trụ',
     emoji: '💥',
     color: 'from-red-500 via-orange-500 to-yellow-400',
     bgColor: 'from-red-50 to-yellow-50',
@@ -199,16 +198,12 @@ const flashLevels = [
     speed: [1, 1],
     stars: 10,
     difficultyLevel: 5,
-    tagline: '💥 VỤ NỔ VŨ TRỤ 💥',
     rank: '👑',
-    rankLabel: 'THẦN',
     rankColor: 'from-red-500 via-orange-500 to-yellow-400',
     bonusMultiplier: 5
   },
   {
     id: 'sieuBigBang',
-    name: 'SIÊU BIG BANG',
-    subtitle: 'Đỉnh cao tốc độ',
     emoji: '🌌',
     color: 'from-fuchsia-500 via-purple-600 to-indigo-700',
     bgColor: 'from-fuchsia-50 to-indigo-50',
@@ -217,28 +212,63 @@ const flashLevels = [
     speed: [0.7, 0.7],
     stars: 15,
     difficultyLevel: 6,
-    tagline: '🌌 SIÊU VŨ TRỤ 🌌',
     rank: '👑👑',
-    rankLabel: 'THẦN THÁNH',
     rankColor: 'from-fuchsia-500 via-purple-600 to-indigo-700',
     bonusMultiplier: 8
   },
 ];
 
-// Cấu hình số chữ số cho Flash Anzan
-const flashDigitOptions = [
-  { id: 1, name: '1 chữ số', emoji: '1️⃣', color: 'from-green-400 to-emerald-500', description: '1-9' },
-  { id: 2, name: '2 chữ số', emoji: '2️⃣', color: 'from-blue-400 to-cyan-500', description: '10-99' },
-  { id: 3, name: '3 chữ số', emoji: '3️⃣', color: 'from-purple-400 to-pink-500', description: '100-999' },
+// Helper to get flash levels with i18n text
+function getFlashLevels(t) {
+  return flashLevelConfig.map(level => {
+    const texts = t(`practiceScreen.flashLevels.${level.id}`, { returnObjects: true }) || {};
+    return {
+      ...level,
+      name: texts.name || level.id,
+      subtitle: texts.subtitle || '',
+      tagline: texts.tagline || '',
+      rankLabel: t(`practiceScreen.flashRanks.${level.difficultyLevel}`)
+    };
+  });
+}
+
+// Flash digit options config
+const flashDigitConfig = [
+  { id: 1, emoji: '1️⃣', color: 'from-green-400 to-emerald-500', description: '1-9' },
+  { id: 2, emoji: '2️⃣', color: 'from-blue-400 to-cyan-500', description: '10-99' },
+  { id: 3, emoji: '3️⃣', color: 'from-purple-400 to-pink-500', description: '100-999' },
 ];
 
-// Cấu hình phép toán cho Flash Anzan (chỉ có Cộng và Cộng Trừ Mix)
-const flashOperationOptions = [
-  { id: 'addition', name: 'Phép Cộng', emoji: '➕', symbol: '+', color: 'from-green-400 to-emerald-500', description: 'Chỉ có phép cộng' },
-  { id: 'mixed', name: 'Cộng Trừ Mix', emoji: '➕➖', symbol: '±', color: 'from-orange-400 to-red-500', description: 'Xen kẽ cộng và trừ' },
+function getFlashDigitOptions(t) {
+  return flashDigitConfig.map(opt => ({
+    ...opt,
+    name: t(`practiceScreen.flashDigits.${opt.id}`)
+  }));
+}
+
+// Flash operation options config
+const flashOperationConfig = [
+  { id: 'addition', emoji: '➕', symbol: '+', color: 'from-green-400 to-emerald-500' },
+  { id: 'mixed', emoji: '➕➖', symbol: '±', color: 'from-orange-400 to-red-500' },
 ];
 
-// Helper hiển thị sao độ khó
+function getFlashOperationOptions(t) {
+  return flashOperationConfig.map(opt => {
+    const texts = t(`practiceScreen.flashOperations.${opt.id}`, { returnObjects: true }) || {};
+    return {
+      ...opt,
+      name: texts.name || opt.id,
+      description: texts.description || ''
+    };
+  });
+}
+
+// Helper: Get tier display name from i18n
+function getTierDisplayName(tier, t) {
+  return t(`practiceScreen.tiers.${tier}`) || tier;
+}
+
+// Helper to display difficulty stars
 const renderDifficultyStars = (level) => {
   const filled = level;
   const empty = 5 - level;
@@ -254,7 +284,7 @@ const renderDifficultyStars = (level) => {
   );
 };
 
-// Helper: Kiểm tra tier có đủ quyền truy cập mode không
+// Helper: Check if tier has access to mode
 function getRequiredTierForMode(mode) {
   const modeTiers = {
     addition: 'free',
@@ -288,19 +318,25 @@ function canAccessDifficulty(userTier, difficulty) {
   return (tierOrder[userTier] || 0) >= (tierOrder[requiredTier] || 0);
 }
 
-function getTierDisplayName(tier) {
-  const names = { free: 'Miễn Phí', basic: 'Cơ Bản', advanced: 'Nâng Cao', vip: 'VIP' };
-  return names[tier] || tier;
-}
-
 // Inner component that uses useSearchParams
 function PracticePageContent() {
   const { status } = useSession();
   const router = useRouter();
+  const localizeUrl = useLocalizedUrl();
   const searchParams = useSearchParams();
   const toast = useToast();
   const { showUpgradeModal, UpgradeModalComponent } = useUpgradeModal();
   const { play, playMusic, stopMusic } = useGameSound();
+  const { t } = useI18n();
+  
+  // Get i18n-aware data
+  const speedTiers = getSpeedTiers(t);
+  const difficultyInfo = getDifficultyInfo(t);
+  const modeInfo = getModeInfo(t);
+  const flashLevels = getFlashLevels(t);
+  const flashDigitOptions = getFlashDigitOptions(t);
+  const flashOperationOptions = getFlashOperationOptions(t);
+  const streakMessages = getStreakMessages(t);
   
   // 📦 Load saved preferences
   const { settings: savedSettings, updateSettings: updateSavedSettings, saveNow } = useGameSettings(
@@ -308,7 +344,7 @@ function PracticePageContent() {
     DEFAULT_PRACTICE_SETTINGS
   );
 
-  // 🎵 Background music disabled - chỉ giữ sound effects
+  // 🎵 Background music disabled - only keep sound effects
   // useEffect(() => {
   //   let musicStarted = false;
   //   const startMusic = () => {
@@ -331,7 +367,7 @@ function PracticePageContent() {
   const modeFromUrl = searchParams.get('mode');
   const difficultyFromUrl = searchParams.get('difficulty');
 
-  // 📦 Initialize state từ saved settings nếu không có URL params
+  // 📦 Initialize state from saved settings if no URL params
   const [mode, setMode] = useState(null);
   const [difficulty, setDifficulty] = useState(1);
   const [problem, setProblem] = useState(null);
@@ -390,20 +426,9 @@ function PracticePageContent() {
   const [flashSelectedOperation, setFlashSelectedOperation] = useState(null); // 'addition', 'subtraction', hoặc 'mixed'
   const [flashModeStep, setFlashModeStep] = useState('digits'); // 'digits' | 'operation' | 'speed'
   
-  // Danh sách lời khen và động viên
-  const praiseMessages = [
-    { emoji: '🎉', title: 'XUẤT SẮC!', msg: 'Bạn giỏi quá! Đáp án hoàn toàn chính xác!' },
-    { emoji: '🌟', title: 'TUYỆT VỜI!', msg: 'Trí nhớ của bạn thật phi thường!' },
-    { emoji: '🏆', title: 'SIÊU ĐỈNH!', msg: 'Bạn tính nhẩm nhanh như máy tính!' },
-    { emoji: '👏', title: 'GIỎI LẮM!', msg: 'Bạn làm đúng rồi! Tiếp tục phát huy nhé!' },
-    { emoji: '🚀', title: 'THẦN TỐC!', msg: 'Tốc độ tính toán của bạn thật ấn tượng!' },
-  ];
-  const encourageMessages = [
-    { emoji: '💪', title: 'CỐ LÊN NÀO!', msg: 'Đừng lo, sai là cách học tốt nhất!' },
-    { emoji: '🌈', title: 'ĐỪNG BỎ CUỘC!', msg: 'Mỗi lần thử là một bước tiến bộ!' },
-    { emoji: '⭐', title: 'GẦN ĐÚNG RỒI!', msg: 'Bạn cần luyện tập thêm một chút!' },
-    { emoji: '🎯', title: 'THỬ LẠI NHÉ!', msg: 'Tập trung hơn, bạn sẽ làm được!' },
-  ];
+  // Get praise and encourage messages from i18n
+  const praiseMessages = t('practiceScreen.praiseMessages') || [];
+  const encourageMessages = t('practiceScreen.encourageMessages') || [];
 
   // 🎯 AUTO-START: State để theo dõi việc tự động bắt đầu
   const [autoStartPending, setAutoStartPending] = useState(null);
@@ -439,7 +464,7 @@ function PracticePageContent() {
     // Clear game mode data
     sessionStorage.removeItem('practiceGameMode');
     sessionStorage.removeItem('practiceAutoStart');
-    router.push('/adventure');
+    router.push(localizeUrl('/adventure'));
   };
 
   // 🎮 GAME MODE: Helper để xử lý back button
@@ -484,8 +509,8 @@ function PracticePageContent() {
   }, []);
 
   useEffect(() => {
-    if (status === 'unauthenticated') router.push('/login');
-  }, [status, router]);
+    if (status === 'unauthenticated') router.push(localizeUrl('/login'));
+  }, [status, router, localizeUrl]);
 
   // 🎯 AUTO-START: Kiểm tra sessionStorage từ Adventure Map
   // ⚠️ QUAN TRỌNG: useEffect này phải chạy TRƯỚC useEffect xử lý URL params
@@ -1134,7 +1159,7 @@ function PracticePageContent() {
     if (!canAccessMode(userTier, selectedMode)) {
       const requiredTier = getRequiredTierForMode(selectedMode);
       showUpgradeModal({
-        feature: `Chế độ ${modeInfo[selectedMode]?.title || selectedMode} yêu cầu gói ${getTierDisplayName(requiredTier)} trở lên`
+        feature: t('practiceScreen.ui.modeRequiresUpgrade')?.replace('{mode}', modeInfo[selectedMode]?.title || selectedMode).replace('{tier}', getTierDisplayName(requiredTier, t))
       });
       return;
     }
@@ -1143,7 +1168,7 @@ function PracticePageContent() {
     if (!canAccessDifficulty(userTier, difficulty)) {
       const requiredTier = getRequiredTierForDifficulty(difficulty);
       showUpgradeModal({
-        feature: `Cấp độ ${difficulty} yêu cầu gói ${getTierDisplayName(requiredTier)} trở lên`
+        feature: t('practiceScreen.ui.modeRequiresUpgrade')?.replace('{mode}', `${t('practiceScreen.ui.selectDifficulty')} ${difficulty}`).replace('{tier}', getTierDisplayName(requiredTier, t))
       });
       return;
     }
@@ -1251,7 +1276,7 @@ function PracticePageContent() {
       <div className="h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
         <div className="text-center">
           <div className="text-6xl animate-bounce mb-4">⚔️</div>
-          <div className="text-white font-bold">Đang tải...</div>
+          <div className="text-white font-bold">{t('practiceScreen.ui.loading')}</div>
         </div>
       </div>
     );
@@ -1670,7 +1695,7 @@ function PracticePageContent() {
         setTimeout(() => {
           setMilestoneData({
             type: 'session',
-            message: 'Bạn làm rất tốt! 🎉',
+            message: t('practiceScreen.ui.youDidGreat'),
             starsEarned: sessionStats.correct * 2
           });
           setShowMilestoneCelebration(true);
@@ -1774,13 +1799,13 @@ function PracticePageContent() {
 
   // Sub-mode info cho Siêu Trí Tuệ
   const mentalSubModes = [
-    { id: 'addition', title: 'Cộng', icon: '➕', color: 'from-emerald-400 to-green-500' },
-    { id: 'subtraction', title: 'Trừ', icon: '➖', color: 'from-blue-400 to-cyan-500' },
-    { id: 'multiplication', title: 'Nhân', icon: '✖️', color: 'from-purple-400 to-pink-500' },
-    { id: 'division', title: 'Chia', icon: '➗', color: 'from-rose-400 to-red-500' },
-    { id: 'addSubMixed', title: 'Cộng Trừ', icon: '🔀', color: 'from-teal-400 to-emerald-500' },
-    { id: 'mulDiv', title: 'Nhân Chia', icon: '🎲', color: 'from-amber-400 to-orange-500' },
-    { id: 'mixed', title: 'Tất Cả', icon: '🌈', color: 'from-indigo-500 to-purple-600' },
+    { id: 'addition', title: t('practiceScreen.mentalSubModes.addition'), icon: '➕', color: 'from-emerald-400 to-green-500' },
+    { id: 'subtraction', title: t('practiceScreen.mentalSubModes.subtraction'), icon: '➖', color: 'from-blue-400 to-cyan-500' },
+    { id: 'multiplication', title: t('practiceScreen.mentalSubModes.multiplication'), icon: '✖️', color: 'from-purple-400 to-pink-500' },
+    { id: 'division', title: t('practiceScreen.mentalSubModes.division'), icon: '➗', color: 'from-rose-400 to-red-500' },
+    { id: 'addSubMixed', title: t('practiceScreen.mentalSubModes.addSubMixed'), icon: '🔀', color: 'from-teal-400 to-emerald-500' },
+    { id: 'mulDiv', title: t('practiceScreen.mentalSubModes.mulDiv'), icon: '🎲', color: 'from-amber-400 to-orange-500' },
+    { id: 'mixed', title: t('practiceScreen.mentalSubModes.mixed'), icon: '🌈', color: 'from-indigo-500 to-purple-600' },
   ];
 
   // Màn hình chọn sub-mode cho Siêu Trí Tuệ
@@ -1852,10 +1877,10 @@ function PracticePageContent() {
             >
               <span className="animate-pulse" style={{ fontSize: 'clamp(16px, 3.5vh, 34px)' }}>🧠</span> 
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-200 via-fuchsia-200 to-violet-200 whitespace-nowrap">
-                Siêu Trí Tuệ
+                {t('practiceScreen.ui.mentalMath')}
               </span>
             </div>
-            <Link
+            <LocalizedLink
               href="/dashboard"
               prefetch={true}
               className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg"
@@ -1865,7 +1890,7 @@ function PracticePageContent() {
               }}
             >
               <Logo size="xs" showText={false} />
-            </Link>
+            </LocalizedLink>
           </div>
         </div>
 
@@ -1887,11 +1912,11 @@ function PracticePageContent() {
             >
               <div className="flex justify-center flex-wrap" style={{ gap: 'clamp(6px, 1vh, 14px)' }}>
                 {[
-                  { level: 1, label: 'Tập Sự', emoji: '🐣', color: 'from-green-400 to-emerald-500' },
-                  { level: 2, label: 'Chiến Binh', emoji: '⚔️', color: 'from-blue-400 to-cyan-500' },
-                  { level: 3, label: 'Dũng Sĩ', emoji: '🛡️', color: 'from-yellow-400 to-orange-500' },
-                  { level: 4, label: 'Cao Thủ', emoji: '🔥', color: 'from-orange-400 to-red-500' },
-                  { level: 5, label: 'Huyền Thoại', emoji: '👑', color: 'from-purple-400 to-pink-500' }
+                  { level: 1, label: difficultyInfo[1]?.label || 'Novice', emoji: '🐣', color: 'from-green-400 to-emerald-500' },
+                  { level: 2, label: difficultyInfo[2]?.label || 'Warrior', emoji: '⚔️', color: 'from-blue-400 to-cyan-500' },
+                  { level: 3, label: difficultyInfo[3]?.label || 'Hero', emoji: '🛡️', color: 'from-yellow-400 to-orange-500' },
+                  { level: 4, label: difficultyInfo[4]?.label || 'Master', emoji: '🔥', color: 'from-orange-400 to-red-500' },
+                  { level: 5, label: difficultyInfo[5]?.label || 'Legend', emoji: '👑', color: 'from-purple-400 to-pink-500' }
                 ].map(item => (
                   <button
                     key={item.level}
@@ -1928,7 +1953,7 @@ function PracticePageContent() {
                 className="font-black text-white/90 flex items-center justify-center"
                 style={{ fontSize: 'clamp(12px, 2vh, 20px)', gap: 'clamp(6px, 1vh, 12px)' }}
               >
-                <span>🧮</span> Chọn Phép Tính <span>🎯</span>
+                <span>🧮</span> {t('practiceScreen.ui.selectOperation')} <span>🎯</span>
               </h3>
             </div>
 
@@ -2028,11 +2053,12 @@ function PracticePageContent() {
 
   // Màn hình chọn mode Flash Anzan - STEPS: digits -> operation -> speed
   if (mode === 'flashAnzan' && !flashLevel) {
-    // Xác định tiêu đề và mô tả theo bước
+    // Get step titles from i18n
+    const flashSetup = t('practiceScreen.flashSetup') || {};
     const stepTitles = {
-      digits: { title: 'CHỌN SỐ CHỮ SỐ', subtitle: 'Chọn độ khó của các số', icon: '🔢' },
-      operation: { title: 'CHỌN PHÉP TOÁN', subtitle: 'Chọn loại phép tính', icon: '➕' },
-      speed: { title: 'CHỌN TỐC ĐỘ', subtitle: 'Càng nhanh → Càng khó → Càng nhiều thưởng!', icon: '⚡' }
+      digits: flashSetup.digits || { title: 'CHOOSE DIGITS', subtitle: 'Select number difficulty', icon: '🔢' },
+      operation: flashSetup.operation || { title: 'CHOOSE OPERATION', subtitle: 'Select calculation type', icon: '➕' },
+      speed: flashSetup.speed || { title: 'CHOOSE SPEED', subtitle: 'Faster → Harder → More rewards!', icon: '⚡' }
     };
     const currentStep = stepTitles[flashModeStep] || stepTitles.digits;
 
@@ -2107,16 +2133,16 @@ function PracticePageContent() {
                 </span>
                 <span className="text-2xl animate-pulse">💫</span>
               </h1>
-              <p className="text-white/80 text-[10px]">Từ Ánh Nến đến Siêu Big Bang!</p>
+              <p className="text-white/80 text-[10px]">{t('practiceScreen.ui.lightSpeedSubtitle')}</p>
             </div>
-            <Link
+            <LocalizedLink
               href="/dashboard"
               prefetch={true}
               className="flex items-center bg-black/30 rounded-lg text-white hover:bg-black/50 hover:scale-105 transition-all backdrop-blur"
               style={{ padding: 'clamp(4px, 0.8vh, 10px)' }}
             >
               <Logo size="xs" showText={false} />
-            </Link>
+            </LocalizedLink>
           </div>
         </div>
 
@@ -2124,15 +2150,15 @@ function PracticePageContent() {
         <div className="relative z-10 flex justify-center py-3">
           <div className="flex items-center gap-2 bg-black/30 rounded-full px-4 py-2 border border-white/10">
             <div className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${flashModeStep === 'digits' ? 'bg-yellow-500 text-black' : flashSelectedDigits ? 'bg-green-500 text-white' : 'bg-white/20 text-white/60'}`}>
-              <span>🔢</span> <span className="hidden sm:inline">{flashSelectedDigits ? `${flashSelectedDigits} chữ số` : 'Chữ số'}</span>
+              <span>🔢</span> <span className="hidden sm:inline">{flashSelectedDigits ? t('practiceScreen.ui.digitsCount', { n: flashSelectedDigits }) : t('practiceScreen.ui.digits')}</span>
             </div>
             <div className="text-white/40">→</div>
             <div className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${flashModeStep === 'operation' ? 'bg-yellow-500 text-black' : flashSelectedOperation ? 'bg-green-500 text-white' : 'bg-white/20 text-white/60'}`}>
-              <span>➕</span> <span className="hidden sm:inline">{flashSelectedOperation ? flashOperationOptions.find(o => o.id === flashSelectedOperation)?.name : 'Phép toán'}</span>
+              <span>➕</span> <span className="hidden sm:inline">{flashSelectedOperation ? flashOperationOptions.find(o => o.id === flashSelectedOperation)?.name : t('practiceScreen.ui.operation')}</span>
             </div>
             <div className="text-white/40">→</div>
             <div className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${flashModeStep === 'speed' ? 'bg-yellow-500 text-black' : 'bg-white/20 text-white/60'}`}>
-              <span>⚡</span> <span className="hidden sm:inline">Tốc độ</span>
+              <span>⚡</span> <span className="hidden sm:inline">{t('practiceScreen.ui.speed')}</span>
             </div>
           </div>
         </div>
@@ -2152,9 +2178,9 @@ function PracticePageContent() {
               </div>
               <div>
                 <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-cyan-400 leading-relaxed pt-1">
-                  CUỘC ĐUA ÁNH SÁNG
+                  {t('practiceScreen.ui.lightSpeedRace')}
                 </h2>
-                <p className="text-white/60 text-xs">🕯️ → 🌙 → ⚡ → ☄️ → 💥 → 🌌</p>
+                <p className="text-white/60 text-xs">{t('practiceScreen.ui.lightSpeedPath')}</p>
               </div>
             </div>
           </div>
@@ -2297,12 +2323,12 @@ function PracticePageContent() {
                   {/* Stats - COMPACT with icons */}
                   <div className="relative z-10 w-full mt-2 space-y-0.5 text-[9px] lg:text-[10px]">
                     <div className="flex items-center justify-between bg-black/30 rounded px-2 py-0.5">
-                      <span>📊 Số lượng</span>
+                      <span>📊 {t('practiceScreen.ui.quantity')}</span>
                       <span className="font-black">{level.numbers[0]}-{level.numbers[1]}</span>
                     </div>
                     <div className="flex items-center justify-between bg-black/30 rounded px-2 py-0.5">
-                      <span>⚡ Tốc độ</span>
-                      <span className="font-black text-yellow-200">{level.speed[0]}s/số</span>
+                      <span>⚡ {t('practiceScreen.ui.speed')}</span>
+                      <span className="font-black text-yellow-200">{t('practiceScreen.ui.secPerNum', { n: level.speed[0] })}</span>
                     </div>
                   </div>
                   
@@ -2336,15 +2362,15 @@ function PracticePageContent() {
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm">
               <div className="flex items-center gap-1.5 bg-blue-500/20 px-3 py-1 rounded-full">
                 <span className="text-lg">👀</span>
-                <span className="text-blue-200 font-bold">Tập trung cao độ</span>
+                <span className="text-blue-200 font-bold">{t('practiceScreen.ui.focusHigh')}</span>
               </div>
               <div className="flex items-center gap-1.5 bg-purple-500/20 px-3 py-1 rounded-full">
                 <span className="text-lg">🧮</span>
-                <span className="text-purple-200 font-bold">Cộng dồn từng số</span>
+                <span className="text-purple-200 font-bold">{t('practiceScreen.ui.addCumulative')}</span>
               </div>
               <div className="flex items-center gap-1.5 bg-orange-500/20 px-3 py-1 rounded-full">
                 <span className="text-lg">🔥</span>
-                <span className="text-orange-200 font-bold">Combo = x2 Bonus!</span>
+                <span className="text-orange-200 font-bold">{t('practiceScreen.ui.comboBonus')}</span>
               </div>
             </div>
           </div>
@@ -2352,7 +2378,7 @@ function PracticePageContent() {
           {/* Epic call to action */}
           <div className="text-center py-2 flex-shrink-0">
             <p className="text-white/50 text-xs animate-pulse">
-              🌌 Bạn có thể chạm tới SIÊU BIG BANG không? 🌌
+              🌌 {t('practiceScreen.ui.canYouReachSuperBigBang')} 🌌
             </p>
           </div>
         </div>
@@ -2364,7 +2390,7 @@ function PracticePageContent() {
   if (mode === 'flashAnzan' && flashLevel && !gameComplete) {
     const config = flashLevels.find(l => l.id === flashLevel);
     const levelIndex = flashLevels.findIndex(l => l.id === flashLevel);
-    const levelLabels = ['Tập Sự', 'Chiến Binh', 'Dũng Sĩ', 'Huyền Thoại', 'THẦN'];
+    const levelLabels = [difficultyInfo[1]?.label, difficultyInfo[2]?.label, difficultyInfo[3]?.label, difficultyInfo[5]?.label, 'GOD'];
     const avgSpeed = ((config?.speed[0] + config?.speed[1]) / 2).toFixed(1);
     
     // Lời khen ngẫu nhiên khi đúng
@@ -2421,14 +2447,14 @@ function PracticePageContent() {
                 <div className="bg-black/20 px-2 py-0.5 rounded text-white font-bold text-sm">
                   {currentChallenge}/{TOTAL_CHALLENGES}
                 </div>
-                <Link 
+                <LocalizedLink 
                   href="/dashboard"
                   prefetch={true}
                   className="p-1 bg-black/20 rounded-lg text-white hover:bg-black/30 transition-colors"
-                  title="Về trang chủ"
+                  title={t('practiceScreen.ui.backToHome')}
                 >
                   <Logo size="xs" showText={false} />
-                </Link>
+                </LocalizedLink>
               </div>
             </div>
           </div>
@@ -2501,22 +2527,22 @@ function PracticePageContent() {
                 </div>
               </div>
               
-              <p className="text-white text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-5 animate-pulse leading-relaxed">🎯 TẬP TRUNG!</p>
+              <p className="text-white text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-5 animate-pulse leading-relaxed">🎯 {t('practiceScreen.ui.focus')}</p>
               
               {/* Info badges - COMPACT */}
               <div className="flex justify-center gap-2 sm:gap-4">
                 <div className="bg-white/10 backdrop-blur border border-white/20 px-3 sm:px-4 py-2 sm:py-3 rounded-xl sm:rounded-2xl flex items-center gap-1.5 sm:gap-2">
                   <span className="text-lg sm:text-2xl">📊</span>
                   <div>
-                    <div className="text-white/60 text-[10px] sm:text-xs">Số lượng</div>
-                    <div className="font-black text-white text-sm sm:text-lg">{flashNumbers.length} số</div>
+                    <div className="text-white/60 text-[10px] sm:text-xs">{t('practiceScreen.ui.quantity')}</div>
+                    <div className="font-black text-white text-sm sm:text-lg">{flashNumbers.length} {t('practiceScreen.ui.numbers', { n: '' }).replace('{n}', '').trim()}</div>
                   </div>
                 </div>
                 <div className="bg-white/10 backdrop-blur border border-white/20 px-3 sm:px-4 py-2 sm:py-3 rounded-xl sm:rounded-2xl flex items-center gap-1.5 sm:gap-2">
                   <span className="text-lg sm:text-2xl">⚡</span>
                   <div>
-                    <div className="text-white/60 text-[10px] sm:text-xs">Tốc độ</div>
-                    <div className="font-black text-white text-sm sm:text-lg">{avgSpeed}s/số</div>
+                    <div className="text-white/60 text-[10px] sm:text-xs">{t('practiceScreen.ui.speed')}</div>
+                    <div className="font-black text-white text-sm sm:text-lg">{avgSpeed}s/{t('practiceScreen.ui.numbers', { n: '' }).replace('{n}', '').trim().slice(0,3)}</div>
                   </div>
                 </div>
               </div>
@@ -2610,19 +2636,19 @@ function PracticePageContent() {
               {/* Question prompt - Exciting */}
               <div className="mb-2">
                 <div className="text-3xl sm:text-4xl mb-1 animate-bounce">🧠</div>
-                <h2 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-400 animate-pulse leading-relaxed pt-1">KẾT QUẢ LÀ BAO NHIÊU?</h2>
-                <p className="text-white/70 text-xs">Nhập kết quả phép tính của bạn</p>
+                <h2 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-400 animate-pulse leading-relaxed pt-1">{t('practiceScreen.ui.whatIsResult')}</h2>
+                <p className="text-white/70 text-xs">{t('practiceScreen.ui.enterYourResult')}</p>
               </div>
               
               {/* Info badges - Compact inline */}
               <div className="flex justify-center gap-2 mb-2">
                 <div className="bg-white/15 backdrop-blur border border-white/30 px-3 py-1 rounded-full flex items-center gap-1">
                   <span>📊</span>
-                  <span className="font-bold text-white text-sm">{flashNumbers.length} số</span>
+                  <span className="font-bold text-white text-sm">{t('practiceScreen.ui.numCount', { n: flashNumbers.length })}</span>
                 </div>
                 <div className="bg-white/15 backdrop-blur border border-white/30 px-3 py-1 rounded-full flex items-center gap-1">
                   <span>⚡</span>
-                  <span className="font-bold text-white text-sm">{avgSpeed}s/số</span>
+                  <span className="font-bold text-white text-sm">{t('practiceScreen.ui.secPerNum', { n: avgSpeed })}</span>
                 </div>
               </div>
               
@@ -2693,11 +2719,11 @@ function PracticePageContent() {
                 disabled={!flashAnswer}
                 className="hidden sm:flex w-full py-3 sm:py-4 bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 text-white font-black text-lg sm:text-xl rounded-2xl hover:brightness-110 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-2xl shadow-orange-500/50 items-center justify-center gap-2 border-2 border-yellow-300/30"
               >
-                <span className="text-2xl">⚡</span> XÁC NHẬN
+                <span className="text-2xl">⚡</span> {t('practiceScreen.ui.confirm')}
               </button>
               
               <p className="mt-1.5 text-white/50 text-[10px] sm:text-xs hidden sm:flex items-center justify-center gap-1">
-                Nhấn <kbd className="bg-white/20 px-1.5 py-0.5 rounded text-white font-bold">Enter</kbd> để gửi đáp án
+                {t('practiceScreen.ui.pressEnterToSubmit')}
               </p>
             </div>
           )}
@@ -2735,9 +2761,9 @@ function PracticePageContent() {
                     <div className="text-5xl sm:text-6xl animate-bounce drop-shadow-lg">{flashResultMessage?.emoji || '🎉'}</div>
                     <div className="text-left">
                       <h2 className={`text-2xl sm:text-3xl font-black leading-relaxed pt-1 ${streak >= 5 ? 'animate-rainbow bg-clip-text text-transparent' : 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400'}`}>
-                        {flashResultMessage?.title || 'XUẤT SẮC!'}
+                        {flashResultMessage?.title || t('practiceScreen.praiseMessages.0.title')}
                       </h2>
-                      <p className="text-white/80 text-xs sm:text-sm leading-normal">{flashResultMessage?.msg || 'Bạn giỏi quá!'}</p>
+                      <p className="text-white/80 text-xs sm:text-sm leading-normal">{flashResultMessage?.msg || t('practiceScreen.ui.defaultPraise')}</p>
                     </div>
                     {streak >= 3 && (
                       <div className={`bg-gradient-to-r ${streak >= 5 ? 'from-red-500 to-orange-500 animate-pulse' : 'from-orange-500 to-yellow-500'} text-white px-3 py-1.5 rounded-xl font-black text-sm shadow-lg`}>
@@ -2750,12 +2776,12 @@ function PracticePageContent() {
                   <div className="relative bg-gradient-to-br from-green-500 to-emerald-600 border-2 border-green-300/50 rounded-2xl p-4 mb-3 shadow-xl shadow-green-500/40">
                     <div className="flex items-center justify-center gap-6">
                       <div className="text-center">
-                        <div className="text-green-100 text-xs font-bold mb-1">✅ CHÍNH XÁC</div>
+                        <div className="text-green-100 text-xs font-bold mb-1">✅ {t('practiceScreen.correct')?.toUpperCase()}</div>
                         <div className="text-4xl sm:text-5xl font-black text-white drop-shadow-lg">{flashAnswer}</div>
                       </div>
                       <div className="h-14 w-px bg-white/30"></div>
                       <div className="text-center">
-                        <div className="text-green-100 text-xs font-bold mb-1">THƯỞNG</div>
+                        <div className="text-green-100 text-xs font-bold mb-1">{t('adventureScreen.reward')?.toUpperCase()}</div>
                         <div className="flex items-center gap-1">
                           <span className="text-white font-black text-2xl sm:text-3xl">+{config?.stars || 2}</span>
                           <span className="text-3xl sm:text-4xl animate-spin-slow">⭐</span>
@@ -2796,9 +2822,9 @@ function PracticePageContent() {
                     onClick={() => nextFlashChallenge()}
                     className="relative z-20 w-full py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-black text-lg rounded-xl hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-green-500/50 border border-green-300/30 cursor-pointer"
                   >
-                    {currentChallenge >= TOTAL_CHALLENGES ? '🏆 XEM KẾT QUẢ' : '⚡ CÂU TIẾP THEO'}
+                    {currentChallenge >= TOTAL_CHALLENGES ? `🏆 ${t('practiceScreen.result')}` : `⚡ ${t('practiceScreen.ui.nextProblem')}`}
                   </button>
-                  <p className="text-white/50 text-[10px] mt-1.5">Nhấn <kbd className="bg-white/20 px-1.5 py-0.5 rounded font-bold">Enter</kbd> để tiếp tục</p>
+                  <p className="text-white/50 text-[10px] mt-1.5">{t('practiceScreen.ui.pressEnter')?.replace('{key}', '')} <kbd className="bg-white/20 px-1.5 py-0.5 rounded font-bold">Enter</kbd></p>
                 </div>
               ) : (
                 // ========== SAI - SUPER COMPACT ENCOURAGE ==========
@@ -2808,25 +2834,25 @@ function PracticePageContent() {
                     <div className="text-4xl sm:text-5xl animate-wiggle">{flashResultMessage?.emoji || '💪'}</div>
                     <div>
                       <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-500 leading-relaxed pt-1">
-                        {flashResultMessage?.title || 'CỐ LÊN NÀO!'}
+                        {flashResultMessage?.title || t('practiceScreen.encourageMessages.0.title')}
                       </h2>
-                      <p className="text-white/70 text-[10px] sm:text-xs leading-normal">{flashResultMessage?.msg || 'Tập trung hơn, bạn sẽ làm được!'}</p>
+                      <p className="text-white/70 text-[10px] sm:text-xs leading-normal">{flashResultMessage?.msg || t('practiceScreen.encourageMessages.3.msg')}</p>
                     </div>
                   </div>
                   
                   {/* Progress badge */}
                   <div className="bg-amber-500/20 border border-orange-400/30 rounded-lg px-3 py-1 mb-2 inline-block">
-                    <span className="text-orange-300 font-medium text-xs">💡 Đúng {sessionStats.correct}/{currentChallenge} câu - Cố lên nhé!</span>
+                    <span className="text-orange-300 font-medium text-xs">💡 {t('practiceScreen.correct')} {sessionStats.correct}/{currentChallenge} {t('practiceScreen.ui.questions')} - {t('practiceScreen.ui.keepItUp')}</span>
                   </div>
                   
                   {/* Answer comparison */}
                   <div className="grid grid-cols-2 gap-2 mb-2">
                     <div className="bg-red-500/30 border border-red-400/50 rounded-xl p-2">
-                      <div className="text-red-300 text-[10px] font-semibold">❌ CÂU TRẢ LỜI</div>
+                      <div className="text-red-300 text-[10px] font-semibold">❌ {t('practiceScreen.ui.enterAnswer')?.toUpperCase()}</div>
                       <div className="text-2xl sm:text-3xl font-black text-red-400">{flashAnswer}</div>
                     </div>
                     <div className="bg-green-500/30 border border-green-400/50 rounded-xl p-2">
-                      <div className="text-green-300 text-[10px] font-semibold">✅ ĐÁP ÁN ĐÚNG</div>
+                      <div className="text-green-300 text-[10px] font-semibold">✅ {t('practiceScreen.correct')?.toUpperCase()}</div>
                       <div className="text-2xl sm:text-3xl font-black text-green-400">{flashCorrectAnswer}</div>
                     </div>
                   </div>
@@ -2856,9 +2882,9 @@ function PracticePageContent() {
                     onClick={() => nextFlashChallenge()}
                     className="w-full py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-black text-base sm:text-lg rounded-xl hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-blue-500/50 border border-blue-300/30"
                   >
-                    {currentChallenge >= TOTAL_CHALLENGES ? '🏆 XEM KẾT QUẢ' : '💪 CÂU TIẾP THEO'}
+                    {currentChallenge >= TOTAL_CHALLENGES ? `🏆 ${t('practiceScreen.result')}` : `💪 ${t('practiceScreen.ui.nextProblem')}`}
                   </button>
-                  <p className="text-white/40 text-[10px] mt-1">Nhấn <kbd className="bg-white/20 px-1.5 py-0.5 rounded font-bold">Enter</kbd> để tiếp tục</p>
+                  <p className="text-white/40 text-[10px] mt-1">{t('practiceScreen.ui.pressEnter')?.replace('{key}', '')} <kbd className="bg-white/20 px-1.5 py-0.5 rounded font-bold">Enter</kbd></p>
                 </div>
               )}
             </div>
@@ -2889,15 +2915,18 @@ function PracticePageContent() {
     const accuracy = sessionStats.total > 0 ? Math.round((sessionStats.correct / sessionStats.total) * 100) : 0;
     const avgTime = sessionStats.total > 0 ? Math.round(sessionStats.totalTime / sessionStats.total) : 0;
     
+    // Get result grades from i18n
+    const resultGrades = t('practiceScreen.resultGrades') || {};
+    
     // Grading system - More detailed
     const getGrade = (acc) => {
-      if (acc >= 100) return { grade: 'S+', color: 'from-rose-400 via-pink-500 to-purple-500', emoji: '💎', text: 'HUYỀN THOẠI!', msg: 'Hoàn hảo 100%! Bạn là thiên tài!', stars: 5 };
-      if (acc >= 90) return { grade: 'S', color: 'from-yellow-400 to-amber-500', emoji: '👑', text: 'XUẤT SẮC!', msg: 'Bạn thật tuyệt vời! Gần như hoàn hảo!', stars: 4 };
-      if (acc >= 80) return { grade: 'A', color: 'from-green-400 to-emerald-500', emoji: '🌟', text: 'GIỎI LẮM!', msg: 'Bạn làm rất tốt! Cố thêm chút nữa!', stars: 3 };
-      if (acc >= 70) return { grade: 'B+', color: 'from-cyan-400 to-blue-500', emoji: '✨', text: 'KHÁ GIỎI!', msg: 'Tiến bộ rõ rệt! Tiếp tục luyện tập!', stars: 3 };
-      if (acc >= 60) return { grade: 'B', color: 'from-blue-400 to-indigo-500', emoji: '⭐', text: 'KHÁ TỐT!', msg: 'Bạn đang tiến bộ! Cố gắng thêm nhé!', stars: 2 };
-      if (acc >= 50) return { grade: 'C', color: 'from-purple-400 to-violet-500', emoji: '💪', text: 'CỐ GẮNG!', msg: 'Đừng nản lòng! Mỗi lần thử là một bước tiến!', stars: 2 };
-      return { grade: 'D', color: 'from-gray-400 to-gray-500', emoji: '🎯', text: 'LUYỆN TẬP!', msg: 'Thử lại nhé! Mỗi lần sai là một bài học!', stars: 1 };
+      if (acc >= 100) return { grade: 'S+', color: 'from-rose-400 via-pink-500 to-purple-500', emoji: '💎', text: 'LEGENDARY!', msg: '100% Perfect! You are a genius!', stars: 5 };
+      if (acc >= 90) return { grade: 'S', color: 'from-yellow-400 to-amber-500', emoji: '👑', text: resultGrades.S?.text || 'EXCELLENT!', msg: resultGrades.S?.msg || 'Amazing! Almost perfect!', stars: 4 };
+      if (acc >= 80) return { grade: 'A', color: 'from-green-400 to-emerald-500', emoji: '🌟', text: resultGrades.A?.text || 'GREAT JOB!', msg: resultGrades.A?.msg || 'You did very well!', stars: 3 };
+      if (acc >= 70) return { grade: 'B+', color: 'from-cyan-400 to-blue-500', emoji: '✨', text: 'VERY GOOD!', msg: 'Noticeable progress! Keep practicing!', stars: 3 };
+      if (acc >= 60) return { grade: 'B', color: 'from-blue-400 to-indigo-500', emoji: '⭐', text: resultGrades.B?.text || 'GOOD!', msg: resultGrades.B?.msg || 'Keep improving!', stars: 2 };
+      if (acc >= 50) return { grade: 'C', color: 'from-purple-400 to-violet-500', emoji: '💪', text: 'KEEP TRYING!', msg: 'Don\'t give up! Every try is progress!', stars: 2 };
+      return { grade: 'D', color: 'from-gray-400 to-gray-500', emoji: '🎯', text: resultGrades.D?.text || 'PRACTICE!', msg: resultGrades.D?.msg || 'Try again! Every mistake is a lesson!', stars: 1 };
     };
     
     const gradeInfo = getGrade(accuracy);
@@ -3015,10 +3044,10 @@ function PracticePageContent() {
             {/* Stats grid */}
             <div className="grid grid-cols-4 mb-[2vmin]" style={{ gap: 'clamp(4px, 1vmin, 12px)' }}>
               {[
-                { icon: '⭐', value: sessionStats.stars, label: 'Sao', color: 'yellow' },
-                { icon: '✅', value: sessionStats.correct, label: 'Đúng', color: 'green' },
-                { icon: '❌', value: sessionStats.total - sessionStats.correct, label: 'Sai', color: 'red' },
-                { icon: '🔥', value: maxStreak, label: 'Combo', color: 'orange' }
+                { icon: '⭐', value: sessionStats.stars, label: t('practiceScreen.stats.stars'), color: 'yellow' },
+                { icon: '✅', value: sessionStats.correct, label: t('practiceScreen.stats.correct'), color: 'green' },
+                { icon: '❌', value: sessionStats.total - sessionStats.correct, label: t('practiceScreen.stats.wrong'), color: 'red' },
+                { icon: '🔥', value: maxStreak, label: t('practiceScreen.stats.combo'), color: 'orange' }
               ].map((stat, i) => (
                 <div 
                   key={i}
@@ -3045,7 +3074,7 @@ function PracticePageContent() {
             {/* Accuracy meter */}
             <div style={{ marginBottom: 'clamp(8px, 2vmin, 20px)' }}>
               <div className="flex justify-between text-white/60" style={{ fontSize: 'clamp(9px, 1.5vmin, 14px)', marginBottom: 'clamp(2px, 0.5vmin, 6px)' }}>
-                <span>🎯 Độ chính xác</span>
+                <span>🎯 {t('practiceScreen.ui.accuracy')}</span>
                 <span className={`font-black bg-gradient-to-r ${gradeInfo.color} bg-clip-text text-transparent`} style={{ fontSize: 'clamp(12px, 2vmin, 20px)' }}>
                   {accuracy}%
                 </span>
@@ -3110,9 +3139,9 @@ function PracticePageContent() {
                 style={{ padding: 'clamp(6px, 1vmin, 12px)', marginBottom: 'clamp(8px, 1.5vmin, 16px)', fontSize: 'clamp(10px, 1.5vmin, 14px)' }}
               >
                 {accuracy >= 70 ? (
-                  <span>✅ Đã qua màn! Cần ≥70% để mở khóa màn tiếp theo</span>
+                  <span>✅ {t('practiceScreen.ui.passed')}</span>
                 ) : (
-                  <span>⚠️ Chưa đạt! Cần ≥70% để qua màn (hiện tại: {accuracy}%)</span>
+                  <span>⚠️ {t('practiceScreen.ui.notPassed', { accuracy })}</span>
                 )}
               </div>
             )}
@@ -3143,7 +3172,7 @@ function PracticePageContent() {
                       gap: 'clamp(4px, 1vmin, 10px)'
                     }}
                   >
-                    <RotateCcw style={{ width: 'clamp(14px, 2.5vmin, 22px)', height: 'clamp(14px, 2.5vmin, 22px)' }} /> Chơi lại
+                    <RotateCcw style={{ width: 'clamp(14px, 2.5vmin, 22px)', height: 'clamp(14px, 2.5vmin, 22px)' }} /> {t('practiceScreen.playAgain')}
                   </button>
                   <button
                     onClick={() => {
@@ -3158,7 +3187,7 @@ function PracticePageContent() {
                       gap: 'clamp(4px, 1vmin, 10px)'
                     }}
                   >
-                    📋 Đổi cấp
+                    📋 {t('practiceScreen.selectLevel')}
                   </button>
                 </div>
                 
@@ -3169,7 +3198,7 @@ function PracticePageContent() {
                     style={{ marginTop: 'clamp(8px, 1.5vmin, 16px)', padding: 'clamp(6px, 1vmin, 12px)' }}
                   >
                     <p className="text-purple-300 font-medium text-center" style={{ fontSize: 'clamp(9px, 1.5vmin, 14px)' }}>
-                      🚀 Sẵn sàng thử thách cao hơn? 🚀
+                      🚀 {t('practiceScreen.ui.readyForHigherChallenge')} 🚀
                     </p>
                   </div>
                 )}
@@ -3184,7 +3213,7 @@ function PracticePageContent() {
                       fontSize: 'clamp(11px, 1.8vmin, 16px)'
                     }}
                   >
-                    🏠 Về trang luyện tập
+                    🏠 {t('practiceScreen.ui.backToPractice')}
                   </button>
                 </div>
               </>
@@ -3207,30 +3236,30 @@ function PracticePageContent() {
         <div className="h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
           <div className="text-center">
             <div className="text-6xl animate-bounce mb-4">⚔️</div>
-            <div className="text-white font-bold">Đang chuẩn bị...</div>
+            <div className="text-white font-bold">{t('practiceScreen.ui.preparing')}</div>
           </div>
         </div>
       );
     }
     
     const difficultyLevels = [
-      { level: 1, label: 'Tập Sự', emoji: '🐣', color: 'from-green-400 to-emerald-500', desc: 'Số 1 chữ số' },
-      { level: 2, label: 'Chiến Binh', emoji: '⚔️', color: 'from-blue-400 to-cyan-500', desc: 'Số 2 chữ số' },
-      { level: 3, label: 'Dũng Sĩ', emoji: '🛡️', color: 'from-yellow-400 to-orange-500', desc: 'Số 3 chữ số' },
-      { level: 4, label: 'Cao Thủ', emoji: '🔥', color: 'from-orange-400 to-red-500', desc: 'Số 4 chữ số' },
-      { level: 5, label: 'Huyền Thoại', emoji: '👑', color: 'from-purple-400 to-pink-500', desc: 'Số 5 chữ số' }
+      { level: 1, label: difficultyInfo[1]?.label || 'Novice', emoji: '🐣', color: 'from-green-400 to-emerald-500' },
+      { level: 2, label: difficultyInfo[2]?.label || 'Warrior', emoji: '⚔️', color: 'from-blue-400 to-cyan-500' },
+      { level: 3, label: difficultyInfo[3]?.label || 'Hero', emoji: '🛡️', color: 'from-yellow-400 to-orange-500' },
+      { level: 4, label: difficultyInfo[4]?.label || 'Master', emoji: '🔥', color: 'from-orange-400 to-red-500' },
+      { level: 5, label: difficultyInfo[5]?.label || 'Legend', emoji: '👑', color: 'from-purple-400 to-pink-500' }
     ];
     
     const gameModes = [
-      { mode: 'addition', title: 'Siêu Cộng', icon: '🌟', symbol: '+', color: 'from-emerald-400 via-green-500 to-teal-500', desc: 'Gom sao!', tier: 'free' },
-      { mode: 'subtraction', title: 'Siêu Trừ', icon: '👾', symbol: '-', color: 'from-blue-400 via-cyan-500 to-sky-500', desc: 'Diệt quái!', tier: 'free' },
-      { mode: 'addSubMixed', title: 'Cộng Trừ Mix', icon: '⚔️', symbol: '±', color: 'from-teal-400 via-emerald-500 to-green-500', desc: 'Hỗn chiến!', tier: 'basic' },
-      { mode: 'multiplication', title: 'Siêu Nhân', icon: '✨', symbol: '×', color: 'from-purple-400 via-pink-500 to-rose-500', desc: 'Nhân bội!', tier: 'advanced' },
-      { mode: 'division', title: 'Siêu Chia', icon: '🍕', symbol: '÷', color: 'from-rose-400 via-red-500 to-orange-500', desc: 'Chia đều!', tier: 'advanced' },
-      { mode: 'mulDiv', title: 'Nhân Chia Mix', icon: '🎩', symbol: '×÷', color: 'from-amber-400 via-orange-500 to-yellow-500', desc: 'Phép thuật!', tier: 'advanced' },
-      { mode: 'mixed', title: 'Tứ Phép Thần', icon: '👑', symbol: '∞', color: 'from-indigo-500 via-purple-600 to-violet-600', desc: 'Boss cuối!', tier: 'advanced' },
-      { mode: 'mentalMath', title: 'Siêu Trí Tuệ', icon: '🧠', symbol: '💭', color: 'from-violet-500 via-fuchsia-600 to-pink-600', desc: 'Không bàn tính!', tier: 'advanced', special: true },
-      { mode: 'flashAnzan', title: 'Tia Chớp', icon: '⚡', symbol: '💫', color: 'from-yellow-400 via-orange-500 to-red-500', desc: 'Flash Anzan!', tier: 'advanced', special: true },
+      { mode: 'addition', title: modeInfo.addition?.title || 'Super Addition', icon: '🌟', symbol: '+', color: 'from-emerald-400 via-green-500 to-teal-500', tier: 'free' },
+      { mode: 'subtraction', title: modeInfo.subtraction?.title || 'Super Subtraction', icon: '👾', symbol: '-', color: 'from-blue-400 via-cyan-500 to-sky-500', tier: 'free' },
+      { mode: 'addSubMixed', title: modeInfo.addSubMixed?.title || 'Add/Sub Mix', icon: '⚔️', symbol: '±', color: 'from-teal-400 via-emerald-500 to-green-500', tier: 'basic' },
+      { mode: 'multiplication', title: modeInfo.multiplication?.title || 'Super Multiply', icon: '✨', symbol: '×', color: 'from-purple-400 via-pink-500 to-rose-500', tier: 'advanced' },
+      { mode: 'division', title: modeInfo.division?.title || 'Super Division', icon: '🍕', symbol: '÷', color: 'from-rose-400 via-red-500 to-orange-500', tier: 'advanced' },
+      { mode: 'mulDiv', title: modeInfo.mulDiv?.title || 'Mul/Div Mix', icon: '🎩', symbol: '×÷', color: 'from-amber-400 via-orange-500 to-yellow-500', tier: 'advanced' },
+      { mode: 'mixed', title: modeInfo.mixed?.title || 'All Four Operations', icon: '👑', symbol: '∞', color: 'from-indigo-500 via-purple-600 to-violet-600', tier: 'advanced' },
+      { mode: 'mentalMath', title: modeInfo.mentalMath?.title || 'Super Mind', icon: '🧠', symbol: '💭', color: 'from-violet-500 via-fuchsia-600 to-pink-600', tier: 'advanced', special: true },
+      { mode: 'flashAnzan', title: modeInfo.flashAnzan?.title || 'Flash Anzan', icon: '⚡', symbol: '💫', color: 'from-yellow-400 via-orange-500 to-red-500', tier: 'advanced', special: true },
     ];
 
     return (
@@ -3294,7 +3323,7 @@ function PracticePageContent() {
                 <ArrowLeft style={{ width: 'clamp(16px, 2.5vh, 24px)', height: 'clamp(16px, 2.5vh, 24px)' }} />
               </button>
             ) : (
-              <Link
+              <LocalizedLink
                 href="/dashboard"
                 prefetch={true}
                 className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg shadow-purple-500/20"
@@ -3304,7 +3333,7 @@ function PracticePageContent() {
                 }}
               >
                 <ArrowLeft style={{ width: 'clamp(16px, 2.5vh, 24px)', height: 'clamp(16px, 2.5vh, 24px)' }} />
-              </Link>
+              </LocalizedLink>
             )}
             <div
               className="font-black text-white flex items-center bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-md border border-white/20 shadow-lg shadow-pink-500/20"
@@ -3317,10 +3346,10 @@ function PracticePageContent() {
             >
               <span className="animate-bounce" style={{ fontSize: 'clamp(16px, 3.5vh, 34px)' }}>🎮</span>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-pink-200 to-cyan-200 whitespace-nowrap">
-                Luyện Tập
+                {t('practiceScreen.ui.practice')}
               </span>
             </div>
-            <Link
+            <LocalizedLink
               href="/dashboard"
               prefetch={true}
               className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg shadow-purple-500/20"
@@ -3330,7 +3359,7 @@ function PracticePageContent() {
               }}
             >
               <Logo size="xs" showText={false} />
-            </Link>
+            </LocalizedLink>
           </div>
         </div>
 
@@ -3363,7 +3392,7 @@ function PracticePageContent() {
                         if (isDifficultyLocked) {
                           showUpgradeModal({
                             requiredTier: 'advanced',
-                            feature: `Cấp độ ${item.label}`,
+                            feature: `${t('practiceScreen.level')} ${item.label}`,
                             currentTier: userTier
                           });
                           return;
@@ -3443,7 +3472,7 @@ function PracticePageContent() {
                       if (isDifficultyLocked) {
                         showUpgradeModal({
                           requiredTier: 'advanced',
-                          feature: `Cấp độ ${difficulty}`,
+                          feature: `${t('practiceScreen.level')} ${difficulty}`,
                           currentTier: userTier
                         });
                         return;
@@ -3599,17 +3628,18 @@ function PracticePageContent() {
     const grade = accuracy >= 90 ? 'S' : accuracy >= 70 ? 'A' : accuracy >= 50 ? 'B' : 'C';
     const gradeColors = { S: 'text-yellow-400', A: 'text-green-400', B: 'text-blue-400', C: 'text-gray-400' };
     const gradeEmojis = { S: '👑', A: '🌟', B: '⭐', C: '💪' };
+    const uiGrades = t('practiceScreen.ui.gradeMessages') || {};
     const gradeTexts = { 
-      S: 'XUẤT SẮC!', 
-      A: 'GIỎI LẮM!', 
-      B: 'KHÁ TỐT!', 
-      C: 'CỐ GẮNG THÊM!' 
+      S: t('practiceScreen.resultGrades.S.text') || 'EXCELLENT!', 
+      A: t('practiceScreen.resultGrades.A.text') || 'GREAT JOB!', 
+      B: t('practiceScreen.resultGrades.B.text') || 'GOOD!', 
+      C: 'KEEP TRYING!' 
     };
     const gradeDescriptions = {
-      S: 'Bạn là siêu sao! 🌟',
-      A: 'Rất tuyệt vời! 👏',
-      B: 'Tiếp tục phát huy! 💪',
-      C: 'Luyện tập thêm nhé! 📚'
+      S: uiGrades.S || 'You\'re a superstar! 🌟',
+      A: uiGrades.A || 'Excellent work! 👏',
+      B: uiGrades.B || 'Nice job! 💪',
+      C: uiGrades.C || 'Keep practicing! 📚'
     };
     
     return (
@@ -3619,8 +3649,8 @@ function PracticePageContent() {
           <div className="text-5xl sm:text-6xl mb-2 sm:mb-3 animate-bounce">{gradeEmojis[grade]}</div>
           
           {/* Title */}
-          <h1 className="text-2xl sm:text-3xl font-black text-white mb-1">HOÀN THÀNH!</h1>
-          <p className="text-white/70 text-sm sm:text-base mb-2 sm:mb-3">{currentModeInfo?.title} - Cấp {difficulty}</p>
+          <h1 className="text-2xl sm:text-3xl font-black text-white mb-1">{t('dashboard.completed')?.toUpperCase()}!</h1>
+          <p className="text-white/70 text-sm sm:text-base mb-2 sm:mb-3">{currentModeInfo?.title} - {t('topbar.level')} {difficulty}</p>
           
           {/* Grade với giải thích rõ ràng */}
           <div className="mb-3 sm:mb-4">
@@ -3631,7 +3661,7 @@ function PracticePageContent() {
               {gradeDescriptions[grade]}
             </div>
             <div className={`text-xs ${gradeColors[grade]} mt-1`}>
-              Hạng {grade} • {accuracy}% chính xác
+              {t('competeScreen.rank')} {grade} • {accuracy}% {t('practiceScreen.accuracy')}
             </div>
           </div>
           
@@ -3640,12 +3670,12 @@ function PracticePageContent() {
             <div className="bg-white/10 rounded-xl p-2 sm:p-3">
               <div className="text-xl sm:text-2xl">⭐</div>
               <div className="text-xl sm:text-2xl font-black text-yellow-400">{finalStarsData.totalStars}</div>
-              <div className="text-[10px] sm:text-xs text-white/60">Sao</div>
+              <div className="text-[10px] sm:text-xs text-white/60">{t('topbar.stars')}</div>
             </div>
             <div className="bg-white/10 rounded-xl p-2 sm:p-3">
               <div className="text-xl sm:text-2xl">✓</div>
               <div className="text-xl sm:text-2xl font-black text-green-400">{sessionStats.correct}/{TOTAL_CHALLENGES}</div>
-              <div className="text-[10px] sm:text-xs text-white/60">Đúng</div>
+              <div className="text-[10px] sm:text-xs text-white/60">{t('practiceScreen.correct')}</div>
             </div>
             <div className="bg-white/10 rounded-xl p-2 sm:p-3">
               <div className="text-xl sm:text-2xl">🔥</div>
@@ -3656,7 +3686,7 @@ function PracticePageContent() {
           
           {/* Breakdown chi tiết sao - có thể scroll nếu cần */}
           <div className="bg-white/5 rounded-xl p-2 sm:p-3 mb-3 sm:mb-4 text-left max-h-40 sm:max-h-48 overflow-y-auto">
-            <div className="text-xs text-white/60 mb-2 text-center font-semibold sticky top-0 bg-white/5 py-1">Chi tiết điểm sao</div>
+            <div className="text-xs text-white/60 mb-2 text-center font-semibold sticky top-0 bg-white/5 py-1">{t('topbar.stars')} Breakdown</div>
             {finalStarsData.breakdown.map((item, i) => (
               <div key={i} className="flex justify-between items-center text-xs sm:text-sm py-1 border-b border-white/10 last:border-0">
                 <span className="text-white/80">
@@ -3667,7 +3697,7 @@ function PracticePageContent() {
               </div>
             ))}
             <div className="flex justify-between items-center text-sm sm:text-base pt-2 mt-2 border-t border-white/30">
-              <span className="text-white font-bold">Tổng cộng</span>
+              <span className="text-white font-bold">{t('practiceScreen.ui.total')}</span>
               <span className="text-yellow-400 font-black">⭐ {finalStarsData.totalStars}</span>
             </div>
           </div>
@@ -3676,9 +3706,9 @@ function PracticePageContent() {
           {gameMode?.from === 'adventure' && (
             <div className={`p-3 rounded-xl text-center text-sm font-medium mb-3 ${accuracy >= 70 ? 'bg-green-500/20 text-green-300 border border-green-500/30' : 'bg-orange-500/20 text-orange-300 border border-orange-500/30'}`}>
               {accuracy >= 70 ? (
-                <span>✅ Đã qua màn! Cần ≥70% để mở khóa màn tiếp theo</span>
+                <span>✅ {t('practiceScreen.ui.passed')}</span>
               ) : (
-                <span>⚠️ Chưa đạt! Cần ≥70% chính xác để qua màn (hiện tại: {accuracy}%)</span>
+                <span>⚠️ {t('practiceScreen.ui.notPassedAccuracy', { accuracy })}</span>
               )}
             </div>
           )}
@@ -3691,7 +3721,7 @@ function PracticePageContent() {
                 onClick={() => handleBackToGame(accuracy >= 70)}
                 className="w-full py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:scale-105 transition-transform text-sm sm:text-base"
               >
-                🎮 Về Map Phiêu Lưu
+                🎮 {t('practiceScreen.ui.backToMenu')}
               </button>
             ) : (
               /* Từ Menu: có đầy đủ các nút */
@@ -3700,13 +3730,13 @@ function PracticePageContent() {
                   onClick={restartGame}
                   className="flex-1 py-2.5 sm:py-3 px-3 sm:px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:scale-105 transition-transform text-sm sm:text-base"
                 >
-                  🔄 Chơi lại
+                  🔄 {t('practiceScreen.playAgain')}
                 </button>
                 <button
                   onClick={handleBack}
                   className="flex-1 py-2.5 sm:py-3 px-3 sm:px-4 bg-white/20 text-white font-bold rounded-xl hover:bg-white/30 transition-colors text-sm sm:text-base"
                 >
-                  📋 Chọn mode
+                  📋 {t('practiceScreen.ui.selectMode')}
                 </button>
               </div>
             )}
@@ -3740,7 +3770,7 @@ function PracticePageContent() {
             {/* Speed multiplier badge */}
             {celebrationData.multiplier > 1 && (
               <div className={`inline-block bg-gradient-to-r ${celebrationData.tierColor} text-white px-4 py-1 rounded-full font-black text-lg sm:text-xl mb-2 shadow-lg`}>
-                x{celebrationData.multiplier} ĐIỂM!
+                {t('practiceScreen.multiplierPoints', { n: celebrationData.multiplier })}
               </div>
             )}
             
@@ -3782,7 +3812,7 @@ function PracticePageContent() {
               }
             }}
             className="p-1.5 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors flex-shrink-0"
-            title={gameMode?.from === 'adventure' ? 'Quay lại Game' : 'Quay lại'}
+            title={gameMode?.from === 'adventure' ? t('practiceScreen.ui.backToMenu') : t('practiceScreen.ui.back')}
           >
             <ArrowLeft size={16} />
           </button>
@@ -3813,7 +3843,7 @@ function PracticePageContent() {
                   <div
                     key={i}
                     className={`h-2.5 flex-1 rounded-full transition-all ${dotClass}`}
-                    title={resultStatus === 'correct' ? 'Đúng ✓' : resultStatus === 'wrong' ? 'Sai ✗' : resultStatus === 'skipped' ? 'Bỏ qua' : ''}
+                    title={resultStatus === 'correct' ? `${t('practiceScreen.ui.correct')} ✓` : resultStatus === 'wrong' ? `${t('practiceScreen.ui.wrong')} ✗` : resultStatus === 'skipped' ? t('practiceScreen.ui.skipped') : ''}
                   />
                 );
               })}
@@ -3848,14 +3878,14 @@ function PracticePageContent() {
               </div>
             )}
             {/* Right: Logo */}
-            <Link 
+            <LocalizedLink 
               href="/dashboard"
               prefetch={true}
               className="p-1 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors"
-              title="Về trang chủ"
+              title={t('practiceScreen.ui.backToHome')}
             >
               <Logo size="xs" showText={false} />
-            </Link>
+            </LocalizedLink>
           </div>
         </div>
       </div>
@@ -3867,7 +3897,7 @@ function PracticePageContent() {
           {mode === 'create' ? (
             // 🆕 MODE CREATE: Hiển thị số cần tạo, không có dấu =
             <>
-              <div className="text-white/80 text-sm sm:text-lg">🎯 Tạo số:</div>
+              <div className="text-white/80 text-sm sm:text-lg">🎯 {t('practiceScreen.ui.createNumber')}:</div>
               <div className="text-white font-black text-3xl sm:text-5xl md:text-6xl">
                 {problem?.target}
               </div>
@@ -3952,7 +3982,7 @@ function PracticePageContent() {
               onClick={skipProblem}
               className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-white/10 text-white/80 hover:bg-white/20 font-medium text-xs sm:text-sm flex items-center gap-1 sm:gap-2 transition-colors"
             >
-              💡 Bỏ qua
+              💡 {t('practiceScreen.ui.skip')}
             </button>
           )}
           
@@ -3963,13 +3993,13 @@ function PracticePageContent() {
                 disabled={!mentalAnswer}
                 className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
               >
-                ✓ Trả lời
+                ✓ {t('practiceScreen.ui.answer')}
               </button>
               <button
                 onClick={skipProblem}
                 className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-white/10 text-white/80 hover:bg-white/20 font-medium text-xs sm:text-sm flex items-center gap-1 sm:gap-2 transition-colors"
               >
-                💡 Bỏ qua
+                💡 {t('practiceScreen.ui.skip')}
               </button>
             </>
           )}
@@ -3979,7 +4009,7 @@ function PracticePageContent() {
               onClick={nextProblem}
               className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
             >
-              {currentChallenge >= TOTAL_CHALLENGES ? '🏆 Kết thúc' : '⚡ Tiếp'}
+              {currentChallenge >= TOTAL_CHALLENGES ? `🏆 ${t('practiceScreen.ui.finish')}` : `⚡ ${t('practiceScreen.ui.next')}`}
             </button>
           )}
           
@@ -4137,7 +4167,7 @@ export default function PracticePage() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-950 via-purple-900 to-fuchsia-900">
         <div className="text-white text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-          <p>Đang tải...</p>
+          <p>Loading...</p>
         </div>
       </div>
     }>

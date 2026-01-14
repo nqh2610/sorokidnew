@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import { LocalizedLink } from '@/components/LocalizedLink';
 import Logo from '@/components/Logo/Logo';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 export default function ForgotPasswordPage() {
+  const { t } = useI18n();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -25,7 +27,7 @@ export default function ForgotPasswordPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || 'Có lỗi xảy ra');
+        throw new Error(data.error || t('common.error'));
       }
 
       setSuccess(true);
@@ -42,16 +44,16 @@ export default function ForgotPasswordPage() {
         {/* Card */}
         <div className="bg-white rounded-2xl shadow-2xl p-6">
           {/* Logo */}
-          <Link href="/" className="flex items-center justify-center gap-2 mb-4">
+          <LocalizedLink href="/" className="flex items-center justify-center gap-2 mb-4">
             <Logo size="md" showText={false} />
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
               SoroKid
             </span>
-          </Link>
+          </LocalizedLink>
           <div className="text-center mb-5">
-            <h1 className="text-xl font-bold text-gray-800">Quên mật khẩu</h1>
+            <h1 className="text-xl font-bold text-gray-800">{t('auth.forgotPassword.title')}</h1>
             <p className="text-gray-500 text-sm mt-1">
-              Nhập email để nhận link đặt lại mật khẩu
+              {t('auth.forgotPassword.subtitle')}
             </p>
           </div>
 
@@ -63,20 +65,19 @@ export default function ForgotPasswordPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-2">Đã gửi email!</h2>
+              <h2 className="text-xl font-semibold text-gray-800 mb-2">{t('auth.forgotPassword.emailSent')}</h2>
               <p className="text-gray-600 mb-6">
-                Nếu email <span className="font-medium">{email}</span> tồn tại trong hệ thống, 
-                bạn sẽ nhận được link đặt lại mật khẩu trong vài phút.
+                {t('auth.forgotPassword.emailSentMessage', { email })}
               </p>
               <p className="text-sm text-gray-500 mb-6">
-                Không nhận được? Kiểm tra thư mục Spam hoặc thử lại sau 15 phút.
+                {t('auth.forgotPassword.checkSpam')}
               </p>
-              <Link 
+              <LocalizedLink 
                 href="/login"
                 className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white rounded-xl font-medium hover:opacity-90 transition-opacity"
               >
-                Quay lại đăng nhập
-              </Link>
+                {t('auth.forgotPassword.backToLogin')}
+              </LocalizedLink>
             </div>
           ) : (
             /* Form State */
@@ -112,20 +113,20 @@ export default function ForgotPasswordPage() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                     </svg>
-                    Đang gửi...
+                    {t('auth.forgotPassword.sending')}
                   </>
                 ) : (
-                  'Gửi link đặt lại mật khẩu'
+                  t('auth.forgotPassword.sendLink')
                 )}
               </button>
 
               <div className="text-center pt-4 border-t border-gray-100">
-                <Link 
+                <LocalizedLink 
                   href="/login" 
                   className="text-violet-600 hover:text-pink-500 font-medium text-sm"
                 >
-                  ← Quay lại đăng nhập
-                </Link>
+                  ← {t('auth.forgotPassword.backToLogin')}
+                </LocalizedLink>
               </div>
             </form>
           )}
@@ -133,7 +134,7 @@ export default function ForgotPasswordPage() {
 
         {/* Footer */}
         <p className="text-center text-white/70 text-xs mt-4">
-          © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
+          © {new Date().getFullYear()} SoroKid - {t('auth.footer')}
         </p>
       </div>
     </div>

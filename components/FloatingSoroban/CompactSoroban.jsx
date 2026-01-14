@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { RotateCcw, HelpCircle, Lightbulb, ChevronDown, ChevronUp } from 'lucide-react';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 export default function CompactSoroban() {
+  const { t } = useI18n();
   const [beads, setBeads] = useState([
     [false, true, true, true, true],
     [false, true, true, true, true],
@@ -66,7 +68,7 @@ export default function CompactSoroban() {
   };
 
   const showHintForUser = () => {
-    setHint('Hạt đỏ = 5, Hạt vàng = 1. Click để di chuyển các hạt!');
+    setHint(t('sorobanWidget.hint'));
     setTimeout(() => setHint(''), 3000);
   };
 
@@ -82,7 +84,7 @@ export default function CompactSoroban() {
           </div>
 
           <div className="relative z-10">
-            <div className="text-[10px] font-semibold text-white/90 mb-0.5 tracking-wide uppercase">Kết quả</div>
+            <div className="text-[10px] font-semibold text-white/90 mb-0.5 tracking-wide uppercase">{t('sorobanWidget.result')}</div>
             <div className="text-3xl font-black text-white truncate drop-shadow-lg tracking-tight">
               {currentNumber.toLocaleString('vi-VN')}
             </div>
@@ -93,8 +95,8 @@ export default function CompactSoroban() {
           <button
             onClick={showHintForUser}
             className="group relative p-2 bg-gradient-to-br from-amber-400 to-orange-500 text-white rounded-xl hover:scale-110 active:scale-95 transition-all shadow-lg hover:shadow-amber-500/50"
-            title="Gợi ý"
-            aria-label="Gợi ý"
+            title={t('sorobanWidget.hintBtn')}
+            aria-label={t('sorobanWidget.hintBtn')}
           >
             <Lightbulb size={16} className="relative z-10" />
             <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -102,8 +104,8 @@ export default function CompactSoroban() {
           <button
             onClick={reset}
             className="group relative p-2 bg-gradient-to-br from-violet-500 to-purple-600 text-white rounded-xl hover:scale-110 active:scale-95 transition-all shadow-lg hover:shadow-purple-500/50"
-            title="Reset"
-            aria-label="Reset"
+            title={t('sorobanWidget.reset')}
+            aria-label={t('sorobanWidget.reset')}
           >
             <RotateCcw size={16} className="relative z-10 group-hover:rotate-180 transition-transform duration-500" />
             <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -176,7 +178,7 @@ export default function CompactSoroban() {
 
           {/* Modern Column labels */}
           <div className="flex justify-center gap-5 mt-3">
-            {['Vạn', 'Nghìn', 'Trăm', 'Chục', 'ĐV'].map((label, index) => (
+            {[t('sorobanWidget.tenThousand'), t('sorobanWidget.thousand'), t('sorobanWidget.hundred'), t('sorobanWidget.ten'), t('sorobanWidget.unit')].map((label, index) => (
               <div key={index} className="w-9 text-center">
                 <div className="px-1.5 py-0.5 bg-amber-950/50 rounded-md backdrop-blur-sm mb-1">
                   <div className="text-[9px] text-amber-200 font-bold leading-tight">{label}</div>
@@ -195,7 +197,7 @@ export default function CompactSoroban() {
           className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold text-gray-600 hover:text-indigo-600 py-2 px-3 rounded-lg hover:bg-indigo-50 transition-all group"
         >
           <HelpCircle size={14} className="group-hover:rotate-12 transition-transform" />
-          <span>Hướng dẫn sử dụng</span>
+          <span>{t('sorobanWidget.instructions')}</span>
           {showInstructions ? <ChevronUp size={14} className="ml-auto" /> : <ChevronDown size={14} className="ml-auto" />}
         </button>
 
@@ -203,15 +205,15 @@ export default function CompactSoroban() {
           <div className="grid grid-cols-3 gap-2 mt-2 animate-slide-down">
             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-2 text-center border-2 border-blue-200 shadow-sm hover:shadow-md transition-shadow">
               <div className="text-xl mb-1">👆</div>
-              <p className="font-bold text-gray-800 text-[10px] leading-tight">Click hạt để di chuyển</p>
+              <p className="font-bold text-gray-800 text-[10px] leading-tight">{t('sorobanWidget.clickToMove')}</p>
             </div>
             <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl p-2 text-center border-2 border-red-200 shadow-sm hover:shadow-md transition-shadow">
               <div className="text-xl mb-1">🔴</div>
-              <p className="font-bold text-gray-800 text-[10px] leading-tight">Hạt đỏ = 5 đơn vị</p>
+              <p className="font-bold text-gray-800 text-[10px] leading-tight">{t('sorobanWidget.redBead')}</p>
             </div>
             <div className="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-xl p-2 text-center border-2 border-amber-200 shadow-sm hover:shadow-md transition-shadow">
               <div className="text-xl mb-1">🟡</div>
-              <p className="font-bold text-gray-800 text-[10px] leading-tight">Hạt vàng = 1 đơn vị</p>
+              <p className="font-bold text-gray-800 text-[10px] leading-tight">{t('sorobanWidget.yellowBead')}</p>
             </div>
           </div>
         )}

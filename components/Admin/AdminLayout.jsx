@@ -6,6 +6,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { MonsterAvatar } from '@/components/MonsterAvatar';
 import { LogoIcon } from '@/components/Logo/Logo';
+import { useLocalizedUrl } from '@/components/LocalizedLink';
 
 // Menu items cho sidebar
 const menuItems = [
@@ -108,14 +109,15 @@ export default function AdminLayout({ children }) {
   const { data: session, status } = useSession();
   const router = useRouter();
   const pathname = usePathname();
+  const localizeUrl = useLocalizedUrl();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (status === 'loading') return;
     if (!session || session.user?.role !== 'admin') {
-      router.push('/login');
+      router.push(localizeUrl('/login'));
     }
-  }, [session, status, router]);
+  }, [session, status, router, localizeUrl]);
 
   if (status === 'loading') {
     return (

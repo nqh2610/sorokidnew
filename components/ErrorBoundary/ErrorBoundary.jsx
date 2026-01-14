@@ -2,7 +2,7 @@
 
 import { Component } from 'react';
 
-class ErrorBoundary extends Component {
+class ErrorBoundaryInner extends Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false, error: null, errorInfo: null };
@@ -34,6 +34,8 @@ class ErrorBoundary extends Component {
   };
 
   render() {
+    const { t } = this.props;
+    
     if (this.state.hasError) {
       // Custom fallback UI
       if (this.props.fallback) {
@@ -45,16 +47,16 @@ class ErrorBoundary extends Component {
           <div className="text-center max-w-md">
             <div className="text-6xl mb-4">😵</div>
             <h2 className="text-2xl font-bold text-gray-800 mb-2">
-              Ối! Có lỗi xảy ra
+              {t('errorBoundary.title')}
             </h2>
             <p className="text-gray-600 mb-6">
-              {this.props.message || 'Đừng lo, hãy thử tải lại trang hoặc quay lại sau nhé!'}
+              {this.props.message || t('errorBoundary.message')}
             </p>
             
             {process.env.NODE_ENV === 'development' && this.state.error && (
               <details className="mb-6 text-left bg-red-50 rounded-lg p-4">
                 <summary className="text-red-600 font-medium cursor-pointer">
-                  Chi tiết lỗi (Development)
+                  {t('errorBoundary.detailDev')}
                 </summary>
                 <pre className="mt-2 text-xs text-red-800 overflow-auto">
                   {this.state.error.toString()}
@@ -68,7 +70,7 @@ class ErrorBoundary extends Component {
                 onClick={this.handleRetry}
                 className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
               >
-                Thử lại
+                {t('errorBoundary.retry')}
               </button>
               <button
                 onClick={() => {
@@ -78,7 +80,7 @@ class ErrorBoundary extends Component {
                 }}
                 className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
               >
-                Quay lại
+                {t('errorBoundary.goBack')}
               </button>
             </div>
           </div>
@@ -88,6 +90,14 @@ class ErrorBoundary extends Component {
 
     return this.props.children;
   }
+}
+
+// Wrapper to provide i18n to class component
+import { useI18n } from '@/lib/i18n/I18nContext';
+
+function ErrorBoundary(props) {
+  const { t } = useI18n();
+  return <ErrorBoundaryInner {...props} t={t} />;
 }
 
 export default ErrorBoundary;

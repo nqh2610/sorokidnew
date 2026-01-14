@@ -3,14 +3,17 @@
 import { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { MonsterAvatar } from '@/components/MonsterAvatar';
 import Logo from '@/components/Logo/Logo';
 import { CheckCircle } from 'lucide-react';
+import { LocalizedLink, useLocalizedUrl } from '@/components/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 export default function CompleteProfilePage() {
+  const { t } = useI18n();
   const { data: session, status, update } = useSession();
   const router = useRouter();
+  const localizeUrl = useLocalizedUrl();
   const [formData, setFormData] = useState({
     name: '',
     username: '',
@@ -36,11 +39,11 @@ export default function CompleteProfilePage() {
     if (profileCompleted || isLoading) return;
     
     if (status === 'unauthenticated') {
-      router.push('/login');
+      router.push(localizeUrl('/login'));
     } else if (status === 'authenticated' && session?.user?.isProfileComplete) {
-      router.push('/dashboard');
+      router.push(localizeUrl('/dashboard'));
     }
-  }, [status, session, router, profileCompleted, isLoading]);
+  }, [status, session, router, profileCompleted, isLoading, localizeUrl]);
 
   // Debounce check username availability
   useEffect(() => {
@@ -83,31 +86,31 @@ export default function CompleteProfilePage() {
     
     // Validate
     if (!formData.name.trim()) {
-      setError('Vui lòng nhập tên của bạn');
+      setError(t('auth.completeProfile.errors.nameRequired'));
       return;
     }
     if (!formData.username.trim()) {
-      setError('Vui lòng nhập username');
+      setError(t('auth.completeProfile.errors.usernameRequired'));
       return;
     }
     if (formData.username.length < 3) {
-      setError('Username phải có ít nhất 3 ký tự');
+      setError(t('auth.completeProfile.errors.usernameMinLength'));
       return;
     }
     if (!/^[a-zA-Z0-9_]+$/.test(formData.username)) {
-      setError('Username chỉ được chứa chữ, số và dấu gạch dưới');
+      setError(t('auth.completeProfile.errors.usernameFormat'));
       return;
     }
     if (usernameAvailable === false) {
-      setError('Tên đăng nhập này đã được sử dụng');
+      setError(t('auth.completeProfile.errors.usernameTaken'));
       return;
     }
     if (!formData.phone) {
-      setError('Vui lòng nhập số điện thoại');
+      setError(t('auth.completeProfile.errors.phoneRequired'));
       return;
     }
     if (!validatePhone(formData.phone)) {
-      setError('Số điện thoại không hợp lệ (VD: 0901234567)');
+      setError(t('auth.completeProfile.errors.invalidPhone'));
       return;
     }
 
@@ -130,7 +133,7 @@ export default function CompleteProfilePage() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || 'Có lỗi xảy ra');
+        throw new Error(data.error || t('common.error'));
       }
 
       // 🔧 FIX: Đánh dấu đã hoàn tất để useEffect không redirect sai
@@ -164,8 +167,8 @@ export default function CompleteProfilePage() {
         <div className="fixed inset-0 bg-gradient-to-br from-blue-500 via-violet-500 to-pink-500 z-50 flex flex-col items-center justify-center">
           <div className="bg-white/20 backdrop-blur-md rounded-3xl p-8 text-center">
             <div className="w-16 h-16 border-4 border-white/30 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
-            <h2 className="text-white text-xl font-bold mb-2">Đang hoàn tất đăng ký...</h2>
-            <p className="text-white/80 text-sm">Vui lòng chờ trong giây lát</p>
+            <h2 className="text-white text-xl font-bold mb-2">{t('auth.completeProfile.completing')}</h2>
+            <p className="text-white/80 text-sm">{t('auth.completeProfile.pleaseWait')}</p>
           </div>
         </div>
       )}
@@ -178,14 +181,14 @@ export default function CompleteProfilePage() {
       <div className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full border border-white/20 relative z-10">
         {/* Logo */}
         <div className="text-center mb-6">
-          <Link href="/" className="flex items-center justify-center gap-2 mb-4">
+          <LocalizedLink href="/" className="flex items-center justify-center gap-2 mb-4">
             <Logo size="lg" showText={false} />
             <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
               SoroKid
             </span>
-          </Link>
+          </LocalizedLink>
           <p className="text-gray-600 text-sm">
-            Xin chào <span className="font-bold text-violet-600">{session?.user?.name}</span>! 👋
+            {t('auth.completeProfile.greeting')} <span className="font-bold text-violet-600">{session?.user?.name}</span>! 👋
           </p>
         </div>
 
@@ -206,13 +209,13 @@ export default function CompleteProfilePage() {
           <div className="text-center">
             <div className="text-5xl mb-4">👋</div>
             <h1 className="text-xl font-bold text-gray-800 mb-2">
-              Chào mừng đến SoroKid!
+              {t('auth.completeProfile.step1.title')}
             </h1>
             <p className="text-gray-600 mb-4 text-sm">
-              Xác nhận tên hiển thị của bạn
+              {t('auth.completeProfile.step1.subtitle')}
             </p>
             <p className="text-amber-600 bg-amber-50 px-3 py-2 rounded-lg mb-4 text-xs">
-              🏆 Tên này sẽ được in trên chứng chỉ, vui lòng nhập tên thật của người học
+              🏆 {t('auth.completeProfile.step1.certificateNote')}
             </p>
             
             <input
@@ -220,7 +223,7 @@ export default function CompleteProfilePage() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Nhập tên của bạn"
+              placeholder={t('auth.completeProfile.step1.placeholder')}
               className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-center text-lg focus:border-violet-400 focus:outline-none transition-colors"
               autoFocus
             />
@@ -231,12 +234,12 @@ export default function CompleteProfilePage() {
                   setStep(2);
                   setError('');
                 } else {
-                  setError('Vui lòng nhập tên');
+                  setError(t('auth.completeProfile.errors.nameRequired'));
                 }
               }}
               className="w-full mt-6 py-3 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white font-semibold rounded-xl hover:opacity-90 transition-all"
             >
-              Tiếp tục →
+              {t('auth.completeProfile.continue')} →
             </button>
           </div>
         )}
@@ -246,10 +249,10 @@ export default function CompleteProfilePage() {
           <div className="text-center">
             <div className="text-5xl mb-4">🎮</div>
             <h1 className="text-xl font-bold text-gray-800 mb-2">
-              Chọn tên đăng nhập
+              {t('auth.completeProfile.step2.title')}
             </h1>
             <p className="text-gray-600 mb-6 text-sm">
-              Username sẽ hiển thị trên bảng xếp hạng
+              {t('auth.completeProfile.step2.subtitle')}
             </p>
             
             <div className="relative">
@@ -278,10 +281,10 @@ export default function CompleteProfilePage() {
               )}
             </div>
             <p className="text-xs text-gray-400 mt-2">
-              Chỉ dùng chữ, số và dấu gạch dưới (_)
+              {t('auth.completeProfile.step2.usernameHint')}
             </p>
             {usernameAvailable === false && (
-              <p className="text-red-500 text-sm mt-1">Username này đã được sử dụng</p>
+              <p className="text-red-500 text-sm mt-1">{t('auth.completeProfile.errors.usernameTaken')}</p>
             )}
 
             {/* Monster Avatar Preview */}
@@ -293,7 +296,7 @@ export default function CompleteProfilePage() {
                   showBorder={false}
                 />
                 <div className="text-left">
-                  <div className="font-semibold text-gray-800 text-sm">{formData.name || 'Tên của bạn'}</div>
+                  <div className="font-semibold text-gray-800 text-sm">{formData.name || t('auth.completeProfile.yourName')}</div>
                   <div className="text-xs text-gray-500">@{formData.username || 'username'}</div>
                 </div>
               </div>
@@ -309,15 +312,15 @@ export default function CompleteProfilePage() {
               <button
                 onClick={() => {
                   if (!formData.username.trim() || formData.username.length < 3) {
-                    setError('Username phải có ít nhất 3 ký tự');
+                    setError(t('auth.completeProfile.errors.usernameMinLength'));
                     return;
                   }
                   if (!/^[a-zA-Z0-9_]+$/.test(formData.username)) {
-                    setError('Username chỉ được chứa chữ, số và gạch dưới');
+                    setError(t('auth.completeProfile.errors.usernameFormat'));
                     return;
                   }
                   if (usernameAvailable === false) {
-                    setError('Username này đã được sử dụng');
+                    setError(t('auth.completeProfile.errors.usernameTaken'));
                     return;
                   }
                   setStep(3);
@@ -326,7 +329,7 @@ export default function CompleteProfilePage() {
                 disabled={checkingUsername}
                 className="flex-[3] py-3 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white font-semibold rounded-xl hover:opacity-90 transition-all disabled:opacity-50"
               >
-                Tiếp tục →
+                {t('auth.completeProfile.continue')} →
               </button>
             </div>
           </div>
@@ -337,10 +340,10 @@ export default function CompleteProfilePage() {
           <div className="text-center">
             <div className="text-5xl mb-4">📱</div>
             <h1 className="text-xl font-bold text-gray-800 mb-2">
-              Số điện thoại phụ huynh
+              {t('auth.completeProfile.step3.title')}
             </h1>
             <p className="text-gray-600 mb-6 text-sm">
-              Để liên hệ khi cần thiết
+              {t('auth.completeProfile.step3.subtitle')}
             </p>
             
             <input
@@ -353,7 +356,7 @@ export default function CompleteProfilePage() {
               autoFocus
             />
             <p className="text-xs text-gray-400 mt-2">
-              Số điện thoại Việt Nam (VD: 0901234567)
+              {t('auth.completeProfile.step3.phoneHint')}
             </p>
 
             <div className="flex gap-3 mt-6">
@@ -368,7 +371,7 @@ export default function CompleteProfilePage() {
                 disabled={isLoading || !formData.phone}
                 className="flex-[3] py-3 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white font-semibold rounded-xl hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isLoading ? 'Đang lưu...' : '✨ Hoàn tất'}
+                {isLoading ? t('auth.completeProfile.saving') : `✨ ${t('auth.completeProfile.complete')}`}
               </button>
             </div>
           </div>
@@ -384,7 +387,7 @@ export default function CompleteProfilePage() {
       
       {/* Footer */}
       <p className="absolute bottom-4 text-center text-white/70 text-sm w-full">
-        © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
+        © {new Date().getFullYear()} SoroKid - {t('auth.footer')}
       </p>
     </div>
   );

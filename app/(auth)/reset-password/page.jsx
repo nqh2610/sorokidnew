@@ -2,11 +2,14 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { LocalizedLink, useLocalizedUrl } from '@/components/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 function ResetPasswordForm() {
+  const { t } = useI18n();
   const searchParams = useSearchParams();
   const router = useRouter();
+  const localizeUrl = useLocalizedUrl();
   
   const token = searchParams.get('token');
   
@@ -20,9 +23,9 @@ function ResetPasswordForm() {
   // Redirect if no token
   useEffect(() => {
     if (!token) {
-      router.push('/forgot-password');
+      router.push(localizeUrl('/forgot-password'));
     }
-  }, [token, router]);
+  }, [token, router, localizeUrl]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,12 +33,12 @@ function ResetPasswordForm() {
 
     // Validate
     if (password.length < 6) {
-      setError('Mật khẩu phải có ít nhất 6 ký tự');
+      setError(t('auth.resetPassword.errors.minLength'));
       return;
     }
 
     if (password !== confirmPassword) {
-      setError('Mật khẩu xác nhận không khớp');
+      setError(t('auth.resetPassword.errors.mismatch'));
       return;
     }
 
@@ -51,14 +54,14 @@ function ResetPasswordForm() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || 'Có lỗi xảy ra');
+        throw new Error(data.error || t('common.error'));
       }
 
       setSuccess(true);
       
       // Redirect to login after 3 seconds
       setTimeout(() => {
-        router.push('/login');
+        router.push(localizeUrl('/login'));
       }, 3000);
       
     } catch (err) {
@@ -80,9 +83,9 @@ function ResetPasswordForm() {
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="text-5xl mb-3">🔐</div>
-            <h1 className="text-2xl font-bold text-gray-800">Đặt lại mật khẩu</h1>
+            <h1 className="text-2xl font-bold text-gray-800">{t('auth.resetPassword.title')}</h1>
             <p className="text-gray-500 mt-2">
-              Nhập mật khẩu mới cho tài khoản của bạn
+              {t('auth.resetPassword.subtitle')}
             </p>
           </div>
 
@@ -94,16 +97,16 @@ function ResetPasswordForm() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-2">Thành công!</h2>
+              <h2 className="text-xl font-semibold text-gray-800 mb-2">{t('auth.resetPassword.success')}</h2>
               <p className="text-gray-600 mb-6">
-                Mật khẩu của bạn đã được đặt lại. Đang chuyển đến trang đăng nhập...
+                {t('auth.resetPassword.redirecting')}
               </p>
               <div className="flex items-center justify-center gap-2 text-purple-600">
                 <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                 </svg>
-                <span>Đang chuyển hướng...</span>
+                <span>{t('auth.resetPassword.redirectingText')}</span>
               </div>
             </div>
           ) : (
@@ -118,14 +121,14 @@ function ResetPasswordForm() {
               {/* Password */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Mật khẩu mới
+                  {t('auth.resetPassword.newPassword')}
                 </label>
                 <div className="relative">
                   <input
                     type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Ít nhất 6 ký tự"
+                    placeholder={t('auth.resetPassword.minChars')}
                     required
                     minLength={6}
                     className="w-full px-4 py-3 pr-12 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all outline-none"
@@ -143,13 +146,13 @@ function ResetPasswordForm() {
               {/* Confirm Password */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Xác nhận mật khẩu
+                  {t('auth.resetPassword.confirmPassword')}
                 </label>
                 <input
                   type={showPassword ? 'text' : 'password'}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Nhập lại mật khẩu"
+                  placeholder={t('auth.resetPassword.reenterPassword')}
                   required
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all outline-none"
                 />
@@ -176,12 +179,12 @@ function ResetPasswordForm() {
                   </div>
                   <p className="text-xs text-gray-500">
                     {password.length < 6
-                      ? '❌ Quá ngắn'
+                      ? `❌ ${t('auth.resetPassword.strength.tooShort')}`
                       : password.length < 8
-                      ? '⚠️ Yếu'
+                      ? `⚠️ ${t('auth.resetPassword.strength.weak')}`
                       : password.length < 12
-                      ? '✓ Trung bình'
-                      : '✓✓ Mạnh'}
+                      ? `✓ ${t('auth.resetPassword.strength.medium')}`
+                      : `✓✓ ${t('auth.resetPassword.strength.strong')}`}
                   </p>
                 </div>
               )}
@@ -197,20 +200,20 @@ function ResetPasswordForm() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                     </svg>
-                    Đang xử lý...
+                    {t('auth.resetPassword.processing')}
                   </>
                 ) : (
-                  'Đặt lại mật khẩu'
+                  t('auth.resetPassword.submit')
                 )}
               </button>
 
               <div className="text-center pt-4 border-t border-gray-100">
-                <Link 
+                <LocalizedLink 
                   href="/login" 
                   className="text-purple-600 hover:text-purple-700 font-medium"
                 >
-                  ← Quay lại đăng nhập
-                </Link>
+                  ← {t('auth.resetPassword.backToLogin')}
+                </LocalizedLink>
               </div>
             </form>
           )}
@@ -218,7 +221,7 @@ function ResetPasswordForm() {
 
         {/* Footer */}
         <p className="text-center text-white/80 text-sm mt-6">
-          © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
+          © {new Date().getFullYear()} SoroKid - {t('auth.footer')}
         </p>
       </div>
     </div>

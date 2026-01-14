@@ -15,9 +15,8 @@ const DongHoBamGioClient = dynamic(
     ssr: false,
     loading: () => (
       <ToolLoadingSkeleton 
-        toolName="Đồng Hồ Bấm Giờ"
+        toolKey="timer"
         toolIcon="⏱️"
-        message="Đang chuẩn bị đồng hồ..."
       />
     ),
   }

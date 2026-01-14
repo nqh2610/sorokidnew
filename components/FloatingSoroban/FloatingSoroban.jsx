@@ -3,8 +3,10 @@
 import { useState } from 'react';
 import { X } from 'lucide-react';
 import CompactSoroban from './CompactSoroban';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 export default function FloatingSoroban() {
+  const { t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -14,8 +16,8 @@ export default function FloatingSoroban() {
         <button
           onClick={() => setIsOpen(true)}
           className="fixed bottom-6 right-6 z-40 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 text-white rounded-full shadow-2xl hover:shadow-amber-500/50 hover:scale-110 transition-all flex items-center justify-center group"
-          aria-label="Mở bàn tính Soroban"
-          title="Mở bàn tính Soroban"
+          aria-label={t('sorobanWidget.open')}
+          title={t('sorobanWidget.open')}
         >
           <span className="text-3xl sm:text-4xl group-hover:scale-110 transition-transform">🧮</span>
         </button>
@@ -46,13 +48,13 @@ export default function FloatingSoroban() {
               <div className="flex items-center gap-2 relative z-10">
                 <span className="text-2xl drop-shadow-md">🧮</span>
                 <h3 className="text-sm sm:text-base font-black text-white drop-shadow-md tracking-wide">
-                  Bàn tính Soroban
+                  {t('sorobanWidget.title')}
                 </h3>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
                 className="p-1.5 hover:bg-white/20 rounded-lg transition-all hover:rotate-90 duration-300 focus:outline-none relative z-10 active:scale-90"
-                aria-label="Đóng bàn tính"
+                aria-label={t('sorobanWidget.close')}
               >
                 <X size={18} className="text-white drop-shadow" />
               </button>

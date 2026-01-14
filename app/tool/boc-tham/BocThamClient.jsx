@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import ToolLayout, { useFullscreen } from '@/components/ToolLayout/ToolLayout';
+import { useI18n } from '@/lib/i18n/I18nContext';
 import { useGameSettings } from '@/lib/useGameSettings';
 import { GAME_IDS } from '@/lib/gameStorage';
 
@@ -13,14 +14,16 @@ const DEFAULT_SETTINGS = {
 };
 
 export default function BocTham() {
+  const { t } = useI18n();
   return (
-    <ToolLayout toolName="Bốc Thăm Ngẫu Nhiên" toolIcon="🎫">
+    <ToolLayout toolName={t('toolbox.tools.randomPicker.name')} toolIcon="🎫">
       <BocThamContent />
     </ToolLayout>
   );
 }
 
 function BocThamContent() {
+  const { t } = useI18n();
   const { exitFullscreen } = useFullscreen();
   
   // Load settings
@@ -211,7 +214,7 @@ function BocThamContent() {
           <div className="flex items-center justify-between mb-2 sm:mb-3">
             <h2 className="text-base sm:text-lg font-bold text-gray-800 flex items-center gap-2">
               <span>📝</span>
-              Danh sách bốc thăm
+              {t('toolbox.randomPicker.listTitle')}
             </h2>
             {nameCount > 0 && (
               <button
@@ -220,9 +223,9 @@ function BocThamContent() {
                   ${isListHidden 
                     ? 'bg-amber-100 text-amber-700 hover:bg-amber-200' 
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
-                title={isListHidden ? 'Hiện danh sách' : 'Ẩn danh sách (để bí mật)'}
+                title={isListHidden ? t('toolbox.randomPicker.showList') : t('toolbox.randomPicker.hideList')}
               >
-                {isListHidden ? '👁️ Hiện' : '🔒 Ẩn'}
+                {isListHidden ? `👁️ ${t('toolbox.randomPicker.show')}` : `🔒 ${t('toolbox.randomPicker.hide')}`}
               </button>
             )}
           </div>
@@ -235,7 +238,7 @@ function BocThamContent() {
                 setInputText(e.target.value);
                 setShowResult(false);
               }}
-              placeholder="Nhập mỗi dòng một mục&#10;&#10;Ví dụ:&#10;Minh&#10;Lan&#10;Hùng&#10;Mai&#10;Tuấn"
+              placeholder={t('toolbox.randomPicker.placeholder')}
               className={`w-full h-48 p-3 border-2 border-gray-200 rounded-xl text-base
                 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 
                 transition-all resize-none
@@ -250,22 +253,22 @@ function BocThamContent() {
                 rounded-xl border-2 border-amber-200 flex flex-col items-center justify-center
                 pointer-events-none">
                 <div className="text-5xl mb-2">🎁</div>
-                <p className="text-amber-700 font-bold text-lg">Danh sách bí mật</p>
-                <p className="text-amber-600 text-sm">{nameCount} mục đã ẩn</p>
+                <p className="text-amber-700 font-bold text-lg">{t('toolbox.randomPicker.secretList')}</p>
+                <p className="text-amber-600 text-sm">{t('toolbox.randomPicker.itemsHidden', { count: nameCount })}</p>
               </div>
             )}
           </div>
 
           <div className="mt-3 flex items-center justify-between text-sm">
             <span className={`font-medium ${nameCount > 0 ? 'text-violet-600' : 'text-gray-400'}`}>
-              {nameCount > 0 ? `${nameCount} mục` : 'Chưa có mục nào'}
+              {nameCount > 0 ? t('toolbox.randomPicker.itemCount', { count: nameCount }) : t('toolbox.randomPicker.noItems')}
             </span>
             <button
               onClick={handleClearAll}
               className="text-red-500 hover:text-red-600 hover:underline text-sm"
               disabled={isAnimating}
             >
-              Xóa tất cả
+              {t('toolbox.randomPicker.clearAll')}
             </button>
           </div>
         </div>
@@ -273,7 +276,7 @@ function BocThamContent() {
         {/* Settings */}
         <div className="bg-white rounded-2xl shadow-lg p-5 border border-gray-100">
           <h3 className="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wide">
-            Cài đặt
+            {t('toolbox.randomPicker.settings')}
           </h3>
           
           <label className="flex items-center gap-3 cursor-pointer">
@@ -284,7 +287,7 @@ function BocThamContent() {
               className="w-5 h-5 text-violet-500 rounded focus:ring-violet-400"
             />
             <span className="text-gray-700 text-sm">
-              🔊 Âm thanh
+              🔊 {t('toolbox.randomPicker.sound')}
             </span>
           </label>
         </div>
@@ -297,7 +300,7 @@ function BocThamContent() {
               font-semibold rounded-xl transition-all disabled:opacity-50"
             disabled={isAnimating || !pickedPerson}
           >
-            🔄 Làm lại
+            🔄 {t('toolbox.randomPicker.reset')}
           </button>
           <button
             onClick={pickOnePerson}
@@ -307,18 +310,18 @@ function BocThamContent() {
               rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed
               shadow-lg hover:shadow-xl"
           >
-            {isAnimating ? '🎰 Đang quay...' : '� BỐC THĂM!'}
+            {isAnimating ? `🎰 ${t('toolbox.randomPicker.spinning')}` : `🎲 ${t('toolbox.randomPicker.pickButton')}`}
           </button>
         </div>
 
         {/* Tips */}
         <div className="bg-gradient-to-r from-violet-50 to-pink-50 rounded-xl p-4 text-sm border border-violet-100">
-          <p className="font-semibold text-violet-700 mb-2">💡 Gợi ý sử dụng:</p>
+          <p className="font-semibold text-violet-700 mb-2">💡 {t('toolbox.randomPicker.tips')}</p>
           <ul className="space-y-1 text-gray-600">
-            <li>👤 <strong>Bốc tên</strong> - Gọi học sinh trả lời</li>
-            <li>❓ <strong>Bốc câu hỏi</strong> - Random bài tập</li>
-            <li>🎁 <strong>Bốc quà</strong> - Phát thưởng ngẫu nhiên</li>
-            <li>🎯 <strong>Bốc chủ đề</strong> - Chọn nội dung học</li>
+            <li>👤 {t('toolbox.randomPicker.tipName')}</li>
+            <li>❓ {t('toolbox.randomPicker.tipQuestion')}</li>
+            <li>🎁 {t('toolbox.randomPicker.tipPrize')}</li>
+            <li>🎯 {t('toolbox.randomPicker.tipTopic')}</li>
           </ul>
         </div>
       </div>
@@ -335,13 +338,13 @@ function BocThamContent() {
               <span className="animate-bounce" style={{ animationDelay: '0.2s' }}>❓</span>
             </div>
             <h3 className="text-xl lg:text-3xl font-bold text-gray-700 mb-2 lg:mb-3">
-              Sẵn sàng bốc thăm!
+              {t('toolbox.randomPicker.readyTitle')}
             </h3>
             <p className="text-gray-500 text-sm lg:text-lg mb-2 lg:mb-4">
-              Bốc tên • Bốc câu hỏi • Bốc quà • Bốc chủ đề
+              {t('toolbox.randomPicker.readyDesc')}
             </p>
             <p className="text-violet-500 text-xs lg:text-sm">
-              Nhập danh sách bên trái và bấm nút để bắt đầu
+              {t('toolbox.randomPicker.readyHint')}
             </p>
           </div>
         )}
@@ -406,7 +409,7 @@ function BocThamContent() {
               </div>
               
               <p className="text-white text-lg lg:text-xl font-bold animate-pulse">
-                {isListHidden ? '🔒 Đang bốc thăm bí mật...' : 'Đang quay số...'}
+                {isListHidden ? `🔒 ${t('toolbox.randomPicker.secretSpin')}` : t('toolbox.randomPicker.spinningNumbers')}
               </p>
             </div>
           </div>
@@ -443,7 +446,7 @@ function BocThamContent() {
                   <span className="text-2xl lg:text-4xl animate-bounce" style={{ animationDelay: '0.3s' }}>🎉</span>
                 </div>
                 <h2 className="text-xl lg:text-3xl font-black text-white relative z-10 drop-shadow-lg">
-                  🎫 KẾT QUẢ BỐC THĂM 🎫
+                  🎫 {t('toolbox.randomPicker.resultTitle')} 🎫
                 </h2>
               </div>
               
@@ -456,7 +459,7 @@ function BocThamContent() {
                     animate-pulse">
                     {pickedPerson}
                   </div>
-                  <div className="text-lg lg:text-2xl">🎉 Chúc mừng! 🎉</div>
+                  <div className="text-lg lg:text-2xl">🎉 {t('toolbox.randomPicker.congratulations')} 🎉</div>
                 </div>
                 
                 {/* Action buttons */}
@@ -466,7 +469,7 @@ function BocThamContent() {
                     className="px-4 lg:px-6 py-2 lg:py-3 min-h-[44px] bg-white/90 hover:bg-white text-gray-700 
                       font-bold rounded-full text-sm lg:text-lg shadow-lg transition-all"
                   >
-                    🔄 Làm mới
+                    🔄 {t('toolbox.randomPicker.refresh')}
                   </button>
                   <button
                     onClick={pickOnePerson}
@@ -475,7 +478,7 @@ function BocThamContent() {
                       hover:from-violet-600 hover:to-pink-600 transition-all
                       hover:shadow-xl"
                   >
-                    🎲 Bốc lại!
+                    🎲 {t('toolbox.randomPicker.pickAgain')}
                   </button>
                 </div>
               </div>

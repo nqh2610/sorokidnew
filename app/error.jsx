@@ -1,11 +1,14 @@
 'use client';
 
 import { useEffect } from 'react';
-import Link from 'next/link';
+import { LocalizedLink } from '@/components/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 export default function Error({ error, reset }) {
+  const { t } = useI18n();
+  
   useEffect(() => {
-    // Log lỗi trong development mode
+    // Log error in development mode
     if (process.env.NODE_ENV === 'development') {
       console.error('Application error:', error);
     }
@@ -16,10 +19,10 @@ export default function Error({ error, reset }) {
       <div className="text-center max-w-md">
         <div className="text-8xl mb-6">😅</div>
         <h1 className="text-3xl font-bold text-gray-800 mb-3">
-          Ối! Có lỗi xảy ra
+          {t('errors.500.title')}
         </h1>
         <p className="text-gray-600 mb-8">
-          Đừng lo, hãy thử tải lại trang hoặc quay về trang chủ nhé!
+          {t('errors.500.description')}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -27,14 +30,14 @@ export default function Error({ error, reset }) {
             onClick={() => reset()}
             className="px-6 py-3 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white font-medium rounded-xl hover:shadow-lg transition-all"
           >
-            🔄 Thử lại
+            🔄 {t('errors.500.retry')}
           </button>
-          <Link
+          <LocalizedLink
             href="/"
             className="px-6 py-3 bg-white text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-colors border border-gray-200"
           >
-            🏠 Về trang chủ
-          </Link>
+            🏠 {t('errors.404.backHome')}
+          </LocalizedLink>
         </div>
       </div>
     </div>

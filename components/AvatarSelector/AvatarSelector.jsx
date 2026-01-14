@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { X, Check, Sparkles } from 'lucide-react';
 import { MonsterAvatar, AVATAR_COUNT } from '@/components/MonsterAvatar';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 export default function AvatarSelector({ 
   isOpen, 
@@ -11,6 +12,7 @@ export default function AvatarSelector({
   seed, // user seed để tính default avatar
   onSelect 
 }) {
+  const { t } = useI18n();
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -52,7 +54,7 @@ export default function AvatarSelector({
         <div className="flex-shrink-0 flex items-center justify-between p-4 border-b border-gray-100">
           <h2 className="text-lg font-bold text-gray-800 flex items-center gap-2">
             <Sparkles size={20} className="text-violet-500" />
-            Chọn Avatar
+            {t('avatar.selectAvatar')}
           </h2>
           <button 
             onClick={onClose}
@@ -74,7 +76,7 @@ export default function AvatarSelector({
               showBorder={false}
             />
             <p className="mt-2 text-sm text-gray-500">
-              {selectedAvatar !== null ? `Avatar #${selectedAvatar + 1}` : 'Avatar mặc định'}
+              {selectedAvatar !== null ? `Avatar #${selectedAvatar + 1}` : t('avatar.defaultAvatar')}
             </p>
           </div>
 
@@ -90,7 +92,7 @@ export default function AvatarSelector({
               }`}
             >
               <span className="text-lg">✨</span>
-              <span className="font-medium">Sử dụng avatar mặc định</span>
+              <span className="font-medium">{t('avatar.useDefaultAvatar')}</span>
             </button>
 
             {/* Avatar options */}
@@ -129,7 +131,7 @@ export default function AvatarSelector({
             onClick={onClose}
             className="flex-1 py-3 px-4 rounded-xl border border-gray-200 text-gray-600 font-medium hover:bg-gray-50 transition-colors"
           >
-            Hủy
+            {t('common.cancel')}
           </button>
           <button
             onClick={handleSave}
@@ -139,12 +141,12 @@ export default function AvatarSelector({
             {isSaving ? (
               <>
                 <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                Đang lưu...
+                {t('avatar.saving')}
               </>
             ) : (
               <>
                 <Check size={18} />
-                Xác nhận
+                {t('common.confirm')}
               </>
             )}
           </button>

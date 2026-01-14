@@ -2,6 +2,8 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import ToolLayout from '../../../components/ToolLayout/ToolLayout';
+import LocalizedLink from '@/components/LocalizedLink/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 import { useGameSettings } from '@/lib/useGameSettings';
 import { GAME_IDS } from '@/lib/gameStorage';
 
@@ -187,6 +189,7 @@ const Dice3D = ({ value, isRolling, delay = 0, diceColor = '#ffffff', dotColor =
 };
 
 export default function XucXac3DClient() {
+  const { t } = useI18n();
   // Load saved settings
   const { settings, updateSettings } = useGameSettings(GAME_IDS.XUC_XAC, DEFAULT_SETTINGS);
   
@@ -294,16 +297,16 @@ export default function XucXac3DClient() {
   const currentColorSet = DICE_COLORS.find(c => c.color === diceColor) || DICE_COLORS[0];
 
   return (
-    <ToolLayout>
+    <ToolLayout toolName={t('toolbox.tools.dice.name')} toolIcon="🎲">
       <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 flex flex-col">
         {/* Compact Header - Responsive */}
         <div className="flex flex-wrap items-center justify-between gap-2 px-2 sm:px-3 py-2 bg-black/30">
-          <a 
+          <LocalizedLink 
             href="/tool" 
             className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all text-xs sm:text-sm"
           >
             ← <span className="hidden xs:inline">Toolbox</span>
-          </a>
+          </LocalizedLink>
           
           {/* Inline Settings - Responsive */}
           <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-end">

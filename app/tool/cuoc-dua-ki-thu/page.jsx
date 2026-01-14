@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import ToolLoadingSkeleton from '@/components/ToolLayout/ToolLoadingSkeleton';
 
 // Dynamic import để tránh SSR issues với Web Audio API
 const CuocDuaClient = dynamic(
@@ -6,13 +7,10 @@ const CuocDuaClient = dynamic(
   { 
     ssr: false,
     loading: () => (
-      <div className="min-h-screen bg-gradient-to-br from-orange-500 via-red-500 to-pink-600 
-        flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-6xl mb-4 animate-bounce">🏁</div>
-          <p className="text-white/80">Đang chuẩn bị cuộc đua...</p>
-        </div>
-      </div>
+      <ToolLoadingSkeleton 
+        toolKey="raceGame"
+        toolIcon="🏁"
+      />
     )
   }
 );

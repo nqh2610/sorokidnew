@@ -1,14 +1,14 @@
 /**
  * 🏆 COMPETE LAYOUT
  * 
- * ⚠️ LƯU Ý: Trang này CẦN LOGIN
- * - KHÔNG index trên Google
- * - KHÔNG đưa vào sitemap
+ * ⚠️ NOTE: This page REQUIRES LOGIN
+ * - NOT indexed on Google
+ * - NOT included in sitemap
  */
 
 export const metadata = {
-  title: 'Thi Đấu Soroban | Sorokid',
-  description: 'Thi đấu và xếp hạng Soroban.',
+  title: 'Soroban Competition | Sorokid',
+  description: 'Compete and rank in Soroban.',
   robots: {
     index: false,
     follow: false,

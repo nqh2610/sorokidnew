@@ -14,7 +14,7 @@
  * - 0 process runtime cho SEO pages
  */
 
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink/LocalizedLink';
 import { notFound } from 'next/navigation';
 import {
   getPostBySlug,
@@ -535,19 +535,19 @@ export default function BlogPostPage({ params }) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
             {/* Breadcrumb */}
             <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6 flex-wrap">
-              <Link href="/" className="hover:text-violet-600 transition-colors">Trang chủ</Link>
+              <LocalizedLink href="/" className="hover:text-violet-600 transition-colors">Trang chủ</LocalizedLink>
               <span className="text-gray-300">/</span>
-              <Link href="/blog" className="hover:text-violet-600 transition-colors">Blog</Link>
+              <LocalizedLink href="/blog" className="hover:text-violet-600 transition-colors">Blog</LocalizedLink>
               {category && (
                 <>
                   <span className="text-gray-300">/</span>
-                  <Link 
+                  <LocalizedLink 
                     href={`/blog/danh-muc/${category.slug}`}
                     className="hover:opacity-80 transition-opacity"
                     style={{ color: category.color }}
                   >
                     {category.name}
-                  </Link>
+                  </LocalizedLink>
                 </>
               )}
             </nav>

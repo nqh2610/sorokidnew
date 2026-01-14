@@ -2,7 +2,6 @@
 
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
 import { useEffect, useState, useRef, Suspense } from 'react';
 import { ArrowLeft, Trophy, Clock, Home, RotateCcw, Medal, Users, TrendingUp } from 'lucide-react';
 import { useToast } from '@/components/Toast/ToastContext';
@@ -14,6 +13,8 @@ import { calculateCompeteStars } from '@/lib/gamification';
 import { MilestoneCelebration } from '@/components/SoftUpgradeTrigger';
 import GameModeHeader from '@/components/GameModeHeader/GameModeHeader';
 import { useGameSound } from '@/lib/useGameSound';
+import { LocalizedLink, useLocalizedUrl } from '@/components/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 import { getNextZoneAfterStage as getNextZoneAddSub } from '@/config/adventure-stages-addsub.config';
 import { getNextZoneAfterStage as getNextZoneMulDiv } from '@/config/adventure-stages-muldiv.config';
@@ -27,296 +28,233 @@ const getAvatarIndex = (user) => {
 
 const TOTAL_CHALLENGES = 10;
 
-// Số câu hỏi có sẵn
-const questionCounts = [
-  { value: 5, label: '5 câu', emoji: '⚡', desc: 'Khởi động', color: 'from-green-400 to-emerald-500' },
-  { value: 10, label: '10 câu', emoji: '🎯', desc: 'Cơ bản', color: 'from-blue-400 to-cyan-500' },
-  { value: 15, label: '15 câu', emoji: '🔥', desc: 'Luyện tập', color: 'from-yellow-400 to-orange-500' },
-  { value: 20, label: '20 câu', emoji: '💪', desc: 'Nâng cao', color: 'from-orange-400 to-red-500' },
-  { value: 25, label: '25 câu', emoji: '⚔️', desc: 'Thử thách', color: 'from-red-400 to-rose-500' },
-  { value: 30, label: '30 câu', emoji: '🛡️', desc: 'Chiến đấu', color: 'from-pink-400 to-rose-500' },
-  { value: 40, label: '40 câu', emoji: '👑', desc: 'Siêu sao', color: 'from-purple-400 to-violet-500' },
-  { value: 50, label: '50 câu', emoji: '🏆', desc: 'Huyền thoại', color: 'from-violet-500 to-purple-600' },
+// Question counts config - data only, text loaded via i18n
+const questionCountsConfig = [
+  { value: 5, emoji: '⚡', color: 'from-green-400 to-emerald-500' },
+  { value: 10, emoji: '🎯', color: 'from-blue-400 to-cyan-500' },
+  { value: 15, emoji: '🔥', color: 'from-yellow-400 to-orange-500' },
+  { value: 20, emoji: '💪', color: 'from-orange-400 to-red-500' },
+  { value: 25, emoji: '⚔️', color: 'from-red-400 to-rose-500' },
+  { value: 30, emoji: '🛡️', color: 'from-pink-400 to-rose-500' },
+  { value: 40, emoji: '👑', color: 'from-purple-400 to-violet-500' },
+  { value: 50, emoji: '🏆', color: 'from-violet-500 to-purple-600' },
 ];
 
-// Thông điệp động viên game hóa theo tốc độ
-const speedTiers = {
-  godlike: {
-    threshold: 0.25,
-    multiplier: 3,
-    messages: [
-      { text: 'THẦN TỐC!', emoji: '⚡' },
-      { text: 'SIÊU NHANH!', emoji: '💨' },
-      { text: 'KHÔNG THỂ TIN!', emoji: '🤯' },
-      { text: 'ĐỈNH CỦA ĐỈNH!', emoji: '🏆' },
-    ],
-    color: 'from-cyan-400 to-blue-500',
-    textColor: 'text-cyan-400'
-  },
-  fast: {
-    threshold: 0.5,
-    multiplier: 2,
-    messages: [
-      { text: 'NHANH NHƯ CHỚP!', emoji: '🚀' },
-      { text: 'TỐC ĐỘ ÁNH SÁNG!', emoji: '✨' },
-      { text: 'SIÊU TỐC!', emoji: '💫' },
-      { text: 'QUÁI VẬT TỐC ĐỘ!', emoji: '🐆' },
-    ],
-    color: 'from-green-400 to-emerald-500',
-    textColor: 'text-green-400'
-  },
-  good: {
-    threshold: 0.75,
-    multiplier: 1.5,
-    messages: [
-      { text: 'XUẤT SẮC!', emoji: '🌟' },
-      { text: 'TUYỆT VỜI!', emoji: '🎉' },
-      { text: 'GIỎI LẮM!', emoji: '👏' },
-      { text: 'CỪ KHÔI!', emoji: '💪' },
-    ],
-    color: 'from-yellow-400 to-orange-500',
-    textColor: 'text-yellow-400'
-  },
-  normal: {
-    threshold: 1,
-    multiplier: 1,
-    messages: [
-      { text: 'ĐÚNG RỒI!', emoji: '✅' },
-      { text: 'CHÍNH XÁC!', emoji: '✓' },
-      { text: 'TỐT LẮM!', emoji: '👍' },
-      { text: 'HAY LẮM!', emoji: '😊' },
-    ],
-    color: 'from-gray-400 to-gray-500',
-    textColor: 'text-white'
+// Helper to get question counts with i18n text
+function getQuestionCounts(t) {
+  const labels = t('competeScreen.questionCounts') || {};
+  return questionCountsConfig.map(item => ({
+    ...item,
+    label: `${item.value} ${t('competeScreen.questions') || 'questions'}`,
+    desc: labels[item.value] || ''
+  }));
+}
+
+// Speed tiers config - data only, messages loaded via i18n
+const speedTierConfig = {
+  godlike: { threshold: 0.25, multiplier: 3, color: 'from-cyan-400 to-blue-500', textColor: 'text-cyan-400', emojis: ['⚡', '💨', '🤯', '🏆'] },
+  fast: { threshold: 0.5, multiplier: 2, color: 'from-green-400 to-emerald-500', textColor: 'text-green-400', emojis: ['🚀', '✨', '💫', '🐆'] },
+  good: { threshold: 0.75, multiplier: 1.5, color: 'from-yellow-400 to-orange-500', textColor: 'text-yellow-400', emojis: ['🌟', '🎉', '👏', '💪'] },
+  normal: { threshold: 1, multiplier: 1, color: 'from-gray-400 to-gray-500', textColor: 'text-white', emojis: ['✅', '✓', '👍', '😊'] }
+};
+
+// Helper to get speed tiers with i18n messages
+function getSpeedTiers(t) {
+  const result = {};
+  const tierMessages = t('practiceScreen.speedTiers') || {};
+  for (const [tier, config] of Object.entries(speedTierConfig)) {
+    const messages = tierMessages[tier] || [];
+    result[tier] = {
+      ...config,
+      messages: messages.map((text, i) => ({ text, emoji: config.emojis[i] || '✨' }))
+    };
   }
+  return result;
+}
+
+// Helper to get streak messages from i18n
+function getStreakMessages(t) {
+  const msgs = t('practiceScreen.streakMessages') || {};
+  return [
+    { streak: 3, text: msgs['3'] || 'COMBO x3!', emoji: '🔥' },
+    { streak: 5, text: msgs['5'] || 'UNSTOPPABLE!', emoji: '💥' },
+    { streak: 7, text: msgs['7'] || 'DOMINATING!', emoji: '👑' },
+    { streak: 10, text: msgs['10'] || 'LEGENDARY!', emoji: '🏆' },
+  ];
+}
+
+// Difficulty config - emojis only, labels loaded via i18n
+const difficultyConfig = {
+  1: { emoji: '🐣' },
+  2: { emoji: '⚔️' },
+  3: { emoji: '🛡️' },
+  4: { emoji: '🔥' },
+  5: { emoji: '👑' },
+  6: { emoji: '💎' }
 };
 
-const streakMessages = [
-  { streak: 3, text: 'COMBO x3!', emoji: '🔥' },
-  { streak: 5, text: 'UNSTOPPABLE!', emoji: '💥' },
-  { streak: 7, text: 'DOMINATING!', emoji: '👑' },
-  { streak: 10, text: 'LEGENDARY!', emoji: '🏆' },
-];
+// Helper to get difficulty info with i18n labels
+function getDifficultyInfo(t) {
+  const labels = t('practiceScreen.difficulty') || {};
+  const result = {};
+  for (const [key, config] of Object.entries(difficultyConfig)) {
+    result[key] = { ...config, label: labels[key] || `Level ${key}` };
+  }
+  return result;
+}
 
-const difficultyInfo = {
-  1: { label: 'Tập Sự', emoji: '🐣' },
-  2: { label: 'Chiến Binh', emoji: '⚔️' },
-  3: { label: 'Dũng Sĩ', emoji: '🛡️' },
-  4: { label: 'Cao Thủ', emoji: '🔥' },
-  5: { label: 'Huyền Thoại', emoji: '👑' },
-  6: { label: 'Siêu Huyền Thoại', emoji: '💎' }
+// Mode config - icons and colors only, titles loaded via i18n
+const modeConfig = {
+  addition: { icon: '⭐', symbol: '+', color: 'from-yellow-400 to-amber-500' },
+  subtraction: { icon: '👾', symbol: '-', color: 'from-cyan-400 to-blue-500' },
+  addSubMixed: { icon: '⚔️', symbol: '±', color: 'from-teal-400 to-emerald-500' },
+  multiplication: { icon: '✨', symbol: '×', color: 'from-purple-400 to-pink-500' },
+  division: { icon: '🍕', symbol: '÷', color: 'from-rose-400 to-red-500' },
+  mulDiv: { icon: '🎩', symbol: '×÷', color: 'from-fuchsia-400 to-purple-500' },
+  mixed: { icon: '👑', symbol: '∞', color: 'from-indigo-400 to-purple-500' },
+  mentalMath: { icon: '🧠', symbol: '💭', color: 'from-violet-400 to-fuchsia-500', isMental: true },
+  flashAnzan: { icon: '⚡', symbol: '💫', color: 'from-yellow-400 to-orange-500', isFlash: true },
 };
 
-const modeInfo = {
-  addition: { title: 'Siêu Cộng', subtitle: 'Gom sao!', icon: '⭐', symbol: '+', color: 'from-yellow-400 to-amber-500' },
-  subtraction: { title: 'Siêu Trừ', subtitle: 'Diệt quái!', icon: '👾', symbol: '-', color: 'from-cyan-400 to-blue-500' },
-  addSubMixed: { title: 'Cộng Trừ Mix', subtitle: 'Hỗn chiến!', icon: '⚔️', symbol: '±', color: 'from-teal-400 to-emerald-500' },
-  multiplication: { title: 'Siêu Nhân', subtitle: 'Nhân bội!', icon: '✨', symbol: '×', color: 'from-purple-400 to-pink-500' },
-  division: { title: 'Siêu Chia', subtitle: 'Chia đều!', icon: '🍕', symbol: '÷', color: 'from-rose-400 to-red-500' },
-  mulDiv: { title: 'Nhân Chia Mix', subtitle: 'Phép thuật!', icon: '🎩', symbol: '×÷', color: 'from-fuchsia-400 to-purple-500' },
-  mixed: { title: 'Tứ Phép Thần', subtitle: 'Boss cuối!', icon: '👑', symbol: '∞', color: 'from-indigo-400 to-purple-500' },
-  mentalMath: { title: 'Siêu Trí Tuệ', subtitle: 'Không bàn tính!', icon: '🧠', symbol: '💭', color: 'from-violet-400 to-fuchsia-500', isMental: true },
-  flashAnzan: { title: 'Tia Chớp', subtitle: 'Tốc độ ánh sáng!', icon: '⚡', symbol: '💫', color: 'from-yellow-400 to-orange-500', isFlash: true },
+// Helper to get mode info with i18n titles
+function getModeInfo(t) {
+  const modes = t('practiceScreen.modes') || {};
+  const result = {};
+  for (const [key, config] of Object.entries(modeConfig)) {
+    result[key] = { ...config, title: modes[key] || key };
+  }
+  return result;
+}
+
+// Danh sách icon đấu trường theo mode và cấp độ
+const arenaIcons = {
+  addition: { 1: '🌱', 2: '🌲', 3: '⛰️', 4: '🏔️', 5: '🌟' },
+  subtraction: { 1: '🤖', 2: '👾', 3: '🦾', 4: '🔧', 5: '⚡' },
+  addSubMixed: { 1: '🌈', 2: '🎨', 3: '🌪️', 4: '🎆', 5: '🌌' },
+  multiplication: { 1: '🪄', 2: '🧙', 3: '🔮', 4: '⭐', 5: '👑' },
+  division: { 1: '🍕', 2: '👨‍🍳', 3: '🍳', 4: '🥘', 5: '🏆' },
+  mulDiv: { 1: '🥷', 2: '💚', 3: '❤️', 4: '💛', 5: '🌑' },
+  mixed: { 1: '🎖️', 2: '⚔️', 3: '🛡️', 4: '🦸', 5: '👑' },
+  mentalMath: { 1: '🧒', 2: '🎒', 3: '🧠', 4: '👨‍🔬', 5: '🚀' },
+  flashAnzan: { 1: '🕯️', 2: '🌙', 3: '⚡', 4: '☄️', 5: '💥', 6: '🌌' },
 };
 
-// Danh sách tên đấu trường theo mode và cấp độ
-const arenaNames = {
-  addition: {
-    1: { title: 'Vườn Sao', icon: '🌱' },
-    2: { title: 'Rừng Sao', icon: '🌲' },
-    3: { title: 'Núi Sao', icon: '⛰️' },
-    4: { title: 'Đỉnh Sao', icon: '🏔️' },
-    5: { title: 'Thiên Đường Sao', icon: '🌟' },
-  },
-  subtraction: {
-    1: { title: 'Robot Nhí', icon: '🤖' },
-    2: { title: 'Robot Chiến', icon: '👾' },
-    3: { title: 'Siêu Robot', icon: '🦾' },
-    4: { title: 'Mega Robot', icon: '🔧' },
-    5: { title: 'Ultra Robot', icon: '⚡' },
-  },
-  addSubMixed: {
-    1: { title: 'Cầu Vồng Nhí', icon: '🌈' },
-    2: { title: 'Cầu Vồng Đôi', icon: '🎨' },
-    3: { title: 'Bão Cầu Vồng', icon: '🌪️' },
-    4: { title: 'Vũ Trụ Màu', icon: '🎆' },
-    5: { title: 'Thiên Hà Màu', icon: '🌌' },
-  },
-  multiplication: {
-    1: { title: 'Phép Màu Nhí', icon: '🪄' },
-    2: { title: 'Pháp Sư Học Việc', icon: '🧙' },
-    3: { title: 'Pháp Sư', icon: '🔮' },
-    4: { title: 'Đại Pháp Sư', icon: '⭐' },
-    5: { title: 'Phù Thủy Tối Thượng', icon: '👑' },
-  },
-  division: {
-    1: { title: 'Pizza Nhỏ', icon: '🍕' },
-    2: { title: 'Đầu Bếp Tập Sự', icon: '👨‍🍳' },
-    3: { title: 'Đầu Bếp', icon: '🍳' },
-    4: { title: 'Master Chef', icon: '🥘' },
-    5: { title: 'Iron Chef', icon: '🏆' },
-  },
-  mulDiv: {
-    1: { title: 'Ninja Nhí', icon: '🥷' },
-    2: { title: 'Ninja Xanh', icon: '💚' },
-    3: { title: 'Ninja Đỏ', icon: '❤️' },
-    4: { title: 'Ninja Vàng', icon: '💛' },
-    5: { title: 'Ninja Bóng Tối', icon: '🌑' },
-  },
-  mixed: {
-    1: { title: 'Tân Binh', icon: '🎖️' },
-    2: { title: 'Chiến Binh', icon: '⚔️' },
-    3: { title: 'Dũng Sĩ', icon: '🛡️' },
-    4: { title: 'Anh Hùng', icon: '🦸' },
-    5: { title: 'Huyền Thoại', icon: '👑' },
-  },
-  mentalMath: {
-    1: { title: 'Thiên Tài Nhí', icon: '🧒' },
-    2: { title: 'Thần Đồng', icon: '🎒' },
-    3: { title: 'Siêu Trí Tuệ', icon: '🧠' },
-    4: { title: 'Einstein Nhí', icon: '👨‍🔬' },
-    5: { title: 'Thiên Tài Vũ Trụ', icon: '🚀' },
-  },
-  flashAnzan: {
-    1: { title: 'Ánh Nến', icon: '🕯️' },
-    2: { title: 'Ánh Trăng', icon: '🌙' },
-    3: { title: 'Tia Chớp', icon: '⚡' },
-    4: { title: 'Sao Băng', icon: '☄️' },
-    5: { title: 'BIG BANG', icon: '💥' },
-    6: { title: 'SIÊU BIG BANG', icon: '🌌' },
-  },
-};
+// Helper to get arena name with i18n
+function getArenaNameWithI18n(mode, difficulty, t) {
+  const arenas = t('competeScreen.arenas') || {};
+  const modeArenas = arenas[mode] || {};
+  const title = modeArenas[difficulty] || `${mode} Lv${difficulty}`;
+  const icon = arenaIcons[mode]?.[difficulty] || '🎯';
+  return { title, icon };
+}
 
-// Cấu hình Flash Anzan levels cho thi đấu - CHỈ CÓ TỐC ĐỘ
-const flashLevelsCompete = [
+// Flash level config - data only, text loaded via i18n
+const flashLevelConfig = [
   {
-    id: 'anhNen',
-    level: 1,
-    name: 'Ánh Nến',
-    subtitle: 'Lung linh dịu dàng',
-    emoji: '🕯️',
+    id: 'anhNen', level: 1, emoji: '🕯️',
     color: 'from-amber-400 to-orange-500',
     bgColor: 'from-amber-50 to-orange-50',
     glowColor: 'shadow-amber-400/50',
-    numbers: [3, 4],
-    speed: [3, 3],
-    stars: 2,
-    tagline: 'Khởi đầu ấm áp',
-    rank: '⭐',
-    rankLabel: 'Tập Sự',
-    bonusMultiplier: 1
+    numbers: [3, 4], speed: [3, 3], stars: 2, rank: '⭐', bonusMultiplier: 1
   },
   {
-    id: 'anhTrang',
-    level: 2,
-    name: 'Ánh Trăng',
-    subtitle: 'Huyền ảo đêm thanh',
-    emoji: '🌙',
+    id: 'anhTrang', level: 2, emoji: '🌙',
     color: 'from-slate-300 to-blue-400',
     bgColor: 'from-slate-50 to-blue-50',
     glowColor: 'shadow-blue-300/50',
-    numbers: [4, 5],
-    speed: [2.5, 2.5],
-    stars: 4,
-    tagline: 'Bước tiếp vững chắc',
-    rank: '⭐⭐',
-    rankLabel: 'Chiến Binh',
-    bonusMultiplier: 1.5
+    numbers: [4, 5], speed: [2.5, 2.5], stars: 4, rank: '⭐⭐', bonusMultiplier: 1.5
   },
   {
-    id: 'tiaChop',
-    level: 3,
-    name: 'Tia Chớp',
-    subtitle: 'Lóe sáng chớp nhoáng',
-    emoji: '⚡',
+    id: 'tiaChop', level: 3, emoji: '⚡',
     color: 'from-yellow-400 to-amber-500',
     bgColor: 'from-yellow-50 to-amber-50',
     glowColor: 'shadow-yellow-400/50',
-    numbers: [5, 6],
-    speed: [2, 2],
-    stars: 6,
-    tagline: 'Nhanh như chớp!',
-    rank: '⭐⭐⭐',
-    rankLabel: 'Dũng Sĩ',
-    bonusMultiplier: 2
+    numbers: [5, 6], speed: [2, 2], stars: 6, rank: '⭐⭐⭐', bonusMultiplier: 2
   },
   {
-    id: 'saoBang',
-    level: 4,
-    name: 'Sao Băng',
-    subtitle: 'Vụt sáng khoảnh khắc',
-    emoji: '☄️',
+    id: 'saoBang', level: 4, emoji: '☄️',
     color: 'from-purple-500 to-pink-600',
     bgColor: 'from-purple-50 to-pink-50',
     glowColor: 'shadow-purple-400/50',
-    numbers: [6, 7],
-    speed: [1.5, 1.5],
-    stars: 8,
-    tagline: '🔥 SIÊU TỐC 🔥',
-    rank: '⭐⭐⭐⭐',
-    rankLabel: 'Huyền Thoại',
-    bonusMultiplier: 3
+    numbers: [6, 7], speed: [1.5, 1.5], stars: 8, rank: '⭐⭐⭐⭐', bonusMultiplier: 3
   },
   {
-    id: 'bigBang',
-    level: 5,
-    name: 'BIG BANG',
-    subtitle: 'Vụ nổ khai sinh vũ trụ',
-    emoji: '💥',
+    id: 'bigBang', level: 5, emoji: '💥',
     color: 'from-red-500 via-orange-500 to-yellow-400',
     bgColor: 'from-red-50 to-yellow-50',
     glowColor: 'shadow-red-500/50',
-    numbers: [7, 8],
-    speed: [1, 1],
-    stars: 10,
-    tagline: '💥 VỤ NỔ VŨ TRỤ 💥',
-    rank: '👑',
-    rankLabel: 'THẦN',
-    bonusMultiplier: 5
+    numbers: [7, 8], speed: [1, 1], stars: 10, rank: '👑', bonusMultiplier: 5
   },
   {
-    id: 'sieuBigBang',
-    level: 6,
-    name: 'SIÊU BIG BANG',
-    subtitle: 'Đỉnh cao tốc độ',
-    emoji: '🌌',
+    id: 'sieuBigBang', level: 6, emoji: '🌌',
     color: 'from-fuchsia-500 via-purple-600 to-indigo-700',
     bgColor: 'from-fuchsia-50 to-indigo-50',
     glowColor: 'shadow-fuchsia-500/50',
-    numbers: [8, 10],
-    speed: [0.7, 0.7],
-    stars: 15,
-    tagline: '🌌 SIÊU VŨ TRỤ 🌌',
-    rank: '👑👑',
-    rankLabel: 'THẦN THÁNH',
-    bonusMultiplier: 8
+    numbers: [8, 10], speed: [0.7, 0.7], stars: 15, rank: '👑👑', bonusMultiplier: 8
   },
 ];
 
-// Cấu hình số chữ số cho Flash Anzan
-const flashDigitOptions = [
-  { id: 1, name: '1 chữ số', emoji: '1️⃣', color: 'from-green-400 to-emerald-500', description: '1-9' },
-  { id: 2, name: '2 chữ số', emoji: '2️⃣', color: 'from-blue-400 to-cyan-500', description: '10-99' },
-  { id: 3, name: '3 chữ số', emoji: '3️⃣', color: 'from-purple-400 to-pink-500', description: '100-999' },
+// Helper to get flash levels with i18n
+function getFlashLevelsCompete(t) {
+  const flashLabels = t('competeScreen.flashLevels') || {};
+  return flashLevelConfig.map(item => ({
+    ...item,
+    name: flashLabels[item.id]?.name || item.id,
+    subtitle: flashLabels[item.id]?.subtitle || '',
+    tagline: flashLabels[item.id]?.tagline || '',
+    rankLabel: flashLabels[item.id]?.rankLabel || ''
+  }));
+}
+
+// Flash digit config - data only, text loaded via i18n
+const flashDigitConfig = [
+  { id: 1, emoji: '1️⃣', color: 'from-green-400 to-emerald-500', description: '1-9' },
+  { id: 2, emoji: '2️⃣', color: 'from-blue-400 to-cyan-500', description: '10-99' },
+  { id: 3, emoji: '3️⃣', color: 'from-purple-400 to-pink-500', description: '100-999' },
 ];
 
-// Cấu hình phép toán cho Flash Anzan (chỉ có Cộng và Cộng Trừ Mix)
-const flashOperationOptions = [
-  { id: 'addition', name: 'Phép Cộng', emoji: '➕', symbol: '+', color: 'from-green-400 to-emerald-500', description: 'Chỉ có phép cộng' },
-  { id: 'mixed', name: 'Cộng Trừ Mix', emoji: '➕➖', symbol: '±', color: 'from-orange-400 to-red-500', description: 'Xen kẽ cộng và trừ' },
+// Helper to get flash digit options with i18n
+function getFlashDigitOptions(t) {
+  const labels = t('practiceScreen.flashDigits') || {};
+  return flashDigitConfig.map(item => ({
+    ...item,
+    name: labels[item.id] || `${item.id} digits`
+  }));
+}
+
+// Flash operation config - data only, text loaded via i18n
+const flashOperationConfig = [
+  { id: 'addition', emoji: '➕', symbol: '+', color: 'from-green-400 to-emerald-500' },
+  { id: 'mixed', emoji: '➕➖', symbol: '±', color: 'from-orange-400 to-red-500' },
 ];
 
-// Tạo arena từ mode, difficulty và số câu
-const createArena = (mode, difficulty, questionCount = 10) => {
-  const name = arenaNames[mode]?.[difficulty] || { title: `${modeInfo[mode]?.title} Lv${difficulty}`, icon: '🎯' };
+// Helper to get flash operation options with i18n
+function getFlashOperationOptions(t) {
+  const labels = t('practiceScreen.flashOperations') || {};
+  return flashOperationConfig.map(item => ({
+    ...item,
+    name: labels[item.id]?.name || item.id,
+    description: labels[item.id]?.description || ''
+  }));
+}
+
+// Helper to get tier display name with i18n
+function getTierDisplayName(tier, t) {
+  const tiers = t('practiceScreen.tiers') || {};
+  return tiers[tier] || tier;
+}
+
+// Tạo arena từ mode, difficulty và số câu (now takes t for i18n)
+const createArenaWithI18n = (mode, difficulty, questionCount = 10, t) => {
+  const arenaInfo = getArenaNameWithI18n(mode, difficulty, t);
   return {
     id: `${mode}-${difficulty}-${questionCount}`,
     mode,
     difficulty,
     questionCount,
-    title: name.title,
-    icon: name.icon,
-    color: modeInfo[mode]?.color || 'from-gray-500 to-gray-600'
+    title: arenaInfo.title,
+    icon: arenaInfo.icon,
+    color: modeConfig[mode]?.color || 'from-gray-500 to-gray-600'
   };
 };
 
@@ -354,11 +292,6 @@ function canAccessDifficulty(userTier, difficulty) {
   return (tierOrder[userTier] || 0) >= (tierOrder[requiredTier] || 0);
 }
 
-function getTierDisplayName(tier) {
-  const names = { free: 'Miễn Phí', basic: 'Cơ Bản', advanced: 'Nâng Cao', vip: 'VIP' };
-  return names[tier] || tier;
-}
-
 // Inner component that uses useSearchParams
 function CompetePageContent() {
   const { data: session, status } = useSession();
@@ -367,8 +300,25 @@ function CompetePageContent() {
   const toast = useToast();
   const { showUpgradeModal, UpgradeModalComponent } = useUpgradeModal();
   const { play, playMusic, stopMusic } = useGameSound();
+  const localizeUrl = useLocalizedUrl();
+  const { t } = useI18n();
+  
+  // Wrapper function for createArenaWithI18n that uses t from hook
+  const createArena = (mode, difficulty, questionCount = 10) => {
+    return createArenaWithI18n(mode, difficulty, questionCount, t);
+  };
+  
+  // Get i18n-aware data
+  const speedTiers = getSpeedTiers(t);
+  const streakMessages = getStreakMessages(t);
+  const difficultyInfo = getDifficultyInfo(t);
+  const modeInfo = getModeInfo(t);
+  const questionCounts = getQuestionCounts(t);
+  const flashDigitOptions = getFlashDigitOptions(t);
+  const flashOperationOptions = getFlashOperationOptions(t);
+  const flashLevelsCompete = getFlashLevelsCompete(t);
 
-  // 🎵 Background music disabled - chỉ giữ sound effects
+  // 🎵 Background music disabled - only keep sound effects
   // useEffect(() => {
   //   let musicStarted = false;
   //   const startMusic = () => {
@@ -489,7 +439,7 @@ function CompetePageContent() {
     // Clear game mode data
     sessionStorage.removeItem('competeGameMode');
     sessionStorage.removeItem('competeAutoStart');
-    router.push('/adventure');
+    router.push(localizeUrl('/adventure'));
   };
 
   // 🎮 GAME MODE: Helper để xử lý back button
@@ -528,29 +478,18 @@ function CompetePageContent() {
 
     return () => {
       window.removeEventListener('popstate', handlePopState);
-      // Cleanup: lưu zone khi unmount (browser back hoặc navigation)
+      // Cleanup: save zone when unmount (browser back or navigation)
       saveReturnZone();
     };
   }, []);
 
-  // Danh sách lời khen và động viên cho Flash Anzan
-  const praiseMessages = [
-    { emoji: '🎉', title: 'XUẤT SẮC!', msg: 'Bạn giỏi quá! Đáp án hoàn toàn chính xác!' },
-    { emoji: '🌟', title: 'TUYỆT VỜI!', msg: 'Trí nhớ của bạn thật phi thường!' },
-    { emoji: '🏆', title: 'SIÊU ĐỈNH!', msg: 'Bạn tính nhẩm nhanh như máy tính!' },
-    { emoji: '👏', title: 'GIỎI LẮM!', msg: 'Bạn làm đúng rồi! Tiếp tục phát huy nhé!' },
-    { emoji: '🚀', title: 'THẦN TỐC!', msg: 'Tốc độ tính toán của bạn thật ấn tượng!' },
-  ];
-  const encourageMessages = [
-    { emoji: '💪', title: 'CỐ LÊN NÀO!', msg: 'Đừng lo, sai là cách học tốt nhất!' },
-    { emoji: '🌈', title: 'ĐỪNG BỎ CUỘC!', msg: 'Mỗi lần thử là một bước tiến bộ!' },
-    { emoji: '⭐', title: 'GẦN ĐÚNG RỒI!', msg: 'Bạn cần luyện tập thêm một chút!' },
-    { emoji: '🎯', title: 'THỬ LẠI NHÉ!', msg: 'Tập trung hơn, bạn sẽ làm được!' },
-  ];
+  // Get praise and encourage messages from i18n
+  const praiseMessages = t('practiceScreen.praiseMessages') || [];
+  const encourageMessages = t('practiceScreen.encourageMessages') || [];
 
   useEffect(() => {
-    if (status === 'unauthenticated') router.push('/login');
-  }, [status, router]);
+    if (status === 'unauthenticated') router.push(localizeUrl('/login'));
+  }, [status, router, localizeUrl]);
 
   // 🎮 GAME MODE: Đọc game mode info từ sessionStorage (từ Adventure Map)
   // ⚠️ QUAN TRỌNG: useEffect này phải chạy TRƯỚC useEffect xử lý URL params
@@ -886,7 +825,7 @@ function CompetePageContent() {
       <div className="h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
         <div className="text-center">
           <div className="text-6xl animate-bounce mb-4">🏆</div>
-          <div className="text-white font-bold">Đang tải...</div>
+          <div className="text-white font-bold">{t('competeScreen.loading')}</div>
         </div>
       </div>
     );
@@ -1026,11 +965,11 @@ function CompetePageContent() {
       return;
     }
     
-    // �🔒 TIER CHECK: Kiểm tra quyền truy cập mode
+    // 🔒🔒 TIER CHECK: Kiểm tra quyền truy cập mode
     if (!canAccessMode(userTier, selectedArena.mode)) {
       const requiredTier = getRequiredTierForMode(selectedArena.mode);
       showUpgradeModal({
-        feature: `Chế độ ${modeInfo[selectedArena.mode]?.title || selectedArena.mode} yêu cầu gói ${getTierDisplayName(requiredTier)} trở lên`
+        feature: t('competeScreen.modeRequiresTier', { mode: modeInfo[selectedArena.mode]?.title || selectedArena.mode, tier: getTierDisplayName(requiredTier, t) })
       });
       return;
     }
@@ -1039,7 +978,7 @@ function CompetePageContent() {
     if (!canAccessDifficulty(userTier, selectedArena.difficulty)) {
       const requiredTier = getRequiredTierForDifficulty(selectedArena.difficulty);
       showUpgradeModal({
-        feature: `Cấp độ ${selectedArena.difficulty} yêu cầu gói ${getTierDisplayName(requiredTier)} trở lên`
+        feature: t('competeScreen.difficultyRequiresTier', { difficulty: selectedArena.difficulty, tier: getTierDisplayName(requiredTier, t) })
       });
       return;
     }
@@ -1397,7 +1336,7 @@ function CompetePageContent() {
         setTimeout(() => {
           setMilestoneData({
             type: 'battle',
-            message: 'Trận đấu tuyệt vời! 🏆',
+            message: t('competeScreen.greatMatch') || 'Great match! 🏆',
             starsEarned: sessionStats.correct * 3
           });
           setShowMilestoneCelebration(true);
@@ -1511,11 +1450,11 @@ function CompetePageContent() {
   };
 
   const selectModeAndContinue = (mode) => {
-    // 🔒 TIER CHECK: Kiểm tra quyền truy cập mode
+    // 🔒 TIER CHECK: Check mode access
     if (!canAccessMode(userTier, mode)) {
       const requiredTier = getRequiredTierForMode(mode);
       showUpgradeModal({
-        feature: `Chế độ ${modeInfo[mode]?.title || mode} yêu cầu gói ${getTierDisplayName(requiredTier)} trở lên`
+        feature: t('competeScreen.modeRequiresTier').replace('{mode}', modeInfo[mode]?.title || mode).replace('{tier}', t(`tier.${requiredTier}`))
       });
       return;
     }
@@ -1523,11 +1462,11 @@ function CompetePageContent() {
   };
 
   const selectDifficultyAndContinue = (diff) => {
-    // 🔒 TIER CHECK: Kiểm tra quyền truy cập difficulty
+    // 🔒 TIER CHECK: Check difficulty access
     if (!canAccessDifficulty(userTier, diff)) {
       const requiredTier = getRequiredTierForDifficulty(diff);
       showUpgradeModal({
-        feature: `Cấp độ ${diff} yêu cầu gói ${getTierDisplayName(requiredTier)} trở lên`
+        feature: t('competeScreen.difficultyRequiresTier').replace('{difficulty}', diff).replace('{tier}', t(`tier.${requiredTier}`))
       });
       return;
     }
@@ -1541,15 +1480,16 @@ function CompetePageContent() {
     setSelectedArena(arena);
   };
 
-  // Sub-mode info cho Siêu Trí Tuệ - copy từ practice
+  // Sub-mode info cho Siêu Trí Tuệ - use i18n
+  const mentalSubModesLabels = t('competeScreen.mentalSubModes') || {};
   const mentalSubModes = [
-    { id: 'addition', title: 'Cộng', icon: '➕', color: 'from-emerald-400 to-green-500' },
-    { id: 'subtraction', title: 'Trừ', icon: '➖', color: 'from-blue-400 to-cyan-500' },
-    { id: 'multiplication', title: 'Nhân', icon: '✖️', color: 'from-purple-400 to-pink-500' },
-    { id: 'division', title: 'Chia', icon: '➗', color: 'from-rose-400 to-red-500' },
-    { id: 'addSubMixed', title: 'Cộng Trừ', icon: '🔀', color: 'from-teal-400 to-emerald-500' },
-    { id: 'mulDiv', title: 'Nhân Chia', icon: '🎲', color: 'from-amber-400 to-orange-500' },
-    { id: 'mixed', title: 'Tất Cả', icon: '🌈', color: 'from-indigo-500 to-purple-600' },
+    { id: 'addition', title: mentalSubModesLabels.addition || 'Addition', icon: '➕', color: 'from-emerald-400 to-green-500' },
+    { id: 'subtraction', title: mentalSubModesLabels.subtraction || 'Subtraction', icon: '➖', color: 'from-blue-400 to-cyan-500' },
+    { id: 'multiplication', title: mentalSubModesLabels.multiplication || 'Multiplication', icon: '✖️', color: 'from-purple-400 to-pink-500' },
+    { id: 'division', title: mentalSubModesLabels.division || 'Division', icon: '➗', color: 'from-rose-400 to-red-500' },
+    { id: 'addSubMixed', title: mentalSubModesLabels.addSubMixed || 'Add/Sub', icon: '🔀', color: 'from-teal-400 to-emerald-500' },
+    { id: 'mulDiv', title: mentalSubModesLabels.mulDiv || 'Mul/Div', icon: '🎲', color: 'from-amber-400 to-orange-500' },
+    { id: 'mixed', title: mentalSubModesLabels.mixed || 'All', icon: '🌈', color: 'from-indigo-500 to-purple-600' },
   ];
 
   const selectSubModeAndContinue = (subMode) => {
@@ -1576,7 +1516,7 @@ function CompetePageContent() {
         <div className="h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900">
           <div className="text-center">
             <div className="text-6xl animate-bounce mb-4">🏆</div>
-            <div className="text-white font-bold">Đang chuẩn bị đấu trường...</div>
+            <div className="text-white font-bold">{t('competeScreen.preparingArena')}</div>
           </div>
         </div>
       );
@@ -1643,7 +1583,7 @@ function CompetePageContent() {
                   <ArrowLeft style={{ width: 'clamp(16px, 2.5vh, 24px)', height: 'clamp(16px, 2.5vh, 24px)' }} />
                 </button>
               ) : (
-                <Link
+                <LocalizedLink
                   href="/dashboard"
                   prefetch={true}
                   className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg shadow-purple-500/20"
@@ -1653,7 +1593,7 @@ function CompetePageContent() {
                   }}
                 >
                   <ArrowLeft style={{ width: 'clamp(16px, 2.5vh, 24px)', height: 'clamp(16px, 2.5vh, 24px)' }} />
-                </Link>
+                </LocalizedLink>
               )}
               <div
                 className="font-black text-white flex items-center bg-gradient-to-r from-amber-500/30 to-orange-500/30 backdrop-blur-md border border-white/20 shadow-lg shadow-orange-500/20"
@@ -1666,10 +1606,10 @@ function CompetePageContent() {
               >
                 <span className="animate-bounce" style={{ fontSize: 'clamp(16px, 3.5vh, 34px)' }}>🏆</span>
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-amber-200 to-orange-200 whitespace-nowrap">
-                  Thi Đấu
+                  {t('competeScreen.title')}
                 </span>
               </div>
-              <Link
+              <LocalizedLink
                 href="/dashboard"
                 prefetch={true}
                 className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg shadow-purple-500/20"
@@ -1679,20 +1619,20 @@ function CompetePageContent() {
                 }}
               >
                 <Logo size="xs" showText={false} />
-              </Link>
+              </LocalizedLink>
             </div>
           </div>
 
-          {/* Chọn mode */}
+          {/* Select mode */}
           <div style={{ padding: '0 clamp(12px, 2.5vw, 28px)' }}>
             <div className="text-center mb-4">
-              <h2 className="text-white text-lg sm:text-xl font-bold mb-1">🎯 Chọn Chế Độ Thi Đấu</h2>
-              <p className="text-white/60 text-sm">Chọn phép tính bạn muốn thử sức!</p>
+              <h2 className="text-white text-lg sm:text-xl font-bold mb-1">🎯 {t('competeScreen.selectMode')}</h2>
+              <p className="text-white/60 text-sm">{t('practiceScreen.selectOperation')}</p>
             </div>
           
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-3" style={{ paddingBottom: 'clamp(20px, 5vh, 60px)' }}>
-              {Object.entries(modeInfo).map(([modeKey, info]) => {
-                // Định nghĩa tier yêu cầu cho từng mode
+              {Object.entries(modeInfo || {}).map(([modeKey, info]) => {
+                // Define required tier for each mode
                 const modeTiers = {
                   addition: 'free',
                   subtraction: 'free',
@@ -1702,22 +1642,10 @@ function CompetePageContent() {
                   mulDiv: 'advanced',
                   mixed: 'advanced',
                   mentalMath: 'advanced',
-                  flashAnzan: 'advanced'  // Tia Chớp chỉ mở cho gói Nâng cao
+                  flashAnzan: 'advanced'
                 };
                 
-                const recommendLevel = {
-                  addition: 'Gom sao!',
-                  subtraction: 'Diệt quái!',
-                  addSubMixed: 'Hỗn chiến!',
-                  multiplication: 'Nhân bội!',
-                  division: 'Chia đều!',
-                  mulDiv: 'Phép thuật!',
-                  mixed: 'Boss cuối!',
-                  mentalMath: 'Không bàn tính!',
-                  flashAnzan: 'Tốc độ ánh sáng!'
-                };
-                
-                // Kiểm tra mode có bị khóa không
+                // Check if mode is locked
                 const tierLevels = { free: 0, basic: 1, advanced: 2, vip: 3 };
                 const userTierLevel = tierLevels[userTier] || 0;
                 const requiredTierLevel = tierLevels[modeTiers[modeKey]] || 0;
@@ -1749,10 +1677,7 @@ function CompetePageContent() {
                     <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all"></div>
                     <div className="text-4xl sm:text-5xl mb-2 z-10 relative drop-shadow-md">{info.icon}</div>
                     <div className="text-sm sm:text-base font-black z-10 relative drop-shadow-sm">{info.title}</div>
-                    <div className="text-xs z-10 relative mt-0.5 text-white/95">{info.subtitle}</div>
-                    <div className="text-[10px] mt-2 z-10 relative bg-black/30 rounded-full px-2 py-0.5 text-white/90">
-                      {recommendLevel[modeKey]}
-                    </div>
+                    <div className="text-xs z-10 relative mt-0.5 text-white/80">{info.symbol}</div>
                   </button>
                 );
               })}
@@ -1835,10 +1760,10 @@ function CompetePageContent() {
             >
               <span className="animate-pulse" style={{ fontSize: 'clamp(16px, 3.5vh, 34px)' }}>🧠</span>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-200 via-fuchsia-200 to-violet-200 whitespace-nowrap">
-                Siêu Trí Tuệ
+                {t('competeScreen.mentalMathTitle')}
               </span>
             </div>
-            <Link
+            <LocalizedLink
               href="/dashboard"
               prefetch={true}
               className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg"
@@ -1848,7 +1773,7 @@ function CompetePageContent() {
               }}
             >
               <Logo size="xs" showText={false} />
-            </Link>
+            </LocalizedLink>
           </div>
         </div>
 
@@ -1868,9 +1793,9 @@ function CompetePageContent() {
                 className="font-black text-white/90 flex items-center justify-center"
                 style={{ fontSize: 'clamp(14px, 2.5vh, 24px)', gap: 'clamp(6px, 1vh, 12px)' }}
               >
-                <span>🧮</span> Chọn Phép Tính <span>🎯</span>
+                <span>🧮</span> {t('competeScreen.selectOperation')} <span>🎯</span>
               </h3>
-              <p className="text-white/60 text-sm mt-1">Thi đấu với chế độ bạn muốn!</p>
+              <p className="text-white/60 text-sm mt-1">{t('competeScreen.competeWithMode')}</p>
             </div>
 
             {/* Sub-mode grid - Responsive cards */}
@@ -1948,7 +1873,7 @@ function CompetePageContent() {
                 className="text-white/60 font-medium"
                 style={{ fontSize: 'clamp(10px, 1.6vh, 16px)' }}
               >
-                💡 Tính nhẩm không cần bàn tính - Thử thách trí não của bạn!
+                💡 {t('competeScreen.mentalMathHint')}
               </p>
             </div>
           </div>
@@ -1969,11 +1894,12 @@ function CompetePageContent() {
 
   // Màn hình chọn mode Flash Anzan - STEPS: digits -> operation -> speed
   if (selectedMode === 'flashAnzan' && !selectedDifficulty) {
-    // Xác định tiêu đề và mô tả theo bước
+    // Xác định tiêu đề và mô tả theo bước từ i18n
+    const flashSetup = t('competeScreen.flashSetup') || {};
     const stepTitles = {
-      digits: { title: 'CHỌN SỐ CHỮ SỐ', subtitle: 'Chọn độ khó của các số', icon: '🔢' },
-      operation: { title: 'CHỌN PHÉP TOÁN', subtitle: 'Chọn loại phép tính', icon: '➕' },
-      speed: { title: 'CHỌN TỐC ĐỘ THI ĐẤU', subtitle: 'Mỗi biến thể là một đấu trường riêng!', icon: '⚡' }
+      digits: { title: flashSetup.digits?.title || 'CHOOSE DIGITS', subtitle: flashSetup.digits?.subtitle || 'Select number difficulty', icon: '🔢' },
+      operation: { title: flashSetup.operation?.title || 'CHOOSE OPERATION', subtitle: flashSetup.operation?.subtitle || 'Select calculation type', icon: '➕' },
+      speed: { title: flashSetup.speed?.title || 'CHOOSE BATTLE SPEED', subtitle: flashSetup.speed?.subtitle || 'Each variant has its own arena!', icon: '⚡' }
     };
     const currentStep = stepTitles[flashModeStep] || stepTitles.digits;
 
@@ -2044,20 +1970,20 @@ function CompetePageContent() {
               <h1 className="text-lg sm:text-xl font-black text-white flex items-center gap-2 leading-relaxed">
                 <span className="text-2xl animate-pulse">⚡</span>
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-white to-cyan-200 whitespace-nowrap">
-                  ĐẤU TRƯỜNG TIA CHỚP
+                  {t('competeScreen.flashArenaTitle')}
                 </span>
                 <span className="text-2xl animate-pulse">💫</span>
               </h1>
-              <p className="text-white/80 text-[10px]">Mỗi biến thể là một bảng xếp hạng riêng!</p>
+              <p className="text-white/80 text-[10px]">{t('competeScreen.eachVariantIsArena')}</p>
             </div>
-            <Link
+            <LocalizedLink
               href="/dashboard"
               prefetch={true}
               className="flex items-center bg-black/30 rounded-lg text-white hover:bg-black/50 hover:scale-105 transition-all backdrop-blur"
               style={{ padding: 'clamp(4px, 0.8vh, 10px)' }}
             >
               <Logo size="xs" showText={false} />
-            </Link>
+            </LocalizedLink>
           </div>
         </div>
 
@@ -2065,15 +1991,15 @@ function CompetePageContent() {
         <div className="relative z-10 flex justify-center py-3">
           <div className="flex items-center gap-2 bg-black/30 rounded-full px-4 py-2 border border-white/10">
             <div className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${flashModeStep === 'digits' ? 'bg-yellow-500 text-black' : flashSelectedDigits ? 'bg-green-500 text-white' : 'bg-white/20 text-white/60'}`}>
-              <span>🔢</span> <span className="hidden sm:inline">{flashSelectedDigits ? `${flashSelectedDigits} chữ số` : 'Chữ số'}</span>
+              <span>🔢</span> <span className="hidden sm:inline">{flashSelectedDigits ? t('practiceScreen.ui.digitsCount', { n: flashSelectedDigits }) : t('practiceScreen.ui.digits')}</span>
             </div>
             <div className="text-white/40">→</div>
             <div className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${flashModeStep === 'operation' ? 'bg-yellow-500 text-black' : flashSelectedOperation ? 'bg-green-500 text-white' : 'bg-white/20 text-white/60'}`}>
-              <span>➕</span> <span className="hidden sm:inline">{flashSelectedOperation ? flashOperationOptions.find(o => o.id === flashSelectedOperation)?.name : 'Phép toán'}</span>
+              <span>➕</span> <span className="hidden sm:inline">{flashSelectedOperation ? flashOperationOptions.find(o => o.id === flashSelectedOperation)?.name : t('competeScreen.operation')}</span>
             </div>
             <div className="text-white/40">→</div>
             <div className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${flashModeStep === 'speed' ? 'bg-yellow-500 text-black' : 'bg-white/20 text-white/60'}`}>
-              <span>⚡</span> <span className="hidden sm:inline">Tốc độ</span>
+              <span>⚡</span> <span className="hidden sm:inline">{t('competeScreen.speed')}</span>
             </div>
           </div>
         </div>
@@ -2093,7 +2019,7 @@ function CompetePageContent() {
               </div>
               <div>
                 <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-cyan-400 leading-relaxed pt-1">
-                  CUỘC ĐUA ÁNH SÁNG
+                  {t('competeScreen.flashTitle')}
                 </h2>
                 <p className="text-white/60 text-xs">🕯️ → 🌙 → ⚡ → ☄️ → 💥 → 🌌</p>
               </div>
@@ -2169,7 +2095,7 @@ function CompetePageContent() {
                     if (isLocked) {
                       showUpgradeModal({
                         requiredTier: 'advanced',
-                        feature: `Cấp ${level.name}`,
+                        feature: t('competeScreen.levelLabel', { name: level.name }),
                         currentTier: userTier
                       });
                       return;
@@ -2250,12 +2176,12 @@ function CompetePageContent() {
                   {/* Stats - COMPACT with icons */}
                   <div className="relative z-10 w-full mt-2 space-y-0.5 text-[9px] lg:text-[10px]">
                     <div className="flex items-center justify-between bg-black/30 rounded px-2 py-0.5">
-                      <span>📊 Số lượng</span>
+                      <span>📊 {t('competeScreen.quantity')}</span>
                       <span className="font-black">{level.numbers[0]}-{level.numbers[1]}</span>
                     </div>
                     <div className="flex items-center justify-between bg-black/30 rounded px-2 py-0.5">
-                      <span>⚡ Tốc độ</span>
-                      <span className="font-black text-yellow-200">{level.speed[0]}s/số</span>
+                      <span>⚡ {t('competeScreen.speed')}</span>
+                      <span className="font-black text-yellow-200">{level.speed[0]}{t('practiceScreen.secPerNum') || 's/num'}</span>
                     </div>
                   </div>
                   
@@ -2289,15 +2215,15 @@ function CompetePageContent() {
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm">
               <div className="flex items-center gap-1.5 bg-blue-500/20 px-3 py-1 rounded-full">
                 <span className="text-lg">👀</span>
-                <span className="text-blue-200 font-bold">Tập trung cao độ</span>
+                <span className="text-blue-200 font-bold">{t('practiceScreen.ui.focusHigh')}</span>
               </div>
               <div className="flex items-center gap-1.5 bg-purple-500/20 px-3 py-1 rounded-full">
                 <span className="text-lg">🧮</span>
-                <span className="text-purple-200 font-bold">Cộng dồn từng số</span>
+                <span className="text-purple-200 font-bold">{t('practiceScreen.ui.addCumulative')}</span>
               </div>
               <div className="flex items-center gap-1.5 bg-orange-500/20 px-3 py-1 rounded-full">
                 <span className="text-lg">🔥</span>
-                <span className="text-orange-200 font-bold">Combo = x2 Bonus!</span>
+                <span className="text-orange-200 font-bold">{t('competeScreen.comboBonus')}</span>
               </div>
             </div>
           </div>
@@ -2305,7 +2231,7 @@ function CompetePageContent() {
           {/* Epic call to action */}
           <div className="text-center py-2 flex-shrink-0">
             <p className="text-white/50 text-xs animate-pulse">
-              🌌 Bạn có thể chạm tới SIÊU BIG BANG không? 🌌
+              🌌 {t('competeScreen.canYouReachSuperBigBang')} 🌌
             </p>
           </div>
         </div>
@@ -2371,12 +2297,12 @@ function CompetePageContent() {
                   {modeData.title}
                   {selectedMode === 'mentalMath' && mentalSubMode && (
                     <span className="text-white/80 ml-1">
-                      - {mentalSubModes.find(m => m.id === mentalSubMode)?.title || 'Tất Cả'}
+                      - {mentalSubModes.find(m => m.id === mentalSubMode)?.title || mentalSubModesLabels.mixed || 'All'}
                     </span>
                   )}
                 </span>
               </div>
-              <Link
+              <LocalizedLink
                 href="/dashboard"
                 prefetch={true}
                 className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg"
@@ -2386,7 +2312,7 @@ function CompetePageContent() {
                 }}
               >
                 <Logo size="xs" showText={false} />
-              </Link>
+              </LocalizedLink>
             </div>
           </div>
 
@@ -2395,26 +2321,26 @@ function CompetePageContent() {
             <div className="flex items-center justify-center gap-2 text-xs">
               <div className="flex items-center gap-1 text-green-400">
                 <span className="w-5 h-5 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">✓</span>
-                <span>Chế độ</span>
+                <span>{t('competeScreen.mode')}</span>
               </div>
               <div className="w-8 h-0.5 bg-white/30"></div>
               {selectedMode === 'mentalMath' && (
                 <>
                   <div className="flex items-center gap-1 text-green-400">
                     <span className="w-5 h-5 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">✓</span>
-                    <span>Phép tính</span>
+                    <span>{t('competeScreen.operation')}</span>
                   </div>
                   <div className="w-8 h-0.5 bg-white/30"></div>
                 </>
               )}
               <div className="flex items-center gap-1 text-white">
                 <span className="w-5 h-5 rounded-full bg-white text-purple-900 flex items-center justify-center text-[10px] font-bold">{selectedMode === 'mentalMath' ? '3' : '2'}</span>
-                <span>Cấp độ</span>
+                <span>{t('competeScreen.level')}</span>
               </div>
               <div className="w-8 h-0.5 bg-white/30"></div>
               <div className="flex items-center gap-1 text-white/50">
                 <span className="w-5 h-5 rounded-full bg-white/30 flex items-center justify-center text-[10px] font-bold">{selectedMode === 'mentalMath' ? '4' : '3'}</span>
-                <span>Số câu</span>
+                <span>{t('competeScreen.numQuestions')}</span>
               </div>
             </div>
           </div>
@@ -2422,14 +2348,14 @@ function CompetePageContent() {
           {/* Chọn cấp độ */}
           <div style={{ padding: '0 clamp(12px, 2.5vw, 28px)' }}>
             <div className="text-center mb-4">
-              <h2 className="text-white text-lg sm:text-xl font-bold mb-1">⚔️ Chọn Cấp Độ</h2>
-              <p className="text-white/60 text-sm">Cấp độ càng cao, số càng lớn!</p>
+              <h2 className="text-white text-lg sm:text-xl font-bold mb-1">⚔️ {t('competeScreen.selectLevel')}</h2>
+              <p className="text-white/60 text-sm">{t('competeScreen.higherLevelBiggerNum')}</p>
             </div>
           
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3" style={{ paddingBottom: 'clamp(20px, 5vh, 60px)' }}>
             {[1, 2, 3, 4, 5].map((diff) => {
               const diffData = difficultyInfo[diff];
-              const arenaName = arenaNames[selectedMode]?.[diff] || { title: diffData.label, icon: '🎯' };
+              const arenaName = getArenaNameWithI18n(selectedMode, diff, t);
               const diffColors = {
                 1: 'from-green-400 to-emerald-500',
                 2: 'from-blue-400 to-cyan-500',
@@ -2444,26 +2370,28 @@ function CompetePageContent() {
                 4: 'shadow-red-500/50',
                 5: 'shadow-purple-500/50'
               };
+              const digitLabels = t('competeScreen.digitLabels') || {};
               const diffDesc = {
-                1: 'Số 1 chữ số',
-                2: 'Số 2 chữ số',
-                3: 'Số 3 chữ số',
-                4: 'Số 4 chữ số',
-                5: 'Số 5 chữ số'
+                1: digitLabels['1'] || '1 digit numbers',
+                2: digitLabels['2'] || '2 digit numbers',
+                3: digitLabels['3'] || '3 digit numbers',
+                4: digitLabels['4'] || '4 digit numbers',
+                5: digitLabels['5'] || '5 digit numbers'
               };
               const diffExample = {
-                1: 'VD: 5 + 3',
-                2: 'VD: 25 + 47',
-                3: 'VD: 234 + 567',
-                4: 'VD: 1234 + 5678',
-                5: 'VD: 12345 + 67890'
+                1: 'Ex: 5 + 3',
+                2: 'Ex: 25 + 47',
+                3: 'Ex: 234 + 567',
+                4: 'Ex: 1234 + 5678',
+                5: 'Ex: 12345 + 67890'
               };
+              const difficultyLabels = t('competeScreen.difficultyLabels') || {};
               const diffRecommend = {
-                1: '🐣 Số nhỏ',
-                2: '⚔️ Vừa sức',
-                3: '🛡️ Thử thách',
-                4: '🔥 Cao cấp',
-                5: '👑 Đỉnh cao'
+                1: difficultyLabels['1'] || '🐣 Small numbers',
+                2: difficultyLabels['2'] || '⚔️ Medium',
+                3: difficultyLabels['3'] || '🛡️ Challenge',
+                4: difficultyLabels['4'] || '🔥 Advanced',
+                5: difficultyLabels['5'] || '👑 Elite'
               };
               
               // Kiểm tra cấp độ có bị khóa không
@@ -2477,7 +2405,7 @@ function CompetePageContent() {
                     if (isDifficultyLocked) {
                       showUpgradeModal({
                         requiredTier: 'advanced',
-                        feature: `Cấp độ ${diffLevels[diff]}`,
+                        feature: `${t('common.level') || 'Level'} ${diffLevels[diff]}`,
                         currentTier: userTier
                       });
                       return;
@@ -2509,7 +2437,7 @@ function CompetePageContent() {
                   <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all"></div>
                   {diff === 1 && (
                     <div className="absolute -top-1 -right-1 bg-green-400 text-green-900 text-[8px] font-bold px-1.5 py-0.5 rounded-bl-lg rounded-tr-xl z-20 animate-bounce">
-                      GỢI Ý
+                      {t('competeScreen.recommended')}
                     </div>
                   )}
                   <div 
@@ -2557,7 +2485,7 @@ function CompetePageContent() {
   if (selectedMode && selectedDifficulty && !selectedQuestionCount) {
     const modeData = modeInfo[selectedMode];
     const diffData = difficultyInfo[selectedDifficulty];
-    const arenaName = arenaNames[selectedMode]?.[selectedDifficulty] || { title: diffData.label, icon: '🎯' };
+    const arenaName = getArenaNameWithI18n(selectedMode, selectedDifficulty, t);
     
     return (
       <div className="min-h-[100dvh] bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 overflow-x-hidden relative">
@@ -2610,7 +2538,7 @@ function CompetePageContent() {
                 <span style={{ fontSize: 'clamp(14px, 3vh, 30px)' }}>{arenaName.icon}</span> 
                 <span className="whitespace-nowrap">{arenaName.title}</span>
               </div>
-              <Link
+              <LocalizedLink
                 href="/dashboard"
                 prefetch={true}
                 className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg"
@@ -2620,7 +2548,7 @@ function CompetePageContent() {
                 }}
               >
                 <Logo size="xs" showText={false} />
-              </Link>
+              </LocalizedLink>
             </div>
           </div>
 
@@ -2629,26 +2557,26 @@ function CompetePageContent() {
             <div className="flex items-center justify-center gap-2 text-xs">
               <div className="flex items-center gap-1 text-green-400">
                 <span className="w-5 h-5 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">✓</span>
-                <span>Chế độ</span>
+                <span>{t('competeScreen.mode')}</span>
               </div>
               <div className="w-8 h-0.5 bg-green-500"></div>
               {selectedMode === 'mentalMath' && (
                 <>
                   <div className="flex items-center gap-1 text-green-400">
                     <span className="w-5 h-5 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">✓</span>
-                    <span>Phép tính</span>
+                    <span>{t('competeScreen.operation')}</span>
                   </div>
                   <div className="w-8 h-0.5 bg-green-500"></div>
                 </>
               )}
               <div className="flex items-center gap-1 text-green-400">
                 <span className="w-5 h-5 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">✓</span>
-                <span>Cấp độ</span>
+                <span>{t('competeScreen.level')}</span>
               </div>
               <div className="w-8 h-0.5 bg-white/30"></div>
               <div className="flex items-center gap-1 text-white">
                 <span className="w-5 h-5 rounded-full bg-white text-purple-900 flex items-center justify-center text-[10px] font-bold">{selectedMode === 'mentalMath' ? '4' : '3'}</span>
-                <span>Số câu</span>
+                <span>{t('competeScreen.numQuestions')}</span>
               </div>
             </div>
           </div>
@@ -2680,8 +2608,8 @@ function CompetePageContent() {
           {/* Chọn số câu */}
           <div className="px-4">
             <div className="text-center mb-4">
-              <h2 className="text-white text-lg sm:text-xl font-bold mb-1">📝 Chọn Số Câu Hỏi</h2>
-              <p className="text-white/60 text-sm">Càng nhiều câu, càng thử thách!</p>
+              <h2 className="text-white text-lg sm:text-xl font-bold mb-1">📝 {t('competeScreen.selectNumQuestions')}</h2>
+              <p className="text-white/60 text-sm">{t('competeScreen.moreQuestionMoreChallenge')}</p>
             </div>
           
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3" style={{ paddingBottom: 'clamp(20px, 5vh, 60px)' }}>
@@ -2710,7 +2638,7 @@ function CompetePageContent() {
                   
                   {isRecommended && (
                     <div className="absolute -top-1 -right-1 bg-yellow-400 text-yellow-900 text-[8px] font-bold px-1.5 py-0.5 rounded-bl-lg rounded-tr-xl z-20 animate-bounce">
-                      GỢI Ý
+                      {t('competeScreen.recommended')}
                     </div>
                   )}
                   
@@ -2752,13 +2680,13 @@ function CompetePageContent() {
                 <div className="flex items-start gap-2">
                   <span className="text-lg">🎯</span>
                   <div className="text-white/70">
-                    <strong className="text-white">Lần đầu thi đấu?</strong> Chọn 5-10 câu để làm quen!
+                    <strong className="text-white">{t('competeScreen.firstTimeCompete')}</strong> {t('competeScreen.selectFewToStart')}
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-lg">🔥</span>
                   <div className="text-white/70">
-                    <strong className="text-white">Muốn leo rank?</strong> Chọn 20-30 câu để luyện tập đều đặn!
+                    <strong className="text-white">{t('competeScreen.wantToClimb')}</strong> {t('competeScreen.selectMoreToPractice')}
                   </div>
                 </div>
               </div>
@@ -2797,7 +2725,7 @@ function CompetePageContent() {
             <h1 className="text-lg sm:text-xl font-black text-white flex items-center gap-2">
               <span className="text-xl">{selectedArena.icon}</span> {selectedArena.title}
             </h1>
-            <Link
+            <LocalizedLink
               href="/dashboard"
               prefetch={true}
               className="flex items-center bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 transition-all border border-white/20 shadow-lg"
@@ -2807,7 +2735,7 @@ function CompetePageContent() {
               }}
             >
               <Logo size="xs" showText={false} />
-            </Link>
+            </LocalizedLink>
           </div>
 
           <div className="px-4 pb-8">
@@ -2820,15 +2748,15 @@ function CompetePageContent() {
                 <span>•</span>
                 <span>{difficultyInfo[selectedArena.difficulty]?.emoji} {difficultyInfo[selectedArena.difficulty]?.label}</span>
                 <span>•</span>
-                <span>📝 {totalChallenges} câu</span>
+                <span>📝 {totalChallenges} {t('competeScreen.questions')}</span>
               </div>
-              <p className="text-xs mt-2 opacity-80">Xếp hạng theo độ chính xác & tốc độ</p>
+              <p className="text-xs mt-2 opacity-80">{t('competeScreen.rankByAccuracySpeed')}</p>
               
               <button
                 onClick={startGame}
                 className="mt-4 px-8 py-3 bg-white text-purple-700 font-black rounded-xl shadow-lg hover:scale-105 active:scale-95 transition-transform text-lg"
               >
-                ⚔️ VÀO THI ĐẤU
+                ⚔️ {t('competeScreen.enterBattle')}
               </button>
             </div>
 
@@ -2836,19 +2764,19 @@ function CompetePageContent() {
           <div className="bg-white/10 backdrop-blur rounded-2xl p-4">
             <h3 className="text-white font-bold flex items-center gap-2 mb-3">
               <Trophy size={20} className="text-yellow-400" />
-              Bảng Xếp Hạng
+              {t('competeScreen.leaderboard')}
               {totalPlayers > 0 && (
-                <span className="text-white/50 text-xs font-normal">({totalPlayers} người chơi)</span>
+                <span className="text-white/50 text-xs font-normal">({totalPlayers} {t('competeScreen.players')})</span>
               )}
             </h3>
             
             {loadingLeaderboard ? (
-              <div className="text-center py-8 text-white/60">Đang tải...</div>
+              <div className="text-center py-8 text-white/60">{t('competeScreen.loading')}</div>
             ) : leaderboard.length === 0 ? (
               <div className="text-center py-8 text-white/60">
                 <div className="text-4xl mb-2">🏅</div>
-                <p>Chưa có ai thi đấu</p>
-                <p className="text-sm">Hãy là người đầu tiên!</p>
+                <p>{t('competeScreen.noOneCompeted')}</p>
+                <p className="text-sm">{t('competeScreen.beTheFirst')}</p>
               </div>
             ) : (
               <div className="space-y-3">
@@ -2865,7 +2793,7 @@ function CompetePageContent() {
                             <MonsterAvatar seed={leaderboard[1].userId} avatarIndex={getAvatarIndex(leaderboard[1])} size={36} showBorder={false} />
                           </div>
                           <div className="text-white font-bold text-xs sm:text-sm break-words leading-tight min-h-[32px] flex items-center justify-center" title={leaderboard[1].userName}>{leaderboard[1].userName}</div>
-                          <div className="text-white/70 text-[10px] sm:text-xs">✓ {Math.min(leaderboard[1].correct, totalChallenges)} đúng</div>
+                          <div className="text-white/70 text-[10px] sm:text-xs">✓ {t('competeScreen.nCorrect', { n: Math.min(leaderboard[1].correct, totalChallenges) })}</div>
                           <div className="text-gray-300 text-[10px]">⏱ {leaderboard[1].totalTime}s</div>
                         </div>
                       </div>
@@ -2880,7 +2808,7 @@ function CompetePageContent() {
                           <MonsterAvatar seed={leaderboard[0].userId} avatarIndex={getAvatarIndex(leaderboard[0])} size={44} showBorder={false} className="border-2 border-yellow-400" />
                         </div>
                         <div className="text-white font-black text-sm sm:text-base break-words leading-tight min-h-[40px] flex items-center justify-center" title={leaderboard[0].userName}>{leaderboard[0].userName}</div>
-                        <div className="text-yellow-200 text-xs sm:text-sm font-bold">✓ {Math.min(leaderboard[0].correct, totalChallenges)} đúng</div>
+                        <div className="text-yellow-200 text-xs sm:text-sm font-bold">✓ {t('competeScreen.nCorrect', { n: Math.min(leaderboard[0].correct, totalChallenges) })}</div>
                         <div className="text-yellow-300 text-[10px] sm:text-xs">⏱ {leaderboard[0].totalTime}s</div>
                         <div className="text-yellow-400 font-bold text-xs mt-1">⭐ {leaderboard[0].stars}</div>
                       </div>
@@ -2896,7 +2824,7 @@ function CompetePageContent() {
                             <MonsterAvatar seed={leaderboard[2].userId} avatarIndex={getAvatarIndex(leaderboard[2])} size={36} showBorder={false} />
                           </div>
                           <div className="text-white font-bold text-xs sm:text-sm break-words leading-tight min-h-[32px] flex items-center justify-center" title={leaderboard[2].userName}>{leaderboard[2].userName}</div>
-                          <div className="text-white/70 text-[10px] sm:text-xs">✓ {Math.min(leaderboard[2].correct, totalChallenges)} đúng</div>
+                          <div className="text-white/70 text-[10px] sm:text-xs">✓ {t('competeScreen.nCorrect', { n: Math.min(leaderboard[2].correct, totalChallenges) })}</div>
                           <div className="text-orange-300 text-[10px]">⏱ {leaderboard[2].totalTime}s</div>
                         </div>
                       </div>
@@ -2907,7 +2835,7 @@ function CompetePageContent() {
                 {/* Top 4-20 */}
                 {leaderboard.length > 3 && (
                   <div className="space-y-1.5 mt-2">
-                    <div className="text-white/50 text-xs font-medium px-2">Xếp hạng tiếp theo</div>
+                    <div className="text-white/50 text-xs font-medium px-2">{t('competeScreen.nextRanking')}</div>
                     {leaderboard.slice(3, 20).map((entry, index) => (
                       <div
                         key={entry.id}
@@ -2923,10 +2851,10 @@ function CompetePageContent() {
                         <MonsterAvatar seed={entry.userId} avatarIndex={getAvatarIndex(entry)} size={28} showBorder={false} />
                         <div className="flex-1 min-w-0">
                           <div className={`font-bold text-xs sm:text-sm truncate ${entry.isCurrentUser ? 'text-cyan-300' : 'text-white'}`}>
-                            {entry.userName} {entry.isCurrentUser && '(Bạn)'}
+                            {entry.userName} {entry.isCurrentUser && `(${t('competeScreen.you')})`}
                           </div>
                           <div className="text-white/50 text-[10px] sm:text-xs">
-                            ✓ {Math.min(entry.correct, totalChallenges)} đúng • ⏱ {entry.totalTime}s
+                            ✓ {Math.min(entry.correct, totalChallenges)} {t('competeScreen.correct')} • ⏱ {entry.totalTime}s
                           </div>
                         </div>
                         <div className="text-yellow-400 font-bold text-xs sm:text-sm">
@@ -2940,7 +2868,7 @@ function CompetePageContent() {
                 {/* Thứ hạng của user nếu không trong Top 20 */}
                 {currentUserRank && currentUserRank > 20 && currentUserData && (
                   <div className="mt-4 pt-3 border-t border-white/20">
-                    <div className="text-white/50 text-xs font-medium mb-2">📍 Thứ hạng của bạn</div>
+                    <div className="text-white/50 text-xs font-medium mb-2">📍 {t('competeScreen.yourRanking')}</div>
                     <div className="flex items-center gap-3 p-3 rounded-xl bg-cyan-500/20 ring-1 ring-cyan-400">
                       <div className="w-10 text-center">
                         <div className="font-black text-lg text-cyan-300">#{currentUserRank}</div>
@@ -2948,9 +2876,9 @@ function CompetePageContent() {
                       </div>
                       <MonsterAvatar seed={currentUserData.userId} avatarIndex={getAvatarIndex(currentUserData)} size={36} showBorder={false} />
                       <div className="flex-1">
-                        <div className="text-cyan-300 font-bold text-sm">{currentUserData.userName} (Bạn)</div>
+                        <div className="text-cyan-300 font-bold text-sm">{currentUserData.userName} ({t('competeScreen.you')})</div>
                         <div className="text-white/60 text-xs">
-                          ✓ {Math.min(currentUserData.correct, totalChallenges)} đúng • ⏱ {currentUserData.totalTime}s
+                          ✓ {Math.min(currentUserData.correct, totalChallenges)} {t('competeScreen.correct')} • ⏱ {currentUserData.totalTime}s
                         </div>
                       </div>
                       <div className="text-yellow-400 font-bold text-sm">
@@ -2958,7 +2886,7 @@ function CompetePageContent() {
                       </div>
                     </div>
                     <p className="text-white/40 text-xs text-center mt-2">
-                      💪 Cố gắng lên! Còn {currentUserRank - 20} bậc nữa để vào Top 20!
+                      💪 {t('competeScreen.keepGoing').replace('{count}', currentUserRank - 20)}
                     </p>
                   </div>
                 )}
@@ -2966,8 +2894,8 @@ function CompetePageContent() {
                 {/* Nếu chưa thi đấu */}
                 {!currentUserRank && (
                   <div className="mt-3 p-3 bg-white/5 rounded-xl text-center">
-                    <p className="text-white/60 text-xs">🎯 Bạn chưa thi đấu ở đấu trường này</p>
-                    <p className="text-white/40 text-[10px]">Hãy thi đấu để lên bảng xếp hạng!</p>
+                    <p className="text-white/60 text-xs">🎯 {t('competeScreen.notCompetedYet')}</p>
+                    <p className="text-white/40 text-[10px]">{t('competeScreen.competeToRank')}</p>
                   </div>
                 )}
               </div>
@@ -2995,47 +2923,48 @@ function CompetePageContent() {
       false // isImprovement
     );
     
-    // Lời khen động viên theo chủ đề thi đấu
+    // Lời khen động viên theo chủ đề thi đấu - using i18n
+    const encouragementTexts = t('competeScreen.encouragements') || {};
     const encouragements = {
       excellent: { 
         emoji: '🏆', 
-        title: 'VÔ ĐỊCH!', 
-        message: 'Bạn chiến thắng tuyệt đối!',
+        title: encouragementTexts.excellent?.title || 'CHAMPION!', 
+        message: encouragementTexts.excellent?.message || 'Absolute victory!',
         color: 'text-yellow-400',
         bgGlow: 'shadow-yellow-500/50'
       },
       great: { 
         emoji: '🥇', 
-        title: 'CHIẾN BINH XUẤT SẮC!', 
-        message: 'Bạn chiến đấu rất giỏi!',
+        title: encouragementTexts.great?.title || 'EXCELLENT WARRIOR!', 
+        message: encouragementTexts.great?.message || 'You fought brilliantly!',
         color: 'text-green-400',
         bgGlow: 'shadow-green-500/50'
       },
       good: { 
         emoji: '⚔️', 
-        title: 'CHIẾN BINH DŨNG CẢM!', 
-        message: 'Luyện thêm sẽ mạnh hơn!',
+        title: encouragementTexts.good?.title || 'BRAVE WARRIOR!', 
+        message: encouragementTexts.good?.message || 'Practice more to get stronger!',
         color: 'text-blue-400',
         bgGlow: 'shadow-blue-500/50'
       },
       improving: { 
         emoji: '🛡️', 
-        title: 'ĐANG RÈN LUYỆN!', 
-        message: 'Tiếp tục rèn luyện nhé!',
+        title: encouragementTexts.improving?.title || 'TRAINING!', 
+        message: encouragementTexts.improving?.message || 'Keep practicing!',
         color: 'text-orange-400',
         bgGlow: 'shadow-orange-500/50'
       },
       beginner: { 
         emoji: '🌟', 
-        title: 'CHIẾN BINH TẬP SỰ!', 
-        message: 'Mỗi trận đấu giúp bạn mạnh lên!',
+        title: encouragementTexts.beginner?.title || 'APPRENTICE!', 
+        message: encouragementTexts.beginner?.message || 'Every battle makes you stronger!',
         color: 'text-purple-400',
         bgGlow: 'shadow-purple-500/50'
       },
       keepTrying: { 
         emoji: '💪', 
-        title: 'TIẾP TỤC CHIẾN ĐẤU!', 
-        message: 'Đừng bỏ cuộc, chiến đấu tiếp nào!',
+        title: encouragementTexts.keepTrying?.title || 'KEEP FIGHTING!', 
+        message: encouragementTexts.keepTrying?.message || "Don't give up, keep fighting!",
         color: 'text-pink-400',
         bgGlow: 'shadow-pink-500/50'
       }
@@ -3057,7 +2986,7 @@ function CompetePageContent() {
         <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-6 sm:p-8 max-w-md w-full text-center">
           <div className="text-6xl sm:text-7xl mb-3 animate-bounce">{encouragement.emoji}</div>
           
-          <h1 className="text-2xl sm:text-3xl font-black text-white mb-1">KẾT THÚC!</h1>
+          <h1 className="text-2xl sm:text-3xl font-black text-white mb-1">{t('competeScreen.finished')}</h1>
           <p className="text-white/70 mb-2 text-sm">{selectedArena.title}</p>
           
           <div className={`text-2xl sm:text-3xl font-black ${encouragement.color} mb-1`}>
@@ -3069,23 +2998,23 @@ function CompetePageContent() {
             <div className="bg-white/10 rounded-xl p-3">
               <div className="text-xl sm:text-2xl">⭐</div>
               <div className="text-xl sm:text-2xl font-black text-yellow-400">{finalStarsData.totalStars}</div>
-              <div className="text-[10px] sm:text-xs text-white/60">Sao</div>
+              <div className="text-[10px] sm:text-xs text-white/60">{t('competeScreen.stars')}</div>
             </div>
             <div className="bg-white/10 rounded-xl p-3">
               <div className="text-xl sm:text-2xl">✓</div>
               <div className="text-xl sm:text-2xl font-black text-green-400">{finalCorrect}/{totalChallenges}</div>
-              <div className="text-[10px] sm:text-xs text-white/60">Đúng</div>
+              <div className="text-[10px] sm:text-xs text-white/60">{t('competeScreen.correct')}</div>
             </div>
             <div className="bg-white/10 rounded-xl p-3">
               <div className="text-xl sm:text-2xl">🔥</div>
               <div className="text-xl sm:text-2xl font-black text-orange-400">{maxStreak}</div>
-              <div className="text-[10px] sm:text-xs text-white/60">Combo</div>
+              <div className="text-[10px] sm:text-xs text-white/60">{t('competeScreen.combo')}</div>
             </div>
           </div>
           
           {/* Breakdown chi tiết sao */}
           <div className="bg-white/5 rounded-xl p-3 mb-3 text-left">
-            <div className="text-[10px] text-white/60 mb-1 text-center font-semibold">Chi tiết điểm sao</div>
+            <div className="text-[10px] text-white/60 mb-1 text-center font-semibold">{t('competeScreen.starDetails')}</div>
             {finalStarsData.breakdown.map((item, i) => (
               <div key={i} className="flex justify-between items-center text-xs py-1 border-b border-white/10 last:border-0">
                 <span className="text-white/80">
@@ -3096,7 +3025,7 @@ function CompetePageContent() {
               </div>
             ))}
             <div className="flex justify-between items-center text-sm pt-1 mt-1 border-t border-white/30">
-              <span className="text-white font-bold">Tổng cộng</span>
+              <span className="text-white font-bold">{t('competeScreen.total')}</span>
               <span className="text-yellow-400 font-black">⭐ {finalStarsData.totalStars}</span>
             </div>
           </div>
@@ -3105,36 +3034,36 @@ function CompetePageContent() {
           {gameMode?.from === 'adventure' && (
             <div className={`p-3 rounded-xl text-center text-sm font-medium mb-3 ${accuracy >= 70 ? 'bg-green-500/20 text-green-300 border border-green-500/30' : 'bg-orange-500/20 text-orange-300 border border-orange-500/30'}`}>
               {accuracy >= 70 ? (
-                <span>✅ Đã qua màn! Cần ≥70% để mở khóa màn tiếp theo</span>
+                <span>✅ {t('adventureScreen.completed')} {t('practiceScreen.accuracy')}: {accuracy}%</span>
               ) : (
-                <span>⚠️ Chưa đạt! Cần ≥70% chính xác để qua màn (hiện tại: {accuracy}%)</span>
+                <span>⚠️ {t('practiceScreen.accuracy')}: {accuracy}% (≥70%)</span>
               )}
             </div>
           )}
           
-          {/* Buttons - khác nhau tùy từ Adventure hay Menu */}
+          {/* Buttons - different based on Adventure or Menu */}
           {gameMode?.from === 'adventure' ? (
-            /* Từ Adventure: chỉ có nút Về Map */
+            /* From Adventure: only back to map button */
             <button
               onClick={() => handleBackToGame(accuracy >= 70)}
               className="w-full py-3 px-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:scale-105 transition-transform text-sm"
             >
-              🎮 Về Map Phiêu Lưu
+              🎮 {t('competeScreen.backToArena')}
             </button>
           ) : (
-            /* Từ Menu: có đầy đủ các nút */
+            /* From Menu: full button set */
             <div className="flex gap-2">
               <button
                 onClick={playAgain}
                 className="flex-1 py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:scale-105 transition-transform text-sm"
               >
-                🔄 Thi lại
+                🔄 {t('competeScreen.playAgain')}
               </button>
               <button
                 onClick={backToArenaDetail}
                 className="flex-1 py-3 px-4 bg-white/20 text-white font-bold rounded-xl hover:bg-white/30 transition-colors text-sm"
               >
-                🏆 Xem BXH
+                🏆 {t('competeScreen.viewLeaderboard')}
               </button>
             </div>
           )}
@@ -3202,14 +3131,14 @@ function CompetePageContent() {
                 <div className="bg-black/20 px-2 py-0.5 rounded text-white font-bold text-sm">
                   {currentChallenge}/{totalChallenges}
                 </div>
-                <Link 
+                <LocalizedLink 
                   href="/dashboard"
                   prefetch={true}
                   className="p-1 bg-black/20 rounded-lg text-white hover:bg-black/30 transition-colors"
-                  title="Về trang chủ"
+                  title={t('topbar.dashboard')}
                 >
                   <Logo size="xs" showText={false} />
-                </Link>
+                </LocalizedLink>
               </div>
             </div>
           </div>
@@ -3282,22 +3211,22 @@ function CompetePageContent() {
                 </div>
               </div>
               
-              <p className="text-white text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-5 animate-pulse leading-relaxed">🎯 TẬP TRUNG!</p>
+              <p className="text-white text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-5 animate-pulse leading-relaxed">🎯 {t('competeScreen.focus')}</p>
               
               {/* Info badges - COMPACT */}
               <div className="flex justify-center gap-2 sm:gap-4">
                 <div className="bg-white/10 backdrop-blur border border-white/20 px-3 sm:px-4 py-2 sm:py-3 rounded-xl sm:rounded-2xl flex items-center gap-1.5 sm:gap-2">
                   <span className="text-lg sm:text-2xl">📊</span>
                   <div>
-                    <div className="text-white/60 text-[10px] sm:text-xs">Số lượng</div>
-                    <div className="font-black text-white text-sm sm:text-lg">{flashNumbers.length} số</div>
+                    <div className="text-white/60 text-[10px] sm:text-xs">{t('competeScreen.quantity')}</div>
+                    <div className="font-black text-white text-sm sm:text-lg">{flashNumbers.length} {t('competeScreen.nNumbers', { n: '' }).replace('{n}', '').trim()}</div>
                   </div>
                 </div>
                 <div className="bg-white/10 backdrop-blur border border-white/20 px-3 sm:px-4 py-2 sm:py-3 rounded-xl sm:rounded-2xl flex items-center gap-1.5 sm:gap-2">
                   <span className="text-lg sm:text-2xl">⚡</span>
                   <div>
-                    <div className="text-white/60 text-[10px] sm:text-xs">Tốc độ</div>
-                    <div className="font-black text-white text-sm sm:text-lg">{avgSpeed}s/số</div>
+                    <div className="text-white/60 text-[10px] sm:text-xs">{t('competeScreen.speed')}</div>
+                    <div className="font-black text-white text-sm sm:text-lg">{avgSpeed}s/{t('competeScreen.nNumbers', { n: '' }).replace('{n}', '').trim().slice(0,3)}</div>
                   </div>
                 </div>
               </div>
@@ -3322,7 +3251,7 @@ function CompetePageContent() {
                   ))}
                 </div>
                 <div className="text-white/80 font-bold text-xs sm:text-sm">
-                  Số {flashCurrentIndex + 1} / {flashNumbers.length}
+                  {t('competeScreen.flashCounter', { current: flashCurrentIndex + 1, total: flashNumbers.length })}
                 </div>
               </div>
               
@@ -3381,19 +3310,19 @@ function CompetePageContent() {
               {/* Question prompt - Exciting */}
               <div className="mb-2">
                 <div className="text-3xl sm:text-4xl mb-1 animate-bounce">🧠</div>
-                <h2 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-400 animate-pulse leading-relaxed pt-1">KẾT QUẢ LÀ BAO NHIÊU?</h2>
-                <p className="text-white/70 text-xs">Nhập kết quả phép tính của bạn</p>
+                <h2 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-400 animate-pulse leading-relaxed pt-1">{t('competeScreen.whatIsResult')}</h2>
+                <p className="text-white/70 text-xs">{t('competeScreen.enterYourResult')}</p>
               </div>
               
               {/* Info badges - Compact inline */}
               <div className="flex justify-center gap-2 mb-2">
                 <div className="bg-white/15 backdrop-blur border border-white/30 px-3 py-1 rounded-full flex items-center gap-1">
                   <span>📊</span>
-                  <span className="font-bold text-white text-sm">{flashNumbers.length} số</span>
+                  <span className="font-bold text-white text-sm">{flashNumbers.length} {t('practiceScreen.numCount') || 'numbers'}</span>
                 </div>
                 <div className="bg-white/15 backdrop-blur border border-white/30 px-3 py-1 rounded-full flex items-center gap-1">
                   <span>⚡</span>
-                  <span className="font-bold text-white text-sm">{avgSpeed}s/số</span>
+                  <span className="font-bold text-white text-sm">{avgSpeed}{t('practiceScreen.secPerNum') || 's/num'}</span>
                 </div>
               </div>
               
@@ -3469,11 +3398,11 @@ function CompetePageContent() {
                 disabled={!flashAnswer}
                 className="hidden sm:flex w-full py-3 sm:py-4 bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 text-white font-black text-lg sm:text-xl rounded-2xl hover:brightness-110 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-2xl shadow-orange-500/50 items-center justify-center gap-2 border-2 border-yellow-300/30"
               >
-                <span className="text-2xl">⚡</span> XÁC NHẬN
+                <span className="text-2xl">⚡</span> {t('competeScreen.confirm')}
               </button>
               
               <p className="mt-1.5 text-white/50 text-[10px] sm:text-xs hidden sm:flex items-center justify-center gap-1">
-                Nhấn <kbd className="bg-white/20 px-1.5 py-0.5 rounded text-white font-bold">Enter</kbd> để gửi đáp án
+                {t('competeScreen.pressEnterToSubmit')}
               </p>
             </div>
           )}
@@ -3511,9 +3440,9 @@ function CompetePageContent() {
                     <div className="text-5xl sm:text-6xl animate-bounce drop-shadow-lg">{flashResultMessage?.emoji || '🎉'}</div>
                     <div className="text-left">
                       <h2 className={`text-2xl sm:text-3xl font-black leading-relaxed pt-1 ${streak >= 5 ? 'animate-rainbow bg-clip-text text-transparent' : 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400'}`}>
-                        {flashResultMessage?.title || 'XUẤT SẮC!'}
+                        {flashResultMessage?.title || t('competeScreen.excellent')}
                       </h2>
-                      <p className="text-white/80 text-xs sm:text-sm leading-normal">{flashResultMessage?.msg || 'Bạn giỏi quá!'}</p>
+                      <p className="text-white/80 text-xs sm:text-sm leading-normal">{flashResultMessage?.msg || t('competeScreen.youAreGreat')}</p>
                     </div>
                     {streak >= 3 && (
                       <div className={`bg-gradient-to-r ${streak >= 5 ? 'from-red-500 to-orange-500 animate-pulse' : 'from-orange-500 to-yellow-500'} text-white px-3 py-1.5 rounded-xl font-black text-sm shadow-lg`}>
@@ -3526,12 +3455,12 @@ function CompetePageContent() {
                   <div className="relative bg-gradient-to-br from-green-500 to-emerald-600 border-2 border-green-300/50 rounded-2xl p-4 mb-3 shadow-xl shadow-green-500/40">
                     <div className="flex items-center justify-center gap-6">
                       <div className="text-center">
-                        <div className="text-green-100 text-xs font-bold mb-1">✅ CHÍNH XÁC</div>
+                        <div className="text-green-100 text-xs font-bold mb-1">✅ {t('competeScreen.correct2')}</div>
                         <div className="text-4xl sm:text-5xl font-black text-white drop-shadow-lg">{flashAnswer}</div>
                       </div>
                       <div className="h-14 w-px bg-white/30"></div>
                       <div className="text-center">
-                        <div className="text-green-100 text-xs font-bold mb-1">THƯỞNG</div>
+                        <div className="text-green-100 text-xs font-bold mb-1">{t('competeScreen.bonus')}</div>
                         <div className="flex items-center gap-1">
                           <span className="text-white font-black text-2xl sm:text-3xl">+{config?.stars || 2}</span>
                           <span className="text-3xl sm:text-4xl animate-spin-slow">⭐</span>
@@ -3572,9 +3501,9 @@ function CompetePageContent() {
                     onClick={() => nextFlashChallenge()}
                     className="relative z-20 w-full py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-black text-lg rounded-xl hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-green-500/50 border border-green-300/30 cursor-pointer"
                   >
-                    {currentChallenge >= totalChallenges ? '🏆 XEM KẾT QUẢ' : '⚡ CÂU TIẾP THEO'}
+                    {currentChallenge >= totalChallenges ? `🏆 ${t('practiceScreen.result')}` : `⚡ ${t('practiceScreen.ui.nextProblem')}`}
                   </button>
-                  <p className="text-white/50 text-[10px] mt-1.5">Nhấn <kbd className="bg-white/20 px-1.5 py-0.5 rounded font-bold">Enter</kbd> để tiếp tục</p>
+                  <p className="text-white/50 text-[10px] mt-1.5">{t('practiceScreen.ui.pressEnter')?.replace('{key}', '')} <kbd className="bg-white/20 px-1.5 py-0.5 rounded font-bold">Enter</kbd></p>
                 </div>
               ) : (
                 // ========== SAI - SUPER COMPACT ENCOURAGE ==========
@@ -3584,25 +3513,25 @@ function CompetePageContent() {
                     <div className="text-4xl sm:text-5xl animate-wiggle">{flashResultMessage?.emoji || '💪'}</div>
                     <div>
                       <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-500 leading-relaxed pt-1">
-                        {flashResultMessage?.title || 'CỐ LÊN NÀO!'}
+                        {flashResultMessage?.title || t('practiceScreen.encourageMessages.0.title')}
                       </h2>
-                      <p className="text-white/70 text-[10px] sm:text-xs leading-normal">{flashResultMessage?.msg || 'Tập trung hơn, bạn sẽ làm được!'}</p>
+                      <p className="text-white/70 text-[10px] sm:text-xs leading-normal">{flashResultMessage?.msg || t('practiceScreen.encourageMessages.3.msg')}</p>
                     </div>
                   </div>
                   
                   {/* Progress badge */}
                   <div className="bg-amber-500/20 border border-orange-400/30 rounded-lg px-3 py-1 mb-2 inline-block">
-                    <span className="text-orange-300 font-medium text-xs">💡 Đúng {sessionStats.correct}/{currentChallenge} câu - Cố lên nhé!</span>
+                    <span className="text-orange-300 font-medium text-xs">💡 {t('practiceScreen.correct')} {sessionStats.correct}/{currentChallenge} {t('practiceScreen.ui.questions')} - {t('practiceScreen.ui.keepItUp')}</span>
                   </div>
                   
                   {/* Answer comparison */}
                   <div className="grid grid-cols-2 gap-2 mb-2">
                     <div className="bg-red-500/30 border border-red-400/50 rounded-xl p-2">
-                      <div className="text-red-300 text-[10px] font-semibold">❌ CÂU TRẢ LỜI</div>
+                      <div className="text-red-300 text-[10px] font-semibold">❌ {t('practiceScreen.ui.enterAnswer')?.toUpperCase()}</div>
                       <div className="text-2xl sm:text-3xl font-black text-red-400">{flashAnswer}</div>
                     </div>
                     <div className="bg-green-500/30 border border-green-400/50 rounded-xl p-2">
-                      <div className="text-green-300 text-[10px] font-semibold">✅ ĐÁP ÁN ĐÚNG</div>
+                      <div className="text-green-300 text-[10px] font-semibold">✅ {t('practiceScreen.correct')?.toUpperCase()}</div>
                       <div className="text-2xl sm:text-3xl font-black text-green-400">{flashCorrectAnswer}</div>
                     </div>
                   </div>
@@ -3632,9 +3561,9 @@ function CompetePageContent() {
                     onClick={() => nextFlashChallenge()}
                     className="w-full py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-black text-base sm:text-lg rounded-xl hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-blue-500/50 border border-blue-300/30"
                   >
-                    {currentChallenge >= totalChallenges ? '🏆 XEM KẾT QUẢ' : '💪 CÂU TIẾP THEO'}
+                    {currentChallenge >= totalChallenges ? `🏆 ${t('practiceScreen.result')}` : `💪 ${t('practiceScreen.ui.nextProblem')}`}
                   </button>
-                  <p className="text-white/40 text-[10px] mt-1">Nhấn <kbd className="bg-white/20 px-1.5 py-0.5 rounded font-bold">Enter</kbd> để tiếp tục</p>
+                  <p className="text-white/40 text-[10px] mt-1">{t('practiceScreen.ui.pressEnter')?.replace('{key}', '')} <kbd className="bg-white/20 px-1.5 py-0.5 rounded font-bold">Enter</kbd></p>
                 </div>
               )}
             </div>
@@ -3739,7 +3668,7 @@ function CompetePageContent() {
             </div>
             {celebrationData.multiplier > 1 && (
               <div className={`inline-block bg-gradient-to-r ${celebrationData.tierColor} text-white px-4 py-1 rounded-full font-black text-lg sm:text-xl mb-2 shadow-lg`}>
-                x{celebrationData.multiplier} ĐIỂM!
+                {t('competeScreen.pointsMultiplier').replace('{multiplier}', celebrationData.multiplier)}
               </div>
             )}
             {celebrationData.streakBonus && (
@@ -3755,7 +3684,7 @@ function CompetePageContent() {
               ))}
             </div>
             <div className={`text-xl sm:text-2xl font-bold ${celebrationData.tierTextColor}`}>
-              +{celebrationData.starsEarned} sao
+              {t('competeScreen.plusStars').replace('{n}', celebrationData.starsEarned)}
             </div>
           </div>
         </div>
@@ -3814,14 +3743,14 @@ function CompetePageContent() {
                 🔥{streak}
               </div>
             )}
-            <Link 
+            <LocalizedLink 
               href="/dashboard"
               prefetch={true}
               className="p-1 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-colors"
-              title="Về trang chủ"
+              title={t('topbar.dashboard')}
             >
               <Logo size="xs" showText={false} />
-            </Link>
+            </LocalizedLink>
           </div>
         </div>
       </div>
@@ -3881,7 +3810,7 @@ function CompetePageContent() {
           
           {result === null && !isMentalMode && (
             <button onClick={skipProblem} className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-white/10 text-white/80 hover:bg-white/20 font-medium text-xs sm:text-sm">
-              💡 Bỏ qua
+              💡 {t('competeScreen.skip')}
             </button>
           )}
           
@@ -3892,10 +3821,10 @@ function CompetePageContent() {
                 disabled={!mentalAnswer}
                 className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold shadow-lg hover:scale-105 active:scale-95 transition-all disabled:opacity-50 text-xs sm:text-sm"
               >
-                ✓ Trả lời
+                ✓ {t('competeScreen.answer')}
               </button>
               <button onClick={skipProblem} className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-white/10 text-white/80 hover:bg-white/20 font-medium text-xs sm:text-sm">
-                💡 Bỏ qua
+                💡 {t('competeScreen.skip')}
               </button>
             </>
           )}
@@ -3905,7 +3834,7 @@ function CompetePageContent() {
               onClick={nextProblem}
               className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold shadow-lg hover:scale-105 active:scale-95 transition-all text-xs sm:text-sm"
             >
-              {currentChallenge >= totalChallenges ? '🏆 Kết thúc' : '⚡ Tiếp'}
+              {currentChallenge >= totalChallenges ? `🏆 ${t('competeScreen.finish')}` : `⚡ ${t('competeScreen.next')}`}
             </button>
           )}
           
@@ -3923,7 +3852,7 @@ function CompetePageContent() {
           <div className="text-center w-full max-w-[340px] sm:max-w-[280px]">
             <div className="text-4xl sm:text-5xl mb-1 sm:mb-2">🧠</div>
             <p className="text-white/80 text-xs sm:text-xs mb-3 sm:mb-2">
-              Nhập số → <span className="bg-green-500 px-1.5 py-0.5 rounded font-bold">Enter</span>
+              {t('competeScreen.enterNumber')} → <span className="bg-green-500 px-1.5 py-0.5 rounded font-bold">Enter</span>
             </p>
             
             {/* Numpad - LỚN HƠN trên mobile */}
@@ -4021,7 +3950,7 @@ function CompetePageContent() {
       {(!gameStarted || gameComplete) && (
         <div className="fixed bottom-2 left-0 right-0 z-10 text-center pointer-events-none">
           <p className="text-white/30 text-[10px] sm:text-xs">
-            © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
+            © {new Date().getFullYear()} SoroKid - {t('common.tagline')}
           </p>
         </div>
       )}
@@ -4036,7 +3965,7 @@ export default function CompetePage() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-950 via-purple-900 to-fuchsia-900">
         <div className="text-white text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-          <p>Đang tải...</p>
+          <p>Loading...</p>
         </div>
       </div>
     }>

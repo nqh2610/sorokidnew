@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { 
   LogOut, 
   ChevronRight, 
@@ -20,10 +19,14 @@ import TopBar from '@/components/TopBar/TopBar';
 import ConfirmDialog from '@/components/ConfirmDialog/ConfirmDialog';
 import { MonsterAvatar } from '@/components/MonsterAvatar';
 import AvatarSelector from '@/components/AvatarSelector/AvatarSelector';
+import { LocalizedLink, useLocalizedUrl } from '@/components/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 export default function ProfilePage() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const localizeUrl = useLocalizedUrl();
+  const { t } = useI18n();
   const [userStats, setUserStats] = useState(null);
   const [userTier, setUserTier] = useState('free');
   const [isLoading, setIsLoading] = useState(true);
@@ -32,9 +35,9 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (status === 'unauthenticated') {
-      router.push('/login');
+      router.push(localizeUrl('/login'));
     }
-  }, [status, router]);
+  }, [status, router, localizeUrl]);
 
   useEffect(() => {
     if (session?.user) {
@@ -92,7 +95,7 @@ export default function ProfilePage() {
     switch (userTier) {
       case 'vip':
         return {
-          name: 'VIP',
+          name: t('tier.vip'),
           icon: '👑',
           color: 'from-amber-400 to-orange-500',
           bgColor: 'bg-gradient-to-r from-amber-50 to-orange-50',
@@ -101,7 +104,7 @@ export default function ProfilePage() {
       case 'premium':
       case 'advanced':
         return {
-          name: 'Nâng Cao',
+          name: t('tier.advanced'),
           icon: '⭐',
           color: 'from-violet-500 to-fuchsia-500',
           bgColor: 'bg-gradient-to-r from-violet-50 to-fuchsia-50',
@@ -109,7 +112,7 @@ export default function ProfilePage() {
         };
       case 'basic':
         return {
-          name: 'Cơ Bản',
+          name: t('tier.basic'),
           icon: '✓',
           color: 'from-blue-400 to-cyan-500',
           bgColor: 'bg-gradient-to-r from-blue-50 to-cyan-50',
@@ -117,7 +120,7 @@ export default function ProfilePage() {
         };
       default:
         return {
-          name: 'Miễn Phí',
+          name: t('tier.free'),
           icon: '🆓',
           color: 'from-gray-400 to-gray-500',
           bgColor: 'bg-gray-50',
@@ -133,7 +136,7 @@ export default function ProfilePage() {
       <div className="min-h-screen bg-gradient-to-b from-blue-50 via-violet-50 to-pink-50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-violet-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Đang tải...</p>
+          <p className="text-gray-600">{t('common.loading')}</p>
         </div>
       </div>
     );
@@ -150,10 +153,10 @@ export default function ProfilePage() {
         isOpen={showLogoutDialog}
         onClose={() => setShowLogoutDialog(false)}
         onConfirm={() => signOut({ callbackUrl: '/' })}
-        title="Đăng xuất?"
-        message="Bạn có chắc chắn muốn đăng xuất khỏi tài khoản?"
-        confirmText="Đăng xuất"
-        cancelText="Hủy"
+        title={t('profilePage.logoutTitle')}
+        message={t('profilePage.logoutMessage')}
+        confirmText={t('common.logout')}
+        cancelText={t('common.cancel')}
         type="warning"
       />
 
@@ -176,7 +179,7 @@ export default function ProfilePage() {
               <button 
                 onClick={() => setShowAvatarSelector(true)}
                 className="relative group"
-                title="Đổi avatar"
+                title={t('avatar.selectAvatar')}
               >
                 <MonsterAvatar 
                   seed={session.user?.id || session.user?.email || 'default'}
@@ -213,13 +216,13 @@ export default function ProfilePage() {
               </div>
 
               {/* Edit button */}
-              <Link 
+              <LocalizedLink 
                 href="/edit-profile"
                 className="flex items-center gap-2 px-3 py-2 bg-violet-100 hover:bg-violet-200 rounded-xl transition-colors"
               >
                 <Edit3 size={18} className="text-violet-600" />
-                <span className="text-sm font-medium text-violet-600 hidden sm:inline">Sửa</span>
-              </Link>
+                <span className="text-sm font-medium text-violet-600 hidden sm:inline">{t('profilePage.edit')}</span>
+              </LocalizedLink>
             </div>
 
             {/* Stats row */}
@@ -229,21 +232,21 @@ export default function ProfilePage() {
                   <span>🔥</span>
                   <span className="text-xl font-bold">{userStats?.streak || 0}</span>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Chuỗi ngày</p>
+                <p className="text-xs text-gray-500 mt-1">{t('profilePage.streak')}</p>
               </div>
               <div className="text-center">
                 <div className="flex items-center justify-center gap-1 text-yellow-500">
                   <Star size={18} className="fill-yellow-500" />
                   <span className="text-xl font-bold">{(userStats?.totalStars || 0).toLocaleString()}</span>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Tổng sao</p>
+                <p className="text-xs text-gray-500 mt-1">{t('profilePage.totalStars')}</p>
               </div>
               <div className="text-center">
                 <div className="flex items-center justify-center gap-1 text-cyan-500">
                   <span>💎</span>
                   <span className="text-xl font-bold">{(userStats?.diamonds || 0).toLocaleString()}</span>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Kim cương</p>
+                <p className="text-xs text-gray-500 mt-1">{t('profilePage.diamonds')}</p>
               </div>
             </div>
           </div>
@@ -254,83 +257,83 @@ export default function ProfilePage() {
             {/* Learning Section */}
             <div className="bg-white rounded-2xl shadow-md overflow-hidden">
               <h2 className="px-4 py-3 text-sm font-semibold text-gray-500 bg-gray-50">
-                HỌC TẬP
+                {t('profilePage.sections.learning')}
               </h2>
               <div className="divide-y divide-gray-100">
-                <Link href="/dashboard" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
+                <LocalizedLink href="/dashboard" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
                   <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
                     <span className="text-xl">📊</span>
                   </div>
-                  <span className="flex-1 font-medium text-gray-700">Bảng điều khiển</span>
+                  <span className="flex-1 font-medium text-gray-700">{t('common.dashboard')}</span>
                   <ChevronRight size={20} className="text-gray-400" />
-                </Link>
-                <Link href="/learn" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
+                </LocalizedLink>
+                <LocalizedLink href="/learn" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
                   <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
                     <span className="text-xl">📚</span>
                   </div>
-                  <span className="flex-1 font-medium text-gray-700">Học bài</span>
+                  <span className="flex-1 font-medium text-gray-700">{t('profilePage.menu.learn')}</span>
                   <ChevronRight size={20} className="text-gray-400" />
-                </Link>
-                <Link href="/practice" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
+                </LocalizedLink>
+                <LocalizedLink href="/practice" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
                   <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center">
                     <span className="text-xl">🎯</span>
                   </div>
-                  <span className="flex-1 font-medium text-gray-700">Luyện tập</span>
+                  <span className="flex-1 font-medium text-gray-700">{t('common.practice')}</span>
                   <ChevronRight size={20} className="text-gray-400" />
-                </Link>
-                <Link href="/compete" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
+                </LocalizedLink>
+                <LocalizedLink href="/compete" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
                   <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
                     <span className="text-xl">🏆</span>
                   </div>
-                  <span className="flex-1 font-medium text-gray-700">Thi đấu</span>
+                  <span className="flex-1 font-medium text-gray-700">{t('common.compete')}</span>
                   <ChevronRight size={20} className="text-gray-400" />
-                </Link>
-                <Link href="/leaderboard" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
+                </LocalizedLink>
+                <LocalizedLink href="/leaderboard" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
                   <div className="w-10 h-10 bg-yellow-100 rounded-xl flex items-center justify-center">
                     <span className="text-xl">🏅</span>
                   </div>
-                  <span className="flex-1 font-medium text-gray-700">Bảng xếp hạng</span>
+                  <span className="flex-1 font-medium text-gray-700">{t('common.leaderboard')}</span>
                   <ChevronRight size={20} className="text-gray-400" />
-                </Link>
+                </LocalizedLink>
               </div>
             </div>
 
             {/* Account Section */}
             <div className="bg-white rounded-2xl shadow-md overflow-hidden">
               <h2 className="px-4 py-3 text-sm font-semibold text-gray-500 bg-gray-50">
-                TÀI KHOẢN
+                {t('profilePage.sections.account')}
               </h2>
               <div className="divide-y divide-gray-100">
-                <Link href="/pricing" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
+                <LocalizedLink href="/pricing" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
                   <div className="w-10 h-10 bg-gradient-to-br from-violet-100 to-pink-100 rounded-xl flex items-center justify-center">
                     <Crown size={20} className="text-violet-600" />
                   </div>
                   <div className="flex-1">
-                    <span className="font-medium text-gray-700">Nâng cấp tài khoản</span>
+                    <span className="font-medium text-gray-700">{t('profilePage.menu.upgrade')}</span>
                     {userTier === 'free' && (
-                      <p className="text-xs text-violet-600">Mở khóa tất cả tính năng!</p>
+                      <p className="text-xs text-violet-600">{t('profilePage.unlockFeatures')}</p>
                     )}
                   </div>
                   <ChevronRight size={20} className="text-gray-400" />
-                </Link>
+                </LocalizedLink>
 
                 {(userTier === 'vip' || userTier === 'advanced') && (
-                  <Link href="/certificate" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
+                  <LocalizedLink href="/certificate" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
                     <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center">
                       <Award size={20} className="text-amber-600" />
                     </div>
-                    <span className="flex-1 font-medium text-gray-700">Chứng chỉ</span>
+                    <span className="flex-1 font-medium text-gray-700">{t('profilePage.menu.certificate')}</span>
                     <ChevronRight size={20} className="text-gray-400" />
-                  </Link>
+                  </LocalizedLink>
                 )}
 
-                <Link href="/edit-profile" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
+                <LocalizedLink href="/edit-profile" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
                   <div className="w-10 h-10 bg-cyan-100 rounded-xl flex items-center justify-center">
                     <User size={20} className="text-cyan-600" />
                   </div>
-                  <span className="flex-1 font-medium text-gray-700">Chỉnh sửa hồ sơ</span>
+                  <span className="flex-1 font-medium text-gray-700">{t('profilePage.menu.editProfile')}</span>
                   <ChevronRight size={20} className="text-gray-400" />
-                </Link>
+                </LocalizedLink>
               </div>
             </div>
 
@@ -338,16 +341,16 @@ export default function ProfilePage() {
             {session.user?.role === 'admin' && (
               <div className="bg-white rounded-2xl shadow-md overflow-hidden">
                 <h2 className="px-4 py-3 text-sm font-semibold text-gray-500 bg-gray-50">
-                  QUẢN TRỊ
+                  {t('profilePage.sections.admin')}
                 </h2>
                 <div className="divide-y divide-gray-100">
-                  <Link href="/admin" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
+                  <LocalizedLink href="/admin" className="flex items-center gap-4 px-4 py-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
                     <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
                       <Shield size={20} className="text-red-600" />
                     </div>
-                    <span className="flex-1 font-medium text-gray-700">Trang quản trị</span>
+                    <span className="flex-1 font-medium text-gray-700">{t('profilePage.menu.admin')}</span>
                     <ChevronRight size={20} className="text-gray-400" />
-                  </Link>
+                  </LocalizedLink>
                 </div>
               </div>
             )}
@@ -361,7 +364,7 @@ export default function ProfilePage() {
                 <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
                   <LogOut size={20} className="text-red-600" />
                 </div>
-                <span className="flex-1 font-medium text-red-600 text-left">Đăng xuất</span>
+                <span className="flex-1 font-medium text-red-600 text-left">{t('common.logout')}</span>
               </div>
             </button>
 

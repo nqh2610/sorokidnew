@@ -3,19 +3,23 @@
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { useLocalizedUrl } from '@/components/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 /**
  * 🏆 AUTO-START COMPETE PAGE
  * 
  * Route: /compete/auto?mode=xxx&questions=x
  * 
- * Tự động bắt đầu thi đấu với mode và số câu đã chọn sẵn
- * Dùng cho Adventure Map - người chơi không cần chọn lại
+ * Auto-start competition with pre-selected mode and questions
+ * Used for Adventure Map - player doesn't need to select again
  */
 export default function AutoCompetePage() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const localizeUrl = useLocalizedUrl();
   const searchParams = useSearchParams();
+  const { t } = useI18n();
   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -24,18 +28,18 @@ export default function AutoCompetePage() {
     if (status === 'loading') return;
     
     if (status === 'unauthenticated') {
-      router.push('/login');
+      router.push(localizeUrl('/login'));
       return;
     }
 
-    // Lấy params từ URL
+    // Get params from URL
     const mode = searchParams.get('mode');
     const difficulty = searchParams.get('difficulty') || '1';
     const questions = searchParams.get('questions') || '10';
     const from = searchParams.get('from') || 'adventure';
     const zoneId = searchParams.get('zoneId');
     const mapType = searchParams.get('mapType') || 'addsub';
-    const stageName = searchParams.get('stageName') || 'Thi đấu';
+    const stageName = searchParams.get('stageName') || t('common.compete');
     const stageIcon = searchParams.get('stageIcon') || '🏆';
 
     // Validate mode
@@ -46,13 +50,13 @@ export default function AutoCompetePage() {
     ];
 
     if (!mode || !validModes.includes(mode)) {
-      setError('Mode không hợp lệ');
+      setError(t('competeScreen.invalidMode'));
       setLoading(false);
       return;
     }
 
-    // 🔧 FIX: Merge data từ competeGameMode (đã được adventure page lưu trước đó)
-    // competeGameMode chứa đầy đủ zoneId, stageId, mapType
+    // 🔧 FIX: Merge data from competeGameMode (already saved by adventure page)
+    // competeGameMode contains full zoneId, stageId, mapType
     let mergedZoneId = zoneId;
     let mergedMapType = mapType;
     let mergedStageId = null;
@@ -92,10 +96,10 @@ export default function AutoCompetePage() {
 
     sessionStorage.setItem('competeAutoStart', JSON.stringify(autoStartData));
     
-    // Redirect đến Compete page
-    router.replace('/compete');
+    // Redirect to Compete page
+    router.replace(localizeUrl('/compete'));
     
-  }, [status, router, searchParams]);
+  }, [status, router, localizeUrl, searchParams, t]);
 
   // Loading state
   if (loading && !error) {
@@ -103,8 +107,8 @@ export default function AutoCompetePage() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
         <div className="text-center">
           <div className="text-6xl animate-bounce mb-4">🏆</div>
-          <h2 className="text-xl font-bold text-gray-800 mb-2">Đang chuẩn bị...</h2>
-          <p className="text-gray-600">Cú Soro đang mở đấu trường cho con!</p>
+          <h2 className="text-xl font-bold text-gray-800 mb-2">{t('competeScreen.preparingArena')}</h2>
+          <p className="text-gray-600">{t('competeScreen.soroOpeningArena')}</p>
           
           <div className="mt-6 flex justify-center gap-1">
             {[0, 1, 2].map((i) => (
@@ -126,13 +130,13 @@ export default function AutoCompetePage() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-orange-50">
         <div className="text-center p-8 bg-white rounded-2xl shadow-xl max-w-md">
           <div className="text-6xl mb-4">😢</div>
-          <h2 className="text-xl font-bold text-gray-800 mb-2">Có lỗi xảy ra</h2>
+          <h2 className="text-xl font-bold text-gray-800 mb-2">{t('competeScreen.errorOccurred')}</h2>
           <p className="text-gray-600 mb-4">{error}</p>
           <button
-            onClick={() => router.push('/adventure')}
+            onClick={() => router.push(localizeUrl('/adventure'))}
             className="px-6 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors"
           >
-            Quay lại Map
+            {t('competeScreen.backToMap')}
           </button>
         </div>
       </div>

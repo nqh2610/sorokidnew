@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback, useMemo, useRef, memo } from 'react';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
-import Link from 'next/link';
 import { LogOut, ChevronDown } from 'lucide-react';
 import Logo from '@/components/Logo/Logo';
 import { MonsterAvatar } from '@/components/MonsterAvatar';
@@ -12,6 +11,8 @@ import ConfirmDialog from '@/components/ConfirmDialog/ConfirmDialog';
 import { useGameSound } from '@/lib/useGameSound';
 import { initSoundSystem } from '@/lib/soundManager';
 import SoundSettingsPanel from '@/components/SoundSettings/SoundSettingsPanel';
+import { LocalizedLink, useLocalizedUrl } from '@/components/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 // Import narrative config
 import { STORY_OVERVIEW, GAMEPLAY_NARRATIVES } from '@/config/narrative.config';
@@ -199,7 +200,7 @@ const getChapterNarrative = (chapterIndex, type = 'entering') => {
 };
 
 // ===== PROLOGUE MODAL - OPTIMIZED =====
-function PrologueModal({ isOpen, onClose, onComplete }) {
+function PrologueModal({ isOpen, onClose, onComplete, t }) {
   const [currentScene, setCurrentScene] = useState(0);
   const scenes = STORY_OVERVIEW?.prologue?.scenes || [];
   
@@ -296,7 +297,7 @@ function PrologueModal({ isOpen, onClose, onComplete }) {
             onClick={handleNext}
             className="w-full mt-6 py-3 bg-gradient-to-r from-amber-400 to-orange-500 text-white font-bold rounded-xl shadow-lg active:brightness-90 transition-all"
           >
-            {currentScene < scenes.length - 1 ? 'Tiếp tục →' : '🚀 Bắt đầu phiêu lưu!'}
+            {currentScene < scenes.length - 1 ? `${t('adventureScreen.continueBtn')} →` : `🚀 ${t('adventureScreen.startAdventure')}!`}
           </motion.button>
           
           {/* Skip button */}
@@ -309,7 +310,7 @@ function PrologueModal({ isOpen, onClose, onComplete }) {
               }}
               className="w-full mt-2 py-2 text-white/50 text-sm hover:text-white/80 transition-colors"
             >
-              Bỏ qua
+              {t('adventureScreen.skip')}
             </button>
           )}
         </div>
@@ -319,7 +320,7 @@ function PrologueModal({ isOpen, onClose, onComplete }) {
 }
 
 // ===== FLOATING CÚ SORO - WITH STORYTELLING ANIMATIONS =====
-function CuSoro({ message, isVisible, onToggle }) {
+function CuSoro({ message, isVisible, onToggle, t }) {
   // Animation states cho cú sinh động hơn
   const [isBlinking, setIsBlinking] = useState(false);
   const [isWaving, setIsWaving] = useState(false);
@@ -470,8 +471,8 @@ function CuSoro({ message, isVisible, onToggle }) {
               
               {/* Footer */}
               <div className="flex items-center justify-between mt-1.5 xs:mt-2 sm:mt-3 text-[10px] xs:text-xs text-gray-400">
-                <span>👆 Chạm để đóng</span>
-                <span className="text-amber-600 font-bold">🦉 Cú Soro</span>
+                <span>👆 {t('adventureScreen.tapToClose')}</span>
+                <span className="text-amber-600 font-bold">🦉 {t('adventureScreen.cuSoro')}</span>
               </div>
             </div>
             
@@ -522,7 +523,7 @@ function CuSoro({ message, isVisible, onToggle }) {
           className="absolute -top-1 -left-1 w-5 h-5 xs:w-6 xs:h-6 bg-gray-700/80 hover:bg-gray-600 rounded-full flex items-center justify-center z-10 shadow-md"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          title="Thu nhỏ Cú Soro"
+          title={t('adventureScreen.minimizeSoro')}
         >
           <span className="text-white text-[10px] xs:text-xs">✕</span>
         </motion.button>
@@ -551,7 +552,7 @@ function CuSoro({ message, isVisible, onToggle }) {
         {/* Name tag */}
         <div className="absolute -bottom-5 xs:-bottom-6 left-1/2 -translate-x-1/2">
           <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[8px] xs:text-[9px] sm:text-[10px] font-bold px-1.5 xs:px-2 py-0.5 xs:py-1 rounded-full shadow-lg whitespace-nowrap">
-            {message && !isVisible ? '👆 Đọc' : 'Cú Soro'}
+            {message && !isVisible ? `👆 ${t('adventureScreen.readMessage')}` : t('adventureScreen.cuSoro')}
           </span>
         </div>
         
@@ -572,7 +573,7 @@ function CuSoro({ message, isVisible, onToggle }) {
 
 // ===== STAGE NODE - OPTIMIZED =====
 // 🚀 PERF: memo để tránh re-render khi parent render nhưng props không đổi
-const StageNode = memo(function StageNode({ stage, status, onClick, index }) {
+const StageNode = memo(function StageNode({ stage, status, onClick, index, t }) {
   const isLocked = status === 'locked';
   const isCurrent = status === 'current';
   const isCompleted = status === 'completed';
@@ -666,7 +667,7 @@ const StageNode = memo(function StageNode({ stage, status, onClick, index }) {
         <div className="absolute -top-10 xs:-top-12 sm:-top-14 md:-top-16 left-1/2 -translate-x-1/2 z-20 animate-bounce">
           <div className="flex items-center justify-center gap-1 px-3 xs:px-3.5 sm:px-4 md:px-5 py-1.5 xs:py-2 sm:py-2.5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full shadow-lg border-2 border-white whitespace-nowrap">
             <span className="text-sm xs:text-base sm:text-lg md:text-xl">🎮</span>
-            <span className="text-xs xs:text-sm sm:text-base md:text-lg font-black text-white tracking-tight">CHƠI!</span>
+            <span className="text-xs xs:text-sm sm:text-base md:text-lg font-black text-white tracking-tight">{t('adventureScreen.play')}</span>
           </div>
           <div className="w-0 h-0 border-l-6 xs:border-l-7 sm:border-l-8 md:border-l-10 border-r-6 xs:border-r-7 sm:border-r-8 md:border-r-10 border-t-6 xs:border-t-7 sm:border-t-8 md:border-t-10 border-transparent border-t-orange-500 mx-auto" />
         </div>
@@ -1004,7 +1005,7 @@ function ZoneTabs({ zones, activeZoneId, onSelect, zoneProgress }) {
 }
 
 // ===== STAGE GRID - Responsive =====
-function StageGrid({ stages, stageStatuses, onStageClick }) {
+function StageGrid({ stages, stageStatuses, onStageClick, t }) {
   const rows = [];
   for (let i = 0; i < stages.length; i += 3) {
     rows.push(stages.slice(i, i + 3));
@@ -1081,7 +1082,7 @@ function StageGrid({ stages, stageStatuses, onStageClick }) {
                 return (
                   <div key={stage.stageId} className="flex flex-col items-center">
                     <div className="flex items-center">
-                      <StageNode stage={stage} status={status} onClick={onStageClick} index={actualIndex} />
+                      <StageNode stage={stage} status={status} onClick={onStageClick} index={actualIndex} t={t} />
                       {showHorizontalDots && <PathDots direction="horizontal" isCompleted={currentCompleted} isReversed={isReversed} />}
                     </div>
                     {/* Vertical dots - đặt ngay dưới stage cuối logic của hàng */}
@@ -1105,7 +1106,7 @@ function StageGrid({ stages, stageStatuses, onStageClick }) {
 }
 
 // ===== STAGE MODAL - Responsive & OPTIMIZED =====
-function StageModal({ stage, status, onClose, onStart }) {
+function StageModal({ stage, status, onClose, onStart, t }) {
   if (!stage) return null;
   const isBoss = stage.type === 'boss';
   const isTreasure = stage.type === 'treasure';
@@ -1189,12 +1190,12 @@ function StageModal({ stage, status, onClose, onStart }) {
             <h3 className="text-lg sm:text-xl font-black text-white text-center relative z-10">{stage.name}</h3>
             {status === 'completed' && (
               <p className="text-white/80 text-center text-sm mt-1 relative z-10">
-                ⭐ Đã hoàn thành ⭐
+                ⭐ {t('adventureScreen.stageCompleted')} ⭐
               </p>
             )}
             {isLocked && (
               <p className="text-white/90 text-center text-sm mt-1 relative z-10">
-                🔒 Màn chơi chưa mở khóa
+                🔒 {t('adventureScreen.stageLocked')}
               </p>
             )}
           </div>
@@ -1205,7 +1206,7 @@ function StageModal({ stage, status, onClose, onStart }) {
                 <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-3 sm:p-4 mb-3 sm:mb-4">
                   <p className="text-amber-700 text-center font-medium text-sm sm:text-base">
                     <span className="text-lg sm:text-xl block mb-1 sm:mb-2">💡</span>
-                    Hoàn thành các màn trước để mở khóa màn này nhé!
+                    {t('adventureScreen.completeToUnlock')}
                   </p>
                 </div>
                 <motion.button 
@@ -1213,7 +1214,7 @@ function StageModal({ stage, status, onClose, onStart }) {
                   whileTap={{ scale: 0.97 }} // 🚀 Only tap feedback, no hover
                   className="w-full py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 text-white font-bold shadow-lg text-sm sm:text-base active:brightness-90 transition-all"
                 >
-                  Đã hiểu! 👍
+                  {t('adventureScreen.understood')} 👍
                 </motion.button>
               </>
             ) : (
@@ -1225,7 +1226,7 @@ function StageModal({ stage, status, onClose, onStart }) {
                     whileTap={{ scale: 0.97 }}
                     className="flex-1 py-2.5 sm:py-3 rounded-xl bg-gray-100 text-gray-600 font-bold text-sm sm:text-base active:bg-gray-200 transition-colors"
                   >
-                    Đóng
+                    {t('adventureScreen.tapToClose')}
                   </motion.button>
                   <motion.button
                     whileTap={{ scale: 0.97 }}
@@ -1236,7 +1237,7 @@ function StageModal({ stage, status, onClose, onStart }) {
                   >
                     {/* 🚀 REMOVED: Shimmer effect - too heavy */}
                     <span className="relative z-10">
-                      {status === 'completed' ? '🔄 Chơi lại' : '▶️ Bắt đầu'}
+                      {status === 'completed' ? `🔄 ${t('adventureScreen.playAgain')}` : `▶️ ${t('adventureScreen.play')}`}
                     </span>
                   </motion.button>
                 </div>
@@ -1250,7 +1251,7 @@ function StageModal({ stage, status, onClose, onStart }) {
 }
 
 // ===== HEADER - Giống hệt TopBar Dashboard =====
-function GameHeader({ totalStages, completedStages, userStats, session }) {
+function GameHeader({ totalStages, completedStages, userStats, session, t }) {
   const progress = totalStages > 0 ? Math.round((completedStages / totalStages) * 100) : 0;
   const [showDropdown, setShowDropdown] = useState(false);
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
@@ -1309,25 +1310,25 @@ function GameHeader({ totalStages, completedStages, userStats, session }) {
       case 'nangcao':
         return (
           <span className="px-2 py-0.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white text-xs font-bold rounded-full">
-            ⭐ Nâng Cao
+            ⭐ {t('adventureScreen.advanced')}
           </span>
         );
       case 'basic':
         return (
           <span className="px-2 py-0.5 bg-gradient-to-r from-blue-400 to-cyan-500 text-white text-xs font-bold rounded-full">
-            ✓ Cơ Bản
+            ✓ {t('adventureScreen.basic')}
           </span>
         );
       case 'trial':
         return (
           <span className="px-2 py-0.5 bg-gradient-to-r from-orange-400 to-red-500 text-white text-xs font-bold rounded-full">
-            🔥 Dùng thử {trialDays > 0 && `(${trialDays}d)`}
+            🔥 {t('adventureScreen.trial')} {trialDays > 0 && `(${trialDays}${t('adventureScreen.days')})`}
           </span>
         );
       default:
         return (
           <span className="px-2 py-0.5 bg-gray-200 text-gray-600 text-xs font-bold rounded-full">
-            Miễn Phí
+            {t('adventureScreen.free')}
           </span>
         );
     }
@@ -1340,10 +1341,10 @@ function GameHeader({ totalStages, completedStages, userStats, session }) {
         isOpen={showLogoutDialog}
         onClose={() => setShowLogoutDialog(false)}
         onConfirm={() => signOut({ callbackUrl: '/' })}
-        title="Đăng xuất?"
-        message="Bạn có chắc chắn muốn đăng xuất khỏi tài khoản?"
-        confirmText="Đăng xuất"
-        cancelText="Hủy"
+        title={`${t('adventureScreen.logout')}?`}
+        message={t('adventureScreen.logoutMessage')}
+        confirmText={t('adventureScreen.logout')}
+        cancelText={t('adventureScreen.cancel')}
         type="warning"
       />
 
@@ -1351,29 +1352,29 @@ function GameHeader({ totalStages, completedStages, userStats, session }) {
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3">
           <div className="flex items-center justify-between gap-2">
             {/* Logo - Click để về Dashboard */}
-            <Link href="/dashboard" className="flex items-center gap-2 hover:opacity-80 transition-opacity flex-shrink-0">
+            <LocalizedLink href="/dashboard" className="flex items-center gap-2 hover:opacity-80 transition-opacity flex-shrink-0">
               <Logo size="md" showText={false} />
               <h1 className="hidden sm:block text-xl font-bold bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
                 SoroKid
               </h1>
-            </Link>
+            </LocalizedLink>
 
             {/* Desktop Stats bar */}
             <div className="hidden md:flex items-center gap-2 lg:gap-3">
               {/* Tier Badge Desktop */}
-              <Link 
+              <LocalizedLink 
                 href="/pricing"
                 className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-violet-50 to-pink-50 rounded-xl border border-violet-100 hover:shadow-md transition-all"
               >
                 {getTierBadge()}
-              </Link>
+              </LocalizedLink>
 
               {/* Streak */}
               <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl border border-orange-100">
                 <span className="text-lg">🔥</span>
                 <div className="text-right">
                   <span className="font-bold text-orange-600">{userStats?.streak || 0}</span>
-                  <span className="text-xs text-orange-500 ml-1">ngày</span>
+                  <span className="text-xs text-orange-500 ml-1">{t('adventureScreen.days')}</span>
                 </div>
               </div>
 
@@ -1382,7 +1383,7 @@ function GameHeader({ totalStages, completedStages, userStats, session }) {
                 <span className="text-lg">⭐</span>
                 <div className="text-right">
                   <span className="font-bold text-yellow-600">{(userStats?.totalStars || 0).toLocaleString()}</span>
-                  <span className="text-xs text-yellow-500 ml-1">sao</span>
+                  <span className="text-xs text-yellow-500 ml-1">{t('adventureScreen.stars')}</span>
                 </div>
               </div>
 
@@ -1391,7 +1392,7 @@ function GameHeader({ totalStages, completedStages, userStats, session }) {
                 <span className="text-lg">💎</span>
                 <div className="text-right">
                   <span className="font-bold text-cyan-600">{(userStats?.diamonds || 0).toLocaleString()}</span>
-                  <span className="text-xs text-cyan-500 ml-1">kim cương</span>
+                  <span className="text-xs text-cyan-500 ml-1">{t('adventureScreen.diamonds')}</span>
                 </div>
               </div>
 
@@ -1437,7 +1438,7 @@ function GameHeader({ totalStages, completedStages, userStats, session }) {
               <SoundSettingsPanel compact variant="header" />
 
               {/* Avatar - direct link to profile page */}
-              <Link 
+              <LocalizedLink 
                 href="/profile"
                 className="flex-shrink-0 active:scale-95 transition-transform"
               >
@@ -1448,13 +1449,13 @@ function GameHeader({ totalStages, completedStages, userStats, session }) {
                   className="border-2 border-violet-200"
                   showBorder={false}
                 />
-              </Link>
+              </LocalizedLink>
 
               {/* Logout shortcut button - nhỏ hơn */}
               <button
                 onClick={() => setShowLogoutDialog(true)}
                 className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-red-50 hover:bg-red-100 active:bg-red-200 rounded-full transition-colors"
-                title="Đăng xuất"
+                title={t('adventureScreen.logout')}
               >
                 <LogOut size={14} className="text-red-500" />
               </button>
@@ -1482,7 +1483,7 @@ function GameHeader({ totalStages, completedStages, userStats, session }) {
                       {userStats?.name || session?.user?.name || 'User'}
                     </span>
                     <div className="text-xs text-gray-500">
-                      {userStats?.levelInfo?.icon} {userStats?.levelInfo?.name || `Cấp ${userStats?.level || 1}`}
+                      {userStats?.levelInfo?.icon} {userStats?.levelInfo?.name || `${t('adventureScreen.level')} ${userStats?.level || 1}`}
                     </div>
                   </div>
                   <ChevronDown size={16} className={`text-gray-400 transition-transform ${showDropdown ? 'rotate-180' : ''}`} />
@@ -1491,67 +1492,67 @@ function GameHeader({ totalStages, completedStages, userStats, session }) {
                 {/* Desktop: Dropdown menu */}
                 {showDropdown && (
                   <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
-                    <Link
+                    <LocalizedLink
                       href="/dashboard"
                       onClick={() => setShowDropdown(false)}
                       className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
                     >
                       <span>📊</span>
-                      <span className="text-gray-700">Bảng điều khiển</span>
-                    </Link>
-                    <Link
+                      <span className="text-gray-700">{t('adventureScreen.dashboard')}</span>
+                    </LocalizedLink>
+                    <LocalizedLink
                       href="/learn"
                       onClick={() => setShowDropdown(false)}
                       className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
                     >
                       <span>📚</span>
-                      <span className="text-gray-700">Học tập</span>
-                    </Link>
-                    <Link
+                      <span className="text-gray-700">{t('adventureScreen.learn')}</span>
+                    </LocalizedLink>
+                    <LocalizedLink
                       href="/practice"
                       onClick={() => setShowDropdown(false)}
                       className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
                     >
                       <span>🎯</span>
-                      <span className="text-gray-700">Luyện tập</span>
-                    </Link>
-                    <Link
+                      <span className="text-gray-700">{t('adventureScreen.practice')}</span>
+                    </LocalizedLink>
+                    <LocalizedLink
                       href="/compete"
                       onClick={() => setShowDropdown(false)}
                       className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
                     >
                       <span>🏆</span>
-                      <span className="text-gray-700">Thi đấu</span>
-                    </Link>
+                      <span className="text-gray-700">{t('adventureScreen.compete')}</span>
+                    </LocalizedLink>
                     <hr className="my-2" />
-                    <Link
+                    <LocalizedLink
                       href="/profile"
                       onClick={() => setShowDropdown(false)}
                       className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
                     >
                       <span>👤</span>
-                      <span className="text-gray-700">Hồ sơ</span>
-                    </Link>
+                      <span className="text-gray-700">{t('adventureScreen.profile')}</span>
+                    </LocalizedLink>
                     {(tier === 'vip' || tier === 'advanced' || tier === 'nangcao') && (
-                      <Link
+                      <LocalizedLink
                         href="/certificate"
                         onClick={() => setShowDropdown(false)}
                         className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
                       >
                         <span>🏅</span>
-                        <span className="text-gray-700">Chứng chỉ</span>
-                      </Link>
+                        <span className="text-gray-700">{t('adventureScreen.certificate')}</span>
+                      </LocalizedLink>
                     )}
                     <hr className="my-2" />
                     {session?.user?.role === 'admin' && (
-                      <Link
+                      <LocalizedLink
                         href="/admin"
                         onClick={() => setShowDropdown(false)}
                         className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
                       >
                         <span>⚙️</span>
-                        <span className="text-gray-700">Quản trị</span>
-                      </Link>
+                        <span className="text-gray-700">{t('adventureScreen.admin')}</span>
+                      </LocalizedLink>
                     )}
                     <button
                       onClick={() => {
@@ -1561,7 +1562,7 @@ function GameHeader({ totalStages, completedStages, userStats, session }) {
                       className="flex items-center gap-3 px-4 py-2.5 hover:bg-red-50 transition-colors text-red-600 w-full"
                     >
                       <LogOut size={18} />
-                      <span>Đăng xuất</span>
+                      <span>{t('adventureScreen.logout')}</span>
                     </button>
                   </div>
                 )}
@@ -1575,7 +1576,7 @@ function GameHeader({ totalStages, completedStages, userStats, session }) {
 }
 
 // ===== ZONE AREA - Chỉ hiển thị UI, swipe đã xử lý ở main component =====
-function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, activeStages, stageStatuses, onChangeZone, onStageClick }) {
+function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, activeStages, stageStatuses, onChangeZone, onStageClick, t }) {
   const currentIndex = zones.findIndex(z => z.zoneId === activeZoneId);
   const hasPrev = currentIndex > 0;
   const hasNext = currentIndex < zones.length - 1;
@@ -1597,7 +1598,7 @@ function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, acti
           whileTap={hasPrev ? { scale: 0.95 } : undefined}
         >
           <span className="text-lg xs:text-xl">‹</span>
-          <span className="hidden xs:inline">Trước</span>
+          <span className="hidden xs:inline">{t('adventureScreen.prev')}</span>
         </motion.button>
         
         <div className="flex items-center gap-2 xs:gap-2.5">
@@ -1622,7 +1623,7 @@ function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, acti
           }`}
           whileTap={hasNext ? { scale: 0.95 } : undefined}
         >
-          <span className="hidden xs:inline">Sau</span>
+          <span className="hidden xs:inline">{t('adventureScreen.next')}</span>
           <span className="text-lg xs:text-xl">›</span>
         </motion.button>
       </div>
@@ -1630,7 +1631,7 @@ function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, acti
       {/* Swipe instruction - show once on small screens */}
       <div className="text-center mb-2 xs:mb-2.5 md:hidden">
         <p className="text-white/60 text-xs xs:text-sm font-medium">
-          👆 Vuốt trái/phải để chuyển vùng
+          👆 {t('adventureScreen.swipeToChangeZone')}
         </p>
       </div>
       
@@ -1688,7 +1689,7 @@ function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, acti
               >
                 {zoneProgress[activeZoneId]?.completed || 0}/{zoneProgress[activeZoneId]?.total || 0}
               </motion.p>
-              <p className="text-white/70 text-[10px] xs:text-xs sm:text-sm">hoàn thành</p>
+              <p className="text-white/70 text-[10px] xs:text-xs sm:text-sm">{t('adventureScreen.completed')}</p>
             </div>
           </div>
           <div className="mt-2.5 xs:mt-3 sm:mt-4 md:mt-5 h-2 xs:h-2.5 sm:h-3 md:h-4 bg-white/40 rounded-full overflow-hidden relative z-10 shadow-inner">
@@ -1709,7 +1710,7 @@ function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, acti
         </div>
       </motion.div>
       
-      <StageGrid stages={activeStages} stageStatuses={stageStatuses} onStageClick={onStageClick} />
+      <StageGrid stages={activeStages} stageStatuses={stageStatuses} onStageClick={onStageClick} t={t} />
     </div>
     {/* Close outer swipe wrapper */}
     </div>
@@ -1771,8 +1772,10 @@ export default function GameMapNew({
   returnZone = null
 }) {
   const router = useRouter();
+  const localizeUrl = useLocalizedUrl();
   const { data: session } = useSession();
   const { play, playMusic, stopMusic, changeTheme } = useGameSound();
+  const { t } = useI18n();
 
   // Khởi tạo map và zone từ returnZone nếu có
   const [currentMap, setCurrentMap] = useState(() => {
@@ -1962,15 +1965,15 @@ export default function GameMapNew({
     // Tạo message cho zone
     if (isZoneComplete) {
       message = activeZone?.story?.complete || 
-                `Tuyệt vời! Con đã chinh phục ${activeZone.name}! 🌟`;
+                t('adventureScreen.zoneCompleteMsg', { zoneName: activeZone.name });
     } else if (progress?.completed === 0) {
       const chapterNarrative = getChapterNarrative(chapterIndex, 'entering');
       message = chapterNarrative || 
                 activeZone?.story?.intro || 
-                `Chào mừng đến ${activeZone.name}! Hãy bắt đầu khám phá nào!`;
+                t('adventureScreen.welcomeToZone', { zoneName: activeZone.name });
     } else {
       message = activeZone?.story?.mission || 
-                `Tiếp tục hành trình tại ${activeZone.name} nào! Còn ${progress.total - progress.completed} thử thách đang chờ!`;
+                t('adventureScreen.continueJourney', { zoneName: activeZone.name, remaining: progress.total - progress.completed });
     }
     
     // Luôn cập nhật message để user click Cú có thể xem
@@ -2072,10 +2075,10 @@ export default function GameMapNew({
   const handlePrologueComplete = useCallback(() => {
     // Hiện lời dẫn đầu tiên sau khi xem xong prologue
     const welcomeMsg = getChapterNarrative(1, 'entering') || 
-                       "Hú hú! Chào mừng đến Làng Bàn Tính! Đây là nơi mọi hành trình bắt đầu.";
+                       t('adventureScreen.firstWelcome');
     setCuSoroMessage(welcomeMsg);
     setCuSoroVisible(true);
-  }, []);
+  }, [t]);
   
   // 🎉 Function để trigger reward effect - có thể gọi từ bên ngoài
   const triggerReward = useCallback(({ type = 'complete', stars = 0, message = '' }) => {
@@ -2113,8 +2116,8 @@ export default function GameMapNew({
   // 🏆 Handle xem chi tiết chứng chỉ - navigate đến trang certificate
   const handleViewCertificate = useCallback(() => {
     // Navigate đến trang certificate list để xem/download
-    router.push('/certificate');
-  }, [router]);
+    router.push(localizeUrl('/certificate'));
+  }, [router, localizeUrl]);
   
   // 🦉 Khi click vào stage, hiện lời dẫn phù hợp
   const handleStageClick = useCallback((stage) => {
@@ -2146,20 +2149,20 @@ export default function GameMapNew({
     // Lấy lời dẫn theo loại stage và trạng thái
     let message = '';
     if (status === 'locked') {
-      message = "Hmm... cánh cổng này chưa chịu mở. Hãy chinh phục những thử thách trước đã!";
+      message = t('adventureScreen.stageLockedMsg');
     } else if (status === 'completed') {
-      message = "Con đã chinh phục nơi này rồi! Muốn thử lại để luyện tập thêm không?";
+      message = t('adventureScreen.stageCompletedMsg');
     } else {
       // Current stage - có thể chơi
       if (stage.type === 'lesson') {
-        message = "Hãy khám phá bí mật ẩn giấu bên trong! Soro sẽ đi cùng con!";
+        message = t('adventureScreen.lessonMsg');
       } else if (stage.type === 'boss') {
-        message = "Thử thách lớn đang chờ! Tập trung và dùng hết sức mạnh của con nhé!";
+        message = t('adventureScreen.bossMsg');
       } else if (isTreasureStage) {
-        message = "Kho báu tri thức đang chờ! Hãy chinh phục nó nhé!";
+        message = t('adventureScreen.treasureMsg');
       } else {
         message = getRandomMessage(GAMEPLAY_NARRATIVES?.beforeQuestion) || 
-                  "Sẵn sàng cho thử thách mới chưa? Soro tin con làm được!";
+                  t('adventureScreen.readyMsg');
       }
     }
     
@@ -2176,10 +2179,10 @@ export default function GameMapNew({
       // 🔊 Play game start sound
       play('gameStart');
       // Tier đã được check trước khi mở modal rồi, chỉ cần navigate
-      onStageClick ? onStageClick(selectedStage) : router.push(selectedStage.link);
+      onStageClick ? onStageClick(selectedStage) : router.push(localizeUrl(selectedStage.link));
     }
     setSelectedStage(null);
-  }, [selectedStage, router, onStageClick, play]);
+  }, [selectedStage, router, onStageClick, play, localizeUrl]);
   
   // 🚀 REMOVED: Random stars useMemo - not needed anymore (using CSS)
   
@@ -2202,7 +2205,7 @@ export default function GameMapNew({
       {/* 🎨 Zone Background - Thay đổi theo zone - bao gồm gradient, clouds, decorations */}
       <ZoneBackground key={activeZoneId} zoneId={activeZoneId} progress={zoneProgress[activeZoneId]?.percent || 0} />
       
-      <GameHeader totalStages={totalStages} completedStages={completedStagesCount} userStats={userStats} session={session} />
+      <GameHeader totalStages={totalStages} completedStages={completedStagesCount} userStats={userStats} session={session} t={t} />
       
       {/* Title with animation - Responsive for all screens */}
       <div className="text-center py-1.5 xs:py-2 sm:py-3 md:py-5 relative z-10 px-2 xs:px-4">
@@ -2234,7 +2237,7 @@ export default function GameMapNew({
           >
             🗺️
           </motion.span>
-          {' '}<span className="hidden xs:inline">Đi Tìm</span><span className="xs:hidden">Tìm</span> Kho Báu<span className="hidden xs:inline"> Tri Thức</span>{' '}
+          {' '}{t('adventureScreen.treasureQuest')}{' '}
           <motion.span
             animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
@@ -2269,11 +2272,12 @@ export default function GameMapNew({
         stageStatuses={stageStatuses}
         onChangeZone={setActiveZoneId}
         onStageClick={handleStageClick}
+        t={t}
       />
       
       {/* 🦉 Cú Soro - Ẩn khi có modal mở để không bị che */}
       {!selectedStage && !showPrologue && !showZoneIntro && !showZoneLocked && (
-        <CuSoro message={cuSoroMessage} isVisible={cuSoroVisible} onToggle={() => setCuSoroVisible(!cuSoroVisible)} />
+        <CuSoro message={cuSoroMessage} isVisible={cuSoroVisible} onToggle={() => setCuSoroVisible(!cuSoroVisible)} t={t} />
       )}
       
       {/* 🎨 Map Decorations - Icon trang trí nhẹ nhàng */}
@@ -2293,7 +2297,7 @@ export default function GameMapNew({
         show={showZoneCelebration}
         zoneName={celebrationZone?.name || ''}
         zoneIcon={celebrationZone?.icon || '🏆'}
-        message={celebrationZone?.story?.complete || `Tuyệt vời! Con đã chinh phục ${celebrationZone?.name}!`}
+        message={celebrationZone?.story?.complete || t('adventureScreen.zoneCompleteMsg', { zoneName: celebrationZone?.name })}
         onComplete={() => {
           setShowZoneCelebration(false);
           setCelebrationZone(null);
@@ -2306,7 +2310,7 @@ export default function GameMapNew({
         zoneName={introZone?.name || ''}
         zoneIcon={introZone?.icon || '🏝️'}
         zoneSubtitle={introZone?.subtitle || ''}
-        introMessage={introZone?.story?.intro || `Chào mừng đến ${introZone?.name}! Hành trình mới đang chờ đón con!`}
+        introMessage={introZone?.story?.intro || t('adventureScreen.newJourneyAwaits', { zoneName: introZone?.name })}
         onComplete={() => {
           setShowZoneIntro(false);
           setIntroZone(null);
@@ -2349,20 +2353,21 @@ export default function GameMapNew({
             isOpen={showPrologue} 
             onClose={() => setShowPrologue(false)} 
             onComplete={handlePrologueComplete}
+            t={t}
           />
         )}
       </AnimatePresence>
       
       <AnimatePresence>
         {selectedStage && (
-          <StageModal stage={selectedStage} status={stageStatuses[selectedStage.stageId]} onClose={() => setSelectedStage(null)} onStart={handleStartStage} />
+          <StageModal stage={selectedStage} status={stageStatuses[selectedStage.stageId]} onClose={() => setSelectedStage(null)} onStart={handleStartStage} t={t} />
         )}
       </AnimatePresence>
       
       {/* Footer */}
       <div className="fixed bottom-2 left-0 right-0 z-10 text-center pointer-events-none">
         <p className="text-white/25 text-[10px] sm:text-xs drop-shadow-sm">
-          © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
+          © {new Date().getFullYear()} SoroKid - {t('adventureScreen.footerText')}
         </p>
       </div>
     </div>

@@ -1,0 +1,2228 @@
+{
+  "common": {
+    "brand": "Sorokid",
+    "tagline": "Learn Soroban - Develop Thinking Skills",
+    "login": "Login",
+    "register": "Sign Up",
+    "logout": "Logout",
+    "home": "Home",
+    "learn": "Learn",
+    "practice": "Practice",
+    "compete": "Compete",
+    "adventure": "Adventure",
+    "leaderboard": "Leaderboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "dashboard": "Dashboard",
+    "blog": "Blog",
+    "tool": "Toolbox",
+    "pricing": "Pricing",
+    "free": "Free",
+    "premium": "Premium",
+    "tryNow": "Try Now",
+    "startLearning": "Start Learning",
+    "viewAll": "View All",
+    "readMore": "Read More",
+    "share": "Share",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "success": "Success",
+    "minutes": "min",
+    "seconds": "sec",
+    "points": "points",
+    "level": "level",
+    "language": "Language",
+    "switchLang": "Switch Language"
+  },
+
+  "avatar": {
+    "selectAvatar": "Choose Avatar",
+    "defaultAvatar": "Default Avatar",
+    "useDefaultAvatar": "Use default avatar",
+    "saving": "Saving..."
+  },
+
+  "seo": {
+    "home": {
+      "title": "Sorokid - Best Soroban Learning App for Kids | Mental Math Training",
+      "description": "The best Soroban learning app for elementary students. Learn Japanese abacus at home with step-by-step visual guides. Gamified learning that kids love. Parents don't need to know Soroban!",
+      "h1": "Best Soroban Learning App for Elementary Students",
+      "keywords": ["soroban learning app", "best soroban app", "mental math for kids", "learn soroban online", "japanese abacus app"]
+    },
+    "pricing": {
+      "title": "Sorokid Pricing - Soroban Learning Plans for Kids",
+      "description": "Explore Sorokid learning plans. Start free, upgrade to Premium to unlock all lessons, exercises, and features for your child's Soroban journey.",
+      "h1": "Pricing - Choose Your Learning Plan",
+      "keywords": ["sorokid pricing", "soroban app price", "soroban premium", "mental math subscription"]
+    },
+    "blog": {
+      "title": "Sorokid Blog - Tips for Teaching Kids Soroban at Home",
+      "description": "Practical tips and guides for parents to help children learn Soroban and mental math at home. Expert advice for effective learning.",
+      "h1": "Blog - Tips for Parents",
+      "keywords": ["soroban tips", "teach kids math", "mental math guide", "soroban learning tips"]
+    },
+    "tool": {
+      "title": "Teacher Toolbox - Free Classroom Games & Activities",
+      "description": "Collection of popular classroom games: Quiz Show, Spin Wheel, Crossword, Animal Race... 100% free, no login required!",
+      "h1": "Toolbox - Free Classroom Games & Tools",
+      "keywords": ["teacher toolbox", "classroom games", "teaching tools", "educational games"]
+    }
+  },
+
+  "home": {
+    "badge": "Japanese Soroban Method",
+    "hero": {
+      "title": "Teach Your Kids Soroban at Home",
+      "title1": "Mental Math",
+      "title2": "Super Fast Calculation",
+      "title3": "Learn while playing!",
+      "subtitle": "Parents don't need to know Soroban - we guide every step",
+      "description": "Visual step-by-step guidance. Kids learn on their own. Gamified experience that makes children WANT to practice every day.",
+      "cta": "Sign Up Now",
+      "ctaSecondary": "See How It Works",
+      "appDesc": "Soroban learning app for elementary students.",
+      "highlight": "From fearing math to loving it in just weeks!",
+      "benefit1": "Easy for parents to guide",
+      "benefit2": "Fun like playing games",
+      "benefit3": "Flexible schedule",
+      "benefit4": "See daily progress"
+    },
+    "features": {
+      "title": "Why Kids Love Learning with Sorokid?",
+      "subtitle": "Designed specially for elementary students with a simple, engaging interface",
+      "gameified": {
+        "title": "Learn Like Playing Games",
+        "description": "Points, stars, diamonds... make mental math practice as fun as their favorite games!"
+      },
+      "lessons": {
+        "title": "Engaging Lessons",
+        "description": "From basic to advanced using Japanese Soroban method. Easy to understand, remember, and apply."
+      },
+      "speed": {
+        "title": "Faster Reflexes",
+        "description": "Varied exercises help kids calculate faster and more accurately every day. See results in 2 weeks!"
+      },
+      "compete": {
+        "title": "Fun Competition",
+        "description": "Leaderboards, tournaments with friends. Motivation soars when there's competition!"
+      },
+      "quest": {
+        "title": "Daily Quests",
+        "description": "Daily quests help kids maintain self-learning habits. Complete = earn rewards!"
+      },
+      "report": {
+        "title": "Detailed Reports",
+        "description": "Parents track progress clearly: speed, accuracy, and daily study time."
+      }
+    },
+    "soroban": {
+      "title": "What is Soroban?",
+      "desc": "Soroban is the Japanese abacus with over 400 years of history. Kids learning Soroban can visualize the abacus in their mind and calculate as fast as a calculator without pen and paper.",
+      "benefit1Title": "Brain Development",
+      "benefit1Desc": "Activates both left brain (logic) and right brain (visual)",
+      "benefit2Title": "Super Fast Mental Math",
+      "benefit2Desc": "Add/subtract 2-3 digit numbers in seconds, no pen needed",
+      "benefit3Title": "Improve Focus",
+      "benefit3Desc": "Pay attention to each step, applies to all subjects",
+      "benefit4Title": "Global Method",
+      "benefit4Desc": "Popular in Japan, Korea, China, Malaysia...",
+      "whyTitle": "Why Choose Sorokid?",
+      "whySubtitle": "You don't need to know Soroban to help your kids learn!",
+      "why1": "Step-by-step visual guidance",
+      "why2": "Gamified - kids learn willingly",
+      "why3": "Track: consistency, speed, accuracy",
+      "demoTitle": "Try the Virtual Abacus!",
+      "demoDesc": "Click on beads to move them up/down"
+    },
+    "roadmap": {
+      "title": "Scientific Learning Roadmap",
+      "subtitle": "From zero to calculating as fast as a calculator!",
+      "step1": "Learn Theory",
+      "step1Desc": "Get familiar with Soroban abacus through engaging lessons",
+      "step2": "Practice",
+      "step2Desc": "Train with exercises from easy to hard",
+      "step3": "Drill",
+      "step3Desc": "Increase speed and accuracy through drills",
+      "step4": "Compete",
+      "step4Desc": "Challenge yourself, rank with friends"
+    },
+    "progress": {
+      "title": "Parents Can Track Progress Easily",
+      "subtitle": "Our system automatically tracks your child's improvement through every lesson.",
+      "speed": "Calculation Speed",
+      "speedDesc": "Time to complete each exercise",
+      "accuracy": "Accuracy",
+      "accuracyDesc": "Correct answer rate",
+      "diligence": "Consistency",
+      "diligenceDesc": "Consecutive study days (streak)",
+      "achievement": "Achievements",
+      "achievementDesc": "Badges, levels, experience points",
+      "rewardTitle": "Reward System",
+      "star": "Stars",
+      "starDesc": "Earned when completing lessons",
+      "diamond": "Diamonds",
+      "diamondDesc": "Special rewards",
+      "badge": "Badges",
+      "badgeDesc": "For outstanding achievements",
+      "rank": "Ranks",
+      "rankDesc": "Level up by earning points"
+    },
+    "userTypes": {
+      "title": "Who Should Use Sorokid?",
+      "subtitle": "Perfect for anyone who wants kids to excel in mental math",
+      "student": {
+        "title": "Students 6-12 years old",
+        "desc": "Learn through fun games, earn rewards for completing lessons, compete with friends. Confident to raise hands in class!"
+      },
+      "parent": {
+        "title": "Parents",
+        "desc": "An effective tool for learning at home. Track your child's daily progress - no tutoring centers needed."
+      },
+      "teacher": {
+        "title": "Teachers",
+        "desc": "Modern teaching tools, auto-grading assignments. Personalized for each student's ability."
+      }
+    },
+    "highlights": {
+      "title": "Kids Love It, Parents Rest Easy",
+      "subtitle": "Designed to make kids want to learn every day",
+      "design": "Eye-catching Design",
+      "designDesc": "Bright, cute colors - kids love it at first sight",
+      "anywhere": "Learn Anywhere",
+      "anywhereDesc": "Phone, tablet, laptop - works on any device",
+      "virtual": "Built-in Virtual Abacus",
+      "virtualDesc": "Abacus built into the app, ready to practice instantly",
+      "athome": "Learn at Home",
+      "athomeDesc": "Kids learn comfortably in their familiar home environment"
+    },
+    "finalCta": {
+      "title": "Just 15 mins/day - Mental Math Genius Within Reach!",
+      "subtitle": "Over 10,000 students improved their mental math in 3 months. Ready for your child?",
+      "register": "Sign Up Free",
+      "login": "Have an account? Login"
+    },
+    "stats": {
+      "students": "Students",
+      "lessons": "Lessons",
+      "exercises": "Exercises",
+      "parents": "Happy Parents"
+    },
+    "testimonials": {
+      "title": "What Parents Say About Sorokid"
+    },
+    "blog": {
+      "title": "Tips for Parents",
+      "description": "Practical guidance to help parents support their children's math journey effectively",
+      "viewAll": "View All Articles"
+    },
+    "cta": {
+      "title": "Start Your Child's Soroban Journey Today",
+      "description": "Free 7-day trial. No credit card required.",
+      "button": "Sign Up Free"
+    }
+  },
+
+  "tool": {
+    "title": "Teacher Toolbox",
+    "subtitle": "Free Classroom Games Collection",
+    "description": "All active learning tools in one place. 100% free, no login required.",
+    "saveBookmark": "Save Bookmark",
+    "share": "Share",
+    "categories": {
+      "all": "All Tools",
+      "teambuilding": "Fun & Team Building",
+      "competition": "Competition & Scoring",
+      "random": "Random & Fair Selection",
+      "organize": "Class Organization",
+      "review": "Review & Quiz Games",
+      "individual": "Individual Practice"
+    },
+    "tools": {
+      "spinWheel": {
+        "name": "Spin Wheel",
+        "description": "Random name picker for calling on students"
+      },
+      "animalRace": {
+        "name": "Animal Race",
+        "description": "Cute animated team competition"
+      },
+      "flashAnzan": {
+        "name": "Flash Anzan",
+        "description": "Mental math training with flashing numbers"
+      },
+      "timer": {
+        "name": "Timer",
+        "description": "Countdown timer for classroom activities"
+      },
+      "groupMaker": {
+        "name": "Group Maker",
+        "description": "Auto-divide students into fair groups"
+      },
+      "randomPicker": {
+        "name": "Random Picker",
+        "description": "Pick randomly from any list"
+      },
+      "soroban": {
+        "name": "Virtual Soroban",
+        "description": "Digital abacus for projection"
+      },
+      "luckyLight": {
+        "name": "Lucky Light",
+        "description": "Fun team building activity"
+      },
+      "millionaire": {
+        "name": "Quiz Show",
+        "description": "Who Wants to Be a Millionaire style game"
+      },
+      "raceGame": {
+        "name": "Race Game",
+        "description": "Point-based team competition board"
+      },
+      "dice": {
+        "name": "3D Dice",
+        "description": "Roll dice for decisions and rewards"
+      },
+      "crossword": {
+        "name": "Crossword Puzzle",
+        "description": "Vocabulary and knowledge review game"
+      }
+    }
+  },
+
+  "toolbox": {
+    "title": "Teacher Toolbox",
+    "subtitle": "Popular classroom games and tools",
+    "saveBookmark": "Save Bookmark",
+    "shareTitle": "Teacher Toolbox - SoroKid",
+    "shareText": "Free collection of classroom games!",
+    "sorokidIntro": "Personalized Soroban teaching tool for each student",
+    "explore": "Explore",
+    "openTool": "Open Tool",
+    "playNow": "Play Now!",
+    "comingSoon": "Coming Soon",
+    "toast": {
+      "installed": "✅ Already installed!",
+      "saveHint": "⭐ Press {shortcut} to save!",
+      "copied": "✅ Link copied!"
+    },
+    "categories": {
+      "all": "All Tools",
+      "teambuilding": "Fun & Team Building",
+      "competition": "Competition & Scoring",
+      "random": "Random & Fair",
+      "organize": "Class Organization",
+      "review": "Review Games",
+      "individual": "Individual Practice"
+    },
+    "badges": {
+      "hot": "🔥 HOT",
+      "new": "✨ NEW",
+      "flash": "⚡ FLASH",
+      "fun": "🌊 FUN",
+      "exciting": "🎰 EXCITING",
+      "classic": "🧮 CLASSIC",
+      "lucky": "🍀 LUCKY",
+      "comingSoon": "🕐 COMING SOON",
+      "gameShow": "🏆 GAME SHOW",
+      "competition": "🏆 COMPETE",
+      "3d": "✨ 3D"
+    },
+    "tools": {
+      "spinWheel": {
+        "name": "Magic Wheel",
+        "description": "Random student picker, fair selection"
+      },
+      "animalRace": {
+        "name": "Duck Race",
+        "description": "Fun animated race for the class"
+      },
+      "flashAnzan": {
+        "name": "Flash ZAN",
+        "description": "Mental math training with Soroban & Anzan"
+      },
+      "timer": {
+        "name": "Timer",
+        "description": "Clear countdown with sound alerts"
+      },
+      "groupMaker": {
+        "name": "Group Maker",
+        "description": "Random groups with team leader selection"
+      },
+      "randomPicker": {
+        "name": "Random Picker",
+        "description": "Draw names, questions, or prizes"
+      },
+      "soroban": {
+        "name": "Virtual Soroban",
+        "description": "Digital abacus for student practice"
+      },
+      "luckyLight": {
+        "name": "Lucky Light",
+        "description": "Random selection with green-red lights"
+      },
+      "millionaire": {
+        "name": "Quiz Show",
+        "description": "Review game with 50:50 lifelines"
+      },
+      "raceGame": {
+        "name": "Amazing Race",
+        "description": "Visual competition board for motivation"
+      },
+      "dice": {
+        "name": "3D Dice",
+        "description": "3D dice for projector, easy to see"
+      },
+      "crossword": {
+        "name": "Crossword Puzzle",
+        "description": "Create puzzles based on lesson topics"
+      }
+    },
+    "sorobanTool": {
+      "value": "Value"
+    },
+    "flashZan": {
+      "settings": "Exercise Settings",
+      "operation": "Operation",
+      "add": "Add",
+      "addSubtract": "Add & Subtract",
+      "digits": "Digits",
+      "oneDigit": "1 digit (1-9)",
+      "twoDigit": "2 digits (10-99)",
+      "count": "Count",
+      "speed": "Speed",
+      "fast": "0.1s (Fast)",
+      "slow": "5s (Slow)",
+      "start": "START FLASH!",
+      "fullscreenHint": "Auto fullscreen",
+      "escHint": "Press",
+      "exit": "Exit",
+      "complete": "COMPLETE!",
+      "flashedNumbers": "Flashed {count} numbers",
+      "showAnswer": "SHOW ANSWER",
+      "retry": "Try Again",
+      "toSettings": "Settings",
+      "total": "{count} numbers total",
+      "hide": "Hide",
+      "tapToPause": "Tap to pause",
+      "spaceOrClickPause": "Press Space or Click to pause",
+      "paused": "PAUSED",
+      "tapToContinue": "Tap to continue",
+      "spaceOrClickContinue": "Space/Click to continue"
+    },
+    "crossword": {
+      "createTitle": "Create Crossword Puzzle",
+      "createSubtitle": "Enter vertical keyword and hint questions",
+      "topicLabel": "Topic / Theme Question",
+      "topicPlaceholder": "E.g.: Vietnamese Geography or What city is the capital?",
+      "topicHint": "Topic or hint question to help students guess the keyword",
+      "keywordLabel": "Vertical Keyword",
+      "keywordNote": "(supports UNACCENTED letters only)",
+      "keywordPlaceholder": "E.g.: HANOI, VIETNAM, MATH...",
+      "needQuestions": "Need {count} questions containing:",
+      "questionNum": "Q{num}",
+      "questionsLabel": "Hint Questions List",
+      "questionsNote": "(answers in UNACCENTED letters)",
+      "questionsPlaceholder": "One question per line: Question | ANSWER",
+      "viewSample": "View Sample",
+      "createWithAI": "Create with AI",
+      "clearAll": "Clear All",
+      "startGame": "Start Game",
+      "readyToPlay": "Ready to play!",
+      "needFix": "Need to fix errors",
+      "missingInfo": "Missing information",
+      "noKeyword": "No vertical keyword entered",
+      "noQuestions": "No hint questions entered",
+      "keywordMismatch": "Keyword \"{kw}\" has {kwLen} letters but you entered {qLen} questions",
+      "missingQuestions": "Missing {count} questions (need to add questions containing: {chars})",
+      "checkQuestions": "Check each question:",
+      "extraQuestion": "Extra (keyword only has {count} letters)",
+      "missingChar": "Missing letter [{char}]",
+      "suggestion": "Suggestion: Change answer to one containing [{char}] or edit keyword",
+      "notEntered": "Question not entered...",
+      "needChar": "Need letter [{char}]",
+      "errorLine": "Line {num}: {reason}",
+      "missingAnswer": "Missing answer after separator",
+      "missingQuestion": "Missing question before separator",
+      "keywordLengthError": "Keyword has {kwLen} letters but there are {qLen} questions. Number of letters in keyword must equal number of questions!",
+      "answerMissingChar": "Q{num}: Answer \"{answer}\" doesn't contain letter \"{char}\"",
+      "enterKeywordQuestion": "Please enter keyword question!",
+      "enterVerticalKeyword": "Please enter vertical keyword!",
+      "needAtLeast2": "Need at least 2 questions!",
+      "back": "Back",
+      "playAgain": "Play again",
+      "showKeyword": "Keyword",
+      "showAll": "All",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "fullscreen": "Fullscreen",
+      "exitFullscreen": "Exit fullscreen",
+      "opened": "Opened",
+      "clickToOpen": "Click to open answer",
+      "clickQuestion": "Click: open question | Hold: reveal answer",
+      "enterAnswer": "Enter answer...",
+      "reveal": "Reveal",
+      "wrongTryAgain": "Wrong! Try again...",
+      "guessKeyword": "Guess keyword...",
+      "correct": "Correct!",
+      "revealAll": "Reveal all",
+      "remaining": "Click number to reveal answer ({count} remaining)",
+      "aiPromptTitle": "AI Prompt for Crossword Questions",
+      "aiPromptSubtitle": "Copy this prompt and paste into ChatGPT, Gemini, Claude...",
+      "copyPrompt": "Copy Prompt",
+      "close": "Close",
+      "copiedPrompt": "Copied prompt! Paste into ChatGPT/Gemini/Claude"
+    },
+    "randomPicker": {
+      "listTitle": "Pick List",
+      "show": "Show",
+      "hide": "Hide",
+      "showList": "Show list",
+      "hideList": "Hide list (keep secret)",
+      "placeholder": "Enter one item per line\n\nExample:\nMinh\nLan\nHung\nMai\nTuan",
+      "itemCount": "{count} items",
+      "noItems": "No items yet",
+      "clearAll": "Clear all",
+      "settings": "Settings",
+      "sound": "Sound",
+      "reset": "Reset",
+      "pickButton": "PICK!",
+      "spinning": "Spinning...",
+      "tips": "Tips for use:",
+      "tipName": "Pick names - Call on students",
+      "tipQuestion": "Pick questions - Random exercises",
+      "tipPrize": "Pick prizes - Random rewards",
+      "tipTopic": "Pick topics - Choose lesson content",
+      "readyTitle": "Ready to pick!",
+      "readyDesc": "Pick names • Pick questions • Pick prizes • Pick topics",
+      "readyHint": "Enter list on the left and press button to start",
+      "secretSpin": "Secret pick in progress...",
+      "spinningNumbers": "Spinning...",
+      "resultTitle": "PICK RESULT",
+      "congratulations": "Congratulations!",
+      "refresh": "Refresh",
+      "pickAgain": "Pick again!",
+      "secretList": "Secret list",
+      "itemsHidden": "{count} items hidden"
+    },
+    "groupMaker": {
+      "studentList": "Student List",
+      "placeholder": "Enter one name per line:\nMinh\nLan\nHung\nMai\nTuan",
+      "studentCount": "{count} students",
+      "noNames": "No names yet",
+      "clearAll": "Clear all",
+      "divideMethod": "Divide Method",
+      "byGroup": "By number of groups",
+      "byGroupDesc": "Divide into N groups",
+      "byPerson": "By persons per group",
+      "byPersonDesc": "Each group has N persons",
+      "settings": "Settings",
+      "groupCount": "Number of groups:",
+      "personsPerGroup": "Persons per group:",
+      "willHaveGroups": "→ Will have about {count} groups",
+      "autoLeader": "Auto-select team leader",
+      "reset": "Reset",
+      "divideButton": "DIVIDE GROUPS!",
+      "dividing": "Dividing...",
+      "readyTitle": "Ready to divide!",
+      "readyDesc": "Enter student list and press button to start",
+      "shuffling": "Shuffling & dividing...",
+      "resultTitle": "Result: {count} groups",
+      "totalStudents": "Total {count} students",
+      "groupNumber": "Group {num}",
+      "personCount": "{count} persons",
+      "teamLeader": "Team Leader",
+      "reshuffleButton": "Reshuffle randomly"
+    },
+    "spinWheel": {
+      "mode": "Mode",
+      "textMode": "Name",
+      "numberMode": "Number",
+      "textModeTooltip": "Enter list of names",
+      "numberModeTooltip": "Random number spin",
+      "inputList": "Input List",
+      "placeholder": "One name per line...\nExample:\nMinh\nLan\nHung",
+      "itemCount": "{count} items",
+      "noItems": "No items yet",
+      "clearAll": "Clear",
+      "numberRange": "Number Range",
+      "from": "From",
+      "to": "To",
+      "numbersInRange": "({count} numbers)",
+      "afterSpin": "After spin:",
+      "remove": "Remove",
+      "keep": "Keep",
+      "settings": "Settings",
+      "removeAfterSpin": "Remove after spin",
+      "sound": "Sound",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "spinButton": "SPIN!",
+      "spinning": "Spinning...",
+      "result": "RESULT",
+      "congratsResult": "Congratulations! Result is:",
+      "askRemove": "Do you want to remove this result from the wheel?",
+      "removeAndContinue": "Remove & continue",
+      "keepResult": "Keep",
+      "okContinue": "OK, spin again",
+      "playAgain": "Play again",
+      "spinAgain": "Spin again!",
+      "remaining": "Remaining: {count}",
+      "remainingCount": "Remaining:",
+      "reset": "Reset",
+      "removedResult": "Removed: {item}",
+      "allPicked": "All items picked!",
+      "resetList": "Reset list",
+      "emptyWheel": "Empty wheel",
+      "emptyText": "Enter list to start",
+      "emptyNumber": "Set number range",
+      "emptyTextHint": "Each line is one item on the wheel",
+      "emptyNumberHint": "Enter from and to numbers to spin",
+      "addItemsHint": "Enter list on the left to start"
+    },
+    "luckyLight": {
+      "press": "PRESS!",
+      "pressToStart": "Press to start!",
+      "settings": "Settings",
+      "lightMode": "Light mode",
+      "twoLights": "2 lights",
+      "threeLights": "3 lights",
+      "probability": "Probability",
+      "green": "Green",
+      "yellow": "Yellow",
+      "red": "Red",
+      "safeLabel": "Safe",
+      "challengeLabel": "Challenge",
+      "punishLabel": "Punish",
+      "showProbability": "Show probability",
+      "sound": "Sound",
+      "safe": "SAFE!",
+      "safeDesc": "Lucky! You escaped!",
+      "challenge": "CHALLENGE!",
+      "challengeDesc": "Answer a question to escape!",
+      "punished": "PUNISHED!",
+      "punishedDesc": "Oh no! You got punished!",
+      "resultGreen": "GREEN! You're lucky!",
+      "resultYellow": "YELLOW! Try again!",
+      "resultRed": "RED! Maybe next time!",
+      "pressAgain": "Press again to retry",
+      "playAgain": "Play again"
+    },
+    "raceGame": {
+      "title": "Epic Race",
+      "subtitle": "Score competition • Who leads?",
+      "setup": "Setup",
+      "race": "Race",
+      "mode": "Mode",
+      "individual": "Individual",
+      "team": "Team",
+      "characterType": "Character Type",
+      "cars": "Cars",
+      "animals": "Animals",
+      "people": "People",
+      "rockets": "Rockets",
+      "quickStart": "Quick start:",
+      "numParticipants": "Number of participants:",
+      "createDefault": "Create default names",
+      "nameList": "Name list",
+      "nameListOptional": "(or leave empty for default)",
+      "namePlaceholder": "Group 1\nGroup 2\nGroup 3\n...\n\nOr student names:\nJohn Doe\nJane Smith",
+      "nameHint": "One name per line • Copy-paste from Excel • Leave empty = use \"Group 1, 2, 3...\"",
+      "selectIcon": "Select icon:",
+      "startRace": "START RACE!",
+      "settings": "Settings",
+      "resetBtn": "Reset",
+      "finish": "Finish",
+      "search": "Search...",
+      "ranking": "Ranking",
+      "order": "Order",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "select": "Select",
+      "hide": "Hide",
+      "show": "Show",
+      "points": "pts",
+      "randomCall": "Random call",
+      "lock": "Lock",
+      "unlock": "Unlock",
+      "undo": "Undo",
+      "notFound": "Not found \"{query}\"",
+      "dialogCancel": "Cancel",
+      "dialogConfirm": "Confirm",
+      "dialogUnderstood": "Got it",
+      "notEnoughPeople": "Not enough participants",
+      "needAtLeast2": "Need at least 2 participants to start!",
+      "tooMany": "Too many",
+      "max100": "Maximum 100 players!",
+      "resetScores": "Reset scores?",
+      "resetScoresDesc": "All scores will be reset to 0. Player list remains.",
+      "backToSetup": "Back to setup?",
+      "backToSetupDesc": "Score data will be saved. You can continue later.",
+      "newRace": "New race?",
+      "newRaceDesc": "All current data will be deleted and cannot be recovered.",
+      "raceResult": "RACE RESULT",
+      "leaderboard": "Leaderboard:",
+      "continue": "Continue",
+      "newGame": "New game",
+      "group": "Group"
+    }
+  },
+
+  "pricing": {
+    "title": "Choose Your Plan",
+    "subtitle": "Start free, upgrade when ready",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "savePercent": "Save {percent}%",
+    "free": {
+      "title": "Free",
+      "price": "$0",
+      "period": "forever",
+      "description": "Get started for free",
+      "features": [
+        "First 5 lessons",
+        "Basic exercises",
+        "Teacher Toolbox",
+        "Community support"
+      ],
+      "cta": "Start Free"
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "${price}",
+      "period": "/month",
+      "description": "Unlock everything",
+      "features": [
+        "All lessons",
+        "All exercises",
+        "Adventure & Competition",
+        "Completion certificates",
+        "Detailed progress tracking",
+        "No ads",
+        "Priority support"
+      ],
+      "cta": "Upgrade Now"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "Can I cancel anytime?",
+          "answer": "Yes, you can cancel your Premium subscription anytime. Your account will remain active until the end of the billing period."
+        },
+        {
+          "question": "What are the free plan limitations?",
+          "answer": "The free plan includes the first 5 lessons and basic exercises. Upgrade to Premium to unlock all content."
+        },
+        {
+          "question": "What payment methods do you accept?",
+          "answer": "We accept credit/debit cards, PayPal, and local payment methods for Vietnam users."
+        }
+      ]
+    }
+  },
+
+  "footer": {
+    "tagline": "Learn math fast, fun like playing games",
+    "toolbox": "Teacher Toolbox",
+    "copyright": "Learn mental math with Soroban abacus",
+    "description": "The #1 Soroban & mental math app for elementary students.",
+    "products": "Products",
+    "support": "Support",
+    "legal": "Legal",
+    "connect": "Connect",
+    "learnSoroban": "Learn Soroban",
+    "teacherToolbox": "Teacher Toolbox",
+    "helpCenter": "Help Center",
+    "contact": "Contact Us",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy"
+  },
+
+  "errors": {
+    "404": {
+      "title": "Page Not Found",
+      "description": "The page you're looking for doesn't exist or has been moved.",
+      "backHome": "Back to Home",
+      "tryOther": "Or try these pages:"
+    },
+    "500": {
+      "title": "Oops! Something went wrong",
+      "description": "Don't worry, try refreshing the page or go back home!",
+      "retry": "Try Again"
+    }
+  },
+
+  "dashboard": {
+    "loading": "Loading...",
+    "errorLoad": "Failed to load data",
+    "retry": "Try Again",
+    "continueLearn": "Continue Learning",
+    "nextLesson": "Next Lesson",
+    "inProgress": "In Progress",
+    "earned": "Earned",
+    "stars": "stars",
+    "completed": "Excellent!",
+    "completedDesc": "You've completed all lessons. Keep practicing!",
+    "discoverMore": "Discover More",
+    "unlock18Levels": "Unlock 18 levels and special game modes",
+    "upgradeExperience": "Upgrade for full experience",
+    "study": "Study",
+    "practice": "Practice",
+    "compete": "Compete",
+    "lessonsCount": "lessons",
+    "todayCount": "today",
+    "top3Count": "top 3 finishes",
+    "startNow": "Start Now!",
+    "trainNow": "Let's Train!",
+    "tryNow": "Try Now!",
+    "adventure": "Adventure",
+    "adventureBadge": "Adventure",
+    "adventureHot": "HOT",
+    "adventureNew": "NEW",
+    "treasureHunt": "Treasure",
+    "treasureName": "Hunt",
+    "treasureSubtitle": "Soroban Knowledge",
+    "treasureDesc": "Join {name} to explore {count} mysterious islands and conquer challenges!",
+    "owlName": "Soro Owl",
+    "islandCount": "Islands",
+    "zoneCount": "Zones",
+    "bossCount": "Bosses",
+    "treasureReward": "Treasure",
+    "playNow": "Play Now!",
+    "adventureDesc": "Explore the world of Soroban",
+    "adventureStart": "Start Adventure",
+    "dailyQuests": "Daily Quests",
+    "viewMore": "View More",
+    "viewAll": "View All",
+    "achievements": "Achievements",
+    "certificates": "Certificates",
+    "detailedStats": "Detailed Statistics",
+    "detailedStatsDesc": "View activity charts and learning progress",
+    "loadingStats": "Loading statistics...",
+    "weeklyActivity": "Last 7 Days Activity",
+    "overview": "Overview",
+    "progressByLevel": "Progress by Level",
+    "minutes": "min",
+    "currentLevel": "Current Level",
+    "levelProgress": "Progress to next level",
+    "starsToNext": "{count} ⭐ more to level up",
+    "viewDetails": "View details →",
+    "totalStars": "Total Stars ⭐",
+    "levelProgressLabel": "Level Progress",
+    "currentStarsInLevel": "Stars in current level",
+    "starsToLevelUp": "{count} ⭐ more to Level {level}",
+    "tierLevels": "Tier Levels",
+    "current": "Current",
+    "close": "Close",
+    "footerText": "Learn mental math with Soroban abacus",
+    "tiers": {
+      "beginner": "Beginner",
+      "trainee": "Trainee",
+      "quickHand": "Quick Hand",
+      "calculator": "Calculator",
+      "expert": "Expert",
+      "superCalc": "Super Calculator",
+      "godCalc": "God Calculator",
+      "prodigy": "Prodigy",
+      "genius": "Genius",
+      "brilliant": "Brilliant",
+      "exceptional": "Exceptional",
+      "grandMaster": "Grand Master"
+    },
+    "stats": {
+      "study": "Study",
+      "practice": "Practice",
+      "compete": "Compete",
+      "lessonsLearned": "lessons learned",
+      "questionsAnswered": "questions answered",
+      "matchesPlayed": "matches played",
+      "accuracy": "Accuracy",
+      "completionProgress": "Completion progress",
+      "avgAccuracy": "Average accuracy",
+      "correctRate": "Correct rate",
+      "avgTimePerQuestion": "Avg time per question",
+      "seconds": "seconds",
+      "todayCompleted": "Completed today",
+      "questionsCorrect": "questions correct",
+      "top3Finishes": "Top 3 finishes",
+      "times": "times",
+      "winRate": "Win rate",
+      "bestStreak": "Best streak"
+    },
+    "activity": {
+      "title": "Last 7 Days Activity",
+      "total": "Total",
+      "explanation": "Chart shows <strong>stars ⭐</strong> you earned each day of the week",
+      "stars": "stars",
+      "today": "Today",
+      "otherDays": "Other days",
+      "noActivity": "No activity",
+      "days": {
+        "sun": "Sun",
+        "mon": "Mon",
+        "tue": "Tue",
+        "wed": "Wed",
+        "thu": "Thu",
+        "fri": "Fri",
+        "sat": "Sat"
+      },
+      "daysFull": {
+        "sun": "Sunday",
+        "mon": "Monday",
+        "tue": "Tuesday",
+        "wed": "Wednesday",
+        "thu": "Thursday",
+        "fri": "Friday",
+        "sat": "Saturday"
+      }
+    },
+    "badges": {
+      "title": "Badges",
+      "progress": "Progress",
+      "unlocked": "Unlocked",
+      "goals": "Goals",
+      "noBadges": "No badges yet",
+      "noBadgesHint": "Start learning to earn your first badge!",
+      "excellent": "Excellent!",
+      "allBadges": "You've unlocked all badges!",
+      "collapse": "Collapse",
+      "showMore": "Show more",
+      "goal": "Goals",
+      "achievedOn": "Achieved",
+      "close": "Close",
+      "time": {
+        "today": "Today",
+        "yesterday": "Yesterday",
+        "daysAgo": "days ago",
+        "weeksAgo": "weeks ago"
+      }
+    },
+    "certificate": {
+      "title": "Certificates",
+      "subtitle": "Complete learning paths to earn certificates",
+      "viewDetails": "View details",
+      "addSub": "Addition & Subtraction Certificate",
+      "complete": "Complete Certificate",
+      "claimed": "Claimed",
+      "basicPlan": "Basic Plan",
+      "advancedPlan": "Advanced Plan",
+      "ready": "Ready!",
+      "requirements": "requirements",
+      "congratulations": "Congratulations! You've earned this certificate 🎉"
+    },
+    "progressByLevel": {
+      "title": "Learning Progress",
+      "totalProgress": "Total progress",
+      "lessonsCount": "lessons",
+      "noProgress": "No learning progress yet",
+      "startLearning": "Start learning to track your progress!",
+      "lesson": "Lesson",
+      "parts": "parts",
+      "stars": "stars",
+      "accurate": "accurate",
+      "minutes": "minutes"
+    }
+  },
+
+  "learn": {
+    "title": "Learn Soroban",
+    "selectLevel": "Select Level",
+    "lesson": "Lesson",
+    "lessons": "lessons",
+    "levels": "levels",
+    "locked": "Locked",
+    "completed": "Completed",
+    "inProgress": "In Progress",
+    "startLesson": "Start Lesson",
+    "continueLesson": "Continue",
+    "watchVideo": "Watch Video",
+    "readGuide": "Read Guide",
+    "practice": "Practice",
+    "starsEarned": "Stars Earned",
+    "bestScore": "Best Score",
+    "attempts": "Attempts",
+    "upgradeToUnlock": "Upgrade to Unlock",
+    "loading": "Loading lessons...",
+    "journeyTitle": "Soroban Mastery Journey",
+    "journeyDesc": "From beginner to superstar!",
+    "lessonList": "Lesson List",
+    "lessonProgress": "Lesson Progress",
+    "starsCount": "stars",
+    "totalProgress": "Total Progress",
+    "completedLessons": "Completed",
+    "swipeHint": "Swipe to change level"
+  },
+
+  "practiceScreen": {
+    "title": "Practice",
+    "auto": "Auto Mode",
+    "custom": "Custom",
+    "selectLevel": "Select Level",
+    "selectOperation": "Select Operation",
+    "addition": "Addition",
+    "subtraction": "Subtraction",
+    "multiplication": "Multiplication",
+    "division": "Division",
+    "mixed": "Mixed",
+    "start": "Start",
+    "questionsCount": "Questions",
+    "timeLimit": "Time Limit",
+    "seconds": "seconds",
+    "noLimit": "No Limit",
+    "result": "Result",
+    "correct": "Correct",
+    "wrong": "Wrong",
+    "accuracy": "Accuracy",
+    "time": "Time",
+    "playAgain": "Play Again",
+    "backToMenu": "Back to Menu",
+    "modes": {
+      "addition": "Super Addition",
+      "subtraction": "Super Subtraction",
+      "addSubMixed": "Add/Sub Mix",
+      "multiplication": "Super Multiply",
+      "division": "Super Division",
+      "mulDiv": "Mul/Div Mix",
+      "mixed": "All Four Operations",
+      "mentalMath": "Super Mind",
+      "flashAnzan": "Flash Anzan"
+    },
+    "mentalSubModes": {
+      "addition": "Addition",
+      "subtraction": "Subtraction",
+      "multiplication": "Multiplication",
+      "division": "Division",
+      "addSubMixed": "Add/Sub",
+      "mulDiv": "Mul/Div",
+      "mixed": "All"
+    },
+    "stats": {
+      "stars": "Stars",
+      "correct": "Correct",
+      "wrong": "Wrong",
+      "combo": "Combo"
+    },
+    "level": "Level",
+    "multiplierPoints": "x{n} POINTS!",
+    "difficulty": {
+      "1": "Novice",
+      "2": "Warrior",
+      "3": "Hero",
+      "4": "Master",
+      "5": "Legend",
+      "6": "Super Legend"
+    },
+    "speedTiers": {
+      "godlike": ["GODLIKE!", "SUPER FAST!", "UNBELIEVABLE!", "TOP OF THE TOP!"],
+      "fast": ["LIGHTNING FAST!", "LIGHT SPEED!", "SUPER SPEED!", "SPEED MONSTER!"],
+      "good": ["EXCELLENT!", "WONDERFUL!", "GREAT JOB!", "AWESOME!"],
+      "normal": ["CORRECT!", "ACCURATE!", "GOOD JOB!", "NICE!"]
+    },
+    "streakMessages": {
+      "3": "COMBO x3!",
+      "5": "UNSTOPPABLE!",
+      "7": "DOMINATING!",
+      "10": "LEGENDARY!"
+    },
+    "tiers": {
+      "free": "Free",
+      "basic": "Basic",
+      "advanced": "Advanced",
+      "vip": "VIP"
+    },
+    "flashLevels": {
+      "anhNen": { "name": "Candlelight", "subtitle": "Soft flickering glow", "tagline": "Warm start" },
+      "anhTrang": { "name": "Moonlight", "subtitle": "Mystical night glow", "tagline": "Steady progress" },
+      "tiaChop": { "name": "Lightning", "subtitle": "Quick flash", "tagline": "Fast as lightning!" },
+      "saoBang": { "name": "Shooting Star", "subtitle": "Blazing moment", "tagline": "🔥 SUPER SPEED 🔥" },
+      "bigBang": { "name": "BIG BANG", "subtitle": "Universe creation explosion", "tagline": "💥 COSMIC EXPLOSION 💥" },
+      "sieuBigBang": { "name": "SUPER BIG BANG", "subtitle": "Peak of speed", "tagline": "🌌 SUPER UNIVERSE 🌌" }
+    },
+    "flashRanks": {
+      "1": "Novice",
+      "2": "Warrior",
+      "3": "Hero",
+      "4": "Legend",
+      "5": "GOD",
+      "6": "DIVINE"
+    },
+    "flashDigits": {
+      "1": "1 digit",
+      "2": "2 digits",
+      "3": "3 digits"
+    },
+    "flashOperations": {
+      "addition": { "name": "Addition", "description": "Addition only" },
+      "mixed": { "name": "Add/Sub Mix", "description": "Alternating add and subtract" }
+    },
+    "praiseMessages": [
+      { "emoji": "🎉", "title": "EXCELLENT!", "msg": "You're amazing! Your answer is completely correct!" },
+      { "emoji": "🌟", "title": "WONDERFUL!", "msg": "Your memory is extraordinary!" },
+      { "emoji": "🏆", "title": "SUPER AWESOME!", "msg": "You calculate as fast as a computer!" },
+      { "emoji": "👏", "title": "GREAT JOB!", "msg": "You got it right! Keep up the great work!" },
+      { "emoji": "🚀", "title": "LIGHTNING FAST!", "msg": "Your calculation speed is impressive!" }
+    ],
+    "encourageMessages": [
+      { "emoji": "💪", "title": "KEEP GOING!", "msg": "Don't worry, mistakes are the best way to learn!" },
+      { "emoji": "🌈", "title": "DON'T GIVE UP!", "msg": "Every attempt is a step forward!" },
+      { "emoji": "⭐", "title": "ALMOST THERE!", "msg": "You just need a bit more practice!" },
+      { "emoji": "🎯", "title": "TRY AGAIN!", "msg": "Focus more, you can do it!" }
+    ],
+    "flashSetup": {
+      "digits": { "title": "CHOOSE DIGITS", "subtitle": "Select number difficulty", "icon": "🔢" },
+      "operation": { "title": "CHOOSE OPERATION", "subtitle": "Select calculation type", "icon": "➕" },
+      "speed": { "title": "CHOOSE SPEED", "subtitle": "Faster → Harder → More rewards!", "icon": "⚡" }
+    },
+    "resultGrades": {
+      "S": { "text": "EXCELLENT!", "msg": "You're amazing! Almost perfect!", "stars": 4 },
+      "A": { "text": "GREAT JOB!", "msg": "You did very well! Keep it up!", "stars": 3 },
+      "B": { "text": "GOOD!", "msg": "You're improving! Keep trying!", "stars": 2 },
+      "D": { "text": "PRACTICE!", "msg": "Try again! Every mistake is a lesson!", "stars": 1 }
+    },
+    "ui": {
+      "pressEnter": "Press {key} to continue",
+      "correct": "Correct",
+      "questions": "questions",
+      "keepItUp": "Keep it up!",
+      "youDidGreat": "You did great!",
+      "defaultPraise": "You're amazing!",
+      "gradeMessages": {
+        "S": "You're a superstar! 🌟",
+        "A": "Excellent work! 💪",
+        "B": "Nice job! 👍",
+        "C": "Keep practicing! 📚"
+      },
+      "modeRequiresUpgrade": "Mode {mode} requires {tier} plan or higher",
+      "selectMode": "SELECT MODE",
+      "selectDifficulty": "SELECT DIFFICULTY",
+      "locked": "LOCKED",
+      "unlockWith": "Unlock with {tier} plan",
+      "back": "Back",
+      "backToMenu": "Back to Menu",
+      "nextProblem": "Next Problem",
+      "checkAnswer": "Check Answer",
+      "showAnswer": "Show Answer",
+      "tryAgain": "Try Again",
+      "startFlash": "Start Flash",
+      "readyGo": "Ready... Go!",
+      "watchCarefully": "Watch carefully!",
+      "enterAnswer": "Enter your answer",
+      "submit": "Submit",
+      "loading": "Loading...",
+      "preparing": "Preparing...",
+      "selectOperation": "Select Operation",
+      "mentalMath": "Mental Math",
+      "flashAnzan": "Flash Anzan",
+      "practice": "Practice",
+      "backToPractice": "Back to practice",
+      "backToHome": "Back to home",
+      "lightSpeedRace": "LIGHT SPEED RACE",
+      "lightSpeedSubtitle": "From Candlelight to Super Big Bang!",
+      "lightSpeedPath": "🕯️ → 🌙 → ⚡ → ☄️ → 💥 → 🌌",
+      "digits": "Digits",
+      "digitsCount": "{n} digits",
+      "operation": "Operation",
+      "speed": "Speed",
+      "quantity": "Quantity",
+      "speedPerNum": "{n}s/num",
+      "numbers": "{n} numbers",
+      "focusHigh": "High concentration",
+      "addCumulative": "Add cumulatively",
+      "focus": "FOCUS!",
+      "whatIsResult": "WHAT IS THE RESULT?",
+      "enterYourResult": "Enter your calculation result",
+      "accuracy": "Accuracy",
+      "total": "Total",
+      "passed": "Passed! Need ≥70% to unlock next level",
+      "notPassed": "Not passed! Need ≥70% to pass (current: {accuracy}%)",
+      "notPassedAccuracy": "Not passed! Need ≥70% accuracy to pass (current: {accuracy}%)",
+      "readyForHigherChallenge": "Ready for a higher challenge?",
+      "createNumber": "Create number",
+      "comboBonus": "Combo = x2 Bonus!",
+      "canYouReachSuperBigBang": "Can you reach SUPER BIG BANG?",
+      "secPerNum": "{n}s/num",
+      "numCount": "{n} numbers",
+      "confirm": "CONFIRM",
+      "pressEnterToSubmit": "Press Enter to submit answer",
+      "skip": "Skip",
+      "answer": "Answer",
+      "finish": "Finish",
+      "next": "Next",
+      "correct": "Correct",
+      "wrong": "Wrong",
+      "skipped": "Skipped"
+    }
+  },
+
+  "competeScreen": {
+    "title": "Compete",
+    "auto": "Auto Mode",
+    "ranking": "Leaderboard",
+    "yourRank": "Your Rank",
+    "points": "points",
+    "rank": "Rank",
+    "player": "Player",
+    "score": "Score",
+    "joinMatch": "Join Match",
+    "findOpponent": "Finding opponent...",
+    "ready": "Ready!",
+    "go": "Go!",
+    "win": "Victory!",
+    "lose": "Defeat",
+    "draw": "Draw",
+    "playAgain": "Play Again",
+    "leaderboard": "Leaderboard",
+    "questions": "questions",
+    "questionCounts": {
+      "5": "Warm up",
+      "10": "Basic",
+      "15": "Practice",
+      "20": "Advanced",
+      "25": "Challenge",
+      "30": "Battle",
+      "40": "Superstar",
+      "50": "Legend"
+    },
+    "selectMode": "SELECT GAME MODE",
+    "selectDifficulty": "SELECT DIFFICULTY",
+    "selectQuestions": "SELECT QUESTIONS",
+    "selectArena": "SELECT ARENA",
+    "startBattle": "START BATTLE",
+    "enterArena": "ENTER ARENA",
+    "viewLeaderboard": "View Leaderboard",
+    "topPlayers": "Top Players",
+    "yourBestScore": "Your Best Score",
+    "neverPlayed": "Haven't played yet",
+    "playersOnLeaderboard": "players on leaderboard",
+    "loading": "Loading...",
+    "completed": "COMPLETED!",
+    "accuracy": "Accuracy",
+    "avgTime": "Avg Time",
+    "stars": "Stars",
+    "correct": "Correct",
+    "combo": "Combo",
+    "totalTime": "Total Time",
+    "newRecord": "NEW RECORD!",
+    "rankUp": "RANK UP!",
+    "backToArena": "Back to Arena",
+    "selectNewArena": "Select New Arena",
+    "preparingArena": "Preparing arena...",
+    "soroOpeningArena": "Soro is opening the arena for you!",
+    "errorOccurred": "An error occurred",
+    "invalidMode": "Invalid mode",
+    "backToMap": "Back to Map",
+    "selectOperation": "Select Operation",
+    "competeWithMode": "Compete with your preferred mode!",
+    "eachVariantIsArena": "Each variant has its own leaderboard!",
+    "mode": "Mode",
+    "operation": "Operation",
+    "level": "Level",
+    "numQuestions": "Questions",
+    "selectLevel": "Select Level",
+    "higherLevelBiggerNum": "Higher level, bigger numbers!",
+    "selectNumQuestions": "Select Number of Questions",
+    "moreQuestionMoreChallenge": "More questions, more challenge!",
+    "firstTimeCompete": "First time competing?",
+    "selectFewToStart": "Select 5-10 questions to get started!",
+    "wantToClimb": "Want to climb ranks?",
+    "selectMoreToPractice": "Select 20-30 questions for steady practice!",
+    "nQuestions": "{n} questions",
+    "rankByAccuracySpeed": "Ranked by accuracy & speed",
+    "players": "players",
+    "noOneCompeted": "No one has competed yet",
+    "beTheFirst": "Be the first!",
+    "nCorrect": "{n} correct",
+    "nextRanking": "Next rankings",
+    "yourRanking": "Your ranking",
+    "you": "You",
+    "notCompetedYet": "You haven't competed in this arena yet",
+    "competeToRank": "Compete to get on the leaderboard!",
+    "finished": "FINISHED!",
+    "starDetails": "Star details",
+    "total": "Total",
+    "focus": "FOCUS!",
+    "quantity": "Quantity",
+    "nNumbers": "{n} numbers",
+    "speed": "Speed",
+    "speedPerNum": "{n}s/num",
+    "whatIsResult": "WHAT IS THE RESULT?",
+    "enterYourResult": "Enter your calculation result",
+    "youAreGreat": "You're great!",
+    "correct2": "CORRECT",
+    "bonus": "BONUS",
+    "mentalSubModes": {
+      "addition": "Addition",
+      "subtraction": "Subtraction",
+      "multiplication": "Multiplication",
+      "division": "Division",
+      "addSubMixed": "Add/Sub",
+      "mulDiv": "Mul/Div",
+      "mixed": "All"
+    },
+    "arenas": {
+      "addition": {
+        "1": "Star Garden",
+        "2": "Star Forest",
+        "3": "Star Mountain",
+        "4": "Star Peak",
+        "5": "Star Paradise"
+      },
+      "subtraction": {
+        "1": "Baby Robot",
+        "2": "Battle Robot",
+        "3": "Super Robot",
+        "4": "Mega Robot",
+        "5": "Ultra Robot"
+      },
+      "addSubMixed": {
+        "1": "Baby Rainbow",
+        "2": "Double Rainbow",
+        "3": "Rainbow Storm",
+        "4": "Color Universe",
+        "5": "Color Galaxy"
+      },
+      "multiplication": {
+        "1": "Baby Magic",
+        "2": "Apprentice Wizard",
+        "3": "Wizard",
+        "4": "Grand Wizard",
+        "5": "Supreme Sorcerer"
+      },
+      "division": {
+        "1": "Small Pizza",
+        "2": "Apprentice Chef",
+        "3": "Chef",
+        "4": "Master Chef",
+        "5": "Iron Chef"
+      },
+      "mulDiv": {
+        "1": "Baby Ninja",
+        "2": "Green Ninja",
+        "3": "Red Ninja",
+        "4": "Gold Ninja",
+        "5": "Shadow Ninja"
+      },
+      "mixed": {
+        "1": "Recruit",
+        "2": "Warrior",
+        "3": "Hero",
+        "4": "Champion",
+        "5": "Legend"
+      },
+      "mentalMath": {
+        "1": "Baby Genius",
+        "2": "Prodigy",
+        "3": "Super Mind",
+        "4": "Little Einstein",
+        "5": "Cosmic Genius"
+      },
+      "flashAnzan": {
+        "1": "Candlelight",
+        "2": "Moonlight",
+        "3": "Lightning",
+        "4": "Shooting Star",
+        "5": "BIG BANG",
+        "6": "SUPER BIG BANG"
+      }
+    },
+    "flashSetup": {
+      "digits": { "title": "CHOOSE DIGITS", "subtitle": "Select number difficulty" },
+      "operation": { "title": "CHOOSE OPERATION", "subtitle": "Select calculation type" },
+      "speed": { "title": "CHOOSE BATTLE SPEED", "subtitle": "Each variant has its own arena!" }
+    },
+    "digitLabels": {
+      "1": "1 digit numbers",
+      "2": "2 digit numbers",
+      "3": "3 digit numbers",
+      "4": "4 digit numbers",
+      "5": "5 digit numbers"
+    },
+    "difficultyLabels": {
+      "1": "🐣 Small numbers",
+      "2": "⚔️ Medium",
+      "3": "🛡️ Challenge",
+      "4": "🔥 Advanced",
+      "5": "👑 Elite"
+    },
+    "results": {
+      "champion": { "title": "CHAMPION!", "message": "Absolute victory!" },
+      "excellent": { "title": "EXCELLENT WARRIOR!", "message": "Outstanding performance!" },
+      "great": { "title": "GREAT JOB!", "message": "Good match!" },
+      "goodTry": { "title": "GOOD TRY!", "message": "Keep practicing!" }
+    },
+    "encouragements": {
+      "excellent": { "title": "CHAMPION!", "message": "Absolute victory!" },
+      "great": { "title": "EXCELLENT WARRIOR!", "message": "You fought brilliantly!" },
+      "good": { "title": "BRAVE WARRIOR!", "message": "Practice more to get stronger!" },
+      "improving": { "title": "TRAINING!", "message": "Keep practicing!" },
+      "beginner": { "title": "APPRENTICE!", "message": "Every battle makes you stronger!" },
+      "keepTrying": { "title": "KEEP FIGHTING!", "message": "Don't give up, keep fighting!" }
+    },
+    "flashLevels": {
+      "anhNen": { "name": "Candlelight", "subtitle": "Soft and gentle glow", "tagline": "Warm beginning", "rankLabel": "Novice" },
+      "anhTrang": { "name": "Moonlight", "subtitle": "Mystical night glow", "tagline": "Steady progress", "rankLabel": "Warrior" },
+      "tiaChop": { "name": "Lightning", "subtitle": "Flashing in an instant", "tagline": "Fast as lightning!", "rankLabel": "Hero" },
+      "saoBang": { "name": "Shooting Star", "subtitle": "Blazing across the sky", "tagline": "🔥 SUPER FAST 🔥", "rankLabel": "Legend" },
+      "bigBang": { "name": "BIG BANG", "subtitle": "The birth of the universe", "tagline": "💥 COSMIC EXPLOSION 💥", "rankLabel": "GOD" },
+      "sieuBigBang": { "name": "SUPER BIG BANG", "subtitle": "Peak of speed", "tagline": "🌌 SUPER COSMOS 🌌", "rankLabel": "DIVINE" }
+    },
+    "flashTitle": "LIGHT RACE",
+    "confirm": "CONFIRM",
+    "pressEnterToSubmit": "Press Enter to submit answer",
+    "answer": "Answer",
+    "skip": "Skip",
+    "finish": "Finish",
+    "next": "Next",
+    "comboBonus": "Combo = x2 Bonus!",
+    "canYouReachSuperBigBang": "Can you reach SUPER BIG BANG?",
+    "keepGoing": "Keep going! {count} more ranks to Top 20!",
+    "correctCount": "{n} correct",
+    "excellent": "EXCELLENT!",
+    "enterBattle": "ENTER BATTLE",
+    "pointsMultiplier": "x{multiplier} POINTS!",
+    "plusStars": "+{n} stars",
+    "modeRequiresTier": "Mode {mode} requires {tier} plan or higher",
+    "difficultyRequiresTier": "Difficulty {difficulty} requires {tier} plan or higher",
+    "greatMatch": "Great match! 🏆",
+    "flashArenaTitle": "FLASH ARENA",
+    "mentalMathTitle": "Super Mind",
+    "mentalMathHint": "Mental math without abacus - Challenge your brain!",
+    "levelLabel": "Level {name}",
+    "recommended": "RECOMMENDED",
+    "flashCounter": "Number {current} / {total}",
+    "enterNumber": "Enter number"
+  },
+
+  "adventureScreen": {
+    "title": "Adventure",
+    "subtitle": "Treasure Quest",
+    "treasureQuest": "Treasure Quest",
+    "findTreasure": "Find Treasure",
+    "knowledgeTreasure": "Knowledge Treasure",
+    "selectZone": "Select Zone",
+    "locked": "Locked",
+    "starsRequired": "Need {stars} stars to unlock",
+    "stages": "stages",
+    "completed": "Completed",
+    "complete": "complete",
+    "start": "Start",
+    "continue": "Continue",
+    "boss": "Boss",
+    "reward": "Reward",
+    "victory": "Victory!",
+    "defeat": "Defeat",
+    "play": "PLAY!",
+    "playAgain": "Play again",
+    "loading": "Loading...",
+    "days": "days",
+    "stars": "stars",
+    "diamonds": "diamonds",
+    "prev": "Prev",
+    "next": "Next",
+    "swipeToChangeZone": "Swipe left/right to change zone",
+    "addSub": "Add Sub",
+    "mulDiv": "Mul Div",
+    "tapToClose": "Tap to close",
+    "cuSoro": "Cu Soro",
+    "minimizeSoro": "Minimize Soro",
+    "readMessage": "Read",
+    "stageCompleted": "⭐ Completed ⭐",
+    "stageLocked": "🔒 Stage locked",
+    "completeToUnlock": "Complete previous stages to unlock this one!",
+    "understood": "Got it! 👍",
+    "close": "Close",
+    "logout": "Log out",
+    "logoutConfirm": "Log out?",
+    "logoutMessage": "Are you sure you want to log out?",
+    "cancel": "Cancel",
+    "level": "Level",
+    "dashboard": "Dashboard",
+    "learn": "Learn",
+    "practice": "Practice",
+    "compete": "Compete",
+    "profile": "Profile",
+    "certificate": "Certificate",
+    "admin": "Admin",
+    "exploreWorld": "Explore the magical Soroban world!",
+    "exploreSoroban": "Explore Soroban!",
+    "continueBtn": "Continue",
+    "startAdventure": "Start adventure",
+    "skip": "Skip",
+    "advanced": "Advanced",
+    "basic": "Basic",
+    "trial": "Trial",
+    "free": "Free",
+    "footerText": "Learn mental math with Soroban abacus",
+    "zoneCompleteMsg": "Amazing! You've conquered {zoneName}! 🌟",
+    "welcomeToZone": "Welcome to {zoneName}! Let's start exploring!",
+    "continueJourney": "Continue your journey in {zoneName}! {remaining} challenges are waiting!",
+    "firstWelcome": "Hoo hoo! Welcome to Abacus Village! This is where every journey begins.",
+    "stageLockedMsg": "Hmm... this gate won't open yet. Complete previous challenges first!",
+    "stageCompletedMsg": "You've conquered this place! Want to try again for more practice?",
+    "lessonMsg": "Explore the secrets hidden inside! Soro will go with you!",
+    "bossMsg": "A big challenge awaits! Focus and use all your strength!",
+    "treasureMsg": "The treasure of knowledge awaits! Let's conquer it!",
+    "readyMsg": "Ready for a new challenge? Soro believes in you!",
+    "newJourneyAwaits": "Welcome to {zoneName}! A new journey awaits you!"
+  },
+
+  "adventure": {
+    "levelRequiresTier": "Level {level} requires {tier} plan or higher",
+    "modeRequiresTier": "Mode {mode} requires {tier} plan or higher",
+    "difficultyRequiresTier": "Difficulty {difficulty} requires {tier} plan or higher"
+  },
+
+  "tier": {
+    "free": "Free",
+    "basic": "Basic",
+    "advanced": "Advanced",
+    "vip": "VIP"
+  },
+
+  "certificate": {
+    "title": "Sorokid Certificates",
+    "subtitle": "Complete the roadmap to earn competency certificates",
+    "requirementsMet": "Requirements Met",
+    "certificates": "Certificates",
+    "earnedCertificates": "Certificates Earned",
+    "addSubCert": "Addition & Subtraction Certificate",
+    "completeCert": "Comprehensive Certificate",
+    "issuedOn": "Issued on",
+    "viewCertificate": "View Certificate",
+    "roadmap": "Certificate Roadmap",
+    "claimSuccess": "🎉 Congratulations! You've earned a certificate!",
+    "error": "Something went wrong",
+    "needTier": "Requires",
+    "claimed": "Claimed",
+    "completed": "completed",
+    "totalProgress": "Total Progress",
+    "detailedRoadmap": "Detailed Roadmap",
+    "requirements": "requirements",
+    "nextTasks": "Next Tasks",
+    "moreTasks": "more tasks...",
+    "alreadyCompleted": "You've completed this certificate!",
+    "viewAbove": "View certificate above",
+    "upgradeToUnlock": "Upgrade to Unlock",
+    "claimNow": "Claim Certificate Now!",
+    "remainingRequirements": "Complete {count} remaining requirements to earn certificate",
+    "prereqLabel": "Prerequisite",
+    "lessonsLabel": "Learn",
+    "practiceLabel": "Practice",
+    "competeLabel": "Compete",
+    "mentalMathLabel": "Mental Math",
+    "flashAnzanLabel": "Flash Anzan",
+    "accuracyLabel": "Accuracy",
+    "prereqRequirement": "Prerequisite",
+    "has": "Has",
+    "notHas": "Not Has",
+    "completeLessons": "Complete Lessons",
+    "practiceModes": "Practice Modes",
+    "competeModes": "Compete Modes",
+    "difficultyLevel": "Difficulty level",
+    "eachMode": "each mode",
+    "correctAnswers": "correct answers",
+    "achieve": "Achieve",
+    "correctPerRound": "correct per round",
+    "correct": "correct",
+    "levelAndAbove": "Level {level}+ and above",
+    "totalAccuracy": "Total Accuracy",
+    "points": "Points",
+    "modes": {
+      "addition": "Addition",
+      "subtraction": "Subtraction",
+      "addSubMixed": "Add & Sub",
+      "multiplication": "Multiply",
+      "division": "Divide",
+      "mulDiv": "Mul & Div",
+      "mixed": "All Operations"
+    }
+  },
+
+  "topbar": {
+    "vip": "VIP",
+    "advanced": "Advanced",
+    "basic": "Basic",
+    "free": "Free",
+    "days": "days",
+    "stars": "stars",
+    "diamonds": "diamonds",
+    "logout": "Log Out",
+    "logoutConfirm": "Log Out?",
+    "logoutMessage": "Are you sure you want to log out?",
+    "cancel": "Cancel",
+    "dashboard": "Dashboard",
+    "learn": "Learn",
+    "practice": "Practice",
+    "compete": "Compete",
+    "profile": "Profile",
+    "certificate": "Certificate",
+    "admin": "Admin",
+    "level": "Level"
+  },
+
+  "quest": {
+    "title": "Quests",
+    "dailyQuests": "Today's Quests",
+    "allCompleted": "You've completed all quests!",
+    "waiting": "waiting",
+    "claimReward": "Claim Reward",
+    "moreQuests": "more quests"
+  },
+
+  "auth": {
+    "login": {
+      "title": "Login",
+      "googleLoading": "Connecting to Google...",
+      "googleWait": "Please wait a moment",
+      "googleButton": "Sign in with Google",
+      "redirecting": "Redirecting...",
+      "or": "or",
+      "emailOrUsername": "Email or Username",
+      "emailPlaceholder": "email@example.com",
+      "password": "Password",
+      "forgotPassword": "Forgot password?",
+      "submit": "🚀 Login",
+      "submitting": "Logging in...",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up now",
+      "copyright": "Learn mental math with Soroban abacus",
+      "success": "Login successful! 🎉",
+      "error": "Login failed. Please try again!",
+      "invalidCredentials": "Email/Username or password is incorrect!",
+      "checkInfo": "Please check your information!",
+      "openingBrowser": "Opening browser for Google login...",
+      "browserError": "Could not open browser. Please try again!"
+    },
+    "register": {
+      "title": "Create Account",
+      "googleButton": "Sign up with Google",
+      "or": "or",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "John Smith",
+      "displayOnCertificate": "shown on certificate",
+      "username": "Username",
+      "usernamePlaceholder": "johnsmith",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "phone": "Phone Number",
+      "phonePlaceholder": "0901234567",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "submit": "🚀 Create Account",
+      "submitting": "Creating account...",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "success": "Registration successful! Please login to continue 🎉",
+      "error": "Registration failed. Please try again!",
+      "checkInfo": "Please check your information!"
+    },
+    "forgotPassword": {
+      "title": "Forgot Password?",
+      "subtitle": "Enter your email to receive a password reset link",
+      "emailSent": "Email Sent!",
+      "emailSentMessage": "Check your inbox to reset your password.",
+      "checkSpam": "If you don't see it, check your Spam folder!",
+      "backToLogin": "← Back to Login",
+      "sending": "Sending...",
+      "sendLink": "Send Reset Link →",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "submit": "Send Reset Link",
+      "submitting": "Sending...",
+      "success": "Password reset link sent! Check your email.",
+      "error": "Could not send reset link. Please try again!"
+    },
+    "resetPassword": {
+      "title": "Reset Password",
+      "subtitle": "Create a new password for your account",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "minChars": "Minimum 6 characters",
+      "reenterPassword": "Re-enter password",
+      "success": "Password changed successfully! 🎉",
+      "redirecting": "Redirecting...",
+      "redirectingText": "You will be redirected to the login page",
+      "processing": "Processing...",
+      "submit": "Change Password",
+      "backToLogin": "← Back to Login",
+      "errors": {
+        "minLength": "Password must be at least 6 characters",
+        "mismatch": "Passwords do not match"
+      },
+      "strength": {
+        "weak": "Weak",
+        "medium": "Medium",
+        "strong": "Strong",
+        "veryStrong": "Very Strong"
+      },
+      "submitting": "Resetting...",
+      "error": "Could not reset password. Please try again!"
+    },
+    "completeProfile": {
+      "greeting": "Hello",
+      "completing": "Completing registration...",
+      "pleaseWait": "Please wait a moment",
+      "continue": "Continue",
+      "saving": "Saving...",
+      "complete": "Complete",
+      "yourName": "Your name",
+      "step1": {
+        "title": "Welcome to SoroKid!",
+        "subtitle": "Confirm your display name",
+        "certificateNote": "This name will be printed on certificates, please enter the learner's real name",
+        "placeholder": "Enter your name"
+      },
+      "step2": {
+        "title": "Choose a username",
+        "subtitle": "Username will be displayed on leaderboard",
+        "usernameHint": "Only letters, numbers, and underscores (_)"
+      },
+      "step3": {
+        "title": "Parent's phone number",
+        "subtitle": "For contact when necessary",
+        "phoneHint": "Vietnam phone number (e.g., 0901234567)"
+      },
+      "errors": {
+        "nameRequired": "Please enter your name",
+        "usernameRequired": "Please enter a username",
+        "usernameMinLength": "Username must be at least 3 characters",
+        "usernameFormat": "Username can only contain letters, numbers, and underscores",
+        "usernameTaken": "This username is already taken",
+        "phoneRequired": "Please enter a phone number",
+        "invalidPhone": "Invalid phone number (e.g., 0901234567)"
+      }
+    },
+    "footer": "Learn mental math with Soroban abacus",
+    "validation": {
+      "nameRequired": "Please enter your full name",
+      "nameMinLength": "Name must be at least 2 characters",
+      "usernameRequired": "Please enter a username",
+      "usernameMinLength": "Username must be at least 3 characters",
+      "usernameFormat": "Username can only contain letters, numbers, and underscores",
+      "usernameExists": "This username is already taken",
+      "emailRequired": "Please enter your email",
+      "emailInvalid": "Email is not valid",
+      "emailExists": "This email is already registered",
+      "phoneRequired": "Please enter your phone number",
+      "phoneInvalid": "Phone number is not valid (e.g., 0901234567)",
+      "phoneExists": "This phone number is already registered",
+      "passwordRequired": "Please enter a password",
+      "passwordMinLength": "Password must be at least 6 characters",
+      "passwordInvalid": "Password is not valid",
+      "confirmRequired": "Please confirm your password",
+      "passwordMismatch": "Passwords do not match",
+      "identifierRequired": "Please enter email or username",
+      "identifierMinLength": "Email or username must be at least 3 characters"
+    }
+  },
+
+  "pricingPage": {
+    "badge": "Pay once • Use forever",
+    "heroTitle1": "Learn Soroban",
+    "heroTitle2": "anytime, anywhere",
+    "heroSubtitle": "Japanese mental math method helps kids develop mathematical thinking and focus",
+    "centerCost": "Learning center cost",
+    "centerCostValue": "$50-150/month",
+    "hereCost": "Here: Pay once, use forever",
+    "safePayment": "Secure payment",
+    "instantActivation": "Instant activation",
+    "zaloSupport": "Support via Zalo",
+    "mostPopular": "🔥 Most Popular",
+    "freeForever": "Free forever",
+    "oneTimePayment": "One-time payment",
+    "yourCurrentPlan": "Your current plan",
+    "difference": "Difference",
+    "processing": "Processing...",
+    "currentPlan": "Current plan",
+    "lowerPlan": "Lower plan",
+    "upgrade": "Upgrade",
+    "buyNow": "Buy Now",
+    "featureDetails": "Feature details",
+    "comparePlans": "Compare Plans",
+    "swipeToSee": "Swipe to see more",
+    "feature": "Feature",
+    "faqTitle": "Frequently Asked Questions",
+    "comparison": {
+      "learning": {
+        "name": "Learning",
+        "basicLessons": "Basic Lessons (Level 1-5)",
+        "addSubLessons": "Add/Sub Lessons (Level 6-10)",
+        "mulDivLessons": "Mul/Div Lessons (Level 11-18)"
+      },
+      "practice": {
+        "name": "Practice",
+        "addSub": "Addition & Subtraction",
+        "addSubMix": "Add/Sub Mix",
+        "mulDiv": "Multiplication & Division",
+        "fourOps": "Four Operations"
+      },
+      "compete": {
+        "name": "Competition",
+        "online": "Online Competition",
+        "mentalMath": "Super Mind (Mental Math)",
+        "flashAnzan": "Flash Anzan",
+        "leaderboard": "Leaderboard"
+      },
+      "certificate": {
+        "name": "Certificates",
+        "addSub": "Sorokid Add/Sub Certificate",
+        "complete": "Sorokid Complete Certificate"
+      },
+      "gamification": {
+        "name": "Gamification",
+        "dailyQuests": "Daily quests",
+        "achievements": "Achievement system",
+        "shop": "Item shop"
+      },
+      "level12": "Level 1-2",
+      "level13": "Level 1-3",
+      "allLevels": "All levels"
+    },
+    "faq": {
+      "paymentSafe": {
+        "question": "Is payment secure?",
+        "answer": "We use trusted payment gateways to ensure absolute security for your transactions."
+      },
+      "activation": {
+        "question": "How do I activate my plan?",
+        "answer": "After successful payment, your plan will be activated immediately and you can use all features."
+      },
+      "lifetime": {
+        "question": "Does the plan expire?",
+        "answer": "No! You only pay once and use forever, no monthly fees or hidden charges."
+      },
+      "upgrade": {
+        "question": "Can I upgrade later?",
+        "answer": "Yes! You can upgrade from Basic to Advanced anytime and only pay the difference."
+      }
+    },
+    "benefits": {
+      "badge": "Real benefits",
+      "title": "Why choose",
+      "brain": {
+        "title": "Brain development",
+        "content": "Train both hemispheres of the brain, improve focus and memory"
+      },
+      "speed": {
+        "title": "Fast mental math",
+        "content": "Kids can calculate complex problems in just seconds"
+      },
+      "fun": {
+        "title": "Learn while playing",
+        "content": "Gamified learning keeps kids engaged and never bored"
+      }
+    },
+    "cta": {
+      "title1": "Ready to start",
+      "title2": "your Soroban journey?",
+      "description": "Learning Soroban not only helps calculate faster but also develops logical thinking, memory and focus for your child.",
+      "button": "Start Learning"
+    },
+    "modal": {
+      "scanQR": "Scan QR code to pay",
+      "confirmingPayment": "Confirming payment...",
+      "waitingPayment": "Waiting for payment",
+      "systemChecking": "System checking...",
+      "autoConfirm": "After transfer, system will auto-confirm",
+      "transferDetails": "Transfer details",
+      "bank": "Bank",
+      "accountNumber": "Account number",
+      "accountName": "Account name",
+      "amount": "Amount",
+      "content": "Transfer content",
+      "iHaveTransferred": "I have transferred",
+      "notReceived": "Payment not received. System will auto-check again...",
+      "connectionError": "Connection error. Please wait..."
+    }
+  },
+
+  "blog": {
+    "all": "All",
+    "categories": "Blog categories",
+    "scrollLeft": "Scroll left",
+    "scrollRight": "Scroll right"
+  },
+
+  "profilePage": {
+    "logoutTitle": "Log out?",
+    "logoutMessage": "Are you sure you want to log out of your account?",
+    "streak": "Day streak",
+    "totalStars": "Total stars",
+    "diamonds": "Diamonds",
+    "edit": "Edit",
+    "sections": {
+      "learning": "LEARNING",
+      "account": "ACCOUNT",
+      "admin": "ADMIN"
+    },
+    "menu": {
+      "learn": "Learn",
+      "upgrade": "Upgrade account",
+      "certificate": "Certificates",
+      "editProfile": "Edit profile",
+      "admin": "Admin page"
+    },
+    "unlockFeatures": "Unlock all features!"
+  },
+
+  "leaderboardPage": {
+    "title": "Leaderboard",
+    "subtitle": "Top outstanding students",
+    "noData": "No data yet",
+    "startPractice": "Start practicing to appear on the leaderboard!"
+  },
+
+  "editProfile": {
+    "title": "Edit Profile",
+    "tabs": {
+      "profile": "Profile",
+      "password": "Password"
+    },
+    "fields": {
+      "fullName": "Full Name",
+      "phone": "Phone Number",
+      "username": "Username",
+      "email": "Email",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password"
+    },
+    "placeholders": {
+      "fullName": "Enter your full name",
+      "currentPassword": "Enter current password",
+      "newPassword": "Enter new password (at least 6 characters)",
+      "confirmPassword": "Re-enter new password"
+    },
+    "hints": {
+      "nameOnCertificate": "Your name will appear on certificates you earn",
+      "phoneFormat": "Vietnam phone number (e.g., 0901234567)",
+      "usernameReadOnly": "Username cannot be changed",
+      "emailReadOnly": "Email cannot be changed"
+    },
+    "errors": {
+      "nameRequired": "Please enter your name",
+      "nameMinLength": "Name must be at least 2 characters",
+      "invalidPhone": "Invalid phone number (e.g., 0901234567)",
+      "currentPasswordRequired": "Please enter current password",
+      "newPasswordRequired": "Please enter new password",
+      "passwordMinLength": "New password must be at least 6 characters",
+      "passwordMismatch": "Passwords do not match"
+    },
+    "passwordStrength": {
+      "tooShort": "Too short",
+      "medium": "Medium",
+      "good": "Good",
+      "strong": "Very strong"
+    },
+    "passwordMatch": "Passwords match",
+    "profileSaved": "Profile updated successfully!",
+    "passwordChanged": "Password changed successfully!",
+    "saving": "Saving...",
+    "processing": "Processing...",
+    "saveChanges": "Save Changes",
+    "changePassword": "Change Password",
+    "googleAccount": "Google Account",
+    "googleNoPassword": "You're logged in with Google, so there's no password to change.",
+    "backToProfile": "Back to profile page"
+  },
+
+  "trial": {
+    "ended": "Your free trial has ended",
+    "endedDesc": "Your free trial of {tier} has expired. Upgrade now to continue learning with all features!",
+    "upgradeNow": "🚀 Upgrade Now",
+    "inProgress": "Free trial in progress...",
+    "warningLastDays": "⚠️ Only {days} days left - Upgrade now to avoid interruption!",
+    "daysRemaining": "{days} days remaining with full features",
+    "viewPlans": "💎 View Plans",
+    "period": "Trial Period",
+    "daysLeft": "{days} days left",
+    "badge": "Trial: {days} days",
+    "lastDayBadge": "🌟 Last day of trial · View plans",
+    "hoursBadge": "⏰ Trial ends in {hours}h {minutes}m · Upgrade now!"
+  },
+
+  "upgrade": {
+    "title": "Upgrade to Continue",
+    "message": "This lesson requires a Premium plan to access.",
+    "includes": "Premium includes:",
+    "startingAt": "Starting at",
+    "perMonth": "/month",
+    "upgradeNow": "Upgrade Now",
+    "maybeLater": "Maybe Later",
+    "unlockAll": "Unlock all lessons!",
+    "viewNow": "View Now",
+    "unlockAllFull": "Unlock All Lessons!",
+    "completedFree": "You've completed {count} free lessons.",
+    "upgradeDesc": "Upgrade to Premium to access all content and earn completion certificates!",
+    "allLessons": "All lessons",
+    "certificates": "Certificates",
+    "unlimited": "Unlimited",
+    "unlockEverything": "Unlock Everything!",
+    "mathProdigy": "Math Prodigy",
+    "levels18": "18 levels to conquer",
+    "mentalMath": "Super mental math",
+    "certificates2": "Achievement certificates",
+    "noAds": "No ads",
+    "studentCount": "🔥 500+ students have upgraded",
+    "viewOffers": "View Offers",
+    "greatPractice": "Great practice session!",
+    "excellentMatch": "Excellent match!",
+    "doingGreat": "You're doing great!",
+    "unlockMoreLevels": "Unlock more levels and special game modes",
+    "fullExperience": "Upgrade for the full experience",
+    "remainingFree": "{remaining} free {type} remaining!",
+    "unlockAllBtn": "Unlock All",
+    "viewMoreContent": "View more content",
+    "achievementForUpgraded": "This achievement is for users with upgraded plans",
+    "learnMore": "Learn More",
+    "levelType": "levels",
+    "lessonType": "lessons"
+  },
+
+  "errorBoundary": {
+    "title": "Oops! Something went wrong",
+    "message": "Don't worry, try refreshing the page or come back later!",
+    "detailDev": "Error Details (Development)",
+    "retry": "Try Again",
+    "goBack": "Go Back"
+  },
+
+  "toast": {
+    "levelUp": "LEVEL UP!",
+    "close": "Close",
+    "closeNotification": "Close notification"
+  },
+
+  "payment": {
+    "scanQR": "Scan QR code to pay",
+    "success": "Payment successful!",
+    "activating": "Activating {tier} plan...",
+    "expired": "Order has expired",
+    "createNewOrder": "Please create a new order to continue.",
+    "close": "Close",
+    "qrAlt": "Payment QR Code",
+    "bankInfo": "Bank Transfer Details",
+    "bank": "Bank",
+    "accountNumber": "Account Number",
+    "accountName": "Account Holder",
+    "content": "Transfer Reference",
+    "orderCode": "Order ID",
+    "checking": "Checking...",
+    "iHavePaid": "I've paid",
+    "expiresIn15": "Order expires in 15 minutes",
+    "successTitle": "Payment Successful!",
+    "planActivated": "Plan Activated",
+    "activated": "Activated",
+    "confirmed": "Transaction confirmed successfully",
+    "unlocked": "All features have been unlocked",
+    "lifetime": "Lifetime access - Use forever",
+    "startLearning": "Start Learning Now",
+    "thanks": "Thank you for choosing SoroKid! 💜"
+  },
+
+  "sorobanWidget": {
+    "open": "Open Soroban Abacus",
+    "title": "Soroban Abacus",
+    "close": "Close abacus",
+    "hint": "Red bead = 5, Yellow bead = 1. Click to move beads!",
+    "result": "Result",
+    "reset": "Reset",
+    "hintBtn": "Hint",
+    "tenThousand": "10K",
+    "thousand": "1K",
+    "hundred": "100",
+    "ten": "10",
+    "unit": "1",
+    "instructions": "How to Use",
+    "clickToMove": "Click bead to move",
+    "redBead": "Red bead = 5 units",
+    "yellowBead": "Yellow bead = 1 unit",
+    "columns": ["Ten K", "Thousands", "Hundreds", "Tens", "Units"],
+    "howToUse": "How to Use",
+    "heaven5": "Heaven bead column {col}",
+    "earthBead": "Bead {bead} column {col}"
+  },
+
+  "sound": {
+    "title": "Sound",
+    "description": "Enable/disable sound effects",
+    "mute": "Mute sound",
+    "unmute": "Unmute sound",
+    "off": "Off",
+    "on": "On",
+    "themes": {
+      "adventure": "🗺️ Adventure",
+      "battle": "⚔️ Battle",
+      "victory": "🏆 Victory",
+      "relaxing": "🌙 Relaxing"
+    }
+  },
+
+  "rewards": {
+    "excellent": "Excellent!",
+    "wonderful": "Wonderful!",
+    "greatJob": "Great job!",
+    "keepTrying": "Keep trying!",
+    "congratulations": "🎊 Congratulations! 🎊",
+    "reward": "Reward"
+  },
+
+  "reward": {
+    "badgeUnlocked": "New badge unlocked!",
+    "newBadge": "New Badge",
+    "congratulations": "Congratulations!",
+    "claimReward": "Claim Reward!",
+    "completed": "Completed!",
+    "time": "Time",
+    "accuracy": "Accuracy",
+    "continueJourney": "Continue Journey!"
+  },
+
+  "achievementPopup": {
+    "addSubCert": "Soroban Addition & Subtraction Certificate",
+    "completeCert": "Complete Soroban Certificate"
+  },
+
+  "toolLayout": {
+    "back": "Back",
+    "breadcrumb": "Teacher Toolbox",
+    "teacherToolbox": "Teacher Toolbox",
+    "fullscreen": "Fullscreen",
+    "fullscreenTitle": "Fullscreen - Press ESC to exit",
+    "fullscreenHintPrefix": "Press",
+    "fullscreenHintSuffix": "to display larger",
+    "exitEsc": "Exit (ESC)",
+    "exit": "Exit",
+    "toExit": "to exit",
+    "loading": "Loading...",
+    "preparing": "Preparing tool...",
+    "pleaseWait": "Please wait a moment..."
+  },
+
+  "tierBadge": {
+    "advanced": "Advanced",
+    "premium": "Premium",
+    "basic": "Basic",
+    "free": "Free",
+    "viewPlans": "View learning plans",
+    "trialDays": "🎁 {days} days left in trial"
+  },
+
+  "trialBadge": {
+    "trialRemaining": "Trial {hours}h {minutes}m left",
+    "upgradeNow": "Upgrade now!",
+    "lastDay": "Last day of trial",
+    "viewPlans": "View plans",
+    "trialDays": "Trial {days} days left"
+  },
+
+  "adventureCert": {
+    "addSubTitle": "🏅 Addition & Subtraction Certificate",
+    "addSubSubtitle": "Mental Math Master",
+    "addSubDesc": "Conquered the Addition & Subtraction journey on Soroban",
+    "completeTitle": "👑 Complete Certificate",
+    "completeSubtitle": "Soroban Master",
+    "completeDesc": "Conquered the entire Soroban journey",
+    "explorer": "Explorer",
+    "congrats": "Congratulations",
+    "viewCert": "View Certificate",
+    "opening": "Opening..."
+  },
+
+  "narrative": {
+    "skip": "Skip",
+    "showAll": "Show all",
+    "next": "Next →",
+    "start": "Start! ✨",
+    "startAdventure": "Start Adventure!"
+  },
+
+  "adventureGame": {
+    "skip": "Skip",
+    "startNow": "Start! ⚡",
+    "exploreNow": "Explore Now! 🚀",
+    "unlocked": "You've unlocked a new achievement!",
+    "newAchievement": "New Achievement",
+    "congratulations": "Congratulations!",
+    "claimReward": "Claim Reward! 🎁",
+    "zoneLockedTitle": "Zone Locked 🔒",
+    "zoneLockedMsg": "Complete previous zones to unlock this area!",
+    "understood": "Got it! 👍",
+    "loadingTreasure": "Opening Treasure Chest...",
+    "loadingPreparing": "Soro Owl is preparing your journey!"
+  },
+
+  "softUpgrade": {
+    "practiceGreat": "Great practice! 🎯",
+    "battleExcellent": "Excellent battle! ⚔️",
+    "lessonComplete": "Lesson complete! 📚",
+    "streakImpressive": "Impressive streak! 🔥",
+    "levelUp": "Level up! 🚀",
+    "doingGreat": "You are doing great!",
+    "unlockMoreLevels": "Unlock more levels and special modes",
+    "upgradeFor18Levels": "Upgrade to experience all 18 levels",
+    "stars": "stars",
+    "exploreMore": "Explore more",
+    "freeRemaining": "Only {count} free {type} left!",
+    "level": "level",
+    "lesson": "lesson",
+    "unlockAll": "Unlock all",
+    "viewMoreContent": "View more content",
+    "achievementForUpgraded": "This achievement is for upgraded members",
+    "learnMore": "Learn More",
+    "progressingFast": "You are progressing fast! 🚀",
+    "challengeYourself": "Challenge yourself with harder levels",
+    "exploreFlashAnzan": "Explore Flash Anzan and Mental Math",
+    "lessonCompleteAwesome": "Awesome! Lesson complete! 🎉",
+    "moreLessonsAwaiting": "More exciting lessons awaiting you",
+    "excellentTop3": "Excellent! You made Top 3! 🏆",
+    "wellDone": "Well done! 👏",
+    "trySpecialModes": "Try special competition modes",
+    "explore": "Explore",
+    "basicPackage": "Basic Plan",
+    "advancedPackage": "Advanced Plan",
+    "unlockWith": "Unlock with {tier}"
+  },
+
+  "admin": {
+    "users": "Users",
+    "lessons": "Lessons",
+    "quests": "Quests",
+    "achievements": "Achievements",
+    "transactions": "Transactions",
+    "paymentSettings": "Payment Settings",
+    "managePlans": "Manage Plans",
+    "trialSettings": "Trial Settings",
+    "confirmTitle": "Confirm",
+    "confirmMessage": "Are you sure you want to proceed?",
+    "confirmBtn": "Confirm",
+    "cancelBtn": "Cancel"
+  },
+
+  "pwa": {
+    "installed": "Sorokid App installed!",
+    "thanks": "Thank you 💜",
+    "downloadApp": "Download Sorokid App",
+    "learnAnytime": "Learn Soroban anytime",
+    "learnAnytimeAnywhere": "Learn Soroban anytime anywhere",
+    "install": "Install",
+    "installApp": "Install App",
+    "iosTitle": "Install on iPhone/iPad:",
+    "androidTitle": "Install on Android:",
+    "iosStep1": "1. Tap the",
+    "share": "Share",
+    "button": "button",
+    "iosStep2": "2. Select",
+    "addToHome": "Add to Home Screen",
+    "androidStep1": "1. Tap",
+    "menuIcon": "⋮",
+    "topRight": "at top right",
+    "androidStep2": "2. Select",
+    "installAppOption": "Install app",
+    "gotIt": "Got it ✓"
+  }
+}

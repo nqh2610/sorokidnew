@@ -5,6 +5,7 @@ import ToolLayout from '@/components/ToolLayout/ToolLayout';
 import { LogoIcon } from '@/components/Logo/Logo';
 import { useGameSettings } from '@/lib/useGameSettings';
 import { GAME_IDS } from '@/lib/gameStorage';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 // Default settings cho ô chữ
 const DEFAULT_SETTINGS = {
@@ -29,6 +30,8 @@ const ROW_COLORS = [
 ];
 
 export default function OChuGame() {
+  const { t } = useI18n();
+  
   // Load saved settings
   const { settings, updateSettings } = useGameSettings(GAME_IDS.O_CHU, DEFAULT_SETTINGS);
   
@@ -577,19 +580,19 @@ export default function OChuGame() {
         result.errors.push({ 
           line: i + 1, 
           text: originalLine.substring(0, 40), 
-          reason: 'Thiếu đáp án sau dấu phân cách' 
+          reason: t('toolbox.crossword.missingAnswer')
         });
       } else if (!question && answer) {
         result.errors.push({ 
           line: i + 1, 
           text: originalLine.substring(0, 40), 
-          reason: 'Thiếu câu hỏi trước dấu phân cách' 
+          reason: t('toolbox.crossword.missingQuestion')
         });
       }
     }
     
     return result;
-  }, [smartFixLine]);
+  }, [smartFixLine, t]);
   
   // Wrapper for backward compatibility - returns just the parsed array
   const getValidQuestions = useCallback((text) => {
@@ -601,7 +604,7 @@ export default function OChuGame() {
     const kw = keywordStr.toUpperCase().replace(/[^A-Z0-9]/g, '');
     
     if (kw.length !== questionsData.length) {
-      return { error: `Từ khóa có ${kw.length} chữ nhưng có ${questionsData.length} câu hỏi. Số chữ trong từ khóa phải bằng số câu hỏi!` };
+      return { error: t('toolbox.crossword.keywordLengthError', { kwLen: kw.length, qLen: questionsData.length }) };
     }
     
     // Kiểm tra mỗi đáp án có chứa chữ tương ứng trong keyword không
@@ -612,7 +615,7 @@ export default function OChuGame() {
       const targetChar = kw[i];
       const pos = q.answer.indexOf(targetChar);
       if (pos === -1) {
-        errors.push(`Câu ${i + 1}: Đáp án "${q.answer}" không chứa chữ "${targetChar}"`);
+        errors.push(t('toolbox.crossword.answerMissingChar', { num: i + 1, answer: q.answer, char: targetChar }));
       } else {
         keyPositions.push(pos);
       }
@@ -653,7 +656,7 @@ export default function OChuGame() {
     });
     
     return { grid: gridData, keyword: kw, keywordCol: kwCol };
-  }, []);
+  }, [t]);
 
   // Close question when clicking outside
   const handleCloseQuestion = useCallback(() => {
@@ -670,14 +673,14 @@ export default function OChuGame() {
 
     // Validate keyword question (topic)
     if (!topic.trim()) {
-      setSetupError('⚠️ Vui lòng nhập câu hỏi về từ khóa!');
+      setSetupError(`⚠️ ${t('toolbox.crossword.enterKeywordQuestion')}`);
       return;
     }
 
     // Validate keyword
     const kw = keywordInput.trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
     if (!kw) {
-      setSetupError('⚠️ Vui lòng nhập từ khóa hàng dọc!');
+      setSetupError(`⚠️ ${t('toolbox.crossword.enterVerticalKeyword')}`);
       return;
     }
     
@@ -685,9 +688,9 @@ export default function OChuGame() {
     const { parsed, errors } = parseQuestions(questionsInput);
     if (parsed.length < 2) {
       if (errors.length > 0) {
-        setSetupError(`⚠️ Lỗi dòng ${errors[0].line}: ${errors[0].reason}`);
+        setSetupError(`⚠️ ${t('toolbox.crossword.errorLine', { num: errors[0].line, reason: errors[0].reason })}`);
       } else {
-        setSetupError('⚠️ Cần ít nhất 2 câu hỏi!');
+        setSetupError(`⚠️ ${t('toolbox.crossword.needAtLeast2')}`);
       }
       return;
     }
@@ -715,7 +718,7 @@ export default function OChuGame() {
     setTimeout(() => {
       enterFullscreen();
     }, 100);
-  }, [topic, keywordInput, questionsInput, parseQuestions, generateGridWithKeyword, enterFullscreen]);
+  }, [topic, keywordInput, questionsInput, parseQuestions, generateGridWithKeyword, enterFullscreen, t]);
 
   const handleOpenQuestion = useCallback((index) => {
     // Khi đã đoán đúng từ khóa, vẫn cho phép mở câu hỏi
@@ -898,17 +901,17 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN`);
 
   // === RENDER ===
   return (
-    <ToolLayout toolName="Trò chơi Ô chữ" toolIcon="🔤">
+    <ToolLayout toolName={t('toolbox.tools.crossword.name')} toolIcon="🔤">
       {phase === 'setup' ? (
         // === SETUP PHASE ===
         <div className="max-w-3xl mx-auto p-3 sm:p-4">
           <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 border border-gray-100">
             <div className="text-center mb-4">
               <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-1">
-                🎯 Tạo Trò chơi Ô chữ
+                🎯 {t('crossword.createTitle')}
               </h2>
               <p className="text-gray-500 text-sm">
-                Nhập từ khóa hàng dọc và các câu gợi ý
+                {t('crossword.createSubtitle')}
               </p>
             </div>
 
@@ -922,41 +925,41 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN`);
             {/* Topic / Keyword Question - Required */}
             <div className="mb-3">
               <label className="block text-sm font-medium text-gray-600 mb-1">
-                🎯 Chủ đề / Câu hỏi chủ đề <span className="text-red-500">*</span>
+                🎯 {t('toolbox.crossword.topicLabel')} <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
-                placeholder="Ví dụ: Địa lý Việt Nam hoặc Thành phố nào là thủ đô?"
+                placeholder={t('toolbox.crossword.topicPlaceholder')}
                 className="w-full p-2.5 border-2 border-gray-200 rounded-xl text-sm
                   focus:border-teal-400 focus:ring-2 focus:ring-teal-100"
               />
               <p className="text-xs text-gray-500 mt-1">
-                💡 Chủ đề hoặc câu hỏi gợi ý để học sinh đoán từ khóa
+                💡 {t('toolbox.crossword.topicHint')}
               </p>
             </div>
 
             {/* Keyword - Required */}
             <div className="mb-3">
               <label className="block text-sm font-medium text-gray-600 mb-1">
-                ⭐ Từ khóa hàng dọc <span className="text-red-500">*</span>
-                <span className="text-xs text-amber-600 ml-2">(chỉ hỗ trợ KHÔNG DẤU)</span>
+                ⭐ {t('toolbox.crossword.keywordLabel')} <span className="text-red-500">*</span>
+                <span className="text-xs text-amber-600 ml-2">{t('toolbox.crossword.keywordNote')}</span>
               </label>
               <input
                 type="text"
                 value={keywordInput}
                 onChange={(e) => setKeywordInput(e.target.value.toUpperCase())}
-                placeholder="Ví dụ: HANOI, VIETNAM, TOAN HOC..."
+                placeholder={t('toolbox.crossword.keywordPlaceholder')}
                 className="w-full p-2.5 border-2 border-gray-200 rounded-xl text-sm font-bold uppercase
                   focus:border-yellow-400 focus:ring-2 focus:ring-yellow-100 tracking-wider"
               />
               {keywordInput && (
                 <div className="mt-1 flex flex-wrap gap-1 items-center">
-                  <span className="text-xs text-gray-500">Cần {keywordInput.length} câu hỏi chứa:</span>
+                  <span className="text-xs text-gray-500">{t('toolbox.crossword.needQuestions', { count: keywordInput.length })}</span>
                   {keywordInput.split('').map((char, i) => (
                     <span key={i} className="text-xs px-1.5 py-0.5 bg-yellow-100 text-yellow-800 rounded font-bold">
-                      Câu {i+1}: [{char}]
+                      {t('toolbox.crossword.questionNum', { num: i+1 })}: [{char}]
                     </span>
                   ))}
                 </div>
@@ -966,24 +969,13 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN`);
             {/* Questions - Required */}
             <div className="mb-3">
               <label className="block text-sm font-medium text-gray-600 mb-1">
-                📝 Danh sách câu hỏi gợi ý <span className="text-red-500">*</span>
-                <span className="text-xs text-amber-600 ml-2">(đáp án viết KHÔNG DẤU)</span>
+                📝 {t('toolbox.crossword.questionsLabel')} <span className="text-red-500">*</span>
+                <span className="text-xs text-amber-600 ml-2">{t('toolbox.crossword.questionsNote')}</span>
               </label>
               <textarea
                 value={questionsInput}
                 onChange={(e) => setQuestionsInput(e.target.value)}
-                placeholder={`Mỗi dòng 1 câu theo format: Câu hỏi | ĐÁP ÁN
-
-═══ VÍ DỤ: Từ khóa "HANOI" (5 chữ) ═══
-
-Loài hoa nở mùa thu ở Hà Nội | HOASUA
-Tên gọi cũ của Việt Nam | ANNAM
-Con sông lớn chảy qua thủ đô | SONGHONG
-Vịnh nổi tiếng UNESCO | HALONG
-Cầu lịch sử bắc qua sông Hồng | LONGBIEN
-
-💡 Hỗ trợ: dấu | hoặc : hoặc Tab hoặc 3+ khoảng trắng
-✨ Tự động sửa: "Câu hỏi? đáp án" → "Câu hỏi?|đáp án"`}
+                placeholder={t('toolbox.crossword.questionsPlaceholder')}
                 className="w-full h-48 p-3 border-2 border-gray-200 rounded-xl text-sm
                   focus:border-teal-400 focus:ring-2 focus:ring-teal-100 resize-none font-mono"
               />
@@ -993,15 +985,15 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
             <div className="flex flex-wrap gap-2">
               <button onClick={loadSampleData}
                 className="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-sm">
-                📋 Xem mẫu
+                📋 {t('toolbox.crossword.viewSample')}
               </button>
               <button onClick={() => setShowAIPrompt(true)}
                 className="px-3 py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg text-sm font-medium">
-                🤖 Tạo bằng AI
+                🤖 {t('toolbox.crossword.createWithAI')}
               </button>
               <button onClick={() => { setTopic(''); setKeywordInput(''); setQuestionsInput(''); setSetupError(''); }}
                 className="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-sm">
-                🗑️ Xóa hết
+                🗑️ {t('toolbox.crossword.clearAll')}
               </button>
               <div className="flex-1" />
               <button
@@ -1011,7 +1003,7 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
                   ${topic.trim() && keywordInput.trim() && questionsInput.trim()
                     ? 'bg-gradient-to-r from-teal-500 to-cyan-600 hover:shadow-lg'
                     : 'bg-gray-300 cursor-not-allowed'}`}>
-                🎮 Bắt đầu chơi
+                🎮 {t('toolbox.crossword.startGame')}
               </button>
             </div>
 
@@ -1033,36 +1025,36 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
                   
                   // Add parse errors
                   parseErrors.forEach(err => {
-                    errors.push(`❌ Dòng ${err.line}: ${err.reason}`);
+                    errors.push(`❌ ${t('toolbox.crossword.errorLine', { num: err.line, reason: err.reason })}`);
                   });
                   
                   if (kwLen === 0 && qLen > 0) {
-                    warnings.push('⚠️ Chưa nhập từ khóa hàng dọc');
+                    warnings.push(`⚠️ ${t('toolbox.crossword.noKeyword')}`);
                   }
                   if (kwLen > 0 && qLen === 0) {
-                    warnings.push('⚠️ Chưa nhập câu hỏi gợi ý');
+                    warnings.push(`⚠️ ${t('toolbox.crossword.noQuestions')}`);
                   }
                   if (kwLen > 0 && qLen > 0 && kwLen !== qLen) {
-                    errors.push(`❌ Từ khóa "${kw}" có ${kwLen} chữ nhưng bạn nhập ${qLen} câu hỏi`);
+                    errors.push(`❌ ${t('toolbox.crossword.keywordMismatch', { kw, kwLen, qLen })}`);
                   }
                   
                   // Check each question
                   const questionStatus = parsed.map((q, i) => {
                     const neededChar = kw[i]?.toUpperCase();
-                    if (!neededChar) return { status: 'extra', message: `Câu ${i+1}: Thừa (từ khóa chỉ có ${kwLen} chữ)` };
+                    if (!neededChar) return { status: 'extra', message: t('toolbox.crossword.extraQuestion', { count: kwLen }) };
                     
                     const hasChar = q.answer.includes(neededChar);
                     if (!hasChar) {
                       return { 
                         status: 'error', 
-                        message: `Câu ${i+1}: "${q.answer}" không có chữ "${neededChar}"`,
+                        message: `${t('toolbox.crossword.questionNum', { num: i+1 })}: "${q.answer}" - ${t('toolbox.crossword.missingChar', { char: neededChar })}`,
                         needed: neededChar,
                         answer: q.answer
                       };
                     }
                     return { 
                       status: 'ok', 
-                      message: `Câu ${i+1}: ✓`,
+                      message: `${t('toolbox.crossword.questionNum', { num: i+1 })}: ✓`,
                       needed: neededChar,
                       answer: q.answer,
                       position: q.answer.indexOf(neededChar)
@@ -1083,7 +1075,7 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
                         <div className="flex items-center gap-2 mb-1">
                           <span className="text-lg">{allOk ? '✅' : hasErrors ? '❌' : '⚠️'}</span>
                           <span className={`font-bold ${allOk ? 'text-green-700' : hasErrors ? 'text-red-700' : 'text-yellow-700'}`}>
-                            {allOk ? 'Sẵn sàng chơi!' : hasErrors ? 'Cần sửa lỗi' : 'Đang thiếu thông tin'}
+                            {allOk ? t('toolbox.crossword.readyToPlay') : hasErrors ? t('toolbox.crossword.needFix') : t('toolbox.crossword.missingInfo')}
                           </span>
                         </div>
                         
@@ -1098,7 +1090,7 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
                         {/* Missing questions hint */}
                         {kwLen > qLen && qLen > 0 && (
                           <p className="text-red-600 text-sm">
-                            ❌ Thiếu {kwLen - qLen} câu hỏi (cần thêm câu chứa: {kw.slice(qLen).split('').map((c, i) => `[${c}]`).join(', ')})
+                            ❌ {t('toolbox.crossword.missingQuestions', { count: kwLen - qLen, chars: kw.slice(qLen).split('').map((c) => `[${c}]`).join(', ') })}
                           </p>
                         )}
                       </div>
@@ -1107,7 +1099,7 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
                       {parsed.length > 0 && kw.length > 0 && (
                         <div className="bg-gray-50 rounded-xl p-3">
                           <p className="font-semibold text-gray-700 text-sm mb-2">
-                            📋 Kiểm tra từng câu:
+                            📋 {t('toolbox.crossword.checkQuestions')}
                           </p>
                           <div className="space-y-1.5 max-h-48 overflow-y-auto">
                             {questionStatus.map((status, i) => {
@@ -1119,7 +1111,7 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
                                   <div key={i} className="flex items-center gap-2 p-2 bg-orange-50 rounded-lg border border-orange-200">
                                     <span className="text-orange-500 font-bold w-6">{i+1}.</span>
                                     <span className="text-orange-600 text-sm flex-1">{q?.question}</span>
-                                    <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded">Thừa câu</span>
+                                    <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded">{t('toolbox.crossword.extraQuestion', { count: kwLen })}</span>
                                   </div>
                                 );
                               }
@@ -1133,11 +1125,11 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
                                       <div className="flex items-center gap-2 mt-1">
                                         <span className="font-mono font-bold text-red-600">{q.answer}</span>
                                         <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded">
-                                          ✗ Thiếu chữ [{status.needed}]
+                                          ✗ {t('toolbox.crossword.missingChar', { char: status.needed })}
                                         </span>
                                       </div>
                                       <p className="text-xs text-red-500 mt-1">
-                                        💡 Gợi ý: Đổi đáp án khác có chứa [{status.needed}] hoặc sửa từ khóa
+                                        💡 {t('toolbox.crossword.suggestion', { char: status.needed })}
                                       </p>
                                     </div>
                                   </div>
@@ -1171,9 +1163,9 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
                               return (
                                 <div key={`missing-${i}`} className="flex items-center gap-2 p-2 bg-gray-100 rounded-lg border border-dashed border-gray-300">
                                   <span className={`${color.text} font-bold w-6`}>{idx+1}.</span>
-                                  <span className="text-gray-400 text-sm flex-1 italic">Chưa nhập câu hỏi...</span>
+                                  <span className="text-gray-400 text-sm flex-1 italic">{t('toolbox.crossword.notEntered')}</span>
                                   <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">
-                                    Cần chữ [{neededChar}]
+                                    {t('toolbox.crossword.needChar', { char: neededChar })}
                                   </span>
                                 </div>
                               );
@@ -1193,8 +1185,8 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN
             <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setShowAIPrompt(false)}>
               <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden" onClick={e => e.stopPropagation()}>
                 <div className="bg-gradient-to-r from-purple-500 to-pink-500 px-5 py-4">
-                  <h3 className="text-white font-bold text-lg">🤖 Prompt tạo câu hỏi Ô Chữ bằng AI</h3>
-                  <p className="text-white/80 text-sm">Copy prompt này và dán vào ChatGPT, Gemini, Claude...</p>
+                  <h3 className="text-white font-bold text-lg">🤖 {t('toolbox.crossword.aiPromptTitle')}</h3>
+                  <p className="text-white/80 text-sm">{t('toolbox.crossword.aiPromptSubtitle')}</p>
                 </div>
                 <div className="p-5 overflow-y-auto max-h-[60vh]">
                   <div className="bg-gray-50 rounded-xl p-4 font-mono text-sm whitespace-pre-wrap text-gray-700 border">
@@ -1245,14 +1237,14 @@ LƯU Ý QUAN TRỌNG:
                       navigator.clipboard.writeText(prompt);
                       setShowAIPrompt(false);
                       setSetupError('');
-                      alert('✅ Đã copy prompt! Hãy dán vào ChatGPT/Gemini/Claude');
+                      alert(`✅ ${t('toolbox.crossword.copiedPrompt')}`);
                     }}
                     className="flex-1 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:opacity-90">
-                    📋 Copy Prompt
+                    📋 {t('toolbox.crossword.copyPrompt')}
                   </button>
                   <button onClick={() => setShowAIPrompt(false)}
                     className="px-6 py-3 bg-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-300">
-                    Đóng
+                    {t('toolbox.crossword.close')}
                   </button>
                 </div>
               </div>
@@ -1323,10 +1315,10 @@ LƯU Ý QUAN TRỌNG:
             <div className="flex items-center gap-2">
               <button onClick={() => { exitFullscreen(); handleReset(); }}
                 className="px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white rounded-lg text-sm font-medium">
-                ← Về
+                ← {t('toolbox.crossword.back')}
               </button>
               <button onClick={handleReplay}
-                className="p-1.5 bg-amber-500 hover:bg-amber-400 text-white rounded-lg" title="Chơi lại">
+                className="p-1.5 bg-amber-500 hover:bg-amber-400 text-white rounded-lg" title={t('toolbox.crossword.playAgain')}>
                 🔄
               </button>
               {/* Progress indicator */}
@@ -1350,22 +1342,22 @@ LƯU Ý QUAN TRỌNG:
             <div className="flex items-center gap-1.5">
               <button onClick={() => setSoundEnabled(!soundEnabled)}
                 className={`p-1.5 rounded-lg ${soundEnabled ? 'bg-green-500 text-white' : 'bg-white/20 text-white/50'}`}
-                title={soundEnabled ? 'Tắt âm thanh' : 'Bật âm thanh'}>
+                title={soundEnabled ? t('toolbox.crossword.soundOff') : t('toolbox.crossword.soundOn')}>
                 {soundEnabled ? '🔊' : '🔇'}
               </button>
               <button onClick={handleRevealKeyword} disabled={gameComplete}
                 className="px-2 py-1.5 bg-pink-500 hover:bg-pink-400 text-white rounded-lg disabled:opacity-50 text-xs font-bold"
-                title="Chỉ hiện từ khóa">
-                🏁 Từ khóa
+                title={t('toolbox.crossword.showKeyword')}>
+                🏁 {t('toolbox.crossword.showKeyword')}
               </button>
               <button onClick={handleRevealAll} disabled={gameComplete && revealedRows.length === questions.length}
                 className="px-2 py-1.5 bg-purple-500 hover:bg-purple-400 text-white rounded-lg disabled:opacity-50 text-xs font-bold"
-                title="Mở tất cả câu hỏi + từ khóa">
-                📜 Toàn bộ
+                title={t('toolbox.crossword.showAll')}>
+                📜 {t('toolbox.crossword.showAll')}
               </button>
               <button onClick={toggleFullscreen}
                 className="p-1.5 bg-blue-500 hover:bg-blue-400 text-white rounded-lg"
-                title={isFullscreen ? 'Thoát toàn màn hình' : 'Toàn màn hình'}>
+                title={isFullscreen ? t('toolbox.crossword.exitFullscreen') : t('toolbox.crossword.fullscreen')}>
                 {isFullscreen ? '✖' : '⛶'}
               </button>
             </div>
@@ -1431,7 +1423,7 @@ LƯU Ý QUAN TRỌNG:
                           ${longPressRow === rowIndex ? 'scale-95 opacity-70' : ''}
                           ${isRevealed ? 'ring-2 ring-green-400 bg-green-500' : 'hover:scale-105 cursor-pointer'}
                           ${gameComplete && !isRevealed ? 'ring-2 ring-yellow-400 animate-pulse' : ''}`}
-                        title={isRevealed ? 'Đã mở' : (gameComplete ? 'Click để mở đáp án' : 'Click: mở câu hỏi | Giữ lâu: mở đáp án')}>
+                        title={isRevealed ? t('toolbox.crossword.opened') : (gameComplete ? t('toolbox.crossword.clickToOpen') : t('toolbox.crossword.clickQuestion'))}>
                         {isRevealed ? '✓' : rowIndex + 1}
                       </button>
                       
@@ -1507,7 +1499,7 @@ LƯU Ý QUAN TRỌNG:
                             value={rowAnswerInput}
                             onChange={(e) => setRowAnswerInput(e.target.value.toUpperCase())}
                             onKeyDown={(e) => e.key === 'Enter' && handleRowAnswerSubmit()}
-                            placeholder="Nhập đáp án..."
+                            placeholder={t('toolbox.crossword.enterAnswer')}
                             className={`flex-1 px-2 py-1.5 rounded-lg font-bold text-center uppercase
                               text-gray-800 text-base border-2 transition-all min-w-0
                               ${rowAnswerResult === 'wrong'
@@ -1522,8 +1514,8 @@ LƯU Ý QUAN TRỌNG:
                           <button onClick={() => handleDirectReveal(currentQuestion)}
                             className="px-2.5 py-1.5 bg-green-400 hover:bg-green-300 text-white font-bold rounded-lg text-xs
                               hover:scale-105 active:scale-95 transition-all shadow whitespace-nowrap"
-                            title="Mở đáp án">
-                            Mở
+                            title={t('toolbox.crossword.reveal')}>
+                            {t('toolbox.crossword.reveal')}
                           </button>
                         </div>
                       ) : (
@@ -1535,13 +1527,13 @@ LƯU Ý QUAN TRỌNG:
                           <button onClick={() => handleDirectReveal(currentQuestion)}
                             className="px-3 py-1.5 bg-green-400 hover:bg-green-300 text-white font-bold rounded-lg text-sm
                               hover:scale-105 active:scale-95 transition-all shadow whitespace-nowrap animate-pulse">
-                            Mở
+                            {t('toolbox.crossword.reveal')}
                           </button>
                         </div>
                       )}
 
                       {rowAnswerResult === 'wrong' && (
-                        <p className="text-white/80 text-xs mt-1">❌ Sai! Thử lại...</p>
+                        <p className="text-white/80 text-xs mt-1">❌ {t('toolbox.crossword.wrongTryAgain')}</p>
                       )}
                     </div>
                   </div>
@@ -1585,7 +1577,7 @@ LƯU Ý QUAN TRỌNG:
                       value={keywordGuess}
                       onChange={(e) => setKeywordGuess(e.target.value.toUpperCase())}
                       onKeyDown={(e) => e.key === 'Enter' && handleGuessKeyword()}
-                      placeholder="Đoán từ khóa..."
+                      placeholder={t('toolbox.crossword.guessKeyword')}
                       className="w-24 sm:w-32 px-2 py-1 rounded font-bold text-center uppercase
                         bg-white text-gray-800 text-sm border-2 border-white focus:border-yellow-300 focus:outline-none"
                       maxLength={keyword.length + 2}
@@ -1601,11 +1593,11 @@ LƯU Ý QUAN TRỌNG:
                   </div>
                 ) : (
                   <div className="flex items-center gap-2">
-                    <span className="text-white font-bold text-sm">🎉 Đúng!</span>
+                    <span className="text-white font-bold text-sm">🎉 {t('toolbox.crossword.correct')}</span>
                     {revealedRows.length < questions.length && (
                       <button onClick={handleRevealAll}
                         className="px-2 py-1 bg-black/20 text-white font-bold rounded text-xs hover:bg-black/30 border border-white/30">
-                        Mở hết
+                        {t('toolbox.crossword.revealAll')}
                       </button>
                     )}
                     <button onClick={handleReplay}
@@ -1619,7 +1611,7 @@ LƯU Ý QUAN TRỌNG:
               {/* Success message when keyword guessed but questions remain */}
               {gameComplete && revealedRows.length < questions.length && currentQuestion < 0 && (
                 <div className="mt-1 text-center text-green-300 text-xs font-medium">
-                  Click số để mở đáp án ({questions.length - revealedRows.length} còn lại)
+                  {t('toolbox.crossword.remaining', { count: questions.length - revealedRows.length })}
                 </div>
               )}
             </div>

@@ -9,6 +9,7 @@ import {
   playSound,
   initSoundSystem 
 } from '@/lib/soundManager';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 /**
  * 🔊 SOUND TOGGLE BUTTON
@@ -40,6 +41,7 @@ export default function SoundToggle({
   className = '',
   showLabel = false,
 }) {
+  const { t } = useI18n();
   const [enabled, setEnabled] = useState(true);
   const [mounted, setMounted] = useState(false);
   
@@ -91,8 +93,8 @@ export default function SoundToggle({
         shadow-md hover:shadow-lg
         ${className}
       `}
-      title={enabled ? 'Tắt âm thanh' : 'Bật âm thanh'}
-      aria-label={enabled ? 'Tắt âm thanh' : 'Bật âm thanh'}
+      title={enabled ? t('sound.mute') : t('sound.unmute')}
+      aria-label={enabled ? t('sound.mute') : t('sound.unmute')}
     >
       {enabled ? (
         <Volume2 className="w-5 h-5" />
@@ -102,7 +104,7 @@ export default function SoundToggle({
       
       {showLabel && (
         <span className="text-sm font-medium">
-          {enabled ? 'Bật' : 'Tắt'}
+          {enabled ? t('sound.on') : t('sound.off')}
         </span>
       )}
     </button>
@@ -127,13 +129,14 @@ export function GameSoundToggle() {
  * Preset cho trang settings - Inline với label
  */
 export function SettingsSoundToggle() {
+  const { t } = useI18n();
   return (
     <div className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-100">
       <div className="flex items-center gap-3">
         <span className="text-2xl">🔊</span>
         <div>
-          <p className="font-medium text-gray-800">Âm thanh</p>
-          <p className="text-sm text-gray-500">Bật/tắt hiệu ứng âm thanh</p>
+          <p className="font-medium text-gray-800">{t('sound.title')}</p>
+          <p className="text-sm text-gray-500">{t('sound.description')}</p>
         </div>
       </div>
       <SoundToggle position="inline" size="lg" />

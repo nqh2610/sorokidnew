@@ -15,9 +15,8 @@ const BocThamClient = dynamic(
     ssr: false,
     loading: () => (
       <ToolLoadingSkeleton 
-        toolName="Bốc Thăm"
+        toolKey="randomPicker"
         toolIcon="🎫"
-        message="Đang chuẩn bị bốc thăm..."
       />
     ),
   }

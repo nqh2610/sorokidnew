@@ -21,8 +21,8 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export const metadata = {
-  title: 'Bàn Tính Soroban Online - Virtual Abacus Miễn Phí | Luyện Tập Soroban',
-  description: 'Bàn Tính Soroban Online - Virtual abacus Nhật Bản MIỄN PHÍ. Kéo thả hạt trực quan, hiển thị giá trị số. Japanese abacus online cho học sinh luyện tập tại nhà, giáo viên minh họa trên lớp!',
+  title: 'Soroban Abacus Online - Free Virtual Abacus | Practice Soroban',
+  description: 'Soroban Abacus Online - FREE Japanese virtual abacus. Drag and drop beads intuitively, see number values. Japanese abacus online for students to practice at home, teachers to demonstrate in class!',
   keywords: [
     // Primary keywords
     'bàn tính soroban',
@@ -59,8 +59,8 @@ export const metadata = {
     'bàn tính gảy',
   ],
   openGraph: {
-    title: 'Bàn Tính Soroban Online - Virtual Abacus Miễn Phí',
-    description: 'Virtual soroban - bàn tính ảo Nhật Bản, kéo thả hạt trực quan. Japanese abacus online miễn phí!',
+    title: 'Soroban Abacus Online - Free Virtual Abacus',
+    description: 'Virtual soroban - Japanese abacus with intuitive bead drag-and-drop. Free Japanese abacus online!',
     url: 'https://sorokid.com/tool/ban-tinh-soroban',
     siteName: 'SoroKid Toolbox',
     images: [
@@ -76,8 +76,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bàn Tính Soroban - Virtual Abacus Online',
-    description: 'Virtual soroban - bàn tính ảo Nhật Bản kéo thả hạt. Miễn phí!',
+    title: 'Soroban Abacus - Virtual Abacus Online',
+    description: 'Virtual soroban - Japanese abacus with bead drag-and-drop. Free!',
     images: ['/blog/cach-cam-ban-tinh-soroban-dung.jpg'],
   },
   alternates: {

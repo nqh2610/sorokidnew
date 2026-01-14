@@ -15,9 +15,8 @@ const ChiaNhomClient = dynamic(
     ssr: false,
     loading: () => (
       <ToolLoadingSkeleton 
-        toolName="Chia Nhóm"
+        toolKey="groupMaker"
         toolIcon="👥"
-        message="Đang chuẩn bị chia nhóm..."
       />
     ),
   }

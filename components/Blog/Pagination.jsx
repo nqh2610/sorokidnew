@@ -7,7 +7,7 @@
  * - Hiển thị số trang thông minh
  */
 
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink/LocalizedLink';
 
 /**
  * Tạo array số trang để hiển thị
@@ -69,7 +69,7 @@ export default function Pagination({
     >
       {/* Previous Button */}
       {currentPage > 1 ? (
-        <Link
+        <LocalizedLink
           href={buildUrl(currentPage - 1)}
           className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-violet-600 transition-colors"
           aria-label="Trang trước"
@@ -78,7 +78,7 @@ export default function Pagination({
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
           <span className="hidden sm:inline">Trước</span>
-        </Link>
+        </LocalizedLink>
       ) : (
         <span className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-200 rounded-lg cursor-not-allowed">
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -113,20 +113,20 @@ export default function Pagination({
               {page}
             </span>
           ) : (
-            <Link
+            <LocalizedLink
               key={page}
               href={buildUrl(page)}
               className="px-3.5 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-violet-600 hover:border-violet-300 transition-colors"
             >
               {page}
-            </Link>
+            </LocalizedLink>
           );
         })}
       </div>
 
       {/* Next Button */}
       {currentPage < totalPages ? (
-        <Link
+        <LocalizedLink
           href={buildUrl(currentPage + 1)}
           className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-violet-600 transition-colors"
           aria-label="Trang sau"
@@ -135,7 +135,7 @@ export default function Pagination({
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
-        </Link>
+        </LocalizedLink>
       ) : (
         <span className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-200 rounded-lg cursor-not-allowed">
           <span className="hidden sm:inline">Sau</span>

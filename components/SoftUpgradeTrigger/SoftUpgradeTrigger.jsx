@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import Link from 'next/link';
+import { LocalizedLink } from '@/components/LocalizedLink';
 import { Sparkles, Gift, Star, Trophy, Rocket, Crown, X, ChevronRight } from 'lucide-react';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 /**
  * 🎯 SOFT UPGRADE TRIGGERS
@@ -29,6 +30,7 @@ export function MilestoneCelebration({
   userTier,
   onClose 
 }) {
+  const { t } = useI18n();
   const [showInternal, setShowInternal] = useState(false);
   
   // Support both isVisible and show prop names
@@ -57,18 +59,18 @@ export function MilestoneCelebration({
   if (!showInternal || userTier === 'advanced' || userTier === 'vip') return null;
 
   const typeMessages = {
-    session: 'Luyện tập thật tuyệt! 🎯',
-    battle: 'Trận đấu xuất sắc! ⚔️',
-    lesson: 'Bài học hoàn thành! 📚',
-    streak: 'Chuỗi ngày ấn tượng! 🔥',
-    level: 'Lên cấp rồi! 🚀'
+    session: t('softUpgrade.practiceGreat'),
+    battle: t('softUpgrade.battleExcellent'),
+    lesson: t('softUpgrade.lessonComplete'),
+    streak: t('softUpgrade.streakImpressive'),
+    level: t('softUpgrade.levelUp')
   };
 
-  const displayMessage = message || typeMessages[milestoneType] || milestone?.title || 'Bạn đang làm rất tốt!';
+  const displayMessage = message || typeMessages[milestoneType] || milestone?.title || t('softUpgrade.doingGreat');
 
   const upgradeHints = {
-    free: 'Mở khóa thêm cấp độ và chế độ đặc biệt',
-    basic: 'Nâng cấp để trải nghiệm đầy đủ 18 level'
+    free: t('softUpgrade.unlockMoreLevels'),
+    basic: t('softUpgrade.upgradeFor18Levels')
   };
 
   const handleClose = () => {
@@ -91,7 +93,7 @@ export function MilestoneCelebration({
           <button 
             onClick={handleClose}
             className="absolute top-2 right-2 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-200 transition-colors active:scale-95"
-            aria-label="Đóng"
+            aria-label={t('common.close')}
           >
             <X size={18} />
           </button>
@@ -106,18 +108,18 @@ export function MilestoneCelebration({
             </p>
             {starsEarned > 0 && (
               <p className="text-xs text-yellow-600 font-bold mb-2">
-                +{starsEarned} ⭐ sao
+                +{starsEarned} ⭐ {t('softUpgrade.stars')}
               </p>
             )}
-            <Link 
+            <LocalizedLink 
               href="/pricing"
               onClick={handleClose}
               className="inline-flex items-center gap-1.5 text-xs text-purple-600 hover:text-purple-700 font-medium group"
             >
               <Sparkles size={12} className="group-hover:animate-pulse" />
-              <span>{upgradeHints[userTier] || 'Khám phá thêm'}</span>
+              <span>{upgradeHints[userTier] || t('softUpgrade.exploreMore')}</span>
               <ChevronRight size={12} />
-            </Link>
+            </LocalizedLink>
           </div>
         </div>
       </div>
@@ -137,6 +139,7 @@ export function ProgressPeek({
   userTier,
   onUpgradeClick 
 }) {
+  const { t } = useI18n();
   // Support both ways of passing progress
   let remaining;
   if (currentProgress) {
@@ -159,22 +162,22 @@ export function ProgressPeek({
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm text-amber-800">
-              Còn <span className="font-bold text-amber-600">{remaining}</span> {currentLevel ? 'level' : 'bài'} miễn phí nữa!
+              {t('softUpgrade.freeRemaining', { count: remaining, type: currentLevel ? t('softUpgrade.level') : t('softUpgrade.lesson') })}
             </p>
             {onUpgradeClick ? (
               <button 
                 onClick={onUpgradeClick}
                 className="text-xs text-amber-600 hover:text-amber-700 font-medium inline-flex items-center gap-1 mt-0.5"
               >
-                Mở khóa tất cả <ChevronRight size={10} />
+                {t('softUpgrade.unlockAll')} <ChevronRight size={10} />
               </button>
             ) : (
-              <Link 
+              <LocalizedLink 
                 href="/pricing" 
                 className="text-xs text-amber-600 hover:text-amber-700 font-medium inline-flex items-center gap-1 mt-0.5"
               >
-                Xem thêm nhiều nội dung hơn <ChevronRight size={10} />
-              </Link>
+                {t('softUpgrade.viewMoreContent')} <ChevronRight size={10} />
+              </LocalizedLink>
             )}
           </div>
         </div>
@@ -192,6 +195,7 @@ export function AchievementUnlockHint({
   isVisible,
   onClose 
 }) {
+  const { t } = useI18n();
   if (!isVisible) return null;
 
   return (
@@ -206,21 +210,21 @@ export function AchievementUnlockHint({
           </div>
           <h3 className="text-lg font-bold text-gray-800 mb-2">{achievementName}</h3>
           <p className="text-sm text-gray-500 mb-4">
-            Thành tích này dành cho các bạn đã nâng cấp gói học tập
+            {t('softUpgrade.achievementForUpgraded')}
           </p>
           <div className="flex gap-3">
             <button 
               onClick={onClose}
               className="flex-1 py-2.5 text-gray-500 hover:text-gray-700 font-medium rounded-xl transition-colors"
             >
-              Để sau
+              {t('upgrade.maybeLater')}
             </button>
-            <Link 
+            <LocalizedLink 
               href="/pricing"
               className="flex-1 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium rounded-xl hover:shadow-lg transition-all text-center"
             >
-              Tìm hiểu
-            </Link>
+              {t('softUpgrade.learnMore')}
+            </LocalizedLink>
           </div>
         </div>
       </div>
@@ -241,6 +245,7 @@ export function SoftNudgeBanner({
   subMessage, // Alternative: custom sub message
   onClose // Alternative: close handler
 }) {
+  const { t } = useI18n();
   const [dismissed, setDismissed] = useState(false);
   const [showInternal, setShowInternal] = useState(false);
 
@@ -274,18 +279,18 @@ export function SoftNudgeBanner({
 
   const messages = {
     after_practice: {
-      title: 'Bạn đang tiến bộ rất nhanh! 🚀',
+      title: t('softUpgrade.progressingFast'),
       subtitle: userTier === 'free' 
-        ? 'Thử thách bản thân với các cấp độ khó hơn' 
-        : 'Khám phá Flash Anzan và Siêu Trí Tuệ'
+        ? t('softUpgrade.challengeYourself') 
+        : t('softUpgrade.exploreFlashAnzan')
     },
     after_lesson: {
-      title: 'Tuyệt vời! Bài học hoàn thành! 🎉',
-      subtitle: 'Còn nhiều bài học thú vị đang chờ bạn'
+      title: t('softUpgrade.lessonCompleteAwesome'),
+      subtitle: t('softUpgrade.moreLessonsAwaiting')
     },
     after_compete: {
-      title: stats?.isTop3 ? 'Xuất sắc! Bạn vào Top 3! 🏆' : 'Làm tốt lắm! 👏',
-      subtitle: 'Thử các chế độ thi đấu đặc biệt'
+      title: stats?.isTop3 ? t('softUpgrade.excellentTop3') : t('softUpgrade.wellDone'),
+      subtitle: t('softUpgrade.trySpecialModes')
     }
   };
 
@@ -308,12 +313,12 @@ export function SoftNudgeBanner({
           <div className="flex-1 min-w-0">
             <p className="font-semibold text-gray-800 text-sm">{displayTitle}</p>
             <p className="text-xs text-gray-500 mt-0.5">{displaySubtitle}</p>
-            <Link
+            <LocalizedLink
               href="/pricing"
               className="inline-flex items-center gap-1 mt-2 px-3 py-1.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-medium rounded-lg hover:shadow-md transition-all"
             >
-              Khám phá <ChevronRight size={12} />
-            </Link>
+              {t('softUpgrade.explore')} <ChevronRight size={12} />
+            </LocalizedLink>
           </div>
           <button 
             onClick={handleClose}
@@ -337,9 +342,10 @@ export function LockedContentPreview({
   previewContent, // React node
   requiredTier // 'basic' | 'advanced'
 }) {
+  const { t } = useI18n();
   const tierNames = {
-    basic: 'Gói Cơ Bản',
-    advanced: 'Gói Nâng Cao'
+    basic: t('softUpgrade.basicPackage'),
+    advanced: t('softUpgrade.advancedPackage')
   };
 
   return (
@@ -356,13 +362,13 @@ export function LockedContentPreview({
         </div>
         <h4 className="font-bold text-gray-800 text-center mb-1">{title}</h4>
         <p className="text-sm text-gray-500 text-center mb-3">{description}</p>
-        <Link
+        <LocalizedLink
           href="/pricing"
           className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-medium rounded-xl hover:shadow-lg transition-all inline-flex items-center gap-1.5"
         >
-          Mở khóa với {tierNames[requiredTier]}
+          {t('softUpgrade.unlockWith', { tier: tierNames[requiredTier] })}
           <ChevronRight size={14} />
-        </Link>
+        </LocalizedLink>
       </div>
     </div>
   );
@@ -377,6 +383,7 @@ export function SubtleFloatingHint({
   sessionDuration, // seconds
   lessonsCompleted 
 }) {
+  const { t } = useI18n();
   const [show, setShow] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
@@ -403,17 +410,17 @@ export function SubtleFloatingHint({
   if (!show) return null;
 
   return (
-    <Link
+    <LocalizedLink
       href="/pricing"
       className="fixed bottom-20 right-4 z-30 animate-in slide-in-from-right duration-500"
       onClick={() => setDismissed(true)}
     >
       <div className="bg-white rounded-full shadow-lg border border-purple-100 px-4 py-2 flex items-center gap-2 hover:shadow-xl transition-shadow">
         <span className="text-xl">💎</span>
-        <span className="text-sm text-gray-700 font-medium">Mở khóa tất cả</span>
+        <span className="text-sm text-gray-700 font-medium">{t('softUpgrade.unlockAll')}</span>
         <ChevronRight size={14} className="text-purple-500" />
       </div>
-    </Link>
+    </LocalizedLink>
   );
 }
 

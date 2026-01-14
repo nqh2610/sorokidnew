@@ -12,6 +12,8 @@ import {
 import TopBar from '@/components/TopBar/TopBar';
 import PaymentSuccessModal from '@/components/Payment/PaymentSuccessModal';
 import { useToast } from '@/components/Toast/ToastContext';
+import { useLocalizedUrl } from '@/components/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 // Thứ tự tier (dùng để so sánh)
 const TIER_ORDER = {
@@ -63,86 +65,88 @@ const PLAN_STYLES = {
   }
 };
 
-// So sánh chi tiết các gói
-const COMPARISON_DATA = {
+// So sánh chi tiết các gói - translation keys
+const COMPARISON_DATA_KEYS = {
   categories: [
     {
-      name: 'Học tập',
+      nameKey: 'pricingPage.comparison.learning.name',
       icon: BookOpen,
       features: [
-        { name: 'Bài học cơ bản (Level 1-5)', free: true, basic: true, advanced: true },
-        { name: 'Bài học Cộng Trừ (Level 6-10)', free: false, basic: true, advanced: true },
-        { name: 'Bài học Nhân Chia (Level 11-18)', free: false, basic: false, advanced: true },
+        { nameKey: 'pricingPage.comparison.learning.basicLessons', free: true, basic: true, advanced: true },
+        { nameKey: 'pricingPage.comparison.learning.addSubLessons', free: false, basic: true, advanced: true },
+        { nameKey: 'pricingPage.comparison.learning.mulDivLessons', free: false, basic: false, advanced: true },
       ],
     },
     {
-      name: 'Luyện tập',
+      nameKey: 'pricingPage.comparison.practice.name',
       icon: Gamepad2,
       features: [
-        { name: 'Phép Cộng & Trừ', free: 'Cấp 1-2', basic: 'Cấp 1-3', advanced: 'Tất cả cấp' },
-        { name: 'Cộng Trừ Mix', free: false, basic: 'Cấp 1-3', advanced: 'Tất cả cấp' },
-        { name: 'Phép Nhân & Chia', free: false, basic: false, advanced: 'Tất cả cấp' },
-        { name: 'Tứ Phép Tính (4 phép)', free: false, basic: false, advanced: true },
+        { nameKey: 'pricingPage.comparison.practice.addSub', freeKey: 'pricingPage.comparison.level12', basicKey: 'pricingPage.comparison.level13', advancedKey: 'pricingPage.comparison.allLevels' },
+        { nameKey: 'pricingPage.comparison.practice.addSubMix', free: false, basicKey: 'pricingPage.comparison.level13', advancedKey: 'pricingPage.comparison.allLevels' },
+        { nameKey: 'pricingPage.comparison.practice.mulDiv', free: false, basic: false, advancedKey: 'pricingPage.comparison.allLevels' },
+        { nameKey: 'pricingPage.comparison.practice.fourOps', free: false, basic: false, advanced: true },
       ],
     },
     {
-      name: 'Thi đấu',
+      nameKey: 'pricingPage.comparison.compete.name',
       icon: Trophy,
       features: [
-        { name: 'Thi đấu online', free: 'Cấp 1-2', basic: 'Cấp 1-3', advanced: 'Tất cả cấp' },
-        { name: 'Siêu Trí Tuệ (Tính nhẩm)', free: false, basic: false, advanced: true },
-        { name: 'Tia Chớp (Flash Anzan)', free: false, basic: false, advanced: true },
-        { name: 'Bảng xếp hạng', free: true, basic: true, advanced: true },
+        { nameKey: 'pricingPage.comparison.compete.online', freeKey: 'pricingPage.comparison.level12', basicKey: 'pricingPage.comparison.level13', advancedKey: 'pricingPage.comparison.allLevels' },
+        { nameKey: 'pricingPage.comparison.compete.mentalMath', free: false, basic: false, advanced: true },
+        { nameKey: 'pricingPage.comparison.compete.flashAnzan', free: false, basic: false, advanced: true },
+        { nameKey: 'pricingPage.comparison.compete.leaderboard', free: true, basic: true, advanced: true },
       ],
     },
     {
-      name: 'Chứng nhận',
+      nameKey: 'pricingPage.comparison.certificate.name',
       icon: Award,
       features: [
-        { name: 'Chứng nhận Sorokid Cộng Trừ', free: false, basic: true, advanced: true },
-        { name: 'Chứng nhận Sorokid Toàn diện', free: false, basic: false, advanced: true },
+        { nameKey: 'pricingPage.comparison.certificate.addSub', free: false, basic: true, advanced: true },
+        { nameKey: 'pricingPage.comparison.certificate.complete', free: false, basic: false, advanced: true },
       ],
     },
     {
-      name: 'Gamification',
+      nameKey: 'pricingPage.comparison.gamification.name',
       icon: Brain,
       features: [
-        { name: 'Nhiệm vụ hàng ngày', free: true, basic: true, advanced: true },
-        { name: 'Hệ thống thành tích', free: true, basic: true, advanced: true },
-        { name: 'Shop vật phẩm', free: true, basic: true, advanced: true },
+        { nameKey: 'pricingPage.comparison.gamification.dailyQuests', free: true, basic: true, advanced: true },
+        { nameKey: 'pricingPage.comparison.gamification.achievements', free: true, basic: true, advanced: true },
+        { nameKey: 'pricingPage.comparison.gamification.shop', free: true, basic: true, advanced: true },
       ],
     },
   ],
 };
 
-// FAQ
-const FAQ_DATA = [
+// FAQ - translation keys
+const FAQ_DATA_KEYS = [
   {
     icon: Shield,
-    question: 'Thanh toán có an toàn không?',
-    answer: 'Chúng tôi sử dụng các cổng thanh toán uy tín, đảm bảo an toàn tuyệt đối cho giao dịch của bạn.',
+    questionKey: 'pricingPage.faq.paymentSafe.question',
+    answerKey: 'pricingPage.faq.paymentSafe.answer',
   },
   {
     icon: Zap,
-    question: 'Kích hoạt gói như thế nào?',
-    answer: 'Sau khi thanh toán thành công, gói sẽ được kích hoạt ngay lập tức và bạn có thể sử dụng mọi tính năng.',
+    questionKey: 'pricingPage.faq.activation.question',
+    answerKey: 'pricingPage.faq.activation.answer',
   },
   {
     icon: HelpCircle,
-    question: 'Gói có thời hạn không?',
-    answer: 'Không! Bạn chỉ cần thanh toán một lần và sử dụng trọn đời, không có phí hàng tháng hay ẩn phí nào.',
+    questionKey: 'pricingPage.faq.lifetime.question',
+    answerKey: 'pricingPage.faq.lifetime.answer',
   },
   {
     icon: Sparkles,
-    question: 'Có thể nâng cấp sau không?',
-    answer: 'Có! Bạn có thể nâng cấp từ Cơ Bản lên Nâng Cao bất cứ lúc nào và chỉ trả phần chênh lệch.',
+    questionKey: 'pricingPage.faq.upgrade.question',
+    answerKey: 'pricingPage.faq.upgrade.answer',
   },
 ];
 
 export default function PricingPage() {
   const router = useRouter();
+  const localizeUrl = useLocalizedUrl();
   const { data: session, status } = useSession();
   const toast = useToast();
+  const { t } = useI18n();
   const [isLoading, setIsLoading] = useState(false);
   const [showQR, setShowQR] = useState(false);
   const [orderInfo, setOrderInfo] = useState(null);
@@ -230,27 +234,27 @@ export default function PricingPage() {
 
   // Lấy text cho nút
   const getButtonText = (plan) => {
-    if (plan.id === 'free') return 'Miễn phí';
-    if (plan.id === userTier) return 'Đang sử dụng';
+    if (plan.id === 'free') return t('tier.free');
+    if (plan.id === userTier) return t('pricingPage.currentPlan');
     
     const currentTierOrder = TIER_ORDER[userTier] || 0;
     const targetTierOrder = TIER_ORDER[plan.id] || 0;
     
-    if (targetTierOrder <= currentTierOrder) return 'Gói thấp hơn';
+    if (targetTierOrder <= currentTierOrder) return t('pricingPage.lowerPlan');
     
     if (userTier !== 'free') {
       const payable = getPayableAmount(plan);
-      return `Nâng cấp ${formatPrice(payable)}đ`;
+      return `${t('pricingPage.upgrade')} ${formatPrice(payable)}đ`;
     }
     
-    return 'Mua ngay';
+    return t('pricingPage.buyNow');
   };
 
   const handleSelectPlan = async (plan) => {
     if (!canPurchasePlan(plan.id)) return;
     
     if (!session) {
-      router.push('/login?redirect=/pricing');
+      router.push(localizeUrl('/login?redirect=/pricing'));
       return;
     }
 
@@ -398,7 +402,7 @@ export default function PricingPage() {
     window.location.href = '/dashboard';
   };
 
-  const renderFeatureValue = (value) => {
+  const renderFeatureValue = (value, translatedValue) => {
     if (value === true) {
       return (
         <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-600 shadow-lg shadow-fuchsia-500/20">
@@ -413,7 +417,9 @@ export default function PricingPage() {
         </div>
       );
     }
-    return <span className="text-sm font-medium text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full">{value}</span>;
+    // Use translated value if provided (from key), otherwise use raw value
+    const displayValue = translatedValue || value;
+    return <span className="text-sm font-medium text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full">{displayValue}</span>;
   };
 
   return (
@@ -438,43 +444,43 @@ export default function PricingPage() {
           <div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-emerald-100 border border-emerald-200 rounded-full mb-6 animate-bounce-slow shadow-sm">
             <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
             <span className="text-sm text-emerald-700 font-medium">
-              Thanh toán 1 lần • Sử dụng trọn đời
+              {t('pricingPage.badge')}
             </span>
             <Sparkles size={14} className="text-emerald-600" />
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight tracking-tight">
-            <span className="text-slate-800">Học Soroban </span>
+            <span className="text-slate-800">{t('pricingPage.heroTitle1')} </span>
             <span className="bg-gradient-to-r from-fuchsia-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent">
-              mọi lúc, mọi nơi
+              {t('pricingPage.heroTitle2')}
             </span>
           </h1>
           
           <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-6">
-            Phương pháp tính nhẩm Nhật Bản giúp bé phát triển tư duy toán học và khả năng tập trung
+            {t('pricingPage.heroSubtitle')}
           </p>
 
           {/* 💰 VALUE COMPARISON - So sánh giá trị thực tế */}
           <div className="inline-flex flex-col sm:flex-row items-center gap-2 px-4 py-3 bg-slate-100 rounded-2xl text-sm text-slate-600 mb-8">
-            <span>Chi phí học trung tâm:</span>
-            <span className="font-semibold text-slate-500">500K - 1.5 triệu/tháng</span>
+            <span>{t('pricingPage.centerCost')}:</span>
+            <span className="font-semibold text-slate-500">{t('pricingPage.centerCostValue')}</span>
             <span className="hidden sm:block text-slate-400">•</span>
-            <span className="text-emerald-600 font-semibold">Tại đây: Trả 1 lần, dùng mãi</span>
+            <span className="text-emerald-600 font-semibold">{t('pricingPage.hereCost')}</span>
           </div>
 
           {/* Trust indicators */}
           <div className="inline-flex flex-wrap items-center justify-center gap-3 md:gap-4">
             <div className="flex items-center gap-2 px-4 py-2 bg-white backdrop-blur rounded-full border border-slate-200 shadow-sm">
               <Shield size={16} className="text-emerald-500" />
-              <span className="text-slate-700 text-sm font-medium">Thanh toán an toàn</span>
+              <span className="text-slate-700 text-sm font-medium">{t('pricingPage.safePayment')}</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-white backdrop-blur rounded-full border border-slate-200 shadow-sm">
               <Zap size={16} className="text-amber-500" />
-              <span className="text-slate-700 text-sm font-medium">Kích hoạt tức thì</span>
+              <span className="text-slate-700 text-sm font-medium">{t('pricingPage.instantActivation')}</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-white backdrop-blur rounded-full border border-slate-200 shadow-sm">
               <Heart size={16} className="text-rose-500" />
-              <span className="text-slate-700 text-sm font-medium">Hỗ trợ qua Zalo</span>
+              <span className="text-slate-700 text-sm font-medium">{t('pricingPage.zaloSupport')}</span>
             </div>
           </div>
         </div>
@@ -519,7 +525,7 @@ export default function PricingPage() {
                           ? 'bg-gradient-to-r from-amber-500 to-orange-500' 
                           : 'bg-gradient-to-r from-rose-500 to-pink-500'
                       }`}>
-                        {plan.popular ? '🔥 Phổ biến nhất' : plan.badge}
+                        {plan.popular ? t('pricingPage.mostPopular') : plan.badge}
                       </div>
                     )}
 
@@ -556,7 +562,7 @@ export default function PricingPage() {
                           <span className="text-2xl font-bold text-slate-400">đ</span>
                         </div>
                         <p className="text-slate-500 text-sm mt-2">
-                          {plan.price === 0 ? 'Miễn phí mãi mãi' : 'Thanh toán một lần'}
+                          {plan.price === 0 ? t('pricingPage.freeForever') : t('pricingPage.oneTimePayment')}
                         </p>
                       </div>
 
@@ -596,14 +602,14 @@ export default function PricingPage() {
                       {/* Current Plan Badge */}
                       {plan.id === userTier && (
                         <div className="mb-4 py-2 px-4 bg-emerald-100 text-emerald-700 rounded-lg text-center text-sm font-semibold">
-                          ✓ Gói hiện tại của bạn
+                          ✓ {t('pricingPage.yourCurrentPlan')}
                         </div>
                       )}
 
                       {/* Upgrade Price Info */}
                       {session && userTier !== 'free' && canPurchasePlan(plan.id) && (
                         <div className="mb-4 py-2 px-4 bg-fuchsia-100 text-fuchsia-700 rounded-lg text-center text-sm">
-                          Chênh lệch: <span className="font-bold">{formatPrice(getPayableAmount(plan))}đ</span>
+                          {t('pricingPage.difference')}: <span className="font-bold">{formatPrice(getPayableAmount(plan))}đ</span>
                         </div>
                       )}
 
@@ -620,7 +626,7 @@ export default function PricingPage() {
                         {isLoading && selectedPlan === plan.id ? (
                           <div className="flex items-center justify-center gap-2">
                             <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                            Đang xử lý...
+                            {t('pricingPage.processing')}
                           </div>
                         ) : (
                           <span className="flex items-center justify-center gap-2">
@@ -649,38 +655,38 @@ export default function PricingPage() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-full mb-4 shadow-sm">
               <BookOpen size={16} className="text-fuchsia-500" />
-              <span className="text-sm text-slate-600 font-medium">Chi tiết tính năng</span>
+              <span className="text-sm text-slate-600 font-medium">{t('pricingPage.featureDetails')}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
-              So sánh các gói
+              {t('pricingPage.comparePlans')}
             </h2>
           </div>
 
           {/* Mobile hint */}
-          <p className="text-center text-sm text-slate-500 mb-4 md:hidden">👉 Vuốt ngang để xem thêm</p>
+          <p className="text-center text-sm text-slate-500 mb-4 md:hidden">👉 {t('pricingPage.swipeToSee')}</p>
           
           <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xl shadow-slate-200/50">
             <div className="overflow-x-auto">
               <div className="min-w-[600px]">
                 {/* Table Header */}
                 <div className="grid grid-cols-4 bg-slate-50 border-b border-slate-200">
-                  <div className="p-5 font-bold text-slate-700 text-sm md:text-base">Tính năng</div>
+                  <div className="p-5 font-bold text-slate-700 text-sm md:text-base">{t('pricingPage.feature')}</div>
                   <div className="p-5 text-center">
-                    <span className="font-bold text-slate-500 text-xs md:text-sm">Miễn Phí</span>
+                    <span className="font-bold text-slate-500 text-xs md:text-sm">{t('tier.free')}</span>
                   </div>
                   <div className="p-5 text-center">
-                    <span className="font-bold text-blue-600 text-xs md:text-sm">Cơ Bản</span>
+                    <span className="font-bold text-blue-600 text-xs md:text-sm">{t('tier.basic')}</span>
                   </div>
                   <div className="p-5 text-center bg-fuchsia-50">
                     <span className="inline-flex items-center gap-1 font-bold text-fuchsia-600 text-xs md:text-sm">
                       <Crown size={14} className="text-amber-500" />
-                      Nâng Cao
+                      {t('tier.advanced')}
                     </span>
                   </div>
                 </div>
 
                 {/* Table Body */}
-                {COMPARISON_DATA.categories.map((category, catIdx) => {
+                {COMPARISON_DATA_KEYS.categories.map((category, catIdx) => {
                   const CategoryIcon = category.icon;
                   return (
                     <div key={catIdx}>
@@ -691,7 +697,7 @@ export default function PricingPage() {
                             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-fuchsia-500 to-purple-600 flex items-center justify-center">
                               <CategoryIcon size={16} className="text-white" />
                             </div>
-                            {category.name}
+                            {t(category.nameKey)}
                           </div>
                         </div>
                       </div>
@@ -702,10 +708,10 @@ export default function PricingPage() {
                           key={featIdx}
                           className="grid grid-cols-4 border-b border-slate-100 hover:bg-slate-50 transition-colors"
                         >
-                          <div className="p-4 text-xs md:text-sm text-slate-600">{feature.name}</div>
-                          <div className="p-4 text-center">{renderFeatureValue(feature.free)}</div>
-                          <div className="p-4 text-center">{renderFeatureValue(feature.basic)}</div>
-                          <div className="p-4 text-center bg-fuchsia-50/50">{renderFeatureValue(feature.advanced)}</div>
+                          <div className="p-4 text-xs md:text-sm text-slate-600">{t(feature.nameKey)}</div>
+                          <div className="p-4 text-center">{renderFeatureValue(feature.free, feature.freeKey ? t(feature.freeKey) : null)}</div>
+                          <div className="p-4 text-center">{renderFeatureValue(feature.basic, feature.basicKey ? t(feature.basicKey) : null)}</div>
+                          <div className="p-4 text-center bg-fuchsia-50/50">{renderFeatureValue(feature.advanced, feature.advancedKey ? t(feature.advancedKey) : null)}</div>
                         </div>
                       ))}
                     </div>
@@ -727,12 +733,12 @@ export default function PricingPage() {
               <span className="text-sm text-slate-600 font-medium">FAQ</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
-              Câu hỏi thường gặp
+              {t('pricingPage.faqTitle')}
             </h2>
           </div>
 
           <div className="space-y-4">
-            {FAQ_DATA.map((faq, idx) => {
+            {FAQ_DATA_KEYS.map((faq, idx) => {
               const FaqIcon = faq.icon;
               return (
                 <div
@@ -744,8 +750,8 @@ export default function PricingPage() {
                       <FaqIcon size={22} className="text-fuchsia-500" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-slate-800 mb-2 text-lg">{faq.question}</h3>
-                      <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
+                      <h3 className="font-bold text-slate-800 mb-2 text-lg">{t(faq.questionKey)}</h3>
+                      <p className="text-slate-600 leading-relaxed">{t(faq.answerKey)}</p>
                     </div>
                   </div>
                 </div>
@@ -761,10 +767,10 @@ export default function PricingPage() {
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-full mb-4 shadow-sm">
               <Star size={16} className="text-amber-500" />
-              <span className="text-sm text-slate-600 font-medium">Lợi ích thực tế</span>
+              <span className="text-sm text-slate-600 font-medium">{t('pricingPage.benefits.badge')}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
-              Tại sao chọn <span className="text-fuchsia-600">Soroban?</span>
+              {t('pricingPage.benefits.title')} <span className="text-fuchsia-600">Soroban?</span>
             </h2>
           </div>
           
@@ -772,20 +778,20 @@ export default function PricingPage() {
             {[
               {
                 icon: Brain,
-                title: "Phát triển não bộ",
-                content: "Rèn luyện cả 2 bán cầu não, tăng khả năng tập trung và trí nhớ",
+                titleKey: "pricingPage.benefits.brain.title",
+                contentKey: "pricingPage.benefits.brain.content",
                 color: "from-purple-500 to-indigo-500"
               },
               {
                 icon: Zap,
-                title: "Tính nhẩm nhanh",
-                content: "Bé có thể tính nhẩm các phép tính phức tạp chỉ trong vài giây",
+                titleKey: "pricingPage.benefits.speed.title",
+                contentKey: "pricingPage.benefits.speed.content",
                 color: "from-amber-500 to-orange-500"
               },
               {
                 icon: Heart,
-                title: "Học mà chơi",
-                content: "Game hóa việc học giúp bé hứng thú, không cảm thấy nhàm chán",
+                titleKey: "pricingPage.benefits.fun.title",
+                contentKey: "pricingPage.benefits.fun.content",
                 color: "from-rose-500 to-pink-500"
               }
             ].map((benefit, idx) => {
@@ -795,8 +801,8 @@ export default function PricingPage() {
                   <div className={`w-14 h-14 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${benefit.color} flex items-center justify-center`}>
                     <BenefitIcon size={24} className="text-white" />
                   </div>
-                  <h3 className="font-bold text-slate-800 text-lg mb-2">{benefit.title}</h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">{benefit.content}</p>
+                  <h3 className="font-bold text-slate-800 text-lg mb-2">{t(benefit.titleKey)}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{t(benefit.contentKey)}</p>
                 </div>
               );
             })}
@@ -831,21 +837,20 @@ export default function PricingPage() {
                 </div>
                 
                 <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-tight text-white">
-                  Sẵn sàng bắt đầu
+                  {t('pricingPage.cta.title1')}
                   <br />
                   <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                    hành trình Soroban?
+                    {t('pricingPage.cta.title2')}
                   </span>
                 </h2>
                 <p className="text-slate-400 mb-10 max-w-2xl mx-auto text-lg leading-relaxed">
-                  Học Soroban không chỉ giúp tính toán nhanh mà còn phát triển tư duy logic,
-                  trí nhớ và sự tập trung cho con bạn.
+                  {t('pricingPage.cta.description')}
                 </p>
                 <button
-                  onClick={() => router.push('/learn')}
+                  onClick={() => router.push(localizeUrl('/learn'))}
                   className="group inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white rounded-2xl font-bold text-lg hover:shadow-2xl hover:shadow-fuchsia-500/30 hover:scale-105 transition-all duration-300"
                 >
-                  <span>Vào học ngay</span>
+                  <span>{t('pricingPage.cta.button')}</span>
                   <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-colors">
                     <ChevronRight size={20} className="text-white" />
                   </div>
@@ -858,7 +863,7 @@ export default function PricingPage() {
 
       {/* Footer */}
       <div className="relative text-center py-10 text-slate-500 text-sm border-t border-slate-200 bg-white/50">
-        <p>© {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban</p>
+        <p>© {new Date().getFullYear()} SoroKid - {t('footer.copyright')}</p>
       </div>
 
       {/* QR Modal - Light Theme với UX cải thiện */}
@@ -881,7 +886,7 @@ export default function PricingPage() {
                 <div className="w-16 h-16 mx-auto mb-3 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center">
                   <Sparkles className="w-8 h-8 text-white" />
                 </div>
-                <p className="text-white/80 text-sm mb-1">Quét mã QR để thanh toán</p>
+                <p className="text-white/80 text-sm mb-1">{t('pricingPage.modal.scanQR')}</p>
                 <h3 className="text-2xl font-black text-white">
                   {orderInfo.packageName} - {formatPrice(orderInfo.amount)}đ
                 </h3>
@@ -902,19 +907,19 @@ export default function PricingPage() {
                   {isCheckingPayment ? (
                     <>
                       <div className="w-4 h-4 border-2 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
-                      <span className="text-amber-700 font-semibold text-sm">Đang chờ xác nhận thanh toán...</span>
+                      <span className="text-amber-700 font-semibold text-sm">{t('pricingPage.modal.confirmingPayment')}</span>
                     </>
                   ) : (
                     <>
                       <Clock size={16} className="text-amber-600" />
-                      <span className="text-amber-700 font-semibold text-sm">Chờ thanh toán</span>
+                      <span className="text-amber-700 font-semibold text-sm">{t('pricingPage.modal.waitingPayment')}</span>
                     </>
                   )}
                 </div>
                 <p className="text-xs text-amber-600">
                   {isCheckingPayment 
-                    ? `Hệ thống đang kiểm tra... (${paymentCheckCount})`
-                    : 'Sau khi chuyển khoản, hệ thống sẽ tự động xác nhận'
+                    ? `${t('pricingPage.modal.systemChecking')} (${paymentCheckCount})`
+                    : t('pricingPage.modal.autoConfirm')
                   }
                 </p>
                 {/* Progress indicator */}
@@ -928,29 +933,29 @@ export default function PricingPage() {
               {/* Payment Info - Thu gọn để không cần scroll nhiều */}
               <details className="text-left bg-slate-50 rounded-xl mb-3 border border-slate-200 group">
                 <summary className="p-3 cursor-pointer text-sm font-medium text-slate-700 flex items-center justify-between hover:bg-slate-100 rounded-xl transition-colors">
-                  <span>Chi tiết chuyển khoản</span>
+                  <span>{t('pricingPage.modal.transferDetails')}</span>
                   <ChevronRight size={16} className="text-slate-400 group-open:rotate-90 transition-transform" />
                 </summary>
                 <div className="p-3 pt-0 text-sm space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-slate-500">Ngân hàng:</span>
+                    <span className="text-slate-500">{t('pricingPage.modal.bank')}:</span>
                     <span className="font-semibold text-slate-800">{orderInfo.paymentInfo.bankCode}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-500">Số tài khoản:</span>
+                    <span className="text-slate-500">{t('pricingPage.modal.accountNumber')}:</span>
                     <span className="font-semibold text-slate-800">{orderInfo.paymentInfo.accountNumber}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-500">Chủ tài khoản:</span>
+                    <span className="text-slate-500">{t('pricingPage.modal.accountName')}:</span>
                     <span className="font-semibold text-slate-800">{orderInfo.paymentInfo.accountName}</span>
                   </div>
                   <div className="h-px bg-slate-200 my-1"></div>
                   <div className="flex justify-between">
-                    <span className="text-slate-500">Số tiền:</span>
+                    <span className="text-slate-500">{t('pricingPage.modal.amount')}:</span>
                     <span className="font-bold text-emerald-600">{formatPrice(orderInfo.amount)}đ</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-500">Nội dung CK:</span>
+                    <span className="text-slate-500">{t('pricingPage.modal.content')}:</span>
                     <span className="font-bold text-fuchsia-600 text-xs break-all">{orderInfo.content}</span>
                   </div>
                 </div>
@@ -974,25 +979,25 @@ export default function PricingPage() {
                           });
                           setShowSuccessModal(true);
                         } else {
-                          toast.info('Chưa nhận được thanh toán. Hệ thống sẽ tự động kiểm tra lại...');
+                          toast.info(t('pricingPage.modal.notReceived'));
                         }
                       })
                       .catch(() => {
-                        toast.error('Lỗi kết nối. Vui lòng đợi...');
+                        toast.error(t('pricingPage.modal.connectionError'));
                       });
                   }
                 }}
                 className="w-full py-3 mb-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-emerald-500/25 transition-all flex items-center justify-center gap-2"
               >
                 <Check size={18} />
-                Tôi đã chuyển khoản
+                {t('pricingPage.modal.iHaveTransferred')}
               </button>
 
               <button
                 onClick={closeQRModal}
                 className="w-full py-3 bg-slate-200 text-slate-700 rounded-xl font-semibold hover:bg-slate-300 transition-all"
               >
-                Đóng
+                {t('common.cancel')}
               </button>
             </div>
           </div>

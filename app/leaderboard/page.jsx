@@ -6,10 +6,14 @@ import { useEffect, useState } from 'react';
 import TopBar from '@/components/TopBar/TopBar';
 import { LevelBadgeInline } from '@/components/LevelBadge/LevelBadge';
 import { MonsterAvatar } from '@/components/MonsterAvatar';
+import { useLocalizedUrl } from '@/components/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 export default function LeaderboardPage() {
   const { status } = useSession();
   const router = useRouter();
+  const localizeUrl = useLocalizedUrl();
+  const { t } = useI18n();
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -22,11 +26,11 @@ export default function LeaderboardPage() {
 
   useEffect(() => {
     if (status === 'unauthenticated') {
-      router.push('/login');
+      router.push(localizeUrl('/login'));
     } else if (status === 'authenticated') {
       fetchLeaderboard();
     }
-  }, [status, router]);
+  }, [status, router, localizeUrl]);
 
   const fetchLeaderboard = async () => {
     try {
@@ -55,8 +59,8 @@ export default function LeaderboardPage() {
         <div className="max-w-6xl mx-auto p-4 sm:p-6">
           <div className="bg-white rounded-2xl sm:rounded-3xl p-8 sm:p-12 text-center shadow-xl">
             <div className="text-6xl sm:text-7xl mb-4">🏆</div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-3">Chưa có dữ liệu</h2>
-            <p className="text-sm sm:text-base text-gray-600">Hãy bắt đầu luyện tập để xuất hiện trên bảng xếp hạng!</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-3">{t('leaderboardPage.noData')}</h2>
+            <p className="text-sm sm:text-base text-gray-600">{t('leaderboardPage.startPractice')}</p>
           </div>
         </div>
       </div>
@@ -84,9 +88,9 @@ export default function LeaderboardPage() {
         {/* Header */}
         <div className="text-center mb-5 sm:mb-6 md:mb-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
-            🏆 Bảng Xếp Hạng 🏆
+            🏆 {t('leaderboardPage.title')} 🏆
           </h2>
-          <p className="text-sm sm:text-base text-gray-600">Top học viên xuất sắc nhất</p>
+          <p className="text-sm sm:text-base text-gray-600">{t('leaderboardPage.subtitle')}</p>
         </div>
 
         {/* Top 3 - Mobile: Vertical cards, Desktop: Podium */}

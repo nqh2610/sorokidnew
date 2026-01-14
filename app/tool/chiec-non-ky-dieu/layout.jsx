@@ -16,8 +16,8 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export const metadata = {
-  title: 'Chiếc Nón Kỳ Diệu Online - Vòng Quay May Mắn | Quay Số Ngẫu Nhiên Miễn Phí',
-  description: 'Chiếc Nón Kỳ Diệu - Vòng quay may mắn online MIỄN PHÍ. Quay số ngẫu nhiên để gọi học sinh, chọn người may mắn, bốc thăm trúng thưởng. Không cần đăng nhập, dùng ngay trên máy chiếu!',
+  title: 'Spin the Wheel Online - Lucky Wheel | Free Random Spinner',
+  description: 'Spin the Wheel - FREE lucky wheel online. Random spinner to call on students, pick lucky winners, draw prizes. No login required, use directly on projector!',
   keywords: [
     // Primary keywords (Vietnamese)
     'chiếc nón kỳ diệu',
@@ -60,8 +60,8 @@ export const metadata = {
   creator: 'SoroKid',
   publisher: 'SoroKid',
   openGraph: {
-    title: 'Chiếc Nón Kỳ Diệu - Vòng Quay May Mắn Online Miễn Phí',
-    description: 'Vòng quay may mắn để gọi học sinh, chọn người ngẫu nhiên, bốc thăm. Miễn phí, không cần đăng nhập!',
+    title: 'Spin the Wheel - Free Lucky Wheel Online',
+    description: 'Lucky wheel to call on students, pick random winners, draw prizes. Free, no login required!',
     url: 'https://sorokid.com/tool/chiec-non-ky-dieu',
     siteName: 'SoroKid Toolbox',
     images: [
@@ -77,8 +77,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Chiếc Nón Kỳ Diệu - Vòng Quay May Mắn Online',
-    description: 'Quay số ngẫu nhiên để gọi học sinh, chọn người may mắn. Miễn phí!',
+    title: 'Spin the Wheel - Lucky Wheel Online',
+    description: 'Random spinner to call on students, pick lucky winners. Free!',
     images: ['/blog/chiec-non-ky-dieu-goi-hoc-sinh.jpg'],
     creator: '@sorokid_vn',
   },

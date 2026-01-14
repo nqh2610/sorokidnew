@@ -1,0 +1,2228 @@
+{
+  "common": {
+    "brand": "Sorokid",
+    "tagline": "Học Soroban - Phát triển tư duy",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "logout": "Đăng xuất",
+    "home": "Trang chủ",
+    "learn": "Học",
+    "practice": "Luyện tập",
+    "compete": "Thi đấu",
+    "adventure": "Phiêu lưu",
+    "leaderboard": "Bảng xếp hạng",
+    "profile": "Hồ sơ",
+    "settings": "Cài đặt",
+    "dashboard": "Bảng điều khiển",
+    "blog": "Blog",
+    "tool": "Toolbox",
+    "pricing": "Bảng giá",
+    "free": "Miễn phí",
+    "premium": "Premium",
+    "tryNow": "Dùng thử ngay",
+    "startLearning": "Bắt đầu học",
+    "viewAll": "Xem tất cả",
+    "readMore": "Đọc thêm",
+    "share": "Chia sẻ",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "close": "Đóng",
+    "loading": "Đang tải...",
+    "error": "Có lỗi xảy ra",
+    "success": "Thành công",
+    "minutes": "phút",
+    "seconds": "giây",
+    "points": "điểm",
+    "level": "cấp độ",
+    "language": "Ngôn ngữ",
+    "switchLang": "Đổi ngôn ngữ"
+  },
+
+  "avatar": {
+    "selectAvatar": "Chọn Avatar",
+    "defaultAvatar": "Avatar mặc định",
+    "useDefaultAvatar": "Sử dụng avatar mặc định",
+    "saving": "Đang lưu..."
+  },
+
+  "seo": {
+    "home": {
+      "title": "Sorokid - Ứng dụng Học Soroban & Toán Tư Duy cho Học Sinh Tiểu Học",
+      "description": "Cho con học Soroban tại nhà - phụ huynh không cần biết Soroban vẫn kèm con được. Hướng dẫn từng bước bằng hình ảnh, con tự học tự tiến bộ. Game hóa - con TỰ GIÁC muốn học mỗi ngày.",
+      "h1": "Ứng dụng Học Soroban Tốt Nhất cho Trẻ Tiểu Học",
+      "keywords": ["ứng dụng học soroban", "app học soroban", "toán tư duy", "học soroban online", "soroban cho bé"]
+    },
+    "pricing": {
+      "title": "Bảng Giá Sorokid - Gói Học Soroban Online cho Bé",
+      "description": "Khám phá các gói học Soroban tại Sorokid. Dùng thử miễn phí, nâng cấp Premium để mở khóa toàn bộ bài học và tính năng.",
+      "h1": "Bảng Giá - Chọn Gói Học Phù Hợp",
+      "keywords": ["giá sorokid", "gói học soroban", "soroban premium", "học soroban trả phí"]
+    },
+    "blog": {
+      "title": "Blog Sorokid - Kinh Nghiệm Kèm Con Học Soroban",
+      "description": "Chia sẻ kinh nghiệm thực tế giúp ba mẹ đồng hành cùng con học Soroban và toán tư duy một cách nhẹ nhàng, hiệu quả.",
+      "h1": "Blog - Chia Sẻ Cho Phụ Huynh",
+      "keywords": ["blog soroban", "kèm con học toán", "phụ huynh dạy soroban", "kinh nghiệm học soroban"]
+    },
+    "tool": {
+      "title": "Toolbox Giáo Viên - Bộ Sưu Tập Trò Chơi Lớp Học Miễn Phí",
+      "description": "Bộ sưu tập trò chơi quốc dân phổ biến nhất trong lớp học Việt Nam: Ai Là Triệu Phú, Chiếc Nón Kỳ Diệu, Ô Chữ, Đua Thú... Miễn phí 100%!",
+      "h1": "Toolbox - Trò Chơi Quốc Dân Cho Lớp Học",
+      "keywords": ["toolbox giáo viên", "trò chơi lớp học", "công cụ dạy học", "game giáo dục"]
+    }
+  },
+
+  "home": {
+    "badge": "Phương pháp Soroban từ Nhật Bản",
+    "hero": {
+      "title": "Cho Con Học Soroban Tại Nhà",
+      "title1": "Toán tư duy",
+      "title2": "Tính nhẩm siêu nhanh",
+      "title3": "Học mà chơi, chơi mà học!",
+      "subtitle": "Phụ huynh không cần biết Soroban vẫn kèm con được",
+      "description": "Hướng dẫn từng bước bằng hình ảnh. Con tự học, tự tiến bộ. Game hóa - con TỰ GIÁC muốn học mỗi ngày.",
+      "cta": "Đăng ký ngay",
+      "ctaSecondary": "Xem cách hoạt động",
+      "appDesc": "Ứng dụng học toán Soroban dành cho học sinh tiểu học.",
+      "highlight": "Từ sợ toán thành yêu toán chỉ sau vài tuần!",
+      "benefit1": "Ba mẹ dễ dàng kèm con",
+      "benefit2": "Vui như chơi game",
+      "benefit3": "Linh hoạt thời gian",
+      "benefit4": "Thấy rõ tiến bộ từng ngày"
+    },
+    "features": {
+      "title": "Tại sao trẻ thích học cùng Sorokid?",
+      "subtitle": "Sorokid được thiết kế đặc biệt cho học sinh tiểu học với giao diện đơn giản, sắc nét",
+      "gameified": {
+        "title": "Học như chơi game",
+        "description": "Điểm thưởng, sao, kim cương... khiến việc luyện tính nhẩm thú vị như chơi game yêu thích!"
+      },
+      "lessons": {
+        "title": "Bài học sinh động",
+        "description": "Từ cơ bản đến nâng cao theo phương pháp Soroban Nhật Bản. Dễ hiểu, dễ nhớ, dễ áp dụng."
+      },
+      "speed": {
+        "title": "Phản xạ nhanh hơn",
+        "description": "Bài tập đa dạng giúp bé tính toán nhanh và chính xác hơn mỗi ngày. Kết quả thấy rõ sau 2 tuần!"
+      },
+      "compete": {
+        "title": "Thi đua vui vẻ",
+        "description": "Bảng xếp hạng, giải đấu với bạn bè. Động lực học tập tăng vọt khi có đối thủ!"
+      },
+      "quest": {
+        "title": "Nhiệm vụ mỗi ngày",
+        "description": "Quest hằng ngày giúp bé duy trì thói quen tự học. Hoàn thành = nhận thưởng!"
+      },
+      "report": {
+        "title": "Báo cáo chi tiết",
+        "description": "Ba mẹ nắm rõ con học đến đâu: tốc độ, độ chính xác, thời gian học mỗi ngày."
+      }
+    },
+    "soroban": {
+      "title": "Soroban là gì?",
+      "desc": "Soroban là bàn tính Nhật Bản được hơn 400 năm lịch sử. Trẻ học Soroban sẽ hình dung bàn tính trong đầu và tính nhẩm nhanh như máy tính mà không cần giấy bút.",
+      "benefit1Title": "Phát triển não bộ",
+      "benefit1Desc": "Kích hoạt cả não trái (logic) và não phải (hình ảnh)",
+      "benefit2Title": "Tính nhẩm siêu nhanh",
+      "benefit2Desc": "Cộng trừ 2-3 chữ số trong vài giây, không cần giấy bút",
+      "benefit3Title": "Rèn tập trung",
+      "benefit3Desc": "Chú ý từng bước, áp dụng vào mọi môn học",
+      "benefit4Title": "Phương pháp toàn cầu",
+      "benefit4Desc": "Phổ biến tại Nhật, Hàn, Trung Quốc, Malaysia...",
+      "whyTitle": "Tại sao chọn Sorokid?",
+      "whySubtitle": "Phụ huynh không cần biết Soroban vẫn kèm con học được!",
+      "why1": "Hướng dẫn từng bước bằng hình ảnh",
+      "why2": "Game hóa - con tự giác học",
+      "why3": "Theo dõi: chăm chỉ, tốc độ, chính xác",
+      "demoTitle": "Thử ngay bàn tính ảo!",
+      "demoDesc": "Click vào các hạt để di chuyển lên/xuống"
+    },
+    "roadmap": {
+      "title": "Lộ trình học tập khoa học",
+      "subtitle": "Từ chưa biết gì đến tính nhẩm nhanh như máy tính!",
+      "step1": "Học lý thuyết",
+      "step1Desc": "Làm quen với bàn tính Soroban qua bài học sinh động",
+      "step2": "Thực hành",
+      "step2Desc": "Luyện tập với bài tập từ dễ đến khó",
+      "step3": "Luyện tập",
+      "step3Desc": "Tăng tốc độ và độ chính xác qua các bài luyện",
+      "step4": "Thi đấu",
+      "step4Desc": "Thử thách bản thân, xếp hạng cùng bạn bè"
+    },
+    "progress": {
+      "title": "Phụ huynh yên tâm theo dõi con",
+      "subtitle": "Hệ thống tự động đánh giá và đo lường sự tiến bộ của học sinh qua từng bài học.",
+      "speed": "Tốc độ tính toán",
+      "speedDesc": "Đo thời gian hoàn thành mỗi bài",
+      "accuracy": "Độ chính xác",
+      "accuracyDesc": "Tỷ lệ trả lời đúng",
+      "diligence": "Tính chăm chỉ",
+      "diligenceDesc": "Số ngày học liên tiếp (streak)",
+      "achievement": "Thành tích",
+      "achievementDesc": "Huy hiệu, level, điểm kinh nghiệm",
+      "rewardTitle": "Hệ thống phần thưởng",
+      "star": "Sao",
+      "starDesc": "Nhận khi hoàn thành bài học",
+      "diamond": "Kim cương",
+      "diamondDesc": "Phần thưởng đặc biệt",
+      "badge": "Huy hiệu",
+      "badgeDesc": "Đạt thành tích nổi bật",
+      "rank": "Cấp bậc",
+      "rankDesc": "Thăng cấp khi tích điểm"
+    },
+    "userTypes": {
+      "title": "Ai nên dùng Sorokid?",
+      "subtitle": "Phù hợp với mọi người muốn con giỏi toán tư duy",
+      "student": {
+        "title": "Học sinh 6-12 tuổi",
+        "desc": "Học qua game thú vị, nhận thưởng khi hoàn thành bài, thi đua cùng bạn bè. Tự tin giơ tay phát biểu!"
+      },
+      "parent": {
+        "title": "Phụ huynh",
+        "desc": "Công cụ kèm con tự học tại nhà hiệu quả. Biết con tiến bộ từng ngày, không cần đưa đón đi học thêm."
+      },
+      "teacher": {
+        "title": "Giáo viên",
+        "desc": "Công cụ dạy học hiện đại, giao bài - chấm điểm tự động. Cá nhân hóa theo năng lực từng học sinh."
+      }
+    },
+    "highlights": {
+      "title": "Con học vui, ba mẹ an tâm",
+      "subtitle": "Thiết kế để bé yêu thích học mỗi ngày",
+      "design": "Giao diện bắt mắt",
+      "designDesc": "Màu sắc tươi sáng, dễ thương - bé thích ngay từ cái nhìn đầu tiên",
+      "anywhere": "Học mọi lúc mọi nơi",
+      "anywhereDesc": "Điện thoại, máy tính bảng, laptop - thiết bị nào cũng được",
+      "virtual": "Bàn tính ảo tích hợp",
+      "virtualDesc": "Bàn tính có sẵn trong ứng dụng, bé mở lên là tập được ngay",
+      "athome": "Học ngay tại nhà",
+      "athomeDesc": "Con học thoải mái trong không gian quen thuộc của gia đình"
+    },
+    "finalCta": {
+      "title": "Chỉ 15 phút mỗi ngày - Thần đồng tính nhẩm trong tầm tay!",
+      "subtitle": "Hơn 10.000 học sinh đã tính nhẩm nhanh hơn sau 3 tháng. Sẵn sàng cho con bạn chưa?",
+      "register": "Đăng ký miễn phí",
+      "login": "Đã có tài khoản? Đăng nhập"
+    },
+    "stats": {
+      "students": "Học sinh",
+      "lessons": "Bài học",
+      "exercises": "Bài tập",
+      "parents": "Phụ huynh tin dùng"
+    },
+    "testimonials": {
+      "title": "Phụ huynh nói gì về Sorokid?"
+    },
+    "blog": {
+      "title": "Chia sẻ cho phụ huynh",
+      "description": "Kinh nghiệm thực tế giúp ba mẹ đồng hành cùng con học toán – nhẹ nhàng, hiệu quả",
+      "viewAll": "Xem tất cả bài viết"
+    },
+    "cta": {
+      "title": "Bắt đầu hành trình Soroban cùng con ngay hôm nay",
+      "description": "Miễn phí 7 ngày dùng thử. Không cần thẻ tín dụng.",
+      "button": "Đăng ký miễn phí"
+    }
+  },
+
+  "tool": {
+    "title": "Toolbox Giáo Viên",
+    "subtitle": "Bộ sưu tập trò chơi quốc dân cho lớp học",
+    "description": "Tất cả công cụ dạy học tích cực tập trung tại một địa chỉ. Miễn phí 100%, không cần đăng nhập.",
+    "saveBookmark": "Lưu Bookmark",
+    "share": "Chia sẻ",
+    "categories": {
+      "all": "Tất cả",
+      "teambuilding": "Vui vẻ - Teambuilding",
+      "competition": "Thi đua & cho điểm",
+      "random": "Ngẫu nhiên – công bằng",
+      "organize": "Tổ chức lớp học",
+      "review": "Ôn tập – game kiến thức",
+      "individual": "Học cá nhân"
+    },
+    "tools": {
+      "spinWheel": {
+        "name": "Chiếc Nón Kỳ Diệu",
+        "description": "Quay số gọi tên học sinh ngẫu nhiên"
+      },
+      "animalRace": {
+        "name": "Đua Thú Hoạt Hình",
+        "description": "Thi đua nhóm với động vật dễ thương"
+      },
+      "flashAnzan": {
+        "name": "Flash ZAN",
+        "description": "Luyện tính nhẩm Anzan với số chớp nhanh"
+      },
+      "timer": {
+        "name": "Đồng Hồ Bấm Giờ",
+        "description": "Hẹn giờ cho mọi hoạt động lớp học"
+      },
+      "groupMaker": {
+        "name": "Chia Nhóm",
+        "description": "Chia nhóm học sinh tự động, công bằng"
+      },
+      "randomPicker": {
+        "name": "Bốc Thăm",
+        "description": "Chọn ngẫu nhiên từ danh sách"
+      },
+      "soroban": {
+        "name": "Bàn Tính Soroban",
+        "description": "Bàn tính ảo chiếu lên màn hình"
+      },
+      "luckyLight": {
+        "name": "Đèn May Mắn",
+        "description": "Trò chơi team building sôi động"
+      },
+      "millionaire": {
+        "name": "Ai Là Triệu Phú",
+        "description": "Game show quốc dân kiểm tra kiến thức"
+      },
+      "raceGame": {
+        "name": "Cuộc Đua Kì Thú",
+        "description": "Bảng xếp hạng thi đua điểm số"
+      },
+      "dice": {
+        "name": "Xúc Xắc 3D",
+        "description": "Gieo xúc xắc cho quyết định, phần thưởng"
+      },
+      "crossword": {
+        "name": "Trò Chơi Ô Chữ",
+        "description": "Crossword ôn tập từ vựng, kiến thức"
+      }
+    }
+  },
+
+  "toolbox": {
+    "title": "Toolbox Giáo Viên",
+    "subtitle": "Trò chơi & công cụ phổ biến nhất cho lớp học",
+    "saveBookmark": "Lưu Bookmark",
+    "shareTitle": "Toolbox Giáo Viên - SoroKid",
+    "shareText": "Bộ sưu tập trò chơi quốc dân cho lớp học - Miễn phí!",
+    "sorokidIntro": "Công cụ dạy Soroban cá nhân hoá cho từng học sinh",
+    "explore": "Khám phá",
+    "openTool": "Mở tool",
+    "playNow": "Chơi ngay!",
+    "comingSoon": "Sắp ra mắt",
+    "toast": {
+      "installed": "✅ Đã cài trên thiết bị!",
+      "saveHint": "⭐ Nhấn {shortcut} để lưu ngay!",
+      "copied": "✅ Đã copy link!"
+    },
+    "categories": {
+      "all": "Tất cả",
+      "teambuilding": "Vui vẻ - Teambuilding",
+      "competition": "Thi đua & cho điểm",
+      "random": "Ngẫu nhiên – công bằng",
+      "organize": "Tổ chức lớp học",
+      "review": "Ôn tập – game kiến thức",
+      "individual": "Học cá nhân"
+    },
+    "badges": {
+      "hot": "🔥 HOT",
+      "new": "✨ MỚI",
+      "flash": "⚡ FLASH",
+      "fun": "🌊 VUI",
+      "exciting": "🎰 HỒI HỘP",
+      "classic": "🧮 CLASSIC",
+      "lucky": "🍀 MAY MẮN",
+      "comingSoon": "🕐 SẮP RA MẮT",
+      "gameShow": "🏆 GAME SHOW",
+      "competition": "🏆 THI ĐUA",
+      "3d": "✨ 3D"
+    },
+    "tools": {
+      "spinWheel": {
+        "name": "Chiếc Nón Kỳ Diệu",
+        "description": "Gọi tên học sinh ngẫu nhiên, công bằng"
+      },
+      "animalRace": {
+        "name": "Đua Vịt Sông Nước",
+        "description": "Cuộc đua hoạt hình vui nhộn cho lớp"
+      },
+      "flashAnzan": {
+        "name": "Flash ZAN",
+        "description": "Luyện tính nhẩm Soroban & Anzan"
+      },
+      "timer": {
+        "name": "Đồng Hồ Bấm Giờ",
+        "description": "Đếm ngược to rõ, âm thanh báo hết giờ"
+      },
+      "groupMaker": {
+        "name": "Chia Nhóm",
+        "description": "Chia nhóm ngẫu nhiên, tự chọn nhóm trưởng"
+      },
+      "randomPicker": {
+        "name": "Bốc Thăm",
+        "description": "Rút thăm tên, câu hỏi, phần thưởng"
+      },
+      "soroban": {
+        "name": "Bàn Tính Soroban",
+        "description": "Bàn tính ảo cho học sinh luyện tập"
+      },
+      "luckyLight": {
+        "name": "Đèn May Mắn",
+        "description": "Chọn ngẫu nhiên bằng đèn xanh-đỏ"
+      },
+      "millionaire": {
+        "name": "Ai Là Triệu Phú",
+        "description": "Game show ôn bài với 50:50, trợ giúp"
+      },
+      "raceGame": {
+        "name": "Cuộc Đua Kì Thú",
+        "description": "Bảng thi đua trực quan, tạo động lực cho cả lớp"
+      },
+      "dice": {
+        "name": "Xúc Xắc 3D",
+        "description": "Xúc xắc 3D cho máy chiếu, dễ nhìn"
+      },
+      "crossword": {
+        "name": "Trò Chơi Ô Chữ",
+        "description": "Tạo ô chữ theo chủ đề bài học"
+      }
+    },
+    "sorobanTool": {
+      "value": "Giá trị"
+    },
+    "flashZan": {
+      "settings": "Cài đặt bài tập",
+      "operation": "Phép tính",
+      "add": "Cộng",
+      "addSubtract": "Cộng Trừ",
+      "digits": "Số chữ số",
+      "oneDigit": "1 số (1-9)",
+      "twoDigit": "2 số (10-99)",
+      "count": "Số lượng",
+      "speed": "Tốc độ",
+      "fast": "0.1s (Nhanh)",
+      "slow": "5s (Chậm)",
+      "start": "BẮT ĐẦU FLASH!",
+      "fullscreenHint": "Tự động vào toàn màn hình",
+      "escHint": "Nhấn",
+      "exit": "Thoát",
+      "complete": "HOÀN THÀNH!",
+      "flashedNumbers": "Đã flash {count} số",
+      "showAnswer": "XEM ĐÁP ÁN",
+      "retry": "Làm lại",
+      "toSettings": "Về cài đặt",
+      "total": "Tổng {count} số",
+      "hide": "Ẩn",
+      "tapToPause": "Chạm để dừng",
+      "spaceOrClickPause": "Nhấn Space hoặc Click để tạm dừng",
+      "paused": "TẠM DỪNG",
+      "tapToContinue": "Chạm để tiếp tục",
+      "spaceOrClickContinue": "Space/Click để tiếp tục"
+    },
+    "crossword": {
+      "createTitle": "Tạo Ô Chữ",
+      "createSubtitle": "Nhập từ khóa hàng dọc và câu hỏi gợi ý",
+      "topicLabel": "Chủ đề / Câu hỏi chủ đề",
+      "topicPlaceholder": "Ví dụ: Địa lý Việt Nam hoặc Thành phố nào là thủ đô?",
+      "topicHint": "Chủ đề hoặc câu hỏi gợi ý để học sinh đoán từ khóa",
+      "keywordLabel": "Từ khóa hàng dọc",
+      "keywordNote": "(chỉ hỗ trợ KHÔNG DẤU)",
+      "keywordPlaceholder": "Ví dụ: HANOI, VIETNAM, TOAN HOC...",
+      "needQuestions": "Cần {count} câu hỏi chứa:",
+      "questionNum": "Câu {num}",
+      "questionsLabel": "Danh sách câu hỏi gợi ý",
+      "questionsNote": "(đáp án viết KHÔNG DẤU)",
+      "questionsPlaceholder": "Mỗi dòng 1 câu: Câu hỏi | ĐÁP ÁN",
+      "viewSample": "Xem mẫu",
+      "createWithAI": "Tạo bằng AI",
+      "clearAll": "Xóa hết",
+      "startGame": "Bắt đầu chơi",
+      "readyToPlay": "Sẵn sàng chơi!",
+      "needFix": "Cần sửa lỗi",
+      "missingInfo": "Đang thiếu thông tin",
+      "noKeyword": "Chưa nhập từ khóa hàng dọc",
+      "noQuestions": "Chưa nhập câu hỏi gợi ý",
+      "keywordMismatch": "Từ khóa \"{kw}\" có {kwLen} chữ nhưng bạn nhập {qLen} câu hỏi",
+      "missingQuestions": "Thiếu {count} câu hỏi (cần thêm câu chứa: {chars})",
+      "checkQuestions": "Kiểm tra từng câu:",
+      "extraQuestion": "Thừa (từ khóa chỉ có {count} chữ)",
+      "missingChar": "Thiếu chữ [{char}]",
+      "suggestion": "Gợi ý: Đổi đáp án khác có chứa [{char}] hoặc sửa từ khóa",
+      "notEntered": "Chưa nhập câu hỏi...",
+      "needChar": "Cần chữ [{char}]",
+      "errorLine": "Dòng {num}: {reason}",
+      "missingAnswer": "Thiếu đáp án sau dấu phân cách",
+      "missingQuestion": "Thiếu câu hỏi trước dấu phân cách",
+      "keywordLengthError": "Từ khóa có {kwLen} chữ nhưng có {qLen} câu hỏi. Số chữ trong từ khóa phải bằng số câu hỏi!",
+      "answerMissingChar": "Câu {num}: Đáp án \"{answer}\" không chứa chữ \"{char}\"",
+      "enterKeywordQuestion": "Vui lòng nhập câu hỏi về từ khóa!",
+      "enterVerticalKeyword": "Vui lòng nhập từ khóa hàng dọc!",
+      "needAtLeast2": "Cần ít nhất 2 câu hỏi!",
+      "back": "Về",
+      "playAgain": "Chơi lại",
+      "showKeyword": "Từ khóa",
+      "showAll": "Toàn bộ",
+      "soundOn": "Bật âm thanh",
+      "soundOff": "Tắt âm thanh",
+      "fullscreen": "Toàn màn hình",
+      "exitFullscreen": "Thoát toàn màn hình",
+      "opened": "Đã mở",
+      "clickToOpen": "Click để mở đáp án",
+      "clickQuestion": "Click: mở câu hỏi | Giữ lâu: mở đáp án",
+      "enterAnswer": "Nhập đáp án...",
+      "reveal": "Mở",
+      "wrongTryAgain": "Sai! Thử lại...",
+      "guessKeyword": "Đoán từ khóa...",
+      "correct": "Đúng!",
+      "revealAll": "Mở hết",
+      "remaining": "Click số để mở đáp án ({count} còn lại)",
+      "aiPromptTitle": "Prompt tạo câu hỏi Ô Chữ bằng AI",
+      "aiPromptSubtitle": "Copy prompt này và dán vào ChatGPT, Gemini, Claude...",
+      "copyPrompt": "Copy Prompt",
+      "close": "Đóng",
+      "copiedPrompt": "Đã copy prompt! Hãy dán vào ChatGPT/Gemini/Claude"
+    },
+    "randomPicker": {
+      "listTitle": "Danh sách bốc thăm",
+      "show": "Hiện",
+      "hide": "Ẩn",
+      "showList": "Hiện danh sách",
+      "hideList": "Ẩn danh sách (để bí mật)",
+      "placeholder": "Nhập mỗi dòng một mục\n\nVí dụ:\nMinh\nLan\nHùng\nMai\nTuấn",
+      "itemCount": "{count} mục",
+      "noItems": "Chưa có mục nào",
+      "clearAll": "Xóa tất cả",
+      "settings": "Cài đặt",
+      "sound": "Âm thanh",
+      "reset": "Làm lại",
+      "pickButton": "BỐC THĂM!",
+      "spinning": "Đang quay...",
+      "tips": "Gợi ý sử dụng:",
+      "tipName": "Bốc tên - Gọi học sinh trả lời",
+      "tipQuestion": "Bốc câu hỏi - Random bài tập",
+      "tipPrize": "Bốc quà - Phát thưởng ngẫu nhiên",
+      "tipTopic": "Bốc chủ đề - Chọn nội dung học",
+      "readyTitle": "Sẵn sàng bốc thăm!",
+      "readyDesc": "Bốc tên • Bốc câu hỏi • Bốc quà • Bốc chủ đề",
+      "readyHint": "Nhập danh sách bên trái và bấm nút để bắt đầu",
+      "secretSpin": "Đang bốc thăm bí mật...",
+      "spinningNumbers": "Đang quay số...",
+      "resultTitle": "KẾT QUẢ BỐC THĂM",
+      "congratulations": "Chúc mừng!",
+      "refresh": "Làm mới",
+      "pickAgain": "Bốc lại!",
+      "secretList": "Danh sách bí mật",
+      "itemsHidden": "{count} mục đã ẩn"
+    },
+    "groupMaker": {
+      "studentList": "Danh sách học sinh",
+      "placeholder": "Nhập mỗi dòng một tên:\nMinh\nLan\nHùng\nMai\nTuấn",
+      "studentCount": "{count} học sinh",
+      "noNames": "Chưa có tên",
+      "clearAll": "Xóa tất cả",
+      "divideMethod": "Cách chia",
+      "byGroup": "Theo số nhóm",
+      "byGroupDesc": "Chia thành N nhóm",
+      "byPerson": "Theo số người/nhóm",
+      "byPersonDesc": "Mỗi nhóm N người",
+      "settings": "Cài đặt",
+      "groupCount": "Số nhóm:",
+      "personsPerGroup": "Số người/nhóm:",
+      "willHaveGroups": "→ Sẽ có khoảng {count} nhóm",
+      "autoLeader": "Tự động chọn nhóm trưởng",
+      "reset": "Làm lại",
+      "divideButton": "CHIA NHÓM!",
+      "dividing": "Đang chia...",
+      "readyTitle": "Sẵn sàng chia nhóm!",
+      "readyDesc": "Nhập danh sách học sinh và bấm nút để bắt đầu",
+      "shuffling": "Đang xáo trộn & chia nhóm...",
+      "resultTitle": "Kết quả chia {count} nhóm",
+      "totalStudents": "Tổng cộng {count} học sinh",
+      "groupNumber": "Nhóm {num}",
+      "personCount": "{count} người",
+      "teamLeader": "Nhóm trưởng",
+      "reshuffleButton": "Chia lại ngẫu nhiên"
+    },
+    "spinWheel": {
+      "mode": "Chế độ",
+      "textMode": "Tên",
+      "numberMode": "Số",
+      "textModeTooltip": "Nhập danh sách tên",
+      "numberModeTooltip": "Quay số ngẫu nhiên",
+      "inputList": "Danh sách",
+      "placeholder": "Mỗi dòng một tên...\nVí dụ:\nMinh\nLan\nHùng",
+      "itemCount": "{count} mục",
+      "noItems": "Chưa có mục",
+      "clearAll": "Xóa",
+      "numberRange": "Phạm vi số",
+      "from": "Từ",
+      "to": "Đến",
+      "numbersInRange": "({count} số)",
+      "afterSpin": "Sau khi quay:",
+      "remove": "Loại bỏ",
+      "keep": "Giữ lại",
+      "settings": "Cài đặt",
+      "removeAfterSpin": "Loại bỏ sau khi quay",
+      "sound": "Âm thanh",
+      "soundOn": "Bật âm thanh",
+      "soundOff": "Tắt âm thanh",
+      "spinButton": "QUAY!",
+      "spinning": "Đang quay...",
+      "result": "KẾT QUẢ",
+      "congratsResult": "Chúc mừng! Kết quả là:",
+      "askRemove": "Bạn muốn loại kết quả này khỏi vòng quay?",
+      "removeAndContinue": "Loại & quay tiếp",
+      "keepResult": "Giữ lại",
+      "okContinue": "OK, quay tiếp",
+      "playAgain": "Chơi lại",
+      "spinAgain": "Quay lại!",
+      "remaining": "Còn lại: {count}",
+      "remainingCount": "Còn:",
+      "reset": "Reset",
+      "removedResult": "Đã loại: {item}",
+      "allPicked": "Đã quay hết!",
+      "resetList": "Reset danh sách",
+      "emptyWheel": "Vòng quay trống",
+      "emptyText": "Nhập danh sách để bắt đầu",
+      "emptyNumber": "Thiết lập khoảng số",
+      "emptyTextHint": "Mỗi dòng là một mục trong vòng quay",
+      "emptyNumberHint": "Nhập số từ và đến để quay",
+      "addItemsHint": "Nhập danh sách bên trái để bắt đầu"
+    },
+    "luckyLight": {
+      "press": "BẤM!",
+      "pressToStart": "Bấm để bắt đầu!",
+      "settings": "Cài đặt",
+      "lightMode": "Chế độ đèn",
+      "twoLights": "2 đèn",
+      "threeLights": "3 đèn",
+      "probability": "Xác suất",
+      "green": "Xanh",
+      "yellow": "Vàng",
+      "red": "Đỏ",
+      "safeLabel": "An toàn",
+      "challengeLabel": "Thử thách",
+      "punishLabel": "Phạt",
+      "showProbability": "Hiện xác suất",
+      "sound": "Âm thanh",
+      "safe": "AN TOÀN!",
+      "safeDesc": "May mắn rồi! Thoát phạt!",
+      "challenge": "THỬ THÁCH!",
+      "challengeDesc": "Trả lời câu hỏi để thoát!",
+      "punished": "BỊ PHẠT!",
+      "punishedDesc": "Ôi không! Phải chịu phạt rồi!",
+      "resultGreen": "XANH! Bạn may mắn!",
+      "resultYellow": "VÀNG! Thử lại nhé!",
+      "resultRed": "ĐỎ! Lần sau may hơn!",
+      "pressAgain": "Bấm lại để thử",
+      "playAgain": "Chơi lại"
+    },
+    "raceGame": {
+      "title": "Cuộc Đua Kì Thú",
+      "subtitle": "Chấm điểm thi đua • Ai dẫn đầu?",
+      "setup": "Thiết lập",
+      "race": "Cuộc đua",
+      "mode": "Chế độ",
+      "individual": "Cá nhân",
+      "team": "Đội nhóm",
+      "characterType": "Loại nhân vật",
+      "cars": "Xe cộ",
+      "animals": "Động vật",
+      "people": "Người",
+      "rockets": "Tàu vũ trụ",
+      "quickStart": "Bắt đầu nhanh:",
+      "numParticipants": "Số người/nhóm:",
+      "createDefault": "Tạo tên mặc định",
+      "nameList": "Danh sách tên",
+      "nameListOptional": "(hoặc để trống dùng mặc định)",
+      "namePlaceholder": "Nhóm 1\nNhóm 2\nNhóm 3\n...\n\nHoặc tên học sinh:\nNguyễn Văn A\nTrần Thị B",
+      "nameHint": "Mỗi dòng 1 tên • Copy-paste từ Excel • Để trống = dùng \"Nhóm 1, 2, 3...\"",
+      "selectIcon": "Chọn biểu tượng:",
+      "startRace": "BẮT ĐẦU CUỘC ĐUA!",
+      "settings": "Cài đặt",
+      "resetBtn": "Reset",
+      "finish": "Kết thúc",
+      "search": "Tìm...",
+      "ranking": "Xếp hạng",
+      "order": "Thứ tự",
+      "soundOn": "Bật âm thanh",
+      "soundOff": "Tắt âm thanh",
+      "select": "Chọn",
+      "hide": "Ẩn",
+      "show": "Hiện",
+      "points": "điểm",
+      "randomCall": "Gọi ngẫu nhiên",
+      "lock": "Khóa",
+      "unlock": "Mở khóa",
+      "undo": "Hoàn tác",
+      "notFound": "Không tìm thấy \"{query}\"",
+      "dialogCancel": "Hủy",
+      "dialogConfirm": "Xác nhận",
+      "dialogUnderstood": "Đã hiểu",
+      "notEnoughPeople": "Chưa đủ người",
+      "needAtLeast2": "Cần ít nhất 2 người/nhóm để bắt đầu cuộc đua!",
+      "tooMany": "Quá nhiều",
+      "max100": "Tối đa 100 người chơi!",
+      "resetScores": "Reset điểm?",
+      "resetScoresDesc": "Tất cả điểm sẽ về 0. Danh sách người chơi vẫn được giữ nguyên.",
+      "backToSetup": "Quay lại cài đặt?",
+      "backToSetupDesc": "Dữ liệu điểm số vẫn được lưu. Bạn có thể tiếp tục sau.",
+      "newRace": "Tạo cuộc đua mới?",
+      "newRaceDesc": "Tất cả dữ liệu hiện tại sẽ bị xóa và không thể khôi phục.",
+      "raceResult": "KẾT QUẢ CUỘC ĐUA",
+      "leaderboard": "Bảng xếp hạng:",
+      "continue": "Tiếp tục",
+      "newGame": "Ván mới",
+      "group": "Nhóm"
+    }
+  },
+
+  "pricing": {
+    "title": "Chọn gói học phù hợp",
+    "subtitle": "Bắt đầu miễn phí, nâng cấp khi cần",
+    "monthly": "Theo tháng",
+    "yearly": "Theo năm",
+    "savePercent": "Tiết kiệm {percent}%",
+    "free": {
+      "title": "Miễn phí",
+      "price": "0đ",
+      "period": "mãi mãi",
+      "description": "Trải nghiệm cơ bản",
+      "features": [
+        "5 bài học đầu tiên",
+        "Bài tập cơ bản",
+        "Toolbox giáo viên",
+        "Hỗ trợ cộng đồng"
+      ],
+      "cta": "Bắt đầu miễn phí"
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "{price}đ",
+      "period": "/tháng",
+      "description": "Toàn bộ tính năng",
+      "features": [
+        "Tất cả bài học",
+        "Tất cả bài tập",
+        "Phiêu lưu & Thi đấu",
+        "Chứng chỉ hoàn thành",
+        "Theo dõi tiến độ chi tiết",
+        "Không quảng cáo",
+        "Hỗ trợ ưu tiên"
+      ],
+      "cta": "Nâng cấp ngay"
+    },
+    "faq": {
+      "title": "Câu hỏi thường gặp",
+      "items": [
+        {
+          "question": "Có thể hủy bất cứ lúc nào không?",
+          "answer": "Có, bạn có thể hủy gói Premium bất cứ lúc nào. Tài khoản sẽ tiếp tục hoạt động đến hết chu kỳ thanh toán."
+        },
+        {
+          "question": "Gói miễn phí có hạn chế gì?",
+          "answer": "Gói miễn phí cho phép truy cập 5 bài học đầu tiên và các bài tập cơ bản. Để mở khóa toàn bộ nội dung, bạn cần nâng cấp Premium."
+        },
+        {
+          "question": "Có hỗ trợ thanh toán nào?",
+          "answer": "Chúng tôi hỗ trợ thanh toán qua thẻ ngân hàng, ví điện tử (MoMo, ZaloPay) và chuyển khoản ngân hàng."
+        }
+      ]
+    }
+  },
+
+  "footer": {
+    "tagline": "Học toán tính nhanh vui như chơi game",
+    "toolbox": "Toolbox Giáo Viên",
+    "copyright": "Học toán tư duy cùng bàn tính Soroban",
+    "description": "Ứng dụng học Soroban & Toán tư duy hàng đầu cho học sinh tiểu học Việt Nam.",
+    "products": "Sản phẩm",
+    "support": "Hỗ trợ",
+    "legal": "Pháp lý",
+    "connect": "Kết nối",
+    "learnSoroban": "Học Soroban",
+    "teacherToolbox": "Toolbox Giáo viên",
+    "helpCenter": "Trung tâm hỗ trợ",
+    "contact": "Liên hệ",
+    "terms": "Điều khoản sử dụng",
+    "privacy": "Chính sách bảo mật"
+  },
+
+  "errors": {
+    "404": {
+      "title": "Không tìm thấy trang",
+      "description": "Trang bạn đang tìm không tồn tại hoặc đã bị di chuyển.",
+      "backHome": "Về trang chủ",
+      "tryOther": "Hay thử các trang này nhé:"
+    },
+    "500": {
+      "title": "Ối! Có lỗi xảy ra",
+      "description": "Đừng lo, hãy thử tải lại trang hoặc quay về trang chủ nhé!",
+      "retry": "Thử lại"
+    }
+  },
+
+  "dashboard": {
+    "loading": "Đang tải...",
+    "errorLoad": "Không thể tải dữ liệu",
+    "retry": "Thử lại",
+    "continueLearn": "Tiếp tục học",
+    "nextLesson": "Bài học tiếp theo",
+    "inProgress": "Đang học",
+    "earned": "Đã đạt",
+    "stars": "sao",
+    "completed": "Xuất sắc!",
+    "completedDesc": "Bạn đã hoàn thành tất cả bài học. Hãy luyện tập thêm nhé!",
+    "discoverMore": "Khám phá nhiều hơn",
+    "unlock18Levels": "Mở khóa 18 level và các chế độ chơi đặc biệt",
+    "upgradeExperience": "Nâng cấp để trải nghiệm trọn vẹn",
+    "study": "Học tập",
+    "practice": "Luyện tập",
+    "compete": "Thi Đấu",
+    "lessonsCount": "bài",
+    "todayCount": "hôm nay",
+    "top3Count": "lần top 3",
+    "startNow": "Bắt đầu ngay!",
+    "trainNow": "Rèn luyện nào!",
+    "tryNow": "Thử tài nào!",
+    "adventure": "Phiêu Lưu",
+    "adventureBadge": "Phiêu Lưu",
+    "adventureHot": "HOT",
+    "adventureNew": "MỚI",
+    "treasureHunt": "Đi Tìm",
+    "treasureName": "Kho Báu",
+    "treasureSubtitle": "Tri Thức Soroban",
+    "treasureDesc": "Cùng {name} khám phá {count} hòn đảo bí ẩn và chinh phục các thử thách!",
+    "owlName": "Cú Soro",
+    "islandCount": "Đảo",
+    "zoneCount": "Vùng đất",
+    "bossCount": "Boss",
+    "treasureReward": "Kho báu",
+    "playNow": "Chơi ngay!",
+    "adventureDesc": "Khám phá thế giới Soroban",
+    "adventureStart": "Bắt đầu phiêu lưu",
+    "dailyQuests": "Nhiệm vụ hằng ngày",
+    "viewMore": "Xem thêm",
+    "viewAll": "Xem tất cả",
+    "achievements": "Thành tích",
+    "certificates": "Chứng chỉ",
+    "detailedStats": "Thống kê chi tiết",
+    "detailedStatsDesc": "Xem biểu đồ hoạt động và tiến độ học tập",
+    "loadingStats": "Đang tải thống kê...",
+    "weeklyActivity": "Hoạt động 7 ngày qua",
+    "overview": "Tổng quan",
+    "progressByLevel": "Tiến độ theo cấp",
+    "minutes": "phút",
+    "currentLevel": "Cấp độ hiện tại",
+    "levelProgress": "Tiến độ lên level",
+    "starsToNext": "Còn {count} ⭐ để lên level tiếp theo",
+    "viewDetails": "Xem chi tiết →",
+    "totalStars": "Tổng sao ⭐",
+    "levelProgressLabel": "Tiến độ level",
+    "currentStarsInLevel": "Sao hiện tại trong level",
+    "starsToLevelUp": "Còn {count} ⭐ để lên Level {level}",
+    "tierLevels": "Các cấp bậc",
+    "current": "Hiện tại",
+    "close": "Đóng",
+    "footerText": "Học toán tư duy cùng bàn tính Soroban",
+    "tiers": {
+      "beginner": "Nhập Môn",
+      "trainee": "Luyện Hạt",
+      "quickHand": "Tay Nhanh",
+      "calculator": "Thợ Tính",
+      "expert": "Cao Thủ",
+      "superCalc": "Siêu Tính",
+      "godCalc": "Thần Tính",
+      "prodigy": "Kỳ Tài",
+      "genius": "Thần Đồng",
+      "brilliant": "Thiên Tài",
+      "exceptional": "Kỳ Nhân",
+      "grandMaster": "Đại Tông Sư"
+    },
+    "stats": {
+      "study": "Học tập",
+      "practice": "Luyện tập",
+      "compete": "Thi đấu",
+      "lessonsLearned": "bài đã học",
+      "questionsAnswered": "câu đã làm",
+      "matchesPlayed": "trận đã đấu",
+      "accuracy": "Độ chính xác",
+      "completionProgress": "Tiến độ hoàn thành",
+      "avgAccuracy": "Tỷ lệ làm đúng trung bình",
+      "correctRate": "Tỷ lệ làm đúng",
+      "avgTimePerQuestion": "Thời gian trung bình mỗi câu",
+      "seconds": "giây",
+      "todayCompleted": "Hôm nay đã làm",
+      "questionsCorrect": "câu đúng",
+      "top3Finishes": "Vào Top 3",
+      "times": "lần",
+      "winRate": "Tỷ lệ thắng",
+      "bestStreak": "Chuỗi thắng cao nhất"
+    },
+    "activity": {
+      "title": "Hoạt động 7 ngày qua",
+      "total": "Tổng cộng",
+      "explanation": "Biểu đồ hiển thị <strong>số sao ⭐</strong> bạn kiếm được mỗi ngày trong tuần",
+      "stars": "sao",
+      "today": "Hôm nay",
+      "otherDays": "Các ngày khác",
+      "noActivity": "Chưa hoạt động",
+      "days": {
+        "sun": "CN",
+        "mon": "T2",
+        "tue": "T3",
+        "wed": "T4",
+        "thu": "T5",
+        "fri": "T6",
+        "sat": "T7"
+      },
+      "daysFull": {
+        "sun": "Chủ nhật",
+        "mon": "Thứ 2",
+        "tue": "Thứ 3",
+        "wed": "Thứ 4",
+        "thu": "Thứ 5",
+        "fri": "Thứ 6",
+        "sat": "Thứ 7"
+      }
+    },
+    "badges": {
+      "title": "Huy Hiệu",
+      "progress": "Tiến độ",
+      "unlocked": "Đã đạt",
+      "goals": "Mục tiêu",
+      "noBadges": "Chưa có huy hiệu",
+      "noBadgesHint": "Học tập để nhận huy hiệu đầu tiên!",
+      "excellent": "Xuất sắc!",
+      "allBadges": "Bạn đã đạt tất cả huy hiệu!",
+      "collapse": "Thu gọn",
+      "showMore": "Xem thêm",
+      "goal": "Mục tiêu",
+      "achievedOn": "Đạt được",
+      "close": "Đóng",
+      "time": {
+        "today": "Hôm nay",
+        "yesterday": "Hôm qua",
+        "daysAgo": "ngày trước",
+        "weeksAgo": "tuần trước"
+      }
+    },
+    "certificate": {
+      "title": "Chứng chỉ",
+      "subtitle": "Hoàn thành lộ trình để nhận chứng chỉ",
+      "viewDetails": "Xem chi tiết",
+      "addSub": "Chứng chỉ Cộng Trừ",
+      "complete": "Chứng chỉ Toàn Diện",
+      "claimed": "Đã nhận",
+      "basicPlan": "Gói Cơ Bản",
+      "advancedPlan": "Gói Nâng Cao",
+      "ready": "Sẵn sàng!",
+      "requirements": "yêu cầu",
+      "congratulations": "Chúc mừng! Bạn đã hoàn thành chứng chỉ này 🎉"
+    },
+    "progressByLevel": {
+      "title": "Tiến độ học tập",
+      "totalProgress": "Tổng tiến độ",
+      "lessonsCount": "bài học",
+      "noProgress": "Chưa có tiến độ học tập",
+      "startLearning": "Bắt đầu học để theo dõi tiến độ!",
+      "lesson": "Bài",
+      "parts": "phần",
+      "stars": "sao",
+      "accurate": "chính xác",
+      "minutes": "phút"
+    }
+  },
+
+  "learn": {
+    "title": "Học Soroban",
+    "selectLevel": "Chọn cấp độ",
+    "lesson": "Bài học",
+    "lessons": "bài học",
+    "levels": "màn chơi",
+    "locked": "Chưa mở khóa",
+    "completed": "Hoàn thành",
+    "inProgress": "Đang học",
+    "startLesson": "Bắt đầu học",
+    "continueLesson": "Tiếp tục học",
+    "watchVideo": "Xem video",
+    "readGuide": "Đọc hướng dẫn",
+    "practice": "Thực hành",
+    "starsEarned": "Sao đạt được",
+    "bestScore": "Điểm cao nhất",
+    "attempts": "Số lần thử",
+    "upgradeToUnlock": "Nâng cấp để mở khóa",
+    "loading": "Đang tải bài học...",
+    "journeyTitle": "Hành trình chinh phục Soroban",
+    "journeyDesc": "Từ người mới đến siêu sao!",
+    "lessonList": "Danh sách bài học",
+    "lessonProgress": "Tiến độ bài học",
+    "starsCount": "sao",
+    "totalProgress": "Tiến độ tổng",
+    "completedLessons": "Hoàn thành",
+    "swipeHint": "Vuốt để chuyển level"
+  },
+
+  "practiceScreen": {
+    "title": "Luyện tập",
+    "auto": "Tự động",
+    "custom": "Tùy chỉnh",
+    "selectLevel": "Chọn cấp độ",
+    "selectOperation": "Chọn phép tính",
+    "addition": "Cộng",
+    "subtraction": "Trừ",
+    "multiplication": "Nhân",
+    "division": "Chia",
+    "mixed": "Hỗn hợp",
+    "start": "Bắt đầu",
+    "questionsCount": "Số câu hỏi",
+    "timeLimit": "Giới hạn thời gian",
+    "seconds": "giây",
+    "noLimit": "Không giới hạn",
+    "result": "Kết quả",
+    "correct": "Đúng",
+    "wrong": "Sai",
+    "accuracy": "Độ chính xác",
+    "time": "Thời gian",
+    "playAgain": "Chơi lại",
+    "backToMenu": "Về menu",
+    "modes": {
+      "addition": "Siêu Cộng",
+      "subtraction": "Siêu Trừ",
+      "addSubMixed": "Cộng Trừ Mix",
+      "multiplication": "Siêu Nhân",
+      "division": "Siêu Chia",
+      "mulDiv": "Nhân Chia Mix",
+      "mixed": "Tứ Phép Thần",
+      "mentalMath": "Siêu Trí Tuệ",
+      "flashAnzan": "Tia Chớp"
+    },
+    "mentalSubModes": {
+      "addition": "Cộng",
+      "subtraction": "Trừ",
+      "multiplication": "Nhân",
+      "division": "Chia",
+      "addSubMixed": "Cộng Trừ",
+      "mulDiv": "Nhân Chia",
+      "mixed": "Tất Cả"
+    },
+    "stats": {
+      "stars": "Sao",
+      "correct": "Đúng",
+      "wrong": "Sai",
+      "combo": "Combo"
+    },
+    "level": "Cấp độ",
+    "multiplierPoints": "x{n} ĐIỂM!",
+    "difficulty": {
+      "1": "Tập Sự",
+      "2": "Chiến Binh",
+      "3": "Dũng Sĩ",
+      "4": "Cao Thủ",
+      "5": "Huyền Thoại",
+      "6": "Siêu Huyền Thoại"
+    },
+    "speedTiers": {
+      "godlike": ["THẦN TỐC!", "SIÊU NHANH!", "KHÔNG THỂ TIN!", "ĐỈNH CỦA ĐỈNH!"],
+      "fast": ["NHANH NHƯ CHỚP!", "TỐC ĐỘ ÁNH SÁNG!", "SIÊU TỐC!", "QUÁI VẬT TỐC ĐỘ!"],
+      "good": ["XUẤT SẮC!", "TUYỆT VỜI!", "GIỎI LẮM!", "CỪ KHÔI!"],
+      "normal": ["ĐÚNG RỒI!", "CHÍNH XÁC!", "TỐT LẮM!", "HAY LẮM!"]
+    },
+    "streakMessages": {
+      "3": "COMBO x3!",
+      "5": "UNSTOPPABLE!",
+      "7": "DOMINATING!",
+      "10": "LEGENDARY!"
+    },
+    "tiers": {
+      "free": "Miễn Phí",
+      "basic": "Cơ Bản",
+      "advanced": "Nâng Cao",
+      "vip": "VIP"
+    },
+    "flashLevels": {
+      "anhNen": { "name": "Ánh Nến", "subtitle": "Lung linh dịu dàng", "tagline": "Khởi đầu ấm áp" },
+      "anhTrang": { "name": "Ánh Trăng", "subtitle": "Huyền ảo đêm thanh", "tagline": "Bước tiếp vững chắc" },
+      "tiaChop": { "name": "Tia Chớp", "subtitle": "Lóe sáng chớp nhoáng", "tagline": "Nhanh như chớp!" },
+      "saoBang": { "name": "Sao Băng", "subtitle": "Vụt sáng khoảnh khắc", "tagline": "🔥 SIÊU TỐC 🔥" },
+      "bigBang": { "name": "BIG BANG", "subtitle": "Vụ nổ khai sinh vũ trụ", "tagline": "💥 VỤ NỔ VŨ TRỤ 💥" },
+      "sieuBigBang": { "name": "SIÊU BIG BANG", "subtitle": "Đỉnh cao tốc độ", "tagline": "🌌 SIÊU VŨ TRỤ 🌌" }
+    },
+    "flashRanks": {
+      "1": "Tập Sự",
+      "2": "Chiến Binh",
+      "3": "Dũng Sĩ",
+      "4": "Huyền Thoại",
+      "5": "THẦN",
+      "6": "THẦN THÁNH"
+    },
+    "flashDigits": {
+      "1": "1 chữ số",
+      "2": "2 chữ số",
+      "3": "3 chữ số"
+    },
+    "flashOperations": {
+      "addition": { "name": "Phép Cộng", "description": "Chỉ có phép cộng" },
+      "mixed": { "name": "Cộng Trừ Mix", "description": "Xen kẽ cộng và trừ" }
+    },
+    "praiseMessages": [
+      { "emoji": "🎉", "title": "XUẤT SẮC!", "msg": "Bạn giỏi quá! Đáp án hoàn toàn chính xác!" },
+      { "emoji": "🌟", "title": "TUYỆT VỜI!", "msg": "Trí nhớ của bạn thật phi thường!" },
+      { "emoji": "🏆", "title": "SIÊU ĐỈNH!", "msg": "Bạn tính nhẩm nhanh như máy tính!" },
+      { "emoji": "👏", "title": "GIỎI LẮM!", "msg": "Bạn làm đúng rồi! Tiếp tục phát huy nhé!" },
+      { "emoji": "🚀", "title": "THẦN TỐC!", "msg": "Tốc độ tính toán của bạn thật ấn tượng!" }
+    ],
+    "encourageMessages": [
+      { "emoji": "💪", "title": "CỐ LÊN NÀO!", "msg": "Đừng lo, sai là cách học tốt nhất!" },
+      { "emoji": "🌈", "title": "ĐỪNG BỎ CUỘC!", "msg": "Mỗi lần thử là một bước tiến bộ!" },
+      { "emoji": "⭐", "title": "GẦN ĐÚNG RỒI!", "msg": "Bạn cần luyện tập thêm một chút!" },
+      { "emoji": "🎯", "title": "THỬ LẠI NHÉ!", "msg": "Tập trung hơn, bạn sẽ làm được!" }
+    ],
+    "flashSetup": {
+      "digits": { "title": "CHỌN SỐ CHỮ SỐ", "subtitle": "Chọn độ khó của các số", "icon": "🔢" },
+      "operation": { "title": "CHỌN PHÉP TOÁN", "subtitle": "Chọn loại phép tính", "icon": "➕" },
+      "speed": { "title": "CHỌN TỐC ĐỘ", "subtitle": "Càng nhanh → Càng khó → Càng nhiều thưởng!", "icon": "⚡" }
+    },
+    "resultGrades": {
+      "S": { "text": "XUẤT SẮC!", "msg": "Bạn thật tuyệt vời! Gần như hoàn hảo!", "stars": 4 },
+      "A": { "text": "GIỎI LẮM!", "msg": "Bạn làm rất tốt! Cố thêm chút nữa!", "stars": 3 },
+      "B": { "text": "KHÁ TỐT!", "msg": "Bạn đang tiến bộ! Cố gắng thêm nhé!", "stars": 2 },
+      "D": { "text": "LUYỆN TẬP!", "msg": "Thử lại nhé! Mỗi lần sai là một bài học!", "stars": 1 }
+    },
+    "ui": {
+      "pressEnter": "Nhấn {key} để tiếp tục",
+      "correct": "Đúng",
+      "questions": "câu",
+      "keepItUp": "Cố lên nhé!",
+      "youDidGreat": "Bạn làm rất tốt!",
+      "defaultPraise": "Bạn giỏi quá!",
+      "gradeMessages": {
+        "S": "Bạn là siêu sao! 🌟",
+        "A": "Làm tốt lắm! 💪",
+        "B": "Không tồi! 👍",
+        "C": "Luyện tập thêm nhé! 📚"
+      },
+      "modeRequiresUpgrade": "Chế độ {mode} yêu cầu gói {tier} trở lên",
+      "selectMode": "CHỌN CHẾ ĐỘ",
+      "selectDifficulty": "CHỌN ĐỘ KHÓ",
+      "locked": "BỊ KHÓA",
+      "unlockWith": "Mở khóa với gói {tier}",
+      "back": "Quay lại",
+      "backToMenu": "Về Menu",
+      "nextProblem": "Câu tiếp theo",
+      "checkAnswer": "Kiểm tra",
+      "showAnswer": "Xem đáp án",
+      "tryAgain": "Thử lại",
+      "startFlash": "Bắt đầu Flash",
+      "readyGo": "Sẵn sàng... Bắt đầu!",
+      "watchCarefully": "Quan sát kỹ nhé!",
+      "enterAnswer": "Nhập đáp án của bạn",
+      "submit": "Gửi",
+      "loading": "Đang tải...",
+      "preparing": "Đang chuẩn bị...",
+      "selectOperation": "Chọn Phép Tính",
+      "mentalMath": "Siêu Trí Tuệ",
+      "flashAnzan": "Tia Chớp",
+      "practice": "Luyện Tập",
+      "backToPractice": "Về trang luyện tập",
+      "backToHome": "Về trang chủ",
+      "lightSpeedRace": "CUỘC ĐUA ÁNH SÁNG",
+      "lightSpeedSubtitle": "Từ Ánh Nến đến Siêu Big Bang!",
+      "lightSpeedPath": "🕯️ → 🌙 → ⚡ → ☄️ → 💥 → 🌌",
+      "digits": "Chữ số",
+      "digitsCount": "{n} chữ số",
+      "operation": "Phép toán",
+      "speed": "Tốc độ",
+      "quantity": "Số lượng",
+      "speedPerNum": "{n}s/số",
+      "numbers": "{n} số",
+      "focusHigh": "Tập trung cao độ",
+      "addCumulative": "Cộng dồn từng số",
+      "focus": "TẬP TRUNG!",
+      "whatIsResult": "KẾT QUẢ LÀ BAO NHIÊU?",
+      "enterYourResult": "Nhập kết quả phép tính của bạn",
+      "accuracy": "Độ chính xác",
+      "total": "Tổng cộng",
+      "passed": "Đã qua màn! Cần ≥70% để mở khóa màn tiếp theo",
+      "notPassed": "Chưa đạt! Cần ≥70% để qua màn (hiện tại: {accuracy}%)",
+      "notPassedAccuracy": "Chưa đạt! Cần ≥70% chính xác để qua màn (hiện tại: {accuracy}%)",
+      "readyForHigherChallenge": "Sẵn sàng thử thách cao hơn?",
+      "createNumber": "Tạo số",
+      "comboBonus": "Combo = x2 Bonus!",
+      "canYouReachSuperBigBang": "Bạn có thể chạm tới SIÊU BIG BANG không?",
+      "secPerNum": "{n}s/số",
+      "numCount": "{n} số",
+      "confirm": "XÁC NHẬN",
+      "pressEnterToSubmit": "Nhấn Enter để gửi đáp án",
+      "skip": "Bỏ qua",
+      "answer": "Trả lời",
+      "finish": "Kết thúc",
+      "next": "Tiếp",
+      "correct": "Đúng",
+      "wrong": "Sai",
+      "skipped": "Bỏ qua"
+    }
+  },
+
+  "competeScreen": {
+    "title": "Thi đấu",
+    "auto": "Chế độ tự động",
+    "ranking": "Bảng xếp hạng",
+    "yourRank": "Hạng của bạn",
+    "points": "điểm",
+    "rank": "Hạng",
+    "player": "Người chơi",
+    "score": "Điểm",
+    "joinMatch": "Vào trận",
+    "findOpponent": "Tìm đối thủ...",
+    "ready": "Sẵn sàng!",
+    "go": "Bắt đầu!",
+    "win": "Chiến thắng!",
+    "lose": "Thua cuộc",
+    "draw": "Hòa",
+    "playAgain": "Chơi lại",
+    "leaderboard": "Bảng xếp hạng",
+    "questions": "câu",
+    "questionCounts": {
+      "5": "Khởi động",
+      "10": "Cơ bản",
+      "15": "Luyện tập",
+      "20": "Nâng cao",
+      "25": "Thử thách",
+      "30": "Chiến đấu",
+      "40": "Siêu sao",
+      "50": "Huyền thoại"
+    },
+    "selectMode": "CHỌN CHẾ ĐỘ CHƠI",
+    "selectDifficulty": "CHỌN ĐỘ KHÓ",
+    "selectQuestions": "CHỌN SỐ CÂU",
+    "selectArena": "CHỌN ĐẤU TRƯỜNG",
+    "startBattle": "BẮT ĐẦU THI ĐẤU",
+    "enterArena": "VÀO ĐẤU TRƯỜNG",
+    "viewLeaderboard": "Xem Bảng Xếp Hạng",
+    "topPlayers": "Top Cao Thủ",
+    "yourBestScore": "Điểm Cao Nhất",
+    "neverPlayed": "Chưa chơi lần nào",
+    "playersOnLeaderboard": "người trên bảng xếp hạng",
+    "loading": "Đang tải...",
+    "completed": "HOÀN THÀNH!",
+    "accuracy": "Độ chính xác",
+    "avgTime": "Thời gian TB",
+    "stars": "Sao",
+    "correct": "Đúng",
+    "combo": "Combo",
+    "totalTime": "Tổng thời gian",
+    "newRecord": "KỶ LỤC MỚI!",
+    "rankUp": "THĂNG HẠNG!",
+    "backToArena": "Về Đấu Trường",
+    "selectNewArena": "Chọn Đấu Trường Mới",
+    "preparingArena": "Đang chuẩn bị đấu trường...",
+    "soroOpeningArena": "Cú Soro đang mở đấu trường cho con!",
+    "errorOccurred": "Có lỗi xảy ra",
+    "invalidMode": "Mode không hợp lệ",
+    "backToMap": "Quay lại Map",
+    "selectOperation": "Chọn Phép Tính",
+    "competeWithMode": "Thi đấu với chế độ bạn muốn!",
+    "eachVariantIsArena": "Mỗi biến thể là một bảng xếp hạng riêng!",
+    "mode": "Chế độ",
+    "operation": "Phép tính",
+    "level": "Cấp độ",
+    "numQuestions": "Số câu",
+    "selectLevel": "Chọn Cấp Độ",
+    "higherLevelBiggerNum": "Cấp độ càng cao, số càng lớn!",
+    "selectNumQuestions": "Chọn Số Câu Hỏi",
+    "moreQuestionMoreChallenge": "Càng nhiều câu, càng thử thách!",
+    "firstTimeCompete": "Lần đầu thi đấu?",
+    "selectFewToStart": "Chọn 5-10 câu để làm quen!",
+    "wantToClimb": "Muốn leo rank?",
+    "selectMoreToPractice": "Chọn 20-30 câu để luyện tập đều đặn!",
+    "nQuestions": "{n} câu",
+    "rankByAccuracySpeed": "Xếp hạng theo độ chính xác & tốc độ",
+    "players": "người chơi",
+    "noOneCompeted": "Chưa có ai thi đấu",
+    "beTheFirst": "Hãy là người đầu tiên!",
+    "nCorrect": "{n} đúng",
+    "nextRanking": "Xếp hạng tiếp theo",
+    "yourRanking": "Thứ hạng của bạn",
+    "you": "Bạn",
+    "notCompetedYet": "Bạn chưa thi đấu ở đấu trường này",
+    "competeToRank": "Hãy thi đấu để lên bảng xếp hạng!",
+    "finished": "KẾT THÚC!",
+    "starDetails": "Chi tiết điểm sao",
+    "total": "Tổng cộng",
+    "focus": "TẬP TRUNG!",
+    "quantity": "Số lượng",
+    "nNumbers": "{n} số",
+    "speed": "Tốc độ",
+    "speedPerNum": "{n}s/số",
+    "whatIsResult": "KẾT QUẢ LÀ BAO NHIÊU?",
+    "enterYourResult": "Nhập kết quả phép tính của bạn",
+    "youAreGreat": "Bạn giỏi quá!",
+    "correct2": "CHÍNH XÁC",
+    "bonus": "THƯỞNG",
+    "mentalSubModes": {
+      "addition": "Cộng",
+      "subtraction": "Trừ",
+      "multiplication": "Nhân",
+      "division": "Chia",
+      "addSubMixed": "Cộng Trừ",
+      "mulDiv": "Nhân Chia",
+      "mixed": "Tất cả"
+    },
+    "arenas": {
+      "addition": {
+        "1": "Vườn Sao",
+        "2": "Rừng Sao",
+        "3": "Núi Sao",
+        "4": "Đỉnh Sao",
+        "5": "Thiên Đường Sao"
+      },
+      "subtraction": {
+        "1": "Robot Bé Con",
+        "2": "Robot Chiến Đấu",
+        "3": "Siêu Robot",
+        "4": "Robot Mega",
+        "5": "Robot Tối Thượng"
+      },
+      "addSubMixed": {
+        "1": "Cầu Vồng Bé Con",
+        "2": "Cầu Vồng Đôi",
+        "3": "Bão Cầu Vồng",
+        "4": "Vũ Trụ Sắc Màu",
+        "5": "Thiên Hà Sắc Màu"
+      },
+      "multiplication": {
+        "1": "Phép Thuật Bé Con",
+        "2": "Phù Thủy Tập Sự",
+        "3": "Phù Thủy",
+        "4": "Đại Phù Thủy",
+        "5": "Pháp Sư Tối Thượng"
+      },
+      "division": {
+        "1": "Pizza Nhỏ",
+        "2": "Đầu Bếp Tập Sự",
+        "3": "Đầu Bếp",
+        "4": "Đầu Bếp Trưởng",
+        "5": "Siêu Đầu Bếp"
+      },
+      "mulDiv": {
+        "1": "Ninja Bé Con",
+        "2": "Ninja Xanh",
+        "3": "Ninja Đỏ",
+        "4": "Ninja Vàng",
+        "5": "Ninja Bóng Đêm"
+      },
+      "mixed": {
+        "1": "Tân Binh",
+        "2": "Chiến Binh",
+        "3": "Anh Hùng",
+        "4": "Vô Địch",
+        "5": "Huyền Thoại"
+      },
+      "mentalMath": {
+        "1": "Thiên Tài Nhí",
+        "2": "Thần Đồng",
+        "3": "Siêu Trí Tuệ",
+        "4": "Einstein Nhí",
+        "5": "Thiên Tài Vũ Trụ"
+      },
+      "flashAnzan": {
+        "1": "Ánh Nến",
+        "2": "Ánh Trăng",
+        "3": "Tia Chớp",
+        "4": "Sao Băng",
+        "5": "BIG BANG",
+        "6": "SUPER BIG BANG"
+      }
+    },
+    "flashSetup": {
+      "digits": { "title": "CHỌN SỐ CHỮ SỐ", "subtitle": "Chọn độ khó số" },
+      "operation": { "title": "CHỌN PHÉP TÍNH", "subtitle": "Chọn loại tính toán" },
+      "speed": { "title": "CHỌN TỐC ĐỘ CHIẾN ĐẤU", "subtitle": "Mỗi biến thể có đấu trường riêng!" }
+    },
+    "digitLabels": {
+      "1": "Số 1 chữ số",
+      "2": "Số 2 chữ số",
+      "3": "Số 3 chữ số",
+      "4": "Số 4 chữ số",
+      "5": "Số 5 chữ số"
+    },
+    "difficultyLabels": {
+      "1": "🐣 Số nhỏ",
+      "2": "⚔️ Trung bình",
+      "3": "🛡️ Thách thức",
+      "4": "🔥 Nâng cao",
+      "5": "👑 Elite"
+    },
+    "results": {
+      "champion": { "title": "VÔ ĐỊCH!", "message": "Chiến thắng tuyệt đối!" },
+      "excellent": { "title": "CHIẾN BINH XUẤT SẮC!", "message": "Thể hiện xuất sắc!" },
+      "great": { "title": "TUYỆT VỜI!", "message": "Trận đấu hay!" },
+      "goodTry": { "title": "CỐ GẮNG TỐT!", "message": "Tiếp tục luyện tập!" }
+    },
+    "encouragements": {
+      "excellent": { "title": "VÔ ĐỊCH!", "message": "Bạn chiến thắng tuyệt đối!" },
+      "great": { "title": "CHIẾN BINH XUẤT SẮC!", "message": "Bạn chiến đấu rất giỏi!" },
+      "good": { "title": "CHIẾN BINH DŨNG CẢM!", "message": "Luyện thêm sẽ mạnh hơn!" },
+      "improving": { "title": "ĐANG RÈN LUYỆN!", "message": "Tiếp tục rèn luyện nhé!" },
+      "beginner": { "title": "CHIẾN BINH TẬP SỰ!", "message": "Mỗi trận đấu giúp bạn mạnh lên!" },
+      "keepTrying": { "title": "TIẾP TỤC CHIẾN ĐẤU!", "message": "Đừng bỏ cuộc, chiến đấu tiếp nào!" }
+    },
+    "flashLevels": {
+      "anhNen": { "name": "Ánh Nến", "subtitle": "Lung linh dịu dàng", "tagline": "Khởi đầu ấm áp", "rankLabel": "Tập Sự" },
+      "anhTrang": { "name": "Ánh Trăng", "subtitle": "Huyền ảo đêm thanh", "tagline": "Bước tiếp vững chắc", "rankLabel": "Chiến Binh" },
+      "tiaChop": { "name": "Tia Chớp", "subtitle": "Lóe sáng chớp nhoáng", "tagline": "Nhanh như chớp!", "rankLabel": "Dũng Sĩ" },
+      "saoBang": { "name": "Sao Băng", "subtitle": "Vụt sáng khoảnh khắc", "tagline": "🔥 SIÊU TỐC 🔥", "rankLabel": "Huyền Thoại" },
+      "bigBang": { "name": "BIG BANG", "subtitle": "Vụ nổ khai sinh vũ trụ", "tagline": "💥 VỤ NỔ VŨ TRỤ 💥", "rankLabel": "THẦN" },
+      "sieuBigBang": { "name": "SIÊU BIG BANG", "subtitle": "Đỉnh cao tốc độ", "tagline": "🌌 SIÊU VŨ TRỤ 🌌", "rankLabel": "THẦN THÁNH" }
+    },
+    "flashTitle": "CUỘC ĐUA ÁNH SÁNG",
+    "confirm": "XÁC NHẬN",
+    "pressEnterToSubmit": "Nhấn Enter để gửi đáp án",
+    "answer": "Trả lời",
+    "skip": "Bỏ qua",
+    "finish": "Kết thúc",
+    "next": "Tiếp",
+    "comboBonus": "Combo = x2 Bonus!",
+    "canYouReachSuperBigBang": "Bạn có thể chạm tới SIÊU BIG BANG không?",
+    "keepGoing": "Cố gắng lên! Còn {count} bậc nữa để vào Top 20!",
+    "correctCount": "{n} đúng",
+    "excellent": "XUẤT SẮC!",
+    "enterBattle": "VÀO THI ĐẤU",
+    "pointsMultiplier": "x{multiplier} ĐIỂM!",
+    "plusStars": "+{n} sao",
+    "modeRequiresTier": "Chế độ {mode} yêu cầu gói {tier} trở lên",
+    "difficultyRequiresTier": "Cấp độ {difficulty} yêu cầu gói {tier} trở lên",
+    "greatMatch": "Trận đấu hay! 🏆",
+    "flashArenaTitle": "ĐẤU TRƯỜNG TIA CHỚP",
+    "mentalMathTitle": "Siêu Trí Tuệ",
+    "mentalMathHint": "Tính nhẩm không cần bàn tính - Thử thách trí não của bạn!",
+    "levelLabel": "Cấp {name}",
+    "recommended": "GỢI Ý",
+    "flashCounter": "Số {current} / {total}",
+    "enterNumber": "Nhập số"
+  },
+
+  "adventureScreen": {
+    "title": "Phiêu Lưu",
+    "subtitle": "Đi tìm Kho Báu Tri Thức",
+    "treasureQuest": "Đi Tìm Kho Báu",
+    "findTreasure": "Tìm Kho Báu",
+    "knowledgeTreasure": "Kho Báu Tri Thức",
+    "selectZone": "Chọn vùng đất",
+    "locked": "Chưa mở khóa",
+    "starsRequired": "Cần {stars} sao để mở",
+    "stages": "màn",
+    "completed": "Hoàn thành",
+    "complete": "hoàn thành",
+    "start": "Bắt đầu",
+    "continue": "Tiếp tục",
+    "boss": "Boss",
+    "reward": "Phần thưởng",
+    "victory": "Chiến thắng!",
+    "defeat": "Thất bại",
+    "play": "CHƠI!",
+    "playAgain": "Chơi lại",
+    "loading": "Đang tải...",
+    "days": "ngày",
+    "stars": "sao",
+    "diamonds": "kim cương",
+    "prev": "Trước",
+    "next": "Sau",
+    "swipeToChangeZone": "Vuốt trái/phải để chuyển vùng",
+    "addSub": "Cộng Trừ",
+    "mulDiv": "Nhân Chia",
+    "tapToClose": "Chạm để đóng",
+    "cuSoro": "Cú Soro",
+    "minimizeSoro": "Thu nhỏ Cú Soro",
+    "readMessage": "Đọc",
+    "stageCompleted": "⭐ Đã hoàn thành ⭐",
+    "stageLocked": "🔒 Màn chơi chưa mở khóa",
+    "completeToUnlock": "Hoàn thành các màn trước để mở khóa màn này nhé!",
+    "understood": "Đã hiểu! 👍",
+    "close": "Đóng",
+    "logout": "Đăng xuất",
+    "logoutConfirm": "Đăng xuất?",
+    "logoutMessage": "Bạn có chắc chắn muốn đăng xuất khỏi tài khoản?",
+    "cancel": "Hủy",
+    "level": "Cấp",
+    "dashboard": "Bảng điều khiển",
+    "learn": "Học tập",
+    "practice": "Luyện tập",
+    "compete": "Thi đấu",
+    "profile": "Hồ sơ",
+    "certificate": "Chứng chỉ",
+    "admin": "Quản trị",
+    "exploreWorld": "Khám phá thế giới Soroban kỳ diệu!",
+    "exploreSoroban": "Khám phá Soroban!",
+    "continueBtn": "Tiếp tục",
+    "startAdventure": "Bắt đầu phiêu lưu",
+    "skip": "Bỏ qua",
+    "advanced": "Nâng Cao",
+    "basic": "Cơ Bản",
+    "trial": "Dùng thử",
+    "free": "Miễn Phí",
+    "footerText": "Học toán tư duy cùng bàn tính Soroban",
+    "zoneCompleteMsg": "Tuyệt vời! Con đã chinh phục {zoneName}! 🌟",
+    "welcomeToZone": "Chào mừng đến {zoneName}! Hãy bắt đầu khám phá nào!",
+    "continueJourney": "Tiếp tục hành trình tại {zoneName} nào! Còn {remaining} thử thách đang chờ!",
+    "firstWelcome": "Hú hú! Chào mừng đến Làng Bàn Tính! Đây là nơi mọi hành trình bắt đầu.",
+    "stageLockedMsg": "Hmm... cánh cổng này chưa chịu mở. Hãy chinh phục những thử thách trước đã!",
+    "stageCompletedMsg": "Con đã chinh phục nơi này rồi! Muốn thử lại để luyện tập thêm không?",
+    "lessonMsg": "Hãy khám phá bí mật ẩn giấu bên trong! Soro sẽ đi cùng con!",
+    "bossMsg": "Thử thách lớn đang chờ! Tập trung và dùng hết sức mạnh của con nhé!",
+    "treasureMsg": "Kho báu tri thức đang chờ! Hãy chinh phục nó nhé!",
+    "readyMsg": "Sẵn sàng cho thử thách mới chưa? Soro tin con làm được!",
+    "newJourneyAwaits": "Chào mừng đến {zoneName}! Hành trình mới đang chờ đón con!"
+  },
+
+  "adventure": {
+    "levelRequiresTier": "Level {level} yêu cầu gói {tier} trở lên",
+    "modeRequiresTier": "Chế độ {mode} yêu cầu gói {tier} trở lên",
+    "difficultyRequiresTier": "Cấp độ {difficulty} yêu cầu gói {tier} trở lên"
+  },
+
+  "tier": {
+    "free": "Miễn Phí",
+    "basic": "Cơ Bản",
+    "advanced": "Nâng Cao",
+    "vip": "VIP"
+  },
+
+  "certificate": {
+    "title": "Chứng chỉ Sorokid",
+    "subtitle": "Hoàn thành lộ trình để nhận chứng chỉ công nhận năng lực",
+    "requirementsMet": "Yêu cầu đạt",
+    "certificates": "Chứng chỉ",
+    "earnedCertificates": "Chứng chỉ đã nhận",
+    "addSubCert": "Chứng chỉ Cộng Trừ",
+    "completeCert": "Chứng chỉ Toàn Diện",
+    "issuedOn": "Cấp ngày",
+    "viewCertificate": "Xem chứng chỉ",
+    "roadmap": "Lộ trình chứng chỉ",
+    "claimSuccess": "🎉 Chúc mừng! Bạn đã nhận được chứng chỉ!",
+    "error": "Có lỗi xảy ra",
+    "needTier": "Cần gói",
+    "claimed": "Đã nhận",
+    "completed": "hoàn thành",
+    "totalProgress": "Tiến độ tổng",
+    "detailedRoadmap": "Lộ trình chi tiết",
+    "requirements": "yêu cầu",
+    "nextTasks": "Việc cần làm tiếp theo",
+    "moreTasks": "việc khác...",
+    "alreadyCompleted": "Bạn đã hoàn thành chứng chỉ này!",
+    "viewAbove": "Xem chứng chỉ ở phần trên",
+    "upgradeToUnlock": "Nâng cấp để mở khóa",
+    "claimNow": "Nhận chứng chỉ ngay!",
+    "remainingRequirements": "Hoàn thành {count} yêu cầu còn lại để nhận chứng chỉ",
+    "prereqLabel": "Chứng chỉ tiên quyết",
+    "lessonsLabel": "Học",
+    "practiceLabel": "Luyện tập",
+    "competeLabel": "Thi đấu",
+    "mentalMathLabel": "Siêu Trí Tuệ",
+    "flashAnzanLabel": "Tia Chớp",
+    "accuracyLabel": "Độ chính xác",
+    "prereqRequirement": "Yêu cầu tiên quyết",
+    "has": "Đã có",
+    "notHas": "Chưa có",
+    "completeLessons": "Hoàn thành phần Học",
+    "practiceModes": "Luyện tập các mode",
+    "competeModes": "Thi đấu các mode",
+    "difficultyLevel": "Cấp độ",
+    "eachMode": "mỗi mode",
+    "correctAnswers": "bài đúng",
+    "achieve": "Đạt",
+    "correctPerRound": "câu đúng mỗi lượt",
+    "correct": "bài đúng",
+    "levelAndAbove": "Cấp độ {level}+ trở lên",
+    "totalAccuracy": "Độ chính xác tổng",
+    "points": "Điểm",
+    "modes": {
+      "addition": "Cộng",
+      "subtraction": "Trừ",
+      "addSubMixed": "Cộng Trừ",
+      "multiplication": "Nhân",
+      "division": "Chia",
+      "mulDiv": "Nhân Chia",
+      "mixed": "Tứ Phép"
+    }
+  },
+
+  "topbar": {
+    "vip": "VIP",
+    "advanced": "Nâng Cao",
+    "basic": "Cơ Bản",
+    "free": "Miễn Phí",
+    "days": "ngày",
+    "stars": "sao",
+    "diamonds": "kim cương",
+    "logout": "Đăng xuất",
+    "logoutConfirm": "Đăng xuất?",
+    "logoutMessage": "Bạn có chắc chắn muốn đăng xuất khỏi tài khoản?",
+    "cancel": "Hủy",
+    "dashboard": "Bảng điều khiển",
+    "learn": "Học tập",
+    "practice": "Luyện tập",
+    "compete": "Thi đấu",
+    "profile": "Hồ sơ",
+    "certificate": "Chứng chỉ",
+    "admin": "Quản trị",
+    "level": "Cấp"
+  },
+
+  "quest": {
+    "title": "Nhiệm vụ",
+    "dailyQuests": "Nhiệm vụ hôm nay",
+    "allCompleted": "Bạn đã hoàn thành tất cả nhiệm vụ!",
+    "waiting": "chờ nhận",
+    "claimReward": "Nhận thưởng",
+    "moreQuests": "nhiệm vụ khác"
+  },
+
+  "auth": {
+    "login": {
+      "title": "Đăng nhập",
+      "googleLoading": "Đang kết nối với Google...",
+      "googleWait": "Vui lòng chờ trong giây lát",
+      "googleButton": "Đăng nhập với Google",
+      "redirecting": "Đang chuyển hướng...",
+      "or": "hoặc",
+      "emailOrUsername": "Email hoặc Tên đăng nhập",
+      "emailPlaceholder": "email@example.com",
+      "password": "Mật khẩu",
+      "forgotPassword": "Quên mật khẩu?",
+      "submit": "🚀 Đăng nhập",
+      "submitting": "Đang đăng nhập...",
+      "noAccount": "Chưa có tài khoản?",
+      "signUp": "Đăng ký ngay",
+      "copyright": "Học toán tư duy cùng bàn tính Soroban",
+      "success": "Đăng nhập thành công! 🎉",
+      "error": "Đăng nhập thất bại. Vui lòng thử lại!",
+      "invalidCredentials": "Email/Tên đăng nhập hoặc mật khẩu không đúng!",
+      "checkInfo": "Vui lòng kiểm tra lại thông tin!",
+      "openingBrowser": "Đang mở trình duyệt để đăng nhập Google...",
+      "browserError": "Không thể mở trình duyệt. Vui lòng thử lại!"
+    },
+    "register": {
+      "title": "Tạo tài khoản",
+      "googleButton": "Đăng ký nhanh với Google",
+      "or": "hoặc",
+      "fullName": "Họ và tên",
+      "fullNamePlaceholder": "Nguyễn Văn A",
+      "displayOnCertificate": "hiển thị trên chứng chỉ",
+      "username": "Tên đăng nhập",
+      "usernamePlaceholder": "nguyenvana",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "phone": "Số điện thoại",
+      "phonePlaceholder": "0901234567",
+      "password": "Mật khẩu",
+      "confirmPassword": "Xác nhận mật khẩu",
+      "submit": "🚀 Đăng ký ngay",
+      "submitting": "Đang tạo tài khoản...",
+      "haveAccount": "Đã có tài khoản?",
+      "signIn": "Đăng nhập",
+      "success": "Đăng ký thành công! Vui lòng đăng nhập để tiếp tục 🎉",
+      "error": "Đăng ký thất bại. Vui lòng thử lại!",
+      "checkInfo": "Vui lòng kiểm tra lại thông tin!"
+    },
+    "forgotPassword": {
+      "title": "Quên mật khẩu?",
+      "subtitle": "Nhập email để nhận link đặt lại mật khẩu",
+      "emailSent": "Đã gửi email!",
+      "emailSentMessage": "Kiểm tra hộp thư đến của bạn để đặt lại mật khẩu.",
+      "checkSpam": "Nếu không thấy, kiểm tra folder Spam nhé!",
+      "backToLogin": "← Quay lại đăng nhập",
+      "sending": "Đang gửi...",
+      "sendLink": "Gửi link đặt lại →",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "submit": "Gửi link đặt lại",
+      "submitting": "Đang gửi...",
+      "success": "Đã gửi link đặt lại mật khẩu! Kiểm tra email của bạn.",
+      "error": "Không thể gửi link. Vui lòng thử lại!"
+    },
+    "resetPassword": {
+      "title": "Đặt lại mật khẩu",
+      "subtitle": "Tạo mật khẩu mới cho tài khoản của bạn",
+      "newPassword": "Mật khẩu mới",
+      "confirmPassword": "Xác nhận mật khẩu",
+      "minChars": "Tối thiểu 6 ký tự",
+      "reenterPassword": "Nhập lại mật khẩu",
+      "success": "Đổi mật khẩu thành công! 🎉",
+      "redirecting": "Đang chuyển hướng...",
+      "redirectingText": "Bạn sẽ được chuyển đến trang đăng nhập",
+      "processing": "Đang xử lý...",
+      "submit": "Đổi mật khẩu",
+      "backToLogin": "← Quay lại đăng nhập",
+      "errors": {
+        "minLength": "Mật khẩu phải có ít nhất 6 ký tự",
+        "mismatch": "Mật khẩu không khớp"
+      },
+      "strength": {
+        "weak": "Yếu",
+        "medium": "Trung bình",
+        "strong": "Mạnh",
+        "veryStrong": "Rất mạnh"
+      },
+      "submitting": "Đang đặt lại...",
+      "error": "Không thể đặt lại mật khẩu. Vui lòng thử lại!"
+    },
+    "completeProfile": {
+      "greeting": "Xin chào",
+      "completing": "Đang hoàn tất đăng ký...",
+      "pleaseWait": "Vui lòng chờ trong giây lát",
+      "continue": "Tiếp tục",
+      "saving": "Đang lưu...",
+      "complete": "Hoàn tất",
+      "yourName": "Tên của bạn",
+      "step1": {
+        "title": "Chào mừng đến SoroKid!",
+        "subtitle": "Xác nhận tên hiển thị của bạn",
+        "certificateNote": "Tên này sẽ được in trên chứng chỉ, vui lòng nhập tên thật của người học",
+        "placeholder": "Nhập tên của bạn"
+      },
+      "step2": {
+        "title": "Chọn tên đăng nhập",
+        "subtitle": "Username sẽ hiển thị trên bảng xếp hạng",
+        "usernameHint": "Chỉ dùng chữ, số và dấu gạch dưới (_)"
+      },
+      "step3": {
+        "title": "Số điện thoại phụ huynh",
+        "subtitle": "Để liên hệ khi cần thiết",
+        "phoneHint": "Số điện thoại Việt Nam (VD: 0901234567)"
+      },
+      "errors": {
+        "nameRequired": "Vui lòng nhập tên của bạn",
+        "usernameRequired": "Vui lòng nhập username",
+        "usernameMinLength": "Username phải có ít nhất 3 ký tự",
+        "usernameFormat": "Username chỉ được chứa chữ, số và dấu gạch dưới",
+        "usernameTaken": "Tên đăng nhập này đã được sử dụng",
+        "phoneRequired": "Vui lòng nhập số điện thoại",
+        "invalidPhone": "Số điện thoại không hợp lệ (VD: 0901234567)"
+      }
+    },
+    "footer": "Học toán tư duy cùng bàn tính Soroban",
+    "validation": {
+      "nameRequired": "Vui lòng nhập họ tên",
+      "nameMinLength": "Họ tên phải có ít nhất 2 ký tự",
+      "usernameRequired": "Vui lòng nhập tên đăng nhập",
+      "usernameMinLength": "Tên đăng nhập phải có ít nhất 3 ký tự",
+      "usernameFormat": "Tên đăng nhập chỉ chứa chữ, số và gạch dưới",
+      "usernameExists": "Tên đăng nhập này đã được sử dụng",
+      "emailRequired": "Vui lòng nhập email",
+      "emailInvalid": "Email không hợp lệ",
+      "emailExists": "Email này đã được sử dụng",
+      "phoneRequired": "Vui lòng nhập số điện thoại",
+      "phoneInvalid": "Số điện thoại không hợp lệ (VD: 0901234567)",
+      "phoneExists": "Số điện thoại này đã được sử dụng",
+      "passwordRequired": "Vui lòng nhập mật khẩu",
+      "passwordMinLength": "Mật khẩu phải có ít nhất 6 ký tự",
+      "passwordInvalid": "Mật khẩu không hợp lệ",
+      "confirmRequired": "Vui lòng xác nhận mật khẩu",
+      "passwordMismatch": "Mật khẩu không khớp",
+      "identifierRequired": "Vui lòng nhập email hoặc tên đăng nhập",
+      "identifierMinLength": "Email hoặc tên đăng nhập phải có ít nhất 3 ký tự"
+    }
+  },
+
+  "pricingPage": {
+    "badge": "Trả 1 lần • Dùng trọn đời",
+    "heroTitle1": "Học Soroban",
+    "heroTitle2": "mọi lúc, mọi nơi",
+    "heroSubtitle": "Phương pháp tính nhẩm Nhật Bản giúp bé phát triển tư duy toán học & khả năng tập trung",
+    "centerCost": "Trung tâm thu phí",
+    "centerCostValue": "1-3 triệu/tháng",
+    "hereCost": "Tại đây: Trả 1 lần, dùng trọn đời",
+    "safePayment": "Thanh toán an toàn",
+    "instantActivation": "Kích hoạt ngay",
+    "zaloSupport": "Hỗ trợ qua Zalo",
+    "mostPopular": "🔥 Phổ biến nhất",
+    "freeForever": "Miễn phí mãi mãi",
+    "oneTimePayment": "Thanh toán 1 lần",
+    "yourCurrentPlan": "Gói bạn đang dùng",
+    "difference": "Phần chênh lệch",
+    "processing": "Đang xử lý...",
+    "currentPlan": "Gói hiện tại",
+    "lowerPlan": "Gói thấp hơn",
+    "upgrade": "Nâng cấp",
+    "buyNow": "Mua ngay",
+    "featureDetails": "Chi tiết tính năng",
+    "comparePlans": "So sánh các gói",
+    "swipeToSee": "Vuốt để xem thêm",
+    "feature": "Tính năng",
+    "faqTitle": "Các câu hỏi thường gặp",
+    "comparison": {
+      "learning": {
+        "name": "Học",
+        "basicLessons": "Bài học cơ bản (Cấp 1-5)",
+        "addSubLessons": "Bài học Cộng/Trừ (Cấp 6-10)",
+        "mulDivLessons": "Bài học Nhân/Chia (Cấp 11-18)"
+      },
+      "practice": {
+        "name": "Luyện tập",
+        "addSub": "Cộng & Trừ",
+        "addSubMix": "Cộng/Trừ Hỗn hợp",
+        "mulDiv": "Nhân & Chia",
+        "fourOps": "Bốn phép tính"
+      },
+      "compete": {
+        "name": "Thi đấu",
+        "online": "Thi đấu Online",
+        "mentalMath": "Siêu trí tuệ",
+        "flashAnzan": "Flash Anzan",
+        "leaderboard": "Bảng xếp hạng"
+      },
+      "certificate": {
+        "name": "Chứng chỉ",
+        "addSub": "Chứng chỉ Sorokid Cộng/Trừ",
+        "complete": "Chứng chỉ Sorokid Hoàn thành"
+      },
+      "gamification": {
+        "name": "Game hóa",
+        "dailyQuests": "Nhiệm vụ hàng ngày",
+        "achievements": "Hệ thống thành tựu",
+        "shop": "Cửa hàng vật phẩm"
+      },
+      "level12": "Cấp 1-2",
+      "level13": "Cấp 1-3",
+      "allLevels": "Tất cả cấp"
+    },
+    "faq": {
+      "paymentSafe": {
+        "question": "Thanh toán có an toàn không?",
+        "answer": "Chúng tôi sử dụng các cổng thanh toán uy tín để đảm bảo an toàn tuyệt đối cho giao dịch của bạn."
+      },
+      "activation": {
+        "question": "Kích hoạt gói như thế nào?",
+        "answer": "Sau khi thanh toán thành công, gói sẽ được kích hoạt ngay lập tức và bạn có thể sử dụng tất cả tính năng."
+      },
+      "lifetime": {
+        "question": "Gói có hết hạn không?",
+        "answer": "Không! Bạn chỉ cần thanh toán 1 lần và dùng trọn đời, không có phí hàng tháng hay phí ẩn."
+      },
+      "upgrade": {
+        "question": "Có thể nâng cấp sau được không?",
+        "answer": "Có! Bạn có thể nâng cấp từ Basic lên Advanced bất cứ lúc nào và chỉ cần trả phần chênh lệch."
+      }
+    },
+    "benefits": {
+      "badge": "Lợi ích thực sự",
+      "title": "Tại sao chọn",
+      "brain": {
+        "title": "Phát triển não bộ",
+        "content": "Kích hoạt cả 2 bán cầu não, tăng khả năng tập trung và ghi nhớ"
+      },
+      "speed": {
+        "title": "Tính nhẩm siêu tốc",
+        "content": "Bé có thể tính các phép tính phức tạp chỉ trong vài giây"
+      },
+      "fun": {
+        "title": "Học mà chơi",
+        "content": "Game hóa việc học giúp bé không bao giờ chán"
+      }
+    },
+    "cta": {
+      "title1": "Sẵn sàng bắt đầu",
+      "title2": "hành trình Soroban?",
+      "description": "Học Soroban không chỉ giúp tính nhanh hơn mà còn phát triển tư duy logic, trí nhớ và khả năng tập trung cho con.",
+      "button": "Bắt đầu học ngay"
+    },
+    "modal": {
+      "scanQR": "Quét mã QR để thanh toán",
+      "confirmingPayment": "Đang xác nhận thanh toán...",
+      "waitingPayment": "Đang chờ thanh toán",
+      "systemChecking": "Hệ thống đang kiểm tra...",
+      "autoConfirm": "Sau khi chuyển, hệ thống sẽ tự động xác nhận",
+      "transferDetails": "Thông tin chuyển khoản",
+      "bank": "Ngân hàng",
+      "accountNumber": "Số tài khoản",
+      "accountName": "Tên tài khoản",
+      "amount": "Số tiền",
+      "content": "Nội dung CK",
+      "iHaveTransferred": "Tôi đã chuyển khoản",
+      "notReceived": "Chưa nhận được thanh toán. Hệ thống sẽ tự động kiểm tra lại...",
+      "connectionError": "Lỗi kết nối. Vui lòng đợi..."
+    }
+  },
+
+  "blog": {
+    "all": "Tất cả",
+    "categories": "Danh mục blog",
+    "scrollLeft": "Cuộn sang trái",
+    "scrollRight": "Cuộn sang phải"
+  },
+
+  "profilePage": {
+    "logoutTitle": "Đăng xuất?",
+    "logoutMessage": "Bạn có chắc chắn muốn đăng xuất khỏi tài khoản không?",
+    "streak": "Ngày liên tiếp",
+    "totalStars": "Tổng sao",
+    "diamonds": "Kim cương",
+    "edit": "Sửa",
+    "sections": {
+      "learning": "HỌC TẬP",
+      "account": "TÀI KHOẢN",
+      "admin": "QUẢN TRỊ"
+    },
+    "menu": {
+      "learn": "Học Soroban",
+      "upgrade": "Nâng cấp tài khoản",
+      "certificate": "Chứng chỉ",
+      "editProfile": "Chỉnh sửa hồ sơ",
+      "admin": "Trang quản trị"
+    },
+    "unlockFeatures": "Mở khóa tất cả tính năng!"
+  },
+
+  "leaderboardPage": {
+    "title": "Bảng xếp hạng",
+    "subtitle": "Top học sinh xuất sắc",
+    "noData": "Chưa có dữ liệu",
+    "startPractice": "Hãy bắt đầu luyện tập để xuất hiện trên bảng xếp hạng!"
+  },
+
+  "editProfile": {
+    "title": "Chỉnh sửa hồ sơ",
+    "tabs": {
+      "profile": "Hồ sơ",
+      "password": "Mật khẩu"
+    },
+    "fields": {
+      "fullName": "Họ và tên",
+      "phone": "Số điện thoại",
+      "username": "Tên đăng nhập",
+      "email": "Email",
+      "currentPassword": "Mật khẩu hiện tại",
+      "newPassword": "Mật khẩu mới",
+      "confirmPassword": "Xác nhận mật khẩu mới"
+    },
+    "placeholders": {
+      "fullName": "Nhập họ và tên đầy đủ",
+      "currentPassword": "Nhập mật khẩu hiện tại",
+      "newPassword": "Nhập mật khẩu mới (ít nhất 6 ký tự)",
+      "confirmPassword": "Nhập lại mật khẩu mới"
+    },
+    "hints": {
+      "nameOnCertificate": "Họ và tên sẽ hiển thị trên chứng chỉ khi bạn đạt được",
+      "phoneFormat": "Số điện thoại Việt Nam (VD: 0901234567)",
+      "usernameReadOnly": "Tên đăng nhập không thể thay đổi",
+      "emailReadOnly": "Email không thể thay đổi"
+    },
+    "errors": {
+      "nameRequired": "Vui lòng nhập họ tên",
+      "nameMinLength": "Họ tên phải có ít nhất 2 ký tự",
+      "invalidPhone": "Số điện thoại không hợp lệ (VD: 0901234567)",
+      "currentPasswordRequired": "Vui lòng nhập mật khẩu hiện tại",
+      "newPasswordRequired": "Vui lòng nhập mật khẩu mới",
+      "passwordMinLength": "Mật khẩu mới phải có ít nhất 6 ký tự",
+      "passwordMismatch": "Mật khẩu xác nhận không khớp"
+    },
+    "passwordStrength": {
+      "tooShort": "Quá ngắn",
+      "medium": "Trung bình",
+      "good": "Tốt",
+      "strong": "Rất mạnh"
+    },
+    "passwordMatch": "Mật khẩu khớp",
+    "profileSaved": "Cập nhật hồ sơ thành công!",
+    "passwordChanged": "Đổi mật khẩu thành công!",
+    "saving": "Đang lưu...",
+    "processing": "Đang xử lý...",
+    "saveChanges": "Lưu thay đổi",
+    "changePassword": "Đổi mật khẩu",
+    "googleAccount": "Tài khoản Google",
+    "googleNoPassword": "Bạn đang đăng nhập bằng Google nên không có mật khẩu để thay đổi.",
+    "backToProfile": "Quay lại trang hồ sơ"
+  },
+
+  "trial": {
+    "ended": "Thời gian dùng thử đã kết thúc",
+    "endedDesc": "Bạn đã hết thời gian dùng thử gói {tier}. Nâng cấp để tiếp tục học với đầy đủ tính năng!",
+    "upgradeNow": "🚀 Nâng cấp ngay",
+    "inProgress": "Đang dùng thử gói...",
+    "warningLastDays": "⚠️ Chỉ còn {days} ngày - Nâng cấp ngay để không bị gián đoạn!",
+    "daysRemaining": "Còn {days} ngày trải nghiệm full tính năng",
+    "viewPlans": "💎 Xem các gói",
+    "period": "Thời gian dùng thử",
+    "daysLeft": "{days} ngày còn lại",
+    "badge": "Trial: {days} ngày",
+    "lastDayBadge": "🌟 Ngày cuối học thử · Xem gói học",
+    "hoursBadge": "⏰ Học thử còn {hours}h {minutes}p · Nâng cấp ngay!"
+  },
+
+  "upgrade": {
+    "title": "Nâng cấp để tiếp tục",
+    "message": "Bài học này yêu cầu gói Premium để truy cập.",
+    "includes": "Premium bao gồm:",
+    "startingAt": "Chỉ từ",
+    "perMonth": "/tháng",
+    "upgradeNow": "Nâng cấp ngay",
+    "maybeLater": "Để sau",
+    "unlockAll": "Mở khóa tất cả bài học!",
+    "viewNow": "Xem ngay",
+    "unlockAllFull": "Mở khóa toàn bộ bài học!",
+    "completedFree": "Bạn đã hoàn thành {count} bài học miễn phí.",
+    "upgradeDesc": "Nâng cấp Premium để truy cập tất cả nội dung và nhận chứng chỉ hoàn thành!",
+    "allLessons": "Tất cả bài học",
+    "certificates": "Chứng chỉ",
+    "unlimited": "Không giới hạn",
+    "unlockEverything": "Mở khóa toàn bộ!",
+    "mathProdigy": "Thần đồng toán học",
+    "levels18": "18 cấp độ chinh phục",
+    "mentalMath": "Tính nhẩm siêu tốc",
+    "certificates2": "Chứng chỉ thành tích",
+    "noAds": "Không quảng cáo",
+    "studentCount": "🔥 500+ học viên đã nâng cấp",
+    "viewOffers": "Xem ưu đãi",
+    "greatPractice": "Luyện tập thật tuyệt!",
+    "excellentMatch": "Trận đấu xuất sắc!",
+    "doingGreat": "Bạn đang làm rất tốt!",
+    "unlockMoreLevels": "Mở khóa thêm cấp độ và chế độ chơi đặc biệt",
+    "fullExperience": "Nâng cấp để trải nghiệm đầy đủ",
+    "remainingFree": "Còn {remaining} {type} miễn phí nữa!",
+    "unlockAllBtn": "Mở khóa tất cả",
+    "viewMoreContent": "Xem thêm nhiều nội dung hơn",
+    "achievementForUpgraded": "Thành tích này dành cho các bạn đã nâng cấp gói học tập",
+    "learnMore": "Tìm hiểu",
+    "levelType": "cấp độ",
+    "lessonType": "bài"
+  },
+
+  "errorBoundary": {
+    "title": "Ối! Có lỗi xảy ra",
+    "message": "Đừng lo, hãy thử tải lại trang hoặc quay lại sau nhé!",
+    "detailDev": "Chi tiết lỗi (Development)",
+    "retry": "Thử lại",
+    "goBack": "Quay lại"
+  },
+
+  "toast": {
+    "levelUp": "LÊN CẤP!",
+    "close": "Đóng",
+    "closeNotification": "Đóng thông báo"
+  },
+
+  "payment": {
+    "scanQR": "Quét mã QR để thanh toán",
+    "success": "Thanh toán thành công!",
+    "activating": "Đang kích hoạt gói {tier}...",
+    "expired": "Đơn hàng đã hết hạn",
+    "createNewOrder": "Vui lòng tạo đơn hàng mới để tiếp tục thanh toán.",
+    "close": "Đóng",
+    "qrAlt": "QR Code thanh toán",
+    "bankInfo": "Thông tin chuyển khoản",
+    "bank": "Ngân hàng",
+    "accountNumber": "Số tài khoản",
+    "accountName": "Chủ tài khoản",
+    "content": "Nội dung CK",
+    "orderCode": "Mã đơn hàng",
+    "checking": "Đang kiểm tra...",
+    "iHavePaid": "Tôi đã thanh toán",
+    "expiresIn15": "Đơn hàng hết hạn sau 15 phút",
+    "successTitle": "Thanh toán thành công!",
+    "planActivated": "Gói đã kích hoạt",
+    "activated": "Đã kích hoạt",
+    "confirmed": "Giao dịch đã được xác nhận thành công",
+    "unlocked": "Tất cả tính năng đã được mở khóa",
+    "lifetime": "Sử dụng trọn đời - Không giới hạn thời gian",
+    "startLearning": "Bắt đầu học ngay",
+    "thanks": "Cảm ơn bạn đã tin tưởng SoroKid! 💜"
+  },
+
+  "sorobanWidget": {
+    "open": "Mở bàn tính Soroban",
+    "title": "Bàn tính Soroban",
+    "close": "Đóng bàn tính",
+    "hint": "Hạt đỏ = 5, Hạt vàng = 1. Click để di chuyển các hạt!",
+    "result": "Kết quả",
+    "reset": "Reset",
+    "hintBtn": "Gợi ý",
+    "tenThousand": "Vạn",
+    "thousand": "Nghìn",
+    "hundred": "Trăm",
+    "ten": "Chục",
+    "unit": "ĐV",
+    "instructions": "Hướng dẫn sử dụng",
+    "clickToMove": "Click hạt để di chuyển",
+    "redBead": "Hạt đỏ = 5 đơn vị",
+    "yellowBead": "Hạt vàng = 1 đơn vị",
+    "columns": ["Vạn", "Nghìn", "Trăm", "Chục", "ĐV"],
+    "howToUse": "Hướng dẫn sử dụng",
+    "heaven5": "Hạt 5 cột {col}",
+    "earthBead": "Hạt {bead} cột {col}"
+  },
+
+  "sound": {
+    "title": "Âm thanh",
+    "description": "Bật/tắt hiệu ứng âm thanh",
+    "mute": "Tắt âm thanh",
+    "unmute": "Bật âm thanh",
+    "off": "Tắt",
+    "on": "Bật",
+    "themes": {
+      "adventure": "🗺️ Phiêu Lưu",
+      "battle": "⚔️ Chiến Đấu",
+      "victory": "🏆 Chiến Thắng",
+      "relaxing": "🌙 Thư Giãn"
+    }
+  },
+
+  "rewards": {
+    "excellent": "Xuất sắc!",
+    "wonderful": "Tuyệt vời!",
+    "greatJob": "Giỏi lắm!",
+    "keepTrying": "Cố gắng!",
+    "congratulations": "🎊 Chúc mừng! 🎊",
+    "reward": "Phần thưởng"
+  },
+
+  "reward": {
+    "badgeUnlocked": "Mở khóa huy hiệu mới!",
+    "newBadge": "Huy hiệu mới",
+    "congratulations": "Chúc mừng bạn!",
+    "claimReward": "Nhận thưởng!",
+    "completed": "Hoàn thành!",
+    "time": "Thời gian",
+    "accuracy": "Chính xác",
+    "continueJourney": "Tiếp tục hành trình!"
+  },
+
+  "achievementPopup": {
+    "addSubCert": "Chứng chỉ Cộng Trừ Soroban",
+    "completeCert": "Chứng chỉ Soroban Toàn Diện"
+  },
+
+  "toolLayout": {
+    "back": "Quay lại",
+    "breadcrumb": "Toolbox Giáo Viên",
+    "teacherToolbox": "Toolbox Giáo Viên",
+    "fullscreen": "Toàn màn hình",
+    "fullscreenTitle": "Toàn màn hình - Nhấn ESC để thoát",
+    "fullscreenHintPrefix": "Bấm",
+    "fullscreenHintSuffix": "để hiển thị to hơn",
+    "exitEsc": "Thoát (ESC)",
+    "exit": "Thoát",
+    "toExit": "để thoát",
+    "loading": "Đang tải...",
+    "preparing": "Đang chuẩn bị công cụ...",
+    "pleaseWait": "Vui lòng đợi trong giây lát..."
+  },
+
+  "tierBadge": {
+    "advanced": "Nâng cao",
+    "premium": "Premium",
+    "basic": "Cơ bản",
+    "free": "Miễn phí",
+    "viewPlans": "Xem các gói học",
+    "trialDays": "🎁 Học thử còn {days} ngày"
+  },
+
+  "trialBadge": {
+    "trialRemaining": "Học thử còn {hours}h {minutes}p",
+    "upgradeNow": "Nâng cấp ngay!",
+    "lastDay": "Ngày cuối học thử",
+    "viewPlans": "Xem gói học",
+    "trialDays": "Học thử còn {days} ngày"
+  },
+
+  "adventureCert": {
+    "addSubTitle": "🏅 Chứng Chỉ Cộng Trừ",
+    "addSubSubtitle": "Nhà Thám Hiểm Số Học",
+    "addSubDesc": "Đã chinh phục hành trình Cộng - Trừ trên Soroban",
+    "completeTitle": "👑 Chứng Chỉ Toàn Diện",
+    "completeSubtitle": "Bậc Thầy Soroban",
+    "completeDesc": "Đã chinh phục toàn bộ hành trình Soroban",
+    "explorer": "Nhà Thám Hiểm",
+    "congrats": "Chúc mừng",
+    "viewCert": "Xem chứng chỉ",
+    "opening": "Đang mở..."
+  },
+
+  "narrative": {
+    "skip": "Bỏ qua",
+    "showAll": "Hiện hết",
+    "next": "Tiếp →",
+    "start": "Bắt đầu! ✨",
+    "startAdventure": "Bắt đầu phiêu lưu!"
+  },
+
+  "adventureGame": {
+    "skip": "Bỏ qua",
+    "startNow": "Bắt đầu! ⚡",
+    "exploreNow": "Khám phá ngay! 🚀",
+    "unlocked": "Bạn đã mở khóa một thành tích mới!",
+    "newAchievement": "Thành tích mới",
+    "congratulations": "Chúc mừng bạn!",
+    "claimReward": "Nhận thưởng! 🎁",
+    "zoneLockedTitle": "Khu vực bị khóa 🔒",
+    "zoneLockedMsg": "Hãy hoàn thành các khu vực trước để mở khóa!",
+    "understood": "Đã hiểu! 👍",
+    "loadingTreasure": "Đang mở cửa Kho Báu...",
+    "loadingPreparing": "Cú Soro đang chuẩn bị hành trình cho con!"
+  },
+
+  "softUpgrade": {
+    "practiceGreat": "Luyện tập thật tuyệt! 🎯",
+    "battleExcellent": "Trận đấu xuất sắc! ⚔️",
+    "lessonComplete": "Bài học hoàn thành! 📚",
+    "streakImpressive": "Chuỗi ngày ấn tượng! 🔥",
+    "levelUp": "Lên cấp rồi! 🚀",
+    "doingGreat": "Bạn đang làm rất tốt!",
+    "unlockMoreLevels": "Mở khóa thêm cấp độ và chế độ đặc biệt",
+    "upgradeFor18Levels": "Nâng cấp để trải nghiệm đầy đủ 18 level",
+    "stars": "sao",
+    "exploreMore": "Khám phá thêm",
+    "freeRemaining": "Còn {count} {type} miễn phí nữa!",
+    "level": "level",
+    "lesson": "bài",
+    "unlockAll": "Mở khóa tất cả",
+    "viewMoreContent": "Xem thêm nhiều nội dung hơn",
+    "achievementForUpgraded": "Thành tích này dành cho các bạn đã nâng cấp gói học tập",
+    "learnMore": "Tìm hiểu",
+    "progressingFast": "Bạn đang tiến bộ rất nhanh! 🚀",
+    "challengeYourself": "Thử thách bản thân với các cấp độ khó hơn",
+    "exploreFlashAnzan": "Khám phá Flash Anzan và Siêu Trí Tuệ",
+    "lessonCompleteAwesome": "Tuyệt vời! Bài học hoàn thành! 🎉",
+    "moreLessonsAwaiting": "Còn nhiều bài học thú vị đang chờ bạn",
+    "excellentTop3": "Xuất sắc! Bạn vào Top 3! 🏆",
+    "wellDone": "Làm tốt lắm! 👏",
+    "trySpecialModes": "Thử các chế độ thi đấu đặc biệt",
+    "explore": "Khám phá",
+    "basicPackage": "Gói Cơ Bản",
+    "advancedPackage": "Gói Nâng Cao",
+    "unlockWith": "Mở khóa với {tier}"
+  },
+
+  "admin": {
+    "users": "Người dùng",
+    "lessons": "Bài học",
+    "quests": "Nhiệm vụ",
+    "achievements": "Thành tích",
+    "transactions": "Giao dịch",
+    "paymentSettings": "Cài đặt thanh toán",
+    "managePlans": "Quản lý gói dịch vụ",
+    "trialSettings": "Cài đặt Trial",
+    "confirmTitle": "Xác nhận",
+    "confirmMessage": "Bạn có chắc chắn muốn thực hiện hành động này?",
+    "confirmBtn": "Xác nhận",
+    "cancelBtn": "Hủy"
+  },
+
+  "pwa": {
+    "installed": "Đã cài Sorokid App!",
+    "thanks": "Cảm ơn bạn 💜",
+    "downloadApp": "Tải App Sorokid",
+    "learnAnytime": "Học Soroban mọi lúc",
+    "learnAnytimeAnywhere": "Học Soroban mọi lúc mọi nơi",
+    "install": "Cài đặt",
+    "installApp": "Cài đặt App",
+    "iosTitle": "Cài trên iPhone/iPad:",
+    "androidTitle": "Cài trên Android:",
+    "iosStep1": "1. Nhấn nút",
+    "share": "Chia sẻ",
+    "button": "",
+    "iosStep2": "2. Chọn",
+    "addToHome": "Thêm vào MH chính",
+    "androidStep1": "1. Nhấn",
+    "menuIcon": "⋮",
+    "topRight": "góc phải trên",
+    "androidStep2": "2. Chọn",
+    "installAppOption": "Cài đặt ứng dụng",
+    "gotIt": "Đã hiểu ✓"
+  }
+}

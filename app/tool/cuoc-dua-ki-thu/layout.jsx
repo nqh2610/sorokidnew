@@ -21,8 +21,8 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export const metadata = {
-  title: 'Cuộc Đua Kì Thú - Classroom Scoreboard | Chấm Điểm Nhóm Miễn Phí',
-  description: 'Cuộc Đua Kì Thú - Classroom scoreboard MIỄN PHÍ cho lớp học. Chấm điểm theo nhóm/cá nhân với hiệu ứng cuộc đua sôi động. Team scoreboard trực quan, gamification tạo động lực học tập!',
+  title: 'Classroom Scoreboard - Team Points Tracker | Free',
+  description: 'Classroom Scoreboard - FREE scoring system for classroom. Track points by team or individual with exciting race effects. Visual team scoreboard, gamification to motivate learning!',
   keywords: [
     // Primary keywords
     'cuộc đua kì thú',
@@ -57,8 +57,8 @@ export const metadata = {
     'ClassDojo alternative',
   ],
   openGraph: {
-    title: 'Cuộc Đua Kì Thú - Classroom Scoreboard Online',
-    description: 'Classroom scoreboard với hiệu ứng cuộc đua! Chấm điểm nhóm/cá nhân. Team scoreboard miễn phí!',
+    title: 'Classroom Scoreboard - Team Points Tracker Online',
+    description: 'Classroom scoreboard with racing effects! Track team/individual points. Free team scoreboard!',
     url: 'https://sorokid.com/tool/cuoc-dua-ki-thu',
     siteName: 'SoroKid Toolbox',
     images: [
@@ -74,8 +74,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cuộc Đua Kì Thú - Classroom Scoreboard',
-    description: 'Team scoreboard - Game thi đua điểm số cho lớp học. Miễn phí!',
+    title: 'Classroom Scoreboard - Team Points Tracker',
+    description: 'Team scoreboard - Points race game for classroom. Free!',
     images: ['/blog/cuoc-dua-ki-thu-bien-lop-hoc-thanh-duong-dua.png'],
   },
   alternates: {

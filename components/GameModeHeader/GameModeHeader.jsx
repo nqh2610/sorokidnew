@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useLocalizedUrl } from '@/components/LocalizedLink';
 
 /**
  * 🎮 GAME MODE HEADER
@@ -25,6 +26,7 @@ export default function GameModeHeader({
   userStats = {}
 }) {
   const router = useRouter();
+  const localizeUrl = useLocalizedUrl();
 
   const handleBackToGame = () => {
     // Lưu zone info vào sessionStorage để Adventure page đọc
@@ -41,7 +43,7 @@ export default function GameModeHeader({
     sessionStorage.removeItem('competeAutoStart');
     sessionStorage.removeItem('learnAutoStart');
 
-    router.push('/adventure');
+    router.push(localizeUrl('/adventure'));
   };
 
   return (

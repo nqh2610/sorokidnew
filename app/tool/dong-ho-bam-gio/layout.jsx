@@ -21,8 +21,8 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export const metadata = {
-  title: 'Đồng Hồ Bấm Giờ Online - Timer Đếm Ngược Cho Lớp Học | Miễn Phí',
-  description: 'Đồng Hồ Bấm Giờ Online - Timer đếm ngược MIỄN PHÍ cho lớp học. Classroom timer với hiển thị to trên máy chiếu, âm thanh báo hết giờ, màu thay đổi. Pomodoro timer, countdown timer online!',
+  title: 'Online Timer - Countdown Timer for Classroom | Free',
+  description: 'Online Timer - FREE countdown timer for classroom. Classroom timer with large projector display, end-time sound alerts, color changes. Pomodoro timer, countdown timer online!',
   keywords: [
     // Primary keywords
     'đồng hồ bấm giờ',
@@ -58,8 +58,8 @@ export const metadata = {
     'bấm giờ thảo luận nhóm',
   ],
   openGraph: {
-    title: 'Đồng Hồ Bấm Giờ - Timer Đếm Ngược Online Miễn Phí',
-    description: 'Classroom timer với màn hình lớn, âm thanh báo, màu sắc thay đổi. Countdown timer online miễn phí!',
+    title: 'Online Timer - Free Countdown Timer',
+    description: 'Classroom timer with large screen, sound alerts, color changes. Free countdown timer online!',
     url: 'https://sorokid.com/tool/dong-ho-bam-gio',
     siteName: 'SoroKid Toolbox',
     images: [
@@ -75,8 +75,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Đồng Hồ Bấm Giờ - Classroom Timer Online',
-    description: 'Timer đếm ngược cho lớp học, máy chiếu. Countdown timer miễn phí!',
+    title: 'Online Timer - Classroom Timer',
+    description: 'Countdown timer for classroom and projector. Free countdown timer!',
     images: ['/blog/dong-ho-bam-gio-may-chieu-cong-cu-quan-ly-thoi-gian.png'],
   },
   alternates: {

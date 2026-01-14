@@ -1,4 +1,6 @@
 import { Suspense } from 'react';
+import { getLocale } from '@/lib/i18n/get-locale';
+import { getDictionary } from '@/lib/i18n/dictionary';
 
 /**
  * 🎮 ADVENTURE LAYOUT
@@ -22,25 +24,28 @@ export const metadata = {
   },
 };
 
-export default function AdventureLayout({ children }) {
+export default async function AdventureLayout({ children }) {
+  const locale = await getLocale();
+  const dict = await getDictionary(locale);
+  
   return (
-    <Suspense fallback={<LoadingFallback />}>
+    <Suspense fallback={<LoadingFallback dict={dict} />}>
       {children}
     </Suspense>
   );
 }
 
-function LoadingFallback() {
+function LoadingFallback({ dict }) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-100 via-orange-100 to-yellow-100">
       <div className="text-center">
         <div className="text-8xl mb-4 animate-bounce">🦉</div>
         <div className="text-5xl mb-4 animate-float-slow">🗺️</div>
         <h2 className="text-2xl font-black text-amber-800 mb-2">
-          Đang mở cửa Kho Báu...
+          {dict?.adventureGame?.loadingTreasure || 'Đang mở cửa Kho Báu...'}
         </h2>
         <p className="text-amber-600">
-          Cú Soro đang chuẩn bị hành trình cho con!
+          {dict?.adventureGame?.loadingPreparing || 'Cú Soro đang chuẩn bị hành trình cho con!'}
         </p>
         <div className="flex justify-center gap-2 mt-4">
           <span className="text-2xl animate-bounce delay-100">✨</span>

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import ToolLayout from '@/components/ToolLayout/ToolLayout';
+import { useI18n } from '@/lib/i18n/I18nContext';
 import { useGameSettings } from '@/lib/useGameSettings';
 import { GAME_IDS } from '@/lib/gameStorage';
 
@@ -24,6 +25,7 @@ const DEFAULT_SETTINGS = {
 };
 
 export default function ChiecNonKyDieu() {
+  const { t } = useI18n();
   // Load settings từ localStorage
   const { settings, updateSettings, saveNow } = useGameSettings(
     GAME_IDS.CHIEC_NON_KY_DIEU,
@@ -426,7 +428,7 @@ export default function ChiecNonKyDieu() {
   }, [stopMusic]);
 
   return (
-    <ToolLayout toolName="Chiếc Nón Kỳ Diệu" toolIcon="🎡">
+    <ToolLayout toolName={t('toolbox.tools.spinWheel.name')} toolIcon="🎡">
       {/* Main container - Compact layout */}
       <div className="flex flex-col lg:flex-row gap-3 lg:gap-4 min-h-[calc(100vh-160px)] lg:h-[calc(100vh-160px)]">
         {/* Left Panel: Mobile full width, Desktop fixed width */}
@@ -441,9 +443,9 @@ export default function ChiecNonKyDieu() {
                   ${mode === 'text' 
                     ? 'bg-gradient-to-r from-violet-500 to-purple-500 text-white shadow-md' 
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
-                title="Nhập danh sách tên"
+                title={t('toolbox.spinWheel.textModeTooltip')}
               >
-                📝 Tên
+                📝 {t('toolbox.spinWheel.textMode')}
               </button>
               <button
                 onClick={() => setMode('number')}
@@ -452,9 +454,9 @@ export default function ChiecNonKyDieu() {
                   ${mode === 'number' 
                     ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-md' 
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
-                title="Quay số ngẫu nhiên"
+                title={t('toolbox.spinWheel.numberModeTooltip')}
               >
-                🔢 Số
+                🔢 {t('toolbox.spinWheel.numberMode')}
               </button>
             </div>
           </div>
@@ -465,7 +467,7 @@ export default function ChiecNonKyDieu() {
               <textarea
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
-                placeholder="Mỗi dòng một tên...&#10;Ví dụ:&#10;Minh&#10;Lan&#10;Hùng"
+                placeholder={t('toolbox.spinWheel.placeholder')}
                 className="w-full h-32 p-2 border-2 border-gray-200 rounded-lg text-sm
                   focus:border-violet-400 focus:ring-2 focus:ring-violet-100 
                   transition-all resize-none"
@@ -473,14 +475,14 @@ export default function ChiecNonKyDieu() {
               />
               <div className="mt-2 flex items-center justify-between text-xs">
                 <span className="text-gray-500 font-medium">
-                  {items.length > 0 ? `${items.length} mục` : ''}
+                  {items.length > 0 ? t('toolbox.spinWheel.itemCount', { count: items.length }) : ''}
                 </span>
                 <button
                   onClick={handleClearAll}
                   className="text-red-500 hover:text-red-600 text-xs"
                   disabled={isSpinning}
                 >
-                  Xóa
+                  {t('toolbox.spinWheel.clearAll')}
                 </button>
               </div>
             </div>
@@ -491,7 +493,7 @@ export default function ChiecNonKyDieu() {
             <div className="bg-white rounded-xl shadow-md p-3 border border-gray-100">
               <div className="flex gap-2 items-center mb-2">
                 <div className="flex-1">
-                  <label className="text-gray-500 text-xs">Từ</label>
+                  <label className="text-gray-500 text-xs">{t('toolbox.spinWheel.from')}</label>
                   <input
                     type="text"
                     inputMode="numeric"
@@ -528,7 +530,7 @@ export default function ChiecNonKyDieu() {
                 </div>
                 <span className="text-gray-400 mt-4">~</span>
                 <div className="flex-1">
-                  <label className="text-gray-500 text-xs">Đến</label>
+                  <label className="text-gray-500 text-xs">{t('toolbox.spinWheel.to')}</label>
                   <input
                     type="text"
                     inputMode="numeric"
@@ -565,16 +567,16 @@ export default function ChiecNonKyDieu() {
                 </div>
               </div>
               <div className="text-center text-xs text-gray-500">
-                ({Math.min(Math.abs(maxNumber - minNumber) + 1, 50)} số)
+                {t('toolbox.spinWheel.numbersInRange', { count: Math.min(Math.abs(maxNumber - minNumber) + 1, 50) })}
               </div>
             </div>
           )}
 
           {/* Options - Compact */}
           <div className="bg-white rounded-xl shadow-md p-3 border border-gray-100">
-            <div className="text-xs text-gray-500 mb-1.5">Sau khi quay:</div>
+            <div className="text-xs text-gray-500 mb-1.5">{t('toolbox.spinWheel.afterSpin')}</div>
             <div className="flex gap-3 text-xs">
-              <label className="flex items-center gap-1.5 cursor-pointer" title="Loại khỏi danh sách sau khi quay">
+              <label className="flex items-center gap-1.5 cursor-pointer" title={t('toolbox.spinWheel.removeAfterSpin')}>
                 <input
                   type="radio"
                   name="afterSpin"
@@ -582,9 +584,9 @@ export default function ChiecNonKyDieu() {
                   onChange={() => setRemoveAfterSpin(true)}
                   className="w-3.5 h-3.5 text-violet-500"
                 />
-                <span className="text-gray-600">❌ Loại bỏ</span>
+                <span className="text-gray-600">❌ {t('toolbox.spinWheel.remove')}</span>
               </label>
-              <label className="flex items-center gap-1.5 cursor-pointer" title="Giữ lại trong danh sách">
+              <label className="flex items-center gap-1.5 cursor-pointer" title={t('toolbox.spinWheel.keep')}>
                 <input
                   type="radio"
                   name="afterSpin"
@@ -592,7 +594,7 @@ export default function ChiecNonKyDieu() {
                   onChange={() => setRemoveAfterSpin(false)}
                   className="w-3.5 h-3.5 text-violet-500"
                 />
-                <span className="text-gray-600">✅ Giữ lại</span>
+                <span className="text-gray-600">✅ {t('toolbox.spinWheel.keep')}</span>
               </label>
             </div>
           </div>
@@ -621,24 +623,24 @@ export default function ChiecNonKyDieu() {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                 </svg>
-                Đang quay...
+                {t('toolbox.spinWheel.spinning')}
               </span>
             ) : (
               <span className="relative z-10 flex items-center justify-center gap-1">
-                🎯 QUAY!
+                🎯 {t('toolbox.spinWheel.spinButton')}
               </span>
             )}
           </button>
 
           {/* Info and Reset */}
           <div className="flex items-center justify-between text-xs text-gray-500">
-            <span>Còn: <b className="text-violet-600">{items.length}</b></span>
+            <span>{t('toolbox.spinWheel.remainingCount')} <b className="text-violet-600">{items.length}</b></span>
             <button
               onClick={handleReset}
               className="text-gray-400 hover:text-gray-600"
               disabled={isSpinning || originalItems.length === 0}
             >
-              🔄 Reset
+              🔄 {t('toolbox.spinWheel.reset')}
             </button>
           </div>
         </div>
@@ -652,7 +654,7 @@ export default function ChiecNonKyDieu() {
               ${soundEnabled 
                 ? 'bg-green-100 hover:bg-green-200 border border-green-400' 
                 : 'bg-red-100 hover:bg-red-200 border border-red-400'}`}
-            title={soundEnabled ? 'Tắt âm thanh' : 'Bật âm thanh'}
+            title={soundEnabled ? t('toolbox.spinWheel.soundOff') : t('toolbox.spinWheel.soundOn')}
           >
             {soundEnabled ? '🔊' : '🔇'}
           </button>
@@ -661,10 +663,10 @@ export default function ChiecNonKyDieu() {
             <div className="text-center py-6 lg:py-12">
               <div className="text-5xl lg:text-7xl mb-3 lg:mb-4 animate-bounce">🎡</div>
               <h3 className="text-lg lg:text-xl font-bold text-gray-400 mb-1">
-                {mode === 'text' ? 'Nhập danh sách để bắt đầu' : 'Thiết lập khoảng số'}
+                {mode === 'text' ? t('toolbox.spinWheel.emptyText') : t('toolbox.spinWheel.emptyNumber')}
               </h3>
               <p className="text-gray-400 text-sm">
-                {mode === 'text' ? 'Mỗi dòng là một mục trong vòng quay' : 'Nhập số từ và đến để quay'}
+                {mode === 'text' ? t('toolbox.spinWheel.emptyTextHint') : t('toolbox.spinWheel.emptyNumberHint')}
               </p>
             </div>
           ) : (
@@ -837,7 +839,7 @@ export default function ChiecNonKyDieu() {
                   boxShadow: isSpinning ? 'none' : '0 6px 25px rgba(255, 105, 180, 0.5)'
                 }}
               >
-                {isSpinning ? '🎰 Đang quay...' : '🎯 QUAY!'}
+                {isSpinning ? `🎰 ${t('toolbox.spinWheel.spinning')}` : `🎯 ${t('toolbox.spinWheel.spinButton')}`}
               </button>
             </>
           )}
@@ -868,7 +870,7 @@ export default function ChiecNonKyDieu() {
             <div className="text-6xl mb-4 animate-bounce">🎉</div>
             
             <h2 className="text-xl sm:text-2xl font-bold text-gray-500 mb-2">
-              Chúc mừng! Kết quả là:
+              {t('toolbox.spinWheel.congratsResult')}
             </h2>
             
             <div className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text 
@@ -878,7 +880,7 @@ export default function ChiecNonKyDieu() {
 
             {removeAfterSpin && (
               <p className="text-gray-400 text-sm mb-4">
-                Bạn muốn loại kết quả này khỏi vòng quay?
+                {t('toolbox.spinWheel.askRemove')}
               </p>
             )}
 
@@ -890,14 +892,14 @@ export default function ChiecNonKyDieu() {
                     className="px-4 py-2.5 bg-gradient-to-r from-violet-500 to-purple-500 
                       text-white font-semibold rounded-full hover:shadow-lg transition-all text-sm whitespace-nowrap"
                   >
-                    ✓ Loại & quay tiếp
+                    ✓ {t('toolbox.spinWheel.removeAndContinue')}
                   </button>
                   <button
                     onClick={handleKeepResult}
                     className="px-4 py-2.5 bg-gray-100 text-gray-600 font-semibold 
                       rounded-full hover:bg-gray-200 transition-all text-sm whitespace-nowrap"
                   >
-                    ↩️ Giữ lại
+                    ↩️ {t('toolbox.spinWheel.keepResult')}
                   </button>
                 </>
               ) : (
@@ -906,7 +908,7 @@ export default function ChiecNonKyDieu() {
                   className="px-8 py-4 bg-gradient-to-r from-violet-500 to-pink-500 
                     text-white font-bold rounded-full hover:shadow-lg transition-all text-lg"
                 >
-                  👍 OK, quay tiếp
+                  👍 {t('toolbox.spinWheel.okContinue')}
                 </button>
               )}
             </div>

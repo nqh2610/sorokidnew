@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useMemo, useEffect } from 'react';
 import ToolLayout, { useFullscreen } from '@/components/ToolLayout/ToolLayout';
+import { useI18n } from '@/lib/i18n/I18nContext';
 import { useGameSettings } from '@/lib/useGameSettings';
 import { GAME_IDS } from '@/lib/gameStorage';
 
@@ -29,14 +30,16 @@ const DEFAULT_SETTINGS = {
 };
 
 export default function ChiaNhom() {
+  const { t } = useI18n();
   return (
-    <ToolLayout toolName="Chia Nhóm Ngẫu Nhiên" toolIcon="👥">
+    <ToolLayout toolName={t('toolbox.tools.groupMaker.name')} toolIcon="👥">
       <ChiaNhomContent />
     </ToolLayout>
   );
 }
 
 function ChiaNhomContent() {
+  const { t } = useI18n();
   const { exitFullscreen } = useFullscreen();
   
   // Load settings
@@ -188,7 +191,7 @@ function ChiaNhomContent() {
         <div className="bg-white rounded-2xl shadow-lg p-5 border border-gray-100">
           <h2 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
             <span>📝</span>
-            Danh sách học sinh
+            {t('toolbox.groupMaker.studentList')}
           </h2>
           
           <textarea
@@ -197,7 +200,7 @@ function ChiaNhomContent() {
               setInputText(e.target.value);
               setShowResults(false);
             }}
-            placeholder="Nhập mỗi dòng một tên:&#10;Minh&#10;Lan&#10;Hùng&#10;Mai&#10;Tuấn"
+            placeholder={t('toolbox.groupMaker.placeholder')}
             className="w-full h-40 p-3 border-2 border-gray-200 rounded-xl text-base
               focus:border-violet-400 focus:ring-2 focus:ring-violet-100 
               transition-all resize-none"
@@ -206,14 +209,14 @@ function ChiaNhomContent() {
 
           <div className="mt-3 flex items-center justify-between text-sm">
             <span className={`font-medium ${nameCount > 0 ? 'text-violet-600' : 'text-gray-400'}`}>
-              {nameCount > 0 ? `${nameCount} học sinh` : 'Chưa có tên'}
+              {nameCount > 0 ? t('toolbox.groupMaker.studentCount', { count: nameCount }) : t('toolbox.groupMaker.noNames')}
             </span>
             <button
               onClick={handleClearAll}
               className="text-red-500 hover:text-red-600 hover:underline text-sm"
               disabled={isAnimating}
             >
-              Xóa tất cả
+              {t('toolbox.groupMaker.clearAll')}
             </button>
           </div>
         </div>
@@ -221,7 +224,7 @@ function ChiaNhomContent() {
         {/* Divide Mode Selection */}
         <div className="bg-white rounded-2xl shadow-lg p-5 border border-gray-100">
           <h3 className="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wide">
-            Cách chia
+            {t('toolbox.groupMaker.divideMethod')}
           </h3>
           
           <div className="space-y-2">
@@ -238,8 +241,8 @@ function ChiaNhomContent() {
                 disabled={isAnimating}
               />
               <div>
-                <span className="font-medium">Theo số nhóm</span>
-                <p className="text-xs text-gray-500">Chia thành N nhóm</p>
+                <span className="font-medium">{t('toolbox.groupMaker.byGroup')}</span>
+                <p className="text-xs text-gray-500">{t('toolbox.groupMaker.byGroupDesc')}</p>
               </div>
             </label>
             
@@ -256,8 +259,8 @@ function ChiaNhomContent() {
                 disabled={isAnimating}
               />
               <div>
-                <span className="font-medium">Theo số người/nhóm</span>
-                <p className="text-xs text-gray-500">Mỗi nhóm N người</p>
+                <span className="font-medium">{t('toolbox.groupMaker.byPerson')}</span>
+                <p className="text-xs text-gray-500">{t('toolbox.groupMaker.byPersonDesc')}</p>
               </div>
             </label>
           </div>
@@ -266,14 +269,14 @@ function ChiaNhomContent() {
         {/* Settings */}
         <div className="bg-white rounded-2xl shadow-lg p-5 border border-gray-100">
           <h3 className="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wide">
-            Cài đặt
+            {t('toolbox.groupMaker.settings')}
           </h3>
           
           {/* Group count / Persons per group */}
           {divideMode === 'byGroup' ? (
             <div className="mb-4">
               <label className="text-gray-700 mb-2 block text-sm">
-                Số nhóm: <span className="font-bold text-violet-600 text-lg">{groupCount}</span>
+                {t('toolbox.groupMaker.groupCount')} <span className="font-bold text-violet-600 text-lg">{groupCount}</span>
               </label>
               <input
                 type="range"
@@ -293,7 +296,7 @@ function ChiaNhomContent() {
           ) : (
             <div className="mb-4">
               <label className="text-gray-700 mb-2 block text-sm">
-                Số người/nhóm: <span className="font-bold text-violet-600 text-lg">{personsPerGroup}</span>
+                {t('toolbox.groupMaker.personsPerGroup')} <span className="font-bold text-violet-600 text-lg">{personsPerGroup}</span>
               </label>
               <input
                 type="range"
@@ -311,7 +314,7 @@ function ChiaNhomContent() {
               </div>
               {nameCount > 0 && (
                 <p className="text-xs text-gray-500 mt-2">
-                  → Sẽ có khoảng {Math.ceil(nameCount / personsPerGroup)} nhóm
+                  → {t('toolbox.groupMaker.willHaveGroups', { count: Math.ceil(nameCount / personsPerGroup) })}
                 </p>
               )}
             </div>
@@ -327,7 +330,7 @@ function ChiaNhomContent() {
               disabled={isAnimating}
             />
             <span className="text-gray-700 text-sm">
-              👑 Tự động chọn nhóm trưởng
+              👑 {t('toolbox.groupMaker.autoLeader')}
             </span>
           </label>
         </div>
@@ -340,7 +343,7 @@ function ChiaNhomContent() {
               font-semibold rounded-xl transition-all disabled:opacity-50"
             disabled={isAnimating || groups.length === 0}
           >
-            🔄 Làm lại
+            🔄 {t('toolbox.groupMaker.reset')}
           </button>
           <button
             onClick={divideIntoGroups}
@@ -350,7 +353,7 @@ function ChiaNhomContent() {
               rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed
               shadow-lg hover:shadow-xl"
           >
-            {isAnimating ? '⏳ Đang chia...' : '👥 CHIA NHÓM!'}
+            {isAnimating ? `⏳ ${t('toolbox.groupMaker.dividing')}` : `👥 ${t('toolbox.groupMaker.divideButton')}`}
           </button>
         </div>
       </div>
@@ -363,10 +366,10 @@ function ChiaNhomContent() {
             flex flex-col items-center justify-center min-h-[250px] lg:min-h-[400px]">
             <div className="text-5xl lg:text-8xl mb-4 lg:mb-6 animate-bounce">👥</div>
             <h3 className="text-xl lg:text-2xl font-bold text-gray-400 mb-2">
-              Sẵn sàng chia nhóm!
+              {t('toolbox.groupMaker.readyTitle')}
             </h3>
             <p className="text-gray-400 text-sm lg:text-base">
-              Nhập danh sách học sinh và bấm nút để bắt đầu
+              {t('toolbox.groupMaker.readyDesc')}
             </p>
           </div>
         )}
@@ -377,7 +380,7 @@ function ChiaNhomContent() {
             text-center min-h-[250px] lg:min-h-[400px] flex flex-col items-center justify-center">
             <div className="text-4xl lg:text-6xl mb-4 lg:mb-6 animate-spin">🔀</div>
             <div className="text-xl lg:text-3xl font-bold text-white mb-4">
-              Đang xáo trộn & chia nhóm...
+              {t('toolbox.groupMaker.shuffling')}
             </div>
             <div className="flex gap-2">
               {[0, 1, 2].map(i => (
@@ -398,10 +401,10 @@ function ChiaNhomContent() {
             <div className="bg-white rounded-2xl shadow-lg p-6 text-center border border-gray-100">
               <h2 className="text-2xl font-bold text-gray-800 flex items-center justify-center gap-2">
                 <span>🎉</span>
-                Kết quả chia {groups.length} nhóm
+                {t('toolbox.groupMaker.resultTitle', { count: groups.length })}
               </h2>
               <p className="text-gray-500 mt-1">
-                Tổng cộng {groups.reduce((sum, g) => sum + g.members.length, 0)} học sinh
+                {t('toolbox.groupMaker.totalStudents', { count: groups.reduce((sum, g) => sum + g.members.length, 0) })}
               </p>
             </div>
 
@@ -422,10 +425,10 @@ function ChiaNhomContent() {
                   {/* Group header */}
                   <div className={`${group.color.header} text-white p-4 flex items-center justify-between`}>
                     <h3 className="text-xl font-bold">
-                      Nhóm {group.id}
+                      {t('toolbox.groupMaker.groupNumber', { number: group.id })}
                     </h3>
                     <span className="bg-white/20 px-2 py-1 rounded-full text-sm">
-                      {group.members.length} người
+                      {t('toolbox.groupMaker.personCount', { count: group.members.length })}
                     </span>
                   </div>
                   
@@ -454,7 +457,7 @@ function ChiaNhomContent() {
                             <span className="inline-flex items-center gap-1 text-xs bg-gradient-to-r 
                               from-yellow-400 to-amber-400 text-amber-900 px-2.5 py-1 
                               rounded-full font-bold shadow-sm">
-                              ⭐ Nhóm trưởng
+                              ⭐ {t('toolbox.groupMaker.teamLeader')}
                             </span>
                           </div>
                         )}
@@ -473,7 +476,7 @@ function ChiaNhomContent() {
                   text-white font-bold rounded-full text-lg hover:shadow-xl transition-all
                   hover:from-violet-600 hover:to-pink-600"
               >
-                🔀 Chia lại ngẫu nhiên
+                🔀 {t('toolbox.groupMaker.reshuffleButton')}
               </button>
             </div>
           </div>

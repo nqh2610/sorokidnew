@@ -15,9 +15,8 @@ const SorobanClient = dynamic(
     ssr: false,
     loading: () => (
       <ToolLoadingSkeleton 
-        toolName="Bàn Tính Soroban"
+        toolKey="soroban"
         toolIcon="🧮"
-        message="Đang chuẩn bị bàn tính..."
       />
     ),
   }

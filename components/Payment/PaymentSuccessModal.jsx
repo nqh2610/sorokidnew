@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { CheckCircle, Sparkles, PartyPopper, Crown, Star, Gift, ArrowRight, X } from 'lucide-react';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 /**
  * PaymentSuccessModal - Modal thông báo thanh toán thành công với UX đẹp
@@ -14,6 +15,7 @@ export default function PaymentSuccessModal({
   tierDisplayName,
   onGoToDashboard 
 }) {
+  const { t } = useI18n();
   const [showConfetti, setShowConfetti] = useState(false);
   const [step, setStep] = useState(0);
 
@@ -123,7 +125,7 @@ export default function PaymentSuccessModal({
           }`}>
             <h2 className="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2">
               <PartyPopper className="w-6 h-6" />
-              Thanh toán thành công!
+              {t('payment.successTitle')}
               <PartyPopper className="w-6 h-6 scale-x-[-1]" />
             </h2>
           </div>
@@ -141,12 +143,12 @@ export default function PaymentSuccessModal({
                   {getTierIcon()}
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm text-slate-500 mb-1">Gói đã kích hoạt</p>
-                  <h3 className="text-xl font-bold text-slate-800">{tierDisplayName || 'Gói Premium'}</h3>
+                  <p className="text-sm text-slate-500 mb-1">{t('payment.planActivated')}</p>
+                  <h3 className="text-xl font-bold text-slate-800">{tierDisplayName || 'Premium'}</h3>
                 </div>
                 <div className="flex items-center gap-1 px-3 py-1.5 bg-emerald-100 rounded-full">
                   <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-                  <span className="text-sm font-medium text-emerald-700">Đã kích hoạt</span>
+                  <span className="text-sm font-medium text-emerald-700">{t('payment.activated')}</span>
                 </div>
               </div>
             </div>
@@ -157,19 +159,19 @@ export default function PaymentSuccessModal({
                 <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
                   <CheckCircle className="w-4 h-4 text-emerald-600" />
                 </div>
-                <span>Giao dịch đã được xác nhận thành công</span>
+                <span>{t('payment.confirmed')}</span>
               </div>
               <div className="flex items-center gap-3 text-slate-600">
                 <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
                   <CheckCircle className="w-4 h-4 text-emerald-600" />
                 </div>
-                <span>Tất cả tính năng đã được mở khóa</span>
+                <span>{t('payment.unlocked')}</span>
               </div>
               <div className="flex items-center gap-3 text-slate-600">
                 <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
                   <CheckCircle className="w-4 h-4 text-emerald-600" />
                 </div>
-                <span>Sử dụng trọn đời, không giới hạn thời gian</span>
+                <span>{t('payment.lifetime')}</span>
               </div>
             </div>
 
@@ -178,13 +180,13 @@ export default function PaymentSuccessModal({
               onClick={onGoToDashboard || onClose}
               className={`w-full py-4 bg-gradient-to-r ${getTierColor()} text-white rounded-2xl font-bold text-lg flex items-center justify-center gap-2 hover:shadow-xl transition-all hover:-translate-y-0.5 group`}
             >
-              <span>Bắt đầu học ngay</span>
+              <span>{t('payment.startLearning')}</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
 
             {/* Footer note */}
             <p className="text-center text-sm text-slate-400 mt-4">
-              Cảm ơn bạn đã tin tưởng SoroKid! 💜
+              {t('payment.thanks')}
             </p>
           </div>
         </div>

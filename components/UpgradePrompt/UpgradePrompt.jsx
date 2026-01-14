@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, createContext, useContext } from 'react';
-import Link from 'next/link';
+import { LocalizedLink } from '@/components/LocalizedLink';
 import { Lock, Crown, Star, ArrowRight, X } from 'lucide-react';
 import { getTierInfo, formatPrice, PRICING } from '@/lib/tierSystem';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 // Context để quản lý upgrade prompt toàn cục
 const UpgradePromptContext = createContext(null);
@@ -48,13 +49,17 @@ export function useUpgradePrompt() {
 export default function UpgradePrompt({ 
   isOpen, 
   onClose, 
-  title = 'Nâng cấp để tiếp tục',
-  message = 'Bài học này yêu cầu gói Premium để truy cập.',
+  title,
+  message,
   feature = 'lesson'
 }) {
+  const { t } = useI18n();
+  
   if (!isOpen) return null;
 
   const premiumInfo = getTierInfo('premium');
+  const displayTitle = title || t('upgrade.title');
+  const displayMessage = message || t('upgrade.message');
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -76,18 +81,18 @@ export default function UpgradePrompt({
           </button>
           
           <div className="text-5xl mb-3">🔒</div>
-          <h2 className="text-xl font-black">{title}</h2>
+          <h2 className="text-xl font-black">{displayTitle}</h2>
         </div>
 
         {/* Content */}
         <div className="p-6">
-          <p className="text-gray-600 text-center mb-6">{message}</p>
+          <p className="text-gray-600 text-center mb-6">{displayMessage}</p>
 
           {/* Premium Features */}
           <div className="bg-purple-50 rounded-2xl p-4 mb-6">
             <h3 className="font-bold text-purple-800 mb-3 flex items-center gap-2">
               <Crown className="text-purple-500" size={18} />
-              Premium bao gồm:
+              {t('upgrade.includes')}
             </h3>
             <ul className="space-y-2">
               {premiumInfo.features.slice(0, 4).map((feature, index) => (
@@ -101,29 +106,29 @@ export default function UpgradePrompt({
 
           {/* Price */}
           <div className="text-center mb-6">
-            <p className="text-sm text-gray-500">Chỉ từ</p>
+            <p className="text-sm text-gray-500">{t('upgrade.startingAt')}</p>
             <p className="text-2xl font-black text-purple-600">
               {formatPrice(PRICING.premium['1_month'].price)}
-              <span className="text-sm font-normal text-gray-500">/tháng</span>
+              <span className="text-sm font-normal text-gray-500">{t('upgrade.perMonth')}</span>
             </p>
           </div>
 
           {/* Actions */}
           <div className="space-y-3">
-            <Link
+            <LocalizedLink
               href="/pricing"
               onClick={onClose}
               className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:shadow-lg transition-all hover:scale-[1.02]"
             >
               <Crown size={18} />
-              Nâng cấp ngay
+              {t('upgrade.upgradeNow')}
               <ArrowRight size={18} />
-            </Link>
+            </LocalizedLink>
             <button
               onClick={onClose}
               className="w-full py-3 bg-gray-100 text-gray-600 rounded-xl font-medium hover:bg-gray-200 transition-colors"
             >
-              Để sau
+              {t('upgrade.maybeLater')}
             </button>
           </div>
         </div>

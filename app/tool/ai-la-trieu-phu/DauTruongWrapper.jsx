@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 
 const DauTruongClient = dynamic(
-  () => import('./DauTruongClient').then(mod => mod.default),
+  () => import('./DauTruongClient'),
   {
     ssr: false,
     loading: () => (

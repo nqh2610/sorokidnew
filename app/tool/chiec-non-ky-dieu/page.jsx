@@ -15,9 +15,8 @@ const ChiecNonClient = dynamic(
     ssr: false,
     loading: () => (
       <ToolLoadingSkeleton 
-        toolName="Chiếc Nón Kỳ Diệu"
+        toolKey="spinWheel"
         toolIcon="🎡"
-        message="Đang chuẩn bị vòng quay..."
       />
     ),
   }

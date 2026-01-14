@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import ToolLayout from '@/components/ToolLayout/ToolLayout';
 import Logo from '@/components/Logo/Logo';
+import { useI18n } from '@/lib/i18n/I18nContext';
 import { loadGameSettings, saveGameSettings, migrateFromOldKeys, GAME_IDS } from '@/lib/gameStorage';
 
 // ==================== CONSTANTS ====================
@@ -113,6 +114,8 @@ const CHARACTER_TYPES = {
 
 // ==================== MAIN COMPONENT ====================
 export default function CuocDuaClient() {
+  const { t } = useI18n();
+  
   // State
   const [screen, setScreen] = useState('setup'); // 'setup' | 'race'
   const [mode, setMode] = useState('individual'); // 'team' | 'individual'
@@ -389,16 +392,16 @@ export default function CuocDuaClient() {
 
     // Nếu không có tên, tạo mặc định theo numGroups
     if (names.length === 0) {
-      names = Array.from({length: numGroups}, (_, i) => `Nhóm ${i + 1}`);
+      names = Array.from({length: numGroups}, (_, i) => `${t('toolbox.raceGame.group')} ${i + 1}`);
     }
 
     if (names.length < 2) {
-      showDialog('⚠️ Chưa đủ người', 'Cần ít nhất 2 người/nhóm để bắt đầu cuộc đua!', null, 'alert');
+      showDialog(`⚠️ ${t('toolbox.raceGame.notEnoughPeople')}`, t('toolbox.raceGame.needAtLeast2'), null, 'alert');
       return;
     }
 
     if (names.length > 100) {
-      showDialog('⚠️ Quá nhiều', 'Tối đa 100 người chơi!', null, 'alert');
+      showDialog(`⚠️ ${t('toolbox.raceGame.tooMany')}`, t('toolbox.raceGame.max100'), null, 'alert');
       return;
     }
 
@@ -441,7 +444,7 @@ export default function CuocDuaClient() {
     
     const newGroups = Array.from({ length: groupCount }, (_, i) => ({
       id: i,
-      name: `Nhóm ${i + 1}`,
+      name: `${t('toolbox.raceGame.group')} ${i + 1}`,
       color: groupColors[i],
       icon: groupIcons[i],
       memberIds: [],
@@ -619,8 +622,8 @@ export default function CuocDuaClient() {
 
   const resetRace = () => {
     showDialog(
-      '🔄 Reset điểm?',
-      'Tất cả điểm sẽ về 0. Danh sách người chơi vẫn được giữ nguyên.',
+      `🔄 ${t('toolbox.raceGame.resetScores')}`,
+      t('toolbox.raceGame.resetScoresDesc'),
       () => {
         setRacers(prev => prev.map(r => ({ ...r, score: 0 })));
         setHistory([]);
@@ -641,8 +644,8 @@ export default function CuocDuaClient() {
     
     if (racers.some(r => r.score > 0)) {
       showDialog(
-        '⚙️ Quay lại cài đặt?',
-        'Dữ liệu điểm số vẫn được lưu. Bạn có thể tiếp tục sau.',
+        `⚙️ ${t('toolbox.raceGame.backToSetup')}`,
+        t('toolbox.raceGame.backToSetupDesc'),
         doBack
       );
     } else {
@@ -652,8 +655,8 @@ export default function CuocDuaClient() {
 
   const newRace = () => {
     showDialog(
-      '🆕 Tạo cuộc đua mới?',
-      'Tất cả dữ liệu hiện tại sẽ bị xóa và không thể khôi phục.',
+      `🆕 ${t('toolbox.raceGame.newRace')}`,
+      t('toolbox.raceGame.newRaceDesc'),
       () => {
         setRacers([]);
         setGroups([]);
@@ -700,7 +703,7 @@ export default function CuocDuaClient() {
 
   // ==================== RENDER ====================
   return (
-    <ToolLayout toolName="Cuộc Đua Kì Thú" toolIcon="🏁" showBrandLogo={false}>
+    <ToolLayout toolName={t('toolbox.raceGame.title')} toolIcon="🏁" showBrandLogo={false}>
       <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100">
       
       {/* ==================== CUSTOM DIALOG ==================== */}
@@ -718,7 +721,7 @@ export default function CuocDuaClient() {
                     onClick={closeDialog}
                     className="flex-1 py-3 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-bold transition-all"
                   >
-                    Hủy
+                    {t('toolbox.raceGame.dialogCancel')}
                   </button>
                 )}
                 <button
@@ -735,7 +738,7 @@ export default function CuocDuaClient() {
                       : 'bg-gradient-to-r from-orange-500 to-red-500 text-white hover:from-orange-400 hover:to-red-400'
                   }`}
                 >
-                  {dialogConfig.type === 'alert' ? 'Đã hiểu' : 'Xác nhận'}
+                  {dialogConfig.type === 'alert' ? t('toolbox.raceGame.dialogUnderstood') : t('toolbox.raceGame.dialogConfirm')}
                 </button>
               </div>
             </div>
@@ -773,19 +776,19 @@ export default function CuocDuaClient() {
               <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-full mb-4 shadow-lg">
                 <span className="text-4xl">🏁</span>
                 <h1 className="text-2xl sm:text-3xl font-black text-white">
-                  Cuộc Đua Kì Thú
+                  {t('toolbox.raceGame.title')}
                 </h1>
               </div>
               <p className="text-gray-500">
-                Chấm điểm thi đua • Ai dẫn đầu?
+                {t('toolbox.raceGame.subtitle')}
               </p>
             </div>
 
             {/* Quick Start - Chỉ nhập số */}
             <div className="bg-white rounded-2xl p-4 mb-4 border border-orange-200 shadow-sm">
-              <p className="text-gray-700 font-bold mb-3">⚡ Bắt đầu nhanh:</p>
+              <p className="text-gray-700 font-bold mb-3">⚡ {t('toolbox.raceGame.quickStart')}</p>
               <div className="flex gap-3 items-center">
-                <span className="text-gray-500">Số người/nhóm:</span>
+                <span className="text-gray-500">{t('toolbox.raceGame.numParticipants')}</span>
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => setNumGroups(Math.max(2, numGroups - 1))}
@@ -800,12 +803,12 @@ export default function CuocDuaClient() {
                 <button
                   onClick={() => {
                     // Tạo tên mặc định
-                    const defaultNames = Array.from({length: numGroups}, (_, i) => `Nhóm ${i + 1}`);
+                    const defaultNames = Array.from({length: numGroups}, (_, i) => `${t('toolbox.raceGame.group')} ${i + 1}`);
                     setNamesText(defaultNames.join('\n'));
                   }}
                   className="ml-auto px-4 py-2 bg-orange-100 hover:bg-orange-200 text-orange-600 rounded-lg font-medium text-sm"
                 >
-                  Tạo tên mặc định
+                  {t('toolbox.raceGame.createDefault')}
                 </button>
               </div>
             </div>
@@ -813,24 +816,24 @@ export default function CuocDuaClient() {
             {/* Names Input - Optional */}
             <div className="bg-white rounded-2xl p-4 mb-4 border border-gray-200 shadow-sm">
               <p className="text-gray-700 font-bold mb-3">
-                📝 Danh sách tên <span className="text-gray-400 font-normal text-sm">(hoặc để trống dùng mặc định)</span>
+                📝 {t('toolbox.raceGame.nameList')} <span className="text-gray-400 font-normal text-sm">{t('toolbox.raceGame.nameListOptional')}</span>
               </p>
               <textarea
                 value={namesText}
                 onChange={(e) => setNamesText(e.target.value)}
-                placeholder={"Nhóm 1\nNhóm 2\nNhóm 3\n...\n\nHoặc tên học sinh:\nNguyễn Văn A\nTrần Thị B"}
+                placeholder={t('toolbox.raceGame.namePlaceholder')}
                 className="w-full h-32 p-3 bg-gray-50 border border-gray-200 rounded-xl
                   text-gray-700 placeholder-gray-400 resize-none
                   focus:outline-none focus:ring-2 focus:ring-orange-400"
               />
               <p className="text-gray-400 text-xs mt-2">
-                💡 Mỗi dòng 1 tên • Copy-paste từ Excel • Để trống = dùng "Nhóm 1, 2, 3..."
+                💡 {t('toolbox.raceGame.nameHint')}
               </p>
             </div>
 
             {/* Character Selection - Compact */}
             <div className="bg-white rounded-2xl p-4 mb-6 border border-gray-200 shadow-sm">
-              <p className="text-gray-700 font-bold mb-3">🎨 Chọn biểu tượng:</p>
+              <p className="text-gray-700 font-bold mb-3">🎨 {t('toolbox.raceGame.selectIcon')}</p>
               <div className="grid grid-cols-4 gap-2">
                 {Object.entries(CHARACTER_TYPES).map(([key, type]) => (
                   <button
@@ -842,7 +845,7 @@ export default function CuocDuaClient() {
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
                   >
                     <span className="text-2xl">{type.icons[0]}</span>
-                    <span className="text-xs">{type.name.split(' ')[1] || type.name}</span>
+                    <span className="text-xs">{t(`toolbox.raceGame.${key}`)}</span>
                   </button>
                 ))}
               </div>
@@ -857,7 +860,7 @@ export default function CuocDuaClient() {
                 flex items-center justify-center gap-3"
             >
               <span className="text-3xl">🏎️</span>
-              BẮT ĐẦU CUỘC ĐUA!
+              {t('toolbox.raceGame.startRace')}
             </button>
           </div>
         </div>
@@ -872,13 +875,13 @@ export default function CuocDuaClient() {
             {/* Left buttons */}
             <div className="flex items-center gap-1 sm:gap-2">
               <button onClick={backToSetup} className="h-8 sm:h-9 px-2 sm:px-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-xs sm:text-sm font-medium flex items-center gap-1 transition-all">
-                <span>⚙️</span><span className="hidden xs:inline sm:inline">Cài đặt</span>
+                <span>⚙️</span><span className="hidden xs:inline sm:inline">{t('toolbox.raceGame.settings')}</span>
               </button>
               <button onClick={resetRace} className="h-8 sm:h-9 px-2 sm:px-3 bg-orange-100 hover:bg-orange-200 text-orange-700 rounded-lg text-xs sm:text-sm font-medium flex items-center gap-1 transition-all">
-                <span>🔄</span><span className="hidden xs:inline sm:inline">Reset</span>
+                <span>🔄</span><span className="hidden xs:inline sm:inline">{t('toolbox.raceGame.resetBtn')}</span>
               </button>
               <button onClick={finishRace} className="h-8 sm:h-9 px-2 sm:px-4 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-400 hover:to-green-400 text-white rounded-lg text-xs sm:text-sm font-bold flex items-center gap-1 shadow-lg transition-all">
-                <span>🏁</span><span className="hidden xs:inline">Kết thúc</span>
+                <span>🏁</span><span className="hidden xs:inline">{t('toolbox.raceGame.finish')}</span>
               </button>
             </div>
 
@@ -894,7 +897,7 @@ export default function CuocDuaClient() {
                   type="text"
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
-                  placeholder="🔍 Tìm..."
+                  placeholder={`🔍 ${t('toolbox.raceGame.search')}`}
                   className="h-8 sm:h-9 w-32 sm:w-40 md:w-52 px-2 sm:px-3 rounded-lg border-2 border-gray-200 focus:border-emerald-400 focus:outline-none text-xs sm:text-sm transition-all"
                 />
                 {searchText && (
@@ -915,7 +918,7 @@ export default function CuocDuaClient() {
                 }`}
               >
                 <span>{sortBy === 'score' ? '🏆' : '📋'}</span>
-                <span className="hidden md:inline">{sortBy === 'score' ? 'Xếp hạng' : 'Thứ tự'}</span>
+                <span className="hidden md:inline">{sortBy === 'score' ? t('toolbox.raceGame.ranking') : t('toolbox.raceGame.order')}</span>
               </button>
               <button
                 onClick={() => setSoundEnabled(!soundEnabled)}
@@ -1048,7 +1051,7 @@ export default function CuocDuaClient() {
                                 'text-blue-600'}`}>
                               {racer.score}
                             </span>
-                            <span className="text-xs text-gray-400 ml-1">điểm</span>
+                            <span className="text-xs text-gray-400 ml-1">{t('toolbox.raceGame.points')}</span>
                           </div>
                           
                           {/* Selected Indicator */}
@@ -1072,7 +1075,7 @@ export default function CuocDuaClient() {
               {/* No results */}
               {filteredRacers.length === 0 && searchText && (
                 <div className="text-center py-8 text-gray-400">
-                  Không tìm thấy "{searchText}"
+                  {t('toolbox.raceGame.notFound', { query: searchText })}
                 </div>
               )}
             </div>
@@ -1085,7 +1088,7 @@ export default function CuocDuaClient() {
               onClick={() => setShowControls(!showControls)}
               className="absolute -top-8 sm:-top-9 left-1/2 transform -translate-x-1/2 bg-white px-4 sm:px-5 py-1.5 sm:py-2 rounded-t-xl border-2 border-b-0 border-emerald-300 shadow-lg text-emerald-600 hover:bg-emerald-50 transition-colors font-bold text-xs sm:text-sm"
             >
-              {showControls ? '▼ Ẩn' : '▲ Hiện'}
+              {showControls ? `▼ ${t('toolbox.raceGame.hide')}` : `▲ ${t('toolbox.raceGame.show')}`}
             </button>
 
             <div className="bg-white/95 backdrop-blur border-t-2 border-emerald-300 shadow-2xl">
@@ -1102,7 +1105,7 @@ export default function CuocDuaClient() {
                       <button onClick={() => setSelectedRacer(null)} className="text-gray-400 hover:text-gray-600 text-xs">✕</button>
                     </div>
                   ) : (
-                    <div className="text-gray-400 text-xs px-2 py-1 bg-gray-100 rounded-lg flex-shrink-0">👆Chọn</div>
+                    <div className="text-gray-400 text-xs px-2 py-1 bg-gray-100 rounded-lg flex-shrink-0">👆{t('toolbox.raceGame.select')}</div>
                   )}
                   
                   {/* Score Buttons - Compact */}
@@ -1151,7 +1154,7 @@ export default function CuocDuaClient() {
                         : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white active:scale-95'}`}
                   >
                     <span className={isSpinning ? 'animate-spin' : ''}>🎲</span>
-                    <span className="hidden sm:inline">{isSpinning ? '...' : 'Gọi ngẫu nhiên'}</span>
+                    <span className="hidden sm:inline">{isSpinning ? '...' : t('toolbox.raceGame.randomCall')}</span>
                   </button>
                   
                   <button
@@ -1162,7 +1165,7 @@ export default function CuocDuaClient() {
                         : 'bg-gray-100 text-gray-600'}`}
                   >
                     <span>{isLocked ? '🔒' : '🔓'}</span>
-                    <span className="hidden sm:inline">{isLocked ? 'Khóa' : ''}</span>
+                    <span className="hidden sm:inline">{isLocked ? t('toolbox.raceGame.lock') : ''}</span>
                   </button>
                   
                   <button
@@ -1174,7 +1177,7 @@ export default function CuocDuaClient() {
                         : 'bg-gray-50 text-gray-300 cursor-not-allowed'}`}
                   >
                     <span>↩️</span>
-                    <span className="hidden sm:inline">Hoàn tác</span>
+                    <span className="hidden sm:inline">{t('toolbox.raceGame.undo')}</span>
                   </button>
                 </div>
               </div>
@@ -1208,7 +1211,7 @@ export default function CuocDuaClient() {
           <div className="bg-white rounded-2xl p-5 max-w-md w-full max-h-[85vh] overflow-auto shadow-2xl">
             <div className="text-center mb-4">
               <div className="text-5xl mb-2">🏆</div>
-              <h2 className="text-xl font-black text-gray-800">KẾT QUẢ CUỘC ĐUA</h2>
+              <h2 className="text-xl font-black text-gray-800">{t('toolbox.raceGame.raceResult')}</h2>
             </div>
             
             {/* Top 3 */}
@@ -1224,7 +1227,7 @@ export default function CuocDuaClient() {
                   </div>
                   <div className="flex-1">
                     <p className="text-gray-800 font-bold text-sm">{racer.name}</p>
-                    <p className="text-amber-600 font-black text-lg">{racer.score} điểm</p>
+                    <p className="text-amber-600 font-black text-lg">{racer.score} {t('toolbox.raceGame.points')}</p>
                   </div>
                 </div>
               ))}
@@ -1232,7 +1235,7 @@ export default function CuocDuaClient() {
             
             {/* All Rankings */}
             <div className="bg-gray-50 rounded-xl p-3 mb-4 max-h-32 overflow-auto">
-              <p className="text-gray-500 text-xs mb-2">Bảng xếp hạng:</p>
+              <p className="text-gray-500 text-xs mb-2">{t('toolbox.raceGame.leaderboard')}:</p>
               <div className="space-y-1">
                 {[...racers].sort((a, b) => b.score - a.score).map((r, i) => (
                   <div key={r.id} className="flex items-center gap-2 text-sm">
@@ -1249,13 +1252,13 @@ export default function CuocDuaClient() {
                 onClick={() => setShowSummary(false)}
                 className="flex-1 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-sm"
               >
-                Tiếp tục
+                {t('toolbox.raceGame.continue')}
               </button>
               <button
                 onClick={() => { setShowSummary(false); resetRace(); }}
                 className="flex-1 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold rounded-xl text-sm"
               >
-                Ván mới
+                {t('toolbox.raceGame.newGame')}
               </button>
             </div>
           </div>

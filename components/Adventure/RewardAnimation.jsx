@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 /**
  * 🎉 RewardAnimation - Game Reward Effects
@@ -275,7 +276,7 @@ const LevelUp = ({ newLevel, onComplete }) => {
 };
 
 // ============== BADGE UNLOCK ==============
-const BadgeUnlock = ({ badge, onComplete }) => {
+const BadgeUnlock = ({ badge, onComplete, t }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -317,12 +318,12 @@ const BadgeUnlock = ({ badge, onComplete }) => {
           transition={{ delay: 0.3 }}
           className="text-center"
         >
-          <p className="text-gray-500 text-sm font-medium mb-1">Mở khóa huy hiệu mới!</p>
+          <p className="text-gray-500 text-sm font-medium mb-1">{t('reward.badgeUnlocked')}</p>
           <h3 className="text-xl font-bold text-gray-800 mb-2">
-            {badge?.name || 'Huy hiệu mới'}
+            {badge?.name || t('reward.newBadge')}
           </h3>
           <p className="text-gray-600 text-sm">
-            {badge?.description || 'Chúc mừng bạn!'}
+            {badge?.description || t('reward.congratulations')}
           </p>
         </motion.div>
 
@@ -336,7 +337,7 @@ const BadgeUnlock = ({ badge, onComplete }) => {
           onClick={onComplete}
           className="mt-6 w-full py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold rounded-xl shadow-lg"
         >
-          Nhận thưởng! 🎁
+          {t('reward.claimReward')} 🎁
         </motion.button>
       </motion.div>
     </motion.div>
@@ -344,7 +345,7 @@ const BadgeUnlock = ({ badge, onComplete }) => {
 };
 
 // ============== ZONE COMPLETE ==============
-const ZoneComplete = ({ zone, stars = 3, onComplete }) => {
+const ZoneComplete = ({ zone, stars = 3, onComplete, t }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -376,7 +377,7 @@ const ZoneComplete = ({ zone, stars = 3, onComplete }) => {
               transition={{ delay: 0.2, type: 'spring' }}
               className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-500"
             >
-              🎉 Hoàn thành! 🎉
+              🎉 {t('reward.completed')} 🎉
             </motion.h2>
             <p className="text-gray-600 font-medium mt-1">{zone?.name}</p>
           </div>
@@ -405,11 +406,11 @@ const ZoneComplete = ({ zone, stars = 3, onComplete }) => {
             <div className="grid grid-cols-3 gap-3 mb-6">
               <div className="text-center p-3 bg-blue-50 rounded-xl">
                 <div className="text-2xl font-bold text-blue-600">{zone.stats.time || '00:00'}</div>
-                <div className="text-xs text-gray-500">Thời gian</div>
+                <div className="text-xs text-gray-500">{t('reward.time')}</div>
               </div>
               <div className="text-center p-3 bg-green-50 rounded-xl">
                 <div className="text-2xl font-bold text-green-600">{zone.stats.accuracy || '100'}%</div>
-                <div className="text-xs text-gray-500">Chính xác</div>
+                <div className="text-xs text-gray-500">{t('reward.accuracy')}</div>
               </div>
               <div className="text-center p-3 bg-purple-50 rounded-xl">
                 <div className="text-2xl font-bold text-purple-600">+{zone.stats.xp || 100}</div>
@@ -425,7 +426,7 @@ const ZoneComplete = ({ zone, stars = 3, onComplete }) => {
             onClick={onComplete}
             className={`w-full py-4 bg-gradient-to-r ${zone?.color || 'from-blue-500 to-purple-600'} text-white font-bold rounded-xl shadow-lg text-lg`}
           >
-            Tiếp tục hành trình! 🚀
+            {t('reward.continueJourney')} 🚀
           </motion.button>
         </div>
       </motion.div>
@@ -440,6 +441,7 @@ export default function RewardAnimation({
   data = {},
   onComplete
 }) {
+  const { t } = useI18n();
   const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
@@ -481,12 +483,12 @@ export default function RewardAnimation({
 
       {/* Badge Unlock */}
       {isVisible && type === 'badge' && (
-        <BadgeUnlock badge={data.badge} onComplete={onComplete} />
+        <BadgeUnlock badge={data.badge} onComplete={onComplete} t={t} />
       )}
 
       {/* Zone Complete */}
       {isVisible && type === 'zone-complete' && (
-        <ZoneComplete zone={data.zone} stars={data.stars} onComplete={onComplete} />
+        <ZoneComplete zone={data.zone} stars={data.stars} onComplete={onComplete} t={t} />
       )}
     </AnimatePresence>
   );

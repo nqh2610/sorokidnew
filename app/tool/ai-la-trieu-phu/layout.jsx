@@ -21,8 +21,8 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export const metadata = {
-  title: 'Ai Là Triệu Phú Online - Who Wants to Be a Millionaire | Quiz Game Miễn Phí',
-  description: 'Ai Là Triệu Phú Online - Game show hỏi đáp MIỄN PHÍ cho lớp học. Who Wants to Be a Millionaire phiên bản giáo dục. Tự tạo câu hỏi, 4 quyền trợ giúp: 50:50, Hỏi khán giả, Gọi điện, Đổi câu!',
+  title: 'Who Wants to Be a Millionaire Online | Free Quiz Game',
+  description: 'Who Wants to Be a Millionaire Online - FREE quiz game show for classroom. Educational millionaire game. Create your own questions, 4 lifelines: 50:50, Ask the Audience, Phone a Friend, Switch Question!',
   keywords: [
     // Primary keywords (super high volume)
     'ai là triệu phú',
@@ -59,8 +59,8 @@ export const metadata = {
     'trò chơi kiến thức cho lớp',
   ],
   openGraph: {
-    title: 'Ai Là Triệu Phú - Who Wants to Be a Millionaire Online',
-    description: 'Quiz game show cho lớp học! Tự tạo câu hỏi, 4 quyền trợ giúp như game show thật. Miễn phí!',
+    title: 'Who Wants to Be a Millionaire - Online Quiz Game',
+    description: 'Quiz game show for classroom! Create your own questions, 4 lifelines like the real game show. Free!',
     url: 'https://sorokid.com/tool/ai-la-trieu-phu',
     siteName: 'SoroKid Toolbox',
     images: [
@@ -76,8 +76,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ai Là Triệu Phú - Millionaire Quiz Game',
-    description: 'Quiz game show cho lớp học. Tự tạo câu hỏi, 4 quyền trợ giúp!',
+    title: 'Who Wants to Be a Millionaire - Quiz Game',
+    description: 'Quiz game show for classroom. Create questions, 4 lifelines!',
     images: ['/blog/ai-la-trieu-phu-game-show-kiem-tra-kien-thuc-trong-lop.png'],
   },
   alternates: {

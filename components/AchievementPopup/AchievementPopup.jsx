@@ -221,7 +221,7 @@ export default function AchievementPopup({ type, data, onClose, show }) {
                 {config.title}
               </h2>
               <p className="text-lg font-bold text-gray-800 mb-1">
-                {data?.name || 'Thành tựu mới'}
+                {data?.name || 'New Achievement'}
               </p>
               {data?.description && (
                 <p className="text-sm text-gray-500">{data.description}</p>
@@ -290,8 +290,8 @@ const ACHIEVEMENT_CONFIG = {
   // Hoàn thành 1 stage/màn
   stage: {
     icon: Flag,
-    label: '🎯 HOÀN THÀNH MÀN',
-    title: 'Xuất Sắc!',
+    label: '🎯 STAGE COMPLETE',
+    title: 'Excellent!',
     bgGradient: 'from-green-400 via-emerald-500 to-teal-500',
     glowColor: 'bg-green-400',
     labelBg: 'bg-green-100',
@@ -302,7 +302,7 @@ const ACHIEVEMENT_CONFIG = {
     titleColor: 'text-green-600',
     messageColor: 'text-green-600',
     buttonBg: 'bg-gradient-to-r from-green-500 to-emerald-600',
-    buttonText: 'Tiếp tục phiêu lưu! 🚀',
+    buttonText: 'Continue the adventure! 🚀',
     showRewards: true,
     particles: ['⭐', '✨', '🌟', '💫', '🎯'],
     particleCount: 25
@@ -311,8 +311,8 @@ const ACHIEVEMENT_CONFIG = {
   // Đánh bại Boss
   boss: {
     icon: Trophy,
-    label: '👹 ĐÁNH BẠI BOSS',
-    title: 'Chiến Thắng!',
+    label: '👹 BOSS DEFEATED',
+    title: 'Victory!',
     bgGradient: 'from-red-500 via-orange-500 to-yellow-500',
     glowColor: 'bg-orange-400',
     labelBg: 'bg-orange-100',
@@ -323,18 +323,18 @@ const ACHIEVEMENT_CONFIG = {
     titleColor: 'text-orange-600',
     messageColor: 'text-orange-600',
     buttonBg: 'bg-gradient-to-r from-orange-500 to-red-600',
-    buttonText: 'Quá Đỉnh! Tiếp tục! 💪',
+    buttonText: 'Amazing! Keep going! 💪',
     showRewards: true,
     particles: ['🔥', '⚔️', '🏆', '💥', '⭐', '👑'],
     particleCount: 35,
-    specialMessage: '🔥 Boss đã gục ngã trước sức mạnh của bạn!'
+    specialMessage: '🔥 The boss has fallen before your power!'
   },
 
   // Hoàn thành 1 zone
   zone: {
     icon: Map,
-    label: '🗺️ HOÀN THÀNH VÙNG ĐẤT',
-    title: 'Chinh Phục!',
+    label: '🗺️ ZONE COMPLETE',
+    title: 'Conquered!',
     bgGradient: 'from-purple-500 via-pink-500 to-rose-500',
     glowColor: 'bg-purple-400',
     labelBg: 'bg-purple-100',
@@ -345,18 +345,18 @@ const ACHIEVEMENT_CONFIG = {
     titleColor: 'text-purple-600',
     messageColor: 'text-purple-600',
     buttonBg: 'bg-gradient-to-r from-purple-500 to-pink-600',
-    buttonText: 'Khám phá vùng đất mới! 🌟',
+    buttonText: 'Explore new lands! 🌟',
     showRewards: true,
     particles: ['🎊', '🎉', '🌟', '⭐', '✨', '💜', '🗺️'],
     particleCount: 40,
-    specialMessage: '🎊 Một vùng đất mới đang chờ bạn khám phá!'
+    specialMessage: '🎊 A new land awaits your exploration!'
   },
 
   // Chứng chỉ Cộng Trừ
   'certificate-addSub': {
     icon: Award,
-    label: '🎖️ CHỨNG CHỈ ĐẠT ĐƯỢC',
-    title: 'Tuyệt Vời!',
+    label: '🎖️ CERTIFICATE EARNED',
+    title: 'Wonderful!',
     bgGradient: 'from-amber-400 via-yellow-500 to-orange-500',
     glowColor: 'bg-amber-400',
     labelBg: 'bg-amber-100',
@@ -367,18 +367,18 @@ const ACHIEVEMENT_CONFIG = {
     titleColor: 'text-amber-600',
     messageColor: 'text-amber-700',
     buttonBg: 'bg-gradient-to-r from-amber-500 to-orange-600',
-    buttonText: 'Xem chứng chỉ! 📜',
+    buttonText: 'View certificate! 📜',
     showRewards: true,
     particles: ['🏆', '🎖️', '📜', '⭐', '🌟', '✨', '🎉', '🎊', '💫', '👑'],
     particleCount: 60,
-    specialMessage: '🏆 Chúc mừng! Bạn đã trở thành Cao Thủ Cộng Trừ Soroban!'
+    specialMessage: '🏆 Congratulations! You are now a Soroban Add & Sub Master!'
   },
 
   // Chứng chỉ Toàn Diện
   'certificate-complete': {
     icon: Crown,
-    label: '👑 CHỨNG CHỈ TỐI THƯỢNG',
-    title: 'HUYỀN THOẠI!',
+    label: '👑 ULTIMATE CERTIFICATE',
+    title: 'LEGENDARY!',
     bgGradient: 'from-yellow-400 via-amber-500 to-red-500',
     glowColor: 'bg-yellow-400',
     labelBg: 'bg-gradient-to-r from-yellow-100 to-amber-100',
@@ -389,11 +389,11 @@ const ACHIEVEMENT_CONFIG = {
     titleColor: 'bg-gradient-to-r from-amber-600 to-red-600 bg-clip-text text-transparent',
     messageColor: 'text-amber-700',
     buttonBg: 'bg-gradient-to-r from-yellow-500 via-amber-500 to-red-600',
-    buttonText: '👑 Xem chứng chỉ Huyền Thoại!',
+    buttonText: '👑 View Legendary Certificate!',
     showRewards: true,
     particles: ['👑', '🏆', '🎖️', '💎', '⭐', '🌟', '✨', '🎉', '🎊', '💫', '🔥', '💛'],
     particleCount: 80,
-    specialMessage: '👑 HUYỀN THOẠI! Bạn đã chinh phục toàn bộ Soroban!'
+    specialMessage: '👑 LEGENDARY! You have conquered all of Soroban!'
   }
 };
 

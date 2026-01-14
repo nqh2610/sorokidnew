@@ -15,9 +15,8 @@ const DenMayManClient = dynamic(
     ssr: false,
     loading: () => (
       <ToolLoadingSkeleton 
-        toolName="Đèn May Mắn"
+        toolKey="luckyLight"
         toolIcon="🚦"
-        message="Đang bật đèn may mắn..."
       />
     ),
   }

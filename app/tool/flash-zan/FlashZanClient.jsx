@@ -5,6 +5,7 @@ import ToolLayout from '@/components/ToolLayout/ToolLayout';
 import { LogoIcon } from '@/components/Logo/Logo';
 import { useGameSettings } from '@/lib/useGameSettings';
 import { GAME_IDS } from '@/lib/gameStorage';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 // Default settings - rút gọn key để tiết kiệm storage
 const DEFAULT_SETTINGS = {
@@ -15,6 +16,8 @@ const DEFAULT_SETTINGS = {
 };
 
 export default function FlashZan() {
+  const { t } = useI18n();
+  
   // Settings với auto-save - chỉ lưu khi user thoát hoặc bấm "Bắt đầu"
   const { settings, updateSettings, saveNow } = useGameSettings(
     GAME_IDS.FLASH_ZAN, 
@@ -228,14 +231,14 @@ export default function FlashZan() {
   }, []);
 
   return (
-    <ToolLayout toolName="Flash ZAN" toolIcon="⚡" hideFullscreenButton>
+    <ToolLayout toolName={t('toolbox.tools.flashAnzan.name')} toolIcon="⚡" hideFullscreenButton>
       <div ref={containerRef} className="space-y-6">
         {/* Settings Panel - Compact Design */}
         {!isRunning && !isFinished && (
           <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 border border-gray-100 max-w-3xl mx-auto">
             <h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
               <span>⚙️</span>
-              Cài đặt bài tập
+              {t('toolbox.flashZan.settings')}
             </h2>
 
             {/* Row 1: Phép tính + Số chữ số */}
@@ -243,7 +246,7 @@ export default function FlashZan() {
               {/* Operation Type */}
               <div className="bg-gray-50 rounded-xl p-3">
                 <h3 className="text-sm font-semibold text-gray-500 mb-2 uppercase tracking-wide">
-                  Phép tính
+                  {t('toolbox.flashZan.operation')}
                 </h3>
                 <div className="flex gap-2">
                   <button
@@ -253,7 +256,7 @@ export default function FlashZan() {
                         ? 'bg-violet-500 text-white shadow-md' 
                         : 'bg-white text-gray-600 hover:bg-violet-50 border border-gray-200'}`}
                   >
-                    ➕ Cộng
+                    ➕ {t('toolbox.flashZan.add')}
                   </button>
                   <button
                     onClick={() => setOperationType('addSubtract')}
@@ -262,7 +265,7 @@ export default function FlashZan() {
                         ? 'bg-violet-500 text-white shadow-md' 
                         : 'bg-white text-gray-600 hover:bg-violet-50 border border-gray-200'}`}
                   >
-                    ➕➖ Cộng Trừ
+                    ➕➖ {t('toolbox.flashZan.addSubtract')}
                   </button>
                 </div>
               </div>
@@ -270,7 +273,7 @@ export default function FlashZan() {
               {/* Digit Count */}
               <div className="bg-gray-50 rounded-xl p-3">
                 <h3 className="text-sm font-semibold text-gray-500 mb-2 uppercase tracking-wide">
-                  Số chữ số
+                  {t('toolbox.flashZan.digits')}
                 </h3>
                 <div className="flex gap-2">
                   <button
@@ -280,7 +283,7 @@ export default function FlashZan() {
                         ? 'bg-violet-500 text-white shadow-md' 
                         : 'bg-white text-gray-600 hover:bg-violet-50 border border-gray-200'}`}
                   >
-                    1 số (1-9)
+                    {t('toolbox.flashZan.oneDigit')}
                   </button>
                   <button
                     onClick={() => setDigitCount(2)}
@@ -289,7 +292,7 @@ export default function FlashZan() {
                         ? 'bg-violet-500 text-white shadow-md' 
                         : 'bg-white text-gray-600 hover:bg-violet-50 border border-gray-200'}`}
                   >
-                    2 số (10-99)
+                    {t('toolbox.flashZan.twoDigit')}
                   </button>
                 </div>
               </div>
@@ -301,7 +304,7 @@ export default function FlashZan() {
               <div className="bg-gray-50 rounded-xl p-3">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                    Số lượng
+                    {t('toolbox.flashZan.count')}
                   </h3>
                   <span className="text-lg font-bold text-violet-600">{flashCount}</span>
                 </div>
@@ -324,7 +327,7 @@ export default function FlashZan() {
               <div className="bg-gray-50 rounded-xl p-3">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                    Tốc độ
+                    {t('toolbox.flashZan.speed')}
                   </h3>
                   <span className="text-lg font-bold text-violet-600">{speed}s</span>
                 </div>
@@ -339,8 +342,8 @@ export default function FlashZan() {
                     accent-violet-500"
                 />
                 <div className="flex justify-between text-sm text-gray-400 mt-1">
-                  <span>0.1s (Nhanh)</span>
-                  <span>5s (Chậm)</span>
+                  <span>{t('toolbox.flashZan.fast')}</span>
+                  <span>{t('toolbox.flashZan.slow')}</span>
                 </div>
               </div>
             </div>
@@ -355,10 +358,10 @@ export default function FlashZan() {
                   hover:scale-105 hover:shadow-xl 
                   active:scale-95 transition-all duration-200"
               >
-                ⚡ BẮT ĐẦU FLASH!
+                ⚡ {t('toolbox.flashZan.start')}
               </button>
               <p className="text-sm text-gray-400 mt-2">
-                Tự động vào toàn màn hình • Nhấn <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600 font-mono">ESC</kbd> để thoát
+                {t('toolbox.flashZan.fullscreenHint')} • {t('toolbox.flashZan.escHint')} <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600 font-mono">ESC</kbd>
               </p>
             </div>
           </div>
@@ -399,7 +402,7 @@ export default function FlashZan() {
                   rounded-lg transition-all flex items-center gap-1"
               >
                 <span>✕</span>
-                <span className="hidden sm:inline">Thoát</span>
+                <span className="hidden sm:inline">{t('toolbox.flashZan.exit')}</span>
               </button>
             </div>
             
@@ -438,10 +441,10 @@ export default function FlashZan() {
               <div className="text-center animate-bounceIn">
                 <div className="text-8xl mb-6">✅</div>
                 <h2 className="text-4xl sm:text-6xl font-black text-white mb-4">
-                  HOÀN THÀNH!
+                  {t('toolbox.flashZan.complete')}
                 </h2>
                 <p className="text-2xl text-white/70 mb-8">
-                  Đã flash {numbers.length} số
+                  {t('toolbox.flashZan.flashedNumbers', { count: numbers.length })}
                 </p>
                 
                 {/* Show answer option */}
@@ -453,7 +456,7 @@ export default function FlashZan() {
                       font-black rounded-full text-2xl transition-all hover:scale-105
                       shadow-lg shadow-green-500/30"
                   >
-                    👁️ XEM ĐÁP ÁN
+                    👁️ {t('toolbox.flashZan.showAnswer')}
                   </button>
                   
                   <div className="flex gap-4 justify-center mt-6">
@@ -462,14 +465,14 @@ export default function FlashZan() {
                       className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 
                         text-white font-bold rounded-full text-xl hover:shadow-lg transition-all"
                     >
-                      🔄 Làm lại
+                      🔄 {t('toolbox.flashZan.retry')}
                     </button>
                     <button
                       onClick={stopFlash}
                       className="px-8 py-4 bg-white/20 hover:bg-white/30 text-white 
                         font-bold rounded-full text-xl transition-all"
                     >
-                      ⚙️ Về cài đặt
+                      ⚙️ {t('toolbox.flashZan.toSettings')}
                     </button>
                   </div>
                 </div>
@@ -495,7 +498,7 @@ export default function FlashZan() {
                   
                   {/* Summary - phía dưới số */}
                   <div className="mt-2 sm:mt-4 text-sm sm:text-lg md:text-xl text-white/70">
-                    Tổng {numbers.length} số: {numbers.map(n => n.display).join(' ')}
+                    {t('toolbox.flashZan.total', { count: numbers.length })}: {numbers.map(n => n.display).join(' ')}
                   </div>
                 </div>
                 
@@ -507,21 +510,21 @@ export default function FlashZan() {
                       className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/20 hover:bg-white/30 text-white 
                         font-semibold rounded-full text-sm sm:text-base transition-all"
                     >
-                      ← Ẩn
+                      ← {t('toolbox.flashZan.hide')}
                     </button>
                     <button
                       onClick={startFlash}
                       className="px-6 py-2.5 sm:px-8 sm:py-3 bg-gradient-to-r from-yellow-400 to-orange-500 
                         text-white font-bold rounded-full text-sm sm:text-lg hover:shadow-lg transition-all"
                     >
-                      🔄 Làm lại
+                      🔄 {t('toolbox.flashZan.retry')}
                     </button>
                     <button
                       onClick={stopFlash}
                       className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/20 hover:bg-white/30 text-white 
                         font-semibold rounded-full text-sm sm:text-base transition-all"
                     >
-                      ⚙️ Cài đặt
+                      ⚙️ {t('toolbox.flashZan.settings')}
                     </button>
                   </div>
                 </div>
@@ -533,8 +536,8 @@ export default function FlashZan() {
               <div className="absolute top-16 sm:top-20 left-1/2 -translate-x-1/2
                 px-3 py-1.5 sm:px-4 sm:py-2 bg-white/15 backdrop-blur-sm rounded-full
                 text-white/70 text-xs sm:text-sm animate-pulse text-center">
-                <span className="sm:hidden">👆 Chạm để dừng</span>
-                <span className="hidden sm:inline">Nhấn Space hoặc Click để tạm dừng</span>
+                <span className="sm:hidden">👆 {t('toolbox.flashZan.tapToPause')}</span>
+                <span className="hidden sm:inline">{t('toolbox.flashZan.spaceOrClickPause')}</span>
               </div>
             )}
 
@@ -544,10 +547,10 @@ export default function FlashZan() {
                 flex items-center gap-2 shadow-xl">
                 <span className="text-base sm:text-lg">⏸️</span>
                 <div className="text-left">
-                  <div className="text-white font-bold text-xs sm:text-sm">TẠM DỪNG</div>
+                  <div className="text-white font-bold text-xs sm:text-sm">{t('toolbox.flashZan.paused')}</div>
                   <div className="text-white/80 text-[10px] sm:text-xs">
-                    <span className="sm:hidden">Chạm để tiếp tục</span>
-                    <span className="hidden sm:inline">Space/Click để tiếp tục</span>
+                    <span className="sm:hidden">{t('toolbox.flashZan.tapToContinue')}</span>
+                    <span className="hidden sm:inline">{t('toolbox.flashZan.spaceOrClickContinue')}</span>
                   </div>
                 </div>
               </div>

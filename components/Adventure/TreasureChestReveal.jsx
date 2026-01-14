@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 // ============================================================
 // 🏆 TREASURE CHEST REVEAL - Hiệu ứng mở rương kho báu hoành tráng
@@ -25,27 +26,27 @@ function Sparkle({ delay, x, y }) {
 }
 
 // ===== CERTIFICATE CARD =====
-function CertificateCard({ type, userName, onView, onClose }) {
+function CertificateCard({ type, userName, onView, onClose, t }) {
   const isAddSub = type === 'addsub';
   
   const certConfig = {
     addsub: {
-      title: '🏅 Chứng Chỉ Cộng Trừ',
-      subtitle: 'Nhà Thám Hiểm Số Học',
+      title: t('adventureCert.addSubTitle'),
+      subtitle: t('adventureCert.addSubSubtitle'),
       color: 'from-emerald-400 to-teal-600',
       borderColor: 'border-emerald-400',
       bgGlow: 'bg-emerald-400/30',
       icon: '🎖️',
-      description: 'Đã chinh phục hành trình Cộng - Trừ trên Soroban'
+      description: t('adventureCert.addSubDesc')
     },
     complete: {
-      title: '👑 Chứng Chỉ Toàn Diện',
-      subtitle: 'Bậc Thầy Soroban',
+      title: t('adventureCert.completeTitle'),
+      subtitle: t('adventureCert.completeSubtitle'),
       color: 'from-amber-400 to-orange-600',
       borderColor: 'border-amber-400',
       bgGlow: 'bg-amber-400/30',
       icon: '🏆',
-      description: 'Đã chinh phục toàn bộ hành trình Soroban'
+      description: t('adventureCert.completeDesc')
     }
   };
   
@@ -112,8 +113,8 @@ function CertificateCard({ type, userName, onView, onClose }) {
           </div>
           
           <div className="mb-4">
-            <p className="text-gray-500 text-xs mb-1">🎉 Chúc mừng</p>
-            <p className="text-2xl font-black text-gray-800">{userName || 'Nhà Thám Hiểm'}</p>
+            <p className="text-gray-500 text-xs mb-1">🎉 {t('adventureCert.congrats')}</p>
+            <p className="text-2xl font-black text-gray-800">{userName || t('adventureCert.explorer')}</p>
           </div>
           
           <p className="text-gray-600 text-sm mb-4">{cert.description}</p>
@@ -138,7 +139,7 @@ function CertificateCard({ type, userName, onView, onClose }) {
               onClick={onClose}
               className="flex-1 py-3 rounded-xl bg-gray-100 text-gray-600 font-bold text-sm hover:bg-gray-200 transition-colors"
             >
-              Đóng
+              {t('common.close')}
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.02 }}
@@ -146,7 +147,7 @@ function CertificateCard({ type, userName, onView, onClose }) {
               onClick={onView}
               className={`flex-1 py-3 rounded-xl bg-gradient-to-r ${cert.color} text-white font-bold text-sm shadow-lg`}
             >
-              Xem chứng chỉ 📜
+              {t('adventureCert.viewCert')} 📜
             </motion.button>
           </div>
         </div>
@@ -163,6 +164,7 @@ export default function TreasureChestReveal({
   userName = '',
   onViewCertificate
 }) {
+  const { t } = useI18n();
   const [stage, setStage] = useState('hidden'); // hidden -> appear -> glow -> shake -> burst -> certificate
   
   // Animation sequence - hoành tráng hơn
@@ -270,7 +272,7 @@ export default function TreasureChestReveal({
                     animate={{ opacity: 1 }}
                     className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-white font-bold text-sm whitespace-nowrap"
                   >
-                    Đang mở...
+                    {t('adventureCert.opening')}
                   </motion.p>
                 )}
               </motion.div>
@@ -283,6 +285,7 @@ export default function TreasureChestReveal({
                 userName={userName}
                 onView={handleViewCertificate}
                 onClose={onClose}
+                t={t}
               />
             )}
           </div>

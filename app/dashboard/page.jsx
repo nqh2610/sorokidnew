@@ -2,7 +2,6 @@
 
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { useEffect, useState, useCallback, useMemo, useRef, lazy, Suspense } from 'react';
 import { Star, Zap, Trophy, ChevronRight, Play, Clock, ChevronDown, ChevronUp, Sparkles, Gift, Award, Loader2 } from 'lucide-react';
 import LevelBadge from '@/components/LevelBadge/LevelBadge';
@@ -12,6 +11,9 @@ import QuestList from '@/components/Dashboard/QuestList';
 import RewardPopup, { useRewardPopup } from '@/components/RewardPopup/RewardPopup';
 import TrialDaysBadge from '@/components/TrialDaysBadge/TrialDaysBadge';
 import PWAInstallBanner from '@/components/PWAInstaller/PWAInstaller';
+// 🌍 I18N: Import translation hook và LocalizedLink
+import { useI18n } from '@/lib/i18n/I18nContext';
+import { LocalizedLink, useLocalizedUrl } from '@/components/LocalizedLink';
 
 // 🚀 PERF: Lazy load secondary components (giảm ~40KB initial bundle)
 const ActivityChart = lazy(() => import('@/components/Dashboard/ActivityChart'));
@@ -41,6 +43,9 @@ const SectionSkeleton = ({ className = "" }) => (
 export default function DashboardPage() {
   const { data: session, status, update } = useSession();
   const router = useRouter();
+  // 🌍 I18N: Lấy translation function
+  const { t } = useI18n();
+  const localizeUrl = useLocalizedUrl();
   
   // 🔧 Xóa cookie profile_just_completed và refresh session sau khi vào dashboard
   useEffect(() => {
@@ -217,7 +222,7 @@ export default function DashboardPage() {
   // === EFFECTS ===
   useEffect(() => {
     if (status === 'unauthenticated') {
-      router.push('/login');
+      router.push(localizeUrl('/login'));
     } else if (status === 'authenticated') {
       fetchEssential();
     }
@@ -228,7 +233,7 @@ export default function DashboardPage() {
         activityAbortRef.current.abort();
       }
     };
-  }, [status, router, fetchEssential]);
+  }, [status, router, fetchEssential, localizeUrl]);
 
   // Load activity when expanding stats - chỉ chạy 1 lần khi mở
   useEffect(() => {
@@ -386,7 +391,7 @@ export default function DashboardPage() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
         <div className="text-center">
           <div className="text-6xl animate-bounce mb-4">🧮</div>
-          <p className="text-gray-600 font-medium">Đang tải...</p>
+          <p className="text-gray-600 font-medium">{t('dashboard.loading')}</p>
         </div>
       </div>
     );
@@ -401,12 +406,12 @@ export default function DashboardPage() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
         <div className="text-center">
           <div className="text-6xl mb-4">😕</div>
-          <p className="text-gray-600 font-medium mb-4">Không thể tải dữ liệu</p>
+          <p className="text-gray-600 font-medium mb-4">{t('dashboard.errorLoad')}</p>
           <button 
             onClick={refreshData}
             className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
           >
-            Thử lại
+            {t('dashboard.retry')}
           </button>
         </div>
       </div>
@@ -422,7 +427,7 @@ export default function DashboardPage() {
         {/* 🎯 TIẾP TỤC HỌC - CTA CHÍNH */}
         {nextLesson && !nextLesson.isCompleted && (
           <button
-            onClick={() => router.push(`/learn/${nextLesson.levelId}/${nextLesson.lessonId}`)}
+            onClick={() => router.push(localizeUrl(`/learn/${nextLesson.levelId}/${nextLesson.lessonId}`))}
             className="w-full bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all text-left group"
           >
             <div className="flex items-center justify-between">
@@ -430,11 +435,11 @@ export default function DashboardPage() {
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-2xl">🎯</span>
                   <span className="text-white/90 text-sm font-medium">
-                    {nextLesson.isInProgress ? 'Tiếp tục học' : 'Bài học tiếp theo'}
+                    {nextLesson.isInProgress ? t('dashboard.continueLearn') : t('dashboard.nextLesson')}
                   </span>
                   {nextLesson.isInProgress && (
                     <span className="px-2 py-0.5 bg-yellow-400 text-yellow-900 rounded-full text-xs font-bold">
-                      Đang học
+                      {t('dashboard.inProgress')}
                     </span>
                   )}
                 </div>
@@ -459,7 +464,7 @@ export default function DashboardPage() {
                       />
                     </div>
                     <div className="text-xs text-white/70 mt-1">
-                      Đã đạt {nextLesson.currentProgress.starsEarned}/3 ⭐
+                      {t('dashboard.earned')} {nextLesson.currentProgress.starsEarned}/3 ⭐
                     </div>
                   </div>
                 )}
@@ -475,17 +480,17 @@ export default function DashboardPage() {
         {nextLesson?.isCompleted && (
           <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 rounded-2xl sm:rounded-3xl p-6 text-center text-white shadow-xl">
             <div className="text-5xl mb-3">🏆</div>
-            <h3 className="text-2xl font-bold mb-2">Xuất sắc!</h3>
-            <p className="text-white/90">Bạn đã hoàn thành tất cả bài học. Hãy luyện tập thêm nhé!</p>
+            <h3 className="text-2xl font-bold mb-2">{t('dashboard.completed')}</h3>
+            <p className="text-white/90">{t('dashboard.completedDesc')}</p>
           </div>
         )}
 
         {/* Level Card - ĐƯA LÊN ĐẦU - Click để xem chi tiết */}
-        <LevelCardWithModal user={user} />
+        <LevelCardWithModal user={user} t={t} />
 
         {/* Banner gợi ý tinh tế - chỉ hiển cho user free/basic */}
         {user?.tier !== 'advanced' && user?.tier !== 'vip' && (
-          <Link 
+          <LocalizedLink 
             href="/pricing"
             className="block bg-gradient-to-r from-purple-50 via-pink-50 to-orange-50 rounded-2xl p-4 shadow-sm border border-purple-100 hover:shadow-md hover:border-purple-200 transition-all group"
           >
@@ -495,18 +500,18 @@ export default function DashboardPage() {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-sm font-bold text-gray-800">Khám phá nhiều hơn</span>
+                  <span className="text-sm font-bold text-gray-800">{t('dashboard.discoverMore')}</span>
                   <Sparkles size={14} className="text-purple-500" />
                 </div>
                 <p className="text-xs text-gray-500 truncate">
                   {user?.tier === 'free' 
-                    ? 'Mở khóa 18 level và các chế độ chơi đặc biệt' 
-                    : 'Nâng cấp để trải nghiệm trọn vẹn'}
+                    ? t('dashboard.unlock18Levels')
+                    : t('dashboard.upgradeExperience')}
                 </p>
               </div>
               <ChevronRight size={18} className="text-purple-400 group-hover:translate-x-1 transition-transform" />
             </div>
-          </Link>
+          </LocalizedLink>
         )}
 
         {/* 📱 Banner cài app - chỉ hiện trên điện thoại */}
@@ -515,7 +520,7 @@ export default function DashboardPage() {
         {/* Quick Actions - 3 CHỨC NĂNG CHÍNH */}
         <div className="grid grid-cols-3 gap-2 sm:gap-4">
           {/* HỌC TẬP */}
-          <Link
+          <LocalizedLink
             href="/learn"
             prefetch={true}
             className="group relative bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 rounded-2xl p-4 sm:p-5 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 hover:scale-105 transition-all text-center focus:outline-none focus:ring-4 focus:ring-blue-300 overflow-hidden"
@@ -526,20 +531,20 @@ export default function DashboardPage() {
             
             <div className="relative">
               <div className="text-4xl sm:text-5xl mb-2 group-hover:scale-125 group-hover:rotate-6 transition-transform drop-shadow-lg">📚</div>
-              <h3 className="text-sm sm:text-lg font-bold text-white drop-shadow">Học tập</h3>
+              <h3 className="text-sm sm:text-lg font-bold text-white drop-shadow">{t('dashboard.study')}</h3>
               {progress?.completedLessons > 0 ? (
-                <p className="text-xs text-white/80 mt-1 font-medium">{progress.completedLessons} bài</p>
+                <p className="text-xs text-white/80 mt-1 font-medium">{progress.completedLessons} {t('dashboard.lessonsCount')}</p>
               ) : (
-                <p className="text-xs text-white/80 mt-1 font-medium animate-pulse">Bắt đầu ngay!</p>
+                <p className="text-xs text-white/80 mt-1 font-medium animate-pulse">{t('dashboard.startNow')}</p>
               )}
             </div>
             
             {/* Shimmer effect */}
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000" />
-          </Link>
+          </LocalizedLink>
 
           {/* LUYỆN TẬP */}
-          <Link
+          <LocalizedLink
             href="/practice"
             prefetch={true}
             className="group relative bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500 rounded-2xl p-4 sm:p-5 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 hover:scale-105 transition-all text-center focus:outline-none focus:ring-4 focus:ring-orange-300 overflow-hidden"
@@ -550,20 +555,20 @@ export default function DashboardPage() {
             
             <div className="relative">
               <div className="text-4xl sm:text-5xl mb-2 group-hover:scale-125 group-hover:-rotate-6 transition-transform drop-shadow-lg">💪</div>
-              <h3 className="text-sm sm:text-lg font-bold text-white drop-shadow">Luyện tập</h3>
+              <h3 className="text-sm sm:text-lg font-bold text-white drop-shadow">{t('dashboard.practice')}</h3>
               {exercise?.today?.total > 0 ? (
-                <p className="text-xs text-white/80 mt-1 font-medium">{exercise.today.total} hôm nay</p>
+                <p className="text-xs text-white/80 mt-1 font-medium">{exercise.today.total} {t('dashboard.todayCount')}</p>
               ) : (
-                <p className="text-xs text-white/80 mt-1 font-medium animate-pulse">Rèn luyện nào!</p>
+                <p className="text-xs text-white/80 mt-1 font-medium animate-pulse">{t('dashboard.trainNow')}</p>
               )}
             </div>
             
             {/* Shimmer effect */}
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000" />
-          </Link>
+          </LocalizedLink>
 
           {/* THI ĐẤU */}
-          <Link
+          <LocalizedLink
             href="/compete"
             prefetch={true}
             className="group relative bg-gradient-to-br from-purple-500 via-pink-500 to-rose-500 rounded-2xl p-4 sm:p-5 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 hover:scale-105 transition-all text-center focus:outline-none focus:ring-4 focus:ring-purple-300 overflow-hidden"
@@ -574,21 +579,21 @@ export default function DashboardPage() {
             
             <div className="relative">
               <div className="text-4xl sm:text-5xl mb-2 group-hover:scale-125 group-hover:rotate-12 transition-transform drop-shadow-lg animate-bounce">🏆</div>
-              <h3 className="text-sm sm:text-lg font-bold text-white drop-shadow">Thi Đấu</h3>
+              <h3 className="text-sm sm:text-lg font-bold text-white drop-shadow">{t('dashboard.compete')}</h3>
               {compete?.top3Count > 0 ? (
                 <p className="text-xs text-white/80 mt-1 font-medium">Top 3: {compete.top3Count}x</p>
               ) : (
-                <p className="text-xs text-white/80 mt-1 font-medium animate-pulse">Thử tài nào!</p>
+                <p className="text-xs text-white/80 mt-1 font-medium animate-pulse">{t('dashboard.tryNow')}</p>
               )}
             </div>
             
             {/* Shimmer effect */}
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000" />
-          </Link>
+          </LocalizedLink>
         </div>
 
         {/* 🗺️ ĐI TÌM KHO BÁU TRI THỨC - GAME CHÍNH */}
-        <Link
+        <LocalizedLink
           href="/adventure"
           className="group relative block overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl hover:shadow-[0_20px_60px_-15px_rgba(251,191,36,0.5)] transform hover:-translate-y-3 hover:scale-[1.02] transition-all duration-500"
         >
@@ -692,13 +697,13 @@ export default function DashboardPage() {
               {/* Badges */}
               <div className="flex items-center gap-1 sm:gap-1.5 flex-wrap">
                 <span className="px-2 sm:px-3 py-0.5 sm:py-1 bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-300 text-amber-900 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-wide shadow-lg animate-pulse border border-yellow-200">
-                  🎮 Phiêu Lưu
+                  🎮 {t('dashboard.adventureBadge')}
                 </span>
                 <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-gradient-to-r from-green-400 to-emerald-500 text-white rounded-full text-[9px] sm:text-[10px] font-bold shadow-md animate-bounce-slow">
-                  🔥 HOT
+                  🔥 {t('dashboard.adventureHot')}
                 </span>
                 <span className="hidden sm:inline-flex px-2 py-1 bg-gradient-to-r from-purple-400 to-pink-500 text-white rounded-full text-[10px] font-bold shadow-md">
-                  ⭐ NEW
+                  ⭐ {t('dashboard.adventureNew')}
                 </span>
               </div>
             </div>
@@ -706,40 +711,39 @@ export default function DashboardPage() {
             {/* Game title - more impactful */}
             <div className="mb-1.5 sm:mb-4">
               <h3 className="text-lg sm:text-3xl md:text-4xl font-black text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)] leading-tight tracking-tight">
-                <span className="inline-block animate-pulse">🏝️</span> Đi Tìm{' '}
+                <span className="inline-block animate-pulse">🏝️</span> {t('dashboard.treasureHunt')}{' '}
                 <span className="relative inline-block">
-                  <span className="text-yellow-200 drop-shadow-[0_0_20px_rgba(253,224,71,0.5)]">Kho Báu</span>
+                  <span className="text-yellow-200 drop-shadow-[0_0_20px_rgba(253,224,71,0.5)]">{t('dashboard.treasureName')}</span>
                   <span className="absolute -inset-1 bg-yellow-400/20 blur-md rounded-lg -z-10" />
                 </span>
               </h3>
               <p className="text-xs sm:text-lg md:text-xl font-bold text-amber-100 mt-0.5 sm:mt-1 tracking-wide">
-                🌟 Tri Thức Soroban
+                🌟 {t('dashboard.treasureSubtitle')}
               </p>
             </div>
             
             {/* Description with character - responsive width */}
             <p className="text-white/95 text-[11px] sm:text-sm md:text-base max-w-[160px] sm:max-w-[220px] mb-2 sm:mb-4 leading-snug sm:leading-relaxed">
-              Cùng <span className="font-bold text-yellow-200 bg-yellow-400/20 px-0.5 rounded">Cú Soro</span> khám phá 
-              <span className="font-semibold text-amber-100"> 2 hòn đảo</span> bí ẩn và chinh phục các thử thách!
+              {t('dashboard.treasureDesc').replace('{name}', t('dashboard.owlName')).replace('{count}', '2')}
             </p>
             
             {/* Game features - responsive layout */}
             <div className="flex flex-wrap items-center gap-1 sm:gap-2 mb-2 sm:mb-0">
               <div className="flex items-center gap-0.5 sm:gap-1.5 px-1.5 sm:px-3 py-1 sm:py-2 bg-white/20 backdrop-blur-sm rounded-md sm:rounded-xl text-white text-[9px] sm:text-xs md:text-sm font-semibold border border-white/30 shadow-inner">
                 <span className="text-xs sm:text-base">🏝️</span>
-                <span>2 Đảo</span>
+                <span>2 {t('dashboard.islandCount')}</span>
               </div>
               <div className="flex items-center gap-0.5 sm:gap-1.5 px-1.5 sm:px-3 py-1 sm:py-2 bg-white/20 backdrop-blur-sm rounded-md sm:rounded-xl text-white text-[9px] sm:text-xs md:text-sm font-semibold border border-white/30 shadow-inner">
                 <span className="text-xs sm:text-base">🗺️</span>
-                <span>19 Vùng đất</span>
+                <span>19 {t('dashboard.zoneCount')}</span>
               </div>
               <div className="flex items-center gap-0.5 sm:gap-1.5 px-1.5 sm:px-3 py-1 sm:py-2 bg-white/20 backdrop-blur-sm rounded-md sm:rounded-xl text-white text-[9px] sm:text-xs md:text-sm font-semibold border border-white/30 shadow-inner">
                 <span className="text-xs sm:text-base">👹</span>
-                <span>30+ Boss</span>
+                <span>30+ {t('dashboard.bossCount')}</span>
               </div>
               <div className="hidden sm:flex items-center gap-1.5 px-3 py-2 bg-gradient-to-r from-yellow-400/30 to-amber-400/30 backdrop-blur-sm rounded-xl text-yellow-100 text-xs md:text-sm font-semibold border border-yellow-300/40 shadow-inner">
                 <span className="text-base">🏆</span>
-                <span>Kho báu</span>
+                <span>{t('dashboard.treasureReward')}</span>
               </div>
             </div>
 
@@ -752,7 +756,7 @@ export default function DashboardPage() {
                 {/* Button */}
                 <div className="relative px-3 sm:px-5 py-1.5 sm:py-2.5 bg-gradient-to-r from-white to-yellow-50 rounded-full text-orange-600 font-bold text-xs sm:text-base shadow-xl group-hover:from-yellow-300 group-hover:to-amber-400 group-hover:text-amber-900 group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300 flex items-center gap-1 sm:gap-2 border-2 border-yellow-200/50">
                   <Play size={14} className="fill-current sm:w-[18px] sm:h-[18px]" />
-                  <span>Chơi ngay!</span>
+                  <span>{t('dashboard.playNow')}</span>
                   <ChevronRight className="group-hover:translate-x-1.5 transition-transform w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" />
                 </div>
               </div>
@@ -769,7 +773,7 @@ export default function DashboardPage() {
           {/* Corner decorations */}
           <div className="absolute top-0 left-0 w-16 h-16 bg-gradient-to-br from-yellow-300/30 to-transparent rounded-br-full" />
           <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-rose-500/30 to-transparent rounded-tl-full" />
-        </Link>
+        </LocalizedLink>
 
         {/* Nhiệm vụ hôm nay */}
         {questsLoading ? (
@@ -805,8 +809,8 @@ export default function DashboardPage() {
             <div className="flex items-center gap-3">
               <span className="text-2xl">📊</span>
               <div>
-                <h3 className="font-bold text-gray-800">Thống kê chi tiết</h3>
-                <p className="text-sm text-gray-500">Xem biểu đồ hoạt động và tiến độ học tập</p>
+                <h3 className="font-bold text-gray-800">{t('dashboard.detailedStats')}</h3>
+                <p className="text-sm text-gray-500">{t('dashboard.detailedStatsDesc')}</p>
               </div>
             </div>
             {showDetailedStats ? (
@@ -821,14 +825,14 @@ export default function DashboardPage() {
               {activityLoading ? (
                 <div className="flex items-center justify-center py-8">
                   <Loader2 className="w-6 h-6 animate-spin text-purple-500" />
-                  <span className="ml-2 text-gray-500">Đang tải thống kê...</span>
+                  <span className="ml-2 text-gray-500">{t('dashboard.loadingStats')}</span>
                 </div>
               ) : (
                 <>
                   {/* Activity Chart - 🚀 PERF: Lazy loaded */}
                   <div>
                     <h4 className="font-bold text-gray-700 mb-3 flex items-center gap-2">
-                      <span>📈</span> Hoạt động 7 ngày qua
+                      <span>📈</span> {t('dashboard.weeklyActivity')}
                     </h4>
                     <Suspense fallback={<div className="h-32 bg-gray-100 rounded-lg animate-pulse" />}>
                       <ActivityChart data={activityChart || activity?.activityChart || []} compact={true} />
@@ -839,7 +843,7 @@ export default function DashboardPage() {
                   {(activity?.thisWeek || progress) && (
                     <div>
                       <h4 className="font-bold text-gray-700 mb-3 flex items-center gap-2">
-                        <span>🎯</span> Tổng quan
+                        <span>🎯</span> {t('dashboard.overview')}
                       </h4>
                       <StatsCards 
                         progress={progress || { completedLessons: activity?.overall?.totalLessons }} 
@@ -854,7 +858,7 @@ export default function DashboardPage() {
                   {progress && (
                     <div>
                       <h4 className="font-bold text-gray-700 mb-3 flex items-center gap-2">
-                        <span>📚</span> Tiến độ học tập
+                        <span>📚</span> {t('dashboard.progressByLevel')}
                       </h4>
                       <Suspense fallback={<div className="h-24 bg-gray-100 rounded-lg animate-pulse" />}>
                         <ProgressByLevel progress={progress} compact={true} showLessonNames={true} />
@@ -874,26 +878,26 @@ export default function DashboardPage() {
 
       {/* Footer */}
       <footer className="py-8 text-center text-gray-400 text-sm">
-        <p>© {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban</p>
+        <p>© {new Date().getFullYear()} SoroKid - {t('dashboard.footerText')}</p>
       </footer>
     </div>
   );
 }
 
 // TIER_LIST - định nghĩa ngoài component để không tạo lại mỗi render
-const TIER_LIST = [
-  { name: 'Nhập Môn', levels: '1-3', icon: '🌱', color: 'from-green-400 to-emerald-500' },
-  { name: 'Luyện Hạt', levels: '4-6', icon: '🔵', color: 'from-teal-400 to-teal-600' },
-  { name: 'Tay Nhanh', levels: '7-9', icon: '⚡', color: 'from-amber-400 to-orange-500' },
-  { name: 'Thợ Tính', levels: '10-14', icon: '🧮', color: 'from-emerald-400 to-green-600' },
-  { name: 'Cao Thủ', levels: '15-19', icon: '💪', color: 'from-red-400 to-red-600' },
-  { name: 'Siêu Tính', levels: '20-29', icon: '🚀', color: 'from-cyan-400 to-teal-600' },
-  { name: 'Thần Tính', levels: '30-39', icon: '🔥', color: 'from-orange-400 to-red-500' },
-  { name: 'Kỳ Tài', levels: '40-49', icon: '⭐', color: 'from-amber-400 to-orange-500' },
-  { name: 'Thần Đồng', levels: '50-69', icon: '🌟', color: 'from-purple-400 to-purple-600' },
-  { name: 'Thiên Tài', levels: '70-89', icon: '💫', color: 'from-pink-400 to-pink-600' },
-  { name: 'Kỳ Nhân', levels: '90-99', icon: '👑', color: 'from-amber-400 to-orange-500' },
-  { name: 'Đại Tông Sư', levels: '100+', icon: '🏆', color: 'from-red-500 to-rose-600' },
+const TIER_LIST_KEYS = [
+  { key: 'beginner', levels: '1-3', icon: '🌱', color: 'from-green-400 to-emerald-500' },
+  { key: 'trainee', levels: '4-6', icon: '🔵', color: 'from-teal-400 to-teal-600' },
+  { key: 'quickHand', levels: '7-9', icon: '⚡', color: 'from-amber-400 to-orange-500' },
+  { key: 'calculator', levels: '10-14', icon: '🧮', color: 'from-emerald-400 to-green-600' },
+  { key: 'expert', levels: '15-19', icon: '💪', color: 'from-red-400 to-red-600' },
+  { key: 'superCalc', levels: '20-29', icon: '🚀', color: 'from-cyan-400 to-teal-600' },
+  { key: 'godCalc', levels: '30-39', icon: '🔥', color: 'from-orange-400 to-red-500' },
+  { key: 'prodigy', levels: '40-49', icon: '⭐', color: 'from-amber-400 to-orange-500' },
+  { key: 'genius', levels: '50-69', icon: '🌟', color: 'from-purple-400 to-purple-600' },
+  { key: 'brilliant', levels: '70-89', icon: '💫', color: 'from-pink-400 to-pink-600' },
+  { key: 'exceptional', levels: '90-99', icon: '👑', color: 'from-amber-400 to-orange-500' },
+  { key: 'grandMaster', levels: '100+', icon: '🏆', color: 'from-red-500 to-rose-600' },
 ];
 
 // Custom scrollbar styles cho modal
@@ -907,16 +911,16 @@ const levelModalScrollStyles = `
 /**
  * LevelCardWithModal - Card hiển thị level với popup chi tiết
  */
-function LevelCardWithModal({ user }) {
+function LevelCardWithModal({ user, t }) {
   const [showModal, setShowModal] = useState(false);
   const levelInfo = user?.levelInfo;
   const currentLevel = levelInfo?.level || 1;
 
   // Memoize currentTierIndex - chỉ tính lại khi currentLevel thay đổi
   const currentTierIndex = useMemo(() => {
-    return TIER_LIST.findIndex((t) => {
-      const minLevel = parseInt(t.levels.split('-')[0]);
-      const maxLevel = t.levels.includes('+') ? Infinity : parseInt(t.levels.split('-')[1]);
+    return TIER_LIST_KEYS.findIndex((tier) => {
+      const minLevel = parseInt(tier.levels.split('-')[0]);
+      const maxLevel = tier.levels.includes('+') ? Infinity : parseInt(tier.levels.split('-')[1]);
       return currentLevel >= minLevel && currentLevel <= maxLevel;
     });
   }, [currentLevel]);
@@ -930,14 +934,14 @@ function LevelCardWithModal({ user }) {
         <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
           <LevelBadge totalStars={user?.totalStars || 0} size="xl" showProgress={false} />
           <div className="flex-1 text-center sm:text-left">
-            <div className="text-sm text-gray-500 mb-1">Cấp độ hiện tại</div>
+            <div className="text-sm text-gray-500 mb-1">{t('dashboard.currentLevel')}</div>
             <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               {levelInfo?.name}
             </div>
             <TrialDaysBadge />
             <div className="mt-3">
               <div className="flex justify-between text-sm text-gray-600 mb-1">
-                <span>Tiến độ lên level</span>
+                <span>{t('dashboard.levelProgress')}</span>
                 <span>{levelInfo?.progressPercent || 0}%</span>
               </div>
               <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
@@ -947,8 +951,8 @@ function LevelCardWithModal({ user }) {
                 />
               </div>
               <div className="text-xs text-gray-500 mt-1 flex items-center justify-between">
-                <span>Còn {(levelInfo?.starsNeededForNext || 0).toLocaleString()} ⭐ để lên level tiếp theo</span>
-                <span className="text-purple-500 group-hover:text-purple-600 font-medium">Xem chi tiết →</span>
+                <span>{t('dashboard.starsToNext').replace('{count}', (levelInfo?.starsNeededForNext || 0).toLocaleString())}</span>
+                <span className="text-purple-500 group-hover:text-purple-600 font-medium">{t('dashboard.viewDetails')}</span>
               </div>
             </div>
           </div>
@@ -991,18 +995,18 @@ function LevelCardWithModal({ user }) {
               <div className="grid grid-cols-2 gap-3 mb-5">
                 <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-3 text-center border border-yellow-200">
                   <div className="text-2xl font-bold text-yellow-600">{(user?.totalStars || 0).toLocaleString()}</div>
-                  <div className="text-xs text-yellow-700">Tổng sao ⭐</div>
+                  <div className="text-xs text-yellow-700">{t('dashboard.totalStars')}</div>
                 </div>
                 <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-3 text-center border border-purple-200">
                   <div className="text-2xl font-bold text-purple-600">{levelInfo?.progressPercent || 0}%</div>
-                  <div className="text-xs text-purple-700">Tiến độ level</div>
+                  <div className="text-xs text-purple-700">{t('dashboard.levelProgressLabel')}</div>
                 </div>
               </div>
 
               {/* Progress to next level */}
               <div className="bg-gray-50 rounded-xl p-4 mb-5">
                 <div className="flex justify-between text-sm mb-2">
-                  <span className="text-gray-600">Sao hiện tại trong level</span>
+                  <span className="text-gray-600">{t('dashboard.currentStarsInLevel')}</span>
                   <span className="font-bold text-gray-800">{levelInfo?.currentLevelStars || 0} ⭐</span>
                 </div>
                 <div className="h-3 bg-gray-200 rounded-full overflow-hidden mb-2">
@@ -1016,22 +1020,22 @@ function LevelCardWithModal({ user }) {
                   <span>{levelInfo?.starsForNextLevel || 0} ⭐</span>
                 </div>
                 <div className="text-center text-sm text-gray-600 mt-2">
-                  Còn <span className="font-bold text-purple-600">{(levelInfo?.starsNeededForNext || 0).toLocaleString()} ⭐</span> để lên Level {currentLevel + 1}
+                  {t('dashboard.starsToLevelUp').replace('{count}', (levelInfo?.starsNeededForNext || 0).toLocaleString()).replace('{level}', currentLevel + 1)}
                 </div>
               </div>
 
               {/* Tier list */}
               <div className="mb-2">
                 <h4 className="font-bold text-gray-700 mb-3 flex items-center gap-2">
-                  <span>🏅</span> Các cấp bậc
+                  <span>🏅</span> {t('dashboard.tierLevels')}
                 </h4>
                 <div className="space-y-2">
-                  {TIER_LIST.map((tier, idx) => {
+                  {TIER_LIST_KEYS.map((tier, idx) => {
                     const isCurrentTier = idx === currentTierIndex;
                     const isPastTier = idx < currentTierIndex;
                     return (
                       <div
-                        key={tier.name}
+                        key={tier.key}
                         className={`flex items-center gap-3 p-2.5 rounded-xl transition-all ${
                           isCurrentTier
                             ? 'bg-gradient-to-r from-purple-100 to-pink-100 border-2 border-purple-300 shadow-sm'
@@ -1045,12 +1049,12 @@ function LevelCardWithModal({ user }) {
                         </div>
                         <div className="flex-1">
                           <div className={`font-bold text-sm ${isCurrentTier ? 'text-purple-700' : isPastTier ? 'text-green-700' : 'text-gray-500'}`}>
-                            {tier.name}
+                            {t('tiers.' + tier.key)}
                           </div>
                           <div className="text-xs text-gray-500">Level {tier.levels}</div>
                         </div>
                         {isCurrentTier && (
-                          <span className="px-2 py-1 bg-purple-500 text-white text-xs font-bold rounded-full">Hiện tại</span>
+                          <span className="px-2 py-1 bg-purple-500 text-white text-xs font-bold rounded-full">{t('dashboard.current')}</span>
                         )}
                         {isPastTier && (
                           <span className="text-green-500 text-lg">✓</span>
@@ -1068,7 +1072,7 @@ function LevelCardWithModal({ user }) {
                 onClick={() => setShowModal(false)}
                 className="w-full py-2.5 rounded-xl font-bold text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:opacity-90 transition-opacity"
               >
-                Đóng
+                {t('dashboard.close')}
               </button>
             </div>
           </div>

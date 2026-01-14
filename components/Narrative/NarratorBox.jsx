@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NARRATOR, getRandomLine } from '@/config/narrative.config';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 /**
  * 🎭 NARRATOR BOX - Component hiển thị lời dẫn chuyện
@@ -20,6 +21,7 @@ export function NarratorBox({
   onSkip,
   className = ''
 }) {
+  const { t } = useI18n();
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -170,16 +172,16 @@ export function NarratorBox({
                 onClick={handleSkip}
                 className="text-amber-600 text-sm hover:text-amber-800 transition-colors"
               >
-                Bỏ qua
+                {t('narrative.skip')}
               </button>
               <button
                 onClick={handleNext}
                 className="px-4 py-1.5 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors text-sm font-medium"
               >
-                {isTyping ? 'Hiện hết' : 
+                {isTyping ? t('narrative.showAll') : 
                   (Array.isArray(lines) && currentLineIndex < lines.length - 1) 
-                    ? 'Tiếp →' 
-                    : 'Bắt đầu! ✨'}
+                    ? t('narrative.next')
+                    : t('narrative.start')}
               </button>
             </div>
           </div>
@@ -263,6 +265,7 @@ export function StoryIntro({
   onStart,
   onSkip
 }) {
+  const { t } = useI18n();
   const [phase, setPhase] = useState('hook'); // hook, action, ready
   const [currentLines, setCurrentLines] = useState(hookLines);
 
@@ -328,7 +331,7 @@ export function StoryIntro({
                 hover:shadow-2xl transition-shadow
               "
             >
-              🚀 Bắt đầu phiêu lưu!
+              🚀 {t('narrative.startAdventure')}
             </motion.button>
           </motion.div>
         )}

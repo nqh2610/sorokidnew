@@ -21,8 +21,8 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export const metadata = {
-  title: 'Đèn May Mắn Online - Traffic Light Game | Ice Breaker Lớp Học Miễn Phí',
-  description: 'Đèn May Mắn - Trò chơi đèn xanh đỏ MIỄN PHÍ cho lớp học. Traffic light game - Xanh = An toàn, Vàng = Thử thách, Đỏ = Bị phạt vui! Ice breaker game cho classroom!',
+  title: 'Traffic Light Game Online - Ice Breaker | Free Classroom Game',
+  description: 'Traffic Light Game - FREE fun game for classroom. Green = Safe, Yellow = Challenge, Red = Fun penalty! Great ice breaker game for classroom!',
   keywords: [
     // Primary keywords
     'đèn may mắn',
@@ -56,8 +56,8 @@ export const metadata = {
     'công cụ giáo viên',
   ],
   openGraph: {
-    title: 'Đèn May Mắn - Traffic Light Game Cho Lớp Học',
-    description: 'Traffic light game - Xanh = Thoát, Đỏ = Phạt vui! Ice breaker game tạo tiếng cười. Miễn phí!',
+    title: 'Traffic Light Game - Fun Classroom Game',
+    description: 'Traffic light game - Green = Safe, Red = Fun penalty! Ice breaker game for laughs. Free!',
     url: 'https://sorokid.com/tool/den-may-man',
     siteName: 'SoroKid Toolbox',
     images: [
@@ -73,8 +73,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Đèn May Mắn - Traffic Light Game Online',
-    description: 'Ice breaker game - đèn may mắn: Xanh thoát, Đỏ phạt vui! Miễn phí!',
+    title: 'Traffic Light Game Online',
+    description: 'Ice breaker game - lucky light: Green safe, Red fun penalty! Free!',
     images: ['/blog/den-may-man-cuoi-tiet-game-thuong-phat-hoc-sinh-thich.png'],
   },
   alternates: {

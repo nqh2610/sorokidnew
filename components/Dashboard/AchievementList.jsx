@@ -2,10 +2,11 @@
 
 import { useState, useMemo } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 /**
- * AchievementList - Bộ sưu tập Huy Hiệu
- * TỐI ƯU: useMemo để tránh re-calculate mỗi render
+ * AchievementList - Badge Collection
+ * OPTIMIZED: useMemo to avoid re-calculation on each render
  */
 
 // Custom scrollbar styles
@@ -42,6 +43,7 @@ const COLORS = [
 const isUnlocked = (a) => a.unlocked === true || a.isUnlocked === true || !!a.unlockedAt;
 
 export default function AchievementList({ achievements, allAchievements }) {
+  const { t } = useI18n();
   const [filter, setFilter] = useState('unlocked');
   const [showAll, setShowAll] = useState(false);
 
@@ -88,14 +90,14 @@ export default function AchievementList({ achievements, allAchievements }) {
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg sm:text-xl font-bold text-gray-800 flex items-center gap-2">
           <span className="text-2xl">🏆</span>
-          Huy Hiệu
+          {t('dashboard.badges.title')}
         </h3>
         <span className="px-3 py-1.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-sm font-bold shadow-sm">
           {unlockedCount}/{totalCount}
         </span>
       </div>
 
-      {/* Progress bar - gradient nhiều màu */}
+      {/* Progress bar - multi-color gradient */}
       <div className="mb-4">
         <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
           <div
@@ -104,12 +106,12 @@ export default function AchievementList({ achievements, allAchievements }) {
           />
         </div>
         <div className="flex justify-between text-xs mt-1">
-          <span className="text-gray-500">Tiến độ</span>
+          <span className="text-gray-500">{t('dashboard.badges.progress')}</span>
           <span className="text-purple-600 font-bold">{progressPercent}%</span>
         </div>
       </div>
 
-      {/* Filter tabs - chỉ 2 tab */}
+      {/* Filter tabs - only 2 tabs */}
       <div className="flex gap-2 mb-4">
         <button
           onClick={() => { setFilter('unlocked'); setShowAll(false); }}
@@ -119,7 +121,7 @@ export default function AchievementList({ achievements, allAchievements }) {
               : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
           }`}
         >
-          🏅 Đã đạt ({unlockedCount})
+          🏅 {t('dashboard.badges.unlocked')} ({unlockedCount})
         </button>
         <button
           onClick={() => { setFilter('locked'); setShowAll(false); }}
@@ -129,7 +131,7 @@ export default function AchievementList({ achievements, allAchievements }) {
               : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
           }`}
         >
-          🎯 Mục tiêu ({lockedCount})
+          🎯 {t('dashboard.badges.goal')} ({lockedCount})
         </button>
       </div>
 
@@ -140,7 +142,7 @@ export default function AchievementList({ achievements, allAchievements }) {
           style={showAll ? { scrollbarWidth: 'thin', scrollbarColor: '#c084fc #f3f4f6' } : {}}
         >
           {displayItems.map((achievement, idx) => (
-            <AchievementCard key={achievement.id || idx} achievement={achievement} colorIndex={idx} idx={idx} />
+            <AchievementCard key={achievement.id || idx} achievement={achievement} colorIndex={idx} idx={idx} t={t} />
           ))}
         </div>
       ) : (
@@ -148,29 +150,29 @@ export default function AchievementList({ achievements, allAchievements }) {
           {filter === 'unlocked' ? (
             <>
               <div className="text-5xl mb-3">🎯</div>
-              <p className="text-gray-700 font-bold">Chưa có huy hiệu</p>
-              <p className="text-gray-400 text-sm mt-1">Học tập để nhận huy hiệu đầu tiên!</p>
+              <p className="text-gray-700 font-bold">{t('dashboard.badges.noBadges')}</p>
+              <p className="text-gray-400 text-sm mt-1">{t('dashboard.badges.noBadgesHint')}</p>
             </>
           ) : (
             <>
               <div className="text-5xl mb-3">🎉</div>
-              <p className="text-gray-700 font-bold">Xuất sắc!</p>
-              <p className="text-gray-400 text-sm mt-1">Bạn đã đạt tất cả huy hiệu!</p>
+              <p className="text-gray-700 font-bold">{t('dashboard.badges.excellent')}</p>
+              <p className="text-gray-400 text-sm mt-1">{t('dashboard.badges.allBadges')}</p>
             </>
           )}
         </div>
       )}
 
-      {/* Nút xem thêm */}
+      {/* Show more button */}
       {filteredCount > 6 && (
         <button
           onClick={() => setShowAll(!showAll)}
           className="mt-4 w-full py-2.5 bg-gradient-to-r from-gray-100 to-gray-50 hover:from-gray-200 hover:to-gray-100 text-purple-600 text-sm font-bold rounded-xl transition-all flex items-center justify-center gap-1 border border-gray-200"
         >
           {showAll ? (
-            <>Thu gọn <ChevronUp size={16} /></>
+            <>{t('dashboard.badges.collapse')} <ChevronUp size={16} /></>
           ) : (
-            <>Xem thêm ({filteredCount - 6}) <ChevronDown size={16} /></>
+            <>{t('dashboard.badges.showMore')} ({filteredCount - 6}) <ChevronDown size={16} /></>
           )}
         </button>
       )}
@@ -180,23 +182,23 @@ export default function AchievementList({ achievements, allAchievements }) {
 }
 
 /**
- * AchievementCard - Thẻ huy hiệu game hoá với màu sắc đa dạng
- * Mobile: click để mở modal, Desktop: hover để hiện tooltip
+ * AchievementCard - Gamified badge card with diverse colors
+ * Mobile: click to open modal, Desktop: hover to show tooltip
  */
-function AchievementCard({ achievement, colorIndex = 0, idx = 0 }) {
+function AchievementCard({ achievement, colorIndex = 0, idx = 0, t }) {
   const [showModal, setShowModal] = useState(false);
   const color = COLORS[colorIndex % COLORS.length];
   const unlocked = isUnlocked(achievement);
 
-  // Progress cho locked
+  // Progress for locked
   const progressPercent = achievement.target > 0
     ? Math.round(((achievement.progress || 0) / achievement.target) * 100)
     : 0;
 
-  // Mô tả chi tiết
+  // Detailed description
   const description = achievement.description || achievement.hint || '';
 
-  // Đóng modal khi click outside
+  // Close modal when clicking outside
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) setShowModal(false);
   };
@@ -227,21 +229,21 @@ function AchievementCard({ achievement, colorIndex = 0, idx = 0 }) {
         </span>
       </div>
 
-      {/* Tên huy hiệu */}
+      {/* Badge name */}
       <h4 className={`font-bold text-xs sm:text-sm text-center leading-tight ${
         unlocked ? color.text : 'text-gray-400'
       }`}>
         {achievement.name}
       </h4>
 
-      {/* Ngày đạt cho unlocked */}
+      {/* Unlock date for unlocked */}
       {unlocked && achievement.unlockedAt && (
         <p className="text-[10px] text-gray-400 mt-1">
-          {formatTimeAgo(new Date(achievement.unlockedAt))}
+          {formatTimeAgo(new Date(achievement.unlockedAt), t)}
         </p>
       )}
 
-      {/* Mô tả + Progress cho locked */}
+      {/* Description + Progress for locked */}
       {!unlocked && (
         <>
           {description && (
@@ -266,7 +268,7 @@ function AchievementCard({ achievement, colorIndex = 0, idx = 0 }) {
       )}
       </div>
 
-      {/* Modal hiển thị chi tiết - hoạt động tốt trên mọi thiết bị */}
+      {/* Modal showing detail - works well on all devices */}
       {showModal && description && (
         <div
           className="fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4"
@@ -281,7 +283,7 @@ function AchievementCard({ achievement, colorIndex = 0, idx = 0 }) {
               <h3 className="font-bold text-white text-lg drop-shadow-sm">{achievement.name}</h3>
               {unlocked && achievement.unlockedAt && (
                 <p className="text-white/80 text-xs mt-1">
-                  Đạt được {formatTimeAgo(new Date(achievement.unlockedAt))}
+                  {t('dashboard.badges.achievedOn')} {formatTimeAgo(new Date(achievement.unlockedAt), t)}
                 </p>
               )}
             </div>
@@ -291,7 +293,7 @@ function AchievementCard({ achievement, colorIndex = 0, idx = 0 }) {
               {!unlocked && achievement.target > 0 && (
                 <div className="mt-4">
                   <div className="flex justify-between text-sm text-gray-500 mb-2">
-                    <span>Tiến độ</span>
+                    <span>{t('dashboard.badges.progress')}</span>
                     <span className="font-bold">{achievement.progress || 0}/{achievement.target}</span>
                   </div>
                   <div className="h-2.5 bg-gray-200 rounded-full overflow-hidden">
@@ -312,7 +314,7 @@ function AchievementCard({ achievement, colorIndex = 0, idx = 0 }) {
                 }}
                 className={`w-full py-2.5 rounded-xl font-bold text-white bg-gradient-to-r ${unlocked ? color.bg : 'from-gray-400 to-gray-500'} hover:opacity-90 transition-opacity`}
               >
-                Đóng
+                {t('dashboard.badges.close')}
               </button>
             </div>
           </div>
@@ -323,14 +325,14 @@ function AchievementCard({ achievement, colorIndex = 0, idx = 0 }) {
 }
 
 // Helper format time
-function formatTimeAgo(date) {
+function formatTimeAgo(date, t) {
   const now = new Date();
   const diff = now - date;
   const days = Math.floor(diff / 86400000);
 
-  if (days === 0) return 'Hôm nay';
-  if (days === 1) return 'Hôm qua';
-  if (days < 7) return `${days} ngày trước`;
-  if (days < 30) return `${Math.floor(days/7)} tuần trước`;
+  if (days === 0) return t('dashboard.badges.time.today');
+  if (days === 1) return t('dashboard.badges.time.yesterday');
+  if (days < 7) return `${days} ${t('dashboard.badges.time.daysAgo')}`;
+  if (days < 30) return `${Math.floor(days/7)} ${t('dashboard.badges.time.weeksAgo')}`;
   return date.toLocaleDateString('vi-VN');
 }

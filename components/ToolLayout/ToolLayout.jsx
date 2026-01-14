@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useCallback, useEffect, useRef, createContext, useContext } from 'react';
-import Link from 'next/link';
+import { LocalizedLink } from '@/components/LocalizedLink';
 import Logo from '@/components/Logo/Logo';
 import BrandWatermark from '@/components/BrandWatermark/BrandWatermark';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 // Context để chia sẻ hàm exitFullscreen với children
 export const FullscreenContext = createContext({
@@ -29,6 +30,7 @@ export default function ToolLayout({
   brandPosition = 'bottom-right', // Vị trí logo góc
   brandWatermarkOpacity = 0.05, // Độ mờ watermark
 }) {
+  const { t } = useI18n();
   const [isFullscreen, setIsFullscreen] = useState(false);
   const containerRef = useRef(null);
 
@@ -103,7 +105,7 @@ export default function ToolLayout({
             <div className="flex items-center justify-between gap-2">
               {/* Left: Back button & Logo */}
               <div className="flex items-center gap-2 sm:gap-3">
-                <Link 
+                <LocalizedLink 
                   href="/tool"
                   className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-2 text-gray-600 hover:text-violet-600 
                     hover:bg-violet-50 rounded-lg transition-all min-h-[44px]"
@@ -111,24 +113,24 @@ export default function ToolLayout({
                   <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
-                  <span className="hidden sm:inline text-sm lg:text-base">Quay lại</span>
-                </Link>
+                  <span className="hidden sm:inline text-sm lg:text-base">{t('toolLayout.back')}</span>
+                </LocalizedLink>
                 
                 <div className="hidden md:block w-px h-6 bg-gray-200" />
                 
-                <Link href="/" className="hidden md:flex items-center">
+                <LocalizedLink href="/" className="hidden md:flex items-center">
                   <Logo size="sm" showText={true} />
-                </Link>
+                </LocalizedLink>
               </div>
 
               {/* Center: Tool name with link to toolbox */}
-              <Link href="/tool" className="flex items-center gap-1.5 sm:gap-2 hover:opacity-80 transition-opacity min-w-0">
+              <LocalizedLink href="/tool" className="flex items-center gap-1.5 sm:gap-2 hover:opacity-80 transition-opacity min-w-0">
                 <span className="text-xl sm:text-2xl lg:text-3xl flex-shrink-0">{toolIcon}</span>
                 <div className="flex flex-col items-start min-w-0">
-                  <span className="text-[9px] sm:text-[10px] lg:text-xs text-violet-500 font-medium -mb-0.5 hidden sm:block">Toolbox Giáo Viên</span>
+                  <span className="text-[9px] sm:text-[10px] lg:text-xs text-violet-500 font-medium -mb-0.5 hidden sm:block">{t('toolLayout.teacherToolbox')}</span>
                   <h1 className="text-sm sm:text-lg lg:text-xl font-bold text-gray-800 truncate">{toolName}</h1>
                 </div>
-              </Link>
+              </LocalizedLink>
 
               {/* Right: Fullscreen button */}
               {!hideFullscreenButton && (
@@ -136,7 +138,7 @@ export default function ToolLayout({
                   onClick={toggleFullscreen}
                   className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-2 text-gray-600 hover:text-violet-600 
                     hover:bg-violet-50 rounded-lg transition-all min-h-[44px] min-w-[44px] justify-center"
-                  title="Toàn màn hình - Nhấn ESC để thoát"
+                  title={t('toolLayout.fullscreenTitle')}
                 >
                   <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     {isFullscreen ? (
@@ -148,7 +150,7 @@ export default function ToolLayout({
                     )}
                   </svg>
                   <span className="hidden lg:inline text-sm">
-                    {isFullscreen ? 'Thoát (ESC)' : 'Toàn màn hình'}
+                    {isFullscreen ? t('toolLayout.exitEsc') : t('toolLayout.fullscreen')}
                   </span>
                 </button>
               )}
@@ -158,7 +160,7 @@ export default function ToolLayout({
             {/* Fullscreen hint for teachers - hide on mobile */}
             <div className="mt-1.5 sm:mt-2 text-center hidden sm:block">
               <p className="text-[10px] sm:text-xs text-gray-400">
-                💡 Bấm <kbd className="px-1 sm:px-1.5 py-0.5 bg-gray-100 rounded text-gray-600 font-mono text-[10px] sm:text-xs">Toàn màn hình</kbd> để hiển thị to hơn
+                💡 {t('toolLayout.fullscreenHintPrefix')} <kbd className="px-1 sm:px-1.5 py-0.5 bg-gray-100 rounded text-gray-600 font-mono text-[10px] sm:text-xs">{t('toolLayout.fullscreen')}</kbd> {t('toolLayout.fullscreenHintSuffix')}
               </p>
             </div>
           </div>
@@ -179,7 +181,7 @@ export default function ToolLayout({
           <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-2 
             px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/80 text-xs sm:text-sm">
             <kbd className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-white/20 rounded font-mono font-bold">ESC</kbd>
-            <span>để thoát</span>
+            <span>{t('toolLayout.toExit')}</span>
           </div>
           
           {/* Right: Exit button */}
@@ -192,7 +194,7 @@ export default function ToolLayout({
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
                 d="M6 18L18 6M6 6l12 12" />
             </svg>
-            <span className="text-sm font-medium hidden sm:inline">Thoát</span>
+            <span className="text-sm font-medium hidden sm:inline">{t('toolLayout.exit')}</span>
           </button>
         </div>
       )}
@@ -215,9 +217,9 @@ export default function ToolLayout({
       {!isFullscreen && (
         <footer className="border-t border-gray-100 bg-white/50 py-4 sm:py-6 mt-auto">
           <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
-            <Link href="/" className="flex items-center">
+            <LocalizedLink href="/" className="flex items-center">
               <Logo size="sm" showText={true} />
-            </Link>
+            </LocalizedLink>
             <div className="hidden sm:block w-px h-5 bg-gray-300" />
             <p className="text-xs sm:text-sm text-gray-500 text-center">
               © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban

@@ -1,4 +1,10 @@
+'use client';
+
+import { useI18n } from '@/lib/i18n/I18nContext';
+
 export default function Loading() {
+  const { t } = useI18n();
+  
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex items-center justify-center">
       <div className="text-center">
@@ -15,7 +21,7 @@ export default function Loading() {
           </div>
         </div>
         <p className="text-purple-600 font-medium animate-pulse">
-          Đang tải...
+          {t('common.loading')}
         </p>
       </div>
     </div>

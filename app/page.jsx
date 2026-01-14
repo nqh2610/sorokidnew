@@ -12,10 +12,17 @@
  * - Semantic HTML (header, main, section, footer)
  * - Proper heading hierarchy (h1 > h2 > h3)
  * 
+ * I18N:
+ * - Sử dụng component <T> cho text đa ngôn ngữ
+ * - Text được render client-side nhưng structure HTML vẫn static
+ * - SEO vẫn tốt vì Next.js hydration
+ * 
  * PROCESS COUNT: 0 (sau khi build)
  */
 import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink/LocalizedLink';
 import dynamicImport from 'next/dynamic';
+import T from '@/components/T';
 
 // ============ STATIC GENERATION CONFIG ============
 // Revalidate mỗi 1 giờ (3600 giây)
@@ -40,10 +47,10 @@ function BlogSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-10">
           <h2 id="blog-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
-            <span aria-hidden="true">📚</span> Chia sẻ cho phụ huynh
+            <span aria-hidden="true">📚</span> <T k="home.blog.title" />
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Kinh nghiệm thực tế giúp ba mẹ đồng hành cùng con học toán – nhẹ nhàng, hiệu quả
+            <T k="home.blog.description" />
           </p>
         </div>
 
@@ -71,7 +78,7 @@ function BlogSection() {
                 <div className="flex items-center gap-3 text-xs text-gray-500">
                   <span>{formatDate(post.publishedAt)}</span>
                   <span>•</span>
-                  <span>{post.readingTime || calculateReadingTime(post.content?.intro)} phút</span>
+                  <span>{post.readingTime || calculateReadingTime(post.content?.intro)} <T k="common.minutes" /></span>
                 </div>
               </div>
             </Link>
@@ -83,7 +90,7 @@ function BlogSection() {
             href="/blog"
             className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-50 hover:border-gray-300 transition-all"
           >
-            Xem tất cả bài viết
+            <T k="home.blog.viewAll" />
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
@@ -841,71 +848,20 @@ const SorobanBoard = dynamicImport(
   }
 );
 
-// Static data - không thay đổi
+// Static data - i18n keys for translations
 const features = [
-  {
-    icon: <Gamepad2 className="w-8 h-8" />,
-    title: "Học như chơi game",
-    description: "Điểm thưởng, sao, kim cương... khiến việc luyện tính nhẩm thú vị như chơi game yêu thích!",
-    color: "from-blue-500 to-violet-500",
-    emoji: "🎮"
-  },
-  {
-    icon: <BookOpen className="w-8 h-8" />,
-    title: "Bài học sinh động",
-    description: "Từ cơ bản đến nâng cao theo phương pháp Soroban Nhật Bản. Dễ hiểu, dễ nhớ, dễ áp dụng.",
-    color: "from-violet-500 to-purple-500",
-    emoji: "📚"
-  },
-  {
-    icon: <Zap className="w-8 h-8" />,
-    title: "Phản xạ nhanh hơn",
-    description: "Bài tập đa dạng giúp bé tính toán nhanh và chính xác hơn mỗi ngày. Kết quả thấy rõ sau 2 tuần!",
-    color: "from-amber-500 to-orange-500",
-    emoji: "⚡"
-  },
-  {
-    icon: <Trophy className="w-8 h-8" />,
-    title: "Thi đua vui vẻ",
-    description: "Bảng xếp hạng, giải đấu với bạn bè. Động lực học tập tăng vọt khi có đối thủ!",
-    color: "from-yellow-500 to-amber-500",
-    emoji: "🏆"
-  },
-  {
-    icon: <Target className="w-8 h-8" />,
-    title: "Nhiệm vụ mỗi ngày",
-    description: "Quest hằng ngày giúp bé duy trì thói quen tự học. Hoàn thành = nhận thưởng!",
-    color: "from-pink-500 to-rose-500",
-    emoji: "🎯"
-  },
-  {
-    icon: <BarChart3 className="w-8 h-8" />,
-    title: "Báo cáo chi tiết",
-    description: "Ba mẹ nắm rõ con học đến đâu: tốc độ, độ chính xác, thời gian học mỗi ngày.",
-    color: "from-cyan-500 to-blue-500",
-    emoji: "📊"
-  }
+  { icon: <Gamepad2 className="w-8 h-8" />, titleKey: "home.features.gameified.title", descKey: "home.features.gameified.description", color: "from-blue-500 to-violet-500", emoji: "🎮" },
+  { icon: <BookOpen className="w-8 h-8" />, titleKey: "home.features.lessons.title", descKey: "home.features.lessons.description", color: "from-violet-500 to-purple-500", emoji: "📚" },
+  { icon: <Zap className="w-8 h-8" />, titleKey: "home.features.speed.title", descKey: "home.features.speed.description", color: "from-amber-500 to-orange-500", emoji: "⚡" },
+  { icon: <Trophy className="w-8 h-8" />, titleKey: "home.features.compete.title", descKey: "home.features.compete.description", color: "from-yellow-500 to-amber-500", emoji: "🏆" },
+  { icon: <Target className="w-8 h-8" />, titleKey: "home.features.quest.title", descKey: "home.features.quest.description", color: "from-pink-500 to-rose-500", emoji: "🎯" },
+  { icon: <BarChart3 className="w-8 h-8" />, titleKey: "home.features.report.title", descKey: "home.features.report.description", color: "from-cyan-500 to-blue-500", emoji: "📊" }
 ];
 
 const userTypes = [
-  {
-    title: "Học sinh 6-12 tuổi",
-    description: "Học qua game thú vị, nhận thưởng khi hoàn thành bài, thi đua cùng bạn bè. Tự tin giơ tay phát biểu!",
-    color: "bg-gradient-to-br from-blue-500 to-violet-500",
-    emoji: "👦"
-  },
-  {
-    title: "Phụ huynh", 
-    description: "Công cụ kèm con tự học tại nhà hiệu quả. Biết con tiến bộ từng ngày, không cần đưa đón đi học thêm.",
-    color: "bg-gradient-to-br from-violet-500 to-purple-500",
-    emoji: "👨‍👩‍👧"
-  },
-  {
-    title: "Giáo viên",
-    description: "Công cụ dạy học hiện đại, giao bài - chấm điểm tự động. Cá nhân hóa theo năng lực từng học sinh.",
-    color: "bg-gradient-to-br from-pink-500 to-rose-500",
-    emoji: "👩‍🏫"
-  }
+  { titleKey: "home.userTypes.student.title", descKey: "home.userTypes.student.desc", color: "bg-gradient-to-br from-blue-500 to-violet-500", emoji: "👦" },
+  { titleKey: "home.userTypes.parent.title", descKey: "home.userTypes.parent.desc", color: "bg-gradient-to-br from-violet-500 to-purple-500", emoji: "👨‍👩‍👧" },
+  { titleKey: "home.userTypes.teacher.title", descKey: "home.userTypes.teacher.desc", color: "bg-gradient-to-br from-pink-500 to-rose-500", emoji: "👩‍🏫" }
 ];
 
 export default function HomePage() {
@@ -932,34 +888,34 @@ export default function HomePage() {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm mb-6">
                 <Sparkles className="w-4 h-4 text-amber-500" aria-hidden="true" />
-                <span className="text-sm font-medium text-gray-600">Phương pháp Soroban từ Nhật Bản</span>
-                <span className="w-6 h-4 bg-white border border-gray-300 rounded flex items-center justify-center shadow-sm" aria-label="Cờ Nhật Bản" role="img">
+                <span className="text-sm font-medium text-gray-600"><T k="home.badge" /></span>
+                <span className="w-6 h-4 bg-white border border-gray-300 rounded flex items-center justify-center shadow-sm" aria-label="Japan Flag" role="img">
                   <span className="w-3 h-3 bg-red-600 rounded-full"></span>
                 </span>
               </div>
               
               <h1 id="hero-heading" className="font-black mb-4 sm:mb-6">
                 <span className="block text-2xl sm:text-4xl lg:text-6xl leading-tight pb-1 text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-violet-500">
-                  Toán tư duy
+                  <T k="home.hero.title1" />
                 </span>
                 <span className="block text-2xl sm:text-4xl lg:text-6xl leading-tight pt-2 text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-pink-500">
-                  Tính nhẩm siêu nhanh
+                  <T k="home.hero.title2" />
                 </span>
                 <span className="block text-lg sm:text-2xl lg:text-3xl mt-2 text-gray-800 font-bold">
-                  Học mà chơi, chơi mà học!
+                  <T k="home.hero.title3" />
                 </span>
               </h1>
 
               <p className="text-base sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
-                Ứng dụng học toán Soroban dành cho học sinh tiểu học.
-                <strong className="text-violet-600"> Từ sợ toán thành yêu toán chỉ sau vài tuần!</strong>
+                <T k="home.hero.appDesc" />
+                <strong className="text-violet-600"> <T k="home.hero.highlight" /></strong>
               </p>
 
             <div className="flex justify-center mb-8 px-4">
-              <Link href="/register" className="group px-8 py-4 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white rounded-full text-lg font-bold shadow-xl hover:shadow-violet-500/30 transform hover:scale-105 transition-all flex items-center justify-center gap-2">
+              <LocalizedLink href="/register" className="group px-8 py-4 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white rounded-full text-lg font-bold shadow-xl hover:shadow-violet-500/30 transform hover:scale-105 transition-all flex items-center justify-center gap-2">
                 <Sparkles className="w-5 h-5" />
-                Đăng ký ngay
-              </Link>
+                <T k="home.hero.cta" />
+              </LocalizedLink>
             </div>
 
             {/* 📱 Banner cài app - chỉ hiện trên điện thoại */}
@@ -970,14 +926,14 @@ export default function HomePage() {
             {/* Benefits badges - Điểm khác biệt của Sorokid */}
             <div className="flex flex-wrap justify-center gap-3 px-4">
               {[
-                { icon: "👨‍👩‍👧", text: "Ba mẹ dễ dàng kèm con" },
-                { icon: "🎮", text: "Vui như chơi game" },
-                { icon: "⏰", text: "Linh hoạt thời gian" },
-                { icon: "📈", text: "Thấy rõ tiến bộ từng ngày" }
+                { icon: "👨‍👩‍👧", textKey: "home.hero.benefit1" },
+                { icon: "🎮", textKey: "home.hero.benefit2" },
+                { icon: "⏰", textKey: "home.hero.benefit3" },
+                { icon: "📈", textKey: "home.hero.benefit4" }
               ].map((benefit, index) => (
                 <div key={index} className="flex items-center gap-2 bg-white/80 backdrop-blur px-3 py-1.5 rounded-full shadow-sm">
                   <span>{benefit.icon}</span>
-                  <span className="text-sm font-medium text-gray-700">{benefit.text}</span>
+                  <span className="text-sm font-medium text-gray-700"><T k={benefit.textKey} /></span>
                 </div>
               ))}
             </div>
@@ -989,11 +945,10 @@ export default function HomePage() {
               {/* Header */}
               <div className="text-center mb-10">
                 <h2 id="soroban-benefits-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-3">
-                  Soroban là gì?
+                  <T k="home.soroban.title" />
                 </h2>
                 <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-                  Soroban là <strong className="text-violet-600">bàn tính Nhật Bản</strong> được hơn 400 năm lịch sử.
-                  Trẻ học Soroban sẽ hình dung bàn tính trong đầu và tính nhẩm <strong className="text-violet-600">nhanh như máy tính</strong> mà không cần giấy bút.
+                  <T k="home.soroban.desc" />
                 </p>
               </div>
 
@@ -1004,8 +959,8 @@ export default function HomePage() {
                   <div className="w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-3 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
                     <span className="text-2xl sm:text-3xl">🧠</span>
                   </div>
-                  <h3 className="text-sm sm:text-base font-bold text-gray-800 mb-2">Phát triển não bộ</h3>
-                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">Kích hoạt cả não trái (logic) và não phải (hình ảnh)</p>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-800 mb-2"><T k="home.soroban.benefit1Title" /></h3>
+                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed"><T k="home.soroban.benefit1Desc" /></p>
                 </div>
 
                 {/* Benefit 2 */}
@@ -1013,8 +968,8 @@ export default function HomePage() {
                   <div className="w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-3 rounded-full bg-gradient-to-br from-violet-400 to-violet-600 flex items-center justify-center">
                     <span className="text-2xl sm:text-3xl">⚡</span>
                   </div>
-                  <h3 className="text-sm sm:text-base font-bold text-gray-800 mb-2">Tính nhẩm siêu nhanh</h3>
-                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">Cộng trừ 2-3 chữ số trong vài giây, không cần giấy bút</p>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-800 mb-2"><T k="home.soroban.benefit2Title" /></h3>
+                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed"><T k="home.soroban.benefit2Desc" /></p>
                 </div>
 
                 {/* Benefit 3 */}
@@ -1022,8 +977,8 @@ export default function HomePage() {
                   <div className="w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-3 rounded-full bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center">
                     <span className="text-2xl sm:text-3xl">🎯</span>
                   </div>
-                  <h3 className="text-sm sm:text-base font-bold text-gray-800 mb-2">Rèn tập trung</h3>
-                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">Chú ý từng bước, áp dụng vào mọi môn học</p>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-800 mb-2"><T k="home.soroban.benefit3Title" /></h3>
+                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed"><T k="home.soroban.benefit3Desc" /></p>
                 </div>
 
                 {/* Benefit 4 */}
@@ -1031,28 +986,28 @@ export default function HomePage() {
                   <div className="w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-3 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center">
                     <span className="text-2xl sm:text-3xl">🌏</span>
                   </div>
-                  <h3 className="text-sm sm:text-base font-bold text-gray-800 mb-2">Phương pháp toàn cầu</h3>
-                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">Phổ biến tại Nhật, Hàn, Trung Quốc, Malaysia...</p>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-800 mb-2"><T k="home.soroban.benefit4Title" /></h3>
+                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed"><T k="home.soroban.benefit4Desc" /></p>
                 </div>
               </div>
 
               {/* Why Sorokid Banner */}
               <div className="bg-gradient-to-r from-violet-500 via-purple-500 to-pink-500 rounded-2xl p-5 sm:p-6 shadow-lg">
                 <div className="text-center mb-4">
-                  <h3 className="font-bold text-lg sm:text-xl text-white mb-2">✨ Tại sao chọn Sorokid?</h3>
+                  <h3 className="font-bold text-lg sm:text-xl text-white mb-2">✨ <T k="home.soroban.whyTitle" /></h3>
                   <p className="text-white/90 text-sm sm:text-base">
-                    <strong>Phụ huynh không cần biết Soroban</strong> vẫn kèm con học được!
+                    <strong><T k="home.soroban.whySubtitle" /></strong>
                   </p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 max-w-4xl mx-auto">
                   <span className="inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm bg-white/20 text-white px-3 py-2 rounded-full text-center">
-                    <span>✓</span> Hướng dẫn từng bước bằng hình ảnh
+                    <span>✓</span> <T k="home.soroban.why1" />
                   </span>
                   <span className="inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm bg-white/20 text-white px-3 py-2 rounded-full text-center">
-                    <span>✓</span> Game hóa - con tự giác học
+                    <span>✓</span> <T k="home.soroban.why2" />
                   </span>
                   <span className="inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm bg-white/20 text-white px-3 py-2 rounded-full text-center">
-                    <span>✓</span> Theo dõi: chăm chỉ, tốc độ, chính xác
+                    <span>✓</span> <T k="home.soroban.why3" />
                   </span>
                 </div>
               </div>
@@ -1063,9 +1018,9 @@ export default function HomePage() {
             <div className="max-w-4xl mx-auto pt-12 sm:pt-16" role="region" aria-labelledby="soroban-demo-heading">
               <div className="text-center mb-6">
                 <h2 id="soroban-demo-heading" className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
-                  <span aria-hidden="true">🧮</span> Thử ngay bàn tính ảo!
+                  <span aria-hidden="true">🧮</span> <T k="home.soroban.demoTitle" />
                 </h2>
-                <p className="text-gray-600">Click vào các hạt để di chuyển lên/xuống</p>
+                <p className="text-gray-600"><T k="home.soroban.demoDesc" /></p>
               </div>
             
             {/* Soroban Demo - Full 9 cột cho cả mobile và desktop */}
@@ -1083,10 +1038,10 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12">
               <h2 id="features-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
-                <span aria-hidden="true">✨</span> Tại sao trẻ thích học cùng Sorokid?
+                <span aria-hidden="true">✨</span> <T k="home.features.title" />
               </h2>
               <p className="text-gray-600 text-base sm:text-lg max-w-3xl mx-auto">
-                Sorokid được thiết kế đặc biệt cho học sinh tiểu học với giao diện đơn giản, bắt mắt
+                <T k="home.features.subtitle" />
               </p>
             </div>
 
@@ -1098,9 +1053,9 @@ export default function HomePage() {
                   </div>
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-xl sm:text-2xl" aria-hidden="true">{feature.emoji}</span>
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-800">{feature.title}</h3>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-800"><T k={feature.titleKey} /></h3>
                   </div>
-                  <p className="text-sm sm:text-base text-gray-600">{feature.description}</p>
+                  <p className="text-sm sm:text-base text-gray-600"><T k={feature.descKey} /></p>
                 </article>
               ))}
             </div>
@@ -1112,17 +1067,17 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12">
               <h2 id="roadmap-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
-                <span aria-hidden="true">📈</span> Lộ trình học tập khoa học
+                <span aria-hidden="true">📈</span> <T k="home.roadmap.title" />
               </h2>
-              <p className="text-gray-600 text-lg">Từ chưa biết gì đến tính nhẩm nhanh như máy tính!</p>
+              <p className="text-gray-600 text-lg"><T k="home.roadmap.subtitle" /></p>
             </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { step: "1", title: "Học lý thuyết", desc: "Làm quen với bàn tính Soroban qua bài học sinh động", icon: "📖", color: "bg-blue-500" },
-              { step: "2", title: "Thực hành", desc: "Luyện tập với bài tập từ dễ đến khó", icon: "✍️", color: "bg-violet-500" },
-              { step: "3", title: "Luyện tập", desc: "Tăng tốc độ và độ chính xác qua các bài luyện", icon: "🏃", color: "bg-pink-500" },
-              { step: "4", title: "Thi đấu", desc: "Thử thách bản thân, xếp hạng cùng bạn bè", icon: "🏆", color: "bg-amber-500" }
+              { step: "1", titleKey: "home.roadmap.step1", descKey: "home.roadmap.step1Desc", icon: "📖", color: "bg-blue-500" },
+              { step: "2", titleKey: "home.roadmap.step2", descKey: "home.roadmap.step2Desc", icon: "✍️", color: "bg-violet-500" },
+              { step: "3", titleKey: "home.roadmap.step3", descKey: "home.roadmap.step3Desc", icon: "🏃", color: "bg-pink-500" },
+              { step: "4", titleKey: "home.roadmap.step4", descKey: "home.roadmap.step4Desc", icon: "🏆", color: "bg-amber-500" }
             ].map((item, index) => (
               <div key={index} className="relative">
                 <div className="bg-white rounded-2xl p-6 shadow-lg text-center h-full">
@@ -1130,8 +1085,8 @@ export default function HomePage() {
                     {item.step}
                   </div>
                   <div className="text-3xl mb-3">{item.icon}</div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">{item.title}</h3>
-                  <p className="text-gray-600 text-sm">{item.desc}</p>
+                  <h3 className="text-lg font-bold text-gray-800 mb-2"><T k={item.titleKey} /></h3>
+                  <p className="text-gray-600 text-sm"><T k={item.descKey} /></p>
                 </div>
                 {index < 3 && (
                   <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 text-gray-300 text-2xl">→</div>
@@ -1148,24 +1103,24 @@ export default function HomePage() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 id="progress-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-6 lg:whitespace-nowrap">
-                  <span aria-hidden="true">📊</span> Phụ huynh yên tâm theo dõi con
+                  <span aria-hidden="true">📊</span> <T k="home.progress.title" />
                 </h2>
               <p className="text-gray-600 text-lg mb-8">
-                Hệ thống tự động đánh giá và đo lường sự tiến bộ của học sinh qua từng bài học.
+                <T k="home.progress.subtitle" />
               </p>
               
               <div className="space-y-4">
                 {[
-                  { icon: <Clock className="w-6 h-6" />, label: "Tốc độ tính toán", desc: "Đo thời gian hoàn thành mỗi bài", color: "text-blue-500" },
-                  { icon: <Target className="w-6 h-6" />, label: "Độ chính xác", desc: "Tỷ lệ trả lời đúng", color: "text-violet-500" },
-                  { icon: <TrendingUp className="w-6 h-6" />, label: "Tính chăm chỉ", desc: "Số ngày học liên tiếp (streak)", color: "text-pink-500" },
-                  { icon: <Award className="w-6 h-6" />, label: "Thành tích", desc: "Huy hiệu, level, điểm kinh nghiệm", color: "text-amber-500" }
+                  { icon: <Clock className="w-6 h-6" />, labelKey: "home.progress.speed", descKey: "home.progress.speedDesc", color: "text-blue-500" },
+                  { icon: <Target className="w-6 h-6" />, labelKey: "home.progress.accuracy", descKey: "home.progress.accuracyDesc", color: "text-violet-500" },
+                  { icon: <TrendingUp className="w-6 h-6" />, labelKey: "home.progress.diligence", descKey: "home.progress.diligenceDesc", color: "text-pink-500" },
+                  { icon: <Award className="w-6 h-6" />, labelKey: "home.progress.achievement", descKey: "home.progress.achievementDesc", color: "text-amber-500" }
                 ].map((item, index) => (
                   <div key={index} className="flex items-start gap-4 bg-gray-50 rounded-xl p-4">
                     <div className={`${item.color} bg-white rounded-lg p-2 shadow-sm`}>{item.icon}</div>
                     <div>
-                      <div className="font-bold text-gray-800">{item.label}</div>
-                      <div className="text-gray-600 text-sm">{item.desc}</div>
+                      <div className="font-bold text-gray-800"><T k={item.labelKey} /></div>
+                      <div className="text-gray-600 text-sm"><T k={item.descKey} /></div>
                     </div>
                   </div>
                 ))}
@@ -1173,18 +1128,18 @@ export default function HomePage() {
             </div>
             
             <div className="bg-gradient-to-br from-blue-500 via-violet-500 to-pink-500 rounded-3xl p-8 text-white">
-              <h3 className="text-2xl font-bold mb-6">🎁 Hệ thống phần thưởng</h3>
+              <h3 className="text-2xl font-bold mb-6">🎁 <T k="home.progress.rewardTitle" /></h3>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { icon: "⭐", label: "Sao", desc: "Nhận khi hoàn thành bài học" },
-                  { icon: "💎", label: "Kim cương", desc: "Phần thưởng đặc biệt" },
-                  { icon: "🏅", label: "Huy hiệu", desc: "Đạt thành tích nổi bật" },
-                  { icon: "🎖️", label: "Cấp bậc", desc: "Thăng cấp khi tích điểm" }
+                  { icon: "⭐", labelKey: "home.progress.star", descKey: "home.progress.starDesc" },
+                  { icon: "💎", labelKey: "home.progress.diamond", descKey: "home.progress.diamondDesc" },
+                  { icon: "🏅", labelKey: "home.progress.badge", descKey: "home.progress.badgeDesc" },
+                  { icon: "🎖️", labelKey: "home.progress.rank", descKey: "home.progress.rankDesc" }
                 ].map((item, index) => (
                   <div key={index} className="bg-white/20 backdrop-blur rounded-xl p-4 text-center">
                     <div className="text-3xl mb-2">{item.icon}</div>
-                    <div className="font-bold">{item.label}</div>
-                    <div className="text-xs text-white/80">{item.desc}</div>
+                    <div className="font-bold"><T k={item.labelKey} /></div>
+                    <div className="text-xs text-white/80"><T k={item.descKey} /></div>
                   </div>
                 ))}
               </div>
@@ -1198,9 +1153,9 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12">
               <h2 id="users-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
-                <span aria-hidden="true">👥</span> Ai nên dùng Sorokid?
+                <span aria-hidden="true">👥</span> <T k="home.userTypes.title" />
               </h2>
-              <p className="text-gray-600 text-lg">Phù hợp với mọi người muốn con giỏi toán tư duy</p>
+              <p className="text-gray-600 text-lg"><T k="home.userTypes.subtitle" /></p>
             </div>
 
           <div className="grid sm:grid-cols-3 gap-6">
@@ -1208,10 +1163,10 @@ export default function HomePage() {
               <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all">
                 <div className={`${type.color} p-6 text-white text-center`}>
                   <div className="text-5xl mb-2">{type.emoji}</div>
-                  <h3 className="text-xl font-bold">{type.title}</h3>
+                  <h3 className="text-xl font-bold"><T k={type.titleKey} /></h3>
                 </div>
                 <div className="p-6">
-                  <p className="text-gray-600">{type.description}</p>
+                  <p className="text-gray-600"><T k={type.descKey} /></p>
                 </div>
               </div>
             ))}
@@ -1224,22 +1179,22 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12">
               <h2 id="highlights-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
-                <span aria-hidden="true">😊</span> Con học vui, ba mẹ an tâm
+                <span aria-hidden="true">😊</span> <T k="home.highlights.title" />
               </h2>
-              <p className="text-gray-600 text-lg">Thiết kế để bé yêu thích học mỗi ngày</p>
+              <p className="text-gray-600 text-lg"><T k="home.highlights.subtitle" /></p>
             </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: "🎨", title: "Giao diện bắt mắt", desc: "Màu sắc tươi sáng, dễ thương - bé thích ngay từ cái nhìn đầu tiên" },
-              { icon: "📱", title: "Học mọi lúc mọi nơi", desc: "Điện thoại, máy tính bảng, laptop - thiết bị nào cũng được" },
-              { icon: "🧮", title: "Bàn tính ảo tích hợp", desc: "Bàn tính có sẵn trong ứng dụng, bé mở lên là tập được ngay" },
-              { icon: "🏠", title: "Học ngay tại nhà", desc: "Con học thoải mái trong không gian quen thuộc của gia đình" }
+              { icon: "🎨", titleKey: "home.highlights.design", descKey: "home.highlights.designDesc" },
+              { icon: "📱", titleKey: "home.highlights.anywhere", descKey: "home.highlights.anywhereDesc" },
+              { icon: "🧮", titleKey: "home.highlights.virtual", descKey: "home.highlights.virtualDesc" },
+              { icon: "🏠", titleKey: "home.highlights.athome", descKey: "home.highlights.athomeDesc" }
             ].map((item, index) => (
               <div key={index} className="text-center p-6 bg-gray-50 rounded-2xl hover:bg-violet-50 transition-colors">
                 <div className="text-4xl mb-4">{item.icon}</div>
-                <h3 className="font-bold text-gray-800 mb-2">{item.title}</h3>
-                <p className="text-gray-600 text-sm">{item.desc}</p>
+                <h3 className="font-bold text-gray-800 mb-2"><T k={item.titleKey} /></h3>
+                <p className="text-gray-600 text-sm"><T k={item.descKey} /></p>
               </div>
             ))}
           </div>
@@ -1253,18 +1208,18 @@ export default function HomePage() {
         <section className="py-12 sm:py-20 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500" aria-labelledby="cta-heading">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center text-white">
             <h2 id="cta-heading" className="text-xl sm:text-3xl lg:text-4xl font-black mb-4 sm:mb-6">
-              <span aria-hidden="true">🚀</span> Chỉ 15 phút mỗi ngày - Thần đồng tính nhẩm trong tầm tay!
+              <span aria-hidden="true">🚀</span> <T k="home.finalCta.title" />
             </h2>
             <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
-              Hơn 10.000 học sinh đã tính nhẩm nhanh hơn sau 3 tháng. Sẵn sàng cho con bạn chưa?
+              <T k="home.finalCta.subtitle" />
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-              <Link href="/register" className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-violet-600 rounded-full text-base sm:text-lg font-bold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all" aria-label="Đăng ký học Soroban miễn phí">
-                Đăng ký miễn phí
-              </Link>
-              <Link href="/login" className="px-6 sm:px-8 py-3 sm:py-4 bg-white/20 backdrop-blur text-white rounded-full text-base sm:text-lg font-bold hover:bg-white/30 transition-all border-2 border-white/50" aria-label="Đăng nhập vào tài khoản Sorokid">
-                Đã có tài khoản? Đăng nhập
-              </Link>
+              <LocalizedLink href="/register" className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-violet-600 rounded-full text-base sm:text-lg font-bold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all" aria-label="Đăng ký học Soroban miễn phí">
+                <T k="home.finalCta.register" />
+              </LocalizedLink>
+              <LocalizedLink href="/login" className="px-6 sm:px-8 py-3 sm:py-4 bg-white/20 backdrop-blur text-white rounded-full text-base sm:text-lg font-bold hover:bg-white/30 transition-all border-2 border-white/50" aria-label="Đăng nhập vào tài khoản Sorokid">
+                <T k="home.finalCta.login" />
+              </LocalizedLink>
             </div>
           </div>
         </section>
@@ -1278,17 +1233,17 @@ export default function HomePage() {
               <div className="flex items-center gap-3">
                 <Logo size="md" />
                 <span className="text-gray-400" aria-hidden="true">|</span>
-                <span className="text-gray-400">Học toán tính nhanh vui như chơi game</span>
+                <span className="text-gray-400"><T k="footer.tagline" /></span>
               </div>
               <nav aria-label="Footer navigation">
                 <ul className="flex flex-wrap justify-center gap-6 text-gray-400">
-                  <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
-                  <li><Link href="/tool" className="hover:text-white transition-colors flex items-center gap-1">🧰 Toolbox Giáo Viên</Link></li>
+                  <li><LocalizedLink href="/blog" className="hover:text-white transition-colors">Blog</LocalizedLink></li>
+                  <li><LocalizedLink href="/tool" className="hover:text-white transition-colors flex items-center gap-1">🧰 <T k="footer.toolbox" /></LocalizedLink></li>
                 </ul>
               </nav>
             </div>
             <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-              <p>© {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban</p>
+              <p>© {new Date().getFullYear()} SoroKid - <T k="footer.copyright" /></p>
             </div>
           </div>
         </footer>

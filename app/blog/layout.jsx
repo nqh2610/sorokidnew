@@ -10,23 +10,24 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink/LocalizedLink';
 import Logo from '@/components/Logo/Logo';
 import MainNav from '@/components/MainNav/MainNav';
 import categoriesData from '@/content/blog/categories.json';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 // Load categories từ JSON file
 const categories = categoriesData.categories;
 
 // Scroll Arrow Button Component
-function ScrollArrow({ direction, onClick, visible }) {
+function ScrollArrow({ direction, onClick, visible, t }) {
   if (!visible) return null;
   
   return (
     <button
       onClick={onClick}
       className={`absolute ${direction === 'left' ? 'left-0' : 'right-0'} top-1/2 -translate-y-1/2 z-20 w-7 h-7 flex items-center justify-center bg-white/95 backdrop-blur shadow-md rounded-full border border-violet-200 text-violet-600 hover:bg-violet-50 transition-all sm:hidden`}
-      aria-label={direction === 'left' ? 'Cuộn sang trái' : 'Cuộn sang phải'}
+      aria-label={direction === 'left' ? t('blog.scrollLeft') : t('blog.scrollRight')}
     >
       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         {direction === 'left' ? (
@@ -40,6 +41,7 @@ function ScrollArrow({ direction, onClick, visible }) {
 }
 
 export default function BlogLayout({ children }) {
+  const { t } = useI18n();
   const scrollRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
@@ -76,8 +78,8 @@ export default function BlogLayout({ children }) {
       <div className="border-b border-violet-100 bg-violet-50/80">
           <div className="max-w-7xl mx-auto px-3 sm:px-6 relative">
             {/* Scroll Arrows */}
-            <ScrollArrow direction="left" onClick={() => scroll('left')} visible={showLeftArrow} />
-            <ScrollArrow direction="right" onClick={() => scroll('right')} visible={showRightArrow} />
+            <ScrollArrow direction="left" onClick={() => scroll('left')} visible={showLeftArrow} t={t} />
+            <ScrollArrow direction="right" onClick={() => scroll('right')} visible={showRightArrow} t={t} />
             
             {/* Gradient fades */}
             {showLeftArrow && <div className="absolute left-7 top-0 bottom-0 w-4 bg-gradient-to-r from-violet-50 to-transparent pointer-events-none z-10 sm:hidden" />}
@@ -87,22 +89,22 @@ export default function BlogLayout({ children }) {
               ref={scrollRef}
               onScroll={checkScroll}
               className="flex items-center gap-1 py-2.5 sm:py-3 overflow-x-auto scrollbar-hide px-1 sm:px-0" 
-              aria-label="Danh mục blog"
+              aria-label={t('blog.categories')}
             >
-              <Link 
+              <LocalizedLink 
                 href="/blog"
                 className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium text-violet-700 hover:text-violet-800 hover:bg-violet-100 rounded-full transition-all whitespace-nowrap"
               >
-                Tất cả
-              </Link>
+                {t('blog.all')}
+              </LocalizedLink>
               {categories.map((cat) => (
-                <Link 
+                <LocalizedLink 
                   key={cat.slug}
                   href={`/blog/danh-muc/${cat.slug}`}
                   className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm text-violet-600 hover:text-violet-800 hover:bg-violet-100 rounded-full transition-all whitespace-nowrap"
                 >
                   {cat.name}
-                </Link>
+                </LocalizedLink>
               ))}
             </nav>
           </div>
@@ -124,8 +126,8 @@ export default function BlogLayout({ children }) {
             </div>
             <nav aria-label="Footer navigation">
               <ul className="flex flex-wrap justify-center gap-6 text-gray-400">
-                <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
-                <li><Link href="/tool" className="hover:text-white transition-colors flex items-center gap-1">🧰 Toolbox Giáo Viên</Link></li>
+                <li><LocalizedLink href="/blog" className="hover:text-white transition-colors">Blog</LocalizedLink></li>
+                <li><LocalizedLink href="/tool" className="hover:text-white transition-colors flex items-center gap-1">🧰 Toolbox Giáo Viên</LocalizedLink></li>
               </ul>
             </nav>
           </div>

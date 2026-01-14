@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { LocalizedLink } from '@/components/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 import {
   ArrowLeft,
   User,
@@ -18,6 +19,7 @@ import {
 } from 'lucide-react';
 
 export default function EditProfilePage() {
+  const { t } = useI18n();
   const { data: session, update } = useSession();
   const router = useRouter();
   
@@ -93,11 +95,11 @@ export default function EditProfilePage() {
 
   const validateProfile = () => {
     if (!profileData.name.trim()) {
-      setError('Vui lòng nhập họ tên');
+      setError(t('editProfile.errors.nameRequired'));
       return false;
     }
     if (profileData.name.trim().length < 2) {
-      setError('Họ tên phải có ít nhất 2 ký tự');
+      setError(t('editProfile.errors.nameMinLength'));
       return false;
     }
     // Validate số điện thoại nếu có nhập
@@ -105,7 +107,7 @@ export default function EditProfilePage() {
       const cleanPhone = profileData.phone.replace(/[\s\-\.]/g, '');
       const vietnamPhoneRegex = /^(0|\+84|84)(3[2-9]|5[2689]|7[0-9]|8[1-9]|9[0-9])[0-9]{7}$/;
       if (!vietnamPhoneRegex.test(cleanPhone)) {
-        setError('Số điện thoại không hợp lệ (VD: 0901234567)');
+        setError(t('editProfile.errors.invalidPhone'));
         return false;
       }
     }
@@ -114,19 +116,19 @@ export default function EditProfilePage() {
 
   const validatePassword = () => {
     if (!passwordData.currentPassword) {
-      setError('Vui lòng nhập mật khẩu hiện tại');
+      setError(t('editProfile.errors.currentPasswordRequired'));
       return false;
     }
     if (!passwordData.newPassword) {
-      setError('Vui lòng nhập mật khẩu mới');
+      setError(t('editProfile.errors.newPasswordRequired'));
       return false;
     }
     if (passwordData.newPassword.length < 6) {
-      setError('Mật khẩu mới phải có ít nhất 6 ký tự');
+      setError(t('editProfile.errors.passwordMinLength'));
       return false;
     }
     if (passwordData.newPassword !== passwordData.confirmPassword) {
-      setError('Mật khẩu xác nhận không khớp');
+      setError(t('editProfile.errors.passwordMismatch'));
       return false;
     }
     return true;
@@ -155,7 +157,7 @@ export default function EditProfilePage() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || 'Có lỗi xảy ra');
+        throw new Error(data.error || t('common.error'));
       }
 
       // Update session
@@ -167,7 +169,7 @@ export default function EditProfilePage() {
         }
       });
 
-      setSuccess('Cập nhật hồ sơ thành công!');
+      setSuccess(t('editProfile.profileSaved'));
     } catch (err) {
       setError(err.message);
     } finally {
@@ -195,10 +197,10 @@ export default function EditProfilePage() {
         if (data.error?.includes('Google')) {
           setHasPassword(false);
         }
-        throw new Error(data.error || 'Có lỗi xảy ra');
+        throw new Error(data.error || t('common.error'));
       }
 
-      setSuccess('Đổi mật khẩu thành công!');
+      setSuccess(t('editProfile.passwordChanged'));
       setPasswordData({
         currentPassword: '',
         newPassword: '',
@@ -216,7 +218,7 @@ export default function EditProfilePage() {
       <div className="min-h-screen bg-gradient-to-b from-blue-50 via-violet-50 to-pink-50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Đang tải...</p>
+          <p className="text-gray-600">{t('common.loading')}</p>
         </div>
       </div>
     );
@@ -233,7 +235,7 @@ export default function EditProfilePage() {
           >
             <ArrowLeft size={24} className="text-gray-600" />
           </button>
-          <h1 className="text-lg font-bold text-gray-800">Chỉnh sửa hồ sơ</h1>
+          <h1 className="text-lg font-bold text-gray-800">{t('editProfile.title')}</h1>
         </div>
       </header>
 
@@ -249,7 +251,7 @@ export default function EditProfilePage() {
             }`}
           >
             <User size={18} className="inline-block mr-2" />
-            Hồ sơ
+            {t('editProfile.tabs.profile')}
           </button>
           <button
             onClick={() => { setActiveTab('password'); setError(''); setSuccess(''); }}
@@ -260,7 +262,7 @@ export default function EditProfilePage() {
             }`}
           >
             <Lock size={18} className="inline-block mr-2" />
-            Mật khẩu
+            {t('editProfile.tabs.password')}
           </button>
         </div>
 
@@ -291,18 +293,18 @@ export default function EditProfilePage() {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <User size={16} className="inline-block mr-2 text-violet-500" />
-                  Họ và tên
+                  {t('editProfile.fields.fullName')}
                 </label>
                 <input
                   type="text"
                   name="name"
                   value={profileData.name}
                   onChange={handleProfileChange}
-                  placeholder="Nhập họ và tên đầy đủ"
+                  placeholder={t('editProfile.placeholders.fullName')}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-violet-400 focus:outline-none transition-colors text-gray-800"
                 />
                 <p className="text-xs text-gray-400 mt-1.5">
-                  🏅 Họ và tên sẽ hiển thị trên chứng chỉ khi bạn đạt được
+                  🏅 {t('editProfile.hints.nameOnCertificate')}
                 </p>
               </div>
 
@@ -310,7 +312,7 @@ export default function EditProfilePage() {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <Phone size={16} className="inline-block mr-2 text-violet-500" />
-                  Số điện thoại
+                  {t('editProfile.fields.phone')}
                 </label>
                 <input
                   type="tel"
@@ -321,7 +323,7 @@ export default function EditProfilePage() {
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-violet-400 focus:outline-none transition-colors text-gray-800"
                 />
                 <p className="text-xs text-gray-400 mt-1.5">
-                  Số điện thoại Việt Nam (VD: 0901234567)
+                  {t('editProfile.hints.phoneFormat')}
                 </p>
               </div>
 
@@ -329,7 +331,7 @@ export default function EditProfilePage() {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <AtSign size={16} className="inline-block mr-2 text-gray-400" />
-                  Tên đăng nhập
+                  {t('editProfile.fields.username')}
                 </label>
                 <div className="relative">
                   <input
@@ -343,7 +345,7 @@ export default function EditProfilePage() {
                   </div>
                 </div>
                 <p className="text-xs text-gray-400 mt-1.5">
-                  Tên đăng nhập không thể thay đổi
+                  {t('editProfile.hints.usernameReadOnly')}
                 </p>
               </div>
 
@@ -351,7 +353,7 @@ export default function EditProfilePage() {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <Mail size={16} className="inline-block mr-2 text-gray-400" />
-                  Email
+                  {t('editProfile.fields.email')}
                 </label>
                 <div className="relative">
                   <input
@@ -365,7 +367,7 @@ export default function EditProfilePage() {
                   </div>
                 </div>
                 <p className="text-xs text-gray-400 mt-1.5">
-                  Email không thể thay đổi
+                  {t('editProfile.hints.emailReadOnly')}
                 </p>
               </div>
             </div>
@@ -380,10 +382,10 @@ export default function EditProfilePage() {
                 {isLoading ? (
                   <span className="flex items-center justify-center gap-2">
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Đang lưu...
+                    {t('editProfile.saving')}
                   </span>
                 ) : (
-                  'Lưu thay đổi'
+                  t('editProfile.saveChanges')
                 )}
               </button>
             </div>
@@ -399,10 +401,10 @@ export default function EditProfilePage() {
                   <img src="https://www.google.com/favicon.ico" alt="Google" className="w-8 h-8" />
                 </div>
                 <h3 className="text-lg font-bold text-gray-800 mb-2">
-                  Tài khoản Google
+                  {t('editProfile.googleAccount')}
                 </h3>
                 <p className="text-gray-500 text-sm">
-                  Bạn đang đăng nhập bằng Google nên không có mật khẩu để thay đổi.
+                  {t('editProfile.googleNoPassword')}
                 </p>
               </div>
             ) : (
@@ -411,7 +413,7 @@ export default function EditProfilePage() {
                   {/* Current Password */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Mật khẩu hiện tại
+                      {t('editProfile.fields.currentPassword')}
                     </label>
                     <div className="relative">
                       <input
@@ -419,7 +421,7 @@ export default function EditProfilePage() {
                         name="currentPassword"
                         value={passwordData.currentPassword}
                         onChange={handlePasswordChange}
-                        placeholder="Nhập mật khẩu hiện tại"
+                        placeholder={t('editProfile.placeholders.currentPassword')}
                         className="w-full px-4 py-3 pr-12 border-2 border-gray-200 rounded-xl focus:border-violet-400 focus:outline-none transition-colors"
                       />
                       <button
@@ -439,7 +441,7 @@ export default function EditProfilePage() {
                   {/* New Password */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Mật khẩu mới
+                      {t('editProfile.fields.newPassword')}
                     </label>
                     <div className="relative">
                       <input
@@ -447,7 +449,7 @@ export default function EditProfilePage() {
                         name="newPassword"
                         value={passwordData.newPassword}
                         onChange={handlePasswordChange}
-                        placeholder="Nhập mật khẩu mới (ít nhất 6 ký tự)"
+                        placeholder={t('editProfile.placeholders.newPassword')}
                         className="w-full px-4 py-3 pr-12 border-2 border-gray-200 rounded-xl focus:border-violet-400 focus:outline-none transition-colors"
                       />
                       <button
@@ -485,12 +487,12 @@ export default function EditProfilePage() {
                         </div>
                         <p className="text-xs text-gray-400 mt-1">
                           {passwordData.newPassword.length < 6
-                            ? 'Quá ngắn'
+                            ? t('editProfile.passwordStrength.tooShort')
                             : passwordData.newPassword.length < 9
-                            ? 'Trung bình'
+                            ? t('editProfile.passwordStrength.medium')
                             : passwordData.newPassword.length < 12
-                            ? 'Tốt'
-                            : 'Rất mạnh'}
+                            ? t('editProfile.passwordStrength.good')
+                            : t('editProfile.passwordStrength.strong')}
                         </p>
                       </div>
                     )}
@@ -499,7 +501,7 @@ export default function EditProfilePage() {
                   {/* Confirm Password */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Xác nhận mật khẩu mới
+                      {t('editProfile.fields.confirmPassword')}
                     </label>
                     <div className="relative">
                       <input
@@ -507,7 +509,7 @@ export default function EditProfilePage() {
                         name="confirmPassword"
                         value={passwordData.confirmPassword}
                         onChange={handlePasswordChange}
-                        placeholder="Nhập lại mật khẩu mới"
+                        placeholder={t('editProfile.placeholders.confirmPassword')}
                         className={`w-full px-4 py-3 pr-12 border-2 rounded-xl focus:outline-none transition-colors ${
                           passwordData.confirmPassword && passwordData.confirmPassword !== passwordData.newPassword
                             ? 'border-red-300 focus:border-red-400'
@@ -529,11 +531,11 @@ export default function EditProfilePage() {
                       </button>
                     </div>
                     {passwordData.confirmPassword && passwordData.confirmPassword !== passwordData.newPassword && (
-                      <p className="text-xs text-red-500 mt-1.5">Mật khẩu không khớp</p>
+                      <p className="text-xs text-red-500 mt-1.5">{t('editProfile.errors.passwordMismatch')}</p>
                     )}
                     {passwordData.confirmPassword && passwordData.confirmPassword === passwordData.newPassword && (
                       <p className="text-xs text-green-500 mt-1.5 flex items-center gap-1">
-                        <Check size={12} /> Mật khẩu khớp
+                        <Check size={12} /> {t('editProfile.passwordMatch')}
                       </p>
                     )}
                   </div>
@@ -549,10 +551,10 @@ export default function EditProfilePage() {
                     {isLoading ? (
                       <span className="flex items-center justify-center gap-2">
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        Đang xử lý...
+                        {t('editProfile.processing')}
                       </span>
                     ) : (
-                      'Đổi mật khẩu'
+                      t('editProfile.changePassword')
                     )}
                   </button>
                 </div>
@@ -563,12 +565,12 @@ export default function EditProfilePage() {
 
         {/* Back to Profile link */}
         <div className="mt-6 text-center">
-          <Link
+          <LocalizedLink
             href="/profile"
             className="text-violet-600 hover:text-violet-700 font-medium text-sm"
           >
-            ← Quay lại trang hồ sơ
-          </Link>
+            ← {t('editProfile.backToProfile')}
+          </LocalizedLink>
         </div>
       </main>
     </div>

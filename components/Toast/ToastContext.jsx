@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useCallback } from 'react';
 import { X, CheckCircle, XCircle, AlertCircle, Info } from 'lucide-react';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 const ToastContext = createContext(null);
 
@@ -73,6 +74,7 @@ function ToastContainer({ toasts, removeToast }) {
 }
 
 function Toast({ toast, onClose }) {
+  const { t } = useI18n();
   const { type, message } = toast;
 
   // Toast đặc biệt cho Level Up
@@ -93,7 +95,7 @@ function Toast({ toast, onClose }) {
         <div className="flex items-center gap-3 relative z-10">
           <div className="text-3xl animate-bounce">🎊</div>
           <div className="flex-1">
-            <div className="text-white font-bold text-sm">LÊN CẤP!</div>
+            <div className="text-white font-bold text-sm">{t('toast.levelUp')}</div>
             <div className="flex items-center gap-2 text-white/90 text-xs mt-1">
               <span>{oldLevel?.icon} {oldLevel?.name}</span>
               <span className="text-yellow-300">→</span>
@@ -103,7 +105,7 @@ function Toast({ toast, onClose }) {
           <button
             onClick={onClose}
             className="text-white/70 hover:text-white transition-colors"
-            aria-label="Đóng"
+            aria-label={t('toast.close')}
           >
             <X size={18} />
           </button>
@@ -155,7 +157,7 @@ function Toast({ toast, onClose }) {
       <button
         onClick={onClose}
         className={`${textColor} hover:opacity-70 transition-opacity flex-shrink-0`}
-        aria-label="Đóng thông báo"
+        aria-label={t('toast.closeNotification')}
       >
         <X size={18} />
       </button>

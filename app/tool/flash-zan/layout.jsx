@@ -21,8 +21,8 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export const metadata = {
-  title: 'Flash ZAN - Luyện Tính Nhẩm Nhanh Online | Flash Anzan Miễn Phí',
-  description: 'Flash ZAN - Công cụ luyện tính nhẩm nhanh MIỄN PHÍ với flash số. Luyện Soroban, Anzan, phản xạ tính toán. Flash Anzan online - Mental math trainer. Khởi động tiết Toán 5 phút!',
+  title: 'Flash ZAN - Mental Math Speed Training Online | Free Flash Anzan',
+  description: 'Flash ZAN - FREE mental math speed trainer with flashing numbers. Practice Soroban, Anzan, calculation reflexes. Flash Anzan online - Mental math trainer. Perfect 5-minute math warm-up!',
   keywords: [
     // Primary keywords
     'flash zan',
@@ -63,8 +63,8 @@ export const metadata = {
     'toán tư duy cho bé',
   ],
   openGraph: {
-    title: 'Flash ZAN - Luyện Tính Nhẩm Nhanh Như Thần Đồng',
-    description: 'Luyện tính nhẩm với flash số. Flash Anzan online miễn phí. Phù hợp Soroban, Anzan!',
+    title: 'Flash ZAN - Train Mental Math Like a Prodigy',
+    description: 'Practice mental math with flashing numbers. Free Flash Anzan online. Perfect for Soroban and Anzan!',
     url: 'https://sorokid.com/tool/flash-zan',
     siteName: 'SoroKid Toolbox',
     images: [
@@ -80,8 +80,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Flash ZAN - Flash Anzan Online Miễn Phí',
-    description: 'Công cụ flash anzan luyện tính nhẩm. Mental math trainer!',
+    title: 'Flash ZAN - Free Flash Anzan Online',
+    description: 'Flash anzan tool for mental math training. Mental math trainer!',
     images: ['/blog/flash-zan-5-phut-dau-gio-luyen-tinh-nham-nhanh.png'],
   },
   alternates: {

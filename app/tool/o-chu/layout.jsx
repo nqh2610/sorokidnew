@@ -21,8 +21,8 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export const metadata = {
-  title: 'Trò Chơi Ô Chữ Online - Crossword Maker | Tạo Crossword Miễn Phí',
-  description: 'Trò Chơi Ô Chữ Online - Crossword maker MIỄN PHÍ cho lớp học. Crossword generator tự động sinh lưới từ câu hỏi, hiệu ứng lật ô hấp dẫn. Create crossword online trong 2 phút!',
+  title: 'Crossword Puzzle Maker Online | Free Crossword Generator',
+  description: 'Crossword Puzzle Maker Online - FREE crossword generator for classroom. Auto-generate grid from questions, exciting flip effects. Create crossword online in 2 minutes!',
   keywords: [
     // Primary keywords (high volume)
     'trò chơi ô chữ',
@@ -61,8 +61,8 @@ export const metadata = {
     'trò chơi học tập',
   ],
   openGraph: {
-    title: 'Trò Chơi Ô Chữ - Crossword Maker Online Miễn Phí',
-    description: 'Crossword generator - Tự tạo ô chữ trong 2 phút! Tự động sinh lưới, hiệu ứng lật ô hấp dẫn. Miễn phí!',
+    title: 'Crossword Puzzle Maker - Free Online Generator',
+    description: 'Crossword generator - Create puzzles in 2 minutes! Auto-generate grid, exciting flip effects. Free!',
     url: 'https://sorokid.com/tool/o-chu',
     siteName: 'SoroKid Toolbox',
     images: [
@@ -78,8 +78,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Trò Chơi Ô Chữ - Crossword Maker Online',
-    description: 'Crossword generator - Tạo ô chữ cho lớp học trong 2 phút. Miễn phí!',
+    title: 'Crossword Puzzle Maker Online',
+    description: 'Crossword generator - Create puzzles for classroom in 2 minutes. Free!',
     images: ['/blog/tro-choi-o-chu-cong-cu-tao-crossword-cho-lop-hoc.png'],
   },
   alternates: {

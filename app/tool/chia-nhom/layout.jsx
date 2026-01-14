@@ -21,8 +21,8 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export const metadata = {
-  title: 'Chia Nhóm Ngẫu Nhiên Online - Random Group Generator | Miễn Phí',
-  description: 'Chia Nhóm Ngẫu Nhiên Online - Random group generator MIỄN PHÍ cho lớp học. Chia theo số nhóm hoặc số người, tự động chọn nhóm trưởng. Team maker online công bằng, nhanh 10 giây!',
+  title: 'Random Group Generator Online | Free Team Maker',
+  description: 'Random Group Generator Online - FREE team maker for classroom. Split by number of groups or people, auto-select team leaders. Fair online team maker, ready in 10 seconds!',
   keywords: [
     // Primary keywords
     'chia nhóm ngẫu nhiên',
@@ -57,8 +57,8 @@ export const metadata = {
     'hoạt động nhóm lớp học',
   ],
   openGraph: {
-    title: 'Chia Nhóm Ngẫu Nhiên - Random Group Generator Miễn Phí',
-    description: 'Random group generator - Chia nhóm công bằng trong 10 giây! Tự động chọn nhóm trưởng. Team maker online miễn phí!',
+    title: 'Random Group Generator - Free Team Maker',
+    description: 'Random group generator - Fair team splitting in 10 seconds! Auto-select team leaders. Free online team maker!',
     url: 'https://sorokid.com/tool/chia-nhom',
     siteName: 'SoroKid Toolbox',
     images: [
@@ -74,8 +74,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Chia Nhóm - Random Group Generator Online',
-    description: 'Team maker - chia nhóm công bằng, tự động chọn nhóm trưởng. Miễn phí!',
+    title: 'Random Group Generator Online',
+    description: 'Team maker - fair group splitting, auto-select leaders. Free!',
     images: ['/blog/chia-nhom-hoc-sinh.jpg'],
   },
   alternates: {
