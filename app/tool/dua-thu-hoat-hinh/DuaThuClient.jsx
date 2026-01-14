@@ -5,6 +5,7 @@ import ToolLayout from '@/components/ToolLayout/ToolLayout';
 import { LogoIcon } from '@/components/Logo/Logo';
 import { useGameSettings } from '@/lib/useGameSettings';
 import { GAME_IDS } from '@/lib/gameStorage';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 // Default settings cho đua thú hoạt hình
 const DEFAULT_SETTINGS = {
@@ -575,6 +576,8 @@ const getShortName = (fullName) => {
 };
 
 export default function DuaThuHoatHinh() {
+  const { t } = useI18n();
+  
   // Load saved settings
   const { settings, updateSettings } = useGameSettings(GAME_IDS.DUA_THU_HOAT_HINH, DEFAULT_SETTINGS);
   
@@ -1939,8 +1942,9 @@ export default function DuaThuHoatHinh() {
       document.exitFullscreen?.().catch(() => {});
     }
     const currentAnimal = ANIMAL_TYPES[animalType];
+    const animalPlural = t(`toolbox.animalRace.animals.${animalType}.plural`);
     return (
-      <ToolLayout toolName="Đua Thú Hoạt Hình" toolIcon="🏁" hideFullscreenButton>
+      <ToolLayout toolName={t('toolbox.tools.animalRace.name')} toolIcon="🏁" hideFullscreenButton>
         <div className="min-h-[60vh] flex items-center justify-center p-2 sm:p-4">
           <div className="w-full max-w-2xl">
             {/* Compact Header */}
@@ -1949,9 +1953,9 @@ export default function DuaThuHoatHinh() {
                 <span className="text-5xl" style={{ transform: currentAnimal.flipX ? 'scaleX(-1)' : 'none' }}>
                   {currentAnimal.emoji}
                 </span>
-                <h1 className="text-2xl sm:text-3xl font-black text-gray-800">ĐUA THÚ HOẠT HÌNH</h1>
+                <h1 className="text-2xl sm:text-3xl font-black text-gray-800">{t('toolbox.animalRace.title')}</h1>
               </div>
-              <p className="text-gray-500">Nhập tên các {currentAnimal.plural} đua • Mỗi dòng 1 tên</p>
+              <p className="text-gray-500">{t('toolbox.animalRace.subtitle', { animal: animalPlural })}</p>
             </div>
 
             {/* Input Card - Compact */}
@@ -1960,14 +1964,14 @@ export default function DuaThuHoatHinh() {
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <span className="text-xl">📝</span>
-                  <span className="font-bold text-gray-700">Danh sách ({racers.length}/200)</span>
+                  <span className="font-bold text-gray-700">{t('toolbox.animalRace.list')} ({racers.length}/200)</span>
                 </div>
                 <div className={`px-2 py-0.5 rounded-full text-sm font-bold
                   ${racers.length >= 200 ? 'bg-red-100 text-red-600' : 
                     racers.length >= 100 ? 'bg-orange-100 text-orange-600' : 
                     racers.length >= 2 ? 'bg-green-100 text-green-600' : 
                     'bg-gray-100 text-gray-500'}`}>
-                  {racers.length >= 2 ? '✓ Sẵn sàng' : 'Cần ≥2'}
+                  {racers.length >= 2 ? `✓ ${t('toolbox.animalRace.ready')}` : t('toolbox.animalRace.needMin')}
                 </div>
               </div>
               
@@ -1987,7 +1991,7 @@ export default function DuaThuHoatHinh() {
                 <div className="mt-2 space-y-1">
                   {duplicateNames.length > 0 && (
                     <div className="p-2 bg-amber-50 border border-amber-200 rounded-lg text-sm">
-                      <span className="text-amber-700 font-bold">⚠️ Trùng tên: </span>
+                      <span className="text-amber-700 font-bold">⚠️ {t('toolbox.animalRace.duplicateWarning')} </span>
                       {duplicateNames.map((dup, idx) => (
                         <span key={idx} className="text-amber-600">
                           {dup.name}×{dup.count}{idx < duplicateNames.length - 1 ? ', ' : ''}
@@ -1997,7 +2001,7 @@ export default function DuaThuHoatHinh() {
                   )}
                   {racers.length >= 100 && (
                     <div className="p-2 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-700">
-                      {ANIMAL_TYPES[animalType].emoji} {racers.length >= 150 ? 'Siêu đông! Hiển thị rất nhỏ.' : 'Rất đông! Hiển thị nhỏ.'}
+                      {ANIMAL_TYPES[animalType].emoji} {racers.length >= 150 ? t('toolbox.animalRace.veryMany') : t('toolbox.animalRace.tooMany')}
                     </div>
                   )}
                 </div>
@@ -2019,7 +2023,7 @@ export default function DuaThuHoatHinh() {
                   </span>
                 ))}
                 {racers.length > 30 && (
-                  <span className="text-gray-400 text-xs">+{racers.length - 30} nữa</span>
+                  <span className="text-gray-400 text-xs">+{racers.length - 30} {t('toolbox.animalRace.more')}</span>
                 )}
               </div>
 
@@ -2029,27 +2033,27 @@ export default function DuaThuHoatHinh() {
                 <div className="p-3 bg-gray-50 rounded-xl">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-base">⏱️</span>
-                    <span className="font-bold text-gray-700">Tốc độ:</span>
+                    <span className="font-bold text-gray-700">{t('toolbox.animalRace.speed')}</span>
                   </div>
                   <div className="grid grid-cols-5 gap-1">
                     {[
-                      { value: 'very-slow', label: '🚶', name: 'Rất chậm' },
-                      { value: 'slow', label: '🏃', name: 'Chậm' },
-                      { value: 'normal', label: '🚗', name: 'Vừa' },
-                      { value: 'fast', label: '🚀', name: 'Nhanh' },
-                      { value: 'very-fast', label: '⚡', name: 'Turbo' },
+                      { value: 'very-slow', label: '🚶', key: 'verySlow' },
+                      { value: 'slow', label: '🏃', key: 'slow' },
+                      { value: 'normal', label: '🚗', key: 'normal' },
+                      { value: 'fast', label: '🚀', key: 'fast' },
+                      { value: 'very-fast', label: '⚡', key: 'turbo' },
                     ].map(option => (
                       <button
                         key={option.value}
                         onClick={() => setRaceSpeed(option.value)}
-                        title={option.name}
+                        title={t(`toolbox.animalRace.${option.key}`)}
                         className={`py-1.5 px-1 rounded-lg font-medium transition-colors text-center border
                           ${raceSpeed === option.value
                             ? 'bg-blue-500 text-white shadow-md border-blue-400'
                             : 'bg-white text-gray-600 hover:bg-gray-100 border-gray-200'}`}
                       >
                         <div className="text-lg leading-none h-6 flex items-center justify-center">{option.label}</div>
-                        <div className="text-[10px] mt-0.5 leading-none whitespace-nowrap">{option.name}</div>
+                        <div className="text-[10px] mt-0.5 leading-none whitespace-nowrap">{t(`toolbox.animalRace.${option.key}`)}</div>
                       </button>
                     ))}
                   </div>
@@ -2059,14 +2063,14 @@ export default function DuaThuHoatHinh() {
                 <div className="p-3 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-base">🐾</span>
-                    <span className="font-bold text-gray-700">Loài vật:</span>
+                    <span className="font-bold text-gray-700">{t('toolbox.animalRace.animalType')}</span>
                   </div>
                   <div className="grid grid-cols-5 gap-1">
                     {Object.entries(ANIMAL_TYPES).map(([key, animal]) => (
                       <button
                         key={key}
                         onClick={() => setAnimalType(key)}
-                        title={animal.name}
+                        title={t(`toolbox.animalRace.animals.${key}.name`)}
                         className={`py-1.5 px-1 rounded-lg font-medium transition-all text-center
                           ${animalType === key
                             ? 'bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-md scale-105'
@@ -2088,7 +2092,7 @@ export default function DuaThuHoatHinh() {
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-all
                     ${soundEnabled ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}
                 >
-                  {soundEnabled ? '🔊 BẬT' : '🔇 TẮT'}
+                  {soundEnabled ? `🔊 ${t('toolbox.animalRace.soundOn')}` : `🔇 ${t('toolbox.animalRace.soundOff')}`}
                 </button>
 
                 <button
@@ -2101,8 +2105,8 @@ export default function DuaThuHoatHinh() {
                     }`}
                 >
                   {racers.length < 2 
-                    ? `Cần ${2 - racers.length} ${ANIMAL_TYPES[animalType].plural} nữa` 
-                    : `🚀 ĐUA ${racers.length} ${ANIMAL_TYPES[animalType].plural.toUpperCase()}!`}
+                    ? t('toolbox.animalRace.needMore', { count: 2 - racers.length, animal: animalPlural })
+                    : `🚀 ${t('toolbox.animalRace.startRace', { count: racers.length, animal: animalPlural.toUpperCase() })}`}
                 </button>
               </div>
             </div>
@@ -2110,7 +2114,7 @@ export default function DuaThuHoatHinh() {
             {/* Tips - Compact */}
             <div className="mt-3 bg-blue-50 rounded-xl p-2 text-center">
               <p className="text-blue-600 text-xs">
-                💡 Có vật cản 🪨🪵, mệt khi dẫn đầu, chuột rút & bình luận viên trực tiếp!
+                💡 {t('toolbox.animalRace.tip')}
               </p>
             </div>
           </div>

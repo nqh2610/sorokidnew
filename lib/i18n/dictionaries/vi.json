@@ -668,6 +668,38 @@
       "continue": "Tiếp tục",
       "newGame": "Ván mới",
       "group": "Nhóm"
+    },
+    "animalRace": {
+      "title": "ĐUA THÚ HOẠT HÌNH",
+      "subtitle": "Nhập tên các {animal} đua • Mỗi dòng 1 tên",
+      "list": "Danh sách",
+      "ready": "Sẵn sàng",
+      "needMin": "Cần ≥2",
+      "duplicateWarning": "Trùng tên:",
+      "tooMany": "Rất đông! Hiển thị nhỏ.",
+      "veryMany": "Siêu đông! Hiển thị rất nhỏ.",
+      "more": "nữa",
+      "speed": "Tốc độ:",
+      "verySlow": "Rất chậm",
+      "slow": "Chậm",
+      "normal": "Vừa",
+      "fast": "Nhanh",
+      "turbo": "Turbo",
+      "animalType": "Loài vật:",
+      "soundOn": "BẬT",
+      "soundOff": "TẮT",
+      "needMore": "Cần {count} {animal} nữa",
+      "startRace": "ĐUA {count} {animal}!",
+      "tip": "Có vật cản 🪨🪵, mệt khi dẫn đầu, chuột rút & bình luận viên trực tiếp!",
+      "rotateDevice": "Xoay thiết bị",
+      "rotateHint": "Vui lòng xoay ngang thiết bị để có trải nghiệm đua tốt nhất",
+      "animals": {
+        "duck": { "name": "Vịt", "plural": "vịt" },
+        "turtle": { "name": "Rùa", "plural": "rùa" },
+        "crab": { "name": "Cua", "plural": "cua" },
+        "fish": { "name": "Cá nóc", "plural": "cá nóc" },
+        "snail": { "name": "Ốc sên", "plural": "ốc" }
+      }
     }
   },
 

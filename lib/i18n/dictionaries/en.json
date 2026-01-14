@@ -668,6 +668,38 @@
       "continue": "Continue",
       "newGame": "New game",
       "group": "Group"
+    },
+    "animalRace": {
+      "title": "ANIMAL RACE",
+      "subtitle": "Enter racer names • One name per line",
+      "list": "List",
+      "ready": "Ready",
+      "needMin": "Need ≥2",
+      "duplicateWarning": "Duplicate names:",
+      "tooMany": "Too many! Display will be very small.",
+      "veryMany": "Super crowded! Display will be tiny.",
+      "more": "more",
+      "speed": "Speed:",
+      "verySlow": "Very slow",
+      "slow": "Slow",
+      "normal": "Normal",
+      "fast": "Fast",
+      "turbo": "Turbo",
+      "animalType": "Animal:",
+      "soundOn": "ON",
+      "soundOff": "OFF",
+      "needMore": "Need {count} {animal} more",
+      "startRace": "RACE {count} {animal}!",
+      "tip": "Has obstacles 🪨🪵, fatigue when leading, cramps & live commentary!",
+      "rotateDevice": "Rotate device",
+      "rotateHint": "Please rotate to landscape mode for best racing experience",
+      "animals": {
+        "duck": { "name": "Duck", "plural": "ducks" },
+        "turtle": { "name": "Turtle", "plural": "turtles" },
+        "crab": { "name": "Crab", "plural": "crabs" },
+        "fish": { "name": "Pufferfish", "plural": "pufferfish" },
+        "snail": { "name": "Snail", "plural": "snails" }
+      }
     }
   },
 
