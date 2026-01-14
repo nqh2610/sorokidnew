@@ -23,13 +23,40 @@ const I18nContext = createContext(null);
  * Provider component
  */
 export function I18nProvider({ children, initialLocale = defaultLocale, dictionary = {} }) {
-  const [locale, setLocaleState] = useState(initialLocale);
-  const [dict, setDict] = useState(dictionary);
-  const [isLoading, setIsLoading] = useState(false);
-  const [loadedLocale, setLoadedLocale] = useState(initialLocale); // Track locale hiện có dictionary
-  
   const router = useRouter();
   const pathname = usePathname();
+  
+  // 🔥 Detect locale từ URL pathname
+  const getLocaleFromPath = useCallback((path) => {
+    if (path?.startsWith('/en/') || path === '/en') {
+      return 'en';
+    }
+    return 'vi';
+  }, []);
+  
+  // 🔥 Ưu tiên: URL pathname (luôn chính xác nhất)
+  const urlLocale = getLocaleFromPath(pathname);
+  
+  const [locale, setLocaleState] = useState(urlLocale);
+  const [dict, setDict] = useState(dictionary);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadedLocale, setLoadedLocale] = useState(initialLocale);
+  
+  // 🔥 SYNC: Khi URL thay đổi → cập nhật locale state + cookie
+  useEffect(() => {
+    const currentUrlLocale = getLocaleFromPath(pathname);
+    
+    if (currentUrlLocale !== locale) {
+      // Update state
+      setLocaleState(currentUrlLocale);
+      
+      // 🔥 Sync cookie với URL
+      document.cookie = `${LOCALE_COOKIE}=${currentUrlLocale};path=/;max-age=${COOKIE_MAX_AGE};SameSite=Lax`;
+      
+      // Update HTML lang
+      document.documentElement.lang = localeConfig[currentUrlLocale]?.htmlLang || currentUrlLocale;
+    }
+  }, [pathname, locale, getLocaleFromPath]);
   
   // Load dictionary khi locale thay đổi
   useEffect(() => {
