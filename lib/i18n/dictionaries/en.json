@@ -2256,5 +2256,112 @@
     "androidStep2": "2. Select",
     "installAppOption": "Install app",
     "gotIt": "Got it ✓"
+  },
+
+  "db": {
+    "levels": {
+      "1": {
+        "name": "Getting Started",
+        "description": "Learn the basics of Soroban abacus"
+      },
+      "2": {
+        "name": "Foundation",
+        "description": "Master basic addition and subtraction"
+      },
+      "3": {
+        "name": "Small Friends",
+        "description": "Learn complementary numbers to 5"
+      },
+      "4": {
+        "name": "Big Friends",
+        "description": "Learn complementary numbers to 10"
+      },
+      "5": {
+        "name": "Combined Friends",
+        "description": "Combine small and big friends techniques"
+      },
+      "6": {
+        "name": "Mental Math",
+        "description": "Calculate without the abacus"
+      },
+      "7": {
+        "name": "Multiplication",
+        "description": "Learn multiplication on Soroban"
+      },
+      "8": {
+        "name": "Division",
+        "description": "Learn division on Soroban"
+      }
+    },
+    "lessons": {
+      "1-1": {
+        "title": "What is Soroban?",
+        "description": "Introduction to the Japanese abacus"
+      },
+      "1-2": {
+        "title": "Parts of Soroban",
+        "description": "Learn the structure and components"
+      },
+      "1-3": {
+        "title": "Reading Numbers",
+        "description": "How to read numbers on Soroban"
+      },
+      "1-4": {
+        "title": "Setting Numbers",
+        "description": "Practice placing beads correctly"
+      },
+      "2-1": {
+        "title": "Simple Addition",
+        "description": "Add single digits without carrying"
+      },
+      "2-2": {
+        "title": "Simple Subtraction",
+        "description": "Subtract single digits without borrowing"
+      },
+      "2-3": {
+        "title": "Mixed Practice",
+        "description": "Practice addition and subtraction together"
+      }
+    },
+    "quests": {
+      "daily-practice": {
+        "title": "Daily Practice",
+        "description": "Complete 10 exercises today"
+      },
+      "speed-demon": {
+        "title": "Speed Demon",
+        "description": "Answer 5 questions in under 30 seconds"
+      },
+      "perfect-score": {
+        "title": "Perfect Score",
+        "description": "Get 100% accuracy in a practice session"
+      },
+      "weekly-streak": {
+        "title": "Weekly Streak",
+        "description": "Practice 7 days in a row"
+      }
+    },
+    "achievements": {
+      "first-lesson": {
+        "name": "First Step",
+        "description": "Complete your first lesson"
+      },
+      "fast-learner": {
+        "name": "Fast Learner",
+        "description": "Complete 10 lessons"
+      },
+      "speed-calculator": {
+        "name": "Speed Calculator",
+        "description": "Answer 100 questions correctly"
+      },
+      "perfectionist": {
+        "name": "Perfectionist",
+        "description": "Get 100% accuracy 10 times"
+      },
+      "dedicated": {
+        "name": "Dedicated",
+        "description": "Practice for 7 days straight"
+      }
+    }
   }
 }
