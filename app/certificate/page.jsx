@@ -149,7 +149,11 @@ export default function CertificatePage() {
                       <h3 className="font-bold text-gray-800 text-lg">
                         {cert.certType === 'addSub' ? t('certificate.addSubCert') : t('certificate.completeCert')}
                       </h3>
-                      <p className="text-amber-700 font-medium">{cert.honorTitle}</p>
+                      <p className="text-amber-700 font-medium">
+                        {cert.certType === 'addSub' 
+                          ? t('certificate.honorTitles.addSub') 
+                          : t('certificate.honorTitles.complete')}
+                      </p>
                       <p className="text-sm text-gray-500">{t('certificate.issuedOn')}: {formatDate(cert.issuedAt)}</p>
                     </div>
                   </div>
@@ -210,6 +214,85 @@ export default function CertificatePage() {
 }
 
 /**
+ * Helper function để translate todo text từ API
+ */
+function translateTodoText(todo, t) {
+  const modeNames = {
+    addition: t('certificate.modes.addition'),
+    subtraction: t('certificate.modes.subtraction'),
+    addSubMixed: t('certificate.modes.addSubMixed'),
+    multiplication: t('certificate.modes.multiplication'),
+    division: t('certificate.modes.division'),
+    mulDiv: t('certificate.modes.mulDiv'),
+    mixed: t('certificate.modes.mixed')
+  };
+  
+  const flashLevelNames = {
+    1: t('certificate.flashLevels.1'),
+    2: t('certificate.flashLevels.2'),
+    3: t('certificate.flashLevels.3'),
+    4: t('certificate.flashLevels.4'),
+    5: t('certificate.flashLevels.5')
+  };
+  
+  // Parse todo.text để lấy thông tin và tạo text mới
+  // Fallback: sử dụng text gốc nếu không thể parse
+  switch (todo.type) {
+    case 'mentalMath':
+      // Extract remaining from text like "Siêu Trí Tuệ: Làm đúng thêm X bài"
+      const mentalMatch = todo.text.match(/(\d+)/);
+      const remaining = mentalMatch ? mentalMatch[1] : '?';
+      return t('certificate.todoTexts.mentalMath', { remaining });
+      
+    case 'flashAnzan':
+      // Extract remaining and level from text
+      const flashMatch = todo.text.match(/(\d+).*level\s*(\w+)/i);
+      if (flashMatch) {
+        const levelKey = todo.text.includes('Ánh Nến') ? 1 
+          : todo.text.includes('Ánh Trăng') ? 2
+          : todo.text.includes('Tia Chớp') ? 3
+          : todo.text.includes('Sao Băng') ? 4
+          : todo.text.includes('Big Bang') ? 5 : 1;
+        return t('certificate.todoTexts.flashAnzan', { 
+          remaining: flashMatch[1], 
+          level: flashLevelNames[levelKey] || flashMatch[2] 
+        });
+      }
+      return todo.text;
+      
+    case 'practice':
+      // Text like "Luyện tập Cộng, Trừ (cấp 2+, 15 bài đúng)"
+      return todo.text; // Keep original for now, complex parsing needed
+      
+    case 'compete':
+      return todo.text;
+      
+    case 'accuracy':
+      const accMatch = todo.text.match(/(\d+)%.*?(\d+)%/);
+      if (accMatch) {
+        return t('certificate.todoTexts.accuracy', { 
+          required: accMatch[1], 
+          current: accMatch[2] 
+        });
+      }
+      return todo.text;
+      
+    case 'streak':
+      const streakMatch = todo.text.match(/(\d+).*?(\d+)/);
+      if (streakMatch) {
+        return t('certificate.todoTexts.streak', { 
+          required: streakMatch[1], 
+          current: streakMatch[2] 
+        });
+      }
+      return todo.text;
+      
+    default:
+      return todo.text;
+  }
+}
+
+/**
  * Component hiển thị card chứng chỉ với tiến độ chi tiết
  */
 function CertificateCard({ certType, data, userTier, onClaim, claiming, t }) {
@@ -246,6 +329,19 @@ function CertificateCard({ certType, data, userTier, onClaim, claiming, t }) {
     return styles[type] || { icon: '📌', color: 'gray', label: type };
   };
 
+  // Translate certificate name và description
+  const getCertName = () => {
+    if (certType === 'addSub') return t('certificate.certNames.addSub');
+    if (certType === 'complete') return t('certificate.certNames.complete');
+    return data.name;
+  };
+  
+  const getCertDescription = () => {
+    if (certType === 'addSub') return t('certificate.detail.addSubDesc');
+    if (certType === 'complete') return t('certificate.detail.completeDesc');
+    return data.description;
+  };
+
   return (
     <div className={`bg-white rounded-2xl shadow-lg overflow-hidden ${isLocked ? 'opacity-80' : ''}`}>
       {/* Header */}
@@ -262,8 +358,8 @@ function CertificateCard({ certType, data, userTier, onClaim, claiming, t }) {
               {data.icon}
             </div>
             <div className="text-white">
-              <h3 className="text-xl font-bold">{data.name}</h3>
-              <p className="text-white/80 text-sm">{data.description}</p>
+              <h3 className="text-xl font-bold">{getCertName()}</h3>
+              <p className="text-white/80 text-sm">{getCertDescription()}</p>
             </div>
           </div>
           <div className="flex flex-col items-end gap-2">
@@ -352,7 +448,7 @@ function CertificateCard({ certType, data, userTier, onClaim, claiming, t }) {
                 {data.todoList.slice(0, 3).map((todo, index) => (
                   <div key={index} className="flex items-start gap-3 p-2 bg-white rounded-lg">
                     <span className="text-lg">{todo.icon}</span>
-                    <p className="text-gray-700 text-sm">{todo.text}</p>
+                    <p className="text-gray-700 text-sm">{translateTodoText(todo, t)}</p>
                   </div>
                 ))}
                 {data.todoList.length > 3 && (
@@ -457,7 +553,7 @@ function RequirementRow({ type, detail, style, t }) {
                 {isComplete ? `✓ ${t('certificate.has')}` : `✗ ${t('certificate.notHas')}`}
               </span>
             </div>
-            <div className="text-xs text-gray-500">{detail.description}</div>
+            <div className="text-xs text-gray-500">{t('certificate.descriptions.prereqAddSub')}</div>
           </div>
         );
       
@@ -470,7 +566,7 @@ function RequirementRow({ type, detail, style, t }) {
                 {detail.completed}/{detail.total} Level
               </span>
             </div>
-            <div className="text-xs text-gray-500">{detail.description}</div>
+            <div className="text-xs text-gray-500">{t('certificate.descriptions.lessons')}</div>
           </div>
         );
       
@@ -549,11 +645,15 @@ function RequirementRow({ type, detail, style, t }) {
                 {detail.correct}/{detail.required} {t('certificate.correct')}
               </span>
             </div>
-            <div className="text-xs text-gray-500">{detail.description}</div>
+            <div className="text-xs text-gray-500">
+              {t('certificate.descriptions.mentalMath', { minCorrect: detail.required })}
+            </div>
           </div>
         );
       
       case 'flashAnzan':
+        // Translate flash level name using dictionary
+        const flashLevelName = t(`certificate.flashLevels.${detail.minLevel}`) || detail.minLevel;
         return (
           <div className="text-sm">
             <div className="flex justify-between mb-1">
@@ -563,7 +663,7 @@ function RequirementRow({ type, detail, style, t }) {
               </span>
             </div>
             <div className="text-xs text-gray-500">
-              {t('certificate.levelAndAbove', { level: detail.minLevelName || detail.minLevel })}
+              {t('certificate.levelAndAbove', { level: flashLevelName })}
             </div>
           </div>
         );
@@ -577,7 +677,9 @@ function RequirementRow({ type, detail, style, t }) {
                 {detail.current}% / {detail.required}%
               </span>
             </div>
-            <div className="text-xs text-gray-500">{detail.description}</div>
+            <div className="text-xs text-gray-500">
+              {t('certificate.descriptions.accuracy', { minAccuracy: detail.required })}
+            </div>
           </div>
         );
       

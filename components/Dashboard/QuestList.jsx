@@ -7,7 +7,16 @@ import { useI18n } from '@/lib/i18n/I18nContext';
  * QuestList - Danh sách nhiệm vụ đang hoạt động
  */
 export default function QuestList({ quests, onClaimReward, compact = false }) {
-  const { t } = useI18n();
+  const { t, translateDb } = useI18n();
+  
+  // Helper: Dịch quest title và description
+  const getQuestTitle = (quest) => {
+    return translateDb('quests', `${quest.id}.title`, quest.title);
+  };
+  
+  const getQuestDescription = (quest) => {
+    return translateDb('quests', `${quest.id}.description`, quest.description);
+  };
   
   if (!quests?.active || quests.active.length === 0) {
     return (
@@ -59,13 +68,13 @@ export default function QuestList({ quests, onClaimReward, compact = false }) {
               <div className="flex items-center justify-between gap-2">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <h4 className={`font-bold text-gray-800 truncate ${compact ? 'text-sm' : ''}`}>{quest.title}</h4>
+                    <h4 className={`font-bold text-gray-800 truncate ${compact ? 'text-sm' : ''}`}>{getQuestTitle(quest)}</h4>
                     {quest.completed && (
                       <CheckCircle size={compact ? 14 : 18} className="text-green-500 flex-shrink-0" />
                     )}
                   </div>
                   {!compact && (
-                    <p className="text-sm text-gray-500 mt-1 truncate">{quest.description}</p>
+                    <p className="text-sm text-gray-500 mt-1 truncate">{getQuestDescription(quest)}</p>
                   )}
                 </div>
                 

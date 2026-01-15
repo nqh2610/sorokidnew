@@ -10,6 +10,7 @@ import { useUpgradeModal } from '@/components/UpgradeModal';
 import { useSwipeNavigation } from '@/lib/useSwipeNavigation';
 import { useI18n } from '@/lib/i18n/I18nContext';
 import { useLocalizedUrl } from '@/components/LocalizedLink';
+import { translateRecords, translateRecord } from '@/lib/i18n/dbTranslate';
 
 // Fallback colors cho levels (nếu database không có)
 const LEVEL_COLORS = {
@@ -43,14 +44,14 @@ const TIER_CONFIG = {
 
 // Helper to get tier info with i18n
 const getTierInfo = (t) => ({
-  free: { name: t('tier.free'), ...TIER_CONFIG.free },
-  basic: { name: t('tier.basic'), ...TIER_CONFIG.basic },
-  advanced: { name: t('tier.advanced'), ...TIER_CONFIG.advanced },
-  vip: { name: t('tier.vip'), ...TIER_CONFIG.vip }
+  free: { name: t('learn.tiers.free'), ...TIER_CONFIG.free },
+  basic: { name: t('learn.tiers.basic'), ...TIER_CONFIG.basic },
+  advanced: { name: t('learn.tiers.advanced'), ...TIER_CONFIG.advanced },
+  vip: { name: t('learn.tiers.vip'), ...TIER_CONFIG.vip }
 });
 
 export default function LearnPage() {
-  const { t } = useI18n();
+  const { t, locale, dictionary, translateLevelName } = useI18n();
   const { status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -80,14 +81,14 @@ export default function LearnPage() {
       if (prevLevel.isLocked) {
         showUpgradeModal({
           requiredTier: 'advanced',
-          feature: `Level ${prevLevel.id}: ${prevLevel.name}`,
+          feature: `Level ${prevLevel.id}: ${translateLevelName(prevLevel.id, prevLevel.name)}`,
           currentTier: userTier
         });
       } else {
         setSelectedLevel(prevLevel.id);
       }
     }
-  }, [levels, selectedLevel, userTier, showUpgradeModal]);
+  }, [levels, selectedLevel, userTier, showUpgradeModal, translateLevelName]);
 
   const goToNextLevel = useCallback(() => {
     const currentIndex = levels.findIndex(l => l.id === selectedLevel);
@@ -96,14 +97,14 @@ export default function LearnPage() {
       if (nextLevel.isLocked) {
         showUpgradeModal({
           requiredTier: 'advanced',
-          feature: `Level ${nextLevel.id}: ${nextLevel.name}`,
+          feature: `Level ${nextLevel.id}: ${translateLevelName(nextLevel.id, nextLevel.name)}`,
           currentTier: userTier
         });
       } else {
         setSelectedLevel(nextLevel.id);
       }
     }
-  }, [levels, selectedLevel, userTier, showUpgradeModal]);
+  }, [levels, selectedLevel, userTier, showUpgradeModal, translateLevelName]);
 
   // Swipe hook - hỗ trợ cả touch và mouse
   const { swipeHandlers } = useSwipeNavigation(goToNextLevel, goToPrevLevel);
@@ -133,12 +134,12 @@ export default function LearnPage() {
     }
   }, [status, router, localizeUrl]);
 
-  // Fetch levels từ database
+  // Fetch levels từ database (re-fetch when locale changes to re-translate)
   useEffect(() => {
     if (status === 'authenticated') {
       fetchLevels();
     }
-  }, [status]);
+  }, [status, locale]);
 
   // Auto-select level từ URL query param
   useEffect(() => {
@@ -151,12 +152,12 @@ export default function LearnPage() {
     }
   }, [levelFromUrl, levels]);
 
-  // Fetch lessons khi chọn level
+  // Fetch lessons khi chọn level (re-fetch when locale changes)
   useEffect(() => {
     if (selectedLevel && status === 'authenticated') {
       fetchLessons(selectedLevel);
     }
-  }, [selectedLevel, status]);
+  }, [selectedLevel, status, locale]);
 
   const fetchLevels = async () => {
     setLoading(true);
@@ -164,21 +165,23 @@ export default function LearnPage() {
       const res = await fetch('/api/levels');
       const data = await res.json();
       if (data.levels) {
-        setLevels(data.levels);
+        // Translate levels based on current locale
+        const translatedLevels = translateRecords(data.levels, dictionary, locale, 'levels', ['name', 'description']);
+        setLevels(translatedLevels);
         setUserTier(data.userTier || 'free');
         setMaxLevel(data.maxLevel || 5);
         // Auto-select level từ URL hoặc level đầu tiên nếu chưa chọn
-        if (!selectedLevel && data.levels.length > 0) {
+        if (!selectedLevel && translatedLevels.length > 0) {
           if (levelFromUrl) {
             const levelId = parseInt(levelFromUrl, 10);
-            const levelExists = data.levels.find(l => l.id === levelId);
+            const levelExists = translatedLevels.find(l => l.id === levelId);
             if (levelExists) {
               setSelectedLevel(levelId);
             } else {
-              setSelectedLevel(data.levels[0].id);
+              setSelectedLevel(translatedLevels[0].id);
             }
           } else {
-            setSelectedLevel(data.levels[0].id);
+            setSelectedLevel(translatedLevels[0].id);
           }
         }
       }
@@ -193,7 +196,20 @@ export default function LearnPage() {
     try {
       const res = await fetch(`/api/lessons?levelId=${levelId}`);
       const data = await res.json();
-      setLessons(data.lessons || []);
+      // Translate lessons - use composite key "levelId-lessonId"
+      const translatedLessons = (data.lessons || []).map(lesson => {
+        const key = `${lesson.levelId}-${lesson.lessonId}`;
+        const translations = dictionary?.db?.lessons?.[key];
+        if (locale !== 'vi' && translations) {
+          return {
+            ...lesson,
+            title: translations.title || lesson.title,
+            description: translations.description || lesson.description
+          };
+        }
+        return lesson;
+      });
+      setLessons(translatedLessons);
     } catch (error) {
       console.error('Error fetching lessons:', error);
     }
@@ -252,7 +268,7 @@ export default function LearnPage() {
                     if (isLocked) {
                       showUpgradeModal({
                         requiredTier: 'advanced',
-                        feature: `Level ${level.id}: ${level.name}`,
+                        feature: `Level ${level.id}: ${translateLevelName(level.id, level.name)}`,
                         currentTier: userTier
                       });
                     } else {
@@ -273,7 +289,7 @@ export default function LearnPage() {
                     </div>
                   )}
                   <span className="text-xl">{level.icon}</span>
-                  <span className="text-sm">{level.id}. {level.name}</span>
+                  <span className="text-sm">{level.id}. {translateLevelName(level.id, level.name)}</span>
                   {/* Progress indicator */}
                   {!isLocked && level.progress > 0 && level.progress < 100 && (
                     <span className="text-xs bg-white/30 px-1.5 rounded-full">{level.progress}%</span>
@@ -294,27 +310,27 @@ export default function LearnPage() {
           >
             {/* Swipe hint - mobile only */}
             <div className="lg:hidden text-center text-[10px] text-white/70 mb-1">
-              ← vuốt trái/phải để chuyển màn →
+              {t('learn.swipeHintMobile')}
             </div>
 
             {/* Header: Icon + Title */}
             <div className="flex items-center gap-2 mb-3">
               <span className="text-3xl sm:text-4xl">{currentLevel.icon}</span>
-              <h2 className="text-lg sm:text-2xl font-bold flex-1">Màn {selectedLevel}: {currentLevel.name}</h2>
+              <h2 className="text-lg sm:text-2xl font-bold flex-1">{t('learn.levelHeader', { level: selectedLevel, name: translateLevelName(selectedLevel, currentLevel.name) })}</h2>
             </div>
             
             {/* Stats Row - centered, không bị che */}
             <div className="flex items-center justify-center gap-6 mb-3">
               <div className="text-center">
                 <div className="text-2xl sm:text-3xl font-bold">{completedLessons}/{lessons.length}</div>
-                <div className="text-[10px] sm:text-xs text-white/80">Nhiệm vụ</div>
+                <div className="text-[10px] sm:text-xs text-white/80">{t('learn.missions')}</div>
               </div>
               <div className="text-center">
                 <div className="flex items-center justify-center gap-1 text-2xl sm:text-3xl font-bold">
                   <Star size={18} className="sm:w-5 sm:h-5" fill="white" />
                   {totalStars}/{maxStars}
                 </div>
-                <div className="text-[10px] sm:text-xs text-white/80">Sao</div>
+                <div className="text-[10px] sm:text-xs text-white/80">{t('learn.stars')}</div>
               </div>
             </div>
 
@@ -329,8 +345,8 @@ export default function LearnPage() {
             </div>
             <p className="text-[10px] sm:text-xs text-white/80 mt-1.5 text-center">
               {completedLessons === lessons.length && lessons.length > 0 
-                ? '🎉 Đã hoàn thành màn này!'
-                : `💪 Còn ${lessons.length - completedLessons} nhiệm vụ nữa!`}
+                ? t('learn.levelComplete')
+                : t('learn.missionsRemaining', { count: lessons.length - completedLessons })}
             </p>
             
             {/* Navigation: Arrows + Dots - mobile only */}
@@ -372,7 +388,7 @@ export default function LearnPage() {
                           if (level.isLocked) {
                             showUpgradeModal({
                               requiredTier: 'advanced',
-                              feature: `Level ${level.id}: ${level.name}`,
+                              feature: `Level ${level.id}: ${translateLevelName(level.id, level.name)}`,
                               currentTier: userTier
                             });
                           } else {
@@ -422,38 +438,38 @@ export default function LearnPage() {
           <div className="p-4 border-b border-gray-100">
             <h3 className="font-bold text-gray-800 flex items-center gap-2">
               <BookOpen size={20} />
-              📋 Danh sách nhiệm vụ
+              {t('learn.missionList')}
             </h3>
           </div>
           
           {loadingLessons ? (
             <div className="p-8 text-center">
               <div className="text-4xl animate-spin inline-block">🧮</div>
-              <p className="text-gray-500 mt-2">Đang tải nhiệm vụ...</p>
+              <p className="text-gray-500 mt-2">{t('learn.loadingMissions')}</p>
             </div>
           ) : currentLevel?.isLocked ? (
             <div className="p-8 text-center">
               <div className="text-6xl mb-4 animate-bounce">✨</div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Khám phá thêm nè!</h3>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">{t('learn.discoverMore')}</h3>
               <p className="text-gray-500 mb-4">
-                Level này có nhiều bài học thú vị đang chờ bạn
+                {t('learn.levelHasLessons')}
               </p>
               <button 
                 onClick={() => showUpgradeModal({
                   requiredTier: 'advanced',
-                  feature: `Level ${selectedLevel}: ${currentLevel.name}`,
+                  feature: `Level ${selectedLevel}: ${translateLevelName(selectedLevel, currentLevel.name)}`,
                   currentTier: userTier
                 })}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-bold hover:shadow-lg hover:scale-105 transition-all"
               >
                 <Sparkles size={20} />
-                Tìm hiểu thêm
+                {t('learn.learnMore')}
               </button>
             </div>
           ) : lessons.length === 0 ? (
             <div className="p-8 text-center text-gray-500">
               <div className="text-4xl mb-2">🚧</div>
-              Nhiệm vụ đang được chuẩn bị...
+              {t('learn.missionsPreparing')}
             </div>
           ) : (
             <div className="divide-y divide-gray-100">
@@ -493,7 +509,7 @@ export default function LearnPage() {
                       <div className="flex items-center gap-3 mt-1 text-xs">
                         <span className="flex items-center gap-1 text-gray-400">
                           <Clock size={12} />
-                          {lesson.duration || 15} phút
+                          {lesson.duration || 15} {t('learn.minutes')}
                         </span>
                         {isCompleted ? (
                           <StarBadge 
@@ -502,7 +518,7 @@ export default function LearnPage() {
                             variant="earned"
                           />
                         ) : (
-                          <span className="text-gray-400">☆ {lesson.stars || 3} sao</span>
+                          <span className="text-gray-400">{t('learn.starsAvailable', { count: lesson.stars || 3 })}</span>
                         )}
                       </div>
                     </div>
@@ -512,14 +528,14 @@ export default function LearnPage() {
                       {isCompleted ? (
                         <div className="flex items-center gap-1 text-green-500 font-bold text-sm">
                           <CheckCircle size={16} />
-                          ✨ Xong
+                          {t('learn.done')}
                         </div>
                       ) : isLocked ? (
                         <Lock size={20} className="text-gray-300" />
                       ) : (
                         <button className={`px-4 py-2 bg-gradient-to-r ${currentLevelColor} text-white rounded-lg font-bold text-sm flex items-center gap-1 hover:shadow-lg hover:scale-105 transition-all`}>
                           <PlayCircle size={16} />
-                          Chơi!
+                          {t('learn.play')}
                         </button>
                       )}
                     </div>

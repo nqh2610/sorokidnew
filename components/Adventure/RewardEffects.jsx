@@ -2,6 +2,7 @@
 
 import { memo, useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 // ============================================================
 // 🎉 REWARD EFFECTS - Hiệu ứng thưởng khi hoàn thành stage
@@ -594,6 +595,7 @@ export function ZoneIntroDialog({
   introMessage = '',
   onComplete 
 }) {
+  const { t } = useI18n();
   const [isTyping, setIsTyping] = useState(true);
   const [displayedText, setDisplayedText] = useState('');
   
@@ -692,7 +694,7 @@ export function ZoneIntroDialog({
                 🦉
               </motion.div>
               <div className="flex-1">
-                <div className="text-amber-400 font-bold text-sm mb-1">Cú Soro</div>
+                <div className="text-amber-400 font-bold text-sm mb-1">{t('adventureScreen.cuSoro')}</div>
                 <div className="text-amber-100 leading-relaxed min-h-[60px]">
                   {displayedText}
                   {isTyping && (
@@ -714,7 +716,7 @@ export function ZoneIntroDialog({
                 onClick={handleSkip}
                 className="flex-1 py-3 bg-slate-700 text-slate-300 font-medium rounded-xl hover:bg-slate-600 transition-colors"
               >
-                Hiện hết
+                {t('adventureScreen.zoneIntro.showAll')}
               </button>
             )}
             <motion.button
@@ -723,7 +725,7 @@ export function ZoneIntroDialog({
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              {isTyping ? 'Bắt đầu! ⚡' : 'Khám phá ngay! 🚀'}
+              {isTyping ? t('adventureScreen.zoneIntro.start') : t('adventureScreen.zoneIntro.exploreNow')}
             </motion.button>
           </div>
         </motion.div>
@@ -744,19 +746,23 @@ export function ZoneLockedDialog({
   onGoBack,           // Callback để quay về zone trước
   onClose             // Callback để đóng dialog
 }) {
+  const { t } = useI18n();
+  
   // Tạo message động và hấp dẫn
   const getMessage = () => {
     const remaining = (prevProgress?.total || 0) - (prevProgress?.completed || 0);
     const percent = prevProgress?.percent || 0;
+    const prevZoneName = prevZone?.name || t('adventureScreen.zoneLocked.prevZone');
+    const currentZoneName = currentZone?.name || t('adventureScreen.zoneLocked.newZone');
     
     if (percent >= 80) {
-      return `Ôi, con sắp xong rồi! Chỉ còn ${remaining} thử thách nữa ở ${prevZone?.name || 'vùng đất trước'} là con có thể khám phá ${currentZone?.name || 'vùng đất mới'} rồi! Cú Soro tin con làm được! 💪✨`;
+      return t('adventureScreen.zoneLocked.msg80', { remaining, prevZone: prevZoneName, currentZone: currentZoneName });
     } else if (percent >= 50) {
-      return `Hú hú! Con đang làm rất tốt ở ${prevZone?.name || 'vùng đất trước'} đấy! Còn ${remaining} thử thách nữa thôi. Hoàn thành xong, ${currentZone?.name || 'vùng đất mới'} với những điều kỳ diệu sẽ chào đón con! 🌟`;
+      return t('adventureScreen.zoneLocked.msg50', { remaining, prevZone: prevZoneName, currentZone: currentZoneName });
     } else if (percent > 0) {
-      return `Này này, con ơi! ${currentZone?.name || 'Vùng đất này'} đang chờ con chinh phục ${prevZone?.name || 'vùng đất trước'} trước đã nè! Còn ${remaining} thử thách nữa thôi. Đừng lo, Cú Soro sẽ đồng hành cùng con! 🦉💕`;
+      return t('adventureScreen.zoneLocked.msgStarted', { remaining, prevZone: prevZoneName, currentZone: currentZoneName });
     } else {
-      return `Ối, khoan đã nào! ${currentZone?.name || 'Vùng đất này'} đang chờ con hoàn thành ${prevZone?.name || 'vùng đất trước'} trước nhé! Mỗi vùng đất đều có những bài học thú vị - hãy đi theo thứ tự để không bỏ lỡ điều gì! 🗺️✨`;
+      return t('adventureScreen.zoneLocked.msgNotStarted', { prevZone: prevZoneName, currentZone: currentZoneName });
     }
   };
   
@@ -796,13 +802,13 @@ export function ZoneLockedDialog({
           
           {/* Title */}
           <h2 className="text-xl sm:text-2xl font-bold text-center text-amber-400 mb-2">
-            Chưa đến lượt vùng này!
+            {t('adventureScreen.zoneLocked.title')}
           </h2>
           
           {/* Zone info */}
           <div className="flex items-center justify-center gap-2 mb-4">
             <span className="text-2xl">{currentZone?.icon || '🏝️'}</span>
-            <span className="text-amber-300 font-medium">{currentZone?.name || 'Vùng đất mới'}</span>
+            <span className="text-amber-300 font-medium">{currentZone?.name || t('adventureScreen.zoneLocked.newZone')}</span>
           </div>
           
           {/* Cú Soro message - Hiển thị ngay, không typing */}
@@ -812,7 +818,7 @@ export function ZoneLockedDialog({
                 🦉
               </div>
               <div className="flex-1">
-                <div className="text-amber-400 font-bold text-sm mb-1">Cú Soro</div>
+                <div className="text-amber-400 font-bold text-sm mb-1">{t('adventureScreen.cuSoro')}</div>
                 <div className="text-amber-100/90 leading-relaxed text-sm sm:text-base">
                   {message}
                 </div>
@@ -847,13 +853,13 @@ export function ZoneLockedDialog({
               onClick={onClose}
               className="flex-1 py-3 bg-slate-700 text-slate-300 font-medium rounded-xl hover:bg-slate-600 transition-colors"
             >
-              Để sau
+              {t('adventureScreen.zoneLocked.later')}
             </button>
             <button
               onClick={onGoBack}
               className="flex-1 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl shadow-lg hover:from-amber-600 hover:to-orange-600 transition-all active:scale-95"
             >
-              Quay lại! 🚀
+              {t('adventureScreen.zoneLocked.goBack')}
             </button>
           </div>
         </motion.div>

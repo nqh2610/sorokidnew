@@ -7,6 +7,7 @@ import QRCode from 'qrcode';
 import { ArrowLeft, Download, Share2, Printer, Award, Star, CheckCircle } from 'lucide-react';
 import { LogoIcon } from '@/components/Logo/Logo';
 import { useToast } from '@/components/Toast/ToastContext';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 export default function CertificateDetailPage() {
   const { id } = useParams();
@@ -17,6 +18,7 @@ export default function CertificateDetailPage() {
   const [isDownloading, setIsDownloading] = useState(false);
   const certificateRef = useRef(null);
   const toast = useToast();
+  const { t, locale } = useI18n();
 
   useEffect(() => {
     fetchCertificate();
@@ -49,7 +51,7 @@ export default function CertificateDetailPage() {
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('vi-VN', {
+    return new Date(dateString).toLocaleDateString(locale === 'en' ? 'en-US' : 'vi-VN', {
       day: '2-digit',
       month: 'long',
       year: 'numeric'
@@ -59,7 +61,7 @@ export default function CertificateDetailPage() {
   const handleDownloadPDF = async () => {
     // Chỉ cho phép download trên màn hình lớn (>= 640px) để đảm bảo PDF đẹp
     if (window.innerWidth < 640) {
-      toast.error('Vui lòng sử dụng máy tính hoặc xoay ngang màn hình để tải PDF!');
+      toast.error(t('certificate.detail.useLargeScreen'));
       return;
     }
     
@@ -165,7 +167,7 @@ export default function CertificateDetailPage() {
       
     } catch (error) {
       console.error('Error generating PDF:', error);
-      toast.error('Có lỗi khi tạo PDF. Vui lòng thử lại!');
+      toast.error(t('certificate.detail.pdfError'));
     } finally {
       setIsDownloading(false);
     }
@@ -176,9 +178,14 @@ export default function CertificateDetailPage() {
   };
 
   const handleShare = async () => {
+    const certName = certificate.certType === 'addSub' 
+      ? t('certificate.detail.addSubBadge') 
+      : t('certificate.detail.completeBadge');
     const shareData = {
-      title: 'Chứng chỉ Sorokid',
-      text: `${certificate.recipientName} đã hoàn thành ${certificate.certType === 'addSub' ? 'Chứng chỉ Cộng Trừ' : 'Chứng chỉ Toàn Diện'} tại Sorokid!`,
+      title: locale === 'en' ? 'Sorokid Certificate' : 'Chứng chỉ Sorokid',
+      text: locale === 'en' 
+        ? `${certificate.recipientName} has completed ${certName} at Sorokid!`
+        : `${certificate.recipientName} đã hoàn thành ${certName} tại Sorokid!`,
       url: window.location.href
     };
 
@@ -190,7 +197,7 @@ export default function CertificateDetailPage() {
       }
     } else {
       navigator.clipboard.writeText(window.location.href);
-      toast.success('Đã copy link chứng chỉ!');
+      toast.success(t('certificate.detail.shareCopied'));
     }
   };
 
@@ -199,7 +206,7 @@ export default function CertificateDetailPage() {
       <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full mx-auto mb-4"></div>
-          <p className="text-gray-600 font-medium">Đang tải chứng chỉ...</p>
+          <p className="text-gray-600 font-medium">{t('certificate.detail.loading')}</p>
         </div>
       </div>
     );
@@ -210,11 +217,11 @@ export default function CertificateDetailPage() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
         <div className="text-center bg-white rounded-2xl p-8 shadow-lg">
           <div className="text-6xl mb-4">❌</div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Không tìm thấy chứng chỉ</h2>
-          <p className="text-gray-600 mb-6">Chứng chỉ này không tồn tại hoặc đã bị xóa.</p>
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">{t('certificate.detail.notFound')}</h2>
+          <p className="text-gray-600 mb-6">{t('certificate.detail.notFoundDesc')}</p>
           <LocalizedLink href="/certificate" className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-800 font-medium">
             <ArrowLeft size={20} />
-            Quay lại danh sách chứng chỉ
+            {t('certificate.detail.backToList')}
           </LocalizedLink>
         </div>
       </div>
@@ -223,18 +230,18 @@ export default function CertificateDetailPage() {
 
   const certConfig = {
     addSub: {
-      title: 'CHỨNG CHỈ TÍNH NHẨM CỘNG TRỪ',
-      subtitle: 'Soroban Addition & Subtraction Certificate',
-      description: 'Chứng nhận năng lực tính nhẩm cộng trừ trên bàn tính Soroban',
-      badgeTitle: 'Tính nhẩm Cộng Trừ',
+      title: t('certificate.detail.addSubTitle'),
+      subtitle: t('certificate.detail.addSubSubtitle'),
+      description: t('certificate.detail.addSubDesc'),
+      badgeTitle: t('certificate.detail.addSubBadge'),
       gradient: 'from-blue-500 to-cyan-500',
       border: 'border-blue-400'
     },
     complete: {
-      title: 'CHỨNG CHỈ SOROBAN TOÀN DIỆN',
-      subtitle: 'Complete Soroban Mastery Certificate',
-      description: 'Chứng nhận năng lực Soroban toàn diện: Cộng Trừ Nhân Chia + Siêu Trí Tuệ + Tia Chớp',
-      badgeTitle: 'Soroban Toàn Diện',
+      title: t('certificate.detail.completeTitle'),
+      subtitle: t('certificate.detail.completeSubtitle'),
+      description: t('certificate.detail.completeDesc'),
+      badgeTitle: t('certificate.detail.completeBadge'),
       gradient: 'from-amber-500 to-orange-500',
       border: 'border-amber-400'
     }
@@ -249,15 +256,15 @@ export default function CertificateDetailPage() {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 print:hidden">
           <LocalizedLink href="/certificate" className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-800 font-medium bg-white px-4 py-2 rounded-xl shadow-sm">
             <ArrowLeft size={20} />
-            Quay lại
-          </Link>
+            {t('certificate.detail.back')}
+          </LocalizedLink>
           <div className="hidden sm:flex flex-wrap gap-3">
             <button
               onClick={handleShare}
               className="px-4 py-2.5 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-colors flex items-center gap-2 font-medium shadow-md"
             >
               <Share2 size={18} />
-              Chia sẻ
+              {t('certificate.detail.share')}
             </button>
             <button
               onClick={handleDownloadPDF}
@@ -267,12 +274,12 @@ export default function CertificateDetailPage() {
               {isDownloading ? (
                 <>
                   <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
-                  Đang tạo...
+                  {t('certificate.detail.generating')}
                 </>
               ) : (
                 <>
                   <Download size={18} />
-                  Tải PDF
+                  {t('certificate.detail.downloadPdf')}
                 </>
               )}
             </button>
@@ -283,11 +290,11 @@ export default function CertificateDetailPage() {
         <div className="sm:hidden text-center mb-3 print:hidden space-y-2">
           <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
             <span>👆</span>
-            Vuốt để xem toàn bộ chứng chỉ
+            {t('certificate.detail.swipeToView')}
             <span>👉</span>
           </p>
           <p className="text-xs text-amber-600 bg-amber-50 rounded-lg py-2 px-3">
-            💡 Để tải PDF đẹp nhất, vui lòng sử dụng máy tính hoặc xoay ngang màn hình
+            {t('certificate.detail.desktopForPdf')}
           </p>
         </div>
 
@@ -336,12 +343,12 @@ export default function CertificateDetailPage() {
 
             {/* Content */}
             <div className="text-center flex-1 flex flex-col justify-center relative z-10">
-              <p className="text-gray-600 text-base sm:text-lg mb-2">Chứng nhận</p>
+              <p className="text-gray-600 text-base sm:text-lg mb-2">{t('certificate.detail.certify')}</p>
               <h2 className="text-3xl sm:text-5xl font-bold text-gray-800 mb-4 font-serif">
                 {certificate.recipientName}
               </h2>
               <p className="text-gray-600 text-base sm:text-lg mb-4 sm:mb-6">
-                Đã hoàn thành xuất sắc chương trình
+                {t('certificate.detail.excellentCompletion')}
               </p>
               
               {/* Certificate Type Badge */}
@@ -362,13 +369,13 @@ export default function CertificateDetailPage() {
               {certificate.isExcellent && (
                 <div className="flex items-center justify-center gap-1 text-amber-500">
                   <Star size={14} fill="currentColor" />
-                  <span className="text-sm font-medium">Xuất sắc</span>
+                  <span className="text-sm font-medium">{t('certificate.detail.excellent')}</span>
                   <Star size={14} fill="currentColor" />
                 </div>
               )}
               
               <p className="text-gray-600 mt-4 text-sm sm:text-base">
-                Chương trình Tính nhẩm Soroban tại <span className="font-bold text-purple-600">Sorokid Education</span>
+                {t('certificate.detail.programAt')} <span className="font-bold text-purple-600">Sorokid Education</span>
               </p>
             </div>
 
@@ -376,7 +383,7 @@ export default function CertificateDetailPage() {
             <div className="flex justify-between items-end mt-4 sm:mt-6 relative z-10">
               {/* Date */}
               <div className="text-left">
-                <p className="text-gray-500 text-xs sm:text-sm">Ngày cấp</p>
+                <p className="text-gray-500 text-xs sm:text-sm">{t('certificate.detail.issuedDate')}</p>
                 <p className="font-medium text-gray-700 text-sm sm:text-base">{formatDate(certificate.issuedAt)}</p>
               </div>
 
@@ -394,7 +401,7 @@ export default function CertificateDetailPage() {
                     <img src={qrCodeUrl} alt="QR Verify" className="w-16 h-16 sm:w-20 sm:h-20" />
                   </div>
                 )}
-                <p className="text-xs text-gray-400 mt-1">Quét để xác minh</p>
+                <p className="text-xs text-gray-400 mt-1">{t('certificate.detail.scanToVerify')}</p>
               </div>
             </div>
 
@@ -402,7 +409,7 @@ export default function CertificateDetailPage() {
             <div className="text-center mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-200">
               <p className="text-xs text-gray-400 font-mono flex items-center justify-center gap-2">
                 <CheckCircle size={12} className="text-green-500" />
-                Mã chứng chỉ: {certificate.code}
+                {t('certificate.detail.certCode')}: {certificate.code}
               </p>
             </div>
           </div>
@@ -413,10 +420,10 @@ export default function CertificateDetailPage() {
         <div className="mt-6 bg-white rounded-2xl p-6 shadow-lg print:hidden">
           <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
             <CheckCircle className="text-green-500" />
-            Xác minh chứng chỉ
+            {t('certificate.detail.verifyCert')}
           </h3>
           <p className="text-gray-600 text-sm mb-3">
-            Chứng chỉ này có thể được xác minh bằng cách quét mã QR hoặc truy cập đường dẫn sau:
+            {t('certificate.detail.verifyDesc')}
           </p>
           <div className="flex items-center gap-2 bg-gray-100 rounded-xl p-3">
             <code className="text-sm text-gray-700 flex-1 break-all font-mono">
@@ -427,7 +434,7 @@ export default function CertificateDetailPage() {
                 navigator.clipboard.writeText(
                   `${window.location.origin}/api/certificate/verify/${certificate.code}`
                 );
-                toast.success('Đã copy link!');
+                toast.success(t('certificate.detail.copyLink'));
               }}
               className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
               title="Copy link"

@@ -6,7 +6,7 @@ import { LogOut, Star, ChevronDown } from 'lucide-react';
 import Logo from '@/components/Logo/Logo';
 import ConfirmDialog from '@/components/ConfirmDialog/ConfirmDialog';
 import { MonsterAvatar } from '@/components/MonsterAvatar';
-import { getLevelInfo } from '@/lib/gamification';
+import { getLevelInfo, translateLevelName } from '@/lib/gamification';
 import { useI18n } from '@/lib/i18n/I18nContext';
 import { LocalizedLink } from '@/components/LocalizedLink';
 
@@ -270,7 +270,7 @@ export default function TopBar({ showStats = true }) {
                       {userStats?.name || session.user?.name || 'User'}
                     </span>
                     <div className="text-xs text-gray-500">
-                      {userStats?.levelInfo?.icon} {userStats?.levelInfo?.name || `${t('topbar.level')} ${userStats?.level || 1}`}
+                      {userStats?.levelInfo?.icon} {userStats?.levelInfo ? translateLevelName(userStats.levelInfo, t) : `${t('topbar.level')} ${userStats?.level || 1}`}
                     </div>
                   </div>
                   <ChevronDown size={16} className={`text-gray-400 transition-transform ${showDropdown ? 'rotate-180' : ''}`} />

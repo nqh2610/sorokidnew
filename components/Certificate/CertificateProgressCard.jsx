@@ -2,6 +2,7 @@
 
 import { Award, Lock, CheckCircle, ArrowRight } from 'lucide-react';
 import LocalizedLink from '@/components/LocalizedLink/LocalizedLink';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 /**
  * CertificateProgressCard - Card hiển thị tiến độ đạt chứng chỉ
@@ -17,6 +18,7 @@ export default function CertificateProgressCard({
   certificateCode,
   isPremium = false
 }) {
+  const { t } = useI18n();
   const progress = totalLessons > 0 ? (completedLessons / totalLessons) * 100 : 0;
   const canGetCertificate = completedLessons >= totalLessons && currentAccuracy >= requiredAccuracy;
   const isLocked = !isPremium && levelId > 2;
@@ -29,17 +31,17 @@ export default function CertificateProgressCard({
             🏆
           </div>
           <div className="flex-1">
-            <h3 className="font-bold text-gray-800">Chứng chỉ Level {levelId}</h3>
+            <h3 className="font-bold text-gray-800">{t('certificate.progress.levelCert', { level: levelId })}</h3>
             <p className="text-sm text-green-600 flex items-center gap-1">
               <CheckCircle size={14} />
-              Đã hoàn thành
+              {t('certificate.progress.completed')}
             </p>
           </div>
           <LocalizedLink
             href={`/certificate/${certificateCode}`}
             className="px-4 py-2 bg-amber-500 text-white rounded-lg font-medium hover:bg-amber-600 transition-colors flex items-center gap-2"
           >
-            Xem
+            {t('certificate.progress.view')}
             <ArrowRight size={16} />
           </LocalizedLink>
         </div>
@@ -55,8 +57,8 @@ export default function CertificateProgressCard({
             <Lock className="text-gray-400" size={24} />
           </div>
           <div className="flex-1">
-            <h3 className="font-bold text-gray-500">Chứng chỉ Level {levelId}</h3>
-            <p className="text-sm text-gray-400">Cần nâng cấp Premium</p>
+            <h3 className="font-bold text-gray-500">{t('certificate.progress.levelCert', { level: levelId })}</h3>
+            <p className="text-sm text-gray-400">{t('certificate.progress.needPremium')}</p>
           </div>
         </div>
       </div>
@@ -70,7 +72,7 @@ export default function CertificateProgressCard({
           📜
         </div>
         <div className="flex-1">
-          <h3 className="font-bold text-gray-800">Chứng chỉ Level {levelId}</h3>
+          <h3 className="font-bold text-gray-800">{t('certificate.progress.levelCert', { level: levelId })}</h3>
           <p className="text-sm text-gray-500">{levelName}</p>
         </div>
       </div>
@@ -80,7 +82,7 @@ export default function CertificateProgressCard({
         {/* Lesson progress */}
         <div>
           <div className="flex justify-between text-sm mb-1">
-            <span className="text-gray-600">Bài học</span>
+            <span className="text-gray-600">{t('certificate.progress.lessons')}</span>
             <span className="font-medium">{completedLessons}/{totalLessons}</span>
           </div>
           <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
@@ -94,7 +96,7 @@ export default function CertificateProgressCard({
         {/* Accuracy */}
         <div>
           <div className="flex justify-between text-sm mb-1">
-            <span className="text-gray-600">Độ chính xác (yêu cầu {requiredAccuracy}%)</span>
+            <span className="text-gray-600">{t('certificate.progress.accuracyRequired', { percent: requiredAccuracy })}</span>
             <span className={`font-medium ${currentAccuracy >= requiredAccuracy ? 'text-green-600' : 'text-orange-500'}`}>
               {currentAccuracy}%
             </span>
@@ -117,13 +119,13 @@ export default function CertificateProgressCard({
         {canGetCertificate ? (
           <button className="w-full py-3 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:shadow-lg transition-all">
             <Award size={18} />
-            Nhận chứng chỉ
+            {t('certificate.progress.claimCert')}
           </button>
         ) : (
           <div className="text-center text-sm text-gray-500">
             {completedLessons < totalLessons 
-              ? `Còn ${totalLessons - completedLessons} bài học nữa`
-              : `Cần đạt độ chính xác ${requiredAccuracy}%`
+              ? t('certificate.progress.lessonsRemaining', { count: totalLessons - completedLessons })
+              : t('certificate.progress.needAccuracy', { percent: requiredAccuracy })
             }
           </div>
         )}

@@ -214,9 +214,12 @@ export default function AdventurePageV3() {
         level: levelInfo.level,
         levelInfo: {
           level: levelInfo.level,
-          name: levelInfo.name,
+          nameKey: levelInfo.nameKey,    // Translation key for level name
+          tierKey: levelInfo.tierKey,     // Translation key for tier name
+          starNum: levelInfo.starNum,     // Star number (for level 15+)
           icon: levelInfo.icon,
-          progressPercent: levelInfo.progressPercent
+          progressPercent: levelInfo.progressPercent,
+          tier: levelInfo.tier
         }
       });
     }

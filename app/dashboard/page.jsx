@@ -14,6 +14,7 @@ import PWAInstallBanner from '@/components/PWAInstaller/PWAInstaller';
 // 🌍 I18N: Import translation hook và LocalizedLink
 import { useI18n } from '@/lib/i18n/I18nContext';
 import { LocalizedLink, useLocalizedUrl } from '@/components/LocalizedLink';
+import { translateLevelName } from '@/lib/gamification';
 
 // 🚀 PERF: Lazy load secondary components (giảm ~40KB initial bundle)
 const ActivityChart = lazy(() => import('@/components/Dashboard/ActivityChart'));
@@ -916,6 +917,9 @@ function LevelCardWithModal({ user, t }) {
   const levelInfo = user?.levelInfo;
   const currentLevel = levelInfo?.level || 1;
 
+  // Helper: Dịch tên level từ levelInfo
+  const getLevelDisplayName = () => translateLevelName(levelInfo, t);
+
   // Memoize currentTierIndex - chỉ tính lại khi currentLevel thay đổi
   const currentTierIndex = useMemo(() => {
     return TIER_LIST_KEYS.findIndex((tier) => {
@@ -936,7 +940,7 @@ function LevelCardWithModal({ user, t }) {
           <div className="flex-1 text-center sm:text-left">
             <div className="text-sm text-gray-500 mb-1">{t('dashboard.currentLevel')}</div>
             <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              {levelInfo?.name}
+              {getLevelDisplayName()}
             </div>
             <TrialDaysBadge />
             <div className="mt-3">
@@ -981,7 +985,7 @@ function LevelCardWithModal({ user, t }) {
                 <span className="text-4xl drop-shadow-lg">{levelInfo?.icon}</span>
                 <div>
                   <div className="text-white/80 text-sm">Level {currentLevel}</div>
-                  <h3 className="font-bold text-white text-xl">{levelInfo?.name}</h3>
+                  <h3 className="font-bold text-white text-xl">{getLevelDisplayName()}</h3>
                 </div>
               </div>
             </div>
@@ -1049,7 +1053,11 @@ function LevelCardWithModal({ user, t }) {
                         </div>
                         <div className="flex-1">
                           <div className={`font-bold text-sm ${isCurrentTier ? 'text-purple-700' : isPastTier ? 'text-green-700' : 'text-gray-500'}`}>
-                            {t('tiers.' + tier.key)}
+                            {(() => {
+                              const translated = t('dashboard.tiers.' + tier.key);
+                              // Fallback nếu t() trả về key (dictionary chưa load)
+                              return translated.startsWith('dashboard.') ? tier.key : translated;
+                            })()}
                           </div>
                           <div className="text-xs text-gray-500">Level {tier.levels}</div>
                         </div>

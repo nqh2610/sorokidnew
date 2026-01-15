@@ -13,6 +13,8 @@ import { initSoundSystem } from '@/lib/soundManager';
 import SoundSettingsPanel from '@/components/SoundSettings/SoundSettingsPanel';
 import { LocalizedLink, useLocalizedUrl } from '@/components/LocalizedLink';
 import { useI18n } from '@/lib/i18n/I18nContext';
+import { translateLevelName } from '@/lib/gamification';
+import { translateZones, translateStages } from '@/lib/i18n/translateAdventure';
 
 // Import narrative config
 import { STORY_OVERVIEW, GAMEPLAY_NARRATIVES } from '@/config/narrative.config';
@@ -1483,7 +1485,7 @@ function GameHeader({ totalStages, completedStages, userStats, session, t }) {
                       {userStats?.name || session?.user?.name || 'User'}
                     </span>
                     <div className="text-xs text-gray-500">
-                      {userStats?.levelInfo?.icon} {userStats?.levelInfo?.name || `${t('adventureScreen.level')} ${userStats?.level || 1}`}
+                      {userStats?.levelInfo?.icon} {userStats?.levelInfo ? translateLevelName(userStats.levelInfo, t) : `${t('adventureScreen.level')} ${userStats?.level || 1}`}
                     </div>
                   </div>
                   <ChevronDown size={16} className={`text-gray-400 transition-transform ${showDropdown ? 'rotate-180' : ''}`} />
@@ -1718,7 +1720,7 @@ function SwipeableZoneArea({ zones, activeZoneId, activeZone, zoneProgress, acti
 }
 
 // ===== MAP SELECTOR - Responsive =====
-function MapSelector({ currentMap, onSelect, hasCertAddSub }) {
+function MapSelector({ currentMap, onSelect, hasCertAddSub, t }) {
   return (
     <div className="flex justify-center gap-2 xs:gap-3 sm:gap-4 mb-2.5 xs:mb-3 sm:mb-4 px-2">
       <motion.button
@@ -1732,7 +1734,7 @@ function MapSelector({ currentMap, onSelect, hasCertAddSub }) {
         }`}
       >
         <span className="text-base xs:text-lg sm:text-xl">➕➖</span>
-        <span>Cộng Trừ</span>
+        <span>{t('adventureScreen.addSub')}</span>
       </motion.button>
       
       <motion.button
@@ -1749,7 +1751,7 @@ function MapSelector({ currentMap, onSelect, hasCertAddSub }) {
         }`}
       >
         <span className="text-base xs:text-lg sm:text-xl">✖️➗</span>
-        <span>Nhân Chia</span>
+        <span>{t('adventureScreen.mulDiv')}</span>
         {!hasCertAddSub && <span className="text-xs xs:text-sm sm:text-base">🔒</span>}
       </motion.button>
     </div>
@@ -1775,7 +1777,13 @@ export default function GameMapNew({
   const localizeUrl = useLocalizedUrl();
   const { data: session } = useSession();
   const { play, playMusic, stopMusic, changeTheme } = useGameSound();
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+
+  // 🌐 i18n: Translate zones và stages - useMemo để tối ưu performance
+  const translatedAddSubZones = useMemo(() => translateZones(addSubZones, t, locale), [addSubZones, t, locale]);
+  const translatedMulDivZones = useMemo(() => translateZones(mulDivZones, t, locale), [mulDivZones, t, locale]);
+  const translatedAddSubStages = useMemo(() => translateStages(addSubStages, t, locale), [addSubStages, t, locale]);
+  const translatedMulDivStages = useMemo(() => translateStages(mulDivStages, t, locale), [mulDivStages, t, locale]);
 
   // Khởi tạo map và zone từ returnZone nếu có
   const [currentMap, setCurrentMap] = useState(() => {
@@ -1831,13 +1839,14 @@ export default function GameMapNew({
   const [lockedZoneInfo, setLockedZoneInfo] = useState(null); // { currentZone, prevZone, prevProgress }
 
   // 🚀 PERF: useMemo để tránh re-create arrays mỗi render
+  // Sử dụng translated versions
   const stages = useMemo(() =>
-    currentMap === 'addsub' ? addSubStages : mulDivStages,
-    [currentMap, addSubStages, mulDivStages]
+    currentMap === 'addsub' ? translatedAddSubStages : translatedMulDivStages,
+    [currentMap, translatedAddSubStages, translatedMulDivStages]
   );
   const zones = useMemo(() =>
-    currentMap === 'addsub' ? addSubZones : mulDivZones,
-    [currentMap, addSubZones, mulDivZones]
+    currentMap === 'addsub' ? translatedAddSubZones : translatedMulDivZones,
+    [currentMap, translatedAddSubZones, translatedMulDivZones]
   );
   
   // 🔊 Initialize sound system (background music disabled)
@@ -2191,7 +2200,7 @@ export default function GameMapNew({
       <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-amber-100 via-orange-100 to-yellow-100">
         {/* Simple loading - hiện nhanh */}
         <div className="text-6xl mb-4 animate-bounce">🦉</div>
-        <div className="text-xl font-bold text-amber-800">Đang tải...</div>
+        <div className="text-xl font-bold text-amber-800">{t('adventureScreen.loading')}</div>
       </div>
     );
   }
@@ -2252,13 +2261,13 @@ export default function GameMapNew({
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <span className="hidden xs:inline">Khám phá thế giới Soroban kỳ diệu!</span>
-          <span className="xs:hidden">Khám phá Soroban!</span>
+          <span className="hidden xs:inline">{t('adventureScreen.exploreWorld')}</span>
+          <span className="xs:hidden">{t('adventureScreen.exploreSoroban')}</span>
         </motion.p>
       </div>
       
       <div className="relative z-10 max-w-7xl mx-auto">
-        <MapSelector currentMap={currentMap} onSelect={setCurrentMap} hasCertAddSub={hasCertAddSub} />
+        <MapSelector currentMap={currentMap} onSelect={setCurrentMap} hasCertAddSub={hasCertAddSub} t={t} />
         <ZoneTabs zones={zones} activeZoneId={activeZoneId} onSelect={setActiveZoneId} zoneProgress={zoneProgress} />
       </div>
       

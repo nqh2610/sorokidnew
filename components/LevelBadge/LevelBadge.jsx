@@ -1,15 +1,19 @@
 'use client';
 
-import { getLevelInfo, TIER_COLORS } from '@/lib/gamification';
+import { getLevelInfo, TIER_COLORS, translateLevelName } from '@/lib/gamification';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 /**
  * Component hiển thị Level Badge
  * @param {number} totalStars - Tổng số sao (thay thế totalEXP)
  */
 export default function LevelBadge({ totalStars, totalEXP, size = 'md', showProgress = true }) {
+  const { t } = useI18n();
+  
   // Hỗ trợ cả totalStars mới và totalEXP cũ (backward compatible)
   const stars = totalStars ?? totalEXP ?? 0;
   const levelInfo = getLevelInfo(stars);
+  const displayName = translateLevelName(levelInfo, t);
   
   const sizeClasses = {
     sm: 'text-sm',
@@ -36,7 +40,7 @@ export default function LevelBadge({ totalStars, totalEXP, size = 'md', showProg
       `}>
         <span className={iconSizes[size]}>{levelInfo.icon}</span>
         <span className={`font-bold text-white ${sizeClasses[size]}`}>
-          {levelInfo.name}
+          {displayName}
         </span>
         <span className="text-xs text-white/80">Level {levelInfo.level}</span>
       </div>
@@ -52,7 +56,7 @@ export default function LevelBadge({ totalStars, totalEXP, size = 'md', showProg
           </div>
           <div className="flex justify-between text-xs text-gray-500 mt-1">
             <span>{(levelInfo.currentLevelStars || 0).toLocaleString()} ⭐</span>
-            <span>Cần {(levelInfo.starsNeededForNext || 0).toLocaleString()} ⭐</span>
+            <span>{t('dashboard.starsToNext', { count: levelInfo.starsNeededForNext || 0 })} ⭐</span>
           </div>
         </div>
       )}
@@ -64,8 +68,10 @@ export default function LevelBadge({ totalStars, totalEXP, size = 'md', showProg
  * Component hiển thị Level nhỏ gọn (inline)
  */
 export function LevelBadgeInline({ totalStars, totalEXP }) {
+  const { t } = useI18n();
   const stars = totalStars ?? totalEXP ?? 0;
   const levelInfo = getLevelInfo(stars);
+  const displayName = translateLevelName(levelInfo, t);
   
   return (
     <span className={`
@@ -73,7 +79,7 @@ export function LevelBadgeInline({ totalStars, totalEXP }) {
       bg-gradient-to-r ${levelInfo.tierColor?.bg || 'from-green-400 to-emerald-500'} text-white
     `}>
       <span>{levelInfo.icon}</span>
-      <span>{levelInfo.name}</span>
+      <span>{displayName}</span>
     </span>
   );
 }

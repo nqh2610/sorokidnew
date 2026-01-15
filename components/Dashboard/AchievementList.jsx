@@ -43,9 +43,20 @@ const COLORS = [
 const isUnlocked = (a) => a.unlocked === true || a.isUnlocked === true || !!a.unlockedAt;
 
 export default function AchievementList({ achievements, allAchievements }) {
-  const { t } = useI18n();
+  const { t, translateDb } = useI18n();
   const [filter, setFilter] = useState('unlocked');
   const [showAll, setShowAll] = useState(false);
+
+  // Helper: Dịch achievement name và description
+  const getAchievementName = (achievement) => {
+    const translated = translateDb('achievements', `${achievement.id}.name`, achievement.name);
+    return translated;
+  };
+  
+  const getAchievementDescription = (achievement) => {
+    const fallback = achievement.description || achievement.hint || '';
+    return translateDb('achievements', `${achievement.id}.description`, fallback);
+  };
 
   // Memoize tất cả computed values
   const { allItems, unlockedItems, lockedItems, unlockedCount, lockedCount, totalCount, progressPercent } = useMemo(() => {
@@ -142,7 +153,15 @@ export default function AchievementList({ achievements, allAchievements }) {
           style={showAll ? { scrollbarWidth: 'thin', scrollbarColor: '#c084fc #f3f4f6' } : {}}
         >
           {displayItems.map((achievement, idx) => (
-            <AchievementCard key={achievement.id || idx} achievement={achievement} colorIndex={idx} idx={idx} t={t} />
+            <AchievementCard 
+              key={achievement.id || idx} 
+              achievement={achievement} 
+              colorIndex={idx} 
+              idx={idx} 
+              t={t}
+              getName={() => getAchievementName(achievement)}
+              getDescription={() => getAchievementDescription(achievement)}
+            />
           ))}
         </div>
       ) : (
@@ -185,7 +204,7 @@ export default function AchievementList({ achievements, allAchievements }) {
  * AchievementCard - Gamified badge card with diverse colors
  * Mobile: click to open modal, Desktop: hover to show tooltip
  */
-function AchievementCard({ achievement, colorIndex = 0, idx = 0, t }) {
+function AchievementCard({ achievement, colorIndex = 0, idx = 0, t, getName, getDescription }) {
   const [showModal, setShowModal] = useState(false);
   const color = COLORS[colorIndex % COLORS.length];
   const unlocked = isUnlocked(achievement);
@@ -195,8 +214,9 @@ function AchievementCard({ achievement, colorIndex = 0, idx = 0, t }) {
     ? Math.round(((achievement.progress || 0) / achievement.target) * 100)
     : 0;
 
-  // Detailed description
-  const description = achievement.description || achievement.hint || '';
+  // Translated name and description
+  const name = getName ? getName() : achievement.name;
+  const description = getDescription ? getDescription() : (achievement.description || achievement.hint || '');
 
   // Close modal when clicking outside
   const handleBackdropClick = (e) => {
@@ -233,7 +253,7 @@ function AchievementCard({ achievement, colorIndex = 0, idx = 0, t }) {
       <h4 className={`font-bold text-xs sm:text-sm text-center leading-tight ${
         unlocked ? color.text : 'text-gray-400'
       }`}>
-        {achievement.name}
+        {name}
       </h4>
 
       {/* Unlock date for unlocked */}
@@ -280,7 +300,7 @@ function AchievementCard({ achievement, colorIndex = 0, idx = 0, t }) {
           >
             {/* Header */}
             <div className={`px-5 py-4 bg-gradient-to-r ${unlocked ? color.bg : 'from-gray-300 to-gray-400'}`}>
-              <h3 className="font-bold text-white text-lg drop-shadow-sm">{achievement.name}</h3>
+              <h3 className="font-bold text-white text-lg drop-shadow-sm">{name}</h3>
               {unlocked && achievement.unlockedAt && (
                 <p className="text-white/80 text-xs mt-1">
                   {t('dashboard.badges.achievedOn')} {formatTimeAgo(new Date(achievement.unlockedAt), t)}
