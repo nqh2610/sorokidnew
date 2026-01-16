@@ -8,12 +8,14 @@
  * - Không gọi API
  * - Lưu cookie
  * - Animation smooth
+ * - 🚀 Preload dictionary on hover (fast switch)
  * 
- * @version 1.0.0
+ * @version 1.1.0 - Thêm preload on hover
  */
 
 import { useI18n } from '@/lib/i18n/I18nContext';
 import { localeConfig } from '@/lib/i18n/config';
+import { preloadOnHover } from '@/lib/i18n/preloadDictionary';
 
 /**
  * Language Switcher - Compact Toggle Button
@@ -29,6 +31,8 @@ export function LanguageSwitcher({ className = '' }) {
   return (
     <button
       onClick={toggleLocale}
+      onMouseEnter={() => preloadOnHover(otherLocale)}
+      onFocus={() => preloadOnHover(otherLocale)}
       disabled={isLoading}
       className={`
         inline-flex items-center gap-1.5 px-2.5 py-1.5
@@ -106,10 +110,13 @@ export function LanguageDropdown({ className = '' }) {
 export function LanguageIcon({ className = '' }) {
   const { toggleLocale, locale, isLoading } = useI18n();
   const config = localeConfig[locale];
+  const otherLocale = locale === 'vi' ? 'en' : 'vi';
   
   return (
     <button
       onClick={toggleLocale}
+      onMouseEnter={() => preloadOnHover(otherLocale)}
+      onFocus={() => preloadOnHover(otherLocale)}
       disabled={isLoading}
       className={`
         p-2 rounded-full
@@ -145,10 +152,13 @@ export function LanguageIcon({ className = '' }) {
  */
 export function LanguageFlags({ className = '' }) {
   const { locale, toggleLocale, isLoading } = useI18n();
+  const otherLocale = locale === 'vi' ? 'en' : 'vi';
   
   return (
     <button
       onClick={toggleLocale}
+      onMouseEnter={() => preloadOnHover(otherLocale)}
+      onFocus={() => preloadOnHover(otherLocale)}
       disabled={isLoading}
       className={`
         relative inline-flex items-center

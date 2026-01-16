@@ -1,0 +1,309 @@
+{
+  "competeScreen": {
+    "title": "Thi đấu",
+    "auto": "Chế độ tự động",
+    "ranking": "Bảng xếp hạng",
+    "yourRank": "Hạng của bạn",
+    "points": "điểm",
+    "rank": "Hạng",
+    "player": "Người chơi",
+    "score": "Điểm",
+    "joinMatch": "Vào trận",
+    "findOpponent": "Tìm đối thủ...",
+    "ready": "Sẵn sàng!",
+    "go": "Bắt đầu!",
+    "win": "Chiến thắng!",
+    "lose": "Thua cuộc",
+    "draw": "Hòa",
+    "playAgain": "Chơi lại",
+    "leaderboard": "Bảng xếp hạng",
+    "questions": "câu",
+    "questionCounts": {
+      "5": "Khởi động",
+      "10": "Cơ bản",
+      "15": "Luyện tập",
+      "20": "Nâng cao",
+      "25": "Thử thách",
+      "30": "Chiến đấu",
+      "40": "Siêu sao",
+      "50": "Huyền thoại"
+    },
+    "selectMode": "CHỌN CHẾ ĐỘ CHƠI",
+    "selectDifficulty": "CHỌN ĐỘ KHÓ",
+    "selectQuestions": "CHỌN SỐ CÂU",
+    "selectArena": "CHỌN ĐẤU TRƯỜNG",
+    "startBattle": "BẮT ĐẦU THI ĐẤU",
+    "enterArena": "VÀO ĐẤU TRƯỜNG",
+    "viewLeaderboard": "Xem Bảng Xếp Hạng",
+    "topPlayers": "Top Cao Thủ",
+    "yourBestScore": "Điểm Cao Nhất",
+    "neverPlayed": "Chưa chơi lần nào",
+    "playersOnLeaderboard": "người trên bảng xếp hạng",
+    "loading": "Đang tải...",
+    "completed": "HOÀN THÀNH!",
+    "accuracy": "Độ chính xác",
+    "avgTime": "Thời gian TB",
+    "stars": "Sao",
+    "correct": "Đúng",
+    "combo": "Combo",
+    "totalTime": "Tổng thời gian",
+    "newRecord": "KỶ LỤC MỚI!",
+    "rankUp": "THĂNG HẠNG!",
+    "backToArena": "Về Đấu Trường",
+    "selectNewArena": "Chọn Đấu Trường Mới",
+    "preparingArena": "Đang chuẩn bị đấu trường...",
+    "soroOpeningArena": "Cú Soro đang mở đấu trường cho con!",
+    "errorOccurred": "Có lỗi xảy ra",
+    "invalidMode": "Mode không hợp lệ",
+    "backToMap": "Quay lại Map",
+    "selectOperation": "Chọn Phép Tính",
+    "competeWithMode": "Thi đấu với chế độ bạn muốn!",
+    "eachVariantIsArena": "Mỗi biến thể là một bảng xếp hạng riêng!",
+    "mode": "Chế độ",
+    "operation": "Phép tính",
+    "level": "Cấp độ",
+    "numQuestions": "Số câu",
+    "selectLevel": "Chọn Cấp Độ",
+    "higherLevelBiggerNum": "Cấp độ càng cao, số càng lớn!",
+    "selectNumQuestions": "Chọn Số Câu Hỏi",
+    "moreQuestionMoreChallenge": "Càng nhiều câu, càng thử thách!",
+    "firstTimeCompete": "Lần đầu thi đấu?",
+    "selectFewToStart": "Chọn 5-10 câu để làm quen!",
+    "wantToClimb": "Muốn leo rank?",
+    "selectMoreToPractice": "Chọn 20-30 câu để luyện tập đều đặn!",
+    "nQuestions": "{n} câu",
+    "rankByAccuracySpeed": "Xếp hạng theo độ chính xác & tốc độ",
+    "players": "người chơi",
+    "noOneCompeted": "Chưa có ai thi đấu",
+    "beTheFirst": "Hãy là người đầu tiên!",
+    "nCorrect": "{n} đúng",
+    "nextRanking": "Xếp hạng tiếp theo",
+    "yourRanking": "Thứ hạng của bạn",
+    "you": "Bạn",
+    "notCompetedYet": "Bạn chưa thi đấu ở đấu trường này",
+    "competeToRank": "Hãy thi đấu để lên bảng xếp hạng!",
+    "finished": "KẾT THÚC!",
+    "starDetails": "Chi tiết điểm sao",
+    "total": "Tổng cộng",
+    "focus": "TẬP TRUNG!",
+    "quantity": "Số lượng",
+    "nNumbers": "{n} số",
+    "speed": "Tốc độ",
+    "speedPerNum": "{n}s/số",
+    "whatIsResult": "KẾT QUẢ LÀ BAO NHIÊU?",
+    "enterYourResult": "Nhập kết quả phép tính của bạn",
+    "youAreGreat": "Bạn giỏi quá!",
+    "correct2": "CHÍNH XÁC",
+    "bonus": "THƯỞNG",
+    "mentalSubModes": {
+      "addition": "Cộng",
+      "subtraction": "Trừ",
+      "multiplication": "Nhân",
+      "division": "Chia",
+      "addSubMixed": "Cộng Trừ",
+      "mulDiv": "Nhân Chia",
+      "mixed": "Tất cả"
+    },
+    "arenas": {
+      "addition": {
+        "1": "Vườn Sao",
+        "2": "Rừng Sao",
+        "3": "Núi Sao",
+        "4": "Đỉnh Sao",
+        "5": "Thiên Đường Sao"
+      },
+      "subtraction": {
+        "1": "Robot Bé Con",
+        "2": "Robot Chiến Đấu",
+        "3": "Siêu Robot",
+        "4": "Robot Mega",
+        "5": "Robot Tối Thượng"
+      },
+      "addSubMixed": {
+        "1": "Cầu Vồng Bé Con",
+        "2": "Cầu Vồng Đôi",
+        "3": "Bão Cầu Vồng",
+        "4": "Vũ Trụ Sắc Màu",
+        "5": "Thiên Hà Sắc Màu"
+      },
+      "multiplication": {
+        "1": "Phép Thuật Bé Con",
+        "2": "Phù Thủy Tập Sự",
+        "3": "Phù Thủy",
+        "4": "Đại Phù Thủy",
+        "5": "Pháp Sư Tối Thượng"
+      },
+      "division": {
+        "1": "Pizza Nhỏ",
+        "2": "Đầu Bếp Tập Sự",
+        "3": "Đầu Bếp",
+        "4": "Đầu Bếp Trưởng",
+        "5": "Siêu Đầu Bếp"
+      },
+      "mulDiv": {
+        "1": "Ninja Bé Con",
+        "2": "Ninja Xanh",
+        "3": "Ninja Đỏ",
+        "4": "Ninja Vàng",
+        "5": "Ninja Bóng Đêm"
+      },
+      "mixed": {
+        "1": "Tân Binh",
+        "2": "Chiến Binh",
+        "3": "Anh Hùng",
+        "4": "Vô Địch",
+        "5": "Huyền Thoại"
+      },
+      "mentalMath": {
+        "1": "Thiên Tài Nhí",
+        "2": "Thần Đồng",
+        "3": "Siêu Trí Tuệ",
+        "4": "Einstein Nhí",
+        "5": "Thiên Tài Vũ Trụ"
+      },
+      "flashAnzan": {
+        "1": "Ánh Nến",
+        "2": "Ánh Trăng",
+        "3": "Tia Chớp",
+        "4": "Sao Băng",
+        "5": "BIG BANG",
+        "6": "SUPER BIG BANG"
+      }
+    },
+    "flashSetup": {
+      "digits": {
+        "title": "CHỌN SỐ CHỮ SỐ",
+        "subtitle": "Chọn độ khó số"
+      },
+      "operation": {
+        "title": "CHỌN PHÉP TÍNH",
+        "subtitle": "Chọn loại tính toán"
+      },
+      "speed": {
+        "title": "CHỌN TỐC ĐỘ CHIẾN ĐẤU",
+        "subtitle": "Mỗi biến thể có đấu trường riêng!"
+      }
+    },
+    "digitLabels": {
+      "1": "Số 1 chữ số",
+      "2": "Số 2 chữ số",
+      "3": "Số 3 chữ số",
+      "4": "Số 4 chữ số",
+      "5": "Số 5 chữ số"
+    },
+    "difficultyLabels": {
+      "1": "🐣 Số nhỏ",
+      "2": "⚔️ Trung bình",
+      "3": "🛡️ Thách thức",
+      "4": "🔥 Nâng cao",
+      "5": "👑 Elite"
+    },
+    "results": {
+      "champion": {
+        "title": "VÔ ĐỊCH!",
+        "message": "Chiến thắng tuyệt đối!"
+      },
+      "excellent": {
+        "title": "CHIẾN BINH XUẤT SẮC!",
+        "message": "Thể hiện xuất sắc!"
+      },
+      "great": {
+        "title": "TUYỆT VỜI!",
+        "message": "Trận đấu hay!"
+      },
+      "goodTry": {
+        "title": "CỐ GẮNG TỐT!",
+        "message": "Tiếp tục luyện tập!"
+      }
+    },
+    "encouragements": {
+      "excellent": {
+        "title": "VÔ ĐỊCH!",
+        "message": "Bạn chiến thắng tuyệt đối!"
+      },
+      "great": {
+        "title": "CHIẾN BINH XUẤT SẮC!",
+        "message": "Bạn chiến đấu rất giỏi!"
+      },
+      "good": {
+        "title": "CHIẾN BINH DŨNG CẢM!",
+        "message": "Luyện thêm sẽ mạnh hơn!"
+      },
+      "improving": {
+        "title": "ĐANG RÈN LUYỆN!",
+        "message": "Tiếp tục rèn luyện nhé!"
+      },
+      "beginner": {
+        "title": "CHIẾN BINH TẬP SỰ!",
+        "message": "Mỗi trận đấu giúp bạn mạnh lên!"
+      },
+      "keepTrying": {
+        "title": "TIẾP TỤC CHIẾN ĐẤU!",
+        "message": "Đừng bỏ cuộc, chiến đấu tiếp nào!"
+      }
+    },
+    "flashLevels": {
+      "anhNen": {
+        "name": "Ánh Nến",
+        "subtitle": "Lung linh dịu dàng",
+        "tagline": "Khởi đầu ấm áp",
+        "rankLabel": "Tập Sự"
+      },
+      "anhTrang": {
+        "name": "Ánh Trăng",
+        "subtitle": "Huyền ảo đêm thanh",
+        "tagline": "Bước tiếp vững chắc",
+        "rankLabel": "Chiến Binh"
+      },
+      "tiaChop": {
+        "name": "Tia Chớp",
+        "subtitle": "Lóe sáng chớp nhoáng",
+        "tagline": "Nhanh như chớp!",
+        "rankLabel": "Dũng Sĩ"
+      },
+      "saoBang": {
+        "name": "Sao Băng",
+        "subtitle": "Vụt sáng khoảnh khắc",
+        "tagline": "🔥 SIÊU TỐC 🔥",
+        "rankLabel": "Huyền Thoại"
+      },
+      "bigBang": {
+        "name": "BIG BANG",
+        "subtitle": "Vụ nổ khai sinh vũ trụ",
+        "tagline": "💥 VỤ NỔ VŨ TRỤ 💥",
+        "rankLabel": "THẦN"
+      },
+      "sieuBigBang": {
+        "name": "SIÊU BIG BANG",
+        "subtitle": "Đỉnh cao tốc độ",
+        "tagline": "🌌 SIÊU VŨ TRỤ 🌌",
+        "rankLabel": "THẦN THÁNH"
+      }
+    },
+    "flashTitle": "CUỘC ĐUA ÁNH SÁNG",
+    "confirm": "XÁC NHẬN",
+    "pressEnterToSubmit": "Nhấn Enter để gửi đáp án",
+    "answer": "Trả lời",
+    "skip": "Bỏ qua",
+    "finish": "Kết thúc",
+    "next": "Tiếp",
+    "comboBonus": "Combo = x2 Bonus!",
+    "canYouReachSuperBigBang": "Bạn có thể chạm tới SIÊU BIG BANG không?",
+    "keepGoing": "Cố gắng lên! Còn {count} bậc nữa để vào Top 20!",
+    "correctCount": "{n} đúng",
+    "excellent": "XUẤT SẮC!",
+    "enterBattle": "VÀO THI ĐẤU",
+    "pointsMultiplier": "x{multiplier} ĐIỂM!",
+    "plusStars": "+{n} sao",
+    "modeRequiresTier": "Chế độ {mode} yêu cầu gói {tier} trở lên",
+    "difficultyRequiresTier": "Cấp độ {difficulty} yêu cầu gói {tier} trở lên",
+    "greatMatch": "Trận đấu hay! 🏆",
+    "flashArenaTitle": "ĐẤU TRƯỜNG TIA CHỚP",
+    "mentalMathTitle": "Siêu Trí Tuệ",
+    "mentalMathHint": "Tính nhẩm không cần bàn tính - Thử thách trí não của bạn!",
+    "levelLabel": "Cấp {name}",
+    "recommended": "GỢI Ý",
+    "flashCounter": "Số {current} / {total}",
+    "enterNumber": "Nhập số"
+  }
+}

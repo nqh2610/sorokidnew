@@ -21,6 +21,29 @@ const I18N_LOCALES = ['vi', 'en'];
 const I18N_DEFAULT = 'vi';
 const I18N_COOKIE = 'sorokid_locale';
 
+// 🌍 Tool slug mapping: English slug → Vietnamese slug (folder name)
+// English URLs use SEO-friendly slugs, Vietnamese URLs stay as-is (already indexed)
+const TOOL_SLUG_EN_TO_VI = {
+  'who-wants-to-be-millionaire': 'ai-la-trieu-phu',
+  'soroban-abacus': 'ban-tinh-soroban',
+  'random-picker': 'boc-tham',
+  'group-divider': 'chia-nhom',
+  'group-random-picker': 'chia-nhom-boc-tham',
+  'magic-hat': 'chiec-non-ky-dieu',
+  'adventure-race': 'cuoc-dua-ki-thu',
+  'lucky-light': 'den-may-man',
+  'stopwatch': 'dong-ho-bam-gio',
+  'animal-race': 'dua-thu-hoat-hinh',
+  'flash-anzan': 'flash-zan',
+  'crossword': 'o-chu',
+  'dice-roller': 'xuc-xac',
+};
+
+// Reverse mapping: Vietnamese slug → English slug
+const TOOL_SLUG_VI_TO_EN = Object.fromEntries(
+  Object.entries(TOOL_SLUG_EN_TO_VI).map(([en, vi]) => [vi, en])
+);
+
 // Routes không cần locale prefix (static files, api, etc.)
 const I18N_IGNORE_PATHS = [
   '/api',
@@ -46,15 +69,29 @@ function getLocaleFromPath(pathname) {
 
 /**
  * 🌍 Bỏ /en/ prefix khỏi pathname để check protected routes
+ * Và translate English tool slugs về Vietnamese slugs
  */
 function removeLocalePrefix(pathname) {
-  if (pathname.startsWith('/en/')) {
-    return pathname.slice(3) || '/';
-  }
-  if (pathname === '/en') {
+  let path = pathname;
+  
+  if (path.startsWith('/en/')) {
+    path = path.slice(3) || '/';
+  } else if (path === '/en') {
     return '/';
   }
-  return pathname;
+  
+  // Translate English tool slug to Vietnamese slug
+  // /tool/animal-race → /tool/dua-thu-hoat-hinh
+  const toolMatch = path.match(/^\/tool\/([^\/]+)(\/.*)?$/);
+  if (toolMatch) {
+    const [, slug, rest = ''] = toolMatch;
+    const viSlug = TOOL_SLUG_EN_TO_VI[slug];
+    if (viSlug) {
+      return `/tool/${viSlug}${rest}`;
+    }
+  }
+  
+  return path;
 }
 
 // Các route cần authentication
@@ -133,27 +170,47 @@ export async function middleware(request) {
   // Xác định locale cuối cùng
   let locale;
   let shouldRedirect = false;
+  let redirectToVi = false;  // Flag để redirect về URL tiếng Việt
   
-  if (urlLocale === 'en') {
-    // User đang ở URL /en/... → dùng EN
-    locale = 'en';
-  } else if (savedLocale && I18N_LOCALES.includes(savedLocale)) {
-    // User có cookie đã lưu → redirect đến locale đã lưu nếu khác với URL hiện tại
+  if (savedLocale && I18N_LOCALES.includes(savedLocale)) {
+    // 🔥 User đã có preference (đã chọn ngôn ngữ trước đó)
     locale = savedLocale;
-    // Nếu cookie = 'en' nhưng URL là tiếng Việt (không có /en/) → redirect sang /en/
+    
     if (savedLocale === 'en' && urlLocale === 'vi') {
+      // Cookie = EN nhưng URL là VI → redirect sang /en/
       shouldRedirect = true;
+    } else if (savedLocale === 'vi' && urlLocale === 'en') {
+      // Cookie = VI nhưng URL là /en/ → redirect về URL gốc (bỏ /en/)
+      redirectToVi = true;
     }
+  } else if (urlLocale === 'en') {
+    // User đang ở URL /en/... mà chưa có cookie → dùng EN, lưu cookie
+    locale = 'en';
   } else {
-    // Lần đầu tiên → detect từ browser
+    // Lần đầu tiên, URL là VI → detect từ browser
     locale = browserLocale;
     // Nếu browser là EN nhưng URL là VI → redirect sang /en/
-    if (locale === 'en' && urlLocale === 'vi') {
+    if (locale === 'en') {
       shouldRedirect = true;
     }
   }
   
-  // 🔥 Redirect user đến đúng locale nếu cần
+  // 🔥 Redirect về URL tiếng Việt (bỏ /en/) khi user đã chọn VI
+  if (redirectToVi) {
+    const pathWithoutEn = removeLocalePrefix(pathname);
+    const newUrl = new URL(pathWithoutEn, request.url);
+    newUrl.search = request.nextUrl.search;
+    const redirectResponse = NextResponse.redirect(newUrl);
+    // Giữ nguyên cookie VI
+    redirectResponse.cookies.set(I18N_COOKIE, 'vi', {
+      path: '/',
+      maxAge: 365 * 24 * 60 * 60,
+      sameSite: 'lax',
+    });
+    return redirectResponse;
+  }
+  
+  // 🔥 Redirect user đến /en/ nếu cần
   if (shouldRedirect && locale === 'en') {
     const newUrl = new URL(`/en${pathname === '/' ? '' : pathname}`, request.url);
     newUrl.search = request.nextUrl.search; // Giữ query params

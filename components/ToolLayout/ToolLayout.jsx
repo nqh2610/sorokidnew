@@ -222,7 +222,7 @@ export default function ToolLayout({
             </LocalizedLink>
             <div className="hidden sm:block w-px h-5 bg-gray-300" />
             <p className="text-xs sm:text-sm text-gray-500 text-center">
-              © {new Date().getFullYear()} SoroKid - Học toán tư duy cùng bàn tính Soroban
+              © {new Date().getFullYear()} SoroKid - {t('footer.copyright')}
             </p>
           </div>
         </footer>

@@ -212,11 +212,11 @@ export default function XucXac3DClient() {
 
   // Màu xúc xắc options
   const DICE_COLORS = [
-    { name: 'Trắng', color: '#ffffff', dotColor: '#1a1a1a' },
-    { name: 'Đỏ', color: '#ef4444', dotColor: '#ffffff' },
-    { name: 'Xanh dương', color: '#3b82f6', dotColor: '#ffffff' },
-    { name: 'Xanh lá', color: '#22c55e', dotColor: '#ffffff' },
-    { name: 'Vàng', color: '#fbbf24', dotColor: '#1a1a1a' },
+    { name: t('dice.colors.white'), color: '#ffffff', dotColor: '#1a1a1a' },
+    { name: t('dice.colors.red'), color: '#ef4444', dotColor: '#ffffff' },
+    { name: t('dice.colors.blue'), color: '#3b82f6', dotColor: '#ffffff' },
+    { name: t('dice.colors.green'), color: '#22c55e', dotColor: '#ffffff' },
+    { name: t('dice.colors.yellow'), color: '#fbbf24', dotColor: '#1a1a1a' },
   ];
 
   // Tạo âm thanh xúc xắc lăn
@@ -437,7 +437,7 @@ export default function XucXac3DClient() {
               {diceCount === 1 ? '🎲' : '🎲🎲'}
             </span>
             <span className="text-white">
-              {isRolling ? 'ĐANG THẢY...' : 'THẢY'}
+              {isRolling ? t('dice.rolling') : t('dice.roll')}
             </span>
           </button>
         </div>

@@ -21,7 +21,12 @@
     "generate:icons": "node scripts/generate-icons.js",
     "cap:sync": "npx cap sync",
     "cap:android": "npm run build:static && npx cap sync android && npx cap open android",
-    "cap:ios": "npm run build:static && npx cap sync ios && npx cap open ios"
+    "cap:ios": "npm run build:static && npx cap sync ios && npx cap open ios",
+    "i18n:split": "node lib/i18n/scripts/split-dictionaries.js",
+    "i18n:sync": "node lib/i18n/scripts/sync-check.js",
+    "i18n:sync:fix": "node lib/i18n/scripts/sync-check.js --fix",
+    "i18n:validate": "node lib/i18n/scripts/validate.js",
+    "i18n:check": "npm run i18n:validate && npm run i18n:sync"
   },
   "prisma": {
     "seed": "node prisma/seed-lessons.js"

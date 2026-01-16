@@ -6,6 +6,7 @@ import { LogoIcon } from '@/components/Logo/Logo';
 import { useGameSettings } from '@/lib/useGameSettings';
 import { GAME_IDS } from '@/lib/gameStorage';
 import { useI18n } from '@/lib/i18n/I18nContext';
+import { getCommentaries } from './commentaries';
 
 // Default settings cho đua thú hoạt hình
 const DEFAULT_SETTINGS = {
@@ -15,492 +16,57 @@ const DEFAULT_SETTINGS = {
   snd: 1,        // soundEnabled (1/0)
 };
 
-// Các loài vật có thể đua - emoji hướng đầu về đích (phải)
-// flipX: true = cần lật ngang để quay đầu sang phải
-const ANIMAL_TYPES = {
+// Animal types - base config (names/sounds loaded via i18n)
+const ANIMAL_TYPES_BASE = {
   duck: {
     emoji: '🦆',
-    name: 'Vịt',
-    sound: 'Quạc quạc!',
-    goSound: 'QUÁC!', // Tiếng kêu khi xuất phát
-    action: 'bơi',
-    habitat: 'sông',
-    plural: 'vịt',
     flipX: true,
-    moveVerb: 'bơi',
     speedBase: 1.0,
   },
   turtle: {
     emoji: '🐢',
-    name: 'Rùa', 
-    sound: 'Chậm mà chắc!',
-    goSound: 'ỤP!',
-    action: 'bò',
-    habitat: 'sông',
-    plural: 'rùa',
     flipX: true,
-    moveVerb: 'bò',
     speedBase: 1.0,
   },
   crab: {
     emoji: '🦀',
-    name: 'Cua',
-    sound: 'Kẹp kẹp!',
-    goSound: 'KẸP!',
-    action: 'bò ngang',
-    habitat: 'biển',
-    plural: 'cua',
     flipX: false,
-    moveVerb: 'bò',
     speedBase: 1.0,
   },
   fish: {
     emoji: '🐡',
-    name: 'Cá nóc',
-    sound: 'Phù phù!',
-    goSound: 'PHÙ!',
-    action: 'bơi',
-    habitat: 'biển',
-    plural: 'cá nóc',
     flipX: true,
-    moveVerb: 'bơi',
     speedBase: 1.0,
   },
   snail: {
     emoji: '🐌',
-    name: 'Ốc sên',
-    sound: 'Từ từ thôi...',
-    goSound: 'RÙ!',
-    action: 'trườn',
-    habitat: 'đường',
-    plural: 'ốc',
     flipX: true,
-    moveVerb: 'trườn',
     speedBase: 1.0,
   },
 };
 
-// Helper function để render animal (component hoặc emoji)
-const renderAnimal = (animalType, size = '1em') => {
-  const animal = ANIMAL_TYPES[animalType];
-  if (!animal) return null;
-  if (animal.component) {
-    const Comp = animal.component;
-    return <Comp size={size} />;
-  }
-  return animal.emoji;
+// Get animal types with i18n translations
+const getAnimalTypes = (t) => {
+  const types = {};
+  Object.entries(ANIMAL_TYPES_BASE).forEach(([key, base]) => {
+    types[key] = {
+      ...base,
+      name: t(`toolbox.animalRace.animals.${key}.name`) || key,
+      plural: t(`toolbox.animalRace.animals.${key}.plural`) || key + 's',
+      sound: t(`toolbox.animalRace.sounds.${key}.sound`) || '...',
+      goSound: t(`toolbox.animalRace.sounds.${key}.goSound`) || 'GO!',
+      action: t(`toolbox.animalRace.actions.${key}`) || 'move',
+      moveVerb: t(`toolbox.animalRace.actions.${key}`) || 'move',
+    };
+  });
+  return types;
 };
 
-// Hàm tạo bình luận động theo loài vật - ĐA DẠNG KỸ THUẬT HÀI HƯỚC
-const getCommentaries = (animalType) => {
-  const animal = ANIMAL_TYPES[animalType];
-  const animalName = animal.name.toLowerCase(); // Đổi tên để tránh trùng với placeholder {name}
-  const plural = animal.plural;
-  const action = animal.moveVerb;
-  
-  return {
-    start: [
-      // So sánh hài hước
-      `🎙️ Xuất phát! Các ${plural} lao đi vun vút!`,
-      `🎙️ Và họ đi! Nhanh như wifi nhà hàng xóm vậy!`,
-      // Phóng đại
-      `🎙️ BOOOM! Cuộc đua thế kỷ bắt đầu! Cả vũ trụ đang theo dõi!`,
-      `🎙️ ${animal.sound} Xuất phát rồi! Trái đất rung chuyển!`,
-      // Tự sự hài
-      `🎙️ Tim tôi đập loạn rồi bà con ơi! Đua thôi nào!`,
-      `🎙️ Tôi hồi hộp quá! Các ${plural} ơi, đừng làm tôi thất vọng!`,
-      // Câu hỏi tu từ
-      `🎙️ Ai sẽ về đích? Ai sẽ khóc? Ai sẽ cười? Xem ngay!`,
-      `🎙️ ${animal.name} nào sẽ thành huyền thoại hôm nay?`,
-      // Chơi chữ
-      `🎙️ Đua đi đua đi! Đua mà không về là... lạc đường!`,
-      `🎙️ ${animal.name} ơi là ${animalName}! ${action.charAt(0).toUpperCase() + action.slice(1)} thôi!`,
-      // Nhân hóa
-      `🎙️ Các ${plural} đang nghĩ: "Hôm nay tao phải thắng!"`,
-      `🎙️ Mặt ${animalName} nào cũng quyết tâm! Máu lửa quá!`,
-      // Tình huống bất ngờ
-      `🎙️ 3... 2... 1... Ủa đợi chút... À xong rồi! PHÓNG!`,
-      `🎙️ Ủa tưởng chưa bắt đầu mà mọi người phóng rồi!`,
-    ],
-    leading: [
-      // So sánh hài hước
-      `🔥 {name} dẫn đầu! ${action.charAt(0).toUpperCase() + action.slice(1)} nhanh quá xá!`,
-      `👑 {name} đang bay! làm tim tôi lung lay!`,
-      `🚀 {name} phóng nhanh vượt ẩu!`,
-      // Phóng đại
-      `⚡ {name} nhanh đến nỗi tôi không thấy chân đâu luôn!`,
-      `💪 {name} dẫn đầu cách xa... khoảng 300 năm ánh sáng!`,
-      `🌟 {name} sáng chói mà hơi sói trán!`,
-      // Tự sự hài - BLV hồi hộp
-      `😎 {name} số 1! number one!`,
-      `🏃 {name} rất ngầu, như đang đi tàu!`,
-      `🦸 {name} ơi, cho em xin chữ ký được không?`,
-      // Câu hỏi tu từ
-      `💨 {name} đang dẫn đầu! bỏ xa 5 vạn 9 ngàn cây?`,
-      `🤩 {name} đang lao vút! Có ai dám cản không?`,
-      // Nhân hóa - vịt có suy nghĩ
-      `🎯 {name} đang nghĩ: "Các em đuổi đi, anh đợi!"`,
-      `😏 {name} quay lại nhìn: "Sao đi chậm thế các bạn?"`,
-      // Chơi chữ
-      `🔥 {name} dẫn đầu! thì ai dẫn đuôi!`,
-      `👑 {name} nhìn lên không có đối thủ, á vấp cục đá!`,
-      // Bất ngờ
-      `⚡ Ủa {name} đâu rồi? À đằng trước kia! Nhanh quá!`,
-      `🌟 {name} phóng nhanh quá tôi tưởng gắn động cơ!`,
-    ],
-    overtake: [
-      // So sánh hài hước
-      '😱 {name} vượt lên! Nhanh như tia chớp vậy!',
-      '🔄 {name} lật kèo! dù hơi bèo nhèo!',
-      '💨 {name} tóc mượt như sunsil bồ kết!',
-      // Phóng đại
-      '🎯 {name} bật turbo! Tưởng đang xem Fast & Furious!',
-      '⚡ {name} vượt! Tốc độ này phải đo bằng vận tốc ánh sáng!',
-      '🚀 {name} phóng! Quá nhanh quá nguy hiểm!',
-      // Tự sự hài
-      '😤 {name} vượt rồi! lêu lêu bà già!',
-      '🌪️ {name} như cơn lốc! làm tôi bị sốc!',
-      // Câu hỏi tu từ
-      '🔥 {name} bứt tốc! ai chơi lại?',
-      '⚔️ {name} vượt mặt! Có chơi hack không vậy?',
-      // Nhân hóa - đối thoại
-      '💥 {name} vượt! Đối thủ: "Ủa bạn đi đâu vậy?"',
-      '🎪 {name} lên top! Các bạn khác: "Không công bằng!"',
-      // Bất ngờ
-      '🏆 Ai ngờ là {name}! Bất ngờ chưa bà già!',
-      '⚡ {name} vượt lên! trên mọi đối thủ?',
-      // Chơi chữ
-      '💨 {name} tăng ga! Ga nào? Ga Hà Nội!',
-      '🔥 {name} bứt phá! Phá kỷ lục hay phá tim tôi?',
-    ],
-    tired: [
-      // So sánh hài hước
-      '😓 {name} đuối! Mệt như mới chạy 10 vòng trái đất!',
-      '💦 {name} thở hổn hển! Như vừa leo núi!',
-      '🥵 {name} kiệt sức! Như điện thoại 1% pin vậy!',
-      // Phóng đại
-      '😴 {name} muốn ngủ! Chắc tối qua thức chơi game!',
-      '🥱 {name} mệt xỉu! Cần nghỉ ngơi ngay!',
-      '😩 {name} hết xăng! Đổ đầy bình đi anh zai!',
-      // Tự sự hài
-      '💤 {name} mệt quá! Tôi nhìn cũng thấy mệt lây!',
-      '😵 {name} sắp xỉu! Gọi xe cứu thương chưa?',
-      // Câu hỏi tu từ
-      `🐌 {name} sao chậm vậy? Có ăn sáng chưa?`,
-      '🫠 {name} đang tan chảy! Ai bật máy lạnh đi!',
-      // Nhân hóa
-      '📉 {name} nghĩ: "Thôi kệ, về nhì cũng được!"',
-      '🪫 {name} than: "Chân ơi đừng bỏ tao!"',
-      // Bất ngờ
-      '😓 Ủa {name} đâu rồi? À kia! Sao đi chậm vậy?',
-      '💀 {name} kiệt! Phải chi mang theo Red Bull!',
-      // Chơi chữ
-      '🥵 {name} đuối! Đuối như con cá chuối!',
-    ],
-    collision: [
-      // So sánh hài hước
-      '💥 {name} đụng đá! làm trái tim băng giá!',
-      '😵 {name} đụng là chạm! chưa ngán ai!',
-      '🤕 {name} văng! Bay xa như bóng bay tuột tay!',
-      // Phóng đại
-      '💫 {name} thấy sao bay! lên xe ngay!',
-      '🤯 {name} đâm sầm! Tiếng vang cả vũ trụ!',
-      // Tự sự hài
-      '😵‍💫 {name} chóng mặt! Tôi nhìn cũng muốn xỉu!',
-      '🪨 Ối! {name} ăn đá! Đá cứng hay mặt cứng?',
-      // Câu hỏi tu từ
-      '😅 {name} tưởng đá là bạn thân hả? Ôm ghê vậy?',
-      '🫨 {name} rung lắc! Có bị động đất không vậy?',
-      // Nhân hóa - đối thoại
-      '😬 Đá: "Chào bạn!" - {name}: "Đau quá trời ơi!"',
-      '🤦 {name} đâm! Đá: "Tui nằm yên mà bạn tự lao vô!"',
-      '🎯 Đá: "Hôm nay có khách!" - {name}: "..."',
-      // Bất ngờ
-      '💥 Tưởng tránh được ai ngờ {name} đụng ngay!',
-      '😵 {name} va chạm! Không ai ngờ luôn!',
-      // Chơi chữ
-      '🤕 {name} ăn đá! Ăn ngon không? Có cần thêm muối?',
-    ],
-    close: [
-      // So sánh hài hước
-      '😰 Căng quá! Căng hơn cả dây thun quần!',
-      '🔥 Sát nút! Sát như hai đội bóng chung kết!',
-      '⚔️ Nảy lửa! Nóng hơn cả bếp gas đang xào!',
-      // Phóng đại
-      '😱 Sát sàn sạt! Không lọt được sợi tóc!',
-      '🥶 Lạnh giá! tưởng tôi là con cá!',
-      '🎢 Hồi hộp! Tim tôi đập như trống trận!',
-      // Tự sự hài
-      '💓 Đua từng milimet! Tôi không dám thở luôn!',
-      '🤯 Không tin nổi! Tay tôi run cầm không được mic!',
-      '😤 Tôi muốn khóc lên cho thoả nỗi nhớ!',
-      // Câu hỏi tu từ
-      '🫣 Ai thắng đây? Thần cũng không đoán được!',
-      '🎬 Kịch tính quá! Đạo diễn nào viết kịch bản?',
-      // Nhân hóa
-      '💀 Tim tôi hỏi: "Chịu nổi không ông?"',
-      '🔥 Các bạn đua đang nghĩ: "Phải thắng! Phải thắng!"',
-      // Bất ngờ
-      '⚡ Tưởng xong rồi ai ngờ vẫn còn căng!',
-      '😱 Sát nút! Tôi tưởng TV bị lag!',
-    ],
-    halfway: [
-      // So sánh hài hước
-      '🏁 Qua nửa đường! Ai tỏ tường!',
-      '⏰ Mới 50%! Mà ngỡ như đã 100% chia đôi',
-      // Phóng đại
-      '🎯 Nửa chặng! Nửa còn lại sẽ BÙNG NỔ!',
-      '🔥 Qua nửa! Drama chưa bắt đầu đâu!',
-      // Tự sự hài
-      '📍 Mới nửa đường thôi à!',
-      '⚡ 50% done! Tôi đã hết cạn 90% pin rồi!',
-      // Câu hỏi tu từ
-      '🏁 Nửa đường rồi! Ai sẽ bung sức đây?',
-      '🔥 Qua nửa! Bao giờ mới có drama?',
-      // Bất ngờ
-      '⏰ Ủa qua nửa rồi hả? Nhanh thế!',
-      '🎯 50%! Tưởng mới bắt đầu!',
-    ],
-    final: [
-      // So sánh hài hước
-      '🏆 {name} VÔ ĐỊCH! Xứng đáng như phim Marvel!',
-      '🎉 {name} thắng! Đẹp như giấc mơ hồi nhỏ!',
-      '👑 {name} lên ngôi! Oai như vua sư tử!',
-      // Phóng đại
-      '🥇 {name} số 1! Cả thế giới phải ngả mũ!',
-      '🌟 {name} vô địch! Vinh quang muôn đời!',
-      '🎊 {name} về đích! Lịch sử sẽ ghi nhận!',
-      // Tự sự hài
-      '🤴 {name} vô địch! Tôi muốn khóc vì vui!',
-      '💎 {name} huyền thoại! Fan cứng từ bây giờ!',
-      '🏆 {name} thắng rồi! Tôi mãn nguyện rồi!',
-      // Câu hỏi tu từ
-      '👑 {name} VÔ ĐỊCH! Có ai xứng đáng hơn không?',
-      '🎉 {name} best! Ai dám phản đối?',
-      // Nhân hóa
-      '🥇 {name} nghĩ: "Tao nói rồi mà, tao thắng!"',
-      '🌟 Các bạn thua: "Hẹn gặp lại match sau!"',
-      // Bất ngờ
-      '🏆 {name} thắng! Tưởng ai ngờ là {name}!',
-      '💎 {name} vô địch! Kịch bản không ai ngờ!',
-    ],
-    boost: [
-      // So sánh hài hước
-      '🚀 {name} bật chế độ tăng động!',
-      '⚡ {name} tăng tốc! Giống xe đua F1 vậy!',
-      '💨 {name} bay! Máy bay cũng phải gọi bằng cụ!',
-      // Phóng đại
-      '🔋 {name} full pin! Năng lượng vô hạn!',
-      '🚀 {name} phóng! Vượt qua cả tốc độ ánh sáng!',
-      // Tự sự hài
-      '⚡ {name} bứt tốc! Mắt tôi không theo kịp!',
-      '💨 {name} tăng ga! Wow! Amazing! gút chóp!',
-      // Nhân hóa
-      '🔥 {name} nghĩ: "Giờ mới show sức mạnh!"',
-      '🚀 {name}: "Các bạn, tạm biệt nhé!"',
-      // Bất ngờ
-      '⚡ Ủa {name} mất tiêu đâu? á đăng trước kìa',
-    ],
-    slowdown: [
-      // So sánh hài hước
-      '🌊 {name} Chậm quá! Chậm như wifi nhà tôi vậy!',
-      '😓 {name} slow motion! Giống phim cô dâu 8 tuổi!',
-      '🐌 {name} mất đà! ô là la!',
-      // Tự sự hài
-      '📉 {name} giảm tốc! Ôi không! Sao lại thế!',
-      '🐢 {name} chậm lại! Tôi muốn khóc!',
-      // Nhân hóa
-      '😓 {name} nghĩ: "Chân ơi sao bỏ tao!"',
-      '🌊 {name} than: "Sóng gì mà dữ vậy!"',
-      // Bất ngờ
-      '📉 {name} chậm! Ai bấm nút pause vậy?',
-    ],
-    comeback: [
-      // So sánh hài hước
-      '🔥 {name} hồi sinh! từ vũng sình!',
-      '💪 {name} comeback! quá xác oách!',
-      '😤 {name} quay lại! "chờ đã, chưa xong đâu"!',
-      // Phóng đại
-      '⚡ {name} phục hận! như con rận!',
-      '🎯 {name} sẽ trở lại! dù có thất bại!',
-      // Tự sự hài
-      '🔥 {name} hồi phục! tăng tốc thôi',
-      '💪 {name} bùng nổ! Nước mắt tôi rơi!',
-      // Nhân hóa
-      '😤 {name} nghĩ: "Tui sẽ thắng!"',
-      '⚡ {name}: "Quá xá đã!"',
-      // Bất ngờ
-      '🔥 Tưởng hết hy vọng! Ai ngờ {name} quay lại!',
-      '💪 {name} comeback! không ai ngờ!',
-      // Chơi chữ
-      '😤 {name} trở lại! Come back hay back come? Kệ!',
-    ],
-    lucky: [
-      // So sánh hài hước
-      '🍀 {name} may quá! Như trúng số vậy!',
-      '✨ {name} thoát nạn! May như có bùa!',
-      '😅 {name} né được! Phản xạ như như chớp!',
-      // Tự sự hài
-      '🙏 {name} may! Ông bà phù hộ chắc luôn!',
-      '🍀 {name} thoát! Tim tôi rớt rồi nhặt lại!',
-      // Nhân hóa - đối thoại
-      '✨ Đá: "Ủa sao né được?" - {name}: "Hehe!"',
-      '😅 {name} nghĩ: "Suýt xong đời!"',
-      // Bất ngờ
-      '🙏 Tưởng đụng rồi! Ai ngờ {name} né ngon!',
-    ],
-    // Bình luận ngẫu nhiên giữa trận - MIX đa dạng kỹ thuật hài + slang mạng xã hội
-    random: [
-      // === SLANG MẠNG XÃ HỘI VIỆT NAM ===
-      '🔥 CÒN CÁI NỊT! Cuộc đua căng đét!',
-      '💀 ĐỈNH NÓC KỊch TRẦN BAY PHẤP PHỚI!',
-      '😱 XỊN XÒ NHƯ CON BÒ! Hay quá!',
-      '⚡ REAL G KHÔNG BAO GIỜ BỎ CUỘC!',
-      '🎯 CÁI NÀY CHÁY LẮM NHA! Quá hot!',
-      '💥 NGÁO NGƠ LUÔN! Sao hay dữ vậy?',
-      '🌟 BIẾT GÌ KHÔNG? Cuộc đua đỉnh cao!',
-      '😤 Ê KHÔNG ĐÙA ĐƯỢC ĐÂU! Căng thật!',
-      '🏆 AI MÀ CHỊU NỔI cuộc đua này!',
-      '🎪 HẾT NƯỚC CHẤM với drama này!',
-      '😵 CÁI NÀY HƠI LÚ! Ai thắng đây?',
-      '🤯 NHÌN MÀ XỈU NGANG! Kịch tính!',
-      '💯 ỔN ÁP LUÔN! Đua tiếp thôi!',
-      '🔥 CĂNG NHẸ THÔI nha bà con!',
-      '😰 CŨNG HƠI MỆT À NHA theo dõi!',
-      '🤔 ĐÚNG LÀ KHÔNG ĐÙA ĐƯỢC!',
-      // === SLANG MỚI - TỪ LÓNG VIRAL ===
-      '🚀 TỚI CÔNG CHUYỆN! Cuộc đua bắt đầu nóng lên!',
-      '😎 E LÀ KHÔNG THỂ thua cuộc đua này!',
-      '💯 10 ĐIỂM KHÔNG CÓ NHƯNG cho pha đua này!',
-      '🏆 THẮNG ĐỜI 1-0! Ai về nhất là vô địch!',
-      '😅 THUA ĐỜI 1-0! Ai về chót cũng không sao!',
-      '🧠 Thua Gia Cát Lượng mỗi cây quạt! Ai thắng là thiên tài!',
-      '🎬 TUYỆT ĐỐI ĐIỆN ẢNH! Như phim Hollywood!',
-      '🎯 BỐC TRÚNG SÍT RỊT! Đoán đúng ai thắng không?',
-      '😱 VỀ KỂ KHÔNG AI TIN! Cuộc đua này quá sức tưởng tượng!',
-      '💅 CƠM NƯỚC GÌ CHƯA NGƯỜI ĐẸP? À mà đua tiếp đi!',
-      '😭 TÔI LÀ NẠN NHÂN CỦA cuộc đua căng thẳng này!',
-      // === SO SÁNH HÀI HƯỚC ===
-      '🎙️ Cuộc đua nóng hơn cả bếp gas đang nấu!',
-      '🔥 Drama căng hơn phim hoạt hình!',
-      '⚡ Tốc độ nhanh như wifi nhà người ta!',
-      '🏃 Các bạn đua như shipper giao hàng nhanh!',
-      // === PHÓNG ĐẠI SIÊU HÀI (dễ hiểu cho mọi lứa tuổi) ===
-      '💨 Kịch tính! Cả vũ trụ đang theo dõi!',
-      '🎯 Căng thẳng! Tim tôi đập nhanh như trống trường!',
-      '🌊 Nước sông dậy sóng như biển lớn!',
-      '🚀 Nhanh quá! Bay vèo như tên lửa!',
-      '🏃 Chạy nhanh hơn cả gió!',
-      '💥 Hay quá! Hay hơn cả 100 bộ phim hoạt hình!',
-      '🏔️ Vượt qua 99 ngọn núi và 100 con sông!',
-      '🔥 Nóng! Nóng hơn cả trời mùa hè!',
-      '💪 Mạnh quá! Mạnh như siêu nhân!',
-      '🌈 Đẹp quá! Đẹp như cầu vồng sau mưa!',
-      '🎪 Vui hơn cả ngày sinh nhật!',
-      '😱 Hồi hộp quá! Tóc tôi dựng đứng hết rồi!',
-      '🧊 Căng! Căng như dây đàn guitar!',
-      '👀 Mắt tôi mở to như hai quả trứng!',
-      '🍕 Cuộc đua ngon lành như pizza vừa ra lò!',
-      '🎈 Bay cao! Bay cao hơn cả bong bóng!',
-      '🐘 To! Tiếng hò reo to như voi gầm!',
-      '⭐ Sáng! Tỏa sáng như ngôi sao!',
-      '🍦 Mát! Mát hơn cả 10 cây kem!',
-      // === TỰ SỰ HÀI - BLV hài ===
-      '🔥 Ôi trời ơi! Tôi không chịu nổi!',
-      '⚔️ Tôi muốn hét lên! Hay quá!',
-      '💥 Máu lửa! Tôi đổ mồ hôi hột!',
-      '🎪 Drama liên tục! Tôi cần nghỉ giải lao!',
-      // === CÂU HỎI TU TỪ ===
-      '🏆 Ai sẽ thắng? Tôi cũng không biết!',
-      '😄 Vui quá! Sao có thể vui như vậy?',
-      '🥰 Các bạn đua dễ thương ghê! Ai đồng ý?',
-      '😍 Cuộc đua này có gì hot không nhỉ?',
-      // === BẤT NGỜ ===
-      '😂 Ủa chuyện gì đang xảy ra vậy?',
-      '😆 Tưởng bình thường ai ngờ hay quá!',
-      // === CHƠI CHỮ ===
-      '🔥 Đua tiếp thôi! Đua mà không mệt là... robot!',
-      '😅 Căng quá! Căng nhưng không đứt đâu!',
-      '😰 Mệt quá! Mệt người xem chứ người đua thì không!',
-      '🤔 Đúng là cuộc đua! Không đua thì gọi là gì?',
-      '😱 Nhìn mà muốn xỉu! Xỉu vì vui đó!',
-      '💀 Hết hồn! Hồn ở đâu? Đây nè!',
-      '⚡ Ổn! Rất ổn! Ổn như cơm nguội!',
-      // === CHƠI CHỮ VẦN NGỘ NGHĨNH ===
-      '🐄 Xịn xò như con bò! Moo moo!',
-      '🌪️ Tăng tốc như cơn lốc! Vèo vèo!',
-      '🏛️ Phi nhanh tới chùa bà đanh!',
-      '🐚 Tăng tốc để đi ăn ốc! Slurp!',
-      '🦊 Nhanh như sóc, tóc bay phấp phới!',
-      '🎯 Đi như tên, chen lên hàng đầu!',
-      '🐦 Bay như chim, tim đập thình thịch!',
-      '⭐ Lao như sao băng, căng như dây đàn!',
-      '💨 Bay vèo vèo, nghe tiếng reo!',
-      '🚀 Vút như tên, lên như diều gặp gió!',
-      '🌊 Bơi ào ào, vào top ngay!',
-      '🥁 Chạy rầm rầm, ầm ĩ cả sông!',
-      '🎵 Đua như mơ, ai ngờ hay quá!',
-      '🔥 Lao như pháo, náo động cả trận!',
-      '💎 Chậm mà chắc, khắc ghi chiến thắng!',
-      '☁️ Bay như mây, hay không thể tả!',
-      '⚡ Đua như sấm, ầm ầm vang dội!',
-      '🎈 Phăng phăng tiến, hiện ngay top 1!',
-      '🐢 Tuy hơi chậm nhưng không lẩm cẩm!',
-      '🎪 Đi như bay, hay như phim!',
-      '🦅 Phi như điên, liền về đích!',
-      '🍜 Bơi như măng, băng băng về đích!',
-      '🐝 Vù vù bay, hay không chịu được!',
-      '🎸 Đua rộn ràng, vang khắp nơi!',
-      '🌻 Tươi như hoa, ta về nhất nha!',
-      '🍉 Ngọt như dưa, vừa đẹp vừa hay!',
-      '🐸 Nhảy như ếch, rẹt rẹt về đích!',
-      '🦋 Lượn như bướm, đượm sắc màu!',
-      '🌙 Sáng như trăng, căng không chịu nổi!',
-      '🍀 May như cỏ, rõ ràng số một!',
-      '🎁 Bất ngờ như quà, à hay quá!',
-      '🥕 Khỏe như thỏ, rõ là vô địch!',
-      '🐠 Lội như cá, nhà vô địch đây!',
-      '🎂 Ngọt như bánh, mạnh như sư tử!',
-      '🌞 Sáng như trời, ơi ơi hay quá!',
-      '🎀 Xinh như nơ, mơ về nhất!',
-      '🍭 Vui như Tết, hết ý luôn!',
-      '🐰 Nhanh như thỏ, rõ là pro!',
-      '🎤 Hay như hát, chắc chắn thắng!',
-      '🧁 Ngọt như kẹo, véo má luôn!',
-      '🎠 Quay như đu, vù vù tiến!',
-      '🎡 Vòng vòng quay, hay hay hay!',
-      '🛸 Bay như UFO, pro không đối thủ!',
-      '🎯 Trúng như tên, lên top liền!',
-      '🌈 Đẹp như mộng, bổng bay cao!',
-      // === CHƠI CHỮ VẦN BẤT NGỜ HÀI HƯỚC (chuẩn bằng-trắc) ===
-      '🧚 Đẹp như tiên mà kiên cường bất khuất!',
-      '👻 Xấu như ma mà la cà quán xá!',
-      '💨 Bay như gió mà nói có nói không!',
-      '🪁 Bay như diều nên hay làm liều!',
-      '🐌 Tuy hơi chậm nhưng không lẩm cẩm!',
-      '🏛️ Phi nhanh tới chùa bà đanh!',
-      '🐚 Tăng tốc để đi ăn ốc!',
-      '🦁 Dữ như hổ, đổ bộ về đích!',
-      '🐱 Hiền như mèo, mà trèo lên top!',
-      '🦆 Bơi như vịt, rích rích tiến lên!',
-      '🐷 Tròn như heo, mà leo rất nhanh!',
-      '🦀 Đi như cua, mà vua về đích!',
-      '🐢 Chậm như rùa, mà vua tốc độ!',
-      '🦜 Nói như vẹt, mà hét rất vang!',
-      '🐵 Nhảy như khỉ, mà chỉ biết thắng!',
-      '🦉 Khôn như cú, mà vù vù bay!',
-      '🐔 Gáy như gà, mà ta về nhất!',
-      '🦢 Đẹp như nga, mà ta dẫn đầu!',
-      '🐝 Chăm như ong, mà trong top hoài!',
-      '🦩 Điệu như hạc, mà cạch luôn top!',
-      '🐊 Dữ như sấu, mà cháu về nhất!',
-      '🦈 Hung như cá, mà ta chiến thắng!',
-      '🐳 To như voi, ôi ôi dẫn đầu!',
-      '🦋 Nhẹ như bướm, mà đượm vinh quang!',
-      '🐻 Khỏe như gấu, mà đâu ai bằng!',
-      '🦊 Ranh như cáo, mà náo loạn luôn!',
-    ],
-  };
+// Helper function để render animal (component hoặc emoji)
+const renderAnimal = (animalType, animalTypes, size = '1em') => {
+  const animal = animalTypes[animalType] || ANIMAL_TYPES_BASE[animalType];
+  if (!animal) return null;
+  return animal.emoji;
 };
 
 // 50 màu sắc đa dạng cho vịt
@@ -576,7 +142,10 @@ const getShortName = (fullName) => {
 };
 
 export default function DuaThuHoatHinh() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  
+  // Get translated animal types
+  const ANIMAL_TYPES = useMemo(() => getAnimalTypes(t), [t]);
   
   // Load saved settings
   const { settings, updateSettings } = useGameSettings(GAME_IDS.DUA_THU_HOAT_HINH, DEFAULT_SETTINGS);
@@ -1080,7 +649,7 @@ export default function DuaThuHoatHinh() {
   };
   
   const showCommentary = useCallback((type, name = '') => {
-    const commentaries = getCommentaries(animalType);
+    const commentaries = getCommentaries(locale, animalType, t);
     const messages = commentaries[type];
     if (!messages || messages.length === 0) return;
     
@@ -1137,7 +706,7 @@ export default function DuaThuHoatHinh() {
     }
     // Display time 4.5s - đủ thời gian để đọc và cảm nhận sự hài hước
     commentaryTimeoutRef.current = setTimeout(() => setCommentary(''), 4500);
-  }, [animalType]);
+  }, [animalType, locale, t]);
 
   // Toggle fullscreen
   const toggleFullscreen = useCallback(() => {
@@ -1434,53 +1003,14 @@ export default function DuaThuHoatHinh() {
             newEffects[racer.id] = { 
               type: 'collision', 
               emoji: obstacle.emoji,
-              text: obstacle.emoji === '🪨' ? 'Đụng đá!' : obstacle.emoji === '🪵' ? 'Vướng gỗ!' : obstacle.emoji === '🦐' ? 'Tôm kẹp!' : obstacle.emoji === '🐚' ? 'Đạp sò!' : 'Vướng!'
+              text: t('toolbox.animalRace.events.collision')
             };
             
             if (isTop5) {
               showCommentary('collision', racer.name);
-              const funnyComments = obstacle.emoji === '🪨' 
-                ? [
-                    'BẤT NGỜ CHƯA BÀ GIÀ! Đá từ đâu ra vậy?! 💫',
-                    'KHÓ CHỊU VÔ CÙNG! Đá cứng quá trời!',
-                    'E LÀ KHÔNG THỂ né được! Đá to quá!',
-                    'CÒN CÁI NỊT sau cú đụng này!',
-                    'ĐỈNH NÓC... đụng đá! Đau điếng!',
-                    'MỜI XUỐNG HỒ nghỉ sau cú va này! 🤕',
-                    'SIÊU TO KHỔNG LỒ cú đụng! Au!',
-                    'AI SỢ ĐÁ THÌ ĐI VỀ! Muộn rồi!',
-                  ]
-                : obstacle.emoji === '🪵' 
-                ? [
-                    'TUYỆT ĐỐI... vướng gỗ! Xui ghê!',
-                    'BẤT NGỜ CHƯA! Gỗ nổi lên đột ngột!',
-                    'KHÓ CHỊU VÔ CÙNG với khúc gỗ này!',
-                    'E LÀ KHÔNG THỂ tránh được gỗ!',
-                    'CÒN CÁI NỊT tốc độ sau vụ này!',
-                    'MỜI XUỐNG HỒ gỡ gỗ nào!',
-                    'ĐỈNH NÓC... mắc gỗ! Drama!',
-                    'XỊN XÒ cú va gỗ này! 🪵',
-                  ]
-                : obstacle.emoji === '🦐'
-                ? [
-                    'BẤT NGỜ CHƯA! Tôm càng xanh tấn công!',
-                    'KHÓ CHỊU VÔ CÙNG! Tôm kẹp đau quá!',
-                    'AI SỢ TÔM THÌ ĐI VỀ! 🦐',
-                    'E LÀ KHÔNG THỂ né con tôm hung dữ!',
-                  ]
-                : obstacle.emoji === '🐚'
-                ? [
-                    'BẤT NGỜ CHƯA! Sò nằm im mà đạp trúng!',
-                    'KHÓ CHỊU VÔ CÙNG! Vỏ sò sắc quá!',
-                    'CÒN CÁI NỊT sau khi đạp sò!',
-                    'MỜI XUỐNG HỒ băng bó! Đau xót! 🐚',
-                  ]
-                : [
-                    'BẤT NGỜ CHƯA BÀ GIÀ! Đụng cái gì vậy?!',
-                    'KHÓ CHỊU VÔ CÙNG! Va phải rồi!',
-                    'E LÀ KHÔNG THỂ né được chướng ngại!',
-                    'ĐỈNH NÓC... va chạm! Đau điếng! 😭',
-                  ];
+              // Get collision comments from commentaries file
+              const allCommentariesCollision = getCommentaries(locale, animalType, t);
+              const collisionComments = allCommentariesCollision.collision || [];
               setEvents(prev => [
                 ...prev.slice(-4),
                 { 
@@ -1488,8 +1018,8 @@ export default function DuaThuHoatHinh() {
                   racerName: racer.shortName, 
                   color: racer.color, 
                   emoji: obstacle.emoji,
-                  text: obstacle.emoji === '🪨' ? 'ĐỤNG ĐÁ!' : obstacle.emoji === '🪵' ? 'VƯỚNG GỖ!' : obstacle.emoji === '🦐' ? 'TÔM KẸP!' : obstacle.emoji === '🐚' ? 'ĐẠP SÒ!' : 'VA CHẠM!',
-                  comment: funnyComments[Math.floor(Math.random() * funnyComments.length)],
+                  text: t('toolbox.animalRace.events.hitRock'),
+                  comment: collisionComments[Math.floor(Math.random() * collisionComments.length)]?.replace('{name}', racer.shortName),
                   effect: 'slow'
                 }
               ]);
@@ -1502,25 +1032,14 @@ export default function DuaThuHoatHinh() {
           if (isLeader && currentPos > 40 && Math.random() < 0.002) {
             state.fatigue += 15;
             const animal = ANIMAL_TYPES[animalType];
-            newEffects[racer.id] = { type: 'tired', emoji: '😓', text: 'Mệt quá!' };
+            newEffects[racer.id] = { type: 'tired', emoji: '😓', text: t('toolbox.animalRace.events.struggling') };
             showCommentary('tired', racer.name);
-            const tiredComments = [
-              `SIÊU TO KHỔNG LỒ mệt! ${animal.moveVerb.charAt(0).toUpperCase() + animal.moveVerb.slice(1)} nhanh quá nên hụt hơi! 😮‍💨`,
-              'E LÀ KHÔNG THỂ duy trì tốc độ! Dẫn đầu áp lực quá!',
-              'Chân mỏi như chạy marathon! Cần massage!',
-              'Hết pin rồi! Ai có sạc dự phòng không? 🔋',
-              `${animal.name} đang thở oxy! Đuối quá!`,
-              `Đuối sức! Ai dẫn đầu người đó mệt!`,
-              'KHÓ CHỊU VÔ CÙNG! Hụt hơi rồi! Phổi muốn nổ! 💨',
-              'MỜI XUỐNG HỒ nghỉ! Mệt muốn xỉu!',
-              'CÒN CÁI NỊT sức lực! Chân như đeo tạ!',
-              'TUYỆT ĐỐI... kiệt sức! Cần năng lượng!',
-              `BẤT NGỜ mệt quá! ${animal.name} cần nghỉ!`,
-              'AI MỆT THÌ ĐI VỀ! Bơi nhiều quá rồi!',
-            ];
+            // Get tired comments from commentaries file
+            const allCommentariesTired = getCommentaries(locale, animalType, t);
+            const tiredComments = allCommentariesTired.tired || [];
             setEvents(prev => [
               ...prev.slice(-4),
-              { id: now, racerName: racer.shortName, color: racer.color, emoji: '😓', text: 'MỆT QUÁ!', comment: tiredComments[Math.floor(Math.random() * tiredComments.length)], effect: 'slow' }
+              { id: now, racerName: racer.shortName, color: racer.color, emoji: '😓', text: t('toolbox.animalRace.events.struggling'), comment: tiredComments[Math.floor(Math.random() * tiredComments.length)]?.replace('{name}', racer.shortName), effect: 'slow' }
             ]);
           }
           
@@ -1530,25 +1049,15 @@ export default function DuaThuHoatHinh() {
             state.stamina = Math.min(100, state.stamina + 20);
             state.baseSpeed *= 1.08; // Temporary speed boost
             const animal = ANIMAL_TYPES[animalType];
-            newEffects[racer.id] = { type: 'boost', emoji: '🚀', text: 'TURBO!' };
-            const boostComments = [
-              `SIÊU TO KHỔNG LỒ tốc độ! ${animal.moveVerb.charAt(0).toUpperCase() + animal.moveVerb.slice(1)} nhanh như SpaceX! 🚀`,
-              'ĐỈNH NÓC KỊCH TRẦN! Bỗng có sức mạnh bí ẩn!',
-              'XỊN XÒ NHƯ CON BÒ! Chân như rocket!',
-              'BẤT NGỜ CHƯA! Tăng tốc không ai cản nổi!',
-              'E LÀ KHÔNG THỂ đuổi kịp tốc độ này!',
-              'TUYỆT ĐỐI được gió thổi! Phê ghê!',
-              `AI SỢ THÌ ĐI VỀ! ${animal.name} đang bay! 🦸`,
-              "KHÓ CHỊU VÔ CÙNG cho đối thủ! Let's gooo! 🔥",
-              'MỜI ĐOÀN MÌNH CỔ VŨ! Turbo mode ON!',
-              'CÒN CÁI NỊT cho ai đuổi! Phóng như rocket!',
-              'SIÊU tốc độ! Bật chế độ siêu nhanh!',
-            ];
+            newEffects[racer.id] = { type: 'boost', emoji: '🚀', text: t('toolbox.animalRace.events.speedBoost') };
+            // Get boost comments from commentaries file
+            const allCommentaries = getCommentaries(locale, animalType, t);
+            const boostComments = allCommentaries.boost || [];
             if (isTop10) {
               showCommentary('boost', racer.name);
               setEvents(prev => [
                 ...prev.slice(-4),
-                { id: now, racerName: racer.shortName, color: racer.color, emoji: '🚀', text: 'TĂNG TỐC!', comment: boostComments[Math.floor(Math.random() * boostComments.length)], effect: 'fast' }
+                { id: now, racerName: racer.shortName, color: racer.color, emoji: '🚀', text: t('toolbox.animalRace.events.speedBoost'), comment: boostComments[Math.floor(Math.random() * boostComments.length)]?.replace('{name}', racer.shortName), effect: 'fast' }
               ]);
               playSound('event');
             }
@@ -1559,22 +1068,14 @@ export default function DuaThuHoatHinh() {
             state.fatigue += 10;
             state.baseSpeed *= 0.95;
             const animal = ANIMAL_TYPES[animalType];
-            newEffects[racer.id] = { type: 'slow', emoji: '🌊', text: 'Gặp khó!' };
-            const slowComments = [
-              'BẤT NGỜ CHƯA! Sóng to bất ngờ! 🌊',
-              `KHÓ CHỊU VÔ CÙNG! ${animal.moveVerb.charAt(0).toUpperCase() + animal.moveVerb.slice(1)} ngược dòng!`,
-              'E LÀ KHÔNG THỂ vượt qua sóng dữ này!',
-              'MỜI XUỐNG HỒ nghỉ! Dòng nước ngược!',
-              `CÒN CÁI NỊT tốc độ! ${animal.name} gặp trở ngại!`,
-              'ĐỈNH NÓC... xuống hố! Dòng chảy xiết!',
-              'AI SỢ SÓNG THÌ ĐI VỀ! Nước xoáy tấn công!',
-              'SIÊU TO sóng! Gặp sóng to như chống bão!',
-              'TUYỆT ĐỐI... xui! Bị nước cuốn!',
-            ];
+            newEffects[racer.id] = { type: 'slow', emoji: '🌊', text: t('toolbox.animalRace.events.hitRock') };
+            // Get slowdown comments from commentaries file
+            const allCommentariesSlow = getCommentaries(locale, animalType, t);
+            const slowComments = allCommentariesSlow.slowdown || [];
             showCommentary('slowdown', racer.name);
             setEvents(prev => [
               ...prev.slice(-4),
-              { id: now, racerName: racer.shortName, color: racer.color, emoji: '🌊', text: 'GẶP KHÓ!', comment: slowComments[Math.floor(Math.random() * slowComments.length)], effect: 'slow' }
+              { id: now, racerName: racer.shortName, color: racer.color, emoji: '🌊', text: t('toolbox.animalRace.events.hitRock'), comment: slowComments[Math.floor(Math.random() * slowComments.length)]?.replace('{name}', racer.shortName), effect: 'slow' }
             ]);
           }
           
@@ -1584,47 +1085,29 @@ export default function DuaThuHoatHinh() {
             state.stamina = Math.min(100, state.stamina + 30);
             state.baseSpeed *= 1.1;
             const animal = ANIMAL_TYPES[animalType];
-            newEffects[racer.id] = { type: 'comeback', emoji: '🔥', text: 'Hồi sinh!' };
-            const comebackComments = [
-              'ĐỈNH NÓC KỊCH TRẦN comeback! Phượng hoàng tái sinh! 🔥',
-              `BẤT NGỜ CHƯA BÀ GIÀ! ${animal.name} lấy lại phong độ!`,
-              'E LÀ KHÔNG THỂ dìm được! Hồi sinh mạnh mẽ!',
-              'SIÊU TO KHỔNG LỒ comeback! Từ cuối phi lên top!',
-              'XỊN XÒ NHƯ CON BÒ! Never give up!',
-              'AI SỢ THÌ ĐI VỀ! Lật kèo ngoạn mục!',
-              'MỜI ĐOÀN CỔ VŨ! Hồi sinh như zombie!',
-              'TUYỆT ĐỐI ĐIỆN ẢNH! Bùng nổ từ đằng sau!',
-              'CÒN CÁI NỊT cho ai nói hết hy vọng!',
-              'KHÓ CHỊU VÔ CÙNG cho đối thủ! Trở lại rồi!',
-            ];
+            newEffects[racer.id] = { type: 'comeback', emoji: '🔥', text: t('toolbox.animalRace.events.recovery') };
+            // Get comeback comments from commentaries file
+            const allCommentariesComeback = getCommentaries(locale, animalType, t);
+            const comebackComments = allCommentariesComeback.comeback || [];
             showCommentary('comeback', racer.name);
             setEvents(prev => [
               ...prev.slice(-4),
-              { id: now, racerName: racer.shortName, color: racer.color, emoji: '🔥', text: 'HỒI SINH!', comment: comebackComments[Math.floor(Math.random() * comebackComments.length)], effect: 'fast' }
+              { id: now, racerName: racer.shortName, color: racer.color, emoji: '🔥', text: t('toolbox.animalRace.events.recovery'), comment: comebackComments[Math.floor(Math.random() * comebackComments.length)]?.replace('{name}', racer.shortName), effect: 'fast' }
             ]);
             playSound('event');
           }
           
           // === LUCKY DODGE - Almost hit but dodged! ===
           if (currentPos > 15 && Math.random() < 0.0006) {
-            newEffects[racer.id] = { type: 'lucky', emoji: '🍀', text: 'May quá!' };
-            const luckyComments = [
-              'BẤT NGỜ CHƯA! Suýt đụng mà né kịp! 🍀',
-              'SIÊU may mắn! Chướng ngại vật sát mép!',
-              'ĐỈNH NÓC né! Né đẹp như Matrix!',
-              'XỊN XÒ luck! Thần may mắn phù hộ!',
-              'E LÀ KHÔNG... phù! Né được! Pro!',
-              'TUYỆT ĐỐI may mắn! Không đụng!',
-              'KHÓ CHỊU... cho chướng ngại! Né rồi!',
-              'MỜI may mắn tiếp tục! Thoát nạn!',
-              'AI SỢ thì đây né được rồi! Hú vía!',
-              'CÒN CÁI NỊT cho ai nói xui! May ghê!',
-            ];
+            newEffects[racer.id] = { type: 'lucky', emoji: '🍀', text: t('toolbox.animalRace.events.lucky') };
+            // Get lucky comments from commentaries file
+            const allCommentariesLucky = getCommentaries(locale, animalType, t);
+            const luckyComments = allCommentariesLucky.lucky || [];
             if (isTop10) {
               showCommentary('lucky', racer.name);
               setEvents(prev => [
                 ...prev.slice(-4),
-                { id: now, racerName: racer.shortName, color: racer.color, emoji: '🍀', text: 'NÉ ĐƯỢC!', comment: luckyComments[Math.floor(Math.random() * luckyComments.length)], effect: 'neutral' }
+                { id: now, racerName: racer.shortName, color: racer.color, emoji: '🍀', text: t('toolbox.animalRace.events.dodged'), comment: luckyComments[Math.floor(Math.random() * luckyComments.length)]?.replace('{name}', racer.shortName), effect: 'neutral' }
               ]);
             }
           }
@@ -1634,34 +1117,20 @@ export default function DuaThuHoatHinh() {
             const isFriendly = Math.random() > 0.5;
             if (isFriendly) {
               state.fatigue = Math.max(0, state.fatigue - 5);
-              newEffects[racer.id] = { type: 'fish', emoji: '🐟', text: 'Gặp cá!' };
-              const fishFriendlyComments = [
-                'Ô! Gặp đàn cá dẫn đường! Cảm ơn GPS sống! 🐟',
-                'Cá nhỏ bơi cùng làm bạn! Dễ thương!',
-                'Được cá hộ tống! VIP treatment luôn!',
-                'Cá dẫn lối! Như có hoa tiêu riêng!',
-                'Đàn cá cổ vũ! Vui quá đi!',
-              ];
+              newEffects[racer.id] = { type: 'fish', emoji: '🐟', text: t('toolbox.animalRace.events.fishGuide') };
               if (isTop10) {
                 setEvents(prev => [
                   ...prev.slice(-4),
-                  { id: now, racerName: racer.shortName, color: racer.color, emoji: '🐟', text: 'CÁ DẪN ĐƯỜNG!', comment: fishFriendlyComments[Math.floor(Math.random() * fishFriendlyComments.length)], effect: 'neutral' }
+                  { id: now, racerName: racer.shortName, color: racer.color, emoji: '🐟', text: t('toolbox.animalRace.events.fishGuide'), effect: 'neutral' }
                 ]);
               }
             } else {
               state.fatigue += 3;
-              newEffects[racer.id] = { type: 'fish', emoji: '🐠', text: 'Cá quậy!' };
-              const fishNaughtyComments = [
-                'Ối! Cá cắn chân! Đau xíu! Cá dữ! 🐠',
-                'Cá nghịch ngợm quấn chân! Buông ra!',
-                'Bị đàn cá làm rối! Phiền quá!',
-                'Cá cản đường! Sao cá không thích tui?',
-                'Cá troll! Đùa gì mà đau vậy!',
-              ];
+              newEffects[racer.id] = { type: 'fish', emoji: '🐠', text: t('toolbox.animalRace.events.fishNaughty') };
               if (isTop10) {
                 setEvents(prev => [
                   ...prev.slice(-4),
-                  { id: now, racerName: racer.shortName, color: racer.color, emoji: '🐠', text: 'CÁ QUẬY!', comment: fishNaughtyComments[Math.floor(Math.random() * fishNaughtyComments.length)], effect: 'slow' }
+                  { id: now, racerName: racer.shortName, color: racer.color, emoji: '🐠', text: t('toolbox.animalRace.events.fishNaughty'), effect: 'slow' }
                 ]);
               }
             }
@@ -1673,21 +1142,10 @@ export default function DuaThuHoatHinh() {
             state.stunnedUntil = now + 1500;
             state.fatigue += 25;
             const animal = ANIMAL_TYPES[animalType];
-            newEffects[racer.id] = { type: 'cramp', emoji: '😵', text: 'Chuột rút!' };
-            const crampComments = [
-              'ÁI! Chuột rút chân! Đau muốn khóc! 😵',
-              `${animal.moveVerb.charAt(0).toUpperCase() + animal.moveVerb.slice(1)} căng quá nên cơ co giật rồi!`,
-              `Chân co cứng! Không ${animal.moveVerb} nổi nữa!`,
-              'Chuột rút! Phải dừng lại xoa bóp!',
-              `${animal.name} quá sức! Chuột rút căng thẳng!`,
-              'Ối ối! Cơ bắp phản bội! Đau quá!',
-              'Chuột rút! Ai có dầu nóng không?',
-              'Chân cứng đơ! Như bị ma nhập!',
-              'Chuột rút chân phải! Rồi chân trái! Help!',
-            ];
+            newEffects[racer.id] = { type: 'cramp', emoji: '😵', text: t('toolbox.animalRace.events.cramp') };
             setEvents(prev => [
               ...prev.slice(-4),
-              { id: now, racerName: racer.shortName, color: racer.color, emoji: '😵', text: 'CHUỘT RÚT!', comment: crampComments[Math.floor(Math.random() * crampComments.length)], effect: 'slow' }
+              { id: now, racerName: racer.shortName, color: racer.color, emoji: '😵', text: t('toolbox.animalRace.events.cramp'), effect: 'slow' }
             ]);
             playSound('event');
             return;
@@ -1938,7 +1396,7 @@ export default function DuaThuHoatHinh() {
   // ============ SETUP SCREEN ============
   if (screen === 'setup') {
     // Ensure not in fullscreen when on setup screen
-    if (document.fullscreenElement) {
+    if (typeof document !== 'undefined' && document.fullscreenElement) {
       document.exitFullscreen?.().catch(() => {});
     }
     const currentAnimal = ANIMAL_TYPES[animalType];
@@ -2132,9 +1590,9 @@ export default function DuaThuHoatHinh() {
           flex flex-col items-center justify-center text-white p-6 text-center">
           <div className="text-8xl mb-6 animate-bounce">📱</div>
           <div className="text-6xl mb-4 animate-spin-slow">🔄</div>
-          <h2 className="text-2xl font-black mb-3">Xoay ngang màn hình!</h2>
+          <h2 className="text-2xl font-black mb-3">{t('toolbox.animalRace.rotateDevice')}</h2>
           <p className="text-lg opacity-90 mb-4">
-            Để xem cuộc đua tốt nhất, vui lòng xoay điện thoại ngang
+            {t('toolbox.animalRace.rotateHint')}
           </p>
           <div className="flex items-center gap-2 text-yellow-300">
             <span className="text-2xl">👉</span>
@@ -2146,7 +1604,7 @@ export default function DuaThuHoatHinh() {
             className="mt-8 px-6 py-3 bg-white/20 hover:bg-white/30 rounded-full 
               font-bold transition-all"
           >
-            ← Quay lại cài đặt
+            {t('toolbox.animalRace.raceUI.goBack')}
           </button>
         </div>
       )}
@@ -2296,7 +1754,7 @@ export default function DuaThuHoatHinh() {
         <div className="absolute left-16 top-12 bottom-12 w-1 bg-white/60 z-15" />
         <div className="absolute left-4 top-1/2 -translate-y-1/2 z-20">
           <div className="text-white font-black text-sm transform -rotate-90 whitespace-nowrap">
-            XUẤT PHÁT
+            {t('toolbox.animalRace.raceUI.start')}
           </div>
         </div>
         
@@ -2332,7 +1790,7 @@ export default function DuaThuHoatHinh() {
           className="absolute top-4 left-4 z-30 px-4 py-2 bg-black/50 hover:bg-black/70 
             text-white rounded-full font-bold text-sm transition-all flex items-center gap-2"
         >
-          ← Quay lại
+          {t('toolbox.animalRace.raceUI.goBack')}
         </button>
 
         {/* Sound toggle */}
@@ -2414,7 +1872,7 @@ export default function DuaThuHoatHinh() {
           <div className="absolute top-16 left-4 z-25 w-56">
             <div className="bg-gradient-to-br from-red-600/95 to-orange-600/95 rounded-xl p-3 shadow-2xl border-2 border-yellow-400/50">
               <div className="text-sm font-black text-yellow-300 mb-2 flex items-center gap-2">
-                <span className="text-lg animate-bounce">📢</span> ĐANG XẢY RA!
+                <span className="text-lg animate-bounce">📢</span> {t('toolbox.animalRace.raceUI.happeningNow')}
               </div>
               <div className="space-y-2">
                 {events.slice(-3).map(event => (
@@ -2703,7 +2161,7 @@ export default function DuaThuHoatHinh() {
 
                 {/* Middle section: Winner info */}
                 <div className="winner-info-section">
-                  <h2 className="winner-title text-2xl sm:text-3xl font-black text-gray-800 mb-1 animate-pulse">🎉 VÔ ĐỊCH! 🎉</h2>
+                  <h2 className="winner-title text-2xl sm:text-3xl font-black text-gray-800 mb-1 animate-pulse">🎉 {t('toolbox.animalRace.raceUI.champion')} 🎉</h2>
 
                   <div className="winner-name-badge inline-block px-4 py-1.5 rounded-full text-lg sm:text-xl font-bold text-white mb-2 animate-bounce"
                     style={{ backgroundColor: winner.color, boxShadow: `0 0 20px ${winner.color}` }}>
@@ -2720,7 +2178,7 @@ export default function DuaThuHoatHinh() {
                   {/* TOP 5 Final Results */}
                   {topRacers.length > 1 && (
                     <div className="winner-ranking bg-gray-100 rounded-xl p-2 mb-2 text-left max-h-24 overflow-y-auto">
-                      <div className="text-xs font-bold text-gray-600 mb-1 text-center">🏅 Bảng xếp hạng</div>
+                      <div className="text-xs font-bold text-gray-600 mb-1 text-center">🏅 {t('toolbox.animalRace.raceUI.leaderboard')}</div>
                       {topRacers.slice(0, 5).map((racer, idx) => (
                         <div key={racer.id} className="flex items-center gap-1.5 py-0.5 text-xs">
                           <span className="font-black w-5" style={{ 
@@ -2739,12 +2197,12 @@ export default function DuaThuHoatHinh() {
                     <button 
                       onClick={backToSetup}
                       className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold rounded-full text-sm transition-all">
-                      ← Setup
+                      {t('toolbox.animalRace.raceUI.goBack')}
                     </button>
                     <button 
                       onClick={() => { resetRace(); setTimeout(() => startRace(), 100); }}
                       className="px-5 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-full text-sm hover:shadow-xl transition-all">
-                      🚀 Đua lại!
+                      🚀 {t('toolbox.animalRace.raceUI.raceAgain')}
                     </button>
                   </div>
                 </div>

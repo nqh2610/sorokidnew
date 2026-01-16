@@ -1,0 +1,309 @@
+{
+  "competeScreen": {
+    "title": "Compete",
+    "auto": "Auto Mode",
+    "ranking": "Leaderboard",
+    "yourRank": "Your Rank",
+    "points": "points",
+    "rank": "Rank",
+    "player": "Player",
+    "score": "Score",
+    "joinMatch": "Join Match",
+    "findOpponent": "Finding opponent...",
+    "ready": "Ready!",
+    "go": "Go!",
+    "win": "Victory!",
+    "lose": "Defeat",
+    "draw": "Draw",
+    "playAgain": "Play Again",
+    "leaderboard": "Leaderboard",
+    "questions": "questions",
+    "questionCounts": {
+      "5": "Warm up",
+      "10": "Basic",
+      "15": "Practice",
+      "20": "Advanced",
+      "25": "Challenge",
+      "30": "Battle",
+      "40": "Superstar",
+      "50": "Legend"
+    },
+    "selectMode": "SELECT GAME MODE",
+    "selectDifficulty": "SELECT DIFFICULTY",
+    "selectQuestions": "SELECT QUESTIONS",
+    "selectArena": "SELECT ARENA",
+    "startBattle": "START BATTLE",
+    "enterArena": "ENTER ARENA",
+    "viewLeaderboard": "View Leaderboard",
+    "topPlayers": "Top Players",
+    "yourBestScore": "Your Best Score",
+    "neverPlayed": "Haven't played yet",
+    "playersOnLeaderboard": "players on leaderboard",
+    "loading": "Loading...",
+    "completed": "COMPLETED!",
+    "accuracy": "Accuracy",
+    "avgTime": "Avg Time",
+    "stars": "Stars",
+    "correct": "Correct",
+    "combo": "Combo",
+    "totalTime": "Total Time",
+    "newRecord": "NEW RECORD!",
+    "rankUp": "RANK UP!",
+    "backToArena": "Back to Arena",
+    "selectNewArena": "Select New Arena",
+    "preparingArena": "Preparing arena...",
+    "soroOpeningArena": "Soro is opening the arena for you!",
+    "errorOccurred": "An error occurred",
+    "invalidMode": "Invalid mode",
+    "backToMap": "Back to Map",
+    "selectOperation": "Select Operation",
+    "competeWithMode": "Compete with your preferred mode!",
+    "eachVariantIsArena": "Each variant has its own leaderboard!",
+    "mode": "Mode",
+    "operation": "Operation",
+    "level": "Level",
+    "numQuestions": "Questions",
+    "selectLevel": "Select Level",
+    "higherLevelBiggerNum": "Higher level, bigger numbers!",
+    "selectNumQuestions": "Select Number of Questions",
+    "moreQuestionMoreChallenge": "More questions, more challenge!",
+    "firstTimeCompete": "First time competing?",
+    "selectFewToStart": "Select 5-10 questions to get started!",
+    "wantToClimb": "Want to climb ranks?",
+    "selectMoreToPractice": "Select 20-30 questions for steady practice!",
+    "nQuestions": "{n} questions",
+    "rankByAccuracySpeed": "Ranked by accuracy & speed",
+    "players": "players",
+    "noOneCompeted": "No one has competed yet",
+    "beTheFirst": "Be the first!",
+    "nCorrect": "{n} correct",
+    "nextRanking": "Next rankings",
+    "yourRanking": "Your ranking",
+    "you": "You",
+    "notCompetedYet": "You haven't competed in this arena yet",
+    "competeToRank": "Compete to get on the leaderboard!",
+    "finished": "FINISHED!",
+    "starDetails": "Star details",
+    "total": "Total",
+    "focus": "FOCUS!",
+    "quantity": "Quantity",
+    "nNumbers": "{n} numbers",
+    "speed": "Speed",
+    "speedPerNum": "{n}s/num",
+    "whatIsResult": "WHAT IS THE RESULT?",
+    "enterYourResult": "Enter your calculation result",
+    "youAreGreat": "You're great!",
+    "correct2": "CORRECT",
+    "bonus": "BONUS",
+    "mentalSubModes": {
+      "addition": "Addition",
+      "subtraction": "Subtraction",
+      "multiplication": "Multiplication",
+      "division": "Division",
+      "addSubMixed": "Add/Sub",
+      "mulDiv": "Mul/Div",
+      "mixed": "All"
+    },
+    "arenas": {
+      "addition": {
+        "1": "Star Garden",
+        "2": "Star Forest",
+        "3": "Star Mountain",
+        "4": "Star Peak",
+        "5": "Star Paradise"
+      },
+      "subtraction": {
+        "1": "Baby Robot",
+        "2": "Battle Robot",
+        "3": "Super Robot",
+        "4": "Mega Robot",
+        "5": "Ultra Robot"
+      },
+      "addSubMixed": {
+        "1": "Baby Rainbow",
+        "2": "Double Rainbow",
+        "3": "Rainbow Storm",
+        "4": "Color Universe",
+        "5": "Color Galaxy"
+      },
+      "multiplication": {
+        "1": "Baby Magic",
+        "2": "Apprentice Wizard",
+        "3": "Wizard",
+        "4": "Grand Wizard",
+        "5": "Supreme Sorcerer"
+      },
+      "division": {
+        "1": "Small Pizza",
+        "2": "Apprentice Chef",
+        "3": "Chef",
+        "4": "Master Chef",
+        "5": "Iron Chef"
+      },
+      "mulDiv": {
+        "1": "Baby Ninja",
+        "2": "Green Ninja",
+        "3": "Red Ninja",
+        "4": "Gold Ninja",
+        "5": "Shadow Ninja"
+      },
+      "mixed": {
+        "1": "Recruit",
+        "2": "Warrior",
+        "3": "Hero",
+        "4": "Champion",
+        "5": "Legend"
+      },
+      "mentalMath": {
+        "1": "Baby Genius",
+        "2": "Prodigy",
+        "3": "Super Mind",
+        "4": "Little Einstein",
+        "5": "Cosmic Genius"
+      },
+      "flashAnzan": {
+        "1": "Candlelight",
+        "2": "Moonlight",
+        "3": "Lightning",
+        "4": "Shooting Star",
+        "5": "BIG BANG",
+        "6": "SUPER BIG BANG"
+      }
+    },
+    "flashSetup": {
+      "digits": {
+        "title": "CHOOSE DIGITS",
+        "subtitle": "Select number difficulty"
+      },
+      "operation": {
+        "title": "CHOOSE OPERATION",
+        "subtitle": "Select calculation type"
+      },
+      "speed": {
+        "title": "CHOOSE BATTLE SPEED",
+        "subtitle": "Each variant has its own arena!"
+      }
+    },
+    "digitLabels": {
+      "1": "1 digit numbers",
+      "2": "2 digit numbers",
+      "3": "3 digit numbers",
+      "4": "4 digit numbers",
+      "5": "5 digit numbers"
+    },
+    "difficultyLabels": {
+      "1": "🐣 Small numbers",
+      "2": "⚔️ Medium",
+      "3": "🛡️ Challenge",
+      "4": "🔥 Advanced",
+      "5": "👑 Elite"
+    },
+    "results": {
+      "champion": {
+        "title": "CHAMPION!",
+        "message": "Absolute victory!"
+      },
+      "excellent": {
+        "title": "EXCELLENT WARRIOR!",
+        "message": "Outstanding performance!"
+      },
+      "great": {
+        "title": "GREAT JOB!",
+        "message": "Good match!"
+      },
+      "goodTry": {
+        "title": "GOOD TRY!",
+        "message": "Keep practicing!"
+      }
+    },
+    "encouragements": {
+      "excellent": {
+        "title": "CHAMPION!",
+        "message": "Absolute victory!"
+      },
+      "great": {
+        "title": "EXCELLENT WARRIOR!",
+        "message": "You fought brilliantly!"
+      },
+      "good": {
+        "title": "BRAVE WARRIOR!",
+        "message": "Practice more to get stronger!"
+      },
+      "improving": {
+        "title": "TRAINING!",
+        "message": "Keep practicing!"
+      },
+      "beginner": {
+        "title": "APPRENTICE!",
+        "message": "Every battle makes you stronger!"
+      },
+      "keepTrying": {
+        "title": "KEEP FIGHTING!",
+        "message": "Don't give up, keep fighting!"
+      }
+    },
+    "flashLevels": {
+      "anhNen": {
+        "name": "Candlelight",
+        "subtitle": "Soft and gentle glow",
+        "tagline": "Warm beginning",
+        "rankLabel": "Novice"
+      },
+      "anhTrang": {
+        "name": "Moonlight",
+        "subtitle": "Mystical night glow",
+        "tagline": "Steady progress",
+        "rankLabel": "Warrior"
+      },
+      "tiaChop": {
+        "name": "Lightning",
+        "subtitle": "Flashing in an instant",
+        "tagline": "Fast as lightning!",
+        "rankLabel": "Hero"
+      },
+      "saoBang": {
+        "name": "Shooting Star",
+        "subtitle": "Blazing across the sky",
+        "tagline": "🔥 SUPER FAST 🔥",
+        "rankLabel": "Legend"
+      },
+      "bigBang": {
+        "name": "BIG BANG",
+        "subtitle": "The birth of the universe",
+        "tagline": "💥 COSMIC EXPLOSION 💥",
+        "rankLabel": "GOD"
+      },
+      "sieuBigBang": {
+        "name": "SUPER BIG BANG",
+        "subtitle": "Peak of speed",
+        "tagline": "🌌 SUPER COSMOS 🌌",
+        "rankLabel": "DIVINE"
+      }
+    },
+    "flashTitle": "LIGHT RACE",
+    "confirm": "CONFIRM",
+    "pressEnterToSubmit": "Press Enter to submit answer",
+    "answer": "Answer",
+    "skip": "Skip",
+    "finish": "Finish",
+    "next": "Next",
+    "comboBonus": "Combo = x2 Bonus!",
+    "canYouReachSuperBigBang": "Can you reach SUPER BIG BANG?",
+    "keepGoing": "Keep going! {count} more ranks to Top 20!",
+    "correctCount": "{n} correct",
+    "excellent": "EXCELLENT!",
+    "enterBattle": "ENTER BATTLE",
+    "pointsMultiplier": "x{multiplier} POINTS!",
+    "plusStars": "+{n} stars",
+    "modeRequiresTier": "Mode {mode} requires {tier} plan or higher",
+    "difficultyRequiresTier": "Difficulty {difficulty} requires {tier} plan or higher",
+    "greatMatch": "Great match! 🏆",
+    "flashArenaTitle": "FLASH ARENA",
+    "mentalMathTitle": "Super Mind",
+    "mentalMathHint": "Mental math without abacus - Challenge your brain!",
+    "levelLabel": "Level {name}",
+    "recommended": "RECOMMENDED",
+    "flashCounter": "Number {current} / {total}",
+    "enterNumber": "Enter number"
+  }
+}

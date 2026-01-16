@@ -1,0 +1,146 @@
+{
+  "topbar": {
+    "vip": "VIP",
+    "advanced": "Nâng Cao",
+    "basic": "Cơ Bản",
+    "free": "Miễn Phí",
+    "days": "ngày",
+    "stars": "sao",
+    "diamonds": "kim cương",
+    "logout": "Đăng xuất",
+    "logoutConfirm": "Đăng xuất?",
+    "logoutMessage": "Bạn có chắc chắn muốn đăng xuất khỏi tài khoản?",
+    "cancel": "Hủy",
+    "dashboard": "Bảng điều khiển",
+    "learn": "Học tập",
+    "practice": "Luyện tập",
+    "compete": "Thi đấu",
+    "profile": "Hồ sơ",
+    "certificate": "Chứng chỉ",
+    "admin": "Quản trị",
+    "level": "Cấp"
+  },
+  "footer": {
+    "tagline": "Học toán tính nhanh vui như chơi game",
+    "toolbox": "Toolbox Giáo Viên",
+    "copyright": "Học toán tư duy cùng bàn tính Soroban",
+    "description": "Ứng dụng học Soroban & Toán tư duy hàng đầu cho học sinh tiểu học Việt Nam.",
+    "products": "Sản phẩm",
+    "support": "Hỗ trợ",
+    "legal": "Pháp lý",
+    "connect": "Kết nối",
+    "learnSoroban": "Học Soroban",
+    "teacherToolbox": "Toolbox Giáo viên",
+    "helpCenter": "Trung tâm hỗ trợ",
+    "contact": "Liên hệ",
+    "terms": "Điều khoản sử dụng",
+    "privacy": "Chính sách bảo mật"
+  },
+  "quest": {
+    "title": "Nhiệm vụ",
+    "dailyQuests": "Nhiệm vụ hôm nay",
+    "allCompleted": "Bạn đã hoàn thành tất cả nhiệm vụ!",
+    "waiting": "chờ nhận",
+    "claimReward": "Nhận thưởng",
+    "moreQuests": "nhiệm vụ khác"
+  },
+  "sorobanWidget": {
+    "open": "Mở bàn tính Soroban",
+    "title": "Bàn tính Soroban",
+    "close": "Đóng bàn tính",
+    "hint": "Hạt đỏ = 5, Hạt vàng = 1. Click để di chuyển các hạt!",
+    "result": "Kết quả",
+    "reset": "Reset",
+    "hintBtn": "Gợi ý",
+    "tenThousand": "Vạn",
+    "thousand": "Nghìn",
+    "hundred": "Trăm",
+    "ten": "Chục",
+    "unit": "ĐV",
+    "instructions": "Hướng dẫn sử dụng",
+    "clickToMove": "Click hạt để di chuyển",
+    "redBead": "Hạt đỏ = 5 đơn vị",
+    "yellowBead": "Hạt vàng = 1 đơn vị",
+    "columns": [
+      "Vạn",
+      "Nghìn",
+      "Trăm",
+      "Chục",
+      "ĐV"
+    ],
+    "howToUse": "Hướng dẫn sử dụng",
+    "heaven5": "Hạt 5 cột {col}",
+    "earthBead": "Hạt {bead} cột {col}"
+  },
+  "sound": {
+    "title": "Âm thanh",
+    "description": "Bật/tắt hiệu ứng âm thanh",
+    "mute": "Tắt âm thanh",
+    "unmute": "Bật âm thanh",
+    "off": "Tắt",
+    "on": "Bật",
+    "themes": {
+      "adventure": "🗺️ Phiêu Lưu",
+      "battle": "⚔️ Chiến Đấu",
+      "victory": "🏆 Chiến Thắng",
+      "relaxing": "🌙 Thư Giãn"
+    }
+  },
+  "rewards": {
+    "excellent": "Xuất sắc!",
+    "wonderful": "Tuyệt vời!",
+    "greatJob": "Giỏi lắm!",
+    "keepTrying": "Cố gắng!",
+    "congratulations": "🎊 Chúc mừng! 🎊",
+    "reward": "Phần thưởng"
+  },
+  "reward": {
+    "badgeUnlocked": "Mở khóa huy hiệu mới!",
+    "newBadge": "Huy hiệu mới",
+    "congratulations": "Chúc mừng bạn!",
+    "claimReward": "Nhận thưởng!",
+    "completed": "Hoàn thành!",
+    "time": "Thời gian",
+    "accuracy": "Chính xác",
+    "continueJourney": "Tiếp tục hành trình!"
+  },
+  "achievementPopup": {
+    "addSubCert": "Chứng chỉ Cộng Trừ Soroban",
+    "completeCert": "Chứng chỉ Soroban Toàn Diện"
+  },
+  "trialBadge": {
+    "trialRemaining": "Học thử còn {hours}h {minutes}p",
+    "upgradeNow": "Nâng cấp ngay!",
+    "lastDay": "Ngày cuối học thử",
+    "viewPlans": "Xem gói học",
+    "trialDays": "Học thử còn {days} ngày"
+  },
+  "pwa": {
+    "installed": "Đã cài Sorokid App!",
+    "thanks": "Cảm ơn bạn 💜",
+    "downloadApp": "Tải App Sorokid",
+    "learnAnytime": "Học Soroban mọi lúc",
+    "learnAnytimeAnywhere": "Học Soroban mọi lúc mọi nơi",
+    "install": "Cài đặt",
+    "installApp": "Cài đặt App",
+    "iosTitle": "Cài trên iPhone/iPad:",
+    "androidTitle": "Cài trên Android:",
+    "iosStep1": "1. Nhấn nút",
+    "share": "Chia sẻ",
+    "button": "",
+    "iosStep2": "2. Chọn",
+    "addToHome": "Thêm vào MH chính",
+    "androidStep1": "1. Nhấn",
+    "menuIcon": "⋮",
+    "topRight": "góc phải trên",
+    "androidStep2": "2. Chọn",
+    "installAppOption": "Cài đặt ứng dụng",
+    "gotIt": "Đã hiểu ✓"
+  },
+  "blog": {
+    "all": "Tất cả",
+    "categories": "Danh mục blog",
+    "scrollLeft": "Cuộn sang trái",
+    "scrollRight": "Cuộn sang phải"
+  }
+}

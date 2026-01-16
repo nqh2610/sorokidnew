@@ -1,0 +1,16 @@
+{
+  "admin": {
+    "users": "Người dùng",
+    "lessons": "Bài học",
+    "quests": "Nhiệm vụ",
+    "achievements": "Thành tích",
+    "transactions": "Giao dịch",
+    "paymentSettings": "Cài đặt thanh toán",
+    "managePlans": "Quản lý gói dịch vụ",
+    "trialSettings": "Cài đặt Trial",
+    "confirmTitle": "Xác nhận",
+    "confirmMessage": "Bạn có chắc chắn muốn thực hiện hành động này?",
+    "confirmBtn": "Xác nhận",
+    "cancelBtn": "Hủy"
+  }
+}

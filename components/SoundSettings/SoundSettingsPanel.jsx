@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useSoundContext } from '@/lib/SoundContext';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 /**
  * 🔊 SOUND SETTINGS PANEL
@@ -14,6 +15,7 @@ import { useSoundContext } from '@/lib/SoundContext';
  */
 
 export default function SoundSettingsPanel({ compact = false, variant = 'default', className = '' }) {
+  const { t } = useI18n();
   const {
     soundEnabled,
     musicEnabled,
@@ -34,10 +36,10 @@ export default function SoundSettingsPanel({ compact = false, variant = 'default
   const [isExpanded, setIsExpanded] = useState(false);
 
   const themeNames = {
-    adventure: '🗺️ Phiêu Lưu',
-    battle: '⚔️ Chiến Đấu',
-    victory: '🏆 Chiến Thắng',
-    calm: '🌙 Thư Giãn',
+    adventure: `🗺️ ${t('soundSettings.themes.adventure')}`,
+    battle: `⚔️ ${t('soundSettings.themes.battle')}`,
+    victory: `🏆 ${t('soundSettings.themes.victory')}`,
+    calm: `🌙 ${t('soundSettings.themes.calm')}`,
   };
 
   // Compact mode - chỉ hiện icon toggle
@@ -71,7 +73,7 @@ export default function SoundSettingsPanel({ compact = false, variant = 'default
           }
         }}
         className={`p-2 rounded-full transition-all ${getCompactStyles()} ${className}`}
-        title={soundEnabled ? 'Tắt âm thanh' : 'Bật âm thanh'}
+        title={soundEnabled ? t('soundSettings.soundOff') : t('soundSettings.soundOn')}
       >
         {soundEnabled ? (
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,7 +102,7 @@ export default function SoundSettingsPanel({ compact = false, variant = 'default
       >
         <div className="flex items-center gap-3">
           <span className="text-xl">🔊</span>
-          <span className="text-white font-medium">Cài Đặt Âm Thanh</span>
+          <span className="text-white font-medium">{t('soundSettings.title')}</span>
         </div>
         <svg 
           className={`w-5 h-5 text-gray-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
@@ -115,7 +117,7 @@ export default function SoundSettingsPanel({ compact = false, variant = 'default
         <div className="px-4 pb-4 space-y-4 border-t border-slate-700/50">
           {/* Master Sound Toggle */}
           <div className="pt-4 flex items-center justify-between">
-            <span className="text-gray-300">Âm thanh</span>
+            <span className="text-gray-300">{t('soundSettings.sound')}</span>
             <button
               onClick={toggleSounds}
               className={`relative w-12 h-6 rounded-full transition-colors ${
@@ -134,7 +136,7 @@ export default function SoundSettingsPanel({ compact = false, variant = 'default
             <>
               {/* Music Toggle */}
               <div className="flex items-center justify-between">
-                <span className="text-gray-300">Nhạc nền</span>
+                <span className="text-gray-300">{t('soundSettings.music')}</span>
                 <button
                   onClick={() => {
                     toggleMusicOnly();
@@ -156,7 +158,7 @@ export default function SoundSettingsPanel({ compact = false, variant = 'default
               {musicEnabled && (
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-400 text-sm">🎵 Âm lượng nhạc</span>
+                    <span className="text-gray-400 text-sm">🎵 {t('soundSettings.musicVolume')}</span>
                     <span className="text-gray-500 text-sm">{Math.round(musicVolume * 100)}%</span>
                   </div>
                   <input
@@ -173,7 +175,7 @@ export default function SoundSettingsPanel({ compact = false, variant = 'default
               {/* SFX Volume */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-400 text-sm">🔔 Âm lượng hiệu ứng</span>
+                  <span className="text-gray-400 text-sm">🔔 {t('soundSettings.sfxVolume')}</span>
                   <span className="text-gray-500 text-sm">{Math.round(sfxVolume * 100)}%</span>
                 </div>
                 <input
@@ -189,7 +191,7 @@ export default function SoundSettingsPanel({ compact = false, variant = 'default
               {/* Music Theme Selector */}
               {musicEnabled && (
                 <div className="space-y-2">
-                  <span className="text-gray-400 text-sm">🎭 Theme nhạc</span>
+                  <span className="text-gray-400 text-sm">🎭 {t('soundSettings.musicTheme')}</span>
                   <div className="grid grid-cols-2 gap-2">
                     {THEMES.map(theme => (
                       <button
@@ -216,7 +218,7 @@ export default function SoundSettingsPanel({ compact = false, variant = 'default
                 onClick={() => play('notification')}
                 className="w-full py-2 bg-slate-700 hover:bg-slate-600 text-gray-300 rounded-lg text-sm transition-colors"
               >
-                🔔 Kiểm tra âm thanh
+                🔔 {t('soundSettings.testSound')}
               </button>
             </>
           )}

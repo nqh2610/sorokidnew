@@ -1,0 +1,16 @@
+{
+  "admin": {
+    "users": "Users",
+    "lessons": "Lessons",
+    "quests": "Quests",
+    "achievements": "Achievements",
+    "transactions": "Transactions",
+    "paymentSettings": "Payment Settings",
+    "managePlans": "Manage Plans",
+    "trialSettings": "Trial Settings",
+    "confirmTitle": "Confirm",
+    "confirmMessage": "Are you sure you want to proceed?",
+    "confirmBtn": "Confirm",
+    "cancelBtn": "Cancel"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "profilePage": {
+    "logoutTitle": "Log out?",
+    "logoutMessage": "Are you sure you want to log out of your account?",
+    "streak": "Day streak",
+    "totalStars": "Total stars",
+    "diamonds": "Diamonds",
+    "edit": "Edit",
+    "sections": {
+      "learning": "LEARNING",
+      "account": "ACCOUNT",
+      "admin": "ADMIN"
+    },
+    "menu": {
+      "learn": "Learn",
+      "upgrade": "Upgrade account",
+      "certificate": "Certificates",
+      "editProfile": "Edit profile",
+      "admin": "Admin page"
+    },
+    "unlockFeatures": "Unlock all features!"
+  },
+  "leaderboardPage": {
+    "title": "Leaderboard",
+    "subtitle": "Top outstanding students",
+    "noData": "No data yet",
+    "startPractice": "Start practicing to appear on the leaderboard!"
+  },
+  "editProfile": {
+    "title": "Edit Profile",
+    "tabs": {
+      "profile": "Profile",
+      "password": "Password"
+    },
+    "fields": {
+      "fullName": "Full Name",
+      "phone": "Phone Number",
+      "username": "Username",
+      "email": "Email",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password"
+    },
+    "placeholders": {
+      "fullName": "Enter your full name",
+      "currentPassword": "Enter current password",
+      "newPassword": "Enter new password (at least 6 characters)",
+      "confirmPassword": "Re-enter new password"
+    },
+    "hints": {
+      "nameOnCertificate": "Your name will appear on certificates you earn",
+      "phoneFormat": "Vietnam phone number (e.g., 0901234567)",
+      "usernameReadOnly": "Username cannot be changed",
+      "emailReadOnly": "Email cannot be changed"
+    },
+    "errors": {
+      "nameRequired": "Please enter your name",
+      "nameMinLength": "Name must be at least 2 characters",
+      "invalidPhone": "Invalid phone number (e.g., 0901234567)",
+      "currentPasswordRequired": "Please enter current password",
+      "newPasswordRequired": "Please enter new password",
+      "passwordMinLength": "New password must be at least 6 characters",
+      "passwordMismatch": "Passwords do not match"
+    },
+    "passwordStrength": {
+      "tooShort": "Too short",
+      "medium": "Medium",
+      "good": "Good",
+      "strong": "Very strong"
+    },
+    "passwordMatch": "Passwords match",
+    "profileSaved": "Profile updated successfully!",
+    "passwordChanged": "Password changed successfully!",
+    "saving": "Saving...",
+    "processing": "Processing...",
+    "saveChanges": "Save Changes",
+    "changePassword": "Change Password",
+    "googleAccount": "Google Account",
+    "googleNoPassword": "You're logged in with Google, so there's no password to change.",
+    "backToProfile": "Back to profile page"
+  }
+}

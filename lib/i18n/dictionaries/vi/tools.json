@@ -1,0 +1,931 @@
+{
+  "tool": {
+    "title": "Toolbox Giáo Viên",
+    "subtitle": "Bộ sưu tập trò chơi quốc dân cho lớp học",
+    "description": "Tất cả công cụ dạy học tích cực tập trung tại một địa chỉ. Miễn phí 100%, không cần đăng nhập.",
+    "saveBookmark": "Lưu Bookmark",
+    "share": "Chia sẻ",
+    "categories": {
+      "all": "Tất cả",
+      "teambuilding": "Vui vẻ - Teambuilding",
+      "competition": "Thi đua & cho điểm",
+      "random": "Ngẫu nhiên – công bằng",
+      "organize": "Tổ chức lớp học",
+      "review": "Ôn tập – game kiến thức",
+      "individual": "Học cá nhân"
+    },
+    "tools": {
+      "spinWheel": {
+        "name": "Chiếc Nón Kỳ Diệu",
+        "description": "Quay số gọi tên học sinh ngẫu nhiên"
+      },
+      "animalRace": {
+        "name": "Đua Thú Hoạt Hình",
+        "description": "Thi đua nhóm với động vật dễ thương"
+      },
+      "flashAnzan": {
+        "name": "Flash ZAN",
+        "description": "Luyện tính nhẩm Anzan với số chớp nhanh"
+      },
+      "timer": {
+        "name": "Đồng Hồ Bấm Giờ",
+        "description": "Hẹn giờ cho mọi hoạt động lớp học"
+      },
+      "groupMaker": {
+        "name": "Chia Nhóm",
+        "description": "Chia nhóm học sinh tự động, công bằng"
+      },
+      "randomPicker": {
+        "name": "Bốc Thăm",
+        "description": "Chọn ngẫu nhiên từ danh sách"
+      },
+      "soroban": {
+        "name": "Bàn Tính Soroban",
+        "description": "Bàn tính ảo chiếu lên màn hình"
+      },
+      "luckyLight": {
+        "name": "Đèn May Mắn",
+        "description": "Trò chơi team building sôi động"
+      },
+      "millionaire": {
+        "name": "Ai Là Triệu Phú",
+        "description": "Game show quốc dân kiểm tra kiến thức"
+      },
+      "raceGame": {
+        "name": "Cuộc Đua Kì Thú",
+        "description": "Bảng xếp hạng thi đua điểm số"
+      },
+      "dice": {
+        "name": "Xúc Xắc 3D",
+        "description": "Gieo xúc xắc cho quyết định, phần thưởng"
+      },
+      "crossword": {
+        "name": "Trò Chơi Ô Chữ",
+        "description": "Crossword ôn tập từ vựng, kiến thức"
+      }
+    }
+  },
+  "toolbox": {
+    "title": "Toolbox Giáo Viên",
+    "subtitle": "Trò chơi & công cụ phổ biến nhất cho lớp học",
+    "saveBookmark": "Lưu Bookmark",
+    "shareTitle": "Toolbox Giáo Viên - SoroKid",
+    "shareText": "Bộ sưu tập trò chơi quốc dân cho lớp học - Miễn phí!",
+    "sorokidIntro": "Công cụ dạy Soroban cá nhân hoá cho từng học sinh",
+    "explore": "Khám phá",
+    "openTool": "Mở tool",
+    "playNow": "Chơi ngay!",
+    "comingSoon": "Sắp ra mắt",
+    "toast": {
+      "installed": "✅ Đã cài trên thiết bị!",
+      "saveHint": "⭐ Nhấn {shortcut} để lưu ngay!",
+      "copied": "✅ Đã copy link!"
+    },
+    "categories": {
+      "all": "Tất cả",
+      "teambuilding": "Vui vẻ - Teambuilding",
+      "competition": "Thi đua & cho điểm",
+      "random": "Ngẫu nhiên – công bằng",
+      "organize": "Tổ chức lớp học",
+      "review": "Ôn tập – game kiến thức",
+      "individual": "Học cá nhân"
+    },
+    "badges": {
+      "hot": "🔥 HOT",
+      "new": "✨ MỚI",
+      "flash": "⚡ FLASH",
+      "fun": "🌊 VUI",
+      "exciting": "🎰 HỒI HỘP",
+      "classic": "🧮 CLASSIC",
+      "lucky": "🍀 MAY MẮN",
+      "comingSoon": "🕐 SẮP RA MẮT",
+      "gameShow": "🏆 GAME SHOW",
+      "competition": "🏆 THI ĐUA",
+      "3d": "✨ 3D"
+    },
+    "tools": {
+      "spinWheel": {
+        "name": "Chiếc Nón Kỳ Diệu",
+        "description": "Gọi tên học sinh ngẫu nhiên, công bằng"
+      },
+      "animalRace": {
+        "name": "Đua Vịt Sông Nước",
+        "description": "Cuộc đua hoạt hình vui nhộn cho lớp"
+      },
+      "flashAnzan": {
+        "name": "Flash ZAN",
+        "description": "Luyện tính nhẩm Soroban & Anzan"
+      },
+      "timer": {
+        "name": "Đồng Hồ Bấm Giờ",
+        "description": "Đếm ngược to rõ, âm thanh báo hết giờ"
+      },
+      "groupMaker": {
+        "name": "Chia Nhóm",
+        "description": "Chia nhóm ngẫu nhiên, tự chọn nhóm trưởng"
+      },
+      "randomPicker": {
+        "name": "Bốc Thăm",
+        "description": "Rút thăm tên, câu hỏi, phần thưởng"
+      },
+      "soroban": {
+        "name": "Bàn Tính Soroban",
+        "description": "Bàn tính ảo cho học sinh luyện tập"
+      },
+      "luckyLight": {
+        "name": "Đèn May Mắn",
+        "description": "Chọn ngẫu nhiên bằng đèn xanh-đỏ"
+      },
+      "millionaire": {
+        "name": "Ai Là Triệu Phú",
+        "description": "Game show ôn bài với 50:50, trợ giúp"
+      },
+      "raceGame": {
+        "name": "Cuộc Đua Kì Thú",
+        "description": "Bảng thi đua trực quan, tạo động lực cho cả lớp"
+      },
+      "dice": {
+        "name": "Xúc Xắc 3D",
+        "description": "Xúc xắc 3D cho máy chiếu, dễ nhìn"
+      },
+      "crossword": {
+        "name": "Trò Chơi Ô Chữ",
+        "description": "Tạo ô chữ theo chủ đề bài học"
+      }
+    },
+    "sorobanTool": {
+      "value": "Giá trị"
+    },
+    "flashZan": {
+      "settings": "Cài đặt bài tập",
+      "operation": "Phép tính",
+      "add": "Cộng",
+      "addSubtract": "Cộng Trừ",
+      "digits": "Số chữ số",
+      "oneDigit": "1 số (1-9)",
+      "twoDigit": "2 số (10-99)",
+      "count": "Số lượng",
+      "speed": "Tốc độ",
+      "fast": "0.1s (Nhanh)",
+      "slow": "5s (Chậm)",
+      "start": "BẮT ĐẦU FLASH!",
+      "fullscreenHint": "Tự động vào toàn màn hình",
+      "escHint": "Nhấn",
+      "exit": "Thoát",
+      "complete": "HOÀN THÀNH!",
+      "flashedNumbers": "Đã flash {count} số",
+      "showAnswer": "XEM ĐÁP ÁN",
+      "retry": "Làm lại",
+      "toSettings": "Về cài đặt",
+      "total": "Tổng {count} số",
+      "hide": "Ẩn",
+      "tapToPause": "Chạm để dừng",
+      "spaceOrClickPause": "Nhấn Space hoặc Click để tạm dừng",
+      "paused": "TẠM DỪNG",
+      "tapToContinue": "Chạm để tiếp tục",
+      "spaceOrClickContinue": "Space/Click để tiếp tục"
+    },
+    "millionaire": {
+      "title": "Ai Là Triệu Phú",
+      "quickStart": "Chơi ngay (15 câu mẫu)",
+      "quickStartDesc": "Format Game Show chuẩn ALTP",
+      "start": "BẮT ĐẦU",
+      "questions": "Câu hỏi",
+      "sample": "Mẫu",
+      "ai": "AI",
+      "delete": "Xóa",
+      "soundOn": "Bật âm thanh",
+      "soundOff": "Tắt âm thanh",
+      "inputPlaceholder": "Câu hỏi | A | B | C | D | Đáp án (A/B/C/D)\n\nVD: Thủ đô VN?|Hà Nội|HCM|Đà Nẵng|Huế|A\n\n💡 Tự nhận diện dấu |, ;, Tab",
+      "errors": "Lỗi:",
+      "errorLine": "Dòng {line}: {reason}",
+      "moreErrors": "...+{count} lỗi",
+      "invalidAnswer": "Đáp án \"{answer}\" không hợp lệ (cần A/B/C/D)",
+      "missingAnswer": "Thiếu đáp án đúng (A/B/C/D)",
+      "notEnoughParts": "Chỉ có {count} phần (cần 6: Câu hỏi|A|B|C|D|Đáp án)",
+      "gameShowMode": "GAME SHOW",
+      "gameShowDesc": "Format chuẩn ALTP với thang tiền thưởng & trợ giúp",
+      "playAll": "CHƠI TẤT CẢ",
+      "playAllDesc": "Chơi hết tất cả câu hỏi, không giới hạn",
+      "needMoreQuestions": "Chơi hết câu hỏi (cần 15 câu cho Game Show)",
+      "questionCount": "{count} câu",
+      "backToToolbox": "← Toolbox",
+      "exit": "Thoát",
+      "questionNum": "Câu {current}/{total}",
+      "correct": "✓",
+      "lockAnswer": "✓ CHỐT ĐÁP ÁN",
+      "waitingResult": "Đang chờ kết quả...",
+      "correctAnswer": "🎉 CHÍNH XÁC!",
+      "wrongAnswer": "❌ Đáp án: {answer}",
+      "result": "🏁 KẾT QUẢ",
+      "next": "➡️ TIẾP",
+      "audienceResult": "KẾT QUẢ BÌNH CHỌN",
+      "phoneHints": {
+        "confident1": "Chắc chắn là {letter}!",
+        "confident2": "Tôi nghĩ {letter} đúng!",
+        "confident3": "{letter} chắc luôn!",
+        "unsure1": "Có lẽ là {letter}...",
+        "unsure2": "Hmm, {letter}?",
+        "unsure3": "Tôi đoán là {letter}..."
+      },
+      "resultScreen": {
+        "champion": "TRIỆU PHÚ!",
+        "excellent": "XUẤT SẮC!",
+        "tryHarder": "CỐ GẮNG!",
+        "correctCount": "{score}/{total} câu đúng",
+        "playAgain": "🔄 Chơi Lại",
+        "newSetup": "📝 Setup Mới",
+        "gameShow": "🎬 Game Show",
+        "playAllMode": "📋 Chơi tất cả"
+      },
+      "aiPrompt": {
+        "title": "🤖 Prompt tạo câu hỏi Ai Là Triệu Phú bằng AI",
+        "subtitle": "Copy prompt này và dán vào ChatGPT, Gemini, Claude...",
+        "copyPrompt": "📋 Copy Prompt",
+        "close": "Đóng",
+        "copied": "✅ Đã copy prompt! Hãy dán vào ChatGPT/Gemini/Claude",
+        "promptContent": "Hãy tạo câu hỏi trắc nghiệm cho trò chơi \"Ai là triệu phú\" với chủ đề: [THAY CHỦ ĐỀ VÀO ĐÂY]\n\nYÊU CẦU:\n1. Tạo 15 câu hỏi (hoặc số lượng bạn muốn)\n2. Độ khó tăng dần: 5 câu dễ → 5 câu trung bình → 5 câu khó\n3. Mỗi câu có 4 đáp án A, B, C, D\n4. Chỉ có DUY NHẤT 1 đáp án đúng\n5. Mỗi câu hỏi PHẢI có dấu ? ở cuối\n6. Câu hỏi ngắn gọn, súc tích: TỐI ĐA 25 từ\n7. Đáp án ngắn gọn: TỐI ĐA 6-8 từ mỗi đáp án\n8. Đáp án đúng PHẢI chính xác 100%, không gây tranh cãi\n\n⚠️ CẤM CÁC LOẠI ĐÁP ÁN SAU:\n- KHÔNG dùng đáp án kiểu \"Cả A và B\", \"A và C đều đúng\"\n- KHÔNG dùng đáp án kiểu \"Tất cả đều đúng/sai\"\n- KHÔNG dùng đáp án kiểu \"Không có đáp án nào đúng\"\n- KHÔNG để đáp án này tham chiếu đến đáp án khác\n- Mỗi đáp án phải là một lựa chọn ĐỘC LẬP, RÕ RÀNG\n\nFORMAT OUTPUT (QUAN TRỌNG):\nCâu hỏi?|Đáp án A|Đáp án B|Đáp án C|Đáp án D|Chữ cái đáp án đúng\n\nVÍ DỤ:\nThủ đô của Việt Nam là gì?|Hà Nội|Hồ Chí Minh|Đà Nẵng|Huế|A\nNúi cao nhất Việt Nam là núi nào?|Bà Đen|Phan Xi Păng|Bà Nà|Ngọc Linh|B\n1 + 1 bằng bao nhiêu?|1|2|3|4|B\n\n🔍 DOUBLE CHECK - KIỂM TRA TỪNG CÂU (BẮT BUỘC):\nSau khi tạo xong, hãy kiểm tra lại TỪNG CÂU theo format:\n\nCâu 1: [Tóm tắt câu hỏi]\n- Đáp án đúng: [X] - [Nội dung đáp án]\n- Lý do đúng: [Giải thích ngắn tại sao đáp án này đúng]\n- Các đáp án sai có độc lập không? ✓/✗\n- Có đáp án nào khác cũng đúng không? ✓ Không / ✗ Có\n\nCâu 2: ... (tương tự)\n\n⚠️ NẾU phát hiện lỗi trong quá trình double check:\n- Sửa lại câu hỏi hoặc đáp án\n- Kiểm tra lại lần nữa\n\nLƯU Ý:\n- Mỗi câu hỏi PHẢI kết thúc bằng dấu ?\n- Đáp án đúng phải CHÍNH XÁC, có thể kiểm chứng\n- Câu hỏi NGẮN GỌN, RÕ NGHĨA, không mơ hồ\n- Đáp án NGẮN GỌN (1-8 từ), tránh câu dài\n- Dùng dấu | để ngăn cách các phần\n- Cuối mỗi dòng là chữ cái đáp án đúng (A, B, C hoặc D)\n- Mỗi câu hỏi trên 1 dòng\n- Không đánh số thứ tự câu hỏi"
+      },
+      "sampleQuestions": "Thủ đô của Việt Nam là gì?|Hà Nội|Hồ Chí Minh|Đà Nẵng|Huế|A\nNúi cao nhất Việt Nam?|Bà Đen|Phan Xi Păng|Bà Nà|Ngọc Linh|B\n1 + 1 = ?|1|2|3|4|B\nSông dài nhất Việt Nam?|Sông Hồng|Sông Mekong|Sông Đà|Sông Đồng Nai|B\nAi viết Truyện Kiều?|Nguyễn Du|Hồ Xuân Hương|Nguyễn Trãi|Nguyễn Bỉnh Khiêm|A\nQuốc hoa Việt Nam?|Hoa mai|Hoa đào|Hoa sen|Hoa hồng|C\nViệt Nam có bao nhiêu tỉnh thành?|61|63|64|65|B\nĐơn vị tiền tệ Việt Nam?|Đô la|Euro|Đồng|Yên|C\nVị vua đầu tiên của nước ta?|Hùng Vương|An Dương Vương|Triệu Đà|Lý Thái Tổ|A\nTP lớn nhất Việt Nam?|Hà Nội|Đà Nẵng|TP HCM|Hải Phòng|C\nBiển Đông tiếng Anh gọi là?|East Sea|West Sea|South China Sea|Vietnam Sea|C\nNăm Việt Nam thống nhất?|1954|1975|1945|1986|B\nAi là Chủ tịch nước đầu tiên?|Hồ Chí Minh|Võ Nguyên Giáp|Phạm Văn Đồng|Lê Duẩn|A\nĐộng vật nào là biểu tượng Việt Nam?|Hổ|Rồng|Trâu|Voi|C\nVịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ranh|Vịnh Vân Phong|A",
+      "prizeLevels": [
+        "200K",
+        "400K",
+        "600K",
+        "1 Triệu",
+        "2 Triệu",
+        "3 Triệu",
+        "6 Triệu",
+        "10 Triệu",
+        "14 Triệu",
+        "22 Triệu",
+        "30 Triệu",
+        "40 Triệu",
+        "60 Triệu",
+        "85 Triệu",
+        "150 Triệu"
+      ],
+      "zeroPrize": "0đ",
+      "toast": {
+        "restoreGame": "🔄 Khôi phục game đang dở",
+        "noValidQuestions": "❌ Không có câu hỏi hợp lệ!",
+        "errorAtLine": "❌ Lỗi dòng {line}: {reason}"
+      }
+    },
+    "timer": {
+      "presets": {
+        "30s": "30s",
+        "1min": "1 phút",
+        "2min": "2 phút",
+        "3min": "3 phút",
+        "5min": "5 phút",
+        "10min": "10 phút",
+        "15min": "15 phút",
+        "30min": "30 phút",
+        "1hr": "1 giờ",
+        "2hr": "2 giờ"
+      },
+      "soundModes": {
+        "none": {
+          "label": "🔇 Tắt",
+          "description": "Không âm thanh"
+        },
+        "bell": {
+          "label": "🔔 Chuông",
+          "description": "Chỉ báo khi hết giờ"
+        },
+        "tick": {
+          "label": "⏱️ Tick nhanh",
+          "description": "Tik tik mỗi giây"
+        },
+        "clock": {
+          "label": "🕐 Đồng hồ cổ",
+          "description": "Tick-tock chậm rãi"
+        },
+        "digital": {
+          "label": "📟 Digital beep",
+          "description": "Tiếng beep điện tử"
+        },
+        "metronome": {
+          "label": "🎼 Metronome",
+          "description": "Nhịp đều 60 BPM"
+        },
+        "alpha": {
+          "label": "🧠 Alpha (10Hz)",
+          "description": "Thư giãn tỉnh táo"
+        },
+        "beta_low": {
+          "label": "🎯 Beta thấp (14Hz)",
+          "description": "Tập trung học bài"
+        },
+        "beta_high": {
+          "label": "⚡ Beta cao (20Hz)",
+          "description": "Tập trung cao độ"
+        },
+        "gamma": {
+          "label": "🚀 Gamma (40Hz)",
+          "description": "Siêu tập trung, ghi nhớ"
+        },
+        "theta": {
+          "label": "💭 Theta (6Hz)",
+          "description": "Sáng tạo, học sâu"
+        },
+        "delta": {
+          "label": "😴 Delta (2Hz)",
+          "description": "Thư giãn sâu"
+        },
+        "focus_mix": {
+          "label": "🎧 Focus Mix",
+          "description": "Alpha + Beta kết hợp"
+        },
+        "study_boost": {
+          "label": "📚 Study Boost",
+          "description": "Beta 18Hz + pink noise"
+        },
+        "rain": {
+          "label": "🌧️ Mưa nhẹ",
+          "description": "Mưa rơi thư giãn"
+        },
+        "rain_heavy": {
+          "label": "⛈️ Mưa to",
+          "description": "Mưa rào mạnh mẽ"
+        },
+        "thunder": {
+          "label": "🌩️ Sấm sét",
+          "description": "Mưa + sấm xa xa"
+        },
+        "ocean": {
+          "label": "🌊 Sóng biển",
+          "description": "Sóng vỗ êm dịu"
+        },
+        "stream": {
+          "label": "💧 Suối chảy",
+          "description": "Nước róc rách"
+        },
+        "forest": {
+          "label": "🌲 Rừng xanh",
+          "description": "Chim hót, gió lá"
+        },
+        "night": {
+          "label": "🌙 Đêm hè",
+          "description": "Dế kêu, đom đóm"
+        },
+        "fire": {
+          "label": "🔥 Lửa trại",
+          "description": "Tiếng lửa cháy"
+        },
+        "wind": {
+          "label": "💨 Gió nhẹ",
+          "description": "Gió thổi vi vu"
+        },
+        "cafe": {
+          "label": "☕ Quán cafe",
+          "description": "Tiếng ồn nhẹ, sáng tạo"
+        },
+        "library": {
+          "label": "📚 Thư viện",
+          "description": "Yên tĩnh, tập trung"
+        },
+        "office": {
+          "label": "🏢 Văn phòng",
+          "description": "Bàn phím, máy in"
+        },
+        "classroom": {
+          "label": "🏫 Lớp học",
+          "description": "Viết bảng, giấy"
+        },
+        "space": {
+          "label": "🚀 Không gian",
+          "description": "Drone ambient"
+        },
+        "underwater": {
+          "label": "🐠 Dưới nước",
+          "description": "Bong bóng, sóng"
+        },
+        "heartbeat": {
+          "label": "💓 Tim đập",
+          "description": "Nhịp thư giãn 70 BPM"
+        },
+        "heartbeat_fast": {
+          "label": "💗 Tim nhanh",
+          "description": "Nhịp 120 BPM, hồi hộp"
+        },
+        "urgent": {
+          "label": "⚡ Gấp gáp",
+          "description": "Áp lực deadline"
+        },
+        "countdown": {
+          "label": "⏰ Đếm ngược",
+          "description": "Beep tăng dần"
+        },
+        "game": {
+          "label": "🎮 Game show",
+          "description": "Vui nhộn, thi đua"
+        },
+        "suspense": {
+          "label": "🎬 Hồi hộp",
+          "description": "Phim gay cấn"
+        },
+        "drum": {
+          "label": "🥁 Trống",
+          "description": "Nhịp drum đều"
+        },
+        "meditation": {
+          "label": "🧘 Thiền Om",
+          "description": "Tần số Om 136Hz"
+        },
+        "singing_bowl": {
+          "label": "🔔 Chuông bát",
+          "description": "Singing bowl"
+        },
+        "chimes": {
+          "label": "🎐 Chuông gió",
+          "description": "Wind chimes nhẹ"
+        },
+        "temple": {
+          "label": "⛩️ Chùa",
+          "description": "Chuông chùa"
+        },
+        "breathing": {
+          "label": "🌬️ Thở",
+          "description": "Hướng dẫn thở 4-7-8"
+        },
+        "drone_om": {
+          "label": "🕉️ Om Drone",
+          "description": "Om liên tục"
+        }
+      },
+      "tabs": {
+        "basic": "🔔 Cơ bản",
+        "brainwave": "🧠 Sóng não",
+        "nature": "🌿 Thiên nhiên",
+        "ambient": "🏠 Không gian",
+        "rhythm": "🥁 Nhịp",
+        "meditation": "🧘 Thiền"
+      },
+      "ui": {
+        "timeSettings": "Cài đặt thời gian",
+        "hours": "Giờ",
+        "minutes": "Phút",
+        "seconds": "Giây",
+        "quickSelect": "Chọn nhanh",
+        "soundMode": "🔊 Chế độ âm thanh",
+        "currentSound": "Đang chọn:",
+        "turnOff": "✕ Tắt",
+        "start": "▶️ BẮT ĐẦU",
+        "continue": "▶️ Tiếp tục",
+        "pause": "⏸️ Tạm dừng",
+        "reset": "🔄 Đặt lại",
+        "timeUp": "⏰ HẾT GIỜ!",
+        "brainwaveHint": "💡 Dùng tai nghe 🎧 để hiệu quả nhất"
+      },
+      "tips": {
+        "title": "💡",
+        "study": "📚 Học bài:",
+        "studyDesc": "Sóng não Beta (14-20Hz) + tai nghe",
+        "test": "✍️ Kiểm tra:",
+        "testDesc": "Gấp gáp, Game show",
+        "relax": "😌 Thư giãn:",
+        "relaxDesc": "Thiên nhiên, Thiền định"
+      }
+    },
+    "crossword": {
+      "createTitle": "Tạo Ô Chữ",
+      "createSubtitle": "Nhập từ khóa hàng dọc và câu hỏi gợi ý",
+      "topicLabel": "Chủ đề / Câu hỏi chủ đề",
+      "topicPlaceholder": "Ví dụ: Địa lý Việt Nam hoặc Thành phố nào là thủ đô?",
+      "topicHint": "Chủ đề hoặc câu hỏi gợi ý để học sinh đoán từ khóa",
+      "keywordLabel": "Từ khóa hàng dọc",
+      "keywordNote": "(chỉ hỗ trợ KHÔNG DẤU)",
+      "keywordPlaceholder": "Ví dụ: HANOI, VIETNAM, TOAN HOC...",
+      "needQuestions": "Cần {count} câu hỏi chứa:",
+      "questionNum": "Câu {num}",
+      "questionsLabel": "Danh sách câu hỏi gợi ý",
+      "questionsNote": "(đáp án viết KHÔNG DẤU)",
+      "questionsPlaceholder": "Mỗi dòng 1 câu: Câu hỏi | ĐÁP ÁN",
+      "viewSample": "Xem mẫu",
+      "createWithAI": "Tạo bằng AI",
+      "clearAll": "Xóa hết",
+      "startGame": "Bắt đầu chơi",
+      "readyToPlay": "Sẵn sàng chơi!",
+      "needFix": "Cần sửa lỗi",
+      "missingInfo": "Đang thiếu thông tin",
+      "noKeyword": "Chưa nhập từ khóa hàng dọc",
+      "noQuestions": "Chưa nhập câu hỏi gợi ý",
+      "keywordMismatch": "Từ khóa \"{kw}\" có {kwLen} chữ nhưng bạn nhập {qLen} câu hỏi",
+      "missingQuestions": "Thiếu {count} câu hỏi (cần thêm câu chứa: {chars})",
+      "checkQuestions": "Kiểm tra từng câu:",
+      "extraQuestion": "Thừa (từ khóa chỉ có {count} chữ)",
+      "missingChar": "Thiếu chữ [{char}]",
+      "suggestion": "Gợi ý: Đổi đáp án khác có chứa [{char}] hoặc sửa từ khóa",
+      "notEntered": "Chưa nhập câu hỏi...",
+      "needChar": "Cần chữ [{char}]",
+      "errorLine": "Dòng {num}: {reason}",
+      "missingAnswer": "Thiếu đáp án sau dấu phân cách",
+      "missingQuestion": "Thiếu câu hỏi trước dấu phân cách",
+      "keywordLengthError": "Từ khóa có {kwLen} chữ nhưng có {qLen} câu hỏi. Số chữ trong từ khóa phải bằng số câu hỏi!",
+      "answerMissingChar": "Câu {num}: Đáp án \"{answer}\" không chứa chữ \"{char}\"",
+      "enterKeywordQuestion": "Vui lòng nhập câu hỏi về từ khóa!",
+      "enterVerticalKeyword": "Vui lòng nhập từ khóa hàng dọc!",
+      "needAtLeast2": "Cần ít nhất 2 câu hỏi!",
+      "back": "Về",
+      "playAgain": "Chơi lại",
+      "showKeyword": "Từ khóa",
+      "showAll": "Toàn bộ",
+      "soundOn": "Bật âm thanh",
+      "soundOff": "Tắt âm thanh",
+      "fullscreen": "Toàn màn hình",
+      "exitFullscreen": "Thoát toàn màn hình",
+      "opened": "Đã mở",
+      "clickToOpen": "Click để mở đáp án",
+      "clickQuestion": "Click: mở câu hỏi | Giữ lâu: mở đáp án",
+      "enterAnswer": "Nhập đáp án...",
+      "reveal": "Mở",
+      "wrongTryAgain": "Sai! Thử lại...",
+      "guessKeyword": "Đoán từ khóa...",
+      "correct": "Đúng!",
+      "revealAll": "Mở hết",
+      "remaining": "Click số để mở đáp án ({count} còn lại)",
+      "aiPromptTitle": "Prompt tạo câu hỏi Ô Chữ bằng AI",
+      "aiPromptSubtitle": "Copy prompt này và dán vào ChatGPT, Gemini, Claude...",
+      "copyPrompt": "Copy Prompt",
+      "close": "Đóng",
+      "copiedPrompt": "Đã copy prompt! Hãy dán vào ChatGPT/Gemini/Claude",
+      "aiPromptContent": "Hãy tạo trò chơi ô chữ cho chủ đề: [THAY CHỦ ĐỀ VÀO ĐÂY]\n\nYÊU CẦU:\n1. Tạo 1 TỪ KHÓA (5-8 chữ cái, KHÔNG DẤU, viết HOA)\n2. Tạo số câu hỏi gợi ý BẰNG ĐÚNG số chữ trong từ khóa\n3. ⚠️ QUAN TRỌNG: Đáp án câu 1 PHẢI chứa chữ thứ 1 của từ khóa, đáp án câu 2 PHẢI chứa chữ thứ 2... theo đúng thứ tự\n4. Tất cả đáp án viết KHÔNG DẤU, CHỮ HOA, KHÔNG KHOẢNG TRẮNG\n5. Mỗi câu hỏi PHẢI có dấu ? ở cuối\n6. Câu hỏi ngắn gọn, súc tích: TỐI ĐA 25 từ\n7. Đáp án ngắn gọn: 5-12 ký tự (1-2 từ viết liền, không dấu)\n8. Đáp án đúng PHẢI chính xác 100%, không gây tranh cãi\n\nFORMAT OUTPUT:\nCâu hỏi chủ đề: [Câu hỏi để đoán từ khóa?]\nTừ khóa: [TỪ KHÓA]\n\nDanh sách câu hỏi (mỗi dòng 1 câu):\nCâu hỏi 1? | ĐÁP ÁN 1\nCâu hỏi 2? | ĐÁP ÁN 2\n...\n\nVÍ DỤ với từ khóa \"HANOI\" (5 chữ H-A-N-O-I):\nLoài hoa nào nở vào mùa thu ở Hà Nội? | HOASUA (có chữ H)\nTên gọi cũ của Việt Nam là gì? | ANNAM (có chữ A)\nCon sông lớn nào chảy qua thủ đô? | SONGHONG (có chữ N)\nVịnh nổi tiếng UNESCO ở Quảng Ninh? | HALONG (có chữ O)\nCây cầu lịch sử bắc qua sông Hồng? | LONGBIEN (có chữ I)\n\n⚠️ KIỂM TRA BẮT BUỘC (trước khi output):\nVới mỗi câu, hãy xác nhận đáp án có chứa chữ cái tương ứng:\n- Câu 1: Đáp án có chữ [chữ 1 của từ khóa]? ✓\n- Câu 2: Đáp án có chữ [chữ 2 của từ khóa]? ✓\n- ... (kiểm tra tất cả)\n\nLƯU Ý QUAN TRỌNG:\n- Mỗi câu hỏi PHẢI kết thúc bằng dấu ?\n- Đáp án đúng phải CHÍNH XÁC, có thể kiểm chứng\n- Đáp án KHÔNG DẤU, VIẾT LIỀN, NGẮN GỌN",
+      "noSeparatorFound": "Không tìm thấy dấu phân cách (| hoặc :)",
+      "correctRow": "ĐÚNG RỒI!",
+      "wrongRow": "CHƯA ĐÚNG!",
+      "tryAgainHint": "Thử lại nhé!",
+      "keywordCorrect": "🎉 CHÍNH XÁC!",
+      "sampleTopic": "Thành phố nào là thủ đô của Việt Nam?",
+      "sampleKeyword": "HANOI",
+      "sampleQuestions": "Loài hoa nở vào mùa thu ở Hà Nội | HOASUA\nTên gọi cũ của Việt Nam | ANNAM\nCon sông lớn chảy qua thủ đô | SONGHONG\nVịnh nổi tiếng UNESCO ở Quảng Ninh | HALONG\nCầu lịch sử bắc qua sông Hồng | LONGBIEN"
+    },
+    "randomPicker": {
+      "listTitle": "Danh sách bốc thăm",
+      "show": "Hiện",
+      "hide": "Ẩn",
+      "showList": "Hiện danh sách",
+      "hideList": "Ẩn danh sách (để bí mật)",
+      "placeholder": "Nhập mỗi dòng một mục\n\nVí dụ:\nMinh\nLan\nHùng\nMai\nTuấn",
+      "itemCount": "{count} mục",
+      "noItems": "Chưa có mục nào",
+      "clearAll": "Xóa tất cả",
+      "settings": "Cài đặt",
+      "sound": "Âm thanh",
+      "reset": "Làm lại",
+      "pickButton": "BỐC THĂM!",
+      "spinning": "Đang quay...",
+      "tips": "Gợi ý sử dụng:",
+      "tipName": "Bốc tên - Gọi học sinh trả lời",
+      "tipQuestion": "Bốc câu hỏi - Random bài tập",
+      "tipPrize": "Bốc quà - Phát thưởng ngẫu nhiên",
+      "tipTopic": "Bốc chủ đề - Chọn nội dung học",
+      "readyTitle": "Sẵn sàng bốc thăm!",
+      "readyDesc": "Bốc tên • Bốc câu hỏi • Bốc quà • Bốc chủ đề",
+      "readyHint": "Nhập danh sách bên trái và bấm nút để bắt đầu",
+      "secretSpin": "Đang bốc thăm bí mật...",
+      "spinningNumbers": "Đang quay số...",
+      "resultTitle": "KẾT QUẢ BỐC THĂM",
+      "congratulations": "Chúc mừng!",
+      "refresh": "Làm mới",
+      "pickAgain": "Bốc lại!",
+      "secretList": "Danh sách bí mật",
+      "itemsHidden": "{count} mục đã ẩn"
+    },
+    "groupMaker": {
+      "studentList": "Danh sách học sinh",
+      "placeholder": "Nhập mỗi dòng một tên:\nMinh\nLan\nHùng\nMai\nTuấn",
+      "studentCount": "{count} học sinh",
+      "noNames": "Chưa có tên",
+      "clearAll": "Xóa tất cả",
+      "divideMethod": "Cách chia",
+      "byGroup": "Theo số nhóm",
+      "byGroupDesc": "Chia thành N nhóm",
+      "byPerson": "Theo số người/nhóm",
+      "byPersonDesc": "Mỗi nhóm N người",
+      "settings": "Cài đặt",
+      "groupCount": "Số nhóm:",
+      "personsPerGroup": "Số người/nhóm:",
+      "willHaveGroups": "→ Sẽ có khoảng {count} nhóm",
+      "autoLeader": "Tự động chọn nhóm trưởng",
+      "reset": "Làm lại",
+      "divideButton": "CHIA NHÓM!",
+      "dividing": "Đang chia...",
+      "readyTitle": "Sẵn sàng chia nhóm!",
+      "readyDesc": "Nhập danh sách học sinh và bấm nút để bắt đầu",
+      "shuffling": "Đang xáo trộn & chia nhóm...",
+      "resultTitle": "Kết quả chia {count} nhóm",
+      "totalStudents": "Tổng cộng {count} học sinh",
+      "groupNumber": "Nhóm {num}",
+      "personCount": "{count} người",
+      "teamLeader": "Nhóm trưởng",
+      "reshuffleButton": "Chia lại ngẫu nhiên"
+    },
+    "spinWheel": {
+      "mode": "Chế độ",
+      "textMode": "Tên",
+      "numberMode": "Số",
+      "textModeTooltip": "Nhập danh sách tên",
+      "numberModeTooltip": "Quay số ngẫu nhiên",
+      "inputList": "Danh sách",
+      "placeholder": "Mỗi dòng một tên...\nVí dụ:\nMinh\nLan\nHùng",
+      "itemCount": "{count} mục",
+      "noItems": "Chưa có mục",
+      "clearAll": "Xóa",
+      "numberRange": "Phạm vi số",
+      "from": "Từ",
+      "to": "Đến",
+      "numbersInRange": "({count} số)",
+      "afterSpin": "Sau khi quay:",
+      "remove": "Loại bỏ",
+      "keep": "Giữ lại",
+      "settings": "Cài đặt",
+      "removeAfterSpin": "Loại bỏ sau khi quay",
+      "sound": "Âm thanh",
+      "soundOn": "Bật âm thanh",
+      "soundOff": "Tắt âm thanh",
+      "spinButton": "QUAY!",
+      "spinning": "Đang quay...",
+      "result": "KẾT QUẢ",
+      "congratsResult": "Chúc mừng! Kết quả là:",
+      "askRemove": "Bạn muốn loại kết quả này khỏi vòng quay?",
+      "removeAndContinue": "Loại & quay tiếp",
+      "keepResult": "Giữ lại",
+      "okContinue": "OK, quay tiếp",
+      "playAgain": "Chơi lại",
+      "spinAgain": "Quay lại!",
+      "remaining": "Còn lại: {count}",
+      "remainingCount": "Còn:",
+      "reset": "Reset",
+      "removedResult": "Đã loại: {item}",
+      "allPicked": "Đã quay hết!",
+      "resetList": "Reset danh sách",
+      "emptyWheel": "Vòng quay trống",
+      "emptyText": "Nhập danh sách để bắt đầu",
+      "emptyNumber": "Thiết lập khoảng số",
+      "emptyTextHint": "Mỗi dòng là một mục trong vòng quay",
+      "emptyNumberHint": "Nhập số từ và đến để quay",
+      "addItemsHint": "Nhập danh sách bên trái để bắt đầu"
+    },
+    "luckyLight": {
+      "press": "BẤM!",
+      "pressToStart": "Bấm để bắt đầu!",
+      "settings": "Cài đặt",
+      "lightMode": "Chế độ đèn",
+      "twoLights": "2 đèn",
+      "threeLights": "3 đèn",
+      "probability": "Xác suất",
+      "green": "Xanh",
+      "yellow": "Vàng",
+      "red": "Đỏ",
+      "safeLabel": "An toàn",
+      "challengeLabel": "Thử thách",
+      "punishLabel": "Phạt",
+      "showProbability": "Hiện xác suất",
+      "sound": "Âm thanh",
+      "safe": "AN TOÀN!",
+      "safeDesc": "May mắn rồi! Thoát phạt!",
+      "challenge": "THỬ THÁCH!",
+      "challengeDesc": "Trả lời câu hỏi để thoát!",
+      "punished": "BỊ PHẠT!",
+      "punishedDesc": "Ôi không! Phải chịu phạt rồi!",
+      "resultGreen": "XANH! Bạn may mắn!",
+      "resultYellow": "VÀNG! Thử lại nhé!",
+      "resultRed": "ĐỎ! Lần sau may hơn!",
+      "pressAgain": "Bấm lại để thử",
+      "playAgain": "Chơi lại"
+    },
+    "raceGame": {
+      "title": "Cuộc Đua Kì Thú",
+      "subtitle": "Chấm điểm thi đua • Ai dẫn đầu?",
+      "setup": "Thiết lập",
+      "race": "Cuộc đua",
+      "mode": "Chế độ",
+      "individual": "Cá nhân",
+      "team": "Đội nhóm",
+      "characterType": "Loại nhân vật",
+      "cars": "Xe cộ",
+      "animals": "Động vật",
+      "people": "Người",
+      "rockets": "Tàu vũ trụ",
+      "quickStart": "Bắt đầu nhanh:",
+      "numParticipants": "Số người/nhóm:",
+      "createDefault": "Tạo tên mặc định",
+      "nameList": "Danh sách tên",
+      "nameListOptional": "(hoặc để trống dùng mặc định)",
+      "namePlaceholder": "Nhóm 1\nNhóm 2\nNhóm 3\n...\n\nHoặc tên học sinh:\nNguyễn Văn A\nTrần Thị B",
+      "nameHint": "Mỗi dòng 1 tên • Copy-paste từ Excel • Để trống = dùng \"Nhóm 1, 2, 3...\"",
+      "selectIcon": "Chọn biểu tượng:",
+      "startRace": "BẮT ĐẦU CUỘC ĐUA!",
+      "settings": "Cài đặt",
+      "resetBtn": "Reset",
+      "finish": "Kết thúc",
+      "search": "Tìm...",
+      "ranking": "Xếp hạng",
+      "order": "Thứ tự",
+      "soundOn": "Bật âm thanh",
+      "soundOff": "Tắt âm thanh",
+      "select": "Chọn",
+      "hide": "Ẩn",
+      "show": "Hiện",
+      "points": "điểm",
+      "randomCall": "Gọi ngẫu nhiên",
+      "lock": "Khóa",
+      "unlock": "Mở khóa",
+      "undo": "Hoàn tác",
+      "notFound": "Không tìm thấy \"{query}\"",
+      "dialogCancel": "Hủy",
+      "dialogConfirm": "Xác nhận",
+      "dialogUnderstood": "Đã hiểu",
+      "notEnoughPeople": "Chưa đủ người",
+      "needAtLeast2": "Cần ít nhất 2 người/nhóm để bắt đầu cuộc đua!",
+      "tooMany": "Quá nhiều",
+      "max100": "Tối đa 100 người chơi!",
+      "resetScores": "Reset điểm?",
+      "resetScoresDesc": "Tất cả điểm sẽ về 0. Danh sách người chơi vẫn được giữ nguyên.",
+      "backToSetup": "Quay lại cài đặt?",
+      "backToSetupDesc": "Dữ liệu điểm số vẫn được lưu. Bạn có thể tiếp tục sau.",
+      "newRace": "Tạo cuộc đua mới?",
+      "newRaceDesc": "Tất cả dữ liệu hiện tại sẽ bị xóa và không thể khôi phục.",
+      "raceResult": "KẾT QUẢ CUỘC ĐUA",
+      "leaderboard": "Bảng xếp hạng:",
+      "continue": "Tiếp tục",
+      "newGame": "Ván mới",
+      "group": "Nhóm"
+    },
+    "animalRace": {
+      "title": "ĐUA THÚ HOẠT HÌNH",
+      "subtitle": "Nhập tên các {animal} đua • Mỗi dòng 1 tên",
+      "list": "Danh sách",
+      "ready": "Sẵn sàng",
+      "needMin": "Cần ≥2",
+      "duplicateWarning": "Trùng tên:",
+      "tooMany": "Rất đông! Hiển thị nhỏ.",
+      "veryMany": "Siêu đông! Hiển thị rất nhỏ.",
+      "more": "nữa",
+      "speed": "Tốc độ:",
+      "verySlow": "Rất chậm",
+      "slow": "Chậm",
+      "normal": "Vừa",
+      "fast": "Nhanh",
+      "turbo": "Turbo",
+      "animalType": "Loài vật:",
+      "soundOn": "BẬT",
+      "soundOff": "TẮT",
+      "needMore": "Cần {count} {animal} nữa",
+      "startRace": "ĐUA {count} {animal}!",
+      "tip": "Có vật cản 🪨🪵, mệt khi dẫn đầu, chuột rút & bình luận viên trực tiếp!",
+      "rotateDevice": "Xoay thiết bị",
+      "rotateHint": "Vui lòng xoay ngang thiết bị để có trải nghiệm đua tốt nhất",
+      "animals": {
+        "duck": {
+          "name": "Vịt",
+          "plural": "vịt"
+        },
+        "turtle": {
+          "name": "Rùa",
+          "plural": "rùa"
+        },
+        "crab": {
+          "name": "Cua",
+          "plural": "cua"
+        },
+        "fish": {
+          "name": "Cá nóc",
+          "plural": "cá nóc"
+        },
+        "snail": {
+          "name": "Ốc sên",
+          "plural": "ốc"
+        }
+      },
+      "sounds": {
+        "duck": {
+          "sound": "Quạc quạc!",
+          "goSound": "QUÁC!"
+        },
+        "turtle": {
+          "sound": "Chậm mà chắc!",
+          "goSound": "ỤP!"
+        },
+        "crab": {
+          "sound": "Kẹp kẹp!",
+          "goSound": "KẸP!"
+        },
+        "fish": {
+          "sound": "Phù phù!",
+          "goSound": "PHÙ!"
+        },
+        "snail": {
+          "sound": "Từ từ thôi...",
+          "goSound": "RÙ!"
+        }
+      },
+      "actions": {
+        "duck": "bơi",
+        "turtle": "bò",
+        "crab": "bò ngang",
+        "fish": "bơi",
+        "snail": "trườn"
+      },
+      "raceUI": {
+        "happeningNow": "ĐANG XẢY RA!",
+        "champion": "VÔ ĐỊCH!",
+        "leaderboard": "Bảng xếp hạng",
+        "raceAgain": "Đua lại!",
+        "start": "XUẤT PHÁT",
+        "goBack": "← Quay lại",
+        "raceTime": "Thời gian đua"
+      },
+      "events": {
+        "hitRock": "GẶP KHÓ!",
+        "struggling": "VẤT VẢ!",
+        "collision": "ÔI!",
+        "speedBoost": "TĂNG TỐC!",
+        "slowDown": "CHẬM LẠI!",
+        "cramp": "CHUỘT RÚT!",
+        "recovery": "HỒI PHỤC!",
+        "fishGuide": "CÁ DẪN ĐƯỜNG!",
+        "fishNaughty": "CÁ QUẬY!",
+        "lucky": "MAY QUÁ!",
+        "dodged": "NÉ ĐƯỢC!"
+      }
+    }
+  },
+  "toolLayout": {
+    "back": "Quay lại",
+    "breadcrumb": "Toolbox Giáo Viên",
+    "teacherToolbox": "Toolbox Giáo Viên",
+    "fullscreen": "Toàn màn hình",
+    "fullscreenTitle": "Toàn màn hình - Nhấn ESC để thoát",
+    "fullscreenHintPrefix": "Bấm",
+    "fullscreenHintSuffix": "để hiển thị to hơn",
+    "exitEsc": "Thoát (ESC)",
+    "exit": "Thoát",
+    "toExit": "để thoát",
+    "loading": "Đang tải...",
+    "preparing": "Đang chuẩn bị công cụ...",
+    "pleaseWait": "Vui lòng đợi trong giây lát..."
+  },
+  "groupPicker": {
+    "toolName": "Chia Nhóm & Bốc Thăm",
+    "studentList": "Danh sách học sinh",
+    "placeholder": "Nhập mỗi dòng một tên học sinh:\nVí dụ:\nMinh\nLan\nHùng\nMai\nTuấn",
+    "studentCount": "{count} học sinh",
+    "noStudents": "Chưa có tên nào",
+    "clearAll": "Xóa tất cả",
+    "mode": "Chế độ",
+    "pickOne": "Bốc thăm 1 người",
+    "pickOneDesc": "Chọn ngẫu nhiên 1 học sinh",
+    "divideGroups": "Chia nhóm",
+    "divideGroupsDesc": "Chia thành nhiều nhóm ngẫu nhiên",
+    "groupSettings": "Cài đặt chia nhóm",
+    "groupCount": "Số nhóm",
+    "autoLeader": "Tự động chọn nhóm trưởng",
+    "reset": "Làm lại",
+    "processing": "Đang xử lý...",
+    "pickButton": "BỐC THĂM!",
+    "divideButton": "CHIA NHÓM!",
+    "readyToPick": "Sẵn sàng bốc thăm!",
+    "readyToDivide": "Sẵn sàng chia nhóm!",
+    "enterListAndStart": "Nhập danh sách và bấm nút để bắt đầu",
+    "dividingGroups": "Đang chia nhóm...",
+    "personSelected": "Người được chọn là:",
+    "pickAgain": "Bốc lại",
+    "groupResult": "Kết quả chia {count} nhóm",
+    "totalStudents": "Tổng cộng {count} học sinh",
+    "groupLabel": "Nhóm {id}",
+    "memberCount": "{count} người",
+    "leader": "Nhóm trưởng",
+    "reshuffleGroups": "Chia lại ngẫu nhiên"
+  },
+  "soundSettings": {
+    "title": "Cài Đặt Âm Thanh",
+    "soundOn": "Bật âm thanh",
+    "soundOff": "Tắt âm thanh",
+    "sound": "Âm thanh",
+    "music": "Nhạc nền",
+    "musicVolume": "Âm lượng nhạc",
+    "sfxVolume": "Âm lượng hiệu ứng",
+    "musicTheme": "Theme nhạc",
+    "testSound": "Kiểm tra âm thanh",
+    "themes": {
+      "adventure": "Phiêu Lưu",
+      "battle": "Chiến Đấu",
+      "victory": "Chiến Thắng",
+      "calm": "Thư Giãn"
+    }
+  },
+  "dice": {
+    "loading": "Đang tải...",
+    "rolling": "ĐANG THẢY...",
+    "roll": "THẢY",
+    "colors": {
+      "white": "Trắng",
+      "red": "Đỏ",
+      "blue": "Xanh dương",
+      "green": "Xanh lá",
+      "yellow": "Vàng"
+    }
+  }
+}

@@ -4,87 +4,93 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import ToolLayout, { useFullscreen } from '@/components/ToolLayout/ToolLayout';
 import { useGameSettings } from '@/lib/useGameSettings';
 import { GAME_IDS } from '@/lib/gameStorage';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
-// Preset thời gian
+// Preset thời gian - keys for i18n
 const PRESETS = [
-  { label: '30s', seconds: 30 },
-  { label: '1 phút', seconds: 60 },
-  { label: '2 phút', seconds: 120 },
-  { label: '3 phút', seconds: 180 },
-  { label: '5 phút', seconds: 300 },
-  { label: '10 phút', seconds: 600 },
-  { label: '15 phút', seconds: 900 },
-  { label: '30 phút', seconds: 1800 },
-  { label: '1 giờ', seconds: 3600 },
-  { label: '2 giờ', seconds: 7200 },
+  { key: '30s', seconds: 30 },
+  { key: '1min', seconds: 60 },
+  { key: '2min', seconds: 120 },
+  { key: '3min', seconds: 180 },
+  { key: '5min', seconds: 300 },
+  { key: '10min', seconds: 600 },
+  { key: '15min', seconds: 900 },
+  { key: '30min', seconds: 1800 },
+  { key: '1hr', seconds: 3600 },
+  { key: '2hr', seconds: 7200 },
 ];
 
-// Chế độ âm thanh - Nhiều lựa chọn cho lớp học
+// Sound modes - id for i18n lookup
 const SOUND_MODES = [
-  // === Cơ bản ===
-  { id: 'none', label: '🔇 Tắt', description: 'Không âm thanh', bgSound: null, category: 'basic' },
-  { id: 'bell', label: '🔔 Chuông', description: 'Chỉ báo khi hết giờ', bgSound: null, category: 'basic' },
-  { id: 'tick', label: '⏱️ Tick nhanh', description: 'Tik tik mỗi giây', bgSound: 'tick', category: 'basic' },
-  { id: 'clock', label: '🕐 Đồng hồ cổ', description: 'Tick-tock chậm rãi', bgSound: 'clock', category: 'basic' },
-  { id: 'digital', label: '📟 Digital beep', description: 'Tiếng beep điện tử', bgSound: 'digital', category: 'basic' },
-  { id: 'metronome', label: '🎼 Metronome', description: 'Nhịp đều 60 BPM', bgSound: 'metronome', category: 'basic' },
+  { id: 'none', bgSound: null, category: 'basic' },
+  { id: 'bell', bgSound: null, category: 'basic' },
+  { id: 'tick', bgSound: 'tick', category: 'basic' },
+  { id: 'clock', bgSound: 'clock', category: 'basic' },
+  { id: 'digital', bgSound: 'digital', category: 'basic' },
+  { id: 'metronome', bgSound: 'metronome', category: 'basic' },
   
-  // === Sóng não - Tập trung học tập (Binaural Beats) ===
-  { id: 'alpha', label: '🧠 Alpha (10Hz)', description: 'Thư giãn tỉnh táo', bgSound: 'alpha', category: 'brainwave' },
-  { id: 'beta_low', label: '🎯 Beta thấp (14Hz)', description: 'Tập trung học bài', bgSound: 'beta_low', category: 'brainwave' },
-  { id: 'beta_high', label: '⚡ Beta cao (20Hz)', description: 'Tập trung cao độ', bgSound: 'beta_high', category: 'brainwave' },
-  { id: 'gamma', label: '🚀 Gamma (40Hz)', description: 'Siêu tập trung, ghi nhớ', bgSound: 'gamma', category: 'brainwave' },
-  { id: 'theta', label: '💭 Theta (6Hz)', description: 'Sáng tạo, học sâu', bgSound: 'theta', category: 'brainwave' },
-  { id: 'delta', label: '😴 Delta (2Hz)', description: 'Thư giãn sâu', bgSound: 'delta', category: 'brainwave' },
-  { id: 'focus_mix', label: '🎧 Focus Mix', description: 'Alpha + Beta kết hợp', bgSound: 'focus_mix', category: 'brainwave' },
-  { id: 'study_boost', label: '📚 Study Boost', description: 'Beta 18Hz + pink noise', bgSound: 'study_boost', category: 'brainwave' },
+  { id: 'alpha', bgSound: 'alpha', category: 'brainwave' },
+  { id: 'beta_low', bgSound: 'beta_low', category: 'brainwave' },
+  { id: 'beta_high', bgSound: 'beta_high', category: 'brainwave' },
+  { id: 'gamma', bgSound: 'gamma', category: 'brainwave' },
+  { id: 'theta', bgSound: 'theta', category: 'brainwave' },
+  { id: 'delta', bgSound: 'delta', category: 'brainwave' },
+  { id: 'focus_mix', bgSound: 'focus_mix', category: 'brainwave' },
+  { id: 'study_boost', bgSound: 'study_boost', category: 'brainwave' },
   
-  // === Thiên nhiên ===
-  { id: 'rain', label: '🌧️ Mưa nhẹ', description: 'Mưa rơi thư giãn', bgSound: 'rain', category: 'nature' },
-  { id: 'rain_heavy', label: '⛈️ Mưa to', description: 'Mưa rào mạnh mẽ', bgSound: 'rain_heavy', category: 'nature' },
-  { id: 'thunder', label: '🌩️ Sấm sét', description: 'Mưa + sấm xa xa', bgSound: 'thunder', category: 'nature' },
-  { id: 'ocean', label: '🌊 Sóng biển', description: 'Sóng vỗ êm dịu', bgSound: 'ocean', category: 'nature' },
-  { id: 'stream', label: '💧 Suối chảy', description: 'Nước róc rách', bgSound: 'stream', category: 'nature' },
-  { id: 'forest', label: '🌲 Rừng xanh', description: 'Chim hót, gió lá', bgSound: 'forest', category: 'nature' },
-  { id: 'night', label: '🌙 Đêm hè', description: 'Dế kêu, đom đóm', bgSound: 'night', category: 'nature' },
-  { id: 'fire', label: '🔥 Lửa trại', description: 'Tiếng lửa cháy', bgSound: 'fire', category: 'nature' },
-  { id: 'wind', label: '💨 Gió nhẹ', description: 'Gió thổi vi vu', bgSound: 'wind', category: 'nature' },
+  { id: 'rain', bgSound: 'rain', category: 'nature' },
+  { id: 'rain_heavy', bgSound: 'rain_heavy', category: 'nature' },
+  { id: 'thunder', bgSound: 'thunder', category: 'nature' },
+  { id: 'ocean', bgSound: 'ocean', category: 'nature' },
+  { id: 'stream', bgSound: 'stream', category: 'nature' },
+  { id: 'forest', bgSound: 'forest', category: 'nature' },
+  { id: 'night', bgSound: 'night', category: 'nature' },
+  { id: 'fire', bgSound: 'fire', category: 'nature' },
+  { id: 'wind', bgSound: 'wind', category: 'nature' },
   
-  // === Không gian ===
-  { id: 'cafe', label: '☕ Quán cafe', description: 'Tiếng ồn nhẹ, sáng tạo', bgSound: 'cafe', category: 'ambient' },
-  { id: 'library', label: '📚 Thư viện', description: 'Yên tĩnh, tập trung', bgSound: 'library', category: 'ambient' },
-  { id: 'office', label: '🏢 Văn phòng', description: 'Bàn phím, máy in', bgSound: 'office', category: 'ambient' },
-  { id: 'classroom', label: '🏫 Lớp học', description: 'Viết bảng, giấy', bgSound: 'classroom', category: 'ambient' },
-  { id: 'space', label: '🚀 Không gian', description: 'Drone ambient', bgSound: 'space', category: 'ambient' },
-  { id: 'underwater', label: '🐠 Dưới nước', description: 'Bong bóng, sóng', bgSound: 'underwater', category: 'ambient' },
+  { id: 'cafe', bgSound: 'cafe', category: 'ambient' },
+  { id: 'library', bgSound: 'library', category: 'ambient' },
+  { id: 'office', bgSound: 'office', category: 'ambient' },
+  { id: 'classroom', bgSound: 'classroom', category: 'ambient' },
+  { id: 'space', bgSound: 'space', category: 'ambient' },
+  { id: 'underwater', bgSound: 'underwater', category: 'ambient' },
   
-  // === Nhịp điệu ===
-  { id: 'heartbeat', label: '💓 Tim đập', description: 'Nhịp thư giãn 70 BPM', bgSound: 'heartbeat', category: 'rhythm' },
-  { id: 'heartbeat_fast', label: '💗 Tim nhanh', description: 'Nhịp 120 BPM, hồi hộp', bgSound: 'heartbeat_fast', category: 'rhythm' },
-  { id: 'urgent', label: '⚡ Gấp gáp', description: 'Áp lực deadline', bgSound: 'urgent', category: 'rhythm' },
-  { id: 'countdown', label: '⏰ Đếm ngược', description: 'Beep tăng dần', bgSound: 'countdown', category: 'rhythm' },
-  { id: 'game', label: '🎮 Game show', description: 'Vui nhộn, thi đua', bgSound: 'game', category: 'rhythm' },
-  { id: 'suspense', label: '🎬 Hồi hộp', description: 'Phim gay cấn', bgSound: 'suspense', category: 'rhythm' },
-  { id: 'drum', label: '🥁 Trống', description: 'Nhịp drum đều', bgSound: 'drum', category: 'rhythm' },
+  { id: 'heartbeat', bgSound: 'heartbeat', category: 'rhythm' },
+  { id: 'heartbeat_fast', bgSound: 'heartbeat_fast', category: 'rhythm' },
+  { id: 'urgent', bgSound: 'urgent', category: 'rhythm' },
+  { id: 'countdown', bgSound: 'countdown', category: 'rhythm' },
+  { id: 'game', bgSound: 'game', category: 'rhythm' },
+  { id: 'suspense', bgSound: 'suspense', category: 'rhythm' },
+  { id: 'drum', bgSound: 'drum', category: 'rhythm' },
   
-  // === Thiền định ===
-  { id: 'meditation', label: '🧘 Thiền Om', description: 'Tần số Om 136Hz', bgSound: 'meditation', category: 'meditation' },
-  { id: 'singing_bowl', label: '🔔 Chuông bát', description: 'Singing bowl', bgSound: 'singing_bowl', category: 'meditation' },
-  { id: 'chimes', label: '🎐 Chuông gió', description: 'Wind chimes nhẹ', bgSound: 'chimes', category: 'meditation' },
-  { id: 'temple', label: '⛩️ Chùa', description: 'Chuông chùa', bgSound: 'temple', category: 'meditation' },
-  { id: 'breathing', label: '🌬️ Thở', description: 'Hướng dẫn thở 4-7-8', bgSound: 'breathing', category: 'meditation' },
-  { id: 'drone_om', label: '🕉️ Om Drone', description: 'Om liên tục', bgSound: 'drone_om', category: 'meditation' },
+  { id: 'meditation', bgSound: 'meditation', category: 'meditation' },
+  { id: 'singing_bowl', bgSound: 'singing_bowl', category: 'meditation' },
+  { id: 'chimes', bgSound: 'chimes', category: 'meditation' },
+  { id: 'temple', bgSound: 'temple', category: 'meditation' },
+  { id: 'breathing', bgSound: 'breathing', category: 'meditation' },
+  { id: 'drone_om', bgSound: 'drone_om', category: 'meditation' },
 ];
+
+// Tab categories
+const TAB_IDS = ['basic', 'brainwave', 'nature', 'ambient', 'rhythm', 'meditation'];
 
 // Default settings
 const DEFAULT_SETTINGS = {
-  h: 0,         // hours
-  m: 1,         // minutes
-  s: 0,         // seconds
-  snd: 'none',  // soundMode
+  h: 0,
+  m: 1,
+  s: 0,
+  snd: 'none',
 };
 
 export default function DongHoBamGio() {
+  // i18n
+  const { t } = useI18n();
+  
+  // Helper functions for i18n lookups
+  const getPresetLabel = (key) => t(`toolbox.timer.presets.${key}`) || key;
+  const getSoundMode = (id) => t(`toolbox.timer.soundModes.${id}`) || { label: id, description: '' };
+  const getTabLabel = (id) => t(`toolbox.timer.tabs.${id}`) || id;
+  
   // Load settings
   const { settings, updateSettings } = useGameSettings(GAME_IDS.DONG_HO_BAM_GIO, DEFAULT_SETTINGS);
 
@@ -1830,14 +1836,13 @@ function TimerContent({
               }}>
               <div className="text-center text-white p-8">
                 <div className="text-8xl mb-4 animate-bounce">⏰</div>
-                <h2 className="text-4xl sm:text-6xl font-black mb-2">HẾT GIỜ!</h2>
-                <p className="text-xl opacity-80 mb-6">Thời gian đã kết thúc</p>
+                <h2 className="text-4xl sm:text-6xl font-black mb-2">{t('toolbox.timer.ui.timeUp')}</h2>
                 <button
                   onClick={handleReset}
                   className="px-8 py-4 bg-white text-red-500 font-bold rounded-full 
                     text-xl hover:scale-105 hover:shadow-xl transition-all duration-300"
                 >
-                  🔄 Đặt lại
+                  {t('toolbox.timer.ui.reset')}
                 </button>
               </div>
             </div>
@@ -1849,13 +1854,13 @@ function TimerContent({
           <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-5 border border-gray-100">
             <h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
               <span>⚙️</span>
-              Cài đặt thời gian
+              {t('toolbox.timer.ui.timeSettings')}
             </h2>
 
             {/* Custom time input - Compact */}
             <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4">
               <div className="text-center">
-                <label className="block text-xs text-gray-500 mb-1">Giờ</label>
+                <label className="block text-xs text-gray-500 mb-1">{t('toolbox.timer.ui.hours')}</label>
                 <input
                   type="number"
                   min="0"
@@ -1868,7 +1873,7 @@ function TimerContent({
               </div>
               <span className="text-3xl font-bold text-gray-300 mt-5">:</span>
               <div className="text-center">
-                <label className="block text-xs text-gray-500 mb-1">Phút</label>
+                <label className="block text-xs text-gray-500 mb-1">{t('toolbox.timer.ui.minutes')}</label>
                 <input
                   type="number"
                   min="0"
@@ -1881,7 +1886,7 @@ function TimerContent({
               </div>
               <span className="text-3xl font-bold text-gray-300 mt-5">:</span>
               <div className="text-center">
-                <label className="block text-xs text-gray-500 mb-1">Giây</label>
+                <label className="block text-xs text-gray-500 mb-1">{t('toolbox.timer.ui.seconds')}</label>
                 <input
                   type="number"
                   min="0"
@@ -1897,7 +1902,7 @@ function TimerContent({
             {/* Presets - Compact */}
             <div className="mb-4">
               <h3 className="text-sm font-semibold text-gray-600 mb-2 uppercase tracking-wide text-center">
-                Chọn nhanh
+                {t('toolbox.timer.ui.quickSelect')}
               </h3>
               <div className="flex flex-wrap justify-center gap-1.5">
                 {PRESETS.map(preset => (
@@ -1910,7 +1915,7 @@ function TimerContent({
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                       }`}
                   >
-                    {preset.label}
+                    {getPresetLabel(preset.key)}
                   </button>
                 ))}
               </div>
@@ -1919,45 +1924,38 @@ function TimerContent({
             {/* Sound Mode - Tab-based UI - Compact */}
             <div className="mb-4">
               <h3 className="text-sm font-semibold text-gray-600 mb-2 uppercase tracking-wide text-center">
-                🔊 Chế độ âm thanh
+                {t('toolbox.timer.ui.soundMode')}
               </h3>
               
-              {/* Hiển thị âm thanh đang chọn */}
+              {/* Hien thi am thanh dang chon */}
               {soundMode !== 'none' && (
                 <div className="mb-3 p-2 bg-blue-50 border border-blue-200 rounded-lg flex items-center justify-between text-sm">
                   <div className="flex items-center gap-1">
-                    <span className="text-blue-600 font-bold">Đang chọn:</span>
-                    <span className="text-blue-800">{SOUND_MODES.find(m => m.id === soundMode)?.label}</span>
+                    <span className="text-blue-600 font-bold">{t('toolbox.timer.ui.currentSound')}</span>
+                    <span className="text-blue-800">{getSoundMode(soundMode).label}</span>
                   </div>
                   <button
                     onClick={() => setSoundMode('none')}
                     className="text-red-500 hover:text-red-700 text-sm font-medium"
                   >
-                    ✕ Tắt
+                    {t('toolbox.timer.ui.turnOff')}
                   </button>
                 </div>
               )}
               
               {/* Tabs - Compact */}
               <div className="flex flex-wrap gap-0.5 mb-3 p-1 bg-gray-100 rounded-lg">
-                {[
-                  { id: 'basic', label: '🔔 Cơ bản' },
-                  { id: 'brainwave', label: '🧠 Sóng não' },
-                  { id: 'nature', label: '🌿 Thiên nhiên' },
-                  { id: 'ambient', label: '🏠 Không gian' },
-                  { id: 'rhythm', label: '🥁 Nhịp' },
-                  { id: 'meditation', label: '🧘 Thiền' },
-                ].map(tab => (
+                {TAB_IDS.map(tabId => (
                   <button
-                    key={tab.id}
-                    onClick={() => setSoundTab(tab.id)}
+                    key={tabId}
+                    onClick={() => setSoundTab(tabId)}
                     className={`px-2 py-1.5 rounded-md text-sm font-medium transition-all
-                      ${soundTab === tab.id
+                      ${soundTab === tabId
                         ? 'bg-white shadow-md text-gray-800'
                         : 'text-gray-600 hover:bg-white/50'
                       }`}
                   >
-                    {tab.label}
+                    {getTabLabel(tabId)}
                   </button>
                 ))}
               </div>
@@ -1977,9 +1975,9 @@ function TimerContent({
                             : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200'
                           }`}
                       >
-                        <div className="text-sm font-bold">{mode.label}</div>
+                        <div className="text-sm font-bold">{getSoundMode(mode.id).label}</div>
                         <div className={`text-xs ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
-                          {mode.description}
+                          {getSoundMode(mode.id).description}
                         </div>
                       </button>
                     ))}
@@ -1989,7 +1987,7 @@ function TimerContent({
                 {/* Brainwave */}
                 {soundTab === 'brainwave' && (
                   <div>
-                    <div className="text-xs text-purple-600 mb-1.5">💡 Dùng tai nghe 🎧 để hiệu quả nhất</div>
+                    <div className="text-xs text-purple-600 mb-1.5">{t('toolbox.timer.ui.brainwaveHint')}</div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
                       {SOUND_MODES.filter(m => m.category === 'brainwave').map(mode => (
                         <button
@@ -2001,9 +1999,9 @@ function TimerContent({
                               : 'bg-purple-50 text-gray-700 hover:bg-purple-100 border border-purple-200'
                             }`}
                         >
-                          <div className="text-sm font-bold">{mode.label}</div>
+                          <div className="text-sm font-bold">{getSoundMode(mode.id).label}</div>
                           <div className={`text-xs ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
-                            {mode.description}
+                            {getSoundMode(mode.id).description}
                           </div>
                         </button>
                       ))}
@@ -2024,9 +2022,9 @@ function TimerContent({
                             : 'bg-green-50 text-gray-700 hover:bg-green-100 border border-green-200'
                           }`}
                       >
-                        <div className="text-sm font-bold">{mode.label}</div>
+                        <div className="text-sm font-bold">{getSoundMode(mode.id).label}</div>
                         <div className={`text-xs ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
-                          {mode.description}
+                          {getSoundMode(mode.id).description}
                         </div>
                       </button>
                     ))}
@@ -2046,9 +2044,9 @@ function TimerContent({
                             : 'bg-amber-50 text-gray-700 hover:bg-amber-100 border border-amber-200'
                           }`}
                       >
-                        <div className="text-sm font-bold">{mode.label}</div>
+                        <div className="text-sm font-bold">{getSoundMode(mode.id).label}</div>
                         <div className={`text-xs ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
-                          {mode.description}
+                          {getSoundMode(mode.id).description}
                         </div>
                       </button>
                     ))}
@@ -2068,9 +2066,9 @@ function TimerContent({
                             : 'bg-orange-50 text-gray-700 hover:bg-orange-100 border border-orange-200'
                           }`}
                       >
-                        <div className="text-sm font-bold">{mode.label}</div>
+                        <div className="text-sm font-bold">{getSoundMode(mode.id).label}</div>
                         <div className={`text-xs ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
-                          {mode.description}
+                          {getSoundMode(mode.id).description}
                         </div>
                       </button>
                     ))}
@@ -2090,9 +2088,9 @@ function TimerContent({
                             : 'bg-indigo-50 text-gray-700 hover:bg-indigo-100 border border-indigo-200'
                           }`}
                       >
-                        <div className="text-sm font-bold">{mode.label}</div>
+                        <div className="text-sm font-bold">{getSoundMode(mode.id).label}</div>
                         <div className={`text-xs ${soundMode === mode.id ? 'text-white/80' : 'text-gray-500'}`}>
-                          {mode.description}
+                          {getSoundMode(mode.id).description}
                         </div>
                       </button>
                     ))}
@@ -2113,7 +2111,7 @@ function TimerContent({
                   active:scale-95 transition-all duration-200
                   disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                ▶️ BẮT ĐẦU
+                {t('toolbox.timer.ui.start')}
               </button>
             </div>
           </div>
@@ -2130,27 +2128,27 @@ function TimerContent({
                   : 'bg-gradient-to-r from-yellow-500 to-orange-500 text-white'
                 } hover:shadow-lg`}
             >
-              {isPaused ? '▶️ Tiếp tục' : '⏸️ Tạm dừng'}
+              {isPaused ? t('toolbox.timer.ui.continue') : t('toolbox.timer.ui.pause')}
             </button>
             <button
               onClick={handleReset}
               className="px-8 py-4 bg-gray-200 hover:bg-gray-300 text-gray-700 
                 font-bold rounded-full text-xl transition-all"
             >
-              🔄 Đặt lại
+              {t('toolbox.timer.ui.reset')}
             </button>
           </div>
         )}
 
-        {/* Tips - Đơn giản */}
+        {/* Tips */}
         {!isRunning && !isFinished && (
           <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-200">
             <div className="flex items-start gap-3">
               <div className="text-2xl">💡</div>
               <div className="text-sm text-gray-600 space-y-1">
-                <p><b>📚 Học bài:</b> Sóng não Beta (14-20Hz) + tai nghe</p>
-                <p><b>✍️ Kiểm tra:</b> Gấp gáp, Game show</p>
-                <p><b>😌 Thư giãn:</b> Thiên nhiên, Thiền định</p>
+                <p><b>{t('toolbox.timer.tips.study')}</b> {t('toolbox.timer.tips.studyDesc')}</p>
+                <p><b>{t('toolbox.timer.tips.test')}</b> {t('toolbox.timer.tips.testDesc')}</p>
+                <p><b>{t('toolbox.timer.tips.relax')}</b> {t('toolbox.timer.tips.relaxDesc')}</p>
               </div>
             </div>
           </div>
@@ -2190,3 +2188,4 @@ function TimerContent({
     </>
   );
 }
+

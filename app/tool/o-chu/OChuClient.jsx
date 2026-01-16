@@ -564,7 +564,7 @@ export default function OChuGame() {
         result.errors.push({ 
           line: i + 1, 
           text: originalLine.substring(0, 40), 
-          reason: 'Không tìm thấy dấu phân cách (| hoặc :)' 
+          reason: t('toolbox.crossword.noSeparatorFound')
         });
         continue;
       }
@@ -780,11 +780,11 @@ export default function OChuGame() {
 
     if (userAnswer === correctAnswer) {
       setRowAnswerResult('correct');
-      showResultPopup('correct', 'ĐÚNG RỒI!', correctAnswer);
+      showResultPopup('correct', t('toolbox.crossword.correctRow'), correctAnswer);
       revealRow(currentQuestion);
     } else {
       setRowAnswerResult('wrong');
-      showResultPopup('wrong', 'CHƯA ĐÚNG!', 'Thử lại nhé!');
+      showResultPopup('wrong', t('toolbox.crossword.wrongRow'), t('toolbox.crossword.tryAgainHint'));
       playSound('wrong');
       setTimeout(() => setRowAnswerResult(null), 1500);
     }
@@ -838,11 +838,11 @@ export default function OChuGame() {
       setShowConfetti(true);
       playSound('victory');
       setGameComplete(true);
-      showResultPopup('correct', '🎉 CHÍNH XÁC!', keyword);
+      showResultPopup('correct', t('toolbox.crossword.keywordCorrect'), keyword);
       // KHÔNG mở tự động các câu - giáo viên sẽ mở từng câu cho học sinh xem
     } else {
       setGuessResult('wrong');
-      showResultPopup('wrong', 'CHƯA ĐÚNG!', 'Thử lại nhé!');
+      showResultPopup('wrong', t('toolbox.crossword.wrongRow'), t('toolbox.crossword.tryAgainHint'));
       playSound('wrong');
       setTimeout(() => setGuessResult(null), 2000);
     }
@@ -890,14 +890,10 @@ export default function OChuGame() {
   }, [questions, keyword, generateGridWithKeyword]);
 
   const loadSampleData = useCallback(() => {
-    setTopic('Thành phố nào là thủ đô của Việt Nam?');
-    setKeywordInput('HANOI');
-    setQuestionsInput(`Loài hoa nở vào mùa thu ở Hà Nội | HOASUA
-Tên gọi cũ của Việt Nam | ANNAM
-Con sông lớn chảy qua thủ đô | SONGHONG
-Vịnh nổi tiếng UNESCO ở Quảng Ninh | HALONG
-Cầu lịch sử bắc qua sông Hồng | LONGBIEN`);
-  }, []);
+    setTopic(t('toolbox.crossword.sampleTopic'));
+    setKeywordInput(t('toolbox.crossword.sampleKeyword'));
+    setQuestionsInput(t('toolbox.crossword.sampleQuestions'));
+  }, [t]);
 
   // === RENDER ===
   return (
@@ -908,10 +904,10 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN`);
           <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 border border-gray-100">
             <div className="text-center mb-4">
               <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-1">
-                🎯 {t('crossword.createTitle')}
+                🎯 {t('toolbox.crossword.createTitle')}
               </h2>
               <p className="text-gray-500 text-sm">
-                {t('crossword.createSubtitle')}
+                {t('toolbox.crossword.createSubtitle')}
               </p>
             </div>
 
@@ -1190,50 +1186,13 @@ Cầu lịch sử bắc qua sông Hồng | LONGBIEN`);
                 </div>
                 <div className="p-5 overflow-y-auto max-h-[60vh]">
                   <div className="bg-gray-50 rounded-xl p-4 font-mono text-sm whitespace-pre-wrap text-gray-700 border">
-{`Hãy tạo trò chơi ô chữ cho chủ đề: [THAY CHỦ ĐỀ VÀO ĐÂY]
-
-YÊU CẦU:
-1. Tạo 1 TỪ KHÓA (5-8 chữ cái, KHÔNG DẤU, viết HOA)
-2. Tạo số câu hỏi gợi ý BẰNG ĐÚNG số chữ trong từ khóa
-3. ⚠️ QUAN TRỌNG: Đáp án câu 1 PHẢI chứa chữ thứ 1 của từ khóa, đáp án câu 2 PHẢI chứa chữ thứ 2... theo đúng thứ tự
-4. Tất cả đáp án viết KHÔNG DẤU, CHỮ HOA, KHÔNG KHOẢNG TRẮNG
-5. Mỗi câu hỏi PHẢI có dấu ? ở cuối
-6. Câu hỏi ngắn gọn, súc tích: TỐI ĐA 25 từ
-7. Đáp án ngắn gọn: 5-12 ký tự (1-2 từ viết liền, không dấu)
-8. Đáp án đúng PHẢI chính xác 100%, không gây tranh cãi
-
-FORMAT OUTPUT:
-Câu hỏi chủ đề: [Câu hỏi để đoán từ khóa?]
-Từ khóa: [TỪ KHÓA]
-
-Danh sách câu hỏi (mỗi dòng 1 câu):
-Câu hỏi 1? | ĐÁP ÁN 1
-Câu hỏi 2? | ĐÁP ÁN 2
-...
-
-VÍ DỤ với từ khóa "HANOI" (5 chữ H-A-N-O-I):
-Loài hoa nào nở vào mùa thu ở Hà Nội? | HOASUA (có chữ H)
-Tên gọi cũ của Việt Nam là gì? | ANNAM (có chữ A)
-Con sông lớn nào chảy qua thủ đô? | SONGHONG (có chữ N)
-Vịnh nổi tiếng UNESCO ở Quảng Ninh? | HALONG (có chữ O)
-Cây cầu lịch sử bắc qua sông Hồng? | LONGBIEN (có chữ I)
-
-⚠️ KIỂM TRA BẮT BUỘC (trước khi output):
-Với mỗi câu, hãy xác nhận đáp án có chứa chữ cái tương ứng:
-- Câu 1: Đáp án có chữ [chữ 1 của từ khóa]? ✓
-- Câu 2: Đáp án có chữ [chữ 2 của từ khóa]? ✓
-- ... (kiểm tra tất cả)
-
-LƯU Ý QUAN TRỌNG:
-- Mỗi câu hỏi PHẢI kết thúc bằng dấu ?
-- Đáp án đúng phải CHÍNH XÁC, có thể kiểm chứng
-- Đáp án KHÔNG DẤU, VIẾT LIỀN, NGẮN GỌN`}
+                    {t('toolbox.crossword.aiPromptContent')}
                   </div>
                 </div>
                 <div className="px-5 pb-5 flex gap-3">
                   <button
                     onClick={() => {
-                      const prompt = `Hãy tạo trò chơi ô chữ cho chủ đề: [THAY CHỦ ĐỀ VÀO ĐÂY]\n\nYÊU CẦU:\n1. Tạo 1 TỪ KHÓA (5-8 chữ cái, KHÔNG DẤU, viết HOA)\n2. Tạo số câu hỏi gợi ý BẰNG ĐÚNG số chữ trong từ khóa\n3. ⚠️ QUAN TRỌNG: Đáp án câu 1 PHẢI chứa chữ thứ 1 của từ khóa, đáp án câu 2 PHẢI chứa chữ thứ 2... theo đúng thứ tự\n4. Tất cả đáp án viết KHÔNG DẤU, CHỮ HOA, KHÔNG KHOẢNG TRẮNG\n5. Mỗi câu hỏi PHẢI có dấu ? ở cuối\n6. Câu hỏi ngắn gọn, súc tích: TỐI ĐA 25 từ\n7. Đáp án ngắn gọn: 5-12 ký tự (1-2 từ viết liền, không dấu)\n8. Đáp án đúng PHẢI chính xác 100%, không gây tranh cãi\n\nFORMAT OUTPUT:\nCâu hỏi chủ đề: [Câu hỏi để đoán từ khóa?]\nTừ khóa: [TỪ KHÓA]\n\nDanh sách câu hỏi (mỗi dòng 1 câu):\nCâu hỏi 1? | ĐÁP ÁN 1\nCâu hỏi 2? | ĐÁP ÁN 2\n...\n\nVÍ DỤ với từ khóa "HANOI" (5 chữ H-A-N-O-I):\nLoài hoa nào nở vào mùa thu ở Hà Nội? | HOASUA (có chữ H)\nTên gọi cũ của Việt Nam là gì? | ANNAM (có chữ A)\nCon sông lớn nào chảy qua thủ đô? | SONGHONG (có chữ N)\nVịnh nổi tiếng UNESCO ở Quảng Ninh? | HALONG (có chữ O)\nCây cầu lịch sử bắc qua sông Hồng? | LONGBIEN (có chữ I)\n\n⚠️ KIỂM TRA BẮT BUỘC (trước khi output):\nVới mỗi câu, hãy xác nhận đáp án có chứa chữ cái tương ứng:\n- Câu 1: Đáp án có chữ [chữ 1 của từ khóa]? ✓\n- Câu 2: Đáp án có chữ [chữ 2 của từ khóa]? ✓\n- ... (kiểm tra tất cả)\n\nLƯU Ý QUAN TRỌNG:\n- Mỗi câu hỏi PHẢI kết thúc bằng dấu ?\n- Đáp án đúng phải CHÍNH XÁC, có thể kiểm chứng\n- Đáp án KHÔNG DẤU, VIẾT LIỀN, NGẮN GỌN`;
+                      const prompt = t('toolbox.crossword.aiPromptContent');
                       navigator.clipboard.writeText(prompt);
                       setShowAIPrompt(false);
                       setSetupError('');

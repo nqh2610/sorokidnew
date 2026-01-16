@@ -5,6 +5,7 @@ import ToolLayout from '@/components/ToolLayout/ToolLayout';
 import LocalizedLink from '@/components/LocalizedLink/LocalizedLink';
 import { LogoIcon } from '@/components/Logo/Logo';
 import { loadGameSettings, saveGameSettings, GAME_IDS } from '@/lib/gameStorage';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 // Game modes
 const GAME_MODES = {
@@ -19,14 +20,16 @@ const DEFAULT_SETTINGS = {
   m: 'gameshow' // gameMode
 };
 
-// Prize money levels - 15 câu chuẩn ALTP
-const PRIZE_LEVELS = [
-  '200K', '400K', '600K', '1 Triệu', '2 Triệu',
-  '3 Triệu', '6 Triệu', '10 Triệu', '14 Triệu', '22 Triệu',
-  '30 Triệu', '40 Triệu', '60 Triệu', '85 Triệu', '150 Triệu'
-];
-
 export default function AiLaTrieuPhu() {
+  const { t } = useI18n();
+  
+  // Prize money levels from i18n - 15 câu chuẩn ALTP
+  const PRIZE_LEVELS = t('toolbox.millionaire.prizeLevels') || [
+    '200K', '400K', '600K', '1M', '2M',
+    '3M', '6M', '10M', '14M', '22M',
+    '30M', '40M', '60M', '85M', '150M'
+  ];
+  
   const [screen, setScreen] = useState('setup');
   const [toast, setToast] = useState(null);
   const gameContainerRef = useRef(null);
@@ -292,7 +295,7 @@ export default function AiLaTrieuPhu() {
           setUsedPhone(gs.usedPhone || false);
           setGameMode(gs.gameMode || GAME_MODES.GAMESHOW);
           setScreen('game');
-          showToast('🔄 Khôi phục game đang dở');
+          showToast(t('toolbox.millionaire.toast.restoreGame'));
         }
       }
     } catch (e) {}
@@ -395,7 +398,7 @@ export default function AiLaTrieuPhu() {
             lineNum: i + 1
           });
         } else {
-          errors.push({ line: i + 1, text: originalLine.substring(0, 50), reason: `Đáp án "${parts[5]}" không hợp lệ (cần A/B/C/D)` });
+          errors.push({ line: i + 1, text: originalLine.substring(0, 50), reason: t('toolbox.millionaire.invalidAnswer', { answer: parts[5] }) });
         }
       } else if (parts.length === 5) {
         // Missing answer letter - try to detect from content
@@ -411,10 +414,10 @@ export default function AiLaTrieuPhu() {
             autoFixed: true
           });
         } else {
-          errors.push({ line: i + 1, text: originalLine.substring(0, 50), reason: 'Thiếu đáp án đúng (A/B/C/D)' });
+          errors.push({ line: i + 1, text: originalLine.substring(0, 50), reason: t('toolbox.millionaire.missingAnswer') });
         }
       } else if (parts.length > 0 && parts.length < 5) {
-        errors.push({ line: i + 1, text: originalLine.substring(0, 50), reason: `Chỉ có ${parts.length} phần (cần 6: Câu hỏi|A|B|C|D|Đáp án)` });
+        errors.push({ line: i + 1, text: originalLine.substring(0, 50), reason: t('toolbox.millionaire.notEnoughParts', { count: parts.length }) });
       }
     }
     
@@ -426,31 +429,17 @@ export default function AiLaTrieuPhu() {
     return parseQuestions(text).parsed;
   }, [parseQuestions]);
 
-  // Sample questions
-  const sampleQuestions = `Thủ đô của Việt Nam là gì?|Hà Nội|Hồ Chí Minh|Đà Nẵng|Huế|A
-Núi cao nhất Việt Nam?|Bà Đen|Phan Xi Păng|Bà Nà|Ngọc Linh|B
-1 + 1 = ?|1|2|3|4|B
-Sông dài nhất Việt Nam?|Sông Hồng|Sông Mekong|Sông Đà|Sông Đồng Nai|B
-Ai viết Truyện Kiều?|Nguyễn Du|Hồ Xuân Hương|Nguyễn Trãi|Nguyễn Bỉnh Khiêm|A
-Quốc hoa Việt Nam?|Hoa mai|Hoa đào|Hoa sen|Hoa hồng|C
-Việt Nam có bao nhiêu tỉnh thành?|61|63|64|65|B
-Đơn vị tiền tệ Việt Nam?|Đô la|Euro|Đồng|Yên|C
-Vị vua đầu tiên của nước ta?|Hùng Vương|An Dương Vương|Triệu Đà|Lý Thái Tổ|A
-TP lớn nhất Việt Nam?|Hà Nội|Đà Nẵng|TP HCM|Hải Phòng|C
-Biển Đông tiếng Anh gọi là?|East Sea|West Sea|South China Sea|Vietnam Sea|C
-Năm Việt Nam thống nhất?|1954|1975|1945|1986|B
-Ai là Chủ tịch nước đầu tiên?|Hồ Chí Minh|Võ Nguyên Giáp|Phạm Văn Đồng|Lê Duẩn|A
-Động vật nào là biểu tượng Việt Nam?|Hổ|Rồng|Trâu|Voi|C
-Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ranh|Vịnh Vân Phong|A`;
+  // Sample questions - from i18n
+  const sampleQuestions = t('toolbox.millionaire.sampleQuestions');
 
   // ==================== GAME ACTIONS ====================
   const startGame = useCallback(async (mode = null) => {
     const { parsed, errors } = parseQuestions(questionsText);
     if (parsed.length === 0) {
       if (errors.length > 0) {
-        showToast(`❌ Lỗi dòng ${errors[0].line}: ${errors[0].reason}`);
+        showToast(t('toolbox.millionaire.toast.errorAtLine', { line: errors[0].line, reason: errors[0].reason }));
       } else {
-        showToast('❌ Không có câu hỏi hợp lệ!');
+        showToast(t('toolbox.millionaire.toast.noValidQuestions'));
       }
       return;
     }
@@ -589,8 +578,16 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
       [0, 1, 2, 3].filter(i => i !== current.correct && !hidden5050.includes(i))[Math.floor(Math.random() * 3)];
     const letter = ['A', 'B', 'C', 'D'][hintIdx];
     
-    const confidentHints = [`Chắc chắn là ${letter}!`, `Tôi nghĩ ${letter} đúng!`, `${letter} chắc luôn!`];
-    const unsureHints = [`Có lẽ là ${letter}...`, `Hmm, ${letter}?`, `Tôi đoán là ${letter}...`];
+    const confidentHints = [
+      t('toolbox.millionaire.phoneHints.confident1', { letter }),
+      t('toolbox.millionaire.phoneHints.confident2', { letter }),
+      t('toolbox.millionaire.phoneHints.confident3', { letter })
+    ];
+    const unsureHints = [
+      t('toolbox.millionaire.phoneHints.unsure1', { letter }),
+      t('toolbox.millionaire.phoneHints.unsure2', { letter }),
+      t('toolbox.millionaire.phoneHints.unsure3', { letter })
+    ];
     const hints = Math.random() > 0.4 ? confidentHints : unsureHints;
     
     setPhoneHint(hints[Math.floor(Math.random() * hints.length)]);
@@ -642,7 +639,7 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
               <span className="text-3xl">💰</span>
               <div>
                 <h1 className="text-2xl font-black bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 bg-clip-text text-transparent">
-                  Ai Là Triệu Phú
+                  {t('toolbox.millionaire.title')}
                 </h1>
               </div>
             </div>
@@ -651,8 +648,8 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
             <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-3 mb-3 border border-amber-200">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex-1 min-w-0">
-                  <p className="font-bold text-amber-800">⚡ Chơi ngay (15 câu mẫu)</p>
-                  <p className="text-xs text-amber-600">Format Game Show chuẩn ALTP</p>
+                  <p className="font-bold text-amber-800">⚡ {t('toolbox.millionaire.quickStart')}</p>
+                  <p className="text-xs text-amber-600">{t('toolbox.millionaire.quickStartDesc')}</p>
                 </div>
                 <button
                   onClick={() => {
@@ -661,7 +658,7 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
                   }}
                   className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg shadow hover:scale-105 transition-all whitespace-nowrap"
                 >
-                  🎮 BẮT ĐẦU
+                  🎮 {t('toolbox.millionaire.start')}
                 </button>
               </div>
             </div>
@@ -670,7 +667,7 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
             <div className="bg-white rounded-xl shadow p-3 mb-3 border">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-bold text-gray-700">📝 Câu hỏi</span>
+                  <span className="font-bold text-gray-700">📝 {t('toolbox.millionaire.questions')}</span>
                   <span className="px-1.5 py-0.5 bg-amber-100 text-amber-700 text-xs font-bold rounded-full">
                     {validCount}✓
                   </span>
@@ -682,10 +679,10 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
                 </div>
                 <div className="flex items-center gap-1">
                   <button onClick={() => setQuestionsText(sampleQuestions)} className="text-xs px-2 py-0.5 bg-blue-100 text-blue-600 rounded-full hover:bg-blue-200">
-                    📋 Mẫu
+                    📋 {t('toolbox.millionaire.sample')}
                   </button>
                   <button onClick={() => setShowAIPrompt(true)} className="text-xs px-2 py-0.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full hover:opacity-90">
-                    🤖 AI
+                    🤖 {t('toolbox.millionaire.ai')}
                   </button>
                   <button onClick={() => setQuestionsText('')} className="text-xs px-2 py-0.5 bg-red-100 text-red-600 rounded-full hover:bg-red-200">
                     🗑️
@@ -693,7 +690,7 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
                   <button
                     onClick={() => setSoundEnabled(!soundEnabled)}
                     className={`p-1 rounded ${soundEnabled ? 'bg-amber-100 text-amber-600' : 'bg-gray-100 text-gray-400'}`}
-                    title={soundEnabled ? 'Tắt âm thanh' : 'Bật âm thanh'}
+                    title={soundEnabled ? t('toolbox.millionaire.soundOff') : t('toolbox.millionaire.soundOn')}
                   >
                     {soundEnabled ? '🔊' : '🔇'}
                   </button>
@@ -725,7 +722,7 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
                 <textarea
                   value={questionsText}
                   onChange={(e) => setQuestionsText(e.target.value)}
-                  placeholder={`Câu hỏi | A | B | C | D | Đáp án (A/B/C/D)\n\nVD: Thủ đô VN?|Hà Nội|HCM|Đà Nẵng|Huế|A\n\n💡 Tự nhận diện dấu |, ;, Tab`}
+                  placeholder={t('toolbox.millionaire.inputPlaceholder')}
                   className="flex-1 h-64 py-3 px-3 resize-none font-mono text-sm focus:outline-none"
                   style={{ lineHeight: '1.5rem' }}
                   onScroll={(e) => {
@@ -739,12 +736,12 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
               {/* Error details - Compact */}
               {errorCount > 0 && (
                 <div className="mt-2 p-2 bg-red-50 rounded-lg border border-red-200 text-xs">
-                  <p className="font-bold text-red-700 mb-1">⚠️ Lỗi:</p>
+                  <p className="font-bold text-red-700 mb-1">⚠️ {t('toolbox.millionaire.errors')}</p>
                   {parseResult.errors.slice(0, 3).map((err, i) => (
-                    <div key={i} className="text-red-600">Dòng {err.line}: {err.reason}</div>
+                    <div key={i} className="text-red-600">{t('toolbox.millionaire.errorLine', { line: err.line, reason: err.reason })}</div>
                   ))}
                   {parseResult.errors.length > 3 && (
-                    <div className="text-red-400">...+{parseResult.errors.length - 3} lỗi</div>
+                    <div className="text-red-400">{t('toolbox.millionaire.moreErrors', { count: parseResult.errors.length - 3 })}</div>
                   )}
                 </div>
               )}
@@ -761,10 +758,10 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
                 >
                   <div className="flex items-center justify-center gap-2">
                     <span>🎬</span>
-                    <span>GAME SHOW</span>
-                    <span className="text-sm opacity-80">(15 câu)</span>
+                    <span>{t('toolbox.millionaire.gameShowMode')}</span>
+                    <span className="text-sm opacity-80">{t('toolbox.millionaire.questionCount', { count: 15 })}</span>
                   </div>
-                  <p className="text-xs font-normal opacity-80 mt-0.5">Format chuẩn ALTP với thang tiền thưởng & trợ giúp</p>
+                  <p className="text-xs font-normal opacity-80 mt-0.5">{t('toolbox.millionaire.gameShowDesc')}</p>
                 </button>
               )}
 
@@ -781,13 +778,13 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
               >
                 <div className="flex items-center justify-center gap-2">
                   <span>📋</span>
-                  <span>CHƠI TẤT CẢ</span>
-                  <span className="text-sm opacity-80">({validCount} câu)</span>
+                  <span>{t('toolbox.millionaire.playAll')}</span>
+                  <span className="text-sm opacity-80">({t('toolbox.millionaire.questionCount', { count: validCount })})</span>
                 </div>
                 <p className="text-xs font-normal opacity-80 mt-0.5">
                   {validCount < 15
-                    ? 'Chơi hết câu hỏi (cần 15 câu cho Game Show)'
-                    : 'Chơi hết tất cả câu hỏi, không giới hạn'}
+                    ? t('toolbox.millionaire.needMoreQuestions')
+                    : t('toolbox.millionaire.playAllDesc')}
                 </p>
               </button>
             </div>
@@ -795,7 +792,7 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
             {/* Back link */}
             <div className="text-center mt-2">
               <LocalizedLink href="/tool" className="text-gray-400 hover:text-violet-600 text-sm">
-                ← Toolbox
+                {t('toolbox.millionaire.backToToolbox')}
               </LocalizedLink>
             </div>
           </div>
@@ -805,78 +802,28 @@ Vịnh nào là di sản UNESCO?|Vịnh Hạ Long|Vịnh Nha Trang|Vịnh Cam Ra
             <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setShowAIPrompt(false)}>
               <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden" onClick={e => e.stopPropagation()}>
                 <div className="bg-gradient-to-r from-amber-500 to-orange-500 px-5 py-4">
-                  <h3 className="text-white font-bold text-lg">🤖 Prompt tạo câu hỏi Ai Là Triệu Phú bằng AI</h3>
-                  <p className="text-white/80 text-sm">Copy prompt này và dán vào ChatGPT, Gemini, Claude...</p>
+                  <h3 className="text-white font-bold text-lg">{t('toolbox.millionaire.aiPrompt.title')}</h3>
+                  <p className="text-white/80 text-sm">{t('toolbox.millionaire.aiPrompt.subtitle')}</p>
                 </div>
                 <div className="p-5 overflow-y-auto max-h-[60vh]">
                   <div className="bg-gray-50 rounded-xl p-4 font-mono text-sm whitespace-pre-wrap text-gray-700 border">
-{`Hãy tạo câu hỏi trắc nghiệm cho trò chơi "Ai là triệu phú" với chủ đề: [THAY CHỦ ĐỀ VÀO ĐÂY]
-
-YÊU CẦU:
-1. Tạo 15 câu hỏi (hoặc số lượng bạn muốn)
-2. Độ khó tăng dần: 5 câu dễ → 5 câu trung bình → 5 câu khó
-3. Mỗi câu có 4 đáp án A, B, C, D
-4. Chỉ có DUY NHẤT 1 đáp án đúng
-5. Mỗi câu hỏi PHẢI có dấu ? ở cuối
-6. Câu hỏi ngắn gọn, súc tích: TỐI ĐA 25 từ
-7. Đáp án ngắn gọn: TỐI ĐA 6-8 từ mỗi đáp án
-8. Đáp án đúng PHẢI chính xác 100%, không gây tranh cãi
-
-⚠️ CẤM CÁC LOẠI ĐÁP ÁN SAU:
-- KHÔNG dùng đáp án kiểu "Cả A và B", "A và C đều đúng"
-- KHÔNG dùng đáp án kiểu "Tất cả đều đúng/sai"
-- KHÔNG dùng đáp án kiểu "Không có đáp án nào đúng"
-- KHÔNG để đáp án này tham chiếu đến đáp án khác
-- Mỗi đáp án phải là một lựa chọn ĐỘC LẬP, RÕ RÀNG
-
-FORMAT OUTPUT (QUAN TRỌNG):
-Câu hỏi?|Đáp án A|Đáp án B|Đáp án C|Đáp án D|Chữ cái đáp án đúng
-
-VÍ DỤ:
-Thủ đô của Việt Nam là gì?|Hà Nội|Hồ Chí Minh|Đà Nẵng|Huế|A
-Núi cao nhất Việt Nam là núi nào?|Bà Đen|Phan Xi Păng|Bà Nà|Ngọc Linh|B
-1 + 1 bằng bao nhiêu?|1|2|3|4|B
-
-🔍 DOUBLE CHECK - KIỂM TRA TỪNG CÂU (BẮT BUỘC):
-Sau khi tạo xong, hãy kiểm tra lại TỪNG CÂU theo format:
-
-Câu 1: [Tóm tắt câu hỏi]
-- Đáp án đúng: [X] - [Nội dung đáp án]
-- Lý do đúng: [Giải thích ngắn tại sao đáp án này đúng]
-- Các đáp án sai có độc lập không? ✓/✗
-- Có đáp án nào khác cũng đúng không? ✓ Không / ✗ Có
-
-Câu 2: ... (tương tự)
-
-⚠️ NẾU phát hiện lỗi trong quá trình double check:
-- Sửa lại câu hỏi hoặc đáp án
-- Kiểm tra lại lần nữa
-
-LƯU Ý:
-- Mỗi câu hỏi PHẢI kết thúc bằng dấu ?
-- Đáp án đúng phải CHÍNH XÁC, có thể kiểm chứng
-- Câu hỏi NGẮN GỌN, RÕ NGHĨA, không mơ hồ
-- Đáp án NGẮN GỌN (1-8 từ), tránh câu dài
-- Dùng dấu | để ngăn cách các phần
-- Cuối mỗi dòng là chữ cái đáp án đúng (A, B, C hoặc D)
-- Mỗi câu hỏi trên 1 dòng
-- Không đánh số thứ tự câu hỏi`}
+                    {t('toolbox.millionaire.aiPrompt.promptContent')}
                   </div>
                 </div>
                 <div className="px-5 pb-5 flex gap-3">
                   <button
                     onClick={() => {
-                      const prompt = `Hãy tạo câu hỏi trắc nghiệm cho trò chơi "Ai là triệu phú" với chủ đề: [THAY CHỦ ĐỀ VÀO ĐÂY]\n\nYÊU CẦU:\n1. Tạo 15 câu hỏi (hoặc số lượng bạn muốn)\n2. Độ khó tăng dần: 5 câu dễ → 5 câu trung bình → 5 câu khó\n3. Mỗi câu có 4 đáp án A, B, C, D\n4. Chỉ có DUY NHẤT 1 đáp án đúng\n5. Mỗi câu hỏi PHẢI có dấu ? ở cuối\n6. Câu hỏi ngắn gọn, súc tích: TỐI ĐA 25 từ\n7. Đáp án ngắn gọn: TỐI ĐA 6-8 từ mỗi đáp án\n8. Đáp án đúng PHẢI chính xác 100%, không gây tranh cãi\n\n⚠️ CẤM CÁC LOẠI ĐÁP ÁN SAU:\n- KHÔNG dùng đáp án kiểu "Cả A và B", "A và C đều đúng"\n- KHÔNG dùng đáp án kiểu "Tất cả đều đúng/sai"\n- KHÔNG dùng đáp án kiểu "Không có đáp án nào đúng"\n- KHÔNG để đáp án này tham chiếu đến đáp án khác\n- Mỗi đáp án phải là một lựa chọn ĐỘC LẬP, RÕ RÀNG\n\nFORMAT OUTPUT (QUAN TRỌNG):\nCâu hỏi?|Đáp án A|Đáp án B|Đáp án C|Đáp án D|Chữ cái đáp án đúng\n\nVÍ DỤ:\nThủ đô của Việt Nam là gì?|Hà Nội|Hồ Chí Minh|Đà Nẵng|Huế|A\nNúi cao nhất Việt Nam là núi nào?|Bà Đen|Phan Xi Păng|Bà Nà|Ngọc Linh|B\n1 + 1 bằng bao nhiêu?|1|2|3|4|B\n\n🔍 DOUBLE CHECK - KIỂM TRA TỪNG CÂU (BẮT BUỘC):\nSau khi tạo xong, hãy kiểm tra lại TỪNG CÂU theo format:\n\nCâu 1: [Tóm tắt câu hỏi]\n- Đáp án đúng: [X] - [Nội dung đáp án]\n- Lý do đúng: [Giải thích ngắn tại sao đáp án này đúng]\n- Các đáp án sai có độc lập không? ✓/✗\n- Có đáp án nào khác cũng đúng không? ✓ Không / ✗ Có\n\nCâu 2: ... (tương tự)\n\n⚠️ NẾU phát hiện lỗi trong quá trình double check:\n- Sửa lại câu hỏi hoặc đáp án\n- Kiểm tra lại lần nữa\n\nLƯU Ý:\n- Mỗi câu hỏi PHẢI kết thúc bằng dấu ?\n- Đáp án đúng phải CHÍNH XÁC, có thể kiểm chứng\n- Câu hỏi NGẮN GỌN, RÕ NGHĨA, không mơ hồ\n- Đáp án NGẮN GỌN (1-8 từ), tránh câu dài\n- Dùng dấu | để ngăn cách các phần\n- Cuối mỗi dòng là chữ cái đáp án đúng (A, B, C hoặc D)\n- Mỗi câu hỏi trên 1 dòng\n- Không đánh số thứ tự câu hỏi`;
+                      const prompt = t('toolbox.millionaire.aiPrompt.promptContent');
                       navigator.clipboard.writeText(prompt);
                       setShowAIPrompt(false);
-                      alert('✅ Đã copy prompt! Hãy dán vào ChatGPT/Gemini/Claude');
+                      alert(t('toolbox.millionaire.aiPrompt.copied'));
                     }}
                     className="flex-1 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl hover:opacity-90">
-                    📋 Copy Prompt
+                    {t('toolbox.millionaire.aiPrompt.copyPrompt')}
                   </button>
                   <button onClick={() => setShowAIPrompt(false)}
                     className="px-6 py-3 bg-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-300">
-                    Đóng
+                    {t('toolbox.millionaire.aiPrompt.close')}
                   </button>
                 </div>
               </div>
@@ -909,7 +856,7 @@ LƯU Ý:
             {/* Top Bar - Responsive */}
             <div className="flex items-center justify-between p-2 sm:p-3">
               <button onClick={resetGame} className="px-2 sm:px-4 py-1.5 sm:py-2 bg-black/50 hover:bg-black/70 text-white rounded-lg text-xs sm:text-sm font-medium transition-colors">
-                ✕ <span className="hidden sm:inline">Thoát</span>
+                ✕ <span className="hidden sm:inline">{t('toolbox.millionaire.exit')}</span>
               </button>
               <div className="flex items-center gap-1 sm:gap-2">
                 {/* Mode indicator */}
@@ -921,12 +868,12 @@ LƯU Ý:
                   {gameMode === GAME_MODES.GAMESHOW ? '🎬' : '📋'}
                 </span>
                 <span className="px-2 sm:px-3 py-1 bg-amber-500/80 text-white rounded-lg text-xs sm:text-sm font-bold">
-                  Câu {currentIndex + 1}/{questions.length}
+                  {t('toolbox.millionaire.questionNum', { current: currentIndex + 1, total: questions.length })}
                 </span>
                 {/* Score indicator for Quick mode */}
                 {gameMode === GAME_MODES.QUICK && (
                   <span className="px-2 sm:px-3 py-1 bg-green-500/80 text-white rounded-lg text-xs sm:text-sm font-bold">
-                    ✓ {score}
+                    {t('toolbox.millionaire.correct')} {score}
                   </span>
                 )}
                 <button onClick={() => setSoundEnabled(!soundEnabled)} className="px-2 sm:px-4 py-1.5 sm:py-2 bg-black/50 hover:bg-black/70 text-white rounded-lg text-xs sm:text-sm">
@@ -960,7 +907,7 @@ LƯU Ý:
                 {/* Audience Chart - Compact */}
                 {audienceVotes && (
                   <div className="mb-2 sm:mb-4 p-2 sm:p-3 bg-blue-900/90 border-2 border-blue-400 rounded-xl animate-fadeIn">
-                    <p className="text-white text-xs sm:text-sm font-bold text-center mb-1 sm:mb-2">👥 KẾT QUẢ BÌNH CHỌN</p>
+                    <p className="text-white text-xs sm:text-sm font-bold text-center mb-1 sm:mb-2">👥 {t('toolbox.millionaire.audienceResult')}</p>
                     <div className="flex justify-center gap-2 sm:gap-4">
                       {['A', 'B', 'C', 'D'].map((letter, i) => (
                         <div key={letter} className={`text-center ${hidden5050.includes(i) ? 'opacity-20' : ''}`}>
@@ -1031,13 +978,13 @@ LƯU Ý:
                 <div className="mt-2 sm:mt-3 lg:mt-6 text-center pb-2">
                   {!isLocked && selectedAnswer !== null && (
                     <button onClick={lockAnswer} className="altp-action-btn text-xs sm:text-base md:text-lg lg:text-2xl px-3 sm:px-6 lg:px-10 py-1.5 sm:py-3 lg:py-4">
-                      ✓ CHỐT ĐÁP ÁN
+                      {t('toolbox.millionaire.lockAnswer')}
                     </button>
                   )}
 
                   {isLocked && !isRevealed && (
                     <div className="flex flex-col items-center gap-1 lg:gap-3">
-                      <p className="text-yellow-400 text-xs sm:text-lg lg:text-2xl font-bold animate-pulse">Đang chờ kết quả...</p>
+                      <p className="text-yellow-400 text-xs sm:text-lg lg:text-2xl font-bold animate-pulse">{t('toolbox.millionaire.waitingResult')}</p>
                       <div className="flex justify-center gap-1 lg:gap-2">
                         <span className="w-1.5 h-1.5 sm:w-3 sm:h-3 lg:w-4 lg:h-4 bg-orange-400 rounded-full animate-bounce"></span>
                         <span className="w-1.5 h-1.5 sm:w-3 sm:h-3 lg:w-4 lg:h-4 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></span>
@@ -1049,10 +996,10 @@ LƯU Ý:
                   {isRevealed && (
                     <div className="animate-fadeIn">
                       <p className={`text-base sm:text-2xl md:text-3xl lg:text-5xl font-black mb-1.5 lg:mb-4 drop-shadow-lg ${selectedAnswer === currentQuestion.correct ? 'text-green-400' : 'text-red-400'}`}>
-                        {selectedAnswer === currentQuestion.correct ? '🎉 CHÍNH XÁC!' : `❌ Đáp án: ${['A', 'B', 'C', 'D'][currentQuestion.correct]}`}
+                        {selectedAnswer === currentQuestion.correct ? t('toolbox.millionaire.correctAnswer') : t('toolbox.millionaire.wrongAnswer', { answer: ['A', 'B', 'C', 'D'][currentQuestion.correct] })}
                       </p>
                       <button onClick={nextQuestion} className="altp-action-btn text-xs sm:text-base md:text-lg lg:text-2xl px-3 sm:px-6 lg:px-10 py-1.5 sm:py-3 lg:py-4">
-                        {currentIndex + 1 >= questions.length ? '🏁 KẾT QUẢ' : '➡️ TIẾP'}
+                        {currentIndex + 1 >= questions.length ? t('toolbox.millionaire.result') : t('toolbox.millionaire.next')}
                       </button>
                     </div>
                   )}
@@ -1102,7 +1049,7 @@ LƯU Ý:
                   ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
                   : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
               }`}>
-                {gameMode === GAME_MODES.GAMESHOW ? '🎬 Game Show' : '📋 Chơi tất cả'}
+                {gameMode === GAME_MODES.GAMESHOW ? t('toolbox.millionaire.resultScreen.gameShow') : t('toolbox.millionaire.resultScreen.playAllMode')}
               </span>
             </div>
 
@@ -1110,13 +1057,13 @@ LƯU Ý:
               {score >= questions.length * 0.8 ? '🏆' : score >= questions.length * 0.5 ? '🌟' : '💪'}
             </div>
             <h1 className="text-4xl font-black text-yellow-400 mb-4">
-              {score >= questions.length * 0.8 ? 'TRIỆU PHÚ!' : score >= questions.length * 0.5 ? 'XUẤT SẮC!' : 'CỐ GẮNG!'}
+              {score >= questions.length * 0.8 ? t('toolbox.millionaire.resultScreen.champion') : score >= questions.length * 0.5 ? t('toolbox.millionaire.resultScreen.excellent') : t('toolbox.millionaire.resultScreen.tryHarder')}
             </h1>
 
             {/* Game Show mode: show prize money */}
             {gameMode === GAME_MODES.GAMESHOW && (
               <div className="text-5xl font-black text-white mb-3">
-                💰 {score > 0 ? PRIZE_LEVELS[Math.min(score - 1, PRIZE_LEVELS.length - 1)] : '0đ'}
+                💰 {score > 0 ? PRIZE_LEVELS[Math.min(score - 1, PRIZE_LEVELS.length - 1)] : t('toolbox.millionaire.zeroPrize')}
               </div>
             )}
 
@@ -1127,7 +1074,7 @@ LƯU Ý:
               </div>
             )}
 
-            <p className="text-xl text-blue-200 mb-8">{score}/{questions.length} câu đúng</p>
+            <p className="text-xl text-blue-200 mb-8">{t('toolbox.millionaire.resultScreen.correctCount', { score, total: questions.length })}</p>
 
             <div className="flex gap-4 justify-center">
               <button
@@ -1149,12 +1096,12 @@ LƯU Ý:
                 }}
                 className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-all"
               >
-                🔄 Chơi Lại
+                {t('toolbox.millionaire.resultScreen.playAgain')}
               </button>
               <button onClick={resetGame}
                 className="px-8 py-4 bg-white text-gray-700 font-bold rounded-xl shadow-lg hover:scale-105 transition-all"
               >
-                📝 Setup Mới
+                {t('toolbox.millionaire.resultScreen.newSetup')}
               </button>
             </div>
           </div>

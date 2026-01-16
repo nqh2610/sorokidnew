@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useMemo } from 'react';
 import ToolLayout from '@/components/ToolLayout/ToolLayout';
+import { useI18n } from '@/lib/i18n/I18nContext';
 
 // Màu sắc cho các nhóm
 const GROUP_COLORS = [
@@ -18,6 +19,8 @@ const GROUP_COLORS = [
 ];
 
 export default function ChiaNhomBocTham() {
+  const { t } = useI18n();
+  
   // Input
   const [inputText, setInputText] = useState('');
   const [names, setNames] = useState([]);
@@ -157,7 +160,7 @@ export default function ChiaNhomBocTham() {
   }, [mode, pickOnePerson, divideIntoGroups]);
 
   return (
-    <ToolLayout toolName="Chia Nhóm & Bốc Thăm" toolIcon="👥">
+    <ToolLayout toolName={t('groupPicker.toolName')} toolIcon="👥">
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Left Panel: Input & Settings */}
         <div className="w-full lg:w-96 flex-shrink-0 space-y-4">
@@ -165,7 +168,7 @@ export default function ChiaNhomBocTham() {
           <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
             <h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
               <span>📝</span>
-              Danh sách học sinh
+              {t('groupPicker.studentList')}
             </h2>
             
             <textarea
@@ -174,7 +177,7 @@ export default function ChiaNhomBocTham() {
                 setInputText(e.target.value);
                 setShowResults(false);
               }}
-              placeholder="Nhập mỗi dòng một tên học sinh:&#10;Ví dụ:&#10;Minh&#10;Lan&#10;Hùng&#10;Mai&#10;Tuấn"
+              placeholder={t('groupPicker.placeholder')}
               className="w-full h-48 p-4 border-2 border-gray-200 rounded-xl text-lg
                 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 
                 transition-all resize-none"
@@ -183,14 +186,14 @@ export default function ChiaNhomBocTham() {
 
             <div className="mt-4 flex items-center justify-between text-sm">
               <span className="text-gray-500">
-                {nameCount > 0 ? `${nameCount} học sinh` : 'Chưa có tên nào'}
+                {nameCount > 0 ? t('groupPicker.studentCount', { count: nameCount }) : t('groupPicker.noStudents')}
               </span>
               <button
                 onClick={handleClearAll}
                 className="text-red-500 hover:text-red-600 hover:underline"
                 disabled={isAnimating}
               >
-                Xóa tất cả
+                {t('groupPicker.clearAll')}
               </button>
             </div>
           </div>
@@ -198,7 +201,7 @@ export default function ChiaNhomBocTham() {
           {/* Mode Selection */}
           <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
             <h3 className="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wide">
-              Chế độ
+              {t('groupPicker.mode')}
             </h3>
             
             <div className="space-y-3">
@@ -215,8 +218,8 @@ export default function ChiaNhomBocTham() {
                   disabled={isAnimating}
                 />
                 <div>
-                  <span className="text-lg font-medium">🎲 Bốc thăm 1 người</span>
-                  <p className="text-sm text-gray-500">Chọn ngẫu nhiên 1 học sinh</p>
+                  <span className="text-lg font-medium">🎲 {t('groupPicker.pickOne')}</span>
+                  <p className="text-sm text-gray-500">{t('groupPicker.pickOneDesc')}</p>
                 </div>
               </label>
               
@@ -233,8 +236,8 @@ export default function ChiaNhomBocTham() {
                   disabled={isAnimating}
                 />
                 <div>
-                  <span className="text-lg font-medium">👥 Chia nhóm</span>
-                  <p className="text-sm text-gray-500">Chia thành nhiều nhóm ngẫu nhiên</p>
+                  <span className="text-lg font-medium">👥 {t('groupPicker.divideGroups')}</span>
+                  <p className="text-sm text-gray-500">{t('groupPicker.divideGroupsDesc')}</p>
                 </div>
               </label>
             </div>
@@ -244,13 +247,13 @@ export default function ChiaNhomBocTham() {
           {mode === 'group' && (
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
               <h3 className="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wide">
-                Cài đặt chia nhóm
+                {t('groupPicker.groupSettings')}
               </h3>
               
               {/* Group count */}
               <div className="mb-4">
                 <label className="text-gray-700 mb-2 block">
-                  Số nhóm: <span className="font-bold text-violet-600">{groupCount}</span>
+                  {t('groupPicker.groupCount')}: <span className="font-bold text-violet-600">{groupCount}</span>
                 </label>
                 <input
                   type="range"
@@ -278,7 +281,7 @@ export default function ChiaNhomBocTham() {
                   disabled={isAnimating}
                 />
                 <span className="text-gray-700">
-                  👑 Tự động chọn nhóm trưởng
+                  👑 {t('groupPicker.autoLeader')}
                 </span>
               </label>
             </div>
@@ -292,7 +295,7 @@ export default function ChiaNhomBocTham() {
                 font-semibold rounded-xl transition-all disabled:opacity-50"
               disabled={isAnimating || (!pickedPerson && groups.length === 0)}
             >
-              🔄 Làm lại
+              🔄 {t('groupPicker.reset')}
             </button>
             <button
               onClick={handleExecute}
@@ -302,10 +305,10 @@ export default function ChiaNhomBocTham() {
                 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isAnimating 
-                ? '⏳ Đang xử lý...' 
+                ? `⏳ ${t('groupPicker.processing')}` 
                 : mode === 'pick' 
-                  ? '🎲 BỐC THĂM!' 
-                  : '👥 CHIA NHÓM!'
+                  ? `🎲 ${t('groupPicker.pickButton')}` 
+                  : `👥 ${t('groupPicker.divideButton')}`
               }
             </button>
           </div>
@@ -322,12 +325,12 @@ export default function ChiaNhomBocTham() {
               </div>
               <h3 className="text-2xl font-bold text-gray-400 mb-2">
                 {mode === 'pick' 
-                  ? 'Sẵn sàng bốc thăm!' 
-                  : 'Sẵn sàng chia nhóm!'
+                  ? t('groupPicker.readyToPick') 
+                  : t('groupPicker.readyToDivide')
                 }
               </h3>
               <p className="text-gray-400">
-                Nhập danh sách và bấm nút để bắt đầu
+                {t('groupPicker.enterListAndStart')}
               </p>
             </div>
           )}
@@ -348,7 +351,7 @@ export default function ChiaNhomBocTham() {
               text-center min-h-[400px] flex flex-col items-center justify-center">
               <div className="text-6xl mb-6 animate-spin">🔀</div>
               <div className="text-3xl font-bold text-white">
-                Đang chia nhóm...
+                {t('groupPicker.dividingGroups')}
               </div>
             </div>
           )}
@@ -374,7 +377,7 @@ export default function ChiaNhomBocTham() {
                 </div>
                 
                 <div className="text-6xl mb-4">🎉</div>
-                <h2 className="text-2xl font-bold text-white/80">Người được chọn là:</h2>
+                <h2 className="text-2xl font-bold text-white/80">{t('groupPicker.personSelected')}</h2>
               </div>
               
               {/* Result */}
@@ -389,7 +392,7 @@ export default function ChiaNhomBocTham() {
                   className="px-8 py-4 bg-gradient-to-r from-violet-500 to-pink-500 
                     text-white font-bold rounded-full text-xl hover:shadow-lg transition-all"
                 >
-                  🎲 Bốc lại
+                  🎲 {t('groupPicker.pickAgain')}
                 </button>
               </div>
             </div>
@@ -400,10 +403,10 @@ export default function ChiaNhomBocTham() {
             <div className="space-y-4 animate-fadeIn">
               <div className="text-center mb-6">
                 <h2 className="text-2xl font-bold text-gray-800">
-                  🎉 Kết quả chia {groups.length} nhóm
+                  🎉 {t('groupPicker.groupResult', { count: groups.length })}
                 </h2>
                 <p className="text-gray-500">
-                  Tổng cộng {names.length} học sinh
+                  {t('groupPicker.totalStudents', { count: names.length })}
                 </p>
               </div>
 
@@ -422,10 +425,10 @@ export default function ChiaNhomBocTham() {
                     {/* Group header */}
                     <div className={`${group.color.header} text-white p-4 flex items-center justify-between`}>
                       <h3 className="text-xl font-bold">
-                        Nhóm {group.id}
+                        {t('groupPicker.groupLabel', { id: group.id })}
                       </h3>
                       <span className="text-white/80">
-                        {group.members.length} người
+                        {t('groupPicker.memberCount', { count: group.members.length })}
                       </span>
                     </div>
                     
@@ -450,7 +453,7 @@ export default function ChiaNhomBocTham() {
                           {member === group.leader && (
                             <span className="text-xs bg-yellow-400 text-yellow-800 px-2 py-1 
                               rounded-full font-semibold ml-auto">
-                              Nhóm trưởng
+                              {t('groupPicker.leader')}
                             </span>
                           )}
                         </div>
@@ -467,7 +470,7 @@ export default function ChiaNhomBocTham() {
                   className="px-8 py-4 bg-gradient-to-r from-violet-500 to-pink-500 
                     text-white font-bold rounded-full text-xl hover:shadow-lg transition-all"
                 >
-                  🔀 Chia lại ngẫu nhiên
+                  🔀 {t('groupPicker.reshuffleGroups')}
                 </button>
               </div>
             </div>

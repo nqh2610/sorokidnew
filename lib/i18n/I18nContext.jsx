@@ -68,6 +68,7 @@ export function I18nProvider({ children, initialLocale = defaultLocale, dictiona
       
       setIsLoading(true);
       try {
+        // Load dictionary từ file gốc
         const newDict = await import(`./dictionaries/${locale}.json`);
         setDict(newDict.default);
         setLoadedLocale(locale); // Cập nhật locale đã load
