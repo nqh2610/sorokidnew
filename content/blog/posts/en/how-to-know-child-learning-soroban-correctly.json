@@ -1,0 +1,158 @@
+{
+  "slug": "how-to-know-child-learning-soroban-correctly",
+  "title": "How Do I Know If My Child Is Learning Soroban Correctly?",
+  "description": "You're not a soroban expert, so how can you tell if your child is on the right track? Here are the signs to look for.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban progress",
+    "is child learning soroban right",
+    "soroban milestones",
+    "soroban learning signs"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-05T04:49:15.020Z",
+  "createdAt": "2026-01-15",
+  "image": "/blog/dau-hieu-con-hoc-soroban-dung.jpg",
+  "imageAlt": "Child practicing soroban with parent observing",
+  "readingTime": 6,
+  "author": {
+    "name": "Rachel",
+    "role": "Mom of 2nd grader"
+  },
+  "content": {
+    "intro": "I don't know soroban myself, so how do I know if my daughter is actually learning correctly? After months of worry and research, I've identified the signs that matter – and the ones that don't.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Signs Your Child Is On the Right Track"
+      },
+      {
+        "type": "list",
+        "items": [
+          "✅ **Accuracy is high:** Getting most answers correct (80%+)",
+          "✅ **Speed is improving:** Same problems faster over time",
+          "✅ **Can explain their thinking:** \"I added 5 and subtracted 2\"",
+          "✅ **Handles harder problems:** Gradually taking on more difficult challenges",
+          "✅ **Uses mental math sometimes:** Starting to visualize without the physical soroban"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Signs That Might Indicate Issues"
+      },
+      {
+        "type": "list",
+        "items": [
+          "⚠️ **Accuracy below 50%:** May need to go back to easier levels",
+          "⚠️ **No progress for 4+ weeks:** Could be stuck or misunderstanding something",
+          "⚠️ **Frustrated crying regularly:** Might be pushed too hard",
+          "⚠️ **Guessing instead of calculating:** Not using the method properly",
+          "⚠️ **Can't do old problems:** Forgetting earlier skills"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The app tracks accuracy and progress automatically. Check the stats weekly to see trends, not daily fluctuations."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Progress Actually Looks Like"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Timeframe",
+          "Realistic Progress"
+        ],
+        "rows": [
+          [
+            "1-2 weeks",
+            "Understands bead movement, numbers 0-9"
+          ],
+          [
+            "1 month",
+            "Simple addition without carrying"
+          ],
+          [
+            "2-3 months",
+            "Addition/subtraction with carrying/borrowing"
+          ],
+          [
+            "4-6 months",
+            "2-digit + 2-digit problems, some mental math"
+          ],
+          [
+            "6-12 months",
+            "Faster calculation, solid mental visualization"
+          ],
+          [
+            "1+ year",
+            "3+ digit problems, multiplication basics"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "These are rough guidelines. Every child progresses differently. Consistency matters more than speed."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How to Check Without Knowing Soroban"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Watch the app stats:** Accuracy %, problems completed, streaks",
+          "**Random mental math quizzes:** \"What's 14 + 7?\" See how they answer",
+          "**Ask them to teach you:** If they can explain, they understand",
+          "**Compare to their old videos:** Record them now, compare in 3 months"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What NOT to Worry About"
+      },
+      {
+        "type": "list",
+        "items": [
+          "❌ **Comparison to other kids:** Everyone learns differently",
+          "❌ **Occasional bad days:** Progress isn't linear",
+          "❌ **Not being fastest:** Speed comes later, accuracy first",
+          "❌ **Using fingers sometimes:** It's fine while learning"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "If your child is practicing regularly, getting most answers right, and not hating it – they're doing fine. Don't overthink it."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Should I learn soroban myself to help?",
+        "answer": "Helpful but not required. You can encourage, monitor progress, and celebrate wins without knowing the technique yourself."
+      },
+      {
+        "question": "What if the app says they're progressing but I don't see changes?",
+        "answer": "Mental math improvement is subtle. Give it 3+ months before expecting obvious real-world differences."
+      },
+      {
+        "question": "My child's accuracy dropped suddenly. Should I worry?",
+        "answer": "Check if they moved to harder problems (normal drop), are distracted, or rushing. One bad week isn't a concern – sustained drops are worth investigating."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Our app provides detailed progress reports. Know exactly where your child stands.",
+      "buttonText": "See Progress Features",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "lam-sao-biet-con-hoc-soroban-dung-huong"
+}

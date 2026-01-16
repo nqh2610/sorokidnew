@@ -26,7 +26,9 @@
     "i18n:sync": "node lib/i18n/scripts/sync-check.js",
     "i18n:sync:fix": "node lib/i18n/scripts/sync-check.js --fix",
     "i18n:validate": "node lib/i18n/scripts/validate.js",
-    "i18n:check": "npm run i18n:validate && npm run i18n:sync"
+    "i18n:check": "npm run i18n:validate && npm run i18n:sync",
+    "blog:scaffold-en": "node scripts/blog-scaffold-en.js",
+    "blog:sync": "node scripts/blog-sync-check.js"
   },
   "prisma": {
     "seed": "node prisma/seed-lessons.js"

@@ -1,0 +1,193 @@
+{
+  "slug": "my-child-often-makes-simple-mistakes",
+  "title": "My Child Often Makes Simple Mistakes in Math – Why?",
+  "description": "Understanding careless errors and how to reduce them without creating anxiety.",
+  "category": "math-struggles",
+  "keywords": [
+    "careless mistakes",
+    "simple errors",
+    "silly mistakes math",
+    "attention to detail"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/be-lam-sai-toan.jpg",
+  "imageAlt": "Child reviewing math errors",
+  "readingTime": 6,
+  "author": {
+    "name": "Jennifer Martinez",
+    "role": "Math Teacher"
+  },
+  "content": {
+    "intro": "\"They know how to do it but keep making silly mistakes!\" This is one of the most frustrating parent experiences. Here's what's really happening.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why \"Careless\" Mistakes Happen"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. It's Not Actually Carelessness"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kids don't usually make mistakes because they don't care. They make mistakes because:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Processing overload:** Working memory is maxed out",
+          "**Automaticity gaps:** Some facts aren't automatic yet",
+          "**Speed pressure:** Rushing leads to errors",
+          "**Visual issues:** Misreading numbers or signs",
+          "**Fatigue:** Attention fades late in a session"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Immature Executive Function"
+      },
+      {
+        "type": "paragraph",
+        "text": "Checking work, catching errors, self-monitoring – these are executive function skills. Kids' brains are still developing these abilities."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Common \"Careless\" Errors"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Error Type",
+          "What's Really Happening"
+        ],
+        "rows": [
+          [
+            "Wrong operation (+, -, ×, ÷)",
+            "Not reading carefully or operation isn't automatic"
+          ],
+          [
+            "Copying wrong",
+            "Visual processing or attention issue"
+          ],
+          [
+            "Forgetting to carry/borrow",
+            "Working memory overload"
+          ],
+          [
+            "Missing negative signs",
+            "Not automatic, needs more practice"
+          ],
+          [
+            "Calculation errors (7+8=14)",
+            "Fact isn't fully automatic"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategies to Reduce Errors"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Build Automaticity"
+      },
+      {
+        "type": "paragraph",
+        "text": "Many \"careless\" errors disappear when facts are fully automatic. More practice on basics = fewer errors later."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Slow Down"
+      },
+      {
+        "type": "paragraph",
+        "text": "Speed isn't the goal for struggling kids. \"Take your time\" actually helps."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Check Strategically"
+      },
+      {
+        "type": "paragraph",
+        "text": "Teach specific checking strategies: Does this answer make sense? Can I estimate to verify? What operation did I use?"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Reduce Load"
+      },
+      {
+        "type": "paragraph",
+        "text": "Fewer problems done well > many problems done carelessly. Quality over quantity."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Physical Strategies"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Use finger to track",
+          "Circle operation signs",
+          "Underline key information",
+          "Work on graph paper for alignment"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Don't say \"be more careful\" – it doesn't help. Instead, give specific strategies: \"Point to each number as you read it.\""
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Errors Signal Something More"
+      },
+      {
+        "type": "paragraph",
+        "text": "Consider evaluation if errors include:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Persistent number reversal (past age 7)",
+          "Consistent visual confusion",
+          "Problems that don't improve with practice",
+          "Frustration disproportionate to difficulty"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Should I point out every mistake?",
+        "answer": "No. It becomes demoralizing. Focus on patterns. Address the types of errors, not every instance."
+      },
+      {
+        "question": "Will errors go away with age?",
+        "answer": "Some will (executive function develops). Others need targeted intervention. Practice helps regardless."
+      },
+      {
+        "question": "Is this a sign of a learning disability?",
+        "answer": "Not necessarily. Most \"careless\" errors are developmental and improve with practice and age. Persistent issues despite practice may warrant evaluation."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid's repetitive practice builds the automaticity that reduces careless errors.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-hay-lam-sai-phep-tinh-don-gian"
+}

@@ -1,0 +1,49 @@
+{
+  "postId": "con-lop-1-chua-biet-cong-tru-tram-vi",
+  "slug": "con-lp-1-cha-bit-cng-tr-trong-phm-vi-10-mnh-c-lo-qu-khng",
+  "title": "[EN] Con lớp 1 chưa biết cộng trừ trong phạm vi 10 – mình có lo quá không?",
+  "description": "[Needs translation] Bạn bè cộng trừ nhoay nhoáy, con mình còn đếm ngón tay. Mình so sánh rồi lo lắng.",
+  "category": "when-kids-struggle-with-math",
+  "keywords": [
+    "con lớp 1 chậm toán",
+    "trẻ chưa biết cộng trừ",
+    "lo lắng con học toán"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-lop-1-hoc-toan.jpg",
+  "imageAlt": "Bé lớp 1 châu Á đang học cộng trừ",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Họp phụ huynh, mình nghe mẹ khác khoe: \"Con tôi cộng trừ trong 20 rồi.\" Con mình còn đang loay hoay 3 + 4. Mình so sánh, rồi lo.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình từng so sánh rất nhiều"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Sao con người ta giỏi thế?\" – Mình nghĩ liên tục. Rồi về nhà ép con học nhiều hơn. Con khóc. Mình stress."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình hỏi cô giáo"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cô nói: \"Mỗi trẻ có tốc độ riêng. Cuối lớp 1 con biết cộng trừ trong 10 là đạt chuẩn. Không cần vội.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình nhẹ lòng hơn. Hóa ra mình đang kỳ vọng quá cao."
+      }
+    ]
+  }
+}

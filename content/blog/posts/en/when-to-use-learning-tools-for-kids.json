@@ -1,0 +1,191 @@
+{
+  "slug": "when-to-use-learning-tools-for-kids",
+  "title": "When Should Parents Use Learning Apps and Tools?",
+  "description": "A practical guide to knowing when educational technology helps vs. when it's a distraction.",
+  "category": "stress-free-math-learning",
+  "keywords": [
+    "educational technology",
+    "learning apps",
+    "edtech for kids",
+    "when to use apps"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-28T05:50:21.456Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/phu-huynh-dung-cong-cu-ho-tro.jpg",
+  "imageAlt": "Child using educational app effectively",
+  "readingTime": 6,
+  "author": {
+    "name": "Kevin Chen",
+    "role": "EdTech Consultant"
+  },
+  "content": {
+    "intro": "There are thousands of learning apps. Some parents use them for everything, some avoid them completely. Here's a balanced framework.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Learning Tools Help"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Practice and Fluency"
+      },
+      {
+        "type": "paragraph",
+        "text": "Apps excel at providing high-volume practice with immediate feedback. Flashcards, math drills, spelling practice – technology does this well."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. When Parents Can't Teach"
+      },
+      {
+        "type": "paragraph",
+        "text": "If you don't know soroban, an app can teach your child. If your math skills are rusty, an adaptive app adjusts better than your guessing."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. For Consistent Daily Practice"
+      },
+      {
+        "type": "paragraph",
+        "text": "Apps track streaks, remind about practice, and gamify consistency. They're accountability partners that don't get tired or frustrated."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. When Engagement is the Problem"
+      },
+      {
+        "type": "paragraph",
+        "text": "A child who won't touch a worksheet might engage with a well-designed app. If the alternative is zero practice, the app wins."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The best learning happens when apps supplement (not replace) human teaching and real-world application."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When to Avoid Learning Tools"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. For Conceptual Understanding"
+      },
+      {
+        "type": "paragraph",
+        "text": "Apps are worse than humans at explaining \"why.\" For building deep understanding of new concepts, human instruction (teacher, tutor, or parent) is better."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. When Screen Time is Already High"
+      },
+      {
+        "type": "paragraph",
+        "text": "If your child already has 3+ hours of screen time, adding more (even \"educational\") may not be wise. Physical manipulatives might be better."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. For Very Young Children"
+      },
+      {
+        "type": "paragraph",
+        "text": "Under age 3-4, screen-based learning isn't recommended. Physical play, counting objects, and conversation teach more at this age."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. When the App Isn't Actually Educational"
+      },
+      {
+        "type": "paragraph",
+        "text": "Some \"learning\" apps are mostly entertainment with minimal learning. If 80% is watching animations and 20% is math, it's not really math practice."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How to Evaluate Learning Apps"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Check",
+          "What to Look For"
+        ],
+        "rows": [
+          [
+            "Learning time",
+            ">70% of time spent on actual learning activities"
+          ],
+          [
+            "Feedback",
+            "Immediate, specific feedback on errors"
+          ],
+          [
+            "Progression",
+            "Adapts to child's level, mastery-based advancement"
+          ],
+          [
+            "Data",
+            "Parent dashboard showing progress"
+          ],
+          [
+            "No ads",
+            "No ads or inappropriate content"
+          ],
+          [
+            "Research",
+            "Based on learning science, not just gamification"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Balanced Approach"
+      },
+      {
+        "type": "paragraph",
+        "text": "Our recommendation: Use apps for 10-15 minutes daily of structured practice. Combine with:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Real-world math in daily life",
+          "Physical manipulatives when available",
+          "Human instruction for new concepts",
+          "Discussion about what they're learning"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "How many learning apps should my child use?",
+        "answer": "Less is more. 1-2 well-chosen apps used consistently beats 10 apps used randomly. Depth > breadth."
+      },
+      {
+        "question": "Should I pay for premium apps?",
+        "answer": "Often yes. Free apps usually have ads, limited content, or sell data. A good paid app ($5-15/month) is worth it if used consistently."
+      },
+      {
+        "question": "Can apps replace tutoring?",
+        "answer": "For practice, often yes. For teaching new concepts or addressing deep struggles, human tutors are still better."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid provides focused, effective daily practice with real learning science behind it.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "khi-nao-phu-huynh-nen-dung-cong-cu-ho-tro"
+}

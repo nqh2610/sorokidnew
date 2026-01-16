@@ -1,0 +1,179 @@
+{
+  "slug": "my-child-struggles-with-borrowing-in-subtraction",
+  "title": "My Child Struggles with Borrowing in Subtraction – A Clear Guide",
+  "description": "Breaking down why regrouping (borrowing) is confusing and concrete strategies to help it click.",
+  "category": "math-struggles",
+  "keywords": [
+    "borrowing subtraction",
+    "regrouping",
+    "subtraction with regrouping",
+    "math borrowing"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-30T11:00:00.000Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/tranh-sai-lam-hoc-soroban.jpg",
+  "imageAlt": "Child learning subtraction with regrouping",
+  "readingTime": 7,
+  "author": {
+    "name": "Lisa Martinez",
+    "role": "2nd Grade Teacher"
+  },
+  "content": {
+    "intro": "Borrowing (regrouping) trips up countless kids. They understand basic subtraction, but as soon as the top digit is smaller than the bottom, everything falls apart. Here's how to help.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Borrowing Is Confusing"
+      },
+      {
+        "type": "list",
+        "items": [
+          "It's abstract – \"borrowing from the tens place\" is conceptually weird",
+          "Multiple steps to track (cross out, add, remember to reduce)",
+          "Requires understanding place value deeply",
+          "Easy to forget to reduce the borrowed-from digit",
+          "Different from any real-world experience"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Common Errors"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Error",
+          "Example",
+          "What's Happening"
+        ],
+        "rows": [
+          [
+            "Subtracting smaller from larger",
+            "52-38=26 (took 2 from 8)",
+            "Doesn't understand borrowing is needed"
+          ],
+          [
+            "Forgetting to reduce",
+            "52-38=24 (borrowed but left 5)",
+            "Missed a step"
+          ],
+          [
+            "Borrowing when not needed",
+            "58-32=16 (borrowed anyway)",
+            "Over-applying the rule"
+          ],
+          [
+            "Borrowing across zeros",
+            "402-138 becomes a mess",
+            "Multiple regroupings are confusing"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Building Understanding First"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before teaching the algorithm, make sure your child understands:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Place value: 52 = 5 tens + 2 ones (not just \"five-two\")",
+          "10 ones = 1 ten (and vice versa)",
+          "Numbers can be decomposed: 52 = 4 tens + 12 ones",
+          "Subtraction means finding the difference"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Teaching Strategies That Work"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Use Physical Manipulatives"
+      },
+      {
+        "type": "paragraph",
+        "text": "Base-10 blocks make borrowing concrete. To solve 52-38:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Show 5 ten-rods and 2 unit-cubes",
+          "\"Can we take 8 units? We only have 2\"",
+          "\"Let's trade a ten-rod for 10 unit-cubes\"",
+          "Now we have 4 tens and 12 ones",
+          "Take away 3 tens and 8 ones = 1 ten and 4 ones = 14"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Number Line Method"
+      },
+      {
+        "type": "paragraph",
+        "text": "For 52-38: Start at 38, count up to 52. 38→40 is 2, 40→50 is 10, 50→52 is 2. Total: 14."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Expanded Form"
+      },
+      {
+        "type": "paragraph",
+        "text": "52-38 becomes (50+2)-(30+8). Since 2<8, rewrite as (40+12)-(30+8). Now: 40-30=10, 12-8=4. Answer: 14."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The traditional algorithm is efficient but conceptually difficult. Make sure your child understands WHY borrowing works before drilling the procedure."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Practice Sequence"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Start with single-digit subtraction facts (solid foundation)",
+          "2-digit minus 1-digit, no regrouping (53-2)",
+          "2-digit minus 2-digit, no regrouping (57-34)",
+          "2-digit minus 2-digit with regrouping (52-38)",
+          "3-digit with single regroup (352-138)",
+          "Multiple regroupings and zeros (402-138)"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Why does my child borrow when they don't need to?",
+        "answer": "They're probably applying a rule without understanding. Go back to the question: \"Is the top number big enough to subtract the bottom number?\" If yes, no borrowing needed."
+      },
+      {
+        "question": "Borrowing across zeros is a nightmare. Any tips?",
+        "answer": "Practice \"chaining\" – when you borrow from a zero, you need to borrow from the next place first. Use expanded form or manipulatives to show 400 = 3 hundreds + 10 tens = 3 hundreds + 9 tens + 10 ones."
+      },
+      {
+        "question": "Should I teach an alternative method?",
+        "answer": "If the standard algorithm isn't clicking, yes. The number line method and counting up are excellent alternatives that some kids find more intuitive."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid teaches subtraction with soroban – a visual, hands-on approach that makes regrouping intuitive.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-hay-lam-sai-phep-tru-co-nho"
+}

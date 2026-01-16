@@ -1,0 +1,164 @@
+{
+  "slug": "is-soroban-really-that-good",
+  "title": "Is Soroban Really as Good as People Say? A Skeptic's Guide",
+  "description": "Soroban fans make big claims. Are they real or hype? Here's an honest look at what soroban can and can't do.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "is soroban worth it",
+    "soroban benefits real",
+    "soroban hype vs reality",
+    "soroban honest review"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-02T09:37:51.381Z",
+  "createdAt": "2026-01-23",
+  "image": "/blog/gia-dinh-hoc-soroban-tai-nha.jpg",
+  "imageAlt": "Skeptical parent evaluating soroban claims",
+  "readingTime": 7,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "\"Soroban will make your child a math genius!\" \"It rewires the brain!\" \"It's the secret of Asian math success!\" The claims can sound over-the-top. What's real? What's hype? Let's be honest.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Claims That ARE Supported by Research"
+      },
+      {
+        "type": "list",
+        "items": [
+          "✅ **Improves arithmetic speed:** Yes. This is well-documented.",
+          "✅ **Enhances working memory:** Multiple studies confirm this.",
+          "✅ **Develops number sense:** Understanding how numbers work together.",
+          "✅ **Activates different brain areas:** fMRI studies show unique activation patterns.",
+          "✅ **Benefits transfer somewhat:** Some improvement in non-trained math tasks."
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Claims That Are Overstated"
+      },
+      {
+        "type": "list",
+        "items": [
+          "⚠️ **\"Makes kids geniuses\":** It improves specific skills, not general intelligence.",
+          "⚠️ **\"All Asian math success is from soroban\":** Lots of factors; soroban is one.",
+          "⚠️ **\"Works equally for everyone\":** Results vary by individual.",
+          "⚠️ **\"Quick results guaranteed\":** Takes months of consistent practice.",
+          "⚠️ **\"Fixes all math problems\":** Helps arithmetic, not word problems or geometry."
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What You Should Realistically Expect"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "If Your Child Practices...",
+          "Realistic Outcome"
+        ],
+        "rows": [
+          [
+            "Inconsistently (few times/week)",
+            "Minimal benefit"
+          ],
+          [
+            "15 min/day for 3 months",
+            "Noticeable arithmetic improvement"
+          ],
+          [
+            "15 min/day for 6 months",
+            "Solid calculation skills, some mental math"
+          ],
+          [
+            "15 min/day for 1+ year",
+            "Strong mental math, confident with numbers"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Soroban Won't Do"
+      },
+      {
+        "type": "list",
+        "items": [
+          "❌ Won't magically fix math anxiety (though confidence can help)",
+          "❌ Won't teach word problems or reading comprehension",
+          "❌ Won't replace a good math curriculum",
+          "❌ Won't work without consistent practice",
+          "❌ Won't make every child love math"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Soroban is a tool, not magic. It works because it provides structured, consistent practice with excellent visual representation. The results come from the practice, not the tool itself."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "So, Is It Worth It?"
+      },
+      {
+        "type": "paragraph",
+        "text": "For most families, yes, if:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "You can commit to 15-20 minutes of daily practice",
+          "Your child is willing (not forced)",
+          "You have realistic expectations",
+          "You want to build calculation speed and number sense"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "It might not be worth it if:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "You expect quick results without consistent practice",
+          "Your child is strongly resistant",
+          "You're looking for a fix for all math problems",
+          "You can't commit to daily practice"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "The honest answer: Soroban is genuinely valuable, but it's not magic. It's a proven method that requires real commitment. If you're willing to put in the time, the benefits are real."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Are the viral videos of kids calculating insanely fast real?",
+        "answer": "Yes, those kids are real. But they represent the top performers after years of intense training. Most kids won't reach that level – and that's okay."
+      },
+      {
+        "question": "Is soroban better than other math programs?",
+        "answer": "\"Better\" depends on goals. For calculation speed and mental math? Soroban excels. For comprehensive curriculum? Other programs may be better."
+      },
+      {
+        "question": "Should I believe the 5-star reviews?",
+        "answer": "Be skeptical of extremes in either direction. Most kids benefit moderately – better at mental math, more confident, but not superhuman."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Try it yourself and see what soroban can do for your child.",
+      "buttonText": "Start Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "soroban-co-that-su-tot-nhu-loi-don"
+}

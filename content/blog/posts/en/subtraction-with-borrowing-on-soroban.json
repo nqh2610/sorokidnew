@@ -1,0 +1,181 @@
+{
+  "slug": "subtraction-with-borrowing-on-soroban",
+  "title": "Subtraction with Borrowing on the Soroban: The Reverse of Carrying",
+  "description": "When 12-7 needs borrowing from the tens column, here's how the soroban handles it elegantly.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban borrowing",
+    "soroban regrouping",
+    "abacus borrowing",
+    "10 complement subtraction"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-29T01:32:21.604Z",
+  "createdAt": "2026-01-05",
+  "image": "/blog/tre-hoc-phep-tru-co-muon.jpg",
+  "imageAlt": "Subtraction with borrowing on soroban",
+  "readingTime": 6,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "Subtraction with borrowing is the mirror image of addition with carrying. When you can't subtract because there aren't enough beads in a column, you borrow from the next column. Here's how.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Problem"
+      },
+      {
+        "type": "paragraph",
+        "text": "12 - 7. The ones column shows 2, but we need to subtract 7. There aren't enough beads to remove. We need to borrow from tens."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The 10-Complement Method for Subtraction"
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "When you can't subtract directly, borrow 10 from the tens column and add the complement to ones."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Example: 12 - 7"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Step 1:** Set 12 (1 in tens, 2 in ones)",
+          "**Step 2:** Subtract 7 from ones... can't! Only 2 beads there",
+          "**Step 3:** Borrow: Remove 1 from tens, add 10's complement of 7",
+          "**Step 4:** Complement of 7 is 3, so add 3 to ones: 2 + 3 = 5",
+          "**Step 5:** Read: 5 ✓"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The logic: 12 - 7 = 12 - 10 + 3 = 2 + 3 = 5"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Example: 15 - 8"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Step 1:** Set 15 (1 in tens, 5 in ones)",
+          "**Step 2:** Subtract 8 from ones... can't! Only 5 beads there",
+          "**Step 3:** Complement of 8 is 2",
+          "**Step 4:** Borrow 10 (remove 1 from tens), add 2 to ones: 5 + 2 = 7",
+          "**Step 5:** Read: 7 ✓"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Complements for Subtraction"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Subtract",
+          "Can't subtract?",
+          "Action"
+        ],
+        "rows": [
+          [
+            "1",
+            "Add 9 to ones",
+            "Borrow 10, add 9"
+          ],
+          [
+            "2",
+            "Add 8 to ones",
+            "Borrow 10, add 8"
+          ],
+          [
+            "3",
+            "Add 7 to ones",
+            "Borrow 10, add 7"
+          ],
+          [
+            "4",
+            "Add 6 to ones",
+            "Borrow 10, add 6"
+          ],
+          [
+            "5",
+            "Add 5 to ones",
+            "Borrow 10, add 5"
+          ],
+          [
+            "6",
+            "Add 4 to ones",
+            "Borrow 10, add 4"
+          ],
+          [
+            "7",
+            "Add 3 to ones",
+            "Borrow 10, add 3"
+          ],
+          [
+            "8",
+            "Add 2 to ones",
+            "Borrow 10, add 2"
+          ],
+          [
+            "9",
+            "Add 1 to ones",
+            "Borrow 10, add 1"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Practice Problems"
+      },
+      {
+        "type": "list",
+        "items": [
+          "11 - 4 = 7 (borrow 10, add 6 to ones: 1+6=7)",
+          "13 - 6 = 7 (borrow 10, add 4: 3+4=7)",
+          "14 - 9 = 5 (borrow 10, add 1: 4+1=5)",
+          "16 - 8 = 8 (borrow 10, add 2: 6+2=8)",
+          "11 - 5 = 6 (borrow 10, add 5: 1+5=6)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Notice the pattern: borrowing in subtraction is exactly the opposite of carrying in addition. Same complements, opposite direction."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Is borrowing harder than carrying?",
+        "answer": "Many kids find it slightly harder because it's the \"reverse\" action. But with practice, both become equally automatic."
+      },
+      {
+        "question": "What if there's nothing to borrow?",
+        "answer": "Keep borrowing from higher columns. Same principle, just more steps. The soroban handles arbitrarily large numbers this way."
+      },
+      {
+        "question": "Should my child practice carrying and borrowing together?",
+        "answer": "Yes. They reinforce each other since they're inverse operations. Mixing them helps build understanding of the number system."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Practice borrowing with guided step-by-step lessons in our app.",
+      "buttonText": "Try Borrowing Practice",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "phep-tru-co-muon-soroban"
+}

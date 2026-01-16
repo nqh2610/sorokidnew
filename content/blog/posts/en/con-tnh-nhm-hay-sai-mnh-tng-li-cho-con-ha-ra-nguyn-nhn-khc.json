@@ -1,0 +1,51 @@
+{
+  "postId": "con-tinh-nham-hay-sai-do-dau",
+  "slug": "con-tnh-nhm-hay-sai-mnh-tng-li-cho-con-ha-ra-nguyn-nhn-khc",
+  "title": "[EN] Con tính nhẩm hay sai – Mình từng đổ lỗi cho con, hóa ra nguyên nhân khác",
+  "description": "[Needs translation] Con tính 7+8=14, mình la con sai đơn giản vậy cũng sai. Nhưng sau khi tìm hiểu, mình nhận ra lỗi không phải ở con. Đây là hành trình mình sửa lại cách dạy con.",
+  "category": "when-kids-struggle-with-math",
+  "keywords": [
+    "con tính nhẩm sai",
+    "rèn tính nhẩm cho con",
+    "cách tính nhẩm nhanh",
+    "trẻ hay tính sai",
+    "dạy con tính nhẩm",
+    "luyện tính nhẩm cho bé"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-30T10:00:00.000Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/tre-luyen-tinh-nham-anzan.jpg",
+  "imageAlt": "Bé luyện tính nhẩm",
+  "readingTime": 8,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"7 + 8 bằng mấy con?\" – \"14 ạ!\" – \"SAI! Bao nhiêu lần rồi, sao con không tập trung!\" Đó là câu mình hay nói với con suốt mấy tháng trời. Mỗi lần con tính nhẩm sai, mình lại nổi cáu. Mình nghĩ con không chịu nghe, con không tập trung. Cho đến khi một cô giáo nói với mình: \"Chị ơi, con không sai vì lười. Con sai vì chưa có nền tảng.\" Câu nói đó thay đổi hoàn toàn cách mình nhìn nhận vấn đề.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình Từng Nghĩ Con Lười Suy Nghĩ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con gái mình năm nay lớp 2. Toán ở lớp không quá khó, nhưng con cứ tính nhẩm là sai. Những phép cộng đơn giản như 8+7, 9+6, 15+8... con đều ra kết quả lệch 1 hoặc 2."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình nhớ có lần, cô giao bài về nhà 20 phép tính cộng trừ trong 10 phút. Con làm xong mình kiểm tra: sai 8 câu. Toàn những phép tính đơn giản."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình tức lắm. \"Con không nghĩ gì khi làm à? Mẹ đã dạy con bao nhiêu lần rồi?\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Con cúi đầu im lặng. Mắt con rơm rớm."
+      }
+    ]
+  }
+}

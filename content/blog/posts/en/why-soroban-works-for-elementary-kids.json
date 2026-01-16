@@ -1,0 +1,133 @@
+{
+  "slug": "why-soroban-works-for-elementary-kids",
+  "title": "I Had No Idea What Soroban Was – Now I Get Why Parents Swear By It",
+  "description": "I'd never heard of Soroban until other parents kept mentioning it. Here's what I learned after researching and trying it with my kid.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "what is soroban",
+    "japanese abacus for kids",
+    "soroban benefits",
+    "abacus learning",
+    "mental math method"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-25T02:37:22.160Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/soroban-phu-hop-tre-tieu-hoc.jpg",
+  "imageAlt": "Child learning mental math with Soroban abacus",
+  "readingTime": 6,
+  "author": {
+    "name": "Jessica",
+    "role": "Mom of 2nd grader"
+  },
+  "content": {
+    "intro": "First time I heard \"Soroban,\" I thought: \"What's that?\" I had no clue what it was or why so many parents were putting their kids in Soroban classes. After digging into it, I finally get it – and I want to share what I found.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Even Is Soroban?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Simply put: Soroban is the Japanese abacus. It's like the bead calculators our grandparents used, but with a different design that makes it faster."
+      },
+      {
+        "type": "paragraph",
+        "text": "It has columns, each with 5 beads: 1 bead on top (representing 5) and 4 beads below (each worth 1). Kids slide beads up and down to calculate."
+      },
+      {
+        "type": "paragraph",
+        "text": "Here's the cool part: After practicing with a physical abacus, kids start visualizing it in their heads and do mental math – that's called \"Anzan\" or mental Soroban."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why I Got Curious"
+      },
+      {
+        "type": "paragraph",
+        "text": "My kid was learning math the traditional way – memorizing facts, doing worksheets – but wasn't really understanding. She could recite \"7 + 8 = 15\" like a song, but couldn't actually picture why."
+      },
+      {
+        "type": "paragraph",
+        "text": "When I read about Soroban, I saw a different approach: kids \"see\" numbers through images. I thought: maybe this could click better for her?"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What I Learned About Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "After researching, here's what stood out:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Visual learning:** Kids see bead positions to understand numbers, not just memorize",
+          "**Builds focus:** Moving beads correctly requires concentration",
+          "**Develops mental math:** The end goal is calculating in your head without the abacus",
+          "**Great for young kids:** Ages 6-10 are in a prime stage for visual thinking – learning through images comes naturally"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "My Initial Concerns"
+      },
+      {
+        "type": "paragraph",
+        "text": "**\"Will it confuse her with school math?\"** – I worried about this too. But Soroban doesn't conflict with school math. It's a different approach that actually complements what she's learning."
+      },
+      {
+        "type": "paragraph",
+        "text": "**\"I don't know Soroban – how can I help her?\"** – This was my biggest worry. Turns out, I didn't need to know it. The Sorokid app guides her step by step. I just need to be there for support."
+      },
+      {
+        "type": "paragraph",
+        "text": "**\"How much time does it take?\"** – About 15-20 minutes daily. Not a lot, but consistency matters."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "If you're wondering like I was, don't worry. You don't need to understand everything about Soroban to let your kid try it. What matters is seeing if it's a good fit."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How It's Going for My Kid"
+      },
+      {
+        "type": "paragraph",
+        "text": "I had her try the Sorokid app. The first week was awkward – everything was new. But she got the hang of it. What she loves most is \"leveling up\" after each lesson."
+      },
+      {
+        "type": "paragraph",
+        "text": "After about a month, I noticed she's doing mental math faster. Simple problems like 23 + 15? She does them in her head now. Before, she needed to write them out."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "I'm not saying Soroban is magic. But for us, it's been a better way for her to connect with numbers. That's worth something."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Is Soroban the same as Chinese abacus?",
+        "answer": "Similar concept, but Soroban (Japanese) has fewer beads per column, making it faster. Chinese abacus has 2 beads on top and 5 below, while Soroban has 1 and 4."
+      },
+      {
+        "question": "Do I need to buy a physical abacus?",
+        "answer": "It helps to have one for tactile learning, but apps like Sorokid include virtual abacuses that work well too. A physical one costs around $10-15."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Curious if Soroban might work for your child? The Sorokid app offers a free trial – no commitment, just exploring.",
+      "buttonText": "Try Free",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "soroban-la-gi-vi-sao-phu-hop-voi-tre-tieu-hoc"
+}

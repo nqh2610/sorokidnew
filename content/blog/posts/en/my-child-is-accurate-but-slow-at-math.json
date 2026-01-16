@@ -1,0 +1,165 @@
+{
+  "slug": "my-child-is-accurate-but-slow-at-math",
+  "title": "My Child Is Accurate But Slow at Math – Is That a Problem?",
+  "description": "When mathematical accuracy comes at the cost of speed, and how to find the right balance.",
+  "category": "math-struggles",
+  "keywords": [
+    "accurate but slow",
+    "math speed",
+    "careful math student",
+    "math fluency"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/lam-toan-cham.jpg",
+  "imageAlt": "Student carefully solving math problems",
+  "readingTime": 6,
+  "author": {
+    "name": "Michelle Torres",
+    "role": "Math Education Consultant"
+  },
+  "content": {
+    "intro": "Your child gets math problems right – but takes forever. They're not struggling with concepts, just pace. Should you push for speed?",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Good News First"
+      },
+      {
+        "type": "paragraph",
+        "text": "Accuracy matters more than speed. A child who understands math deeply and gets answers right has a solid foundation. Many slow, accurate kids become strong mathematicians."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Speed Matters"
+      },
+      {
+        "type": "paragraph",
+        "text": "Unfortunately, real-world constraints make speed relevant:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Standardized tests have time limits",
+          "Homework can't take all evening",
+          "Mental math situations require quick responses",
+          "Building fluency requires some automaticity",
+          "Math anxiety can develop from always being last"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Accurate Kids Are Slow"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Reason",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Perfectionism",
+            "Won't move on until absolutely certain"
+          ],
+          [
+            "Fear of mistakes",
+            "Double and triple checks everything"
+          ],
+          [
+            "Conscious processing",
+            "Hasn't automated basic facts"
+          ],
+          [
+            "Methodical personality",
+            "Naturally thorough and careful"
+          ],
+          [
+            "Lack of confidence",
+            "Knows the answer but second-guesses"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How to Build Speed Without Sacrificing Accuracy"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Automate Basic Facts"
+      },
+      {
+        "type": "paragraph",
+        "text": "The biggest speed killer is not having instant recall of addition, subtraction, multiplication, and division facts. Practice until these are reflexive, not calculated."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Gentle Time Awareness"
+      },
+      {
+        "type": "paragraph",
+        "text": "Introduce time as information, not pressure. \"Let's see how long this takes\" rather than \"You have 5 minutes.\" Build awareness before building pressure."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Race Themselves, Not Others"
+      },
+      {
+        "type": "paragraph",
+        "text": "Personal bests are motivating. \"You did 10 problems in 8 minutes last week. Can you do it in 7 minutes this week?\" Progress, not comparison."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Practice Letting Go"
+      },
+      {
+        "type": "paragraph",
+        "text": "For perfectionists: \"What's your best guess? Write it and move on.\" Sometimes getting it wrong isn't catastrophic."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Build Confidence"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kids who trust their abilities don't need to triple-check. Confidence comes from consistent practice and success."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The goal is fluency, not frantic speed. A fluent math student is accurate AND reasonably quick – not because they rush, but because the basics are automatic."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Should I time homework?",
+        "answer": "Not generally. But you can note how long things take and set reasonable limits. If homework is taking 2 hours when it should take 30 minutes, that's information to share with the teacher."
+      },
+      {
+        "question": "Will speed come naturally with practice?",
+        "answer": "Usually, yes. As concepts become more familiar and facts become automatic, speed naturally improves. But deliberate fluency practice can accelerate this."
+      },
+      {
+        "question": "My child panics under time pressure. What do I do?",
+        "answer": "Start with no pressure and very gradually add time awareness. Build confidence first. Consider whether anxiety needs to be addressed separately."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid builds math fluency gradually – helping accurate kids become accurate AND confident with pace.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-lam-toan-dung-nhung-cham"
+}

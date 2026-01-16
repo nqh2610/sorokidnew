@@ -1,0 +1,174 @@
+{
+  "slug": "my-child-is-afraid-of-math",
+  "title": "My Child Is Afraid of Math – Now What?",
+  "description": "Practical steps to help a child overcome fear and anxiety around mathematics.",
+  "category": "math-struggles",
+  "keywords": [
+    "math fear",
+    "math anxiety",
+    "overcoming math fear",
+    "scared of math"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-05T11:00:00.000Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/con-so-hoc-toan.jpg",
+  "imageAlt": "Child looking worried at math problems",
+  "readingTime": 7,
+  "author": {
+    "name": "Dr. Sarah Mitchell",
+    "role": "Child Psychologist"
+  },
+  "content": {
+    "intro": "When your child's eyes well up at the sight of a math worksheet, it's not about being \"bad at math.\" It's fear. And fear can be addressed.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understanding Math Fear"
+      },
+      {
+        "type": "paragraph",
+        "text": "Math anxiety is real and documented. Brain imaging shows that math anxiety activates the same regions as physical pain. Your child isn't exaggerating – they're experiencing genuine distress."
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Studies estimate 20-25% of students experience moderate to high math anxiety. It's more common than you think."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Signs of Math Fear"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Avoiding math homework (\"I forgot\" / \"I'll do it later\")",
+          "Physical symptoms before math (stomachache, headache)",
+          "Crying or tantrums around math time",
+          "Negative self-talk (\"I'm stupid\" / \"I can't do this\")",
+          "Blank mind during tests (knows material but can't access it)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Where Math Fear Comes From"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Previous failure experiences (especially public ones)",
+          "Timed tests and pressure situations",
+          "Parents' or teachers' anxiety around math",
+          "Messages that \"some people aren't math people\"",
+          "Falling behind and feeling lost"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Steps to Address Math Fear"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Acknowledge the Fear"
+      },
+      {
+        "type": "paragraph",
+        "text": "Don't dismiss it. \"I can see math feels scary for you right now. That's okay. We're going to work on it together.\" Validation reduces shame."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Remove Pressure"
+      },
+      {
+        "type": "paragraph",
+        "text": "Temporarily. No timed tests. No public answering. No consequence for wrong answers. Create safety first."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Start Way Too Easy"
+      },
+      {
+        "type": "paragraph",
+        "text": "Go back to where they feel confident. Even if it seems \"too easy.\" Success rebuilds confidence. Confidence reduces fear."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Change the Context"
+      },
+      {
+        "type": "paragraph",
+        "text": "If worksheets trigger fear, try apps. If apps trigger fear, try games. If sitting triggers fear, try standing. Change enough that it feels \"different.\""
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Normalize Mistakes"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Mistakes help your brain grow.\" \"I make mistakes too.\" \"Getting it wrong means you're learning.\" Say these regularly until they believe it."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "6. Celebrate Effort, Not Results"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"You tried that hard problem!\" \"You didn't give up!\" Effort is always within their control; results aren't."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The goal isn't to make them love math immediately. It's to reduce the fear enough that they can engage. Love (or at least tolerance) can come later."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When to Seek Professional Help"
+      },
+      {
+        "type": "paragraph",
+        "text": "Consider a psychologist or therapist if:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Fear is severe (panic attacks, school refusal)",
+          "Anxiety extends beyond math",
+          "Your strategies don't help after 2-3 months",
+          "There are underlying issues (trauma, anxiety disorder)"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Is math anxiety genetic?",
+        "answer": "Not directly, but anxious tendencies can be inherited. More importantly, parents who express math anxiety often transmit it to children."
+      },
+      {
+        "question": "Will they always struggle with math?",
+        "answer": "No! Math anxiety is treatable. Many students overcome it completely with the right support and experiences."
+      },
+      {
+        "question": "Should I tell the teacher?",
+        "answer": "Yes. Teachers can make accommodations (extra time, no public calling) that reduce anxiety at school."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid's private, self-paced practice removes the pressure that causes math anxiety.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-so-hoc-toan"
+}

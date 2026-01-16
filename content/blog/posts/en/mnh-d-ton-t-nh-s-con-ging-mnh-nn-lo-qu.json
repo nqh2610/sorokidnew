@@ -1,0 +1,49 @@
+{
+  "postId": "minh-do-toan-nhung-van-muon-con-gioi-toan",
+  "slug": "mnh-d-ton-t-nh-s-con-ging-mnh-nn-lo-qu",
+  "title": "[EN] Mình dở toán từ nhỏ – sợ con giống mình nên lo quá",
+  "description": "[Needs translation] Hồi nhỏ mình sợ toán kinh khủng. Giờ mình lo con sẽ \"di truyền\" nỗi sợ đó.",
+  "category": "parents-helping-with-math",
+  "keywords": [
+    "mẹ dở toán",
+    "di truyền sợ toán",
+    "dạy con khi mình không giỏi"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/me-lo-con-giong-minh.jpg",
+  "imageAlt": "Mẹ châu Á lo lắng nhìn vở toán với biểu cảm tự ti về khả năng toán của mình",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Hồi cấp 2 mình sợ toán đến mức mơ thấy ác mộng trước ngày thi. Đến giờ vẫn nhớ. Giờ con mình vào lớp 1, mình lo: \"Lỡ con giống mình thì sao?\"",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Nỗi lo của mình"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình đọc ở đâu đó: trẻ có thể \"thừa hưởng\" thái độ với toán từ bố mẹ. Nếu mình lo lắng về toán, con có thể cảm nhận được."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình sợ mỗi khi con hỏi bài toán, vẻ mặt mình sẽ căng thẳng. Con sẽ nghĩ toán là thứ đáng sợ."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình tìm hiểu và thấy yên tâm hơn"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sợ toán không di truyền qua gene. Con không \"sinh ra\" để dở toán vì mẹ dở toán."
+      }
+    ]
+  }
+}

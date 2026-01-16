@@ -1,0 +1,49 @@
+{
+  "postId": "con-thi-tot-nhung-lam-bai-tap-thi-sai",
+  "slug": "con-thi-th-tt-lm-bi-tp-th-sai-mnh-tng-khng-hiu",
+  "title": "[EN] Con thi thì tốt, làm bài tập thì sai – mình từng không hiểu",
+  "description": "[Needs translation] Kiểm tra được 9 điểm. Bài tập về nhà sai lung tung. Mình tưởng con cố tình, hóa ra không phải.",
+  "category": "when-kids-struggle-with-math",
+  "keywords": [
+    "con làm bài tập sai",
+    "thi tốt bài tập kém",
+    "tập trung khi làm bài"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-lam-bai-tap.jpg",
+  "imageAlt": "Bé gái châu Á nhìn bài tập về nhà với vẻ bối rối dù vừa thi tốt",
+  "readingTime": 5,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Bài kiểm tra con được 9 điểm, mình vui lắm. Tối về kiểm tra bài tập: sai 4/10 câu. Mình bối rối: \"Con có thể làm đúng mà, sao bài tập lại sai?\"",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình từng nghĩ con cẩu thả"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Con không tập trung! Con làm qua loa!\" – Mình la. Con cúi đầu. Không khí căng thẳng."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình quan sát kỹ hơn"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ở lớp, con tập trung vì có cô giáo, có bạn, có áp lực kiểm tra."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ở nhà, con mệt sau cả ngày học. Có TV, có tiếng ồn. Con mất tập trung."
+      }
+    ]
+  }
+}

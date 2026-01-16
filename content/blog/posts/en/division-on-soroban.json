@@ -1,0 +1,170 @@
+{
+  "slug": "division-on-soroban",
+  "title": "Division on the Soroban: The Inverse of Multiplication",
+  "description": "Division is the most advanced basic operation. Here's how the soroban handles it, and when your child might be ready.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban division",
+    "abacus division",
+    "divide on soroban",
+    "soroban advanced"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-31T03:14:35.250Z",
+  "createdAt": "2026-01-09",
+  "image": "/blog/tre-hoc-phep-chia-soroban.jpg",
+  "imageAlt": "Division on soroban abacus",
+  "readingTime": 7,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "Division on the soroban is the most complex basic operation, but it follows logical patterns. It's essentially figuring out \"how many times does this fit?\" while tracking remainders – something the soroban visualizes beautifully.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Prerequisites"
+      },
+      {
+        "type": "paragraph",
+        "text": "Division is advanced. Your child should first be comfortable with:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Addition and subtraction (including carrying/borrowing)",
+          "Multiplication (at least single digit × single digit)",
+          "Place value (understanding tens, hundreds, etc.)",
+          "Times tables through at least 9"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Basic Concept"
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Soroban division asks: \"How many times does the divisor fit into this portion of the dividend?\" Track that count, subtract, repeat."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Example: 8 ÷ 2"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Set 8 on the soroban",
+          "Ask: How many times does 2 fit into 8?",
+          "Count: 2, 4, 6, 8 → 4 times",
+          "Answer: 4 ✓"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Example: 15 ÷ 3"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Set 15 on the soroban (1 in tens, 5 in ones)",
+          "Start with tens: 1 (ten) ÷ 3 doesn't go evenly",
+          "Combine: 15 ÷ 3",
+          "3 fits into 15: 3, 6, 9, 12, 15 → 5 times",
+          "Answer: 5 ✓"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Example: 42 ÷ 6"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Set 42",
+          "6 into 4 (tens) doesn't go",
+          "6 into 42: 6, 12, 18, 24, 30, 36, 42 → 7 times",
+          "Answer: 7 ✓"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Division with Remainders"
+      },
+      {
+        "type": "paragraph",
+        "text": "Example: 17 ÷ 5"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Set 17",
+          "5 into 17: 5, 10, 15 → 3 times (15 total)",
+          "Remainder: 17 - 15 = 2",
+          "Answer: 3 remainder 2 (or 3R2)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Soroban Division is Powerful"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Visualizes the process:** Kids SEE the dividend shrinking as they subtract",
+          "**Tracks remainders:** The remaining beads show what's left",
+          "**Builds estimation:** \"How many times does this fit?\" becomes intuitive",
+          "**Prepares for long division:** Same concepts, but with physical manipulation"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Don't rush to division. Strong multiplication skills make division much easier. Master times tables first."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When to Introduce Division"
+      },
+      {
+        "type": "list",
+        "items": [
+          "After 4-6 months of soroban practice minimum",
+          "When multiplication is comfortable",
+          "When times tables (at least 1-9) are solid",
+          "When the child shows confidence and interest"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Is division necessary on soroban?",
+        "answer": "Not for everyone. Many kids benefit greatly just from addition/subtraction and multiplication. Division is optional but rewarding for those who pursue it."
+      },
+      {
+        "question": "Can kids do long division on soroban?",
+        "answer": "Yes! The same principles scale. It's actually easier to understand long division after learning it on the soroban because the place value concepts are concrete."
+      },
+      {
+        "question": "How long does it take to learn division?",
+        "answer": "After a foundation in multiplication, basic division takes 1-2 months. Complex division with remainders and decimals takes longer."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Our app introduces division when your child has built the foundation.",
+      "buttonText": "See Full Curriculum",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "phep-chia-tren-soroban"
+}

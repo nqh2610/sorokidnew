@@ -1,0 +1,58 @@
+{
+  "postId": "cho-con-hoc-them-hay-tu-hoc-o-nha",
+  "slug": "cho-con-hc-thm-hay-t-hc-nh-mnh-phn-tch-ri-chn-cch-ny",
+  "title": "[EN] Cho con học thêm hay tự học ở nhà? – Mình phân tích rồi chọn cách này",
+  "description": "[Needs translation] Học thêm 2-3 triệu/tháng, đưa đón mệt. Tự học ở nhà thì ai dạy? Mình cân nhắc kỹ và tìm ra giải pháp trung gian hiệu quả bất ngờ.",
+  "category": "parents-helping-with-math",
+  "keywords": [
+    "học thêm hay tự học",
+    "so sánh học thêm",
+    "con học ở nhà",
+    "tiết kiệm tiền học thêm",
+    "tự học có app",
+    "học thêm toán"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-30T15:00:00.000Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/hoc-them-hay-tu-hoc.jpg",
+  "imageAlt": "Mẹ cân nhắc cho con học thêm hay tự học",
+  "readingTime": 9,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] 'Chị ơi, cho con học thêm chưa?' – Câu hỏi này mình nghe hoài từ các mẹ trong group. Hình như ai cũng cho con học thêm. Mình cũng từng định cho con đi học, nhưng sau khi cân nhắc kỹ, mình quyết định: KHÔNG. Thay vào đó, mình chọn một cách khác – và kết quả bất ngờ.",
+    "sections": [
+      {
+        "type": "paragraph",
+        "text": "Trước khi chia sẻ lựa chọn của mình, hãy cùng nhìn vào ưu nhược điểm của từng cách. Vì không có lựa chọn nào hoàn hảo, chỉ có lựa chọn phù hợp với hoàn cảnh của mình."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Học thêm ở lớp: Ưu và nhược điểm"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Ưu điểm"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Có giáo viên dạy trực tiếp**: Con được hỏi, được giải đáp ngay khi khó.",
+          "**Môi trường học tập có bạn bè**: Con có động lực, có cạnh tranh lành mạnh.",
+          "**Bố mẹ không cần kèm**: Giao cho giáo viên, bố mẹ yên tâm làm việc khác.",
+          "**Chương trình bài bản**: Lớp học có giáo trình, có lộ trình rõ ràng."
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Nhược điểm"
+      }
+    ]
+  }
+}

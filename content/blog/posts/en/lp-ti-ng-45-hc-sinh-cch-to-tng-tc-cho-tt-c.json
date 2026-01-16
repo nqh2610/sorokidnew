@@ -1,0 +1,57 @@
+{
+  "postId": "lop-dong-45-hoc-sinh-cach-tao-tuong-tac",
+  "slug": "lp-ti-ng-45-hc-sinh-cch-to-tng-tc-cho-tt-c",
+  "title": "[EN] Lớp tôi đông 45 học sinh – cách tạo tương tác cho tất cả",
+  "description": "[Needs translation] Dạy lớp 45 em, không thể gọi hết mọi người. Nhưng tôi đã tìm được cách để không ai bị 'bỏ quên' trong tiết học.",
+  "category": "teacher-insights",
+  "keywords": [
+    "dạy lớp đông học sinh",
+    "tương tác lớp học",
+    "quản lý lớp đông",
+    "lớp học 40-50 học sinh",
+    "công cụ dạy lớp đông"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-31T03:08:04.303Z",
+  "createdAt": "2025-12-26",
+  "image": "/blog/lop-dong-hoc-sinh.jpg",
+  "imageAlt": "Lớp học đông học sinh với giáo viên tổ chức hoạt động nhóm",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] 45 học sinh trong một lớp. 4 lớp mỗi tuần. Gần 180 em mà tôi phải nhớ tên, theo dõi, đánh giá. Làm sao để không ai bị 'vô hình'? Đây là những cách tôi đã làm.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vấn đề của lớp đông"
+      },
+      {
+        "type": "paragraph",
+        "text": "Lớp đông có nhiều thách thức:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Không thể gọi hết** – Mỗi tiết chỉ gọi được 5-10 em",
+          "**Một số em 'an toàn' cả năm** – Ngồi cuối lớp, không bao giờ được hỏi",
+          "**Khó theo dõi tiến độ** – Ai hiểu, ai chưa?",
+          "**Hoạt động nhóm hỗn loạn** – 45 em chia nhóm, lớp như cái chợ",
+          "**Mệt mỏi** – Nói to, đi lại nhiều, căng thẳng"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhiều năm tôi chấp nhận thực tế này. Cho đến khi tôi nhận ra: không phải tôi phải làm tất cả. Tôi cần công cụ hỗ trợ."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Giải pháp 1: Gọi học sinh ngẫu nhiên"
+      }
+    ]
+  }
+}

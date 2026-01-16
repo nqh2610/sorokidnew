@@ -1,0 +1,157 @@
+{
+  "slug": "how-to-help-with-math-you-dont-understand",
+  "title": "How to Help with Math Homework You Don't Understand",
+  "description": "Practical strategies for supporting your child when the math is beyond your knowledge.",
+  "category": "parents-helping-with-math",
+  "keywords": [
+    "homework help",
+    "math help",
+    "parent math support",
+    "don't understand math"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/con-ghet-toan-phu-huynh-phan-ung.jpg",
+  "imageAlt": "Parent looking at confusing math problem",
+  "readingTime": 6,
+  "author": {
+    "name": "Michelle Park",
+    "role": "Parent Educator"
+  },
+  "content": {
+    "intro": "Your middle schooler asks for help with algebra and you don't remember any of it. Or the \"new math\" makes no sense to you. Here's how to help anyway.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "You Don't Need to Be the Expert"
+      },
+      {
+        "type": "paragraph",
+        "text": "Your job isn't to teach the math. Your job is to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Provide structure and support",
+          "Ask good questions",
+          "Help find resources",
+          "Model problem-solving attitudes",
+          "Encourage perseverance"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategies When You're Stuck"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Start with What They Know"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"What did your teacher show you?\" \"Read me the directions.\" \"What do you remember about this type of problem?\" Help them access their own knowledge first."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Look at Class Notes and Examples"
+      },
+      {
+        "type": "paragraph",
+        "text": "Check the textbook, notebook, or online class materials for worked examples. The answer is often there."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Use Online Resources"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Khan Academy (free video lessons on every topic)",
+          "YouTube search: \"how to [specific topic]\"",
+          "Photomath (takes picture of problem, shows steps)",
+          "Teacher websites or class portals"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Learn Together"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"I don't remember this either – let's figure it out together.\" This models lifelong learning and problem-solving."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Know When to Stop"
+      },
+      {
+        "type": "paragraph",
+        "text": "After reasonable effort, write a note to the teacher explaining what you tried. It's better than frustration, tears, or doing it for them."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "\"I don't know how to do this, but I know we can figure it out\" is more powerful than either \"I can't help you\" or pretending to know."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Questions That Help Without Knowing the Math"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"What is the problem actually asking?\"",
+          "\"What information do you have?\"",
+          "\"Have you done a problem like this before?\"",
+          "\"What's the first step?\"",
+          "\"Does your answer make sense?\"",
+          "\"What could you try next?\""
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What NOT to Do"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Don't pretend to understand when you don't",
+          "Don't get frustrated visibly (they'll absorb it)",
+          "Don't give up immediately (\"ask your teacher\")",
+          "Don't do the problem for them using Google"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Should I feel bad that I can't help?",
+        "answer": "No. Math education has changed, and most parents hit a point where they can't help directly. Your support, attitude, and resourcefulness matter more than your math knowledge."
+      },
+      {
+        "question": "What if my child gets frustrated when I don't know?",
+        "answer": "Stay calm. \"I know this is frustrating. Let's take a break and try again, or we can ask your teacher tomorrow.\" Your emotional steadiness matters."
+      },
+      {
+        "question": "Should I learn the math to help?",
+        "answer": "If you have time and interest, yes – it's good modeling. But it's not required. Your role is supporter, not math teacher."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid teaches math with built-in guidance and feedback, so your child can learn independently even when the math is beyond your memory.",
+      "buttonText": "Start Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "cach-giup-con-khi-ban-khong-hieu-bai-toan"
+}

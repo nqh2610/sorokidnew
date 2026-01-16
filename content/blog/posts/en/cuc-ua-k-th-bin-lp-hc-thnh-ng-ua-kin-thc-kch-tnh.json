@@ -1,0 +1,56 @@
+{
+  "postId": "cuoc-dua-ki-thu-bien-lop-hoc-thanh-duong-dua",
+  "slug": "cuc-ua-k-th-bin-lp-hc-thnh-ng-ua-kin-thc-kch-tnh",
+  "title": "[EN] Cuộc Đua Kì Thú - Biến Lớp Học Thành Đường Đua Kiến Thức Kịch Tính",
+  "description": "[Needs translation] Chia sẻ cách sử dụng Cuộc Đua Kì Thú để tổ chức thi đua học tập trong lớp. Học sinh chạy đua bằng điểm số, bảng xếp hạng real-time, tạo động lực học tập mạnh mẽ.",
+  "category": "teacher-insights",
+  "keywords": [
+    "cuộc đua kì thú",
+    "thi đua lớp học",
+    "bảng xếp hạng học sinh",
+    "đua điểm số",
+    "gamification giáo dục",
+    "thi đua học tập",
+    "bảng xếp hạng real-time",
+    "động lực học sinh"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-29T22:41:21.063Z",
+  "image": "/blog/cuoc-dua-ki-thu-bien-lop-hoc-thanh-duong-dua.png",
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Cô ơi! Nhóm con cách nhóm Rồng có 5 điểm thôi! Cho con trả lời câu này đi cô!\" - Đó là tiếng của Minh, một học sinh thường ngày rất trầm. Kể từ khi tôi đưa Cuộc Đua Kì Thú vào lớp, những học sinh \"ngại phát biểu\" như Minh bỗng trở nên hăng hái lạ thường. Bảng xếp hạng real-time trên màn hình như có ma lực, khiến cả lớp không ai muốn tụt hạng.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "\"Cuộc Đua Kì Thú\" Là Gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cuộc Đua Kì Thú là công cụ tạo bảng xếp hạng điểm số real-time cho lớp học. Tưởng tượng như cuộc đua xe đạp Tour de France - nhưng thay vì đạp xe, học sinh \"chạy đua\" bằng cách trả lời câu hỏi, hoàn thành nhiệm vụ."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cách hoạt động:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chia lớp thành các đội (hoặc thi đua cá nhân)",
+          "Mỗi đội có một \"vận động viên\" trên đường đua",
+          "Trả lời đúng = tiến lên",
+          "Bảng xếp hạng cập nhật ngay lập tức",
+          "Ai về đích trước = chiến thắng!"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tại sao hiệu quả?**\nCon người có bản năng cạnh tranh. Khi thấy mình đang \"thua\", tự nhiên sẽ cố gắng hơn. Khi thấy mình đang \"dẫn đầu\", muốn giữ vị trí. Đây là tâm lý học cơ bản được ứng dụng trong giáo dục."
+      }
+    ]
+  }
+}

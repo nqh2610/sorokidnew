@@ -1,0 +1,54 @@
+{
+  "postId": "xuc-xac-3d-cong-cu-random-vui-nhon-trong-lop-hoc",
+  "slug": "xc-xc-3d-cng-c-random-vui-nhn-bin-mi-quyt-nh-thnh-tr-chi",
+  "title": "[EN] Xúc Xắc 3D - Công Cụ Random Vui Nhộn Biến Mọi Quyết Định Thành Trò Chơi",
+  "description": "[Needs translation] Chia sẻ cách sử dụng Xúc Xắc 3D trong lớp học. Từ gọi học sinh, chia nhóm, đến tạo bài tập ngẫu nhiên - tất cả trở nên thú vị với một cú gieo xúc xắc.",
+  "category": "teacher-insights",
+  "keywords": [
+    "xúc xắc 3D",
+    "xúc xắc online",
+    "gieo xúc xắc",
+    "random số",
+    "xúc xắc ảo",
+    "dice online",
+    "xúc xắc lớp học",
+    "random học sinh"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-29T22:39:44.944Z",
+  "image": "/blog/xuc-xac-3d-cong-cu-random-vui-nhon-trong-lop-hoc.png",
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Ai sẽ lên bảng làm bài này?\" - Cả lớp im lặng, nhìn xuống bàn. Cảnh tượng quen thuộc với mọi giáo viên. Nhưng kể từ khi tôi thay câu hỏi đó bằng \"Xúc xắc sẽ chọn ai?\", không khí hoàn toàn khác. Cả lớp háo hức nhìn con xúc xắc 3D lăn trên màn hình, hồi hộp chờ kết quả. Số 5! Bạn số 5 lên bảng! Tiếng cười, tiếng vỗ tay - và bạn số 5 tự tin bước lên vì \"xúc xắc chọn\", không phải thầy chọn.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tại Sao Xúc Xắc Lại \"Thần Kỳ\" Đến Vậy?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Xúc xắc có gì đặc biệt mà tôi gọi là \"thần kỳ\"? Đây là những lý do:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Sự công bằng tuyệt đối:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Xúc xắc không thiên vị ai",
+          "Học sinh tin tưởng kết quả",
+          "Không ai nói \"thầy hay gọi bạn đó\""
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Yếu tố bất ngờ:**"
+      }
+    ]
+  }
+}

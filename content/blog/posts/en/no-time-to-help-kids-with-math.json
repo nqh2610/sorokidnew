@@ -1,0 +1,212 @@
+{
+  "slug": "no-time-to-help-kids-with-math",
+  "title": "\"I Don't Have Time to Help My Kid with Math\" – What to Do",
+  "description": "Realistic strategies for busy parents who can't spend hours on homework help.",
+  "category": "stress-free-math-learning",
+  "keywords": [
+    "busy parents",
+    "working parents",
+    "no time for homework",
+    "quick math help"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-31T03:11:58.886Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/me-di-lam-met.jpg",
+  "imageAlt": "Busy parent finding time for child's math",
+  "readingTime": 6,
+  "author": {
+    "name": "Jennifer Wilson",
+    "role": "Working Mom & Parent Coach"
+  },
+  "content": {
+    "intro": "I work full time. By the time I get home, cook dinner, and handle life, there's no energy for tutoring. Here's what I learned: I don't have to be the teacher.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Busy Parent Reality"
+      },
+      {
+        "type": "paragraph",
+        "text": "Let's be honest about the math:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "8-9 hours at work",
+          "1-2 hours commuting",
+          "Dinner, chores, basic life maintenance",
+          "Maybe 1-2 hours before bed"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Spending 30-60 minutes on math tutoring? Not realistic. Not sustainable. Not necessary."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What You Actually Need to Provide"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Time Required: 2 Minutes"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Say \"It's math time\"",
+          "Make sure they start",
+          "Check they finished (glance at screen)",
+          "Say \"Good job\""
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "That's your job. The app/program does the actual teaching."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Your role is logistics and encouragement, not instruction. Outsource the teaching to tools designed for it."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategies for Time-Strapped Parents"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Morning Math"
+      },
+      {
+        "type": "paragraph",
+        "text": "10 minutes with breakfast. You're making coffee anyway. They're eating anyway. Combine the time."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. After-School Immediate"
+      },
+      {
+        "type": "paragraph",
+        "text": "If a caregiver (grandparent, after-school program) is with them, math happens then. Not waiting for you."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Dinner Delay"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"10 minutes of math while I finish cooking, then dinner.\" Parallel activities."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Screen Time Gate"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Math first, then iPad/TV.\" No negotiation. They manage themselves."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to Use"
+      },
+      {
+        "type": "paragraph",
+        "text": "Choose tools that don't require your involvement:"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Feature",
+          "Why It Helps Busy Parents"
+        ],
+        "rows": [
+          [
+            "Self-teaching",
+            "App teaches, you don't have to"
+          ],
+          [
+            "Adaptive difficulty",
+            "Auto-adjusts, no manual selection needed"
+          ],
+          [
+            "Progress tracking",
+            "Quick dashboard check shows if they're on track"
+          ],
+          [
+            "Streak/habit tracking",
+            "App enforces consistency, not you"
+          ],
+          [
+            "Short sessions",
+            "10-15 min is plenty, fits anywhere"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Weekend Catch-Ups"
+      },
+      {
+        "type": "paragraph",
+        "text": "If weekdays are chaos, weekends can handle:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Looking at weekly progress reports (5 min)",
+          "Asking \"What did you learn this week?\" (2 min)",
+          "Playing a quick math game together (10 min)",
+          "Discussing any struggles they mention"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "30 minutes on Sunday can cover what you couldn't do all week."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Guilt Question"
+      },
+      {
+        "type": "paragraph",
+        "text": "Yes, some parents have 2 hours every evening for homework help. Good for them. But a child with a busy working parent who does consistent 10-minute practice with an app will do better than a child whose parent attempts hour-long sporadic tutoring with guilt and exhaustion."
+      },
+      {
+        "type": "paragraph",
+        "text": "Consistency > intensity. Sustainability > heroics."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Is 10 minutes really enough?",
+        "answer": "Yes, if it's daily. 10 min × 5 days = 50 min/week of focused practice. That's significant over months."
+      },
+      {
+        "question": "What if my child has real math problems that need tutoring?",
+        "answer": "For serious struggles, consider a weekly tutor session. Still not your job to be the tutor – you can't be everything."
+      },
+      {
+        "question": "I feel guilty using screens instead of teaching myself",
+        "answer": "Would you feel guilty using a textbook instead of writing every lesson yourself? Tools are tools. Use good ones without guilt."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid requires minimal parent involvement – just 10-15 minutes of self-guided daily practice.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "khong-co-thoi-gian-kem-con-hoc"
+}

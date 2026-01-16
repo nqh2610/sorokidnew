@@ -1,0 +1,61 @@
+{
+  "postId": "hoat-dong-ice-breaker-pha-bang-khoi-dong-lop-hoc",
+  "slug": "hot-ng-ice-breaker-ph-bng-15-tr-chi-khi-ng-lp-hc-hiu-qu",
+  "title": "[EN] Hoạt Động Ice Breaker (Phá Băng) - 15 Trò Chơi Khởi Động Lớp Học Hiệu Quả",
+  "description": "[Needs translation] Tổng hợp 15 hoạt động ice breaker/phá băng để khởi động lớp học, tạo không khí vui vẻ và kết nối học sinh. Dễ thực hiện, không cần chuẩn bị nhiều.",
+  "category": "teacher-insights",
+  "keywords": [
+    "ice breaker",
+    "phá băng",
+    "hoạt động khởi động",
+    "trò chơi lớp học",
+    "kết nối học sinh",
+    "warm up activities",
+    "team building",
+    "hoạt động đầu giờ"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Buổi học đầu năm, lớp mới, học sinh mới - không khí lạnh lẽo như đông giá. Các em ngồi im, không dám nói chuyện với bạn bên cạnh. Đó là lúc Ice Breaker (hoạt động phá băng) phát huy tác dụng. Bài viết này tổng hợp 15 hoạt động phá băng mà tôi đã thử và thành công, giúp lớp học từ \"đóng băng\" chuyển sang \"sôi sục\".",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ice Breaker Là Gì Và Khi Nào Cần?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ice Breaker (phá băng) là hoạt động ngắn giúp:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Làm quen, kết nối mọi người",
+          "Phá vỡ sự ngại ngùng, căng thẳng",
+          "Tạo không khí vui vẻ, thoải mái",
+          "Chuẩn bị tinh thần cho hoạt động chính"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Khi nào cần Ice Breaker:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đầu năm học: Học sinh chưa quen nhau",
+          "Lớp mới thành lập: Ghép từ nhiều lớp",
+          "Sau kỳ nghỉ dài: Cần \"nóng máy\" lại",
+          "Trước hoạt động nhóm: Tạo kết nối",
+          "Khi lớp buồn ngủ: Đánh thức năng lượng",
+          "Có học sinh mới: Giúp hòa nhập"
+        ]
+      }
+    ]
+  }
+}

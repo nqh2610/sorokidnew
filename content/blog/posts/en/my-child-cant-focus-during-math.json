@@ -1,0 +1,193 @@
+{
+  "slug": "my-child-cant-focus-during-math",
+  "title": "My Child Can't Focus During Math – Is It ADHD or Something Else?",
+  "description": "Understanding focus issues during math and when to be concerned.",
+  "category": "math-struggles",
+  "keywords": [
+    "focus issues",
+    "ADHD math",
+    "attention problems",
+    "concentration math"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/be-mat-tap-trung.jpg",
+  "imageAlt": "Child struggling to focus on math work",
+  "readingTime": 7,
+  "author": {
+    "name": "Dr. Sarah Williams",
+    "role": "Pediatric Neuropsychologist"
+  },
+  "content": {
+    "intro": "\"Look at the paper!\" \"Stop fidgeting!\" \"Focus!\" If this is your daily math experience, here's what might be going on.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Normal vs. Concerning Focus Issues"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Normal Attention Limits by Age"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Age",
+          "Expected Focus Duration"
+        ],
+        "rows": [
+          [
+            "4-5 years",
+            "4-10 minutes"
+          ],
+          [
+            "6-7 years",
+            "12-15 minutes"
+          ],
+          [
+            "8-9 years",
+            "16-20 minutes"
+          ],
+          [
+            "10-12 years",
+            "20-30 minutes"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "If your child can focus at or near these ranges, that's developmentally normal."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Kids Don't Focus (Besides ADHD)"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Tired:** Wrong time of day for cognitive work",
+          "**Hungry:** Blood sugar affects attention",
+          "**Bored:** Material too easy or unengaging",
+          "**Frustrated:** Material too hard, so they check out",
+          "**Distracted:** Environment has too many stimuli",
+          "**Emotional:** Something else is on their mind"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Signs It Might Be ADHD"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Focus issues across ALL subjects and activities",
+          "Difficulty beyond age-appropriate expectations",
+          "Significantly worse than peers",
+          "Problems at school AND home",
+          "Physical restlessness and impulsivity",
+          "Family history of ADHD"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "warning",
+        "text": "Only a professional can diagnose ADHD. Don't self-diagnose based on focus issues during math alone."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategies That Help Everyone"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Match Duration to Ability"
+      },
+      {
+        "type": "paragraph",
+        "text": "If they can focus for 10 minutes, make practice 10 minutes. Don't fight their biology."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Remove Distractions"
+      },
+      {
+        "type": "paragraph",
+        "text": "Clear workspace, no TV/music, siblings elsewhere. Make focusing easier."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Allow Movement"
+      },
+      {
+        "type": "paragraph",
+        "text": "Wobble cushion, standing desk, fidget toy. Some kids focus BETTER with movement."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Burn Energy First"
+      },
+      {
+        "type": "paragraph",
+        "text": "5-10 minutes of physical activity before math. Tired muscles = calmer mind."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Make It Engaging"
+      },
+      {
+        "type": "paragraph",
+        "text": "Gamified apps hold attention better than worksheets. If boredom is the issue, change the format."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When to Get Evaluated"
+      },
+      {
+        "type": "paragraph",
+        "text": "Consider professional evaluation if:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Focus problems significantly impact school",
+          "Strategies don't help after 2-3 months of trying",
+          "Teacher expresses concern",
+          "Problems extend beyond math to daily life",
+          "Your gut says something's off"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "How do I get my child evaluated for ADHD?",
+        "answer": "Start with your pediatrician. They may refer to a psychologist or psychiatrist. School can also do evaluations for educational purposes."
+      },
+      {
+        "question": "If it is ADHD, does that mean medication?",
+        "answer": "Not necessarily. Treatment can include behavioral strategies, environmental modifications, and therapy. Medication is one option, not the only one."
+      },
+      {
+        "question": "Can kids with ADHD succeed at math?",
+        "answer": "Absolutely! Many successful people have ADHD. The key is finding strategies that work with their brain, not against it."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid's short, engaging sessions work well for kids who struggle to focus.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-khong-tap-trung-khi-hoc-toan"
+}

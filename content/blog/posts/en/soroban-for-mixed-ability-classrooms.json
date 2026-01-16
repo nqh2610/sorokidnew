@@ -1,0 +1,197 @@
+{
+  "slug": "soroban-for-mixed-ability-classrooms",
+  "title": "Using Soroban in Mixed-Ability Classrooms: A Teacher's Guide",
+  "description": "How to implement soroban when students are at different levels – practical tips for differentiation.",
+  "category": "teacher-insights",
+  "keywords": [
+    "differentiated instruction",
+    "mixed ability classroom",
+    "soroban classroom",
+    "inclusive math"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/ba-khong-biet-soroban.jpg",
+  "imageAlt": "Classroom with students at different soroban levels",
+  "readingTime": 8,
+  "author": {
+    "name": "Maria Gonzalez",
+    "role": "Elementary Math Specialist"
+  },
+  "content": {
+    "intro": "One classroom, 25 kids, 25 different levels. How do you teach soroban when some can barely count while others are already doing mental multiplication? Here's what works.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Differentiation Challenge"
+      },
+      {
+        "type": "paragraph",
+        "text": "Traditional soroban teaching assumes everyone starts at zero and progresses together. Real classrooms don't work that way."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Some kids have prior abacus exposure",
+          "Math levels vary by 2+ years",
+          "Processing speeds differ dramatically",
+          "Attention spans range widely"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategy 1: Use Self-Paced Technology"
+      },
+      {
+        "type": "paragraph",
+        "text": "Apps and digital platforms let each child progress at their own pace. Teacher facilitates, not lectures. This is the biggest unlock for differentiation."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "In my classroom, everyone uses the app individually for 15 minutes, then we come together for whole-group discussion of strategies."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategy 2: Flexible Grouping"
+      },
+      {
+        "type": "paragraph",
+        "text": "Group by current soroban level, not age or general math ability. A 3rd grader new to soroban might work with 2nd graders who started last month."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategy 3: Same Tool, Different Tasks"
+      },
+      {
+        "type": "paragraph",
+        "text": "During whole-group time, everyone uses soroban but with differentiated problems:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Beginners: Simple addition 1-9",
+          "Intermediate: Addition with 5-complement",
+          "Advanced: Multi-digit or multiplication"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategy 4: Peer Teaching"
+      },
+      {
+        "type": "paragraph",
+        "text": "Advanced students teach beginners. Benefits everyone:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Teaching deepens the advanced student's understanding",
+          "Peer language sometimes connects better than teacher explanations",
+          "Builds classroom community",
+          "Frees teacher to work with struggling students"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategy 5: Extension Challenges"
+      },
+      {
+        "type": "paragraph",
+        "text": "For students who finish early:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Speed challenges (beat your own time)",
+          "Create problems for classmates",
+          "Anzan (mental soroban) practice",
+          "Teach a peer",
+          "Work on the next level independently"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Sample Differentiated Lesson Plan"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Time",
+          "Group A (Beginners)",
+          "Group B (Middle)",
+          "Group C (Advanced)"
+        ],
+        "rows": [
+          [
+            "0-5 min",
+            "Whole group: Warm-up counting 1-9",
+            "Same",
+            "Same"
+          ],
+          [
+            "5-20 min",
+            "App: Simple addition",
+            "App: 5-complement",
+            "App: 10-complement or multiplication"
+          ],
+          [
+            "20-25 min",
+            "Teacher small group: Review basics",
+            "Independent: Practice problems",
+            "Peer teaching Group A OR anzan"
+          ],
+          [
+            "25-30 min",
+            "Whole group: Share strategies, celebrate progress",
+            "Same",
+            "Same"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Managing Classroom Logistics"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Label physical sorobans with student names",
+          "Use visual timers for transitions",
+          "Establish clear routines for independent work time",
+          "Have \"I'm stuck\" and \"I'm done\" hand signals"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "What if some parents complain their kid isn't challenged?",
+        "answer": "Show the extension activities. Soroban has a very high ceiling – even your fastest learners won't hit the top for years."
+      },
+      {
+        "question": "How do I track progress for 25+ students at different levels?",
+        "answer": "App-based learning usually has built-in progress tracking. Use it! Check dashboards weekly, not daily."
+      },
+      {
+        "question": "Should I give everyone the same test?",
+        "answer": "Consider testing students on their current level, not one standard test. Assessment should measure growth, not compare students unfairly."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid's self-paced learning makes differentiation easy – every child progresses at their own level.",
+      "buttonText": "Explore Classroom Features",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "day-soroban-cho-lop-hoc-nhieu-trinh-do"
+}

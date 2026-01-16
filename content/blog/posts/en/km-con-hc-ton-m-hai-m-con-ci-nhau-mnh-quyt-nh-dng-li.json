@@ -1,0 +1,58 @@
+{
+  "postId": "kem-con-hoc-toan-ma-hai-me-con-cai-nhau",
+  "slug": "km-con-hc-ton-m-hai-m-con-ci-nhau-mnh-quyt-nh-dng-li",
+  "title": "[EN] Kèm con học toán mà hai mẹ con cãi nhau – mình quyết định dừng lại",
+  "description": "[Needs translation] Mỗi tối kèm con học là một trận chiến. Giọng mình to dần, con bắt đầu khóc. Cuối cùng mình chọn cách khác - và mối quan hệ mẹ con tốt hơn hẳn.",
+  "category": "parents-helping-with-math",
+  "keywords": [
+    "kèm con học toán",
+    "mẹ con cãi nhau vì bài tập",
+    "dạy con không stress",
+    "phụ huynh kèm con học",
+    "stress khi dạy con",
+    "cách dạy con học toán hiệu quả"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-29T22:43:46.256Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/me-con-cai-nhau.jpg",
+  "imageAlt": "Mẹ châu Á và con gái ngồi học với vẻ căng thẳng",
+  "readingTime": 8,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Mẹ nói bao nhiêu lần rồi, sao con không nghe!\" – \"Con không hiểu!\" – \"Con không hiểu hay con không chịu nghe?\" – Con bắt đầu khóc. Mình bắt đầu hối hận. Đó là kịch bản mỗi tối ở nhà mình suốt 6 tháng trời. Kèm con học toán mà mình như đang cãi nhau với con. Mình mệt, con cũng mệt. Cho đến một hôm, mình quyết định dừng lại.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mỗi Tối Là Một Cuộc Chiến"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con gái mình năm nay lớp 3. Cô giao bài về nhà, mình ngồi kèm con từ 7 giờ tối. Và đây là những gì diễn ra mỗi ngày:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "7h00: Bắt đầu bình thường, mình giải thích bài",
+          "7h15: Con làm sai, mình giải thích lại",
+          "7h30: Con vẫn sai chỗ cũ, mình bắt đầu sốt ruột",
+          "7h45: Giọng mình to dần, con im lặng cúi đầu",
+          "8h00: Con khóc, mình la, con khóc to hơn",
+          "8h15: Buổi học kết thúc trong nước mắt"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Bài toán đơn giản thôi: 47 + 28 = ? Con cứ ra 65. Mình nói: \"Con ơi, 7 + 8 = 15, viết 5 nhớ 1. Rồi 4 + 2 + 1 = 7. Là 75 con à.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Con gật đầu. Làm lại. Ra 65."
+      }
+    ]
+  }
+}

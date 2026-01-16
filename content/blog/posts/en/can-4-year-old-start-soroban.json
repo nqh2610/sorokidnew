@@ -1,0 +1,143 @@
+{
+  "slug": "can-4-year-old-start-soroban",
+  "title": "My 4-Year-Old Wants to Learn Soroban – Is It Too Early?",
+  "description": "Soroban starts at age 5-6 in Japan. But what if your preschooler is curious? Here's what actually works for young learners.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban for preschoolers",
+    "4 year old abacus",
+    "soroban age",
+    "early math learning"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2025-12-29",
+  "image": "/blog/be-4-tuoi.jpg",
+  "imageAlt": "Young child exploring soroban abacus",
+  "readingTime": 5,
+  "author": {
+    "name": "Samantha",
+    "role": "Mom of a curious 4-year-old"
+  },
+  "content": {
+    "intro": "My daughter Sophie is 4 and incredibly curious about numbers. She saw a soroban on YouTube and has been begging to try it. But most programs say ages 5-7. Is she too young? Here's what I learned.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Most Programs Start at 5-6"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Fine motor skills:** Moving small beads requires developed finger control",
+          "**Number recognition:** Kids need to know numbers 0-9 at minimum",
+          "**Attention span:** Even short lessons need 10-15 minutes of focus",
+          "**Following instructions:** Multi-step processes require comprehension"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Signs Your 4-Year-Old Might Be Ready"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Can count to 20 reliably",
+          "Recognizes written numbers 0-9",
+          "Has good fine motor control (can draw, use scissors)",
+          "Can focus on one activity for 10+ minutes",
+          "Shows genuine interest (not just parent-driven)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Interest is the biggest indicator. A curious 4-year-old will learn more than a reluctant 6-year-old."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What We Did"
+      },
+      {
+        "type": "paragraph",
+        "text": "I didn't push Sophie into a full program. Instead, we started with:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Playing with the abacus:** Just exploring, moving beads, making sounds",
+          "**Simple counting:** \"Can you show me 3 beads?\"",
+          "**Color games:** We got a colorful abacus first",
+          "**Short sessions:** 5 minutes max, always ending before she got bored"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Worked, What Didn't"
+      },
+      {
+        "type": "paragraph",
+        "text": "✅ **Worked:** Treating it like a toy, not school. No pressure, no \"lessons.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "✅ **Worked:** Following her lead. Some days she wanted 15 minutes, some days 2."
+      },
+      {
+        "type": "paragraph",
+        "text": "❌ **Didn't work:** Trying to teach \"proper technique\" too early."
+      },
+      {
+        "type": "paragraph",
+        "text": "❌ **Didn't work:** Formal app lessons – too structured for her age."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Our Plan Going Forward"
+      },
+      {
+        "type": "paragraph",
+        "text": "At 4: Keep it playful. Count beads. Make it fun."
+      },
+      {
+        "type": "paragraph",
+        "text": "At 5: Try the app's easiest level. See if she's ready."
+      },
+      {
+        "type": "paragraph",
+        "text": "No rush. The goal isn't to create a prodigy – it's to build a foundation where math feels fun, not scary."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "There's no prize for starting earliest. A child who starts at 6 and loves it will outperform one who started at 4 and burned out."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can a 3-year-old learn soroban?",
+        "answer": "It's very early. Most 3-year-olds don't have the fine motor skills or attention span. Exposure is fine, but structured learning usually waits until 5+."
+      },
+      {
+        "question": "Should I buy a real soroban for my preschooler?",
+        "answer": "A toy abacus with larger, colorful beads is better for ages 3-4. Real sorobans have small beads that can frustrate little fingers."
+      },
+      {
+        "question": "What if my 4-year-old loses interest?",
+        "answer": "That's completely normal. Put it away for 3-6 months and try again. Interest often returns when they're developmentally ready."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "When your child is ready, we'll be here. Our app adapts to beginners of all ages.",
+      "buttonText": "Learn More",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-4-tuoi-hoc-soroban-co-som-qua-khong"
+}

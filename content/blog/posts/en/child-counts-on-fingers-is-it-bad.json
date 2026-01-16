@@ -1,0 +1,147 @@
+{
+  "slug": "child-counts-on-fingers-is-it-bad",
+  "title": "My Child Still Counts on Fingers – Is That a Problem?",
+  "description": "Teachers say stop finger counting. But is it actually bad? Here's what research says and how soroban can help.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "counting on fingers",
+    "finger counting bad",
+    "child still counts fingers",
+    "finger math"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-01-29",
+  "image": "/blog/be-dem-ngon-tay.jpg",
+  "imageAlt": "Child counting on fingers",
+  "readingTime": 5,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "\"Stop counting on your fingers!\" Many kids hear this. But some math researchers say finger counting is actually valuable. So what's the truth? And how does soroban fit in?",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Is Finger Counting Bad?"
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Short answer: No. Finger counting is a natural, developmentally appropriate strategy. The problem isn't finger counting – it's ONLY finger counting without progression."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Research Says"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Fingers are our first math manipulative",
+          "Finger gnosis (finger awareness) correlates with math ability",
+          "Physical representation helps abstract understanding",
+          "Forced stopping of finger counting can cause anxiety",
+          "The goal is progression, not elimination"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Finger Counting IS a Concern"
+      },
+      {
+        "type": "paragraph",
+        "text": "Finger counting becomes problematic when:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Age 8-9+ and it's the ONLY strategy:** Should have developed others by now",
+          "**Counting each number:** \"7+3\" should NOT require counting 1,2,3,4,5,6,7,8,9,10",
+          "**Speed ceiling:** Can't progress past a certain speed",
+          "**Embarrassment:** Child hides it because they think it's \"babyish\""
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How Soroban Helps"
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban provides a natural progression FROM physical manipulation (fingers) TO mental visualization (anzan):"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Still physical:** Soroban uses hands, like finger counting",
+          "**More scalable:** Can represent large numbers (fingers max at 10)",
+          "**Leads to mental math:** Natural progression to visualization",
+          "**Pattern-based:** Moves from counting to recognition"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Instead of \"stop counting on fingers,\" soroban says \"here's a better physical tool that leads somewhere.\" "
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Progression"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Stage 1:** Finger counting (totally fine)",
+          "**Stage 2:** Physical soroban (upgraded physical tool)",
+          "**Stage 3:** Automatic soroban (no more counting beads)",
+          "**Stage 4:** Mental soroban/anzan (visualization)",
+          "**Stage 5:** Fast mental math"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The goal isn't to eliminate physical strategies immediately. It's to provide a bridge from physical to mental. Soroban IS that bridge."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to Do Now"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Don't shame finger counting:** It's a valid strategy",
+          "**Introduce soroban:** A \"grown-up\" physical tool",
+          "**Let progression happen:** Mental math develops from physical practice",
+          "**Be patient:** The transition takes months, not days"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Should I stop my child from counting on fingers?",
+        "answer": "No need to force it. Introduce alternatives (like soroban) that naturally replace finger counting as skills develop."
+      },
+      {
+        "question": "Is soroban just \"fancy finger counting\"?",
+        "answer": "Initially similar (physical manipulation), but soroban develops patterns and leads to visualization. Fingers stay at counting; soroban progresses to mental math."
+      },
+      {
+        "question": "Will my child's teacher approve of soroban?",
+        "answer": "Most teachers appreciate any strategy that works. Soroban doesn't conflict with school methods – it builds underlying skills."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Give your child a physical tool that leads to mental math.",
+      "buttonText": "Start Soroban",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-dem-tren-ngon-tay-co-sao-khong"
+}

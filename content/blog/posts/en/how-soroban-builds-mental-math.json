@@ -1,0 +1,204 @@
+{
+  "slug": "how-soroban-builds-mental-math",
+  "title": "How Does Soroban Build Mental Math? The Progression Explained",
+  "description": "The journey from moving physical beads to calculating mentally in seconds. Here's how soroban develops mental math step by step.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban mental math",
+    "how soroban works",
+    "soroban to mental math",
+    "mental math progression"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-02T09:37:53.057Z",
+  "createdAt": "2026-01-25",
+  "image": "/blog/soroban-giup-tre-tinh-nham.jpg",
+  "imageAlt": "Progression from soroban to mental calculation",
+  "readingTime": 6,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "Soroban starts with physical beads. Mental math happens without any tool. How do you get from one to the other? The progression is fascinating – and it happens naturally with practice.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Stage 1: Physical Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "Your child learns to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Represent numbers as bead positions",
+          "Move beads according to rules (complements)",
+          "Read answers from bead configurations",
+          "Develop muscle memory for finger movements"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "At this stage, thinking is: \"I need to add 5, so I push the upper bead down.\" It's deliberate and slow."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Stage 2: Automatic Physical"
+      },
+      {
+        "type": "paragraph",
+        "text": "After enough practice:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Movements become automatic",
+          "No more thinking \"which bead?\"",
+          "Speed increases significantly",
+          "Fingers \"just know\" what to do"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "This is like touch typing – you don't think about individual letters anymore."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Stage 3: Visualization Begins"
+      },
+      {
+        "type": "paragraph",
+        "text": "Something magical happens:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Child can \"see\" the soroban with eyes closed",
+          "Numbers appear as bead images, not digits",
+          "Can answer simple problems without physical tool",
+          "Fingers may still move (ghost movement)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "The \"ghost movement\" – fingers moving without a soroban – is a sign visualization is developing. Don't discourage it!"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Stage 4: Mental Soroban (Anzan)"
+      },
+      {
+        "type": "paragraph",
+        "text": "The brain now has a mental soroban:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Sees numbers as bead patterns instantly",
+          "\"Moves\" imaginary beads to calculate",
+          "Reads answer from mental image",
+          "Speed can exceed physical soroban"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "This is fundamentally different from verbal mental math (\"carry the one...\"). It's visual processing."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why This Works"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Physical → Visual mapping:** Real beads create strong mental images",
+          "**Consistent representation:** Same pattern every time for each number",
+          "**Muscle memory supports visualization:** Physical practice engrains patterns",
+          "**Brain builds new pathways:** Right-hemisphere visuospatial processing develops"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Timeline"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Stage",
+          "Typical Timeline"
+        ],
+        "rows": [
+          [
+            "Physical soroban basics",
+            "1-3 months"
+          ],
+          [
+            "Automatic physical",
+            "3-6 months"
+          ],
+          [
+            "Visualization begins",
+            "6-12 months"
+          ],
+          [
+            "Reliable anzan",
+            "12-24 months"
+          ],
+          [
+            "Fast anzan",
+            "2+ years"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Timelines vary greatly. Consistent daily practice is the key factor."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How to Support the Progression"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Don't rush:** Physical foundation must be solid first",
+          "**Let it happen naturally:** Visualization emerges, can't be forced",
+          "**Try \"eyes closed\" exercises:** After 6+ months of practice",
+          "**Use the app's anzan mode:** Structured transition built-in",
+          "**Celebrate visualization signs:** Especially ghost finger movements"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "What if my child never develops visualization?",
+        "answer": "Some kids develop strong anzan, others moderate, some minimal. All still benefit from the physical soroban skills and number sense."
+      },
+      {
+        "question": "Can adults develop anzan?",
+        "answer": "Yes, but it's typically easier for children. Adult brains are less plastic. Adults can still develop moderate visualization with dedicated practice."
+      },
+      {
+        "question": "Does physical practice still matter after learning anzan?",
+        "answer": "Many practitioners continue both. Physical practice can be more relaxing and helps maintain the foundation that supports visualization."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Start the journey from physical to mental calculation.",
+      "buttonText": "Begin Learning",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "soroban-giup-tre-tinh-nham-tot-hon-nhu-the-nao"
+}

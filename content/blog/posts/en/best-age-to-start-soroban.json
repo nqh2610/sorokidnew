@@ -1,0 +1,115 @@
+{
+  "slug": "best-age-to-start-soroban",
+  "title": "My Kid Started Soroban at 7 – Was That Too Late?",
+  "description": "Everyone says 4-5 is the best age for Soroban. My child was already 7. I worried we missed the window.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "best age for soroban",
+    "when to start soroban",
+    "soroban age",
+    "7 year old soroban",
+    "too old for abacus"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-7-tuoi-hoc-soroban.jpg",
+  "imageAlt": "Seven year old child learning with Soroban abacus",
+  "readingTime": 5,
+  "author": {
+    "name": "David",
+    "role": "Dad of 2nd grader"
+  },
+  "content": {
+    "intro": "\"4-6 years old is the golden age for Soroban.\" I read that when my son was already 7. I felt a pang of regret: \"Why didn't I know about this sooner?\"",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Does \"Golden Age\" Really Mean?"
+      },
+      {
+        "type": "paragraph",
+        "text": "At 4-6, kids' brains develop rapidly. They absorb everything like sponges. But that doesn't mean learning stops after 6."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ages 7, 8, 9 – still great for learning Soroban. It might just take a bit more time compared to younger kids."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "We Started at 7 – Here's What Happened"
+      },
+      {
+        "type": "paragraph",
+        "text": "I was worried at first. But after 2 months, my son was doing great. He actually picked it up faster because he already knew numbers and basic addition."
+      },
+      {
+        "type": "paragraph",
+        "text": "Advantages of starting older: understands concepts quicker, can self-study, sits still longer."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "There's no \"too late\" with Soroban. Kids at 10, even adults, can still learn. What matters is starting."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Best Age for Different Goals"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Ages 4-6:** Learning for brain development and number familiarity. Keep expectations low."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Ages 7-9:** Learning to support school math and build mental math. Clear, visible results."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Ages 10+:** Still effective but requires more patience. Usually learning for specific goals like competitions or tutoring."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Our Results After One Year"
+      },
+      {
+        "type": "paragraph",
+        "text": "After 12 months with Sorokid, my son can mentally calculate 2-digit problems. His school math grades improved too."
+      },
+      {
+        "type": "paragraph",
+        "text": "I don't regret \"finding out late\" anymore. What matters is that we started."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Don't worry about being \"too late.\" The best time to start is right now. Every day you don't start is another day delayed."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can a 10-year-old still learn Soroban?",
+        "answer": "Absolutely. Older kids actually understand concepts faster. They just need patience with the practice. Many 10-12 year olds do really well."
+      },
+      {
+        "question": "What age is too young to start?",
+        "answer": "Under 4, most kids can't focus long enough. Ages 4-5 can start with play-based introduction to the abacus."
+      },
+      {
+        "question": "Is there an age where it's truly too late?",
+        "answer": "Honestly, no. Even adults learn Soroban for brain training. The only difference is younger kids tend to reach competition levels more easily."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Wondering if your child's age is right for Soroban? Try a few free lessons and see how they respond.",
+      "buttonText": "Try Sorokid Free",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "may-tuoi-hoc-soroban-la-tot-nhat"
+}

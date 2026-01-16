@@ -1,0 +1,51 @@
+{
+  "postId": "bo-ban-khong-biet-day-con-hoc-toan",
+  "slug": "b-bn-c-ngy-nhng-vn-mun-ng-gp-vic-hc-ca-con",
+  "title": "[EN] Bố bận cả ngày – Nhưng vẫn muốn đóng góp việc học của con",
+  "description": "[Needs translation] Chồng mình đi làm 10-12 tiếng/ngày, về nhà mệt lả. Không thể ngồi kèm con học. Nhưng anh ấy tìm được cách tham gia chỉ với 5 phút mỗi ngày. Kết quả bất ngờ.",
+  "category": "parents-helping-with-math",
+  "keywords": [
+    "bố bận không kèm con",
+    "bố tham gia việc học",
+    "vai trò của bố",
+    "bố mẹ bận rộn",
+    "cách bố đồng hành cùng con",
+    "bố không có thời gian"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-30T09:00:00.000Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/thoi-gian-hoc-soroban-tinh-nham.jpg",
+  "imageAlt": "Bố dành ít thời gian cùng con học",
+  "readingTime": 8,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Anh bận quá, việc học của con để em lo nhé.\" – Chồng mình nói câu này suốt. Anh ấy đi làm từ 7h sáng, về nhà 8-9h tối. Mệt lả. Ngồi kèm con học? Không có sức. Mình hiểu anh mệt. Nhưng mình cũng mệt. Và mình muốn anh THAM GIA - không phải ngồi kèm 2 tiếng, chỉ cần có mặt theo cách nào đó. Cuối cùng, anh ấy tìm được cách. Chỉ 5 phút mỗi ngày. Nhưng hiệu quả hơn mình tưởng.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tại Sao Vai Trò Của Bố Quan Trọng?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình đọc được nghiên cứu: trẻ có bố tham gia việc học có kết quả tốt hơn 20-30% so với trẻ chỉ được mẹ kèm."
+      },
+      {
+        "type": "paragraph",
+        "text": "Không phải vì bố dạy giỏi hơn. Mà vì khi CON THẤY cả bố lẫn mẹ đều quan tâm, con cảm nhận được: \"Việc học quan trọng. Cả nhà đều coi trọng.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Con cần thấy bố quan tâm. Dù bố bận. Dù bố không ngồi kèm được."
+      },
+      {
+        "type": "paragraph",
+        "text": "Điều này đặc biệt quan trọng với con trai. Con trai nhìn vào bố như hình mẫu. Nếu bố \"vô hình\" trong việc học, con sẽ nghĩ: \"Học không quan trọng với đàn ông.\""
+      }
+    ]
+  }
+}

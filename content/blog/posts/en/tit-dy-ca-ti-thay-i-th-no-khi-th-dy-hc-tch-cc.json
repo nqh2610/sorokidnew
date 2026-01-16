@@ -1,0 +1,52 @@
+{
+  "postId": "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
+  "slug": "tit-dy-ca-ti-thay-i-th-no-khi-th-dy-hc-tch-cc",
+  "title": "[EN] Tiết dạy của tôi thay đổi thế nào khi thử dạy học tích cực",
+  "description": "[Needs translation] Từ một giáo viên quen giảng – chép – kiểm tra, tôi thử áp dụng dạy học tích cực. Không dễ, nhưng kết quả khiến tôi không muốn quay lại cách cũ.",
+  "category": "teacher-insights",
+  "keywords": [
+    "phương pháp dạy học tích cực",
+    "active learning",
+    "dạy học lấy học sinh làm trung tâm",
+    "đổi mới phương pháp dạy học",
+    "giáo viên đổi mới",
+    "lớp học tích cực"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-29T22:47:31.311Z",
+  "createdAt": "2025-12-26",
+  "image": "/blog/day-hoc-tich-cuc.jpg",
+  "imageAlt": "Giáo viên và học sinh trong lớp học tích cực với hoạt động nhóm",
+  "readingTime": 7,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] 10 năm đầu đi dạy, tôi nghĩ mình dạy tốt. Học sinh nghe giảng, chép bài, làm kiểm tra. Nhưng rồi tôi nhận ra: các em ngồi đó, nhưng đầu óc ở đâu? Đó là lúc tôi bắt đầu tìm hiểu về dạy học tích cực.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tôi từng dạy như thế nào?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Giống như nhiều giáo viên khác, tôi được đào tạo theo mô hình truyền thống: thầy giảng, trò nghe. Mỗi tiết học là một màn độc thoại dài 45 phút của tôi. Học sinh ngồi ngoan, ghi chép cẩn thận."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhìn qua thì có vẻ ổn. Nhưng khi tôi đặt câu hỏi, chỉ có vài em giơ tay. Khi kiểm tra, nhiều em không nhớ gì. Tôi tự hỏi: mình giảng hay thế, sao các em không nhớ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Câu trả lời đau lòng: vì các em không thực sự tham gia. Nghe không phải là học. Chép không phải là hiểu."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Dạy học tích cực là gì?"
+      }
+    ]
+  }
+}

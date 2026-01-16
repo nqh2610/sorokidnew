@@ -1,0 +1,174 @@
+{
+  "slug": "what-to-say-when-your-child-says-im-bad-at-math",
+  "title": "What to Say When Your Child Says \"I'm Bad at Math\"",
+  "description": "Reframing math identity conversations to protect your child's confidence and growth mindset.",
+  "category": "parents-helping-with-math",
+  "keywords": [
+    "bad at math",
+    "math identity",
+    "growth mindset",
+    "math confidence"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/me-con-di-sieu-thi.jpg",
+  "imageAlt": "Parent talking to child about math",
+  "readingTime": 6,
+  "author": {
+    "name": "Dr. Sarah Mitchell",
+    "role": "School Psychologist"
+  },
+  "content": {
+    "intro": "\"I'm bad at math.\" These four words can become a self-fulfilling prophecy. How you respond matters enormously.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why This Statement Is Dangerous"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"I'm bad at math\" is an identity statement, not a description of a moment. It says:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"This is who I am, not what I'm experiencing\"",
+          "\"This won't change\"",
+          "\"Trying won't help because I'm just bad at it\"",
+          "\"I should give up\""
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Research shows that students who believe math ability is fixed perform worse and give up more easily than those who believe ability can grow."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What NOT to Say"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Don't Say",
+          "Why It Backfires"
+        ],
+        "rows": [
+          [
+            "\"No you're not!\"",
+            "Dismisses their feelings, doesn't address the belief"
+          ],
+          [
+            "\"I was bad at math too\"",
+            "Confirms it's a fixed trait that runs in families"
+          ],
+          [
+            "\"Math isn't important anyway\"",
+            "Demotivates effort"
+          ],
+          [
+            "\"You just need to try harder\"",
+            "Implies they're not trying, adds pressure"
+          ],
+          [
+            "\"You're good at other things\"",
+            "Confirms math is not for them"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What TO Say"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Acknowledge the Feeling"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"It sounds like you're feeling frustrated with math right now.\" Validate the emotion, not the identity claim."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Reframe with \"Yet\""
+      },
+      {
+        "type": "paragraph",
+        "text": "\"You're finding this hard right now, but you're still learning.\" Or: \"You haven't mastered this yet.\" The word \"yet\" is powerful."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Be Specific"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"What part feels hard?\" Break the monolithic \"math\" into specific skills. They might be good at some parts, struggling with others."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Share Brain Science"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Did you know your brain makes new connections when you practice hard things? Struggling actually makes you smarter.\""
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Point to Progress"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Remember when you couldn't do [earlier skill]? Now you can. This will be the same.\" Evidence of growth."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The goal is to shift from \"I'm bad at math\" (fixed identity) to \"I'm working on getting better at math\" (growth process)."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Long-term Mindset Work"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Praise effort and strategies, not just results",
+          "Celebrate struggle (\"Your brain is growing!\")",
+          "Model your own learning and mistakes",
+          "Avoid labeling anyone as \"a math person\" or \"not a math person\"",
+          "Provide evidence of their progress over time"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "What if they really are behind their classmates?",
+        "answer": "Being behind is a situation, not an identity. Acknowledge the challenge, focus on growth, and get support (tutoring, intervention, practice) without labeling them as \"bad at math.\""
+      },
+      {
+        "question": "Is \"I'm bad at math\" ever just realistic?",
+        "answer": "No one is fundamentally incapable of learning math. People learn at different rates and have different starting points, but everyone can improve. The label is never helpful."
+      },
+      {
+        "question": "Can a fixed mindset be changed?",
+        "answer": "Yes! Research shows mindset can shift with consistent messaging and experiences of growth. It takes time and repetition, but it's absolutely changeable."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid helps kids experience progress with adaptive practice – building evidence that they CAN improve at math.",
+      "buttonText": "Start Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "noi-gi-khi-con-noi-con-do-toan"
+}

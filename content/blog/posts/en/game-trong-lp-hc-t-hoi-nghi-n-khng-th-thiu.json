@@ -1,0 +1,52 @@
+{
+  "postId": "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
+  "slug": "game-trong-lp-hc-t-hoi-nghi-n-khng-th-thiu",
+  "title": "[EN] Game trong lớp học – từ hoài nghi đến không thể thiếu",
+  "description": "[Needs translation] Tôi từng nghĩ game làm học sinh xao nhãng. Nhưng khi thử đúng cách, game trở thành công cụ dạy học hiệu quả nhất của tôi.",
+  "category": "teacher-insights",
+  "keywords": [
+    "gamification giáo dục",
+    "game học tập",
+    "trò chơi trong dạy học",
+    "game based learning",
+    "dạy học qua trò chơi",
+    "tạo hứng thú học tập"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-31T03:04:55.865Z",
+  "createdAt": "2025-12-26",
+  "image": "/blog/game-trong-lop-hoc.jpg",
+  "imageAlt": "Học sinh hào hứng tham gia game học tập trên lớp",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Sao lại cho chơi game trong lớp?\" – Một phụ huynh từng hỏi tôi với vẻ lo ngại. Tôi hiểu, vì chính tôi cũng từng nghĩ vậy. Nhưng sau khi thử, tôi nhận ra: game đúng cách không phải làm học sinh xao nhãng, mà giúp các em học tốt hơn.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tôi từng phản đối game"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thật sự, tôi là người bảo thủ. Tôi nghĩ: lớp học là nơi nghiêm túc. Game là để giải trí. Hai thứ không nên trộn lẫn."
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi thấy đồng nghiệp cho học sinh chơi game, tôi nghĩ họ đang \"dễ dãi\", \"chiều học sinh quá\"."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhưng rồi tôi gặp vấn đề: học sinh ngày càng mất tập trung. Các em nhìn tôi nhưng đầu óc ở đâu. Tiết ôn tập thì ngủ gật. Tiết kiểm tra thì căng thẳng. Tôi cần thay đổi gì đó."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lần đầu thử dùng game"
+      }
+    ]
+  }
+}

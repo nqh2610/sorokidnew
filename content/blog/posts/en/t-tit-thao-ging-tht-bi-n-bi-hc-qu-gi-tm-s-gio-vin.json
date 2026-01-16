@@ -1,0 +1,57 @@
+{
+  "postId": "tu-tiet-thao-giang-that-bai-den-bai-hoc-quy-gia",
+  "slug": "t-tit-thao-ging-tht-bi-n-bi-hc-qu-gi-tm-s-gio-vin",
+  "title": "[EN] Từ Tiết Thao Giảng Thất Bại Đến Bài Học Quý Giá - Tâm Sự Giáo Viên",
+  "description": "[Needs translation] Chia sẻ câu chuyện thật về tiết thao giảng thất bại và những bài học rút ra. Từ nước mắt đến sự trưởng thành trong nghề giáo.",
+  "category": "teacher-insights",
+  "keywords": [
+    "thao giảng thất bại",
+    "bài học dạy học",
+    "kinh nghiệm giáo viên",
+    "tâm sự giáo viên",
+    "thất bại trong dạy học",
+    "học từ thất bại",
+    "giáo viên trưởng thành"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Năm 2018, tôi có tiết thao giảng tệ nhất trong 10 năm đi dạy. Cháy giáo án 15 phút. Học sinh không hiểu bài. PowerPoint trục trặc. Ban giám hiệu lắc đầu. Tôi về nhà và khóc như một đứa trẻ. Nhưng 6 năm sau nhìn lại, tiết thao giảng đó là tiết quan trọng nhất trong sự nghiệp của tôi. Nó dạy tôi nhiều hơn 100 tiết thành công.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bối Cảnh: Tôi Quá Tự Tin"
+      },
+      {
+        "type": "paragraph",
+        "text": "Năm 2018, sau 8 năm đi dạy, tôi tự cho mình là \"giáo viên giỏi\":"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Từng đạt giáo viên dạy giỏi cấp trường",
+          "Học sinh thích tiết học của tôi",
+          "Điểm số lớp tôi luôn cao"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Khi được phân công thao giảng:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"Dễ ẹt, mình đã dạy bài này bao nhiêu lần\"",
+          "Chuẩn bị giáo án trong 1 buổi tối",
+          "Không tập dạy thử",
+          "Không nhờ ai góp ý"
+        ]
+      }
+    ]
+  }
+}

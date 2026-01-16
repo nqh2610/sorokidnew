@@ -1,0 +1,133 @@
+{
+  "slug": "child-practices-soroban-but-hates-practice",
+  "title": "My Child Learns Soroban But Won't Practice – What Now?",
+  "description": "They understand soroban. They can do it. They just won't practice willingly. Here's how to handle practice resistance.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "child won't practice soroban",
+    "soroban practice resistance",
+    "motivate soroban practice",
+    "soroban daily practice"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-01-18",
+  "image": "/blog/khong-thich-luyen-tap.jpg",
+  "imageAlt": "Child resisting soroban practice",
+  "readingTime": 6,
+  "author": {
+    "name": "Linda",
+    "role": "Mom of 7-year-old"
+  },
+  "content": {
+    "intro": "My daughter likes soroban – she feels proud when she solves problems. But getting her to sit down and practice? It's a daily battle. \"Not now.\" \"Later.\" \"I already know this.\" Sound familiar?",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Kids Resist Practice"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Repetition feels boring:** Same types of problems daily",
+          "**Other things are more fun:** Games, videos, playing",
+          "**No immediate reward:** Benefits are long-term",
+          "**Effort vs. reward:** \"I can already do this, why more?\"",
+          "**Autonomy:** Being told to do something triggers resistance"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Worked for Us"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Non-Negotiable Minimums"
+      },
+      {
+        "type": "paragraph",
+        "text": "Instead of \"practice soroban,\" I say \"do 5 problems.\" Just 5. It takes 3 minutes. She can't reasonably argue against 3 minutes. Most days, she keeps going after the 5."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Habit Stacking"
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban happens after breakfast, before any screen time. It's not a question of \"if\" but \"when.\" Screen time is the reward. No practice = no screens. Simple, consistent."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Let Her Choose the Mode"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Do you want practice mode or game mode today?\" Giving choice reduces resistance. She feels in control even though practice is happening either way."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Visible Progress"
+      },
+      {
+        "type": "paragraph",
+        "text": "We have a wall calendar where she puts a star for each day she practices. She's proud of her streak. Missing a day means breaking the chain – she cares about that."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Didn't Work"
+      },
+      {
+        "type": "list",
+        "items": [
+          "❌ **Long lectures** about why practice matters",
+          "❌ **Threats** like \"you'll fail at math\"",
+          "❌ **Comparisons** to other kids",
+          "❌ **Variable rules** (sometimes enforcing, sometimes not)",
+          "❌ **Negotiating** every single day"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The key insight: Remove the daily decision. Make it automatic, non-negotiable, but small enough to be painless."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Reframe Practice"
+      },
+      {
+        "type": "paragraph",
+        "text": "I stopped calling it \"practice\" (boring) and started calling it \"brain training\" (cool) or \"your math game\" (fun). Words matter. Same activity, different framing."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Should I pay my child to practice?",
+        "answer": "Generally not per session – it creates transactional expectations. Weekly allowance tied to responsibilities (including practice) is okay."
+      },
+      {
+        "question": "What if 5 problems is too few?",
+        "answer": "5 is the minimum. Most kids do more once they start. And 5 daily beats 0 from resistance. Consistency over volume."
+      },
+      {
+        "question": "My child argues no matter what. Help!",
+        "answer": "Stop arguing back. State the expectation, walk away. \"Soroban before screens. Let me know when you're done.\" Don't engage in debate."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Our app's short sessions are designed for real kids with limited patience.",
+      "buttonText": "See How It Works",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-hoc-soroban-nhung-khong-thich-luyen-tap"
+}

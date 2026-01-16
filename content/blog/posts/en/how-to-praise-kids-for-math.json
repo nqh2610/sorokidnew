@@ -1,0 +1,193 @@
+{
+  "slug": "how-to-praise-kids-for-math",
+  "title": "How to Praise Your Child's Math Efforts (The Right Way)",
+  "description": "Not all praise helps. Here's the science of effective encouragement that builds math confidence.",
+  "category": "stress-free-math-learning",
+  "keywords": [
+    "praising kids",
+    "growth mindset",
+    "math encouragement",
+    "effective praise"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/me-khen-con.jpg",
+  "imageAlt": "Parent praising child for math work",
+  "readingTime": 6,
+  "author": {
+    "name": "Dr. Lisa Park",
+    "role": "Developmental Psychologist"
+  },
+  "content": {
+    "intro": "\"You're so smart!\" feels like good praise. But research shows it can actually backfire. Here's what to say instead.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Research on Praise"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dr. Carol Dweck's famous studies showed that children praised for being \"smart\" actually perform worse over time than those praised for effort. Why? \"Smart\" feels like a fixed trait – either you have it or you don't."
+      },
+      {
+        "type": "callout",
+        "style": "warning",
+        "text": "Kids praised for being smart avoid challenges (might prove they're NOT smart). Kids praised for effort seek challenges (effort = success)."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Praise That Helps"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Praise Effort"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"You worked really hard on that.\"",
+          "\"I can see you kept trying even when it was hard.\"",
+          "\"You didn't give up!\"",
+          "\"Look how much you practiced.\""
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Praise Strategy"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"I like how you broke that into smaller steps.\"",
+          "\"Good thinking to check your work.\"",
+          "\"You found a different way to solve it!\""
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Praise Progress"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"You're getting faster at these.\"",
+          "\"Last week you couldn't do this, now look!\"",
+          "\"Your accuracy is improving.\"",
+          "\"You've moved up two levels this month.\""
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Praise That Hurts"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Avoid",
+          "Why It Backfires",
+          "Say Instead"
+        ],
+        "rows": [
+          [
+            "\"You're so smart!\"",
+            "Creates fixed mindset, fear of failure",
+            "\"You worked hard on that!\""
+          ],
+          [
+            "\"You're a natural!\"",
+            "Implies no effort needed, discourages practice",
+            "\"Your practice is paying off!\""
+          ],
+          [
+            "\"This is easy for you!\"",
+            "If something is hard later, they feel broken",
+            "\"You're getting better at this!\""
+          ],
+          [
+            "\"Perfect! All right!\"",
+            "Creates pressure to be perfect",
+            "\"Good effort! Let's keep practicing.\""
+          ],
+          [
+            "\"You're the best in class!\"",
+            "Ties worth to comparison",
+            "\"You've improved so much!\""
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What About Mistakes?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mistakes are learning opportunities, not failures. How you respond to mistakes shapes their relationship with challenge."
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"Mistakes help your brain grow.\"",
+          "\"Ooh, that one was tricky! Let's look at it together.\"",
+          "\"You learned something from that. Now you know!\"",
+          "\"It's okay to get it wrong – that's how we learn.\""
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When They're Frustrated"
+      },
+      {
+        "type": "paragraph",
+        "text": "Don't minimize frustration (\"It's not that hard!\"). Validate and redirect:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"This feels hard right now. That's okay.\"",
+          "\"It's normal to feel frustrated with new things.\"",
+          "\"Want to take a short break and come back to it?\"",
+          "\"Let's try a slightly easier one and build up.\""
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Long Game"
+      },
+      {
+        "type": "paragraph",
+        "text": "You're not just praising homework. You're building their internal narrative: \"I can do hard things. Effort leads to improvement. Mistakes are okay.\" This mindset lasts a lifetime."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Is it ever okay to praise results?",
+        "answer": "Yes, but connect results to effort. Not \"You got 100% because you're smart\" but \"You got 100% because you practiced every day this week!\""
+      },
+      {
+        "question": "What if they don't try hard?",
+        "answer": "You can't praise effort that didn't happen. But you can notice and praise any effort at all: \"I'm glad you sat down and tried.\" Then work on building more effort over time."
+      },
+      {
+        "question": "My child only cares about grades. How do I shift that?",
+        "answer": "It takes time. Start tracking effort metrics (days practiced, problems attempted) alongside grades. Celebrate effort wins even when grades don't change yet."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid tracks and celebrates effort – streaks, practice time, and progress over time.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "khen-con-khi-hoc-toan-nhu-the-nao"
+}

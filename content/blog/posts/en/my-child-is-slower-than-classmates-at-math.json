@@ -1,0 +1,174 @@
+{
+  "slug": "my-child-is-slower-than-classmates-at-math",
+  "title": "My Child Is Slower Than Classmates at Math – Should I Worry?",
+  "description": "Understanding why some children work more slowly at math and when speed differences matter.",
+  "category": "math-struggles",
+  "keywords": [
+    "slow at math",
+    "math pace",
+    "slower than classmates",
+    "processing speed"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-27T14:04:03.322Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/con-lam-toan-cham-hon-ban.jpg",
+  "imageAlt": "Child working carefully on math problems",
+  "readingTime": 6,
+  "author": {
+    "name": "Jennifer Walsh",
+    "role": "Learning Specialist"
+  },
+  "content": {
+    "intro": "Your child seems capable but is consistently one of the last to finish math work. Other kids are done, and yours is still working. Is this a problem?",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "First: Slow Isn't Always Bad"
+      },
+      {
+        "type": "paragraph",
+        "text": "Working slowly can mean:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Thoroughness and care",
+          "Double-checking work",
+          "Deep thinking",
+          "Conscientiousness",
+          "Good test-taking habits"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Some of the best mathematicians are deliberate thinkers. Speed isn't the goal – understanding is."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Slow Becomes a Problem"
+      },
+      {
+        "type": "paragraph",
+        "text": "Speed matters when it:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Prevents completing tests in allotted time",
+          "Creates frustration and avoidance",
+          "Causes child to fall behind in class",
+          "Leads to homework taking hours",
+          "Results in giving up on problems"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Some Kids Work Slower"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Reason",
+          "Signs to Look For"
+        ],
+        "rows": [
+          [
+            "Weak fact fluency",
+            "Has to think about 6+7, can't recall instantly"
+          ],
+          [
+            "Perfectionism",
+            "Erases repeatedly, won't move on until \"perfect\""
+          ],
+          [
+            "Processing speed differences",
+            "Slow across all subjects, not just math"
+          ],
+          [
+            "Anxiety",
+            "Freezes up, second-guesses everything"
+          ],
+          [
+            "Distraction",
+            "Loses focus, needs to restart frequently"
+          ],
+          [
+            "Weak number sense",
+            "Uncertain about what operations to use"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategies to Help"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Build Automaticity"
+      },
+      {
+        "type": "paragraph",
+        "text": "If basic facts aren't automatic, every calculation requires conscious thought. Practice until 7×8 is as instant as knowing your name."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Address Perfectionism"
+      },
+      {
+        "type": "paragraph",
+        "text": "Teach \"good enough for now.\" It's better to finish with small errors than to leave questions blank."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Practice Under Time"
+      },
+      {
+        "type": "paragraph",
+        "text": "Gradually introduce timed practice. Not to stress, but to build comfort with working at a reasonable pace."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Request Accommodations"
+      },
+      {
+        "type": "paragraph",
+        "text": "If there's a documented processing speed issue, extended time is a common and reasonable accommodation."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Research shows that building automaticity with math facts dramatically improves overall math speed. It's not about rushing – it's about freeing up mental resources for actual problem-solving."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Will my child always be slow at math?",
+        "answer": "Not necessarily. Speed often improves with fluency. Kids who build strong foundations and automatic recall usually speed up significantly."
+      },
+      {
+        "question": "Should I time my child's homework?",
+        "answer": "Generally no for homework. But occasional timed practice sessions (5-10 minutes) can help build pace. Frame it as a game, not a pressure test."
+      },
+      {
+        "question": "My child is accurate but slow. Is that okay?",
+        "answer": "Accuracy is more important than speed. But if slowness is impacting test performance or causing frustration, it's worth working on pace while maintaining accuracy."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid builds math fact fluency through daily practice, helping kids work faster without sacrificing accuracy.",
+      "buttonText": "Start Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-lam-toan-cham-hon-ban"
+}

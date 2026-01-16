@@ -1,0 +1,61 @@
+{
+  "postId": "dua-thu-hoat-hinh-game-dua-ngua-tao-dong-luc-hoc-tap",
+  "slug": "ua-th-hot-hnh-bin-thi-ua-hc-tp-thnh-cuc-ua-ng-vt-siu-vui",
+  "title": "[EN] Đua Thú Hoạt Hình - Biến Thi Đua Học Tập Thành Cuộc Đua Động Vật Siêu Vui",
+  "description": "[Needs translation] Chia sẻ cách tôi biến việc gọi học sinh lên bảng từ \"cực hình\" thành trò vui cả lớp mong đợi. Đua Vịt - công cụ chọn ngẫu nhiên mà các em xin được chơi mỗi ngày.",
+  "category": "teacher-insights",
+  "keywords": [
+    "đua vịt sông nước",
+    "chọn ngẫu nhiên vui",
+    "random picker game",
+    "chọn học sinh ngẫu nhiên",
+    "bốc thăm vui nhộn",
+    "game đua thú",
+    "kinh nghiệm giáo viên",
+    "công cụ dạy học"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-28T05:49:27.134Z",
+  "image": "/blog/dua-thu-hoat-hinh-game-dua-ngua-tao-dong-luc-hoc-tap.png",
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Cô ơi đừng gọi con!\" - Câu nói quen thuộc mỗi khi tôi cần ai đó lên bảng. Thế mà bây giờ, cũng những đứa trẻ ấy lại la lên: \"Cô ơi cho con đua đi! Vịt của con hôm nay chắc chắn thắng!\" Tôi không hiểu chuyện gì đang xảy ra, cho đến khi nhận ra: Tôi chỉ thay đổi cách chọn người thôi - từ gọi tên sang... đua vịt.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Chuyện Lớp Tôi Trước Đây"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tôi dạy lớp 4, 35 học sinh. Mỗi tiết học, tôi cần gọi vài em lên bảng - đọc bài, làm toán, trả lời câu hỏi. Và đây là những gì xảy ra:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"Cô ơi con chưa thuộc!\" - dù chưa biết tôi hỏi gì",
+          "\"Sao cô cứ gọi con hoài vậy?\" - dù mới gọi 2 lần/tuần",
+          "\"Cô thiên vị bạn Lan!\" - vì Lan hay giơ tay",
+          "Những em giỏi thì mệt mỏi vì bị gọi nhiều",
+          "Những em yếu thì trốn được vì... không ai để ý"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Tôi đã thử bốc thăm giấy. Kết quả?"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"Cô nhìn trước rồi!\" - các em nghi ngờ",
+          "Giấy rách, mất, phải viết lại",
+          "Nhàm chán - bốc xong là xong",
+          "Vẫn có em khóc khi bị chọn"
+        ]
+      }
+    ]
+  }
+}

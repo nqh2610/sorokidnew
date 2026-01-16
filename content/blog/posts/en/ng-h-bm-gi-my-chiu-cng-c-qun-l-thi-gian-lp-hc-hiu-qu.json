@@ -1,0 +1,51 @@
+{
+  "postId": "dong-ho-bam-gio-may-chieu-cong-cu-quan-ly-thoi-gian",
+  "slug": "ng-h-bm-gi-my-chiu-cng-c-qun-l-thi-gian-lp-hc-hiu-qu",
+  "title": "[EN] Đồng Hồ Bấm Giờ Máy Chiếu - Công Cụ Quản Lý Thời Gian Lớp Học Hiệu Quả",
+  "description": "[Needs translation] Chia sẻ kinh nghiệm sử dụng đồng hồ bấm giờ chiếu lên màn hình để quản lý thời gian tiết học. Từ tiết dạy loạn đến lớp học kỷ luật tự giác.",
+  "category": "teacher-insights",
+  "keywords": [
+    "đồng hồ bấm giờ",
+    "timer lớp học",
+    "đồng hồ đếm ngược",
+    "quản lý thời gian lớp học",
+    "classroom timer",
+    "đồng hồ máy chiếu",
+    "timer online",
+    "công cụ dạy học"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-29T22:39:51.899Z",
+  "image": "/blog/dong-ho-bam-gio-may-chieu-cong-cu-quan-ly-thoi-gian.png",
+  "author": {
+    "name": "Michael Tran",
+    "role": "Elementary Math Teacher"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Cô ơi hết giờ chưa?\" - \"Thầy ơi còn mấy phút?\" - Những câu hỏi quen thuộc khiến tôi mất bao nhiêu thời gian trả lời. Cho đến khi tôi phát hiện ra một công cụ đơn giản nhưng thay đổi hoàn toàn cách tôi quản lý tiết học: đồng hồ bấm giờ chiếu trên màn hình. Bài viết này chia sẻ hành trình từ tiết dạy \"cháy giáo án\" đến lớp học tự quản lý thời gian.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Nỗi Khổ \"Cháy Giáo Án\" Của Giáo Viên"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tôi từng là giáo viên hay \"cháy giáo án\" nhất tổ. Hoạt động nhóm dự kiến 5 phút, kéo dài thành 15 phút vì học sinh cứ hỏi \"còn bao lâu nữa cô?\". Phần củng cố bị cắt vì hết giờ. Học sinh không có khái niệm về thời gian."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nghiêm trọng hơn, tôi không biết phân bổ thời gian cho từng hoạt động. Có tiết giảng bài mới quá lâu, phần thực hành chỉ còn 5 phút. Có tiết cho làm bài tập xong quá sớm, 10 phút cuối không biết làm gì."
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi có người dự giờ, áp lực thời gian càng lớn. Tôi liên tục nhìn đồng hồ đeo tay, mất tập trung vào bài dạy."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Phát Hiện \"Vũ Khí Bí Mật\" Timer Online"
+      }
+    ]
+  }
+}

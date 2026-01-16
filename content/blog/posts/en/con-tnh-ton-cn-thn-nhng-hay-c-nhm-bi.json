@@ -1,0 +1,49 @@
+{
+  "postId": "con-tinh-toan-can-than-nhung-hay-doc-nham-de-bai",
+  "slug": "con-tnh-ton-cn-thn-nhng-hay-c-nhm-bi",
+  "title": "[EN] Con tính toán cẩn thận nhưng hay đọc nhầm đề bài",
+  "description": "[Needs translation] Bài kiểm tra về, mình tưởng con tính sai. Hóa ra con đọc nhầm đề.",
+  "category": "when-kids-struggle-with-math",
+  "keywords": [
+    "con đọc nhầm đề",
+    "sai vì đọc đề",
+    "rèn đọc hiểu đề toán"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/doc-nham-de.jpg",
+  "imageAlt": "Bé châu Á đang đọc đề bài với vẻ tập trung",
+  "readingTime": 5,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Con ơi, sao bài này sai?\" – \"À, con đọc nhầm là 45 thành 54.\" Chuyện này xảy ra với con mình hoài.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Đọc nhầm đề – vấn đề phổ biến"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhiều trẻ tính toán tốt nhưng mất điểm vì:\n- Đọc nhầm số.\n- Hiểu sai yêu cầu bài.\n- Bỏ sót điều kiện."
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây không phải lỗi kém toán. Đây là lỗi đọc hiểu và tập trung."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Nguyên nhân"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. **Vội vàng**\n   - Con muốn làm nhanh → đọc lướt → bỏ sót."
+      }
+    ]
+  }
+}

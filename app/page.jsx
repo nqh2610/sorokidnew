@@ -33,73 +33,7 @@ export const revalidate = 3600;
 // Đảm bảo trang luôn được static, không dynamic
 export const dynamic = 'force-static';
 import Script from 'next/script';
-import { getAllPosts, formatDate, calculateReadingTime } from '@/lib/blog';
-import BlogImage from '@/components/Blog/BlogImage';
-
-// Blog Section Component
-function BlogSection() {
-  const posts = getAllPosts({ sortBy: 'publishedAt', sortOrder: 'desc' }).slice(0, 4);
-  
-  if (posts.length === 0) return null;
-
-  return (
-    <section className="py-12 sm:py-20 bg-gray-50" aria-labelledby="blog-heading">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-10">
-          <h2 id="blog-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
-            <span aria-hidden="true">📚</span> <T k="home.blog.title" />
-          </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            <T k="home.blog.description" />
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {posts.map((post) => (
-            <Link 
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300"
-            >
-              <div className="h-40 bg-gradient-to-br from-violet-100 to-pink-100 overflow-hidden">
-                <BlogImage
-                  src={post.image}
-                  alt={post.imageAlt || post.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-5">
-                <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 leading-snug group-hover:text-violet-600 transition-colors">
-                  {post.title}
-                </h3>
-                <p className="text-gray-600 text-sm line-clamp-2 mb-3">
-                  {post.description}
-                </p>
-                <div className="flex items-center gap-3 text-xs text-gray-500">
-                  <span>{formatDate(post.publishedAt)}</span>
-                  <span>•</span>
-                  <span>{post.readingTime || calculateReadingTime(post.content?.intro)} <T k="common.minutes" /></span>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        <div className="text-center">
-          <Link 
-            href="/blog"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-50 hover:border-gray-300 transition-all"
-          >
-            <T k="home.blog.viewAll" />
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
+import BlogSection from '@/components/Home/BlogSection';
 
 // Structured Data cho SEO - Tối ưu cho AI & Search Engines
 const jsonLd = {
@@ -864,7 +798,7 @@ const userTypes = [
   { titleKey: "home.userTypes.teacher.title", descKey: "home.userTypes.teacher.desc", color: "bg-gradient-to-br from-pink-500 to-rose-500", emoji: "👩‍🏫" }
 ];
 
-export default function HomePage() {
+export default function HomePage({ locale = 'vi' }) {
 
   return (
     <>
@@ -1202,7 +1136,7 @@ export default function HomePage() {
       </section>
 
         {/* Blog Section - Chia sẻ cho phụ huynh */}
-        <BlogSection />
+        <BlogSection locale={locale} />
 
         {/* CTA Section - Đăng ký học Soroban */}
         <section className="py-12 sm:py-20 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500" aria-labelledby="cta-heading">

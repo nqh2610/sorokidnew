@@ -1,0 +1,186 @@
+{
+  "slug": "building-math-habits-for-kids",
+  "title": "Building Daily Math Habits That Actually Stick",
+  "description": "Science-backed strategies for creating consistent math practice habits without daily battles.",
+  "category": "stress-free-math-learning",
+  "keywords": [
+    "math habits",
+    "daily math routine",
+    "consistent practice",
+    "habit formation"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/be-tu-giac-hoc.jpg",
+  "imageAlt": "Child with consistent math practice routine",
+  "readingTime": 7,
+  "author": {
+    "name": "Sarah Thompson",
+    "role": "Child Behavior Specialist"
+  },
+  "content": {
+    "intro": "Motivation gets you started. Habits keep you going. Here's how to turn \"we should practice math\" into \"we just do math\" – no willpower required.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Habits Beat Motivation"
+      },
+      {
+        "type": "paragraph",
+        "text": "Motivation fluctuates. Some days your child is excited, most days they're not. Relying on motivation means constant negotiation."
+      },
+      {
+        "type": "paragraph",
+        "text": "Habits are automatic. You don't decide to brush your teeth – you just do it. Math practice can become the same way."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Habit Formation Framework"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Cue (Trigger)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Attach math practice to something that already happens daily:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "After breakfast, before school",
+          "Right after snack when they get home",
+          "After dinner, before screen time",
+          "Same time as a parent's routine (coffee, workout)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Routine (The Practice)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Make the routine as easy as possible to start:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Device charged and ready",
+          "Same location every day",
+          "Same duration (10-15 minutes max)",
+          "No decisions about what to practice (app chooses)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Reward (The Positive Ending)"
+      },
+      {
+        "type": "paragraph",
+        "text": "The brain needs a reward to cement the habit:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Natural reward: Screen time, play time",
+          "Social reward: \"Nice job! High five!\"",
+          "Intrinsic reward: Progress tracking, streaks",
+          "Physical reward: Sticker on calendar (visible progress)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Don't use the reward as a bribe (\"If you do math, THEN you get screen time\"). Use it as the natural sequence (\"Math, then screen time – that's just what we do\")."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The 21-Day Myth"
+      },
+      {
+        "type": "paragraph",
+        "text": "You've heard it takes 21 days to form a habit. Research says it's actually 66 days on average for behaviors to become automatic. Plan for 2-3 months of intentional practice."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Habits Break (And How to Fix Them)"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Disruption",
+          "Solution"
+        ],
+        "rows": [
+          [
+            "Vacation/travel",
+            "Restart immediately when home – day 1, not \"tomorrow\""
+          ],
+          [
+            "Sick days",
+            "Skip when sick, resume next healthy day, no guilt"
+          ],
+          [
+            "Missed a day",
+            "Never miss twice. One miss doesn't break a habit, two starts a new pattern"
+          ],
+          [
+            "Child refuses",
+            "Make it ridiculously small (2 minutes). Success > duration"
+          ],
+          [
+            "Schedule change",
+            "Find new anchor point immediately, don't float"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Success Looks Like"
+      },
+      {
+        "type": "paragraph",
+        "text": "After 2-3 months of consistency:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Child goes to practice without being reminded",
+          "Missing practice feels \"wrong\" (to them, not just you)",
+          "No negotiation or resistance",
+          "Practice is just \"what we do\" – identity shift"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "What if my spouse isn't consistent about enforcing the habit?",
+        "answer": "Align on non-negotiables. The same trigger-routine-reward should happen regardless of which parent is home. Consistency is key."
+      },
+      {
+        "question": "Should weekends be different?",
+        "answer": "Keeping the same routine 7 days/week builds habits faster. But if weekends are truly different (travel, activities), 5 days/week can work – just keep those 5 days rock solid."
+      },
+      {
+        "question": "What if they resist at first?",
+        "answer": "Resistance is normal weeks 1-3. Push through with compassion but firmness. By week 4-6, resistance usually fades. If it doesn't, the routine may be too long or hard – reduce."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid's streak tracking and rewards system helps build lasting math habits.",
+      "buttonText": "Start Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "tao-thoi-quen-hoc-toan-cho-con"
+}

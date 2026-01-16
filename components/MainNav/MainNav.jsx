@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/Logo/Logo';
-import { LanguageFlags } from '@/components/LanguageSwitcher';
+import { LanguageSelector } from '@/components/LanguageSwitcher';
 import { useI18n } from '@/lib/i18n/I18nContext';
 import { LocalizedLink } from '@/components/LocalizedLink';
 import { getPathWithoutLocale } from '@/lib/i18n/config';
@@ -62,7 +62,7 @@ export default function MainNav({ showAuth = true }) {
             ))}
 
             {/* Language Switcher */}
-            <LanguageFlags className="mx-0.5" />
+            <LanguageSelector className="mx-0.5" />
 
             {/* Auth Buttons */}
             {showAuth && (

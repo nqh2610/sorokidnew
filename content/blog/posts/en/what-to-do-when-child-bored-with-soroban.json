@@ -1,0 +1,168 @@
+{
+  "slug": "what-to-do-when-child-bored-with-soroban",
+  "title": "My Child is Bored with Soroban – What Should I Do?",
+  "description": "Every parent hits this wall: the initial excitement fades. Here's how to handle soroban burnout without forcing or quitting.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "child bored with soroban",
+    "soroban motivation",
+    "soroban burnout",
+    "keep child interested soroban"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-01-14",
+  "image": "/blog/be-chan-hoc.jpg",
+  "imageAlt": "Child looking bored with soroban practice",
+  "readingTime": 6,
+  "author": {
+    "name": "Amanda",
+    "role": "Mom of 8-year-old"
+  },
+  "content": {
+    "intro": "My son was SO excited when we started soroban. Three months later, he's dragging his feet. \"Do I have to?\" every single day. Here's what I learned about motivation, burnout, and keeping the spark alive.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why This Happens (It's Normal!)"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Novelty wore off:** The new thing isn't new anymore",
+          "**Hit a plateau:** Progress slowed down, frustration increased",
+          "**Comparison:** Sees others doing \"easier\" things for fun",
+          "**Repetition fatigue:** Same types of problems day after day",
+          "**External pressure:** Feels like an obligation, not a choice"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "EVERY child goes through this with EVERY skill. Piano, sports, languages, math – the boredom phase is universal. It's how you handle it that matters."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What NOT to Do"
+      },
+      {
+        "type": "list",
+        "items": [
+          "❌ Force longer practice sessions",
+          "❌ Threaten or punish for lack of enthusiasm",
+          "❌ Compare to other children",
+          "❌ Add pressure about progress",
+          "❌ Immediately quit and move to something else"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to Try First: Reduce, Don't Eliminate"
+      },
+      {
+        "type": "paragraph",
+        "text": "When my son complained, I cut practice from 20 minutes to 10 minutes. That small change made a big difference. He could handle 10 minutes without a battle."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategy 2: Change the Context"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Practice at a different time (morning vs evening)",
+          "Practice in a different location (couch vs desk)",
+          "Practice together (you do problems too)",
+          "Make it a race or competition"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategy 3: Focus on Wins"
+      },
+      {
+        "type": "paragraph",
+        "text": "Instead of pushing forward, celebrate what they've already achieved:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"Remember when you couldn't do this? Now you can!\"",
+          "\"You're faster than a month ago!\"",
+          "\"Let's show grandma what you learned\""
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategy 4: Take a Break (But a Short One)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sometimes a 1-2 week break is okay. Not months – you'll lose progress. But a short pause can reset motivation."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "During a break, casually use mental math in daily life. \"Quick, what's 15 + 8?\" Keep the brain engaged without formal practice."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategy 5: Real-World Applications"
+      },
+      {
+        "type": "paragraph",
+        "text": "My breakthrough came when I started involving my son in real situations:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"Help me add up the grocery bill\"",
+          "\"How much change should we get back?\"",
+          "\"Can you calculate the tip?\"",
+          "\"How many more points to reach 1000?\""
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "When math had a PURPOSE, his interest returned."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When to Actually Quit"
+      },
+      {
+        "type": "paragraph",
+        "text": "If after trying everything, your child is still miserable for 2+ months, it might be time to pause longer. Better to stop and try again in 6-12 months than to create hatred for math."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Is it okay to bribe with rewards?",
+        "answer": "Small rewards for consistency (not performance) can help. \"Practice every day this week, pick a movie Friday.\" Avoid paying per problem solved."
+      },
+      {
+        "question": "Should I hide my disappointment?",
+        "answer": "Yes. Your disappointment adds pressure. Stay neutral. \"Okay, let's try again tomorrow\" is better than sighing and guilt-tripping."
+      },
+      {
+        "question": "Will they regret quitting later?",
+        "answer": "Maybe. But forced learning creates negative associations that last longer than missed skills. Intrinsic motivation beats forced compliance long-term."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Our app has multiple game modes to keep practice fresh.",
+      "buttonText": "Explore Game Modes",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "lam-gi-khi-con-chan-hoc-soroban"
+}

@@ -1,0 +1,174 @@
+{
+  "slug": "my-child-keeps-forgetting-multiplication-tables",
+  "title": "My Child Keeps Forgetting Multiplication Tables – What Works",
+  "description": "Effective strategies for helping children who struggle to remember their times tables despite repeated practice.",
+  "category": "math-struggles",
+  "keywords": [
+    "multiplication tables",
+    "times tables",
+    "memorizing multiplication",
+    "math facts"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-29T01:29:12.393Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/con-quen-bang-cuu-chuong.jpg",
+  "imageAlt": "Child practicing multiplication tables",
+  "readingTime": 7,
+  "author": {
+    "name": "David Chen",
+    "role": "Elementary Math Teacher"
+  },
+  "content": {
+    "intro": "You've practiced, used flashcards, sung songs – but 7×8 still doesn't stick. Why won't multiplication tables stay in your child's memory?",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Multiplication Tables Are Hard to Remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "100 facts is a lot (10×10)",
+          "Similar-sounding facts cause confusion (6×8=48 vs 6×9=54)",
+          "No meaningful pattern to some facts",
+          "Rote memorization doesn't create understanding",
+          "Inconsistent practice lets facts fade"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Real Problem: How We Teach Times Tables"
+      },
+      {
+        "type": "paragraph",
+        "text": "Traditional methods focus on rote memorization – repeating facts over and over hoping they stick. This works for some kids, but for many:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Facts memorized in isolation don't connect to understanding",
+          "Without understanding, facts are easily confused",
+          "Stress and pressure make memory worse",
+          "Boring repetition leads to disengagement"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Better Approaches"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Build on Known Facts"
+      },
+      {
+        "type": "paragraph",
+        "text": "Most kids know 2s, 5s, and 10s easily. Use these as anchors. For 6×7, think 5×7=35, plus one more 7 = 42."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Use Patterns and Relationships"
+      },
+      {
+        "type": "list",
+        "items": [
+          "9s: Product digits always sum to 9 (9×7=63, 6+3=9)",
+          "Doubles: Square numbers are just doubles (6×6 = 6 doubled 6 times)",
+          "Commutative property: 6×8 = 8×6 (cuts facts in half)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Visual Models"
+      },
+      {
+        "type": "paragraph",
+        "text": "Arrays, area models, and manipulatives help kids see what multiplication means. Understanding aids memory."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Spaced Repetition"
+      },
+      {
+        "type": "paragraph",
+        "text": "Instead of cramming all facts, review each fact at increasing intervals. Day 1, Day 3, Day 7, Day 14. This builds long-term memory."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Make It Meaningful"
+      },
+      {
+        "type": "paragraph",
+        "text": "Real-world use helps memory: \"We have 8 people and each needs 7 cookies. How many do we need?\" Context creates hooks for memory."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The trickiest facts for most kids: 6×7, 6×8, 7×8, 8×8. Focus extra attention on these, and make sure all other facts are solid first."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Practice Schedule That Works"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "When",
+          "What",
+          "How Long"
+        ],
+        "rows": [
+          [
+            "Daily",
+            "Review mixed facts (focus on weakest)",
+            "5-10 min"
+          ],
+          [
+            "Weekly",
+            "Introduce 1-2 new facts",
+            "5 min"
+          ],
+          [
+            "Monthly",
+            "Full assessment to find gaps",
+            "10 min"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Consistency beats intensity. Five minutes daily is better than 30 minutes once a week."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What grade should kids know multiplication tables?",
+        "answer": "By end of 3rd grade (US), most students should have multiplication facts memorized. But many take longer, and that's okay if they're making progress."
+      },
+      {
+        "question": "Are songs and rhymes effective?",
+        "answer": "For some kids, yes. Musical memory is powerful. But be aware that some kids memorize the song without being able to use the facts flexibly. Combine with other methods."
+      },
+      {
+        "question": "Should I use flashcards?",
+        "answer": "They can help, but don't make them stressful. Mix in easy facts to build confidence. Keep sessions short. And use them alongside understanding-based approaches."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid uses adaptive practice to build multiplication fluency – identifying weak spots and reinforcing until facts stick.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-hay-quen-bang-cuu-chuong"
+}

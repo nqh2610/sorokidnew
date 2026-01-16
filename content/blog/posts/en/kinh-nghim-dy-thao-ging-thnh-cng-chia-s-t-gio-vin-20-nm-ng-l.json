@@ -1,0 +1,53 @@
+{
+  "postId": "kinh-nghiem-day-thao-giang-thanh-cong-tu-giao-vien-20-nam",
+  "slug": "kinh-nghim-dy-thao-ging-thnh-cng-chia-s-t-gio-vin-20-nm-ng-l",
+  "title": "[EN] Kinh Nghiệm Dạy Thao Giảng Thành Công - Chia Sẻ Từ Giáo Viên 20 Năm Đứng Lớp",
+  "description": "[Needs translation] Chia sẻ kinh nghiệm dạy thao giảng thành công: chuẩn bị giáo án, quản lý cảm xúc, sử dụng công cụ dạy học tích cực. Từ những lần thất bại đến tiết thao giảng được khen ngợi.",
+  "category": "teacher-insights",
+  "keywords": [
+    "thao giảng",
+    "dạy thao giảng hay",
+    "kinh nghiệm thao giảng",
+    "tiết thao giảng",
+    "giáo án thao giảng",
+    "cách dạy thao giảng",
+    "thao giảng thành công",
+    "dạy mẫu"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] 20 năm đứng lớp, không biết bao nhiêu lần thao giảng. Từ những tiết đầu tiên run như cầy sấy, đến giờ tôi đã có thể bình tĩnh đứng trước hàng chục đồng nghiệp và ban giám hiệu. Bí quyết không phải \"dạy giỏi sẵn\", mà là những kinh nghiệm xương máu tích lũy qua từng lần. Bài viết này chia sẻ tất cả những gì tôi đã học được.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Thao Giảng - Nỗi Sợ Của Nhiều Giáo Viên"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thao giảng là tiết dạy có người dự, được đánh giá. Đây là nỗi sợ của nhiều giáo viên:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Áp lực:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Có ban giám hiệu, tổ trưởng, đồng nghiệp dự",
+          "Bị ghi chép, nhận xét, chấm điểm",
+          "Ảnh hưởng đến đánh giá công việc, thi đua"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Nỗi lo thường gặp:**"
+      }
+    ]
+  }
+}

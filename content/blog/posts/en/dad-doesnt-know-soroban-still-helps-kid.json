@@ -1,0 +1,111 @@
+{
+  "slug": "dad-doesnt-know-soroban-still-helps-kid",
+  "title": "My Husband Knows Nothing About Soroban – Yet He's Our Kid's Best Study Buddy",
+  "description": "He can't do Soroban himself, but somehow he's the one keeping our daughter motivated. Here's what he does differently.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "parent helping with soroban",
+    "soroban without knowing it",
+    "dad helping with math",
+    "supporting child learning"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-05T04:49:31.714Z",
+  "createdAt": "2025-12-26",
+  "image": "/blog/ba-khong-biet-soroban.jpg",
+  "imageAlt": "Father helping daughter with Soroban practice",
+  "readingTime": 5,
+  "author": {
+    "name": "Amanda",
+    "role": "Mom of 1st grader"
+  },
+  "content": {
+    "intro": "My husband has never touched a Soroban in his life. He doesn't know the difference between heaven beads and earth beads. Yet somehow, when he sits with our daughter during practice, she's more engaged than when I help her. I finally figured out why.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What He Does That Works"
+      },
+      {
+        "type": "paragraph",
+        "text": "He doesn't try to teach. He just... watches. And asks genuine questions."
+      },
+      {
+        "type": "paragraph",
+        "text": "\"What does that bead mean?\" \"How'd you figure that out?\" \"Can you show me slower?\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Our daughter loves explaining things to him. She becomes the teacher. And in teaching him, she actually learns better."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why This Works Better Than \"Helping\""
+      },
+      {
+        "type": "paragraph",
+        "text": "When I sit with her, I try to correct mistakes immediately. \"No, not that bead.\" \"You forgot to carry.\" It feels like pressure."
+      },
+      {
+        "type": "paragraph",
+        "text": "When Dad sits with her, he has no idea if she's right or wrong. So he just celebrates the effort. \"Wow, that's fast!\" \"You remember all those steps?\""
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Sometimes not knowing the subject makes you a better learning partner. You can focus on encouragement instead of correction."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The App Does the Teaching"
+      },
+      {
+        "type": "paragraph",
+        "text": "Here's the thing: neither of us needs to actually teach Soroban. The Sorokid app does that. It shows each step, gives instant feedback, tracks progress."
+      },
+      {
+        "type": "paragraph",
+        "text": "Our job as parents isn't to be Soroban experts. It's to be cheerleaders."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What I Learned from My Husband"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Ask instead of tell:** \"How did you do that?\" beats \"Do it this way.\"",
+          "**Celebrate effort, not just results:** \"You stuck with it!\" matters more than \"You got it right.\"",
+          "**Let them teach you:** Kids remember 90% of what they teach others.",
+          "**Stay curious, not controlling:** Your job is presence, not instruction."
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "You don't need to know Soroban to support your child learning it. Sometimes the best help is just being there, interested and encouraging."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do I need to learn Soroban to help my child?",
+        "answer": "No. Apps like Sorokid handle the instruction. Your role is motivation and encouragement. Many parents find their kids learn better when they DON'T try to teach."
+      },
+      {
+        "question": "What if my child asks me something I don't know?",
+        "answer": "Say \"I don't know, but let's figure it out together.\" Or \"Show me how you'd solve it.\" This teaches problem-solving better than giving answers."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Want to support your child's Soroban journey without being an expert? Sorokid makes it easy for any parent.",
+      "buttonText": "See How It Works",
+      "buttonUrl": "/learn"
+    }
+  },
+  "postId": "ba-khong-biet-soroban-van-kem-con-duoc"
+}

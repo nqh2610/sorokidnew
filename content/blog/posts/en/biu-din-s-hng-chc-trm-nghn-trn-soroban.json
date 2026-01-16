@@ -1,0 +1,56 @@
+{
+  "postId": "bieu-dien-so-hang-chuc-tram-soroban",
+  "slug": "biu-din-s-hng-chc-trm-nghn-trn-soroban",
+  "title": "[EN] Biểu diễn số hàng chục, trăm, nghìn trên Soroban",
+  "description": "[Needs translation] Sau khi học số 0-9, con cần biết cách biểu diễn số lớn hơn. Bài này hướng dẫn cách đọc số 2-3-4 chữ số trên Soroban.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "số hàng chục soroban",
+    "cách đọc số lớn trên soroban",
+    "biểu diễn số nhiều chữ số soroban",
+    "số hàng trăm soroban"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-27T14:04:22.643Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/hoc-so-hang-chuc-tram-soroban.jpg",
+  "imageAlt": "Trẻ em châu Á học biểu diễn số hàng chục, trăm trên Soroban",
+  "readingTime": 5,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Con đã thuộc số 0-9. Giờ là lúc học số lớn hơn. Tin vui: quy tắc y hệt – chỉ khác là dùng nhiều cột hơn.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mỗi cột = 1 hàng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Trên Soroban, mỗi thanh dọc (cột) đại diện cho một hàng số:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Cột ngoài cùng bên phải: Hàng đơn vị",
+          "Cột kế tiếp (sang trái): Hàng chục",
+          "Cột tiếp theo: Hàng trăm",
+          "Tiếp tục: Hàng nghìn, chục nghìn, trăm nghìn..."
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Giống như cách viết số: Số bên phải là hàng nhỏ nhất, số bên trái là hàng lớn hơn."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách xác định hàng đơn vị"
+      }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "postId": "day-con-tinh-nham-nhanh",
+  "slug": "teaching-mental-math-how-my-child-went-from-finger-counting",
+  "title": "Teaching Mental Math: How My Child Went from Finger-Counting to Quick Calculations",
+  "description": "My third-grader was still counting on fingers while classmates did mental math instantly. Here's the step-by-step approach that finally helped.",
+  "category": "stress-free-math-learning",
+  "keywords": [
+    "dạy con tính nhẩm nhanh",
+    "cách dạy con tính nhẩm",
+    "luyện tính nhẩm cho bé",
+    "con tính nhẩm chậm",
+    "phương pháp tính nhẩm",
+    "bé tính nhẩm nhanh",
+    "app luyện tính nhẩm"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-03T14:16:40.503Z",
+  "createdAt": "2026-01-02",
+  "image": "/blog/me-day-con-tinh-nham.jpg",
+  "imageAlt": "Mẹ dạy con tính nhẩm tại nhà",
+  "readingTime": 12,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "I'll never forget the parent-teacher conference where Mrs. Johnson gently mentioned that my son was 'still developing his mental math skills.' Translation: while other kids instantly knew 7+8, mine was still counting fingers under the desk.",
+    "sections": [
+      {
+        "type": "paragraph",
+        "text": "Tối đó, mình ôm con mà tự hỏi: 'Làm sao để con không phải đếm tay nữa?' Mình không có tiền cho con học thêm, cũng không có thời gian đưa đón đến trung tâm. Mình chỉ có buổi tối ở nhà. Và mình bắt đầu hành trình tự mày mò cách dạy con tính nhẩm tại nhà."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sau 4 tháng tự mày mò, thử sai, mình đã tìm ra cách dạy con tính nhẩm tại nhà. Con giờ tính 47 + 38 trong đầu chỉ mất 4-5 giây. Không phải thần đồng, nhưng đủ để làm xong bài kiểm tra trước giờ. Và quan trọng hơn – con không còn sợ toán nữa."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Nếu con bạn cũng đang đếm ngón tay, làm bài chậm, hay khóc mỗi khi có kiểm tra toán – thì bài viết này là những gì mình ước mình biết sớm hơn 1 năm trước."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vì sao con tính nhẩm chậm? – Hiểu nguyên nhân trước khi tìm cách"
+      },
+      {
+        "type": "paragraph",
+        "text": "Trước khi tìm cách dạy con tính nhẩm, mình cần hiểu tại sao con lại chậm. Sau khi đọc nhiều tài liệu và quan sát con, mình nhận ra 3 nguyên nhân chính."
+      }
+    ]
+  }
+}

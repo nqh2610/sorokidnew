@@ -1,0 +1,171 @@
+{
+  "slug": "three-things-parents-should-do-during-math-time",
+  "title": "The Only 3 Things Parents Should Do During Math Time",
+  "description": "Stop doing too much. Here's what actually helps vs. what hurts your child's math learning.",
+  "category": "stress-free-math-learning",
+  "keywords": [
+    "parental involvement",
+    "homework help",
+    "math support",
+    "parenting tips"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-27T14:04:08.840Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/ba-viec-phu-huynh-nen-lam.jpg",
+  "imageAlt": "Parent appropriately supporting child's math learning",
+  "readingTime": 5,
+  "author": {
+    "name": "Michelle Anderson",
+    "role": "Parent Educator"
+  },
+  "content": {
+    "intro": "Most parents do too much during math time. They explain, correct, push, hover. Here's the surprising truth: less is more.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Parents Should Actually Do"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Be Present (Without Hovering)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sit nearby. Be available. But don't watch every keystroke. Your presence provides security; hovering creates pressure."
+      },
+      {
+        "type": "paragraph",
+        "text": "What this looks like: You're reading a book in the same room while they practice. They know you're there if they need you."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Encourage (Without Judging)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Acknowledge effort, not results. \"You're working hard.\" \"I see you're focusing.\" Not \"That's wrong\" or \"Be careful!\""
+      },
+      {
+        "type": "paragraph",
+        "text": "What this looks like: When they finish, you say \"Nice work today!\" not \"Let me check if you got them right.\""
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Enforce the Routine (Without Negotiating)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Your job is to make sure practice happens, not to teach the math. Same time, same duration, every day. That's it."
+      },
+      {
+        "type": "paragraph",
+        "text": "What this looks like: \"It's 4:00, math time.\" Period. No debate about whether they feel like it."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "If you're exhausted after math time, you're probably doing too much. It should be low-effort for you."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Parents Should STOP Doing"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Stop This",
+          "Why It Hurts"
+        ],
+        "rows": [
+          [
+            "Explaining every problem",
+            "Creates dependency, removes struggle (where learning happens)"
+          ],
+          [
+            "Correcting immediately",
+            "Prevents them from self-correcting and learning from errors"
+          ],
+          [
+            "Showing frustration",
+            "Your stress becomes their stress"
+          ],
+          [
+            "Comparing to other kids",
+            "Damages motivation and self-worth"
+          ],
+          [
+            "Negotiating duration",
+            "Undermines the habit"
+          ],
+          [
+            "Taking over when they struggle",
+            "Removes ownership and confidence"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Math Time Script"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"It's math time.\" (Announce)",
+          "[They practice, you're nearby but not hovering]",
+          "\"Nice work today!\" (When they finish)",
+          "[Move on with the day]"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "That's it. No lectures. No reviews. No drama. The app or program teaches; you provide the structure."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When to Step In"
+      },
+      {
+        "type": "paragraph",
+        "text": "Only step in when:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "They ask for help (wait for the ask!)",
+          "They're in tears (emotional support, not math teaching)",
+          "There's a technical problem (app not working)",
+          "The tool/app needs adjusting (too hard, too easy)"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "What if they're getting lots of problems wrong?",
+        "answer": "Let the app provide feedback. That's what it's for. If consistent struggles continue for days, the level might need adjusting – that's when to step in."
+      },
+      {
+        "question": "Should I check their answers afterward?",
+        "answer": "Only if you can do it without turning it into a teaching moment or criticism. A glance at the progress report is fine; going through each error is too much."
+      },
+      {
+        "question": "What if I know better ways to solve the problems?",
+        "answer": "Keep them to yourself unless asked. Different methods confuse kids. Trust the app's approach."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid does the teaching so you can focus on encouragement. Just show up and support.",
+      "buttonText": "Learn More",
+      "buttonUrl": "/learn"
+    }
+  },
+  "postId": "ba-viec-phu-huynh-chi-nen-lam-khi-con-hoc"
+}

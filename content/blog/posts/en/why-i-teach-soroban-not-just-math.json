@@ -1,0 +1,144 @@
+{
+  "slug": "why-i-teach-soroban-not-just-math",
+  "title": "Why I Teach Soroban, Not Just \"Math\" – A Teacher's Perspective",
+  "description": "After 10 years teaching math, I discovered soroban changed everything. Here's what makes it different from traditional math instruction.",
+  "category": "teacher-insights",
+  "keywords": [
+    "soroban teaching method",
+    "why teach soroban",
+    "soroban vs traditional math",
+    "math teacher perspective"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-01-30",
+  "image": "/blog/ba-khong-biet-soroban.jpg",
+  "imageAlt": "Teacher instructing students in soroban",
+  "readingTime": 6,
+  "author": {
+    "name": "Sarah Johnson",
+    "role": "Math Teacher, 10 years experience"
+  },
+  "content": {
+    "intro": "I've taught elementary math for a decade. Worksheets, textbooks, manipulatives – I've used it all. When I discovered soroban, I realized I'd been missing something fundamental about how kids learn numbers.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Traditional Math Teaching Does"
+      },
+      {
+        "type": "paragraph",
+        "text": "Most math instruction focuses on:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Procedures (\"here's how to add with carrying\")",
+          "Memorization (\"learn your times tables\")",
+          "Multiple strategies (\"you can count up, count back, make tens...\")",
+          "Showing work (\"write each step\")"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "These aren't wrong, but they often miss something: kids don't develop a FEEL for numbers. They follow rules without intuition."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Soroban Does Differently"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**One consistent method:** Not \"pick your strategy\" – one reliable approach",
+          "**Physical to mental:** Concrete manipulation → mental visualization",
+          "**Pattern recognition:** Numbers become images, not symbols",
+          "**Speed through automaticity:** Fluency, not just accuracy"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "personal",
+        "text": "The first time I saw a soroban student calculate faster than I could – mentally – I knew I had to understand this method."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why I Integrated Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "I started recommending soroban for students who:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Struggled with abstract number concepts",
+          "Needed confidence building through success",
+          "Were visual/tactile learners",
+          "Had math anxiety from \"getting it wrong\"",
+          "Were advanced and bored with grade-level work"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The results surprised me. Kids who were \"bad at math\" excelled at soroban. Kids who were bored found a new challenge."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Does It Replace School Math?"
+      },
+      {
+        "type": "paragraph",
+        "text": "No. And I don't use it that way. Soroban supplements school math by building:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Number sense that helps with ALL math",
+          "Mental math fluency",
+          "Confidence with numbers",
+          "Processing speed"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Students still learn fractions, geometry, word problems separately. But their calculation foundation is stronger."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What I Tell Parents"
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Soroban won't teach your child everything in math. It will make everything in math easier because they'll understand numbers deeply."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Should soroban replace homework help?",
+        "answer": "No. Help with homework as needed. Soroban is separate practice that builds foundational skills over time."
+      },
+      {
+        "question": "Will soroban conflict with how I teach?",
+        "answer": "Rarely. Different methods coexist. Students know \"this is my soroban way, this is my school way\" – like speaking two languages."
+      },
+      {
+        "question": "At what grade level do you recommend starting?",
+        "answer": "Kindergarten to 3rd grade is ideal for starting. Later is fine too, but earlier gives more compounding time."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Give your child the number sense that makes all math easier.",
+      "buttonText": "Start Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "vi-sao-toi-day-soroban-khong-chi-la-toan"
+}

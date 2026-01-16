@@ -1,0 +1,181 @@
+{
+  "slug": "is-it-okay-to-use-calculators-for-homework",
+  "title": "Is It Okay for Kids to Use Calculators for Math Homework?",
+  "description": "When calculators help learning and when they hurt it – a practical guide for parents.",
+  "category": "parents-helping-with-math",
+  "keywords": [
+    "calculator use",
+    "math homework",
+    "calculators kids",
+    "mental math"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/con-lam-toan-cham-hon-ban.jpg",
+  "imageAlt": "Child with calculator during homework",
+  "readingTime": 6,
+  "author": {
+    "name": "Robert Stevens",
+    "role": "Middle School Math Teacher"
+  },
+  "content": {
+    "intro": "\"Why do I need to learn this? I have a calculator!\" It's a fair question. When should kids use calculators, and when should they put them away?",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Short Answer"
+      },
+      {
+        "type": "paragraph",
+        "text": "It depends on the goal of the assignment."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Building number sense and fluency? No calculator.",
+          "Learning a new concept or procedure? Usually no.",
+          "Applying concepts to complex problems? Maybe.",
+          "Real-world problem solving with messy numbers? Often yes."
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Calculators HELP Learning"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Situation",
+          "Why Calculator Helps"
+        ],
+        "rows": [
+          [
+            "Complex word problems",
+            "Focus on problem-solving, not computation"
+          ],
+          [
+            "Checking work",
+            "Verify answers after attempting by hand"
+          ],
+          [
+            "Real-world applications",
+            "Real problems have messy numbers"
+          ],
+          [
+            "Exploring patterns",
+            "Try many examples quickly"
+          ],
+          [
+            "Students with dyscalculia",
+            "Access to grade-level thinking"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Calculators HURT Learning"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Situation",
+          "Why Calculator Hurts"
+        ],
+        "rows": [
+          [
+            "Building basic facts",
+            "No fluency develops"
+          ],
+          [
+            "Learning procedures",
+            "Doesn't understand the \"why\""
+          ],
+          [
+            "Estimating answers",
+            "No number sense practice"
+          ],
+          [
+            "Simple problems",
+            "Slower than mental math should be"
+          ],
+          [
+            "Every homework problem",
+            "Creates dependency"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Number Sense Question"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kids who always use calculators often:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Can't estimate if an answer is reasonable",
+          "Don't catch obvious errors (like 100×5=50)",
+          "Lack intuition about numbers",
+          "Struggle with mental math situations",
+          "Have weak foundations for higher math"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "A good rule: Can your child estimate the answer before using the calculator? If not, they should develop that skill first."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Grade-Level Guidelines"
+      },
+      {
+        "type": "list",
+        "items": [
+          "K-3rd: Almost never (building foundational facts)",
+          "4th-5th: Rarely (still building fluency, learning procedures)",
+          "6th-8th: Sometimes (complex problems, checking work)",
+          "High school: More often (focus on concepts, not computation)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Teachers Want"
+      },
+      {
+        "type": "paragraph",
+        "text": "Check the assignment instructions. Teachers often specify whether calculators are allowed. If unsure, ask. Most teachers appreciate parents who encourage computational fluency."
+      }
+    ],
+    "faq": [
+      {
+        "question": "My child's teacher allows calculators. Should I override that?",
+        "answer": "Respect teacher guidance, but you can encourage mental math at home. Ask your child to estimate first, or do some problems without calculator."
+      },
+      {
+        "question": "What about phone calculators?",
+        "answer": "Same principles apply. But phones come with distractions. If calculator is needed, consider a dedicated calculator device."
+      },
+      {
+        "question": "Won't calculators always be available in the real world?",
+        "answer": "Usually yes. But number sense – knowing if 15% of $80 is about $12 – protects against errors and scams. Mental estimation is a life skill."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid builds the mental math skills that mean kids won't need calculators for basic operations.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-dung-may-tinh-lam-bai-duoc-khong"
+}

@@ -1,0 +1,49 @@
+{
+  "postId": "con-biet-tinh-nhung-doc-de-khong-hieu",
+  "slug": "con-bit-tnh-nhng-c-khng-hiu-ha-ra-khng-phi-li-ton",
+  "title": "[EN] Con biết tính nhưng đọc đề không hiểu – hóa ra không phải lỗi toán",
+  "description": "[Needs translation] Con tính nhanh lắm, nhưng gặp bài toán có lời văn là bí. Mình từng nghĩ con dốt toán – hóa ra con gặp khó ở chỗ khác.",
+  "category": "when-kids-struggle-with-math",
+  "keywords": [
+    "con không hiểu đề toán",
+    "trẻ khó đọc hiểu toán có lời văn",
+    "con biết tính nhưng không hiểu đề"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-28T05:50:15.645Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/con-biet-tinh-nhung-khong-hieu-de.jpg",
+  "imageAlt": "Trẻ em châu Á cần hỗ trợ đọc hiểu đề toán",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Mẹ ơi, con không biết làm bài này.\" – Con đưa đề toán. Mình đọc: \"Lan có 24 cái kẹo, cho Hoa 8 cái, hỏi Lan còn mấy cái?\" – Quá dễ mà? Mình hỏi con: \"24 trừ 8 bằng mấy?\" – \"16 ạ.\" – Con trả lời ngay. Vậy tại sao con không làm được?",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vấn đề không phải ở toán"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con tính cộng trừ nhân chia tốt. Cho phép tính, con làm nhanh. Nhưng cho đề bài bằng chữ, con bí."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình quan sát và thấy: con không biết đề bài đang hỏi gì. Con đọc xong, không biết phải cộng hay trừ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Vấn đề không phải toán. Vấn đề là đọc hiểu."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Nhiều trẻ giỏi tính nhưng gặp khó với toán có lời văn. Đó không phải con dốt toán – con đang cần hỗ trợ ở kỹ năng đọc hiểu."
+      }
+    ]
+  }
+}

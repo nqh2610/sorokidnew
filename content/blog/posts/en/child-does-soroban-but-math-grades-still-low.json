@@ -1,0 +1,147 @@
+{
+  "slug": "child-does-soroban-but-math-grades-still-low",
+  "title": "My Child Does Soroban But Math Grades Are Still Low – Why?",
+  "description": "Months of soroban practice, but school math scores haven't improved. Here's what might be happening and what to do.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban not helping grades",
+    "soroban school math",
+    "soroban math grades",
+    "why soroban not working"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-01-19",
+  "image": "/blog/con-hoc-soroban-diem-toan-thap.jpg",
+  "imageAlt": "Child with soroban and low math test score",
+  "readingTime": 6,
+  "author": {
+    "name": "Michael",
+    "role": "Dad of 4th grader"
+  },
+  "content": {
+    "intro": "My son has been doing soroban for 6 months. He's good at it – fast calculations, high accuracy in the app. But his school math grades? Still C's. What's going on?",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Soroban Does (and Doesn't) Improve"
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban specifically trains:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "✅ Mental calculation speed",
+          "✅ Number sense and place value",
+          "✅ Focus and concentration",
+          "✅ Working memory",
+          "✅ Basic arithmetic (add, subtract, multiply, divide)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban does NOT directly train:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "❌ Word problems",
+          "❌ Geometry",
+          "❌ Fractions and decimals (unless advanced)",
+          "❌ Measurement and data",
+          "❌ Test-taking strategies",
+          "❌ Reading comprehension (for word problems)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "If your child's low grades are in word problems, geometry, or fractions – soroban won't directly help those areas. It helps the calculation WITHIN those problems, but not the problem-solving itself."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Common Reasons for the Gap"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. The Tests Aren't Calculation-Heavy"
+      },
+      {
+        "type": "paragraph",
+        "text": "Modern math tests emphasize reasoning, explanation, and problem-solving. Pure calculation might be only 20-30% of the grade."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Test Anxiety"
+      },
+      {
+        "type": "paragraph",
+        "text": "Your child might be great at soroban in a relaxed environment but freezes during timed tests. That's not a soroban problem; it's an anxiety problem."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Method Mismatch"
+      },
+      {
+        "type": "paragraph",
+        "text": "Some teachers want specific methods shown. If your child uses soroban methods but the teacher wants \"show your work\" with traditional algorithms, they might lose points."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Not Enough Time Yet"
+      },
+      {
+        "type": "paragraph",
+        "text": "6 months is good, but transfer to school math can take 6-12 months. The mental math benefits need time to translate to test performance."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to Do"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Identify the gap:** Look at actual tests. Where are points lost?",
+          "**Address specific weaknesses:** Word problems? Practice those separately.",
+          "**Keep soroban going:** The benefits compound over time",
+          "**Manage expectations:** Soroban helps arithmetic, not all of math"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Soroban is building a foundation. Even if grades don't reflect it yet, the number sense and calculation speed will help increasingly as math gets harder."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Should I stop soroban if grades aren't improving?",
+        "answer": "Not necessarily. Ask what's causing the low grades. If it's calculation, keep going. If it's word problems or concepts, address those separately."
+      },
+      {
+        "question": "How long until I see grade improvement?",
+        "answer": "Varies widely. Some kids show improvement in 3 months, others in a year. Consistency matters more than timeline."
+      },
+      {
+        "question": "Is soroban a waste of time if grades don't improve?",
+        "answer": "No. Soroban builds skills that benefit math long-term, even if short-term grades don't reflect it. The foundation matters."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Keep building that foundation. Mental math skills last a lifetime.",
+      "buttonText": "Continue Learning",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-hoc-soroban-nhung-diem-toan-van-thap"
+}

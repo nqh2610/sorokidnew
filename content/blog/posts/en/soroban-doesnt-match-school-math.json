@@ -1,0 +1,143 @@
+{
+  "slug": "soroban-doesnt-match-school-math",
+  "title": "My Kid Learns Soroban But School Teaches Math Differently – Is That a Problem?",
+  "description": "School uses one method, soroban uses another. Will this confuse your child? Here's what actually happens.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban vs school math",
+    "soroban different from school",
+    "soroban confusion",
+    "abacus and school math"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-05T04:49:48.449Z",
+  "createdAt": "2026-01-17",
+  "image": "/blog/be-hoc-hai-cach.jpg",
+  "imageAlt": "Soroban learning vs school math methods",
+  "readingTime": 6,
+  "author": {
+    "name": "Patricia",
+    "role": "Mom of 3rd grader"
+  },
+  "content": {
+    "intro": "When my son started soroban, I worried. His teacher was teaching \"making tens\" and \"number bonds.\" Soroban uses complements. Would having two methods confuse him? Here's what I discovered.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Difference"
+      },
+      {
+        "type": "paragraph",
+        "text": "School math (Common Core in the US) emphasizes:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Number bonds (ways numbers combine)",
+          "Multiple strategies (count up, count back, make tens)",
+          "Visual models (base-10 blocks, number lines)",
+          "Explaining your thinking"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban emphasizes:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "One consistent method (bead manipulation)",
+          "Speed through pattern recognition",
+          "5-complements and 10-complements",
+          "Visual mental imagery"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Will It Confuse My Child?"
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Short answer: Probably not. Children's brains are remarkably good at context-switching. They know \"this is how I do it at school\" and \"this is how I do it on soroban.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Think about it: Kids learn to speak differently at school vs. with friends vs. with grandparents. They code-switch naturally. Math methods are similar."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "My Son's Experience"
+      },
+      {
+        "type": "paragraph",
+        "text": "Initial confusion: About 2 weeks where he mixed up methods on homework."
+      },
+      {
+        "type": "paragraph",
+        "text": "Resolution: We talked about it. \"At school, use the school way. At home on the app, use soroban.\" He got it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Long-term result: He's FASTER at school math because soroban built his number sense. The underlying understanding helps both methods."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Actually, Multiple Methods Can Help"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Deeper understanding:** Seeing math from multiple angles",
+          "**Flexibility:** Can choose the best method for each situation",
+          "**Confidence:** \"I know multiple ways to solve this\"",
+          "**Future benefit:** Advanced math requires flexible thinking"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tips for Managing Both Methods"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Don't fight the school method:** Let them learn it for homework",
+          "**Keep soroban separate:** Different time, different context",
+          "**Acknowledge both:** \"That's the school way. This is the soroban way. Both work!\"",
+          "**Focus on answers:** The goal is correct answers, not method purity"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "After the initial adjustment period (usually 2-4 weeks), most kids handle both methods without any confusion. Trust your child's adaptability."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Should I tell the teacher my child does soroban?",
+        "answer": "You can, but it's not necessary. Teachers generally don't mind as long as homework is correct. Some teachers are even interested!"
+      },
+      {
+        "question": "What if my child insists on using soroban at school?",
+        "answer": "Gently explain that school tests may want specific methods. For homework, use school methods. For real life and soroban practice, use soroban."
+      },
+      {
+        "question": "Will soroban hurt my child's school math grades?",
+        "answer": "Usually the opposite – soroban improves number sense, which helps everything. Initial confusion is temporary; long-term benefits are significant."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Soroban builds number sense that helps with all math methods.",
+      "buttonText": "Start Building Number Sense",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-hoc-soroban-nhung-o-truong-day-cach-khac"
+}

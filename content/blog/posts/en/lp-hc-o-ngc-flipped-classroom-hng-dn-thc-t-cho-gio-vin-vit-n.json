@@ -1,0 +1,52 @@
+{
+  "postId": "lop-hoc-dao-nguoc-flipped-classroom-huong-dan-thuc-te",
+  "slug": "lp-hc-o-ngc-flipped-classroom-hng-dn-thc-t-cho-gio-vin-vit-n",
+  "title": "[EN] Lớp Học Đảo Ngược (Flipped Classroom) - Hướng Dẫn Thực Tế Cho Giáo Viên Việt Nam",
+  "description": "[Needs translation] Kinh nghiệm áp dụng mô hình lớp học đảo ngược tại Việt Nam. Từ học sinh thụ động đến chủ động học ở nhà, thực hành ở lớp.",
+  "category": "teacher-insights",
+  "keywords": [
+    "lớp học đảo ngược",
+    "flipped classroom",
+    "học đảo ngược",
+    "mô hình dạy học đảo ngược",
+    "blended learning",
+    "học kết hợp",
+    "dạy học hiện đại",
+    "học sinh chủ động"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Thầy ơi, con đã xem video bài mới rồi, hôm nay mình làm bài tập nhé!\" - Câu nói này từng là giấc mơ của tôi. Lớp học đảo ngược (Flipped Classroom) đảo ngược mọi thứ: học sinh học lý thuyết ở nhà, đến lớp để thực hành và thảo luận. Ban đầu tôi hoài nghi, nhưng sau 2 năm áp dụng, tôi không thể quay lại cách dạy truyền thống. Bài viết này chia sẻ hành trình thực tế của tôi.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lớp Học Đảo Ngược Là Gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Flipped Classroom (Lớp học đảo ngược) là mô hình dạy học trong đó:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Truyền thống:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Ở LỚP: Giáo viên giảng lý thuyết",
+          "Ở NHÀ: Học sinh làm bài tập"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Đảo ngược:**"
+      }
+    ]
+  }
+}

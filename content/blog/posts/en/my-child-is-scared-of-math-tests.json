@@ -1,0 +1,189 @@
+{
+  "slug": "my-child-is-scared-of-math-tests",
+  "title": "My Child Is Scared of Math Tests – How to Help",
+  "description": "Practical strategies for parents whose children experience test anxiety specifically around math assessments.",
+  "category": "math-struggles",
+  "keywords": [
+    "math test anxiety",
+    "fear of math tests",
+    "test anxiety",
+    "math assessment"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-25T02:37:52.594Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/con-so-kiem-tra-toan.jpg",
+  "imageAlt": "Child anxious about upcoming math test",
+  "readingTime": 7,
+  "author": {
+    "name": "Dr. Sarah Mitchell",
+    "role": "School Psychologist"
+  },
+  "content": {
+    "intro": "Test anxiety is real. For many kids, the fear isn't about not knowing math – it's about proving they know it under pressure. Here's how to help.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Math Tests Cause More Anxiety"
+      },
+      {
+        "type": "paragraph",
+        "text": "Compared to reading or social studies, math tests have unique pressure:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Right/wrong answers with no partial credit",
+          "Speed often matters",
+          "One missed step can cascade into wrong answers",
+          "Results are quantifiable – can't hide behind interpretation",
+          "Mistakes are obvious and feel embarrassing"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Signs of Math Test Anxiety"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Physical Signs",
+          "Behavioral Signs"
+        ],
+        "rows": [
+          [
+            "Stomach aches on test days",
+            "Avoiding homework the night before"
+          ],
+          [
+            "Trouble sleeping before tests",
+            "Crying or meltdowns about tests"
+          ],
+          [
+            "Headaches, sweating",
+            "Saying \"I'm going to fail\""
+          ],
+          [
+            "Feeling nauseous",
+            "Going blank during tests"
+          ],
+          [
+            "Shakiness or restlessness",
+            "Rushing to finish and get it over with"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What NOT to Do"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Don't add pressure: \"You need to do well on this\"",
+          "Don't dismiss: \"It's just a test\"",
+          "Don't compare: \"Your sister never worries about tests\"",
+          "Don't over-prepare with last-minute cramming",
+          "Don't punish poor test performance"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategies That Help"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Before Test Day"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Prepare gradually over days, not hours",
+          "Practice in test-like conditions (timed, quiet)",
+          "Identify and address specific gaps",
+          "Create a simple study routine",
+          "Get good sleep and eat breakfast"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "On Test Day"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Teach simple calming techniques (deep breaths)",
+          "Encourage positive self-talk (\"I prepared for this\")",
+          "Remind them to skip hard questions and come back",
+          "Don't discuss the test right before they take it",
+          "Have a normal morning routine"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "After the Test"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Focus on effort, not just score",
+          "Review mistakes as learning opportunities",
+          "Don't ask \"How did you do?\" immediately",
+          "Celebrate completion, regardless of outcome",
+          "Look forward to improvements, not backward at failures"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "If anxiety is severe, talk to the school about accommodations. Many schools offer extended time or separate testing rooms for anxious students."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Building Long-term Confidence"
+      },
+      {
+        "type": "paragraph",
+        "text": "Test anxiety often stems from a shaky foundation. Kids who feel solid in their math skills are naturally less anxious. Build that foundation with:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Regular, low-pressure practice",
+          "Mastery-based learning (fully understand before moving on)",
+          "Positive math experiences outside of tests",
+          "Games and activities that build fluency"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Should I request a 504 plan for test anxiety?",
+        "answer": "If anxiety significantly impacts performance and daily life, it's worth discussing with the school. A 504 can provide accommodations like extended time, separate testing, or breaks."
+      },
+      {
+        "question": "Does practicing more tests help with test anxiety?",
+        "answer": "Sometimes. Familiarity reduces anxiety. But if practice tests themselves cause anxiety, focus on building skills first, then gradually introduce timed practice."
+      },
+      {
+        "question": "My child knows the material but blanks on tests. Why?",
+        "answer": "This is classic test anxiety. The stress response (fight-or-flight) literally interferes with memory retrieval. Relaxation techniques and building confidence can help."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid helps build math fluency with low-pressure daily practice, so kids feel prepared when test day comes.",
+      "buttonText": "Start Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-so-kiem-tra-toan"
+}

@@ -1,0 +1,135 @@
+{
+  "slug": "proper-soroban-grip-and-posture",
+  "title": "Soroban Grip and Posture: Getting the Basics Right",
+  "description": "Proper technique from day one prevents bad habits. Here's how your child should hold and use the soroban.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban technique",
+    "soroban finger position",
+    "abacus grip",
+    "how to hold soroban"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-25T02:38:38.577Z",
+  "createdAt": "2026-01-01",
+  "image": "/blog/cach-cam-ban-tinh-soroban-dung.jpg",
+  "imageAlt": "Proper finger technique for using soroban",
+  "readingTime": 5,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "Soroban technique might seem nitpicky, but proper form matters. Good habits lead to faster calculation. Bad habits create a ceiling that's hard to break through later.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Basic Posture"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Soroban placement:** Flat on desk, beam facing you",
+          "**Sitting position:** Upright, comfortable, not hunched",
+          "**Distance:** Soroban about 6-8 inches from body edge",
+          "**Angle:** Soroban should be level, not tilted"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Which Fingers to Use"
+      },
+      {
+        "type": "paragraph",
+        "text": "Traditional technique uses thumb and index finger of the right hand:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Thumb:** Pushes LOWER beads UP toward the beam",
+          "**Index finger:** Pushes LOWER beads DOWN away from beam",
+          "**Index finger:** Also moves UPPER bead (both up and down)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Thumb UP, Index finger DOWN. That's the key rule for lower beads."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Left Hand Position"
+      },
+      {
+        "type": "paragraph",
+        "text": "While the right hand operates beads, the left hand:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Holds the soroban steady (optional with heavier models)",
+          "Points to the current problem or number",
+          "Traces along the problem while calculating",
+          "Stays relaxed – not gripping tightly"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Common Technique Mistakes"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Using wrong finger:** Don't push lower beads up with index finger",
+          "**Multiple fingers:** Stick to thumb and index only",
+          "**Gripping beads:** Light touches, not grabbing",
+          "**Watching fingers:** Eyes should be on beads, not fingers",
+          "**Tense hands:** Relaxed fingers move faster"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Does This Really Matter?"
+      },
+      {
+        "type": "paragraph",
+        "text": "For beginners? Not critically. Let them explore and get comfortable."
+      },
+      {
+        "type": "paragraph",
+        "text": "For building speed later? Yes. Proper technique enables faster movement. Wrong habits create inefficiency that compounds over time."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Don't stress too much about perfect technique on day one. Let your child enjoy learning first. Refine technique as they progress."
+      }
+    ],
+    "faq": [
+      {
+        "question": "My child uses their whole hand. Is that okay?",
+        "answer": "At the very beginning, yes. As they get comfortable, gently encourage thumb and index finger. Don't make it stressful."
+      },
+      {
+        "question": "Does it matter if my child is left-handed?",
+        "answer": "Some left-handed users operate with their left hand, which works fine. Others learn the traditional right-hand method. Either is acceptable."
+      },
+      {
+        "question": "How do I correct bad habits?",
+        "answer": "Gently and slowly. Model the correct technique yourself. Make it a game, not a correction. If they resist, let it go and try again later."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Our app includes technique demonstrations. See proper form in action.",
+      "buttonText": "Watch Demo",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "cach-cam-va-tu-the-hoc-soroban"
+}

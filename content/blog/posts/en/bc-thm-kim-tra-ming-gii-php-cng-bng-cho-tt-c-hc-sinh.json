@@ -1,0 +1,54 @@
+{
+  "postId": "boc-tham-kiem-tra-mieng-cong-bang-cho-tat-ca",
+  "slug": "bc-thm-kim-tra-ming-gii-php-cng-bng-cho-tt-c-hc-sinh",
+  "title": "[EN] Bốc Thăm Kiểm Tra Miệng - Giải Pháp Công Bằng Cho Tất Cả Học Sinh",
+  "description": "[Needs translation] Chia sẻ kinh nghiệm sử dụng công cụ bốc thăm ngẫu nhiên để kiểm tra miệng. Từ việc gọi học sinh quen mặt đến gọi công bằng cho tất cả.",
+  "category": "teacher-insights",
+  "keywords": [
+    "bốc thăm kiểm tra miệng",
+    "kiểm tra miệng công bằng",
+    "gọi học sinh ngẫu nhiên",
+    "random picker",
+    "bốc thăm online",
+    "công cụ gọi học sinh",
+    "kiểm tra miệng hiệu quả"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-28T05:49:34.817Z",
+  "image": "/blog/boc-tham-kiem-tra-mieng-cong-bang-cho-tat-ca.png",
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Tôi từng là giáo viên hay gọi học sinh \"quen mặt\". Em nào giơ tay nhiều thì gọi nhiều, em ngồi cuối lớp ít khi bị gọi. Cho đến khi một em học sinh nói: \"Thầy ơi, thầy chưa bao giờ gọi con.\" Câu nói đó khiến tôi nhận ra vấn đề nghiêm trọng trong cách kiểm tra miệng của mình. Bài viết này chia sẻ cách tôi thay đổi với công cụ bốc thăm.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vấn Đề Với Cách Gọi Học Sinh Truyền Thống"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhìn lại cách gọi học sinh của mình, tôi nhận ra nhiều vấn đề:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Thiên vị vô thức:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Gọi em giơ tay nhiều (thường là em giỏi)",
+          "Gọi em ngồi dãy giữa nhiều hơn dãy biên",
+          "Em trầm tính ít được gọi",
+          "Em cuối lớp gần như \"vô hình\""
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Hậu quả:**"
+      }
+    ]
+  }
+}

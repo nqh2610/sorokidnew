@@ -3,5 +3,6 @@ export {
   LanguageDropdown, 
   LanguageIcon, 
   LanguageFlags,
+  LanguageSelector,
   default 
 } from './LanguageSwitcher';

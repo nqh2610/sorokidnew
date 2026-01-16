@@ -1,0 +1,137 @@
+{
+  "slug": "are-soroban-flashcards-necessary",
+  "title": "Soroban Flashcards: Do Kids Actually Need Them?",
+  "description": "Some soroban programs push flashcards hard. Are they essential or just extra? Here's what actually helps kids learn.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban flashcards",
+    "abacus flashcards",
+    "soroban practice tools",
+    "soroban learning aids"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-01-11",
+  "image": "/blog/flashcard-soroban.jpg",
+  "imageAlt": "Soroban flashcards for practice",
+  "readingTime": 5,
+  "author": {
+    "name": "David",
+    "role": "Dad of two boys"
+  },
+  "content": {
+    "intro": "When my sons started soroban, I saw recommendations for flashcards everywhere. Special bead pattern cards, speed drill cards, mental image cards. I bought a set. Here's what I learned.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Are Soroban Flashcards?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Typically, soroban flashcards show:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Bead patterns:** A number displayed as soroban beads",
+          "**Number recognition:** Flash a pattern, kid says the number",
+          "**Speed drills:** Quick flashing for faster recognition",
+          "**Anzan prep:** Visualizing patterns without the physical abacus"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "My Experience"
+      },
+      {
+        "type": "paragraph",
+        "text": "I bought a $25 flashcard set. We used them maybe 5 times total. Here's why:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "The app already shows bead patterns",
+          "Speed drills built into the app are more engaging",
+          "Kids found physical cards \"boring\"",
+          "I had to manually track progress vs. automatic in the app",
+          "Shuffling, organizing, storing cards = friction"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Flashcards MIGHT Help"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**No-screen practice:** If you're limiting device time",
+          "**Car trips:** Easier than a device for some families",
+          "**Sibling games:** Older sibling quizzes younger one",
+          "**Competition prep:** Some contests use visual flash formats",
+          "**Tactile preference:** Some kids like holding physical cards"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Works Better Than Flashcards"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Consistent app practice:** 15 minutes daily beats occasional flashcards",
+          "**Anzan mode in apps:** Specifically designed for mental visualization",
+          "**Real-world questions:** \"What's 7+8?\" while driving",
+          "**Games within the app:** Built-in motivation"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Save your money. The app provides everything flashcards do, plus instant feedback, progress tracking, and gamification. Flashcards are nice-to-have, not need-to-have."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "DIY Alternative"
+      },
+      {
+        "type": "paragraph",
+        "text": "If you really want flashcards:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Draw bead patterns on index cards",
+          "Focus on numbers your child struggles with",
+          "Make it a game, not a drill",
+          "Cost: $3 for a pack of index cards + markers"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do professional soroban programs use flashcards?",
+        "answer": "Some do, especially for anzan (mental calculation) training. But modern apps replicate this functionality effectively."
+      },
+      {
+        "question": "Are there digital flashcard apps for soroban?",
+        "answer": "Yes, but full soroban apps already include this feature. You don't need a separate flashcard app."
+      },
+      {
+        "question": "My child likes flashcards. Should I still buy them?",
+        "answer": "If your child genuinely enjoys them and will use them, sure. Just don't expect them to replace regular practice on the soroban itself."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Our app includes pattern recognition drills – no flashcards needed.",
+      "buttonText": "Try Free",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "flashcard-soroban-co-can-thiet-khong"
+}

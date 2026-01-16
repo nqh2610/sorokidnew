@@ -1,0 +1,53 @@
+{
+  "postId": "bi-quyet-thi-giao-vien-day-gioi-cap-huyen-tinh",
+  "slug": "b-quyt-thi-gio-vin-dy-gii-cp-huyn-cp-tnh-kinh-nghim-thc-t",
+  "title": "[EN] Bí Quyết Thi Giáo Viên Dạy Giỏi Cấp Huyện, Cấp Tỉnh - Kinh Nghiệm Thực Tế",
+  "description": "[Needs translation] Chia sẻ kinh nghiệm thi giáo viên dạy giỏi cấp huyện, cấp tỉnh: chuẩn bị hồ sơ, bài thi thực hành, sáng kiến kinh nghiệm. Từ thất bại năm đầu đến thành công.",
+  "category": "teacher-insights",
+  "keywords": [
+    "giáo viên dạy giỏi",
+    "thi giáo viên giỏi",
+    "giáo viên dạy giỏi cấp huyện",
+    "giáo viên dạy giỏi cấp tỉnh",
+    "kinh nghiệm thi GV giỏi",
+    "hội thi giáo viên giỏi",
+    "giáo viên giỏi"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Lần đầu thi giáo viên dạy giỏi cấp huyện, tôi đứng thứ... 15/20. Lần thứ hai, tôi vào top 5. Lần thứ ba, tôi đạt giải Nhất và được chọn thi cấp tỉnh. Hành trình đó không phải nhờ \"tài năng bẩm sinh\" - mà nhờ học hỏi, rèn luyện và những bài học từ thất bại. Bài viết này chia sẻ tất cả kinh nghiệm tôi đã tích lũy.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Hội Thi Giáo Viên Dạy Giỏi Gồm Những Gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tùy cấp độ và địa phương, hội thi thường gồm:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Bài thi năng lực (lý thuyết):**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Kiến thức chuyên môn bộ môn",
+          "Kiến thức về giáo dục, tâm lý học sinh",
+          "Các văn bản, thông tư mới",
+          "Điểm: Thường 30-40% tổng điểm"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Bài thi thực hành (dạy học):**"
+      }
+    ]
+  }
+}

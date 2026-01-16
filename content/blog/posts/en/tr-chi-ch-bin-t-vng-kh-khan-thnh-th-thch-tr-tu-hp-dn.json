@@ -1,0 +1,55 @@
+{
+  "postId": "tro-choi-o-chu-cong-cu-tao-crossword-cho-lop-hoc",
+  "slug": "tr-chi-ch-bin-t-vng-kh-khan-thnh-th-thch-tr-tu-hp-dn",
+  "title": "[EN] Trò Chơi Ô Chữ - Biến Từ Vựng Khô Khan Thành Thử Thách Trí Tuệ Hấp Dẫn",
+  "description": "[Needs translation] Chia sẻ cách sử dụng Trò Chơi Ô Chữ trong lớp học. Tạo crossword từ từ vựng bài học, học sinh giải đố theo nhóm hoặc cá nhân. Ôn tập từ vựng cực kỳ hiệu quả.",
+  "category": "teacher-insights",
+  "keywords": [
+    "trò chơi ô chữ",
+    "crossword lớp học",
+    "ô chữ giáo dục",
+    "game ô chữ online",
+    "tạo ô chữ",
+    "ôn tập từ vựng",
+    "crossword tiếng việt",
+    "ô chữ cho học sinh"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-28T05:49:54.501Z",
+  "image": "/blog/tro-choi-o-chu-cong-cu-tao-crossword-cho-lop-hoc.png",
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Cô ơi! Ô số 5 ngang là 'BEAUTIFUL' đúng không cô? Vì gợi ý là 'tính từ chỉ vẻ đẹp' và có 9 chữ cái!\" - Cả nhóm reo hò khi điền đúng từ cuối cùng vào bảng ô chữ. Đó là tiết ôn tập từ vựng Unit 3 của lớp 7A. Trước đây, ôn từ vựng là \"đọc - chép - kiểm tra\" nhàm chán. Giờ đây, với Trò Chơi Ô Chữ, học sinh săn từ như thám tử, hào hứng đến mức xin cô cho thêm một bảng nữa!",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Trò Chơi Ô Chữ (Crossword) Là Gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Crossword - trò chơi ô chữ - là trò chơi trí tuệ kinh điển xuất hiện từ hơn 100 năm trước:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cấu trúc cơ bản:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bảng ô vuông với các ô đen và ô trắng",
+          "Các từ xếp theo hàng ngang và hàng dọc",
+          "Mỗi từ có số thứ tự và gợi ý (hint)",
+          "Các từ giao nhau tại các chữ cái chung"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cách chơi:**"
+      }
+    ]
+  }
+}

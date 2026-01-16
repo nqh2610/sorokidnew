@@ -1,0 +1,171 @@
+{
+  "slug": "multiplication-on-soroban",
+  "title": "Multiplication on the Soroban: Beyond Addition",
+  "description": "Once your child masters addition, multiplication is the next step. Here's how the soroban handles times tables beautifully.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban multiplication",
+    "abacus multiplication",
+    "soroban times tables",
+    "multiply on soroban"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-31T03:14:13.241Z",
+  "createdAt": "2026-01-08",
+  "image": "/blog/phu-huynh-day-phep-nhan-soroban.jpg",
+  "imageAlt": "Multiplication on soroban abacus",
+  "readingTime": 7,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "Multiplication on the soroban is essentially repeated addition with smart place value handling. It requires knowing basic addition well first, but once that's solid, multiplication follows naturally.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Prerequisites"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before learning multiplication, your child should be comfortable with:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Single and double-digit addition",
+          "Carrying (10-complement)",
+          "Basic times tables (at least 1-5)",
+          "Place value concepts"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Basic Method"
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Soroban multiplication: Multiply digit by digit, placing products in the correct column, then add them all up."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Example: 3 × 4"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Think: 3 × 4 = 12",
+          "Set 12 on the soroban (1 in tens, 2 in ones)",
+          "Read answer: 12 ✓"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "For single digits, it's that simple. The real power shows with larger numbers."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Example: 12 × 3"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Break it down: (10 × 3) + (2 × 3) = 30 + 6 = 36",
+          "Or multiply each digit:",
+          "1 (tens) × 3 = 3 (put in tens = 30)",
+          "2 (ones) × 3 = 6 (put in ones)",
+          "30 + 6 = 36 ✓"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Example: 23 × 4"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Step 1: 2 × 4 = 8 (place as 80, in tens position)",
+          "Step 2: 3 × 4 = 12 (add to ones, carrying if needed)",
+          "Step 3: 80 + 12 = 92 ✓"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Multi-Digit × Multi-Digit"
+      },
+      {
+        "type": "paragraph",
+        "text": "23 × 14:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "23 × 10 = 230 (set this first)",
+          "23 × 4 = 92 (add to existing)",
+          "230 + 92 = 322 ✓"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Or even more broken down:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "20 × 10 = 200",
+          "3 × 10 = 30",
+          "20 × 4 = 80",
+          "3 × 4 = 12",
+          "200 + 30 + 80 + 12 = 322 ✓"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Soroban multiplication trains place value understanding deeply. Kids internalize why 23 × 4 = 92 through physical manipulation, not just memorization."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When to Introduce Multiplication"
+      },
+      {
+        "type": "list",
+        "items": [
+          "After 2-3 months of solid addition/subtraction practice",
+          "When carrying and borrowing are somewhat automatic",
+          "When the child knows basic times tables (even partially)",
+          "When they show interest or confidence"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Does my child need to know times tables first?",
+        "answer": "Basic times tables (1-5) help. Some kids learn times tables THROUGH soroban practice. Either order can work."
+      },
+      {
+        "question": "Is soroban multiplication faster than regular?",
+        "answer": "Once mastered, yes. The place value handling becomes automatic, and mental visualization speeds up larger calculations significantly."
+      },
+      {
+        "question": "How long does it take to learn multiplication on soroban?",
+        "answer": "After a foundation in addition, multiplication basics take 1-2 months. Multi-digit multiplication takes several more months of practice."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Ready to advance? Our app introduces multiplication when your child is ready.",
+      "buttonText": "Explore Multiplication",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "phep-nhan-tren-soroban"
+}

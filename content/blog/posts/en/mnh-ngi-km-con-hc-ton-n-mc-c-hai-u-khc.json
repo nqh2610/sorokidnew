@@ -1,0 +1,49 @@
+{
+  "postId": "vi-sao-cang-kem-con-hoc-toan-ca-nha-cang-met",
+  "slug": "mnh-ngi-km-con-hc-ton-n-mc-c-hai-u-khc",
+  "title": "[EN] Mình đã ngồi kèm con học toán đến mức cả hai đều khóc",
+  "description": "[Needs translation] Tối nào cũng vậy – bắt đầu bằng hy vọng, kết thúc bằng la hét. Mình tưởng mình đang giúp con, hóa ra mình đang làm cả nhà thêm mệt.",
+  "category": "parents-helping-with-math",
+  "keywords": [
+    "kèm con học toán mệt",
+    "dạy con học toán căng thẳng",
+    "phụ huynh kèm con học"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-25T02:38:28.841Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/me-kem-con-hoc-toan-tai-nha.jpg",
+  "imageAlt": "Mẹ châu Á kiên nhẫn kèm con học toán tại nhà",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] 8 giờ tối. Mình vừa dọn xong bát đĩa, ngồi xuống cạnh con, mở vở toán ra. \"Nào, 7 cộng 5 bằng mấy?\" Con im lặng. Mình hỏi lại. Con vẫn im. Mình bắt đầu nóng. 30 phút sau, con khóc. Mình cũng muốn khóc.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Buổi tối nào cũng giống buổi tối nào"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình bắt đầu với ý định tốt. Hôm nay sẽ kiên nhẫn hơn. Hôm nay sẽ không la. Hôm nay sẽ khác."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhưng rồi con ngồi đó, nhìn vào bài toán như nhìn vào tờ giấy trắng. Mình hỏi, con không trả lời. Mình giải thích, con gật đầu nhưng 5 phút sau vẫn sai y chang. Mình thở dài, con cúi đầu. Rồi giọng mình cao dần. Rồi mình thấy mắt con đỏ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Kết thúc buổi học, con vào phòng. Mình ngồi một mình ở bàn, tự hỏi: mình đang làm cái quái gì vậy?"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình không phải người duy nhất"
+      }
+    ]
+  }
+}

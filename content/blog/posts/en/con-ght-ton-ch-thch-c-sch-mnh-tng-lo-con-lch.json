@@ -1,0 +1,49 @@
+{
+  "postId": "con-ghet-toan-chi-thich-doc-sach",
+  "slug": "con-ght-ton-ch-thch-c-sch-mnh-tng-lo-con-lch",
+  "title": "[EN] Con ghét toán, chỉ thích đọc sách – mình từng lo con \"lệch\"",
+  "description": "[Needs translation] Con mình đọc sách cả ngày nhưng mở vở toán là than thở. Mình từng nghĩ phải ép con học đều.",
+  "category": "when-kids-struggle-with-math",
+  "keywords": [
+    "trẻ thiên văn ghét toán",
+    "con không thích học toán",
+    "cân bằng văn toán"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-doc-sach.jpg",
+  "imageAlt": "Bé gái châu Á đang đọc sách say mê",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Con gái mình đọc sách từ sáng đến tối. Cô khen văn viết hay. Nhưng toán thì... con than \"khó quá\", \"chán quá\". Mình lo con \"thiên về văn\" quá sẽ khổ sau này.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình từng ép con học toán nhiều hơn"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Con phải học toán trước rồi mới được đọc sách.\" – Mình nghĩ ép thế con sẽ cân bằng."
+      },
+      {
+        "type": "paragraph",
+        "text": "Kết quả: con ức chế, khóc. Học toán qua loa cho xong để được đọc sách. Không hiệu quả."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình suy nghĩ lại"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con giỏi đọc sách vì con THÍCH. Nếu mình làm con thích toán, con có thể giỏi toán."
+      }
+    ]
+  }
+}

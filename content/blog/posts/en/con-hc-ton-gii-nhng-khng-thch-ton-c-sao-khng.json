@@ -1,0 +1,49 @@
+{
+  "postId": "con-hoc-toan-gioi-nhung-khong-thich-toan",
+  "slug": "con-hc-ton-gii-nhng-khng-thch-ton-c-sao-khng",
+  "title": "[EN] Con học toán giỏi nhưng không thích toán – Có sao không?",
+  "description": "[Needs translation] Con mình điểm toán cao nhưng hay nói ghét toán. Mình lo quá nên tìm hiểu.",
+  "category": "when-kids-struggle-with-math",
+  "keywords": [
+    "con giỏi toán nhưng ghét toán",
+    "không thích toán",
+    "tạo hứng thú học toán"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/gioi-nhung-khong-thich.jpg",
+  "imageAlt": "Bé châu Á với vẻ mặt chán nản khi học toán",
+  "readingTime": 5,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Con ghét toán!\" – Con mình hay nói vậy. Nhưng điểm kiểm tra toán luôn 9-10. Mình không hiểu tại sao.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tại sao lại có mâu thuẫn này?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình tìm hiểu và nhận ra: **giỏi ≠ thích**."
+      },
+      {
+        "type": "paragraph",
+        "text": "Con có thể:\n- Làm được vì bị ép.\n- Làm tốt vì thông minh.\n- Nhưng trong lòng không có hứng thú."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Nguyên nhân phổ biến"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. **Học để điểm số, không phải để hiểu**\n   - Con học vì áp lực, không phải tò mò."
+      }
+    ]
+  }
+}

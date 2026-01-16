@@ -1,0 +1,55 @@
+{
+  "postId": "hoc-qua-du-an-pbl-huong-dan-thuc-hanh-cho-giao-vien",
+  "slug": "hc-qua-d-n-pbl-hng-dn-thc-hnh-chi-tit-cho-gio-vin",
+  "title": "[EN] Học Qua Dự Án (PBL) - Hướng Dẫn Thực Hành Chi Tiết Cho Giáo Viên",
+  "description": "[Needs translation] Hướng dẫn từng bước áp dụng phương pháp học qua dự án (Project-Based Learning) trong lớp học. Kinh nghiệm thực tế và cách khắc phục khó khăn thường gặp.",
+  "category": "teacher-insights",
+  "keywords": [
+    "học qua dự án",
+    "PBL",
+    "project based learning",
+    "dạy học dự án",
+    "phương pháp dự án",
+    "dự án học tập",
+    "dạy học tích cực",
+    "học sinh làm dự án"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Thầy ơi, mình có được làm dự án tiếp không ạ?\" - Câu hỏi khiến tôi biết mình đã đi đúng hướng. Project-Based Learning (PBL) - Học qua dự án từng là nỗi sợ của tôi: sợ mất thời gian, sợ lộn xộn, sợ không kiểm soát được. Nhưng sau khi áp dụng, tôi nhận ra đây là phương pháp tạo ra những bài học đáng nhớ nhất. Bài viết này chia sẻ hành trình PBL của tôi.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "PBL Là Gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Project-Based Learning (PBL) là phương pháp dạy học trong đó học sinh học kiến thức và kỹ năng thông qua việc thực hiện một dự án có ý nghĩa trong một khoảng thời gian."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Đặc điểm của PBL:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Vấn đề thực tế:** Dự án giải quyết vấn đề có ý nghĩa",
+          "**Học sinh làm trung tâm:** Thầy cô hướng dẫn, học sinh thực hiện",
+          "**Sản phẩm cụ thể:** Kết quả là sản phẩm có thể trình bày",
+          "**Thời gian dài:** Từ vài ngày đến vài tuần",
+          "**Đa kỹ năng:** Kết hợp nhiều kiến thức, kỹ năng"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Khác với bài tập thông thường:**"
+      }
+    ]
+  }
+}

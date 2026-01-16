@@ -24,6 +24,9 @@
     "name": "Chị Hương",
     "role": "Mẹ bé lớp 3"
   },
+  "translations": {
+    "en": "what-is-soroban"
+  },
   "content": {
     "intro": "Lần đầu nghe từ 'Soroban', mình nghĩ đây là món ăn Nhật. Thật sự. Cho đến khi mình thấy video một bé 7 tuổi tính 5 số có 3 chữ số cộng trừ trong đầu chỉ mất vài giây – mình sốc. Bé không dùng máy tính, không viết ra giấy, chỉ nhắm mắt rồi nói kết quả. Đúng 100%. Mình tự hỏi: 'Cái gì vậy? Sao con mình 8 tuổi mà 47 + 38 còn phải đếm ngón tay?'",
     "sections": [

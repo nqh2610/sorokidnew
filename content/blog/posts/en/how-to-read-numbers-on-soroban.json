@@ -1,0 +1,133 @@
+{
+  "slug": "how-to-read-numbers-on-soroban",
+  "title": "Reading Numbers on the Soroban: A Visual Guide for Parents",
+  "description": "Understanding how to read a soroban is simpler than it looks. Master this and you can help your child with any problem.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban numbers",
+    "reading abacus",
+    "soroban basics",
+    "abacus number representation"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-27T14:04:18.456Z",
+  "createdAt": "2025-12-31",
+  "image": "/blog/tre-bieu-dien-so-tren-soroban.jpg",
+  "imageAlt": "Numbers represented on soroban beads",
+  "readingTime": 5,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "When you first look at a soroban, it seems like random beads. But there's a simple system. Once you understand it, you can read any number instantly – and help your child when they're stuck.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Golden Rule"
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Count only the beads TOUCHING the beam. Beads away from the beam = 0. Upper bead down = 5. Each lower bead up = 1."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Numbers 0-9 Step by Step"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**0:** All beads away from beam",
+          "**1:** One lower bead touching beam",
+          "**2:** Two lower beads touching beam",
+          "**3:** Three lower beads touching beam",
+          "**4:** Four lower beads touching beam",
+          "**5:** Upper bead touching beam, lower beads away",
+          "**6:** Upper bead + one lower bead",
+          "**7:** Upper bead + two lower beads",
+          "**8:** Upper bead + three lower beads",
+          "**9:** Upper bead + four lower beads"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Reading Multi-Digit Numbers"
+      },
+      {
+        "type": "paragraph",
+        "text": "Each rod is a place value. Read from left to right, just like regular numbers:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Rightmost rod:** Ones place",
+          "**Next rod left:** Tens place",
+          "**Next rod left:** Hundreds place",
+          "**And so on...**"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Example: If rod 1 shows 3 and rod 2 shows 4 and rod 3 shows 2, read left to right: 243."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Practice: Read These Numbers"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Upper bead down, 2 lower beads up → 7",
+          "No upper bead, 4 lower beads up → 4",
+          "Upper bead down only → 5",
+          "All beads away from beam → 0"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Common Mistakes Parents Make"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Counting ALL beads:** Only count beads touching the beam",
+          "**Forgetting the upper bead is 5:** Not 1",
+          "**Reading right to left:** Read left to right like normal numbers",
+          "**Mixing up columns:** Each rod is separate, don't combine beads from different rods"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Spend 5 minutes learning to read the soroban yourself. It'll make helping your child SO much easier."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What if there's no bead at the beam?",
+        "answer": "That rod shows zero. All beads away from the beam = 0 for that place value."
+      },
+      {
+        "question": "How do I know which rod is ones vs. tens?",
+        "answer": "The rightmost rod you're using is always the ones place. Many sorobans have a dot on the ones rod (or every third rod) to help."
+      },
+      {
+        "question": "Can a rod show more than 9?",
+        "answer": "No. Maximum is 9 (upper bead = 5, plus 4 lower beads). This mirrors our base-10 number system perfectly."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Want to practice reading and setting numbers? Our app has guided exercises.",
+      "buttonText": "Try Free",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "cach-bieu-dien-so-tren-soroban"
+}

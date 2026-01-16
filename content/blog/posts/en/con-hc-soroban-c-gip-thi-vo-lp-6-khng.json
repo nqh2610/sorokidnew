@@ -1,0 +1,49 @@
+{
+  "postId": "con-hoc-soroban-co-giup-thi-vao-lop-6-khong",
+  "slug": "con-hc-soroban-c-gip-thi-vo-lp-6-khng",
+  "title": "[EN] Con học Soroban có giúp thi vào lớp 6 không?",
+  "description": "[Needs translation] Nhiều mẹ hỏi mình: Soroban có giúp con thi vào trường chuyên không? Mình chia sẻ kinh nghiệm.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "Soroban thi lớp 6",
+    "thi vào trường chuyên",
+    "Soroban lợi ích"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/soroban-thi-lop-6.jpg",
+  "imageAlt": "Học sinh châu Á đang làm bài thi với vẻ tự tin",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Chị hàng xóm hỏi mình: \"Cho con học Soroban có giúp thi vào chuyên Amsterdam không?\" Mình trả lời thật: CÓ GIÚP, nhưng không phải theo cách bạn nghĩ.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Soroban giúp gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. **Tính nhanh và chính xác**\n   - Bài thi có giới hạn thời gian.\n   - Tính nhanh = làm được nhiều câu hơn."
+      },
+      {
+        "type": "paragraph",
+        "text": "2. **Tăng khả năng tập trung**\n   - Thi 60-90 phút cần tập trung cao.\n   - Soroban rèn não tập trung."
+      },
+      {
+        "type": "paragraph",
+        "text": "3. **Giảm sai sót nhỏ**\n   - Nhiều trẻ mất điểm vì sai tính.\n   - Soroban giúp não tính chuẩn hơn."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Soroban KHÔNG thay thế được gì?"
+      }
+    ]
+  }
+}

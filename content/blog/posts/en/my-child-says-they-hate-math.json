@@ -1,0 +1,175 @@
+{
+  "slug": "my-child-says-they-hate-math",
+  "title": "\"I Hate Math\" – What to Do When Your Child Says This",
+  "description": "Responding effectively when your child expresses hatred for mathematics.",
+  "category": "math-struggles",
+  "keywords": [
+    "hate math",
+    "dislike math",
+    "math aversion",
+    "negative math attitude"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-28T05:50:07.215Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/con-ghet-toan-phu-huynh-phan-ung.jpg",
+  "imageAlt": "Child expressing frustration with math",
+  "readingTime": 6,
+  "author": {
+    "name": "Dr. Amanda Lee",
+    "role": "Child Psychologist"
+  },
+  "content": {
+    "intro": "\"I hate math!\" Your instinct might be to argue, reassure, or dismiss. But those responses often backfire. Here's what to do instead.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What \"I Hate Math\" Really Means"
+      },
+      {
+        "type": "paragraph",
+        "text": "When kids say they hate math, they usually mean:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"I feel frustrated right now\"",
+          "\"This is hard and I don't like feeling incompetent\"",
+          "\"I'm embarrassed that I can't do this\"",
+          "\"Math makes me anxious\"",
+          "\"I don't see why I should care about this\""
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "It's emotional, not logical. And emotions need validation, not argument."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What NOT to Say"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Don't Say",
+          "Why It Backfires"
+        ],
+        "rows": [
+          [
+            "\"No you don't!\"",
+            "Invalidates feelings, shuts down communication"
+          ],
+          [
+            "\"Math is important!\"",
+            "Lectures don't change emotions"
+          ],
+          [
+            "\"You're good at math!\"",
+            "Contradicts their experience, feels dismissive"
+          ],
+          [
+            "\"I hated math too\"",
+            "Reinforces the idea that hating math is okay"
+          ],
+          [
+            "\"Just try harder\"",
+            "Implies they're not trying, adds pressure"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to Say Instead"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Validate First"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"It sounds like you're really frustrated with math right now.\" Just acknowledge. No fixing yet."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Be Curious"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"What feels hard about it?\" or \"Did something happen?\" Understanding the root helps."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Normalize Struggle"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"A lot of people find math frustrating sometimes. That's actually normal.\" You're not alone."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Focus on Specific, Not Global"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Maybe not all math – what part is hardest right now?\" Breaks the monolithic \"math\" into addressable pieces."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Leave the Door Open"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Your feelings about math might change. Lots of people end up liking it when something clicks.\" Growth mindset."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The goal isn't to convince them to love math immediately. It's to keep the relationship with math from becoming permanently negative."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Long-term Strategies"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Find formats they tolerate (games vs. worksheets)",
+          "Reduce pressure (shorter sessions, fewer problems)",
+          "Connect math to their interests (sports stats, gaming, cooking)",
+          "Model positive math attitude yourself",
+          "Celebrate small wins"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "What if they really, truly hate math?",
+        "answer": "That's okay for now. The goal isn't love – it's tolerance. Keep exposure low-pressure and consistent. Feelings can change."
+      },
+      {
+        "question": "Should I force them to practice if they hate it?",
+        "answer": "Yes, but make practice brief and achievable. The routine matters. But don't make each session a battle – find the amount they can tolerate."
+      },
+      {
+        "question": "Will they fail in life if they hate math?",
+        "answer": "No. Many successful people weren't math enthusiasts. Basic numeracy matters; loving math doesn't. Functional relationship is the goal."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid makes math practice feel more like a game – easier to tolerate for math-reluctant kids.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-noi-con-ghet-toan-minh-da-phan-ung-sai"
+}

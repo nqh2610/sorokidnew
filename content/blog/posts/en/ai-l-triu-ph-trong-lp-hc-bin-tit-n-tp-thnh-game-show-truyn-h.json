@@ -1,0 +1,56 @@
+{
+  "postId": "ai-la-trieu-phu-game-show-kiem-tra-kien-thuc-trong-lop",
+  "slug": "ai-l-triu-ph-trong-lp-hc-bin-tit-n-tp-thnh-game-show-truyn-h",
+  "title": "[EN] Ai Là Triệu Phú Trong Lớp Học - Biến Tiết Ôn Tập Thành Game Show Truyền Hình",
+  "description": "[Needs translation] Chia sẻ cách sử dụng game Ai Là Triệu Phú để kiểm tra kiến thức trong lớp học. Học sinh trở thành người chơi, cả lớp là khán giả với các quyền trợ giúp 50:50, Hỏi khán giả.",
+  "category": "teacher-insights",
+  "keywords": [
+    "ai là triệu phú",
+    "game show lớp học",
+    "trò chơi kiểm tra kiến thức",
+    "ai là triệu phú giáo dục",
+    "game 50:50",
+    "hỏi khán giả",
+    "trò chơi ôn tập",
+    "game show giáo dục",
+    "kiểm tra bài vui"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-28T05:49:15.671Z",
+  "image": "/blog/ai-la-trieu-phu-game-show-kiem-tra-kien-thuc-trong-lop.png",
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Câu hỏi tiếp theo trị giá 15 triệu đồng. Bạn có chắc chắn với đáp án của mình không?\" - Cả lớp nín thở. Em học sinh đứng trên bục giảng đang cân nhắc có nên dùng quyền 50:50 hay không. Đây không phải trường quay VTV, mà là lớp 8A của tôi trong tiết ôn tập Lịch sử. Kể từ khi đưa game Ai Là Triệu Phú vào lớp học, tiết ôn tập chưa bao giờ nhàm chán như vậy.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Từ \"Ai Là Triệu Phú\" Trên TV Đến Lớp Học Của Tôi"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ai cũng biết chương trình \"Ai Là Triệu Phú\" - game show kiến thức nổi tiếng nhất Việt Nam. Người chơi trả lời 15 câu hỏi, độ khó tăng dần, có 4 quyền trợ giúp."
+      },
+      {
+        "type": "paragraph",
+        "text": "Một hôm, tôi nghĩ: Tại sao không đưa format này vào lớp học?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Ý tưởng ban đầu:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Học sinh = Người chơi",
+          "Giáo viên = MC (người dẫn chương trình)",
+          "Cả lớp = Khán giả (có thể được \"hỏi ý kiến\")",
+          "Câu hỏi = Kiến thức bài học"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "slug": "soroban-abacus-structure-explained",
+  "title": "Soroban Abacus 101: Parts, Beads, and How It All Works",
+  "description": "The soroban looks simple – just beads on rods. But there's elegant design behind every part. Here's everything parents need to know.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban structure",
+    "soroban parts",
+    "abacus anatomy",
+    "how soroban works"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-25T02:37:59.356Z",
+  "createdAt": "2025-12-30",
+  "image": "/blog/tre-chau-a-hoc-soroban-tai-nha.jpg",
+  "imageAlt": "Diagram of soroban abacus parts and structure",
+  "readingTime": 6,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "Before your child starts learning soroban, it helps to understand the tool itself. The Japanese soroban has been refined over centuries for speed and efficiency. Here's a breakdown of every part.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Basic Parts"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Frame:** The outer border that holds everything together",
+          "**Rods (columns):** Vertical bars where beads slide up and down",
+          "**Beam (reckoning bar):** The horizontal divider in the middle",
+          "**Upper beads (heaven beads):** One bead above the beam, worth 5",
+          "**Lower beads (earth beads):** Four beads below the beam, worth 1 each"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How the Beads Work"
+      },
+      {
+        "type": "paragraph",
+        "text": "Each rod represents one place value (ones, tens, hundreds, etc.):"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Upper bead = 5:** When pushed down to touch the beam",
+          "**Lower beads = 1 each:** When pushed up to touch the beam",
+          "**Maximum per rod:** 5 + 4 = 9 (perfect for base-10 math)"
+        ]
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Position",
+          "Upper Bead (down)",
+          "Lower Beads (up)",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Showing 0",
+            "No",
+            "None",
+            "0"
+          ],
+          [
+            "Showing 3",
+            "No",
+            "3 beads",
+            "3"
+          ],
+          [
+            "Showing 5",
+            "Yes",
+            "None",
+            "5"
+          ],
+          [
+            "Showing 7",
+            "Yes",
+            "2 beads",
+            "7"
+          ],
+          [
+            "Showing 9",
+            "Yes",
+            "4 beads",
+            "9"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why This Design is Genius"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**1 + 4 beads:** Any digit 0-9 with minimal bead movement",
+          "**Upper bead = 5:** Reduces counting, speeds calculation",
+          "**Beam reference:** Clear \"zero\" state, beads away from beam",
+          "**Column layout:** Perfect for place value understanding"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "The Chinese abacus has 2 upper beads and 5 lower beads. The Japanese soroban is more streamlined with 1 upper and 4 lower – optimized for speed."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Size Soroban to Get"
+      },
+      {
+        "type": "paragraph",
+        "text": "If you're buying a physical soroban:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**13 rods:** Good for beginners, handles up to 9,999,999,999,999",
+          "**17 rods:** Standard size, most common",
+          "**21+ rods:** For advanced users doing very large calculations",
+          "**For kids:** 13 or 17 rods is plenty"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Physical vs. Virtual Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "Many parents ask if they need a physical soroban. Here's the truth:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Physical:** Great for beginners, tactile feedback helps",
+          "**Virtual (app):** Perfect for practice, tracks progress, always available",
+          "**Both:** Many families start physical, then transition to app for daily practice"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "You don't NEED to buy a physical soroban. Apps simulate it accurately. But having one for early learning can help – it's more tangible for young kids."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do I need to buy an expensive soroban?",
+        "answer": "No. A basic $10-15 plastic soroban works fine for learning. Premium wooden ones ($30-50) feel nicer but won't help your child learn faster."
+      },
+      {
+        "question": "What's the dot on some rods for?",
+        "answer": "The unit rod marker – usually a dot on every third rod from the right. It helps locate the ones place quickly in large numbers."
+      },
+      {
+        "question": "Why are some beads different colors?",
+        "answer": "Learning sorobans often use colors to help beginners. Traditional sorobans are one color. Either works for learning."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Ready to see the soroban in action? Try our interactive virtual soroban free.",
+      "buttonText": "Try Free Demo",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "cau-tao-ban-tinh-soroban"
+}

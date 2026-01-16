@@ -1,0 +1,159 @@
+{
+  "slug": "soroban-center-or-online-app",
+  "title": "Soroban Center or Online App? I Compared Both – Here's My Take",
+  "description": "Local soroban centers vs online apps: which is better for your child? After trying both, here's what I found.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban center vs app",
+    "soroban online vs in person",
+    "best way to learn soroban",
+    "soroban learning options"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-02T09:38:00.067Z",
+  "createdAt": "2026-01-13",
+  "image": "/blog/chon-lop-hay-hoc-online-soroban.jpg",
+  "imageAlt": "Comparing soroban center vs online app",
+  "readingTime": 6,
+  "author": {
+    "name": "Karen",
+    "role": "Mom of 1st grader"
+  },
+  "content": {
+    "intro": "When I decided to try soroban for my daughter, I found two options: local learning centers and online apps. The price difference was huge. I tried both to see if the center was worth the extra cost.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Center Experience"
+      },
+      {
+        "type": "paragraph",
+        "text": "I enrolled my daughter in a local abacus learning center. Here's what it involved:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Weekly 90-minute classes** on Saturday mornings",
+          "**Cost:** $180/month",
+          "**Daily homework:** 15-20 minutes of worksheets",
+          "**Certifications:** Testing every few months",
+          "**Group learning:** 8-10 kids per class"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What I Liked About the Center"
+      },
+      {
+        "type": "list",
+        "items": [
+          "In-person teacher could correct technique immediately",
+          "Social aspect – my daughter liked the other kids",
+          "Structured progression with clear levels",
+          "Competitions and recognition certificates"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What I Didn't Like"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Cost:** $180/month hurt our budget",
+          "**Schedule:** Saturday mornings conflicted with sports",
+          "**Homework battles:** More paper worksheets to argue about",
+          "**Commute:** 20-minute drive each way",
+          "**Inflexibility:** Miss a class, miss a lesson"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The App Experience"
+      },
+      {
+        "type": "paragraph",
+        "text": "We tried an online soroban app during the free trial while still at the center. Here's what that looked like:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**15-20 minutes daily** whenever convenient",
+          "**Cost:** $12/month",
+          "**Built-in progression:** Levels unlocked automatically",
+          "**Instant feedback:** Know immediately if answer is right",
+          "**Gamification:** Points, streaks, achievements"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "My Decision"
+      },
+      {
+        "type": "paragraph",
+        "text": "After 3 months at the center and 1 month on the app simultaneously, I made a choice: we quit the center."
+      },
+      {
+        "type": "callout",
+        "style": "personal",
+        "text": "My daughter made more progress in 1 month on the app (daily practice, instant feedback) than 3 months at the center (weekly classes, delayed feedback). And we saved $168/month."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When a Center Might Be Better"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Your child needs in-person interaction to stay engaged",
+          "You want the social aspect of group learning",
+          "Technique correction from a human matters to you",
+          "Budget isn't a constraint",
+          "Your schedule accommodates fixed class times"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When an App Might Be Better"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Daily practice matters more than weekly deep-dives",
+          "Your schedule is chaotic",
+          "Budget is a factor",
+          "Your child is self-motivated or motivated by games/rewards",
+          "You want to track progress without asking the teacher"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can my child switch from center to app (or vice versa)?",
+        "answer": "Yes. The skills transfer. Many families start at a center for technique, then continue with an app for convenience."
+      },
+      {
+        "question": "Is the app \"as good as\" a teacher?",
+        "answer": "For most kids, yes. The app provides instant feedback that teachers can't match. Good apps also include video demonstrations for technique."
+      },
+      {
+        "question": "What about socialization?",
+        "answer": "That's the biggest loss. If social learning matters to your child, consider a center. Or do app + extracurricular activities elsewhere."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Try our app free for 7 days. See if it fits your family.",
+      "buttonText": "Start Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "chon-lop-soroban-hay-hoc-online"
+}

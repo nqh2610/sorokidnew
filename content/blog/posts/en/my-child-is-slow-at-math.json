@@ -1,0 +1,180 @@
+{
+  "slug": "my-child-is-slow-at-math",
+  "title": "My Child Is Slow at Math – Is Something Wrong?",
+  "description": "Understanding why some kids calculate slower than others, and what to do about it.",
+  "category": "math-struggles",
+  "keywords": [
+    "slow at math",
+    "math speed",
+    "slow learner",
+    "processing speed"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-25T02:38:33.657Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/con-hoc-toan-cham.jpg",
+  "imageAlt": "Child working through math problems carefully",
+  "readingTime": 7,
+  "author": {
+    "name": "Dr. Robert Kim",
+    "role": "Educational Psychologist"
+  },
+  "content": {
+    "intro": "\"Emma's friend can answer in 2 seconds. Why does Emma need 10?\" Speed isn't everything in math. Here's what's really going on.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Speed Varies So Much"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Processing Speed"
+      },
+      {
+        "type": "paragraph",
+        "text": "Some kids naturally process information faster. This is a cognitive trait, like height – not good or bad, just different."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Automaticity"
+      },
+      {
+        "type": "paragraph",
+        "text": "Speed comes from practice. Kids who've done more math problems have more automatic recall. A \"slow\" kid might just need more repetition."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Anxiety"
+      },
+      {
+        "type": "paragraph",
+        "text": "Anxiety slows processing. A child who's stressed about math will be slower than their potential."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Learning Style"
+      },
+      {
+        "type": "paragraph",
+        "text": "Some kids think carefully through each step. Others use intuition. Both can get right answers – one just takes longer."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Slow IS a Problem"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Can't finish tests in time",
+          "Gets frustrated by their own pace",
+          "Falls behind in classroom activities",
+          "Slowness comes with poor accuracy (not just slow but also wrong)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Slow is Actually FINE"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Gets answers correct (slow but accurate)",
+          "Shows understanding when explaining",
+          "Speed is improving with practice",
+          "Slowness is relative (comparing to exceptionally fast peers)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Slow + accurate > fast + careless. Many successful mathematicians were not fast calculators – they were deep thinkers."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How to Build Speed (When Needed)"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. More Practice"
+      },
+      {
+        "type": "paragraph",
+        "text": "Automaticity comes from repetition. Daily practice on foundational skills builds speed naturally."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Target Weak Facts"
+      },
+      {
+        "type": "paragraph",
+        "text": "Often, slowness comes from a few gaps. If 7×8 always trips them up, drill that specifically."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Beat-Your-Own-Time"
+      },
+      {
+        "type": "paragraph",
+        "text": "Don't compare to others. Track their personal best and celebrate improvement."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Reduce Anxiety"
+      },
+      {
+        "type": "paragraph",
+        "text": "If anxiety is the issue, speed will improve naturally as stress decreases. Don't make speed the focus."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Advocating at School"
+      },
+      {
+        "type": "paragraph",
+        "text": "If your child is slow but accurate, request:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Extended time on tests (504 plan)",
+          "Fewer problems for homework (quality over quantity)",
+          "Evaluation of processing speed if concerned"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Could this be a learning disability?",
+        "answer": "Slow processing can be associated with specific learning disabilities or ADHD. If you're concerned, request an evaluation through school."
+      },
+      {
+        "question": "Will timed drills help?",
+        "answer": "For some kids, yes. For anxious kids, no – timed pressure makes things worse. Know your child."
+      },
+      {
+        "question": "Should I accept slowness or push for speed?",
+        "answer": "Gentle encouragement to improve, yes. Pressure and comparison, no. The goal is progress over time, not matching peers."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid builds calculation speed naturally through consistent, low-pressure practice.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-hoc-toan-cham-co-that-la-do-con"
+}

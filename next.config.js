@@ -56,19 +56,17 @@ const nextConfig = {
     pagesBufferLength: 5,
   },
   
-  // 🌍 I18N REWRITES - /en/* → /* (giữ URL tiếng Việt đã index)
-  // URL tiếng Việt: / (đã được Google index - KHÔNG ĐỔI)
-  // URL tiếng Anh: /en/* (proxy về page gốc)
-  async rewrites() {
-    return {
-      beforeFiles: [
-        // /en → /
-        { source: '/en', destination: '/' },
-        // /en/blog → /blog
-        { source: '/en/:path*', destination: '/:path*' },
-      ],
-    };
-  },
+  // 🌍 I18N REWRITES - DISABLED
+  // Đã chuyển sang sử dụng middleware để xử lý i18n
+  // Routes /en/* có file riêng trong /app/en/ nên KHÔNG cần rewrite
+  // async rewrites() {
+  //   return {
+  //     beforeFiles: [
+  //       { source: '/en', destination: '/' },
+  //       { source: '/en/:path*', destination: '/:path*' },
+  //     ],
+  //   };
+  // },
 
   // Caching headers cho static assets
   async headers() {

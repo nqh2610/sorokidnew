@@ -1,0 +1,159 @@
+{
+  "slug": "common-soroban-teaching-mistakes",
+  "title": "Common Mistakes When Teaching Soroban (And How to Avoid Them)",
+  "description": "Even well-meaning parents and tutors make these errors. Here's what to watch out for.",
+  "category": "teacher-insights",
+  "keywords": [
+    "soroban teaching mistakes",
+    "teaching soroban",
+    "soroban pedagogy",
+    "abacus teaching tips"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/ba-khong-biet-soroban.jpg",
+  "imageAlt": "Teacher correcting soroban technique with student",
+  "readingTime": 7,
+  "author": {
+    "name": "James Patterson",
+    "role": "Certified Soroban Instructor"
+  },
+  "content": {
+    "intro": "I've trained over 100 parents and tutors to teach soroban. These are the mistakes I see most often – and they're all fixable.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake #1: Rushing Past Basics"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"They got it, let's move on.\" Famous last words. Kids might get simple addition once, but soroban requires automaticity. You need to master each step before building on it."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Stay at each level until accuracy is 95%+ AND speed is consistent. Mastery isn't \"got it once\" – it's \"can't get it wrong.\""
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake #2: Ignoring Finger Technique"
+      },
+      {
+        "type": "paragraph",
+        "text": "Which finger moves which bead matters. Sloppy technique at the start leads to ceiling later. Correct form now, even if it slows them down."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Thumb for pushing unit beads UP",
+          "Index finger for pushing unit beads DOWN",
+          "Index finger for both directions on heaven bead",
+          "One hand only, other hand holds the soroban steady"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake #3: Too Much At Once"
+      },
+      {
+        "type": "paragraph",
+        "text": "Teaching addition, subtraction, and complement rules in one session? Overwhelm. Teach one thing. Practice it for days. Then add the next thing."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake #4: Explaining Too Much"
+      },
+      {
+        "type": "paragraph",
+        "text": "Long explanations of WHY the 5-complement works. Kids don't need the theory. They need to DO it. Explanation can come later, after muscle memory forms."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake #5: Inconsistent Practice Schedule"
+      },
+      {
+        "type": "paragraph",
+        "text": "30 minutes Tuesday, nothing until Saturday, then an hour. This doesn't build skill. 5-10 minutes daily, every day, no exceptions."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake #6: Jumping to Mental Math Too Soon"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Okay, now do it in your head!\" But the bead movements aren't automatic yet. Mental math (anzan) requires the physical motions to be unconscious first."
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Sign They're Ready for Anzan",
+          "Sign They're NOT Ready"
+        ],
+        "rows": [
+          [
+            "Eyes closed, fingers still move correctly",
+            "Need to look at beads constantly"
+          ],
+          [
+            "Can solve without counting beads",
+            "Still count each bead visually"
+          ],
+          [
+            "Instant recognition of bead patterns",
+            "Hesitation on pattern recognition"
+          ],
+          [
+            "Physical soroban feels too slow",
+            "Physical soroban still challenging"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake #7: Comparing to Other Kids"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Emma can already do 3-digit! Why can't you?\" Comparison kills motivation. Every child learns at their own pace. Compare only to their past self."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake #8: Not Celebrating Progress"
+      },
+      {
+        "type": "paragraph",
+        "text": "Small wins matter. Completed level 5? Celebrate! Fastest time yet? Notice it! Positive reinforcement builds association between soroban and good feelings."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How do I know if I'm going too fast?",
+        "answer": "If accuracy drops below 90% on material they \"already learned,\" you moved too fast. Go back and reinforce."
+      },
+      {
+        "question": "What if I'm not confident teaching soroban myself?",
+        "answer": "Use an app or program designed for self-learning. The best ones guide progression and ensure proper technique."
+      },
+      {
+        "question": "Is it bad to learn alongside my child?",
+        "answer": "No! It's great! Kids love seeing parents learn and make mistakes too. Models growth mindset."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid is designed to avoid all these mistakes with structured, self-paced learning.",
+      "buttonText": "See How It Works",
+      "buttonUrl": "/learn"
+    }
+  },
+  "postId": "sai-lam-thuong-gap-khi-day-soroban"
+}

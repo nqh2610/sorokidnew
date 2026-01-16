@@ -1,0 +1,178 @@
+{
+  "slug": "my-child-cries-every-time-we-do-math",
+  "title": "My Child Cries Every Time We Do Math – Help!",
+  "description": "Breaking the cycle of tears and homework battles around mathematics.",
+  "category": "math-struggles",
+  "keywords": [
+    "crying about math",
+    "math meltdowns",
+    "emotional math struggles",
+    "homework tears"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-31T03:13:05.755Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/be-khoc-vi-toan.jpg",
+  "imageAlt": "Frustrated child crying over math homework",
+  "readingTime": 7,
+  "author": {
+    "name": "Dr. Amanda Lee",
+    "role": "Family Therapist"
+  },
+  "content": {
+    "intro": "The worksheet comes out. The tears start. Every. Single. Time. Here's how to break this exhausting pattern.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why the Tears?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Crying during math isn't about the math. It's about:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Frustration (\"I can't do this\")",
+          "Fear (\"I'll get it wrong\")",
+          "Exhaustion (wrong time of day)",
+          "Overwhelm (too much at once)",
+          "Learned behavior (crying worked before)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Cycle to Break"
+      },
+      {
+        "type": "paragraph",
+        "text": "Here's what usually happens:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Math time approaches → child anticipates struggle",
+          "Child cries → parent gets frustrated or backs off",
+          "Crying \"works\" → behavior reinforced",
+          "Next time → crying starts even faster"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Breaking the Cycle"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Change When"
+      },
+      {
+        "type": "paragraph",
+        "text": "After-school tired brain + math = disaster. Try morning, after a snack, or different time entirely."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Change How Much"
+      },
+      {
+        "type": "paragraph",
+        "text": "If 20 problems triggers tears, try 5. Reduce until you find the amount that's doable without meltdown."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Change the Format"
+      },
+      {
+        "type": "paragraph",
+        "text": "Worksheets feel like \"work.\" Try an app, verbal problems, games, or real-world math. Same skills, different wrapper."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Change Your Role"
+      },
+      {
+        "type": "paragraph",
+        "text": "If your presence triggers stress (it often does), step back. Let an app or program guide. You're nearby but not hovering."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Don't Reward Tears"
+      },
+      {
+        "type": "paragraph",
+        "text": "If crying gets them out of math, crying will continue. Stay calm. \"I see you're upset. We'll take a 2-minute break, then try one more.\" Don't abandon math entirely."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The goal: Reduce tears by reducing triggers, not by avoiding math entirely."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "In the Moment When They Cry"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Stay calm (your stress feeds theirs)",
+          "Acknowledge feelings: \"This feels hard right now\"",
+          "Brief break (2-3 minutes, not abandoning)",
+          "Return with an easier problem",
+          "End session if needed, but plan to try again soon"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Tears Aren't Just About Math"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sometimes crying about math is really about:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "General anxiety",
+          "Perfectionism",
+          "School stress beyond math",
+          "Home stress",
+          "Undiagnosed learning issues"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "If tears happen across multiple areas of life, address the bigger picture."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Should I push through tears or stop?",
+        "answer": "Brief break, then try again with something easier. Don't push through prolonged distress, but don't completely abandon either. Finding the middle ground takes practice."
+      },
+      {
+        "question": "Will this damage their relationship with math?",
+        "answer": "The tears themselves aren't the issue – how you respond is. Calm, supportive responses protect the relationship. Angry or shaming responses damage it."
+      },
+      {
+        "question": "How long until this improves?",
+        "answer": "With consistent changes, you should see reduction in tears within 2-4 weeks. If no improvement, something else may need addressing."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid's gamified, self-paced approach helps remove the triggers for math tears.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "con-khoc-moi-khi-lam-bai-toan"
+}

@@ -1,0 +1,49 @@
+{
+  "postId": "ky-thuat-kwl-biet-muon-biet-da-hoc-trong-lop",
+  "slug": "k-thut-kwl-bit-mun-bit-hc-hng-dn-chi-tit-cho-gio-vin",
+  "title": "[EN] Kỹ Thuật KWL - Biết - Muốn Biết - Đã Học: Hướng Dẫn Chi Tiết Cho Giáo Viên",
+  "description": "[Needs translation] Hướng dẫn chi tiết cách áp dụng kỹ thuật KWL (Know-Want to Know-Learned) trong lớp học. Kinh nghiệm thực tế từ giáo viên đã áp dụng thành công.",
+  "category": "teacher-insights",
+  "keywords": [
+    "kỹ thuật KWL",
+    "KWL chart",
+    "biết muốn biết đã học",
+    "phương pháp KWL",
+    "dạy học tích cực",
+    "kích hoạt kiến thức nền",
+    "sơ đồ KWL",
+    "know want learn"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Các con đã biết gì về chủ đề này?\" - Câu hỏi đơn giản nhưng mở ra cả một phương pháp dạy học hiệu quả. KWL (Know - Want to know - Learned) là kỹ thuật giúp học sinh kết nối kiến thức cũ với kiến thức mới, chủ động đặt câu hỏi và tự đánh giá việc học. Bài viết này chia sẻ cách tôi áp dụng KWL trong lớp học mỗi ngày.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "KWL Là Gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "KWL là viết tắt của 3 câu hỏi:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**K - Know (Biết):** Em đã biết gì về chủ đề này?\n**W - Want to Know (Muốn biết):** Em muốn biết thêm điều gì?\n**L - Learned (Đã học):** Em đã học được gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kỹ thuật này được phát triển bởi Donna Ogle năm 1986, ban đầu dùng cho môn đọc hiểu. Nay được áp dụng rộng rãi cho mọi môn học."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Nguyên lý:**"
+      }
+    ]
+  }
+}

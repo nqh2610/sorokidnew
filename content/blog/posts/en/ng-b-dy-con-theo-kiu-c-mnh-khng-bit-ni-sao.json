@@ -1,0 +1,49 @@
+{
+  "postId": "ong-ba-day-con-sai-cach",
+  "slug": "ng-b-dy-con-theo-kiu-c-mnh-khng-bit-ni-sao",
+  "title": "[EN] Ông bà dạy con theo kiểu cũ – mình không biết nói sao",
+  "description": "[Needs translation] Ông dạy con học thuộc bảng cửu chương. Mình muốn con hiểu bản chất. Hai thế hệ, hai cách dạy.",
+  "category": "parents-helping-with-math",
+  "keywords": [
+    "ông bà dạy cháu",
+    "mâu thuẫn cách dạy",
+    "phương pháp dạy toán"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/ong-day-chau.jpg",
+  "imageAlt": "Ông châu Á ngồi dạy cháu học bài",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"7 × 8 bằng mấy?\" – Ông hỏi. Con ấp úng. \"56 chứ mấy! Học thuộc đi!\" – Ông bảo. Mình nghe mà không biết can thiệp thế nào. Mình muốn con hiểu, ông muốn con nhớ.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Hai cách dạy khác nhau"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ông bà thế hệ trước học toán theo kiểu: đọc, nhớ, lặp lại. Học thuộc lòng. Không sai, vì thời đó ai cũng học thế."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình muốn con hiểu 7 × 8 là 7 nhóm, mỗi nhóm 8 cái. Không chỉ nhớ kết quả."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Khó xử thế nào?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không muốn nói ông sai. Ông thương cháu, ông dành thời gian dạy cháu. Mình biết ơn điều đó."
+      }
+    ]
+  }
+}

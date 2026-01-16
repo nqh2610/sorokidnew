@@ -120,26 +120,82 @@ export default async function sitemap() {
     });
   });
 
-  // 3. Blog category pages - các trang danh mục (chỉ tiếng Việt, vì slug tiếng Việt)
-  const categories = getCategories();
-  const categoryPages = categories.map((category) => ({
-    url: `${BASE_URL}/blog/danh-muc/${category.slug}`,
-    lastModified: now,
-    changeFrequency: 'daily',
-    priority: 0.8,
-  }));
+  // 3. Blog category pages - CẢ 2 NGÔN NGỮ
+  const categoryPages = [];
+  
+  // Vietnamese categories (danh-muc)
+  const viCategories = getCategories('vi');
+  viCategories.forEach(category => {
+    categoryPages.push({
+      url: `${BASE_URL}/blog/danh-muc/${category.slug}`,
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 0.8,
+    });
+  });
+  
+  // English categories
+  const enCategories = getCategories('en');
+  enCategories.forEach(category => {
+    categoryPages.push({
+      url: `${BASE_URL}/en/blog/category/${category.slug}`,
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 0.7,
+      alternates: {
+        languages: {
+          'vi': `${BASE_URL}/blog/danh-muc/${category.slug}`,
+          'en': `${BASE_URL}/en/blog/category/${category.slug}`,
+          'x-default': `${BASE_URL}/blog/danh-muc/${category.slug}`,
+        },
+      },
+    });
+  });
 
-  // 4. Blog posts - tất cả bài viết đã publish (chỉ tiếng Việt, vì slug tiếng Việt)
-  const posts = getAllPosts({ sortBy: 'publishedAt', sortOrder: 'desc' });
-  const blogPages = posts
+  // 4. Blog posts - CẢ 2 NGÔN NGỮ
+  
+  // Vietnamese posts
+  const viPosts = getAllPosts({ locale: 'vi', sortBy: 'publishedAt', sortOrder: 'desc' });
+  const viBlogPages = viPosts
     .filter(post => post.status === 'published')
     .map((post) => ({
       url: `${BASE_URL}/blog/${post.slug}`,
       lastModified: new Date(post.updatedAt || post.publishedAt),
       changeFrequency: 'weekly',
       priority: 0.7,
+      // Add hreflang if EN translation exists
+      ...(post.translations?.en && {
+        alternates: {
+          languages: {
+            'vi': `${BASE_URL}/blog/${post.slug}`,
+            'en': `${BASE_URL}/en/blog/${post.translations.en}`,
+            'x-default': `${BASE_URL}/blog/${post.slug}`,
+          },
+        },
+      }),
+    }));
+
+  // English posts
+  const enPosts = getAllPosts({ locale: 'en', sortBy: 'publishedAt', sortOrder: 'desc' });
+  const enBlogPages = enPosts
+    .filter(post => post.status === 'published')
+    .map((post) => ({
+      url: `${BASE_URL}/en/blog/${post.slug}`,
+      lastModified: new Date(post.updatedAt || post.publishedAt),
+      changeFrequency: 'weekly',
+      priority: 0.6,
+      // Add hreflang if VI translation exists  
+      ...(post.translations?.vi && {
+        alternates: {
+          languages: {
+            'vi': `${BASE_URL}/blog/${post.translations.vi}`,
+            'en': `${BASE_URL}/en/blog/${post.slug}`,
+            'x-default': `${BASE_URL}/blog/${post.translations.vi}`,
+          },
+        },
+      }),
     }));
 
   // Gộp tất cả
-  return [...staticPages, ...toolPages, ...categoryPages, ...blogPages];
+  return [...staticPages, ...toolPages, ...categoryPages, ...viBlogPages, ...enBlogPages];
 }

@@ -1,0 +1,55 @@
+{
+  "postId": "con-hoc-toan-tot-o-truong-nhung-ve-nha-khong-lam-duoc",
+  "slug": "con-hc-ton-tt-trng-nhng-v-nh-qun-sch-v-sao-v-cch-khc-phc",
+  "title": "[EN] Con học toán tốt ở trường nhưng về nhà quên sạch – Vì sao và cách khắc phục",
+  "description": "[Needs translation] Cô giáo khen con tiếp thu nhanh. Nhưng tối về ôn bài, con ngồi như 'mất trí'. Mình từng nghĩ con giả vờ, hóa ra đó là cách não trẻ hoạt động.",
+  "category": "when-kids-struggle-with-math",
+  "keywords": [
+    "con quên bài nhanh",
+    "học tốt ở trường kém ở nhà",
+    "con không nhớ bài",
+    "cách giúp con nhớ bài lâu",
+    "đường cong lãng quên",
+    "ôn tập hiệu quả"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-30T11:30:00.000Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/dau-hieu-con-hoc-soroban-dung.jpg",
+  "imageAlt": "Bé về nhà ôn lại bài đã học ở trường",
+  "readingTime": 8,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Hôm nay cô dạy gì con?\" – \"Phép nhân 4 mẹ ạ!\" – \"Vậy 4 x 6 bằng mấy?\" – Con im lặng. Mắt con nhìn lên trần nhà, suy nghĩ mãi. \"Con... con quên rồi mẹ ơi.\" Mình sốc. Cô giáo vừa nhắn tin khen con tiếp thu nhanh. Mới học xong buổi sáng, buổi tối con đã quên? Mình từng nghĩ con giả vờ, con không chịu học. Nhưng sau khi tìm hiểu, mình mới biết: đó là cách não trẻ hoạt động, và mình đã ôn bài sai cách.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Hiểu Bài Không Có Nghĩa Là Nhớ Bài"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây là sai lầm lớn nhất của mình: nghĩ rằng con hiểu tức là con nhớ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Thực tế, có 3 bước trong học tập:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Hiểu**: Con tiếp thu thông tin, hiểu ngay lúc đó",
+          "**Nhớ**: Thông tin được lưu vào bộ nhớ dài hạn",
+          "**Áp dụng**: Con có thể dùng kiến thức để giải bài"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Cô dạy trên lớp, con hiểu ngay lúc đó (bước 1). Nhưng nếu không ôn tập, thông tin sẽ biến mất trước khi kịp lưu vào bộ nhớ dài hạn."
+      }
+    ]
+  }
+}

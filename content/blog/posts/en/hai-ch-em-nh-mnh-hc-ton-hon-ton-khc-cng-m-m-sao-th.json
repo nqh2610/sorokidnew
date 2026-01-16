@@ -1,0 +1,49 @@
+{
+  "postId": "hai-chi-em-hoc-toan-khac-nhau",
+  "slug": "hai-ch-em-nh-mnh-hc-ton-hon-ton-khc-cng-m-m-sao-th",
+  "title": "[EN] Hai chị em nhà mình học toán hoàn toàn khác – cùng mẹ mà sao thế?",
+  "description": "[Needs translation] Chị giỏi toán từ nhỏ. Em sợ toán. Mình phải tìm cách khác nhau cho từng con.",
+  "category": "parents-helping-with-math",
+  "keywords": [
+    "hai con học khác nhau",
+    "dạy từng con khác nhau",
+    "con này giỏi con kia yếu"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/hai-chi-em.jpg",
+  "imageAlt": "Hai chị em châu Á đang ngồi học bài",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Chị lớp 3, toán luôn 9-10. Em lớp 1, khóc mỗi khi làm bài. Hai đứa cùng cha mẹ, cùng cách dạy, sao lại khác vậy?",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình từng dùng một cách cho cả hai"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cách dạy chị hiệu quả, mình áp dụng cho em. Nhưng em không tiếp thu. Em khóc, mình stress."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình tự hỏi: \"Tại sao cùng một phương pháp lại không hiệu quả?\"."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình nhận ra: mỗi con là một cá thể"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chị học tốt qua nghe giảng. Em học tốt qua hình ảnh và vận động."
+      }
+    ]
+  }
+}

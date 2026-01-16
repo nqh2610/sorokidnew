@@ -1,0 +1,234 @@
+{
+  "slug": "soroban-10-complement-rule",
+  "title": "The 10-Complement Rule: When Numbers Cross Column Boundaries",
+  "description": "The 10-complement handles carrying and borrowing across columns. It's the key to doing multi-digit calculations smoothly.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban 10 complement",
+    "soroban friends of 10",
+    "soroban carrying",
+    "soroban borrowing"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-28T05:50:29.569Z",
+  "createdAt": "2026-01-07",
+  "image": "/blog/hoc-quy-tac-ban-cua-10.jpg",
+  "imageAlt": "10-complement rule demonstration on soroban",
+  "readingTime": 6,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "The 10-complement (also called \"friends of 10\") is essential for multi-digit arithmetic. While the 5-complement works within one column, the 10-complement moves values between columns.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What is the 10-Complement?"
+      },
+      {
+        "type": "paragraph",
+        "text": "The 10-complement pairs numbers that add up to 10:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "1 and 9 (1 + 9 = 10)",
+          "2 and 8 (2 + 8 = 10)",
+          "3 and 7 (3 + 7 = 10)",
+          "4 and 6 (4 + 6 = 10)",
+          "5 and 5 (5 + 5 = 10)",
+          "6 and 4 (6 + 4 = 10)",
+          "7 and 3 (7 + 3 = 10)",
+          "8 and 2 (8 + 2 = 10)",
+          "9 and 1 (9 + 1 = 10)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Adding with 10-Complement (Carrying)"
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "When adding would exceed 9: ADD 1 to the tens column, SUBTRACT the complement from ones."
+      },
+      {
+        "type": "paragraph",
+        "text": "Example: 8 + 5"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Set 8 (upper bead + 3 lower beads)",
+          "Add 5... but 8 + 5 = 13, exceeds 9!",
+          "Complement of 5 is 5",
+          "Add 1 to tens column, subtract 5 from ones: 8 - 5 = 3",
+          "Result: 13 (1 in tens, 3 in ones) ✓"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Addition Examples"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Problem",
+          "Complement",
+          "Action",
+          "Result"
+        ],
+        "rows": [
+          [
+            "9 + 4",
+            "6",
+            "Add 10, subtract 6",
+            "13"
+          ],
+          [
+            "7 + 6",
+            "4",
+            "Add 10, subtract 4",
+            "13"
+          ],
+          [
+            "8 + 7",
+            "3",
+            "Add 10, subtract 3",
+            "15"
+          ],
+          [
+            "6 + 8",
+            "2",
+            "Add 10, subtract 2",
+            "14"
+          ],
+          [
+            "9 + 9",
+            "1",
+            "Add 10, subtract 1",
+            "18"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Subtracting with 10-Complement (Borrowing)"
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "When subtracting more than available: SUBTRACT 1 from tens column, ADD the complement to ones."
+      },
+      {
+        "type": "paragraph",
+        "text": "Example: 13 - 8"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Set 13 (1 in tens, 3 in ones)",
+          "Subtract 8 from ones... only 3 there! Not enough.",
+          "Complement of 8 is 2",
+          "Subtract 1 from tens, add 2 to ones: 3 + 2 = 5",
+          "Result: 5 ✓"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Subtraction Examples"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Problem",
+          "Complement",
+          "Action",
+          "Result"
+        ],
+        "rows": [
+          [
+            "11 - 3",
+            "7",
+            "Borrow 10, add 7",
+            "8"
+          ],
+          [
+            "14 - 6",
+            "4",
+            "Borrow 10, add 4",
+            "8"
+          ],
+          [
+            "12 - 7",
+            "3",
+            "Borrow 10, add 3",
+            "5"
+          ],
+          [
+            "15 - 9",
+            "1",
+            "Borrow 10, add 1",
+            "6"
+          ],
+          [
+            "13 - 5",
+            "5",
+            "Borrow 10, add 5",
+            "8"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Combining 5 and 10 Complements"
+      },
+      {
+        "type": "paragraph",
+        "text": "Some problems need BOTH techniques. Example: 8 + 6"
+      },
+      {
+        "type": "list",
+        "items": [
+          "8 + 6 = 14",
+          "First handle the carry (10-complement): add 10, subtract 4",
+          "8 - 4 needs the 5-complement: subtract 5, add 1",
+          "Final: 8 - 4 = 4, plus 1 ten = 14 ✓"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "This combined technique sounds complex, but with practice it becomes a single fluid motion. The brain automates the steps."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do I need to teach 5-complement before 10-complement?",
+        "answer": "Usually yes, because 5-complement is simpler and used within problems that also need 10-complement. But some curricula teach them together."
+      },
+      {
+        "question": "This seems complicated. Will my child really learn this?",
+        "answer": "Yes! Kids learn these patterns faster than adults because they haven't solidified other calculation methods yet. Trust the process."
+      },
+      {
+        "question": "How long until complements become automatic?",
+        "answer": "With 15-20 minutes of daily practice, most kids internalize the main patterns within 2-3 months. Full automaticity takes longer."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Our app teaches complements progressively with visual feedback.",
+      "buttonText": "Try Complement Practice",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "quy-tac-ban-cua-10-soroban"
+}

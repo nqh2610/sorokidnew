@@ -1,0 +1,55 @@
+{
+  "postId": "den-may-man-cuoi-tiet-game-thuong-phat-hoc-sinh-thich",
+  "slug": "n-may-mn-cui-tit-game-thng-pht-hc-sinh-cc-thch",
+  "title": "[EN] Đèn May Mắn Cuối Tiết - Game Thưởng Phạt Học Sinh Cực Thích",
+  "description": "[Needs translation] Chia sẻ cách sử dụng Đèn May Mắn để tạo hoạt động cuối tiết hấp dẫn. Từ 5 phút thừa không biết làm gì đến khoảnh khắc học sinh mong đợi nhất.",
+  "category": "teacher-insights",
+  "keywords": [
+    "đèn may mắn",
+    "game cuối tiết",
+    "lucky wheel",
+    "vòng quay may mắn",
+    "game thưởng phạt",
+    "hoạt động cuối tiết",
+    "trò chơi lớp học",
+    "spin wheel"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-28T05:49:42.499Z",
+  "image": "/blog/den-may-man-cuoi-tiet-game-thuong-phat-hoc-sinh-thich.png",
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Cô ơi, còn mấy phút nữa? Mình quay Đèn May Mắn được không cô?\" - Câu hỏi tôi nghe mỗi tiết học. Từ một công cụ tình cờ phát hiện, Đèn May Mắn đã trở thành \"nghi thức\" cuối tiết mà lớp tôi không thể thiếu. Bài viết này chia sẻ cách biến 5 phút cuối tiết thành khoảnh khắc đáng nhớ.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Nỗi Khổ 5 Phút Cuối Tiết"
+      },
+      {
+        "type": "paragraph",
+        "text": "5 phút cuối tiết từng là nỗi ám ảnh của tôi:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Khi dạy xong sớm:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Không biết làm gì với 5-7 phút còn lại",
+          "Cho làm bài tập thì ngắn quá",
+          "Học sinh ngồi chờ, bắt đầu ồn ào",
+          "Nói chuyện phiếm thì không chuyên nghiệp"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Khi dạy hết giờ:**"
+      }
+    ]
+  }
+}

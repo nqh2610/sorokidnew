@@ -1,0 +1,49 @@
+{
+  "postId": "con-khong-nghe-loi-khi-bo-me-day-toan",
+  "slug": "con-khng-nghe-li-khi-b-m-dy-ton-mnh-lm-sai-g",
+  "title": "[EN] Con không nghe lời khi bố mẹ dạy toán – mình đã làm sai gì?",
+  "description": "[Needs translation] Cô giáo nói con ngoan, nhưng về nhà mình dạy thì con cãi lại, khóc lóc. Mình từng nghĩ con hư – hóa ra vấn đề ở mình.",
+  "category": "parents-helping-with-math",
+  "keywords": [
+    "con không nghe lời khi học toán",
+    "dạy con học toán bị cãi",
+    "con phản kháng khi học"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-29T01:28:55.888Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/con-khong-nghe-loi-hoc-toan.jpg",
+  "imageAlt": "Mẹ châu Á ôm con - cách xử lý khi con không nghe lời học toán",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Ở lớp cô nói gì con cũng nghe, sao về nhà mẹ dạy lại cãi?\" – Mình từng hỏi câu này nhiều lần. Mình tức, mình nghĩ con hư. Cho đến khi mình nhận ra: vấn đề không phải ở con.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Chuyện nhà mình"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mỗi tối kèm con học toán là một \"cuộc chiến\". Mình vừa nói \"con làm bài này đi\", con đã bảo \"con mệt\". Mình giảng bài, con ngáp. Mình sửa sai, con cãi \"không phải, cô dạy khác\"."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình nóng. La con. Con khóc. Rồi cả hai đều mệt."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình từng nghĩ: \"Con này hư quá. Ở lớp nghe cô răm rắp, về nhà thì coi thường mẹ.\""
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cho đến khi mình hiểu ra"
+      }
+    ]
+  }
+}

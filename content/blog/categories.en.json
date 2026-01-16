@@ -1,0 +1,113 @@
+{
+  "categories": [
+    {
+      "slug": "teacher-insights",
+      "name": "Teacher Insights",
+      "description": "Real classroom experiences using active teaching tools, learning games, and engagement strategies that actually work",
+      "color": "#8B5CF6",
+      "icon": "sparkles",
+      "keywords": [
+        "classroom teaching tools",
+        "educational games for classroom",
+        "active learning strategies",
+        "student engagement activities",
+        "ice breaker activities",
+        "teacher toolbox",
+        "student-centered learning"
+      ],
+      "seoTitle": "Teacher Insights - Classroom Tools & Active Learning Strategies | Sorokid",
+      "seoDescription": "Real classroom experiences: teaching tools, learning games, and engagement activities that help make lessons more interactive and students more engaged.",
+      "viEquivalent": "goc-chia-se-giao-vien"
+    },
+    {
+      "slug": "parents-helping-with-math",
+      "name": "Parents Helping with Math",
+      "description": "Real struggles, challenges, and solutions when parents help their kids with math at home",
+      "color": "#EF4444",
+      "icon": "heart",
+      "keywords": [
+        "helping kids with math",
+        "teaching math at home",
+        "parent math help",
+        "homeschool math",
+        "math homework help"
+      ],
+      "seoTitle": "Parents Helping with Math - Sorokid Blog",
+      "seoDescription": "Real stories from parents who've been through it. The struggles, frustrations, and solutions for helping kids with math at home.",
+      "viEquivalent": "phu-huynh-kem-con-hoc-toan"
+    },
+    {
+      "slug": "math-struggles",
+      "name": "When Kids Struggle with Math",
+      "description": "Understanding why kids fear math, learn slowly, or can't focus - and what's really going on",
+      "color": "#F59E0B",
+      "icon": "lightbulb",
+      "keywords": [
+        "math anxiety",
+        "kids struggling with math",
+        "child doesn't like math",
+        "math learning difficulties",
+        "fear of math"
+      ],
+      "seoTitle": "When Kids Struggle with Math - Sorokid Blog",
+      "seoDescription": "Understanding the real reasons kids fear or struggle with math. Signs parents should recognize early.",
+      "viEquivalent": "con-gap-kho-khan-hoc-toan"
+    },
+    {
+      "slug": "stress-free-math-learning",
+      "name": "Stress-Free Math Learning",
+      "description": "Methods to support your child's math journey without pressure or household tension",
+      "color": "#10B981",
+      "icon": "star",
+      "keywords": [
+        "no-pressure math learning",
+        "supporting child in math",
+        "helping kids enjoy math",
+        "fun math learning"
+      ],
+      "seoTitle": "Stress-Free Math Learning - Sorokid Blog",
+      "seoDescription": "Simple ways parents can support their child's math learning without turning home into a stressful classroom.",
+      "viEquivalent": "cach-giup-con-hoc-toan-nhe-nhang"
+    },
+    {
+      "slug": "soroban-for-parents",
+      "name": "Soroban for Parents",
+      "description": "A simple guide to Soroban - the Japanese abacus method perfect for busy parents",
+      "color": "#3B82F6",
+      "icon": "book",
+      "keywords": [
+        "what is soroban",
+        "soroban learning online",
+        "soroban for kids",
+        "japanese abacus",
+        "soroban method",
+        "learn soroban at home",
+        "soroban learning path",
+        "soroban app for kids",
+        "mental math for kids"
+      ],
+      "questionKeywords": [
+        "is soroban good for kids",
+        "why learn soroban",
+        "is soroban effective",
+        "should my child learn soroban",
+        "how long does it take to learn soroban",
+        "can soroban help with school math",
+        "what age to start soroban",
+        "is soroban hard to learn"
+      ],
+      "sorokidAppKeywords": [
+        "is sorokid app good",
+        "why use sorokid",
+        "is sorokid effective",
+        "best soroban app for kids",
+        "soroban app reviews",
+        "sorokid for elementary students",
+        "mental math app for kids"
+      ],
+      "seoTitle": "Soroban for Parents - Understanding the Japanese Abacus | Sorokid Blog",
+      "seoDescription": "Learn about Soroban - the Japanese abacus method that helps kids develop lightning-fast mental math skills. Perfect for busy parents.",
+      "viEquivalent": "soroban-cho-phu-huynh"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "slug": "soroban-online-for-busy-parents",
+  "title": "I Work Full-Time – How Do I Fit Soroban Into Our Schedule?",
+  "description": "Getting home at 7pm exhausted, the last thing I wanted was another commitment. Here's how we made Soroban work with our crazy schedule.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban for busy parents",
+    "online soroban learning",
+    "fitting soroban into schedule",
+    "working parent soroban"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-02T09:38:01.143Z",
+  "createdAt": "2025-12-26",
+  "image": "/blog/hoc-soroban-online-tai-nha.jpg",
+  "imageAlt": "Working parent supporting child's Soroban practice at home",
+  "readingTime": 5,
+  "author": {
+    "name": "Jennifer",
+    "role": "Full-time working mom"
+  },
+  "content": {
+    "intro": "I get home at 7pm most nights. By then, I'm running on empty. Homework battles? No thanks. So when I heard Soroban required \"daily practice,\" I almost didn't even try. Here's how we actually made it work.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Problem: Time We Don't Have"
+      },
+      {
+        "type": "paragraph",
+        "text": "Between work, dinner, and basic survival, there's no slot labeled \"enrichment activities\" in our evening. Weekends are for catching up on sleep and errands."
+      },
+      {
+        "type": "paragraph",
+        "text": "Traditional Soroban classes? Forget it. Fixed times, driving across town, waiting during class – impossible."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Our Solution: The 15-Minute Rule"
+      },
+      {
+        "type": "paragraph",
+        "text": "We do Soroban right after dinner, before screen time. It's non-negotiable: 15 minutes, then she can watch her show."
+      },
+      {
+        "type": "paragraph",
+        "text": "That's it. No driving. No waiting. Just 15 minutes on the tablet while I clean up dishes nearby."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The secret isn't finding more time – it's fitting into time that already exists. We attached Soroban to an existing routine (after dinner) so it became automatic."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Online Works for Us"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Flexible timing:** 7pm, 8pm, 6am – whenever works",
+          "**No commute:** Practice happens in our kitchen",
+          "**Self-paced:** She goes at her speed, not a class's pace",
+          "**Progress tracking:** I can check her stats without sitting there the whole time"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What About Quality?"
+      },
+      {
+        "type": "paragraph",
+        "text": "I worried online learning would be inferior. But after 6 months, her mental math is noticeably better. Her school math confidence improved too."
+      },
+      {
+        "type": "paragraph",
+        "text": "The app teaches better than I could anyway. It's patient, consistent, and doesn't get tired after a long work day."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "If you're a busy parent feeling guilty about not having time for enrichment activities – 15 minutes is enough. Consistency matters more than duration."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Is 15 minutes really enough?",
+        "answer": "For building skills, yes. Research shows short, daily practice beats longer occasional sessions. 15 focused minutes daily adds up to 7.5 hours monthly."
+      },
+      {
+        "question": "What if I can't be present during practice?",
+        "answer": "The app works independently. Many parents have kids practice while they're cooking or doing chores nearby. You don't need to actively supervise every minute."
+      },
+      {
+        "question": "Don't kids need in-person instruction?",
+        "answer": "For Soroban fundamentals, apps teach very effectively. In-person can add value for advanced levels or competition prep, but isn't necessary for most kids."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Busy schedule? Sorokid fits into 15 minutes – practice anywhere, anytime.",
+      "buttonText": "Try It Free",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "hoc-soroban-online-co-phu-hop-cho-phu-huynh-ban-ron"
+}

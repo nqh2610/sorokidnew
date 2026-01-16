@@ -1,0 +1,181 @@
+{
+  "slug": "kumon-vs-soroban-which-to-choose",
+  "title": "Kumon or Soroban? I Spent a Week Agonizing – Here's What I Chose",
+  "description": "Everyone recommends either Kumon or Soroban. They're completely different approaches. After days of research, I finally made a choice.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "kumon vs soroban",
+    "soroban or kumon",
+    "math program comparison",
+    "best math method for kids"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2025-12-27",
+  "image": "/blog/phan-van-kumon-soroban.jpg",
+  "imageAlt": "Comparing Kumon worksheets with Soroban abacus learning",
+  "readingTime": 7,
+  "author": {
+    "name": "Michelle",
+    "role": "Mom of 3rd grader"
+  },
+  "content": {
+    "intro": "\"You should try Kumon!\" \"No, Soroban is better!\" I heard both constantly. They're completely different approaches to math. After a week of research, sleepless nights, and way too many browser tabs, I finally made a decision.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What's the Difference?"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Aspect",
+          "Kumon",
+          "Soroban"
+        ],
+        "rows": [
+          [
+            "Method",
+            "Worksheets, repetition",
+            "Abacus visualization"
+          ],
+          [
+            "Focus",
+            "Broad math curriculum",
+            "Mental calculation"
+          ],
+          [
+            "Practice",
+            "Paper-based",
+            "Abacus then mental"
+          ],
+          [
+            "Time commitment",
+            "30-60 min daily",
+            "15-20 min daily"
+          ],
+          [
+            "Cost",
+            "$150-200/month (center)",
+            "$10-15/month (app)"
+          ],
+          [
+            "Independence",
+            "Needs checking",
+            "App gives instant feedback"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What I Liked About Kumon"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Comprehensive curriculum:** Covers all math topics, not just calculation",
+          "**Proven track record:** Been around for decades, lots of success stories",
+          "**Structure:** Clear levels and progression",
+          "**Reading program too:** Can do math and reading together"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What I Liked About Soroban"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Mental math focus:** Builds calculation speed like nothing else",
+          "**Visual learning:** Great for kids who struggle with abstract concepts",
+          "**Engaging:** More interactive than worksheets",
+          "**Brain training:** Research shows benefits beyond just math",
+          "**Cost effective:** Apps much cheaper than centers"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why I Chose Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "For my daughter specifically:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "She's visual – learns better seeing things than reading instructions",
+          "She hates worksheets – Kumon would be a battle every day",
+          "She needs confidence in basic calculation first",
+          "Our budget is tight – Soroban app is 1/10th the cost"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "There's no universally \"better\" choice. It depends on your child's learning style, your goals, your budget, and your family's schedule."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Kumon Might Be Better"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Your child needs help across ALL math topics (fractions, word problems, etc.)",
+          "They don't mind worksheets",
+          "You want reading practice too",
+          "Budget isn't a major constraint",
+          "You prefer in-person accountability"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Soroban Might Be Better"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Your child specifically struggles with calculation speed",
+          "They're visual learners",
+          "They dislike worksheets",
+          "You want something more game-like and engaging",
+          "Budget matters",
+          "Schedule is tight (15 min vs 45 min daily)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Both approaches work. Many kids have succeeded with Kumon. Many with Soroban. What matters is picking one and sticking with it consistently."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I do both Kumon and Soroban?",
+        "answer": "You can, but it's a lot. 45-60 minutes of Kumon plus 15-20 minutes of Soroban daily adds up. Most families pick one and stick with it."
+      },
+      {
+        "question": "Which is better for school math grades?",
+        "answer": "Kumon covers more curriculum topics. Soroban specifically boosts calculation speed and confidence. Both can improve grades, through different paths."
+      },
+      {
+        "question": "Is Soroban just for math prodigies?",
+        "answer": "No! Soroban works for all kids, including those struggling with math. The visual approach often helps kids who didn't \"get\" traditional methods."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Think Soroban might be right for your child? Try it free and see how they respond.",
+      "buttonText": "Start Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "minh-phan-van-kumon-hay-soroban"
+}

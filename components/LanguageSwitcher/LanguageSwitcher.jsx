@@ -10,9 +10,10 @@
  * - Animation smooth
  * - 🚀 Preload dictionary on hover (fast switch)
  * 
- * @version 1.1.0 - Thêm preload on hover
+ * @version 2.0.0 - Thêm LanguageSelector dropdown hỗ trợ nhiều ngôn ngữ
  */
 
+import { useState, useEffect, useRef } from 'react';
 import { useI18n } from '@/lib/i18n/I18nContext';
 import { localeConfig } from '@/lib/i18n/config';
 import { preloadOnHover } from '@/lib/i18n/preloadDictionary';
@@ -21,12 +22,24 @@ import { preloadOnHover } from '@/lib/i18n/preloadDictionary';
  * Language Switcher - Compact Toggle Button
  * Hiển thị cờ và tên ngôn ngữ hiện tại
  * Click để đổi sang ngôn ngữ khác
+ * 
+ * ⚠️ CHỈ HIỂN THỊ Ở TRANG CHỦ - Ẩn ở các trang khác
  */
 export function LanguageSwitcher({ className = '' }) {
   const { locale, toggleLocale, isLoading } = useI18n();
+  const [isHomePage, setIsHomePage] = useState(false);
   const config = localeConfig[locale];
   const otherLocale = locale === 'vi' ? 'en' : 'vi';
   const otherConfig = localeConfig[otherLocale];
+  
+  // Chỉ hiển thị ở trang chủ
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+    setIsHomePage(currentPath === '/' || currentPath === '/en' || currentPath === '/en/');
+  }, []);
+  
+  // Ẩn hoàn toàn nếu không phải trang chủ
+  if (!isHomePage) return null;
   
   return (
     <button
@@ -64,15 +77,31 @@ export function LanguageSwitcher({ className = '' }) {
 /**
  * Language Switcher - Dropdown Menu
  * Hiển thị tất cả ngôn ngữ có sẵn
+ * 
+ * ⚠️ CHỈ HIỂN THỊ Ở TRANG CHỦ - Ẩn ở các trang khác
  */
 export function LanguageDropdown({ className = '' }) {
   const { locale, setLocale, locales, isLoading } = useI18n();
+  const [isHomePage, setIsHomePage] = useState(false);
+  
+  // Chỉ hiển thị ở trang chủ
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+    setIsHomePage(currentPath === '/' || currentPath === '/en' || currentPath === '/en/');
+  }, []);
+  
+  // Ẩn hoàn toàn nếu không phải trang chủ
+  if (!isHomePage) return null;
+  
+  const handleChange = (e) => {
+    setLocale(e.target.value);
+  };
   
   return (
     <div className={`relative inline-block ${className}`}>
       <select
         value={locale}
-        onChange={(e) => setLocale(e.target.value)}
+        onChange={handleChange}
         disabled={isLoading}
         className="
           appearance-none
@@ -106,11 +135,23 @@ export function LanguageDropdown({ className = '' }) {
 /**
  * Language Switcher - Icon Only
  * Chỉ hiển thị icon globe
+ * 
+ * ⚠️ CHỈ HIỂN THỊ Ở TRANG CHỦ - Ẩn ở các trang khác
  */
 export function LanguageIcon({ className = '' }) {
   const { toggleLocale, locale, isLoading } = useI18n();
+  const [isHomePage, setIsHomePage] = useState(false);
   const config = localeConfig[locale];
   const otherLocale = locale === 'vi' ? 'en' : 'vi';
+  
+  // Chỉ hiển thị ở trang chủ
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+    setIsHomePage(currentPath === '/' || currentPath === '/en' || currentPath === '/en/');
+  }, []);
+  
+  // Ẩn hoàn toàn nếu không phải trang chủ
+  if (!isHomePage) return null;
   
   return (
     <button
@@ -147,12 +188,24 @@ export function LanguageIcon({ className = '' }) {
 }
 
 /**
- * Language Switcher - Flag Toggle
- * Toggle giữa 2 cờ quốc gia
+ * Language Switcher - Flag Toggle (Legacy - 2 ngôn ngữ)
+ * @deprecated Use LanguageSelector for multi-language support
+ * 
+ * ⚠️ CHỈ HIỂN THỊ Ở TRANG CHỦ - Ẩn ở các trang khác
  */
 export function LanguageFlags({ className = '' }) {
   const { locale, toggleLocale, isLoading } = useI18n();
+  const [isHomePage, setIsHomePage] = useState(false);
   const otherLocale = locale === 'vi' ? 'en' : 'vi';
+  
+  // Chỉ hiển thị ở trang chủ
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+    setIsHomePage(currentPath === '/' || currentPath === '/en' || currentPath === '/en/');
+  }, []);
+  
+  // Ẩn hoàn toàn nếu không phải trang chủ
+  if (!isHomePage) return null;
   
   return (
     <button
@@ -196,6 +249,122 @@ export function LanguageFlags({ className = '' }) {
         </span>
       </span>
     </button>
+  );
+}
+
+/**
+ * 🌍 Language Selector - Dropdown hỗ trợ nhiều ngôn ngữ
+ * Hiển thị cờ + tên ngôn ngữ hiện tại, click để mở dropdown chọn ngôn ngữ khác
+ * Dễ dàng mở rộng thêm ngôn ngữ mới
+ * 
+ * ⚠️ CHỈ HIỂN THỊ Ở TRANG CHỦ - Ẩn ở các trang khác
+ */
+export function LanguageSelector({ className = '' }) {
+  const { locale, setLocale, locales, isLoading } = useI18n();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isHomePage, setIsHomePage] = useState(false);
+  const dropdownRef = useRef(null);
+  
+  const currentConfig = localeConfig[locale];
+  
+  // Chỉ hiển thị ở trang chủ
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+    setIsHomePage(currentPath === '/' || currentPath === '/en' || currentPath === '/en/');
+  }, []);
+  
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+  
+  // Ẩn hoàn toàn nếu không phải trang chủ
+  if (!isHomePage) return null;
+  
+  const handleSelectLocale = (newLocale) => {
+    if (newLocale !== locale) {
+      setLocale(newLocale);
+    }
+    setIsOpen(false);
+  };
+  
+  return (
+    <div className={`relative ${className}`} ref={dropdownRef}>
+      {/* Current Language Button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        disabled={isLoading}
+        className={`
+          inline-flex items-center gap-1.5 px-2 py-1.5
+          text-sm font-medium rounded-lg
+          bg-gray-100 hover:bg-gray-200
+          text-gray-700 hover:text-gray-900
+          transition-all duration-200
+          disabled:opacity-50 disabled:cursor-wait
+        `}
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+        aria-label={`Language: ${currentConfig.name}`}
+      >
+        <span className="text-base">{currentConfig.flag}</span>
+        <span className="hidden sm:inline text-xs">{locale.toUpperCase()}</span>
+        <svg 
+          className={`w-3 h-3 text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          fill="none" 
+          viewBox="0 0 24 24" 
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      
+      {/* Dropdown Menu */}
+      {isOpen && (
+        <div 
+          className="absolute right-0 mt-1 w-40 py-1 bg-white rounded-lg shadow-lg border border-gray-200 z-50"
+          role="listbox"
+          aria-label="Select language"
+        >
+          {locales.map((loc) => {
+            const config = localeConfig[loc];
+            const isSelected = loc === locale;
+            
+            return (
+              <button
+                key={loc}
+                onClick={() => handleSelectLocale(loc)}
+                onMouseEnter={() => !isSelected && preloadOnHover(loc)}
+                className={`
+                  w-full flex items-center gap-2 px-3 py-2 text-sm
+                  transition-colors duration-150
+                  ${isSelected 
+                    ? 'bg-violet-50 text-violet-700 font-medium' 
+                    : 'text-gray-700 hover:bg-gray-100'
+                  }
+                `}
+                role="option"
+                aria-selected={isSelected}
+              >
+                <span className="text-base">{config.flag}</span>
+                <span>{config.name}</span>
+                {isSelected && (
+                  <svg className="w-4 h-4 ml-auto text-violet-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
   );
 }
 

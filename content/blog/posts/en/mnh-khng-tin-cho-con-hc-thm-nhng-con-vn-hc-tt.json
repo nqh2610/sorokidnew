@@ -1,0 +1,49 @@
+{
+  "postId": "day-con-toan-khong-can-giao-vien",
+  "slug": "mnh-khng-tin-cho-con-hc-thm-nhng-con-vn-hc-tt",
+  "title": "[EN] Mình không đủ tiền cho con học thêm – nhưng con vẫn học tốt",
+  "description": "[Needs translation] Học thêm đắt quá. Mình tìm cách khác để con vẫn có nền tảng toán tốt mà không tốn kém.",
+  "category": "stress-free-math-learning",
+  "keywords": [
+    "học toán không cần gia sư",
+    "tự dạy con toán",
+    "tiết kiệm chi phí học thêm"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/con-tu-hoc.jpg",
+  "imageAlt": "Bé châu Á tự học ở nhà với sách và tablet",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Gia sư 200-300k/buổi. Học thêm 1-2 triệu/tháng. Thu nhập gia đình mình có hạn. Mình không đủ khả năng. Nhưng mình vẫn muốn con có nền tảng toán tốt.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình từng tự ti"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thấy bạn bè cho con học thêm đủ nơi, mình cảm thấy thiếu thốn. \"Sao mình không cho con được như người ta?\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Rồi mình tự hỏi: học thêm có phải cách duy nhất không?"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình tìm cách khác"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. App học tập:** Sorokid 200-300k/tháng, rẻ hơn một buổi gia sư. Con học mỗi ngày, hiệu quả không kém."
+      }
+    ]
+  }
+}

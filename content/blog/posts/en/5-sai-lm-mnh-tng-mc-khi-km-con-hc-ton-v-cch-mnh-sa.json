@@ -1,0 +1,49 @@
+{
+  "postId": "sai-lam-pho-bien-khi-kem-con-hoc-toan",
+  "slug": "5-sai-lm-mnh-tng-mc-khi-km-con-hc-ton-v-cch-mnh-sa",
+  "title": "[EN] 5 sai lầm mình từng mắc khi kèm con học toán – và cách mình sửa",
+  "description": "[Needs translation] Nhìn lại, mình thấy mình đã làm sai nhiều thứ khi kèm con. Những sai lầm này khiến cả hai đều mệt – mà con cũng không tiến bộ.",
+  "category": "parents-helping-with-math",
+  "keywords": [
+    "sai lầm khi dạy con học toán",
+    "lỗi phụ huynh khi kèm con",
+    "cách kèm con học toán hiệu quả"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-25T02:37:47.830Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/tranh-sai-lam-kem-con-hoc-toan.jpg",
+  "imageAlt": "Mẹ châu Á nhíu mày sửa bài con - một sai lầm phổ biến khi kèm học",
+  "readingTime": 7,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Mình đã kèm con học toán gần 2 năm. Nhìn lại, mình thấy mình làm sai nhiều lắm – những sai lầm mà lúc đó mình tưởng là đúng. Nếu bạn đang kèm con, có lẽ bạn cũng đang mắc phải. Mình chia sẻ để bạn tránh được như mình.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Sai lầm 1: So sánh con với người khác"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Bạn A học giỏi hơn con nhiều.\" \"Con nhà người ta làm được, sao con không làm được?\" – Mình từng nói những câu này."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình nghĩ đang tạo động lực. Nhưng thực tế, mình đang làm con thấy mình kém cỏi. Con không có động lực – con có áp lực."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Cách mình sửa"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình so sánh con với chính con ngày hôm qua. \"Tuần trước con làm bài này 10 phút, tuần này 7 phút – tiến bộ rồi!\" Con thấy mình đang tiến lên, không phải đang thua ai."
+      }
+    ]
+  }
+}

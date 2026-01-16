@@ -1,0 +1,171 @@
+{
+  "slug": "does-soroban-help-school-math",
+  "title": "Does Soroban Actually Help with School Math? An Honest Look",
+  "description": "Parents want to know: will soroban improve grades? Here's the honest answer based on research and real experience.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban school math",
+    "does soroban help grades",
+    "soroban benefits school",
+    "soroban academic improvement"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-30T14:00:00.000Z",
+  "createdAt": "2026-01-20",
+  "image": "/blog/be-diem-cao.jpg",
+  "imageAlt": "Child succeeding at school math with soroban background",
+  "readingTime": 6,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "Will soroban help with school math? It's the question every parent asks before committing. Here's the honest, nuanced answer.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Short Answer"
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Yes, soroban can help school math – but indirectly. It builds foundational skills that make ALL math easier, rather than directly teaching school curriculum."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How Soroban Helps School Math"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Faster calculation:** Frees up mental energy for problem-solving",
+          "**Better number sense:** Understanding how numbers work together",
+          "**Improved focus:** Attention and concentration transfer to all subjects",
+          "**Math confidence:** Success builds willingness to tackle hard problems",
+          "**Working memory:** Holding numbers mentally helps with multi-step problems"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Research Says"
+      },
+      {
+        "type": "paragraph",
+        "text": "Multiple studies have found that abacus training:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Improves arithmetic skills (obvious)",
+          "Enhances visuospatial working memory",
+          "Activates different brain regions than standard math",
+          "Benefits transfer to some non-trained math tasks"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "However, research also shows:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Transfer isn't automatic – it takes time",
+          "Benefits are strongest for arithmetic, weaker for geometry/word problems",
+          "Consistency matters more than intensity"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Real Parent Experiences"
+      },
+      {
+        "type": "paragraph",
+        "text": "From our community:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"My daughter went from C's to B's in math after 8 months of soroban\"",
+          "\"No grade change yet, but he's faster on homework\"",
+          "\"She used to hate math, now she says it's her second favorite subject\"",
+          "\"Mental math has definitely improved, tests... we're still waiting\""
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Realistic Expectations"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Expectation",
+          "Reality"
+        ],
+        "rows": [
+          [
+            "Instant grade improvement",
+            "Usually takes 6-12 months to show"
+          ],
+          [
+            "Helps all math",
+            "Strongest for arithmetic"
+          ],
+          [
+            "Replaces tutoring",
+            "Supplements, doesn't replace"
+          ],
+          [
+            "Works for everyone",
+            "Most kids benefit; intensity varies"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Soroban Helps Most"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Child struggles with basic calculation (slow, inaccurate)",
+          "Child lacks math confidence",
+          "Child is visual learner who needs concrete representation",
+          "Child has trouble with number sense",
+          "You start before bad math habits form (K-3rd grade ideal)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The earlier you start, the more school math benefits. Starting in 1st grade gives years of compound improvement before math gets really hard."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Will soroban guarantee better grades?",
+        "answer": "No guarantees. It builds skills that SHOULD help grades, but grades depend on many factors beyond calculation speed."
+      },
+      {
+        "question": "How long until I see school improvement?",
+        "answer": "Typically 6-12 months of consistent practice. Some families see changes sooner; others take longer."
+      },
+      {
+        "question": "Should I do soroban instead of math tutoring?",
+        "answer": "They serve different purposes. Tutoring addresses current curriculum; soroban builds foundational skills. Both together can be powerful."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Build the foundation that helps all math. Start your free trial.",
+      "buttonText": "Try Free",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "soroban-co-giup-con-lam-toan-truong-tot-hon"
+}

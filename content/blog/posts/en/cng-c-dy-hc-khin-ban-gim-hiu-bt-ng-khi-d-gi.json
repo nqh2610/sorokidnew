@@ -1,0 +1,55 @@
+{
+  "postId": "cong-cu-day-hoc-khien-ban-giam-hieu-bat-ngo-khi-du-gio",
+  "slug": "cng-c-dy-hc-khin-ban-gim-hiu-bt-ng-khi-d-gi",
+  "title": "[EN] Công Cụ Dạy Học Khiến Ban Giám Hiệu Bất Ngờ Khi Dự Giờ",
+  "description": "[Needs translation] Chia sẻ những công cụ dạy học tích cực giúp tiết dự giờ ấn tượng. Từ tiết dạy bình thường đến tiết được ban giám hiệu khen ngợi và nhân rộng.",
+  "category": "teacher-insights",
+  "keywords": [
+    "công cụ dạy học",
+    "tiết học sôi nổi",
+    "đổi mới phương pháp",
+    "dự giờ ấn tượng",
+    "dạy học tích cực",
+    "công nghệ trong giáo dục",
+    "BGH bất ngờ",
+    "tiết dạy hay"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "image": "/blog/cong-cu-day-hoc-khien-ban-giam-hieu-bat-ngo-khi-du-gio.jpg",
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Em dùng cái gì mà hay thế? Chỉ cho cô với!\" - Câu hỏi từ cô hiệu phó sau tiết dự giờ của tôi. Ban giám hiệu từng quen với những tiết dạy \"thầy nói - trò nghe\". Nhưng khi thấy lớp tôi sôi nổi với Chiếc Nón Kỳ Diệu, học sinh tranh nhau trả lời với Đua Vịt, họ bất ngờ. Bài viết này chia sẻ những công cụ đã thay đổi cách nhìn của ban giám hiệu về tiết dạy của tôi.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Câu Chuyện Bắt Đầu Từ Một Tiết Dự Giờ \"Bình Thường\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Trước khi biết đến các công cụ dạy học, tiết dự giờ của tôi như sau:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kịch bản quen thuộc:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Tôi giảng, học sinh nghe",
+          "Hỏi: \"Ai trả lời được?\" - Vài em giơ tay",
+          "Gọi em giơ tay, em đó trả lời đúng",
+          "Tiếp tục giảng..."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Nhận xét từ ban giám hiệu:**"
+      }
+    ]
+  }
+}

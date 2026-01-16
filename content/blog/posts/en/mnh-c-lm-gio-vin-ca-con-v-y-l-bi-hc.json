@@ -1,0 +1,49 @@
+{
+  "postId": "phu-huynh-co-nen-truc-tiep-day-con-hoc-toan-khong",
+  "slug": "mnh-c-lm-gio-vin-ca-con-v-y-l-bi-hc",
+  "title": "[EN] Mình đã cố làm giáo viên của con – và đây là bài học",
+  "description": "[Needs translation] Mình từng nghĩ: con mình thì mình phải dạy. Nhưng sau nhiều tháng căng thẳng, mình nhận ra: không nhất thiết phải vậy.",
+  "category": "parents-helping-with-math",
+  "keywords": [
+    "phụ huynh dạy con học toán",
+    "có nên tự dạy con toán",
+    "kèm con học toán tại nhà"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-27T14:03:54.443Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/bo-truc-tiep-day-con-hoc-toan.jpg",
+  "imageAlt": "Bố châu Á trực tiếp dạy con học toán tại nhà",
+  "readingTime": 5,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Con mình thì mình dạy.\" Mình nghĩ vậy từ khi con vào lớp 1. Nên mình ngồi kèm mỗi tối, cố giảng giải, cố sửa bài. Gần một năm sau, mình nhận ra: mình đã sai.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình không phải giáo viên"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình yêu con, muốn con giỏi. Nhưng yêu con không có nghĩa mình biết cách dạy. Giáo viên được đào tạo để hiểu tâm lý trẻ, biết cách giải thích phù hợp với từng độ tuổi. Mình thì không."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình hay nói \"Bài này dễ mà\" – vì với mình nó dễ. Nhưng với con, nó không dễ chút nào. Câu đó vô tình làm con thêm áp lực."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Con cư xử khác khi học với mình"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình để ý: ở trường con làm bài bình thường, nhưng về nhà ngồi với mình thì đơ ra. Có lẽ vì ỷ lại – biết mình sẽ chỉ. Hoặc vì áp lực – sợ làm sai mình buồn."
+      }
+    ]
+  }
+}

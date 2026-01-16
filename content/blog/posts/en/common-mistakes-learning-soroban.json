@@ -1,0 +1,162 @@
+{
+  "slug": "common-mistakes-learning-soroban",
+  "title": "8 Common Mistakes When Learning Soroban (And How to Fix Them)",
+  "description": "Avoid these typical soroban learning pitfalls that slow progress. Most are easy to fix once you know what to look for.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban mistakes",
+    "soroban learning errors",
+    "common soroban problems",
+    "fix soroban technique"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-05T04:49:16.214Z",
+  "createdAt": "2026-01-16",
+  "image": "/blog/tranh-sai-lam-hoc-soroban.jpg",
+  "imageAlt": "Common soroban learning mistakes to avoid",
+  "readingTime": 7,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "After helping thousands of kids learn soroban, we've seen the same mistakes over and over. Here are the most common ones – and how to correct them before they become habits.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake 1: Practicing Too Long"
+      },
+      {
+        "type": "paragraph",
+        "text": "**The problem:** Parents think more is better. 45-minute sessions lead to burnout."
+      },
+      {
+        "type": "paragraph",
+        "text": "**The fix:** 15-20 minutes daily beats 60 minutes twice a week. Short, consistent sessions build neural pathways better than marathon sessions."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake 2: Skipping Fundamentals"
+      },
+      {
+        "type": "paragraph",
+        "text": "**The problem:** Rushing to impressive multi-digit problems before mastering basics."
+      },
+      {
+        "type": "paragraph",
+        "text": "**The fix:** Spend extra time on single-digit addition until accuracy is 90%+. A weak foundation creates problems that compound later."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake 3: Wrong Finger Usage"
+      },
+      {
+        "type": "paragraph",
+        "text": "**The problem:** Using all fingers, or using index finger to push beads up (should use thumb)."
+      },
+      {
+        "type": "paragraph",
+        "text": "**The fix:** Thumb pushes lower beads UP. Index finger pushes beads DOWN. Gently correct early, don't stress about perfection."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake 4: Counting Beads Instead of Recognizing Patterns"
+      },
+      {
+        "type": "paragraph",
+        "text": "**The problem:** \"One, two, three...\" counting every bead instead of instant recognition."
+      },
+      {
+        "type": "paragraph",
+        "text": "**The fix:** Practice number recognition games. Show a pattern, child says the number immediately. Speed will develop with repetition."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake 5: Skipping the Reset"
+      },
+      {
+        "type": "paragraph",
+        "text": "**The problem:** Starting new problems without clearing the soroban first."
+      },
+      {
+        "type": "paragraph",
+        "text": "**The fix:** Always reset all beads away from the beam before each new problem. This builds clean habits and prevents confusion."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake 6: Moving to Anzan Too Early"
+      },
+      {
+        "type": "paragraph",
+        "text": "**The problem:** Trying mental calculation before physical technique is automatic."
+      },
+      {
+        "type": "paragraph",
+        "text": "**The fix:** Spend 3-6 months on physical soroban before introducing mental math (anzan). The visualization needs a strong physical foundation."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake 7: Inconsistent Practice"
+      },
+      {
+        "type": "paragraph",
+        "text": "**The problem:** 5 days on, 10 days off, 3 days on... erratic schedules."
+      },
+      {
+        "type": "paragraph",
+        "text": "**The fix:** Same time every day, even if just 10 minutes. Consistency builds habit. Habit builds skill."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Link practice to an existing routine: after breakfast, before screen time, etc. Habit stacking works."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mistake 8: Focusing on Speed Over Accuracy"
+      },
+      {
+        "type": "paragraph",
+        "text": "**The problem:** Racing through problems, making careless errors."
+      },
+      {
+        "type": "paragraph",
+        "text": "**The fix:** Accuracy first, THEN speed. A wrong answer at lightning speed is still wrong. Speed comes naturally after accuracy is solid."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Every one of these mistakes is fixable. Don't panic if your child has some of these habits. Gentle, consistent correction works."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What if bad habits are already formed?",
+        "answer": "They can be unlearned, it just takes longer. Go back to basics, practice correctly at a slower pace, and gradually rebuild."
+      },
+      {
+        "question": "How do I know which mistakes my child is making?",
+        "answer": "Watch them practice occasionally. Check app accuracy stats. If accuracy is low or progress stalled, investigate."
+      },
+      {
+        "question": "Should I correct every mistake immediately?",
+        "answer": "Pick 1-2 to focus on at a time. Too many corrections are overwhelming and discouraging."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Our app guides proper technique from day one.",
+      "buttonText": "Start Learning Right",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "sai-lam-pho-bien-khi-hoc-soroban"
+}

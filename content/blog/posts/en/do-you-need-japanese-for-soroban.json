@@ -1,0 +1,132 @@
+{
+  "slug": "do-you-need-japanese-for-soroban",
+  "title": "Do I Need to Know Japanese to Learn Soroban?",
+  "description": "Soroban is Japanese, so does that mean Japanese language is required? Here's the quick answer that surprises most parents.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban japanese",
+    "do I need japanese for soroban",
+    "soroban language",
+    "japanese abacus english"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-30T12:00:00.000Z",
+  "createdAt": "2026-01-12",
+  "image": "/blog/hoc-soroban-online-tai-nha.jpg",
+  "imageAlt": "Soroban learning without Japanese",
+  "readingTime": 4,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "\"Soroban is Japanese, right? Does my kid need to learn Japanese first?\" I hear this question constantly. Let me put your mind at ease.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Short Answer"
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "No. Absolutely not. Zero Japanese needed. Soroban is a method of calculation, not a language. Numbers are universal."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why People Think Japanese Is Required"
+      },
+      {
+        "type": "list",
+        "items": [
+          "The name \"soroban\" is Japanese",
+          "It originated in Japan",
+          "Some materials use Japanese terminology",
+          "Competition champions are often Japanese"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Your Child Actually Needs to Know"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Numbers 0-9 (in any language)",
+          "Basic addition/subtraction concepts",
+          "How to follow simple instructions",
+          "That's it!"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Japanese Terms You Might Encounter"
+      },
+      {
+        "type": "paragraph",
+        "text": "If you're curious, here are the only Japanese terms commonly used:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Soroban (そろばん):** The abacus itself",
+          "**Anzan (暗算):** Mental calculation without the physical abacus",
+          "**Tama (珠):** Beads",
+          "**Dan (段):** Rank/level in advanced certifications"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Most apps and modern programs use English equivalents anyway. You don't need to learn these terms."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Soroban Works in Any Language"
+      },
+      {
+        "type": "paragraph",
+        "text": "The soroban has been adopted worldwide:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "India: Thousands of soroban schools",
+          "Malaysia: UCMAS programs everywhere",
+          "Brazil: Growing soroban community",
+          "USA: Apps and online programs flourishing",
+          "Europe: Gaining popularity"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Math is a universal language. The beads don't care what language you speak. They work the same whether you count in English, Spanish, Mandarin, or any other language."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What about Japanese certification exams?",
+        "answer": "Advanced practitioners can take Japanese certification exams, but these are completely optional. Most kids never pursue formal Japanese certification."
+      },
+      {
+        "question": "Should I learn the Japanese terms for authenticity?",
+        "answer": "If you want to, sure. But it's like knowing \"piano\" comes from Italian – interesting trivia, but not required to play the instrument."
+      },
+      {
+        "question": "Are Japanese soroban materials better?",
+        "answer": "Not necessarily. Modern apps made in any country can be excellent. What matters is the quality of instruction and practice, not the language of origin."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Our app is fully in English. Start learning soroban today.",
+      "buttonText": "Try Free",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "hoc-soroban-co-can-biet-tieng-nhat-khong"
+}

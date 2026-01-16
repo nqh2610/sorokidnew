@@ -1,0 +1,49 @@
+{
+  "postId": "con-hoc-toan-tot-nhung-giai-toan-do-cham",
+  "slug": "con-tnh-ton-nhanh-nhng-gii-ton-chm-vn-u",
+  "title": "[EN] Con tính toán nhanh nhưng giải toán đố chậm – vấn đề ở đâu?",
+  "description": "[Needs translation] Con mình tính nhẩm giỏi lắm. Nhưng gặp bài toán đố là chịu. Mình tìm hiểu mới biết tại sao.",
+  "category": "when-kids-struggle-with-math",
+  "keywords": [
+    "giải toán đố",
+    "tính toán giỏi nhưng giải đề kém",
+    "phân tích đề toán"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-giai-toan-do.jpg",
+  "imageAlt": "Bé châu Á đang đọc đề toán với vẻ suy nghĩ",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Con mình học Soroban, tính nhẩm 47 + 38 trong đầu được. Nhưng đề bài: \"An có 47 viên bi, Bình cho thêm 38 viên. Hỏi An có bao nhiêu viên bi?\" – Con... không biết làm.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình bối rối"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"47 + 38 con làm được mà?\" – Mình hỏi. Con nói: \"Nhưng con không biết phải cộng!\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Hóa ra, tính toán và phân tích đề là HAI KỸ NĂNG KHÁC NHAU."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vấn đề ở đâu?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tính toán:** Biết cách làm phép tính. Soroban rèn kỹ năng này."
+      }
+    ]
+  }
+}

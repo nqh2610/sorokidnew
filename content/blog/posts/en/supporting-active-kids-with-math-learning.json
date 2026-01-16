@@ -1,0 +1,203 @@
+{
+  "slug": "supporting-active-kids-with-math-learning",
+  "title": "Supporting Hyperactive Kids with Math Learning",
+  "description": "Strategies for helping energetic, can't-sit-still kids succeed with math practice.",
+  "category": "stress-free-math-learning",
+  "keywords": [
+    "hyperactive kids",
+    "active learners",
+    "ADHD math",
+    "kinesthetic learners"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/be-hieu-dong.jpg",
+  "imageAlt": "Active child finding ways to learn math",
+  "readingTime": 7,
+  "author": {
+    "name": "Dr. Rachel Kim",
+    "role": "Child Development Specialist"
+  },
+  "content": {
+    "intro": "\"He can't sit still for 5 minutes!\" Sound familiar? High-energy kids aren't broken – they just need different approaches to math learning.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understanding Active Learners"
+      },
+      {
+        "type": "paragraph",
+        "text": "Some kids have more energy than others. Some have ADHD. Some are just young. Regardless of the reason, traditional \"sit still and focus\" math practice doesn't work for them."
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "The goal isn't to make them sit still. It's to find ways to learn that work WITH their energy, not against it."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategies That Work"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Movement Before Math"
+      },
+      {
+        "type": "paragraph",
+        "text": "Burn energy first. 5-10 minutes of running, jumping, or active play BEFORE practice. A tired body can focus better."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Micro-Sessions"
+      },
+      {
+        "type": "paragraph",
+        "text": "Instead of one 15-minute session, try three 5-minute sessions throughout the day. Matches their attention span."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Allow Movement During Practice"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Standing desk or countertop",
+          "Wobble cushion on chair",
+          "Exercise ball as seat",
+          "Pacing while thinking (answer when ready)",
+          "Fidget toy in non-dominant hand"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Movement Breaks Between Problems"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Do 3 problems, then 10 jumping jacks, then 3 more.\" Built-in movement keeps them going longer."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Physical Math"
+      },
+      {
+        "type": "paragraph",
+        "text": "Math that uses the body:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Jump to count",
+          "Throw beanbags to answer (1 for yes, 2 for no)",
+          "Hopscotch with number problems",
+          "Basketball hoop (make shot = answer problem)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Environment Setup"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Remove",
+          "Add"
+        ],
+        "rows": [
+          [
+            "Visual clutter",
+            "Clean, simple workspace"
+          ],
+          [
+            "Other screens",
+            "Just the learning device"
+          ],
+          [
+            "Siblings/pets",
+            "Quiet, low-traffic area"
+          ],
+          [
+            "Long sessions",
+            "Timer showing short duration"
+          ],
+          [
+            "Hard chairs",
+            "Alternative seating options"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Soroban Can Help Active Kids"
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban has advantages for high-energy kids:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Hands-on (fingers moving = body engaged)",
+          "Visual (not purely abstract)",
+          "Fast feedback (keeps attention)",
+          "Short problems (quick wins)",
+          "Gamification (competition, streaks, rewards)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Many ADHD kids do BETTER with soroban than traditional math because the physical component channels their energy constructively."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When to Seek Help"
+      },
+      {
+        "type": "paragraph",
+        "text": "Consider professional evaluation if:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Focus issues severely impact daily life and learning",
+          "Strategies here don't help after consistent trying",
+          "Teachers express significant concern",
+          "You suspect ADHD"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Is my child just lazy or actually ADHD?",
+        "answer": "Only a professional can diagnose ADHD. But kids with ADHD often WANT to focus and can't – they're not choosing to be distracted. If effort doesn't help, consider evaluation."
+      },
+      {
+        "question": "Should screen time count as rest for an active kid?",
+        "answer": "Screens aren't true rest – they stimulate the brain. Physical play is better for burning energy than switching from learning screen to entertainment screen."
+      },
+      {
+        "question": "Will they grow out of it?",
+        "answer": "Some naturally become less physically hyperactive with age. Others have ADHD that persists. Either way, learning strategies that work WITH their energy serves them for life."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid's hands-on, gamified approach works well for active learners.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "tre-hieu-dong-can-ho-tro-hoc-toan-the-nao"
+}

@@ -1,0 +1,56 @@
+{
+  "postId": "ky-thuat-think-pair-share-trong-lop-hoc",
+  "slug": "k-thut-think-pair-share-cch-ti-bin-lp-hc-trm-thnh-si-ng",
+  "title": "[EN] Kỹ thuật Think-Pair-Share – cách tôi biến lớp học trầm thành sôi động",
+  "description": "[Needs translation] Lớp tôi từng im như tờ khi hỏi 'Ai có ý kiến?'. Kỹ thuật Think-Pair-Share đã thay đổi điều đó. Đây là cách tôi áp dụng thực tế.",
+  "category": "teacher-insights",
+  "keywords": [
+    "think pair share",
+    "kỹ thuật dạy học tích cực",
+    "thảo luận nhóm đôi",
+    "phương pháp dạy học",
+    "học sinh thảo luận",
+    "cooperative learning"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-26",
+  "image": "/blog/think-pair-share.jpg",
+  "imageAlt": "Hai học sinh thảo luận theo cặp trong lớp học",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Ai có ý kiến gì không?\" – Tôi hỏi, cả lớp im lặng. Không ai giơ tay. Không ai nói gì. Đây là tình trạng lớp tôi trước đây. Cho đến khi tôi học được kỹ thuật Think-Pair-Share.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Think-Pair-Share là gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây là một kỹ thuật dạy học tích cực rất đơn giản, gồm 3 bước:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Think (Suy nghĩ)** – Giáo viên đặt câu hỏi, học sinh tự suy nghĩ trong im lặng (1-2 phút)",
+          "**Pair (Ghép đôi)** – Học sinh quay sang bạn bên cạnh, trao đổi ý kiến (2-3 phút)",
+          "**Share (Chia sẻ)** – Một số cặp chia sẻ trước lớp"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Nghe đơn giản, nhưng hiệu quả bất ngờ. Tôi sẽ giải thích tại sao."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tại sao học sinh không giơ tay?"
+      }
+    ]
+  }
+}

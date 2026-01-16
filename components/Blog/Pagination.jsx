@@ -1,13 +1,20 @@
 /**
- * 📄 PAGINATION COMPONENT
+ * 📄 PAGINATION COMPONENT - I18N ENABLED
  * 
  * Component phân trang cho blog
  * - Server-side pagination (SEO friendly)
  * - Responsive design
  * - Hiển thị số trang thông minh
+ * - 🌍 Hỗ trợ đa ngôn ngữ
  */
 
 import LocalizedLink from '@/components/LocalizedLink/LocalizedLink';
+
+// I18n texts
+const i18nTexts = {
+  vi: { prev: 'Trước', next: 'Sau', prevLabel: 'Trang trước', nextLabel: 'Trang sau' },
+  en: { prev: 'Prev', next: 'Next', prevLabel: 'Previous page', nextLabel: 'Next page' },
+};
 
 /**
  * Tạo array số trang để hiển thị
@@ -44,11 +51,13 @@ export default function Pagination({
   currentPage, 
   totalPages, 
   basePath = '/blog',
-  queryParams = {} 
+  queryParams = {},
+  locale = 'vi'
 }) {
   if (totalPages <= 1) return null;
   
   const pageNumbers = getPageNumbers(currentPage, totalPages);
+  const texts = i18nTexts[locale] || i18nTexts.vi;
   
   // Build URL với query params
   const buildUrl = (page) => {
@@ -72,19 +81,19 @@ export default function Pagination({
         <LocalizedLink
           href={buildUrl(currentPage - 1)}
           className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-violet-600 transition-colors"
-          aria-label="Trang trước"
+          aria-label={texts.prevLabel}
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          <span className="hidden sm:inline">Trước</span>
+          <span className="hidden sm:inline">{texts.prev}</span>
         </LocalizedLink>
       ) : (
         <span className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-200 rounded-lg cursor-not-allowed">
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          <span className="hidden sm:inline">Trước</span>
+          <span className="hidden sm:inline">{texts.prev}</span>
         </span>
       )}
 
@@ -129,16 +138,16 @@ export default function Pagination({
         <LocalizedLink
           href={buildUrl(currentPage + 1)}
           className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-violet-600 transition-colors"
-          aria-label="Trang sau"
+          aria-label={texts.nextLabel}
         >
-          <span className="hidden sm:inline">Sau</span>
+          <span className="hidden sm:inline">{texts.next}</span>
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </LocalizedLink>
       ) : (
         <span className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-200 rounded-lg cursor-not-allowed">
-          <span className="hidden sm:inline">Sau</span>
+          <span className="hidden sm:inline">{texts.next}</span>
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>

@@ -1,0 +1,205 @@
+{
+  "slug": "accompanying-your-child-in-math-what-it-means",
+  "title": "\"Accompanying Your Child in Math Learning\" – What Does It Actually Mean?",
+  "description": "Breaking down what parental support in math should (and shouldn't) look like.",
+  "category": "stress-free-math-learning",
+  "keywords": [
+    "parental support",
+    "math support",
+    "accompanying learning",
+    "parent role in math"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-28T05:50:05.806Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/gia-dinh-dong-hanh-hoc-toan.jpg",
+  "imageAlt": "Parent accompanying child in math journey",
+  "readingTime": 6,
+  "author": {
+    "name": "Michelle Chen",
+    "role": "Family Learning Coach"
+  },
+  "content": {
+    "intro": "Everyone says to \"support\" your child's math learning. But what does that actually mean? Here's a practical breakdown.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What \"Accompanying\" Is NOT"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Being a math tutor",
+          "Doing homework for them",
+          "Hovering over every problem",
+          "Getting emotionally invested in every mistake",
+          "Sacrificing your sanity for their grades"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What \"Accompanying\" Actually Is"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Creating the Conditions"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Quiet space for practice",
+          "Consistent time in the schedule",
+          "Functional tools (app, materials)",
+          "Freedom from distractions"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Providing Emotional Support"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Celebrating effort, not just results",
+          "Normalizing mistakes",
+          "Staying calm when they're frustrated",
+          "Showing belief in their ability"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Enforcing the Routine"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Making practice non-negotiable (gently but firmly)",
+          "Protecting practice time from interruptions",
+          "Following through consistently"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Monitoring Progress (Lightly)"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Checking dashboard weekly, not daily",
+          "Noticing patterns (stuck? advancing? struggling?)",
+          "Adjusting resources if needed"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Think of yourself as a coach, not a player. You create the conditions, encourage, and adjust strategy – but they do the work."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Accompanying Mindset"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Instead of",
+          "Think"
+        ],
+        "rows": [
+          [
+            "\"I need to teach them\"",
+            "\"The tools teach; I support\""
+          ],
+          [
+            "\"Their grades reflect on me\"",
+            "\"Their journey is their own\""
+          ],
+          [
+            "\"I must fix every mistake\"",
+            "\"Mistakes are learning\""
+          ],
+          [
+            "\"More practice = more progress\"",
+            "\"Consistent practice = progress\""
+          ],
+          [
+            "\"I should know all the answers\"",
+            "\"We can figure it out together\""
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What This Looks Like Daily"
+      },
+      {
+        "type": "paragraph",
+        "text": "A good day of \"accompanying\":"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"Hey, it's math time.\" (You announce)",
+          "[They practice for 10-15 minutes, you're available nearby]",
+          "\"How'd it go?\" (You ask casually)",
+          "\"Nice! See you tomorrow.\" (You move on)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "That's it. No drama. No teaching. No stress."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When to Do More"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sometimes accompanying means stepping in more:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "When they're genuinely stuck (not just frustrated)",
+          "When the tool isn't working (too hard, too easy)",
+          "When emotional issues are blocking learning",
+          "When you notice concerning patterns"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "But these are exceptions, not the daily norm."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Isn't this too hands-off?",
+        "answer": "It might feel that way, but research shows parental over-involvement can increase anxiety and reduce intrinsic motivation. This approach builds independence."
+      },
+      {
+        "question": "What if my child has genuine learning struggles?",
+        "answer": "More support may be needed – possibly professional tutoring or evaluation. But the general framework still applies: you support, experts teach."
+      },
+      {
+        "question": "How do I know if I'm doing enough?",
+        "answer": "If they're practicing consistently and making some progress over months, you're doing enough. You don't have to see daily improvement."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid does the teaching. Your job is just to show up and support.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "dong-hanh-cung-con-hoc-toan-la-gi"
+}

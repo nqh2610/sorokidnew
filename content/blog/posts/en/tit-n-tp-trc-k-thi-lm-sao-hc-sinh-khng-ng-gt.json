@@ -1,0 +1,57 @@
+{
+  "postId": "tiet-on-tap-truoc-ky-thi-hoc-sinh-khong-ngu-gat",
+  "slug": "tit-n-tp-trc-k-thi-lm-sao-hc-sinh-khng-ng-gt",
+  "title": "[EN] Tiết ôn tập trước kỳ thi – làm sao để học sinh không ngủ gật",
+  "description": "[Needs translation] Tiết ôn tập thường nhàm chán: thầy đọc, trò chép. Tôi đã thay đổi cách ôn tập bằng trò chơi và học sinh nhớ bài lâu hơn hẳn.",
+  "category": "teacher-insights",
+  "keywords": [
+    "trò chơi ôn tập",
+    "ôn bài cuối tiết",
+    "ôn thi vui",
+    "game ôn tập",
+    "học sinh nhớ bài lâu"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-26",
+  "image": "/blog/tiet-on-tap-vui.jpg",
+  "imageAlt": "Học sinh hào hứng tham gia trò chơi ôn tập trước kỳ thi",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Tiết ôn tập trước thi. Tôi đọc lại kiến thức quan trọng, học sinh chép. Nhìn xuống lớp: có em ngủ gật, có em nhìn ra cửa sổ, có em chép mà không hiểu gì. Tôi biết có gì đó không đúng. Và tôi đã thay đổi.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vấn đề của tiết ôn tập truyền thống"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tiết ôn tập thường là:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Thầy đọc lại kiến thức quan trọng",
+          "Học sinh ghi chép vào vở",
+          "Làm một số bài tập mẫu",
+          "Hỏi: \"Ai còn thắc mắc gì không?\" (Im lặng)",
+          "Hết giờ"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Học sinh thụ động. Kiến thức đi vào tai này, ra tai kia. Ngày hôm sau kiểm tra, nhiều em như chưa học gì."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách ôn tập mới của tôi"
+      }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "postId": "app-hoc-toan-cho-be",
+  "slug": "choosing-the-best-math-app-for-your-child-what-i-learned-aft",
+  "title": "Choosing the Best Math App for Your Child: What I Learned After Testing Dozens",
+  "description": "With hundreds of math apps available, how do you choose the right one? I share my 5 evaluation criteria after 2 months of testing with my kids.",
+  "category": "stress-free-math-learning",
+  "keywords": [
+    "app học toán cho bé",
+    "app toán tiểu học",
+    "phần mềm học toán cho trẻ",
+    "app luyện toán",
+    "ứng dụng học toán",
+    "chọn app học toán",
+    "app toán tư duy"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-05T12:00:00.000Z",
+  "createdAt": "2026-01-05",
+  "image": "/blog/app-hoc-toan-cho-be.jpg",
+  "imageAlt": "Bé học toán trên điện thoại",
+  "readingTime": 12,
+  "author": {
+    "name": "Sarah Chen",
+    "role": "Mom of two elementary schoolers"
+  },
+  "content": {
+    "intro": "It was 8 PM, I'd just finished the dishes and found my older kid on his phone while my younger one cried over math homework. My husband was traveling. One kid needs mental math practice, the other just started addition. Tutoring? No budget, no time, no way to drive them there. I slumped into a chair, exhausted.",
+    "sections": [
+      {
+        "type": "paragraph",
+        "text": "Then I thought: 'What about learning apps? Kids love phones anyway.' But Google Play showed hundreds of math apps, all claiming to make kids 'math geniuses.' How to choose?"
+      },
+      {
+        "type": "paragraph",
+        "text": "I spent 2 months testing nearly a dozen apps with both kids. Some they played for 2 days then abandoned. Some were great but only in English. Some had so many ads my kids kept accidentally clicking out. Finally, after all that trial and error, I found what works for both."
+      }
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "postId": "chia-nhom-30-giay-giai-phap-tiet-hoc-45-phut",
+  "slug": "chia-nhm-trong-30-giy-gii-php-cho-tit-hc-45-pht",
+  "title": "[EN] Chia nhóm trong 30 giây – giải pháp cho tiết học 45 phút",
+  "description": "[Needs translation] Trước đây tôi mất 5-7 phút để chia nhóm. Bây giờ chỉ 30 giây. Đây là cách công cụ chia nhóm đã thay đổi tiết dạy của tôi.",
+  "category": "teacher-insights",
+  "keywords": [
+    "chia nhóm học sinh",
+    "chia nhóm ngẫu nhiên",
+    "tổ chức nhóm học tập",
+    "công cụ chia nhóm",
+    "random team generator"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-29T01:32:43.322Z",
+  "createdAt": "2025-12-26",
+  "image": "/blog/chia-nhom-hoc-sinh.jpg",
+  "imageAlt": "Giáo viên chia nhóm học sinh bằng công cụ trên máy chiếu",
+  "readingTime": 5,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Bây giờ chia nhóm nhé. Nhóm 1 là...\" – Và 5 phút trôi qua. Học sinh lộn xộn, không nghe rõ, hỏi lại liên tục. Cho đến khi tôi tìm được cách chia nhóm trong 30 giây.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vấn đề với cách chia nhóm cũ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Trước đây, mỗi lần tổ chức hoạt động nhóm, tôi gặp những vấn đề này:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Mất thời gian** – 5-7 phút chỉ để chia nhóm, trong tiết 45 phút",
+          "**Học sinh tự chọn** – Nhóm này toàn học giỏi, nhóm kia toàn học yếu",
+          "**Lộn xộn** – \"Em ở nhóm nào?\" \"Ai nhóm trưởng?\"",
+          "**Không công bằng** – Cùng một nhóm bạn thân suốt cả năm",
+          "**Tranh cãi** – \"Em không muốn ở nhóm với bạn đó\""
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Kết quả: tôi ngại tổ chức hoạt động nhóm. Vì chỉ riêng việc chia nhóm đã mệt."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Phát hiện công cụ chia nhóm online"
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "postId": "chia-san-bai-toan-lam-con-soi-nao",
+  "slug": "bi-ton-chia-s-lm-con-mnh-ri-y-l-cch-mnh-gip",
+  "title": "[EN] Bài toán chia sẻ làm con mình rối – đây là cách mình giúp",
+  "description": "[Needs translation] \"Mẹ ơi, 24 chia 6 là sao?\" Con hỏi, mình giải thích mãi không hiểu. Rồi mình tìm cách khác.",
+  "category": "stress-free-math-learning",
+  "keywords": [
+    "dạy con phép chia",
+    "trẻ khó học chia",
+    "cách giải thích phép chia"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-hoc-phep-chia.jpg",
+  "imageAlt": "Bé châu Á đang chia kẹo thành từng nhóm",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"24 chia 6 là chia 24 thành 6 phần bằng nhau...\" – Mình giải thích. Con ngơ ngác. \"Con không hiểu.\" Mình giải thích lại. Vẫn không. Mình bắt đầu sốt ruột.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vì sao phép chia khó?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cộng trừ nhân con còn \"thấy\" được: 3 + 4 là thêm vào. Nhưng chia thì trừu tượng hơn."
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Chia thành 6 phần\" – Con không hình dung được \"phần\" là gì."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách mình giúp con"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Dùng đồ vật thật:** Mình lấy 24 viên kẹo. \"Con chia cho 6 bạn, mỗi bạn mấy viên?\""
+      }
+    ]
+  }
+}

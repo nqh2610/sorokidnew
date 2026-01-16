@@ -1,0 +1,187 @@
+{
+  "slug": "what-age-best-to-start-soroban",
+  "title": "What's the Best Age to Start Soroban? The Real Answer",
+  "description": "Age 4? 6? 10? Parents constantly ask when to start soroban. Here's the research-based answer (with some flexibility).",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "best age for soroban",
+    "when to start soroban",
+    "soroban age recommendation",
+    "soroban for kindergarten"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-02T09:37:50.258Z",
+  "createdAt": "2026-01-28",
+  "image": "/blog/do-tuoi-phu-hop-hoc-soroban.jpg",
+  "imageAlt": "Children of different ages learning soroban",
+  "readingTime": 5,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "\"When should I start my child on soroban?\" It's the most common question we get. Here's the answer, with important nuances.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Sweet Spot: Ages 5-8"
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Most experts agree: ages 5-8 is ideal for starting soroban. Young enough for neuroplasticity, old enough for necessary skills."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Not Earlier Than 5?"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Fine motor skills:** Small beads require developed coordination",
+          "**Number knowledge:** Need to recognize 0-9 reliably",
+          "**Attention span:** 10-15 minute focus required",
+          "**Abstract thinking:** Understanding what numbers represent"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Some 4-year-olds are ready. Most aren't. There's no rush."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Not Wait Until Later?"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Brain plasticity decreases:** Visualization develops easier in younger kids",
+          "**Competing methods:** Older kids have established (potentially limiting) math habits",
+          "**Schedule pressure:** Older kids have more activities, less time",
+          "**Fixed mindsets:** \"I'm not a math person\" beliefs form by 3rd-4th grade"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Starting By Age"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Age",
+          "Readiness",
+          "Notes"
+        ],
+        "rows": [
+          [
+            "3-4",
+            "Usually too early",
+            "Play with toy abacus, but not formal learning"
+          ],
+          [
+            "5",
+            "Good starting point",
+            "If child knows numbers 0-9 and can focus 10 min"
+          ],
+          [
+            "6-7",
+            "Ideal",
+            "Sweet spot for most children"
+          ],
+          [
+            "8",
+            "Still great",
+            "Last year of \"optimal window\""
+          ],
+          [
+            "9-10",
+            "Good",
+            "Can learn well, anzan may be harder to develop"
+          ],
+          [
+            "11+",
+            "Possible",
+            "Benefits still real, visualization less likely"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Signs Your Child Is Ready"
+      },
+      {
+        "type": "list",
+        "items": [
+          "✅ Knows numbers 0-9 by sight",
+          "✅ Can count to 20+",
+          "✅ Has reasonable fine motor control",
+          "✅ Can focus on one activity for 10+ minutes",
+          "✅ Shows curiosity or willingness"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Signs to Wait"
+      },
+      {
+        "type": "list",
+        "items": [
+          "❌ Doesn't recognize written numbers yet",
+          "❌ Can't sit still for 5 minutes",
+          "❌ Strongly resists anything \"school-like\"",
+          "❌ Struggles significantly with fine motor tasks"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Age is less important than readiness. A ready 8-year-old will progress faster than an unready 5-year-old. Don't push before they're developmentally ready."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Starting Later (9+)"
+      },
+      {
+        "type": "paragraph",
+        "text": "It's not too late! Older starters:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Learn the physical technique just as well",
+          "May struggle more with developing strong anzan",
+          "Still benefit significantly from improved calculation",
+          "Can practice more independently"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "My child is 10. Have we missed the window?",
+        "answer": "No. They can still learn soroban effectively. The main difference is that developing strong mental visualization (anzan) is harder after age 8-9, but all other benefits remain."
+      },
+      {
+        "question": "Should I start at 4 if my child seems ready?",
+        "answer": "If they show all readiness signs, you can try. Keep it very playful, short (5 min), and stop if there's resistance. There's no prize for starting earliest."
+      },
+      {
+        "question": "Is it better to start at 5 or wait until 7?",
+        "answer": "Both are great ages. Starting at 5 gives more years of practice. Starting at 7 means faster initial progress due to maturity. Either works well."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Ready to start? Our app adapts to your child's level.",
+      "buttonText": "Try Free",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "may-tuoi-cho-con-hoc-soroban-la-phu-hop"
+}

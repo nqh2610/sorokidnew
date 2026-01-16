@@ -1,0 +1,54 @@
+{
+  "postId": "tiet-du-gio-dau-tien-cam-xuc-va-bai-hoc",
+  "slug": "tit-d-gi-u-tin-cm-xc-p-lc-v-nhng-bi-hc-xng-mu",
+  "title": "[EN] Tiết Dự Giờ Đầu Tiên - Cảm Xúc, Áp Lực Và Những Bài Học Xương Máu",
+  "description": "[Needs translation] Chia sẻ cảm xúc và kinh nghiệm từ tiết dự giờ đầu tiên trong đời giáo viên. Từ sợ hãi, run rẩy đến tự tin đón nhận góp ý để trưởng thành.",
+  "category": "teacher-insights",
+  "keywords": [
+    "tiết dự giờ",
+    "dự giờ đánh giá",
+    "cảm xúc dự giờ",
+    "giáo viên mới",
+    "kinh nghiệm dự giờ",
+    "tâm sự giáo viên",
+    "đánh giá giáo viên",
+    "góp ý tiết dạy"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Tôi còn nhớ như in tiết dự giờ đầu tiên. Đêm trước không ngủ được. Sáng hôm đó tay run đến mức không viết nổi chữ trên bảng. 45 phút như 45 năm. Kết thúc tiết, tôi ra ngoài và... khóc. Không phải vì dạy tệ, mà vì giải tỏa áp lực. Bài viết này dành cho những giáo viên trẻ sắp trải qua tiết dự giờ đầu tiên - để biết rằng: bạn không cô đơn.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Đêm Trước Tiết Dự Giờ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tôi được thông báo: \"Thứ Năm tuần sau, tổ trưởng và một thầy trong ban giám hiệu sẽ dự giờ em.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "**Những ngày trước đó:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Soạn giáo án đi soạn lại 5 lần",
+          "Hỏi ý kiến cô giáo cùng tổ: \"Em dạy thế này được không ạ?\"",
+          "Tập dạy một mình trong lớp trống",
+          "Search Google: \"Cách dạy tiết dự giờ\" hàng trăm lần"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Đêm trước:**"
+      }
+    ]
+  }
+}

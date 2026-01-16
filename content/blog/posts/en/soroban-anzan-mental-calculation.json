@@ -1,0 +1,157 @@
+{
+  "slug": "soroban-anzan-mental-calculation",
+  "title": "What is Anzan? The Mental Soroban That Amazes Everyone",
+  "description": "Anzan is mental soroban – calculating by visualizing an imaginary abacus. It's the ultimate goal of soroban training. Here's how it works.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "anzan mental math",
+    "soroban anzan",
+    "mental abacus",
+    "visualize soroban"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-31T03:14:39.491Z",
+  "createdAt": "2026-01-22",
+  "image": "/blog/tre-luyen-tinh-nham-anzan.jpg",
+  "imageAlt": "Child doing anzan mental calculation",
+  "readingTime": 6,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "You've seen the videos: a child adding 15 numbers in seconds, fingers moving on an invisible abacus, answering before you can even read the problem. That's anzan – mental soroban. And your child can learn it too.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What is Anzan?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Anzan (暗算) is Japanese for \"mental calculation.\" In the soroban context, it means calculating by visualizing a soroban in your mind – moving imaginary beads instead of physical ones."
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Anzan isn't magic or unusual talent. It's a learnable skill that develops naturally from consistent soroban practice."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How It Works"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Step 1:** Learn physical soroban until movements are automatic",
+          "**Step 2:** Close eyes and visualize the soroban",
+          "**Step 3:** See numbers as bead patterns",
+          "**Step 4:** Move imaginary beads to calculate",
+          "**Step 5:** Read the answer from the mental image"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The physical soroban training is essential. Without it, there's nothing to visualize."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Anzan Is So Fast"
+      },
+      {
+        "type": "paragraph",
+        "text": "Traditional mental math: \"17 + 24... 7 + 4 is 11, carry the 1, 1 + 2 is 3, plus 1 is 4... 41\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Anzan: See 17 as a bead pattern, add 24 pattern, read 41. The verbal/sequential processing is replaced with visual/parallel processing. It's fundamentally different – and faster."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How Long to Develop Anzan"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Timeline",
+          "What to Expect"
+        ],
+        "rows": [
+          [
+            "3-6 months",
+            "Basic anzan with simple problems (single digit + single digit)"
+          ],
+          [
+            "6-12 months",
+            "More reliable visualization, 2-digit problems"
+          ],
+          [
+            "1-2 years",
+            "Consistent anzan ability, increasing speed"
+          ],
+          [
+            "2+ years",
+            "Complex calculations, impressive speed"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "These are rough guidelines. Every child progresses differently."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How to Encourage Anzan Development"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Don't rush it:** Solid physical soroban skills come first",
+          "**Try visualization exercises:** \"Close your eyes and tell me what 5 looks like on the soroban\"",
+          "**Use the app's anzan mode:** Structured progression from physical to mental",
+          "**Celebrate small wins:** First mental calculation is exciting!",
+          "**Be patient:** Anzan develops gradually, not overnight"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Some kids naturally start visualizing without being told. If you see your child's fingers moving during mental math, they're already doing anzan!"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Is Anzan the Ultimate Goal?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Anzan is impressive, but it's not the only goal. Even kids who don't develop full anzan still benefit enormously from soroban training: better number sense, faster calculation with the physical tool, improved focus and memory."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can all kids learn anzan?",
+        "answer": "Most can develop some level of anzan with consistent practice. The degree varies – some become extremely proficient, others moderately so."
+      },
+      {
+        "question": "Is anzan only for math prodigies?",
+        "answer": "No! Anzan is a trained skill, not innate talent. The \"amazing\" kids in videos simply practiced more. Your child can develop it too."
+      },
+      {
+        "question": "How do I know if my child is visualizing?",
+        "answer": "Watch their fingers – if they move during mental calculation, they're visualizing. Also, ask them to describe what they \"see\" when calculating."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Our app has dedicated anzan training modes. Build mental visualization step by step.",
+      "buttonText": "Try Anzan Training",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "tinh-nham-soroban-anzan"
+}

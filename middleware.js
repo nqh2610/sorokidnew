@@ -55,6 +55,13 @@ const I18N_IGNORE_PATHS = [
   '/icon.svg',
 ];
 
+// 🌍 Routes có file riêng trong /app/en/ - KHÔNG REWRITE
+// Những routes này có page.jsx riêng, để Next.js serve trực tiếp
+const EN_ROUTES_WITH_OWN_FILES = [
+  '/en/blog',
+  '/en',
+];
+
 /**
  * 🌍 Kiểm tra xem path có /en/ prefix không
  * URL gốc = tiếng Việt (đã index), /en/ = tiếng Anh
@@ -170,18 +177,26 @@ export async function middleware(request) {
   // Xác định locale cuối cùng
   let locale;
   let shouldRedirect = false;
-  let redirectToVi = false;  // Flag để redirect về URL tiếng Việt
+  
+  // 🔥 Check nếu route này có file EN riêng - KHÔNG redirect
+  const hasOwnEnFile = EN_ROUTES_WITH_OWN_FILES.some(route => 
+    pathname === route || pathname.startsWith(route + '/')
+  );
   
   if (savedLocale && I18N_LOCALES.includes(savedLocale)) {
     // 🔥 User đã có preference (đã chọn ngôn ngữ trước đó)
-    locale = savedLocale;
+    // NHƯNG: URL luôn được ưu tiên hơn cookie (user chủ động chọn URL)
     
-    if (savedLocale === 'en' && urlLocale === 'vi') {
+    if (urlLocale === 'en') {
+      // User đang ở /en/... → dùng EN, cập nhật cookie
+      locale = 'en';
+    } else if (savedLocale === 'en' && urlLocale === 'vi') {
       // Cookie = EN nhưng URL là VI → redirect sang /en/
+      locale = savedLocale;
       shouldRedirect = true;
-    } else if (savedLocale === 'vi' && urlLocale === 'en') {
-      // Cookie = VI nhưng URL là /en/ → redirect về URL gốc (bỏ /en/)
-      redirectToVi = true;
+    } else {
+      // URL = VI, cookie = VI → OK
+      locale = savedLocale;
     }
   } else if (urlLocale === 'en') {
     // User đang ở URL /en/... mà chưa có cookie → dùng EN, lưu cookie
@@ -193,21 +208,6 @@ export async function middleware(request) {
     if (locale === 'en') {
       shouldRedirect = true;
     }
-  }
-  
-  // 🔥 Redirect về URL tiếng Việt (bỏ /en/) khi user đã chọn VI
-  if (redirectToVi) {
-    const pathWithoutEn = removeLocalePrefix(pathname);
-    const newUrl = new URL(pathWithoutEn, request.url);
-    newUrl.search = request.nextUrl.search;
-    const redirectResponse = NextResponse.redirect(newUrl);
-    // Giữ nguyên cookie VI
-    redirectResponse.cookies.set(I18N_COOKIE, 'vi', {
-      path: '/',
-      maxAge: 365 * 24 * 60 * 60,
-      sameSite: 'lax',
-    });
-    return redirectResponse;
   }
   
   // 🔥 Redirect user đến /en/ nếu cần
@@ -226,10 +226,23 @@ export async function middleware(request) {
   
   // 🔥 Nếu là /en/... → rewrite về URL gốc + set cookie EN
   // Ví dụ: /en/blog → rewrite to /blog, set cookie = 'en'
+  // ⚠️ NGOẠI TRỪ routes đã có file riêng trong /app/en/
   let rewriteUrl = null;
   if (urlLocale === 'en') {
-    const pathWithoutEn = removeLocalePrefix(pathname);
-    rewriteUrl = new URL(pathWithoutEn, request.url);
+    // Check nếu route này có file EN riêng - KHÔNG rewrite
+    const routeHasOwnEnFile = EN_ROUTES_WITH_OWN_FILES.some(route => 
+      pathname === route || pathname.startsWith(route + '/')
+    );
+    
+    console.log('[MW DEBUG] pathname:', pathname, 'routeHasOwnEnFile:', routeHasOwnEnFile, 'EN_ROUTES:', EN_ROUTES_WITH_OWN_FILES);
+    
+    if (!routeHasOwnEnFile) {
+      const pathWithoutEn = removeLocalePrefix(pathname);
+      rewriteUrl = new URL(pathWithoutEn, request.url);
+      console.log('[MW DEBUG] REWRITING to:', pathWithoutEn);
+    } else {
+      console.log('[MW DEBUG] SKIPPING rewrite - route has own EN file');
+    }
   }
 
   // Pathname không có locale prefix (để check protected routes)

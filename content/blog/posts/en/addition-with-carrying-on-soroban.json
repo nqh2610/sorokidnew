@@ -1,0 +1,186 @@
+{
+  "slug": "addition-with-carrying-on-soroban",
+  "title": "Addition with Carrying on the Soroban: When Columns Overflow",
+  "description": "What happens when 7+5 doesn't fit in one column? Here's how carrying works on the soroban – it's more elegant than you'd think.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban carrying",
+    "soroban regrouping",
+    "abacus carrying",
+    "10 complement soroban"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-29T01:31:53.743Z",
+  "createdAt": "2026-01-04",
+  "image": "/blog/tre-thuc-hanh-phep-cong-co-nho.jpg",
+  "imageAlt": "Addition with carrying on soroban",
+  "readingTime": 6,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "Simple addition is straightforward – just move beads toward the beam. But what happens with 7 + 5? The answer is 12, which needs two columns. This is where the soroban's elegance really shines.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Problem: Column Overflow"
+      },
+      {
+        "type": "paragraph",
+        "text": "A single rod on the soroban can only show 0-9. When a result exceeds 9, we need to \"carry\" to the next column – just like regular arithmetic."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The 10-Complement Method"
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "When you can't add directly, use the 10-complement: Add 10 to the tens column, subtract the difference from ones column."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Example: 7 + 5"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Step 1:** Set 7 (upper bead + 2 lower beads)",
+          "**Step 2:** Try to add 5... but max is 9, no room!",
+          "**Step 3:** Instead: Add 10 (1 bead in tens column), subtract 5 from ones",
+          "**Step 4:** 7 - 5 = 2 in ones column, 1 in tens column",
+          "**Step 5:** Read: 12 ✓"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The logic: 7 + 5 = 7 + 10 - 5 = 7 - 5 + 10 = 2 + 10 = 12"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Example: 8 + 6"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Step 1:** Set 8",
+          "**Step 2:** Add 6: Can't directly (8+6=14 > 9)",
+          "**Step 3:** Add 10 to tens column, subtract 4 from ones",
+          "**Step 4:** 8 - 4 = 4 ones, plus 1 ten",
+          "**Step 5:** Read: 14 ✓"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The complement of 6 is 4 (because 6 + 4 = 10). So to add 6 when there's no room: add 10, subtract 4."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "10-Complements to Memorize"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Number",
+          "10-Complement",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "1",
+            "9",
+            "To add 1: add 10, subtract 9"
+          ],
+          [
+            "2",
+            "8",
+            "To add 2: add 10, subtract 8"
+          ],
+          [
+            "3",
+            "7",
+            "To add 3: add 10, subtract 7"
+          ],
+          [
+            "4",
+            "6",
+            "To add 4: add 10, subtract 6"
+          ],
+          [
+            "5",
+            "5",
+            "To add 5: add 10, subtract 5"
+          ],
+          [
+            "6",
+            "4",
+            "To add 6: add 10, subtract 4"
+          ],
+          [
+            "7",
+            "3",
+            "To add 7: add 10, subtract 3"
+          ],
+          [
+            "8",
+            "2",
+            "To add 8: add 10, subtract 2"
+          ],
+          [
+            "9",
+            "1",
+            "To add 9: add 10, subtract 1"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Practice Problems"
+      },
+      {
+        "type": "list",
+        "items": [
+          "9 + 3 = 12 (add 10, subtract 7)",
+          "8 + 4 = 12 (add 10, subtract 6)",
+          "6 + 7 = 13 (add 10, subtract 3)",
+          "5 + 9 = 14 (add 10, subtract 1)",
+          "7 + 7 = 14 (add 10, subtract 3)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "This seems complex at first, but becomes automatic with practice. Kids internalize the patterns faster than you'd expect."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How long does it take to learn carrying?",
+        "answer": "Most kids grasp the concept in 1-2 weeks. Making it automatic takes 1-2 months of regular practice."
+      },
+      {
+        "question": "Should my child memorize the complements?",
+        "answer": "Eventually, yes. But it happens naturally through practice. Don't force rote memorization – let the patterns sink in through use."
+      },
+      {
+        "question": "What about triple-digit carrying?",
+        "answer": "Same principle! Each column that overflows carries to the next. The method scales to any size number."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Our app teaches carrying step by step with visual guides.",
+      "buttonText": "Practice Carrying",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "phep-cong-co-nho-thuc-hanh-soroban"
+}

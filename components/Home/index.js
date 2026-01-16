@@ -6,3 +6,4 @@ export {
   BlogSectionTitle,
   ViewAllBlogButton 
 } from './HomeContent';
+export { default as BlogSection } from './BlogSection';

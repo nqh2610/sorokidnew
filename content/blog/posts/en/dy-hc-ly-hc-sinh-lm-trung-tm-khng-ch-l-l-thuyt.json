@@ -1,0 +1,51 @@
+{
+  "postId": "phuong-phap-day-hoc-lay-hoc-sinh-lam-trung-tam",
+  "slug": "dy-hc-ly-hc-sinh-lm-trung-tm-khng-ch-l-l-thuyt",
+  "title": "[EN] Dạy học lấy học sinh làm trung tâm – không chỉ là lý thuyết",
+  "description": "[Needs translation] Nghe nhiều về 'lấy học sinh làm trung tâm' nhưng làm thế nào? Đây là cách tôi hiểu và áp dụng thực tế, với những công cụ cụ thể.",
+  "category": "teacher-insights",
+  "keywords": [
+    "dạy học lấy học sinh làm trung tâm",
+    "student-centered learning",
+    "phương pháp dạy học tích cực",
+    "học sinh chủ động",
+    "đổi mới phương pháp giảng dạy"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-26",
+  "image": "/blog/day-hoc-lay-hoc-sinh-lam-trung-tam.jpg",
+  "imageAlt": "Học sinh làm việc nhóm trong lớp học lấy học sinh làm trung tâm",
+  "readingTime": 7,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Dạy học lấy học sinh làm trung tâm\" – cụm từ này tôi nghe từ lúc còn học sư phạm. Nhưng mãi sau này, khi đứng lớp nhiều năm, tôi mới thực sự hiểu nó có nghĩa là gì, và quan trọng hơn: làm thế nào để thực hiện.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tôi từng hiểu sai về \"lấy học sinh làm trung tâm\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Ngày đầu đi dạy, tôi nghĩ \"lấy học sinh làm trung tâm\" là hỏi học sinh nhiều hơn. Nên tôi đặt câu hỏi liên tục: \"Ai biết?\" \"Em nào trả lời?\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Kết quả? Vẫn chỉ vài em giơ tay. Đa số ngồi im. Tôi vẫn là người nói nhiều nhất. \"Lấy học sinh làm trung tâm\" của tôi chỉ là hình thức."
+      },
+      {
+        "type": "paragraph",
+        "text": "Phải mất vài năm tôi mới nhận ra: hỏi nhiều không có nghĩa là học sinh được làm trung tâm. Cần thay đổi từ gốc rễ."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Hiểu đúng về dạy học lấy học sinh làm trung tâm"
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "postId": "con-trai-va-con-gai-hoc-toan-khac-nhau-khong",
+  "slug": "con-trai-v-con-gi-hc-ton-khc-nhau-khng-s-tht-mnh-tm-hiu-c",
+  "title": "[EN] Con trai và con gái học toán khác nhau không? – Sự thật mình tìm hiểu được",
+  "description": "[Needs translation] \"Con gái không giỏi toán bằng con trai\" – mình từng nghe câu này. Tìm hiểu xong mình thấy khác.",
+  "category": "stress-free-math-learning",
+  "keywords": [
+    "con gái học toán",
+    "giới tính và học toán",
+    "định kiến giới trong học tập"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-gai-hoc-toan.jpg",
+  "imageAlt": "Bé gái châu Á đang làm toán tự tin",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Con gái thường giỏi văn, con trai giỏi toán\" – Mình nghe câu này từ nhỏ. Giờ mình có con gái, mình tự hỏi: điều đó có đúng không?",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình tìm hiểu nghiên cứu"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nghiên cứu cho thấy: không có khác biệt đáng kể về khả năng toán học bẩm sinh giữa con trai và con gái."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sự khác biệt (nếu có) đến từ: môi trường, kỳ vọng của người lớn, và định kiến xã hội."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Định kiến ảnh hưởng thế nào?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nếu con gái luôn được nói \"con gái không giỏi toán\", con sẽ tin điều đó. Con sẽ ít cố gắng hơn."
+      }
+    ]
+  }
+}

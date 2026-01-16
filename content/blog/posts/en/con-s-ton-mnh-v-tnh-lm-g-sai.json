@@ -1,0 +1,54 @@
+{
+  "postId": "con-so-hoc-toan-phu-huynh-dang-lam-sai-o-dau",
+  "slug": "con-s-ton-mnh-v-tnh-lm-g-sai",
+  "title": "[EN] Con sợ toán – mình đã vô tình làm gì sai?",
+  "description": "[Needs translation] Mình từng nghĩ con sợ toán là do con yếu. Cho đến khi nhìn lại những gì mình nói, mình mới hiểu: đôi khi vấn đề không phải ở con.",
+  "category": "when-kids-struggle-with-math",
+  "keywords": [
+    "con sợ học toán",
+    "trẻ sợ toán",
+    "tại sao con sợ toán"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-25T02:37:16.661Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/con-so-hoc-toan-phu-huynh-lam-sai.jpg",
+  "imageAlt": "Trẻ em châu Á lo lắng khi học toán tại nhà",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Có hôm con nói: \"Con ghét toán.\" Mình hỏi vì sao, con không trả lời, chỉ cúi đầu. Mình tức lắm. Nhưng đêm đó nằm nghĩ lại, mình thấy mình cũng có phần.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Những dấu hiệu mình không để ý"
+      },
+      {
+        "type": "paragraph",
+        "text": "Trước đây mình cứ nghĩ con lười. Nhưng rồi mình để ý kỹ hơn:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Mỗi khi mở vở toán ra, mặt con đổi khác – căng thẳng, không vui",
+          "Con hay nói \"Con không biết\" dù chưa thử đọc đề",
+          "Con làm bài rất chậm, như đang cố trì hoãn",
+          "Có hôm con khóc khi đến bài khó, dù mình chưa nói gì"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Đó không phải lười. Đó là sợ."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình đã nói gì với con?"
+      }
+    ]
+  }
+}

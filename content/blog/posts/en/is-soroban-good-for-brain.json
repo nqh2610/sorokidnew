@@ -1,0 +1,153 @@
+{
+  "slug": "is-soroban-good-for-brain",
+  "title": "Is Soroban Actually Good for the Brain? What Science Says",
+  "description": "Beyond math skills, does soroban benefit brain development? Here's what neurological research tells us.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban brain benefits",
+    "soroban neuroscience",
+    "abacus brain development",
+    "soroban cognitive benefits"
+  ],
+  "status": "published",
+  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "createdAt": "2026-01-24",
+  "image": "/blog/nao-bo-tre.jpg",
+  "imageAlt": "Brain illustration with soroban training benefits",
+  "readingTime": 7,
+  "author": {
+    "name": "Sorokid Team",
+    "role": "Educational Content"
+  },
+  "content": {
+    "intro": "You've heard the claims: soroban \"trains the brain,\" \"activates both hemispheres,\" \"improves IQ.\" What does science actually say? Let's look at the research.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Brain Studies"
+      },
+      {
+        "type": "paragraph",
+        "text": "Researchers have used brain imaging (fMRI, EEG) to study soroban practitioners. Here's what they found:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Different Brain Activation"
+      },
+      {
+        "type": "paragraph",
+        "text": "Non-trained individuals use primarily left-brain (verbal, sequential processing) for calculation. Soroban-trained individuals show increased right-brain activity (visuospatial processing). They're literally processing numbers differently."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Enhanced Working Memory"
+      },
+      {
+        "type": "paragraph",
+        "text": "Multiple studies show soroban training improves visuospatial working memory – the ability to hold and manipulate visual information mentally. This extends beyond math."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Structural Brain Changes"
+      },
+      {
+        "type": "paragraph",
+        "text": "Long-term soroban experts show structural differences in brain regions associated with visuospatial processing. However, it's unclear if these are caused by training or if certain brains are predisposed to soroban success."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What This Means Practically"
+      },
+      {
+        "type": "list",
+        "items": [
+          "✅ Soroban trains visual thinking – processing numbers as images rather than words",
+          "✅ Working memory improvements may help with other cognitive tasks",
+          "✅ The skill involves unique neural pathways not developed by standard math",
+          "✅ Benefits are more pronounced with longer, more consistent training"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What About IQ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Some studies have found correlations between soroban training and improved IQ scores. However:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Correlation doesn't mean causation",
+          "Effects are often modest",
+          "Many studies have methodological limitations",
+          "\"IQ improvement\" claims should be taken with caution"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Honest assessment: Soroban probably doesn't significantly raise general IQ. It does train specific cognitive skills (working memory, visuospatial processing) very effectively."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The \"Both Hemispheres\" Claim"
+      },
+      {
+        "type": "paragraph",
+        "text": "You've heard \"soroban activates both brain hemispheres.\" This is somewhat true but oversimplified. All complex tasks use both hemispheres. What's notable about soroban is the INCREASED use of right-hemisphere visuospatial areas compared to traditional math."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Beyond Brain Scans"
+      },
+      {
+        "type": "paragraph",
+        "text": "Real-world benefits matter more than brain scans:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Focus and attention:** Practice requires sustained concentration",
+          "**Discipline:** Daily practice builds habits",
+          "**Confidence:** Success in one area builds general self-efficacy",
+          "**Processing speed:** Faster calculation transfers to faster thinking in general"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Don't do soroban just for \"brain training.\" Do it because it builds useful skills and your child enjoys it. Brain benefits are a bonus."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Will soroban make my child smarter?",
+        "answer": "It will make them better at specific cognitive tasks. \"Smarter\" overall? Probably a small effect, if any. The real value is practical math skill."
+      },
+      {
+        "question": "At what age does brain training benefit most?",
+        "answer": "Young brains are more plastic, so childhood training may have more lasting effects. But benefits occur at any age."
+      },
+      {
+        "question": "Should I do soroban for the brain benefits alone?",
+        "answer": "We'd say no. Do it for math skill improvement; brain benefits come along for the ride. If your only goal is \"brain training,\" other activities (music, chess, physical exercise) also work well."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Build math skills and cognitive benefits together. Try soroban.",
+      "buttonText": "Start Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "soroban-tot-cho-nao-phai-khong"
+}

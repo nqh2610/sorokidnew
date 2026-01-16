@@ -1,0 +1,111 @@
+{
+  "slug": "do-parents-need-to-know-soroban",
+  "title": "Do I Need to Learn Soroban to Teach My Kid? – Spoiler: I'm Clueless and It's Fine",
+  "description": "I was worried I'd need to master Soroban before my child could learn. Turns out that's completely unnecessary. Here's why.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "parent soroban knowledge",
+    "teach soroban without knowing",
+    "soroban for busy parents",
+    "parent guide soroban"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-30T13:30:00.000Z",
+  "createdAt": "2025-12-26",
+  "image": "/blog/phu-huynh-day-phep-nhan-soroban.jpg",
+  "imageAlt": "Parent wondering about Soroban while child learns independently",
+  "readingTime": 5,
+  "author": {
+    "name": "Rachel",
+    "role": "Working mom of 3rd grader"
+  },
+  "content": {
+    "intro": "Before starting, I had this fear: \"If I don't understand Soroban, how can I help my kid?\" I pictured myself staying up late watching YouTube tutorials, trying to learn before my daughter. Reality? I still don't know how to use a Soroban. My daughter's doing great anyway.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "My Overthinking Phase"
+      },
+      {
+        "type": "paragraph",
+        "text": "I spent a week watching \"Soroban basics\" videos. I understood maybe 30%. The complement rules? Friends of 5? My brain hurt."
+      },
+      {
+        "type": "paragraph",
+        "text": "I almost gave up on the idea. If I couldn't get it, how would my 8-year-old?"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Then I Just Let Her Try the App"
+      },
+      {
+        "type": "paragraph",
+        "text": "The Sorokid app started her from zero. Step by step. With animations. With practice. With instant feedback."
+      },
+      {
+        "type": "paragraph",
+        "text": "She didn't need me to explain anything. The app explained it better than I ever could."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Modern Soroban apps are designed for kids to learn independently. Your job is motivation, not instruction."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What I Actually Do"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Sit nearby:** Not teaching, just present",
+          "**Celebrate progress:** \"You leveled up! That's awesome!\"",
+          "**Ask curious questions:** \"How'd you figure that out?\"",
+          "**Stay consistent:** Same time every day, 15 minutes"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "That's it. I don't need to know the difference between heaven and earth beads. The app handles the teaching."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Unexpected Benefit"
+      },
+      {
+        "type": "paragraph",
+        "text": "Because I don't know Soroban, my daughter teaches ME. She explains what she's doing, why she moves certain beads."
+      },
+      {
+        "type": "paragraph",
+        "text": "Teaching someone else is the best way to learn. So my ignorance actually helps her."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "If you're worried about not knowing Soroban, stop. Your child doesn't need a Soroban-expert parent. They need a supportive one."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What if my child asks me something I can't answer?",
+        "answer": "\"I don't know, let's look it up together\" is a perfectly fine response. Or \"Show me how you'd figure it out.\" Kids learn problem-solving this way."
+      },
+      {
+        "question": "Should I learn Soroban anyway?",
+        "answer": "Only if you want to. Some parents enjoy learning alongside their kids. But it's not necessary for your child's success."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "No Soroban knowledge required. The Sorokid app teaches your child everything they need.",
+      "buttonText": "Get Started Free",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "postId": "bo-me-can-hoc-soroban-de-day-con-khong"
+}

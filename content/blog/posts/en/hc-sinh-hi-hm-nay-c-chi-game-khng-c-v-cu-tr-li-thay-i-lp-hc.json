@@ -1,0 +1,48 @@
+{
+  "postId": "hoc-sinh-hoi-co-choi-game-khong-va-cau-tra-loi",
+  "slug": "hc-sinh-hi-hm-nay-c-chi-game-khng-c-v-cu-tr-li-thay-i-lp-hc",
+  "title": "[EN] Học Sinh Hỏi \"Hôm Nay Có Chơi Game Không Cô?\" - Và Câu Trả Lời Thay Đổi Lớp Học",
+  "description": "[Needs translation] Khi học sinh háo hức hỏi có chơi game không mỗi đầu giờ, đó là dấu hiệu của lớp học tích cực. Chia sẻ cách biến tiết học thành trải nghiệm học sinh mong đợi.",
+  "category": "teacher-insights",
+  "keywords": [
+    "học sinh hứng thú",
+    "tạo động lực học sinh",
+    "game trong lớp học",
+    "học sinh thích học",
+    "lớp học vui",
+    "phương pháp dạy học tích cực",
+    "học sinh chủ động"
+  ],
+  "status": "draft",
+  "publishedAt": null,
+  "author": {
+    "name": "Emily Nguyen",
+    "role": "Education Consultant"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Cô ơi, hôm nay mình có chơi game không ạ?\" - Câu hỏi này từng khiến tôi khó chịu. Tôi nghĩ học sinh chỉ muốn chơi, không muốn học. Nhưng sau khi thay đổi cách nhìn, tôi nhận ra: khi học sinh háo hức đến lớp, mong đợi được \"chơi\", đó chính là lớp học tích cực. Bài viết này chia sẻ hành trình từ giáo viên \"nghiêm khắc\" đến người tạo ra những tiết học học sinh yêu thích.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Khi Học Sinh Sợ Đến Lớp"
+      },
+      {
+        "type": "paragraph",
+        "text": "Năm đầu đi dạy, tôi tự hào vì lớp mình trật tự. Học sinh ngồi im, không ai dám nói chuyện. Nhưng tôi cũng thấy: các em đến lớp với gương mặt buồn, nhìn đồng hồ liên tục chờ hết tiết."
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Thầy cô nghiêm khắc = lớp học tốt\" - Tôi từng tin điều này."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cho đến khi một phụ huynh nói: \"Cháu sợ đi học lắm cô ạ. Nó bảo lớp không có gì vui.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Câu nói đó như gáo nước lạnh. Tôi đang tạo ra môi trường học sinh sợ, không phải môi trường học sinh muốn học."
+      }
+    ]
+  }
+}

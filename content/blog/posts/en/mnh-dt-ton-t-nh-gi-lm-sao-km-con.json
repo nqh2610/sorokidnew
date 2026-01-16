@@ -1,0 +1,49 @@
+{
+  "postId": "phu-huynh-khong-gioi-toan-co-kem-con-hoc-duoc-khong",
+  "slug": "mnh-dt-ton-t-nh-gi-lm-sao-km-con",
+  "title": "[EN] Mình dốt toán từ nhỏ – giờ làm sao kèm con?",
+  "description": "[Needs translation] Mình đã lo lắng rất nhiều vì bản thân không giỏi toán. Nhưng rồi mình nhận ra: con không cần mình giỏi – con cần mình quan tâm.",
+  "category": "parents-helping-with-math",
+  "keywords": [
+    "phụ huynh không giỏi toán",
+    "bố mẹ dốt toán",
+    "cách hỗ trợ con học toán"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-25T02:37:13.243Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/me-kem-con-du-khong-gioi-toan.jpg",
+  "imageAlt": "Mẹ châu Á kèm con học toán dù không giỏi toán",
+  "readingTime": 5,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] Hồi đi học mình ghét toán. Điểm toán lúc nào cũng lẹt đẹt. Giờ con lớp 2 rồi, mỗi lần con hỏi bài là mình run. Không phải sợ bài khó – mà sợ con biết mình không biết làm.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cái sợ của người lớn"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình hay nghĩ: \"Mình dốt toán, lỡ dạy con sai thì sao?\" Hoặc \"Toán bây giờ khác xưa, mình không theo kịp.\" Hoặc tệ hơn: \"Lỡ con giống mình, cũng dốt toán thì sao?\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Những suy nghĩ đó cứ quanh quẩn trong đầu. Có hôm con hỏi một bài lớp 3, mình nhìn không hiểu đề, phải Google. Lúc đó mình thấy mình thật tệ."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Nhưng rồi mình nghĩ lại..."
+      },
+      {
+        "type": "paragraph",
+        "text": "Con có cần mình giải bài hộ không? Thật ra không. Nếu mình giải hộ, con cũng chả học được gì."
+      }
+    ]
+  }
+}

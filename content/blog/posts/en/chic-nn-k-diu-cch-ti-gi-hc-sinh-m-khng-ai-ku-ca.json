@@ -1,0 +1,52 @@
+{
+  "postId": "chiec-non-ky-dieu-goi-hoc-sinh-cong-bang",
+  "slug": "chic-nn-k-diu-cch-ti-gi-hc-sinh-m-khng-ai-ku-ca",
+  "title": "[EN] Chiếc Nón Kỳ Diệu – cách tôi gọi học sinh mà không ai kêu ca",
+  "description": "[Needs translation] Từ lúc dùng vòng quay ngẫu nhiên để gọi tên, không còn học sinh nào nói 'thầy thiên vị'. Câu chuyện thật từ một giáo viên THCS.",
+  "category": "teacher-insights",
+  "keywords": [
+    "quay số gọi học sinh",
+    "gọi tên ngẫu nhiên",
+    "random picker lớp học",
+    "Chiếc Nón Kỳ Diệu",
+    "công cụ gọi học sinh công bằng",
+    "vòng quay may mắn",
+    "dạy học tích cực"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-27T14:02:57.997Z",
+  "createdAt": "2025-12-26",
+  "image": "/blog/chiec-non-ky-dieu-goi-hoc-sinh.jpg",
+  "readingTime": 6,
+  "author": {
+    "name": "SoroKid Team",
+    "role": "Education Content"
+  },
+  "content": {
+    "intro": "[Needs natural English rewrite] \"Sao thầy toàn gọi mấy bạn đó?\" – Câu hỏi này tôi nghe không ít lần. Dù cố gắng công bằng, học sinh vẫn thấy tôi thiên vị. Cho đến khi tôi tìm ra một cách đơn giản: để vòng quay quyết định.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vấn đề tôi gặp phải"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tôi dạy Ngữ văn lớp 8, mỗi lớp hơn 40 học sinh. Mỗi tiết tôi chỉ gọi được 5-7 em trả lời câu hỏi. Vấn đề là: tôi hay gọi những em ngồi gần, những em hay giơ tay, hoặc những em tôi muốn kiểm tra vì nghi ngờ không học bài."
+      },
+      {
+        "type": "paragraph",
+        "text": "Kết quả? Học sinh ở cuối lớp 'an toàn' cả năm. Một số em than phiền tôi thiên vị. Dù tôi cố gắng ghi nhớ ai đã được gọi, ai chưa – nhưng với 4 lớp, gần 180 học sinh, tôi không thể."
+      },
+      {
+        "type": "paragraph",
+        "text": "Còn một vấn đề nữa: những học sinh nhút nhát gần như không bao giờ được nói. Tôi biết một số em hiểu bài nhưng không dám giơ tay. Trong khi những em nhanh miệng luôn giành phần trả lời."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tình cờ tìm được giải pháp"
+      }
+    ]
+  }
+}
