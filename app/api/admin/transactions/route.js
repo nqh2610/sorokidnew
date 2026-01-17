@@ -46,11 +46,15 @@ export async function GET(request) {
             previousTier: true,
             tier: true,
             amount: true,
+            amountUsd: true,
             paidAmount: true,
             status: true,
             note: true,
+            paymentMethod: true,
+            externalOrderId: true,
             createdAt: true,
             paidAt: true,
+            completedAt: true,
             userId: true,
             user: {
               select: { id: true, name: true, email: true, avatar: true }
@@ -75,11 +79,14 @@ export async function GET(request) {
         previousTier: order.previousTier,
         packageType: order.tier,
         amount: order.amount,
+        amountUsd: order.amountUsd,
         paidAmount: order.paidAmount,
         status: order.status,
         note: order.note,
+        paymentMethod: order.paymentMethod || 'vietqr',
+        externalOrderId: order.externalOrderId,
         createdAt: order.createdAt,
-        completedAt: order.paidAt,
+        completedAt: order.completedAt || order.paidAt,
         user: order.user
       }));
 

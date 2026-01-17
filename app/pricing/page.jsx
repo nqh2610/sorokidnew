@@ -146,7 +146,7 @@ export default function PricingPage() {
   const localizeUrl = useLocalizedUrl();
   const { data: session, status } = useSession();
   const toast = useToast();
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [isLoading, setIsLoading] = useState(false);
   const [showQR, setShowQR] = useState(false);
   const [orderInfo, setOrderInfo] = useState(null);
@@ -165,6 +165,12 @@ export default function PricingPage() {
   // 🔄 State cho trạng thái đang kiểm tra thanh toán
   const [isCheckingPayment, setIsCheckingPayment] = useState(false);
   const [paymentCheckCount, setPaymentCheckCount] = useState(0);
+  
+  // 🌍 International payment state
+  const [internationalPaymentInfo, setInternationalPaymentInfo] = useState(null);
+  
+  // Check if using international payment (non-Vietnamese locale)
+  const isInternationalPayment = locale !== 'vi';
 
   // Load pricing plans and user tier
   useEffect(() => {
@@ -197,8 +203,61 @@ export default function PricingPage() {
     }
   }, [session, status]);
 
+  // 🌍 Load international payment info for non-Vietnamese users
+  useEffect(() => {
+    if (isInternationalPayment) {
+      fetch('/api/payment/international')
+        .then(res => res.json())
+        .then(data => {
+          setInternationalPaymentInfo(data);
+        })
+        .catch(err => {
+          console.error('Error loading international payment info:', err);
+        });
+    }
+  }, [isInternationalPayment]);
+  
+  // 🌍 Check for payment success/cancelled from LemonSqueezy redirect
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const paymentStatus = urlParams.get('payment');
+    const tier = urlParams.get('tier');
+    
+    if (paymentStatus === 'success' && tier) {
+      // Show success modal
+      setSuccessTierInfo({ 
+        name: tier, 
+        displayName: tier === 'basic' ? t('tier.basic') : t('tier.advanced')
+      });
+      setShowSuccessModal(true);
+      
+      // Clean URL
+      window.history.replaceState({}, '', '/pricing');
+      
+      // Refresh user tier
+      if (session?.user?.id) {
+        fetch('/api/user/tier')
+          .then(res => res.json())
+          .then(data => {
+            setUserTier(data.tier || 'free');
+          });
+      }
+    } else if (paymentStatus === 'cancelled') {
+      // Payment was cancelled
+      toast.info(t('pricingPage.paymentCancelled') || 'Payment was cancelled');
+      // Clean URL
+      window.history.replaceState({}, '', '/pricing');
+    }
+  }, [session, t]);
+
   const formatPrice = (price) => {
     return new Intl.NumberFormat('vi-VN').format(price);
+  };
+  
+  // 🌍 Format USD price for international users
+  const formatPriceUsd = (tier) => {
+    if (!internationalPaymentInfo?.products?.[tier]) return '';
+    return `$${internationalPaymentInfo.products[tier].priceUsd}`;
   };
 
   // Get style for plan
@@ -242,6 +301,13 @@ export default function PricingPage() {
     
     if (targetTierOrder <= currentTierOrder) return t('pricingPage.lowerPlan');
     
+    // 🌍 International pricing display
+    if (isInternationalPayment) {
+      const usdPrice = formatPriceUsd(plan.id);
+      if (usdPrice) return `${t('pricingPage.buyNow')} ${usdPrice}`;
+      return t('pricingPage.buyNow');
+    }
+    
     if (userTier !== 'free') {
       const payable = getPayableAmount(plan);
       return `${t('pricingPage.upgrade')} ${formatPrice(payable)}đ`;
@@ -262,6 +328,31 @@ export default function PricingPage() {
     setIsLoading(true);
 
     try {
+      // 🌍 Use international payment for non-Vietnamese users
+      if (isInternationalPayment) {
+        const res = await fetch('/api/payment/international', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            packageId: plan.id,
+            locale
+          })
+        });
+
+        const data = await res.json();
+
+        if (data.success && data.checkoutUrl) {
+          // Redirect to LemonSqueezy checkout
+          window.location.href = data.checkoutUrl;
+          return;
+        } else {
+          toast.error(data.error || 'Payment error occurred');
+        }
+        setIsLoading(false);
+        return;
+      }
+      
+      // 🇻🇳 Vietnamese payment (VietQR) - keep existing logic
       const res = await fetch('/api/payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -545,25 +636,46 @@ export default function PricingPage() {
 
                       {/* Price */}
                       <div className="mb-8">
-                        {plan.originalPrice > plan.price && (
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-slate-400 line-through text-lg">
-                              {formatPrice(plan.originalPrice)}đ
-                            </span>
-                            <span className="px-2 py-0.5 bg-rose-100 text-rose-600 text-xs font-bold rounded-full">
-                              -{discountPercent}%
-                            </span>
-                          </div>
+                        {/* 🌍 International pricing (USD) */}
+                        {isInternationalPayment && plan.id !== 'free' ? (
+                          <>
+                            <div className="flex items-baseline gap-1">
+                              <span className={`text-5xl font-black ${style.priceColor}`}>
+                                ${internationalPaymentInfo?.products?.[plan.id]?.priceUsd || '—'}
+                              </span>
+                              <span className="text-xl font-bold text-slate-400">USD</span>
+                            </div>
+                            <p className="text-slate-500 text-sm mt-2">
+                              {t('pricingPage.oneTimePayment')}
+                            </p>
+                            <p className="text-xs text-slate-400 mt-1">
+                              ≈ {formatPrice(plan.price)}đ
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            {/* 🇻🇳 Vietnamese pricing (VND) */}
+                            {plan.originalPrice > plan.price && (
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className="text-slate-400 line-through text-lg">
+                                  {formatPrice(plan.originalPrice)}đ
+                                </span>
+                                <span className="px-2 py-0.5 bg-rose-100 text-rose-600 text-xs font-bold rounded-full">
+                                  -{discountPercent}%
+                                </span>
+                              </div>
+                            )}
+                            <div className="flex items-baseline gap-1">
+                              <span className={`text-5xl font-black ${style.priceColor}`}>
+                                {plan.price === 0 ? '0' : formatPrice(plan.price)}
+                              </span>
+                              <span className="text-2xl font-bold text-slate-400">đ</span>
+                            </div>
+                            <p className="text-slate-500 text-sm mt-2">
+                              {plan.price === 0 ? t('pricingPage.freeForever') : t('pricingPage.oneTimePayment')}
+                            </p>
+                          </>
                         )}
-                        <div className="flex items-baseline gap-1">
-                          <span className={`text-5xl font-black ${style.priceColor}`}>
-                            {plan.price === 0 ? '0' : formatPrice(plan.price)}
-                          </span>
-                          <span className="text-2xl font-bold text-slate-400">đ</span>
-                        </div>
-                        <p className="text-slate-500 text-sm mt-2">
-                          {plan.price === 0 ? t('pricingPage.freeForever') : t('pricingPage.oneTimePayment')}
-                        </p>
                       </div>
 
                       {/* Divider */}

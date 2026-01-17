@@ -34,6 +34,7 @@ export default function TransactionsPage() {
   const [filterStatus, setFilterStatus] = useState('all');
   const [filterPackage, setFilterPackage] = useState('all');
   const [filterType, setFilterType] = useState('all');
+  const [filterPaymentMethod, setFilterPaymentMethod] = useState('all'); // 🌍 Filter by payment method
   
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -107,6 +108,17 @@ export default function TransactionsPage() {
     }
   };
 
+  // 🌍 Payment method badge
+  const getPaymentMethodBadge = (method) => {
+    switch (method) {
+      case 'lemonsqueezy':
+        return <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 rounded text-xs flex items-center gap-1">🍋 Quốc tế</span>;
+      case 'vietqr':
+      default:
+        return <span className="px-2 py-1 bg-blue-500/20 text-blue-400 rounded text-xs flex items-center gap-1">🇻🇳 VietQR</span>;
+    }
+  };
+
   const getPackageBadge = (pkg) => {
     switch (pkg) {
       case 'basic':
@@ -126,6 +138,7 @@ export default function TransactionsPage() {
     if (filterStatus !== 'all' && t.status !== filterStatus) return false;
     if (filterPackage !== 'all' && t.packageType !== filterPackage) return false;
     if (filterType !== 'all' && t.transactionType !== filterType) return false;
+    if (filterPaymentMethod !== 'all' && t.paymentMethod !== filterPaymentMethod) return false;
     return true;
   });
 
@@ -387,6 +400,15 @@ export default function TransactionsPage() {
               <option value="upgrade">Nâng cấp</option>
               <option value="renew">Gia hạn</option>
             </select>
+            <select
+              value={filterPaymentMethod}
+              onChange={(e) => handleFilterChange(setFilterPaymentMethod)(e.target.value)}
+              className="hidden sm:block px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-xl text-white text-sm focus:ring-2 focus:ring-purple-500"
+            >
+              <option value="all">Tất cả cổng TT</option>
+              <option value="vietqr">🇻🇳 VietQR</option>
+              <option value="lemonsqueezy">🍋 Quốc tế</option>
+            </select>
             <button
               onClick={fetchTransactions}
               className="p-2 sm:p-2.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-xl transition-colors"
@@ -409,6 +431,7 @@ export default function TransactionsPage() {
                 <th className="text-left px-6 py-4 text-sm font-medium text-slate-300">Người dùng</th>
                 <th className="text-left px-6 py-4 text-sm font-medium text-slate-300">Loại GD</th>
                 <th className="text-left px-6 py-4 text-sm font-medium text-slate-300">Gói</th>
+                <th className="text-left px-6 py-4 text-sm font-medium text-slate-300">Cổng TT</th>
                 <th className="text-left px-6 py-4 text-sm font-medium text-slate-300">Số tiền</th>
                 <th className="text-left px-6 py-4 text-sm font-medium text-slate-300">Trạng thái</th>
                 <th className="text-left px-6 py-4 text-sm font-medium text-slate-300">Thời gian</th>
@@ -418,7 +441,7 @@ export default function TransactionsPage() {
             <tbody>
               {filteredTransactions.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="px-6 py-12 text-center text-slate-400">
+                  <td colSpan={9} className="px-6 py-12 text-center text-slate-400">
                     Chưa có giao dịch nào
                   </td>
                 </tr>
@@ -451,7 +474,18 @@ export default function TransactionsPage() {
                       {getPackageBadge(t.packageType)}
                     </td>
                     <td className="px-6 py-4">
-                      <span className="font-semibold text-white">{formatCurrency(t.amount)}</span>
+                      {getPaymentMethodBadge(t.paymentMethod)}
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className="font-semibold text-white">
+                        {t.paymentMethod === 'lemonsqueezy' && t.amountUsd 
+                          ? `$${t.amountUsd}` 
+                          : formatCurrency(t.amount)
+                        }
+                      </span>
+                      {t.paymentMethod === 'lemonsqueezy' && t.amount > 0 && (
+                        <div className="text-xs text-slate-400">≈ {formatCurrency(t.amount)}</div>
+                      )}
                     </td>
                     <td className="px-6 py-4">
                       {getStatusBadge(t.status)}

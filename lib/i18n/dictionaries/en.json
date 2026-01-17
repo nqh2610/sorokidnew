@@ -2795,7 +2795,15 @@
       "iHaveTransferred": "I have transferred",
       "notReceived": "Payment not received. System will auto-check again...",
       "connectionError": "Connection error. Please wait..."
-    }
+    },
+    "international": {
+      "securePayment": "Secure international payment",
+      "poweredBy": "Powered by LemonSqueezy",
+      "supportedMethods": "Credit/Debit Cards, PayPal & more",
+      "taxIncluded": "All taxes included",
+      "instantAccess": "Instant access after payment"
+    },
+    "paymentCancelled": "Payment was cancelled. You can try again anytime."
   },
 
   "blog": {

@@ -300,21 +300,27 @@ model PaymentOrder {
   userId          String
   tier            String
   amount          Int
+  amountUsd       Float?    // USD amount for international payments
   status          String    @default("pending")
   transactionId   String?
   paidAmount      Int?
   paidAt          DateTime?
-  expiresAt       DateTime
+  completedAt     DateTime? // When payment was completed
+  expiresAt       DateTime?
   note            String?   @db.Text
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
   previousTier    String?
   transactionType String    @default("new")
+  paymentMethod   String    @default("vietqr") // vietqr, lemonsqueezy
+  externalOrderId String?   // External order ID (e.g., LemonSqueezy order ID)
   user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([orderCode])
   @@index([status])
+  @@index([paymentMethod])
+  @@index([externalOrderId])
   @@map("payment_orders")
 }
 
