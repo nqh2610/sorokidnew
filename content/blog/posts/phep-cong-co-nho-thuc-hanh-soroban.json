@@ -7,13 +7,27 @@
     "cộng có nhớ soroban",
     "phép cộng nâng cao soroban",
     "thực hành cộng soroban",
-    "bài tập cộng soroban"
+    "bài tập cộng soroban",
+    "cách cộng trên bàn tính",
+    "bạn của 5 bạn của 10",
+    "cộng 2 số trên soroban",
+    "luyện cộng soroban",
+    "cộng từ trái sang phải",
+    "kỹ thuật cộng soroban",
+    "cộng số nhiều chữ số",
+    "hướng dẫn cộng soroban"
   ],
   "status": "published",
   "publishedAt": "2025-12-29T01:31:53.743Z",
   "createdAt": "2025-12-25",
   "image": "/blog/tre-thuc-hanh-phep-cong-co-nho.jpg",
-  "readingTime": 8,
+  "imageAlt": "Trẻ em thực hành phép cộng có nhớ trên bàn tính Soroban",
+  "readingTime": 14,
+  "categoryOrder": 1,
+  "order": 9,
+  "translations": {
+    "en": "addition-with-carrying-on-soroban"
+  },
   "content": {
     "intro": "Con đã học Bạn của 5 và Bạn của 10 riêng lẻ. Giờ là lúc kết hợp cả hai để làm các phép cộng thực tế. Bài này có nhiều ví dụ chi tiết, phụ huynh có thể cùng con luyện tại nhà.",
     "sections": [
@@ -226,19 +240,43 @@
   "faq": [
     {
       "question": "Nên cộng từ trái sang phải hay phải sang trái?",
-      "answer": "Soroban thường dạy cộng từ TRÁI sang PHẢI (hàng lớn trước). Khác với cách tính trên giấy (phải sang trái). Cách này giúp xử lý số lớn hiệu quả hơn."
+      "answer": "Soroban thường dạy cộng từ TRÁI sang PHẢI (hàng lớn trước). Khác với cách tính trên giấy (phải sang trái). Cách này giúp xử lý số lớn hiệu quả hơn và nắm được kết quả gần đúng từ sớm."
     },
     {
       "question": "Con hay nhầm khi nào dùng Bạn của 5, khi nào dùng Bạn của 10?",
-      "answer": "Nhìn kết quả dự kiến: Nếu tổng trong cột đó dưới 10 nhưng thiếu hạt → Bạn của 5. Nếu tổng vượt 9 → Bạn của 10."
+      "answer": "Nhìn kết quả dự kiến: Nếu tổng trong cột đó dưới 10 nhưng thiếu hạt → Bạn của 5. Nếu tổng vượt 9 → Bạn của 10. Luyện nhiều sẽ thành phản xạ."
     },
     {
       "question": "Bao lâu thì con cộng nhanh được?",
-      "answer": "Tùy mức độ luyện tập. Thường 2-3 tháng luyện đều đặn (mỗi ngày 15-20 phút) để cộng 2 số 2 chữ số trong vài giây."
+      "answer": "Tùy mức độ luyện tập. Thường 2-3 tháng luyện đều đặn (mỗi ngày 15-20 phút) để cộng 2 số 2 chữ số trong vài giây. Số 3 chữ số cần thêm 1-2 tháng nữa."
     },
     {
       "question": "Có cần thuộc tất cả các quy tắc không?",
-      "answer": "Cần thuộc Bạn của 5 (4 cặp) và Bạn của 10 (5 cặp). Tổng 9 cặp số. Luyện nhiều sẽ thành phản xạ, không cần nhớ."
+      "answer": "Cần thuộc Bạn của 5 (4 cặp) và Bạn của 10 (5 cặp). Tổng 9 cặp số. Luyện nhiều sẽ thành phản xạ, không cần nhớ cũng tự động làm đúng."
+    },
+    {
+      "question": "Cộng liên tiếp nhiều số có khó không?",
+      "answer": "Cùng quy tắc, chỉ lặp lại nhiều lần. Bắt đầu với cộng 3 số, rồi tăng dần. Quan trọng là làm từng bước, kiểm tra sau mỗi phép cộng."
+    },
+    {
+      "question": "Con hay quên nhớ sang cột trái, làm sao?",
+      "answer": "Khi dùng Bạn của 10, cộng 1 vào cột trái NGAY, trước khi trừ ở cột hiện tại. Tập thói quen này để không quên. Nói to khi làm: '+1 trái, trừ bạn'."
+    },
+    {
+      "question": "Cộng trên Soroban khác gì cộng trên giấy?",
+      "answer": "Soroban tính từ trái sang phải, giấy từ phải sang trái. Soroban xử lý trực tiếp trên hạt, không viết ra. Soroban rèn tư duy nhanh hơn và giúp học tính nhẩm sau này."
+    },
+    {
+      "question": "Nên luyện phép cộng bao lâu mỗi ngày?",
+      "answer": "10-15 phút mỗi ngày cho phần cộng. Kết hợp với các bài luyện khác (trừ, đọc số) để không nhàm chán. Tổng thời gian học Soroban mỗi ngày khoảng 20-30 phút."
+    },
+    {
+      "question": "Có nên dùng app để luyện cộng không?",
+      "answer": "Có. App có nhiều bài tập, tự động chấm điểm và điều chỉnh độ khó. Kết hợp dùng Soroban thật để luyện kỹ thuật và app để luyện tốc độ là tối ưu."
+    },
+    {
+      "question": "Khi nào thì chuyển sang học trừ?",
+      "answer": "Khi con cộng thành thạo số 2 chữ số với độ chính xác trên 90%. Không cần chờ đến số 3-4 chữ số mới học trừ. Có thể học song song nhưng tập trung cộng trước."
     }
   ],
   "cta": {
@@ -246,7 +284,18 @@
     "buttonText": "Cho con luyện thử",
     "buttonLink": "/register"
   },
-  "imageAlt": "Trẻ em thực hành phép cộng có nhớ trên bàn tính Soroban",
-  "categoryOrder": 1,
-  "order": 9
+  "seo": {
+    "title": "Phép cộng có nhớ trên Soroban – Thực hành với ví dụ cụ thể",
+    "description": "Sau khi học Bạn của 5 và Bạn của 10, con cần thực hành kết hợp cả hai. Bài này có nhiều ví dụ chi tiết từng bước.",
+    "keywords": "cộng có nhớ soroban, phép cộng nâng cao soroban, thực hành cộng soroban, bài tập cộng soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-29",
+    "author": "ThS. Lê Minh Quân"
+  },
+  "author": {
+    "name": "Minh Anh",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
 }

@@ -6,16 +6,32 @@
   "keywords": [
     "soroban cho người lớn",
     "phụ huynh học soroban",
-    "tự học soroban"
+    "tự học soroban",
+    "người lớn có học được soroban không",
+    "bố mẹ học soroban cùng con",
+    "trải nghiệm học soroban người lớn",
+    "soroban cho phụ huynh",
+    "học soroban tuổi 30",
+    "soroban không giới hạn tuổi",
+    "đồng hành học soroban cùng con",
+    "soroban cho cả gia đình",
+    "kinh nghiệm tự học soroban"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-02-08T07:45:12.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/me-hoc-soroban.jpg",
   "imageAlt": "Mẹ châu Á đang tập dùng bàn tính Soroban",
-  "readingTime": 6,
+  "readingTime": 12,
   "categoryOrder": 1,
   "order": 28,
+  "author": {
+    "name": "Chị Thanh Mai",
+    "role": "Mẹ bé Cún – lớp 1"
+  },
+  "translations": {
+    "en": "can-adults-learn-soroban"
+  },
   "content": {
     "intro": "Con mình học Soroban, mình chỉ biết gật gù. Con hỏi: \"Mẹ ơi, con làm đúng chưa?\" Mình... không biết. Mình quyết định tự học thử 1 tuần xem sao.",
     "sections": [
@@ -95,16 +111,58 @@
   "faq": [
     {
       "question": "Người lớn có thể học Soroban không?",
-      "answer": "Được. Không có giới hạn tuổi. Chỉ là người lớn cần kiên nhẫn hơn vì phản xạ chậm hơn trẻ."
+      "answer": "Được. Không có giới hạn tuổi để học Soroban. Chỉ là người lớn cần kiên nhẫn hơn vì phản xạ chậm hơn trẻ. Mình 35 tuổi học được, chồng mình 40 cũng tập được cơ bản sau 2 tuần."
     },
     {
       "question": "Phụ huynh cần học bao lâu để kèm con?",
-      "answer": "Khoảng 1-2 tuần tập cơ bản là đủ hiểu con đang học gì. Không cần thành thạo."
+      "answer": "Khoảng 1-2 tuần tập cơ bản là đủ hiểu con đang học gì. Không cần thành thạo như con – chỉ cần biết đủ để động viên và kiểm tra sơ bộ khi con hỏi."
+    },
+    {
+      "question": "Người lớn học có chậm hơn trẻ con không?",
+      "answer": "Có và không. Người lớn hiểu lý thuyết nhanh hơn, nhưng tay cứng hơn, phản xạ chậm hơn. Trẻ con gạt hạt thuần thục nhanh hơn vì khả năng vận động tốt hơn."
+    },
+    {
+      "question": "Học Soroban cùng con có lợi gì?",
+      "answer": "Rất nhiều lợi ích: hiểu con học gì để hỗ trợ đúng chỗ, kiểm tra được bài con làm, làm gương cho con thấy bố mẹ cũng học, và tạo kết nối gia đình khi cùng làm một hoạt động."
+    },
+    {
+      "question": "Mình không giỏi toán, có học được Soroban không?",
+      "answer": "Được. Soroban là kỹ thuật mới, không liên quan đến việc bạn có giỏi toán hay không. Mình cũng không giỏi toán lúc đi học, nhưng vẫn học được Soroban cơ bản sau 1 tuần."
+    },
+    {
+      "question": "Nên học Soroban trên app hay mua bàn tính thật?",
+      "answer": "Nên có cả hai. Ban đầu dùng bàn tính thật để có cảm giác thực tế, sau đó dùng app để tiện lợi. Bàn tính Soroban giá rẻ (50-100k), không tốn kém."
+    },
+    {
+      "question": "Người lớn có thể tính nhẩm (Anzan) được không?",
+      "answer": "Khó hơn trẻ con nhưng vẫn có thể đạt được ở mức cơ bản. Não người lớn không linh hoạt bằng trẻ, nhưng nếu kiên trì luyện tập 6-12 tháng vẫn có thể hình dung bàn tính trong đầu."
+    },
+    {
+      "question": "Mỗi ngày nên dành bao nhiêu thời gian để học?",
+      "answer": "15-20 phút là đủ cho người lớn mới bắt đầu. Quan trọng là đều đặn – tập ít mỗi ngày hiệu quả hơn tập nhiều 1 lần rồi bỏ. Mình tập trong lúc chờ con ăn sáng, rất tiện."
+    },
+    {
+      "question": "Học Soroban có lợi gì cho người lớn ngoài việc kèm con?",
+      "answer": "Soroban giúp rèn trí nhớ, khả năng tập trung – những thứ người lớn thường yếu dần theo tuổi. Ngoài ra còn là hoạt động thú vị để giảm stress sau ngày làm việc."
+    },
+    {
+      "question": "Nếu mình học giỏi hơn con thì có gây áp lực cho con không?",
+      "answer": "Không nếu bạn khéo léo. Đừng khoe khoang hay so sánh – hãy để con dẫn dắt. Nói với con: 'Con dạy mẹ bài này được không?' sẽ giúp con tự tin hơn là 'Mẹ làm được rồi, sao con chưa được?'"
     }
   ],
   "cta": {
     "text": "Nếu bạn muốn học cùng con, Sorokid có tài khoản gia đình. Bố mẹ cũng có thể tập.",
     "buttonText": "Tìm hiểu thêm",
     "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Mình 35 tuổi tập Soroban – để hiểu con đang học gì",
+    "description": "Con học mà mình không biết nó là gì. Mình quyết định tự học thử. Đây là trải nghiệm của mình.",
+    "keywords": "soroban cho người lớn, phụ huynh học soroban, tự học soroban, người lớn học soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-08",
+    "author": "Chị Thanh Mai"
   }
 }

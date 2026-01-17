@@ -23,6 +23,9 @@
     "name": "Chị Hương",
     "role": "Mẹ bé lớp 2"
   },
+  "translations": {
+    "en": "do-parents-need-to-know-soroban"
+  },
   "content": {
     "intro": "Khi con đòi học Soroban, mình lo ngay: 'Mình có biết Soroban là cái gì đâu. Lỡ con hỏi thì mình trả lời sao? Không lẽ mình phải đi học trước?' Mình từng nghĩ phải hiểu mới dạy được. Hóa ra không phải vậy.",
     "sections": [

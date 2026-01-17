@@ -7,13 +7,27 @@
     "phép nhân soroban",
     "nhân trên bàn tính soroban",
     "cách nhân soroban",
-    "bảng cửu chương soroban"
+    "bảng cửu chương soroban",
+    "nhân 2 chữ số soroban",
+    "luyện nhân soroban",
+    "kỹ thuật nhân soroban",
+    "vị trí đặt kết quả nhân",
+    "nhân từ phải sang trái",
+    "hướng dẫn nhân soroban",
+    "bài tập nhân soroban",
+    "nhân số lớn soroban"
   ],
   "status": "published",
   "publishedAt": "2025-12-31T03:14:13.241Z",
   "createdAt": "2025-12-25",
   "image": "/blog/phu-huynh-day-phep-nhan-soroban.jpg",
-  "readingTime": 9,
+  "imageAlt": "Phụ huynh châu Á dạy con phép nhân trên Soroban tại nhà",
+  "readingTime": 14,
+  "categoryOrder": 1,
+  "order": 12,
+  "translations": {
+    "en": "multiplication-on-soroban"
+  },
   "content": {
     "intro": "Phép nhân trên Soroban yêu cầu con đã thành thạo cộng có nhớ và thuộc bảng cửu chương. Cách nhân trên Soroban giúp con hiểu sâu hơn bản chất của phép nhân.",
     "sections": [
@@ -270,19 +284,43 @@
   "faq": [
     {
       "question": "Con chưa thuộc bảng cửu chương có học nhân Soroban được không?",
-      "answer": "Khó. Soroban yêu cầu thuộc bảng cửu chương vì mỗi bước nhân đều tra kết quả từ bảng. Nên học thuộc bảng cửu chương trước."
+      "answer": "Khó. Soroban yêu cầu thuộc bảng cửu chương vì mỗi bước nhân đều tra kết quả từ bảng. Nên học thuộc bảng cửu chương trước, sau đó mới học nhân trên Soroban."
     },
     {
       "question": "Nhân trên Soroban khác nhân trên giấy như thế nào?",
-      "answer": "Giấy: viết từng tích riêng rồi cộng. Soroban: cộng dồn trực tiếp, không cần viết ra. Nhanh hơn và rèn tính nhẩm."
+      "answer": "Giấy: viết từng tích riêng rồi cộng. Soroban: cộng dồn trực tiếp, không cần viết ra. Nhanh hơn và rèn tính nhẩm tốt hơn."
     },
     {
       "question": "Tại sao nhân từ phải sang trái, khác với cộng?",
-      "answer": "Để kết quả xuất hiện đúng vị trí và không bị trùng với số đang nhân. Đây là cách tối ưu trên Soroban."
+      "answer": "Để kết quả xuất hiện đúng vị trí và không bị trùng với số đang nhân. Đây là cách tối ưu trên Soroban, giúp xử lý số lớn hiệu quả."
     },
     {
       "question": "Bao lâu thì con nhân nhanh được?",
-      "answer": "Tùy mức độ luyện tập. Thường 3-6 tháng để nhân 2 chữ số × 2 chữ số thành thạo."
+      "answer": "Tùy mức độ luyện tập. Thường 3-6 tháng để nhân 2 chữ số × 2 chữ số thành thạo. Nhân 1 chữ số nhanh hơn, khoảng 1-2 tháng."
+    },
+    {
+      "question": "Vị trí đặt kết quả rất khó nhớ, có mẹo gì không?",
+      "answer": "Quy tắc: Kết quả đặt cách số bị nhân = vị trí hàng + 1 cột. Hàng đơn vị: cách 2 cột, hàng chục: cách 3 cột. Luyện với số nhỏ trước sẽ quen."
+    },
+    {
+      "question": "Có nên học nhân trước khi thành thạo cộng trừ?",
+      "answer": "Không nên. Cần thành thạo cộng có nhớ vì nhân liên quan đến cộng nhiều lần. Nếu cộng chưa vững, nhân sẽ chậm và hay sai."
+    },
+    {
+      "question": "Nhân số có số 0 (như 20 × 5) có khó không?",
+      "answer": "Dễ hơn vì có ít bước. 20 × 5: 2 × 5 = 10, đặt vào vị trí hàng chục, thêm 1 chữ số 0 phía sau = 100. Luyện các dạng này để quen."
+    },
+    {
+      "question": "Có cần xóa số bị nhân sau khi nhân xong không?",
+      "answer": "Có. Xóa từng chữ số sau khi nhân xong chữ số đó để không nhầm. Đây là thói quen quan trọng khi nhân trên Soroban."
+    },
+    {
+      "question": "Nhân 3 chữ số × 2 chữ số có khó không?",
+      "answer": "Cùng quy tắc, chỉ nhiều bước hơn. Khi đã vững 2 chữ số × 2 chữ số, mở rộng lên 3 chữ số không quá khó. Quan trọng là làm từng bước, cẩn thận."
+    },
+    {
+      "question": "Nên luyện nhân bao lâu mỗi ngày?",
+      "answer": "10-15 phút cho phần nhân. Kết hợp ôn bảng cửu chương 5 phút. Tổng thời gian học Soroban mỗi ngày khoảng 25-30 phút là phù hợp."
     }
   ],
   "cta": {
@@ -290,7 +328,18 @@
     "buttonText": "Cho con luyện thử",
     "buttonLink": "/register"
   },
-  "imageAlt": "Phụ huynh châu Á dạy con phép nhân trên Soroban tại nhà",
-  "categoryOrder": 1,
-  "order": 12
+  "seo": {
+    "title": "Phép nhân trên Soroban – Hướng dẫn từng bước cho phụ huynh",
+    "description": "Phép nhân trên Soroban khác với nhân trên giấy. Bài này hướng dẫn cách nhân 1 chữ số, 2 chữ số với ví dụ chi tiết.",
+    "keywords": "phép nhân soroban, nhân trên bàn tính soroban, cách nhân soroban, bảng cửu chương soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-31",
+    "author": "ThS. Phạm Thanh Tùng"
+  },
+  "author": {
+    "name": "Minh Anh",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
 }

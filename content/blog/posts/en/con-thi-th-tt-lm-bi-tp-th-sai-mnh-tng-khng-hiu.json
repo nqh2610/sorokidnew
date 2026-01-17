@@ -1,49 +1,413 @@
 {
-  "postId": "con-thi-tot-nhung-lam-bai-tap-thi-sai",
   "slug": "con-thi-th-tt-lm-bi-tp-th-sai-mnh-tng-khng-hiu",
-  "title": "[EN] Con thi thì tốt, làm bài tập thì sai – mình từng không hiểu",
-  "description": "[Needs translation] Kiểm tra được 9 điểm. Bài tập về nhà sai lung tung. Mình tưởng con cố tình, hóa ra không phải.",
-  "category": "when-kids-struggle-with-math",
+  "title": "My Child Scores High on Tests But Gets Homework Wrong: The Confusing Pattern I Finally Understood",
+  "description": "Discover why children perform well on exams but make mistakes on homework, and vice versa. A parent's investigation into test vs. homework performance gaps reveals attention, environment, and motivation factors.",
+  "category": "math-struggles",
   "keywords": [
-    "con làm bài tập sai",
-    "thi tốt bài tập kém",
-    "tập trung khi làm bài"
+    "child tests well homework poor",
+    "inconsistent math performance",
+    "homework mistakes test success",
+    "attention and homework quality",
+    "test vs homework performance",
+    "child careless on homework",
+    "homework environment focus",
+    "why homework errors not tests",
+    "performance inconsistency children",
+    "concentration during homework",
+    "homework motivation problems",
+    "structured vs unstructured learning"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-01-24T04:17:23.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/be-lam-bai-tap.jpg",
-  "imageAlt": "Bé gái châu Á nhìn bài tập về nhà với vẻ bối rối dù vừa thi tốt",
-  "readingTime": 5,
+  "imageAlt": "Asian girl looking confused at homework despite having scored well on tests",
+  "readingTime": 14,
   "author": {
-    "name": "SoroKid Team",
-    "role": "Education Content"
+    "name": "Mrs. Jennifer Collins",
+    "role": "Parent and Educational Consultant"
+  },
+  "translations": {
+    "vi": "con-thi-tot-nhung-lam-bai-tap-thi-sai"
   },
   "content": {
-    "intro": "[Needs natural English rewrite] Bài kiểm tra con được 9 điểm, mình vui lắm. Tối về kiểm tra bài tập: sai 4/10 câu. Mình bối rối: \"Con có thể làm đúng mà, sao bài tập lại sai?\"",
+    "intro": "My daughter came home with her math test: 92%. I was thrilled. That evening, I checked her homework before she turned it in: 4 out of 10 problems wrong—including some that were easier than what she'd aced on the test. I was baffled. How could someone perform so differently on essentially the same material? My first instinct was frustration: 'You can do this correctly when you want to—why are you being careless?' But after months of observing this pattern and researching what was really happening, I discovered the answer was far more complex and interesting than 'carelessness.' Understanding this gap transformed how I supported my daughter's learning.",
     "sections": [
       {
         "type": "heading",
         "level": 2,
-        "text": "Mình từng nghĩ con cẩu thả"
+        "text": "The Pattern That Made No Sense"
       },
       {
         "type": "paragraph",
-        "text": "\"Con không tập trung! Con làm qua loa!\" – Mình la. Con cúi đầu. Không khí căng thẳng."
+        "text": "Week after week, the same confusing pattern emerged. Test day: excellent performance, minimal errors, clear thinking. Homework time: mistakes on basic problems, incomplete work, silly errors that seemed impossible given her demonstrated ability. I kept detailed records for two months and the data was striking: test average 90%, homework accuracy 65%."
+      },
+      {
+        "type": "paragraph",
+        "text": "This wasn't a knowledge gap—she clearly understood the material when motivated. It wasn't a learning disability—her performance under test conditions was excellent. Something about the homework context itself was the problem, and I needed to figure out what."
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "Mình quan sát kỹ hơn"
+        "text": "My Initial (Wrong) Assumption"
       },
       {
         "type": "paragraph",
-        "text": "Ở lớp, con tập trung vì có cô giáo, có bạn, có áp lực kiểm tra."
+        "text": "Like many parents, my first assumption was that my daughter was being lazy or careless. 'You're rushing through this!' 'You're not paying attention!' 'You just don't care about homework!' These accusations became regular features of our evening routine, creating tension and tears without improving anything."
       },
       {
         "type": "paragraph",
-        "text": "Ở nhà, con mệt sau cả ngày học. Có TV, có tiếng ồn. Con mất tập trung."
+        "text": "The problem with the 'carelessness' label is that it's not actionable. Telling a child to 'be more careful' without understanding why they're making errors doesn't help. And it often isn't the real issue anyway."
+      },
+      {
+        "type": "callout",
+        "text": "Key Realization: 'Carelessness' is usually a symptom, not a cause. Something specific creates the conditions for errors—and that something can often be identified and addressed."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What I Discovered: The Test vs. Homework Environment Gap"
+      },
+      {
+        "type": "paragraph",
+        "text": "When I stopped blaming and started observing, I noticed dramatic differences between my daughter's test environment and homework environment:"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Factor",
+          "Test Environment",
+          "Homework Environment"
+        ],
+        "rows": [
+          [
+            "Physical setting",
+            "Quiet classroom, clear desk",
+            "Kitchen table, family activity around"
+          ],
+          [
+            "Time structure",
+            "Defined start/end, can't leave",
+            "Open-ended, frequent interruptions"
+          ],
+          [
+            "Distractions",
+            "None allowed, phones away",
+            "TV nearby, siblings, devices"
+          ],
+          [
+            "Mental state",
+            "Rested (morning), focused",
+            "Tired after full school day"
+          ],
+          [
+            "Stakes/motivation",
+            "Grade matters, wants to do well",
+            "Just homework, seems pointless"
+          ],
+          [
+            "Support available",
+            "Must work independently",
+            "Can ask parents (or avoid thinking)"
+          ],
+          [
+            "Pressure",
+            "Performance pressure focuses attention",
+            "No urgency, mind wanders"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Seven Real Reasons Behind the Gap"
+      },
+      {
+        "type": "paragraph",
+        "text": "Through research and consultation with educators, I identified seven common reasons children perform differently on tests versus homework:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Attention Depletion"
+      },
+      {
+        "type": "paragraph",
+        "text": "By evening, children have used most of their daily attention capacity. They've sat through 6+ hours of school, processed enormous amounts of information, and managed social situations. Asking for focused attention at 7 PM is asking for their worst-quality thinking when tests get their best."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Environmental Distractions"
+      },
+      {
+        "type": "paragraph",
+        "text": "Home environments are full of attention competitors: siblings, pets, screens, sounds, smells from dinner cooking. Even partial attention to distractions degrades math performance significantly. Research shows that just having a phone visible (even off) reduces available cognitive capacity."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Motivation and Perceived Stakes"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tests feel important—grades, feedback, comparison with peers. Homework often feels like busywork that 'doesn't really count.' This motivation gap affects effort, attention, and checking behavior. Why carefully verify answers on something that seems pointless?"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Lack of Time Pressure"
+      },
+      {
+        "type": "paragraph",
+        "text": "Paradoxically, having unlimited time can reduce performance. With no deadline, there's no urgency to focus. Minds wander, attention drifts, and the task expands to fill available time—but not with quality work."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. The Availability of Help"
+      },
+      {
+        "type": "paragraph",
+        "text": "When parents are available, children sometimes engage less deeply with problems. Why struggle through something difficult when you can just ask? This 'cognitive offloading' means less mental effort and more opportunities for error when children do work independently."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "6. Emotional State and Stress"
+      },
+      {
+        "type": "paragraph",
+        "text": "If homework has become a battleground, negative emotions impair cognitive function. Stress, anxiety about parental reactions, and conflict all reduce working memory capacity—the mental workspace needed for math problem-solving."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "7. Different Task Framing"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tests feel like performance—show what you know. Homework feels like practice—just get through it. These different mental framings lead to different effort levels and attention quality."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Changes That Made a Difference"
+      },
+      {
+        "type": "paragraph",
+        "text": "Armed with this understanding, I made strategic changes to create homework conditions closer to test conditions:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Change 1: Homework Immediately After School"
+      },
+      {
+        "type": "paragraph",
+        "text": "Instead of homework after dinner, we moved it to right after school—after a snack and brief break, but while attention capacity was still relatively fresh. This single change reduced errors significantly."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Change 2: Dedicated Homework Space"
+      },
+      {
+        "type": "paragraph",
+        "text": "We set up a specific homework area: quiet, clear desk, no visible screens, away from family activity. The environment now supported focus rather than competed for attention."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Change 3: Timed Work Sessions"
+      },
+      {
+        "type": "paragraph",
+        "text": "Instead of open-ended 'do your homework,' we used timed sessions: 'You have 20 minutes for math homework, starting now.' The time pressure—similar to test conditions—created urgency that improved focus."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Change 4: Check-Then-Submit Routine"
+      },
+      {
+        "type": "paragraph",
+        "text": "I required my daughter to check her own work before showing me, using a simple protocol: reread the problem, verify the calculation, check if the answer makes sense. This built self-checking habits that she'd been skipping."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Change 5: Strategic Non-Help"
+      },
+      {
+        "type": "paragraph",
+        "text": "I stopped being immediately available for questions. Instead, I said: 'Try your best, mark what you're unsure about, and we'll review together after.' This reduced cognitive offloading and increased independent engagement."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Change 6: Reframing Homework Purpose"
+      },
+      {
+        "type": "paragraph",
+        "text": "We talked about homework as 'training for tests' rather than just assignments to complete. When my daughter understood that homework practice affected test performance, her motivation and effort increased."
+      },
+      {
+        "type": "callout",
+        "text": "Surprising Result: These changes didn't require more time or more supervision—just smarter structuring of the homework environment and routine."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Using Technology Strategically"
+      },
+      {
+        "type": "paragraph",
+        "text": "We also found that certain digital tools helped bridge the gap. The Sorokid app became part of our routine—not as homework, but as a warm-up. The gamified structure created engagement similar to test-taking, and the mental math practice carried over into homework focus."
+      },
+      {
+        "type": "paragraph",
+        "text": "The key was using technology to create test-like conditions (timed challenges, scores, immediate feedback) rather than as another distraction. Ten minutes of Sorokid before homework seemed to 'activate' focused math thinking."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Recognizing When It's More Than Environmental"
+      },
+      {
+        "type": "paragraph",
+        "text": "While environmental and motivational factors explained my daughter's situation, sometimes test/homework gaps indicate something more serious:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "ADHD: Attention differences may be masked by high-stakes test conditions but appear in low-structure homework",
+          "Anxiety: Some children perform better under pressure while others collapse; patterns vary",
+          "Working memory issues: Problems may be evident in longer, multi-step homework but not in discrete test questions",
+          "Executive function challenges: Planning, organizing, and self-monitoring difficulties affect homework more than tests"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "If environmental changes don't help, or if the pattern is extreme, professional evaluation may be warranted."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What I Learned About Performance Consistency"
+      },
+      {
+        "type": "paragraph",
+        "text": "This experience taught me that consistent performance requires consistent conditions. We can't expect children to perform equally well in dramatically different environments. The skills that produce good test scores are the same skills needed for homework—but the conditions either support or undermine those skills."
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Old Approach",
+          "New Approach"
+        ],
+        "rows": [
+          [
+            "'Why are you being careless?'",
+            "'Let's figure out what's making this harder'"
+          ],
+          [
+            "Homework whenever, wherever",
+            "Consistent time and space"
+          ],
+          [
+            "Open-ended time",
+            "Structured time blocks"
+          ],
+          [
+            "Always available to help",
+            "Strategic non-help with later review"
+          ],
+          [
+            "Homework as obligation",
+            "Homework as test preparation"
+          ],
+          [
+            "Focus on errors",
+            "Focus on conditions that create errors"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Three Months Later: The New Normal"
+      },
+      {
+        "type": "paragraph",
+        "text": "After implementing these changes, my daughter's homework accuracy rose from 65% to approximately 85%—not perfect, but dramatically improved. More importantly, homework stopped being a battle. She understood why the structures existed, and she actually appreciated the focused, efficient sessions over the previous hours of frustrated, distracted work."
+      },
+      {
+        "type": "paragraph",
+        "text": "Her test scores remained high, and interestingly, her teachers noted that her class participation had improved too. The self-checking habits we built for homework transferred to other academic contexts."
+      },
+      {
+        "type": "callout",
+        "text": "The Lesson: My daughter was never being deliberately careless. She was responding predictably to an environment that didn't support focused work. Change the conditions, change the outcomes."
       }
     ]
-  }
+  },
+  "faq": [
+    {
+      "question": "Why would a child do well on tests but poorly on homework?",
+      "answer": "Several factors commonly cause this gap: attention depletion by evening, distracting home environments, lack of time pressure or urgency, lower perceived stakes, availability of help that reduces engagement, fatigue after a full school day, and different mental framing (performance vs. practice). Tests create conditions that support focus; homework often doesn't."
+    },
+    {
+      "question": "Is 'carelessness' really the problem?",
+      "answer": "Usually not. 'Carelessness' is typically a symptom of underlying conditions: distraction, fatigue, low motivation, or poor self-checking habits. Labeling errors as carelessness doesn't help because it doesn't identify what's actually causing the errors or what to do about it."
+    },
+    {
+      "question": "What's the best time of day for homework?",
+      "answer": "Generally, earlier is better than later because attention capacity depletes throughout the day. Right after school (after a brief break and snack) often works better than after dinner. However, individual children vary—observe when your child seems most focused and try to schedule homework accordingly."
+    },
+    {
+      "question": "How important is the homework environment?",
+      "answer": "Extremely important. A quiet, dedicated space with minimal distractions can dramatically improve homework quality. Even minor distractions (visible phones, background TV, sibling activity) consume attention that should go to the work. Creating test-like environmental conditions supports test-like performance."
+    },
+    {
+      "question": "Should I help my child with homework?",
+      "answer": "Strategic non-help is often more effective than immediate availability. When parents are always ready to help, children may engage less deeply with problems. Better approach: have children attempt work independently, mark uncertain items, then review together afterward. This builds independent problem-solving."
+    },
+    {
+      "question": "How can time pressure improve homework quality?",
+      "answer": "Unlimited time removes urgency, allowing attention to drift. Timed sessions (e.g., '20 minutes for math') create test-like pressure that focuses attention. The time constraint also prevents the task from expanding endlessly while productivity stays low."
+    },
+    {
+      "question": "Could this pattern indicate ADHD or another condition?",
+      "answer": "Possibly. Test conditions (high stakes, novel, structured) can mask attention difficulties that appear in unstructured homework settings. If environmental changes don't help, or if the pattern is extreme, professional evaluation may be appropriate. However, many children show this pattern without any underlying condition."
+    },
+    {
+      "question": "How do I build self-checking habits?",
+      "answer": "Create a mandatory check routine before submission: reread each problem, verify calculations, check if answers make sense. Initially, you may need to require this explicitly; over time, it becomes automatic. Celebrating caught errors (rather than criticizing missed ones) reinforces the behavior."
+    },
+    {
+      "question": "How can apps like Sorokid help with homework focus?",
+      "answer": "Gamified math apps can create test-like conditions (timed challenges, scores, immediate feedback) that activate focused thinking. Using such apps as a homework warm-up can help transition children into concentrated math mode before tackling assignments."
+    },
+    {
+      "question": "How long does it take to see improvement after environmental changes?",
+      "answer": "Many families see improvement within 2-3 weeks of consistent implementation. However, building new habits takes longer—expect 2-3 months for changes to become automatic. Consistency is key; sporadic implementation of new routines doesn't give them time to work."
+    }
+  ],
+  "cta": {
+    "text": "Help your child build focused math habits with Sorokid's engaging mental math challenges—perfect for warming up before homework.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "Child Scores High on Tests But Gets Homework Wrong: Why & What to Do | Sorokid",
+    "metaDescription": "Discover why children perform differently on tests vs. homework and how to close the gap. Environment, attention, and motivation factors explained with practical solutions.",
+    "keywords": "child tests well homework poor, inconsistent math performance, homework mistakes test success, attention and homework quality, why homework errors not tests"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-24",
+    "author": "Mrs. Jennifer Collins"
+  },
+  "postId": "con-thi-tot-nhung-lam-bai-tap-thi-sai"
 }

@@ -24,6 +24,9 @@
     "name": "Chị Thảo",
     "role": "Mẹ bé lớp 2"
   },
+  "translations": {
+    "en": "my-child-is-afraid-of-math"
+  },
   "content": {
     "intro": "7 giờ tối. Giờ làm bài tập. Con nhìn thấy quyển vở toán trên bàn, mặt con xịu xuống. 'Mẹ ơi, con đau bụng.' Mình biết con không đau bụng thật. Đây là lần thứ 4 trong tuần con tìm cớ để không phải làm toán. Hôm thì đau đầu, hôm thì mệt, hôm thì buồn ngủ. Khi mình nói 'Con làm bài toán đi', con bật khóc. Khóc thật sự. Như thể mình bắt con làm điều gì đó kinh khủng lắm.",
     "sections": [

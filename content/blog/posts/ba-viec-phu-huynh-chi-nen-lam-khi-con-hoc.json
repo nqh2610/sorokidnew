@@ -6,13 +6,32 @@
   "keywords": [
     "phụ huynh nên làm gì khi con học",
     "cách hỗ trợ con học toán",
-    "sai lầm khi kèm con học"
+    "sai lầm khi kèm con học",
+    "vai trò phụ huynh trong học tập",
+    "tạo môi trường học tập cho con",
+    "không ngồi kèm con học",
+    "động viên con học toán",
+    "cách khen con khi học",
+    "giảm căng thẳng khi kèm con",
+    "phụ huynh thông minh",
+    "hỗ trợ con tự học",
+    "tìm công cụ học tập cho con"
   ],
   "status": "published",
   "publishedAt": "2025-12-27T14:04:08.840Z",
   "createdAt": "2025-12-25",
   "image": "/blog/ba-viec-phu-huynh-nen-lam.jpg",
-  "readingTime": 5,
+  "imageAlt": "Mẹ châu Á đọc sách cùng con - việc nên làm khi kèm con học",
+  "readingTime": 12,
+  "categoryOrder": 4,
+  "order": 4,
+  "author": {
+    "name": "Chị Thảo",
+    "role": "Mẹ bé Minh – lớp 3"
+  },
+  "translations": {
+    "en": "three-things-parents-should-do-during-math-time"
+  },
   "content": {
     "intro": "Hồi trước mình nghĩ: phụ huynh tốt là phụ huynh kèm con nhiều. Nên mình ngồi cạnh con mỗi tối, sửa từng bài, giảng từng lỗi. Kết quả? Mệt. Căng. Và con cũng chẳng tiến bộ mấy. Giờ mình chỉ làm 3 việc thôi.",
     "sections": [
@@ -166,19 +185,43 @@
   "faq": [
     {
       "question": "Nếu không giải bài hộ, con không làm được thì sao?",
-      "answer": "Hỏi lại con: \"Con thử nhìn lại đề bài xem.\" Nếu vẫn không được, có thể bài đó quá khó và con cần bổ sung kiến thức nền trước."
+      "answer": "Hỏi lại con: \"Con thử nhìn lại đề bài xem.\" hoặc \"Con nghĩ bước đầu tiên là gì?\" Nếu vẫn không được, có thể bài đó quá khó và con cần bổ sung kiến thức nền trước. Đừng vội giải hộ."
     },
     {
       "question": "Con hay nói \"Con không biết\" dù chưa thử, phải làm sao?",
-      "answer": "Có thể con thiếu tự tin hoặc sợ sai. Trấn an: \"Không sao, con cứ thử, sai cũng được.\" Cho con không gian an toàn để thử."
+      "answer": "Có thể con thiếu tự tin hoặc sợ sai. Trấn an: \"Không sao, con cứ thử, sai cũng được.\" Cho con không gian an toàn để thử – không la mắng khi sai. Dần dần con sẽ dám thử hơn."
     },
     {
       "question": "Vợ/chồng hay la con khi học, mình nên làm gì?",
-      "answer": "Trao đổi riêng, không tranh luận trước mặt con. Chia sẻ những gì bạn đọc được, thống nhất cách tiếp cận chung. Thay đổi cần thời gian."
+      "answer": "Trao đổi riêng, không tranh luận trước mặt con. Chia sẻ những gì bạn đọc được về tâm lý trẻ, thống nhất cách tiếp cận chung. Thay đổi cần thời gian – kiên nhẫn và nhất quán."
     },
     {
       "question": "Làm sao biết công cụ học online nào tốt?",
-      "answer": "Thử bản miễn phí trước. Xem con có hứng thú không, có tự giác học không. Một công cụ tốt là công cụ phù hợp với con bạn."
+      "answer": "Thử bản miễn phí trước. Xem con có hứng thú không, có tự giác học không. Kiểm tra có báo cáo tiến độ không. Một công cụ tốt là công cụ phù hợp với con bạn – không có cái nào tốt nhất cho tất cả."
+    },
+    {
+      "question": "Tạo môi trường học tập ổn định gồm những gì?",
+      "answer": "Góc học riêng, yên tĩnh, đủ ánh sáng. Học cùng giờ mỗi ngày. Tắt TV, cất điện thoại khi con học. Đủ sách vở, bút thước. Quan trọng nhất là nhất quán – mỗi ngày đều như vậy."
+    },
+    {
+      "question": "Khen sự cố gắng như thế nào cho đúng?",
+      "answer": "Khen hành động cụ thể: \"Con ngồi tập trung lâu rồi đó, giỏi\", \"Bài này khó mà con vẫn không bỏ cuộc\", \"Hôm nay con tự giác hơn hôm qua\". Tránh khen chung chung \"con giỏi quá\"."
+    },
+    {
+      "question": "So sánh con với người khác có sao không?",
+      "answer": "So sánh không tạo động lực – nó tạo tự ti hoặc áp lực. Nếu muốn so sánh, hãy so sánh con với chính con: \"Hôm nay con làm nhanh hơn hôm qua!\" Đó là cách khích lệ tích cực."
+    },
+    {
+      "question": "Con ỷ lại vào bố mẹ, không chịu tự làm?",
+      "answer": "Từ từ \"lùi lại\". Thay vì trả lời ngay, hỏi lại: \"Con thử nghĩ xem?\". Đợi 30 giây trước khi gợi ý. Dần dần tăng thời gian đợi. Con sẽ quen với việc tự suy nghĩ trước."
+    },
+    {
+      "question": "Mình đi làm về mệt, không còn năng lượng kèm con?",
+      "answer": "Đó chính là lúc cần công cụ hỗ trợ. Để con tự học với app, mình chỉ cần động viên 5 phút. Không cần ngồi kèm cả tiếng. Chất lượng quan trọng hơn số lượng thời gian."
+    },
+    {
+      "question": "Có nên ép con học khi cả hai đều mệt?",
+      "answer": "Không nên. Buổi tối muộn, cả nhà kiệt sức – ép học lúc đó chỉ tạo xung đột, con không tiếp thu được. Thà để sáng mai hoặc nghỉ một buổi còn hơn. Một buổi học căng thẳng có thể làm hỏng nhiều buổi sau."
     }
   ],
   "cta": {
@@ -186,7 +229,14 @@
     "buttonText": "Thử xem",
     "buttonLink": "/register"
   },
-  "imageAlt": "Mẹ châu Á đọc sách cùng con - việc nên làm khi kèm con học",
-  "categoryOrder": 4,
-  "order": 4
+  "seo": {
+    "title": "Ba việc mình làm bây giờ – thay vì ngồi kèm con",
+    "description": "Trước mình làm nhiều lắm: ngồi cạnh, sửa bài, giảng giải, la mắng. Bây giờ mình chỉ làm 3 việc. Và mọi thứ nhẹ nhàng hơn nhiều.",
+    "keywords": "phụ huynh nên làm gì khi con học, cách hỗ trợ con học toán, sai lầm khi kèm con học"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-27",
+    "author": "Chị Thảo - Mẹ bé Minh lớp 3"
+  }
 }

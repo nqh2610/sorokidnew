@@ -15,11 +15,17 @@
   "publishedAt": "2025-12-31T03:17:33.856Z",
   "createdAt": "2025-12-26",
   "image": "/blog/hoat-dong-khoi-dong-dau-gio.jpg",
+  "imageAlt": "Giáo viên và học sinh tiểu học trong hoạt động khởi động đầu giờ vui vẻ",
   "readingTime": 5,
+  "categoryOrder": 1,
+  "order": 2,
   "author": {
     "name": "Cô Thu Hà",
     "role": "Giáo viên Tiểu học",
     "experience": "6 năm kinh nghiệm"
+  },
+  "translations": {
+    "en": "5-hot-ng-khi-ng-u-gi-khng-cn-chun-b-dng-ngay-c-lun"
   },
   "content": {
     "intro": "7 giờ sáng, tôi vừa đến trường. Tiết 1 bắt đầu lúc 7h15. Không kịp chuẩn bị gì cả. Học sinh còn đang ngái ngủ. Làm sao để 'đánh thức' các em trong 5 phút? Đây là 5 cách tôi hay dùng.",
@@ -221,6 +227,16 @@
     "buttonText": "Xem các công cụ",
     "buttonLink": "/tool"
   },
+  "seo": {
+    "title": "5 hoạt động khởi động đầu giờ không cần chuẩn bị – dùng ngay được luôn",
+    "description": "Những buổi sáng vội vã, không kịp chuẩn bị hoạt động gì cả – tôi vẫn có 5 cách khởi động tiết học mà chỉ cần mở điện thoại là dùng được.",
+    "keywords": "hoạt động khởi động đầu giờ, warmup lớp học, khởi động tiết học, ice breaker, hoạt động 5 phút đầu giờ, game khởi động"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-31",
+    "author": "Cô Thu Hà"
+  },
   "relatedTools": [
     {
       "name": "Chiếc Nón Kỳ Diệu",
@@ -252,8 +268,5 @@
     "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
     "chiec-non-ky-dieu-goi-hoc-sinh-cong-bang",
     "den-may-man-cuoi-tiet-phan-thuong-nho-dong-luc-lon"
-  ],
-  "imageAlt": "Giáo viên và học sinh tiểu học trong hoạt động khởi động đầu giờ vui vẻ",
-  "categoryOrder": 1,
-  "order": 2
+  ]
 }

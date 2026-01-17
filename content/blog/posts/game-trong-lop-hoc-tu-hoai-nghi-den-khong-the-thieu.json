@@ -15,11 +15,17 @@
   "publishedAt": "2025-12-31T03:04:55.865Z",
   "createdAt": "2025-12-26",
   "image": "/blog/game-trong-lop-hoc.jpg",
+  "imageAlt": "Học sinh hào hứng tham gia game học tập trên lớp",
   "readingTime": 6,
+  "categoryOrder": 1,
+  "order": 3,
   "author": {
     "name": "Thầy Quốc Bảo",
     "role": "Giáo viên THPT",
     "experience": "10 năm kinh nghiệm"
+  },
+  "translations": {
+    "en": "students-ask-can-we-play-games-today-and-the-answer-that-changed-my-classroom"
   },
   "content": {
     "intro": "\"Sao lại cho chơi game trong lớp?\" – Một phụ huynh từng hỏi tôi với vẻ lo ngại. Tôi hiểu, vì chính tôi cũng từng nghĩ vậy. Nhưng sau khi thử, tôi nhận ra: game đúng cách không phải làm học sinh xao nhãng, mà giúp các em học tốt hơn.",
@@ -246,6 +252,16 @@
     "buttonText": "Xem các game",
     "buttonLink": "/tool"
   },
+  "seo": {
+    "title": "Game trong lớp học – từ hoài nghi đến không thể thiếu",
+    "description": "Tôi từng nghĩ game làm học sinh xao nhãng. Nhưng khi thử đúng cách, game trở thành công cụ dạy học hiệu quả nhất của tôi.",
+    "keywords": "gamification giáo dục, game học tập, trò chơi trong dạy học, game based learning, dạy học qua trò chơi, tạo hứng thú học tập"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-31",
+    "author": "Thầy Quốc Bảo"
+  },
   "relatedTools": [
     {
       "name": "Chiếc Nón Kỳ Diệu",
@@ -272,8 +288,5 @@
     "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
     "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi",
     "tiet-on-tap-truoc-ky-thi-hoc-sinh-khong-ngu-gat"
-  ],
-  "imageAlt": "Học sinh hào hứng tham gia game học tập trên lớp",
-  "categoryOrder": 1,
-  "order": 3
+  ]
 }

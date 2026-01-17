@@ -6,7 +6,16 @@
   "keywords": [
     "học soroban bao lâu",
     "lộ trình học soroban",
-    "các cấp độ soroban"
+    "các cấp độ soroban",
+    "thời gian học soroban",
+    "soroban bao lâu thì tính nhẩm",
+    "kỳ vọng thực tế soroban",
+    "tiến bộ học soroban",
+    "con học soroban mấy tháng",
+    "anzan tính nhẩm soroban",
+    "luyện soroban mỗi ngày",
+    "kiên nhẫn học soroban",
+    "soroban cho trẻ tiểu học"
   ],
   "status": "published",
   "publishedAt": "2026-01-02T09:37:58.620Z",
@@ -14,6 +23,11 @@
   "image": "/blog/thoi-gian-hoc-soroban-tinh-nham.jpg",
   "imageAlt": "Bé châu Á nhắm mắt tính nhẩm với hình ảnh bàn tính trong đầu",
   "readingTime": 7,
+  "categoryOrder": 1,
+  "order": 19,
+  "translations": {
+    "en": "how-long-until-kid-can-do-mental-math"
+  },
   "content": {
     "intro": "\"Học Soroban 3 tháng, con tính nhẩm như máy\" – mình từng đọc được câu này và kỳ vọng. Thực tế? Tháng thứ 3 con mới bắt đầu quen với bàn tính. Tính nhẩm còn xa lắm. Nếu bạn đang tìm hiểu, đây là lộ trình thực tế mình muốn chia sẻ.",
     "sections": [
@@ -209,6 +223,18 @@
     "buttonText": "Xem lộ trình",
     "buttonLink": "/learn"
   },
-  "categoryOrder": 1,
-  "order": 19
+  "seo": {
+    "title": "Học Soroban bao lâu thì con tính nhẩm được? Đừng kỳ vọng như mình",
+    "description": "Mình từng nghĩ 2-3 tháng là con tính nhẩm vèo vèo. Thực tế khác xa. Đây là lộ trình thực tế mình thấy từ con mình.",
+    "keywords": "học soroban bao lâu, lộ trình học soroban, các cấp độ soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-02",
+    "author": "Chị Hà My"
+  },
+  "author": {
+    "name": "Chị Hà My",
+    "bio": "Mẹ của bé trai lớp 2, đã cho con học Soroban gần 1 năm và chia sẻ hành trình thực tế"
+  }
 }

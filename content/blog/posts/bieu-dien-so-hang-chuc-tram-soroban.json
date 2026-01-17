@@ -7,13 +7,27 @@
     "số hàng chục soroban",
     "cách đọc số lớn trên soroban",
     "biểu diễn số nhiều chữ số soroban",
-    "số hàng trăm soroban"
+    "số hàng trăm soroban",
+    "số hàng nghìn soroban",
+    "cách gạt số 2 chữ số soroban",
+    "học số trên bàn tính",
+    "đọc số soroban cho người mới",
+    "hàng đơn vị hàng chục soroban",
+    "dấu chấm phân tách soroban",
+    "số có nhiều chữ số soroban",
+    "cột soroban đại diện hàng"
   ],
   "status": "published",
   "publishedAt": "2025-12-27T14:04:22.643Z",
   "createdAt": "2025-12-25",
   "image": "/blog/hoc-so-hang-chuc-tram-soroban.jpg",
-  "readingTime": 5,
+  "imageAlt": "Trẻ em châu Á học biểu diễn số hàng chục, trăm trên Soroban",
+  "readingTime": 13,
+  "categoryOrder": 1,
+  "order": 5,
+  "translations": {
+    "en": "biu-din-s-hng-chc-trm-nghn-trn-soroban"
+  },
   "content": {
     "intro": "Con đã thuộc số 0-9. Giờ là lúc học số lớn hơn. Tin vui: quy tắc y hệt – chỉ khác là dùng nhiều cột hơn.",
     "sections": [
@@ -288,19 +302,43 @@
   "faq": [
     {
       "question": "Soroban có thể biểu diễn số lớn đến bao nhiêu?",
-      "answer": "Tùy số cột. Soroban 13 cột có thể biểu diễn số đến 13 chữ số (hàng nghìn tỷ). Trong thực tế, trẻ thường luyện số 4-6 chữ số."
+      "answer": "Tùy số cột. Soroban 13 cột có thể biểu diễn số đến 13 chữ số (hàng nghìn tỷ). Trong thực tế, trẻ thường luyện số 4-6 chữ số. Soroban 17 cột dùng cho người học nâng cao và thi đấu."
     },
     {
       "question": "Sao phải đọc từ trái sang phải?",
-      "answer": "Vì hàng lớn nhất nằm bên trái, giống cách chúng ta đọc số bình thường. Đọc từ trái giúp nắm được \"kích thước\" của số ngay."
+      "answer": "Vì hàng lớn nhất nằm bên trái, giống cách chúng ta đọc số bình thường. Đọc từ trái giúp nắm được 'kích thước' của số ngay và dễ kiểm soát kết quả tính toán."
     },
     {
       "question": "Con hay nhầm số có số 0 ở giữa (như 101), phải làm sao?",
-      "answer": "Luyện riêng dạng này. Nhắc con: mỗi cột là 1 chữ số, kể cả cột không có hạt áp (= số 0). Cột trống cũng cần đọc."
+      "answer": "Luyện riêng dạng này với các số như 101, 200, 1001, 3050. Nhắc con: mỗi cột là 1 chữ số, kể cả cột không có hạt áp (= số 0). Cột trống cũng cần đọc."
     },
     {
       "question": "Có cần học đến hàng triệu không?",
       "answer": "Không cần gấp. Trẻ tiểu học thường luyện số 3-4 chữ số là đủ. Khi thuần thục, việc mở rộng lên 5-6 chữ số rất đơn giản vì quy tắc giống hệt."
+    },
+    {
+      "question": "Dấu chấm trên Soroban có ý nghĩa gì?",
+      "answer": "Dấu chấm đánh dấu vị trí quan trọng: dấu ngoài cùng bên phải thường là hàng đơn vị, các dấu khác cách nhau 3 cột giúp phân tách hàng nghìn, triệu để dễ đọc số lớn."
+    },
+    {
+      "question": "Con nhầm 23 thành 32, làm sao sửa?",
+      "answer": "Luôn xác định cột hàng đơn vị trước khi đọc. Có thể dùng ngón tay chỉ vào dấu chấm hàng đơn vị, rồi đọc từ trái sang phải. Luyện nhiều số 2 chữ số sẽ quen."
+    },
+    {
+      "question": "Nên luyện số mấy chữ số trước?",
+      "answer": "Bắt đầu với 2 chữ số (10-99), khi con đọc thành thạo thì lên 3 chữ số (100-999), rồi 4 chữ số. Mỗi mức luyện khoảng 1-2 tuần tùy tốc độ của con."
+    },
+    {
+      "question": "Có cần dùng Soroban thật để luyện đọc số không?",
+      "answer": "Ban đầu nên dùng Soroban thật để con quen cảm giác. Sau đó có thể dùng app để luyện thêm vì app có nhiều bài tập và phản hồi nhanh."
+    },
+    {
+      "question": "Con đọc số chậm, có bình thường không?",
+      "answer": "Bình thường. Giai đoạn đầu cần chính xác hơn nhanh. Khi con đọc đúng liên tục 10-20 số thì tốc độ sẽ tự tăng. Đừng ép nhanh khi chưa vững."
+    },
+    {
+      "question": "Luyện đọc số bao lâu mỗi ngày?",
+      "answer": "5-10 phút mỗi ngày là đủ cho phần đọc số. Có thể chia thành 2 lần (sáng/tối). Kết hợp với các bài tập khác như gạt số, tính toán để đa dạng."
     }
   ],
   "cta": {
@@ -308,7 +346,18 @@
     "buttonText": "Cho con luyện thử",
     "buttonLink": "/register"
   },
-  "imageAlt": "Trẻ em châu Á học biểu diễn số hàng chục, trăm trên Soroban",
-  "categoryOrder": 1,
-  "order": 5
+  "seo": {
+    "title": "Biểu diễn số hàng chục, trăm, nghìn trên Soroban",
+    "description": "Sau khi học số 0-9, con cần biết cách biểu diễn số lớn hơn. Bài này hướng dẫn cách đọc số 2-3-4 chữ số trên Soroban.",
+    "keywords": "số hàng chục soroban, cách đọc số lớn trên soroban, biểu diễn số nhiều chữ số soroban, số hàng trăm soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-27",
+    "author": "ThS. Lê Minh Quân"
+  },
+  "author": {
+    "name": "Minh Anh",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
 }

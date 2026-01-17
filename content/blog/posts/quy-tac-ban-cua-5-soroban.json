@@ -13,7 +13,13 @@
   "publishedAt": "2025-12-27T14:04:38.532Z",
   "createdAt": "2025-12-25",
   "image": "/blog/hoc-quy-tac-ban-cua-5.jpg",
+  "imageAlt": "Trẻ em châu Á học quy tắc bạn của 5 trên Soroban",
   "readingTime": 7,
+  "categoryOrder": 1,
+  "order": 7,
+  "translations": {
+    "en": "soroban-5-complement-rule"
+  },
   "content": {
     "intro": "Khi con học Soroban, sẽ đến lúc gặp bài như 3 + 4. Có 3 hạt đất đang áp, muốn cộng 4 nhưng chỉ còn 1 hạt đất trống. Làm sao? Đây là lúc cần \"Bạn của 5\" – quy tắc quan trọng nhất trong Soroban.",
     "sections": [
@@ -332,7 +338,7 @@
     },
     {
       "question": "Con hay quên bạn của mỗi số, phải làm sao?",
-      "answer": "Chỉ cần nhớ: 1-4 và 2-3. Có 4 số thôi! Hoặc tính nhanh: Bạn của X = 5 - X. Luyện nhiều sẽ thành phản xạ."
+      "answer": "Chỉ cần nhớ 2 cặp: 1-4 và 2-3. Có 4 số thôi! Hoặc tính nhanh: Bạn của X = 5 - X. Luyện nhiều 1-2 tuần sẽ thành phản xạ."
     },
     {
       "question": "Khi nào dùng Bạn của 5, khi nào dùng Bạn của 10?",
@@ -340,15 +346,46 @@
     },
     {
       "question": "Luyện Bạn của 5 bao lâu?",
-      "answer": "Khoảng 1-2 tuần nếu luyện mỗi ngày 15-20 phút. Đây là quy tắc khó, cần kiên nhẫn. Khi con làm đúng mà không cần suy nghĩ = đã thuần thục."
+      "answer": "Khoảng 1-2 tuần nếu luyện mỗi ngày 15-20 phút. Đây là quy tắc khó nhất với trẻ mới học. Khi con làm đúng mà không cần suy nghĩ = đã thuần thục."
+    },
+    {
+      "question": "Công thức Bạn của 5 khi cộng là gì?",
+      "answer": "Khi cộng X mà không đủ hạt đất: +X = +5 - (5-X). Nghĩa là: Gạt hạt trời xuống (cộng 5), đồng thời gạt bạn của X xuống (trừ bạn)."
+    },
+    {
+      "question": "Công thức Bạn của 5 khi trừ là gì?",
+      "answer": "Khi trừ X mà không đủ hạt đất để trừ: -X = -5 + (5-X). Nghĩa là: Gạt hạt trời lên (trừ 5), đồng thời gạt bạn của X lên (cộng bạn)."
+    },
+    {
+      "question": "Con làm đúng nhưng rất chậm, có sao không?",
+      "answer": "Không sao. Giai đoạn đầu cần ĐÚNG trước, NHANH sau. Luyện đều đặn, tốc độ sẽ tăng tự nhiên. Ép nhanh khi chưa thuần thục sẽ dễ sai."
+    },
+    {
+      "question": "Tại sao 3+4 cần Bạn của 5 mà 1+3 không cần?",
+      "answer": "Vì 1+3=4, vẫn đủ hạt đất (có 1, cộng 3, cần 4 hạt, chỉ có 3 hạt trống → đủ). Còn 3+4=7, có 3 hạt, cộng 4 cần 7, nhưng chỉ còn 1 hạt trống → thiếu → dùng Bạn của 5."
+    },
+    {
+      "question": "Có app nào luyện riêng Bạn của 5 không?",
+      "answer": "Sorokid có chế độ luyện riêng quy tắc Bạn của 5 với hình ảnh trực quan, giúp con hiểu tại sao cần gạt hạt trời và trừ bạn."
+    },
+    {
+      "question": "Sau Bạn của 5 thì học gì tiếp?",
+      "answer": "Học Bạn của 10 – xử lý khi kết quả vượt quá 9 (sang hàng chục). Bạn của 10 phức tạp hơn vì liên quan đến 2 cột."
     }
   ],
   "cta": {
-    "text": "Sorokid có bài tập luyện Bạn của 5 với hình ảnh trực quan, giúp con hiểu và nhớ lâu.",
-    "buttonText": "Cho con luyện thử",
+    "text": "Sorokid có bài tập luyện Bạn của 5 với hình ảnh trực quan, giúp con hiểu tại sao cần mượn hạt trời và nhớ lâu.",
+    "buttonText": "Cho con luyện thử miễn phí 7 ngày",
     "buttonLink": "/register"
   },
-  "imageAlt": "Trẻ em châu Á học quy tắc bạn của 5 trên Soroban",
-  "categoryOrder": 1,
-  "order": 7
+  "seo": {
+    "title": "Quy tắc 'Bạn của 5' trong Soroban – Bí quyết cộng trừ nhanh",
+    "description": "Bạn của 5 là quy tắc quan trọng nhất khi học Soroban. Hiểu được nó, con sẽ vượt qua rào cản lớn nhất của phép cộng trừ.",
+    "keywords": "bạn của 5 soroban, quy tắc bạn 5, công thức bạn 5 soroban, cách cộng có nhớ soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-27T14:04:38.532Z",
+    "author": "Chị Hồng Nhung"
+  }
 }

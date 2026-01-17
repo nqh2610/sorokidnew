@@ -15,9 +15,16 @@
   ],
   "status": "published",
   "publishedAt": "2025-12-29T22:39:44.944Z",
+  "createdAt": "2025-12-29",
+  "image": "/blog/xuc-xac-3d-cong-cu-random-vui-nhon-trong-lop-hoc.png",
+  "imageAlt": "Xúc Xắc 3D - Công Cụ Random Vui Nhộn Biến Mọi Quyết Định Thành Trò Chơi",
+  "readingTime": 12,
   "author": {
     "name": "Thầy Phong",
     "role": "Giáo viên Toán THCS"
+  },
+  "translations": {
+    "en": "xc-xc-3d-cng-c-random-vui-nhn-bin-mi-quyt-nh-thnh-tr-chi"
   },
   "content": {
     "intro": "\"Ai sẽ lên bảng làm bài này?\" - Cả lớp im lặng, nhìn xuống bàn. Cảnh tượng quen thuộc với mọi giáo viên. Nhưng kể từ khi tôi thay câu hỏi đó bằng \"Xúc xắc sẽ chọn ai?\", không khí hoàn toàn khác. Cả lớp háo hức nhìn con xúc xắc 3D lăn trên màn hình, hồi hộp chờ kết quả. Số 5! Bạn số 5 lên bảng! Tiếng cười, tiếng vỗ tay - và bạn số 5 tự tin bước lên vì \"xúc xắc chọn\", không phải thầy chọn.",
@@ -659,17 +666,6 @@
     "buttonLink": "/tool/xuc-xac",
     "text": "Gieo Ngay Một Xúc Xắc! - Trải nghiệm Xúc Xắc 3D với hiệu ứng đẹp mắt. Nhiều loại xúc xắc, gieo nhiều cái cùng lúc, miễn phí."
   },
-  "relatedTools": [
-    "xuc-xac",
-    "random-picker",
-    "vong-quay-may-man",
-    "timer"
-  ],
-  "relatedPosts": [
-    "boc-tham-hoc-sinh-cong-cu-goi-ten-cong-bang-cho-lop-hoc",
-    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
-    "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi"
-  ],
   "seo": {
     "title": "Xúc Xắc 3D Online - Công Cụ Random Vui Nhộn Cho Lớp Học",
     "description": "Hướng dẫn sử dụng Xúc Xắc 3D trong dạy học. 10+ cách ứng dụng từ gọi học sinh đến tạo bài tập ngẫu nhiên. Miễn phí, hiệu ứng đẹp.",
@@ -689,5 +685,15 @@
     "datePublished": null,
     "dateModified": null
   },
-  "image": "/blog/xuc-xac-3d-cong-cu-random-vui-nhon-trong-lop-hoc.png"
+  "relatedTools": [
+    "xuc-xac",
+    "random-picker",
+    "vong-quay-may-man",
+    "timer"
+  ],
+  "relatedPosts": [
+    "boc-tham-hoc-sinh-cong-cu-goi-ten-cong-bang-cho-lop-hoc",
+    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
+    "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi"
+  ]
 }

@@ -16,9 +16,16 @@
   ],
   "status": "published",
   "publishedAt": "2025-12-28T05:49:15.671Z",
+  "createdAt": "2025-12-28",
+  "image": "/blog/ai-la-trieu-phu-game-show-kiem-tra-kien-thuc-trong-lop.png",
+  "imageAlt": "Ai Là Triệu Phú Trong Lớp Học - Biến Tiết Ôn Tập Thành Game Show Truyền Hình",
+  "readingTime": 11,
   "author": {
     "name": "Thầy Khoa",
     "role": "Giáo viên THCS"
+  },
+  "translations": {
+    "en": "ai-l-triu-ph-trong-lp-hc-bin-tit-n-tp-thnh-game-show-truyn-h"
   },
   "content": {
     "intro": "\"Câu hỏi tiếp theo trị giá 15 triệu đồng. Bạn có chắc chắn với đáp án của mình không?\" - Cả lớp nín thở. Em học sinh đứng trên bục giảng đang cân nhắc có nên dùng quyền 50:50 hay không. Đây không phải trường quay VTV, mà là lớp 8A của tôi trong tiết ôn tập Lịch sử. Kể từ khi đưa game Ai Là Triệu Phú vào lớp học, tiết ôn tập chưa bao giờ nhàm chán như vậy.",
@@ -545,17 +552,6 @@
     "buttonLink": "/tool/ai-la-trieu-phu",
     "text": "Biến Lớp Học Thành Game Show Ngay! - Trải nghiệm Ai Là Triệu Phú phiên bản lớp học. Giao diện đẹp, đầy đủ quyền trợ giúp, miễn phí."
   },
-  "relatedTools": [
-    "ai-la-trieu-phu",
-    "random-picker",
-    "timer",
-    "cuoc-dua-ki-thu"
-  ],
-  "relatedPosts": [
-    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
-    "tiet-on-tap-truoc-ky-thi-hoc-sinh-khong-ngu-gat",
-    "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi"
-  ],
   "seo": {
     "title": "Ai Là Triệu Phú Trong Lớp Học - Game Show Kiểm Tra Kiến Thức",
     "description": "Hướng dẫn tổ chức game Ai Là Triệu Phú trong lớp học. Biến tiết ôn tập thành game show với 50:50, Hỏi khán giả. Công cụ miễn phí cho giáo viên.",
@@ -576,5 +572,15 @@
     "datePublished": null,
     "dateModified": null
   },
-  "image": "/blog/ai-la-trieu-phu-game-show-kiem-tra-kien-thuc-trong-lop.png"
+  "relatedTools": [
+    "ai-la-trieu-phu",
+    "random-picker",
+    "timer",
+    "cuoc-dua-ki-thu"
+  ],
+  "relatedPosts": [
+    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
+    "tiet-on-tap-truoc-ky-thi-hoc-sinh-khong-ngu-gat",
+    "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi"
+  ]
 }

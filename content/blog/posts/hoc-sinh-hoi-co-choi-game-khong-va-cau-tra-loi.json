@@ -12,11 +12,17 @@
     "phương pháp dạy học tích cực",
     "học sinh chủ động"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-01-22T02:49:41.000Z",
+  "createdAt": "2026-01-16",
+  "image": "/blog/default-blog-image.jpg",
+  "readingTime": 8,
   "author": {
     "name": "Cô Hương",
     "role": "Giáo viên Tiểu học"
+  },
+  "translations": {
+    "en": "students-ask-can-we-play-games-today-and-the-answer-that-changed-my-classroom"
   },
   "content": {
     "intro": "\"Cô ơi, hôm nay mình có chơi game không ạ?\" - Câu hỏi này từng khiến tôi khó chịu. Tôi nghĩ học sinh chỉ muốn chơi, không muốn học. Nhưng sau khi thay đổi cách nhìn, tôi nhận ra: khi học sinh háo hức đến lớp, mong đợi được \"chơi\", đó chính là lớp học tích cực. Bài viết này chia sẻ hành trình từ giáo viên \"nghiêm khắc\" đến người tạo ra những tiết học học sinh yêu thích.",
@@ -289,18 +295,6 @@
     "buttonLink": "/tool",
     "text": "Bắt Đầu Tạo Tiết Học Thú Vị Ngay - Khám phá bộ công cụ dạy học tích cực miễn phí. Biến tiết học thành trải nghiệm học sinh mong đợi."
   },
-  "relatedTools": [
-    "magic-hat",
-    "duck-race",
-    "flash-anzan",
-    "random-picker",
-    "lucky-light"
-  ],
-  "relatedPosts": [
-    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
-    "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
-    "chiec-non-ky-dieu-goi-hoc-sinh-cong-bang"
-  ],
   "seo": {
     "title": "Học Sinh Hỏi \"Có Chơi Game Không?\" - Dấu Hiệu Lớp Học Tích Cực",
     "description": "Khi học sinh háo hức hỏi có chơi game không mỗi đầu giờ, đó là lớp học tích cực. Chia sẻ cách tạo tiết học học sinh yêu thích với công cụ dạy học miễn phí.",
@@ -317,7 +311,20 @@
     "type": "Article",
     "headline": "Học Sinh Hỏi \"Hôm Nay Có Chơi Game Không Cô?\" - Và Câu Trả Lời Thay Đổi Lớp Học",
     "author": "Cô Hương - Giáo viên Tiểu học",
-    "datePublished": null,
+    "datePublished": "2026-01-22",
     "dateModified": null
-  }
+  },
+  "relatedTools": [
+    "magic-hat",
+    "duck-race",
+    "flash-anzan",
+    "random-picker",
+    "lucky-light"
+  ],
+  "relatedPosts": [
+    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
+    "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
+    "chiec-non-ky-dieu-goi-hoc-sinh-cong-bang"
+  ],
+  "imageAlt": "Học Sinh Hỏi \"Hôm Nay Có Chơi Game Không Cô?\" - Và Câu Trả Lời Thay Đổi Lớp Học"
 }

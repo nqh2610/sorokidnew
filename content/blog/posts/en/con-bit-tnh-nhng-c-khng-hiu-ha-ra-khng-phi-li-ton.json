@@ -1,49 +1,380 @@
 {
-  "postId": "con-biet-tinh-nhung-doc-de-khong-hieu",
   "slug": "con-bit-tnh-nhng-c-khng-hiu-ha-ra-khng-phi-li-ton",
-  "title": "[EN] Con biết tính nhưng đọc đề không hiểu – hóa ra không phải lỗi toán",
-  "description": "[Needs translation] Con tính nhanh lắm, nhưng gặp bài toán có lời văn là bí. Mình từng nghĩ con dốt toán – hóa ra con gặp khó ở chỗ khác.",
-  "category": "when-kids-struggle-with-math",
+  "title": "My Child Can Calculate But Can't Understand Word Problems: It Wasn't a Math Problem",
+  "description": "My son can do 24-8 instantly but freezes at 'Lan has 24 candies and gives 8 to Hoa.' I thought he was bad at math. Turns out, the issue was something else entirely.",
+  "category": "math-struggles",
   "keywords": [
-    "con không hiểu đề toán",
-    "trẻ khó đọc hiểu toán có lời văn",
-    "con biết tính nhưng không hiểu đề"
+    "child can't understand word problems",
+    "math word problems struggle",
+    "reading comprehension math",
+    "child calculates but can't solve",
+    "word problem strategies",
+    "math story problems help",
+    "why child struggles word problems",
+    "decoding word problems",
+    "math literacy connection",
+    "comprehension vs calculation",
+    "help child word problems",
+    "math reading skills"
   ],
   "status": "published",
-  "publishedAt": "2025-12-28T05:50:15.645Z",
+  "publishedAt": "2026-02-02T10:50:13.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/con-biet-tinh-nhung-khong-hieu-de.jpg",
-  "imageAlt": "Trẻ em châu Á cần hỗ trợ đọc hiểu đề toán",
-  "readingTime": 6,
+  "imageAlt": "Child looking confused at math word problem while easily solving calculation",
+  "readingTime": 14,
   "author": {
-    "name": "SoroKid Team",
-    "role": "Education Content"
+    "name": "Patricia Wong",
+    "role": "Reading Specialist & Mother of Two"
+  },
+  "translations": {
+    "vi": "con-biet-tinh-nhung-doc-de-khong-hieu"
   },
   "content": {
-    "intro": "[Needs natural English rewrite] \"Mẹ ơi, con không biết làm bài này.\" – Con đưa đề toán. Mình đọc: \"Lan có 24 cái kẹo, cho Hoa 8 cái, hỏi Lan còn mấy cái?\" – Quá dễ mà? Mình hỏi con: \"24 trừ 8 bằng mấy?\" – \"16 ạ.\" – Con trả lời ngay. Vậy tại sao con không làm được?",
+    "intro": "'Mom, I don't know how to do this one.' My son handed me his homework. I read: 'Lan has 24 candies. She gives 8 to Hoa. How many does Lan have left?' So easy! I asked him: 'What's 24 minus 8?' He answered immediately: '16.' So why couldn't he solve the word problem? That question led me down a path that completely changed how I understood my son's struggles.",
     "sections": [
       {
         "type": "heading",
         "level": 2,
-        "text": "Vấn đề không phải ở toán"
+        "text": "The Problem Wasn't Math"
       },
       {
         "type": "paragraph",
-        "text": "Con tính cộng trừ nhân chia tốt. Cho phép tính, con làm nhanh. Nhưng cho đề bài bằng chữ, con bí."
+        "text": "My son could do addition, subtraction, multiplication, and division quickly. Give him a calculation, done. But give him the same problem in words, and he'd freeze."
       },
       {
         "type": "paragraph",
-        "text": "Mình quan sát và thấy: con không biết đề bài đang hỏi gì. Con đọc xong, không biết phải cộng hay trừ."
-      },
-      {
-        "type": "paragraph",
-        "text": "Vấn đề không phải toán. Vấn đề là đọc hiểu."
+        "text": "I watched him carefully one evening. He read the word problem, then just... stared. When I asked what operation he needed, he said, 'I don't know.' He genuinely didn't understand what the problem was asking."
       },
       {
         "type": "callout",
-        "style": "empathy",
-        "text": "Nhiều trẻ giỏi tính nhưng gặp khó với toán có lời văn. Đó không phải con dốt toán – con đang cần hỗ trợ ở kỹ năng đọc hiểu."
+        "style": "insight",
+        "text": "The issue wasn't his math ability. It was reading comprehension. He could calculate anything—but he couldn't decode what calculation was needed from the words."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Word Problems Are Actually Reading Problems"
+      },
+      {
+        "type": "paragraph",
+        "text": "Word problems require multiple skills working together:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Reading fluency**: Decoding the words themselves",
+          "**Vocabulary understanding**: Knowing what each word means",
+          "**Comprehension**: Understanding the situation described",
+          "**Translation**: Converting the story into a math operation",
+          "**Calculation**: Actually doing the math",
+          "**Verification**: Checking if the answer makes sense"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "My son was stuck at step 4. He could read, understand individual words, and calculate. But translating a story into an operation was a completely different skill."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Signs Your Child Has This Issue"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Does calculations quickly but struggles with word problems",
+          "Says 'I don't understand' or 'I don't know what to do'",
+          "Randomly picks operations (adds when should subtract)",
+          "Can solve when you rephrase the problem differently",
+          "Avoids word problems but doesn't avoid calculation practice",
+          "Does better with pictures or diagrams than text"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The 'Keyword' Approach: Why It Fails"
+      },
+      {
+        "type": "paragraph",
+        "text": "Many parents teach keyword strategies: 'gives away means subtract,' 'altogether means add.' I tried this. It backfired."
+      },
+      {
+        "type": "paragraph",
+        "text": "Why? Because keywords don't always indicate the right operation:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "'Tom has 5 more than Sam' → could be addition OR subtraction depending on the question",
+          "'How many left?' → usually subtraction, but not always",
+          "'Each' → could indicate multiplication, division, or neither"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Keywords teach pattern matching, not comprehension. They break down on slightly unusual problems."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Actually Worked: The Visualization Approach"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Step 1: Draw It Out"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before any math, I asked my son to draw what was happening in the problem. Not numbers—the actual situation. Lan with candies. Giving some to Hoa."
+      },
+      {
+        "type": "paragraph",
+        "text": "Drawing forced him to visualize, which revealed whether he understood the story."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Step 2: Retell in Own Words"
+      },
+      {
+        "type": "paragraph",
+        "text": "'Tell me what's happening without looking at the paper.' If he couldn't retell it, he hadn't understood it. We'd re-read together, piece by piece."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Step 3: Identify What's Changing"
+      },
+      {
+        "type": "paragraph",
+        "text": "I taught him to ask: 'Is the amount getting bigger or smaller?' This simple question often reveals the operation without memorizing keywords."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Step 4: Numbers Last"
+      },
+      {
+        "type": "paragraph",
+        "text": "Only after steps 1-3 did we look at actual numbers. By then, he usually knew what to do."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Practice Strategies That Helped"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Numberless Word Problems"
+      },
+      {
+        "type": "paragraph",
+        "text": "I'd give problems without numbers: 'Lan has some candies. She gives some to Hoa. Does Lan have more or fewer now?' This isolated the comprehension skill from calculation."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Create Your Own Problems"
+      },
+      {
+        "type": "paragraph",
+        "text": "I'd give him numbers (24 - 8 = 16) and ask him to make up a story that fits. Creating problems requires understanding them—powerful practice."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Real-Life Problems"
+      },
+      {
+        "type": "paragraph",
+        "text": "'You have $10. That toy costs $7. Do you have enough? How much change?' Real situations made abstract problems concrete and meaningful."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Read Aloud Together"
+      },
+      {
+        "type": "paragraph",
+        "text": "I read word problems aloud while he followed along. Hearing the rhythm of language helped him parse the meaning better than silent reading."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Reading Connection"
+      },
+      {
+        "type": "paragraph",
+        "text": "Here's what surprised me: improving his general reading comprehension improved his word problem ability. We:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Read more books together, discussing what happened",
+          "Practiced summarizing stories in his own words",
+          "Worked on vocabulary in context",
+          "Did 'inference' exercises (what does this probably mean?)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "These 'reading' activities directly helped his 'math' word problems."
+      },
+      {
+        "type": "callout",
+        "style": "success",
+        "text": "After 3 months of focusing on comprehension rather than calculation, my son went from dreading word problems to approaching them confidently. He now reads carefully, visualizes, then solves. His calculation skill was never the issue—his reading strategy was."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When to Suspect Deeper Issues"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sometimes word problem struggles indicate underlying challenges:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Dyslexia**: Difficulty decoding text affects word problems",
+          "**Language processing issues**: Trouble understanding spoken/written language",
+          "**Working memory limitations**: Can't hold all problem parts in mind",
+          "**Attention issues**: Missing key details while reading"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "If strategies aren't helping after consistent practice, consider evaluation."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "A Message to Parents"
+      },
+      {
+        "type": "paragraph",
+        "text": "If your child calculates well but struggles with word problems, don't assume they're 'bad at math.' They might have excellent math ability hidden behind a reading comprehension barrier."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "This is fixable. With the right approach—visualization, comprehension practice, real-world application—most children can bridge the gap between calculation ability and word problem success."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Frequently Asked Questions"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Should I avoid word problems until my child reads better?"
+      },
+      {
+        "type": "paragraph",
+        "text": "No—work on both simultaneously. Use verbal word problems (you read aloud), picture-based problems, and real-life situations while also building reading skills. Avoiding word problems delays developing this crucial translation skill."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "My child's teacher uses keyword strategies. Should I contradict this?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Don't contradict, but supplement. Keywords can be useful starting points, but add visualization and retelling at home. Eventually, true comprehension will replace keyword reliance."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "How long until I see improvement?"
+      },
+      {
+        "type": "paragraph",
+        "text": "With consistent daily practice (10-15 minutes), most children show noticeable improvement in 4-8 weeks. But building strong comprehension is a long-term process—keep going even after initial gains."
       }
-    ]
-  }
+    ],
+    "faq": [
+      {
+        "question": "Should I avoid word problems until reading improves?",
+        "answer": "No. Work on both simultaneously using verbal problems, pictures, and real-life situations while building reading skills. Avoiding word problems delays developing the crucial translation skill between language and math."
+      },
+      {
+        "question": "My child's teacher uses keywords. Should I contradict this?",
+        "answer": "Don't contradict—supplement. Keywords can be starting points, but add visualization and retelling at home. True comprehension will eventually replace keyword reliance as your child develops deeper understanding."
+      },
+      {
+        "question": "How long until I see improvement?",
+        "answer": "With consistent 10-15 minute daily practice, most children show noticeable improvement in 4-8 weeks. But building strong comprehension is ongoing—continue even after initial gains to cement the skills."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Sorokid builds calculation fluency so your child can focus mental energy on comprehension, not basic math.",
+      "buttonText": "Try Free",
+      "buttonUrl": "/register"
+    }
+  },
+  "faq": [
+    {
+      "question": "Why can my child calculate but not solve word problems?",
+      "answer": "Word problems require reading comprehension, vocabulary, and the ability to translate stories into math operations—separate skills from calculation. Your child may excel at arithmetic but struggle with the language-processing step that comes before calculation."
+    },
+    {
+      "question": "Are keyword strategies effective for word problems?",
+      "answer": "Keywords (like 'altogether means add') have limited effectiveness. They teach pattern matching rather than comprehension and fail on non-standard problems. Visualization and true comprehension strategies are more reliable long-term."
+    },
+    {
+      "question": "How can I help my child understand word problems better?",
+      "answer": "Use the visualization approach: have them draw the situation, retell the problem in their own words, identify whether quantities are increasing or decreasing, then do the math. This builds genuine comprehension rather than keyword reliance."
+    },
+    {
+      "question": "What are numberless word problems?",
+      "answer": "Problems without specific numbers that focus on comprehension: 'Lan has some candies and gives some away. Does she have more or fewer now?' This isolates the translation skill from calculation, helping children understand what operations mean."
+    },
+    {
+      "question": "Does improving general reading help with math word problems?",
+      "answer": "Yes, significantly. Reading comprehension skills—summarizing, inferring, visualizing while reading—directly transfer to word problem ability. Children who read more and discuss what they read often improve at word problems too."
+    },
+    {
+      "question": "When should I be concerned about word problem struggles?",
+      "answer": "If strategies aren't helping after 2-3 months of consistent practice, or if your child struggles with reading comprehension generally, consider evaluation for dyslexia, language processing issues, or attention challenges that may underlie the difficulty."
+    },
+    {
+      "question": "Should I read word problems aloud to my child?",
+      "answer": "Yes, especially initially. Reading aloud removes the decoding burden, letting your child focus on comprehension. Gradually transition to them reading independently as skills improve. Hearing problems can help with language rhythm and meaning."
+    },
+    {
+      "question": "How do I know if it's a comprehension or math issue?",
+      "answer": "Test separately: Can your child solve the same math as a calculation? (24-8=?) If yes but word problems fail, it's likely comprehension. Can they explain what's happening in the problem without solving? If not, comprehension is the barrier."
+    },
+    {
+      "question": "What's the best way to practice word problems at home?",
+      "answer": "Use real-life situations (shopping, cooking, sharing snacks), create your own problems from calculations, do numberless problems for comprehension, and read/discuss math story problems without pressure to solve immediately."
+    },
+    {
+      "question": "Can apps help with word problem comprehension?",
+      "answer": "Apps can build calculation fluency (freeing mental energy for comprehension) and provide varied problem formats. However, the comprehension-building work—visualization, discussion, real-life application—usually requires parent interaction rather than apps alone."
+    }
+  ],
+  "cta": {
+    "text": "Build your child's calculation fluency so they can focus mental energy on understanding word problems. Sorokid makes arithmetic automatic through engaging practice, letting comprehension skills shine.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "Child Can Calculate But Can't Understand Word Problems: What's Really Wrong | Sorokid",
+    "metaDescription": "My son does 24-8 instantly but freezes at word problems. I thought he was bad at math. Turns out, the issue wasn't math at all—it was reading comprehension.",
+    "keywords": "child can't understand word problems, math word problems struggle, reading comprehension math, child calculates but can't solve, word problem strategies, help child word problems"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-02",
+    "author": "Patricia Wong"
+  },
+  "postId": "con-biet-tinh-nhung-doc-de-khong-hieu"
 }

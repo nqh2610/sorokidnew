@@ -1,171 +1,245 @@
 {
   "slug": "three-things-parents-should-do-during-math-time",
-  "title": "The Only 3 Things Parents Should Do During Math Time",
-  "description": "Stop doing too much. Here's what actually helps vs. what hurts your child's math learning.",
+  "title": "Three Things I Do Now – Instead of Sitting Next to My Child Every Night",
+  "description": "I used to do so much: sit beside, correct papers, explain, yell. Now I only do 3 things. Everything is so much lighter.",
   "category": "stress-free-math-learning",
   "keywords": [
     "parental involvement",
     "homework help",
     "math support",
-    "parenting tips"
+    "parenting tips",
+    "how to help child with math",
+    "mistakes parents make tutoring",
+    "parent role in learning",
+    "creating study environment",
+    "stop hovering over homework",
+    "encourage child learning",
+    "praise effort not results",
+    "reduce homework stress"
   ],
   "status": "published",
-  "publishedAt": "2025-12-27T14:04:08.840Z",
+  "publishedAt": "2026-02-02T10:37:32.000Z",
   "createdAt": "2026-02-01",
   "image": "/blog/ba-viec-phu-huynh-nen-lam.jpg",
-  "imageAlt": "Parent appropriately supporting child's math learning",
-  "readingTime": 5,
+  "imageAlt": "Asian mom reading with child - what to do during study time",
+  "readingTime": 11,
   "author": {
-    "name": "Michelle Anderson",
-    "role": "Parent Educator"
+    "name": "Maria",
+    "role": "Mom of 3rd grader"
+  },
+  "translations": {
+    "vi": "ba-viec-phu-huynh-chi-nen-lam-khi-con-hoc"
   },
   "content": {
-    "intro": "Most parents do too much during math time. They explain, correct, push, hover. Here's the surprising truth: less is more.",
+    "intro": "I used to think: a good parent is one who helps a lot. So I sat with my son every night, corrected every problem, explained every mistake. The result? Exhausted. Tense. And he barely improved. Now I only do 3 things.",
     "sections": [
       {
         "type": "heading",
         "level": 2,
-        "text": "What Parents Should Actually Do"
+        "text": "Thing 1: Create a Stable Learning Environment"
+      },
+      {
+        "type": "paragraph",
+        "text": "This is something I can do without being good at math:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "He has his own study corner, quiet, well-lit",
+          "Same time every day (our house: 7-8 PM)",
+          "TV off, phones away during study time",
+          "Enough supplies – books, pens, ruler"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "When the environment is stable, he automatically goes into 'study mode' without much reminding. Consistency is key – same thing every day."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Thing 2: Encourage and Acknowledge Effort"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before, I only praised when he got it right. Now I praise effort, even when results aren't perfect:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"You've been focusing for a while now, great job\"",
+          "\"This problem was hard but you didn't give up\"",
+          "\"You were more self-motivated today than yesterday\""
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Kids need to know parents see their effort, not just their scores."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Thing 3: Know When to Find Support"
+      },
+      {
+        "type": "paragraph",
+        "text": "I'm not good at math. I'm not good at teaching. And sitting with him every night was exhausting us both. So I found tools to help."
+      },
+      {
+        "type": "paragraph",
+        "text": "I let him use the Sorokid app. He learns independently following the app's guidance. I just check his progress and encourage him."
+      },
+      {
+        "type": "paragraph",
+        "text": "Knowing your limits and finding help – that's also a way of loving your child."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Things I STOPPED Doing"
+      },
+      {
+        "type": "paragraph",
+        "text": "Equally important is what I quit:"
       },
       {
         "type": "heading",
         "level": 3,
-        "text": "1. Be Present (Without Hovering)"
+        "text": "❌ Stop solving problems for him"
       },
       {
         "type": "paragraph",
-        "text": "Sit nearby. Be available. But don't watch every keystroke. Your presence provides security; hovering creates pressure."
-      },
-      {
-        "type": "paragraph",
-        "text": "What this looks like: You're reading a book in the same room while they practice. They know you're there if they need you."
+        "text": "I used to solve them to save time. But he didn't learn anything. Now if he asks, I ask back: 'What do you think the first step is?' Let him find it."
       },
       {
         "type": "heading",
         "level": 3,
-        "text": "2. Encourage (Without Judging)"
+        "text": "❌ Stop comparing him to others"
       },
       {
         "type": "paragraph",
-        "text": "Acknowledge effort, not results. \"You're working hard.\" \"I see you're focusing.\" Not \"That's wrong\" or \"Be careful!\""
-      },
-      {
-        "type": "paragraph",
-        "text": "What this looks like: When they finish, you say \"Nice work today!\" not \"Let me check if you got them right.\""
+        "text": "I don't mention friend A or friend B anymore. Comparison doesn't motivate – it creates insecurity."
       },
       {
         "type": "heading",
         "level": 3,
-        "text": "3. Enforce the Routine (Without Negotiating)"
+        "text": "❌ Stop sighing and shaking my head when he's wrong"
       },
       {
         "type": "paragraph",
-        "text": "Your job is to make sure practice happens, not to teach the math. Same time, same duration, every day. That's it."
+        "text": "I try to control myself. If I feel angry, I stand up, get some water. Come back when calmer."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "❌ Stop forcing study when we're both exhausted"
       },
       {
         "type": "paragraph",
-        "text": "What this looks like: \"It's 4:00, math time.\" Period. No debate about whether they feel like it."
+        "text": "Late evening, everyone's drained. Forcing study then only creates conflict. Better to do it tomorrow morning or skip a session."
       },
       {
         "type": "callout",
-        "style": "tip",
-        "text": "If you're exhausted after math time, you're probably doing too much. It should be low-effort for you."
+        "style": "empathy",
+        "text": "If you're doing the 'should stop' things above, don't blame yourself. I was too. Change starts from awareness."
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "What Parents Should STOP Doing"
+        "text": "Summary"
       },
       {
-        "type": "table",
-        "headers": [
-          "Stop This",
-          "Why It Hurts"
-        ],
-        "rows": [
-          [
-            "Explaining every problem",
-            "Creates dependency, removes struggle (where learning happens)"
-          ],
-          [
-            "Correcting immediately",
-            "Prevents them from self-correcting and learning from errors"
-          ],
-          [
-            "Showing frustration",
-            "Your stress becomes their stress"
-          ],
-          [
-            "Comparing to other kids",
-            "Damages motivation and self-worth"
-          ],
-          [
-            "Negotiating duration",
-            "Undermines the habit"
-          ],
-          [
-            "Taking over when they struggle",
-            "Removes ownership and confidence"
-          ]
-        ]
-      },
-      {
-        "type": "heading",
-        "level": 2,
-        "text": "The Math Time Script"
+        "type": "paragraph",
+        "text": "**3 things I do:**"
       },
       {
         "type": "list",
         "items": [
-          "\"It's math time.\" (Announce)",
-          "[They practice, you're nearby but not hovering]",
-          "\"Nice work today!\" (When they finish)",
-          "[Move on with the day]"
+          "Create a stable learning environment",
+          "Encourage and acknowledge effort",
+          "Find appropriate support tools"
         ]
       },
       {
         "type": "paragraph",
-        "text": "That's it. No lectures. No reviews. No drama. The app or program teaches; you provide the structure."
-      },
-      {
-        "type": "heading",
-        "level": 2,
-        "text": "When to Step In"
-      },
-      {
-        "type": "paragraph",
-        "text": "Only step in when:"
+        "text": "**4 things I stopped:**"
       },
       {
         "type": "list",
         "items": [
-          "They ask for help (wait for the ask!)",
-          "They're in tears (emotional support, not math teaching)",
-          "There's a technical problem (app not working)",
-          "The tool/app needs adjusting (too hard, too easy)"
+          "Solving problems for him",
+          "Comparing him to others",
+          "Overreacting when he's wrong",
+          "Forcing study when tired"
         ]
-      }
-    ],
-    "faq": [
-      {
-        "question": "What if they're getting lots of problems wrong?",
-        "answer": "Let the app provide feedback. That's what it's for. If consistent struggles continue for days, the level might need adjusting – that's when to step in."
       },
       {
-        "question": "Should I check their answers afterward?",
-        "answer": "Only if you can do it without turning it into a teaching moment or criticism. A glance at the progress report is fine; going through each error is too much."
+        "type": "paragraph",
+        "text": "Do less, but do it right. Everything is so much lighter."
       },
       {
-        "question": "What if I know better ways to solve the problems?",
-        "answer": "Keep them to yourself unless asked. Different methods confuse kids. Trust the app's approach."
+        "type": "callout",
+        "style": "reassurance",
+        "text": "You don't need to do a lot to be a good parent. You just need to do it RIGHT. And sometimes, right means knowing when to step back."
       }
-    ],
-    "cta": {
-      "type": "soft",
-      "text": "SoroKid does the teaching so you can focus on encouragement. Just show up and support.",
-      "buttonText": "Learn More",
-      "buttonUrl": "/learn"
+    ]
+  },
+  "faq": [
+    {
+      "question": "If I don't solve problems for him, what if he can't do it?",
+      "answer": "Ask back: 'Try looking at the problem again' or 'What do you think the first step is?' If he still can't, maybe the problem is too hard and he needs foundational skills first. Don't rush to solve it for him."
+    },
+    {
+      "question": "My child always says 'I don't know' without trying. What do I do?",
+      "answer": "He might lack confidence or fear being wrong. Reassure him: 'It's okay, just try. Being wrong is fine.' Give him a safe space to try without getting yelled at for mistakes. Gradually he'll dare to try more."
+    },
+    {
+      "question": "My spouse yells at our child during study time. What should I do?",
+      "answer": "Discuss privately, not in front of the child. Share what you've learned about child psychology, agree on a common approach. Change takes time – be patient and consistent."
+    },
+    {
+      "question": "How do I know which online learning tool is good?",
+      "answer": "Try the free version first. See if your child is interested and self-motivated. Check if there's progress tracking. A good tool is one that fits YOUR child – there's no one-size-fits-all best."
+    },
+    {
+      "question": "What makes a stable learning environment?",
+      "answer": "Own study corner, quiet, well-lit. Same time every day. TV off, phones away during study. Enough supplies. Most important is consistency – same routine every day."
+    },
+    {
+      "question": "How do I praise effort correctly?",
+      "answer": "Praise specific actions: 'You've been focusing for a while, great job', 'This was hard but you didn't give up', 'You were more self-motivated today than yesterday'. Avoid vague 'you're so smart'."
+    },
+    {
+      "question": "Is comparing my child to others bad?",
+      "answer": "Comparison doesn't motivate – it creates insecurity or pressure. If you want to compare, compare with himself: 'You did this faster than yesterday!' That's positive encouragement."
+    },
+    {
+      "question": "My child depends on me too much and won't try on his own?",
+      "answer": "Gradually 'step back'. Instead of answering right away, ask: 'What do you think?' Wait 30 seconds before giving hints. Gradually increase wait time. He'll get used to thinking first."
+    },
+    {
+      "question": "I come home from work exhausted. No energy to tutor.",
+      "answer": "That's exactly when you need support tools. Let your child self-learn with an app, you just need to encourage for 5 minutes. No need to sit for an hour. Quality matters more than time quantity."
+    },
+    {
+      "question": "Should I force study when we're both exhausted?",
+      "answer": "No. Late evening, everyone's drained – forcing study only creates conflict, child won't absorb anything. Better to do it tomorrow morning or skip one session. One stressful session can ruin many future ones."
     }
+  ],
+  "cta": {
+    "text": "If you also want to 'step back' and let your child self-learn, try Sorokid. Your child learns with guidance, you just need to encourage.",
+    "buttonText": "Try It",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "Three Things Parents Should Do During Math Time – Instead of Hovering | Sorokid",
+    "metaDescription": "I used to do too much: sit beside, correct, explain, yell. Now I only do 3 things. Everything is so much lighter for both of us.",
+    "keywords": "parental involvement math, homework help tips, how to support child learning, reduce homework stress"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-02",
+    "author": "Maria"
   },
   "postId": "ba-viec-phu-huynh-chi-nen-lam-khi-con-hoc"
 }

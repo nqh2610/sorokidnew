@@ -1,55 +1,365 @@
 {
-  "postId": "con-hoc-toan-tot-o-truong-nhung-ve-nha-khong-lam-duoc",
   "slug": "con-hc-ton-tt-trng-nhng-v-nh-qun-sch-v-sao-v-cch-khc-phc",
-  "title": "[EN] Con học toán tốt ở trường nhưng về nhà quên sạch – Vì sao và cách khắc phục",
-  "description": "[Needs translation] Cô giáo khen con tiếp thu nhanh. Nhưng tối về ôn bài, con ngồi như 'mất trí'. Mình từng nghĩ con giả vờ, hóa ra đó là cách não trẻ hoạt động.",
-  "category": "when-kids-struggle-with-math",
+  "title": "My Child Learns Math Well at School But Forgets Everything at Home: Why and How to Fix It",
+  "description": "The teacher says my son catches on quickly. But by evening, he stares at his homework like he's never seen it. I thought he was faking—turns out, this is how children's brains actually work.",
+  "category": "math-struggles",
   "keywords": [
-    "con quên bài nhanh",
-    "học tốt ở trường kém ở nhà",
-    "con không nhớ bài",
-    "cách giúp con nhớ bài lâu",
-    "đường cong lãng quên",
-    "ôn tập hiệu quả"
+    "child forgets math at home",
+    "forgetting curve children",
+    "why child forgets lessons",
+    "memory retention kids",
+    "spaced repetition children",
+    "help child remember math",
+    "learns at school forgets at home",
+    "review strategies kids",
+    "working memory children",
+    "long term memory learning",
+    "effective homework review",
+    "memory consolidation kids"
   ],
   "status": "published",
-  "publishedAt": "2025-12-30T11:30:00.000Z",
+  "publishedAt": "2026-02-10T03:37:17.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/dau-hieu-con-hoc-soroban-dung.jpg",
-  "imageAlt": "Bé về nhà ôn lại bài đã học ở trường",
-  "readingTime": 8,
+  "imageAlt": "Child reviewing homework at home after learning at school",
+  "readingTime": 14,
   "author": {
-    "name": "SoroKid Team",
-    "role": "Education Content"
+    "name": "Dr. Linda Foster",
+    "role": "Educational Psychologist & Mother of Three"
+  },
+  "translations": {
+    "vi": "con-hoc-toan-tot-o-truong-nhung-ve-nha-khong-lam-duoc"
   },
   "content": {
-    "intro": "[Needs natural English rewrite] \"Hôm nay cô dạy gì con?\" – \"Phép nhân 4 mẹ ạ!\" – \"Vậy 4 x 6 bằng mấy?\" – Con im lặng. Mắt con nhìn lên trần nhà, suy nghĩ mãi. \"Con... con quên rồi mẹ ơi.\" Mình sốc. Cô giáo vừa nhắn tin khen con tiếp thu nhanh. Mới học xong buổi sáng, buổi tối con đã quên? Mình từng nghĩ con giả vờ, con không chịu học. Nhưng sau khi tìm hiểu, mình mới biết: đó là cách não trẻ hoạt động, và mình đã ôn bài sai cách.",
+    "intro": "'What did you learn at school today?' 'Multiplying by 4, Mom!' 'Great! What's 4 times 6?' Silence. My son looked at the ceiling, thinking hard. 'I... I forgot, Mom.' I was shocked. The teacher had just texted saying he caught on quickly in class. How could he forget something he learned just hours ago? I thought he was faking, not paying attention. But after researching, I discovered: this is exactly how children's brains work—and I'd been reviewing wrong.",
     "sections": [
       {
         "type": "heading",
         "level": 2,
-        "text": "Hiểu Bài Không Có Nghĩa Là Nhớ Bài"
+        "text": "Understanding ≠ Remembering"
       },
       {
         "type": "paragraph",
-        "text": "Đây là sai lầm lớn nhất của mình: nghĩ rằng con hiểu tức là con nhớ."
-      },
-      {
-        "type": "paragraph",
-        "text": "Thực tế, có 3 bước trong học tập:"
+        "text": "My biggest mistake was thinking that because my son understood something, he would remember it. But learning has distinct stages:"
       },
       {
         "type": "list",
         "items": [
-          "**Hiểu**: Con tiếp thu thông tin, hiểu ngay lúc đó",
-          "**Nhớ**: Thông tin được lưu vào bộ nhớ dài hạn",
-          "**Áp dụng**: Con có thể dùng kiến thức để giải bài"
+          "**Encoding**: Taking in new information and understanding it",
+          "**Consolidation**: Transferring information to long-term memory",
+          "**Retrieval**: Being able to access that information later"
         ]
       },
       {
         "type": "paragraph",
-        "text": "Cô dạy trên lớp, con hiểu ngay lúc đó (bước 1). Nhưng nếu không ôn tập, thông tin sẽ biến mất trước khi kịp lưu vào bộ nhớ dài hạn."
+        "text": "At school, my son successfully encoded—he understood in the moment. But without proper consolidation, that understanding evaporated before reaching long-term memory."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Forgetting Curve: Science Behind the Problem"
+      },
+      {
+        "type": "paragraph",
+        "text": "German psychologist Hermann Ebbinghaus discovered the 'forgetting curve'—we lose information at a predictable rate:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**After 20 minutes**: ~40% forgotten",
+          "**After 1 hour**: ~50% forgotten",
+          "**After 1 day**: ~70% forgotten",
+          "**After 1 week**: ~90% forgotten"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "insight",
+        "text": "By evening, my son had already lost most of what he learned that morning. This isn't laziness or inattention—it's biology. Without intervention, forgetting is the brain's default."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Children Forget Faster"
+      },
+      {
+        "type": "paragraph",
+        "text": "Children face additional challenges:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Developing prefrontal cortex**: Executive function and working memory still maturing",
+          "**Information overload**: Learning multiple subjects daily",
+          "**Lack of connections**: New concepts aren't yet linked to existing knowledge",
+          "**Passive learning**: Listening without active engagement doesn't stick",
+          "**Distraction**: So much happens between school and homework time"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Solution: Spaced Repetition"
+      },
+      {
+        "type": "paragraph",
+        "text": "The antidote to forgetting is strategically timed review. Each review 'resets' the forgetting curve, making the next forgetting slower."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Optimal Review Schedule"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Same day**: Brief review within hours of learning (most critical!)",
+          "**Next day**: Quick recall practice",
+          "**3-4 days later**: Another brief review",
+          "**1 week later**: Review again",
+          "**2-4 weeks later**: Final consolidation review"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Each review can be short—5-10 minutes is enough if timed correctly."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Practical Strategies That Work"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 1: The Car Ride Review"
+      },
+      {
+        "type": "paragraph",
+        "text": "On the drive home from school: 'What's one new thing you learned in math today? Show me!' This captures learning while it's fresh—the most critical review window."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 2: Teach-Back Method"
+      },
+      {
+        "type": "paragraph",
+        "text": "'Can you teach me what you learned?' Having children explain concepts forces retrieval and reveals gaps in understanding. Teaching is one of the most powerful memory techniques."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 3: Micro-Reviews Throughout Evening"
+      },
+      {
+        "type": "paragraph",
+        "text": "Instead of one long homework session, sprinkle tiny reviews: a math question during dinner, a quick problem before TV, another at bedtime. Multiple short exposures beat one long session."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 4: Morning Mini-Review"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before school the next day, a 2-minute review of yesterday's learning. This catches material before it falls off the forgetting curve completely."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 5: Weekend Cumulative Review"
+      },
+      {
+        "type": "paragraph",
+        "text": "Spend 15-20 minutes on weekends reviewing the whole week's learning. Games, flashcards, or app practice—make it low-pressure but consistent."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Making Reviews Effective (Not Painful)"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Retrieval practice**: Don't just re-read; ask questions that require recall",
+          "**Vary the format**: Flashcards, verbal questions, app games, writing",
+          "**Keep it brief**: 5-10 minutes is better than 30 minutes of fading attention",
+          "**Make it routine**: Same time daily reduces resistance",
+          "**Add movement**: Walk while reviewing, use hand gestures, physical manipulatives"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Changed for Us"
+      },
+      {
+        "type": "paragraph",
+        "text": "I restructured our routine:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Car ride home: 'Teach me one thing from math today'",
+          "Before dinner: 3 quick practice problems",
+          "Before bed: 'What was that thing you taught me earlier?'",
+          "Next morning: 2-minute review at breakfast",
+          "Weekend: 15 minutes of cumulative practice (usually through games)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "success",
+        "text": "Within a month, the 'I forgot' problem mostly disappeared. My son could recall what he'd learned days later because we were catching information before it vanished. Same total time spent, just distributed differently."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Role of Sleep"
+      },
+      {
+        "type": "paragraph",
+        "text": "Memory consolidation happens during sleep. Children who get inadequate sleep forget more. Ensure:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Consistent bedtime (even weekends)",
+          "Age-appropriate sleep duration (9-12 hours for elementary age)",
+          "Brief review before sleep (it's processed overnight!)",
+          "No screens right before bed (disrupts sleep quality)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When to Be Concerned"
+      },
+      {
+        "type": "paragraph",
+        "text": "Normal forgetting responds to spaced repetition. See a specialist if:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Child forgets things immediately (not just by evening)",
+          "Forgetting is inconsistent—remembers some things easily, forgets others completely",
+          "Spaced repetition strategies don't help after 2-3 months",
+          "Forgetting affects multiple areas, not just academics",
+          "Child seems confused about things they've known for a long time"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Frequently Asked Questions"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Is my child just not paying attention in class?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Probably not. If the teacher says they understand during class, they genuinely did in that moment. Forgetting by evening is normal brain function, not evidence of inattention. The solution is review strategy, not attention blame."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "How do I find time for all these reviews?"
+      },
+      {
+        "type": "paragraph",
+        "text": "They're tiny—car rides, mealtimes, transitions. You're not adding study time; you're redistributing it. Five 2-minute reviews beat one 10-minute session that's already too late."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What if I don't know what they learned at school?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ask them! 'Teach me something from math today' works even when you don't know the curriculum. Their explanation IS the review, and you'll learn what to reinforce."
       }
-    ]
-  }
+    ],
+    "faq": [
+      {
+        "question": "Is my child just not paying attention in class?",
+        "answer": "Probably not. If the teacher says they understood during class, they did in that moment. Forgetting by evening is normal brain function, not inattention. The solution is review strategy, not attention blame."
+      },
+      {
+        "question": "How do I find time for all these reviews?",
+        "answer": "They're tiny—car rides, mealtimes, transitions. You're redistributing study time, not adding it. Five 2-minute reviews beat one 10-minute session that comes too late."
+      },
+      {
+        "question": "What if I don't know what they learned at school?",
+        "answer": "Ask them! 'Teach me something from math today' works even without knowing the curriculum. Their explanation IS the review, and you'll learn what to reinforce."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Sorokid provides spaced repetition built into daily practice—concepts return at optimal intervals for memory retention.",
+      "buttonText": "Try Free",
+      "buttonUrl": "/register"
+    }
+  },
+  "faq": [
+    {
+      "question": "Why does my child forget what they learned at school by evening?",
+      "answer": "This is the 'forgetting curve' in action—without review, we naturally lose 50-70% of new information within hours. It's biology, not laziness. Strategic same-day review prevents this information loss."
+    },
+    {
+      "question": "What is spaced repetition and how does it help?",
+      "answer": "Spaced repetition is reviewing material at strategically timed intervals. Each review 'resets' the forgetting curve, making subsequent forgetting slower. It's the most scientifically proven method for long-term memory retention."
+    },
+    {
+      "question": "When is the best time to review what my child learned?",
+      "answer": "The most critical review window is within hours of initial learning—ideally on the car ride home or before dinner. Then review the next day, a few days later, after a week, and after 2-4 weeks for full consolidation."
+    },
+    {
+      "question": "How long should review sessions be?",
+      "answer": "Short is better—5-10 minutes when timed correctly beats 30 minutes of fading attention. Multiple brief reviews throughout the day are more effective than one long session."
+    },
+    {
+      "question": "Does sleep affect how well children remember?",
+      "answer": "Yes, significantly. Memory consolidation happens during sleep. Children who get inadequate or poor-quality sleep forget more. Consistent bedtimes and age-appropriate sleep duration (9-12 hours for elementary) support learning."
+    },
+    {
+      "question": "What's the difference between understanding and remembering?",
+      "answer": "Understanding happens in the moment (encoding). Remembering requires transferring that understanding to long-term memory (consolidation) and being able to access it later (retrieval). Your child can understand perfectly in class but still forget without proper consolidation through review."
+    },
+    {
+      "question": "How do I know if forgetting is normal or a sign of a problem?",
+      "answer": "Normal forgetting responds to spaced repetition strategies. Be concerned if: child forgets things immediately (not just by evening), forgetting is inconsistent, strategies don't help after 2-3 months, or forgetting affects multiple life areas."
+    },
+    {
+      "question": "What's the teach-back method?",
+      "answer": "Having your child explain what they learned as if teaching you. This forces retrieval (powerful for memory), reveals understanding gaps, and gives you insight into what they're learning—all while serving as effective review."
+    },
+    {
+      "question": "Can apps help with spaced repetition?",
+      "answer": "Yes. Well-designed educational apps use spaced repetition algorithms to present material at optimal intervals automatically. This takes the planning burden off parents while ensuring concepts are reviewed before being forgotten."
+    },
+    {
+      "question": "Should I review material in the same way each time?",
+      "answer": "No—varying the format helps. Use flashcards one time, verbal questions another, app games, writing, physical manipulatives. Different formats create multiple memory pathways, making recall more robust."
+    }
+  ],
+  "cta": {
+    "text": "Stop the forgetting cycle. Sorokid uses spaced repetition algorithms to review concepts at optimal intervals, so your child builds lasting math memory instead of learning and forgetting repeatedly.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "Child Learns at School But Forgets at Home: The Science of Memory | Sorokid",
+    "metaDescription": "Teacher says he catches on quickly, but by homework time, he's forgotten everything. I thought he was faking—turns out this is how children's brains work.",
+    "keywords": "child forgets math at home, forgetting curve children, why child forgets lessons, memory retention kids, spaced repetition children, help child remember math"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-10",
+    "author": "Dr. Linda Foster"
+  },
+  "postId": "con-hoc-toan-tot-o-truong-nhung-ve-nha-khong-lam-duoc"
 }

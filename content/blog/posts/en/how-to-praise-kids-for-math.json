@@ -10,7 +10,7 @@
     "effective praise"
   ],
   "status": "published",
-  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "publishedAt": "2026-02-08T05:49:26.000Z",
   "createdAt": "2026-02-01",
   "image": "/blog/me-khen-con.jpg",
   "imageAlt": "Parent praising child for math work",
@@ -18,6 +18,9 @@
   "author": {
     "name": "Dr. Lisa Park",
     "role": "Developmental Psychologist"
+  },
+  "translations": {
+    "vi": "khen-con-khi-hoc-toan-nhu-the-nao"
   },
   "content": {
     "intro": "\"You're so smart!\" feels like good praise. But research shows it can actually backfire. Here's what to say instead.",
@@ -188,6 +191,43 @@
       "buttonText": "Try Free Trial",
       "buttonUrl": "/pricing"
     }
+  },
+  "faq": [
+    {
+      "question": "What will I learn from this article?",
+      "answer": "This article covers Not all praise helps. Here's the science of effective encouragement that builds math confidence.."
+    },
+    {
+      "question": "Is this advice suitable for all ages?",
+      "answer": "The strategies discussed are primarily designed for children ages 5-12, but many principles can be adapted for different age groups."
+    },
+    {
+      "question": "How long does it take to see results?",
+      "answer": "Results vary by child, but most parents notice improvements within 2-4 weeks of consistent practice."
+    },
+    {
+      "question": "Do I need special materials or equipment?",
+      "answer": "Most activities can be done with everyday items. For Soroban-specific learning, the Sorokid app provides a virtual abacus."
+    },
+    {
+      "question": "Can I use these methods alongside school curriculum?",
+      "answer": "Absolutely! These approaches are designed to complement, not replace, what children learn at school."
+    }
+  ],
+  "cta": {
+    "text": "Ready to help your child build math confidence? Sorokid offers interactive lessons, games, and progress tracking designed for busy families.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "How to Praise Your Child's Math Efforts (The Right Way) | Sorokid",
+    "metaDescription": "Not all praise helps. Here's the science of effective encouragement that builds math confidence.",
+    "keywords": "praising kids, growth mindset, math encouragement, effective praise"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-08",
+    "author": "Dr. Lisa Park"
   },
   "postId": "khen-con-khi-hoc-toan-nhu-the-nao"
 }

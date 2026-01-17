@@ -7,13 +7,27 @@
     "phép chia soroban",
     "chia trên bàn tính soroban",
     "cách chia soroban",
-    "chia có dư soroban"
+    "chia có dư soroban",
+    "luyện chia soroban",
+    "kỹ thuật chia soroban",
+    "ước lượng thương soroban",
+    "hướng dẫn chia soroban",
+    "bài tập chia soroban",
+    "chia 2 chữ số soroban",
+    "xử lý ước lượng sai",
+    "chia số lớn soroban"
   ],
   "status": "published",
   "publishedAt": "2025-12-31T03:14:35.250Z",
   "createdAt": "2025-12-25",
   "image": "/blog/tre-hoc-phep-chia-soroban.jpg",
-  "readingTime": 10,
+  "imageAlt": "Trẻ em học phép chia trên bàn tính Soroban",
+  "readingTime": 14,
+  "categoryOrder": 1,
+  "order": 13,
+  "translations": {
+    "en": "division-on-soroban"
+  },
   "content": {
     "intro": "Phép chia là phép tính khó nhất trên Soroban. Con cần thuộc bảng cửu chương và thành thạo phép trừ trước khi học chia. Bài này hướng dẫn cách chia cơ bản.",
     "sections": [
@@ -312,19 +326,43 @@
   "faq": [
     {
       "question": "Phép chia có khó hơn phép nhân không?",
-      "answer": "Có. Chia yêu cầu ước lượng (đoán thương) và điều chỉnh khi sai. Nhân thì biết chắc kết quả từ bảng cửu chương."
+      "answer": "Có. Chia yêu cầu ước lượng (đoán thương) và điều chỉnh khi sai. Nhân thì biết chắc kết quả từ bảng cửu chương. Chia cần kỹ năng phán đoán thêm."
     },
     {
       "question": "Con hay ước lượng sai, phải làm sao?",
-      "answer": "Bình thường khi mới học. Luyện nhiều sẽ quen. Quan trọng là biết khi nào sai (quá lớn/nhỏ) và cách điều chỉnh."
+      "answer": "Bình thường khi mới học. Luyện nhiều sẽ quen. Quan trọng là biết khi nào sai (quá lớn/nhỏ) và cách điều chỉnh: tăng hoặc giảm thương 1 đơn vị."
     },
     {
       "question": "Chia trên Soroban khác chia trên giấy như thế nào?",
-      "answer": "Giấy: viết ra từng bước. Soroban: trừ trực tiếp, kết quả thay đổi tức thì. Soroban rèn tư duy nhanh hơn."
+      "answer": "Giấy: viết ra từng bước. Soroban: trừ trực tiếp, kết quả thay đổi tức thì. Soroban rèn tư duy nhanh hơn và giúp học tính nhẩm."
     },
     {
       "question": "Bao lâu thì con chia thành thạo?",
-      "answer": "6-12 tháng để chia số 2-3 chữ số thành thạo, tùy mức độ luyện tập. Đây là kỹ năng nâng cao."
+      "answer": "6-12 tháng để chia số 2-3 chữ số thành thạo, tùy mức độ luyện tập. Đây là kỹ năng nâng cao cần kiên nhẫn."
+    },
+    {
+      "question": "Có nên học chia trước khi thành thạo nhân?",
+      "answer": "Không nên. Chia cần thuộc nghịch đảo bảng cửu chương (7 × ? = 84) và thành thạo trừ. Nên học nhân và trừ vững trước."
+    },
+    {
+      "question": "Làm sao kiểm tra kết quả chia?",
+      "answer": "Nhân ngược lại: Thương × số chia + dư = số bị chia. Ví dụ: 100÷7=14 dư 2 → Kiểm tra: 14×7+2=98+2=100."
+    },
+    {
+      "question": "Chia có dư có khó hơn chia hết không?",
+      "answer": "Tương tự, chỉ khác ở cuối không chia hết được nữa. Số còn lại trên bàn tính chính là số dư. Bắt đầu với chia hết, quen rồi mới sang chia có dư."
+    },
+    {
+      "question": "Vị trí đặt thương ở đâu?",
+      "answer": "Thương đặt bên trái số bị chia, cách 1-2 cột. Khi chia xong, số bị chia biến mất (hoặc còn dư), chỉ còn thương ở bên trái."
+    },
+    {
+      "question": "Khi nào biết ước lượng quá lớn?",
+      "answer": "Khi nhân thương với số chia ra kết quả LỚN HƠN số đang xét. Ví dụ: 45÷7, ước 7, nhưng 7×7=49>45 → giảm xuống 6."
+    },
+    {
+      "question": "Nên luyện chia bao lâu mỗi ngày?",
+      "answer": "10-15 phút cho phần chia. Vì chia khó, cần kiên nhẫn và không ép nhiều. Kết hợp ôn lại nhân và trừ để củng cố kỹ năng nền tảng."
     }
   ],
   "cta": {
@@ -332,7 +370,18 @@
     "buttonText": "Cho con luyện thử",
     "buttonLink": "/register"
   },
-  "imageAlt": "Trẻ em học phép chia trên bàn tính Soroban",
-  "categoryOrder": 1,
-  "order": 13
+  "seo": {
+    "title": "Phép chia trên Soroban – Hướng dẫn chi tiết cho phụ huynh",
+    "description": "Phép chia là phép tính khó nhất trên Soroban. Bài này hướng dẫn cách chia cơ bản với ví dụ từng bước.",
+    "keywords": "phép chia soroban, chia trên bàn tính soroban, cách chia soroban, chia có dư soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-31",
+    "author": "ThS. Phạm Thanh Tùng"
+  },
+  "author": {
+    "name": "Minh Anh",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
 }

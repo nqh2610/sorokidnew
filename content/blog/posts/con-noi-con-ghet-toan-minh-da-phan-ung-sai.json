@@ -6,13 +6,28 @@
   "keywords": [
     "con ghét học toán",
     "trẻ không thích toán",
-    "làm sao khi con ghét toán"
+    "làm sao khi con ghét toán",
+    "con nói ghét toán",
+    "phản ứng khi con ghét toán",
+    "cách xử lý khi con ghét môn toán",
+    "tâm lý trẻ ghét toán",
+    "con sợ học toán phải làm sao",
+    "lắng nghe con khi con ghét học",
+    "không ép con học toán",
+    "tạo hứng thú học toán cho con",
+    "công nhận cảm xúc của trẻ"
   ],
   "status": "published",
   "publishedAt": "2025-12-28T05:50:07.215Z",
   "createdAt": "2025-12-25",
   "image": "/blog/con-ghet-toan-phu-huynh-phan-ung.jpg",
-  "readingTime": 6,
+  "imageAlt": "Bố động viên con khi con nói ghét toán",
+  "readingTime": 13,
+  "categoryOrder": 3,
+  "order": 6,
+  "translations": {
+    "en": "my-child-says-they-hate-math"
+  },
   "content": {
     "intro": "\"Mẹ ơi, con ghét toán.\" – Lần đầu nghe con nói câu này, mình sốc. Con mới lớp 2, sao đã ghét toán rồi? Mình hoảng, cố \"sửa\" con – và làm mọi thứ tệ hơn.",
     "sections": [
@@ -193,6 +208,30 @@
     {
       "question": "Có nên cho con nghỉ học toán một thời gian?",
       "answer": "Có thể giảm cường độ, nhưng không nên nghỉ hẳn. Quan trọng là thay đổi cách học – từ bị ép sang tự chọn, từ căng thẳng sang nhẹ nhàng."
+    },
+    {
+      "question": "Phản ứng đầu tiên nên làm gì khi con nói ghét toán?",
+      "answer": "Đừng phủ nhận cảm xúc của con. Hãy lắng nghe: 'Con ghét ở chỗ nào?' hoặc 'Con cảm thấy thế nào khi học toán?' Việc được công nhận sẽ giúp con bớt căng thẳng."
+    },
+    {
+      "question": "Con ghét toán vì bị la mắng, giờ sửa được không?",
+      "answer": "Hoàn toàn được. Hãy xin lỗi con chân thành, thay đổi cách phản ứng, và kiên nhẫn. Cảm xúc tiêu cực cần thời gian để 'viết lại' bằng trải nghiệm tích cực mới."
+    },
+    {
+      "question": "Có nên dùng phần thưởng để con chịu học toán?",
+      "answer": "Phần thưởng ngắn hạn có thể giúp ban đầu, nhưng không nên lạm dụng. Mục tiêu là con tự thấy hứng thú, không phải học để được thưởng."
+    },
+    {
+      "question": "Con ghét toán nhưng giỏi các môn khác, có đáng lo?",
+      "answer": "Mỗi trẻ có điểm mạnh khác nhau. Quan trọng là con có nền tảng toán cơ bản đủ tốt. Đừng ép con phải giỏi đều tất cả các môn."
+    },
+    {
+      "question": "Học toán qua game có giúp con bớt ghét không?",
+      "answer": "Có thể. Game giúp con thấy toán vui hơn, bớt áp lực. Quan trọng là chọn game giáo dục chất lượng và không ép con chơi như ép học."
+    },
+    {
+      "question": "Làm sao biết con thực sự ghét toán hay chỉ đang né tránh khó khăn?",
+      "answer": "Hỏi con: 'Con ghét toán vì sao?' Nếu con nói vì khó, vì sợ sai, vì bị la – đó là né tránh khó khăn. Nếu con không giải thích được, cần quan sát thêm hành vi của con khi học."
     }
   ],
   "cta": {
@@ -200,7 +239,24 @@
     "buttonText": "Cho con thử",
     "buttonLink": "/register"
   },
-  "imageAlt": "Bố động viên con khi con nói ghét toán",
-  "categoryOrder": 3,
-  "order": 6
+  "seo": {
+    "title": "Con nói \"con ghét toán\" – mình đã phản ứng sai thế nào?",
+    "description": "Lần đầu nghe con nói ghét toán, mình hoảng. Mình cố thuyết phục, ép học thêm – và làm mọi thứ tệ hơn. Đây là bài học của mình.",
+    "keywords": "con ghét học toán, trẻ không thích toán, làm sao khi con ghét toán, phản ứng khi con ghét toán, công nhận cảm xúc của trẻ"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-28",
+    "author": {
+      "@type": "Person",
+      "name": "Minh Anh",
+      "description": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy",
+      "url": "https://sorokid.com/blog"
+    }
+  },
+  "author": {
+    "name": "Minh Anh",
+    "role": "Mẹ của 2 bé",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
 }

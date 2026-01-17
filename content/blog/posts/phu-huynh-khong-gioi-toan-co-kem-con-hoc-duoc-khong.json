@@ -1,18 +1,33 @@
 {
   "slug": "phu-huynh-khong-gioi-toan-co-kem-con-hoc-duoc-khong",
   "title": "Mình dốt toán từ nhỏ – giờ làm sao kèm con?",
-  "description": "Mình đã lo lắng rất nhiều vì bản thân không giỏi toán. Nhưng rồi mình nhận ra: con không cần mình giỏi – con cần mình quan tâm.",
+  "description": "Mình đã lo lắng rất nhiều vì bản thân không giỏi toán. Nhưng rồi mình nhận ra: con không cần mình giỏi – con cần mình quan tâm và đồng hành.",
   "category": "phu-huynh-kem-con-hoc-toan",
   "keywords": [
     "phụ huynh không giỏi toán",
     "bố mẹ dốt toán",
-    "cách hỗ trợ con học toán"
+    "cách hỗ trợ con học toán",
+    "không biết dạy toán cho con",
+    "mẹ ghét toán kèm con",
+    "bố mẹ yếu toán",
+    "cách kèm con không cần giỏi",
+    "con hỏi bài không biết trả lời",
+    "phụ huynh lo lắng về toán",
+    "vai trò phụ huynh khi con học",
+    "dùng app dạy toán cho con",
+    "đồng hành cùng con học toán"
   ],
   "status": "published",
   "publishedAt": "2025-12-25T02:37:13.243Z",
   "createdAt": "2025-12-25",
   "image": "/blog/me-kem-con-du-khong-gioi-toan.jpg",
-  "readingTime": 5,
+  "imageAlt": "Mẹ châu Á kèm con học toán dù không giỏi toán",
+  "readingTime": 12,
+  "categoryOrder": 3,
+  "order": 1,
+  "translations": {
+    "en": "mnh-dt-ton-t-nh-gi-lm-sao-km-con"
+  },
   "content": {
     "intro": "Hồi đi học mình ghét toán. Điểm toán lúc nào cũng lẹt đẹt. Giờ con lớp 2 rồi, mỗi lần con hỏi bài là mình run. Không phải sợ bài khó – mà sợ con biết mình không biết làm.",
     "sections": [
@@ -131,20 +146,44 @@
   },
   "faq": [
     {
-      "question": "Mình ghét toán từ nhỏ, có truyền sang con không?",
-      "answer": "Có thể, nếu mình hay nói \"Mẹ cũng dốt toán\" hoặc thể hiện sự chán ghét trước mặt con. Mình đang cố không làm vậy, để con có cơ hội tiếp cận toán với tâm thế khác."
+      "question": "Mình ghét toán từ nhỏ, có truyền nỗi sợ sang con không?",
+      "answer": "Có thể, nếu hay nói 'Mẹ cũng dốt toán' hoặc thể hiện sự chán ghét trước mặt con. Trẻ rất nhạy với thái độ của bố mẹ. Cố gắng giữ thái độ trung tính hoặc tích cực để con có cơ hội tiếp cận toán với tâm thế mới."
     },
     {
       "question": "Con hỏi bài mà mình không biết làm thì sao?",
-      "answer": "Nói thật với con: \"Mẹ không chắc, để mình tìm hiểu.\" Rồi cùng xem video, Google, hoặc để sáng hôm sau hỏi cô. Con sẽ học được cách tìm kiếm giải pháp."
+      "answer": "Nói thật với con: 'Mẹ không chắc, để mình tìm hiểu.' Rồi cùng xem video YouTube, Google, hoặc để sáng hôm sau hỏi cô. Con sẽ học được cách tìm kiếm giải pháp - một kỹ năng quan trọng."
     },
     {
-      "question": "Có nên thuê gia sư?",
-      "answer": "Tùy điều kiện. Gia sư tốt thì tốt, nhưng cũng có thể dùng các công cụ online với chi phí thấp hơn. Quan trọng là tìm cách phù hợp với con và gia đình."
+      "question": "Có nên thuê gia sư nếu bản thân không giỏi toán?",
+      "answer": "Tùy điều kiện gia đình. Gia sư tốt thì rất hữu ích, nhưng chi phí cao. Có thể thử các app học online chất lượng với chi phí thấp hơn nhiều. Quan trọng là tìm cách phù hợp với con và gia đình."
     },
     {
       "question": "Con học online nhiều có tốt không?",
-      "answer": "15-20 phút mỗi ngày là đủ. Không cần nhiều, chỉ cần đều. Quan trọng là chất lượng, không phải số lượng."
+      "answer": "15-20 phút mỗi ngày là đủ và hợp lý. Không cần nhiều, chỉ cần đều đặn. Quan trọng là chất lượng và sự kiên nhẫn, không phải số lượng thời gian."
+    },
+    {
+      "question": "Làm sao động viên con khi mình không hiểu bài con đang học?",
+      "answer": "Khen sự cố gắng: 'Con ngồi học được 20 phút rồi, giỏi quá!' Hỏi về quá trình: 'Bài nào khó nhất?' Chia sẻ niềm vui: 'Con giải được rồi hả? Kể mẹ nghe đi!' Bạn không cần hiểu toán để động viên con."
+    },
+    {
+      "question": "Con có biết mình dốt toán không? Có sao không?",
+      "answer": "Trẻ nhạy cảm hơn bạn nghĩ, có thể con biết hoặc đoán được. Nhưng không sao nếu bạn biến điều đó thành bài học: 'Mẹ hồi nhỏ không giỏi toán, nhưng bây giờ mẹ đang học cùng con.' Con sẽ thấy việc học là suốt đời."
+    },
+    {
+      "question": "App có thay thế được vai trò của bố mẹ không?",
+      "answer": "App thay thế VIỆC DẠY, không thay thế SỰ QUAN TÂM. Con vẫn cần bố mẹ khen ngợi, động viên, ôm, hỏi han. Phần kiến thức có app lo, phần tình cảm chỉ bố mẹ làm được."
+    },
+    {
+      "question": "Bao lâu thì con tiến bộ nếu mình không dạy được?",
+      "answer": "Với app tốt và luyện đều 15-20 phút/ngày, sau 1-2 tháng sẽ thấy tiến bộ rõ. Sau 3-6 tháng, con có thể vượt xa kỳ vọng. Quan trọng là đều đặn, không phải ai dạy."
+    },
+    {
+      "question": "Con lớp mấy thì cần bố mẹ kèm nhiều?",
+      "answer": "Lớp 1-2 cần nhiều hỗ trợ nhất để tạo thói quen. Lớp 3-4 con bắt đầu tự lập hơn. Từ lớp 5 trở lên, bố mẹ chủ yếu chỉ cần theo dõi và động viên, không cần ngồi kèm."
+    },
+    {
+      "question": "Mình sợ con giống mình cũng dốt toán. Phải làm sao?",
+      "answer": "Yếu toán KHÔNG DI TRUYỀN theo nghĩa gen. Con có thể giỏi toán hoàn toàn nếu được học đúng cách và đủ thời gian. Đừng để nỗi sợ của mình trở thành lời tiên tri tự ứng nghiệm cho con."
     }
   ],
   "cta": {
@@ -152,7 +191,18 @@
     "buttonText": "Thử miễn phí",
     "buttonLink": "/register"
   },
-  "imageAlt": "Mẹ châu Á kèm con học toán dù không giỏi toán",
-  "categoryOrder": 3,
-  "order": 1
+  "seo": {
+    "title": "Mình dốt toán từ nhỏ – giờ làm sao kèm con? | Hướng dẫn cho phụ huynh",
+    "description": "Phụ huynh không giỏi toán vẫn có thể hỗ trợ con học tốt. Chia sẻ thật từ mẹ dốt toán và cách tìm ra giải pháp phù hợp.",
+    "keywords": "phụ huynh không giỏi toán, bố mẹ dốt toán, cách hỗ trợ con học toán, vai trò phụ huynh"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-25",
+    "author": "Chị Hoài Thu"
+  },
+  "author": {
+    "name": "Chị Hoài Thu",
+    "bio": "Mẹ của bé gái lớp 2, từng ghét toán từ nhỏ, đang tìm cách đồng hành cùng con mà không truyền nỗi sợ"
+  }
 }

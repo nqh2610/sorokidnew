@@ -1,105 +1,336 @@
 {
   "slug": "con-khong-tap-trung-khi-hoc-toan",
-  "title": "Con không tập trung nổi 5 phút khi học toán – mình từng nghĩ con bị tăng động",
-  "description": "Ngồi học 2 phút là con ngọ nguậy. Mình lo con bị ADHD. Nhưng tìm hiểu xong mình thấy khác.",
+  "title": "Con không tập trung nổi 5 phút khi học toán – ADHD hay chỉ là chán? Cách phân biệt và giải pháp",
+  "description": "Con ngồi học 2 phút là ngọ nguậy, quay ngang quay ngửa. Mẹ lo con bị ADHD. Nhưng tìm hiểu kỹ mới thấy vấn đề ở chỗ khác. Cách phân biệt và giải pháp thực tế.",
   "category": "con-gap-kho-khan-hoc-toan",
   "keywords": [
     "trẻ không tập trung",
     "con mất tập trung học toán",
-    "tăng động hay lười"
+    "tăng động hay lười",
+    "ADHD ở trẻ em",
+    "khả năng tập trung của trẻ",
+    "con ngồi không yên",
+    "attention span trẻ em",
+    "cách giúp trẻ tập trung",
+    "trẻ chán học toán",
+    "phương pháp học phù hợp",
+    "gamification giáo dục",
+    "chia nhỏ bài học"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-02-15T09:43:59.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/be-mat-tap-trung.jpg",
   "imageAlt": "Bé trai châu Á ngồi học nhưng mắt nhìn đi nơi khác",
-  "readingTime": 7,
+  "readingTime": 14,
   "categoryOrder": 2,
   "order": 11,
+  "author": {
+    "name": "Chị Mai Hương",
+    "role": "Mẹ bé Bin – lớp 2"
+  },
+  "translations": {
+    "en": "my-child-cant-focus-during-math"
+  },
   "content": {
-    "intro": "\"Con ơi, tập trung nào!\" – Mình nói câu này cả chục lần mỗi tối. Con ngồi học được 2 phút là quay ngang quay ngửa. Mình tra google \"ADHD ở trẻ em\", đọc xong càng lo.",
+    "intro": "\"Con ơi, tập trung nào!\" – Mình nói câu này cả chục lần mỗi tối. Con ngồi học được 2 phút là quay ngang quay ngửa. Mình tra google 'ADHD ở trẻ em', đọc xong càng lo. Liệu con mình có vấn đề gì không? Hay mình đang lo lắng quá mức?",
     "sections": [
       {
         "type": "heading",
         "level": 2,
-        "text": "Mình quan sát kỹ hơn"
+        "text": "Phát hiện quan trọng khi mình quan sát kỹ hơn"
       },
       {
         "type": "paragraph",
-        "text": "Con mình mất tập trung khi học toán. Nhưng khi xem hoạt hình, con ngồi im 30 phút. Khi chơi Lego, con chơi cả tiếng."
+        "text": "Con mình mất tập trung khi học toán. Nhưng khi xem hoạt hình, con ngồi im 30 phút. Khi chơi Lego, con chơi cả tiếng. Khi chơi game trên điện thoại, con tập trung tuyệt đối."
       },
       {
         "type": "paragraph",
-        "text": "Mình nghĩ: nếu con bị ADHD, sao con tập trung chơi được lâu thế?"
-      },
-      {
-        "type": "heading",
-        "level": 2,
-        "text": "Nguyên nhân thật"
-      },
-      {
-        "type": "paragraph",
-        "text": "Con mình không mất tập trung. Con mình CHÁN. Học toán theo kiểu truyền thống không hấp dẫn con."
-      },
-      {
-        "type": "paragraph",
-        "text": "Não trẻ tìm kiếm sự kích thích. Bài tập toán lặp đi lặp lại không đủ \"vui\" để con tập trung."
+        "text": "Mình tự hỏi: nếu con bị ADHD, sao con tập trung chơi được lâu thế?"
       },
       {
         "type": "callout",
-        "style": "empathy",
-        "text": "Trước khi lo con bị ADHD, hãy tự hỏi: cách học này có phù hợp với con không? Con không tập trung vì không thích, không phải vì không thể."
+        "style": "tip",
+        "text": "Điểm mấu chốt: Nếu con mất tập trung với MỌI THỨ kể cả việc con thích → có thể là ADHD. Nếu con CHỈ mất tập trung với việc không thích → có thể chỉ là chán."
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "Mình thay đổi cách học"
+        "text": "ADHD vs. Chán: Cách phân biệt"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Đặc điểm",
+          "ADHD thật sự",
+          "Chỉ là chán/không phù hợp"
+        ],
+        "rows": [
+          [
+            "Mất tập trung với",
+            "MỌI THỨ, kể cả việc thích",
+            "Chỉ với việc không thích"
+          ],
+          [
+            "Thời gian chơi game/xem phim",
+            "Cũng bị gián đoạn thường xuyên",
+            "Tập trung rất tốt"
+          ],
+          [
+            "Trong nhiều môi trường",
+            "Ở nhà, trường, khi chơi đều mất",
+            "Chủ yếu khi học bài"
+          ],
+          [
+            "Khả năng kiểm soát",
+            "Muốn tập trung cũng không được",
+            "Có thể tập trung nếu được khích lệ"
+          ],
+          [
+            "Các triệu chứng khác",
+            "Hay quên, mất đồ, nói nhiều, khó chờ đợi",
+            "Không có triệu chứng khác"
+          ]
+        ]
       },
       {
         "type": "paragraph",
-        "text": "**1. Chia nhỏ thời gian:** Thay vì học 30 phút liên tục, học 3 lần × 10 phút."
-      },
-      {
-        "type": "paragraph",
-        "text": "**2. Dùng app:** Sorokid có hoạt hình, có phần thưởng. Con tập trung hơn vì có mục tiêu ngắn hạn."
-      },
-      {
-        "type": "paragraph",
-        "text": "**3. Cho con vận động giữa chừng:** Học 10 phút, nghỉ 5 phút chạy nhảy, rồi học tiếp."
+        "text": "Với con mình, sau khi đối chiếu, mình nhận ra: con không bị ADHD. Con chỉ CHÁN học toán theo cách truyền thống."
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "Kết quả"
+        "text": "Nguyên nhân thật sự con mất tập trung"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Cách học không phù hợp với não trẻ"
       },
       {
         "type": "paragraph",
-        "text": "Con mình giờ học Soroban 15 phút không nghỉ. Vì app có level, có sao, con muốn đạt được."
+        "text": "Não trẻ tìm kiếm sự kích thích. Bài tập toán lặp đi lặp lại (1+2=?, 2+3=?, 3+4=?...) không đủ 'vui' để não muốn tập trung."
       },
       {
         "type": "paragraph",
-        "text": "Mình không còn phải nhắc \"tập trung nào\" nữa. Con tự muốn học."
+        "text": "Trong khi đó, game có: thử thách mới liên tục, phần thưởng ngay lập tức, hình ảnh/âm thanh hấp dẫn. Não trẻ thích game hơn là điều tự nhiên."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Kỳ vọng thời gian tập trung quá cao"
+      },
+      {
+        "type": "paragraph",
+        "text": "Quy tắc chung về khả năng tập trung của trẻ:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Trẻ 4 tuổi:** 8-12 phút",
+          "**Trẻ 5 tuổi:** 10-15 phút",
+          "**Trẻ 6 tuổi:** 12-18 phút",
+          "**Trẻ 7-8 tuổi:** 14-24 phút"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Nếu bạn bắt con lớp 1 ngồi học 30 phút liên tục – con KHÔNG THỂ. Không phải vì con lười, mà vì não con chưa phát triển đủ để làm điều đó."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Môi trường học nhiều xao nhãng"
+      },
+      {
+        "type": "paragraph",
+        "text": "TV đang mở? Điện thoại để gần? Em bé đang chơi bên cạnh? Trẻ rất dễ bị phân tâm bởi mọi thứ xung quanh."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Mệt mỏi hoặc đói"
+      },
+      {
+        "type": "paragraph",
+        "text": "Học sau giờ ăn tối muộn? Con buồn ngủ? Đói bụng? Năng lượng não thấp = khả năng tập trung thấp."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Giải pháp: Thay đổi CÁCH HỌC, không phải thay đổi CON"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Chia nhỏ thời gian học"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thay vì học 30 phút liên tục, chia thành:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "3 lần × 10 phút (nghỉ 5 phút giữa các lần)",
+          "Hoặc 6 lần × 5 phút (xen kẽ với hoạt động khác)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Kỹ thuật Pomodoro cho trẻ: Học 10 phút → Nghỉ 5 phút chạy nhảy → Học tiếp 10 phút."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Dùng app/game thay vì vở bài tập"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sorokid có hoạt hình, có level, có sao thưởng. Con tập trung hơn vì có mục tiêu ngắn hạn liên tục."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mỗi bài chỉ 2-3 phút. Hoàn thành → Được sao → Mở khóa level mới. Não con được 'thưởng' liên tục nên muốn tiếp tục."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Cho con vận động giữa chừng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Học 10 phút → Cho con nhảy 10 cái, chạy vòng quanh phòng, làm 5 cái squat. Não được reset, tập trung tốt hơn."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Tạo môi trường học lý tưởng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Tắt TV, cất điện thoại ra xa",
+          "Góc học yên tĩnh, đủ ánh sáng",
+          "Không có em bé/thú cưng quấy rầy",
+          "Bàn ghế vừa tầm, ngồi thoải mái"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Chọn thời điểm học phù hợp"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Tốt nhất:** Buổi sáng (sau khi ăn sáng), hoặc chiều (sau khi ngủ trưa dậy)",
+          "**Tránh:** Ngay trước giờ ngủ (con mệt), ngay sau bữa ăn no (máu dồn về dạ dày)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Mẹo: Để con học lúc đầu óc tỉnh táo nhất. Với con mình là khoảng 4-5 giờ chiều, sau khi ngủ trưa dậy và ăn nhẹ."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết quả sau khi thay đổi cách học"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình áp dụng các thay đổi trên trong 1 tháng:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Con học Sorokid 15-20 phút không nghỉ (trước đó 2 phút đã mất tập trung)",
+          "Mình không còn phải nhắc 'tập trung nào' nữa",
+          "Con TỰ ĐÒI mở Sorokid vì thấy vui",
+          "Khả năng tập trung cải thiện cả khi làm bài tập trên vở"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Khi nào thực sự cần gặp chuyên gia?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nên đưa con đi khám nếu:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Con mất tập trung với MỌI THỨ, kể cả việc con rất thích",
+          "Tình trạng kéo dài trên 6 tháng, xảy ra ở nhiều môi trường (nhà, trường, khi chơi)",
+          "Có các triệu chứng khác: hay quên, mất đồ, nói chen ngang, không thể ngồi yên",
+          "Ảnh hưởng nghiêm trọng đến học tập và sinh hoạt hàng ngày"
+        ]
       },
       {
         "type": "callout",
         "style": "reassurance",
-        "text": "Nếu con bạn mất tập trung khi học, thử đổi cách học trước khi lo lắng. Có thể vấn đề ở phương pháp, không phải ở con."
+        "text": "Đừng vội kết luận con bị ADHD. Đa số trẻ mất tập trung khi học là do CÁCH HỌC chưa phù hợp, không phải do có vấn đề. Thử thay đổi cách học trước."
       }
     ]
   },
   "faq": [
     {
-      "question": "Làm sao biết con bị ADHD hay chỉ là mất tập trung?",
-      "answer": "Nếu con mất tập trung với MỌI THỨ, kể cả việc con thích, thì nên gặp bác sĩ. Nếu con chỉ mất tập trung với việc không thích, có thể chỉ là bình thường."
+      "question": "Làm sao biết con bị ADHD hay chỉ là mất tập trung bình thường?",
+      "answer": "Nếu con mất tập trung với MỌI THỨ kể cả việc con thích, ở nhiều môi trường khác nhau, kéo dài trên 6 tháng → nên gặp bác sĩ. Nếu chỉ mất tập trung với việc không thích → có thể chỉ là bình thường."
     },
     {
-      "question": "Trẻ có thể tập trung bao lâu?",
-      "answer": "Quy tắc chung: tuổi của con × 2-3 phút. Trẻ 6 tuổi có thể tập trung 12-18 phút. Đừng kỳ vọng quá cao."
+      "question": "Trẻ mấy tuổi có thể tập trung được bao lâu?",
+      "answer": "Quy tắc chung: tuổi × 2-3 phút. Trẻ 6 tuổi: 12-18 phút. Trẻ 8 tuổi: 16-24 phút. Đừng kỳ vọng con tập trung 30-45 phút liên tục – não trẻ chưa phát triển đủ để làm điều đó."
+    },
+    {
+      "question": "Dùng app học có làm con nghiện điện thoại không?",
+      "answer": "Nếu giới hạn thời gian (10-15 phút/ngày) và dùng app giáo dục chất lượng → lợi nhiều hơn hại. Quan trọng là bố mẹ kiểm soát thời gian và chọn app phù hợp."
+    },
+    {
+      "question": "Con hay quên bài, có phải ADHD không?",
+      "answer": "Hay quên là MỘT triệu chứng của ADHD, nhưng không đủ để kết luận. Cần xem xét tổng thể: con có khó tập trung, bốc đồng, hiếu động quá mức trong nhiều tình huống không?"
+    },
+    {
+      "question": "Mình có nên cho con uống thuốc tập trung không?",
+      "answer": "KHÔNG TỰ Ý cho con uống bất kỳ thuốc nào. Nếu nghi ngờ ADHD, hãy gặp bác sĩ chuyên khoa để được đánh giá và tư vấn đúng cách."
+    },
+    {
+      "question": "Làm sao để con tập trung khi học ở nhà?",
+      "answer": "1. Tạo góc học yên tĩnh, tắt TV/điện thoại. 2. Chia nhỏ thời gian học (10 phút/lần). 3. Cho nghỉ ngắn giữa các lần học. 4. Dùng app/game giáo dục thay vì vở bài tập nhàm chán."
+    },
+    {
+      "question": "Con tập trung chơi game rất tốt, sao học không tập trung?",
+      "answer": "Game có: phần thưởng ngay lập tức, thử thách liên tục, hình ảnh/âm thanh hấp dẫn. Bài tập truyền thống thiếu những yếu tố này. Giải pháp: dùng app học có gamification."
+    },
+    {
+      "question": "Sorokid giúp con tập trung như thế nào?",
+      "answer": "Sorokid chia bài thành phần nhỏ (2-3 phút/bài), có sao thưởng ngay khi hoàn thành, có level để mở khóa. Não con được 'thưởng' liên tục nên muốn tiếp tục – giống như chơi game."
+    },
+    {
+      "question": "Con cần ngủ bao nhiêu để tập trung tốt?",
+      "answer": "Trẻ 6-12 tuổi cần 9-12 tiếng ngủ mỗi đêm. Thiếu ngủ = não mệt = khó tập trung. Đảm bảo con ngủ đủ giấc là nền tảng quan trọng."
+    },
+    {
+      "question": "Có nên cho con uống nước tăng lực/cà phê để tập trung không?",
+      "answer": "KHÔNG. Caffeine không tốt cho trẻ em. Thay vào đó: cho con ăn đủ bữa, uống đủ nước, ngủ đủ giấc. Đây là 'nhiên liệu' tự nhiên cho não."
     }
   ],
   "cta": {
-    "text": "Sorokid chia bài học thành phần nhỏ, phù hợp với khả năng tập trung của trẻ.",
-    "buttonText": "Cho con thử",
+    "text": "Sorokid chia bài học thành phần nhỏ 2-3 phút, có phần thưởng ngay – phù hợp với khả năng tập trung của trẻ.",
+    "buttonText": "Cho con thử miễn phí",
     "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Con không tập trung khi học toán – ADHD hay chỉ là chán? Cách phân biệt",
+    "description": "Con ngồi học 2 phút là ngọ nguậy. Lo con bị ADHD? Cách phân biệt ADHD thật sự và chỉ là chán học. Giải pháp giúp trẻ tập trung hiệu quả.",
+    "keywords": "trẻ không tập trung, con mất tập trung học toán, ADHD ở trẻ, cách giúp trẻ tập trung"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-15",
+    "author": "Chị Mai Hương"
   }
 }

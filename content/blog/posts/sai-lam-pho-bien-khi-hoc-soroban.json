@@ -7,14 +7,27 @@
     "sai lầm học soroban",
     "lỗi thường gặp soroban",
     "học soroban sai cách",
-    "cách học soroban hiệu quả"
+    "cách học soroban hiệu quả",
+    "tránh sai lầm soroban",
+    "10 lỗi học soroban",
+    "hướng dẫn học soroban đúng",
+    "khắc phục sai lầm soroban",
+    "phụ huynh dạy soroban",
+    "mẹo học soroban",
+    "lưu ý khi học soroban",
+    "bí quyết học soroban"
   ],
   "status": "published",
   "publishedAt": "2026-01-05T04:49:16.214Z",
   "createdAt": "2025-12-25",
   "image": "/blog/tranh-sai-lam-hoc-soroban.jpg",
   "imageAlt": "Bé châu Á cầm bàn tính Soroban đúng tư thế - cách tránh sai lầm phổ biến",
-  "readingTime": 7,
+  "readingTime": 13,
+  "categoryOrder": 1,
+  "order": 23,
+  "translations": {
+    "en": "common-mistakes-learning-soroban"
+  },
   "content": {
     "intro": "Sau khi kèm con học Soroban và quan sát nhiều trẻ khác, mình nhận ra một số sai lầm lặp đi lặp lại. Tránh được những sai lầm này, việc học Soroban sẽ hiệu quả hơn nhiều.",
     "sections": [
@@ -256,19 +269,43 @@
   "faq": [
     {
       "question": "Con đã mắc sai lầm rồi, có sửa được không?",
-      "answer": "Được. Quay lại bài cơ bản, luyện lại từ đầu. Mất thời gian hơn nhưng vẫn hiệu quả."
+      "answer": "Được. Quay lại bài cơ bản, luyện lại từ đầu. Mất thời gian hơn nhưng vẫn hiệu quả. Quan trọng là nhận ra sai lầm và sửa càng sớm càng tốt."
     },
     {
       "question": "Làm sao biết con đang mắc sai lầm nào?",
-      "answer": "Quan sát: Con hay sai ở đâu? Con có vui khi học không? Con có phải nhìn bàn tính liên tục không? Trả lời những câu hỏi này sẽ thấy."
+      "answer": "Quan sát: Con hay sai ở đâu? Con có vui khi học không? Con có phải nhìn bàn tính liên tục không? Con có dùng đúng ngón tay không? Trả lời những câu hỏi này sẽ thấy."
     },
     {
       "question": "Phụ huynh không biết Soroban, làm sao hướng dẫn con?",
-      "answer": "Học cùng con! Đọc các bài hướng dẫn, xem video, hoặc dùng app có chấm điểm tự động. Không cần là chuyên gia."
+      "answer": "Học cùng con! Đọc các bài hướng dẫn, xem video, hoặc dùng app có chấm điểm tự động. Không cần là chuyên gia, chỉ cần đồng hành cùng con."
     },
     {
       "question": "Con ghét Soroban vì ép học, phải làm sao?",
-      "answer": "Dừng lại 1-2 tuần. Sau đó quay lại với cách tiếp cận mới: chơi nhiều hơn học, cho con chọn bài, khen nhiều hơn chê."
+      "answer": "Dừng lại 1-2 tuần. Sau đó quay lại với cách tiếp cận mới: chơi nhiều hơn học, cho con chọn bài, khen nhiều hơn chê. Kiên nhẫn xây dựng lại niềm vui học."
+    },
+    {
+      "question": "Sai lầm nào nghiêm trọng nhất?",
+      "answer": "Dùng ngón tay sai và vội vàng học nâng cao. Hai sai lầm này ảnh hưởng lâu dài và khó sửa. Cần chú ý ngay từ đầu."
+    },
+    {
+      "question": "Luyện đều đặn là bao nhiêu phút mỗi ngày?",
+      "answer": "15-20 phút mỗi ngày, 5-6 ngày/tuần. Tốt hơn là học 2 tiếng cuối tuần rồi bỏ các ngày khác. Đều đặn giúp kỹ năng thành phản xạ."
+    },
+    {
+      "question": "Có cần kiểm tra kết quả mỗi bài không?",
+      "answer": "Có. Kiểm tra giúp phát hiện sai lầm sớm, tránh để con lặp lại. Dùng app có chấm điểm tự động hoặc phụ huynh kiểm tra trực tiếp."
+    },
+    {
+      "question": "So sánh con với bạn khác có hại không?",
+      "answer": "Có. Khiến con mất tự tin, ghét học. Mỗi trẻ có tốc độ riêng. Chỉ nên so sánh con với chính con tuần trước, tháng trước."
+    },
+    {
+      "question": "Làm sao để việc học không nhàm chán?",
+      "answer": "Thêm game, thi đua nhẹ nhàng. Chơi đố nhanh, ai đúng nhiều hơn. Dùng app có hệ thống phần thưởng. Khen khi con làm tốt."
+    },
+    {
+      "question": "Khi nào thì nên cho con nghỉ học?",
+      "answer": "Khi con quá mệt mỏi sau giờ học ở trường, khi ốm, hoặc khi có dấu hiệu chán nặng. Nghỉ ngắn 1-3 ngày rồi tiếp tục. Đừng bỏ hẳn, chỉ cần điều chỉnh."
     }
   ],
   "cta": {
@@ -276,6 +313,18 @@
     "buttonText": "Cho con thử học đúng cách",
     "buttonLink": "/register"
   },
-  "categoryOrder": 1,
-  "order": 23
+  "seo": {
+    "title": "10 sai lầm phổ biến khi học Soroban – Phụ huynh cần biết",
+    "description": "Học Soroban không khó, nhưng nhiều phụ huynh và trẻ mắc những sai lầm khiến việc học kém hiệu quả. Bài này liệt kê 10 sai lầm phổ biến nhất.",
+    "keywords": "sai lầm học soroban, lỗi thường gặp soroban, học soroban sai cách, cách học soroban hiệu quả"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-05",
+    "author": "Trần Thị Mai Lan"
+  },
+  "author": {
+    "name": "Minh Anh",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
 }

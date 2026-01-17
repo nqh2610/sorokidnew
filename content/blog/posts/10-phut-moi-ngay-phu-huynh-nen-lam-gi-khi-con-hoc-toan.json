@@ -6,13 +6,28 @@
   "keywords": [
     "10 phút học toán mỗi ngày",
     "phụ huynh hỗ trợ con học toán",
-    "cách giúp con học toán"
+    "cách giúp con học toán",
+    "thời gian kèm con học",
+    "kèm con học hiệu quả",
+    "10 phút đồng hành cùng con",
+    "không cần kèm nhiều",
+    "chất lượng hơn số lượng",
+    "động viên con học toán",
+    "cách hỗ trợ con tự học",
+    "phụ huynh bận rộn",
+    "kết nối với con qua việc học"
   ],
   "status": "published",
   "publishedAt": "2025-12-25T02:38:36.311Z",
   "createdAt": "2025-12-25",
   "image": "/blog/10-phut-kem-con-hoc-toan.jpg",
-  "readingTime": 4,
+  "imageAlt": "Phụ huynh dành 10 phút mỗi ngày kèm con học toán",
+  "readingTime": 12,
+  "categoryOrder": 4,
+  "order": 3,
+  "translations": {
+    "en": "10-minutes-a-day-what-parents-should-do"
+  },
   "content": {
     "intro": "Trước đây mình nghĩ: kèm con càng nhiều càng tốt. Tối nào cũng ngồi 1-2 tiếng. Kết quả? Cả hai đều kiệt sức, và con chẳng tiến bộ mấy. Giờ mình chỉ dành 10 phút mỗi tối – nhưng làm đúng việc.",
     "sections": [
@@ -117,27 +132,62 @@
   "faq": [
     {
       "question": "10 phút mỗi ngày có đủ không?",
-      "answer": "10 phút là thời gian mình đồng hành, không phải tổng thời gian con học. Con có thể học thêm với ứng dụng hoặc tự làm bài. Việc của mình là động viên, không phải dạy."
+      "answer": "10 phút là thời gian phụ huynh ĐỒNG HÀNH, không phải tổng thời gian con học. Con có thể học thêm 15-20 phút với ứng dụng hoặc tự làm bài. Việc của bạn là động viên và kết nối, không phải dạy kiến thức."
     },
     {
-      "question": "Nên dành 10 phút vào lúc nào?",
-      "answer": "Tùy lịch sinh hoạt. Mình thường dành sau bữa tối, khi cả hai đều thư giãn. Quan trọng là thời điểm cả hai đều thoải mái."
+      "question": "Nên dành 10 phút vào lúc nào trong ngày?",
+      "answer": "Tùy lịch sinh hoạt gia đình. Nhiều phụ huynh chọn sau bữa tối, khi cả hai đều thư giãn. Quan trọng nhất là chọn thời điểm cả hai đều thoải mái, không mệt mỏi hay vội vàng."
     },
     {
       "question": "Con không muốn nói chuyện về việc học, phải làm sao?",
-      "answer": "Không sao, đừng ép. Bắt đầu bằng những chủ đề khác: bạn bè, trò chơi, phim. Khi con thoải mái, con sẽ tự mở lòng."
+      "answer": "Không ép. Bắt đầu bằng những chủ đề khác: bạn bè, trò chơi, phim hoạt hình. Khi con thoải mái và tin tưởng, con sẽ tự mở lòng kể về việc học. Đừng biến 10 phút thành 'giờ kiểm tra'."
     },
     {
       "question": "Vợ/chồng đã kèm con rồi, mình còn cần 10 phút này không?",
-      "answer": "10 phút này khác với kèm học. Đây là thời gian kết nối, không phải kiểm tra bài. Cả bố và mẹ đều có thể có 10 phút riêng với con mỗi ngày."
+      "answer": "Có! 10 phút này khác với kèm học. Đây là thời gian KẾT NỐI tình cảm, không phải kiểm tra bài. Cả bố và mẹ đều có thể có 10 phút riêng với con mỗi ngày - con sẽ cảm nhận được tình yêu từ cả gia đình."
+    },
+    {
+      "question": "10 phút có ngắn quá không khi trước đây kèm 2 tiếng?",
+      "answer": "Không. Nghiên cứu cho thấy trẻ chỉ tập trung hiệu quả 15-20 phút. Sau đó não mệt, ngồi tiếp cũng không tiếp thu. 10 phút chất lượng tốt hơn 2 tiếng căng thẳng."
+    },
+    {
+      "question": "Làm gì trong 10 phút nếu con đang học bài một mình?",
+      "answer": "Ngồi cạnh nhưng KHÔNG CAN THIỆP. Không sửa lỗi, không nhắc nhở. Chỉ hiện diện để con biết bạn ở đây. Sau đó khen sự cố gắng: 'Con tập trung tốt quá!' rồi rời đi."
+    },
+    {
+      "question": "Nếu bận quá không có 10 phút thì sao?",
+      "answer": "Thử 5 phút. Hoặc buổi sáng trước khi đi học, hoặc gọi điện khi đi công tác. Quan trọng là SỰ NHẤT QUÁN - mỗi ngày một chút, không phải thỉnh thoảng nhiều một lúc."
+    },
+    {
+      "question": "Có nên kiểm tra bài trong 10 phút này không?",
+      "answer": "KHÔNG. 10 phút này để kết nối tình cảm, không phải kiểm tra. Nếu kiểm tra, con sẽ liên tưởng bạn với áp lực. Để việc kiểm tra cho cô giáo hoặc hệ thống tự động của app."
+    },
+    {
+      "question": "Con có thể tự học mà không cần phụ huynh không?",
+      "answer": "Với app tốt như Sorokid, con hoàn toàn có thể tự học phần kiến thức. Nhưng con vẫn cần phụ huynh ĐỘNG VIÊN, KHEN NGỢI, và cho con biết bạn quan tâm. Đó là vai trò không ai thay được."
+    },
+    {
+      "question": "10 phút có tạo ra sự khác biệt thật sự không?",
+      "answer": "Có. Trẻ cần biết bố mẹ quan tâm. 10 phút mỗi ngày = 70 phút/tuần = 280 phút/tháng sự hiện diện và yêu thương. Đó là nền tảng để con tự tin học tập, không chỉ riêng toán."
     }
   ],
   "cta": {
     "text": "Muốn con tự học để bạn chỉ cần dành 10 phút động viên? Thử Sorokid – con học theo hướng dẫn, bạn theo dõi tiến độ từ xa.",
-    "buttonText": "Thử xem",
+    "buttonText": "Thử miễn phí ngay",
     "buttonLink": "/register"
   },
-  "imageAlt": "Phụ huynh dành 10 phút mỗi ngày kèm con học toán",
-  "categoryOrder": 4,
-  "order": 3
+  "seo": {
+    "title": "10 phút mỗi tối – cách kèm con học hiệu quả mà nhẹ nhàng",
+    "description": "Trước đây kèm con 2 tiếng mỗi tối. Giờ chỉ 10 phút đúng cách, kết quả tốt hơn hẳn. Chia sẻ thật từ mẹ bận rộn.",
+    "keywords": "10 phút học toán mỗi ngày, phụ huynh hỗ trợ con học toán, cách giúp con học toán, kèm con hiệu quả"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-25",
+    "author": "Chị Phương Linh"
+  },
+  "author": {
+    "name": "Chị Phương Linh",
+    "bio": "Mẹ của hai bé tiểu học, đã từ bỏ việc kèm con căng thẳng và tìm ra cách đồng hành nhẹ nhàng"
+  }
 }

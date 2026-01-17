@@ -1,49 +1,395 @@
 {
-  "postId": "con-tinh-toan-can-than-nhung-hay-doc-nham-de-bai",
   "slug": "con-tnh-ton-cn-thn-nhng-hay-c-nhm-bi",
-  "title": "[EN] Con tính toán cẩn thận nhưng hay đọc nhầm đề bài",
-  "description": "[Needs translation] Bài kiểm tra về, mình tưởng con tính sai. Hóa ra con đọc nhầm đề.",
-  "category": "when-kids-struggle-with-math",
+  "title": "My Child Calculates Carefully But Keeps Reading Problems Wrong: The Hidden Culprit Behind 'Careless' Math Errors",
+  "description": "The test came back—wrong answers on problems she definitely knew how to solve. 'I thought it said 45, but it was 54.' This happens constantly. I finally discovered it's not carelessness—it's a specific, fixable reading issue that many math-capable children share.",
+  "category": "math-struggles",
   "keywords": [
-    "con đọc nhầm đề",
-    "sai vì đọc đề",
-    "rèn đọc hiểu đề toán"
+    "child misreads math problems",
+    "careless math errors children",
+    "reading mistakes math tests",
+    "attention to detail math",
+    "math problem reading skills",
+    "number reversal errors",
+    "slow down math reading",
+    "test taking mistakes kids",
+    "math accuracy improvement",
+    "detail oriented math practice",
+    "reduce silly math mistakes",
+    "careful math problem reading"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-02-05T23:33:14.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/doc-nham-de.jpg",
-  "imageAlt": "Bé châu Á đang đọc đề bài với vẻ tập trung",
-  "readingTime": 5,
+  "imageAlt": "Child carefully reading math problem to avoid misreading numbers",
+  "readingTime": 14,
   "author": {
-    "name": "SoroKid Team",
-    "role": "Education Content"
+    "name": "Mrs. Emily Watson",
+    "role": "Parent and Learning Specialist"
+  },
+  "translations": {
+    "vi": "con-tinh-toan-can-than-nhung-hay-doc-nham-de-bai"
   },
   "content": {
-    "intro": "[Needs natural English rewrite] \"Con ơi, sao bài này sai?\" – \"À, con đọc nhầm là 45 thành 54.\" Chuyện này xảy ra với con mình hoài.",
+    "intro": "'Why did you get this wrong? You know how to do this!' My daughter's math test had several incorrect answers—all on problems she could easily solve. Looking closely, I saw the pattern: '45' became '54,' 'subtract' was read as 'add,' the word 'each' was completely missed. She wasn't making calculation errors. She was misreading questions. I initially dismissed this as 'carelessness,' but after months of the same pattern, I realized this was a specific, diagnosable issue with specific solutions.",
     "sections": [
       {
         "type": "heading",
         "level": 2,
-        "text": "Đọc nhầm đề – vấn đề phổ biến"
+        "text": "The Pattern: Correct Process, Wrong Input"
       },
       {
         "type": "paragraph",
-        "text": "Nhiều trẻ tính toán tốt nhưng mất điểm vì:\n- Đọc nhầm số.\n- Hiểu sai yêu cầu bài.\n- Bỏ sót điều kiện."
+        "text": "When I analyzed my daughter's 'wrong' answers, I noticed something important: her math work was perfect. If she had read the problem correctly, she would have gotten the right answer. The breakdown was always in the reading phase."
       },
       {
-        "type": "paragraph",
-        "text": "Đây không phải lỗi kém toán. Đây là lỗi đọc hiểu và tập trung."
+        "type": "heading",
+        "level": 3,
+        "text": "Common Misreading Errors"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Number reversals**: 45 → 54, 36 → 63, 12 → 21",
+          "**Operation confusion**: Reading 'add' when it says 'subtract'",
+          "**Skipped words**: Missing 'each' or 'remaining' which changes everything",
+          "**Similar word substitution**: 'Sum' for 'some,' 'fewer' for 'few'",
+          "**Partial reading**: Solving for the wrong question because the full question wasn't read"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "insight",
+        "text": "The frustrating irony: these children are often excellent calculators. Their math skills are strong. But reading errors sabotage their performance, making it look like they 'don't understand math' when the problem is actually reading accuracy."
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "Nguyên nhân"
+        "text": "Why 'Be More Careful' Doesn't Work"
       },
       {
         "type": "paragraph",
-        "text": "1. **Vội vàng**\n   - Con muốn làm nhanh → đọc lướt → bỏ sót."
+        "text": "My first response was to tell my daughter: 'Just be more careful!' 'Slow down!' 'Read the question twice!' These instructions didn't help. Here's why:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "'Be Careful' Is Vague"
+      },
+      {
+        "type": "paragraph",
+        "text": "What does 'careful' mean specifically? Children who misread problems aren't trying to be careless. They don't know what they're doing wrong or how to do it differently. Telling them to 'be careful' doesn't give them actionable strategies."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "'Slow Down' Adds Anxiety"
+      },
+      {
+        "type": "paragraph",
+        "text": "Timed tests create pressure. Telling a child to slow down while also expecting them to finish on time creates conflicting demands that increase anxiety—which actually increases reading errors."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "'Read Twice' Becomes Ritual"
+      },
+      {
+        "type": "paragraph",
+        "text": "Without specific focus, reading twice just means making the same misreading twice. Children need to know what to look for on the second read, not just to read again."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understanding the Root Causes"
+      },
+      {
+        "type": "paragraph",
+        "text": "Misreading math problems isn't a character flaw. It has identifiable causes:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Cause 1: Visual Processing Speed"
+      },
+      {
+        "type": "paragraph",
+        "text": "Some children's eyes move faster than their brain processes. They see '54' and their brain registers a number, but doesn't fully encode which digit comes first. The information enters correctly but gets scrambled."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Cause 2: Working Memory Overload"
+      },
+      {
+        "type": "paragraph",
+        "text": "A child who's already thinking about how to solve the problem may not have enough working memory to carefully encode every detail of the problem. The brain predicts what it expects to see rather than seeing what's actually there."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Cause 3: Attention Regulation"
+      },
+      {
+        "type": "paragraph",
+        "text": "Maintaining focused attention through an entire problem—especially a multi-part problem—is a skill that develops with age. Younger children or those with attention differences may lose focus partway through reading."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Cause 4: Test Anxiety"
+      },
+      {
+        "type": "paragraph",
+        "text": "Anxiety narrows attention and increases processing speed. Anxious children often read faster (to get the scary test over with), which increases misreading rates."
+      },
+      {
+        "type": "table",
+        "caption": "Root Causes and Targeted Solutions",
+        "headers": [
+          "Root Cause",
+          "Symptom",
+          "Targeted Strategy"
+        ],
+        "rows": [
+          [
+            "Visual processing speed",
+            "Number reversals",
+            "Finger tracking, verbalization"
+          ],
+          [
+            "Working memory overload",
+            "Missed details",
+            "Problem decomposition, note-taking"
+          ],
+          [
+            "Attention regulation",
+            "Incomplete reading",
+            "Structured reading routine"
+          ],
+          [
+            "Test anxiety",
+            "Rushing errors",
+            "Anxiety management techniques"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Specific Strategies That Work"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 1: The Finger Tracker"
+      },
+      {
+        "type": "paragraph",
+        "text": "Have your child use a finger or pencil tip to track under each word and number while reading. This physical action:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Slows visual processing to match cognitive processing",
+          "Prevents eye-skipping that causes missed words",
+          "Creates a physical check that all parts were read",
+          "Works especially well for number reversals"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Some children resist this as 'babyish.' Frame it as a professional technique: 'Even air traffic controllers use finger tracking to prevent errors.'"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 2: Verbalize the Numbers"
+      },
+      {
+        "type": "paragraph",
+        "text": "For number reversal issues specifically, have your child say each number aloud (or whisper it on tests). Saying 'forty-five' while looking at 45 creates a double-check. If they see 45 but accidentally say 'fifty-four,' the mismatch catches the error."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 3: The Highlighter Method"
+      },
+      {
+        "type": "paragraph",
+        "text": "When allowed, use highlighters strategically:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Yellow**: Highlight the question (what exactly are we finding?)",
+          "**Pink**: Highlight key numbers",
+          "**Blue**: Highlight operation words (add, subtract, each, remaining)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The act of highlighting forces careful reading and creates a visual map of the problem."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 4: The Self-Check Routine"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before calculating, establish a routine:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Read the problem completely",
+          "Circle every number",
+          "Underline the operation words",
+          "Put a star next to the question",
+          "THEN begin solving"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "This takes 15-20 seconds but prevents errors that take much longer to recover from (if they're even caught)."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 5: Practice With Tricky Problems"
+      },
+      {
+        "type": "paragraph",
+        "text": "Create practice problems designed to catch careless readers:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Problems with 45 vs. 54 scenarios",
+          "Problems where the last sentence is the actual question",
+          "Problems with extra information that must be ignored",
+          "Problems where one word changes everything"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "When children encounter tricky problems in low-stakes practice, they develop vigilance that transfers to tests."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Make a game of it: 'I wrote 10 problems, but 3 of them have tricky parts designed to catch you. Can you find and avoid all the traps?' This turns careful reading into a challenge rather than a chore."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When to Seek Professional Help"
+      },
+      {
+        "type": "paragraph",
+        "text": "For most children, consistent strategy practice resolves misreading issues. But consider professional evaluation if:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Number reversals persist past age 8-9",
+          "Reading errors occur across all subjects, not just math",
+          "Strategies don't produce improvement after 2-3 months",
+          "Your child shows signs of dyslexia, dyscalculia, or ADHD",
+          "Anxiety is severe enough to interfere with daily functioning"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Learning specialists can identify specific processing differences and provide targeted interventions."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Transformation: My Daughter Now"
+      },
+      {
+        "type": "paragraph",
+        "text": "After implementing these strategies consistently for three months:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Number reversal errors dropped by 80%",
+          "She uses finger tracking automatically (no longer embarrassed)",
+          "Her test scores reflect her actual math knowledge",
+          "She catches her own misreading before calculating",
+          "Her math confidence has soared"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The strategies took practice to become habit. But once habituated, they're automatic—and the results speak for themselves."
+      },
+      {
+        "type": "callout",
+        "style": "success",
+        "text": "The most rewarding moment was when my daughter said, 'I almost read that wrong, but I caught it!' Self-correction is the ultimate goal—and it's achievable with the right strategies."
       }
     ]
-  }
+  },
+  "faq": [
+    {
+      "question": "Why does my child keep misreading math problems when they're careful with calculations?",
+      "answer": "Misreading is a separate skill from calculating. Children can have strong computational abilities but struggle with reading accuracy due to visual processing speed, working memory overload, attention regulation, or test anxiety. The good news: reading accuracy can be specifically trained."
+    },
+    {
+      "question": "Why doesn't 'be more careful' fix the problem?",
+      "answer": "'Be careful' is vague—children don't know what specifically to do differently. They need concrete strategies: finger tracking, verbalization, highlighting, structured reading routines. Telling them to slow down without giving specific techniques just adds anxiety."
+    },
+    {
+      "question": "What causes number reversals like reading 45 as 54?",
+      "answer": "Number reversals often occur when visual processing speed exceeds cognitive processing speed—eyes move faster than the brain can accurately encode information. Developmental factors play a role; reversals are common in young children but should decrease with age. Finger tracking and verbalization help."
+    },
+    {
+      "question": "How does anxiety increase reading errors?",
+      "answer": "Anxiety narrows attention and speeds processing as the brain tries to escape the threatening situation (the test). Faster processing means less accurate reading. Managing test anxiety through preparation, breathing techniques, and positive self-talk can reduce reading errors."
+    },
+    {
+      "question": "What's the finger tracking technique?",
+      "answer": "Use a finger or pencil tip to physically track under each word and number while reading. This slows visual processing to match cognitive processing, prevents eye-skipping, and ensures all parts of the problem are read. It's a professional technique used even by air traffic controllers."
+    },
+    {
+      "question": "How can verbalizing numbers prevent reversal errors?",
+      "answer": "When children say numbers aloud ('forty-five' while looking at 45), they create a cross-check between visual and auditory processing. If they see 45 but accidentally say 'fifty-four,' the mismatch alerts them to the error before it affects their calculation."
+    },
+    {
+      "question": "Should I let my child use highlighters on math tests?",
+      "answer": "If allowed, yes! Highlighting the question, numbers, and operation words forces careful reading and creates a visual problem map. Check test policies—many allow highlighters. For tests that don't, practice the highlighting method in homework so the mental habit transfers."
+    },
+    {
+      "question": "How long does it take to fix misreading problems?",
+      "answer": "With consistent strategy practice, most children show improvement within 4-8 weeks. Full habituation takes longer—typically 2-3 months before strategies become automatic. Consistency matters more than intensity; daily brief practice beats occasional long sessions."
+    },
+    {
+      "question": "When should I seek professional help for misreading issues?",
+      "answer": "Consider evaluation if: number reversals persist past age 8-9, reading errors occur across all subjects, strategies don't help after 2-3 months, or you suspect dyslexia, dyscalculia, or ADHD. Learning specialists can identify specific processing differences and provide targeted interventions."
+    },
+    {
+      "question": "Is misreading problems a sign of a learning disability?",
+      "answer": "Not necessarily. Occasional misreading is normal, especially under time pressure. Persistent, frequent misreading that doesn't improve with strategies may warrant evaluation for dyslexia, dyscalculia, or attention disorders. Most children, however, improve significantly with targeted strategy practice."
+    }
+  ],
+  "cta": {
+    "text": "Help your child's math skills shine through accurate problem reading. Sorokid develops careful reading habits alongside calculation skills—reducing 'careless' errors that mask true ability.",
+    "buttonText": "Build Complete Math Accuracy",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "Child Misreads Math Problems: Why and How to Fix It | Sorokid",
+    "metaDescription": "Why math-capable children keep misreading problems and losing points. Specific strategies to improve reading accuracy, reduce careless errors, and let true math ability show.",
+    "keywords": "child misreads math problems, careless math errors, reading mistakes math tests, attention to detail math, number reversal errors, reduce silly math mistakes"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-05",
+    "author": "Mrs. Emily Watson"
+  },
+  "postId": "con-tinh-toan-can-than-nhung-hay-doc-nham-de-bai"
 }

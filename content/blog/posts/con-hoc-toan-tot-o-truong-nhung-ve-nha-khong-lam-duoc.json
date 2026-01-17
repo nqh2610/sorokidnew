@@ -23,6 +23,9 @@
     "name": "Chị Phương",
     "role": "Mẹ bé lớp 2"
   },
+  "translations": {
+    "en": "con-hc-ton-tt-trng-nhng-v-nh-qun-sch-v-sao-v-cch-khc-phc"
+  },
   "content": {
     "intro": "\"Hôm nay cô dạy gì con?\" – \"Phép nhân 4 mẹ ạ!\" – \"Vậy 4 x 6 bằng mấy?\" – Con im lặng. Mắt con nhìn lên trần nhà, suy nghĩ mãi. \"Con... con quên rồi mẹ ơi.\" Mình sốc. Cô giáo vừa nhắn tin khen con tiếp thu nhanh. Mới học xong buổi sáng, buổi tối con đã quên? Mình từng nghĩ con giả vờ, con không chịu học. Nhưng sau khi tìm hiểu, mình mới biết: đó là cách não trẻ hoạt động, và mình đã ôn bài sai cách.",
     "sections": [

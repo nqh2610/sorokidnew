@@ -7,14 +7,31 @@
     "lộ trình học soroban",
     "học soroban bao lâu",
     "khi nào cho con học soroban",
-    "các cấp độ soroban"
+    "các cấp độ soroban",
+    "giai đoạn học soroban",
+    "soroban cho bé từ đầu",
+    "soroban từ cơ bản đến nâng cao",
+    "con bao nhiêu tuổi học soroban",
+    "thời gian học soroban",
+    "các bước học soroban",
+    "hướng dẫn học soroban từ đầu",
+    "tiến trình học soroban cho trẻ"
   ],
   "status": "published",
   "publishedAt": "2026-01-02T09:37:48.096Z",
   "createdAt": "2025-12-25",
   "image": "/blog/lo-trinh-hoc-soroban-tre-em.jpg",
   "imageAlt": "Bé châu Á đang học Soroban theo từng cấp độ từ dễ đến khó",
-  "readingTime": 8,
+  "readingTime": 13,
+  "categoryOrder": 1,
+  "order": 15,
+  "author": {
+    "name": "Chị Minh Châu",
+    "role": "Mẹ bé Tít – lớp 2"
+  },
+  "translations": {
+    "en": "soroban-learning-roadmap-for-kids"
+  },
   "content": {
     "intro": "Nhiều phụ huynh hỏi: Con học Soroban bao lâu? Bắt đầu từ đâu? Bài này chia sẻ lộ trình học Soroban hoàn chỉnh mà mình đã theo cùng con.",
     "sections": [
@@ -271,19 +288,43 @@
   "faq": [
     {
       "question": "Con 10 tuổi mới bắt đầu học có muộn không?",
-      "answer": "Không muộn. Trẻ lớn hiểu nhanh hơn, có thể học cấp tốc các giai đoạn đầu. Chỉ cần luyện đều đặn."
+      "answer": "Không muộn. Trẻ lớn hiểu nhanh hơn, có thể học cấp tốc các giai đoạn đầu. Chỉ cần luyện đều đặn mỗi ngày 15-20 phút. Con bạn mình 11 tuổi bắt đầu học, sau 8 tháng đã tính nhẩm được số 2 chữ số."
     },
     {
       "question": "Học Soroban bao lâu thì thấy hiệu quả?",
-      "answer": "Thường sau 3-6 tháng, con đã cộng trừ nhanh hơn bạn bè không học Soroban. Hiệu quả rõ sau 1 năm."
+      "answer": "Thường sau 3-6 tháng, con đã cộng trừ nhanh hơn bạn bè không học Soroban. Hiệu quả rõ sau 1 năm khi con bắt đầu tính nhẩm trong đầu mà không cần bàn tính."
     },
     {
       "question": "Có cần học hết các giai đoạn không?",
-      "answer": "Không bắt buộc. Nhiều trẻ dừng sau giai đoạn 5 (cộng trừ thành thạo) và đã đủ lợi ích. Anzan là \"nâng cao\"."
+      "answer": "Không bắt buộc. Nhiều trẻ dừng sau giai đoạn 5 (cộng trừ thành thạo) và đã đủ lợi ích cho việc học ở trường. Anzan là 'nâng cao' cho ai muốn tiến xa hơn."
     },
     {
       "question": "Con không muốn học nữa ở giữa chừng, phải làm sao?",
-      "answer": "Bình thường. Cho con nghỉ vài tuần, sau đó quay lại với bài dễ hơn. Hoặc thử hình thức khác (app thay vì bàn tính thật)."
+      "answer": "Bình thường, con nào cũng có lúc chán. Cho con nghỉ vài tuần, sau đó quay lại với bài dễ hơn. Hoặc thử hình thức khác (app thay vì bàn tính thật, hoặc ngược lại)."
+    },
+    {
+      "question": "Mỗi ngày nên học bao nhiêu phút là đủ?",
+      "answer": "15-20 phút mỗi ngày là lý tưởng cho giai đoạn cơ bản. Tăng lên 20-30 phút khi học nâng cao. Quan trọng là đều đặn – tốt hơn học 2 tiếng 1 lần/tuần."
+    },
+    {
+      "question": "Con học Soroban có ảnh hưởng đến việc học toán ở trường không?",
+      "answer": "Thường là ảnh hưởng tốt. Giai đoạn đầu có thể hơi bối rối vì có 2 cách tính, nhưng sau 1-2 tháng não sẽ tự chọn cách nhanh nhất. Con sẽ tính nhanh hơn khi làm bài kiểm tra."
+    },
+    {
+      "question": "Nên cho con học Soroban ở trung tâm hay tự học ở nhà?",
+      "answer": "Tùy điều kiện. Trung tâm có giáo viên nhưng chi phí cao và phải đưa đón. Tự học qua app linh hoạt hơn, chi phí thấp hơn, nhưng cần phụ huynh đồng hành. Mình chọn app và con vẫn tiến bộ tốt."
+    },
+    {
+      "question": "Có cần mua bàn tính Soroban thật không?",
+      "answer": "Nên có 1 cái (50-100k) để con có cảm giác thực tế, đặc biệt giai đoạn đầu. Sau đó có thể dùng bàn tính ảo trên app cho tiện lợi."
+    },
+    {
+      "question": "Làm sao biết con đang ở giai đoạn nào trong lộ trình?",
+      "answer": "Quan sát con biểu diễn số nào trên bàn tính, tính được phép tính nào. App Sorokid có báo cáo tiến độ chi tiết giúp bạn biết con đang ở bài nào mà không cần hiểu kỹ về Soroban."
+    },
+    {
+      "question": "Con học nhanh/chậm hơn lộ trình có sao không?",
+      "answer": "Hoàn toàn bình thường. Mỗi con có tốc độ khác nhau. Lộ trình này là tham khảo, không phải quy chuẩn. Quan trọng là con vui và tiến bộ so với chính con, không phải so với ai khác."
     }
   ],
   "cta": {
@@ -291,6 +332,14 @@
     "buttonText": "Cho con bắt đầu",
     "buttonLink": "/register"
   },
-  "categoryOrder": 1,
-  "order": 15
+  "seo": {
+    "title": "Lộ trình học Soroban cho trẻ – Từ zero đến tính nhẩm",
+    "description": "Học Soroban bao lâu? Nên bắt đầu từ đâu? Bài này chia sẻ lộ trình học Soroban hoàn chỉnh cho trẻ từ 5-12 tuổi.",
+    "keywords": "lộ trình học soroban, học soroban bao lâu, khi nào cho con học soroban, các cấp độ soroban, giai đoạn học soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-02",
+    "author": "Chị Minh Châu"
+  }
 }

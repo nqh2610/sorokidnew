@@ -1,18 +1,37 @@
 {
   "slug": "sai-lam-pho-bien-khi-kem-con-hoc-toan",
-  "title": "5 sai lầm mình từng mắc khi kèm con học toán – và cách mình sửa",
-  "description": "Nhìn lại, mình thấy mình đã làm sai nhiều thứ khi kèm con. Những sai lầm này khiến cả hai đều mệt – mà con cũng không tiến bộ.",
+  "title": "7 sai lầm phổ biến khi kèm con học toán – tránh ngay kẻo 'phản tác dụng' nghiêm trọng",
+  "description": "Phân tích 7 sai lầm khi kèm con học toán khiến trẻ càng sợ: làm hộ, ép nhiều bài, so sánh, la mắng, bỏ qua bước hiểu. Kèm giải pháp cụ thể và checklist hàng ngày.",
   "category": "phu-huynh-kem-con-hoc-toan",
   "keywords": [
-    "sai lầm khi dạy con học toán",
-    "lỗi phụ huynh khi kèm con",
-    "cách kèm con học toán hiệu quả"
+    "dạy con học toán",
+    "kèm con học toán",
+    "sai lầm dạy toán",
+    "con sợ học toán",
+    "phương pháp dạy toán cho trẻ",
+    "tâm lý học toán",
+    "bài tập toán tiểu học",
+    "cha mẹ dạy con",
+    "trẻ ghét toán",
+    "kiên nhẫn dạy con",
+    "học toán vui",
+    "toán tư duy"
   ],
   "status": "published",
   "publishedAt": "2025-12-25T02:37:47.830Z",
   "createdAt": "2025-12-25",
   "image": "/blog/tranh-sai-lam-kem-con-hoc-toan.jpg",
-  "readingTime": 7,
+  "imageAlt": "Mẹ châu Á nhíu mày sửa bài con - một sai lầm phổ biến khi kèm học",
+  "readingTime": 14,
+  "categoryOrder": 3,
+  "order": 2,
+  "author": {
+    "name": "Chị Thanh Mai",
+    "role": "Mẹ bé Bi – lớp 2"
+  },
+  "translations": {
+    "en": "5-sai-lm-mnh-tng-mc-khi-km-con-hc-ton-v-cch-mnh-sa"
+  },
   "content": {
     "intro": "Mình đã kèm con học toán gần 2 năm. Nhìn lại, mình thấy mình làm sai nhiều lắm – những sai lầm mà lúc đó mình tưởng là đúng. Nếu bạn đang kèm con, có lẽ bạn cũng đang mắc phải. Mình chia sẻ để bạn tránh được như mình.",
     "sections": [
@@ -201,28 +220,59 @@
   },
   "faq": [
     {
+      "question": "Bao lâu thì nên kèm con học toán mỗi ngày?",
+      "answer": "15-20 phút là đủ. Đặt timer. Hết giờ là dừng. Ít nhưng ĐỀU ĐẶN mỗi ngày quan trọng hơn học dài nhưng thất thường. Não cần thời gian 'tiêu hóa' giữa các buổi."
+    },
+    {
       "question": "Mình đã mắc những sai lầm này lâu rồi, có sửa được không?",
       "answer": "Được. Trẻ rất dễ quên và tha thứ. Nếu bạn thay đổi cách tiếp cận, con sẽ thay đổi theo. Bắt đầu từ hôm nay."
+    },
+    {
+      "question": "Nếu con sợ toán rồi thì làm sao?",
+      "answer": "Bắt đầu lại từ những bài THẬT DỄ – dễ đến mức con CHẮC CHẮN làm đúng. Để con THẮNG 5-10 lần liên tiếp. Khen thật lòng. Sau đó tăng dần độ khó rất chậm."
+    },
+    {
+      "question": "Con nói 'ghét toán' thì sao?",
+      "answer": "Đừng ép học toán truyền thống. Thử game toán, đố vui, bài toán trong đời thực (chia kẹo, tính tiền). Để con thấy toán cũng có thể thú vị."
+    },
+    {
+      "question": "Có nên thuê gia sư không?",
+      "answer": "Nếu bạn cảm thấy dạy con khiến cả hai căng thẳng, gia sư có thể giúp. Đôi khi người ngoài dạy, con chịu nghe hơn. Và quan hệ cha mẹ - con cái không bị ảnh hưởng."
     },
     {
       "question": "Làm sao để kiên nhẫn hơn khi con làm chậm?",
       "answer": "Nhắc mình: 'Con đang học, không phải đang thi.' Nếu thấy sốt ruột, đứng dậy ra ngoài vài phút. Đừng ép mình kiên nhẫn – hãy tạo điều kiện để kiên nhẫn được."
     },
     {
-      "question": "Học 15-20 phút có đủ không?",
-      "answer": "Đủ, nếu đều đặn mỗi ngày. 15 phút x 7 ngày = 105 phút/tuần. Tốt hơn 2 tiếng x 2 ngày cuối tuần = 240 phút nhưng căng thẳng."
+      "question": "Tại sao con làm bài trên lớp được nhưng về nhà lại không?",
+      "answer": "Có thể vì: (1) Trên lớp có bạn bè, không áp lực từ bố mẹ; (2) Ở nhà con mệt hơn; (3) Con sợ bị la nếu sai. Thử tạo không khí thoải mái hơn khi học ở nhà."
+    },
+    {
+      "question": "Con hay nói 'Con không biết' dù chưa suy nghĩ?",
+      "answer": "Đây là cơ chế phòng vệ – con sợ sai nên từ chối thử. Nói: 'Không sao, con thử đoán xem, sai cũng không sao.' Khen khi con CHỊU THỬ, không chỉ khi con làm đúng."
+    },
+    {
+      "question": "Bố mẹ không giỏi toán thì dạy con thế nào?",
+      "answer": "Bạn không cần giỏi toán. Bạn chỉ cần: kiên nhẫn, không la mắng, cho con thời gian suy nghĩ, và khen tiến bộ. Phần kiến thức có thể nhờ app, video, hoặc gia sư."
     },
     {
       "question": "Nếu không tự kèm được thì có cách nào khác?",
-      "answer": "Có nhiều cách: gia sư, lớp học thêm, hoặc app học online. Mình chọn app vì phù hợp với hoàn cảnh bận rộn và con có thể tự học."
+      "answer": "Có nhiều cách: gia sư, lớp học thêm, hoặc app học online. App có game, điểm, không la mắng, con học thoải mái hơn. Bố mẹ chỉ cần theo dõi tiến độ."
     }
   ],
   "cta": {
-    "text": "Nếu bạn cũng đang mệt vì kèm con, hãy thử cách khác. Sorokid giúp con tự học – bạn chỉ cần cổ vũ.",
-    "buttonText": "Thử xem",
+    "text": "Muốn con học toán mà không cần ép, không cần la? Sorokid biến bài tập thành game, con tự học vui vẻ, bố mẹ theo dõi tiến độ mà không căng thẳng.",
+    "buttonText": "Cho con thử học miễn phí 7 ngày",
     "buttonLink": "/register"
   },
-  "imageAlt": "Mẹ châu Á nhíu mày sửa bài con - một sai lầm phổ biến khi kèm học",
-  "categoryOrder": 3,
-  "order": 2
+  "seo": {
+    "title": "7 sai lầm phổ biến khi kèm con học toán – tránh ngay kẻo phản tác dụng",
+    "description": "Phân tích 7 sai lầm khi kèm con học toán khiến trẻ càng sợ: làm hộ, ép nhiều bài, so sánh, la mắng. Kèm giải pháp cụ thể và checklist hàng ngày.",
+    "keywords": "dạy con học toán, kèm con học toán, sai lầm dạy toán, con sợ toán"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-25T02:37:47.830Z",
+    "author": "Chị Thanh Mai"
+  }
 }

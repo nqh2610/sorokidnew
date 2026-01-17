@@ -333,6 +333,7 @@ export default function BlogCategoryContent({
               currentPage={currentPage}
               totalPages={totalPages}
               basePath={`${t.categoryPath}/${categorySlug}`}
+              locale={locale}
             />
           )}
         </section>

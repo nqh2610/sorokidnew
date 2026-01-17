@@ -16,11 +16,15 @@
   "publishedAt": "2025-12-27T14:02:57.997Z",
   "createdAt": "2025-12-26",
   "image": "/blog/chiec-non-ky-dieu-goi-hoc-sinh.jpg",
+  "imageAlt": "Chiếc Nón Kỳ Diệu – cách tôi gọi học sinh mà không ai kêu ca",
   "readingTime": 6,
   "author": {
     "name": "Cô Thanh Hương",
     "role": "Giáo viên THCS",
     "experience": "8 năm kinh nghiệm"
+  },
+  "translations": {
+    "en": "chic-nn-k-diu-cch-ti-gi-hc-sinh-m-khng-ai-ku-ca"
   },
   "content": {
     "intro": "\"Sao thầy toàn gọi mấy bạn đó?\" – Câu hỏi này tôi nghe không ít lần. Dù cố gắng công bằng, học sinh vẫn thấy tôi thiên vị. Cho đến khi tôi tìm ra một cách đơn giản: để vòng quay quyết định.",

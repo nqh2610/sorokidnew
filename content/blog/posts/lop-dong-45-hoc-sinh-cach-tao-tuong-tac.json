@@ -14,11 +14,17 @@
   "publishedAt": "2025-12-31T03:08:04.303Z",
   "createdAt": "2025-12-26",
   "image": "/blog/lop-dong-hoc-sinh.jpg",
+  "imageAlt": "Lớp học đông học sinh với giáo viên tổ chức hoạt động nhóm",
   "readingTime": 6,
+  "categoryOrder": 1,
+  "order": 4,
   "author": {
     "name": "Cô Thanh Mai",
     "role": "Giáo viên THPT",
     "experience": "14 năm kinh nghiệm"
+  },
+  "translations": {
+    "en": "lp-ti-ng-45-hc-sinh-cch-to-tng-tc-cho-tt-c"
   },
   "content": {
     "intro": "45 học sinh trong một lớp. 4 lớp mỗi tuần. Gần 180 em mà tôi phải nhớ tên, theo dõi, đánh giá. Làm sao để không ai bị 'vô hình'? Đây là những cách tôi đã làm.",
@@ -232,6 +238,16 @@
     "buttonText": "Dùng ngay",
     "buttonLink": "/tool"
   },
+  "seo": {
+    "title": "Lớp tôi đông 45 học sinh – cách tạo tương tác cho tất cả",
+    "description": "Dạy lớp 45 em, không thể gọi hết mọi người. Nhưng tôi đã tìm được cách để không ai bị 'bỏ quên' trong tiết học.",
+    "keywords": "dạy lớp đông học sinh, tương tác lớp học, quản lý lớp đông, lớp học 40-50 học sinh, công cụ dạy lớp đông"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-31",
+    "author": "Cô Thanh Mai"
+  },
   "relatedTools": [
     {
       "name": "Chia Nhóm",
@@ -258,8 +274,5 @@
     "ky-thuat-think-pair-share-trong-lop-hoc",
     "chiec-non-ky-dieu-goi-hoc-sinh-cong-bang",
     "chia-nhom-30-giay-giai-phap-tiet-hoc-45-phut"
-  ],
-  "imageAlt": "Lớp học đông học sinh với giáo viên tổ chức hoạt động nhóm",
-  "categoryOrder": 1,
-  "order": 4
+  ]
 }

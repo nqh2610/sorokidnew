@@ -7,13 +7,27 @@
     "cách cầm soroban",
     "tư thế học soroban",
     "cách gạt hạt soroban",
-    "cách sử dụng soroban"
+    "cách sử dụng soroban",
+    "cách đặt soroban đúng",
+    "ngón tay gạt soroban",
+    "tư thế ngồi học soroban",
+    "cầm bàn tính đúng cách",
+    "hướng dẫn sử dụng soroban",
+    "lỗi cầm soroban sai",
+    "góc nghiêng soroban chuẩn",
+    "luyện tư thế soroban"
   ],
   "status": "published",
   "publishedAt": "2025-12-25T02:38:38.577Z",
   "createdAt": "2025-12-25",
   "image": "/blog/cach-cam-ban-tinh-soroban-dung.jpg",
-  "readingTime": 5,
+  "imageAlt": "Cách cầm bàn tính Soroban đúng tư thế khi học",
+  "readingTime": 14,
+  "categoryOrder": 1,
+  "order": 3,
+  "translations": {
+    "en": "proper-soroban-grip-and-posture"
+  },
   "content": {
     "intro": "Con học Soroban được 2 tuần thì mình phát hiện con đang cầm sai. Con dùng ngón giữa để gạt, bàn tính để phẳng trên bàn. Thầy nói phải sửa ngay từ đầu, không thì về sau rất khó thay đổi. Bài này mình chia sẻ cách cầm đúng để phụ huynh kiểm tra con ở nhà.",
     "sections": [
@@ -258,7 +272,31 @@
     },
     {
       "question": "Con hay quên dùng đúng ngón, phải làm sao?",
-      "answer": "Nhắc nhẹ nhàng, không la mắng. Luyện chậm rãi từng động tác. Khi luyện, nói to: \"Lên - ngón cái\", \"Xuống - ngón trỏ\". Dần dần sẽ thành phản xạ."
+      "answer": "Nhắc nhẹ nhàng, không la mắng. Luyện chậm rãi từng động tác. Khi luyện, nói to: 'Lên - ngón cái', 'Xuống - ngón trỏ'. Dần dần sẽ thành phản xạ."
+    },
+    {
+      "question": "Soroban có chân đế sẵn không?",
+      "answer": "Một số Soroban chất lượng cao có chân đế hoặc miếng cao su giữ nghiêng. Nếu Soroban không có, có thể kê sách mỏng (2-3cm) phía sau để tạo góc nghiêng 15-30 độ."
+    },
+    {
+      "question": "Gạt hạt mạnh hay nhẹ?",
+      "answer": "Gạt nhẹ nhàng, vừa đủ để hạt chạm thanh ngang. Tiếng gạt đúng là 'cằch' nhẹ, không phải 'bốp'. Gạt mạnh khiến hạt bật quá đà và phải điều chỉnh lại."
+    },
+    {
+      "question": "Tại sao ngón cái gạt lên, ngón trỏ gạt xuống?",
+      "answer": "Đây là quy chuẩn giúp thao tác nhanh và chính xác nhất. Ngón cái khỏe và linh hoạt cho động tác đẩy lên, ngón trỏ dễ điều khiển cho cả gạt xuống và gạt hạt trời."
+    },
+    {
+      "question": "Con hay nhìn tay khi gạt, có sao không?",
+      "answer": "Giai đoạn đầu nhìn tay là bình thường. Dần dần con nên tập nhìn vào hạt thay vì nhìn tay. Đây là bước chuẩn bị cho việc học Anzan (tính nhẩm) sau này."
+    },
+    {
+      "question": "Có cần mua Soroban đắt tiền không?",
+      "answer": "Không cần. Soroban giá 150-300k là đủ cho người mới. Quan trọng là hạt không quá lỏng, khung chắc chắn. Khi con học nâng cao mới cần Soroban chất lượng cao hơn."
+    },
+    {
+      "question": "Luyện tư thế có nhàm chán không?",
+      "answer": "Có thể. Để giảm nhàm chán, biến thành game: gạt số theo nhịp nhạc, thi ai gạt đúng nhiều hơn, hoặc đố số để con gạt. Chỉ cần 5-10 phút mỗi ngày là đủ."
     }
   ],
   "cta": {
@@ -266,7 +304,18 @@
     "buttonText": "Cho con luyện thử",
     "buttonLink": "/register"
   },
-  "imageAlt": "Cách cầm bàn tính Soroban đúng tư thế khi học",
-  "categoryOrder": 1,
-  "order": 3
+  "seo": {
+    "title": "Cách cầm Soroban và tư thế học đúng – Nền tảng quan trọng nhất",
+    "description": "Cầm Soroban sai cách khiến con học chậm và dễ nản. Mình chia sẻ cách cầm đúng, tư thế ngồi chuẩn mà thầy cô dạy.",
+    "keywords": "cách cầm soroban, tư thế học soroban, cách gạt hạt soroban, cách sử dụng soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-25",
+    "author": "ThS. Phạm Thanh Tùng"
+  },
+  "author": {
+    "name": "Minh Anh",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
 }

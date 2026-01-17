@@ -6,14 +6,32 @@
   "keywords": [
     "con học soroban có tiến bộ không",
     "dấu hiệu học soroban đúng",
-    "theo dõi tiến độ học soroban"
+    "theo dõi tiến độ học soroban",
+    "cách đánh giá con học soroban",
+    "con học soroban chậm",
+    "mốc tiến bộ học soroban",
+    "khi nào con tính nhẩm được",
+    "dấu hiệu con hiểu soroban",
+    "phụ huynh theo dõi soroban",
+    "con không tiến bộ soroban",
+    "cách biết con học đúng cách",
+    "quan sát con học soroban"
   ],
   "status": "published",
   "publishedAt": "2026-01-05T04:49:15.020Z",
   "createdAt": "2025-12-25",
   "image": "/blog/dau-hieu-con-hoc-soroban-dung.jpg",
   "imageAlt": "Bé gái châu Á tự tin gạt hạt Soroban với nụ cười - dấu hiệu học đúng hướng",
-  "readingTime": 6,
+  "readingTime": 12,
+  "categoryOrder": 1,
+  "order": 22,
+  "author": {
+    "name": "Chị Bích Ngọc",
+    "role": "Mẹ bé Mèo – lớp 2"
+  },
+  "translations": {
+    "en": "how-to-know-child-learning-soroban-correctly"
+  },
   "content": {
     "intro": "Con học Soroban được vài tháng, mình bắt đầu lo: \"Con có tiến bộ không? Hay đang học sai?\" Mình không biết Soroban nên không đánh giá được. Sau khi tìm hiểu và quan sát, mình rút ra một số dấu hiệu để theo dõi.",
     "sections": [
@@ -178,19 +196,43 @@
   "faq": [
     {
       "question": "Con học 3 tháng mà chưa thấy tiến bộ, có bình thường không?",
-      "answer": "Bình thường. 3 tháng đầu chủ yếu là làm quen. Tiến bộ rõ rệt thường từ tháng thứ 4-6 trở đi."
+      "answer": "Bình thường. 3 tháng đầu chủ yếu là làm quen với bàn tính, học cách biểu diễn số, gạt hạt. Tiến bộ rõ rệt trong tính toán thường từ tháng thứ 4-6 trở đi. Đừng vội nản."
     },
     {
       "question": "Làm sao biết con đang \"học vẹt\" hay thực sự hiểu?",
-      "answer": "Hỏi con giải thích: \"Tại sao 7+5=12?\" Nếu con mô tả được bằng bàn tính (\"5 thêm 5 là 10, còn 2 là 12\") – con hiểu. Nếu chỉ đọc thuộc – có thể cần xem lại."
+      "answer": "Hỏi con giải thích: 'Tại sao 7+5=12?' Nếu con mô tả được bằng bàn tính ('5 thêm 5 là 10, còn 2 là 12') – con hiểu. Nếu chỉ đọc thuộc mà không giải thích được – có thể cần xem lại cách học."
     },
     {
       "question": "Nên kiểm tra con bao lâu một lần?",
-      "answer": "Mỗi tháng một lần là đủ. Đừng kiểm tra hàng ngày – sẽ tạo áp lực cho con."
+      "answer": "Mỗi tháng một lần là đủ. Đừng kiểm tra hàng ngày – sẽ tạo áp lực không cần thiết cho con. Quan sát tự nhiên qua các tình huống hàng ngày (đi siêu thị, chia đồ ăn...) sẽ tốt hơn."
     },
     {
       "question": "Con tiến bộ chậm hơn bạn khác, có sao không?",
-      "answer": "Không sao. Mỗi con khác nhau. Quan trọng là con tiến bộ so với chính con, không phải so với ai khác."
+      "answer": "Không sao. Mỗi con có tốc độ khác nhau, phụ thuộc vào nhiều yếu tố. Quan trọng là con tiến bộ so với chính con ngày hôm qua, không phải so với ai khác. Đừng tạo áp lực so sánh."
+    },
+    {
+      "question": "Dấu hiệu nào cho thấy con cần điều chỉnh cách học?",
+      "answer": "Sau 3-4 tháng vẫn không nhận ra số trên bàn tính, con ghét mỗi lần phải học, con học để đối phó không hiểu, hoặc tốc độ không tăng sau nhiều tháng. Khi thấy các dấu hiệu này, nên điều chỉnh: giảm thời gian học, đổi app, hoặc nghỉ một thời gian."
+    },
+    {
+      "question": "Mình không biết Soroban, làm sao theo dõi con?",
+      "answer": "Xem báo cáo trên app (Sorokid có mục này), hỏi random khi đi đường ('Mẹ mua 3 cái này bao nhiêu?'), so sánh thời gian làm bài với tháng trước, và hỏi con cảm nhận ('Con thấy dễ hơn không?')."
+    },
+    {
+      "question": "Con bắt đầu \"nhìn lên trời\" khi tính là sao?",
+      "answer": "Đây là dấu hiệu rất tốt! Con đang hình dung bàn tính trong đầu – nghĩa là con đang chuyển sang giai đoạn tính nhẩm (Anzan). Mình thấy con mình làm vậy sau khoảng 4-5 tháng."
+    },
+    {
+      "question": "Nên cho con nghỉ học khi nào?",
+      "answer": "Khi con mệt, chán, hoặc có việc khác cần ưu tiên. Nghỉ vài ngày đến 1-2 tuần hoàn toàn bình thường và không ảnh hưởng nhiều. Quan trọng là quay lại với thái độ tích cực, không bị ép buộc."
+    },
+    {
+      "question": "Con không muốn học nữa, nên làm gì?",
+      "answer": "Tìm hiểu nguyên nhân: có phải quá khó, quá dễ, hay đơn giản là chán? Thử đổi hình thức (bàn tính thật sang app hoặc ngược lại), giảm thời gian học, thêm game. Nếu con vẫn không hứng thú sau vài tuần điều chỉnh, có thể Soroban không phù hợp – và điều đó bình thường."
+    },
+    {
+      "question": "Những mốc tiến bộ nào là bình thường?",
+      "answer": "Tham khảo: Tháng 1-2 biết đọc số trên bàn tính; Tháng 3-4 tính được số 1 chữ số không đếm tay; Tháng 5-6 bắt đầu hình dung trong đầu; Tháng 7-9 tính nhẩm số 2 chữ số; Tháng 10-12 nhanh và tự tin hơn. Mỗi con có thể nhanh/chậm hơn – đây chỉ là tham khảo."
     }
   ],
   "cta": {
@@ -198,6 +240,14 @@
     "buttonText": "Xem tính năng",
     "buttonLink": "/learn"
   },
-  "categoryOrder": 1,
-  "order": 22
+  "seo": {
+    "title": "Làm sao biết con đang học Soroban đúng hướng?",
+    "description": "Con học được 3 tháng rồi, mình không biết tiến bộ hay chậm. Đây là cách mình quan sát và những dấu hiệu mình thấy.",
+    "keywords": "con học soroban có tiến bộ không, dấu hiệu học soroban đúng, theo dõi tiến độ học soroban, mốc tiến bộ soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-05",
+    "author": "Chị Bích Ngọc"
+  }
 }

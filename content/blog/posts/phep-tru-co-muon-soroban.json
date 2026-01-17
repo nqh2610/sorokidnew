@@ -7,13 +7,27 @@
     "trừ có mượn soroban",
     "phép trừ nâng cao soroban",
     "trừ mượn hàng chục soroban",
-    "bài tập trừ soroban"
+    "bài tập trừ soroban",
+    "cách trừ trên bàn tính",
+    "luyện trừ soroban",
+    "trừ liên tiếp soroban",
+    "kỹ thuật trừ soroban",
+    "mượn qua nhiều cột soroban",
+    "hướng dẫn trừ soroban",
+    "trừ số có số 0 soroban",
+    "so sánh cộng trừ soroban"
   ],
   "status": "published",
   "publishedAt": "2025-12-29T01:32:21.604Z",
   "createdAt": "2025-12-25",
   "image": "/blog/tre-hoc-phep-tru-co-muon.jpg",
-  "readingTime": 8,
+  "imageAlt": "Trẻ em học phép trừ có mượn trên bàn tính Soroban",
+  "readingTime": 14,
+  "categoryOrder": 1,
+  "order": 11,
+  "translations": {
+    "en": "subtraction-with-borrowing-on-soroban"
+  },
   "content": {
     "intro": "Nếu cộng có nhớ là \"thêm 1 cột trái, trừ bạn\", thì trừ có mượn là \"bớt 1 cột trái, cộng bạn\". Hiểu ngược lại, con sẽ làm được phép trừ.",
     "sections": [
@@ -270,19 +284,43 @@
   "faq": [
     {
       "question": "Con hay nhầm cộng và trừ, phải làm sao?",
-      "answer": "Luyện riêng từng phép tính. Khi thuần thục mới trộn lẫn. Hoặc nhắc con: Cộng thì THÊM ở trái, trừ thì BỚT ở trái."
+      "answer": "Luyện riêng từng phép tính. Khi thuần thục mới trộn lẫn. Hoặc nhắc con: Cộng thì THÊM ở trái, trừ thì BỚT ở trái. Thực hành nhiều sẽ thành phản xạ."
     },
     {
       "question": "Tại sao trừ trên Soroban khác với trừ trên giấy?",
-      "answer": "Soroban tính từ trái sang phải (hàng lớn trước). Giấy tính phải sang trái. Cách Soroban giúp não xử lý số lớn hiệu quả hơn."
+      "answer": "Soroban tính từ trái sang phải (hàng lớn trước). Giấy tính phải sang trái. Cách Soroban giúp não xử lý số lớn hiệu quả hơn và rèn tính nhẩm."
     },
     {
       "question": "Mượn liên tiếp qua nhiều cột 0 rất khó, làm sao?",
-      "answer": "Đây là trường hợp khó nhất. Cho con luyện riêng các bài 100-1, 200-3, 1000-5. Làm chậm, từng bước một."
+      "answer": "Đây là trường hợp khó nhất. Cho con luyện riêng các bài 100-1, 200-3, 1000-5. Làm chậm, từng bước một. Khi quen sẽ nhanh hơn."
     },
     {
       "question": "Trừ có mượn khó hơn cộng có nhớ không?",
-      "answer": "Tương đương. Nếu đã vững cộng, học trừ sẽ nhanh hơn vì quy tắc ngược lại. Chỉ cần đảo: thêm ↔ bớt."
+      "answer": "Tương đương. Nếu đã vững cộng, học trừ sẽ nhanh hơn vì quy tắc ngược lại. Chỉ cần đảo: thêm ↔ bớt, +1 trái ↔ -1 trái."
+    },
+    {
+      "question": "Bao lâu thì con trừ nhanh được?",
+      "answer": "Tương tự cộng, khoảng 2-3 tháng luyện đều đặn. Nếu con đã vững cộng, học trừ sẽ nhanh hơn, có thể 1-2 tháng."
+    },
+    {
+      "question": "Có nên học cộng và trừ song song không?",
+      "answer": "Nên học cộng trước, vững rồi mới sang trừ. Khi đã biết cả hai, có thể luyện xen kẽ để rèn phản xạ chuyển đổi giữa cộng và trừ."
+    },
+    {
+      "question": "Làm sao kiểm tra kết quả trừ?",
+      "answer": "Cộng ngược lại: Kết quả + số trừ = số bị trừ. Ví dụ: 52-27=25 → Kiểm tra: 25+27=52. Đây là cách tốt để con tự kiểm tra."
+    },
+    {
+      "question": "Con hay quên cộng bạn vào cột hiện tại sau khi mượn?",
+      "answer": "Nói to khi làm: '-1 trái, cộng bạn'. Tập thói quen làm theo thứ tự: 1) Bớt 1 cột trái, 2) Cộng bạn vào cột hiện tại. Dần dần sẽ tự động."
+    },
+    {
+      "question": "Trừ số có nhiều chữ số 0 (như 1000-5) có mẹo gì không?",
+      "answer": "Mượn qua mỗi cột 0 biến thành 9. Ví dụ: 1000-5: cột nghìn giảm 1 → 0, các cột 0 biến thành 9, cột cuối: 10-5=5. Kết quả: 995. Luyện riêng dạng này."
+    },
+    {
+      "question": "Nên luyện trừ bao lâu mỗi ngày?",
+      "answer": "10-15 phút cho phần trừ. Kết hợp với cộng để rèn khả năng chuyển đổi. Tổng thời gian học Soroban khoảng 20-30 phút mỗi ngày là phù hợp."
     }
   ],
   "cta": {
@@ -290,7 +328,18 @@
     "buttonText": "Cho con luyện thử",
     "buttonLink": "/register"
   },
-  "imageAlt": "Trẻ em học phép trừ có mượn trên bàn tính Soroban",
-  "categoryOrder": 1,
-  "order": 11
+  "seo": {
+    "title": "Phép trừ có mượn trên Soroban – Thực hành chi tiết",
+    "description": "Phép trừ có mượn ngược lại với cộng có nhớ. Khi cột hiện tại không đủ trừ, cần mượn từ cột bên trái.",
+    "keywords": "trừ có mượn soroban, phép trừ nâng cao soroban, trừ mượn hàng chục soroban, bài tập trừ soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-29",
+    "author": "ThS. Lê Minh Quân"
+  },
+  "author": {
+    "name": "Minh Anh",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
 }

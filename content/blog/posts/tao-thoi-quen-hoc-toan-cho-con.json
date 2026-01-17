@@ -6,16 +6,32 @@
   "keywords": [
     "tạo thói quen học",
     "con tự giác học",
-    "dạy con kỷ luật"
+    "dạy con kỷ luật",
+    "thói quen học tập cho trẻ",
+    "con tự mở app học",
+    "không cần nhắc con học",
+    "21 ngày tạo thói quen",
+    "lịch học cố định cho con",
+    "bí quyết con tự giác",
+    "dạy con tự lập",
+    "thói quen buổi sáng cho trẻ",
+    "con học đều đặn mỗi ngày"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-01-25T23:57:23.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/be-tu-giac-hoc.jpg",
   "imageAlt": "Bé trai châu Á tự giác ngồi học bài",
-  "readingTime": 6,
+  "readingTime": 12,
   "categoryOrder": 4,
   "order": 9,
+  "author": {
+    "name": "Chị Yến",
+    "role": "Mẹ bé Đức – lớp 1"
+  },
+  "translations": {
+    "en": "building-math-habits-for-kids"
+  },
   "content": {
     "intro": "\"Con ơi, học toán đi!\" – Mình nói câu này hàng chục lần mỗi ngày. Mệt. Rồi mình tìm cách để con TỰ học mà không cần nhắc. Mất 3 tuần, nhưng được.",
     "sections": [
@@ -94,16 +110,58 @@
   "faq": [
     {
       "question": "Nếu một ngày con không chịu học thì sao?",
-      "answer": "Vẫn ngồi vào bàn đúng giờ, dù chỉ 5 phút. Không bỏ qua ngày nào. Tính nhất quán quan trọng hơn thời lượng."
+      "answer": "Vẫn ngồi vào bàn đúng giờ, dù chỉ 5 phút. Không bỏ qua ngày nào. Tính nhất quán quan trọng hơn thời lượng. Nếu bỏ 1 ngày, não sẽ \"reset\" và phải làm lại từ đầu."
     },
     {
       "question": "Bao lâu thì thành thói quen?",
-      "answer": "Trung bình 21 ngày. Nhưng có trẻ nhanh hơn, có trẻ chậm hơn. Kiên nhẫn."
+      "answer": "Trung bình 21 ngày liên tục. Nhưng có trẻ nhanh hơn (2 tuần), có trẻ chậm hơn (4-5 tuần). Kiên nhẫn và nhất quán là chìa khóa. Tuần đầu khó nhất, tuần thứ 3 thường thấy thay đổi rõ."
+    },
+    {
+      "question": "Nên chọn giờ nào trong ngày để học?",
+      "answer": "Chọn giờ phù hợp với lịch sinh hoạt gia đình và khi con còn tỉnh táo. Nhiều gia đình chọn sáng sớm (trước khi đi học) hoặc tối sau ăn cơm. Quan trọng là cố định, không thay đổi."
+    },
+    {
+      "question": "Có nên thưởng đồ chơi khi con học xong?",
+      "answer": "Không nên. Thưởng vật chất khiến con học vì đồ chơi, không phải vì thói quen. Thưởng bằng lời khen: \"Con tự giác học quá giỏi!\" – đủ và tốt hơn cho động lực nội tại."
+    },
+    {
+      "question": "Con nghỉ cuối tuần được không?",
+      "answer": "Không nên nghỉ, đặc biệt trong 3 tuần đầu. Nghỉ 1 ngày có thể phá vỡ nhịp đang hình thành. Sau khi thói quen đã vững (1-2 tháng), có thể linh hoạt hơn vào cuối tuần."
+    },
+    {
+      "question": "Gắn học với hoạt động có sẵn là sao?",
+      "answer": "Thay vì \"lúc nào rảnh thì học\", gắn vào mốc cố định: \"Sau khi đánh răng xong thì học\", \"Sau khi ăn sáng thì học\". Não sẽ tự động liên kết: xong việc A → làm việc B."
+    },
+    {
+      "question": "Bắt đầu với bao nhiêu phút là vừa?",
+      "answer": "Bắt đầu từ 10 phút, đủ ngắn để con không chán. Sau 2 tuần quen, tăng lên 15 phút. Sau 1 tháng có thể lên 20 phút. Đừng tham – tăng quá nhanh sẽ khiến con nản."
+    },
+    {
+      "question": "Con làm xong trước thời gian quy định thì sao?",
+      "answer": "Tốt! Khen con làm nhanh. Không cần bắt con ngồi thêm. Mục đích là tạo thói quen ngồi vào bàn, không phải ép con ngồi đủ thời gian. Chất lượng quan trọng hơn số lượng."
+    },
+    {
+      "question": "Mình bận, không nhắc được con mỗi ngày?",
+      "answer": "Nhờ người khác trong nhà (bố, bà) nhắc. Hoặc đặt chuông báo thức cho con. Dần dần con sẽ tự nhớ. Quan trọng là giai đoạn đầu (2-3 tuần) phải có người nhắc đều đặn."
+    },
+    {
+      "question": "Sau khi có thói quen, con có thể giữ được lâu không?",
+      "answer": "Thói quen đã hình thành sẽ bền vững nếu duy trì. Nhưng nếu nghỉ lâu (1-2 tuần, ví dụ kỳ nghỉ), có thể cần \"khởi động\" lại 1 tuần. Tốt nhất là giữ đều đặn, ngay cả khi nghỉ hè."
     }
   ],
   "cta": {
     "text": "Sorokid có bài học ngắn, phù hợp để tạo thói quen học mỗi ngày.",
     "buttonText": "Bắt đầu tạo thói quen",
     "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Mình mất 3 tuần để con có thói quen học toán – đây là cách",
+    "description": "Ban đầu phải nhắc từng ngày. Giờ con tự mở app học mà không cần ai nói. Bí quyết rất đơn giản.",
+    "keywords": "tạo thói quen học, con tự giác học, dạy con kỷ luật"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-25",
+    "author": "Chị Yến - Mẹ bé Đức lớp 1"
   }
 }

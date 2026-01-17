@@ -20,6 +20,15 @@ import { locales, defaultLocale, LOCALE_COOKIE, COOKIE_MAX_AGE, localeConfig, ge
 const I18nContext = createContext(null);
 
 /**
+ * 🍪 Helper: Đọc cookie trên client
+ */
+function getCookie(name) {
+  if (typeof document === 'undefined') return null;
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? match[2] : null;
+}
+
+/**
  * Provider component
  */
 export function I18nProvider({ children, initialLocale = defaultLocale, dictionary = {} }) {
@@ -31,30 +40,57 @@ export function I18nProvider({ children, initialLocale = defaultLocale, dictiona
     if (path?.startsWith('/en/') || path === '/en') {
       return 'en';
     }
-    return 'vi';
+    return null; // Không xác định được từ URL
   }, []);
   
-  // 🔥 Ưu tiên: URL pathname (luôn chính xác nhất)
-  const urlLocale = getLocaleFromPath(pathname);
+  // 🔥 Detect locale từ nhiều nguồn
+  // Ưu tiên: 1. URL có /en/ → en | 2. Cookie → en/vi | 3. initialLocale → vi
+  // ⚠️ Cookie quan trọng vì middleware rewrite /en/xxx → /xxx + set cookie
+  const detectInitialLocale = useCallback(() => {
+    // 1. URL có /en/ prefix rõ ràng → EN
+    const urlLocale = getLocaleFromPath(pathname);
+    if (urlLocale) return urlLocale;
+    
+    // 2. Cookie (middleware set khi rewrite /en/xxx → /xxx)
+    const cookieLocale = getCookie(LOCALE_COOKIE);
+    if (cookieLocale && locales.includes(cookieLocale)) {
+      return cookieLocale;
+    }
+    
+    // 3. initialLocale từ server
+    return initialLocale;
+  }, [pathname, getLocaleFromPath, initialLocale]);
   
-  const [locale, setLocaleState] = useState(urlLocale);
+  const [locale, setLocaleState] = useState(detectInitialLocale);
   const [dict, setDict] = useState(dictionary);
   const [isLoading, setIsLoading] = useState(false);
   const [loadedLocale, setLoadedLocale] = useState(initialLocale);
   
-  // 🔥 SYNC: Khi URL thay đổi → cập nhật locale state + cookie
+  // 🔥 SYNC: Khi pathname/cookie thay đổi → cập nhật locale state
   useEffect(() => {
-    const currentUrlLocale = getLocaleFromPath(pathname);
+    // Detect locale theo thứ tự ưu tiên
+    const urlLocale = getLocaleFromPath(pathname);
+    const cookieLocale = getCookie(LOCALE_COOKIE);
     
-    if (currentUrlLocale !== locale) {
+    // Ưu tiên: URL > Cookie > default
+    let detectedLocale;
+    if (urlLocale) {
+      // URL có /en/ → EN (user đang ở trang EN với file riêng)
+      detectedLocale = urlLocale;
+    } else if (cookieLocale && locales.includes(cookieLocale)) {
+      // Cookie có giá trị hợp lệ (middleware đã set khi rewrite)
+      detectedLocale = cookieLocale;
+    } else {
+      // Mặc định
+      detectedLocale = defaultLocale;
+    }
+    
+    if (detectedLocale !== locale) {
       // Update state
-      setLocaleState(currentUrlLocale);
-      
-      // 🔥 Sync cookie với URL
-      document.cookie = `${LOCALE_COOKIE}=${currentUrlLocale};path=/;max-age=${COOKIE_MAX_AGE};SameSite=Lax`;
+      setLocaleState(detectedLocale);
       
       // Update HTML lang
-      document.documentElement.lang = localeConfig[currentUrlLocale]?.htmlLang || currentUrlLocale;
+      document.documentElement.lang = localeConfig[detectedLocale]?.htmlLang || detectedLocale;
     }
   }, [pathname, locale, getLocaleFromPath]);
   

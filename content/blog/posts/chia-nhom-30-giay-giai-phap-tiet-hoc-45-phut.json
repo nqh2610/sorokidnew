@@ -14,11 +14,17 @@
   "publishedAt": "2025-12-29T01:32:43.322Z",
   "createdAt": "2025-12-26",
   "image": "/blog/chia-nhom-hoc-sinh.jpg",
+  "imageAlt": "Giáo viên chia nhóm học sinh bằng công cụ trên máy chiếu",
   "readingTime": 5,
+  "categoryOrder": 1,
+  "order": 6,
   "author": {
     "name": "Thầy Hoàng Long",
     "role": "Giáo viên THCS",
     "experience": "7 năm kinh nghiệm"
+  },
+  "translations": {
+    "en": "chia-nhm-trong-30-giy-gii-php-cho-tit-hc-45-pht"
   },
   "content": {
     "intro": "\"Bây giờ chia nhóm nhé. Nhóm 1 là...\" – Và 5 phút trôi qua. Học sinh lộn xộn, không nghe rõ, hỏi lại liên tục. Cho đến khi tôi tìm được cách chia nhóm trong 30 giây.",
@@ -231,6 +237,16 @@
     "buttonText": "Dùng Chia Nhóm",
     "buttonLink": "/tool/chia-nhom"
   },
+  "seo": {
+    "title": "Chia nhóm trong 30 giây – giải pháp cho tiết học 45 phút",
+    "description": "Trước đây tôi mất 5-7 phút để chia nhóm. Bây giờ chỉ 30 giây. Đây là cách công cụ chia nhóm đã thay đổi tiết dạy của tôi.",
+    "keywords": "chia nhóm học sinh, chia nhóm ngẫu nhiên, tổ chức nhóm học tập, công cụ chia nhóm, random team generator"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-29",
+    "author": "Thầy Hoàng Long"
+  },
   "relatedTools": [
     {
       "name": "Chia Nhóm",
@@ -252,8 +268,5 @@
     "lop-dong-45-hoc-sinh-cach-tao-tuong-tac",
     "ky-thuat-jigsaw-manh-ghep",
     "ky-thuat-think-pair-share-trong-lop-hoc"
-  ],
-  "imageAlt": "Giáo viên chia nhóm học sinh bằng công cụ trên máy chiếu",
-  "categoryOrder": 1,
-  "order": 6
+  ]
 }

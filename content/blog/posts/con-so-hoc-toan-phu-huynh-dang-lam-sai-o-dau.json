@@ -6,13 +6,28 @@
   "keywords": [
     "con sợ học toán",
     "trẻ sợ toán",
-    "tại sao con sợ toán"
+    "tại sao con sợ toán",
+    "phụ huynh làm sai khi dạy toán",
+    "con ghét toán vì bị la",
+    "lỗi dạy toán của bố mẹ",
+    "cách nói chuyện với con về toán",
+    "không so sánh con với bạn bè",
+    "tạo môi trường học an toàn",
+    "con sợ bị đánh giá khi học",
+    "thay đổi cách tiếp cận dạy con",
+    "giúp con tự tin học toán"
   ],
   "status": "published",
   "publishedAt": "2025-12-25T02:37:16.661Z",
   "createdAt": "2025-12-25",
   "image": "/blog/con-so-hoc-toan-phu-huynh-lam-sai.jpg",
-  "readingTime": 6,
+  "imageAlt": "Trẻ em châu Á lo lắng khi học toán tại nhà",
+  "readingTime": 12,
+  "categoryOrder": 2,
+  "order": 1,
+  "translations": {
+    "en": "con-s-ton-mnh-v-tnh-lm-g-sai"
+  },
   "content": {
     "intro": "Có hôm con nói: \"Con ghét toán.\" Mình hỏi vì sao, con không trả lời, chỉ cúi đầu. Mình tức lắm. Nhưng đêm đó nằm nghĩ lại, mình thấy mình cũng có phần.",
     "sections": [
@@ -155,15 +170,54 @@
     },
     {
       "question": "Mình cũng từng sợ toán, có ảnh hưởng đến con không?",
-      "answer": "Có thể. Nếu mình hay nói \"Mẹ cũng dốt toán\" trước mặt con, con sẽ nghĩ ghét toán là bình thường. Mình đang cố không nói vậy nữa."
-    }
+      "answer": "Có thể. Nếu mình hay nói \"Mẹ cũng dốt toán\" trước mặt con, con sẽ nghĩ ghét toán là bình thường. Mình đang cố không nói vậy nữa."    },
+    {
+      "question": "Những câu nói nào của bố mẹ khiến con sợ toán?",
+      "answer": "'Bài này dễ mà sao không làm được?', 'Bạn A giỏi hơn con', thở dài khi con sai, hỏi 'được mấy điểm' đầu tiên – những câu này tạo áp lực vô hình."
+    },
+    {
+      "question": "Có nên thuê gia sư nếu con sợ toán?",
+      "answer": "Tùy. Nếu con sợ vì hổng kiến thức, gia sư có thể giúp. Nhưng nếu con sợ vì tâm lý, cần thay đổi môi trường học trước. Đôi khi app tự học giảm áp lực hơn người kèm."
+    },
+    {
+      "question": "Con sợ toán nhưng sắp thi, làm sao?",
+      "answer": "Giảm kỳ vọng về điểm số, tập trung giúp con ôn những phần con làm được để lấy tự tin. Sau kỳ thi mới giải quyết gốc vấn đề."
+    },
+    {
+      "question": "Bao lâu để con hết sợ toán?",
+      "answer": "Tùy mức độ. Nếu mới bắt đầu sợ, vài tuần có thể cải thiện. Nếu sợ lâu, cần 2-3 tháng kiên nhẫn. Quan trọng là bố mẹ thay đổi trước."
+    },
+    {
+      "question": "Con học tốt các môn khác nhưng sợ toán, có bình thường không?",
+      "answer": "Bình thường. Mỗi trẻ có điểm mạnh khác nhau. Con có thể thiên về ngôn ngữ hoặc sáng tạo. Quan trọng là xây nền tảng toán đủ, không cần con giỏi toán như giỏi môn khác."
+    },
+    {
+      "question": "Nên nói gì thay vì 'Bài này dễ mà'?",
+      "answer": "'Bài này hơi khó nhỉ, con thử xem' hoặc 'Con làm thử đi, sai cũng không sao'. Thừa nhận khó khăn của con thay vì phủ nhận."    }
   ],
   "cta": {
     "text": "Nếu con bạn cũng đang sợ toán, thử cho con một môi trường học không áp lực. Sorokid cho con tự học theo tốc độ riêng, không ai la khi sai.",
     "buttonText": "Cho con thử",
     "buttonLink": "/register"
   },
-  "imageAlt": "Trẻ em châu Á lo lắng khi học toán tại nhà",
-  "categoryOrder": 2,
-  "order": 1
+  "seo": {
+    "title": "Con sợ toán – mình đã vô tình làm gì sai?",
+    "description": "Mình từng nghĩ con sợ toán là do con yếu. Cho đến khi nhìn lại những gì mình nói, mình mới hiểu: đôi khi vấn đề không phải ở con.",
+    "keywords": "con sợ học toán, trẻ sợ toán, tại sao con sợ toán, phụ huynh làm sai khi dạy toán, lỗi dạy con học toán"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-25",
+    "author": {
+      "@type": "Person",
+      "name": "Minh Anh",
+      "description": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy",
+      "url": "https://sorokid.com/blog"
+    }
+  },
+  "author": {
+    "name": "Minh Anh",
+    "role": "Mẹ của 2 bé",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
 }

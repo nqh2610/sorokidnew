@@ -15,11 +15,17 @@
   "publishedAt": "2025-12-29T22:47:31.311Z",
   "createdAt": "2025-12-26",
   "image": "/blog/day-hoc-tich-cuc.jpg",
+  "imageAlt": "Giáo viên và học sinh trong lớp học tích cực với hoạt động nhóm",
   "readingTime": 7,
+  "categoryOrder": 1,
+  "order": 1,
   "author": {
     "name": "Thầy Minh Đức",
     "role": "Giáo viên THPT",
     "experience": "12 năm kinh nghiệm"
+  },
+  "translations": {
+    "en": "tit-dy-ca-ti-thay-i-th-no-khi-th-dy-hc-tch-cc"
   },
   "content": {
     "intro": "10 năm đầu đi dạy, tôi nghĩ mình dạy tốt. Học sinh nghe giảng, chép bài, làm kiểm tra. Nhưng rồi tôi nhận ra: các em ngồi đó, nhưng đầu óc ở đâu? Đó là lúc tôi bắt đầu tìm hiểu về dạy học tích cực.",
@@ -234,6 +240,16 @@
     "buttonText": "Xem Toolbox",
     "buttonLink": "/tool"
   },
+  "seo": {
+    "title": "Tiết dạy của tôi thay đổi thế nào khi thử dạy học tích cực",
+    "description": "Từ một giáo viên quen giảng – chép – kiểm tra, tôi thử áp dụng dạy học tích cực. Không dễ, nhưng kết quả khiến tôi không muốn quay lại cách cũ.",
+    "keywords": "phương pháp dạy học tích cực, active learning, dạy học lấy học sinh làm trung tâm, đổi mới phương pháp dạy học, giáo viên đổi mới, lớp học tích cực"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-29",
+    "author": "Thầy Minh Đức"
+  },
   "relatedTools": [
     {
       "name": "Chia Nhóm",
@@ -255,8 +271,5 @@
     "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi",
     "lop-dong-45-hoc-sinh-cach-tao-tuong-tac",
     "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu"
-  ],
-  "imageAlt": "Giáo viên và học sinh trong lớp học tích cực với hoạt động nhóm",
-  "categoryOrder": 1,
-  "order": 1
+  ]
 }

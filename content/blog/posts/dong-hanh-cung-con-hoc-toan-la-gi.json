@@ -7,13 +7,31 @@
     "đồng hành cùng con học toán",
     "cách đồng hành con học",
     "hỗ trợ con học toán",
-    "phụ huynh kèm con học"
+    "phụ huynh kèm con học",
+    "sai lầm khi đồng hành con",
+    "không kiểm soát con học",
+    "con không muốn bố mẹ ngồi cạnh",
+    "tạo chỗ dựa tinh thần cho con",
+    "con tự học mà vẫn theo dõi được",
+    "vai trò phụ huynh khi con học",
+    "để con tự sai tự sửa",
+    "thay đổi cách kèm con"
   ],
   "status": "published",
   "publishedAt": "2025-12-28T05:50:05.806Z",
   "createdAt": "2025-12-25",
   "image": "/blog/gia-dinh-dong-hanh-hoc-toan.jpg",
-  "readingTime": 6,
+  "imageAlt": "Gia đình châu Á đồng hành cùng con học toán",
+  "readingTime": 14,
+  "categoryOrder": 3,
+  "order": 5,
+  "author": {
+    "name": "Chị Trang",
+    "role": "Mẹ bé Quân – lớp 2"
+  },
+  "translations": {
+    "en": "accompanying-your-child-in-math-what-it-means"
+  },
   "content": {
     "intro": "Tối nào cũng vậy. Sau bữa cơm, mình ngồi xuống bàn với con, mở vở toán ra, rồi bắt đầu \"trận chiến\" kéo dài đến lúc đi ngủ. Mình tưởng đó là đồng hành. Cho đến khi một hôm, con nói: \"Mẹ ơi, mẹ đừng ngồi đây được không?\"",
     "sections": [
@@ -164,19 +182,43 @@
   "faq": [
     {
       "question": "Nếu không ngồi kèm, con có tự giác học không?",
-      "answer": "Thật ra ban đầu sẽ hơi khó. Nhưng nếu con có lịch học cố định và cảm thấy việc học không còn căng thẳng, dần dần con sẽ quen. Quan trọng là mình kiên nhẫn và nhất quán."
+      "answer": "Thật ra ban đầu sẽ hơi khó. Nhưng nếu con có lịch học cố định và cảm thấy việc học không còn căng thẳng, dần dần con sẽ quen. Quan trọng là kiên nhẫn, nhất quán, và không quay lại cách cũ khi thấy khó."
     },
     {
       "question": "Con hay hỏi bài, không ngồi cạnh thì ai giải đáp?",
-      "answer": "Có thể để con tự tìm cách trước. Nếu thật sự không được thì hỏi. Điều này giúp con học cách tự giải quyết vấn đề, thay vì phụ thuộc vào người lớn cho mọi thứ."
+      "answer": "Có thể để con tự tìm cách trước (5-10 phút). Nếu thật sự không được thì hỏi. Điều này giúp con học cách tự giải quyết vấn đề, thay vì phụ thuộc vào người lớn cho mọi thứ."
     },
     {
       "question": "Làm sao biết con học đến đâu nếu không ngồi cạnh?",
-      "answer": "Có thể hỏi con mỗi tối, hoặc dùng các ứng dụng học tập có phần báo cáo cho phụ huynh. Nhiều app bây giờ cho xem con đã học gì, làm đúng bao nhiêu phần trăm."
+      "answer": "Có thể hỏi con mỗi tối: \"Hôm nay con học có gì khó không?\" Hoặc dùng các ứng dụng học tập có phần báo cáo cho phụ huynh. Nhiều app bây giờ cho xem con đã học gì, làm đúng bao nhiêu phần trăm."
     },
     {
       "question": "Con bảo mẹ đừng ngồi cạnh, có phải con không cần mình?",
-      "answer": "Không phải. Con chỉ cần một hình thức quan tâm khác – không phải kiểm soát từng bước. Con vẫn cần mình, nhưng theo cách nhẹ nhàng hơn."
+      "answer": "Không phải. Con chỉ cần một hình thức quan tâm khác – không phải kiểm soát từng bước. Con vẫn cần mình, nhưng theo cách nhẹ nhàng hơn: động viên, hỏi han, tin tưởng."
+    },
+    {
+      "question": "Đồng hành khác với dạy học như thế nào?",
+      "answer": "Dạy học: ngồi cạnh, giảng giải từng bài, sửa từng lỗi. Đồng hành: ở bên cạnh (không nhất thiết cùng phòng), động viên, tin tưởng, để con biết bố mẹ quan tâm dù có làm được hay không."
+    },
+    {
+      "question": "Sửa bài trước khi con kịp hiểu mình sai ở đâu có sao không?",
+      "answer": "Có sao. Con không học được từ lỗi sai nếu bị sửa ngay. Hãy để con tự kiểm tra, tự thấy lỗi. Nếu con không thấy, hỏi gợi ý: \"Con thử kiểm tra lại bước này xem?\" thay vì chỉ thẳng."
+    },
+    {
+      "question": "Con sợ giờ học buổi tối, làm sao thay đổi?",
+      "answer": "Giờ học đã bị liên tưởng với căng thẳng. Cần \"reset\": giảm thời gian học, bỏ bớt kỳ vọng, không la mắng. Dần dần khi con thấy giờ học nhẹ nhàng hơn, con sẽ bớt sợ. Có thể mất vài tuần."
+    },
+    {
+      "question": "Mình muốn biết con đang học gì nhưng không ngồi cạnh, làm sao?",
+      "answer": "Dùng app có báo cáo tiến độ cho phụ huynh. Hoặc đơn giản hơn: hỏi con mỗi tối \"Hôm nay con học được gì hay?\" – không phải để kiểm tra, mà thật sự muốn biết. Con sẽ kể nếu thấy an toàn."
+    },
+    {
+      "question": "Bố mẹ bận, không thể ở nhà mỗi tối, có đồng hành được không?",
+      "answer": "Được. Đồng hành không cần ở cùng phòng. Để con tự học với app, tối về hỏi: \"Hôm nay con học vui không?\" – đó cũng là đồng hành. Quan trọng là con cảm nhận được sự quan tâm của bố mẹ."
+    },
+    {
+      "question": "Làm sao để \"lùi lại\" mà con không cảm thấy bị bỏ rơi?",
+      "answer": "Giải thích với con: \"Mẹ tin con làm được. Mẹ ở đây, con cần gì con gọi mẹ.\" Vẫn ở trong phòng hoặc gần đó, nhưng làm việc của mình. Dần dần tăng khoảng cách khi con quen."
     }
   ],
   "cta": {
@@ -184,7 +226,14 @@
     "buttonText": "Tìm hiểu thêm",
     "buttonLink": "/register"
   },
-  "imageAlt": "Gia đình châu Á đồng hành cùng con học toán",
-  "categoryOrder": 3,
-  "order": 5
+  "seo": {
+    "title": "Mình từng nghĩ đồng hành là ngồi kèm con học – hóa ra sai hoàn toàn",
+    "description": "Trước đây mình ngồi cạnh con mỗi tối, sửa từng bài, nhắc từng chữ. Tưởng là đồng hành, hóa ra mình đang biến giờ học thành giờ căng thẳng cho cả hai.",
+    "keywords": "đồng hành cùng con học toán, cách đồng hành con học, hỗ trợ con học toán, phụ huynh kèm con học"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-28",
+    "author": "Chị Trang - Mẹ bé Quân lớp 2"
+  }
 }

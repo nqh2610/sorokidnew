@@ -7,16 +7,27 @@
     "phụ huynh không biết soroban",
     "kèm con học soroban",
     "ba dạy con soroban",
-    "học soroban tại nhà"
+    "học soroban tại nhà",
+    "bố không biết toán dạy con",
+    "vai trò phụ huynh khi con học",
+    "đồng hành con học soroban",
+    "app tự học soroban cho bé",
+    "phụ huynh bận rộn dạy con",
+    "khen con đúng cách",
+    "tạo thói quen học cho con",
+    "theo dõi tiến độ học soroban"
   ],
   "status": "published",
   "publishedAt": "2026-01-05T04:49:31.714Z",
   "createdAt": "2025-12-25",
   "image": "/blog/ba-khong-biet-soroban.jpg",
   "imageAlt": "Ba châu Á ngồi cạnh con gái đang học trên máy tính bảng",
-  "readingTime": 6,
+  "readingTime": 12,
   "categoryOrder": 1,
   "order": 28,
+  "translations": {
+    "en": "dad-doesnt-know-soroban-still-helps-kid"
+  },
   "content": {
     "intro": "Khi mình quyết định cho con học Soroban, chồng mình hỏi: \"Em biết Soroban không?\" Mình nói không. Anh ấy cũng không. Chúng mình đều lo: không biết thì làm sao kèm con? Hóa ra lo thừa.",
     "sections": [
@@ -128,20 +139,64 @@
   "faq": [
     {
       "question": "Phụ huynh không biết Soroban thì làm sao biết con học đúng?",
-      "answer": "App có hệ thống tự động kiểm tra. Con làm sai sẽ được sửa ngay. Phụ huynh có thể xem báo cáo tiến độ để biết con học đến đâu."
+      "answer": "App có hệ thống tự động kiểm tra. Con làm sai sẽ được sửa ngay. Phụ huynh có thể xem báo cáo tiến độ để biết con học đến đâu, đúng bao nhiêu phần trăm, và đang gặp khó ở phần nào."
     },
     {
       "question": "Nếu con hỏi mà phụ huynh không biết trả lời thì sao?",
-      "answer": "Hãy để con \"dạy\" lại bạn. Hoặc cùng con xem lại bài học trên app. Việc không biết không có gì xấu hổ."
+      "answer": "Hãy để con 'dạy' lại bạn. Việc này có hai lợi ích: con ôn lại kiến thức, và con thấy mình 'giỏi hơn ba/mẹ' ở điều gì đó – rất tốt cho sự tự tin."
     },
     {
       "question": "Có nên tự học Soroban để kèm con không?",
-      "answer": "Nếu có thời gian và hứng thú thì tốt. Nhưng không bắt buộc. Con hoàn toàn có thể tự học với app mà không cần phụ huynh biết."
+      "answer": "Nếu có thời gian và hứng thú thì tốt. Nhưng không bắt buộc. Con hoàn toàn có thể tự học với app mà không cần phụ huynh biết Soroban."
+    },
+    {
+      "question": "Bao lâu thì thấy con tiến bộ?",
+      "answer": "Thường sau 2-4 tuần học đều đặn. Dấu hiệu tiến bộ: con tính nhanh hơn, tự tin hơn với số, và thích thú khi học. Đừng kỳ vọng kết quả ngay lập tức."
+    },
+    {
+      "question": "Con học bao nhiêu phút mỗi ngày là đủ?",
+      "answer": "15-20 phút mỗi ngày là lý tưởng. Quan trọng là ĐỀU ĐẶN, không phải học nhiều một lúc. Học 15 phút x 7 ngày hiệu quả hơn 1 tiếng x 2 ngày."
+    },
+    {
+      "question": "Bố hay mẹ kèm con tốt hơn?",
+      "answer": "Cả hai đều tốt. Quan trọng là có người QUAN TÂM và NHẤT QUÁN. Nếu cả bố và mẹ cùng tham gia, con sẽ cảm nhận được việc học quan trọng với cả gia đình."
+    },
+    {
+      "question": "Con lười học thì phụ huynh làm gì?",
+      "answer": "Tạo thói quen cố định giờ học. Cho con nghỉ giải lao giữa giờ. Khen khi con cố gắng. Đừng la mắng – sẽ tạo ác cảm với việc học."
+    },
+    {
+      "question": "Sorokid có phù hợp với trẻ mới học Soroban không?",
+      "answer": "Có. Sorokid có bài học từ cơ bản nhất – làm quen với bàn tính, nhận biết số 1-9, rồi mới đến cộng trừ. Con không cần biết gì trước."
+    },
+    {
+      "question": "Nếu phụ huynh bận không thể ngồi cùng con học thì sao?",
+      "answer": "Không cần ngồi cạnh. Chỉ cần: nhắc con học đúng giờ, khen sau khi con học xong, và xem báo cáo cuối tuần. Con tự học với app, phụ huynh theo dõi từ xa."
+    },
+    {
+      "question": "Con hay nản khi gặp bài khó, phụ huynh nên làm gì?",
+      "answer": "Đừng làm giúp con. Hãy nói: 'Con thử xem lại video hướng dẫn nhé.' Nếu vẫn khó, cho con nghỉ rồi quay lại sau. Học là quá trình, không cần vội."
     }
   ],
   "cta": {
     "text": "Sorokid được thiết kế để con tự học, phụ huynh chỉ cần theo dõi. Dùng thử miễn phí để trải nghiệm.",
     "buttonText": "Dùng thử miễn phí",
     "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Chồng mình không biết Soroban – nhưng lại là người \"kèm\" con giỏi nhất",
+    "description": "Anh ấy không biết 'bạn của 5' là gì. Nhưng cách anh ấy đồng hành với con lại hiệu quả hơn mình nghĩ.",
+    "keywords": "phụ huynh không biết soroban, kèm con học soroban, ba dạy con soroban, học soroban tại nhà"
+  },
+  "schema": {
+    "type": "Article",
+    "headline": "Chồng mình không biết Soroban – nhưng lại là người kèm con giỏi nhất",
+    "datePublished": "2026-01-05",
+    "dateModified": "2026-01-17",
+    "author": "Minh Anh"
+  },
+  "author": {
+    "name": "Minh Anh",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
   }
 }

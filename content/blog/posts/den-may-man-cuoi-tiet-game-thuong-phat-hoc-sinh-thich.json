@@ -15,9 +15,16 @@
   ],
   "status": "published",
   "publishedAt": "2025-12-28T05:49:42.499Z",
+  "createdAt": "2025-12-28",
+  "image": "/blog/den-may-man-cuoi-tiet-game-thuong-phat-hoc-sinh-thich.png",
+  "imageAlt": "Đèn May Mắn Cuối Tiết - Game Thưởng Phạt Học Sinh Cực Thích",
+  "readingTime": 7,
   "author": {
     "name": "Cô Trang",
     "role": "Giáo viên Tiểu học"
+  },
+  "translations": {
+    "en": "n-may-mn-cui-tit-game-thng-pht-hc-sinh-cc-thch"
   },
   "content": {
     "intro": "\"Cô ơi, còn mấy phút nữa? Mình quay Đèn May Mắn được không cô?\" - Câu hỏi tôi nghe mỗi tiết học. Từ một công cụ tình cờ phát hiện, Đèn May Mắn đã trở thành \"nghi thức\" cuối tiết mà lớp tôi không thể thiếu. Bài viết này chia sẻ cách biến 5 phút cuối tiết thành khoảnh khắc đáng nhớ.",
@@ -400,17 +407,6 @@
     "buttonLink": "/tool/den-may-man",
     "text": "Thử Đèn May Mắn Ngay - Biến 5 phút cuối tiết thành khoảnh khắc đáng nhớ. Vòng quay may mắn miễn phí, tùy chỉnh dễ dàng."
   },
-  "relatedTools": [
-    "lucky-light",
-    "random-picker",
-    "magic-hat",
-    "timer"
-  ],
-  "relatedPosts": [
-    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
-    "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi",
-    "hoc-sinh-hoi-co-choi-game-khong-va-cau-tra-loi"
-  ],
   "seo": {
     "title": "Đèn May Mắn Cuối Tiết - Vòng Quay May Mắn Cho Lớp Học",
     "description": "Cách sử dụng Đèn May Mắn/Lucky Wheel để tạo hoạt động cuối tiết hấp dẫn. Vòng quay may mắn online miễn phí, thiết kế cho giáo viên.",
@@ -430,5 +426,15 @@
     "datePublished": null,
     "dateModified": null
   },
-  "image": "/blog/den-may-man-cuoi-tiet-game-thuong-phat-hoc-sinh-thich.png"
+  "relatedTools": [
+    "lucky-light",
+    "random-picker",
+    "magic-hat",
+    "timer"
+  ],
+  "relatedPosts": [
+    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
+    "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi",
+    "hoc-sinh-hoi-co-choi-game-khong-va-cau-tra-loi"
+  ]
 }

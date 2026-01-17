@@ -12,11 +12,17 @@
     "hội thi giáo viên giỏi",
     "giáo viên giỏi"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-02-04T01:40:59.000Z",
+  "createdAt": "2026-01-16",
+  "image": "/blog/default-blog-image.jpg",
+  "readingTime": 10,
   "author": {
     "name": "Cô Hạnh",
     "role": "Giáo viên dạy giỏi cấp tỉnh"
+  },
+  "translations": {
+    "en": "b-quyt-thi-gio-vin-dy-gii-cp-huyn-cp-tnh-kinh-nghim-thc-t"
   },
   "content": {
     "intro": "Lần đầu thi giáo viên dạy giỏi cấp huyện, tôi đứng thứ... 15/20. Lần thứ hai, tôi vào top 5. Lần thứ ba, tôi đạt giải Nhất và được chọn thi cấp tỉnh. Hành trình đó không phải nhờ \"tài năng bẩm sinh\" - mà nhờ học hỏi, rèn luyện và những bài học từ thất bại. Bài viết này chia sẻ tất cả kinh nghiệm tôi đã tích lũy.",
@@ -545,18 +551,6 @@
     "buttonLink": "/tool",
     "text": "Công Cụ Cho Bài Thi Giáo Viên Giỏi - Chiếc Nón Kỳ Diệu, Timer, Chia Nhóm, Đua Vịt - tất cả miễn phí, tạo điểm nhấn cho tiết dạy."
   },
-  "relatedTools": [
-    "magic-hat",
-    "timer",
-    "group-divider",
-    "duck-race",
-    "flash-anzan"
-  ],
-  "relatedPosts": [
-    "kinh-nghiem-day-thao-giang-thanh-cong-tu-giao-vien-20-nam",
-    "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
-    "phuong-phap-day-hoc-lay-hoc-sinh-lam-trung-tam"
-  ],
   "seo": {
     "title": "Bí Quyết Thi Giáo Viên Dạy Giỏi Cấp Huyện, Cấp Tỉnh",
     "description": "Kinh nghiệm thi giáo viên dạy giỏi: chuẩn bị bài thi lý thuyết, thực hành, SKKN. Từ thất bại lần đầu đến thành công cấp tỉnh.",
@@ -572,7 +566,20 @@
     "type": "Article",
     "headline": "Bí Quyết Thi Giáo Viên Dạy Giỏi Cấp Huyện, Cấp Tỉnh - Kinh Nghiệm Thực Tế",
     "author": "Cô Hạnh - Giáo viên dạy giỏi cấp tỉnh",
-    "datePublished": null,
+    "datePublished": "2026-02-04",
     "dateModified": null
-  }
+  },
+  "relatedTools": [
+    "magic-hat",
+    "timer",
+    "group-divider",
+    "duck-race",
+    "flash-anzan"
+  ],
+  "relatedPosts": [
+    "kinh-nghiem-day-thao-giang-thanh-cong-tu-giao-vien-20-nam",
+    "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
+    "phuong-phap-day-hoc-lay-hoc-sinh-lam-trung-tam"
+  ],
+  "imageAlt": "Bí Quyết Thi Giáo Viên Dạy Giỏi Cấp Huyện, Cấp Tỉnh - Kinh Nghiệm Thực Tế"
 }

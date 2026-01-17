@@ -10,7 +10,7 @@
     "basic arithmetic"
   ],
   "status": "published",
-  "publishedAt": "2025-12-29T22:45:21.017Z",
+  "publishedAt": "2026-01-29T09:00:40.000Z",
   "createdAt": "2026-02-01",
   "image": "/blog/be-lam-bai-cham.jpg",
   "imageAlt": "Child practicing basic math facts",
@@ -18,6 +18,9 @@
   "author": {
     "name": "Mark Robinson",
     "role": "Math Intervention Specialist"
+  },
+  "translations": {
+    "vi": "con-tinh-cong-tru-cham-qua"
   },
   "content": {
     "intro": "Your child can do 8+7. It just takes them 10 seconds. By the time they calculate one problem, other kids are done with three. Here's how to build faster fluency.",
@@ -177,6 +180,43 @@
       "buttonText": "Start Free Trial",
       "buttonUrl": "/pricing"
     }
+  },
+  "faq": [
+    {
+      "question": "What will I learn from this article?",
+      "answer": "This article covers Practical strategies to improve basic arithmetic fluency without causing stress or rushing.."
+    },
+    {
+      "question": "Is this advice suitable for all ages?",
+      "answer": "The strategies discussed are primarily designed for children ages 5-12, but many principles can be adapted for different age groups."
+    },
+    {
+      "question": "How long does it take to see results?",
+      "answer": "Results vary by child, but most parents notice improvements within 2-4 weeks of consistent practice."
+    },
+    {
+      "question": "Do I need special materials or equipment?",
+      "answer": "Most activities can be done with everyday items. For Soroban-specific learning, the Sorokid app provides a virtual abacus."
+    },
+    {
+      "question": "Can I use these methods alongside school curriculum?",
+      "answer": "Absolutely! These approaches are designed to complement, not replace, what children learn at school."
+    }
+  ],
+  "cta": {
+    "text": "Ready to help your child build math confidence? Sorokid offers interactive lessons, games, and progress tracking designed for busy families.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "My Child Is Too Slow at Addition and Subtraction – How to Speed Up | Sorokid",
+    "metaDescription": "Practical strategies to improve basic arithmetic fluency without causing stress or rushing.",
+    "keywords": "slow addition, slow subtraction, math fluency, basic arithmetic"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-29",
+    "author": "Mark Robinson"
   },
   "postId": "con-tinh-cong-tru-cham-qua"
 }

@@ -6,14 +6,28 @@
   "keywords": [
     "học soroban ở đâu",
     "lớp học soroban",
-    "học soroban online hay offline"
+    "học soroban online hay offline",
+    "trung tâm soroban",
+    "gia sư soroban",
+    "học soroban tại nhà",
+    "app học soroban",
+    "so sánh cách học soroban",
+    "chi phí học soroban",
+    "soroban online hiệu quả",
+    "chọn phương pháp học soroban",
+    "sorokid vs lớp học"
   ],
   "status": "published",
   "publishedAt": "2026-01-02T09:38:00.067Z",
   "createdAt": "2025-12-25",
   "image": "/blog/chon-lop-hay-hoc-online-soroban.jpg",
   "imageAlt": "Bé gái châu Á ngồi trước máy tính học Soroban online tại nhà",
-  "readingTime": 7,
+  "readingTime": 13,
+  "categoryOrder": 1,
+  "order": 20,
+  "translations": {
+    "en": "soroban-center-or-online-app"
+  },
   "content": {
     "intro": "Khi quyết định cho con học Soroban, mình không biết chọn cách nào. Lớp học thì sợ con không theo kịp. Gia sư thì đắt. Online thì không biết có hiệu quả không. Sau khi tìm hiểu và thử, đây là những gì mình học được.",
     "sections": [
@@ -303,19 +317,43 @@
   "faq": [
     {
       "question": "Học online có hiệu quả bằng học ở trung tâm không?",
-      "answer": "Tùy con. Một số trẻ học online tốt hơn vì được học theo tốc độ riêng. Một số cần giáo viên người thật. Không có cách nào \"tốt hơn\" – chỉ có cách phù hợp hơn."
+      "answer": "Tùy con. Một số trẻ học online tốt hơn vì được học theo tốc độ riêng, không bị áp lực so sánh. Một số cần giáo viên người thật để tương tác. Không có cách nào 'tốt hơn' – chỉ có cách phù hợp hơn với hoàn cảnh của bạn."
     },
     {
       "question": "Nên cho con thử cách nào trước?",
-      "answer": "Mình nghĩ nên thử app miễn phí hoặc YouTube trước. Nếu con hứng thú, mới quyết định đầu tư thêm."
+      "answer": "Mình nghĩ nên thử app miễn phí hoặc YouTube trước. Chi phí bằng 0, nếu con hứng thú thì mới quyết định đầu tư thêm. Đừng đóng tiền trung tâm ngay khi chưa biết con có thích không."
     },
     {
       "question": "Có thể kết hợp nhiều cách không?",
-      "answer": "Được. Một số phụ huynh cho con học app hàng ngày, cuối tuần đi lớp. Hoặc học app là chính, thỉnh thoảng mời gia sư kiểm tra."
+      "answer": "Được, và nhiều phụ huynh làm vậy. Ví dụ: học app hàng ngày (luyện tập đều đặn), cuối tuần đi lớp (có bạn bè, được cô kiểm tra). Hoặc học app là chính, thỉnh thoảng mời gia sư kiểm tra khi con gặp khó."
     },
     {
       "question": "Nếu không có trung tâm Soroban gần nhà thì sao?",
-      "answer": "Học online hoặc gia sư dạy online là lựa chọn tốt. Không nhất thiết phải đến trung tâm để học hiệu quả."
+      "answer": "Học online hoặc gia sư dạy online là lựa chọn tốt. Soroban hiện đại không nhất thiết phải đến trung tâm. App như Sorokid được thiết kế để con tự học hiệu quả tại nhà."
+    },
+    {
+      "question": "Chi phí các cách học khác nhau bao nhiêu?",
+      "answer": "Trung tâm: 800.000-1.500.000đ/tháng. Gia sư: 200.000-400.000đ/buổi (4-8 buổi/tháng = 800.000-3.200.000đ). App: 100.000-300.000đ/tháng hoặc miễn phí bản cơ bản. YouTube: miễn phí."
+    },
+    {
+      "question": "Con nhỏ (4-5 tuổi) nên học cách nào?",
+      "answer": "App hoặc YouTube kết hợp phụ huynh ngồi cùng. Trẻ nhỏ cần người lớn đồng hành. Trung tâm cũng tốt nếu lớp có ít học sinh và giáo viên kinh nghiệm với trẻ mầm non."
+    },
+    {
+      "question": "Con lớp 3-4 rồi, học cách nào hiệu quả?",
+      "answer": "Trẻ lớn hơn có thể tự học với app tốt hơn vì đã biết đọc và có kỷ luật hơn. Trung tâm hoặc gia sư vẫn tốt nếu muốn có người hướng dẫn và thi cấp độ."
+    },
+    {
+      "question": "Học online con có bỏ cuộc giữa chừng không?",
+      "answer": "Có thể nếu không có thói quen và không được theo dõi. Cách khắc phục: cố định giờ học, phụ huynh nhắc nhở, theo dõi streak (số ngày học liên tục), khen thưởng khi con kiên trì."
+    },
+    {
+      "question": "Làm sao biết con phù hợp với cách nào?",
+      "answer": "Thử 2-4 tuần. Nếu con hứng thú, tiến bộ, không bị ép – đó là cách phù hợp. Nếu con chống đối, chán, không tiến bộ – thử cách khác. Không có cách nào phù hợp với tất cả."
+    },
+    {
+      "question": "Sorokid khác gì các app khác?",
+      "answer": "Sorokid có: video hướng dẫn tiếng Việt, bài học theo trình tự Soroban chuẩn, game vui, báo cáo tiến độ cho phụ huynh, giao diện thân thiện với trẻ em. Bạn có thể dùng thử miễn phí để trải nghiệm."
     }
   ],
   "cta": {
@@ -323,6 +361,20 @@
     "buttonText": "Thử miễn phí",
     "buttonLink": "/register"
   },
-  "categoryOrder": 1,
-  "order": 20
+  "seo": {
+    "title": "Lớp học, gia sư hay online – mình đã chọn cách nào cho con?",
+    "description": "Khi quyết định cho con học Soroban, mình phân vân: đi lớp, mời gia sư, hay học online? Đây là cách mình cân nhắc và lựa chọn.",
+    "keywords": "học soroban ở đâu, lớp học soroban, học soroban online hay offline"
+  },
+  "schema": {
+    "type": "Article",
+    "headline": "Lớp học, gia sư hay online – mình đã chọn cách nào cho con?",
+    "datePublished": "2026-01-02",
+    "dateModified": "2026-01-17",
+    "author": "Minh Anh"
+  },
+  "author": {
+    "name": "Minh Anh",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
 }

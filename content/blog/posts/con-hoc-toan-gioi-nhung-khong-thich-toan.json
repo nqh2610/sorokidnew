@@ -6,16 +6,28 @@
   "keywords": [
     "con giỏi toán nhưng ghét toán",
     "không thích toán",
-    "tạo hứng thú học toán"
+    "tạo hứng thú học toán",
+    "con học vì điểm không vì thích",
+    "burn out khi học toán",
+    "giỏi nhưng không có đam mê",
+    "cách tạo hứng thú với toán",
+    "toán trong đời sống thực",
+    "học toán qua game",
+    "giảm áp lực điểm số",
+    "con chán học toán",
+    "nuôi dưỡng đam mê học tập"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-01-30T00:26:45.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/gioi-nhung-khong-thich.jpg",
   "imageAlt": "Bé châu Á với vẻ mặt chán nản khi học toán",
-  "readingTime": 5,
+  "readingTime": 12,
   "categoryOrder": 2,
   "order": 23,
+  "translations": {
+    "en": "con-hc-ton-gii-nhng-khng-thch-ton-c-sao-khng"
+  },
   "content": {
     "intro": "\"Con ghét toán!\" – Con mình hay nói vậy. Nhưng điểm kiểm tra toán luôn 9-10. Mình không hiểu tại sao.",
     "sections": [
@@ -95,11 +107,63 @@
     {
       "question": "Làm sao biết con thực sự thích toán?",
       "answer": "Khi con tự hỏi câu hỏi về toán, tự tìm bài để làm, đó là dấu hiệu tốt."
+    },
+    {
+      "question": "Giỏi mà không thích có sao không?",
+      "answer": "Ngắn hạn không sao, nhưng lâu dài có thể dẫn đến burn out. Con học vì áp lực thay vì hứng thú, động lực không bền vững."
+    },
+    {
+      "question": "Làm sao tạo hứng thú cho con đã giỏi toán?",
+      "answer": "Cho con thấy toán ứng dụng thực tế, cho chơi game logic/toán học thú vị, giới thiệu những bài toán hay, câu đố thay vì bài tập lặp đi lặp lại."
+    },
+    {
+      "question": "Con giỏi toán nhưng học vì bố mẹ ép, có hại không?",
+      "answer": "Có. Con có thể đạt điểm cao nhưng mất niềm vui học tập, ảnh hưởng tâm lý lâu dài. Nên điều chỉnh cách tiếp cận."
+    },
+    {
+      "question": "Có nên giảm bớt bài tập toán cho con giỏi?",
+      "answer": "Có thể giảm bài tập nhàm chán, thay bằng những thử thách thú vị hơn phù hợp với trình độ con."
+    },
+    {
+      "question": "Con nói ghét toán nhưng điểm cao, tin lời nào?",
+      "answer": "Tin cảm xúc của con. Điểm cao có thể do con thông minh hoặc bị ép, không phản ánh hứng thú thực sự."
+    },
+    {
+      "question": "Làm sao để con thấy toán có ích?",
+      "answer": "Áp dụng toán vào tình huống thực: tính tiền khi mua sắm, đo đạc khi nấu ăn, lập kế hoạch tiết kiệm tiền mừng tuổi..."
+    },
+    {
+      "question": "Con giỏi toán nhưng thích môn khác, có nên định hướng con theo toán?",
+      "answer": "Không nên ép. Hãy để con phát triển theo sở thích và thế mạnh tự nhiên. Giỏi toán là lợi thế, nhưng không nhất thiết phải theo ngành toán."
+    },
+    {
+      "question": "Dấu hiệu nào cho thấy con sắp burn out với toán?",
+      "answer": "Con hay than mệt, chán, né tránh làm bài dù làm được, điểm bắt đầu giảm dù khả năng không thay đổi, mất hứng thú với mọi thứ liên quan đến học tập."
     }
   ],
   "cta": {
     "text": "Sorokid biến toán thành trò chơi, giúp con thích học hơn.",
     "buttonText": "Thử ngay miễn phí",
     "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Con học toán giỏi nhưng không thích toán – Có sao không?",
+    "description": "Con mình điểm toán cao nhưng hay nói ghét toán. Mình lo quá nên tìm hiểu.",
+    "keywords": "con giỏi toán nhưng ghét toán, không thích toán, tạo hứng thú học toán, burn out khi học, học vì điểm"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-30",
+    "author": {
+      "@type": "Person",
+      "name": "Minh Anh",
+      "description": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy",
+      "url": "https://sorokid.com/blog"
+    }
+  },
+  "author": {
+    "name": "Minh Anh",
+    "role": "Mẹ của 2 bé",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
   }
 }

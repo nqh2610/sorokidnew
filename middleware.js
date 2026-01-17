@@ -57,9 +57,12 @@ const I18N_IGNORE_PATHS = [
 
 // 🌍 Routes có file riêng trong /app/en/ - KHÔNG REWRITE
 // Những routes này có page.jsx riêng, để Next.js serve trực tiếp
+// Các routes KHÔNG có trong list này sẽ được REWRITE về URL gốc (VI)
+// ⚠️ Chỉ liệt kê EXACT paths hoặc paths có sub-routes
 const EN_ROUTES_WITH_OWN_FILES = [
-  '/en/blog',
-  '/en',
+  '/en/blog',   // /en/blog, /en/blog/xxx, /en/blog/category/xxx
+  '/en/tool',   // /en/tool, /en/tool/xxx
+  // '/en' homepage được handle riêng
 ];
 
 /**
@@ -225,23 +228,28 @@ export async function middleware(request) {
   }
   
   // 🔥 Nếu là /en/... → rewrite về URL gốc + set cookie EN
-  // Ví dụ: /en/blog → rewrite to /blog, set cookie = 'en'
-  // ⚠️ NGOẠI TRỪ routes đã có file riêng trong /app/en/
+  // Ví dụ: /en/login → rewrite to /login, set cookie = 'en'
+  // ⚠️ NGOẠI TRỪ routes đã có file riêng trong /app/en/ (blog, tool)
   let rewriteUrl = null;
   if (urlLocale === 'en') {
-    // Check nếu route này có file EN riêng - KHÔNG rewrite
-    const routeHasOwnEnFile = EN_ROUTES_WITH_OWN_FILES.some(route => 
-      pathname === route || pathname.startsWith(route + '/')
-    );
-    
-    console.log('[MW DEBUG] pathname:', pathname, 'routeHasOwnEnFile:', routeHasOwnEnFile, 'EN_ROUTES:', EN_ROUTES_WITH_OWN_FILES);
-    
-    if (!routeHasOwnEnFile) {
-      const pathWithoutEn = removeLocalePrefix(pathname);
-      rewriteUrl = new URL(pathWithoutEn, request.url);
-      console.log('[MW DEBUG] REWRITING to:', pathWithoutEn);
+    // /en homepage - có file riêng, không rewrite
+    if (pathname === '/en') {
+      // Skip rewrite, let Next.js serve /app/en/page.jsx
     } else {
-      console.log('[MW DEBUG] SKIPPING rewrite - route has own EN file');
+      // Check nếu route này có file EN riêng - KHÔNG rewrite
+      const routeHasOwnEnFile = EN_ROUTES_WITH_OWN_FILES.some(route => 
+        pathname === route || pathname.startsWith(route + '/')
+      );
+      
+      console.log('[MW DEBUG] pathname:', pathname, 'routeHasOwnEnFile:', routeHasOwnEnFile);
+      
+      if (!routeHasOwnEnFile) {
+        const pathWithoutEn = removeLocalePrefix(pathname);
+        rewriteUrl = new URL(pathWithoutEn, request.url);
+        console.log('[MW DEBUG] REWRITING to:', pathWithoutEn);
+      } else {
+        console.log('[MW DEBUG] SKIPPING rewrite - route has own EN file');
+      }
     }
   }
 
@@ -295,14 +303,27 @@ export async function middleware(request) {
   // Nếu đã đăng nhập VÀ đã hoàn tất profile mà vào guest route -> redirect to dashboard
   if (isGuestRoute && token) {
     // Giữ locale khi redirect
-    const dashboardUrl = locale === 'en' ? '/en/dashboard' : '/dashboard';
-    return NextResponse.redirect(new URL(dashboardUrl, request.url));
+    // Dashboard không có /en/ version riêng, dùng URL gốc + cookie
+    const dashboardUrl = '/dashboard';
+    const redirectResponse = NextResponse.redirect(new URL(dashboardUrl, request.url));
+    redirectResponse.cookies.set(I18N_COOKIE, locale, {
+      path: '/',
+      maxAge: 365 * 24 * 60 * 60,
+      sameSite: 'lax',
+    });
+    return redirectResponse;
   }
 
   // Nếu là admin route mà không phải admin -> redirect to dashboard
   if (isAdminRoute && token && token.role !== 'admin') {
-    const dashboardUrl = locale === 'en' ? '/en/dashboard' : '/dashboard';
-    return NextResponse.redirect(new URL(dashboardUrl, request.url));
+    const dashboardUrl = '/dashboard';
+    const redirectResponse = NextResponse.redirect(new URL(dashboardUrl, request.url));
+    redirectResponse.cookies.set(I18N_COOKIE, locale, {
+      path: '/',
+      maxAge: 365 * 24 * 60 * 60,
+      sameSite: 'lax',
+    });
+    return redirectResponse;
   }
 
   // 🔥 Rewrite /en/... về URL gốc (page vẫn giữ nguyên, chỉ đổi cookie)

@@ -6,13 +6,28 @@
   "keywords": [
     "học toán không áp lực",
     "con học toán không căng thẳng",
-    "cách học toán nhẹ nhàng"
+    "cách học toán nhẹ nhàng",
+    "học toán không khóc",
+    "không ép con học",
+    "con tự giác học toán",
+    "phương pháp học nhẹ nhàng",
+    "giảm stress khi học",
+    "con không sợ toán",
+    "khen sự cố gắng",
+    "chia nhỏ thời gian học",
+    "biến học thành chơi"
   ],
   "status": "published",
   "publishedAt": "2025-12-25T02:37:20.058Z",
   "createdAt": "2025-12-25",
   "image": "/blog/con-hoc-toan-khong-ap-luc.jpg",
+  "imageAlt": "Mẹ con châu Á vui vẻ - học toán không áp lực",
   "readingTime": 5,
+  "categoryOrder": 4,
+  "order": 1,
+  "translations": {
+    "en": "learning-math-without-tears"
+  },
   "content": {
     "intro": "Có người nói với mình: \"Không ép thì con không học.\" Mình cũng từng tin vậy. Nên mình ép. Rồi con khóc. Mình cũng khóc. Cho đến một hôm mình quyết định thử khác đi.",
     "sections": [
@@ -143,7 +158,18 @@
     "buttonText": "Thử xem",
     "buttonLink": "/register"
   },
-  "imageAlt": "Mẹ con châu Á vui vẻ - học toán không áp lực",
-  "categoryOrder": 4,
-  "order": 1
+  "seo": {
+    "title": "Con học toán mà không khóc – hóa ra có thể",
+    "description": "Trước đây mình không tin. Học mà không ép thì con có tự giác không? Nhưng sau khi thử thay đổi cách tiếp cận, mình thấy: có thể.",
+    "keywords": "học toán không áp lực, con học toán không căng thẳng, cách học toán nhẹ nhàng"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-25",
+    "author": "Chị Thu Phương"
+  },
+  "author": {
+    "name": "Chị Thu Phương",
+    "bio": "Mẹ của bé trai lớp 2, đã thoát khỏi vòng xoáy ép con học và tìm được cách dạy nhẹ nhàng hơn"
+  }
 }

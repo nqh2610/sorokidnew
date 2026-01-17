@@ -6,13 +6,32 @@
   "keywords": [
     "công cụ hỗ trợ học toán",
     "khi nào nên dùng ứng dụng học",
-    "ứng dụng học toán cho trẻ"
+    "ứng dụng học toán cho trẻ",
+    "dấu hiệu cần tìm giúp đỡ",
+    "phụ huynh kiệt sức khi kèm con",
+    "app học toán thay gia sư",
+    "căng thẳng khi dạy con",
+    "tự kèm con hay thuê gia sư",
+    "con ỷ lại khi học với bố mẹ",
+    "buổi học kết thúc bằng la mắng",
+    "giải pháp học tập cho gia đình bận rộn",
+    "cách chọn công cụ học online"
   ],
   "status": "published",
   "publishedAt": "2025-12-28T05:50:21.456Z",
   "createdAt": "2025-12-25",
   "image": "/blog/phu-huynh-dung-cong-cu-ho-tro.jpg",
-  "readingTime": 5,
+  "imageAlt": "Mẹ châu Á dùng công cụ hỗ trợ dạy con học",
+  "readingTime": 13,
+  "categoryOrder": 4,
+  "order": 5,
+  "author": {
+    "name": "Chị Ngọc",
+    "role": "Mẹ bé Khôi – lớp 2"
+  },
+  "translations": {
+    "en": "when-to-use-learning-tools-for-kids"
+  },
   "content": {
     "intro": "Có người hỏi mình: \"Sao không tự kèm con mà phải dùng app?\" Mình cũng tự kèm đấy. Gần một năm. Đến khi cả hai đều kiệt sức, mình mới chịu tìm cách khác.",
     "sections": [
@@ -137,19 +156,43 @@
   "faq": [
     {
       "question": "Dùng công cụ thì mình có cần làm gì nữa không?",
-      "answer": "Vẫn cần. Công cụ giúp \"dạy\" kiến thức, nhưng bạn vẫn cần động viên, tạo thói quen, và theo dõi tiến độ. Vai trò thay đổi từ \"giáo viên\" sang \"người đồng hành.\""
+      "answer": "Vẫn cần. Công cụ giúp \"dạy\" kiến thức, nhưng bạn vẫn cần động viên, tạo thói quen, và theo dõi tiến độ. Vai trò thay đổi từ \"giáo viên\" sang \"người đồng hành\" – nhẹ nhàng hơn nhưng vẫn quan trọng."
     },
     {
       "question": "App có thay thế hoàn toàn việc học ở trường không?",
-      "answer": "Không. App là công cụ bổ trợ, không thay thế. Nó giúp con luyện tập thêm và củng cố kiến thức."
+      "answer": "Không và không nên. App là công cụ bổ trợ, không thay thế. Nó giúp con luyện tập thêm và củng cố kiến thức. Ở trường con còn học kỹ năng xã hội, tương tác với bạn bè và thầy cô."
     },
     {
       "question": "Làm sao biết app nào tốt?",
-      "answer": "Thử bản miễn phí trước. Xem con có hứng thú không? Nội dung có phù hợp với chương trình? Có theo dõi tiến độ cho phụ huynh không?"
+      "answer": "Thử bản miễn phí trước. Xem con có hứng thú không? Nội dung có phù hợp với chương trình? Có theo dõi tiến độ cho phụ huynh không? App tốt là app con chịu dùng đều đặn mỗi ngày."
     },
     {
       "question": "Con còn nhỏ (5-6 tuổi), dùng app được không?",
-      "answer": "Được, nếu app thiết kế cho lứa tuổi đó. Chọn app có giao diện đơn giản, hình ảnh sinh động, bài học ngắn."
+      "answer": "Được, nếu app thiết kế cho lứa tuổi đó. Chọn app có giao diện đơn giản, hình ảnh sinh động, bài học ngắn (5-10 phút). Có sự giám sát của bố mẹ trong thời gian đầu."
+    },
+    {
+      "question": "Dấu hiệu nào cho thấy cần tìm công cụ hỗ trợ?",
+      "answer": "Mỗi buổi học kết thúc bằng căng thẳng, la mắng. Bạn kiệt sức sau giờ làm. Con ỷ lại hoặc phản kháng. Bạn không chắc mình dạy đúng. Con không tiến bộ dù học nhiều."
+    },
+    {
+      "question": "Thuê gia sư hay dùng app, cái nào tốt hơn?",
+      "answer": "Tùy hoàn cảnh. Gia sư tốt hơn khi con yếu nghiêm trọng, cần người kèm trực tiếp. App tốt hơn khi muốn con tự học đều đặn mỗi ngày, chi phí thấp hơn, và bố mẹ bận."
+    },
+    {
+      "question": "Dùng app nhưng vẫn muốn tự kèm thêm, có nên không?",
+      "answer": "Hoàn toàn được. Nhiều phụ huynh dùng app cho con luyện tập, rồi cuối tuần ngồi cùng con 15-20 phút để ôn lại. Kết hợp là cách tốt nhất."
+    },
+    {
+      "question": "Con không chịu dùng app, chỉ muốn bố mẹ kèm?",
+      "answer": "Có thể con chưa quen hoặc app chưa hấp dẫn. Thử cùng con \"chơi\" app như một trò chơi chung. Dần dần để con tự làm. Hoặc thử app khác xem con có thích hơn không."
+    },
+    {
+      "question": "Tìm hỗ trợ có phải là thừa nhận thất bại?",
+      "answer": "Hoàn toàn không. Đó là dấu hiệu của phụ huynh thông minh – người biết tìm giải pháp tốt nhất cho con thay vì cố ép mình làm mọi thứ. Biết giới hạn của mình cũng là một cách yêu con."
+    },
+    {
+      "question": "Chi phí dùng app so với gia sư như thế nào?",
+      "answer": "App thường 200-400k/tháng, bằng 1-2 buổi gia sư. Nhưng con học được cả tháng, mỗi ngày. Về lâu dài, app tiết kiệm hơn nhiều nếu con chịu dùng đều đặn."
     }
   ],
   "cta": {
@@ -157,7 +200,14 @@
     "buttonText": "Thử xem",
     "buttonLink": "/register"
   },
-  "imageAlt": "Mẹ châu Á dùng công cụ hỗ trợ dạy con học",
-  "categoryOrder": 4,
-  "order": 5
+  "seo": {
+    "title": "Mình đã cố tự kèm con – đến khi nào thì nên dừng?",
+    "description": "Mình từng nghĩ: tự kèm con là trách nhiệm. Nhưng khi căng thẳng leo thang, mình nhận ra: có lúc cần tìm công cụ hỗ trợ.",
+    "keywords": "công cụ hỗ trợ học toán, khi nào nên dùng ứng dụng học, ứng dụng học toán cho trẻ"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-28",
+    "author": "Chị Ngọc - Mẹ bé Khôi lớp 2"
+  }
 }

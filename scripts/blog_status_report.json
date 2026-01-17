@@ -1,0 +1,683 @@
+{
+  "total_vi": 136,
+  "has_en": 1,
+  "missing_en": [
+    {
+      "vi_slug": "10-phut-moi-ngay-phu-huynh-nen-lam-gi-khi-con-hoc-toan",
+      "en_slug": null,
+      "title": "10 phút mỗi tối – mình chỉ cần làm vậy thôi"
+    },
+    {
+      "vi_slug": "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi",
+      "en_slug": null,
+      "title": "5 hoạt động khởi động đầu giờ không cần chuẩn bị – dùng ngay được luôn"
+    },
+    {
+      "vi_slug": "ai-la-trieu-phu-game-show-kiem-tra-kien-thuc-trong-lop",
+      "en_slug": null,
+      "title": "Ai Là Triệu Phú Trong Lớp Học - Biến Tiết Ôn Tập Thành Game Show Truyền Hình"
+    },
+    {
+      "vi_slug": "app-hoc-toan-cho-be",
+      "en_slug": null,
+      "title": "App học toán cho bé: Tiêu chí chọn và kinh nghiệm dùng thử của mình"
+    },
+    {
+      "vi_slug": "ba-khong-biet-soroban-van-kem-con-duoc",
+      "en_slug": null,
+      "title": "Chồng mình không biết Soroban – nhưng lại là người \"kèm\" con giỏi nhất"
+    },
+    {
+      "vi_slug": "ba-viec-phu-huynh-chi-nen-lam-khi-con-hoc",
+      "en_slug": null,
+      "title": "Ba việc mình làm bây giờ – thay vì ngồi kèm con"
+    },
+    {
+      "vi_slug": "ban-tin-bang-soroban-ao-hay-ban-that",
+      "en_slug": null,
+      "title": "Bàn tính Soroban ảo hay bàn thật? Mình mua bàn thật 150k rồi để bụi"
+    },
+    {
+      "vi_slug": "bang-cuu-chuong-hoc-thuoc-hay-hieu",
+      "en_slug": null,
+      "title": "Bảng cửu chương – con nên học thuộc hay cần hiểu? Mình đã chọn cả hai"
+    },
+    {
+      "vi_slug": "bi-quyet-thi-giao-vien-day-gioi-cap-huyen-tinh",
+      "en_slug": null,
+      "title": "Bí Quyết Thi Giáo Viên Dạy Giỏi Cấp Huyện, Cấp Tỉnh - Kinh Nghiệm Thực Tế"
+    },
+    {
+      "vi_slug": "bieu-dien-so-hang-chuc-tram-soroban",
+      "en_slug": null,
+      "title": "Biểu diễn số hàng chục, trăm, nghìn trên Soroban"
+    },
+    {
+      "vi_slug": "bo-ban-khong-biet-day-con-hoc-toan",
+      "en_slug": null,
+      "title": "Bố bận cả ngày – Nhưng vẫn muốn đóng góp việc học của con"
+    },
+    {
+      "vi_slug": "bo-me-can-hoc-soroban-de-day-con-khong",
+      "en_slug": null,
+      "title": "Bố mẹ có cần biết Soroban mới dạy được con không? – Không đâu, mình cũng mù tịt"
+    },
+    {
+      "vi_slug": "boc-tham-kiem-tra-mieng-cong-bang-cho-tat-ca",
+      "en_slug": null,
+      "title": "Bốc Thăm Kiểm Tra Miệng - Giải Pháp Công Bằng Cho Tất Cả Học Sinh"
+    },
+    {
+      "vi_slug": "cach-bieu-dien-so-tren-soroban",
+      "en_slug": null,
+      "title": "Cách biểu diễn số 0-9 trên Soroban – Bài học đầu tiên của con"
+    },
+    {
+      "vi_slug": "cach-cam-va-tu-the-hoc-soroban",
+      "en_slug": null,
+      "title": "Cách cầm Soroban và tư thế học đúng – Nền tảng quan trọng nhất"
+    },
+    {
+      "vi_slug": "cach-day-con-hoc-toan-ma-khong-can-giao-vien",
+      "en_slug": null,
+      "title": "Cách dạy con học toán mà không cần giáo viên – Mình tiết kiệm 3 triệu/tháng"
+    },
+    {
+      "vi_slug": "cau-tao-ban-tinh-soroban",
+      "en_slug": null,
+      "title": "Cấu tạo bàn tính Soroban – Phụ huynh cần biết gì trước khi cho con học?"
+    },
+    {
+      "vi_slug": "chia-nhom-30-giay-giai-phap-tiet-hoc-45-phut",
+      "en_slug": null,
+      "title": "Chia nhóm trong 30 giây – giải pháp cho tiết học 45 phút"
+    },
+    {
+      "vi_slug": "chia-san-bai-toan-lam-con-soi-nao",
+      "en_slug": null,
+      "title": "Bài toán chia sẻ làm con mình rối – đây là cách mình giúp"
+    },
+    {
+      "vi_slug": "chiec-non-ky-dieu-goi-hoc-sinh-cong-bang",
+      "en_slug": null,
+      "title": "Chiếc Nón Kỳ Diệu – cách tôi gọi học sinh mà không ai kêu ca"
+    },
+    {
+      "vi_slug": "cho-con-hoc-them-hay-tu-hoc-o-nha",
+      "en_slug": null,
+      "title": "Cho con học thêm hay tự học ở nhà? – Mình phân tích rồi chọn cách này"
+    },
+    {
+      "vi_slug": "chon-lop-soroban-hay-hoc-online",
+      "en_slug": null,
+      "title": "Lớp học, gia sư hay online – mình đã chọn cách nào cho con?"
+    },
+    {
+      "vi_slug": "con-4-tuoi-hoc-soroban-co-som-qua-khong",
+      "en_slug": null,
+      "title": "Con 4 tuổi – mình phân vân không biết cho học Soroban sớm có tốt không"
+    },
+    {
+      "vi_slug": "con-biet-tinh-nhung-doc-de-khong-hieu",
+      "en_slug": null,
+      "title": "Con biết tính nhưng đọc đề không hiểu – hóa ra không phải lỗi toán"
+    },
+    {
+      "vi_slug": "con-dem-tren-ngon-tay-co-sao-khong",
+      "en_slug": null,
+      "title": "Con đếm trên ngón tay – mình từng lo lắm, giờ thì hết"
+    },
+    {
+      "vi_slug": "con-ghet-toan-chi-thich-doc-sach",
+      "en_slug": null,
+      "title": "Con ghét toán, chỉ thích đọc sách – mình từng lo con \"lệch\""
+    },
+    {
+      "vi_slug": "con-hay-lam-sai-phep-tinh-don-gian",
+      "en_slug": null,
+      "title": "Con hay làm sai phép tính đơn giản – mình từng tức giận, giờ hiểu hơn"
+    },
+    {
+      "vi_slug": "con-hay-lam-sai-phep-tru-co-nho",
+      "en_slug": null,
+      "title": "Con hay làm sai phép trừ có nhớ – Từ sai 70% xuống còn 10%"
+    },
+    {
+      "vi_slug": "con-hay-quen-bang-cuu-chuong",
+      "en_slug": null,
+      "title": "Con học thuộc bảng cửu chương rồi lại quên – mình đã thử cách khác"
+    },
+    {
+      "vi_slug": "con-hoc-soroban-co-giup-thi-vao-lop-6-khong",
+      "en_slug": null,
+      "title": "Con học Soroban có giúp thi vào lớp 6 không?"
+    },
+    {
+      "vi_slug": "con-hoc-soroban-nhung-diem-toan-van-thap",
+      "en_slug": null,
+      "title": "Con học Soroban 3 tháng mà điểm vẫn thế – mình từng muốn bỏ cuộc"
+    },
+    {
+      "vi_slug": "con-hoc-soroban-nhung-khong-thich-luyen-tap",
+      "en_slug": null,
+      "title": "Con học Soroban nhưng không thích luyện tập – Mình làm thế này"
+    },
+    {
+      "vi_slug": "con-hoc-soroban-nhung-o-truong-day-cach-khac",
+      "en_slug": null,
+      "title": "Con học Soroban nhưng ở trường dạy khác – có bị loạn không?"
+    },
+    {
+      "vi_slug": "con-hoc-toan-cham-co-that-la-do-con",
+      "en_slug": null,
+      "title": "Con học toán chậm hơn bạn – mình đã lo sai chỗ"
+    },
+    {
+      "vi_slug": "con-hoc-toan-gioi-nhung-khong-thich-toan",
+      "en_slug": null,
+      "title": "Con học toán giỏi nhưng không thích toán – Có sao không?"
+    },
+    {
+      "vi_slug": "con-hoc-toan-online-co-tot-khong",
+      "en_slug": null,
+      "title": "Mình lo con học online – nhưng 6 tháng sau thì hết lo"
+    },
+    {
+      "vi_slug": "con-hoc-toan-tot-nhung-giai-toan-do-cham",
+      "en_slug": null,
+      "title": "Con tính toán nhanh nhưng giải toán đố chậm – vấn đề ở đâu?"
+    },
+    {
+      "vi_slug": "con-hoc-toan-tot-o-truong-nhung-ve-nha-khong-lam-duoc",
+      "en_slug": null,
+      "title": "Con học toán tốt ở trường nhưng về nhà quên sạch – Vì sao và cách khắc phục"
+    },
+    {
+      "vi_slug": "con-khoc-moi-khi-lam-bai-toan",
+      "en_slug": null,
+      "title": "Con khóc mỗi khi mở vở toán – mình đau lòng không biết làm gì"
+    },
+    {
+      "vi_slug": "con-khong-nghe-loi-khi-bo-me-day-toan",
+      "en_slug": null,
+      "title": "Con không nghe lời khi bố mẹ dạy toán – mình đã làm sai gì?"
+    },
+    {
+      "vi_slug": "con-khong-tap-trung-khi-hoc-toan",
+      "en_slug": null,
+      "title": "Con không tập trung nổi 5 phút khi học toán – mình từng nghĩ con bị tăng động"
+    },
+    {
+      "vi_slug": "con-khong-thich-hoc-chi-thich-choi",
+      "en_slug": null,
+      "title": "Con chỉ thích chơi, không thích học – Mình từng lo, giờ thấy đó là lợi thế"
+    },
+    {
+      "vi_slug": "con-lam-toan-cham-hon-ban",
+      "en_slug": null,
+      "title": "Con làm bài chậm, bạn nộp rồi con chưa xong – mình từng rất lo"
+    },
+    {
+      "vi_slug": "con-lam-toan-dung-nhung-cham",
+      "en_slug": null,
+      "title": "Con làm toán đúng nhưng chậm – Có cần lo không?"
+    },
+    {
+      "vi_slug": "con-lop-1-chua-biet-cong-tru-tram-vi",
+      "en_slug": null,
+      "title": "Con lớp 1 chưa biết cộng trừ trong phạm vi 10 – mình có lo quá không?"
+    },
+    {
+      "vi_slug": "con-lop-1-khong-nhan-mat-so",
+      "en_slug": null,
+      "title": "Con lớp 1 không nhận mặt số – mình từng nghĩ con chậm"
+    },
+    {
+      "vi_slug": "con-lop-3-van-dem-tay-binh-thuong-khong",
+      "en_slug": null,
+      "title": "Con lớp 3 vẫn đếm tay – mình lo quá hỏi hết mọi người"
+    },
+    {
+      "vi_slug": "con-noi-con-ghet-toan-minh-da-phan-ung-sai",
+      "en_slug": null,
+      "title": "Con nói \"con ghét toán\" – mình đã phản ứng sai thế nào?"
+    },
+    {
+      "vi_slug": "con-so-hoc-toan-phu-huynh-dang-lam-sai-o-dau",
+      "en_slug": null,
+      "title": "Con sợ toán – mình đã vô tình làm gì sai?"
+    },
+    {
+      "vi_slug": "con-so-hoc-toan",
+      "en_slug": null,
+      "title": "Con sợ học toán: Hành trình giúp con từ khóc mỗi tối đến tự giác làm bài"
+    },
+    {
+      "vi_slug": "con-so-kiem-tra-toan",
+      "en_slug": null,
+      "title": "Con sợ kiểm tra toán đến mức đau bụng – mình mới hiểu vì sao"
+    },
+    {
+      "vi_slug": "con-so-toan-vi-me-tung-la-con",
+      "en_slug": null,
+      "title": "Con sợ toán vì mẹ từng la con – Bài học đau lòng mình nhận ra quá muộn"
+    },
+    {
+      "vi_slug": "con-thi-tot-nhung-lam-bai-tap-thi-sai",
+      "en_slug": null,
+      "title": "Con thi thì tốt, làm bài tập thì sai – mình từng không hiểu"
+    },
+    {
+      "vi_slug": "con-tinh-cong-tru-cham-qua",
+      "en_slug": null,
+      "title": "Con tính cộng trừ chậm quá – bạn bè làm xong con còn đang đếm"
+    },
+    {
+      "vi_slug": "con-tinh-nham-hay-sai-do-dau",
+      "en_slug": null,
+      "title": "Con tính nhẩm hay sai – Mình từng đổ lỗi cho con, hóa ra nguyên nhân khác"
+    },
+    {
+      "vi_slug": "con-tinh-toan-can-than-nhung-hay-doc-nham-de-bai",
+      "en_slug": null,
+      "title": "Con tính toán cẩn thận nhưng hay đọc nhầm đề bài"
+    },
+    {
+      "vi_slug": "con-trai-va-con-gai-hoc-toan-khac-nhau-khong",
+      "en_slug": null,
+      "title": "Con trai và con gái học toán khác nhau không? – Sự thật mình tìm hiểu được"
+    },
+    {
+      "vi_slug": "cong-cu-day-hoc-khien-ban-giam-hieu-bat-ngo-khi-du-gio",
+      "en_slug": null,
+      "title": "Công Cụ Dạy Học Khiến Ban Giám Hiệu Bất Ngờ Khi Dự Giờ"
+    },
+    {
+      "vi_slug": "cuoc-dua-ki-thu-bien-lop-hoc-thanh-duong-dua",
+      "en_slug": null,
+      "title": "Cuộc Đua Kì Thú - Biến Lớp Học Thành Đường Đua Kiến Thức Kịch Tính"
+    },
+    {
+      "vi_slug": "dau-hieu-con-can-ho-tro-them-ve-toan",
+      "en_slug": null,
+      "title": "5 dấu hiệu con cần được hỗ trợ thêm về toán – mình từng bỏ qua"
+    },
+    {
+      "vi_slug": "day-con-tinh-nham-nhanh",
+      "en_slug": null,
+      "title": "Dạy con tính nhẩm nhanh: Từ đếm ngón tay đến tính trong đầu"
+    },
+    {
+      "vi_slug": "day-con-toan-khong-can-giao-vien",
+      "en_slug": null,
+      "title": "Mình không đủ tiền cho con học thêm – nhưng con vẫn học tốt"
+    },
+    {
+      "vi_slug": "day-con-toan-qua-tro-choi-hang-ngay",
+      "en_slug": null,
+      "title": "Mình dạy con toán lúc đi siêu thị – không ai biết đang học"
+    },
+    {
+      "vi_slug": "den-may-man-cuoi-tiet-game-thuong-phat-hoc-sinh-thich",
+      "en_slug": null,
+      "title": "Đèn May Mắn Cuối Tiết - Game Thưởng Phạt Học Sinh Cực Thích"
+    },
+    {
+      "vi_slug": "dong-hanh-cung-con-hoc-toan-la-gi",
+      "en_slug": null,
+      "title": "Mình từng nghĩ đồng hành là ngồi kèm con học – hóa ra sai hoàn toàn"
+    },
+    {
+      "vi_slug": "dong-ho-bam-gio-may-chieu-cong-cu-quan-ly-thoi-gian",
+      "en_slug": null,
+      "title": "Đồng Hồ Bấm Giờ Máy Chiếu - Công Cụ Quản Lý Thời Gian Lớp Học Hiệu Quả"
+    },
+    {
+      "vi_slug": "dua-thu-hoat-hinh-game-dua-ngua-tao-dong-luc-hoc-tap",
+      "en_slug": null,
+      "title": "Đua Thú Hoạt Hình - Biến Thi Đua Học Tập Thành Cuộc Đua Động Vật Siêu Vui"
+    },
+    {
+      "vi_slug": "flash-zan-5-phut-dau-gio-luyen-tinh-nham-nhanh",
+      "en_slug": null,
+      "title": "Flash ZAN 5 Phút Đầu Giờ - Bí Quyết Luyện Tính Nhẩm Nhanh Cho Học Sinh"
+    },
+    {
+      "vi_slug": "flashcard-soroban-co-can-thiet-khong",
+      "en_slug": null,
+      "title": "Mình từng mua flashcard Soroban – đây là điều mình học được"
+    },
+    {
+      "vi_slug": "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
+      "en_slug": null,
+      "title": "Game trong lớp học – từ hoài nghi đến không thể thiếu"
+    },
+    {
+      "vi_slug": "hai-chi-em-hoc-toan-khac-nhau",
+      "en_slug": null,
+      "title": "Hai chị em nhà mình học toán hoàn toàn khác – cùng mẹ mà sao thế?"
+    },
+    {
+      "vi_slug": "he-nay-cho-con-hoc-gi-de-khong-quen-toan",
+      "en_slug": null,
+      "title": "Hè này cho con học gì để không quên toán? – Mình chọn cách nhẹ nhàng"
+    },
+    {
+      "vi_slug": "hoat-dong-ice-breaker-pha-bang-khoi-dong-lop-hoc",
+      "en_slug": null,
+      "title": "Hoạt Động Ice Breaker (Phá Băng) - 15 Trò Chơi Khởi Động Lớp Học Hiệu Quả"
+    },
+    {
+      "vi_slug": "hoc-qua-du-an-pbl-huong-dan-thuc-hanh-cho-giao-vien",
+      "en_slug": null,
+      "title": "Học Qua Dự Án (PBL) - Hướng Dẫn Thực Hành Chi Tiết Cho Giáo Viên"
+    },
+    {
+      "vi_slug": "hoc-sinh-hoi-co-choi-game-khong-va-cau-tra-loi",
+      "en_slug": null,
+      "title": "Học Sinh Hỏi \"Hôm Nay Có Chơi Game Không Cô?\" - Và Câu Trả Lời Thay Đổi Lớp Học"
+    },
+    {
+      "vi_slug": "hoc-soroban-co-can-biet-tieng-nhat-khong",
+      "en_slug": null,
+      "title": "Học Soroban có cần biết tiếng Nhật không? – Nỗi lo thừa của mình"
+    },
+    {
+      "vi_slug": "hoc-soroban-co-can-mua-ban-tinh-khong",
+      "en_slug": null,
+      "title": "Học Soroban có cần mua bàn tính không? – Mình đã mua rồi đây là review"
+    },
+    {
+      "vi_slug": "hoc-soroban-mat-bao-lau-de-tinh-nham-duoc",
+      "en_slug": null,
+      "title": "Học Soroban bao lâu thì con tính nhẩm được? Đừng kỳ vọng như mình"
+    },
+    {
+      "vi_slug": "hoc-soroban-online-co-phu-hop-cho-phu-huynh-ban-ron",
+      "en_slug": null,
+      "title": "Mình đi làm cả ngày – làm sao kèm con học Soroban?"
+    },
+    {
+      "vi_slug": "hoc-toan-moi-ngay-15-phut-co-hieu-qua",
+      "en_slug": null,
+      "title": "Cho con học toán 15 phút/ngày – Tưởng ít nhưng hiệu quả bất ngờ"
+    },
+    {
+      "vi_slug": "hoc-toan-nhu-choi-game-co-thuc-su-hieu-qua",
+      "en_slug": null,
+      "title": "Con mình học toán trên app – tưởng chơi game hóa ra học thật"
+    },
+    {
+      "vi_slug": "hoc-toan-tu-duy-online-cho-be",
+      "en_slug": null,
+      "title": "Học toán tư duy online cho bé có thực sự hiệu quả?"
+    },
+    {
+      "vi_slug": "kem-con-hoc-toan-ma-hai-me-con-cai-nhau",
+      "en_slug": null,
+      "title": "Kèm con học toán mà hai mẹ con cãi nhau – mình quyết định dừng lại"
+    },
+    {
+      "vi_slug": "khen-con-khi-hoc-toan-nhu-the-nao",
+      "en_slug": null,
+      "title": "Mình từng khen con sai cách – bây giờ mới biết khen đúng"
+    },
+    {
+      "vi_slug": "khi-nao-phu-huynh-nen-dung-cong-cu-ho-tro",
+      "en_slug": null,
+      "title": "Mình đã cố tự kèm con – đến khi nào thì nên dừng?"
+    },
+    {
+      "vi_slug": "khong-co-thoi-gian-kem-con-hoc",
+      "en_slug": null,
+      "title": "Đi làm về 7h tối – mình không có sức kèm con học nữa"
+    },
+    {
+      "vi_slug": "kinh-nghiem-day-thao-giang-thanh-cong-tu-giao-vien-20-nam",
+      "en_slug": null,
+      "title": "Kinh Nghiệm Dạy Thao Giảng Thành Công - Chia Sẻ Từ Giáo Viên 20 Năm Đứng Lớp"
+    },
+    {
+      "vi_slug": "ky-thuat-brainstorming-dong-nao-trong-lop-hoc",
+      "en_slug": null,
+      "title": "Kỹ Thuật Brainstorming (Động Não) - Cách Khai Phá Ý Tưởng Sáng Tạo Trong Lớp Học"
+    },
+    {
+      "vi_slug": "ky-thuat-jigsaw-manh-ghep",
+      "en_slug": null,
+      "title": "Kỹ thuật Jigsaw (Mảnh ghép) – biến mỗi học sinh thành 'chuyên gia' một phần"
+    },
+    {
+      "vi_slug": "ky-thuat-kwl-biet-muon-biet-da-hoc-trong-lop",
+      "en_slug": null,
+      "title": "Kỹ Thuật KWL - Biết - Muốn Biết - Đã Học: Hướng Dẫn Chi Tiết Cho Giáo Viên"
+    },
+    {
+      "vi_slug": "ky-thuat-think-pair-share-trong-lop-hoc",
+      "en_slug": null,
+      "title": "Kỹ thuật Think-Pair-Share – cách tôi biến lớp học trầm thành sôi động"
+    },
+    {
+      "vi_slug": "lam-gi-khi-con-chan-hoc-soroban",
+      "en_slug": null,
+      "title": "Con học Soroban được 2 tháng rồi chán – mình làm thế này"
+    },
+    {
+      "vi_slug": "lam-sao-biet-con-hoc-soroban-dung-huong",
+      "en_slug": null,
+      "title": "Làm sao biết con đang học Soroban đúng hướng?"
+    },
+    {
+      "vi_slug": "lam-sao-de-con-hoc-toan-khong-ap-luc",
+      "en_slug": null,
+      "title": "Con học toán mà không khóc – hóa ra có thể"
+    },
+    {
+      "vi_slug": "lam-sao-de-con-tu-giac-hoc-toan",
+      "en_slug": null,
+      "title": "5 cách mình làm để con tự giác học toán mà không cần nhắc"
+    },
+    {
+      "vi_slug": "lo-trinh-hoc-soroban-cho-tre",
+      "en_slug": null,
+      "title": "Lộ trình học Soroban cho trẻ – Từ zero đến tính nhẩm"
+    },
+    {
+      "vi_slug": "lop-dong-45-hoc-sinh-cach-tao-tuong-tac",
+      "en_slug": null,
+      "title": "Lớp tôi đông 45 học sinh – cách tạo tương tác cho tất cả"
+    },
+    {
+      "vi_slug": "lop-hoc-dao-nguoc-flipped-classroom-huong-dan-thuc-te",
+      "en_slug": null,
+      "title": "Lớp Học Đảo Ngược (Flipped Classroom) - Hướng Dẫn Thực Tế Cho Giáo Viên Việt Nam"
+    },
+    {
+      "vi_slug": "may-tuoi-cho-con-hoc-soroban-la-phu-hop",
+      "en_slug": null,
+      "title": "Con mấy tuổi thì nên học Soroban? Mình đã tìm hiểu thế này"
+    },
+    {
+      "vi_slug": "may-tuoi-hoc-soroban-la-tot-nhat",
+      "en_slug": null,
+      "title": "Mình cho con học Soroban lúc 7 tuổi – có muộn không?"
+    },
+    {
+      "vi_slug": "minh-do-toan-nhung-van-muon-con-gioi-toan",
+      "en_slug": null,
+      "title": "Mình dở toán từ nhỏ – sợ con giống mình nên lo quá"
+    },
+    {
+      "vi_slug": "minh-phan-van-kumon-hay-soroban",
+      "en_slug": null,
+      "title": "Mình từng mất cả tuần phân vân giữa Kumon và Soroban"
+    },
+    {
+      "vi_slug": "ong-ba-day-con-sai-cach",
+      "en_slug": null,
+      "title": "Ông bà dạy con theo kiểu cũ – mình không biết nói sao"
+    },
+    {
+      "vi_slug": "phep-chia-tren-soroban",
+      "en_slug": null,
+      "title": "Phép chia trên Soroban – Hướng dẫn chi tiết cho phụ huynh"
+    },
+    {
+      "vi_slug": "phep-cong-co-nho-thuc-hanh-soroban",
+      "en_slug": null,
+      "title": "Phép cộng có nhớ trên Soroban – Thực hành với ví dụ cụ thể"
+    },
+    {
+      "vi_slug": "phep-cong-don-gian-tren-soroban",
+      "en_slug": null,
+      "title": "Phép cộng đơn giản trên Soroban – Bước đầu tiên"
+    },
+    {
+      "vi_slug": "phep-nhan-tren-soroban",
+      "en_slug": null,
+      "title": "Phép nhân trên Soroban – Hướng dẫn từng bước cho phụ huynh"
+    },
+    {
+      "vi_slug": "phep-tru-co-muon-soroban",
+      "en_slug": null,
+      "title": "Phép trừ có mượn trên Soroban – Thực hành chi tiết"
+    },
+    {
+      "vi_slug": "phep-tru-don-gian-tren-soroban",
+      "en_slug": null,
+      "title": "Phép trừ đơn giản trên Soroban – Ngược lại với cộng"
+    },
+    {
+      "vi_slug": "phu-huynh-co-nen-truc-tiep-day-con-hoc-toan-khong",
+      "en_slug": null,
+      "title": "Mình đã cố làm giáo viên của con – và đây là bài học"
+    },
+    {
+      "vi_slug": "phu-huynh-khong-gioi-toan-co-kem-con-hoc-duoc-khong",
+      "en_slug": null,
+      "title": "Mình dốt toán từ nhỏ – giờ làm sao kèm con?"
+    },
+    {
+      "vi_slug": "phuong-phap-day-hoc-lay-hoc-sinh-lam-trung-tam",
+      "en_slug": null,
+      "title": "Dạy học lấy học sinh làm trung tâm – không chỉ là lý thuyết"
+    },
+    {
+      "vi_slug": "quy-tac-ban-cua-10-soroban",
+      "en_slug": null,
+      "title": "Quy tắc 'Bạn của 10' trong Soroban – Vượt qua giới hạn 1 cột"
+    },
+    {
+      "vi_slug": "quy-tac-ban-cua-5-soroban",
+      "en_slug": null,
+      "title": "Quy tắc 'Bạn của 5' trong Soroban – Bí quyết cộng trừ nhanh"
+    },
+    {
+      "vi_slug": "sai-lam-pho-bien-khi-hoc-soroban",
+      "en_slug": null,
+      "title": "10 sai lầm phổ biến khi học Soroban – Phụ huynh cần biết"
+    },
+    {
+      "vi_slug": "sai-lam-pho-bien-khi-kem-con-hoc-toan",
+      "en_slug": null,
+      "title": "5 sai lầm mình từng mắc khi kèm con học toán – và cách mình sửa"
+    },
+    {
+      "vi_slug": "soroban-cho-nguoi-lon-co-hoc-duoc-khong",
+      "en_slug": null,
+      "title": "Mình 35 tuổi tập Soroban – để hiểu con đang học gì"
+    },
+    {
+      "vi_slug": "soroban-co-giup-con-lam-toan-truong-tot-hon",
+      "en_slug": null,
+      "title": "Học Soroban có giúp điểm toán ở trường cao hơn không? – Câu trả lời thật sau 1 năm"
+    },
+    {
+      "vi_slug": "soroban-co-that-su-tot-nhu-loi-don",
+      "en_slug": null,
+      "title": "Soroban có thật sự tốt như lời đồn? Mình kể thật"
+    },
+    {
+      "vi_slug": "soroban-giup-tre-tinh-nham-tot-hon-nhu-the-nao",
+      "en_slug": null,
+      "title": "Con mình tính nhẩm nhanh hơn – mình nghĩ là nhờ Soroban"
+    },
+    {
+      "vi_slug": "soroban-la-gi-vi-sao-phu-hop-voi-tre-tieu-hoc",
+      "en_slug": null,
+      "title": "Mình từng thắc mắc: Soroban là gì mà nhiều người cho con học thế?"
+    },
+    {
+      "vi_slug": "soroban-tot-cho-nao-phai-khong",
+      "en_slug": null,
+      "title": "Soroban tốt cho não – mình tìm hiểu kỹ xem có thật không"
+    },
+    {
+      "vi_slug": "tao-thoi-quen-hoc-toan-cho-con",
+      "en_slug": null,
+      "title": "Mình mất 3 tuần để con có thói quen học toán – đây là cách"
+    },
+    {
+      "vi_slug": "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
+      "en_slug": null,
+      "title": "Tiết dạy của tôi thay đổi thế nào khi thử dạy học tích cực"
+    },
+    {
+      "vi_slug": "tiet-du-gio-dau-tien-cam-xuc-va-bai-hoc",
+      "en_slug": null,
+      "title": "Tiết Dự Giờ Đầu Tiên - Cảm Xúc, Áp Lực Và Những Bài Học Xương Máu"
+    },
+    {
+      "vi_slug": "tiet-on-tap-truoc-ky-thi-hoc-sinh-khong-ngu-gat",
+      "en_slug": null,
+      "title": "Tiết ôn tập trước kỳ thi – làm sao để học sinh không ngủ gật"
+    },
+    {
+      "vi_slug": "tinh-nham-co-can-thiet-khong",
+      "en_slug": null,
+      "title": "Có máy tính rồi, tính nhẩm còn cần không? – Mình từng nghĩ không cần"
+    },
+    {
+      "vi_slug": "tinh-nham-soroban-anzan",
+      "en_slug": null,
+      "title": "Tính nhẩm Soroban (Anzan) – Đỉnh cao của học Soroban"
+    },
+    {
+      "vi_slug": "tre-hieu-dong-can-ho-tro-hoc-toan-the-nao",
+      "en_slug": null,
+      "title": "Con mình hiếu động quá – học toán 5 phút là ngọ nguậy. Mình làm thế này"
+    },
+    {
+      "vi_slug": "tro-choi-o-chu-cong-cu-tao-crossword-cho-lop-hoc",
+      "en_slug": null,
+      "title": "Trò Chơi Ô Chữ - Biến Từ Vựng Khô Khan Thành Thử Thách Trí Tuệ Hấp Dẫn"
+    },
+    {
+      "vi_slug": "tu-so-toan-den-yeu-toan-6-thang-hoc-soroban",
+      "en_slug": null,
+      "title": "6 tháng trước con khóc vì toán – giờ con đòi học mỗi ngày"
+    },
+    {
+      "vi_slug": "tu-tiet-thao-giang-that-bai-den-bai-hoc-quy-gia",
+      "en_slug": null,
+      "title": "Từ Tiết Thao Giảng Thất Bại Đến Bài Học Quý Giá - Tâm Sự Giáo Viên"
+    },
+    {
+      "vi_slug": "ucmas-vs-soroban-online-minh-chon-gi",
+      "en_slug": null,
+      "title": "UCMAS hay Soroban online – cuối cùng mình chọn cái không ngờ"
+    },
+    {
+      "vi_slug": "vi-sao-cang-kem-con-hoc-toan-ca-nha-cang-met",
+      "en_slug": null,
+      "title": "Mình đã ngồi kèm con học toán đến mức cả hai đều khóc"
+    },
+    {
+      "vi_slug": "xuc-xac-3d-cong-cu-random-vui-nhon-trong-lop-hoc",
+      "en_slug": null,
+      "title": "Xúc Xắc 3D - Công Cụ Random Vui Nhộn Biến Mọi Quyết Định Thành Trò Chơi"
+    }
+  ],
+  "en_missing_fields": [],
+  "coverage_percent": 0.7352941176470588
+}

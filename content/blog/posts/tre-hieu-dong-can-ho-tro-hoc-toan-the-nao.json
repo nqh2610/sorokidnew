@@ -6,18 +6,30 @@
   "keywords": [
     "trẻ hiếu động học toán",
     "con không ngồi yên",
-    "phương pháp cho trẻ hiếu động"
+    "phương pháp cho trẻ hiếu động",
+    "con ngọ nguậy khi học",
+    "chia nhỏ thời gian học",
+    "cho con vận động trước khi học",
+    "học có tương tác",
+    "cho con đứng học",
+    "trẻ năng động học toán",
+    "không ép con ngồi yên",
+    "app học cho trẻ hiếu động",
+    "làm việc với năng lượng con"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-01-23T11:10:53.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/be-hieu-dong.jpg",
   "imageAlt": "Bé trai châu Á hiếu động đứng bên bàn học với năng lượng cao",
-  "readingTime": 6,
+  "readingTime": 12,
   "categoryOrder": 4,
   "order": 16,
+  "translations": {
+    "en": "supporting-active-kids-with-math-learning"
+  },
   "content": {
-    "intro": "Con mình như có pin Duracell. Chạy cả ngày. Bắt ngồi học 10 phút là như hành hình. Mình từng nghĩ con có vấn đề. Rồi mình thay đổi cách tiếp cận.",
+    "intro": "Con mình như có pin Duracell. Chạy cả ngày. Bắt ngồi học 10 phút là như hành hình. Mình từng nghĩ con có vấn đề. \"Sao con không ngồi yên được như các bạn?\" Rồi mình thay đổi cách tiếp cận – và mọi thứ khác đi.",
     "sections": [
       {
         "type": "heading",
@@ -26,68 +38,225 @@
       },
       {
         "type": "paragraph",
-        "text": "\"Ngồi xuống! Học đi!\" – Mình nói hàng chục lần mỗi tối. Con ngồi 3 phút, đứng dậy. Mình tức."
+        "text": "\"Ngồi xuống! Học đi!\" – Mình nói hàng chục lần mỗi tối. Con ngồi 3 phút, đứng dậy, chạy quanh phòng."
       },
       {
         "type": "paragraph",
-        "text": "Càng ép con càng ghét học. Mối quan hệ mẹ con căng thẳng."
-      },
-      {
-        "type": "heading",
-        "level": 2,
-        "text": "Mình hiểu con hơn"
+        "text": "Mình tức giận. Mình ép con ngồi lại. Con khóc. Mình mắng. Cả hai đều mệt."
       },
       {
         "type": "paragraph",
-        "text": "Trẻ hiếu động không phải \"hư\". Đó là cách não bộ hoạt động. Con cần vận động để giải phóng năng lượng."
-      },
-      {
-        "type": "paragraph",
-        "text": "Ép con ngồi yên = đi ngược lại bản năng. Không hiệu quả."
+        "text": "Càng ép con càng ghét học. Nghe đến chữ \"học\" là con mặt buồn. Mối quan hệ mẹ con căng thẳng."
       },
       {
         "type": "callout",
         "style": "empathy",
-        "text": "Đừng ép trẻ hiếu động thành trẻ ngồi yên. Hãy tìm cách học phù hợp với năng lượng của con."
+        "text": "Nếu bạn cũng có con hiếu động và đang vật lộn mỗi tối – mình hiểu. Mình từng ở đó. Và mình muốn chia sẻ cách mình thoát ra."
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "Mình thay đổi thế nào"
+        "text": "Mình tìm hiểu về trẻ hiếu động"
       },
       {
         "type": "paragraph",
-        "text": "**1. Cho con vận động trước:** 15 phút chạy nhảy, sau đó mới ngồi học. Năng lượng dư bớt đi."
+        "text": "Mình đọc sách, hỏi bác sĩ, tìm hiểu. Mình nhận ra:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Trẻ hiếu động không phải \"hư\"**: Đó là cách não bộ hoạt động, không phải lỗi của con",
+          "**Con cần vận động để giải phóng năng lượng**: Như xả van áp suất",
+          "**Ép ngồi yên = đi ngược lại bản năng**: Không hiệu quả, còn gây stress",
+          "**Khả năng tập trung ngắn hơn**: Trẻ hiếu động thường tập trung 5-10 phút thay vì 20-30 phút",
+          "**Học tốt qua vận động và tương tác**: Không phải qua ngồi nghe giảng"
+        ]
       },
       {
         "type": "paragraph",
-        "text": "**2. Chia nhỏ thời gian:** 5 phút học + 2 phút nghỉ + 5 phút học. Không ép liên tục."
-      },
-      {
-        "type": "paragraph",
-        "text": "**3. Học có tương tác:** Sorokid có animation, có phản hồi ngay. Con thích hơn ngồi đọc sách."
-      },
-      {
-        "type": "paragraph",
-        "text": "**4. Cho đứng học:** Con đứng cạnh bàn, tay cầm tablet. Không bắt ngồi."
+        "text": "Mình hiểu: con không sai. Mình sai khi dùng phương pháp không phù hợp với con."
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "Bây giờ"
+        "text": "Nguyên tắc mới: Làm việc VỚI năng lượng, không CHỐNG LẠI"
       },
       {
         "type": "paragraph",
-        "text": "Con mình học Sorokid 15 phút mỗi ngày. Vẫn ngọ nguậy, nhưng hoàn thành bài."
+        "text": "Mình đổi tư duy: thay vì ép con thành trẻ ngồi yên, mình tìm cách học phù hợp với con hiếu động."
       },
       {
         "type": "paragraph",
-        "text": "Mình không còn ép con ngồi yên. Mình làm việc với năng lượng của con, không chống lại nó."
+        "text": "Không chống lại bản năng. Làm việc với bản năng."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "6 thay đổi cụ thể mình đã làm"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Vận động trước khi học"
+      },
+      {
+        "type": "paragraph",
+        "text": "15 phút trước giờ học, mình cho con chạy nhảy: nhảy dây, đá bóng, chạy quanh sân."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sau khi \"xả\" năng lượng, con ngồi yên hơn. Như xả van áp suất – bớt áp lực, bớt cần vận động."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Chia nhỏ thời gian (Pomodoro mini)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình áp dụng: 5 phút học + 2 phút nghỉ + 5 phút học + 2 phút nghỉ + 5 phút học."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tổng 15 phút học, nhưng con không cảm thấy bị \"nhốt\" quá lâu. 5 phút đủ ngắn để con chịu được."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Học có tương tác"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thay vì đọc sách, làm bài giấy (tĩnh), mình cho con dùng Sorokid:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Có animation, hình ảnh động",
+          "Có phản hồi ngay: đúng → khen, sai → sửa",
+          "Có game, có điểm, có level",
+          "Tay con cầm tablet, có cảm giác \"làm gì đó\", không phải ngồi nghe"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Con thích hơn hẳn vì có sự tương tác."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Cho đứng học"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ai nói phải ngồi mới học được? Mình cho con đứng cạnh bàn, tay cầm tablet. Đứng thì con bớt bứt rứt hơn ngồi."
+      },
+      {
+        "type": "paragraph",
+        "text": "Đôi khi con vừa đi qua đi lại vừa trả lời. Mình không cấm. Miễn con làm bài được."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Cho nghỉ khi cần"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình quan sát: khi con bắt đầu ngọ nguậy, nhìn đi nơi khác, mình cho nghỉ 2 phút."
+      },
+      {
+        "type": "paragraph",
+        "text": "2 phút nghỉ: con chạy 1 vòng, uống nước, rồi quay lại. Hiệu quả hơn ép con ngồi tiếp."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "6. Khen nỗ lực, không khen kết quả"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không nói: \"Con giỏi, làm đúng rồi!\" Mình nói: \"Mẹ thấy con cố gắng tập trung. Mẹ khen.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Với trẻ hiếu động, việc ngồi yên 5 phút đã là nỗ lực lớn. Cần ghi nhận nỗ lực đó."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Mẹo: Đặt đồng hồ hẹn giờ cho con thấy. \"Còn 3 phút nữa thôi!\" Con biết khi nào được nghỉ → dễ chịu hơn."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tại sao Sorokid phù hợp với trẻ hiếu động?"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Bài ngắn**: Mỗi bài chỉ vài giây, không cần tập trung quá lâu",
+          "**Có phản hồi ngay**: Đúng/sai biết liền, không chờ đợi",
+          "**Có animation**: Hình ảnh động giữ con chú ý",
+          "**Có game hóa**: Điểm, level, phần thưởng – con thích",
+          "**Linh hoạt**: Có thể dừng bất cứ lúc nào, quay lại sau"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "App được thiết kế phù hợp với não trẻ – bao gồm trẻ hiếu động."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết quả sau 2 tháng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Con học được 15 phút/ngày**: Không nhiều, nhưng đều đặn",
+          "**Không còn khóc lóc, cãi nhau**: Giờ học bớt căng thẳng",
+          "**Con tiến bộ**: Từ không biết đếm ngón tay → tính nhẩm 1 chữ số",
+          "**Quan hệ mẹ con cải thiện**: Không còn la mắng mỗi tối",
+          "**Con bớt ghét học**: Thậm chí đôi khi tự mở app"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Con vẫn hiếu động. Vẫn chạy nhảy. Nhưng con học được – theo cách của con."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lời khuyên cho phụ huynh có con hiếu động"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Đừng ép con thành trẻ khác**: Con là con, không phải \"trẻ ngồi yên\"",
+          "**Tìm phương pháp phù hợp**: Thay vì ép con theo phương pháp, tìm phương pháp theo con",
+          "**Vận động trước khi học**: Xả năng lượng = dễ tập trung hơn",
+          "**Chia nhỏ thời gian**: 5 phút tốt hơn 20 phút bị ép",
+          "**Dùng công cụ có tương tác**: App tốt hơn sách vở với trẻ hiếu động",
+          "**Kiên nhẫn**: Con sẽ tiến bộ, chỉ theo cách của con"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết luận: Làm việc với năng lượng, không chống lại"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình từng cố biến con thành trẻ ngồi yên. Thất bại. Giờ mình chấp nhận con hiếu động và tìm cách học phù hợp."
+      },
+      {
+        "type": "paragraph",
+        "text": "Trẻ hiếu động không phải trẻ có vấn đề. Chỉ là trẻ cần phương pháp khác."
       },
       {
         "type": "callout",
         "style": "reassurance",
-        "text": "Trẻ hiếu động vẫn học được. Chỉ cần phương pháp phù hợp."
+        "text": "Đừng ép trẻ hiếu động thành trẻ ngồi yên. Hãy tìm cách học phù hợp với năng lượng của con. Làm việc VỚI bản năng, không CHỐNG LẠI bản năng."
       }
     ]
   },
@@ -99,11 +268,57 @@
     {
       "question": "Làm sao để con tập trung lâu hơn?",
       "answer": "Cho vận động trước khi học, chia nhỏ thời gian, nghỉ giữa chừng, dùng công cụ có tương tác."
+    },
+    {
+      "question": "Trẻ hiếu động có phải bệnh không?",
+      "answer": "Không nhất thiết. Nhiều trẻ chỉ có năng lượng cao, không phải ADHD. Nếu lo lắng, có thể gặp bác sĩ để đánh giá."
+    },
+    {
+      "question": "Có nên ép con ngồi yên khi học?",
+      "answer": "Không nên. Ép sẽ làm con ghét học. Thay vào đó, tìm cách học phù hợp với năng lượng của con."
+    },
+    {
+      "question": "Cho con vận động trước khi học có hiệu quả không?",
+      "answer": "Rất hiệu quả. 15-20 phút chạy nhảy giúp giải phóng năng lượng dư, con dễ tập trung hơn."
+    },
+    {
+      "question": "5 phút học + 2 phút nghỉ có quá ít không?",
+      "answer": "Không. Với trẻ hiếu động, 5 phút tập trung có chất lượng tốt hơn 30 phút ngồi đứng ngỏ nguậy."
+    },
+    {
+      "question": "Có nên cho con đứng học không?",
+      "answer": "Có thể. Nhiều trẻ học tốt hơn khi được đứng hoặc đi lại. Quan trọng là con hoàn thành bài, không phải tư thế."
+    },
+    {
+      "question": "App nào phù hợp cho trẻ hiếu động?",
+      "answer": "App có bài học ngắn (5-10 phút), có animation, có phản hồi ngay. Sorokid đáp ứng các tiêu chí này."
+    },
+    {
+      "question": "Bao lâu thì con hiếu động có thể tập trung tốt hơn?",
+      "answer": "Tùy con. Với phương pháp phù hợp, thường sau 1-2 tháng con sẽ quen và tập trung tốt hơn."
+    },
+    {
+      "question": "Trẻ hiếu động có giỏi toán được không?",
+      "answer": "Hoàn toàn có thể. Hiếu động không liên quan đến trí tuệ. Nhiều trẻ hiếu động rất thông minh, chỉ cần phương pháp phù hợp."
     }
   ],
   "cta": {
     "text": "Sorokid có bài học ngắn, phù hợp với trẻ hiếu động.",
     "buttonText": "Cho con thử",
     "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Con mình hiếu động quá – học toán 5 phút là ngọ nguậy. Mình làm thế này",
+    "description": "Con không ngồi yên được. Bắt ngồi học là chạy. Mình tìm cách phù hợp với con.",
+    "keywords": "trẻ hiếu động học toán, con không ngồi yên, phương pháp cho trẻ hiếu động"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-23",
+    "author": "Chị Thúy Hằng"
+  },
+  "author": {
+    "name": "Chị Thúy Hằng",
+    "bio": "Mẹ của bé trai 6 tuổi hiếu động tại Hà Nội, đã tìm được cách dạy con học phù hợp với năng lượng cao của con"
   }
 }

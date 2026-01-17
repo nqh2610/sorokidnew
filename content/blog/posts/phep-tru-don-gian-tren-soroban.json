@@ -13,7 +13,13 @@
   "publishedAt": "2025-12-29T01:32:09.488Z",
   "createdAt": "2025-12-25",
   "image": "/blog/hoc-phep-tru-soroban-tai-nha.jpg",
+  "imageAlt": "Trẻ em châu Á học phép trừ đơn giản trên Soroban tại nhà",
   "readingTime": 5,
+  "categoryOrder": 1,
+  "order": 10,
+  "translations": {
+    "en": "simple-subtraction-on-soroban"
+  },
   "content": {
     "intro": "Phép trừ trên Soroban là động tác ngược với cộng. Cộng = gạt hạt vào thanh ngang. Trừ = gạt hạt ra xa thanh ngang. Bài này hướng dẫn trừ đơn giản – khi số bị trừ có đủ hạt để gạt ra.",
     "sections": [
@@ -354,19 +360,50 @@
     },
     {
       "question": "Con hay nhầm cộng với trừ, phải làm sao?",
-      "answer": "Luyện riêng từng phép tính trong 1 buổi. Khi thuần thục rồi mới trộn lẫn. Nhắc con: \"Cộng = đưa vào gần, Trừ = đưa ra xa\"."
+      "answer": "Luyện riêng từng phép tính trong 1 buổi. Khi thuần thục rồi mới trộn lẫn. Nhắc con: 'Cộng = đưa vào gần thanh ngang, Trừ = đưa ra xa thanh ngang'."
     },
     {
       "question": "Trừ đơn giản luyện bao lâu?",
       "answer": "Khoảng 3-5 ngày cùng với cộng đơn giản. Khi con làm đúng và nhanh cả hai phép tính, thì học tiếp Bạn của 5."
+    },
+    {
+      "question": "Quy tắc trừ trên Soroban là gì?",
+      "answer": "Trừ = gạt hạt ra xa thanh ngang (ngược với cộng). Trừ 1-4: gạt hạt đất xuống. Trừ 5: gạt hạt trời lên."
+    },
+    {
+      "question": "Trừ đơn giản gồm những phép tính nào?",
+      "answer": "Là những phép trừ mà số bị trừ có đủ hạt để gạt ra: 2-1, 3-1, 3-2, 4-1, 4-2, 4-3, 5-5, 6-5, 6-1, 7-5, 7-1, 7-2, 8-5, 8-1, 8-2, 8-3, 9-5, 9-1, 9-2, 9-3, 9-4."
+    },
+    {
+      "question": "Nếu con gạt sai khi trừ, sửa thế nào?",
+      "answer": "Gạt ngược lại để trả hạt về vị trí cũ, rồi làm lại. Không nhấn reset vì sẽ mất cả số ban đầu. Luyện nhiều sẽ ít sai dần."
+    },
+    {
+      "question": "Tại sao 6-5 chỉ cần gạt hạt trời lên?",
+      "answer": "Vì 6 = hạt trời (5) + 1 hạt đất (1). Trừ 5 = gạt hạt trời lên (ra xa). Còn lại 1 hạt đất = 1. Kết quả: 6 - 5 = 1."
+    },
+    {
+      "question": "Con làm trừ đơn giản chậm hơn cộng, có sao không?",
+      "answer": "Bình thường. Não quen cộng trước, cần thời gian để quen trừ. Luyện đều đặn, tốc độ sẽ ngang nhau sau 1-2 tuần."
+    },
+    {
+      "question": "Sau trừ đơn giản thì học gì tiếp?",
+      "answer": "Học Bạn của 5 cho phép trừ – xử lý khi số bị trừ không đủ hạt đất để gạt. Ví dụ: 7-3 cần dùng Bạn của 5."
     }
   ],
   "cta": {
-    "text": "Sorokid có bài tập trừ từ cơ bản, giúp con luyện đều đặn và nhớ lâu.",
-    "buttonText": "Cho con luyện thử",
+    "text": "Sorokid có bài tập trừ từ cơ bản, xen kẽ với cộng giúp con luyện đều đặn và nhớ lâu cả hai phép tính.",
+    "buttonText": "Cho con luyện thử miễn phí 7 ngày",
     "buttonLink": "/register"
   },
-  "imageAlt": "Trẻ em châu Á học phép trừ đơn giản trên Soroban tại nhà",
-  "categoryOrder": 1,
-  "order": 10
+  "seo": {
+    "title": "Phép trừ đơn giản trên Soroban – Ngược lại với cộng",
+    "description": "Hướng dẫn cách trừ trên Soroban khi số bị trừ đủ hạt. Quy tắc đơn giản: trừ = gạt hạt ra xa thanh ngang.",
+    "keywords": "phép trừ soroban, cách trừ trên soroban, trừ soroban cho người mới, học trừ soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-29T01:32:09.488Z",
+    "author": "Chị Ngọc Ánh"
+  }
 }

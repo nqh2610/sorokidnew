@@ -13,11 +13,17 @@
     "sơ đồ KWL",
     "know want learn"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-01-20T14:32:29.000Z",
+  "createdAt": "2026-01-16",
+  "image": "/blog/default-blog-image.jpg",
+  "readingTime": 8,
   "author": {
     "name": "Cô Yến",
     "role": "Giáo viên THCS"
+  },
+  "translations": {
+    "en": "k-thut-kwl-bit-mun-bit-hc-hng-dn-chi-tit-cho-gio-vin"
   },
   "content": {
     "intro": "\"Các con đã biết gì về chủ đề này?\" - Câu hỏi đơn giản nhưng mở ra cả một phương pháp dạy học hiệu quả. KWL (Know - Want to know - Learned) là kỹ thuật giúp học sinh kết nối kiến thức cũ với kiến thức mới, chủ động đặt câu hỏi và tự đánh giá việc học. Bài viết này chia sẻ cách tôi áp dụng KWL trong lớp học mỗi ngày.",
@@ -398,17 +404,6 @@
     "buttonLink": "/tool",
     "text": "Kết Hợp KWL Với Công Cụ Dạy Học - Sử dụng Bốc Thăm, Timer để KWL hiệu quả hơn. Công cụ miễn phí cho giáo viên."
   },
-  "relatedTools": [
-    "random-picker",
-    "timer",
-    "group-divider",
-    "magic-hat"
-  ],
-  "relatedPosts": [
-    "phuong-phap-day-hoc-lay-hoc-sinh-lam-trung-tam",
-    "ky-thuat-think-pair-share-trong-lop-hoc",
-    "ky-thuat-jigsaw-manh-ghep"
-  ],
   "seo": {
     "title": "Kỹ Thuật KWL - Know Want Learn - Hướng Dẫn Chi Tiết Cho Giáo Viên",
     "description": "Hướng dẫn chi tiết cách áp dụng kỹ thuật KWL (Biết - Muốn biết - Đã học) trong lớp học. Kích hoạt kiến thức nền, học sinh làm trung tâm.",
@@ -424,7 +419,19 @@
     "type": "Article",
     "headline": "Kỹ Thuật KWL - Biết - Muốn Biết - Đã Học: Hướng Dẫn Chi Tiết Cho Giáo Viên",
     "author": "Cô Yến - Giáo viên THCS",
-    "datePublished": null,
+    "datePublished": "2026-01-20",
     "dateModified": null
-  }
+  },
+  "relatedTools": [
+    "random-picker",
+    "timer",
+    "group-divider",
+    "magic-hat"
+  ],
+  "relatedPosts": [
+    "phuong-phap-day-hoc-lay-hoc-sinh-lam-trung-tam",
+    "ky-thuat-think-pair-share-trong-lop-hoc",
+    "ky-thuat-jigsaw-manh-ghep"
+  ],
+  "imageAlt": "Kỹ Thuật KWL - Biết - Muốn Biết - Đã Học: Hướng Dẫn Chi Tiết Cho Giáo Viên"
 }

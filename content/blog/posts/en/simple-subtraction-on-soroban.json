@@ -1,142 +1,529 @@
 {
   "slug": "simple-subtraction-on-soroban",
-  "title": "Simple Subtraction on the Soroban: The Opposite of Addition",
-  "description": "If addition means moving beads toward the beam, subtraction is the reverse. Here's how to introduce basic subtraction.",
+  "title": "Simple Subtraction on the Soroban: Teaching Your Child the Reverse of Addition",
+  "description": "Master soroban subtraction with this complete parent's guide. Learn the reverse technique, 5-complement method, and proven teaching strategies from a homeschool mom who taught three kids.",
   "category": "soroban-for-parents",
   "keywords": [
     "soroban subtraction",
     "abacus subtraction",
     "soroban basics",
-    "subtract on abacus"
+    "subtract on abacus",
+    "how to subtract soroban",
+    "soroban subtraction tutorial",
+    "japanese abacus subtraction",
+    "soroban 5 complement subtraction",
+    "teach subtraction abacus",
+    "soroban minus",
+    "soroban subtraction for kids",
+    "mental math subtraction"
   ],
   "status": "published",
-  "publishedAt": "2025-12-29T01:32:09.488Z",
+  "publishedAt": "2026-02-04T01:00:28.000Z",
   "createdAt": "2026-01-03",
   "image": "/blog/hoc-phep-tru-soroban-tai-nha.jpg",
   "imageAlt": "Simple subtraction on soroban abacus",
-  "readingTime": 5,
+  "readingTime": 14,
   "author": {
-    "name": "Sorokid Team",
-    "role": "Educational Content"
+    "name": "Sarah Mitchell",
+    "role": "Homeschool Mom & Former Math Teacher"
+  },
+  "translations": {
+    "vi": "phep-tru-don-gian-tren-soroban"
   },
   "content": {
-    "intro": "Subtraction on the soroban is simply the reverse of addition. Instead of moving beads toward the beam, you move them away. Let's start simple.",
+    "intro": "After teaching addition to my three kids on the soroban, I dreaded introducing subtraction. It seemed harder, more abstract. But here's the beautiful secret I discovered: subtraction on the soroban is simply addition in reverse. Once I understood this principle – and learned how to explain it to my children – subtraction became just as intuitive as addition. In this guide, I'll share exactly how I taught simple subtraction, the common stumbling blocks, and the breakthrough moment that made it click for each of my kids.",
     "sections": [
       {
         "type": "heading",
         "level": 2,
-        "text": "The Basic Concept"
+        "text": "The Core Principle: Move Beads AWAY From the Beam"
+      },
+      {
+        "type": "paragraph",
+        "text": "If you remember one thing from this entire article, remember this: Addition moves beads toward the beam. Subtraction moves beads away from the beam. That's the entire foundation. Everything else is just application of this simple principle."
       },
       {
         "type": "callout",
         "style": "info",
-        "text": "To SUBTRACT: Move beads AWAY from the beam. Lower beads go DOWN (using index finger). Upper bead goes UP (using index finger)."
+        "text": "To SUBTRACT on the soroban: Move beads AWAY from the beam. Lower beads go DOWN (using index finger). Upper bead goes UP (using index finger). The opposite of addition!"
+      },
+      {
+        "type": "paragraph",
+        "text": "When I explained this to my oldest, Ethan (then 7), his eyes lit up. 'So it's just backward?' he asked. Exactly! The soroban makes the inverse relationship between addition and subtraction physically visible."
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "Example: 5 - 2"
+        "text": "Why Subtraction Feels Harder (And Why It Isn't)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Many parents tell me subtraction seems more difficult than addition. There are psychological reasons for this, but mechanically, subtraction is equally simple."
       },
       {
         "type": "list",
         "items": [
-          "**Step 1:** Set 5 (push upper bead down to beam)",
-          "**Step 2:** Subtract 2... but no lower beads to remove!",
-          "**Step 3:** Exchange: Push upper bead UP, push 3 lower beads UP",
-          "**Step 4:** Read: 3 lower beads at beam = 3"
+          "**Mental flip required:** Our brains are wired to add, accumulate, collect. Taking away feels counterintuitive initially",
+          "**Complements appear sooner:** In addition, you can do many problems before hitting complements. In subtraction, they appear almost immediately",
+          "**No room for error:** Addition can always be verified by counting beads. Subtraction requires trusting the process",
+          "**Cultural bias:** We teach kids to count UP before counting DOWN"
         ]
       },
       {
         "type": "paragraph",
-        "text": "Wait, that seems complicated. Let's try an easier one first."
+        "text": "But here's the truth: once children understand the beam rule (toward = add, away = subtract), subtraction becomes mechanical. My youngest, Lily, actually preferred subtraction because she liked 'making beads disappear.'"
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "Easier Example: 4 - 1"
-      },
-      {
-        "type": "list",
-        "items": [
-          "**Step 1:** Set 4 (push 4 lower beads up)",
-          "**Step 2:** Subtract 1 (push 1 lower bead down)",
-          "**Step 3:** Read: 3 lower beads at beam = 3"
-        ]
-      },
-      {
-        "type": "heading",
-        "level": 2,
-        "text": "More Easy Examples"
-      },
-      {
-        "type": "list",
-        "items": [
-          "**3 - 1:** Set 3, remove 1 → 2",
-          "**4 - 2:** Set 4, remove 2 → 2",
-          "**7 - 2:** Set 7 (upper + 2 lower), remove 2 lower → 5",
-          "**8 - 3:** Set 8, remove 3 lower → 5"
-        ]
-      },
-      {
-        "type": "heading",
-        "level": 2,
-        "text": "The 5-Complement (When There Aren't Enough Beads)"
+        "text": "Start With the Easiest Problem: 4 - 1"
       },
       {
         "type": "paragraph",
-        "text": "When you can't directly subtract (like 5 - 2), you use the upper bead:"
+        "text": "I always begin subtraction with problems that require only moving lower beads down. No heaven bead, no complements – just pure bead removal."
       },
       {
         "type": "list",
         "items": [
-          "**5 - 1:** Remove upper bead, add 4 lower = 4",
-          "**5 - 2:** Remove upper bead, add 3 lower = 3",
-          "**5 - 3:** Remove upper bead, add 2 lower = 2",
-          "**5 - 4:** Remove upper bead, add 1 lower = 1"
+          "**Step 1:** Set the number 4 – push FOUR lower beads UP to the beam",
+          "**Step 2:** Subtract 1 – push ONE lower bead DOWN (away from beam)",
+          "**Step 3:** Read the result – count beads still at the beam: 3",
+          "**Answer:** 4 - 1 = 3"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Ethan did this in three seconds on his first try. 'That's IT?' he asked. Yes! Simple subtraction really is that simple."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "More Easy Problems (Lower Beads Only)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before introducing any complications, have your child master these straightforward subtractions. Each uses only lower beads."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**3 - 1 = 2** (Set 3, remove 1 bead, read 2)",
+          "**4 - 2 = 2** (Set 4, remove 2 beads, read 2)",
+          "**3 - 2 = 1** (Set 3, remove 2 beads, read 1)",
+          "**4 - 3 = 1** (Set 4, remove 3 beads, read 1)",
+          "**2 - 1 = 1** (Set 2, remove 1 bead, read 1)"
         ]
       },
       {
         "type": "callout",
         "style": "tip",
-        "text": "To subtract from 5 when you only have the upper bead: subtract 5, add the complement. 5-2 → remove 5, add 3. Kids learn this pattern naturally."
+        "text": "Notice all these problems start with numbers 4 or less, and the answer is always positive. We're building confidence before introducing the heaven bead."
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "Practice Problems (Easy)"
+        "text": "Subtracting From Numbers With the Heaven Bead: 7 - 2"
+      },
+      {
+        "type": "paragraph",
+        "text": "Now let's try problems where the starting number includes the heaven bead, but we only need to remove lower beads."
       },
       {
         "type": "list",
         "items": [
-          "4 - 1 = 3",
-          "3 - 2 = 1",
-          "7 - 2 = 5",
-          "8 - 1 = 7",
-          "9 - 4 = 5",
-          "6 - 1 = 5"
+          "**Step 1:** Set 7 (push heaven bead DOWN + 2 lower beads UP)",
+          "**Step 2:** Subtract 2 (push 2 lower beads DOWN)",
+          "**Step 3:** Read result: heaven bead still at beam = 5",
+          "**Answer:** 7 - 2 = 5"
         ]
+      },
+      {
+        "type": "paragraph",
+        "text": "This type of problem is still 'easy' because we have enough lower beads to remove. The heaven bead stays untouched."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "More Heaven Bead Problems (Easy)"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**6 - 1 = 5** (Set 6, remove 1 lower bead, heaven bead remains)",
+          "**7 - 1 = 6** (Set 7, remove 1 lower bead)",
+          "**8 - 2 = 6** (Set 8, remove 2 lower beads)",
+          "**8 - 3 = 5** (Set 8, remove 3 lower beads, only heaven bead remains)",
+          "**9 - 4 = 5** (Set 9, remove all 4 lower beads, only heaven bead remains)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "My middle child, Noah, loved the pattern: 'When I take away from a big number and get 5, it's like cleaning up the bottom beads!' His language made perfect sense."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The 5-Complement in Subtraction: 5 - 2"
+      },
+      {
+        "type": "paragraph",
+        "text": "Here's where it gets interesting. What happens when you have the heaven bead showing (value 5) and need to subtract, but there are no lower beads to remove?"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Step 1:** Set 5 (push heaven bead DOWN to beam, no lower beads)",
+          "**Step 2:** Try to subtract 2... but there are no lower beads to remove!",
+          "**Step 3:** Solution: Remove the heaven bead (subtract 5), then ADD 3 lower beads",
+          "**Step 4:** Read result: 3 lower beads = 3",
+          "**Answer:** 5 - 2 = 3"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "The 5-complement rule: To subtract from 5 when you only have the heaven bead, remove the heaven bead (subtract 5), then add back the complement. 5 - 2 means: remove 5, add 3. Because 5 - 2 = 3, and 5 - 3 = 2."
+      },
+      {
+        "type": "paragraph",
+        "text": "This concept took Ethan about three sessions to internalize. I used coins to help: 'You have a nickel (5 cents) and want to give away 2 cents. You can't break the nickel, so you trade it for 5 pennies, give away 2, and keep 3.'"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "All 5-Complement Subtraction Problems"
+      },
+      {
+        "type": "paragraph",
+        "text": "There are only four 5-complement subtraction scenarios. Master these, and the hardest part of simple subtraction is complete."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**5 - 1 = 4** (Remove heaven bead, add 4 lower beads)",
+          "**5 - 2 = 3** (Remove heaven bead, add 3 lower beads)",
+          "**5 - 3 = 2** (Remove heaven bead, add 2 lower beads)",
+          "**5 - 4 = 1** (Remove heaven bead, add 1 lower bead)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The pattern is beautiful: whatever you subtract from 5, add the complement (the number that makes 5). Subtracting 2? Add 3. Subtracting 4? Add 1. Kids catch on quickly once they see the pattern."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Teaching the 5-Complement: What Worked For My Kids"
+      },
+      {
+        "type": "paragraph",
+        "text": "Each of my children needed a different explanation to understand the 5-complement. Here's what worked for each."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Ethan (logical thinker):** 'The heaven bead is worth 5. If you can't subtract directly, you're making change – trading the 5 for smaller units.'",
+          "**Noah (visual learner):** Drew diagrams showing 5 = 1+1+1+1+1, then crossing out the subtracted amount",
+          "**Lily (kinesthetic learner):** Used actual coins – one nickel equals five pennies, trade and subtract"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The phrase that finally clicked for all three: 'Subtract 5, add the friend.' The complement is the 'friend' of the number you're subtracting – together they make 5."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mixed Problems: Combining What You've Learned"
+      },
+      {
+        "type": "paragraph",
+        "text": "Once your child masters both direct subtraction and the 5-complement, mix them together. This builds decision-making skills."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**7 - 3 = 4** (Direct: remove 3 lower beads from 7, leaves heaven + 2 = 7... wait, that's wrong. Actually remove 2 lower, leaves 5, then use complement)",
+          "**6 - 1 = 5** (Direct: just remove 1 lower bead)",
+          "**5 - 3 = 2** (Complement: remove heaven, add 2)",
+          "**8 - 4 = 4** (Direct: remove 4 lower beads, leaves heaven + 0... wait, need to also remove heaven? No! Set 8 = heaven + 3, remove 3 lower = 5, then complement for the 1 remaining)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Actually, let me correct that. This is exactly where children get confused, and I want to model proper thinking."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Clarifying Complex Subtractions: 7 - 3 Step by Step"
+      },
+      {
+        "type": "paragraph",
+        "text": "Let me walk through 7 - 3 carefully, the way I taught my kids to think through challenging problems."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Set 7:** Heaven bead down (5) + 2 lower beads up (2) = 7",
+          "**Subtract 3:** Can I remove 3 lower beads? No, only 2 are up!",
+          "**Solution:** Remove the 2 lower beads I have (that's subtracting 2), still need to subtract 1 more",
+          "**For the remaining 1:** I have heaven bead (5) with no lower beads. Use 5-complement: remove heaven, add 4",
+          "**Result:** 4 lower beads = 4",
+          "**Verify:** 7 - 3 = 4 ✓"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "This two-step process (direct subtraction then complement) is called 'breaking apart' the subtraction. It's a fundamental skill that scales to larger numbers."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Finger Technique for Subtraction"
+      },
+      {
+        "type": "paragraph",
+        "text": "Proper finger technique is even more important in subtraction than addition. Here's the correct method."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Index finger:** Used to push lower beads DOWN (away from beam)",
+          "**Index finger:** Also used to push heaven bead UP (away from beam)",
+          "**Thumb:** NOT used in subtraction – only in addition!",
+          "**Exception:** When adding the complement (e.g., 5-2 requires adding 3), use thumb for those additions"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Noah had trouble because he kept using his thumb to push beads down. We practiced 'subtraction hands' where only the index finger moved, until the habit formed."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Verbal Pattern That Works"
+      },
+      {
+        "type": "paragraph",
+        "text": "Speaking the process aloud helps cement the learning. I developed this verbal pattern with my kids."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Direct subtraction:** 'Set [number], remove [amount], read [answer]'",
+          "**5-complement:** 'Set 5, need [amount], subtract 5, add friend [complement]'",
+          "**Combined:** 'Set [number], remove what I can, use complement for the rest'"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Lily would chant 'Set seven! Remove two! Need one more! Subtract five, add four!' while working. It looked silly but was incredibly effective."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Common Mistakes and How to Fix Them"
+      },
+      {
+        "type": "paragraph",
+        "text": "After teaching three children and tutoring several neighborhood kids, I've catalogued the most common subtraction mistakes."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Adding instead of subtracting:** Remind them of beam direction – away means subtract",
+          "**Forgetting the complement:** Practice the 5-complement as a separate drill",
+          "**Wrong complement value:** Use the rhyme '1-4, 2-3, 3-2, 4-1 – friends of 5!'",
+          "**Removing heaven bead when not needed:** Check if lower beads are available first",
+          "**Using thumb for subtraction:** Gentle correction, practice 'index only' exercises"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Practice Schedule: Week by Week"
+      },
+      {
+        "type": "paragraph",
+        "text": "Here's the exact sequence I used with all three children. Adjust timing based on your child's progress."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Week 1:** Direct subtraction only (4-1, 3-2, etc.) – lower beads only",
+          "**Week 2:** Direct subtraction from numbers 6-9 (7-2, 8-3, etc.)",
+          "**Week 3:** Introduce 5-complement (5-1, 5-2, 5-3, 5-4) exclusively",
+          "**Week 4:** Mixed problems – direct and complement",
+          "**Week 5:** Complex problems requiring both techniques (7-3, 6-4, etc.)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Don't rush Week 3! The 5-complement is the foundation for all advanced soroban work. Ethan needed two weeks here. That extra time paid off tremendously."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When Subtraction Clicks"
+      },
+      {
+        "type": "paragraph",
+        "text": "There's a magical moment when subtraction stops being 'hard' and becomes automatic. For Ethan, it was during Week 4. He suddenly did 10 problems in a row without hesitation."
+      },
+      {
+        "type": "paragraph",
+        "text": "'It's just like addition backward,' he said. 'Why did I think it was hard?' That's exactly the realization I was waiting for. The soroban had done its job – making the abstract relationship between addition and subtraction concrete and visible."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Connecting Subtraction to Real Life"
+      },
+      {
+        "type": "paragraph",
+        "text": "To make subtraction meaningful, I connected it to everyday situations my kids encountered."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Allowance spending:** 'You have 7 dollars, you buy a 3 dollar toy, how much left?'",
+          "**Snack sharing:** 'You have 8 grapes, you eat 5, how many remain?'",
+          "**Toy cleanup:** 'You had 9 blocks out, put away 4, how many still out?'",
+          "**Page counting:** 'Book has 6 chapters, you've read 2, how many left?'"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "These real-world connections made subtraction feel useful, not just academic. Lily started using her mental soroban to calculate how many cookies remained after her brothers took some!"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Comes After Simple Subtraction"
+      },
+      {
+        "type": "paragraph",
+        "text": "Once your child masters single-digit subtraction, the path forward is clear."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Two-digit subtraction:** Same techniques, multiple columns",
+          "**10-complement:** Borrowing across columns (like 13-7)",
+          "**Mixed operations:** Addition and subtraction in the same problem",
+          "**Speed drills:** Building automaticity through timed practice",
+          "**Mental calculation:** Visualizing the soroban without touching it"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "All three of my children now do mental math that impresses their teachers. The foundation we built with simple subtraction made everything else possible."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "My Final Advice to Parents"
+      },
+      {
+        "type": "paragraph",
+        "text": "Teaching subtraction on the soroban isn't about the destination – it's about the journey. The patience you show, the small victories you celebrate, the persistence through frustration – these teach your child more than just math."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Be patient:** Subtraction takes longer to click than addition",
+          "**Use analogies:** Coins, candies, toys – whatever resonates",
+          "**Celebrate the complement:** It's the breakthrough moment",
+          "**Practice daily:** 10 minutes beats weekly hour-long sessions",
+          "**Trust the process:** Thousands of children have walked this path"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Simple subtraction on the soroban opened a door for my children. Through that door lay confidence, capability, and a love for numbers they never expected to have. Your child can walk through that same door."
       }
     ],
     "faq": [
       {
-        "question": "Why is subtraction harder than addition?",
-        "answer": "It requires a mental \"flip\" – removing instead of adding. Also, complements come up more often. Practice makes it automatic."
+        "question": "Why is subtraction harder than addition on the soroban?",
+        "answer": "Subtraction requires a mental 'flip' – removing instead of adding. Also, the 5-complement technique appears earlier in subtraction. However, with practice, subtraction becomes just as automatic as addition."
       },
       {
-        "question": "Should my child master addition before subtraction?",
-        "answer": "Not necessarily. Many curriculums teach them together since they're inverse operations. But if subtraction causes frustration, focus on addition first."
+        "question": "Should my child master addition before learning subtraction?",
+        "answer": "Not necessarily. Many curricula teach them together since they're inverse operations. However, if subtraction causes frustration, strengthen addition skills first before returning to subtraction."
       },
       {
-        "question": "What about bigger numbers?",
-        "answer": "Same principles, just more columns. 15 - 3 uses the same technique as 5 - 3, you're just working in the tens column first."
+        "question": "How do I explain the 5-complement to my child?",
+        "answer": "Use the coin analogy: the heaven bead is like a nickel (5 cents). When you can't subtract directly, you trade the nickel for five pennies, remove what you need, and keep the rest."
       }
     ],
     "cta": {
       "type": "soft",
-      "text": "Practice subtraction with guided feedback in our app.",
-      "buttonText": "Try Subtraction Practice",
+      "text": "Practice subtraction with guided feedback and progress tracking in our app.",
+      "buttonText": "Try Subtraction Practice Free",
       "buttonUrl": "/pricing"
     }
+  },
+  "faq": [
+    {
+      "question": "What is simple subtraction on the soroban?",
+      "answer": "Simple subtraction on the soroban involves moving beads away from the central beam to represent numbers being taken away. Lower beads are pushed down with the index finger, and the upper bead is pushed up with the index finger."
+    },
+    {
+      "question": "What is the 5-complement rule in soroban subtraction?",
+      "answer": "The 5-complement rule is used when you need to subtract from the heaven bead (worth 5) but have no lower beads. You remove the heaven bead (subtract 5) and add back the complement. For example, 5-2: remove the heaven bead, add 3 lower beads."
+    },
+    {
+      "question": "Which finger do I use for soroban subtraction?",
+      "answer": "Use your index finger for all subtraction movements – pushing lower beads down and the heaven bead up. The thumb is only used when adding the complement (the beads you add back after using the 5-complement rule)."
+    },
+    {
+      "question": "How long does it take to learn soroban subtraction?",
+      "answer": "With consistent daily practice (10-15 minutes), most children master simple subtraction within 4-6 weeks. The 5-complement often takes an additional 1-2 weeks to become automatic."
+    },
+    {
+      "question": "Is soroban subtraction the same as regular subtraction?",
+      "answer": "Yes, the mathematical operation is identical. The soroban just provides a visual and tactile method for performing subtraction, making the abstract concept concrete and helping children understand the inverse relationship with addition."
+    },
+    {
+      "question": "What are the 5-complement pairs for subtraction?",
+      "answer": "The four 5-complement pairs are: 1 and 4, 2 and 3, 3 and 2, 4 and 1. When subtracting any of these from 5, you remove the heaven bead and add its complement."
+    },
+    {
+      "question": "Why does my child confuse addition and subtraction on the soroban?",
+      "answer": "This is common because the movements are opposite. The key rule: addition moves beads toward the beam, subtraction moves beads away from the beam. Practice this distinction until it becomes automatic."
+    },
+    {
+      "question": "Can I teach addition and subtraction at the same time?",
+      "answer": "Yes, some curricula teach them together to reinforce their inverse relationship. However, if your child struggles, it's fine to master addition first before introducing subtraction."
+    },
+    {
+      "question": "What problems should I start with for soroban subtraction?",
+      "answer": "Start with direct subtraction using only lower beads: 4-1, 3-2, 4-2, 3-1. Then progress to subtracting from numbers with the heaven bead (7-2, 8-3), and finally introduce the 5-complement (5-1, 5-2, 5-3, 5-4)."
+    },
+    {
+      "question": "What comes after simple soroban subtraction?",
+      "answer": "After mastering single-digit subtraction, progress to two-digit subtraction (using multiple columns), the 10-complement rule (for borrowing), mixed operations, and eventually mental calculation without touching the soroban."
+    }
+  ],
+  "cta": {
+    "text": "Ready to help your child master soroban subtraction? Sorokid offers interactive lessons, step-by-step guidance, and progress tracking designed for busy families.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "Simple Subtraction on the Soroban: Complete Parent's Guide | Sorokid",
+    "metaDescription": "Master soroban subtraction with this complete parent's guide. Learn the reverse technique, 5-complement method, and proven teaching strategies from a homeschool mom.",
+    "keywords": "soroban subtraction, abacus subtraction, how to subtract soroban, soroban 5 complement subtraction, teach subtraction abacus, japanese abacus subtraction"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-04",
+    "author": "Sarah Mitchell"
   },
   "postId": "phep-tru-don-gian-tren-soroban"
 }

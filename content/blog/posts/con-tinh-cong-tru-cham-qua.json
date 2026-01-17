@@ -23,6 +23,9 @@
     "name": "Chị Linh",
     "role": "Mẹ bé lớp 2"
   },
+  "translations": {
+    "en": "my-child-is-too-slow-at-addition-and-subtraction"
+  },
   "content": {
     "intro": "Đi họp phụ huynh, cô nói: \"Con làm đúng hết, nhưng chậm quá. Bài kiểm tra 20 câu trong 15 phút, con mới làm được 15 câu.\" Mình về hỏi con tại sao. Con cúi đầu: \"Con tính mãi không ra mẹ ơi. Con phải đếm lại từ đầu.\" Nhìn con, mình vừa thương vừa lo.",
     "sections": [

@@ -11,7 +11,7 @@
     "mental math progression"
   ],
   "status": "published",
-  "publishedAt": "2026-01-02T09:37:48.096Z",
+  "publishedAt": "2026-01-29T12:03:44.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/lo-trinh-hoc-soroban-tre-em.jpg",
   "imageAlt": "Child progressing through Soroban levels from beginner to advanced",
@@ -19,6 +19,9 @@
   "author": {
     "name": "Michael",
     "role": "Dad of 3rd grader"
+  },
+  "translations": {
+    "vi": "lo-trinh-hoc-soroban-cho-tre"
   },
   "content": {
     "intro": "Parents often ask: How long does Soroban take? Where should we start? Here's the complete roadmap I followed with my son – from complete beginner to doing mental math.",
@@ -204,6 +207,43 @@
       "buttonText": "Start Free Trial",
       "buttonUrl": "/pricing"
     }
+  },
+  "faq": [
+    {
+      "question": "What will I learn from this article?",
+      "answer": "This article covers How long does it take to learn Soroban? Where should kids start? Here's the complete roadmap I followed with my child from beginner to mental calculation.."
+    },
+    {
+      "question": "Is this advice suitable for all ages?",
+      "answer": "The strategies discussed are primarily designed for children ages 5-12, but many principles can be adapted for different age groups."
+    },
+    {
+      "question": "How long does it take to see results?",
+      "answer": "Results vary by child, but most parents notice improvements within 2-4 weeks of consistent practice."
+    },
+    {
+      "question": "Do I need special materials or equipment?",
+      "answer": "Most activities can be done with everyday items. For Soroban-specific learning, the Sorokid app provides a virtual abacus."
+    },
+    {
+      "question": "Can I use these methods alongside school curriculum?",
+      "answer": "Absolutely! These approaches are designed to complement, not replace, what children learn at school."
+    }
+  ],
+  "cta": {
+    "text": "Ready to help your child build math confidence? Sorokid offers interactive lessons, games, and progress tracking designed for busy families.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "The Complete Soroban Learning Path – From Zero to Mental Math | Sorokid",
+    "metaDescription": "How long does it take to learn Soroban? Where should kids start? Here's the complete roadmap I followed with my child from beginner to mental calculation.",
+    "keywords": "soroban learning path, how long to learn soroban, soroban levels, soroban curriculum, mental math progression"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-29",
+    "author": "Michael"
   },
   "postId": "lo-trinh-hoc-soroban-cho-tre"
 }

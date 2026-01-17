@@ -15,9 +15,16 @@
   ],
   "status": "published",
   "publishedAt": "2025-12-28T05:49:27.134Z",
+  "createdAt": "2025-12-28",
+  "image": "/blog/dua-thu-hoat-hinh-game-dua-ngua-tao-dong-luc-hoc-tap.png",
+  "imageAlt": "Đua Thú Hoạt Hình - Biến Thi Đua Học Tập Thành Cuộc Đua Động Vật Siêu Vui",
+  "readingTime": 12,
   "author": {
     "name": "Cô Hạnh",
     "role": "Giáo viên Tiểu học"
+  },
+  "translations": {
+    "en": "ua-th-hot-hnh-bin-thi-ua-hc-tp-thnh-cuc-ua-ng-vt-siu-vui"
   },
   "content": {
     "intro": "\"Cô ơi đừng gọi con!\" - Câu nói quen thuộc mỗi khi tôi cần ai đó lên bảng. Thế mà bây giờ, cũng những đứa trẻ ấy lại la lên: \"Cô ơi cho con đua đi! Vịt của con hôm nay chắc chắn thắng!\" Tôi không hiểu chuyện gì đang xảy ra, cho đến khi nhận ra: Tôi chỉ thay đổi cách chọn người thôi - từ gọi tên sang... đua vịt.",
@@ -462,17 +469,6 @@
     "buttonLink": "/tool/dua-thu-hoat-hinh",
     "text": "Biến Việc Gọi Tên Thành Cuộc Đua Vui Nhộn! - Nhập danh sách lớp, chọn con vật, và xem học sinh háo hức chờ vịt mình thắng. Miễn phí, không cần đăng ký."
   },
-  "relatedTools": [
-    "dua-thu-hoat-hinh",
-    "boc-tham",
-    "chiec-non-ky-dieu",
-    "chia-nhom"
-  ],
-  "relatedPosts": [
-    "boc-tham-ngau-nhien-slot-machine-hoi-hop",
-    "chiec-non-ky-dieu-vong-quay-may-man",
-    "chia-nhom-ngau-nhien-cong-bang-khong-ai-than-phien"
-  ],
   "seo": {
     "title": "Đua Vịt Sông Nước - Cách Chọn Học Sinh Lên Bảng Vui Nhất",
     "description": "Giáo viên chia sẻ kinh nghiệm dùng Đua Vịt để chọn học sinh ngẫu nhiên. Từ 'Cô đừng gọi con' thành 'Cô ơi cho con đua đi!' Công cụ miễn phí, có bình luận viên AI hài hước.",
@@ -491,5 +487,15 @@
     "datePublished": null,
     "dateModified": null
   },
-  "image": "/blog/dua-thu-hoat-hinh-game-dua-ngua-tao-dong-luc-hoc-tap.png"
+  "relatedTools": [
+    "dua-thu-hoat-hinh",
+    "boc-tham",
+    "chiec-non-ky-dieu",
+    "chia-nhom"
+  ],
+  "relatedPosts": [
+    "boc-tham-ngau-nhien-slot-machine-hoi-hop",
+    "chiec-non-ky-dieu-vong-quay-may-man",
+    "chia-nhom-ngau-nhien-cong-bang-khong-ai-than-phien"
+  ]
 }

@@ -6,16 +6,32 @@
   "keywords": [
     "soroban phát triển não",
     "lợi ích của soroban",
-    "nghiên cứu về soroban"
+    "nghiên cứu về soroban",
+    "soroban và não bộ",
+    "soroban giúp thông minh",
+    "tác dụng soroban với não",
+    "khoa học về soroban",
+    "soroban rèn trí nhớ",
+    "soroban tăng khả năng tập trung",
+    "não phải não trái soroban",
+    "soroban cho trẻ phát triển",
+    "bằng chứng khoa học soroban"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-01-18T23:48:46.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/nao-bo-tre.jpg",
   "imageAlt": "Bé châu Á tập trung suy nghĩ với hình ảnh não bộ phát sáng minh họa",
-  "readingTime": 7,
+  "readingTime": 12,
   "categoryOrder": 1,
   "order": 35,
+  "author": {
+    "name": "Chị Ngọc Trâm",
+    "role": "Mẹ bé Sóc – lớp 1"
+  },
+  "translations": {
+    "en": "is-soroban-good-for-brain"
+  },
   "content": {
     "intro": "\"Soroban phát triển não phải trái\", \"Soroban giúp con thông minh hơn\" – Mình đọc được nhiều quảng cáo thế. Nhưng mình muốn biết: có nghiên cứu khoa học chứng minh không?",
     "sections": [
@@ -90,16 +106,58 @@
   "faq": [
     {
       "question": "Soroban có làm con thông minh hơn không?",
-      "answer": "Soroban giúp rèn luyện một số kỹ năng não bộ. Nhưng \"thông minh\" phụ thuộc nhiều yếu tố. Đừng kỳ vọng quá cao."
+      "answer": "Soroban giúp rèn luyện một số kỹ năng não bộ như trí nhớ làm việc, khả năng tập trung, xử lý hình ảnh. Nhưng 'thông minh' phụ thuộc nhiều yếu tố khác nữa. Đừng kỳ vọng con thành thiên tài chỉ vì học Soroban."
     },
     {
       "question": "Học bao lâu thì thấy lợi ích cho não?",
-      "answer": "Các nghiên cứu thường theo dõi từ 6 tháng - 2 năm. Lợi ích đến dần, không phải ngay lập tức."
+      "answer": "Các nghiên cứu thường theo dõi từ 6 tháng - 2 năm. Lợi ích đến dần, không phải ngay lập tức. Con mình học được khoảng 6 tháng thì thấy tập trung tốt hơn hẳn – cô giáo cũng nhận xét vậy."
+    },
+    {
+      "question": "Soroban có nghiên cứu khoa học chứng minh không?",
+      "answer": "Có nhiều nghiên cứu từ Nhật Bản, Trung Quốc và các trường đại học cho thấy trẻ học Soroban có hoạt động não khác biệt khi tính toán. Tuy nhiên, không nên tin hết mọi quảng cáo – cần xem kỹ nguồn."
+    },
+    {
+      "question": "Soroban ảnh hưởng đến não phải hay não trái?",
+      "answer": "Cả hai. Khi tính nhẩm Soroban, não xử lý cả hình ảnh (não phải) và logic tính toán (não trái). Nhiều vùng não làm việc cùng lúc – đây là điểm đặc biệt của phương pháp này so với tính toán thông thường."
+    },
+    {
+      "question": "Soroban có giúp con tập trung tốt hơn không?",
+      "answer": "Nhiều phụ huynh và nghiên cứu cho thấy có. Tính nhẩm Soroban đòi hỏi tập trung cao độ, rèn luyện đều đặn giúp tăng khả năng này. Con mình trước hay lo ra, giờ ngồi làm bài được lâu hơn."
+    },
+    {
+      "question": "Soroban có thay thế được các hoạt động phát triển não khác không?",
+      "answer": "Không. Soroban tốt cho não, nhưng não bộ cần đa dạng hoạt động: vận động, đọc sách, chơi nhạc, ngủ đủ giấc... Soroban là một phần trong nhiều phần, không phải giải pháp duy nhất."
+    },
+    {
+      "question": "Có cần cho con học Soroban từ nhỏ để tốt cho não không?",
+      "answer": "Không bắt buộc phải từ rất nhỏ. Độ tuổi lý tưởng là 6-8 tuổi khi não đang phát triển mạnh. Nhưng lớn hơn vẫn có lợi ích, chỉ là thời gian hình thành phản xạ cần lâu hơn."
+    },
+    {
+      "question": "Quảng cáo nói Soroban tăng IQ, có đúng không?",
+      "answer": "Chưa có nghiên cứu chứng minh rõ ràng Soroban tăng IQ. Soroban giúp một số kỹ năng cụ thể (trí nhớ, tập trung, xử lý số) nhưng IQ là khái niệm phức tạp hơn. Đừng tin những quảng cáo phóng đại."
+    },
+    {
+      "question": "Ngoài não bộ, Soroban còn có lợi ích gì khác?",
+      "answer": "Soroban giúp con tự tin hơn với toán, tính nhẩm nhanh và chính xác, hình thành thói quen học đều đặn. Những điều này ảnh hưởng tích cực đến việc học tập và cuộc sống hàng ngày."
+    },
+    {
+      "question": "Mình không hiểu khoa học lắm, làm sao đánh giá Soroban có tốt không?",
+      "answer": "Cách đơn giản nhất: cho con thử học 3-6 tháng và quan sát. Con có tập trung hơn không? Tính nhanh hơn không? Tự tin hơn với toán không? Đó là những dấu hiệu thực tế dễ nhận biết."
     }
   ],
   "cta": {
     "text": "Sorokid giúp con rèn luyện tính toán và phát triển tư duy.",
     "buttonText": "Cho con học thử",
     "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Soroban tốt cho não – mình tìm hiểu kỹ xem có thật không",
+    "description": "Nghe quảng cáo nói Soroban phát triển não. Mình tra cứu nghiên cứu xem có đúng không.",
+    "keywords": "soroban phát triển não, lợi ích của soroban, nghiên cứu về soroban, soroban và não bộ"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-18",
+    "author": "Chị Ngọc Trâm"
   }
 }

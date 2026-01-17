@@ -13,7 +13,13 @@
   "publishedAt": "2025-12-27T14:04:18.456Z",
   "createdAt": "2025-12-25",
   "image": "/blog/tre-bieu-dien-so-tren-soroban.jpg",
+  "imageAlt": "Trẻ em học cách biểu diễn số trên bàn tính Soroban",
   "readingTime": 6,
+  "categoryOrder": 1,
+  "order": 4,
+  "translations": {
+    "en": "how-to-read-numbers-on-soroban"
+  },
   "content": {
     "intro": "Học Soroban bắt đầu từ việc đọc số. Nếu con không biểu diễn được số, không thể học cộng trừ. Đây là bài học đầu tiên – và cũng là nền tảng cho mọi thứ về sau.",
     "sections": [
@@ -291,27 +297,58 @@
   "faq": [
     {
       "question": "Số lớn nhất trên 1 cột Soroban là bao nhiêu?",
-      "answer": "Số 9. Vì 1 hạt trời (=5) + 4 hạt đất (=4) = 9. Muốn biểu diễn số 10 trở lên phải dùng thêm cột bên trái."
+      "answer": "Số 9. Vì 1 hạt trời (=5) + 4 hạt đất (=4) = 9. Muốn biểu diễn số 10 trở lên phải dùng thêm cột bên trái (hàng chục)."
     },
     {
       "question": "Con hay nhầm số 4 và số 9, làm sao?",
-      "answer": "Nhắc con: Số 4 KHÔNG có hạt trời (chỉ 4 hạt đất). Số 9 CÓ hạt trời + 4 hạt đất. Nhìn hạt trời trước để phân biệt."
+      "answer": "Nhắc con: Số 4 KHÔNG có hạt trời (chỉ 4 hạt đất). Số 9 CÓ hạt trời + 4 hạt đất. Quy tắc: Nhìn hạt trời trước để phân biệt."
     },
     {
       "question": "Luyện số 0-9 bao lâu thì đủ?",
-      "answer": "Khoảng 2-3 ngày nếu luyện mỗi ngày 15-20 phút. Khi con gạt và đọc số không cần suy nghĩ thì có thể học tiếp."
+      "answer": "Khoảng 2-3 ngày nếu luyện mỗi ngày 15-20 phút. Khi con gạt và đọc số không cần suy nghĩ, phản xạ tự động, thì có thể học tiếp hàng chục."
     },
     {
       "question": "Có cần học theo thứ tự 0-1-2-3... không?",
-      "answer": "Ban đầu nên học theo thứ tự để quen. Sau đó luyện ngẫu nhiên để con nhớ chắc, không phụ thuộc vào thứ tự."
+      "answer": "Ban đầu nên học theo thứ tự để quen. Sau đó luyện ngẫu nhiên để con nhớ chắc. Cuối cùng thử đọc số ngược (9, 8, 7...) để kiểm tra."
+    },
+    {
+      "question": "Tại sao quy tắc là hạt áp sát thanh ngang mới tính?",
+      "answer": "Đây là quy ước chuẩn của Soroban. Hạt áp thanh ngang = 'bật lên', có giá trị. Hạt xa thanh ngang = 'tắt', không tính. Giúp đọc số rõ ràng, không nhầm lẫn."
+    },
+    {
+      "question": "Con gạt đúng nhưng đọc sai, do đâu?",
+      "answer": "Thường do chưa nhớ giá trị hạt trời = 5. Luyện riêng nhóm số 5-9 cho đến khi thành thạo. Có thể dán giấy nhớ '5' cạnh hạt trời khi mới học."
+    },
+    {
+      "question": "Số 0 gạt thế nào?",
+      "answer": "Số 0 = không có hạt nào áp thanh ngang. Hạt trời ở trên (xa thanh ngang), tất cả 4 hạt đất ở dưới (xa thanh ngang). Đây là trạng thái 'reset' của Soroban."
+    },
+    {
+      "question": "Con hay gạt ngược (gạt xuống thay vì lên), có sao không?",
+      "answer": "Cần sửa sớm. Quy tắc chuẩn: Hạt đất dùng ngón cái gạt LÊN, hạt trời dùng ngón trỏ gạt XUỐNG. Gạt đúng cách giúp tính nhanh hơn về sau."
+    },
+    {
+      "question": "Học số 0-9 xong thì học gì tiếp?",
+      "answer": "Học số hàng chục (10, 11, 12...) bằng cách dùng 2 cột. Cột phải = hàng đơn vị, cột trái = hàng chục. Sau đó học phép cộng đơn giản."
+    },
+    {
+      "question": "App Sorokid có bài tập luyện số 0-9 không?",
+      "answer": "Có. Sorokid có bài tập nhận diện số: nhìn Soroban → chọn đáp án, hoặc nghe số → gạt Soroban. Học như chơi game, con không chán."
     }
   ],
   "cta": {
-    "text": "Sorokid có bài tập luyện nhận diện số, giúp con thuộc nhanh mà không chán.",
-    "buttonText": "Cho con thử",
+    "text": "Sorokid có bài tập luyện nhận diện số từ 0-9, giúp con thuộc nhanh mà không chán. Học như chơi game.",
+    "buttonText": "Cho con thử học miễn phí 7 ngày",
     "buttonLink": "/register"
   },
-  "imageAlt": "Trẻ em học cách biểu diễn số trên bàn tính Soroban",
-  "categoryOrder": 1,
-  "order": 4
+  "seo": {
+    "title": "Cách biểu diễn số 0-9 trên Soroban – Bài học đầu tiên của con",
+    "description": "Hướng dẫn chi tiết cách đọc và biểu diễn số từ 0 đến 9 trên bàn tính Soroban. Có bảng minh họa và bài tập cho con luyện.",
+    "keywords": "cách đếm soroban, biểu diễn số soroban, số trên bàn tính soroban, cách đọc số soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-27T14:04:18.456Z",
+    "author": "Chị Thu Hà"
+  }
 }

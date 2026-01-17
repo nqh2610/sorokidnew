@@ -1,54 +1,368 @@
 {
-  "postId": "con-so-hoc-toan-phu-huynh-dang-lam-sai-o-dau",
   "slug": "con-s-ton-mnh-v-tnh-lm-g-sai",
-  "title": "[EN] Con sợ toán – mình đã vô tình làm gì sai?",
-  "description": "[Needs translation] Mình từng nghĩ con sợ toán là do con yếu. Cho đến khi nhìn lại những gì mình nói, mình mới hiểu: đôi khi vấn đề không phải ở con.",
-  "category": "when-kids-struggle-with-math",
+  "title": "My Child Is Afraid of Math: What Did I Accidentally Do Wrong?",
+  "description": "I used to think my son feared math because he was bad at it. Then I looked at what I'd been saying. Sometimes the problem isn't the child—it's what we're unintentionally teaching them to feel.",
+  "category": "math-struggles",
   "keywords": [
-    "con sợ học toán",
-    "trẻ sợ toán",
-    "tại sao con sợ toán"
+    "child afraid of math",
+    "math anxiety kids",
+    "why child fears math",
+    "parent causing math anxiety",
+    "child hates math",
+    "math phobia children",
+    "overcoming math fear",
+    "math confidence kids",
+    "signs of math anxiety",
+    "what causes math anxiety",
+    "help child fear math",
+    "parent math mistakes"
   ],
   "status": "published",
-  "publishedAt": "2025-12-25T02:37:16.661Z",
+  "publishedAt": "2025-06-15T08:00:00.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/con-so-hoc-toan-phu-huynh-lam-sai.jpg",
-  "imageAlt": "Trẻ em châu Á lo lắng khi học toán tại nhà",
-  "readingTime": 6,
+  "imageAlt": "Worried child looking at math homework while parent realizes their role in creating anxiety",
+  "readingTime": 14,
   "author": {
-    "name": "SoroKid Team",
-    "role": "Education Content"
+    "name": "Karen Sullivan",
+    "role": "School Counselor & Mother of Two"
+  },
+  "translations": {
+    "vi": "con-so-hoc-toan-phu-huynh-dang-lam-sai-o-dau"
   },
   "content": {
-    "intro": "[Needs natural English rewrite] Có hôm con nói: \"Con ghét toán.\" Mình hỏi vì sao, con không trả lời, chỉ cúi đầu. Mình tức lắm. Nhưng đêm đó nằm nghĩ lại, mình thấy mình cũng có phần.",
+    "intro": "One evening my son said, 'I hate math.' I asked why. He didn't answer, just looked down. I was frustrated. But lying awake that night, I started replaying our homework sessions in my head. The sighs. The 'this is so easy, why don't you get it?' The disappointment in my voice. I realized with a sinking feeling: maybe I was part of the problem.",
     "sections": [
       {
         "type": "heading",
         "level": 2,
-        "text": "Những dấu hiệu mình không để ý"
+        "text": "The Signs I Missed"
       },
       {
         "type": "paragraph",
-        "text": "Trước đây mình cứ nghĩ con lười. Nhưng rồi mình để ý kỹ hơn:"
+        "text": "I used to think my son was just lazy about math. But when I started paying closer attention, I noticed patterns:"
       },
       {
         "type": "list",
         "items": [
-          "Mỗi khi mở vở toán ra, mặt con đổi khác – căng thẳng, không vui",
-          "Con hay nói \"Con không biết\" dù chưa thử đọc đề",
-          "Con làm bài rất chậm, như đang cố trì hoãn",
-          "Có hôm con khóc khi đến bài khó, dù mình chưa nói gì"
+          "Every time we opened the math workbook, his face changed—tense, unhappy",
+          "He'd say 'I don't know' before even reading the problem",
+          "He worked incredibly slowly, as if delaying the inevitable",
+          "Sometimes he cried before I even said anything critical",
+          "He'd suddenly need to use the bathroom when math time started"
         ]
       },
       {
         "type": "paragraph",
-        "text": "Đó không phải lười. Đó là sợ."
+        "text": "This wasn't laziness. This was fear."
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "Mình đã nói gì với con?"
+        "text": "What Had I Been Saying?"
+      },
+      {
+        "type": "paragraph",
+        "text": "I recorded myself during one homework session. What I heard horrified me:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "'This is basic stuff. You should know this by now.'",
+          "'Your sister got this on the first try.'",
+          "*Heavy sigh* when he made a mistake",
+          "'If you paid attention in class, this would be easy.'",
+          "'Wrong again. Come on, focus!'"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "I thought I was being motivating. I was being crushing."
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Research shows that parents who express math anxiety—or frustration—can transfer those feelings to children. Kids are incredibly attuned to our emotional states, even when we think we're hiding them."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How Parents Accidentally Create Math Anxiety"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Comparing to Siblings or Peers"
+      },
+      {
+        "type": "paragraph",
+        "text": "'Your brother understood this immediately.' Even said gently, this message is: 'You're failing where others succeed.' It creates shame, not motivation."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Expressing Our Own Math Discomfort"
+      },
+      {
+        "type": "paragraph",
+        "text": "'I was terrible at math too.' We think we're being sympathetic. Kids hear: 'Math is hard, even for adults. You're doomed.' Research shows parental math anxiety is contagious."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Showing Disappointment at Mistakes"
+      },
+      {
+        "type": "paragraph",
+        "text": "A sigh, a frown, an exasperated tone—kids notice everything. When mistakes are met with disappointment, they learn that errors are bad, not learning opportunities."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Rushing or Impatience"
+      },
+      {
+        "type": "paragraph",
+        "text": "'Hurry up, we don't have all day.' When kids feel rushed, anxiety increases. Anxiety impairs working memory—exactly what you need for math. It becomes a self-fulfilling prophecy."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Making Math High-Stakes"
+      },
+      {
+        "type": "paragraph",
+        "text": "'If you don't learn this, you'll fail the test.' 'Math is important for your future.' True, but pressure increases anxiety. Anxious kids perform worse, confirming their fears."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What I Changed"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Change 1: Separating Worth from Performance"
+      },
+      {
+        "type": "paragraph",
+        "text": "I started saying explicitly: 'Getting math problems wrong doesn't make you bad at math. Everyone makes mistakes while learning. I love you whether you get this right or not.'"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Change 2: Celebrating Effort, Not Just Answers"
+      },
+      {
+        "type": "paragraph",
+        "text": "'I love how you tried three different approaches.' 'You stuck with it even when it was hard—that's what matters.' Effort praise builds persistence; outcome praise builds anxiety."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Change 3: Making Mistakes Normal"
+      },
+      {
+        "type": "paragraph",
+        "text": "I started sharing my own mistakes: 'I got confused here too. Let's figure it out together.' When kids see adults make and recover from errors, mistakes feel less catastrophic."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Change 4: Removing Time Pressure"
+      },
+      {
+        "type": "paragraph",
+        "text": "'Take as long as you need.' No clock-watching, no sighing at slowness. Removing time pressure reduced visible anxiety immediately."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Change 5: Stepping Back from Teaching"
+      },
+      {
+        "type": "paragraph",
+        "text": "I realized I couldn't be both 'loving mom' and 'math teacher' effectively. I let apps do the instruction and positioned myself as cheerleader, not corrector."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Slow Recovery"
+      },
+      {
+        "type": "paragraph",
+        "text": "Math anxiety doesn't disappear overnight. Healing took months:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Week 1-2: Still flinching when math came up",
+          "Week 3-4: Started attempting problems without prompting",
+          "Month 2: Stopped saying 'I can't' before trying",
+          "Month 3: Asked me a math question voluntarily (!)",
+          "Month 4: Described math as 'okay' instead of 'hate'"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "success",
+        "text": "The turning point: He came home excited about solving a problem in class. 'Mom, I got it before everyone else!' I almost cried. Not because he was fast, but because he felt proud instead of afraid."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Signs Your Child May Have Math Anxiety"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Physical symptoms: stomachaches, headaches before math",
+          "Avoidance: 'forgetting' homework, bathroom trips, distractions",
+          "Negative self-talk: 'I'm stupid,' 'I can't do math'",
+          "Giving up quickly or refusing to try",
+          "Panic or tears when facing math problems",
+          "Performance much worse than apparent understanding"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When to Seek Professional Help"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Anxiety is severe: panic attacks, school refusal",
+          "Self-esteem is significantly affected",
+          "Progress isn't happening despite supportive approaches",
+          "You suspect learning differences (dyscalculia, ADHD)",
+          "Your own anxiety is affecting your ability to help"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "A Message to Parents Recognizing Themselves"
+      },
+      {
+        "type": "paragraph",
+        "text": "If you're reading this and feeling guilty, I understand. I felt terrible when I realized my role in my son's math fear. But guilt isn't productive—action is."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "You didn't mean to create anxiety. You were trying to help your child succeed. Now that you know better, you can do better. Kids are resilient. The fact that you're reading this means you care enough to change."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Frequently Asked Questions"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Can math anxiety be completely overcome?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Yes, but it takes time and consistent positive experiences. The brain can rewire its emotional associations with math through repeated non-threatening exposure. Be patient—healing isn't linear."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "My child is already behind. Won't pressure help them catch up?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pressure increases anxiety, which impairs the working memory needed for math. Anxious kids learn slower, not faster. Reducing pressure actually accelerates learning in the long run."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What if I have math anxiety myself?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Try not to express it to your child. Let apps or tutors handle instruction so you don't transfer your own discomfort. Consider working on your own math confidence alongside your child—it's never too late to change your relationship with math."
       }
-    ]
-  }
+    ],
+    "faq": [
+      {
+        "question": "Can math anxiety be completely overcome?",
+        "answer": "Yes, with patience. The brain can rewire emotional associations through consistent positive experiences. Research shows math anxiety reduces significantly with supportive environments and low-stakes practice. Expect months of gradual improvement, not instant change."
+      },
+      {
+        "question": "Won't pressure help my child catch up if they're behind?",
+        "answer": "No—pressure increases anxiety, which impairs the working memory essential for math. Anxious children learn slower, not faster. Reducing pressure while maintaining consistent practice actually accelerates long-term learning."
+      },
+      {
+        "question": "What if I have math anxiety myself?",
+        "answer": "Avoid expressing negative feelings about math to your child. Let apps, tutors, or the other parent handle instruction. Consider addressing your own math relationship—working on it alongside your child can be healing for both of you."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Sorokid creates positive math experiences through games and visual learning—no pressure, just progress.",
+      "buttonText": "Try Free",
+      "buttonUrl": "/register"
+    }
+  },
+  "faq": [
+    {
+      "question": "What is math anxiety in children?",
+      "answer": "Math anxiety is an emotional response of fear, tension, or dread related to math activities. It causes physical symptoms (stomachaches, headaches), avoidance behaviors, negative self-talk, and performance that's worse than actual ability would predict. It affects an estimated 20-25% of students."
+    },
+    {
+      "question": "Can parents accidentally cause math anxiety?",
+      "answer": "Yes. Research shows parental math anxiety and negative attitudes transfer to children. Even well-meaning behaviors—showing disappointment at mistakes, comparing to siblings, expressing time pressure—can create anxiety associations with math in children."
+    },
+    {
+      "question": "What are signs my child has math anxiety?",
+      "answer": "Watch for: physical symptoms before math, avoidance behaviors ('forgetting' homework), negative self-talk ('I'm stupid at math'), giving up quickly, tears or panic when facing problems, and test performance much worse than daily understanding suggests."
+    },
+    {
+      "question": "How can I help my child overcome fear of math?",
+      "answer": "Key strategies: separate worth from performance, praise effort not just answers, normalize mistakes (share your own), remove time pressure, use low-stakes practice like games, and consider stepping back from being 'teacher'—let apps or tutors handle instruction while you provide emotional support."
+    },
+    {
+      "question": "Does expressing my own math discomfort affect my child?",
+      "answer": "Yes. Saying 'I was bad at math too' feels sympathetic but tells kids math is inherently difficult and they may be 'doomed.' Children of parents who express math anxiety tend to have lower math achievement and higher anxiety themselves."
+    },
+    {
+      "question": "How long does it take to reduce math anxiety?",
+      "answer": "Expect a gradual process over months, not weeks. After 1-2 months of consistent positive experiences, most children show reduced avoidance. After 3-4 months, attitudes often shift from negative to neutral. Full confidence building may take a school year or longer."
+    },
+    {
+      "question": "When should I seek professional help for my child's math anxiety?",
+      "answer": "Seek help if: anxiety causes panic attacks or school refusal, self-esteem is significantly damaged, no progress despite supportive approaches for 2-3 months, you suspect learning differences (dyscalculia, ADHD), or the anxiety is affecting other areas of life."
+    },
+    {
+      "question": "Is math anxiety a learning disability?",
+      "answer": "No, math anxiety is an emotional response, not a learning disability. However, it can coexist with learning differences like dyscalculia (difficulty processing numbers) or ADHD. If anxiety reduction doesn't improve performance, screening for learning differences may be appropriate."
+    },
+    {
+      "question": "Can games and apps help with math anxiety?",
+      "answer": "Yes. Games provide low-stakes practice where mistakes are part of play, not failure. The fun context reduces threat perception. Apps remove the parent-as-teacher dynamic that can create tension. Consistent positive experiences gradually rewire emotional associations."
+    },
+    {
+      "question": "What should I say when my child makes math mistakes?",
+      "answer": "Try: 'Mistakes help your brain grow!' 'Interesting—let's figure out what happened.' 'I make mistakes too—that's how we learn.' Avoid sighing, showing disappointment, or saying 'wrong.' The goal is making errors feel safe, not scary."
+    }
+  ],
+  "cta": {
+    "text": "Help your child build positive math associations. Sorokid uses games, visual soroban methods, and encouraging feedback to make math feel safe and even fun. No pressure, no judgment—just progress at their own pace.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "My Child Is Afraid of Math: What Did I Accidentally Do Wrong? | Sorokid",
+    "metaDescription": "I thought my son feared math because he was bad at it. Then I examined what I'd been saying and doing. Sometimes the problem isn't the child—it's us.",
+    "keywords": "child afraid of math, math anxiety kids, why child fears math, parent causing math anxiety, child hates math, math phobia children, overcoming math fear"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-06-15",
+    "author": "Karen Sullivan"
+  },
+  "postId": "con-so-hoc-toan-phu-huynh-dang-lam-sai-o-dau"
 }

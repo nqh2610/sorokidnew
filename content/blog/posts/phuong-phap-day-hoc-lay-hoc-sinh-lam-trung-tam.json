@@ -10,15 +10,21 @@
     "học sinh chủ động",
     "đổi mới phương pháp giảng dạy"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-02-20T14:01:23.000Z",
   "createdAt": "2025-12-26",
   "image": "/blog/day-hoc-lay-hoc-sinh-lam-trung-tam.jpg",
+  "imageAlt": "Học sinh làm việc nhóm trong lớp học lấy học sinh làm trung tâm",
   "readingTime": 7,
+  "categoryOrder": 1,
+  "order": 13,
   "author": {
     "name": "Cô Minh Tâm",
     "role": "Giáo viên THCS",
     "experience": "11 năm kinh nghiệm"
+  },
+  "translations": {
+    "en": "dy-hc-ly-hc-sinh-lm-trung-tm-khng-ch-l-l-thuyt"
   },
   "content": {
     "intro": "\"Dạy học lấy học sinh làm trung tâm\" – cụm từ này tôi nghe từ lúc còn học sư phạm. Nhưng mãi sau này, khi đứng lớp nhiều năm, tôi mới thực sự hiểu nó có nghĩa là gì, và quan trọng hơn: làm thế nào để thực hiện.",
@@ -254,6 +260,16 @@
     "buttonText": "Xem Toolbox",
     "buttonLink": "/tool"
   },
+  "seo": {
+    "title": "Dạy học lấy học sinh làm trung tâm – không chỉ là lý thuyết",
+    "description": "Nghe nhiều về 'lấy học sinh làm trung tâm' nhưng làm thế nào? Đây là cách tôi hiểu và áp dụng thực tế, với những công cụ cụ thể.",
+    "keywords": "dạy học lấy học sinh làm trung tâm, student-centered learning, phương pháp dạy học tích cực, học sinh chủ động, đổi mới phương pháp giảng dạy"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-20",
+    "author": "Cô Minh Tâm"
+  },
   "relatedTools": [
     {
       "name": "Đồng Hồ Bấm Giờ",
@@ -280,8 +296,5 @@
     "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
     "ky-thuat-think-pair-share-trong-lop-hoc",
     "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu"
-  ],
-  "imageAlt": "Học sinh làm việc nhóm trong lớp học lấy học sinh làm trung tâm",
-  "categoryOrder": 1,
-  "order": 13
+  ]
 }

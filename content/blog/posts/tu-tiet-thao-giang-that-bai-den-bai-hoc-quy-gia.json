@@ -12,11 +12,17 @@
     "học từ thất bại",
     "giáo viên trưởng thành"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-01-20T11:53:30.000Z",
+  "createdAt": "2026-01-16",
+  "image": "/blog/default-blog-image.jpg",
+  "readingTime": 9,
   "author": {
     "name": "Thầy Quang",
     "role": "Giáo viên THCS"
+  },
+  "translations": {
+    "en": "t-tit-thao-ging-tht-bi-n-bi-hc-qu-gi-tm-s-gio-vin"
   },
   "content": {
     "intro": "Năm 2018, tôi có tiết thao giảng tệ nhất trong 10 năm đi dạy. Cháy giáo án 15 phút. Học sinh không hiểu bài. PowerPoint trục trặc. Ban giám hiệu lắc đầu. Tôi về nhà và khóc như một đứa trẻ. Nhưng 6 năm sau nhìn lại, tiết thao giảng đó là tiết quan trọng nhất trong sự nghiệp của tôi. Nó dạy tôi nhiều hơn 100 tiết thành công.",
@@ -474,17 +480,6 @@
     "buttonLink": "/tool",
     "text": "Công Cụ Giúp Tiết Dạy Tự Tin Hơn - Timer, Chiếc Nón Kỳ Diệu, Chia Nhóm - tất cả miễn phí, giúp bạn không còn cháy giáo án."
   },
-  "relatedTools": [
-    "timer",
-    "magic-hat",
-    "group-divider",
-    "random-picker"
-  ],
-  "relatedPosts": [
-    "kinh-nghiem-day-thao-giang-thanh-cong-tu-giao-vien-20-nam",
-    "tiet-du-gio-dau-tien-cam-xuc-va-bai-hoc",
-    "bi-quyet-thi-giao-vien-day-gioi-cap-huyen-tinh"
-  ],
   "seo": {
     "title": "Từ Tiết Thao Giảng Thất Bại Đến Bài Học Quý Giá",
     "description": "Chia sẻ câu chuyện thật về tiết thao giảng thất bại và bài học rút ra. Tâm sự giáo viên về việc đứng dậy sau vấp ngã.",
@@ -500,7 +495,19 @@
     "type": "Article",
     "headline": "Từ Tiết Thao Giảng Thất Bại Đến Bài Học Quý Giá - Tâm Sự Giáo Viên",
     "author": "Thầy Quang - Giáo viên THCS",
-    "datePublished": null,
+    "datePublished": "2026-01-20",
     "dateModified": null
-  }
+  },
+  "relatedTools": [
+    "timer",
+    "magic-hat",
+    "group-divider",
+    "random-picker"
+  ],
+  "relatedPosts": [
+    "kinh-nghiem-day-thao-giang-thanh-cong-tu-giao-vien-20-nam",
+    "tiet-du-gio-dau-tien-cam-xuc-va-bai-hoc",
+    "bi-quyet-thi-giao-vien-day-gioi-cap-huyen-tinh"
+  ],
+  "imageAlt": "Từ Tiết Thao Giảng Thất Bại Đến Bài Học Quý Giá - Tâm Sự Giáo Viên"
 }

@@ -23,6 +23,9 @@
     "name": "Chị Mai",
     "role": "Mẹ bé lớp 3"
   },
+  "translations": {
+    "en": "how-i-teach-my-child-math-without-a-tutor-saving-hundreds-per-month"
+  },
   "content": {
     "intro": "Hồi con lớp 1, mình từng rất lo. Xung quanh đứa nào cũng học thêm, có gia sư riêng. Còn nhà mình, một tháng chi tiêu tằn tiện, không thể bỏ ra 2-3 triệu cho việc học thêm của con. Mình từng nghĩ: 'Không có tiền thì con sẽ thua ngay từ vạch xuất phát.'",
     "sections": [

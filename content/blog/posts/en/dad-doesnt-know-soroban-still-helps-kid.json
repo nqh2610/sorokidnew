@@ -1,111 +1,250 @@
 {
   "slug": "dad-doesnt-know-soroban-still-helps-kid",
   "title": "My Husband Knows Nothing About Soroban – Yet He's Our Kid's Best Study Buddy",
-  "description": "He can't do Soroban himself, but somehow he's the one keeping our daughter motivated. Here's what he does differently.",
+  "description": "He doesn't know what a '5-complement' is. But the way he supports our daughter is more effective than I expected. Here's what he does differently.",
   "category": "soroban-for-parents",
   "keywords": [
     "parent helping with soroban",
     "soroban without knowing it",
     "dad helping with math",
-    "supporting child learning"
+    "supporting child learning",
+    "parent role soroban",
+    "encourage kid learning",
+    "busy parents soroban",
+    "app for self-learning",
+    "tracking child progress",
+    "praising child effectively",
+    "building study habits",
+    "parents don't know math"
   ],
   "status": "published",
-  "publishedAt": "2026-01-05T04:49:31.714Z",
+  "publishedAt": "2026-01-22T13:57:23.000Z",
   "createdAt": "2025-12-26",
   "image": "/blog/ba-khong-biet-soroban.jpg",
-  "imageAlt": "Father helping daughter with Soroban practice",
-  "readingTime": 5,
+  "imageAlt": "Asian father sitting next to daughter learning on tablet",
+  "readingTime": 12,
   "author": {
     "name": "Amanda",
     "role": "Mom of 1st grader"
   },
+  "translations": {
+    "vi": "ba-khong-biet-soroban-van-kem-con-duoc"
+  },
   "content": {
-    "intro": "My husband has never touched a Soroban in his life. He doesn't know the difference between heaven beads and earth beads. Yet somehow, when he sits with our daughter during practice, she's more engaged than when I help her. I finally figured out why.",
+    "intro": "When I decided to have my daughter learn Soroban, my husband asked: \"Do you know Soroban?\" I said no. He didn't either. We both worried: if we don't know it, how can we help her? Turns out that worry was unnecessary.",
     "sections": [
       {
         "type": "heading",
         "level": 2,
-        "text": "What He Does That Works"
+        "text": "Our Initial Worry"
       },
       {
         "type": "paragraph",
-        "text": "He doesn't try to teach. He just... watches. And asks genuine questions."
+        "text": "I used to think: to teach a child something, I need to know it first. So when starting my daughter on Soroban, I planned to learn it myself beforehand."
       },
       {
         "type": "paragraph",
-        "text": "\"What does that bead mean?\" \"How'd you figure that out?\" \"Can you show me slower?\""
-      },
-      {
-        "type": "paragraph",
-        "text": "Our daughter loves explaining things to him. She becomes the teacher. And in teaching him, she actually learns better."
+        "text": "But then I realized: I don't have time. Work, housekeeping, two kids – where's the time to sit and learn Soroban?"
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "Why This Works Better Than \"Helping\""
+        "text": "The Surprising Discovery"
       },
       {
         "type": "paragraph",
-        "text": "When I sit with her, I try to correct mistakes immediately. \"No, not that bead.\" \"You forgot to carry.\" It feels like pressure."
+        "text": "When my daughter started using the Sorokid app, I noticed: the app teaches step by step. There are videos, instructions, exercises. I don't need to know anything – the app handles everything."
       },
       {
         "type": "paragraph",
-        "text": "When Dad sits with her, he has no idea if she's right or wrong. So he just celebrates the effort. \"Wow, that's fast!\" \"You remember all those steps?\""
+        "text": "My role is simply: remind her to practice, check how far she's progressed, and praise her when she improves."
       },
       {
         "type": "callout",
-        "style": "tip",
-        "text": "Sometimes not knowing the subject makes you a better learning partner. You can focus on encouragement instead of correction."
+        "style": "empathy",
+        "text": "If you're worried because you don't know Soroban, don't be. You don't need to become an expert for your child to learn."
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "The App Does the Teaching"
+        "text": "What My Husband Does"
       },
       {
         "type": "paragraph",
-        "text": "Here's the thing: neither of us needs to actually teach Soroban. The Sorokid app does that. It shows each step, gives instant feedback, tracks progress."
-      },
-      {
-        "type": "paragraph",
-        "text": "Our job as parents isn't to be Soroban experts. It's to be cheerleaders."
-      },
-      {
-        "type": "heading",
-        "level": 2,
-        "text": "What I Learned from My Husband"
+        "text": "My husband – who knows nothing about Soroban – is actually the one who \"helps\" our daughter more than I do. But \"helping\" here doesn't mean teaching."
       },
       {
         "type": "list",
         "items": [
-          "**Ask instead of tell:** \"How did you do that?\" beats \"Do it this way.\"",
-          "**Celebrate effort, not just results:** \"You stuck with it!\" matters more than \"You got it right.\"",
-          "**Let them teach you:** Kids remember 90% of what they teach others.",
-          "**Stay curious, not controlling:** Your job is presence, not instruction."
+          "**Mornings:** Reminds her: \"Have you done your Soroban today?\"",
+          "**During practice:** Sits nearby, says nothing, just \"being there\" so she knows someone cares",
+          "**After practice:** Asks: \"How many stars did you get today?\" then praises her",
+          "**Weekends:** Reviews progress reports, proudly shows grandparents"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When She Asks Hard Questions"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sometimes she asks: \"Dad, what's a '5-complement'?\" My husband doesn't know. He says: \"Dad doesn't know. Can you teach me?\""
+      },
+      {
+        "type": "paragraph",
+        "text": "And she explains it to him. This has two benefits: she reviews the concept, and she feels \"smarter than Dad\" at something – great for confidence."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Parents Actually Need to Do"
+      },
+      {
+        "type": "paragraph",
+        "text": "After several months, I realized: parents don't need to know Soroban. We need to do other things that matter more:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Build habits:** Set a fixed practice time, she'll remember automatically",
+          "**Be present:** Don't need to teach, just need to be there",
+          "**Praise the right way:** Praise effort, not just results",
+          "**Don't compare:** She improves against her own past, not against others",
+          "**Be patient:** Results come gradually, don't rush"
         ]
       },
       {
         "type": "callout",
         "style": "reassurance",
-        "text": "You don't need to know Soroban to support your child learning it. Sometimes the best help is just being there, interested and encouraging."
-      }
-    ],
-    "faq": [
-      {
-        "question": "Do I need to learn Soroban to help my child?",
-        "answer": "No. Apps like Sorokid handle the instruction. Your role is motivation and encouragement. Many parents find their kids learn better when they DON'T try to teach."
+        "text": "You don't need to be a great Soroban teacher. You just need to be a caring parent. The app and curriculum will handle the rest."
       },
       {
-        "question": "What if my child asks me something I don't know?",
-        "answer": "Say \"I don't know, but let's figure it out together.\" Or \"Show me how you'd solve it.\" This teaches problem-solving better than giving answers."
+        "type": "heading",
+        "level": 2,
+        "text": "Results After 6 Months"
+      },
+      {
+        "type": "paragraph",
+        "text": "My daughter has been learning Soroban for 6 months. I still don't know Soroban (except a few basic concepts she taught me). My husband doesn't either."
+      },
+      {
+        "type": "paragraph",
+        "text": "But she calculates mentally faster than both of us now. She's more confident with math. And she enjoys learning – no one needs to force her."
+      },
+      {
+        "type": "paragraph",
+        "text": "That's a better result than if I had tried to learn Soroban myself and sat with her every day."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why This Approach Works Better"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Less Pressure"
+      },
+      {
+        "type": "paragraph",
+        "text": "When I tried to \"teach,\" I'd correct every mistake. \"No, not that bead.\" \"You forgot to carry.\" It created pressure."
+      },
+      {
+        "type": "paragraph",
+        "text": "When Dad sits with her, he has no idea if she's right or wrong. So he just celebrates effort. \"Wow, that's fast!\" \"You remember all those steps?\""
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Kids Learn by Teaching"
+      },
+      {
+        "type": "paragraph",
+        "text": "Research shows kids remember 90% of what they teach others. When my daughter explains Soroban to Dad, she's actually reinforcing her own learning."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "App Handles the Hard Part"
+      },
+      {
+        "type": "paragraph",
+        "text": "The app shows each step, gives instant feedback, tracks progress. It's a better teacher than most parents could be. Our job is just cheerleading."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tips for Busy Parents"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**You don't need to sit with them:** Just remind, check progress later",
+          "**5 minutes of attention > 0 minutes:** Even a quick \"How'd it go?\" matters",
+          "**Let the app do the teaching:** Your job is motivation, not instruction",
+          "**Celebrate small wins:** \"You got 3 more stars than yesterday!\"",
+          "**Check progress weekly:** Review reports on weekends to stay informed"
+        ]
       }
-    ],
-    "cta": {
-      "type": "soft",
-      "text": "Want to support your child's Soroban journey without being an expert? Sorokid makes it easy for any parent.",
-      "buttonText": "See How It Works",
-      "buttonUrl": "/learn"
+    ]
+  },
+  "faq": [
+    {
+      "question": "If I don't know Soroban, how do I know my child is learning correctly?",
+      "answer": "The app has an automatic checking system. If your child makes a mistake, it's corrected immediately. Parents can view progress reports to see how far they've learned, their accuracy percentage, and which areas are challenging."
+    },
+    {
+      "question": "What if my child asks something I can't answer?",
+      "answer": "Let your child 'teach' you. This has two benefits: they review the knowledge, and they feel 'smarter than mom/dad' at something – great for building confidence."
+    },
+    {
+      "question": "Should I learn Soroban myself to help my child?",
+      "answer": "If you have time and interest, great. But it's not required. Your child can absolutely learn with the app without parents knowing Soroban at all."
+    },
+    {
+      "question": "How long until I see my child improving?",
+      "answer": "Usually after 2-4 weeks of consistent practice. Signs of progress: faster calculation, more confident with numbers, and genuine interest in learning. Don't expect instant results."
+    },
+    {
+      "question": "How many minutes should my child practice daily?",
+      "answer": "15-20 minutes daily is ideal. What's important is CONSISTENCY, not practicing a lot at once. 15 minutes x 7 days is more effective than 1 hour x 2 days."
+    },
+    {
+      "question": "Is Mom or Dad better at helping?",
+      "answer": "Both work great. What matters is someone who CARES and is CONSISTENT. If both parents participate, the child will sense that learning is important to the whole family."
+    },
+    {
+      "question": "My child is lazy about practicing. What should I do?",
+      "answer": "Build a fixed schedule. Give breaks between sessions. Praise effort. Don't scold – it creates negative associations with learning."
+    },
+    {
+      "question": "Is Sorokid suitable for kids who are new to Soroban?",
+      "answer": "Yes. Sorokid has lessons starting from the very basics – getting familiar with the abacus, recognizing numbers 1-9, then moving to addition and subtraction. No prior knowledge needed."
+    },
+    {
+      "question": "If parents are too busy to sit with their child, what then?",
+      "answer": "No need to sit beside them. Just: remind them to practice at the scheduled time, praise them after they finish, and review reports on weekends. The child self-learns with the app; parents monitor remotely."
+    },
+    {
+      "question": "My child gets frustrated with difficult problems. What should parents do?",
+      "answer": "Don't do it for them. Say: 'Try watching the tutorial video again.' If it's still hard, take a break and come back later. Learning is a process – no need to rush."
     }
+  ],
+  "cta": {
+    "text": "Sorokid is designed for children to self-learn while parents just monitor progress. Try it free to experience it yourself.",
+    "buttonText": "Try Free",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "My Husband Knows Nothing About Soroban – Yet He's Our Kid's Best Study Buddy | Sorokid",
+    "metaDescription": "He doesn't know what a '5-complement' is. But the way he supports our daughter is more effective than I expected. Here's what he does differently.",
+    "keywords": "parent helping with soroban, soroban without knowing it, dad helping with math, supporting child learning, parent role"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-22",
+    "author": "Amanda"
   },
   "postId": "ba-khong-biet-soroban-van-kem-con-duoc"
 }

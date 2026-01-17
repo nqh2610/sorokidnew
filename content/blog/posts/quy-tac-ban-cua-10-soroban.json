@@ -13,7 +13,13 @@
   "publishedAt": "2025-12-28T05:50:29.569Z",
   "createdAt": "2025-12-25",
   "image": "/blog/hoc-quy-tac-ban-cua-10.jpg",
+  "imageAlt": "Trẻ em học quy tắc bạn của 10 trên Soroban",
   "readingTime": 7,
+  "categoryOrder": 1,
+  "order": 8,
+  "translations": {
+    "en": "soroban-10-complement-rule"
+  },
   "content": {
     "intro": "Khi con học 8 + 5, kết quả là 13 – vượt quá 9 của 1 cột. Lúc này cần \"Bạn của 10\" để chuyển 10 đơn vị thành 1 chục. Đây là quy tắc quan trọng thứ hai sau Bạn của 5.",
     "sections": [
@@ -347,27 +353,58 @@
   "faq": [
     {
       "question": "Khác nhau giữa Bạn của 5 và Bạn của 10?",
-      "answer": "Bạn của 5: Xử lý trong 1 cột (0-9), dùng hạt trời. Bạn của 10: Xử lý giữa 2 cột, khi kết quả vượt 9 hoặc cần mượn."
+      "answer": "Bạn của 5: Xử lý trong 1 cột (0-9), dùng hạt trời. Bạn của 10: Xử lý giữa 2 cột, khi kết quả vượt 9 hoặc cần mượn từ hàng bên trái."
     },
     {
       "question": "Con hay nhầm Bạn của 5 với Bạn của 10, phải làm sao?",
-      "answer": "Luyện riêng từng quy tắc. Khi thuần thục cả hai mới trộn lẫn. Nhắc con nhìn kết quả: dưới 10 = Bạn của 5, từ 10 trở lên = Bạn của 10."
+      "answer": "Luyện riêng từng quy tắc cho thuần thục. Khi thuần thục cả hai mới trộn lẫn. Nhắc con nhìn kết quả: dưới 10 = Bạn của 5, từ 10 trở lên = Bạn của 10."
     },
     {
       "question": "Có cần thuộc lòng bảng Bạn của 10 không?",
-      "answer": "Có. Nhưng chỉ cần nhớ 5 cặp: 1-9, 2-8, 3-7, 4-6, 5-5. Luyện nhiều sẽ thành phản xạ."
+      "answer": "Có. Nhưng chỉ cần nhớ 5 cặp: 1-9, 2-8, 3-7, 4-6, 5-5. Luyện nhiều 2-3 tuần sẽ thành phản xạ tự động."
     },
     {
       "question": "Bao lâu thì con thuần thục Bạn của 10?",
-      "answer": "Khoảng 2-3 tuần nếu luyện đều đặn mỗi ngày. Đây là quy tắc khó, cần kiên nhẫn."
+      "answer": "Khoảng 2-3 tuần nếu luyện đều đặn mỗi ngày 15-20 phút. Đây là quy tắc khó vì liên quan 2 cột, cần kiên nhẫn."
+    },
+    {
+      "question": "Công thức Bạn của 10 khi cộng là gì?",
+      "answer": "Khi cộng X mà tổng vượt 9: +X = +10 - (10-X) = +1 ở cột trái, trừ bạn ở cột hiện tại. Ví dụ: 8+5 = +1 cột chục, -5 cột đơn vị = 13."
+    },
+    {
+      "question": "Công thức Bạn của 10 khi trừ là gì?",
+      "answer": "Khi trừ X mà cột hiện tại không đủ: -X = -10 + (10-X) = -1 ở cột trái, cộng bạn ở cột hiện tại. Ví dụ: 13-5 = -1 cột chục, +5 cột đơn vị = 8."
+    },
+    {
+      "question": "Có phép tính nào cần cả Bạn của 5 và Bạn của 10 không?",
+      "answer": "Có. Ví dụ 8+6=14: Cần +1 cột trái (Bạn 10), đồng thời ở cột đơn vị có 8, trừ 4 (bạn 10 của 6) cần dùng Bạn của 5. Đây là bài nâng cao."
+    },
+    {
+      "question": "Con làm đúng nhưng mất 10-15 giây mỗi bài, có chậm không?",
+      "answer": "Giai đoạn đầu là bình thường. Quan trọng là ĐÚNG trước. Sau 2-3 tuần luyện, con sẽ xuống 3-5 giây/bài tự nhiên. Đừng ép nhanh."
+    },
+    {
+      "question": "Tại sao con cần nhìn cột bên trái khi dùng Bạn của 10?",
+      "answer": "Vì Bạn của 10 chuyển 10 đơn vị thành 1 chục. Khi cộng vượt 9, cần +1 vào cột chục (trái). Khi trừ thiếu, cần mượn 1 từ cột chục (trái)."
+    },
+    {
+      "question": "App Sorokid luyện Bạn của 10 thế nào?",
+      "answer": "Sorokid hiển thị rõ 2 cột, con thấy được sự thay đổi ở cả hàng chục và hàng đơn vị. Có bài luyện riêng và trộn lẫn với Bạn của 5."
     }
   ],
   "cta": {
-    "text": "Sorokid có bài tập luyện Bạn của 10 với hình ảnh 2 cột rõ ràng, giúp con hiểu cách \"nhớ\" sang hàng bên trái.",
-    "buttonText": "Cho con luyện thử",
+    "text": "Sorokid có bài tập luyện Bạn của 10 với hình ảnh 2 cột rõ ràng, giúp con hiểu cách 'nhớ' sang hàng bên trái.",
+    "buttonText": "Cho con luyện thử miễn phí 7 ngày",
     "buttonLink": "/register"
   },
-  "imageAlt": "Trẻ em học quy tắc bạn của 10 trên Soroban",
-  "categoryOrder": 1,
-  "order": 8
+  "seo": {
+    "title": "Quy tắc 'Bạn của 10' trong Soroban – Vượt qua giới hạn 1 cột",
+    "description": "Bạn của 10 giúp con tính khi kết quả vượt quá 9. Đây là bước quan trọng để làm phép tính nhiều chữ số.",
+    "keywords": "bạn của 10 soroban, quy tắc bạn 10, cộng có nhớ soroban, phép cộng sang hàng chục soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-28T05:50:29.569Z",
+    "author": "Chị Thùy Linh"
+  }
 }

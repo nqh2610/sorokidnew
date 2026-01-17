@@ -23,6 +23,9 @@
     "name": "Chị Hạnh",
     "role": "Mẹ bé lớp 3"
   },
+  "translations": {
+    "en": "does-soroban-help-school-math"
+  },
   "content": {
     "intro": "'Con học Soroban thì điểm toán có lên không?' – Đây là câu hỏi mình hay bị hỏi nhất. Và mình sẽ trả lời thật: Có. Nhưng không phải ngay lập tức. Và không phải vì lý do bạn nghĩ.",
     "sections": [

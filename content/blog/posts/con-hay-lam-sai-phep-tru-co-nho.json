@@ -23,6 +23,9 @@
     "name": "Chị Ngân",
     "role": "Mẹ bé lớp 2"
   },
+  "translations": {
+    "en": "my-child-struggles-with-borrowing-in-subtraction"
+  },
   "content": {
     "intro": "\"52 trừ 28 bằng mấy con?\" – \"36 ạ!\" – Con mình trả lời không cần suy nghĩ. Mình nhìn lại: 52 - 28 = 24 mới đúng. Con sai đến 12 đơn vị! Đó là chuyện xảy ra liên tục suốt nửa năm trời. Phép cộng có nhớ con làm ngon lành, nhưng phép trừ có nhớ thì sai tới 70%. Mình từng nghĩ con dốt toán. Nhưng sau khi tìm hiểu, mình nhận ra: con không dốt, con chỉ chưa được dạy đúng cách.",
     "sections": [

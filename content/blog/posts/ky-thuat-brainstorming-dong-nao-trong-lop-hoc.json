@@ -13,11 +13,17 @@
     "brain storming",
     "dạy học tích cực"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-01-31T23:52:37.000Z",
+  "createdAt": "2026-01-16",
+  "image": "/blog/default-blog-image.jpg",
+  "readingTime": 8,
   "author": {
     "name": "Cô Mai",
     "role": "Giáo viên THCS"
+  },
+  "translations": {
+    "en": "k-thut-brainstorming-ng-no-cch-khai-ph-tng-sng-to-trong-lp-h"
   },
   "content": {
     "intro": "\"Ai có ý kiến gì không?\" - Cả lớp im lặng. Tôi từng đặt câu hỏi này và chờ đợi trong vô vọng. Học sinh sợ nói sai, sợ bị phê bình, sợ khác biệt. Cho đến khi tôi áp dụng đúng kỹ thuật Brainstorming - động não. Bây giờ, vấn đề của tôi là... quá nhiều ý tưởng để xử lý. Bài viết này chia sẻ cách tôi thay đổi.",
@@ -475,17 +481,6 @@
     "buttonLink": "/tool",
     "text": "Công Cụ Hỗ Trợ Brainstorming - Timer, Bốc Thăm, Chia Nhóm - tất cả công cụ cần thiết cho buổi brainstorming hiệu quả."
   },
-  "relatedTools": [
-    "timer",
-    "random-picker",
-    "group-divider",
-    "magic-hat"
-  ],
-  "relatedPosts": [
-    "ky-thuat-think-pair-share-trong-lop-hoc",
-    "phuong-phap-day-hoc-lay-hoc-sinh-lam-trung-tam",
-    "hoc-qua-du-an-pbl-huong-dan-thuc-hanh-cho-giao-vien"
-  ],
   "seo": {
     "title": "Kỹ Thuật Brainstorming (Động Não) - Hướng Dẫn Cho Giáo Viên",
     "description": "Hướng dẫn chi tiết cách tổ chức brainstorming/động não hiệu quả trong lớp học. Quy trình, biến thể và mẹo thành công.",
@@ -502,7 +497,19 @@
     "type": "Article",
     "headline": "Kỹ Thuật Brainstorming (Động Não) - Cách Khai Phá Ý Tưởng Sáng Tạo Trong Lớp Học",
     "author": "Cô Mai - Giáo viên THCS",
-    "datePublished": null,
+    "datePublished": "2026-01-31",
     "dateModified": null
-  }
+  },
+  "relatedTools": [
+    "timer",
+    "random-picker",
+    "group-divider",
+    "magic-hat"
+  ],
+  "relatedPosts": [
+    "ky-thuat-think-pair-share-trong-lop-hoc",
+    "phuong-phap-day-hoc-lay-hoc-sinh-lam-trung-tam",
+    "hoc-qua-du-an-pbl-huong-dan-thuc-hanh-cho-giao-vien"
+  ],
+  "imageAlt": "Kỹ Thuật Brainstorming (Động Não) - Cách Khai Phá Ý Tưởng Sáng Tạo Trong Lớp Học"
 }

@@ -13,7 +13,13 @@
   "publishedAt": "2025-12-27T14:04:36.617Z",
   "createdAt": "2025-12-25",
   "image": "/blog/day-tre-phep-cong-soroban.jpg",
+  "imageAlt": "Phụ huynh dạy trẻ phép cộng đơn giản trên Soroban",
   "readingTime": 6,
+  "categoryOrder": 1,
+  "order": 6,
+  "translations": {
+    "en": "simple-addition-on-soroban"
+  },
   "content": {
     "intro": "Sau khi con biết biểu diễn số, bước tiếp theo là học phép cộng. Bài này hướng dẫn cộng đơn giản – khi tổng không vượt quá 9. Đây là nền tảng trước khi học cộng có nhớ.",
     "sections": [
@@ -285,27 +291,58 @@
   "faq": [
     {
       "question": "Sao 2+3 lại không phải cộng đơn giản?",
-      "answer": "Vì khi đang có 2 hạt đất, chỉ còn 2 hạt đất trống. Muốn cộng 3 thì không đủ hạt. Phải dùng quy tắc Bạn của 5: gạt hạt trời xuống (cộng 5), đồng thời bỏ 2 hạt đất (trừ 2). Kết quả: 2 + 5 - 2 = 5."
+      "answer": "Vì khi đang có 2 hạt đất, chỉ còn 2 hạt đất trống. Muốn cộng 3 thì không đủ hạt. Phải dùng quy tắc Bạn của 5: gạt hạt trời xuống (cộng 5), đồng thời bỏ 2 hạt đất (trừ 2). Kết quả: 2 + 3 = 5."
     },
     {
       "question": "Con cần luyện cộng đơn giản bao lâu?",
-      "answer": "Khoảng 3-5 ngày nếu luyện mỗi ngày 15-20 phút. Khi con gạt mà không cần nhìn tay, không cần suy nghĩ, thì có thể học tiếp."
+      "answer": "Khoảng 3-5 ngày nếu luyện mỗi ngày 15-20 phút. Khi con gạt mà không cần nhìn tay, không cần suy nghĩ, thì có thể học tiếp quy tắc Bạn của 5."
     },
     {
       "question": "Có thể bỏ qua phần này để học cộng có nhớ luôn không?",
-      "answer": "Không nên. Cộng đơn giản là nền tảng. Nếu chưa thành thạo mà học tiếp, con sẽ dễ nhầm và nản."
+      "answer": "Không nên. Cộng đơn giản là nền tảng. Nếu chưa thành thạo mà học tiếp, con sẽ dễ nhầm và nản. Chậm mà chắc tốt hơn."
     },
     {
       "question": "Con tính đúng nhưng chậm, có sao không?",
-      "answer": "Không sao. Ban đầu cần đúng trước, nhanh sau. Luyện đều đặn, tốc độ sẽ tăng dần một cách tự nhiên."
+      "answer": "Không sao. Ban đầu cần ĐÚNG trước, NHANH sau. Luyện đều đặn mỗi ngày 15-20 phút, tốc độ sẽ tăng dần một cách tự nhiên."
+    },
+    {
+      "question": "Dùng ngón nào để gạt hạt khi cộng?",
+      "answer": "Ngón cái gạt hạt đất LÊN (cộng 1-4). Ngón trỏ gạt hạt trời XUỐNG (cộng 5). Quy tắc này giúp tay di chuyển hiệu quả, tính nhanh hơn về sau."
+    },
+    {
+      "question": "Nếu con gạt sai, sửa thế nào?",
+      "answer": "Gạt ngược lại để trả hạt về vị trí cũ, rồi làm lại. Không nhấn reset vì sẽ mất cả số ban đầu. Luyện nhiều sẽ ít sai dần."
+    },
+    {
+      "question": "Cộng đơn giản gồm những phép tính nào?",
+      "answer": "Là những phép cộng mà tổng không vượt quá số hạt có sẵn: 1+1, 1+2, 1+3, 2+1, 2+2, 5+1, 5+2, 5+3, 5+4, 6+1, 6+2, 6+3, 7+1, 7+2, 8+1."
+    },
+    {
+      "question": "Sau cộng đơn giản thì học gì tiếp?",
+      "answer": "Học quy tắc Bạn của 5 (Friends of 5) để cộng khi không đủ hạt đất. Ví dụ: 3+4 = 3+5-1 = 7. Sau đó học Bạn của 10."
+    },
+    {
+      "question": "Con cộng liên tiếp hay bị nhầm, làm sao?",
+      "answer": "Sau mỗi bước, cho con đọc to kết quả trên Soroban trước khi cộng tiếp. Ví dụ: 'Có 3, thêm 2, bằng 5. Có 5, thêm 1, bằng 6.' Giúp kiểm tra và ghi nhớ."
+    },
+    {
+      "question": "Có app nào luyện phép cộng đơn giản không?",
+      "answer": "Sorokid có bài tập cộng từ cơ bản đến nâng cao. App cho bài vừa sức, tăng dần độ khó, con không bị quá tải cũng không nhàm chán."
     }
   ],
   "cta": {
-    "text": "Sorokid có bài tập cộng từ cơ bản đến nâng cao, giúp con luyện đều đặn và tiến bộ từng ngày.",
-    "buttonText": "Cho con luyện thử",
+    "text": "Sorokid có bài tập cộng từ cơ bản đến nâng cao, giúp con luyện đều đặn và tiến bộ từng ngày. Học như chơi game.",
+    "buttonText": "Cho con luyện thử miễn phí 7 ngày",
     "buttonLink": "/register"
   },
-  "imageAlt": "Phụ huynh dạy trẻ phép cộng đơn giản trên Soroban",
-  "categoryOrder": 1,
-  "order": 6
+  "seo": {
+    "title": "Phép cộng đơn giản trên Soroban – Bước đầu tiên",
+    "description": "Hướng dẫn cách cộng trên Soroban khi tổng nhỏ hơn 10. Từng bước chi tiết, dễ hiểu cho phụ huynh và trẻ mới học.",
+    "keywords": "phép cộng soroban, cách cộng trên soroban, cộng soroban cho người mới, học cộng soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-27T14:04:36.617Z",
+    "author": "Chị Minh Thư"
+  }
 }

@@ -16,9 +16,16 @@
   ],
   "status": "published",
   "publishedAt": "2025-12-29T01:33:09.355Z",
+  "createdAt": "2025-12-29",
+  "image": "/blog/flash-zan-5-phut-dau-gio-luyen-tinh-nham-nhanh.png",
+  "imageAlt": "Flash ZAN 5 Phút Đầu Giờ - Bí Quyết Luyện Tính Nhẩm Nhanh Cho Học Sinh",
+  "readingTime": 7,
   "author": {
     "name": "Cô Linh",
     "role": "Giáo viên Toán"
+  },
+  "translations": {
+    "en": "flash-zan-5-pht-u-gi-b-quyt-luyn-tnh-nhm-nhanh-cho-hc-sinh"
   },
   "content": {
     "intro": "Mỗi buổi sáng, lớp tôi có một nghi thức đặc biệt: 5 phút Flash ZAN. Ban đầu, tôi chỉ muốn tìm cách khởi động đầu giờ cho học sinh tỉnh táo. Không ngờ, sau 3 tháng, khả năng tính nhẩm của cả lớp tiến bộ vượt bậc. Bài viết này chia sẻ hành trình từ \"5 phút lấp chỗ trống\" đến hoạt động học sinh mong đợi nhất trong ngày.",
@@ -297,16 +304,6 @@
     "buttonLink": "/tool/flash-zan",
     "text": "Thử Flash ZAN Miễn Phí Ngay - Khởi động 5 phút đầu giờ với Flash Anzan. Luyện tính nhẩm nhanh, tăng khả năng tập trung cho học sinh."
   },
-  "relatedTools": [
-    "flash-anzan",
-    "soroban",
-    "timer"
-  ],
-  "relatedPosts": [
-    "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi",
-    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
-    "tiet-day-thay-doi-khi-day-hoc-tich-cuc"
-  ],
   "seo": {
     "title": "Flash Anzan 5 Phút Đầu Giờ - Luyện Tính Nhẩm Nhanh Cho Học Sinh",
     "description": "Hướng dẫn sử dụng Flash ZAN/Flash Anzan 5 phút đầu giờ để luyện tính nhẩm nhanh. Công cụ miễn phí, phù hợp mọi cấp độ học sinh.",
@@ -327,5 +324,14 @@
     "datePublished": null,
     "dateModified": null
   },
-  "image": "/blog/flash-zan-5-phut-dau-gio-luyen-tinh-nham-nhanh.png"
+  "relatedTools": [
+    "flash-anzan",
+    "soroban",
+    "timer"
+  ],
+  "relatedPosts": [
+    "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi",
+    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
+    "tiet-day-thay-doi-khi-day-hoc-tich-cuc"
+  ]
 }

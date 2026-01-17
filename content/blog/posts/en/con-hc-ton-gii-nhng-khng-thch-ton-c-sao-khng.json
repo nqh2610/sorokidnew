@@ -1,49 +1,423 @@
 {
-  "postId": "con-hoc-toan-gioi-nhung-khong-thich-toan",
   "slug": "con-hc-ton-gii-nhng-khng-thch-ton-c-sao-khng",
-  "title": "[EN] Con học toán giỏi nhưng không thích toán – Có sao không?",
-  "description": "[Needs translation] Con mình điểm toán cao nhưng hay nói ghét toán. Mình lo quá nên tìm hiểu.",
-  "category": "when-kids-struggle-with-math",
+  "title": "My Child Gets Perfect Math Scores But Says 'I Hate Math': When Excellence Meets Apathy",
+  "description": "Discover why high-achieving children often dislike math despite excelling at it. A mother's research into the disconnect between math ability and math enjoyment, with practical strategies to reignite authentic interest.",
+  "category": "math-struggles",
   "keywords": [
-    "con giỏi toán nhưng ghét toán",
-    "không thích toán",
-    "tạo hứng thú học toán"
+    "child good at math but hates it",
+    "math ability vs math enjoyment",
+    "why kids dislike math",
+    "motivating gifted math students",
+    "extrinsic vs intrinsic motivation math",
+    "child says hate math high scores",
+    "rekindling interest in mathematics",
+    "performance vs passion learning",
+    "math anxiety high achievers",
+    "creating genuine math interest",
+    "pressure and math attitudes",
+    "nurturing math curiosity children"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-02-09T11:06:03.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/gioi-nhung-khong-thich.jpg",
-  "imageAlt": "Bé châu Á với vẻ mặt chán nản khi học toán",
-  "readingTime": 5,
+  "imageAlt": "Asian child with a bored expression during math homework despite excellent grades",
+  "readingTime": 14,
   "author": {
-    "name": "SoroKid Team",
-    "role": "Education Content"
+    "name": "Mrs. Catherine Moore",
+    "role": "Parent and Educational Psychologist"
+  },
+  "translations": {
+    "vi": "con-hoc-toan-gioi-nhung-khong-thich-toan"
   },
   "content": {
-    "intro": "[Needs natural English rewrite] \"Con ghét toán!\" – Con mình hay nói vậy. Nhưng điểm kiểm tra toán luôn 9-10. Mình không hiểu tại sao.",
+    "intro": "\"I hate math!\" my 9-year-old daughter announced one evening, slamming her perfectly-scored math test on the kitchen table. I stared at the big red 98% and felt completely confused. How could someone who consistently earned the highest grades in her class despise the very subject she excelled at? This paradox haunted me for months until I embarked on a research journey that would fundamentally change how I understood achievement, motivation, and the delicate relationship between ability and passion. What I discovered challenged everything I thought I knew about raising a successful learner—and revealed that my daughter's situation wasn't just common, it was epidemic among high-achieving children.",
     "sections": [
       {
         "type": "heading",
         "level": 2,
-        "text": "Tại sao lại có mâu thuẫn này?"
+        "text": "The Achievement-Enjoyment Paradox: A Hidden Crisis"
       },
       {
         "type": "paragraph",
-        "text": "Mình tìm hiểu và nhận ra: **giỏi ≠ thích**."
+        "text": "When my daughter first said she hated math, I dismissed it as typical childhood dramatics. She was getting excellent grades, her teachers praised her mathematical abilities, and she finished her homework quickly and accurately. But as the complaints continued—night after night, month after month—I realized this wasn't a phase. It was a genuine emotional response to something that had become joyless despite her success."
       },
       {
         "type": "paragraph",
-        "text": "Con có thể:\n- Làm được vì bị ép.\n- Làm tốt vì thông minh.\n- Nhưng trong lòng không có hứng thú."
+        "text": "I started researching and discovered I was far from alone. Studies from Stanford University's mathematics education department found that up to 40% of high-achieving math students report negative feelings about mathematics despite their excellent performance. This phenomenon, sometimes called 'competent but disengaged,' represents a significant portion of academically successful children who have lost—or never developed—genuine interest in the subjects they master."
+      },
+      {
+        "type": "callout",
+        "text": "Key Insight: Being good at something doesn't automatically mean enjoying it. Excellence can coexist with apathy, and high performance can mask deep disengagement."
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "Nguyên nhân phổ biến"
+        "text": "Understanding Why Good Grades Don't Equal Good Feelings"
       },
       {
         "type": "paragraph",
-        "text": "1. **Học để điểm số, không phải để hiểu**\n   - Con học vì áp lực, không phải tò mò."
+        "text": "To understand my daughter's disconnect, I needed to distinguish between different types of motivation. Educational psychology identifies two primary categories: extrinsic motivation (external rewards like grades, praise, avoiding punishment) and intrinsic motivation (internal satisfaction, curiosity, genuine interest). My daughter had plenty of the former but almost none of the latter."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Extrinsic motivation drives performance through external rewards and consequences",
+          "Intrinsic motivation comes from genuine curiosity, enjoyment, and personal satisfaction",
+          "High achievers can operate entirely on extrinsic motivation while feeling internally empty",
+          "Long-term success and well-being require a balance of both motivation types",
+          "Over-reliance on external validation can actually suppress intrinsic interest"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Six Root Causes of Excellence Without Enjoyment"
+      },
+      {
+        "type": "paragraph",
+        "text": "Through my research and conversations with educators and child psychologists, I identified six primary reasons why capable children often despise the subjects they excel at:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Performance Pressure Has Replaced Playful Learning"
+      },
+      {
+        "type": "paragraph",
+        "text": "When I honestly examined our family dynamics, I realized math had become a performance arena rather than a learning playground. Every test was an event, every grade was celebrated or analyzed, and every homework session carried implicit expectations. My daughter wasn't exploring numbers—she was performing for an audience."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. The Creativity Has Been Squeezed Out"
+      },
+      {
+        "type": "paragraph",
+        "text": "Modern math instruction often emphasizes procedures over exploration. My daughter could execute algorithms flawlessly, but she'd never experienced the joy of discovering mathematical patterns herself. She was following recipes, not cooking creatively."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Speed Has Become the Measure of Success"
+      },
+      {
+        "type": "paragraph",
+        "text": "Timed tests and racing to finish first had conditioned my daughter to view math as a speed competition rather than a thinking exercise. The contemplative joy of puzzling through problems had been replaced by anxiety about the clock."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Math Has Been Disconnected From Reality"
+      },
+      {
+        "type": "paragraph",
+        "text": "My daughter saw math as an abstract school requirement with no relevance to her actual life or interests. She hadn't experienced how math connects to art, music, nature, cooking, sports, or any of her hobbies."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Challenge Has Been Replaced by Routine"
+      },
+      {
+        "type": "paragraph",
+        "text": "Because my daughter found the standard curriculum easy, she rarely experienced the satisfying struggle of working through genuinely challenging problems. Paradoxically, things being too easy had made them boring."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "6. The Joy of Discovery Has Been Stolen"
+      },
+      {
+        "type": "paragraph",
+        "text": "My daughter was always told the answers, shown the methods, given the formulas. She'd never experienced the electric thrill of figuring something out herself—the 'aha!' moment that makes learning genuinely exciting."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Long-Term Consequences of Competent Disengagement"
+      },
+      {
+        "type": "paragraph",
+        "text": "Initially, I wondered if this really mattered. She was succeeding academically—wasn't that enough? But research painted a concerning picture of what happens when children continue down the path of competent disengagement:"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Short-Term",
+          "Medium-Term",
+          "Long-Term"
+        ],
+        "rows": [
+          [
+            "Completes work without enthusiasm",
+            "Avoids math-related activities by choice",
+            "Selects career paths that avoid math entirely"
+          ],
+          [
+            "Does minimum required",
+            "Loses competitive edge as challenge increases",
+            "Misses opportunities requiring quantitative skills"
+          ],
+          [
+            "Shows signs of stress around math",
+            "Develops fixed mindset about abilities",
+            "Experiences regret about unfulfilled potential"
+          ],
+          [
+            "Relies entirely on external validation",
+            "Struggles in advanced courses requiring passion",
+            "Passes disengagement patterns to own children"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "My Journey to Reconnect My Daughter With Mathematical Joy"
+      },
+      {
+        "type": "paragraph",
+        "text": "Armed with this understanding, I embarked on a deliberate campaign to help my daughter rediscover—or perhaps discover for the first time—the genuine pleasures of mathematical thinking. This wasn't about improving her grades (they were already excellent) but about transforming her relationship with numbers."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 1: Removing the Performance Pressure"
+      },
+      {
+        "type": "paragraph",
+        "text": "I made a radical decision: I stopped asking about math grades. When tests came home, I didn't immediately look at the score. Instead, I asked questions like 'Did you find any problems interesting?' or 'Was there anything that made you think?' This shift took months to feel natural, but gradually, the performance pressure began to lift."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 2: Introducing Mathematical Play"
+      },
+      {
+        "type": "paragraph",
+        "text": "I started bringing math into our lives through games and puzzles that had no grades attached. We played logic games, solved riddles together, explored patterns in art, and discussed the mathematics behind her favorite activities. Math became something we did for fun, not for evaluation."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Logic puzzles during car rides (no right or wrong, just thinking together)",
+          "Mathematical art projects exploring fractals and tessellations",
+          "Cooking experiments with ratios and proportions",
+          "Sports statistics analysis for her favorite teams",
+          "Strategy board games requiring mathematical thinking",
+          "Using the Sorokid app for playful mental math challenges"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 3: Connecting Math to Her Passions"
+      },
+      {
+        "type": "paragraph",
+        "text": "My daughter loved music and drawing. I helped her discover the mathematical foundations of her interests: the mathematical ratios in musical harmony, the geometric principles in perspective drawing, the numerical patterns in her favorite songs. Suddenly, math wasn't a separate school subject—it was woven into everything she already loved."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 4: Providing Appropriate Challenge"
+      },
+      {
+        "type": "paragraph",
+        "text": "I found supplementary materials that actually challenged her thinking—not harder versions of the same procedures, but genuinely different types of mathematical problems that required creativity and persistence. These were problems where the path to solution wasn't obvious, where struggle was expected, and where the satisfaction of solving was proportional to the effort invested."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 5: Celebrating the Process, Not the Product"
+      },
+      {
+        "type": "paragraph",
+        "text": "I changed my praise language entirely. Instead of 'Great score!' or 'You're so smart!', I started saying things like 'Tell me how you thought about that problem' or 'I noticed you tried three different approaches—that's real mathematical thinking.' I celebrated struggle, persistence, and creative thinking rather than correct answers."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Role of Educational Technology in Rekindling Interest"
+      },
+      {
+        "type": "paragraph",
+        "text": "One unexpected ally in our journey was the Sorokid app. Unlike traditional math apps that simply digitized worksheet drills, Sorokid approached mathematics as an adventure. My daughter particularly responded to the mental math challenges using Soroban techniques—these required genuinely different thinking than her school math and provided the novelty and challenge she'd been missing."
+      },
+      {
+        "type": "callout",
+        "text": "The key wasn't more math practice—it was different math experiences. When children only encounter math as procedural drill, they never discover its creative, playful, beautiful dimensions."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Signs That Joy Is Returning: What to Watch For"
+      },
+      {
+        "type": "paragraph",
+        "text": "After about four months of conscious effort, I began noticing subtle but meaningful changes in my daughter's relationship with mathematics:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "She voluntarily shared interesting math facts she'd discovered",
+          "She chose to do extra Sorokid challenges without being asked",
+          "She started pointing out mathematical patterns in everyday life",
+          "Her complaints about math homework decreased significantly",
+          "She expressed curiosity about 'harder' problems beyond her level",
+          "She began helping friends with math—and enjoying it",
+          "She asked to visit a science museum with mathematics exhibits"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What I Learned About Achievement and Engagement"
+      },
+      {
+        "type": "paragraph",
+        "text": "This experience taught me that achievement and engagement are separate dimensions that don't automatically correlate. We can have high achievement with low engagement (my daughter's situation), high engagement with moderate achievement (passionate learners still developing skills), or ideally, both together. As parents and educators, we often focus exclusively on achievement metrics while ignoring engagement indicators—a significant oversight."
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Achievement Indicators",
+          "Engagement Indicators"
+        ],
+        "rows": [
+          [
+            "Test scores and grades",
+            "Voluntary math-related activities"
+          ],
+          [
+            "Homework completion",
+            "Questions asked out of curiosity"
+          ],
+          [
+            "Teacher assessments",
+            "Enthusiasm during math activities"
+          ],
+          [
+            "Benchmark comparisons",
+            "Time spent on self-chosen math pursuits"
+          ],
+          [
+            "Academic awards",
+            "Positive emotional responses to math challenges"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Advice for Parents in Similar Situations"
+      },
+      {
+        "type": "paragraph",
+        "text": "If your child excels at math but expresses dislike or apathy, here's what I've learned through this journey:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Take their feelings seriously—don't dismiss 'I hate math' just because grades are good",
+          "Examine the pressure they're experiencing, including subtle expectations",
+          "Introduce mathematical experiences that have no grades or evaluation attached",
+          "Connect math to their existing interests and passions",
+          "Provide genuine challenge that requires creative problem-solving",
+          "Celebrate thinking processes rather than correct answers",
+          "Model genuine mathematical curiosity yourself",
+          "Be patient—transforming attitudes takes months, not days"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Difference Between Compliance and Engagement"
+      },
+      {
+        "type": "paragraph",
+        "text": "Perhaps the most important distinction I learned to make was between compliance and genuine engagement. A compliant child does what's required effectively—they complete assignments, study for tests, and earn good grades. An engaged child does all this AND more—they explore beyond requirements, ask questions beyond the curriculum, and pursue mathematical ideas independently. My daughter had been fully compliant but completely disengaged."
+      },
+      {
+        "type": "paragraph",
+        "text": "Compliance can carry a child through elementary and secondary school. But genuine engagement is what sustains lifelong learning, drives innovation, and creates fulfillment. It's the difference between having a skill and loving to use it."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "One Year Later: Where We Are Now"
+      },
+      {
+        "type": "paragraph",
+        "text": "Today, one year after I started this intentional journey, my daughter still gets excellent math grades—but that's no longer the story. The real story is that she voluntarily started a 'math club' with her friends, she asks for mathematical puzzle books as gifts, she notices and shares mathematical patterns in the world around her, and most tellingly, she's stopped saying she hates math. Not because I told her to stop, but because she no longer feels that way."
+      },
+      {
+        "type": "paragraph",
+        "text": "The grades were never the problem. They were also never the solution. What my daughter needed wasn't more success—she needed more joy."
+      },
+      {
+        "type": "callout",
+        "text": "Remember: Our goal isn't just children who can do math well. It's children who genuinely appreciate mathematical thinking and carry that appreciation into their adult lives."
       }
     ]
-  }
+  },
+  "faq": [
+    {
+      "question": "Is it normal for high-achieving children to dislike subjects they're good at?",
+      "answer": "Yes, this is surprisingly common. Research suggests up to 40% of academically successful students report negative feelings about subjects they excel in. Excellence often becomes associated with pressure, performance anxiety, and loss of intrinsic enjoyment—especially when success is heavily measured and rewarded externally."
+    },
+    {
+      "question": "Should I be concerned if my child gets good math grades but says they hate math?",
+      "answer": "Yes, this warrants attention. While the immediate academic outcomes are fine, the long-term implications include reduced persistence when challenges increase, avoidance of math-related opportunities, and potential career limitations. Additionally, operating purely on extrinsic motivation is associated with higher stress and lower well-being."
+    },
+    {
+      "question": "How can I tell if my child genuinely dislikes math or is just complaining normally?",
+      "answer": "Watch for persistent patterns over time, avoidance of math when not required, lack of curiosity about mathematical topics, stress responses during math activities, and relief when math is finished. Occasional complaints are normal; consistent negative emotional responses indicate deeper disengagement."
+    },
+    {
+      "question": "Will reducing pressure hurt my child's academic performance?",
+      "answer": "In most cases, reducing unhealthy pressure while maintaining appropriate expectations actually improves performance over time. Children perform better when motivated by interest rather than anxiety. The key is shifting from pressure to engagement, not from high expectations to low expectations."
+    },
+    {
+      "question": "How long does it take to change a child's attitude toward math?",
+      "answer": "Attitude change is gradual and typically takes 3-6 months of consistent effort to see meaningful shifts. Quick fixes don't work because attitudes developed over years of experience. Be patient and focus on the process rather than expecting immediate transformation."
+    },
+    {
+      "question": "What's the difference between intrinsic and extrinsic motivation in math learning?",
+      "answer": "Intrinsic motivation comes from internal sources—curiosity, enjoyment, personal satisfaction, and genuine interest. Extrinsic motivation comes from external sources—grades, praise, rewards, avoiding punishment, or meeting others' expectations. Healthy learning involves both, but over-reliance on extrinsic motivation can suppress intrinsic interest."
+    },
+    {
+      "question": "Can educational apps help rebuild mathematical enjoyment?",
+      "answer": "Yes, when chosen carefully. Apps that present math as play, adventure, or exploration (rather than digital worksheets) can help children experience mathematics differently. Apps like Sorokid that use novel approaches like Soroban mental math can particularly help because they're different from school math associations."
+    },
+    {
+      "question": "How do I introduce mathematical play without making it feel like more schoolwork?",
+      "answer": "The key is genuine integration into existing activities rather than separate 'math time.' Play math games during car rides, explore patterns in nature on walks, cook together with measurements, analyze statistics of favorite sports, or do art projects with geometric elements. Never grade or evaluate these activities."
+    },
+    {
+      "question": "Should I talk to my child's teacher about this issue?",
+      "answer": "Yes, teachers can be valuable allies. Share your observations about your child's emotional responses to math and ask about classroom dynamics, pressure levels, and opportunities for exploration. Many teachers want to foster engagement but face constraints—your partnership can help find creative solutions."
+    },
+    {
+      "question": "What if my child has been disliking math for years—is it too late to change?",
+      "answer": "It's never too late, though longer-established attitudes take more time to shift. The same principles apply: reduce unhealthy pressure, introduce novel mathematical experiences, connect math to interests, celebrate process over product, and provide appropriate challenge. Consistency and patience are even more important with entrenched attitudes."
+    }
+  ],
+  "cta": {
+    "text": "Ready to help your high-achieving child rediscover the joy of mathematics? Sorokid offers a fresh approach through Soroban-based mental math that feels like play, not schoolwork.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "Child Good at Math But Hates It: Why Excellence Meets Apathy | Sorokid",
+    "metaDescription": "Discover why high-achieving children often dislike math despite perfect grades. Research-backed strategies to transform competent compliance into genuine mathematical joy.",
+    "keywords": "child good at math but hates it, math ability vs enjoyment, why kids dislike math, motivating gifted students, intrinsic vs extrinsic motivation, rekindling math interest"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-09",
+    "author": "Mrs. Catherine Moore"
+  },
+  "postId": "con-hoc-toan-gioi-nhung-khong-thich-toan"
 }

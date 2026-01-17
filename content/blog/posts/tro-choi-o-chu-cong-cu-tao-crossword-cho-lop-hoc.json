@@ -15,9 +15,16 @@
   ],
   "status": "published",
   "publishedAt": "2025-12-28T05:49:54.501Z",
+  "createdAt": "2025-12-28",
+  "image": "/blog/tro-choi-o-chu-cong-cu-tao-crossword-cho-lop-hoc.png",
+  "imageAlt": "Trò Chơi Ô Chữ - Biến Từ Vựng Khô Khan Thành Thử Thách Trí Tuệ Hấp Dẫn",
+  "readingTime": 13,
   "author": {
     "name": "Cô Ngọc",
     "role": "Giáo viên Tiếng Anh THCS"
+  },
+  "translations": {
+    "en": "tr-chi-ch-bin-t-vng-kh-khan-thnh-th-thch-tr-tu-hp-dn"
   },
   "content": {
     "intro": "\"Cô ơi! Ô số 5 ngang là 'BEAUTIFUL' đúng không cô? Vì gợi ý là 'tính từ chỉ vẻ đẹp' và có 9 chữ cái!\" - Cả nhóm reo hò khi điền đúng từ cuối cùng vào bảng ô chữ. Đó là tiết ôn tập từ vựng Unit 3 của lớp 7A. Trước đây, ôn từ vựng là \"đọc - chép - kiểm tra\" nhàm chán. Giờ đây, với Trò Chơi Ô Chữ, học sinh săn từ như thám tử, hào hứng đến mức xin cô cho thêm một bảng nữa!",
@@ -641,17 +648,6 @@
     "buttonLink": "/tool/o-chu",
     "text": "Tạo Ô Chữ Cho Lớp Bạn Ngay! - Nhập danh sách từ vựng, hệ thống tự động tạo bảng ô chữ đẹp mắt. Miễn phí, nhanh chóng, dễ sử dụng."
   },
-  "relatedTools": [
-    "o-chu",
-    "ai-la-trieu-phu",
-    "random-picker",
-    "timer"
-  ],
-  "relatedPosts": [
-    "ai-la-trieu-phu-game-show-kiem-tra-kien-thuc-trong-lop",
-    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
-    "tiet-on-tap-truoc-ky-thi-hoc-sinh-khong-ngu-gat"
-  ],
   "seo": {
     "title": "Trò Chơi Ô Chữ - Công Cụ Tạo Crossword Cho Lớp Học",
     "description": "Hướng dẫn sử dụng Trò Chơi Ô Chữ trong dạy học. Tạo crossword từ từ vựng bài học, ôn tập hiệu quả. Công cụ miễn phí cho giáo viên.",
@@ -670,5 +666,15 @@
     "datePublished": null,
     "dateModified": null
   },
-  "image": "/blog/tro-choi-o-chu-cong-cu-tao-crossword-cho-lop-hoc.png"
+  "relatedTools": [
+    "o-chu",
+    "ai-la-trieu-phu",
+    "random-picker",
+    "timer"
+  ],
+  "relatedPosts": [
+    "ai-la-trieu-phu-game-show-kiem-tra-kien-thuc-trong-lop",
+    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
+    "tiet-on-tap-truoc-ky-thi-hoc-sinh-khong-ngu-gat"
+  ]
 }

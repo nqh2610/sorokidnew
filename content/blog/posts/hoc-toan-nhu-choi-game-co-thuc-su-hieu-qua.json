@@ -6,13 +6,28 @@
   "keywords": [
     "học toán như chơi game",
     "gamification học toán",
-    "ứng dụng học toán cho trẻ"
+    "ứng dụng học toán cho trẻ",
+    "app học toán trẻ em",
+    "học mà chơi chơi mà học",
+    "game hóa giáo dục",
+    "con tự học toán qua app",
+    "có nên cho con học qua app",
+    "phương pháp học hiện đại",
+    "điểm số huy hiệu học tập",
+    "con thích học toán",
+    "không ép con học"
   ],
   "status": "published",
   "publishedAt": "2025-12-25T02:37:56.372Z",
   "createdAt": "2025-12-25",
   "image": "/blog/hoc-toan-nhu-choi-game.jpg",
+  "imageAlt": "Mẹ con châu Á vui vẻ học toán như chơi game",
   "readingTime": 5,
+  "categoryOrder": 4,
+  "order": 2,
+  "translations": {
+    "en": "math-games-do-they-actually-help"
+  },
   "content": {
     "intro": "\"Cho con chơi game học\" – nghe mâu thuẫn. Mình cũng nghĩ vậy. Cho đến khi thấy con tự mở app mỗi tối, không cần ai nhắc.",
     "sections": [
@@ -147,7 +162,18 @@
     "buttonText": "Thử xem",
     "buttonLink": "/register"
   },
-  "imageAlt": "Mẹ con châu Á vui vẻ học toán như chơi game",
-  "categoryOrder": 4,
-  "order": 2
+  "seo": {
+    "title": "Con mình học toán trên app – tưởng chơi game hóa ra học thật",
+    "description": "Mình từng nghi ngờ: học mà như chơi thì học được gì? Cho đến khi thấy con tự ngồi làm bài mà không ai bắt.",
+    "keywords": "học toán như chơi game, gamification học toán, ứng dụng học toán cho trẻ"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-25",
+    "author": "Chị Bích Ngọc"
+  },
+  "author": {
+    "name": "Chị Bích Ngọc",
+    "bio": "Mẹ của bé gái lớp 2, ban đầu nghi ngờ việc học qua app nhưng đã thay đổi suy nghĩ sau khi thử"
+  }
 }

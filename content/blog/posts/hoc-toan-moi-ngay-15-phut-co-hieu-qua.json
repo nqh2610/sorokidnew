@@ -23,6 +23,9 @@
     "name": "Chị Mai",
     "role": "Mẹ bé lớp 1"
   },
+  "translations": {
+    "en": "15-minutes-of-math-daily-does-it-work"
+  },
   "content": {
     "intro": "\"Con mệt rồi mẹ ơi!\" – Con mình than thở sau 30 phút ngồi học toán. Mình nhìn đống bài tập còn một nửa chưa làm, bực mình: \"Mới có thế mà mệt gì?\" Đó là chuyện mỗi cuối tuần. Mình ép con ngồi 1-2 tiếng để \"bù\" cho cả tuần không học. Kết quả? Con ghét học, mình mệt mỏi, và điểm toán không cải thiện. Rồi mình thử cách ngược lại: chỉ 15 phút mỗi ngày. Kết quả sau 2 tháng khiến mình bất ngờ.",
     "sections": [

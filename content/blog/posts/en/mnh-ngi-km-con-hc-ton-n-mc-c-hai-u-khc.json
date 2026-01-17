@@ -1,49 +1,437 @@
 {
-  "postId": "vi-sao-cang-kem-con-hoc-toan-ca-nha-cang-met",
   "slug": "mnh-ngi-km-con-hc-ton-n-mc-c-hai-u-khc",
-  "title": "[EN] Mình đã ngồi kèm con học toán đến mức cả hai đều khóc",
-  "description": "[Needs translation] Tối nào cũng vậy – bắt đầu bằng hy vọng, kết thúc bằng la hét. Mình tưởng mình đang giúp con, hóa ra mình đang làm cả nhà thêm mệt.",
+  "title": "We Both Ended Up Crying Over Math Homework: A Mother's Story of Breaking the Cycle",
+  "description": "Every evening started with hope and ended with tears—mine as much as my daughter's. I thought I was helping her learn math. Instead, I was exhausting both of us. Here's how I finally broke the cycle.",
   "category": "parents-helping-with-math",
   "keywords": [
-    "kèm con học toán mệt",
-    "dạy con học toán căng thẳng",
-    "phụ huynh kèm con học"
+    "homework tears frustration",
+    "parent child crying homework",
+    "exhausting homework sessions",
+    "math homework emotional",
+    "homework stress family",
+    "parent homework burnout",
+    "breaking homework cycle",
+    "homework without tears",
+    "peaceful homework routine",
+    "ending homework battles",
+    "homework causing family stress",
+    "math homework trauma"
   ],
   "status": "published",
-  "publishedAt": "2025-12-25T02:38:28.841Z",
+  "publishedAt": "2026-01-21T10:31:52.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/me-kem-con-hoc-toan-tai-nha.jpg",
   "imageAlt": "Mẹ châu Á kiên nhẫn kèm con học toán tại nhà",
-  "readingTime": 6,
+  "readingTime": 14,
   "author": {
-    "name": "SoroKid Team",
-    "role": "Education Content"
+    "name": "Sandra Kim",
+    "role": "Accountant & Mother of First-Grader"
+  },
+  "translations": {
+    "vi": "vi-sao-cang-kem-con-hoc-toan-ca-nha-cang-met"
   },
   "content": {
-    "intro": "[Needs natural English rewrite] 8 giờ tối. Mình vừa dọn xong bát đĩa, ngồi xuống cạnh con, mở vở toán ra. \"Nào, 7 cộng 5 bằng mấy?\" Con im lặng. Mình hỏi lại. Con vẫn im. Mình bắt đầu nóng. 30 phút sau, con khóc. Mình cũng muốn khóc.",
+    "intro": "8 PM. I'd just finished washing the dinner dishes. I sat down beside my daughter, opened her math workbook, and asked cheerfully, 'Okay, what's 7 plus 5?' She stared at the page. I waited. Asked again. Silence. I felt my patience beginning to crack. Thirty minutes later, she was crying. I was on the verge of tears myself. Another evening ending exactly like the last one. I kept telling myself I was helping my child learn math. But sitting alone at that kitchen table after she went to bed, I couldn't escape a terrible question: what exactly am I doing to my daughter?",
     "sections": [
       {
         "type": "heading",
         "level": 2,
-        "text": "Buổi tối nào cũng giống buổi tối nào"
+        "text": "The Groundhog Day of Homework Horror"
       },
       {
         "type": "paragraph",
-        "text": "Mình bắt đầu với ý định tốt. Hôm nay sẽ kiên nhẫn hơn. Hôm nay sẽ không la. Hôm nay sẽ khác."
+        "text": "Every evening followed the same script. I'd start with the best intentions. Tonight would be different. Tonight I'd stay calm. Tonight I wouldn't raise my voice. Then reality would set in. My daughter would sit there, staring at problems she'd solved correctly yesterday, claiming she had no idea how to do them. My explanations would get longer. My voice would get louder. Her responses would get quieter. Then the tears would come."
+      },
+      {
+        "type": "table",
+        "caption": "Our Nightly Homework Script",
+        "headers": [
+          "Time",
+          "What Happened",
+          "My Internal State",
+          "My Daughter's State"
+        ],
+        "rows": [
+          [
+            "8:00 PM",
+            "Start homework, good spirits",
+            "Optimistic, patient",
+            "Hopeful but tense"
+          ],
+          [
+            "8:10 PM",
+            "First wrong answer, I explain",
+            "Still calm, helpful",
+            "Nodding, trying to understand"
+          ],
+          [
+            "8:20 PM",
+            "Same mistake again",
+            "Confusion, slight frustration",
+            "Getting nervous"
+          ],
+          [
+            "8:30 PM",
+            "Third identical mistake",
+            "Frustration building",
+            "Shutting down, getting quiet"
+          ],
+          [
+            "8:40 PM",
+            "Voice rising, explanations longer",
+            "Losing patience",
+            "Eyes getting red"
+          ],
+          [
+            "8:50 PM",
+            "Tears begin",
+            "Guilt mixing with frustration",
+            "Crying, feeling stupid"
+          ],
+          [
+            "9:00 PM",
+            "Session ends badly",
+            "Devastated, self-critical",
+            "Goes to bed upset"
+          ]
+        ]
       },
       {
         "type": "paragraph",
-        "text": "Nhưng rồi con ngồi đó, nhìn vào bài toán như nhìn vào tờ giấy trắng. Mình hỏi, con không trả lời. Mình giải thích, con gật đầu nhưng 5 phút sau vẫn sai y chang. Mình thở dài, con cúi đầu. Rồi giọng mình cao dần. Rồi mình thấy mắt con đỏ."
+        "text": "The worst part? I knew the pattern. I could predict exactly how each evening would unfold. Yet I repeated it night after night, somehow expecting different results. In hindsight, the definition of madness."
       },
       {
-        "type": "paragraph",
-        "text": "Kết thúc buổi học, con vào phòng. Mình ngồi một mình ở bàn, tự hỏi: mình đang làm cái quái gì vậy?"
+        "type": "callout",
+        "style": "empathy",
+        "text": "If this sounds familiar—if you've ended homework sessions in tears (yours or your child's) and felt that crushing guilt afterward—you're not alone. More importantly, you're not a bad parent. You're a parent using an approach that doesn't work, and that can change."
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "Mình không phải người duy nhất"
+        "text": "The Specific Problem That Broke Me"
+      },
+      {
+        "type": "paragraph",
+        "text": "It was a simple addition problem: 7 + 5. Not complicated. Not a trick question. Just 7 + 5. My first-grader had done dozens of these before. She should know this by now. She looked at the problem, looked at me, looked back at the problem. Nothing."
+      },
+      {
+        "type": "paragraph",
+        "text": "I explained. 'Count up from 7. 8, 9, 10, 11, 12. Seven plus five equals twelve.' She nodded. I gave her another: 6 + 4. She stared. I waited. She whispered '9?' I felt something inside me snap. Not anger exactly—despair. We'd been doing this for months. How could she not know this?"
+      },
+      {
+        "type": "paragraph",
+        "text": "What I didn't understand then was that her brain was working exactly as a child's brain works under stress. She probably did know 7 + 5 in a calm classroom environment. But sitting next to her anxious, frustrated mother—whose disappointment she could feel radiating—her stress response activated. Her working memory reduced. Her cognitive resources diverted to survival mode. She literally couldn't access what she knew."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understanding Why Our Approach Was Failing"
+      },
+      {
+        "type": "paragraph",
+        "text": "After one particularly devastating evening—where my daughter asked through tears if I loved her even when she was 'bad at math'—I knew something had to fundamentally change. I started researching. What I learned transformed my understanding of why homework time had become so destructive."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "The Stress-Learning Connection"
+      },
+      {
+        "type": "paragraph",
+        "text": "When children feel stressed or threatened, their bodies release cortisol. This hormone impairs the hippocampus—the brain region responsible for learning and memory. The more stressed my daughter became during homework, the less she could learn or remember. My frustration, intended to motivate her, was chemically preventing her from succeeding."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "The Pressure of Parental Presence"
+      },
+      {
+        "type": "paragraph",
+        "text": "Children want their parents' approval more than almost anything. When I sat beside my daughter watching her every pencil stroke, she felt evaluated. Every hesitation felt like failure. Every mistake felt like disappointment. The pressure of my watching eyes—even with my best supportive smile—created anxiety that disrupted her thinking."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "The Emotional Investment Trap"
+      },
+      {
+        "type": "paragraph",
+        "text": "I cared deeply about my daughter's success—so deeply that I couldn't maintain perspective about individual homework problems. When she made mistakes, I didn't just see 'child learning'—I saw potential future struggles, worried about her academic trajectory, felt my own competence as a mother being questioned. This emotional intensity was impossible to hide, and she absorbed it."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Her stress triggered my stress, which increased her stress—a amplifying feedback loop",
+          "My explanations got longer and more complex as frustration grew, becoming harder to understand",
+          "My body language communicated disappointment even when my words didn't",
+          "The nightly pattern created anticipatory anxiety—she dreaded homework before it began",
+          "Each failed session reduced her confidence, making the next session harder"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "warning",
+        "text": "Critical insight: The harder I tried using my existing approach, the worse things got. My 'help' wasn't just unhelpful—it was actively harmful. The most loving thing I could do was stop doing what I was doing."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Difficult Decision to Step Back"
+      },
+      {
+        "type": "paragraph",
+        "text": "Deciding to stop sitting beside my daughter during homework was one of the hardest parenting decisions I've made. It felt like abandonment. Like giving up. Like admitting I'd failed as a mother. But I'd already failed—failed at creating a positive learning environment, failed at maintaining our relationship, failed at helping her actually learn. Continuing the same approach would only produce more failure."
+      },
+      {
+        "type": "paragraph",
+        "text": "I told my daughter: 'I've realized that sitting together for homework isn't working for us. You're going to do your homework in your room now. I'll be in the living room if you really need help. And I want you to know—I love you exactly the same whether you get every problem right or every problem wrong.'"
+      },
+      {
+        "type": "paragraph",
+        "text": "She looked relieved. That told me everything I needed to know about how our sessions had felt from her perspective."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Creating a New System That Actually Works"
+      },
+      {
+        "type": "paragraph",
+        "text": "Stepping back from direct involvement required building new structures. I couldn't just leave my six-year-old to figure everything out alone. But I needed to provide support differently."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Element 1: Independent Work Time"
+      },
+      {
+        "type": "paragraph",
+        "text": "Homework happened in her room, at her small desk. I set a timer for 20 minutes. During that time, she worked independently. If she got stuck, she was allowed to skip problems and move on. No pressure to complete everything perfectly. The goal was genuine effort, not perfect results."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Element 2: External Learning Resources"
+      },
+      {
+        "type": "paragraph",
+        "text": "For actual skill-building, I found a soroban learning app. The app provided what I couldn't: infinite patience, immediate non-judgmental feedback, and adaptive difficulty. My daughter practiced 15 minutes daily on the app before homework. This built her skills without building her anxiety."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Element 3: Changed Review Process"
+      },
+      {
+        "type": "paragraph",
+        "text": "Instead of hovering during homework, I reviewed it the next morning—when we were both fresh and not emotional. Wrong answers weren't failures; they were information about what she needed more practice on. I'd note them for future app practice, not for immediate correction and frustration."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Element 4: Emotional Check-ins, Not Academic Check-ins"
+      },
+      {
+        "type": "paragraph",
+        "text": "When homework time ended, I asked 'How did that feel?' not 'How many did you get right?' I celebrated effort: 'You worked on that for the whole 20 minutes—I'm proud of your focus.' I separated my love from her performance completely and explicitly."
+      },
+      {
+        "type": "table",
+        "caption": "Our New Evening Routine",
+        "headers": [
+          "Time",
+          "Activity",
+          "My Role",
+          "Her Experience"
+        ],
+        "rows": [
+          [
+            "7:30 PM",
+            "15 min learning app practice",
+            "Available nearby, not watching",
+            "Building skills stress-free"
+          ],
+          [
+            "7:45 PM",
+            "20 min independent homework",
+            "In another room",
+            "Working at her own pace"
+          ],
+          [
+            "8:05 PM",
+            "Emotional check-in",
+            "Asking about feelings, celebrating effort",
+            "Feeling supported, not evaluated"
+          ],
+          [
+            "8:10 PM",
+            "Free time together",
+            "Reading, playing, connecting",
+            "Positive parent interaction"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Transformation Over Three Months"
+      },
+      {
+        "type": "paragraph",
+        "text": "The changes didn't happen overnight. The first week, my daughter came to me constantly—partly from habit, partly testing if I'd really changed. I gently redirected her: 'Try one more approach on your own first.' Gradually, she stopped needing me."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Month 1: Breaking Old Patterns"
+      },
+      {
+        "type": "paragraph",
+        "text": "The first month was about unlearning. She was learning to work independently; I was learning to stay away. Her homework wasn't always complete or correct. I had to fight my instinct to intervene. But evenings became peaceful. No more tears. No more raised voices."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Month 2: Building New Confidence"
+      },
+      {
+        "type": "paragraph",
+        "text": "By month two, something shifted. Without me watching, my daughter started taking risks—trying problems she would have given up on before. Sometimes she got them wrong. But sometimes she got them right, and those victories were genuinely hers, not mine-with-her-as-proxy. Her confidence grew because it was grounded in real independent achievement."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Month 3: The New Normal"
+      },
+      {
+        "type": "paragraph",
+        "text": "By month three, our new system felt natural. My daughter's math performance had improved—not dramatically, but steadily. More importantly, her attitude transformed. She no longer dreaded homework. She sometimes even showed enthusiasm about what she'd learned. Our evenings together became pleasant again."
+      },
+      {
+        "type": "callout",
+        "style": "insight",
+        "text": "The paradox: By trying less hard to help, I helped more. By being present less, I provided better support. By accepting imperfect homework, I enabled better learning. Sometimes the most effective parenting looks like doing nothing."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Relationship Recovery"
+      },
+      {
+        "type": "paragraph",
+        "text": "Perhaps the most important change was in our relationship. Before, my daughter had started avoiding me in the evenings. She'd take long bathroom breaks as homework time approached. She'd claim to feel sick. Now, she sought my company again. We read together. We played together. We talked about her day without the shadow of upcoming homework battles."
+      },
+      {
+        "type": "paragraph",
+        "text": "One evening, about two months into our new system, she crawled into my lap with a book. 'I like evenings now, Mommy,' she said. Such a simple statement, but it nearly made me cry. She'd spent months dreading evenings because of what I thought was 'helping.' Now she liked them again. That's when I knew the change was worth every moment of self-doubt."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "FAQ: Questions from Parents in the Same Struggle"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Won't my child fall behind if I don't actively help with homework?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Temporary incomplete homework reveals where your child genuinely needs support—valuable information for teachers. Long-term, children who develop independent learning skills outperform those dependent on parental help. A few rough weeks of adjustment leads to years of better outcomes."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What if my child refuses to even try without me there?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Start very small. Ask them to try just one problem independently before coming to you. Gradually increase expectations. Celebrate any independent effort regardless of accuracy. For children with strong dependency, consider external resources (apps, tutors) that can provide support without the parent-child emotional dynamic."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "How do I handle my own anxiety about stepping back?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Acknowledge that your anxiety is real and valid—you care about your child's success. Then remind yourself that your current approach isn't working. Trust that appropriate independence builds capability. Focus on the relationship damage that continuing the old pattern would cause. Your feelings of helplessness will fade as you see positive results."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "A Message to Parents in the Middle of the Storm"
+      },
+      {
+        "type": "paragraph",
+        "text": "If you're reading this after another tearful homework session—if you're feeling like a terrible parent for losing your patience again—please hear me. The problem isn't that you don't love your child enough. The problem isn't that your child isn't smart enough. The problem is a dynamic that has developed between you, and dynamics can change."
+      },
+      {
+        "type": "paragraph",
+        "text": "You are not stuck. The nightly battles don't have to continue. Your relationship with your child can heal. It requires the humility to admit your current approach isn't working, and the courage to try something different. That's not failure—that's growth."
+      },
+      {
+        "type": "paragraph",
+        "text": "My daughter and I both ended up crying over math homework. Now we spend those same evening hours laughing together. The change started the day I decided to stop 'helping' and start truly supporting. Your transformation can start today too."
       }
     ]
-  }
+  },
+  "faq": [
+    {
+      "question": "Why do homework sessions often end in tears and frustration?",
+      "answer": "The parent-child emotional dynamic creates unique pressures absent in classroom settings. Children desperately want parental approval; parental frustration—even subtle—triggers anxiety that impairs cognitive function. This creates a feedback loop: stress causes mistakes, mistakes cause frustration, frustration causes more stress. Breaking this cycle requires changing the dynamic, not just 'trying harder.'"
+    },
+    {
+      "question": "Is it normal for both parent and child to cry during homework?",
+      "answer": "More common than many parents realize. Studies show homework is a leading cause of parent-child conflict. The intensity reflects how much both parties care about the outcome. The solution isn't caring less but supporting differently—separating emotional support from academic instruction."
+    },
+    {
+      "question": "Should I stop helping with homework entirely?",
+      "answer": "Not entirely, but restructure how you help. Provide a supportive environment, quality learning resources, and emotional encouragement—but minimize direct involvement during work time. Be available for genuine emergencies without hovering. Your new role is supporter and cheerleader, not primary instructor."
+    },
+    {
+      "question": "How do I rebuild my relationship after months of homework battles?",
+      "answer": "Start by explicitly separating your love from academic performance. Create positive non-homework interactions. Acknowledge past struggles without dwelling on them. Give your child space and watch for signs they're ready to reconnect. Relationships heal, but healing takes time and consistency in new patterns."
+    },
+    {
+      "question": "What if my child's teacher expects parental homework involvement?",
+      "answer": "Communicate with the teacher about your new approach. Most educators understand that stressed homework sessions are counterproductive. Explain that you're providing environment and encouragement while building your child's independence. Teachers generally support this—they see the results of over-involved parents who create dependency."
+    },
+    {
+      "question": "How long does it take to break the homework battle cycle?",
+      "answer": "Expect 2-3 weeks for new patterns to feel more natural, 4-6 weeks for significant behavior change, and 2-3 months for the new approach to become your family's norm. Setbacks are normal—stressful periods may trigger old patterns. The key is returning to new methods quickly after setbacks."
+    },
+    {
+      "question": "What learning resources can replace direct parental instruction?",
+      "answer": "Quality educational apps (like soroban programs), video tutorials designed for children, peer study groups, and occasional professional tutoring. These provide patient, consistent instruction without the parent-child emotional charge. The best resources adapt to your child's level and provide immediate, non-judgmental feedback."
+    },
+    {
+      "question": "My child says they 'can't' do homework without me. How do I respond?",
+      "answer": "Acknowledge their feeling ('I understand it feels hard') while expressing confidence ('I believe you can try'). Start very small—one problem independently. Celebrate any attempt regardless of accuracy. Over time, expand expectations. The 'can't' usually reflects anxiety more than ability; reducing pressure allows capability to emerge."
+    },
+    {
+      "question": "How do I manage my own stress during this transition?",
+      "answer": "Recognize that discomfort during change is normal—you're breaking habits. Focus on long-term goals over short-term perfection. Find other parents who've made similar changes for support. Remind yourself that your current approach was causing harm; discomfort from change is better than continued damage from the status quo."
+    },
+    {
+      "question": "What if my spouse doesn't agree with stepping back?",
+      "answer": "Share specific observations about current outcomes—the tears, the relationship damage, the lack of learning progress. Propose a trial period with agreed metrics. Often, resistance comes from assuming stepping back means abandonment; clarify that you're changing methods, not reducing involvement. Data from a trial period usually convinces skeptics."
+    }
+  ],
+  "cta": {
+    "text": "Ready to end homework tears? Sorokid provides patient, adaptive math instruction that builds skills without the emotional battles—letting you be the supportive parent your child needs.",
+    "buttonText": "Start the Transformation",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "Math Homework Made Us Both Cry: How I Broke the Cycle | Sorokid",
+    "metaDescription": "A mother's honest story of nightly homework battles that ended in tears—and the changes she made to transform her family's evenings and save her relationship with her daughter.",
+    "keywords": "homework tears frustration, parent child crying homework, exhausting homework sessions, math homework emotional, homework stress family, parent homework burnout, breaking homework cycle, homework without tears, peaceful homework routine, ending homework battles, homework causing family stress, math homework trauma"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-21",
+    "author": "Sandra Kim"
+  },
+  "postId": "vi-sao-cang-kem-con-hoc-toan-ca-nha-cang-met"
 }

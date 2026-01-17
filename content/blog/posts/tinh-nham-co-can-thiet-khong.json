@@ -23,6 +23,9 @@
     "name": "Anh Tuấn",
     "role": "Bố bé lớp 2"
   },
+  "translations": {
+    "en": "is-mental-math-important-today"
+  },
   "content": {
     "intro": "'Có điện thoại rồi, cần gì tính nhẩm!' – Mình từng nói câu này với vợ khi vợ bảo cho con học Soroban. Mình nghĩ: thời đại công nghệ, ai mà tính nhẩm. Muốn tính gì thì rút điện thoại ra bấm. Nhưng sau khi tìm hiểu kỹ hơn, mình đã thay đổi hoàn toàn suy nghĩ.",
     "sections": [

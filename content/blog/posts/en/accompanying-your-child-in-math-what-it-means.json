@@ -10,7 +10,7 @@
     "parent role in math"
   ],
   "status": "published",
-  "publishedAt": "2025-12-28T05:50:05.806Z",
+  "publishedAt": "2026-01-25T12:45:49.000Z",
   "createdAt": "2026-02-01",
   "image": "/blog/gia-dinh-dong-hanh-hoc-toan.jpg",
   "imageAlt": "Parent accompanying child in math journey",
@@ -18,6 +18,9 @@
   "author": {
     "name": "Michelle Chen",
     "role": "Family Learning Coach"
+  },
+  "translations": {
+    "vi": "dong-hanh-cung-con-hoc-toan-la-gi"
   },
   "content": {
     "intro": "Everyone says to \"support\" your child's math learning. But what does that actually mean? Here's a practical breakdown.",
@@ -200,6 +203,43 @@
       "buttonText": "Try Free Trial",
       "buttonUrl": "/pricing"
     }
+  },
+  "faq": [
+    {
+      "question": "What will I learn from this article?",
+      "answer": "This article covers Breaking down what parental support in math should (and shouldn't) look like.."
+    },
+    {
+      "question": "Is this advice suitable for all ages?",
+      "answer": "The strategies discussed are primarily designed for children ages 5-12, but many principles can be adapted for different age groups."
+    },
+    {
+      "question": "How long does it take to see results?",
+      "answer": "Results vary by child, but most parents notice improvements within 2-4 weeks of consistent practice."
+    },
+    {
+      "question": "Do I need special materials or equipment?",
+      "answer": "Most activities can be done with everyday items. For Soroban-specific learning, the Sorokid app provides a virtual abacus."
+    },
+    {
+      "question": "Can I use these methods alongside school curriculum?",
+      "answer": "Absolutely! These approaches are designed to complement, not replace, what children learn at school."
+    }
+  ],
+  "cta": {
+    "text": "Ready to help your child build math confidence? Sorokid offers interactive lessons, games, and progress tracking designed for busy families.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "\"Accompanying Your Child in Math Learning\" – What Does It Actually Mean? | Sorokid",
+    "metaDescription": "Breaking down what parental support in math should (and shouldn't) look like.",
+    "keywords": "parental support, math support, accompanying learning, parent role in math"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-25",
+    "author": "Michelle Chen"
   },
   "postId": "dong-hanh-cung-con-hoc-toan-la-gi"
 }

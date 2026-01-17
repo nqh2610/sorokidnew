@@ -6,16 +6,28 @@
   "keywords": [
     "lớp 3 đếm tay",
     "trẻ tính toán bằng ngón tay",
-    "dạy con bỏ đếm tay"
+    "dạy con bỏ đếm tay",
+    "con chậm tính toán",
+    "tính nhẩm cho trẻ lớp 3",
+    "soroban giúp bỏ đếm tay",
+    "phương pháp tính nhẩm",
+    "con phụ thuộc ngón tay",
+    "bé tính chậm hơn bạn",
+    "cách tính nhanh không cần tay",
+    "hình dung số trong đầu",
+    "luyện tập tính nhẩm hàng ngày"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-01-20T00:31:23.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/be-dem-tay-lop-3.jpg",
   "imageAlt": "Bé châu Á ngồi học với hai bàn tay đang đếm",
-  "readingTime": 6,
+  "readingTime": 12,
   "categoryOrder": 2,
   "order": 10,
+  "translations": {
+    "en": "con-lp-3-vn-m-tay-mnh-lo-qu-hi-ht-mi-ngi"
+  },
   "content": {
     "intro": "Lớp 3, cô giao phép tính: 47 + 28. Con mình ngồi... xòe tay ra đếm. Mình nhìn qua thấy bạn con viết luôn kết quả. Mình lo. Mình hỏi cô giáo, hỏi bác sĩ, hỏi google.",
     "sections": [
@@ -90,16 +102,64 @@
   "faq": [
     {
       "question": "Lớp 3 vẫn đếm tay có bình thường không?",
-      "answer": "Bình thường, nhưng nên bắt đầu giúp con có phương pháp khác. Đếm tay giới hạn tốc độ khi phép tính phức tạp hơn."
+      "answer": "Bình thường, nhưng nên bắt đầu giúp con có phương pháp khác. Đếm tay giới hạn tốc độ khi phép tính phức tạp hơn, và không hiệu quả với số lớn."
     },
     {
       "question": "Có nên cấm con đếm tay không?",
-      "answer": "Không nên cấm. Thay vào đó, cho con phương pháp mới như Soroban. Con sẽ tự bỏ khi thấy cách mới hiệu quả hơn."
+      "answer": "Không nên cấm. Cấm sẽ khiến con bối rối vì không có công cụ thay thế. Thay vào đó, cho con phương pháp mới như Soroban. Con sẽ tự bỏ đếm tay khi thấy cách mới hiệu quả hơn."
+    },
+    {
+      "question": "Tại sao con vẫn đếm tay dù đã lớp 3?",
+      "answer": "Có thể con chưa được dạy phương pháp tính nhẩm khác. Đếm tay là cách tự nhiên trẻ 'sờ' được số. Không phải con dở, chỉ là con chưa có công cụ tốt hơn."
+    },
+    {
+      "question": "Soroban giúp bỏ đếm tay như thế nào?",
+      "answer": "Soroban cho con 'bàn tay mới' – bàn tính. Ban đầu con tính trên bàn tính thật. Sau đó con hình dung bàn tính trong đầu và tính nhẩm. Đây là quá trình chuyển đổi tự nhiên."
+    },
+    {
+      "question": "Bao lâu thì con bỏ được đếm tay?",
+      "answer": "Thường sau 3-6 tháng học Soroban đều đặn. Mỗi con khác nhau. Quan trọng là kiên nhẫn và không ép buộc."
+    },
+    {
+      "question": "Con học Soroban rồi vẫn đếm tay, có sao không?",
+      "answer": "Ban đầu là bình thường. Con cần thời gian để quen. Khi kỹ năng Soroban vững hơn, con sẽ tự động dùng cách mới vì nó nhanh hơn."
+    },
+    {
+      "question": "Ngoài Soroban còn cách nào giúp con bỏ đếm tay?",
+      "answer": "Có thể dùng: đường số (number line), tách số (5+3 = 5+5-2), nhóm 10. Tuy nhiên Soroban được đánh giá hiệu quả nhất vì cho con hình ảnh cụ thể để hình dung."
+    },
+    {
+      "question": "Con đếm tay nhưng vẫn làm đúng, có cần lo không?",
+      "answer": "Nếu con vẫn đúng thì không phải vấn đề học tập. Nhưng nên giúp con có phương pháp nhanh hơn, vì lên lớp cao phép tính sẽ phức tạp hơn, đếm tay không đủ."
+    },
+    {
+      "question": "Có phải con đếm tay là do não kém không?",
+      "answer": "Không. Đếm tay là cách học tự nhiên của trẻ. Nó chỉ là giai đoạn, không phải dấu hiệu não kém. Cho con phương pháp mới, con sẽ 'tốt nghiệp' giai đoạn này."
+    },
+    {
+      "question": "Phụ huynh nên nói gì khi con đếm tay?",
+      "answer": "Đừng nói 'Sao con vẫn đếm tay?' – sẽ làm con xấu hổ. Thay vào đó: 'Con đã làm đúng rồi! Mẹ/bố có cách giúp con tính nhanh hơn nữa, con muốn thử không?'"
     }
   ],
   "cta": {
     "text": "Sorokid giúp con chuyển từ đếm tay sang tính nhẩm một cách tự nhiên.",
     "buttonText": "Cho con học thử",
     "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Con lớp 3 vẫn đếm tay – mình lo quá hỏi hết mọi người",
+    "description": "Lớp 3 rồi mà con vẫn xòe tay ra đếm. Bạn bè làm nhanh hơn. Mình hỏi khắp nơi để hiểu.",
+    "keywords": "lớp 3 đếm tay, trẻ tính toán bằng ngón tay, dạy con bỏ đếm tay"
+  },
+  "schema": {
+    "type": "Article",
+    "headline": "Con lớp 3 vẫn đếm tay – mình lo quá hỏi hết mọi người",
+    "datePublished": "2026-01-20",
+    "dateModified": "2026-01-17",
+    "author": "Minh Anh"
+  },
+  "author": {
+    "name": "Minh Anh",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
   }
 }

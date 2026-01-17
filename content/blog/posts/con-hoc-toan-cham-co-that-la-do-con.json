@@ -6,13 +6,28 @@
   "keywords": [
     "con học toán chậm",
     "trẻ học toán chậm",
-    "con tiếp thu chậm"
+    "con tiếp thu chậm",
+    "so sánh con với bạn bè",
+    "tốc độ học của trẻ khác nhau",
+    "con chậm có phải kém không",
+    "cách học phù hợp với từng trẻ",
+    "không ép con học nhanh",
+    "con học chậm nhưng nhớ lâu",
+    "kiên nhẫn khi con học chậm",
+    "tìm phương pháp học phù hợp",
+    "con học theo tốc độ riêng"
   ],
   "status": "published",
   "publishedAt": "2025-12-25T02:38:33.657Z",
   "createdAt": "2025-12-25",
   "image": "/blog/con-hoc-toan-cham.jpg",
-  "readingTime": 5,
+  "imageAlt": "Mẹ châu Á kiên nhẫn kèm con học - con chậm không do con",
+  "readingTime": 12,
+  "categoryOrder": 2,
+  "order": 3,
+  "translations": {
+    "en": "my-child-is-slow-at-math"
+  },
   "content": {
     "intro": "\"Bạn A lớp con làm phép nhân trong đầu được rồi.\" Cô giáo nói vậy trong buổi họp phụ huynh. Mình ngồi nghe, lòng nặng trĩu. Con mình còn đang vật lộn với phép cộng có nhớ.",
     "sections": [
@@ -131,6 +146,30 @@
     {
       "question": "Con học các môn khác tốt, chỉ kém toán. Vì sao?",
       "answer": "Mỗi người có điểm mạnh khác nhau. Con có thể có tư duy thiên về ngôn ngữ hoặc sáng tạo hơn là logic. Không có nghĩa con không thể học toán – chỉ cần tìm cách phù hợp."
+    },
+    {
+      "question": "Con chậm có phải do di truyền không?",
+      "answer": "Yếu tố di truyền có thể ảnh hưởng một phần, nhưng phương pháp và môi trường học tập quan trọng hơn nhiều. Đừng 'đổ lỗi' cho gen."
+    },
+    {
+      "question": "Nên so sánh con với ai?",
+      "answer": "Chỉ nên so sánh con với chính con ngày hôm qua. 'Hôm nay con làm nhanh hơn tuần trước' – đó là tiến bộ thực sự."
+    },
+    {
+      "question": "Con chậm nhưng làm đúng, có đáng lo không?",
+      "answer": "Không đáng lo. Đúng quan trọng hơn nhanh, đặc biệt ở giai đoạn xây nền tảng. Tốc độ sẽ cải thiện khi con vững kiến thức."
+    },
+    {
+      "question": "Có phương pháp nào giúp con học nhanh hơn không?",
+      "answer": "Thử các phương pháp trực quan như Soroban (bàn tính), học qua hình ảnh, học qua game. Mỗi trẻ phù hợp với cách khác nhau."
+    },
+    {
+      "question": "Con chậm có bị bạn bè chê không?",
+      "answer": "Có thể. Nhưng việc của bố mẹ là xây dựng sự tự tin cho con, giúp con hiểu mỗi người có tốc độ riêng. Kỹ năng xã hội cũng cần được rèn."
+    },
+    {
+      "question": "Làm sao để con không tự ti khi học chậm hơn bạn?",
+      "answer": "Khen con ở những gì con làm được, không so sánh với bạn. Kể cho con nghe những người thành công dù từng học chậm. Giúp con tìm thế mạnh khác."
     }
   ],
   "cta": {
@@ -138,7 +177,24 @@
     "buttonText": "Cho con thử",
     "buttonLink": "/register"
   },
-  "imageAlt": "Mẹ châu Á kiên nhẫn kèm con học - con chậm không do con",
-  "categoryOrder": 2,
-  "order": 3
+  "seo": {
+    "title": "Con học toán chậm hơn bạn – mình đã lo sai chỗ",
+    "description": "Mình từng so sánh con với bạn bè, lo lắng vì con \"chậm\". Cho đến khi mình hiểu: mỗi đứa trẻ có tốc độ riêng, và \"chậm\" không có nghĩa là \"kém\".",
+    "keywords": "con học toán chậm, trẻ học toán chậm, con tiếp thu chậm, tốc độ học của trẻ, không so sánh con với bạn"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-25",
+    "author": {
+      "@type": "Person",
+      "name": "Minh Anh",
+      "description": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy",
+      "url": "https://sorokid.com/blog"
+    }
+  },
+  "author": {
+    "name": "Minh Anh",
+    "role": "Mẹ của 2 bé",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
 }

@@ -13,11 +13,17 @@
     "dạy học hiện đại",
     "học sinh chủ động"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-02-06T09:25:43.000Z",
+  "createdAt": "2026-01-16",
+  "image": "/blog/default-blog-image.jpg",
+  "readingTime": 8,
   "author": {
     "name": "Thầy Tuấn",
     "role": "Giáo viên THPT"
+  },
+  "translations": {
+    "en": "lp-hc-o-ngc-flipped-classroom-hng-dn-thc-t-cho-gio-vin-vit-n"
   },
   "content": {
     "intro": "\"Thầy ơi, con đã xem video bài mới rồi, hôm nay mình làm bài tập nhé!\" - Câu nói này từng là giấc mơ của tôi. Lớp học đảo ngược (Flipped Classroom) đảo ngược mọi thứ: học sinh học lý thuyết ở nhà, đến lớp để thực hành và thảo luận. Ban đầu tôi hoài nghi, nhưng sau 2 năm áp dụng, tôi không thể quay lại cách dạy truyền thống. Bài viết này chia sẻ hành trình thực tế của tôi.",
@@ -486,18 +492,6 @@
     "buttonLink": "/tool",
     "text": "Công Cụ Cho Lớp Học Đảo Ngược - Flash ZAN kiểm tra kiến thức, Chia Nhóm ghép cặp học tập, Timer quản lý thời gian - tất cả miễn phí."
   },
-  "relatedTools": [
-    "flash-anzan",
-    "group-divider",
-    "timer",
-    "magic-hat",
-    "random-picker"
-  ],
-  "relatedPosts": [
-    "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
-    "phuong-phap-day-hoc-lay-hoc-sinh-lam-trung-tam",
-    "flash-zan-5-phut-dau-gio-luyen-tinh-nham-nhanh"
-  ],
   "seo": {
     "title": "Lớp Học Đảo Ngược (Flipped Classroom) - Hướng Dẫn Thực Tế",
     "description": "Kinh nghiệm áp dụng mô hình Flipped Classroom tại Việt Nam. Cách làm video, tổ chức tiết học, vượt qua thách thức.",
@@ -514,7 +508,20 @@
     "type": "Article",
     "headline": "Lớp Học Đảo Ngược (Flipped Classroom) - Hướng Dẫn Thực Tế Cho Giáo Viên Việt Nam",
     "author": "Thầy Tuấn - Giáo viên THPT",
-    "datePublished": null,
+    "datePublished": "2026-02-06",
     "dateModified": null
-  }
+  },
+  "relatedTools": [
+    "flash-anzan",
+    "group-divider",
+    "timer",
+    "magic-hat",
+    "random-picker"
+  ],
+  "relatedPosts": [
+    "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
+    "phuong-phap-day-hoc-lay-hoc-sinh-lam-trung-tam",
+    "flash-zan-5-phut-dau-gio-luyen-tinh-nham-nhanh"
+  ],
+  "imageAlt": "Lớp Học Đảo Ngược (Flipped Classroom) - Hướng Dẫn Thực Tế Cho Giáo Viên Việt Nam"
 }

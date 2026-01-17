@@ -15,9 +15,16 @@
   ],
   "status": "published",
   "publishedAt": "2025-12-29T22:39:51.899Z",
+  "createdAt": "2025-12-29",
+  "image": "/blog/dong-ho-bam-gio-may-chieu-cong-cu-quan-ly-thoi-gian.png",
+  "imageAlt": "Đồng Hồ Bấm Giờ Máy Chiếu - Công Cụ Quản Lý Thời Gian Lớp Học Hiệu Quả",
+  "readingTime": 7,
   "author": {
     "name": "Thầy Minh",
     "role": "Giáo viên Tiểu học"
+  },
+  "translations": {
+    "en": "classroom-timer-how-i-stopped-running-over-time-in-lessons"
   },
   "content": {
     "intro": "\"Cô ơi hết giờ chưa?\" - \"Thầy ơi còn mấy phút?\" - Những câu hỏi quen thuộc khiến tôi mất bao nhiêu thời gian trả lời. Cho đến khi tôi phát hiện ra một công cụ đơn giản nhưng thay đổi hoàn toàn cách tôi quản lý tiết học: đồng hồ bấm giờ chiếu trên màn hình. Bài viết này chia sẻ hành trình từ tiết dạy \"cháy giáo án\" đến lớp học tự quản lý thời gian.",
@@ -267,16 +274,6 @@
     "buttonLink": "/tool/dong-ho-bam-gio",
     "text": "Thử Ngay Đồng Hồ Bấm Giờ Miễn Phí - Trải nghiệm công cụ quản lý thời gian được thiết kế riêng cho giáo viên. Giao diện đẹp, không quảng cáo, dễ sử dụng."
   },
-  "relatedTools": [
-    "timer",
-    "random-picker",
-    "group-divider"
-  ],
-  "relatedPosts": [
-    "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi",
-    "lop-dong-45-hoc-sinh-cach-tao-tuong-tac",
-    "tiet-on-tap-truoc-ky-thi-hoc-sinh-khong-ngu-gat"
-  ],
   "seo": {
     "title": "Đồng Hồ Bấm Giờ Máy Chiếu - Timer Lớp Học Online Miễn Phí",
     "description": "Kinh nghiệm sử dụng đồng hồ bấm giờ chiếu lên màn hình để quản lý thời gian tiết học. Timer online không quảng cáo, thiết kế đẹp cho giáo viên.",
@@ -296,5 +293,14 @@
     "datePublished": null,
     "dateModified": null
   },
-  "image": "/blog/dong-ho-bam-gio-may-chieu-cong-cu-quan-ly-thoi-gian.png"
+  "relatedTools": [
+    "timer",
+    "random-picker",
+    "group-divider"
+  ],
+  "relatedPosts": [
+    "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi",
+    "lop-dong-45-hoc-sinh-cach-tao-tuong-tac",
+    "tiet-on-tap-truoc-ky-thi-hoc-sinh-khong-ngu-gat"
+  ]
 }

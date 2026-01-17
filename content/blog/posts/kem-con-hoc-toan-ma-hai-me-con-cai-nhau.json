@@ -23,6 +23,9 @@
     "name": "Chị Hương",
     "role": "Mẹ bé lớp 3"
   },
+  "translations": {
+    "en": "km-con-hc-ton-m-hai-m-con-ci-nhau-mnh-quyt-nh-dng-li"
+  },
   "content": {
     "intro": "\"Mẹ nói bao nhiêu lần rồi, sao con không nghe!\" – \"Con không hiểu!\" – \"Con không hiểu hay con không chịu nghe?\" – Con bắt đầu khóc. Mình bắt đầu hối hận. Đó là kịch bản mỗi tối ở nhà mình suốt 6 tháng trời. Kèm con học toán mà mình như đang cãi nhau với con. Mình mệt, con cũng mệt. Cho đến một hôm, mình quyết định dừng lại.",
     "sections": [

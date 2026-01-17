@@ -11,15 +11,21 @@
     "phương pháp dạy học tích cực",
     "học sinh dạy học sinh"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-01-19T14:00:42.000Z",
   "createdAt": "2025-12-26",
   "image": "/blog/ky-thuat-jigsaw.jpg",
+  "imageAlt": "Học sinh làm việc nhóm theo kỹ thuật Jigsaw",
   "readingTime": 7,
+  "categoryOrder": 1,
+  "order": 17,
   "author": {
     "name": "Thầy Văn Hùng",
     "role": "Giáo viên THPT",
     "experience": "15 năm kinh nghiệm"
+  },
+  "translations": {
+    "en": "k-thut-jigsaw-mnh-ghp-bin-mi-hc-sinh-thnh-chuyn-gia-mt-phn"
   },
   "content": {
     "intro": "Bạn đã bao giờ giảng xong một bài dài, rồi hỏi học sinh, chỉ vài em nhớ? Tôi đã trải qua điều đó nhiều lần. Cho đến khi tôi thử kỹ thuật Jigsaw – để học sinh tự dạy nhau.",
@@ -251,6 +257,16 @@
     "buttonText": "Dùng ngay",
     "buttonLink": "/tool"
   },
+  "seo": {
+    "title": "Kỹ thuật Jigsaw (Mảnh ghép) – biến mỗi học sinh thành 'chuyên gia' một phần",
+    "description": "Thay vì giảng hết bài, tôi chia bài thành nhiều phần, mỗi nhóm 'chuyên' một phần rồi dạy lại cho nhau. Kỹ thuật Jigsaw đã thay đổi cách tôi dạy.",
+    "keywords": "kỹ thuật jigsaw, kỹ thuật mảnh ghép, dạy học hợp tác, cooperative learning, phương pháp dạy học tích cực, học sinh dạy học sinh"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-19",
+    "author": "Thầy Văn Hùng"
+  },
   "relatedTools": [
     {
       "name": "Chia Nhóm",
@@ -277,8 +293,5 @@
     "ky-thuat-think-pair-share-trong-lop-hoc",
     "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
     "lop-dong-45-hoc-sinh-cach-tao-tuong-tac"
-  ],
-  "imageAlt": "Học sinh làm việc nhóm theo kỹ thuật Jigsaw",
-  "categoryOrder": 1,
-  "order": 17
+  ]
 }

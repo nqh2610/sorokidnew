@@ -13,11 +13,17 @@
     "thao giảng thành công",
     "dạy mẫu"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-01-27T23:46:37.000Z",
+  "createdAt": "2026-01-16",
+  "image": "/blog/default-blog-image.jpg",
+  "readingTime": 9,
   "author": {
     "name": "Cô Thảo",
     "role": "Giáo viên 20 năm kinh nghiệm"
+  },
+  "translations": {
+    "en": "kinh-nghim-dy-thao-ging-thnh-cng-chia-s-t-gio-vin-20-nm-ng-l"
   },
   "content": {
     "intro": "20 năm đứng lớp, không biết bao nhiêu lần thao giảng. Từ những tiết đầu tiên run như cầy sấy, đến giờ tôi đã có thể bình tĩnh đứng trước hàng chục đồng nghiệp và ban giám hiệu. Bí quyết không phải \"dạy giỏi sẵn\", mà là những kinh nghiệm xương máu tích lũy qua từng lần. Bài viết này chia sẻ tất cả những gì tôi đã học được.",
@@ -473,18 +479,6 @@
     "buttonLink": "/tool",
     "text": "Công Cụ Cho Tiết Thao Giảng Ấn Tượng - Chiếc Nón Kỳ Diệu, Timer, Đua Vịt - tất cả miễn phí, giao diện đẹp, không quảng cáo."
   },
-  "relatedTools": [
-    "magic-hat",
-    "timer",
-    "duck-race",
-    "random-picker",
-    "group-divider"
-  ],
-  "relatedPosts": [
-    "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
-    "phuong-phap-day-hoc-lay-hoc-sinh-lam-trung-tam",
-    "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi"
-  ],
   "seo": {
     "title": "Kinh Nghiệm Dạy Thao Giảng Thành Công - Bí Quyết Từ Giáo Viên 20 Năm",
     "description": "Chia sẻ kinh nghiệm dạy thao giảng: chuẩn bị giáo án, xử lý tình huống, sử dụng công cụ dạy học tích cực. Từ thất bại đến thành công.",
@@ -501,7 +495,20 @@
     "type": "Article",
     "headline": "Kinh Nghiệm Dạy Thao Giảng Thành Công - Chia Sẻ Từ Giáo Viên 20 Năm Đứng Lớp",
     "author": "Cô Thảo - Giáo viên 20 năm kinh nghiệm",
-    "datePublished": null,
+    "datePublished": "2026-01-27",
     "dateModified": null
-  }
+  },
+  "relatedTools": [
+    "magic-hat",
+    "timer",
+    "duck-race",
+    "random-picker",
+    "group-divider"
+  ],
+  "relatedPosts": [
+    "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
+    "phuong-phap-day-hoc-lay-hoc-sinh-lam-trung-tam",
+    "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi"
+  ],
+  "imageAlt": "Kinh Nghiệm Dạy Thao Giảng Thành Công - Chia Sẻ Từ Giáo Viên 20 Năm Đứng Lớp"
 }

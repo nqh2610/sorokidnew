@@ -1,18 +1,33 @@
 {
   "slug": "vi-sao-cang-kem-con-hoc-toan-ca-nha-cang-met",
   "title": "Mình đã ngồi kèm con học toán đến mức cả hai đều khóc",
-  "description": "Tối nào cũng vậy – bắt đầu bằng hy vọng, kết thúc bằng la hét. Mình tưởng mình đang giúp con, hóa ra mình đang làm cả nhà thêm mệt.",
+  "description": "Tối nào cũng vậy – bắt đầu bằng hy vọng, kết thúc bằng la hét. Mình tưởng mình đang giúp con, hóa ra mình đang làm cả nhà thêm mệt. Đây là cách mình thay đổi.",
   "category": "phu-huynh-kem-con-hoc-toan",
   "keywords": [
     "kèm con học toán mệt",
     "dạy con học toán căng thẳng",
-    "phụ huynh kèm con học"
+    "phụ huynh kèm con học",
+    "stress khi kèm con học",
+    "la con khi học toán",
+    "mẹ con cãi nhau vì bài tập",
+    "cách kèm con học hiệu quả",
+    "con khóc khi học toán",
+    "phụ huynh không phải giáo viên",
+    "mối quan hệ mẹ con khi học",
+    "buổi tối căng thẳng vì bài vở",
+    "thoát khỏi áp lực kèm con học"
   ],
   "status": "published",
   "publishedAt": "2025-12-25T02:38:28.841Z",
   "createdAt": "2025-12-25",
   "image": "/blog/me-kem-con-hoc-toan-tai-nha.jpg",
-  "readingTime": 6,
+  "imageAlt": "Mẹ châu Á kiên nhẫn kèm con học toán tại nhà",
+  "readingTime": 13,
+  "categoryOrder": 3,
+  "order": 3,
+  "translations": {
+    "en": "mnh-ngi-km-con-hc-ton-n-mc-c-hai-u-khc"
+  },
   "content": {
     "intro": "8 giờ tối. Mình vừa dọn xong bát đĩa, ngồi xuống cạnh con, mở vở toán ra. \"Nào, 7 cộng 5 bằng mấy?\" Con im lặng. Mình hỏi lại. Con vẫn im. Mình bắt đầu nóng. 30 phút sau, con khóc. Mình cũng muốn khóc.",
     "sections": [
@@ -146,27 +161,62 @@
   "faq": [
     {
       "question": "Không kèm con thì con có tự giác học không?",
-      "answer": "Thật ra ban đầu cũng phải tập. Mình đặt giờ cố định mỗi ngày, nhắc con nhẹ nhàng. Dần dần con quen. Quan trọng là mình không ngồi cạnh để la nữa – con đỡ sợ, học thoải mái hơn."
+      "answer": "Ban đầu cần tập dần. Đặt giờ cố định mỗi ngày, nhắc nhẹ nhàng. Dần dần con quen sẽ tự giác hơn. Quan trọng là không ngồi cạnh la mắng nữa – con đỡ sợ, học thoải mái hơn. Thưởng cho con khi học xong cũng tạo động lực."
     },
     {
       "question": "Nếu con hỏi bài mà không ai trả lời thì sao?",
-      "answer": "Mình cho con dùng ứng dụng có hướng dẫn từng bước. Nếu vẫn không hiểu thì để đó, hôm sau hỏi cô. Không phải bài nào cũng phải làm đúng ngay tối hôm đó."
+      "answer": "Cho con dùng ứng dụng có hướng dẫn từng bước như Sorokid. Nếu vẫn không hiểu, để đó hôm sau hỏi cô. Không phải bài nào cũng phải làm đúng ngay tối hôm đó. Quan trọng là con cố gắng, không phải hoàn hảo."
     },
     {
-      "question": "Bạn dùng ứng dụng gì?",
-      "answer": "Mình cho con thử Sorokid. Thích cái nó có hình ảnh trực quan, con tự làm được, và mình xem được con học đến đâu mà không cần ngồi cạnh."
+      "question": "Tại sao mình kèm con lại căng thẳng hơn cô giáo kèm?",
+      "answer": "Vì phụ huynh thiếu kỹ năng sư phạm và mang cảm xúc cá nhân vào. Khi cô giáo sửa bài, cô chỉ sửa bài. Khi mẹ sửa bài, mẹ còn thất vọng, lo lắng, sốt ruột. Con cảm nhận được và phản ứng lại."
     },
     {
-      "question": "Con có điểm kém hơn sau khi không kèm?",
-      "answer": "Thật ra không. Điểm vẫn tương đương, nhưng con đỡ sợ toán hơn. Mình thấy thế là được. Quan trọng hơn điểm số là con không ghét học."
+      "question": "Con có điểm kém hơn sau khi mình không kèm?",
+      "answer": "Thường là không. Nhiều phụ huynh thấy điểm vẫn tương đương hoặc cải thiện vì con đỡ sợ toán. Quan trọng hơn điểm số là con không còn ghét học – đó mới là nền tảng lâu dài."
+    },
+    {
+      "question": "Làm sao để ngừng la con khi kèm học?",
+      "answer": "Cách tốt nhất: KHÔNG KÈM. Để công cụ (app, video) dạy con, bạn chỉ động viên. Nếu vẫn muốn kèm, hãy đặt quy tắc: khi bắt đầu nóng, DỪNG LẠI, nghỉ 10 phút. Đừng cố tiếp tục khi đang bực."
+    },
+    {
+      "question": "Con ỷ lại vào mẹ, không chịu tự làm. Phải làm sao?",
+      "answer": "Con ỷ lại vì con biết mẹ sẽ làm giúp hoặc nói đáp án. Hãy thay đổi: 'Mẹ không biết bài này. Con tự làm đi.' Hoặc cho con học với app – không có ai để ỷ lại, con phải tự nghĩ."
+    },
+    {
+      "question": "Chồng tôi bảo phải nghiêm khắc hơn con mới nghe. Đúng không?",
+      "answer": "SAI. Nghiêm khắc khi kèm học chỉ tạo thêm sợ hãi, khiến con ghét học hơn. Kỷ luật cần có trong việc tạo thói quen (đúng giờ, đều đặn), nhưng khi học cần KIÊN NHẪN và ĐỒNG CẢM."
+    },
+    {
+      "question": "Mình đã la con nhiều rồi, giờ muốn sửa sai. Bắt đầu từ đâu?",
+      "answer": "Bước 1: Xin lỗi con thành thật. Bước 2: Dừng kèm trực tiếp 1-2 tuần, chỉ chơi với con. Bước 3: Dùng app/video thay mình dạy. Bước 4: Chỉ khen, không chê. Mối quan hệ sẽ dần được sửa chữa."
+    },
+    {
+      "question": "Có những dấu hiệu nào cho thấy cần dừng kèm con?",
+      "answer": "Con khóc khi học. Con tìm cớ né tránh (đau bụng, mệt). Bạn thường xuyên nâng giọng. Buổi tối căng thẳng hơn vui vẻ. Mối quan hệ mẹ con xấu đi. Nếu có 2-3 dấu hiệu này, nên thử cách khác."
+    },
+    {
+      "question": "App học toán có thay thế được phụ huynh không?",
+      "answer": "App thay thế VIỆC DẠY, không thay thế SỰ QUAN TÂM. Con vẫn cần bố mẹ khen ngợi, động viên, ăn mừng tiến bộ. Nhưng phần dạy kiến thức, app làm tốt hơn vì không mang cảm xúc tiêu cực."
     }
   ],
   "cta": {
     "text": "Nếu bạn cũng đang mệt vì kèm con mỗi tối, thử để con tự học một thời gian xem. Sorokid cho dùng thử miễn phí.",
-    "buttonText": "Thử xem",
+    "buttonText": "Thử ngay",
     "buttonLink": "/register"
   },
-  "imageAlt": "Mẹ châu Á kiên nhẫn kèm con học toán tại nhà",
-  "categoryOrder": 3,
-  "order": 3
+  "seo": {
+    "title": "Kèm con học toán cả nhà đều mệt – Lỗi ở ai và cách thay đổi",
+    "description": "Tối nào cũng vậy – bắt đầu bằng hy vọng, kết thúc bằng la hét. Mình tưởng giúp con, hóa ra làm cả nhà thêm mệt. Đây là cách mình thay đổi.",
+    "keywords": "kèm con học toán mệt, dạy con học toán căng thẳng, phụ huynh kèm con học, stress khi dạy con"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-25",
+    "author": "Chị Thanh Hương"
+  },
+  "author": {
+    "name": "Chị Thanh Hương",
+    "bio": "Mẹ của bé trai lớp 3, từng stress nặng vì kèm con học mỗi tối, đã tìm được cách mới nhẹ nhàng hơn"
+  }
 }

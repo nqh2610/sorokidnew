@@ -13,11 +13,17 @@
     "dạy học tích cực",
     "học sinh làm dự án"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-01-21T07:54:23.000Z",
+  "createdAt": "2026-01-16",
+  "image": "/blog/default-blog-image.jpg",
+  "readingTime": 9,
   "author": {
     "name": "Thầy Hùng",
     "role": "Giáo viên THCS"
+  },
+  "translations": {
+    "en": "hc-qua-d-n-pbl-hng-dn-thc-hnh-chi-tit-cho-gio-vin"
   },
   "content": {
     "intro": "\"Thầy ơi, mình có được làm dự án tiếp không ạ?\" - Câu hỏi khiến tôi biết mình đã đi đúng hướng. Project-Based Learning (PBL) - Học qua dự án từng là nỗi sợ của tôi: sợ mất thời gian, sợ lộn xộn, sợ không kiểm soát được. Nhưng sau khi áp dụng, tôi nhận ra đây là phương pháp tạo ra những bài học đáng nhớ nhất. Bài viết này chia sẻ hành trình PBL của tôi.",
@@ -387,17 +393,6 @@
     "buttonLink": "/tool",
     "text": "Công Cụ Hỗ Trợ Dạy Học Dự Án - Chia nhóm, quản lý thời gian, gọi học sinh ngẫu nhiên - tất cả trong một Toolbox miễn phí."
   },
-  "relatedTools": [
-    "group-divider",
-    "timer",
-    "random-picker",
-    "magic-hat"
-  ],
-  "relatedPosts": [
-    "ky-thuat-jigsaw-manh-ghep",
-    "phuong-phap-day-hoc-lay-hoc-sinh-lam-trung-tam",
-    "chia-nhom-30-giay-giai-phap-tiet-hoc-45-phut"
-  ],
   "seo": {
     "title": "Học Qua Dự Án PBL - Hướng Dẫn Thực Hành Cho Giáo Viên",
     "description": "Hướng dẫn từng bước áp dụng Project-Based Learning trong lớp học. Thiết kế dự án, chia nhóm, đánh giá và khắc phục khó khăn thường gặp.",
@@ -414,7 +409,19 @@
     "type": "Article",
     "headline": "Học Qua Dự Án (PBL) - Hướng Dẫn Thực Hành Chi Tiết Cho Giáo Viên",
     "author": "Thầy Hùng - Giáo viên THCS",
-    "datePublished": null,
+    "datePublished": "2026-01-21",
     "dateModified": null
-  }
+  },
+  "relatedTools": [
+    "group-divider",
+    "timer",
+    "random-picker",
+    "magic-hat"
+  ],
+  "relatedPosts": [
+    "ky-thuat-jigsaw-manh-ghep",
+    "phuong-phap-day-hoc-lay-hoc-sinh-lam-trung-tam",
+    "chia-nhom-30-giay-giai-phap-tiet-hoc-45-phut"
+  ],
+  "imageAlt": "Học Qua Dự Án (PBL) - Hướng Dẫn Thực Hành Chi Tiết Cho Giáo Viên"
 }

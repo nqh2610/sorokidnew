@@ -1,165 +1,363 @@
 {
   "slug": "my-child-is-accurate-but-slow-at-math",
-  "title": "My Child Is Accurate But Slow at Math – Is That a Problem?",
-  "description": "When mathematical accuracy comes at the cost of speed, and how to find the right balance.",
+  "title": "My Child Gets Math Right But Does It Slowly – Causes and 5 Effective Ways to Build Speed",
+  "description": "Your child calculates correctly but often runs out of time on tests? 4 reasons kids are slow at math and 5 pressure-free ways to build calculation speed.",
   "category": "math-struggles",
   "keywords": [
     "accurate but slow",
     "math speed",
     "careful math student",
-    "math fluency"
+    "math fluency",
+    "running out of time on tests",
+    "improve calculation speed",
+    "train math speed for kids",
+    "finger counting math",
+    "memorize addition facts",
+    "mental calculation speed",
+    "soroban fast calculation",
+    "timed practice math"
   ],
   "status": "published",
-  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "publishedAt": "2026-01-20T03:20:15.000Z",
   "createdAt": "2026-02-01",
   "image": "/blog/lam-toan-cham.jpg",
-  "imageAlt": "Student carefully solving math problems",
-  "readingTime": 6,
+  "imageAlt": "Asian child doing homework with clock beside them",
+  "readingTime": 12,
   "author": {
-    "name": "Michelle Torres",
-    "role": "Math Education Consultant"
+    "name": "Sarah",
+    "role": "Mom of 3rd grader"
+  },
+  "translations": {
+    "vi": "con-lam-toan-dung-nhung-cham"
   },
   "content": {
-    "intro": "Your child gets math problems right – but takes forever. They're not struggling with concepts, just pace. Should you push for speed?",
+    "intro": "My daughter gets every problem right. But on a 15-minute test, she only finishes 6 out of 10 questions. Not because she doesn't know how – she just runs out of time! Gets a 60% when she should have gotten 90-100%. I know she's correct, but the teacher grades what she submits. This has to be fixable, right?",
     "sections": [
       {
         "type": "heading",
         "level": 2,
-        "text": "The Good News First"
+        "text": "Why Does Calculation Speed Matter?"
       },
       {
         "type": "paragraph",
-        "text": "Accuracy matters more than speed. A child who understands math deeply and gets answers right has a solid foundation. Many slow, accurate kids become strong mathematicians."
-      },
-      {
-        "type": "heading",
-        "level": 2,
-        "text": "When Speed Matters"
-      },
-      {
-        "type": "paragraph",
-        "text": "Unfortunately, real-world constraints make speed relevant:"
+        "text": "In elementary school, grades depend on:"
       },
       {
         "type": "list",
         "items": [
-          "Standardized tests have time limits",
-          "Homework can't take all evening",
-          "Mental math situations require quick responses",
-          "Building fluency requires some automaticity",
-          "Math anxiety can develop from always being last"
+          "Being CORRECT",
+          "Being FAST (within time limits)"
         ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Many tests have time limits. Slow = incomplete = lost points. Sadly, your child KNOWS how to do it, but their grade doesn't reflect that."
+      },
+      {
+        "type": "paragraph",
+        "text": "More importantly, as kids advance, problems get complex. If still 'wrestling' with basic calculations, the brain has no energy left for higher-level thinking."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Calculation speed is a FOUNDATION. When basic operations become REFLEXIVE, the brain is free to focus on complex problem-solving."
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "Why Accurate Kids Are Slow"
+        "text": "4 Reasons Kids Calculate Slowly"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Counting Instead of Remembering"
+      },
+      {
+        "type": "paragraph",
+        "text": "Every time they see 7+5, they count: '7... 8, 9, 10, 11, 12'. Takes 3-5 seconds for ONE calculation."
+      },
+      {
+        "type": "paragraph",
+        "text": "Meanwhile, kids who've memorized it: '7+5=12' – instantly, in 1 second."
+      },
+      {
+        "type": "paragraph",
+        "text": "On a 10-question test: Counting takes 30-50 seconds per problem, memorized takes 10 seconds. That 20-40 second difference per question = running out of time."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Haven't Memorized Multiplication Tables"
+      },
+      {
+        "type": "paragraph",
+        "text": "Same with multiplication and division. If they see 7×8 and have to count '7, 14, 21, 28, 35, 42, 49, 56...' – very slow."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Lack of Confidence, Constant Double-Checking"
+      },
+      {
+        "type": "paragraph",
+        "text": "They finish a problem but aren't sure it's right. Check once. Twice. Maybe three times. It was right all along but they still doubt."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lack of confidence = wasted time."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Unfamiliar with Problem Types"
+      },
+      {
+        "type": "paragraph",
+        "text": "New problem → Read slowly → Think about approach → Takes time. If familiar with the type, they read it and know immediately what to do."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "5 Effective Ways to Build Calculation Speed"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Memorize Basic Math Facts"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kids need to KNOW BY HEART (without thinking):"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Addition and subtraction within 20",
+          "Multiplication and division up to 9×9"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Standard: Answer WITHIN 3 SECONDS. If it takes longer than 3 seconds, they haven't memorized it – they're calculating."
       },
       {
         "type": "table",
         "headers": [
-          "Reason",
-          "Description"
+          "Operation",
+          "Goal",
+          "How to Practice"
         ],
         "rows": [
           [
-            "Perfectionism",
-            "Won't move on until absolutely certain"
+            "Addition within 10",
+            "< 2 seconds",
+            "Flashcards, Sorokid daily"
           ],
           [
-            "Fear of mistakes",
-            "Double and triple checks everything"
+            "Addition within 20",
+            "< 3 seconds",
+            "After mastering within 10"
           ],
           [
-            "Conscious processing",
-            "Hasn't automated basic facts"
+            "Subtraction within 20",
+            "< 3 seconds",
+            "Parallel with addition"
           ],
           [
-            "Methodical personality",
-            "Naturally thorough and careful"
-          ],
-          [
-            "Lack of confidence",
-            "Knows the answer but second-guesses"
+            "Times tables 2-9",
+            "< 3 seconds",
+            "One table at a time, then mix"
           ]
         ]
       },
       {
         "type": "heading",
+        "level": 3,
+        "text": "2. Practice with Timer (Controlled)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Start with COMFORTABLE time limits, then gradually reduce:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Weeks 1-2:** 10 problems in 5 minutes (30 sec/problem)",
+          "**Weeks 3-4:** 10 problems in 4 minutes (24 sec/problem)",
+          "**Weeks 5-6:** 10 problems in 3 minutes (18 sec/problem)",
+          "**Goal:** 10 problems in 2 minutes (12 sec/problem)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Important: DON'T CREATE PRESSURE. If your child gets stressed with timing, stop the timer. Goal is gradual improvement, not competition."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Learn Soroban – Calculate Through Visualization"
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban helps the brain visualize numbers. Instead of counting '7+5 = 8,9,10,11,12', they see the abacus image in their head and know the answer instantly."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is called Anzan (mental math through visualization). Much faster than counting."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Practice CONSISTENTLY, Not Long"
+      },
+      {
+        "type": "paragraph",
+        "text": "10 minutes daily × 30 days > 5 hours on the weekend."
+      },
+      {
+        "type": "paragraph",
+        "text": "The brain needs time to 'absorb' and consolidate. Short, consistent practice is more effective than cramming."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Build Confidence Through Small Wins"
+      },
+      {
+        "type": "paragraph",
+        "text": "Start with problems at their level. They do it fast, correctly → Confidence grows. Then increase difficulty."
+      },
+      {
+        "type": "paragraph",
+        "text": "Confidence = no excessive rechecking = time saved."
+      },
+      {
+        "type": "heading",
         "level": 2,
-        "text": "How to Build Speed Without Sacrificing Accuracy"
+        "text": "Realistic Improvement Timeline"
       },
       {
-        "type": "heading",
-        "level": 3,
-        "text": "1. Automate Basic Facts"
-      },
-      {
-        "type": "paragraph",
-        "text": "The biggest speed killer is not having instant recall of addition, subtraction, multiplication, and division facts. Practice until these are reflexive, not calculated."
-      },
-      {
-        "type": "heading",
-        "level": 3,
-        "text": "2. Gentle Time Awareness"
-      },
-      {
-        "type": "paragraph",
-        "text": "Introduce time as information, not pressure. \"Let's see how long this takes\" rather than \"You have 5 minutes.\" Build awareness before building pressure."
-      },
-      {
-        "type": "heading",
-        "level": 3,
-        "text": "3. Race Themselves, Not Others"
-      },
-      {
-        "type": "paragraph",
-        "text": "Personal bests are motivating. \"You did 10 problems in 8 minutes last week. Can you do it in 7 minutes this week?\" Progress, not comparison."
-      },
-      {
-        "type": "heading",
-        "level": 3,
-        "text": "4. Practice Letting Go"
-      },
-      {
-        "type": "paragraph",
-        "text": "For perfectionists: \"What's your best guess? Write it and move on.\" Sometimes getting it wrong isn't catastrophic."
-      },
-      {
-        "type": "heading",
-        "level": 3,
-        "text": "5. Build Confidence"
-      },
-      {
-        "type": "paragraph",
-        "text": "Kids who trust their abilities don't need to triple-check. Confidence comes from consistent practice and success."
+        "type": "table",
+        "headers": [
+          "Phase",
+          "Goal",
+          "Practice Time"
+        ],
+        "rows": [
+          [
+            "Month 1",
+            "Master add/subtract within 10",
+            "10-15 min/day"
+          ],
+          [
+            "Month 2",
+            "Master add/subtract within 20",
+            "10-15 min/day"
+          ],
+          [
+            "Month 3",
+            "Start times tables 2, 5, 10",
+            "10-15 min/day"
+          ],
+          [
+            "Month 4-5",
+            "Complete times tables 1-9",
+            "10-15 min/day"
+          ],
+          [
+            "Month 6",
+            "Speed drills combining all",
+            "10-15 min/day"
+          ]
+        ]
       },
       {
         "type": "callout",
         "style": "tip",
-        "text": "The goal is fluency, not frantic speed. A fluent math student is accurate AND reasonably quick – not because they rush, but because the basics are automatic."
-      }
-    ],
-    "faq": [
-      {
-        "question": "Should I time homework?",
-        "answer": "Not generally. But you can note how long things take and set reasonable limits. If homework is taking 2 hours when it should take 30 minutes, that's information to share with the teacher."
+        "text": "After 3 months of consistent practice, you'll notice your child finishing tests faster. After 6 months, speed becomes reflexive."
       },
       {
-        "question": "Will speed come naturally with practice?",
-        "answer": "Usually, yes. As concepts become more familiar and facts become automatic, speed naturally improves. But deliberate fluency practice can accelerate this."
+        "type": "heading",
+        "level": 2,
+        "text": "My Daughter's Results"
       },
       {
-        "question": "My child panics under time pressure. What do I do?",
-        "answer": "Start with no pressure and very gradually add time awareness. Build confidence first. Consider whether anxiety needs to be addressed separately."
+        "type": "paragraph",
+        "text": "After 3 months practicing with Sorokid:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "She finishes 15-minute tests with 5 MINUTES LEFT to double-check",
+          "Grades improved from 60-70% to 90-100% (same content, just faster)",
+          "More confident, no longer 'wrestling' with each calculation",
+          "Most importantly: she ENJOYS math more because she sees herself succeeding"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Slow doesn't mean bad. Your child is ACCURATE – just needs to be faster. And speed is absolutely something that can be trained."
       }
-    ],
-    "cta": {
-      "type": "soft",
-      "text": "SoroKid builds math fluency gradually – helping accurate kids become accurate AND confident with pace.",
-      "buttonText": "Try Free Trial",
-      "buttonUrl": "/pricing"
+    ]
+  },
+  "faq": [
+    {
+      "question": "How long until my child speeds up?",
+      "answer": "About 2-3 months of consistent practice (10-15 min/day), you'll see noticeable speed improvement. After 6 months, basic facts become reflexive."
+    },
+    {
+      "question": "Does using a timer create pressure?",
+      "answer": "It can, if used wrong. Principle: start with comfortable time limits, reduce gradually. If your child gets stressed → stop the timer. Goal is cheerful improvement, not competition."
+    },
+    {
+      "question": "My child is in 4th-5th grade and still slow. Is it too late?",
+      "answer": "Not too late, but needs focus. At 4th-5th grade, problems are more complex. If basic facts aren't fast, they'll struggle. Prioritize Math Facts immediately."
+    },
+    {
+      "question": "Flashcards or app – which is better?",
+      "answer": "Combine both. Flashcards are good for quick drilling, apps (like Sorokid) have gamification that keeps kids interested. Variety = kids don't get bored."
+    },
+    {
+      "question": "How does Soroban help with speed?",
+      "answer": "Soroban trains the brain to visualize numbers as images (abacus). When mastered, they 'see' the picture in their head and know the answer instantly – called Anzan. Much faster than counting."
+    },
+    {
+      "question": "My child is scared of timed tests. What do I do?",
+      "answer": "Practice at home with gradual pressure. Start with no timer. Then timer with generous time limits. Slowly increase pressure so they adapt. As confidence grows, fear decreases."
+    },
+    {
+      "question": "Should I have my child compete with classmates?",
+      "answer": "Depends on personality. If they enjoy competition → can be helpful. If sensitive and tends to compare negatively → don't. Best is competing with THEMSELVES: faster today than yesterday."
+    },
+    {
+      "question": "Besides Sorokid, what other ways build speed?",
+      "answer": "Flashcards, math board games (like Math War), other apps (Prodigy, Khan Academy Kids), family competitions. Variety keeps kids from getting bored."
+    },
+    {
+      "question": "My child writes numbers slowly. Is that related?",
+      "answer": "Yes. Slow/messy number writing also takes time. Practice writing numbers alongside calculation practice. Sorokid can help since they just tap, no writing needed."
+    },
+    {
+      "question": "Is 10 minutes/day enough?",
+      "answer": "Enough if consistent. 10 min × 30 days = 300 min = 5 hours. More effective than cramming 5 hours on the weekend because the brain needs time to consolidate between sessions."
     }
+  ],
+  "cta": {
+    "text": "Sorokid helps your child build calculation speed with short 5-10 minute daily lessons. Includes timing and achievements to track progress.",
+    "buttonText": "Try Free Practice",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "Child Accurate But Slow at Math – Causes and 5 Ways to Build Speed | Sorokid",
+    "metaDescription": "Your child gets math right but runs out of time on tests? 4 reasons kids calculate slowly and 5 effective, pressure-free ways to build speed.",
+    "keywords": "child slow at math, build calculation speed, math fluency, running out of time on tests"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-20",
+    "author": "Sarah"
   },
   "postId": "con-lam-toan-dung-nhung-cham"
 }

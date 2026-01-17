@@ -6,16 +6,28 @@
   "keywords": [
     "con chán học soroban",
     "duy trì động lực học",
-    "con bỏ học giữa chừng"
+    "con bỏ học giữa chừng",
+    "con không thích học soroban",
+    "cách giúp con yêu học",
+    "con mất hứng thú học",
+    "khuyến khích con học soroban",
+    "giải quyết chán học",
+    "tạo động lực học toán",
+    "trẻ chán học bàn tính",
+    "cách đối phó khi con chán",
+    "nuôi dưỡng niềm đam mê học"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-01-24T03:07:56.000Z",
   "createdAt": "2025-12-25",
   "image": "/blog/be-chan-hoc.jpg",
   "imageAlt": "Bé trai châu Á gục đầu xuống bàn với bàn tính Soroban bên cạnh",
-  "readingTime": 6,
+  "readingTime": 12,
   "categoryOrder": 1,
   "order": 32,
+  "translations": {
+    "en": "what-to-do-when-child-bored-with-soroban"
+  },
   "content": {
     "intro": "Tháng đầu con hào hứng: \"Mẹ ơi, con muốn học Sorokid!\" Tháng thứ 2: \"Con không muốn nữa.\" Mình không biết nên ép hay cho nghỉ.",
     "sections": [
@@ -85,16 +97,62 @@
   "faq": [
     {
       "question": "Nên ép con học tiếp hay cho nghỉ?",
-      "answer": "Không ép quá, cũng không bỏ hẳn. Giảm thời gian, thêm động lực, nghỉ ngắn nếu cần. Sau đó tiếp tục."
+      "answer": "Không ép quá, cũng không bỏ hẳn. Giảm thời gian, thêm động lực, nghỉ ngắn nếu cần. Sau đó tiếp tục với nhịp độ nhẹ nhàng hơn."
     },
     {
       "question": "Nếu con nhất định không học thì sao?",
-      "answer": "Cho nghỉ 1 tuần, không nhắc. Sau đó thử lại nhẹ nhàng. Nếu vẫn không thì có thể chưa phải thời điểm phù hợp."
+      "answer": "Cho nghỉ 1 tuần, không nhắc. Sau đó thử lại nhẹ nhàng với cách tiếp cận mới: chơi nhiều hơn học, cho con chọn bài. Nếu vẫn không thì có thể chưa phải thời điểm phù hợp."
+    },
+    {
+      "question": "Giai đoạn chán thường kéo dài bao lâu?",
+      "answer": "Tùy từng trẻ, thường 1-3 tuần. Quan trọng là cách xử lý của phụ huynh. Đồng hành, không ép, tìm cách tạo hứng thú mới."
+    },
+    {
+      "question": "Có nên thưởng khi con học không?",
+      "answer": "Có, nhưng đừng quá nhiều. Phần thưởng nhỏ (sticker, thời gian chơi, đi công viên) giúp duy trì động lực mà không tạo thói quen đòi hỏi."
+    },
+    {
+      "question": "Con chán vì gặp bài khó, phải làm sao?",
+      "answer": "Quay lại bài dễ hơn để lấy lại tự tin. Chia bài khó thành nhiều bước nhỏ. Khen khi con tiến bộ dù chỉ một chút."
+    },
+    {
+      "question": "Giảm thời gian học xuống bao nhiêu là phù hợp?",
+      "answer": "Từ 15 phút xuống 10 phút, hoặc từ 10 xuống 5 phút. Quan trọng là vẫn duy trì đều đặn mỗi ngày. Chất lượng quan trọng hơn số lượng."
+    },
+    {
+      "question": "Có nên cho con học cùng bạn không?",
+      "answer": "Có thể giúp tạo động lực. Học cùng anh chị em, bạn bè sẽ vui hơn. Thi đua nhẹ nhàng (ai làm đúng nhiều hơn) cũng hiệu quả."
+    },
+    {
+      "question": "Làm sao để con thấy tiến bộ của mình?",
+      "answer": "Ghi lại kết quả mỗi tuần: số bài đúng, thời gian làm. Cho con xem lại để thấy 'tuần này con làm nhanh hơn tuần trước'. App cũng có biểu đồ tiến bộ."
+    },
+    {
+      "question": "Con chán Soroban nhưng vẫn thích toán, có nên dừng không?",
+      "answer": "Có thể chuyển sang cách học toán khác tạm thời (game toán, bài toán ứng dụng). Khi con sẵn sàng có thể quay lại Soroban. Không nên ép nếu con có cách học phù hợp hơn."
+    },
+    {
+      "question": "Vượt qua giai đoạn chán có lợi ích gì?",
+      "answer": "Con học được sự kiên trì, kỷ luật. Đây là kỹ năng quan trọng không chỉ cho Soroban mà cho mọi việc trong cuộc sống. Vượt qua khó khăn giúp con tự tin hơn."
     }
   ],
   "cta": {
     "text": "Sorokid có hệ thống phần thưởng giúp duy trì động lực cho con.",
     "buttonText": "Tìm hiểu thêm",
     "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Con học Soroban được 2 tháng rồi chán – mình làm thế này",
+    "description": "Ban đầu con hào hứng lắm. Sau 2 tháng bắt đầu chán. Mình không ép, mình tìm cách khác.",
+    "keywords": "con chán học soroban, duy trì động lực học, con bỏ học giữa chừng"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-24",
+    "author": "Nguyễn Thu Hà"
+  },
+  "author": {
+    "name": "Minh Anh",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
   }
 }

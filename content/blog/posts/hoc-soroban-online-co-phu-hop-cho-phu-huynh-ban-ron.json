@@ -6,7 +6,16 @@
   "keywords": [
     "học soroban online",
     "soroban cho phụ huynh bận",
-    "học soroban tại nhà"
+    "học soroban tại nhà",
+    "app học soroban cho bé",
+    "con tự học soroban",
+    "phụ huynh bận rộn dạy con",
+    "soroban không cần đưa đón",
+    "theo dõi con học từ xa",
+    "linh hoạt thời gian học",
+    "học soroban tiết kiệm",
+    "không cần biết soroban vẫn dạy con",
+    "con tự giác học"
   ],
   "status": "published",
   "publishedAt": "2026-01-02T09:38:01.143Z",
@@ -14,6 +23,11 @@
   "image": "/blog/hoc-soroban-online-tai-nha.jpg",
   "imageAlt": "Trẻ học Soroban online tại nhà cho phụ huynh bận rộn",
   "readingTime": 5,
+  "categoryOrder": 1,
+  "order": 21,
+  "translations": {
+    "en": "soroban-online-for-busy-parents"
+  },
   "content": {
     "intro": "Khi nghe nói về Soroban, mình nghĩ: \"Hay đấy, nhưng làm sao? Mình đi làm cả ngày, ai ngồi kèm con?\" Hóa ra có cách khác.",
     "sections": [
@@ -155,6 +169,18 @@
     "buttonText": "Thử xem",
     "buttonLink": "/register"
   },
-  "categoryOrder": 1,
-  "order": 21
+  "seo": {
+    "title": "Mình đi làm cả ngày – làm sao kèm con học Soroban?",
+    "description": "Mình từng nghĩ học Soroban phải có người ngồi kèm. Hóa ra con có thể tự học online – và mình theo dõi từ xa.",
+    "keywords": "học soroban online, soroban cho phụ huynh bận, học soroban tại nhà"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-02",
+    "author": "Chị Kim Oanh"
+  },
+  "author": {
+    "name": "Chị Kim Oanh",
+    "bio": "Mẹ của bé gái lớp 1, nhân viên văn phòng bận rộn đã tìm được cách cho con học Soroban mà không cần nghỉ làm"
+  }
 }

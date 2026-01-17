@@ -1,174 +1,582 @@
 {
   "slug": "from-hating-math-to-loving-it-6-month-soroban",
-  "title": "From Hating Math to Actually Liking It: Our 6-Month Soroban Journey",
-  "description": "My daughter used to cry over math homework. After 6 months of soroban, she volunteers to help with grocery calculations. Here's what changed.",
+  "title": "From 'I Hate Math' to 'Can We Do More?' Our 6-Month Soroban Transformation",
+  "description": "Six months ago, my daughter cried every single night over math homework. Last week, she asked to skip TV to practice Soroban. Here's the detailed journey of how we went from math nightmares to genuine enthusiasm.",
   "category": "soroban-for-parents",
   "keywords": [
+    "child hates math solution",
     "math anxiety to confidence",
     "soroban success story",
-    "child hates math solution",
-    "soroban transformation"
+    "soroban transformation",
+    "overcome math anxiety children",
+    "child cries over math",
+    "building math confidence kids",
+    "soroban before after",
+    "math phobia treatment children",
+    "sorokid success story"
   ],
   "status": "published",
-  "publishedAt": "2025-01-01T00:00:00.000Z",
+  "publishedAt": "2026-02-08T14:52:35.000Z",
   "createdAt": "2026-01-27",
   "image": "/blog/tu-so-toan-den-yeu-toan.jpg",
   "imageAlt": "Child transformed from hating math to loving it",
-  "readingTime": 6,
+  "readingTime": 14,
   "author": {
     "name": "Stephanie",
-    "role": "Mom of 2nd grader"
+    "role": "Mom of Emma (8) and Jake (5)"
+  },
+  "translations": {
+    "vi": "tu-so-toan-den-yeu-toan-6-thang-hoc-soroban"
   },
   "content": {
-    "intro": "Six months ago, homework time was a nightmare. \"I hate math!\" with tears, every single day. I was desperate. A friend suggested soroban, and I thought, \"More math? She'll never go for it.\" I was wrong.",
+    "intro": "I'm writing this at 8:47 PM on a Tuesday night. My 8-year-old daughter Emma just asked if she could stay up 10 more minutes to 'finish this level' on her Soroban app. Six months ago at this exact time, I was physically holding her hand while she sobbed through addition problems. I never imagined we'd get here. If your child hates math—truly hates it, with tears and anxiety and 'I can't do it' before even looking at the problem—I want you to know that transformation is possible. Here's exactly how it happened for us.",
     "sections": [
       {
         "type": "heading",
         "level": 2,
-        "text": "Where We Started"
+        "text": "Where We Started: The Math Nightmare Era"
       },
       {
         "type": "paragraph",
-        "text": "Emma, 7, had developed serious math anxiety by 2nd grade. Symptoms:"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Crying before math homework",
-          "\"I can't do it\" before even trying",
-          "Guessing randomly to finish faster",
-          "Physical stress (stomach aches on test days)",
-          "Saying \"I'm not a math person\""
-        ]
-      },
-      {
-        "type": "paragraph",
-        "text": "I was heartbroken. She was 7. How does a 7-year-old already believe she can't do math?"
+        "text": "Emma was 7 and in 2nd grade when things hit rock bottom. I need you to understand how bad it was, because I don't want to sugarcoat this journey."
       },
       {
         "type": "heading",
-        "level": 2,
-        "text": "Why We Tried Soroban"
+        "level": 3,
+        "text": "The Daily Homework Battle"
       },
       {
         "type": "paragraph",
-        "text": "I was hesitant – more math sounded like torture. But a friend explained:"
+        "text": "Every single day, around 4 PM, Emma's mood would shift. She knew homework was coming. By 4:30, when we sat down at the kitchen table, the resistance started."
       },
       {
         "type": "list",
         "items": [
-          "It's visual and tactile, not just numbers on paper",
-          "It's gamified in apps – feels like playing",
-          "It starts extremely simple, building confidence",
-          "Success is immediate and visible"
+          "**'I can't do it'** – Before looking at the worksheet",
+          "**Pencil twirling** – Anything to avoid starting",
+          "**Random guessing** – Just to fill in answers and be done",
+          "**Tears** – Almost every day by problem 5 or 6",
+          "**Meltdowns** – At least twice a week, full crying fits"
         ]
       },
       {
         "type": "paragraph",
-        "text": "We tried the free trial, expecting her to hate it. She didn't."
+        "text": "What should have been 15 minutes of homework turned into 45-60 minutes of emotional exhaustion—for both of us."
       },
       {
         "type": "heading",
-        "level": 2,
-        "text": "Month 1-2: The Surprise"
+        "level": 3,
+        "text": "The Physical Symptoms"
       },
       {
         "type": "paragraph",
-        "text": "Emma actually LIKED the soroban app. Why?"
+        "text": "The worst part was watching anxiety take physical form. On test days, Emma complained of:"
       },
       {
         "type": "list",
         "items": [
-          "It felt like a game, not homework",
-          "She got points and rewards",
-          "Problems were easy enough to succeed",
-          "Moving beads was satisfying",
-          "\"I'm getting so many right!\""
+          "Stomach aches that were definitely real",
+          "Headaches that mysteriously appeared before school",
+          "'Feeling sick' specifically on math test mornings",
+          "Trouble sleeping the night before"
         ]
+      },
+      {
+        "type": "paragraph",
+        "text": "At 7 years old, my daughter had developed genuine math anxiety with physical manifestations. That broke me."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "The 'I'm Not a Math Person' Belief"
+      },
+      {
+        "type": "paragraph",
+        "text": "What scared me most was the identity she was building around it. She'd say things like:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "'I'm just not good at math'",
+          "'Math isn't for me'",
+          "'Some people's brains don't work for math' (where did she even hear this?)",
+          "'I'll never be able to do this'"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "A second grader had already given up. She'd decided she couldn't do math, and every homework session reinforced that belief."
       },
       {
         "type": "callout",
         "style": "personal",
-        "text": "The first time she said \"I'm good at this!\" about anything math-related, I almost cried."
+        "text": "I remember one night she looked at me with tears streaming down her face and said, 'Mommy, why did God make my brain wrong for math?' I had to leave the room so she wouldn't see me cry."
       },
       {
         "type": "heading",
         "level": 2,
-        "text": "Month 3-4: Building Skills"
+        "text": "Everything I Tried (That Didn't Work)"
       },
       {
         "type": "paragraph",
-        "text": "Progress was gradual but steady:"
+        "text": "Before Soroban, I tried everything:"
       },
       {
         "type": "list",
         "items": [
-          "Simple addition became automatic",
-          "She started doing mental math unprompted",
-          "Homework battles decreased (not eliminated, but better)",
-          "\"This one's easy\" started appearing"
+          "**Rewards and bribes** – Short-term motivation, didn't address the underlying problem",
+          "**More practice worksheets** – Made things worse, actually",
+          "**Private tutoring** – $50/hour to do more of the same thing that wasn't working",
+          "**'Fun' math games** – She saw through them immediately",
+          "**Flash cards** – Turned into another source of failure feelings",
+          "**Emotional support** – Important, but didn't build actual skills",
+          "**Talking to her teacher** – Helpful advice, but nothing changed at home"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "I was running out of options and honestly considering just... accepting that math would always be hard for her."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How We Found Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "I almost scrolled past the post. A mom in my local parenting Facebook group mentioned that her daughter's math confidence had 'completely transformed' after starting something called Soroban."
+      },
+      {
+        "type": "paragraph",
+        "text": "I messaged her privately, expecting another failed solution. But she said something that stuck with me: 'It's not more of the same. It's a completely different way of seeing numbers.'"
+      },
+      {
+        "type": "paragraph",
+        "text": "Different. That word gave me hope. Everything else had been more of the same approach that wasn't working."
+      },
+      {
+        "type": "paragraph",
+        "text": "I researched Soroban that night. A Japanese abacus. Visual. Tactile. Gamified apps. I was skeptical, but at this point, what did we have to lose?"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Month 1: The Surprise Beginning"
+      },
+      {
+        "type": "paragraph",
+        "text": "I downloaded the Sorokid app, fully expecting Emma to hate it. More math, right? Why would she want that?"
+      },
+      {
+        "type": "paragraph",
+        "text": "I didn't tell her it was 'math.' I said, 'There's this cool Japanese bead game I found. Want to try it?'"
+      },
+      {
+        "type": "paragraph",
+        "text": "She was suspicious, but curious."
+      },
+      {
+        "type": "paragraph",
+        "text": "The first lesson was so simple—just learning what the beads represent. She got it right on the first try. The app celebrated with sounds and animations. She smiled."
+      },
+      {
+        "type": "paragraph",
+        "text": "I don't think she'd smiled during anything math-related in months."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Week 1: Cautious Optimism"
+      },
+      {
+        "type": "list",
+        "items": [
+          "She asked to try again the next day (unprompted!)",
+          "10 minutes of practice, no resistance",
+          "Problems were easy enough that she felt successful",
+          "Moving the beads felt like playing, not working",
+          "She earned points and rewards, which she loved"
         ]
       },
       {
         "type": "heading",
-        "level": 2,
-        "text": "Month 5-6: The Transformation"
-      },
-      {
-        "type": "paragraph",
-        "text": "Recent moments that shocked me:"
+        "level": 3,
+        "text": "Week 2-4: Building Momentum"
       },
       {
         "type": "list",
         "items": [
-          "She asked to help add up the grocery bill",
-          "She explained soroban to her cousin (teaching!)",
-          "She said \"Math is okay\" (from \"I hate math\" – huge!)",
-          "Test anxiety is less (not gone, but manageable)",
-          "Homework has some struggles but no more tears"
-        ]
-      },
-      {
-        "type": "heading",
-        "level": 2,
-        "text": "What Made the Difference"
-      },
-      {
-        "type": "list",
-        "items": [
-          "**Success breeds confidence:** Early wins mattered enormously",
-          "**Different approach:** Visual/tactile vs. abstract numbers",
-          "**No pressure:** 15 minutes of \"playing\" vs. homework battles",
-          "**Consistent practice:** Daily, even when she didn't feel like it",
-          "**Patience:** 6 months, not 6 weeks"
+          "Increased to 15 minutes daily without complaint",
+          "Started saying 'I got it right!' instead of 'I can't'",
+          "Asked to show her dad what she learned",
+          "Homework was still hard, but Soroban time was... fun?"
         ]
       },
       {
         "type": "callout",
+        "style": "insight",
+        "text": "The key in Month 1: The app's difficulty progression was perfectly calibrated. She was challenged just enough to learn, but succeeded enough to feel capable. This was the opposite of her school math experience."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Month 2: The First Signs of Transfer"
+      },
+      {
+        "type": "paragraph",
+        "text": "Something subtle started happening. During regular homework (not Soroban), Emma paused on an addition problem and... moved her fingers. Not counting on them—moving them like she was manipulating invisible beads."
+      },
+      {
+        "type": "paragraph",
+        "text": "She got the answer right."
+      },
+      {
+        "type": "paragraph",
+        "text": "I didn't say anything, but my heart was pounding. Was this actually working?"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Other Month 2 Observations"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Homework battles decreased from daily to 3-4 times per week",
+          "She started saying 'Let me think' instead of 'I can't'",
+          "'This one's easy!' appeared for the first time",
+          "Soroban practice became non-negotiable routine (her request!)",
+          "Started competing with herself to beat previous scores"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Month 3-4: The Confidence Shift"
+      },
+      {
+        "type": "paragraph",
+        "text": "This was when things really changed. Not just in math ability, but in how Emma saw herself."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "The Defining Moment"
+      },
+      {
+        "type": "paragraph",
+        "text": "Emma's class was doing addition practice, and the teacher asked for volunteers to solve problems on the board. According to Emma, she raised her hand."
+      },
+      {
+        "type": "paragraph",
+        "text": "She raised her hand. For math. Voluntarily."
+      },
+      {
+        "type": "paragraph",
+        "text": "I asked her what happened. She said, 'I knew I could do it, so I wanted to.'"
+      },
+      {
+        "type": "paragraph",
+        "text": "I had to sit down."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "The Identity Shift"
+      },
+      {
+        "type": "paragraph",
+        "text": "Remember those 'I'm not a math person' statements? They started disappearing. Instead, I heard:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "'I'm getting pretty good at this'",
+          "'I can figure it out'",
+          "'Let me try before you help'",
+          "'Math is okay, actually'"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "She wasn't saying 'I love math' yet. But 'Math is okay' from a kid who said 'I hate math' every day? That's massive."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Progress Tracker"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Simple addition became automatic (no finger counting)",
+          "Started attempting subtraction problems independently",
+          "Homework battles down to 1-2 times per week",
+          "Test anxiety reduced (still present, but manageable)",
+          "Soroban practice extended to 20 minutes by her choice"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Month 5-6: The Transformation I Didn't Expect"
+      },
+      {
+        "type": "paragraph",
+        "text": "The last two months brought changes I never imagined possible."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "The Grocery Store Moment"
+      },
+      {
+        "type": "paragraph",
+        "text": "We were shopping, and I was mentally adding items to stay on budget. Emma asked what I was doing. I explained."
+      },
+      {
+        "type": "paragraph",
+        "text": "'I can help!' she said. Then she started adding the prices as we shopped. Out loud. For fun."
+      },
+      {
+        "type": "paragraph",
+        "text": "My child who cried over addition homework was voluntarily doing mental math at the grocery store."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Teaching Others"
+      },
+      {
+        "type": "paragraph",
+        "text": "Her cousin visited, and Emma insisted on showing him Soroban. 'Let me teach you,' she said. She explained the beads, demonstrated problems, and encouraged him when he got stuck."
+      },
+      {
+        "type": "paragraph",
+        "text": "Teaching. The child who believed her brain was 'wrong for math' was teaching someone else."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "The TV Request"
+      },
+      {
+        "type": "paragraph",
+        "text": "Last week, it was TV time. Her favorite show was on. She asked if she could skip TV to finish a Soroban level first."
+      },
+      {
+        "type": "paragraph",
+        "text": "I made her repeat it because I thought I'd misheard."
+      },
+      {
+        "type": "callout",
+        "style": "personal",
+        "text": "When your child chooses math practice over TV, you know something fundamental has changed. This isn't about grades anymore—it's about who she believes she is."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Results: By the Numbers"
+      },
+      {
+        "type": "paragraph",
+        "text": "For those who want concrete data:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Before Soroban"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Math grade: C (sometimes C-)",
+          "Homework time: 45-60 minutes with battles",
+          "Crying during math: 4-5 times per week",
+          "Test anxiety: Severe (physical symptoms)",
+          "Math self-image: 'I can't do math'"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "After 6 Months of Soroban"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Math grade: B+ (heading toward A)",
+          "Homework time: 15-20 minutes, rarely with battles",
+          "Crying during math: Maybe once every 2-3 weeks (and it's brief)",
+          "Test anxiety: Present but manageable (no physical symptoms)",
+          "Math self-image: 'I'm pretty good at math'"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Made the Difference: My Analysis"
+      },
+      {
+        "type": "paragraph",
+        "text": "Looking back, here's what I think worked:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. A Fresh Start"
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban wasn't connected to her history of failure. It was new. Clean. No bad memories attached. She could approach it without the weight of past struggles."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Different Approach for a Different Brain"
+      },
+      {
+        "type": "paragraph",
+        "text": "Emma is a visual learner. Traditional math is abstract—numbers on a page. Soroban gave her something to SEE and MOVE. The beads made numbers concrete in a way she needed."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Success Before Challenge"
+      },
+      {
+        "type": "paragraph",
+        "text": "The app started easy. Really easy. Emma needed to succeed before being challenged. Every early win rebuilt her broken confidence."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Gamification That Worked"
+      },
+      {
+        "type": "paragraph",
+        "text": "Points, levels, rewards—these weren't gimmicks. They gave Emma immediate feedback and motivation. She wanted to 'win,' not just 'learn.'"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Short Sessions, Every Day"
+      },
+      {
+        "type": "paragraph",
+        "text": "15 minutes was doable. It wasn't overwhelming. And daily practice built the habit without burnout. Consistency over intensity."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "6. Separation from Homework"
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban was never 'homework.' It was her special thing. Not school. Not required. Chosen. This psychological separation mattered enormously."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Advice for Parents Starting This Journey"
+      },
+      {
+        "type": "paragraph",
+        "text": "If your child hates math like Emma did, here's what I'd tell you:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Don't call it 'math practice.'** Present it as something new and different.",
+          "**Start during a calm time.** Not right after a homework meltdown.",
+          "**Celebrate everything.** Every correct answer matters early on.",
+          "**Don't push too hard.** 10-15 minutes is enough. Stop while they're still enjoying it.",
+          "**Be patient.** Real change took us months, not weeks.",
+          "**Don't connect it to grades.** This is about confidence, not school performance (grades will follow).",
+          "**Sit nearby but don't teach.** Let the app do the instruction. You do the encouragement.",
+          "**Handle resistance gently.** Some days will be hard. Shorten, don't skip."
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Where We Are Now"
+      },
+      {
+        "type": "paragraph",
+        "text": "Emma still isn't a 'math genius.' She still struggles with some concepts. Word problems are hard. Fractions will probably be a challenge when she gets there."
+      },
+      {
+        "type": "paragraph",
+        "text": "But here's what's different: She believes she CAN figure things out. She's willing to try. She doesn't cry before starting. She doesn't think her brain is broken."
+      },
+      {
+        "type": "paragraph",
+        "text": "That mindset shift—from 'I can't' to 'Let me try'—is worth more than any grade."
+      },
+      {
+        "type": "callout",
         "style": "reassurance",
-        "text": "She's not a math genius now. She still struggles with some concepts. But she no longer believes she CAN'T do math. That mindset shift is everything."
+        "text": "If your child hates math, please know: This doesn't have to be permanent. The right approach, introduced at the right time, with patience and consistency, can transform everything. Emma is proof. And if it worked for a kid who literally cried every day over math, it can work for yours too."
       }
-    ],
-    "faq": [
-      {
-        "question": "Did math grades improve?",
-        "answer": "Somewhat – B's instead of C's. More importantly, the stress and tears stopped. Grades may keep improving; confidence is already transformed."
-      },
-      {
-        "question": "How did you handle days she didn't want to practice?",
-        "answer": "Shortened to 5 minutes. \"Just do 5 problems, then you're done.\" Consistency over volume."
-      },
-      {
-        "question": "Would this work for every kid with math anxiety?",
-        "answer": "Not guaranteed. But for kids whose anxiety comes from not understanding numbers, soroban's visual approach can help rebuild from the foundation."
-      }
-    ],
-    "cta": {
-      "type": "soft",
-      "text": "Start your child's journey from math anxiety to math confidence.",
-      "buttonText": "Try Free for 7 Days",
-      "buttonUrl": "/pricing"
+    ]
+  },
+  "faq": [
+    {
+      "question": "How quickly did you see improvement?",
+      "answer": "The emotional shift (enjoying Soroban practice) happened within weeks. Transfer to school math took 2-3 months. Full confidence transformation took the entire 6 months. It's a gradual process, not overnight magic."
+    },
+    {
+      "question": "Did Emma's math grades improve?",
+      "answer": "Yes, from C/C- to B+, with continuing improvement. But honestly, the grade improvement was less significant to me than the confidence transformation. A kid who believes they CAN do math will continue improving. Grades are just a lagging indicator."
+    },
+    {
+      "question": "What did you do on days Emma didn't want to practice?",
+      "answer": "I shortened it. 'Just 5 minutes, just 5 problems.' Consistency mattered more than volume. I never forced long sessions, but I almost never let her skip entirely. The habit was too important."
+    },
+    {
+      "question": "Did Soroban replace homework help or school math?",
+      "answer": "No, Soroban was additional—a separate 15-minute activity. But as her confidence grew, homework became easier and took less time. So the total math time didn't increase much."
+    },
+    {
+      "question": "Would this work for every child with math anxiety?",
+      "answer": "I can't promise that. But I believe if the anxiety stems from not understanding numbers or repeated failure experiences, Soroban's visual approach and confidence-building progression can help many kids. It's worth trying—especially with free trials available."
+    },
+    {
+      "question": "How did you prevent Soroban from becoming another source of stress?",
+      "answer": "I never called it 'math,' never connected it to school, never pushed past her comfort zone, and always stopped while she was still enjoying it. The psychological separation from her math trauma was crucial."
+    },
+    {
+      "question": "What if my child is older than 7?",
+      "answer": "I've heard success stories from parents of kids up to 11-12 who started Soroban. Younger may build faster habits, but older kids can still transform their relationship with math. It's never too late."
+    },
+    {
+      "question": "Did Emma ever resist Soroban or want to quit?",
+      "answer": "Occasionally in the early months, yes. On those days, we did minimal practice (5 minutes) and I didn't push. By month 3, resistance became rare. By month 5, she was requesting extra practice. The key was patience in the early stages."
+    },
+    {
+      "question": "How did you introduce Soroban without triggering math anxiety?",
+      "answer": "I called it a 'Japanese bead game.' I didn't mention math at all initially. I let the app introduce the connection gradually after she was already enjoying it. By then, she'd built positive associations."
+    },
+    {
+      "question": "What's your advice for the first week?",
+      "answer": "Keep it short (10 minutes max), celebrate every success loudly, don't correct mistakes yourself (let the app do it), and most importantly—stop while your child is still smiling. Leave them wanting more. Build positive anticipation."
     }
+  ],
+  "cta": {
+    "text": "If your child is where Emma was 6 months ago—crying over math, believing they 'can't do it'—please know transformation is possible. Start with a free trial and see if this different approach resonates with your child.",
+    "buttonText": "Start Your Free 7-Day Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "From 'I Hate Math' to 'Can We Do More?' Our 6-Month Soroban Transformation | Sorokid",
+    "description": "Six months ago, my daughter cried every single night over math homework. Last week, she asked to skip TV to practice Soroban. Here's the detailed journey of how we went from math nightmares to genuine enthusiasm.",
+    "keywords": "child hates math solution, math anxiety to confidence, soroban success story, overcome math anxiety children, building math confidence"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-08",
+    "author": "Stephanie"
   },
   "postId": "tu-so-toan-den-yeu-toan-6-thang-hoc-soroban"
 }

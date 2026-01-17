@@ -13,11 +13,18 @@
     "BGH bất ngờ",
     "tiết dạy hay"
   ],
-  "status": "draft",
-  "publishedAt": null,
+  "status": "published",
+  "publishedAt": "2026-02-17T05:33:22.000Z",
+  "createdAt": "2026-01-16",
+  "image": "/blog/cong-cu-day-hoc-khien-ban-giam-hieu-bat-ngo-khi-du-gio.jpg",
+  "imageAlt": "Công Cụ Dạy Học Khiến Ban Giám Hiệu Bất Ngờ Khi Dự Giờ",
+  "readingTime": 9,
   "author": {
     "name": "Cô Liên",
     "role": "Giáo viên THCS"
+  },
+  "translations": {
+    "en": "cng-c-dy-hc-khin-ban-gim-hiu-bt-ng-khi-d-gi"
   },
   "content": {
     "intro": "\"Em dùng cái gì mà hay thế? Chỉ cho cô với!\" - Câu hỏi từ cô hiệu phó sau tiết dự giờ của tôi. Ban giám hiệu từng quen với những tiết dạy \"thầy nói - trò nghe\". Nhưng khi thấy lớp tôi sôi nổi với Chiếc Nón Kỳ Diệu, học sinh tranh nhau trả lời với Đua Vịt, họ bất ngờ. Bài viết này chia sẻ những công cụ đã thay đổi cách nhìn của ban giám hiệu về tiết dạy của tôi.",
@@ -524,19 +531,6 @@
     "buttonLink": "/tool",
     "text": "Khám Phá Công Cụ Dạy Học Miễn Phí - Chiếc Nón Kỳ Diệu, Timer, Đua Vịt, Chia Nhóm - tất cả miễn phí, dễ sử dụng."
   },
-  "relatedTools": [
-    "magic-hat",
-    "timer",
-    "duck-race",
-    "group-divider",
-    "random-picker",
-    "flash-anzan"
-  ],
-  "relatedPosts": [
-    "kinh-nghiem-day-thao-giang-thanh-cong-tu-giao-vien-20-nam",
-    "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
-    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu"
-  ],
   "seo": {
     "title": "Công Cụ Dạy Học Khiến Ban Giám Hiệu Bất Ngờ Khi Dự Giờ",
     "description": "Chia sẻ công cụ dạy học tích cực giúp tiết dự giờ ấn tượng. Chiếc Nón Kỳ Diệu, Timer, Đua Vịt - tất cả miễn phí.",
@@ -553,8 +547,20 @@
     "type": "Article",
     "headline": "Công Cụ Dạy Học Khiến Ban Giám Hiệu Bất Ngờ Khi Dự Giờ",
     "author": "Cô Liên - Giáo viên THCS",
-    "datePublished": null,
+    "datePublished": "2026-02-17",
     "dateModified": null
   },
-  "image": "/blog/cong-cu-day-hoc-khien-ban-giam-hieu-bat-ngo-khi-du-gio.jpg"
+  "relatedTools": [
+    "magic-hat",
+    "timer",
+    "duck-race",
+    "group-divider",
+    "random-picker",
+    "flash-anzan"
+  ],
+  "relatedPosts": [
+    "kinh-nghiem-day-thao-giang-thanh-cong-tu-giao-vien-20-nam",
+    "tiet-day-thay-doi-khi-day-hoc-tich-cuc",
+    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu"
+  ]
 }
