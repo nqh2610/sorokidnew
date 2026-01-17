@@ -260,6 +260,43 @@ export default function PricingPage() {
     return `$${internationalPaymentInfo.products[tier].priceUsd}`;
   };
 
+  // 🌍 Translate plan name from DB (Vietnamese) to current locale
+  const translatePlanName = (plan) => {
+    if (locale === 'vi') return plan.name;
+    const key = `pricingPage.plans.${plan.id}.name`;
+    const translated = t(key);
+    return translated !== key ? translated : plan.name;
+  };
+  
+  // 🌍 Translate plan description from DB (Vietnamese) to current locale
+  const translatePlanDescription = (plan) => {
+    if (locale === 'vi') return plan.description;
+    const key = `pricingPage.plans.${plan.id}.description`;
+    const translated = t(key);
+    return translated !== key ? translated : plan.description;
+  };
+  
+  // 🌍 Translate feature text from DB (Vietnamese) to current locale
+  const translateFeatureText = (planId, featureText) => {
+    if (locale === 'vi') return featureText;
+    const key = `pricingPage.plans.${planId}.features.${featureText}`;
+    const translated = t(key);
+    return translated !== key ? translated : featureText;
+  };
+  
+  // 🌍 Translate badge text (e.g., "🔥 Tiết kiệm 50%")
+  const translateBadge = (badgeText) => {
+    if (!badgeText || locale === 'vi') return badgeText;
+    // Common badge translations
+    const badgeMap = {
+      '🔥 Tiết kiệm 50%': '🔥 Save 50%',
+      'Tiết kiệm 50%': 'Save 50%',
+      '🔥 Phổ biến nhất': '🔥 Most Popular',
+      'Phổ biến nhất': 'Most Popular',
+    };
+    return badgeMap[badgeText] || badgeText;
+  };
+
   // Get style for plan
   const getPlanStyle = (planId) => {
     return PLAN_STYLES[planId] || PLAN_STYLES.default;
@@ -616,7 +653,7 @@ export default function PricingPage() {
                           ? 'bg-gradient-to-r from-amber-500 to-orange-500' 
                           : 'bg-gradient-to-r from-rose-500 to-pink-500'
                       }`}>
-                        {plan.popular ? t('pricingPage.mostPopular') : plan.badge}
+                        {plan.popular ? t('pricingPage.mostPopular') : translateBadge(plan.badge)}
                       </div>
                     )}
 
@@ -630,15 +667,27 @@ export default function PricingPage() {
 
                       {/* Plan Info */}
                       <div className="mb-6">
-                        <h3 className="text-2xl font-bold text-slate-800 mb-1">{plan.name}</h3>
-                        <p className="text-slate-500 text-sm">{plan.description}</p>
+                        <h3 className="text-2xl font-bold text-slate-800 mb-1">{translatePlanName(plan)}</h3>
+                        <p className="text-slate-500 text-sm">{translatePlanDescription(plan)}</p>
                       </div>
 
                       {/* Price */}
                       <div className="mb-8">
-                        {/* 🌍 International pricing (USD) */}
+                        {/* 🌍 International pricing (USD) - same layout as Vietnamese */}
                         {isInternationalPayment && plan.id !== 'free' ? (
                           <>
+                            {/* Original price & discount badge */}
+                            {internationalPaymentInfo?.products?.[plan.id]?.originalPriceUsd > internationalPaymentInfo?.products?.[plan.id]?.priceUsd && (
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className="text-slate-400 line-through text-lg">
+                                  ${internationalPaymentInfo?.products?.[plan.id]?.originalPriceUsd}
+                                </span>
+                                <span className="px-2 py-0.5 bg-rose-100 text-rose-600 text-xs font-bold rounded-full">
+                                  -{Math.round((1 - internationalPaymentInfo?.products?.[plan.id]?.priceUsd / internationalPaymentInfo?.products?.[plan.id]?.originalPriceUsd) * 100)}%
+                                </span>
+                              </div>
+                            )}
+                            {/* Current price */}
                             <div className="flex items-baseline gap-1">
                               <span className={`text-5xl font-black ${style.priceColor}`}>
                                 ${internationalPaymentInfo?.products?.[plan.id]?.priceUsd || '—'}
@@ -647,9 +696,6 @@ export default function PricingPage() {
                             </div>
                             <p className="text-slate-500 text-sm mt-2">
                               {t('pricingPage.oneTimePayment')}
-                            </p>
-                            <p className="text-xs text-slate-400 mt-1">
-                              ≈ {formatPrice(plan.price)}đ
                             </p>
                           </>
                         ) : (
@@ -705,7 +751,7 @@ export default function PricingPage() {
                                   : 'text-slate-700'
                                 : 'text-slate-400 line-through'
                             }`}>
-                              {feature.text}
+                              {translateFeatureText(plan.id, feature.text)}
                             </span>
                           </div>
                         ))}

@@ -144,10 +144,12 @@ export async function GET(request) {
       products: {
         basic: {
           priceUsd: getPriceUsd('basic'),
+          originalPriceUsd: LEMONSQUEEZY_CONFIG.products.basic.originalPriceUsd,
           available: configured && !!LEMONSQUEEZY_CONFIG.products.basic.variantId,
         },
         advanced: {
           priceUsd: getPriceUsd('advanced'),
+          originalPriceUsd: LEMONSQUEEZY_CONFIG.products.advanced.originalPriceUsd,
           available: configured && !!LEMONSQUEEZY_CONFIG.products.advanced.variantId,
         },
       },

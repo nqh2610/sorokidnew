@@ -105,6 +105,19 @@ async function handleOrderCreated(payload, customData) {
     return;
   }
   
+  // Check for duplicate order - prevent double processing
+  const existingOrder = await prisma.paymentOrder.findFirst({
+    where: { 
+      externalOrderId: orderId?.toString(),
+      paymentMethod: 'lemonsqueezy'
+    }
+  });
+  
+  if (existingOrder) {
+    console.log(`[LemonSqueezy Webhook] Order ${orderId} already processed, skipping`);
+    return;
+  }
+  
   // Validate userId
   if (!userId) {
     console.error('[LemonSqueezy Webhook] Missing user_id in custom data');

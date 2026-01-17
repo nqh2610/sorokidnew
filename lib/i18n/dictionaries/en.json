@@ -2699,6 +2699,38 @@
     "lowerPlan": "Lower plan",
     "upgrade": "Upgrade",
     "buyNow": "Buy Now",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "description": "Start learning basic Soroban",
+        "features": {
+          "5 Level cơ bản": "5 Basic Levels",
+          "Luyện Cộng/Trừ Sơ cấp": "Basic Add/Sub Practice",
+          "Thi đấu Sơ cấp": "Basic Competition",
+          "Không có chứng nhận": "No certificate"
+        }
+      },
+      "basic": {
+        "name": "Basic",
+        "description": "Master Addition & Subtraction",
+        "features": {
+          "10 Level Cộng Trừ": "10 Add/Sub Levels",
+          "Luyện tập Sơ - Trung cấp": "Basic - Intermediate Practice",
+          "Thi đấu Sơ - Trung cấp": "Basic - Intermediate Competition",
+          "Chứng nhận Sorokid Cộng Trừ": "Sorokid Add/Sub Certificate"
+        }
+      },
+      "advanced": {
+        "name": "Advanced",
+        "description": "Full features + 2 Sorokid Certificates",
+        "features": {
+          "Full 18 Level - Không giới hạn": "Full 18 Levels - Unlimited",
+          "Tất cả chế độ luyện tập & thi đấu": "All practice & competition modes",
+          "Anzan - Tính nhẩm siêu tốc": "Anzan - Super fast mental math",
+          "2 Chứng nhận Sorokid": "2 Sorokid Certificates"
+        }
+      }
+    },
     "featureDetails": "Feature details",
     "comparePlans": "Compare Plans",
     "swipeToSee": "Swipe to see more",
