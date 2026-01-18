@@ -1,8 +1,12 @@
 /**
- * 🤖 ROBOTS.TXT
+ * 🤖 ROBOTS.TXT - ĐA NGÔN NGỮ
  * 
  * Hướng dẫn các search engine và AI bots crawl trang web
  * Tối ưu cho: Google, Bing, ChatGPT, Claude, Perplexity
+ * 
+ * 🌍 Hỗ trợ đa ngôn ngữ:
+ * - Tiếng Việt: /, /blog/, /tool/, /pricing
+ * - Tiếng Anh: /en/, /en/blog/, /en/tool/, /en/pricing
  */
 
 export default function robots() {
@@ -11,7 +15,16 @@ export default function robots() {
       // Rule cho tất cả bot (mặc định)
       {
         userAgent: '*',
-        allow: '/',
+        allow: [
+          '/',
+          '/en/',          // 🌍 Trang chủ tiếng Anh
+          '/blog/',
+          '/en/blog/',     // 🌍 Blog tiếng Anh
+          '/tool/',
+          '/en/tool/',     // 🌍 Tool tiếng Anh
+          '/pricing',
+          '/en/pricing',   // 🌍 Pricing tiếng Anh
+        ],
         disallow: [
           '/api/',
           '/admin/',
@@ -31,7 +44,16 @@ export default function robots() {
       // Rule riêng cho Googlebot
       {
         userAgent: 'Googlebot',
-        allow: '/',
+        allow: [
+          '/',
+          '/en/',
+          '/blog/',
+          '/en/blog/',
+          '/tool/',
+          '/en/tool/',
+          '/pricing',
+          '/en/pricing',
+        ],
         disallow: [
           '/api/',
           '/admin/',
@@ -43,7 +65,16 @@ export default function robots() {
       // Rule cho Bingbot
       {
         userAgent: 'Bingbot',
-        allow: '/',
+        allow: [
+          '/',
+          '/en/',
+          '/blog/',
+          '/en/blog/',
+          '/tool/',
+          '/en/tool/',
+          '/pricing',
+          '/en/pricing',
+        ],
         disallow: [
           '/api/',
           '/admin/',
@@ -56,8 +87,11 @@ export default function robots() {
         userAgent: 'GPTBot',
         allow: [
           '/',
+          '/en/',
           '/tool/',
+          '/en/tool/',
           '/blog/',
+          '/en/blog/',
         ],
         disallow: [
           '/api/',
@@ -73,8 +107,11 @@ export default function robots() {
         userAgent: 'ChatGPT-User',
         allow: [
           '/',
+          '/en/',
           '/tool/',
+          '/en/tool/',
           '/blog/',
+          '/en/blog/',
         ],
         disallow: [
           '/api/',
@@ -87,8 +124,11 @@ export default function robots() {
         userAgent: 'CCBot',
         allow: [
           '/',
+          '/en/',
           '/tool/',
+          '/en/tool/',
           '/blog/',
+          '/en/blog/',
         ],
         disallow: [
           '/api/',
@@ -101,8 +141,11 @@ export default function robots() {
         userAgent: 'anthropic-ai',
         allow: [
           '/',
+          '/en/',
           '/tool/',
+          '/en/tool/',
           '/blog/',
+          '/en/blog/',
         ],
         disallow: [
           '/api/',
@@ -114,8 +157,11 @@ export default function robots() {
         userAgent: 'Claude-Web',
         allow: [
           '/',
+          '/en/',
           '/tool/',
+          '/en/tool/',
           '/blog/',
+          '/en/blog/',
         ],
         disallow: [
           '/api/',
@@ -127,8 +173,11 @@ export default function robots() {
         userAgent: 'Google-Extended',
         allow: [
           '/',
+          '/en/',
           '/tool/',
+          '/en/tool/',
           '/blog/',
+          '/en/blog/',
         ],
         disallow: [
           '/api/',
@@ -140,8 +189,11 @@ export default function robots() {
         userAgent: 'PerplexityBot',
         allow: [
           '/',
+          '/en/',
           '/tool/',
+          '/en/tool/',
           '/blog/',
+          '/en/blog/',
         ],
         disallow: [
           '/api/',

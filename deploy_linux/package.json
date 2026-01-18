@@ -12,6 +12,8 @@
     "start:prod": "cross-env NODE_ENV=production next start",
     "start:server": "cross-env NODE_ENV=production node server.js",
     "clean": "rimraf .next node_modules/.cache",
+    "health-check": "node scripts/health-check.js",
+    "test:health": "node scripts/health-check.js",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate deploy",
     "lint": "next lint",
