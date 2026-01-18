@@ -1047,7 +1047,28 @@ const jsonLd = {
         'suggestedAge': '25-45'
       }
     },
-    // 19. COURSE SCHEMA - Cho khóa học trực tuyến
+    // 19. VIDEO - Giới thiệu hệ thống bài học
+    {
+      '@type': 'VideoObject',
+      '@id': 'https://sorokid.com/#video-lessons',
+      'name': 'Giới thiệu hệ thống bài học Sorokid - Hướng dẫn từng bước dễ hiểu',
+      'alternateName': ['Sorokid Lesson System', 'How Sorokid Lessons Work', 'Bài học Soroban online'],
+      'description': 'Video giới thiệu hệ thống bài học của Sorokid - Hướng dẫn từng bước bằng hình ảnh, phụ huynh không cần biết Soroban vẫn kèm con được. Step-by-step visual guidance for learning Soroban at home.',
+      'thumbnailUrl': 'https://img.youtube.com/vi/4Z84ZbnJGiI/maxresdefault.jpg',
+      'uploadDate': '2025-01-17',
+      'contentUrl': 'https://www.youtube.com/watch?v=4Z84ZbnJGiI',
+      'embedUrl': 'https://www.youtube.com/embed/4Z84ZbnJGiI',
+      'publisher': { '@id': 'https://sorokid.com/#organization' },
+      'isPartOf': { '@id': 'https://sorokid.com/#website' },
+      'inLanguage': ['vi'],
+      'keywords': ['bài học soroban', 'hướng dẫn soroban', 'học soroban tại nhà', 'soroban cho bé'],
+      'audience': {
+        '@type': 'EducationalAudience',
+        'educationalRole': 'parent',
+        'suggestedAge': '25-45'
+      }
+    },
+    // 20. COURSE SCHEMA - Cho khóa học trực tuyến
     {
       '@type': 'Course',
       '@id': 'https://sorokid.com/#soroban-course',
@@ -1088,6 +1109,12 @@ import MainNav from '@/components/MainNav/MainNav';
 // � PWA Install Banner (client component)
 const PWAInstallBanner = dynamicImport(
   () => import('@/components/PWAInstaller/PWAInstaller'),
+  { ssr: false }
+);
+
+// 🎬 Video Modal - popup xem video
+const VideoModal = dynamicImport(
+  () => import('@/components/VideoModal/VideoModal'),
   { ssr: false }
 );
 
@@ -1168,11 +1195,20 @@ export default function HomePage({ locale = 'vi' }) {
                 <strong className="text-violet-600"> <T k="home.hero.highlight" /></strong>
               </p>
 
-            <div className="flex justify-center mb-8 px-4">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8 px-4">
               <LocalizedLink href="/register" className="group px-8 py-4 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 text-white rounded-full text-lg font-bold shadow-xl hover:shadow-violet-500/30 transform hover:scale-105 transition-all flex items-center justify-center gap-2">
                 <Sparkles className="w-5 h-5" />
                 <T k="home.hero.cta" />
               </LocalizedLink>
+              
+              {/* 🎬 Nút xem video - chỉ hiện ở tiếng Việt */}
+              <VideoModal 
+                videoId="4Z84ZbnJGiI"
+                title="Bài học hướng dẫn từng bước trên Sorokid"
+                buttonText="Xem bài học mẫu"
+                locale={locale}
+                showOnlyLocale="vi"
+              />
             </div>
 
             {/* 📱 Banner cài app - chỉ hiện trên điện thoại */}

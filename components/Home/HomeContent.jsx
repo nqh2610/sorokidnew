@@ -23,26 +23,26 @@ export function HeroSection() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-violet-100 text-violet-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
             <span>🎯</span>
-            <span>{locale === 'vi' ? 'Ứng dụng học Soroban #1 Việt Nam' : '#1 Soroban Learning App in Vietnam'}</span>
+            <span>{locale === 'vi' ? 'Ứng dụng học Soroban #1 Việt Nam' : 'Trusted by 12,000+ families worldwide'}</span>
           </div>
           
           {/* Title */}
           <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 mb-6 leading-tight">
-            {t('home.hero.title') || (locale === 'vi' ? 'Cho Con Học Soroban Tại Nhà' : 'Learn Soroban at Home')}
+            {t('home.hero.title') || (locale === 'vi' ? 'Cho Con Học Soroban Tại Nhà' : 'Build Math Confidence That Lasts')}
           </h1>
           
           {/* Subtitle */}
           <p className="text-lg sm:text-xl text-violet-600 font-medium mb-4">
             {t('home.hero.subtitle') || (locale === 'vi' 
               ? 'Phụ huynh không cần biết Soroban vẫn kèm con được' 
-              : 'Parents don\'t need to know Soroban to guide their kids')}
+              : 'A self-paced program that builds real number sense. No tutors needed.')}
           </p>
           
           {/* Description */}
           <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto mb-8">
             {t('home.hero.description') || (locale === 'vi'
               ? 'Hướng dẫn từng bước bằng hình ảnh. Con tự học, tự tiến bộ. Game hóa - con TỰ GIÁC muốn học mỗi ngày.'
-              : 'Step-by-step visual guide. Kids learn at their own pace. Gamified - kids WANT to learn every day.')}
+              : 'Sorokid helps children ages 4-12 develop strong mental math skills using a proven visual method.')}
           </p>
           
           {/* CTA Buttons */}
@@ -52,14 +52,14 @@ export function HeroSection() {
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-violet-500 to-pink-500 text-white font-bold rounded-full hover:shadow-lg hover:scale-105 transition-all"
             >
               <span>🚀</span>
-              <span>{t('home.hero.cta') || (locale === 'vi' ? 'Bắt đầu miễn phí' : 'Start for Free')}</span>
+              <span>{t('home.hero.cta') || (locale === 'vi' ? 'Bắt đầu miễn phí' : 'Start Free Trial')}</span>
             </LocalizedLink>
             <LocalizedLink
               href="/tool"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border-2 border-gray-200 text-gray-700 font-bold rounded-full hover:border-violet-300 hover:bg-violet-50 transition-all"
             >
               <span>🧰</span>
-              <span>{locale === 'vi' ? 'Toolbox Giáo Viên' : 'Teacher Toolbox'}</span>
+              <span>{locale === 'vi' ? 'Toolbox Giáo Viên' : 'Free Classroom Tools'}</span>
             </LocalizedLink>
           </div>
         </div>
@@ -77,31 +77,31 @@ export function FeaturesSection() {
   const features = [
     {
       icon: '🎮',
-      title: t('home.features.gameified.title') || (locale === 'vi' ? 'Học qua game' : 'Learn Through Games'),
+      title: t('home.features.gameified.title') || (locale === 'vi' ? 'Học qua game' : 'Learning Through Play'),
       description: t('home.features.gameified.description') || (locale === 'vi' 
         ? 'Trẻ học mà chơi, chơi mà học. Không nhàm chán như học truyền thống.'
-        : 'Kids learn while playing. No more boring traditional learning.'),
+        : 'Earn stars, unlock levels, and collect rewards. The game-based approach keeps kids motivated.'),
     },
     {
       icon: '🗺️',
-      title: t('home.features.pathway.title') || (locale === 'vi' ? 'Lộ trình rõ ràng' : 'Clear Learning Path'),
+      title: t('home.features.pathway.title') || (locale === 'vi' ? 'Lộ trình rõ ràng' : 'Visual, Step-by-Step Lessons'),
       description: t('home.features.pathway.description') || (locale === 'vi'
         ? 'Từ làm quen số đến tính nhẩm Anzan. Mỗi bước đều có hướng dẫn chi tiết.'
-        : 'From basic numbers to Anzan mental math. Every step has detailed guidance.'),
+        : 'Clear animations break down each concept. Kids don\'t just memorize—they understand.'),
     },
     {
       icon: '👨‍👩‍👧',
-      title: t('home.features.parentFriendly.title') || (locale === 'vi' ? 'Phụ huynh không cần biết' : 'No Prior Knowledge Required'),
+      title: t('home.features.parentFriendly.title') || (locale === 'vi' ? 'Phụ huynh không cần biết' : 'No Teaching Required'),
       description: t('home.features.parentFriendly.description') || (locale === 'vi'
         ? 'App hướng dẫn con từng bước. Phụ huynh chỉ cần động viên và theo dõi.'
-        : 'The app guides kids step by step. Parents just need to encourage and monitor.'),
+        : 'Kids learn independently with guided lessons. You just cheer them on.'),
     },
     {
       icon: '📊',
-      title: t('home.features.tracking.title') || (locale === 'vi' ? 'Theo dõi tiến độ' : 'Progress Tracking'),
+      title: t('home.features.tracking.title') || (locale === 'vi' ? 'Theo dõi tiến độ' : 'Clear Progress Tracking'),
       description: t('home.features.tracking.description') || (locale === 'vi'
         ? 'Biết con đang học đến đâu, mạnh yếu gì. 3 chỉ số: chăm chỉ, tốc độ, chính xác.'
-        : 'Know where your child is. 3 metrics: diligence, speed, accuracy.'),
+        : 'Simple dashboards show what your child has learned and where they can improve.'),
     },
   ];
   
@@ -110,7 +110,7 @@ export function FeaturesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
-            {t('home.features.title') || (locale === 'vi' ? 'Tại sao chọn Sorokid?' : 'Why Choose Sorokid?')}
+            {t('home.features.title') || (locale === 'vi' ? 'Tại sao chọn Sorokid?' : 'Why Families Choose Sorokid')}
           </h2>
         </div>
         
@@ -138,10 +138,10 @@ export function StatsSection() {
   const { t, locale } = useI18n();
   
   const stats = [
-    { number: '12,000+', label: t('home.stats.students') || (locale === 'vi' ? 'Học sinh' : 'Students') },
+    { number: '12,000+', label: t('home.stats.students') || (locale === 'vi' ? 'Học sinh' : 'Active Learners') },
     { number: '200+', label: t('home.stats.lessons') || (locale === 'vi' ? 'Bài học' : 'Lessons') },
-    { number: '5,000+', label: t('home.stats.exercises') || (locale === 'vi' ? 'Bài tập' : 'Exercises') },
-    { number: '8,500+', label: t('home.stats.parents') || (locale === 'vi' ? 'Phụ huynh tin dùng' : 'Trusted Parents') },
+    { number: '5,000+', label: t('home.stats.exercises') || (locale === 'vi' ? 'Bài tập' : 'Practice Problems') },
+    { number: '8,500+', label: t('home.stats.parents') || (locale === 'vi' ? 'Phụ huynh tin dùng' : 'Families Worldwide') },
   ];
   
   return (
@@ -172,19 +172,19 @@ export function CTASection() {
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-4">
           {t('home.cta.title') || (locale === 'vi' 
             ? 'Bắt đầu hành trình Soroban cùng con ngay hôm nay' 
-            : 'Start Your Child\'s Soroban Journey Today')}
+            : 'Ready to Try Sorokid?')}
         </h2>
         <p className="text-violet-100 mb-8">
           {t('home.cta.description') || (locale === 'vi'
             ? 'Miễn phí 7 ngày dùng thử. Không cần thẻ tín dụng.'
-            : 'Free 7-day trial. No credit card required.')}
+            : 'Start with a free 7-day trial. No credit card required.')}
         </p>
         <LocalizedLink
           href="/register"
           className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-violet-600 font-bold rounded-full hover:shadow-lg hover:scale-105 transition-all"
         >
           <span>✨</span>
-          <span>{t('home.cta.button') || (locale === 'vi' ? 'Đăng ký miễn phí' : 'Sign Up for Free')}</span>
+          <span>{t('home.cta.button') || (locale === 'vi' ? 'Đăng ký miễn phí' : 'Start Free Trial')}</span>
         </LocalizedLink>
       </div>
     </section>
@@ -201,12 +201,12 @@ export function BlogSectionTitle() {
     <>
       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-800 mb-4">
         <span aria-hidden="true">📚</span>{' '}
-        {t('home.blog.title') || (locale === 'vi' ? 'Chia sẻ cho phụ huynh' : 'Tips for Parents')}
+        {t('home.blog.title') || (locale === 'vi' ? 'Chia sẻ cho phụ huynh' : 'Resources for Parents')}
       </h2>
       <p className="text-gray-600 text-lg max-w-2xl mx-auto">
         {t('home.blog.description') || (locale === 'vi' 
           ? 'Kinh nghiệm thực tế giúp ba mẹ đồng hành cùng con học toán – nhẹ nhàng, hiệu quả'
-          : 'Practical tips to help parents support their kids in learning math - gently and effectively')}
+          : 'Tips and insights to support your child\'s math learning journey')}
       </p>
     </>
   );

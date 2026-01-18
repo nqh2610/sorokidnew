@@ -139,6 +139,10 @@
       "demoTitle": "Try the Virtual Abacus!",
       "demoDesc": "Click on beads to move them up/down"
     },
+    "videoDemo": {
+      "title": "See How Lessons Work",
+      "desc": "Step-by-step visual guidance - You don't need to know Soroban to help your kids learn!"
+    },
     "roadmap": {
       "title": "Scientific Learning Roadmap",
       "subtitle": "From zero to calculating as fast as a calculator!",

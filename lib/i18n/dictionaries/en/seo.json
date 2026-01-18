@@ -1,48 +1,48 @@
 {
   "seo": {
     "home": {
-      "title": "Sorokid - Best Soroban Learning App for Kids | Mental Math Training",
-      "description": "The best Soroban learning app for elementary students. Learn Japanese abacus at home with step-by-step visual guides. Gamified learning that kids love. Parents don't need to know Soroban!",
-      "h1": "Best Soroban Learning App for Elementary Students",
+      "title": "Sorokid - Mental Math App for Kids | Build Math Confidence at Home",
+      "description": "Help your child build lightning-fast mental math skills through games they actually want to play. Visual learning, no teaching required. Free 7-day trial.",
+      "h1": "Math Confidence Starts Here",
       "keywords": [
-        "soroban learning app",
-        "best soroban app",
-        "mental math for kids",
-        "learn soroban online",
-        "japanese abacus app"
+        "mental math app for kids",
+        "math games for children",
+        "learn mental math",
+        "math confidence",
+        "visual math learning"
       ]
     },
     "pricing": {
-      "title": "Sorokid Pricing - Soroban Learning Plans for Kids",
-      "description": "Explore Sorokid learning plans. Start free, upgrade to Premium to unlock all lessons, exercises, and features for your child's Soroban journey.",
-      "h1": "Pricing - Choose Your Learning Plan",
+      "title": "Sorokid Pricing - Affordable Math Learning Plans",
+      "description": "Start free, upgrade when you're ready. Affordable plans that give your child unlimited access to all lessons and features.",
+      "h1": "Simple, Transparent Pricing",
       "keywords": [
         "sorokid pricing",
-        "soroban app price",
-        "soroban premium",
-        "mental math subscription"
+        "math app subscription",
+        "affordable math learning",
+        "kids math app cost"
       ]
     },
     "blog": {
-      "title": "Sorokid Blog - Tips for Teaching Kids Soroban at Home",
-      "description": "Practical tips and guides for parents to help children learn Soroban and mental math at home. Expert advice for effective learning.",
-      "h1": "Blog - Tips for Parents",
+      "title": "Sorokid Blog - Math Tips for Parents",
+      "description": "Practical tips and insights to help your child build math confidence at home. Expert advice from educators.",
+      "h1": "Resources for Parents",
       "keywords": [
-        "soroban tips",
-        "teach kids math",
-        "mental math guide",
-        "soroban learning tips"
+        "math tips for parents",
+        "help kids with math",
+        "math learning advice",
+        "build math confidence"
       ]
     },
     "tool": {
-      "title": "Teacher Toolbox - Free Classroom Games & Activities",
-      "description": "Collection of popular classroom games: Quiz Show, Spin Wheel, Crossword, Animal Race... 100% free, no login required!",
-      "h1": "Toolbox - Free Classroom Games & Tools",
+      "title": "Free Classroom Tools - Games, Timers & Activities",
+      "description": "Free collection of classroom games and tools: Quiz Show, Spin Wheel, Timer, Group Maker and more. No login required!",
+      "h1": "Free Classroom Tools",
       "keywords": [
-        "teacher toolbox",
-        "classroom games",
+        "free classroom games",
         "teaching tools",
-        "educational games"
+        "educational games",
+        "classroom activities"
       ]
     }
   }

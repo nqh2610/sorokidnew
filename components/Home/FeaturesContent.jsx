@@ -54,43 +54,43 @@ export default function FeaturesContent() {
       ],
     },
     en: {
-      title: '✨ Why Kids Love Learning with Sorokid?',
-      subtitle: 'Sorokid is specially designed for elementary students with simple, eye-catching interface',
+      title: '✨ Why Families Choose Sorokid',
+      subtitle: 'A thoughtfully designed program that makes daily math practice enjoyable',
       features: [
         {
           icon: <Gamepad2 className="w-8 h-8" />,
-          title: "Learn Like Playing Games",
-          description: "Points, stars, diamonds... make mental math practice fun like playing favorite games!",
+          title: "Learning Through Play",
+          description: "Earn stars, unlock levels, and collect rewards. The game-based approach keeps kids motivated and coming back to practice.",
           emoji: "🎮"
         },
         {
           icon: <BookOpen className="w-8 h-8" />,
-          title: "Engaging Lessons",
-          description: "From basics to advanced using Japanese Soroban method. Easy to understand and apply.",
+          title: "Visual, Step-by-Step Lessons",
+          description: "Clear animations break down each concept. Kids don't just memorize—they understand how numbers work.",
           emoji: "📚"
         },
         {
           icon: <Zap className="w-8 h-8" />,
-          title: "Faster Reflexes",
-          description: "Diverse exercises help kids calculate faster and more accurately. See results in 2 weeks!",
+          title: "Build Mental Math Skills",
+          description: "Regular practice strengthens mental calculation abilities. Watch their confidence grow as skills develop.",
           emoji: "⚡"
         },
         {
           icon: <Trophy className="w-8 h-8" />,
-          title: "Fun Competition",
-          description: "Leaderboards and tournaments with friends. Motivation skyrockets with competition!",
+          title: "Friendly Challenges",
+          description: "Optional leaderboards and weekly challenges add excitement for kids who enjoy a little competition.",
           emoji: "🏆"
         },
         {
           icon: <Target className="w-8 h-8" />,
-          title: "Daily Quests",
-          description: "Daily quests help kids maintain self-study habits. Complete = get rewards!",
+          title: "Daily Practice Made Easy",
+          description: "Short, focused daily missions help build consistent habits without overwhelming busy schedules.",
           emoji: "🎯"
         },
         {
           icon: <BarChart3 className="w-8 h-8" />,
-          title: "Detailed Reports",
-          description: "Parents know exactly where kids are: speed, accuracy, daily study time.",
+          title: "Clear Progress Tracking",
+          description: "Simple dashboards show what your child has learned and where they can improve next.",
           emoji: "📊"
         }
       ],

@@ -28,20 +28,20 @@ export default function SorobanBenefitsContent() {
       ],
     },
     en: {
-      title: 'What is Soroban?',
-      description: 'Soroban is the <strong class="text-violet-600">Japanese abacus</strong> with over 400 years of history. Kids learning Soroban can visualize the abacus in their mind and calculate <strong class="text-violet-600">as fast as a calculator</strong> without pen and paper.',
+      title: 'The Power of Visual Learning',
+      description: 'Our method helps children <strong class="text-violet-600">visualize numbers</strong> and operations in their mind. Rather than rote memorization, kids develop <strong class="text-violet-600">genuine number sense</strong>—the foundation for lasting math confidence.',
       benefits: [
-        { icon: '🧠', title: 'Brain Development', desc: 'Activates both left brain (logic) and right brain (visual)' },
-        { icon: '⚡', title: 'Super Fast Mental Math', desc: 'Add/subtract 2-3 digit numbers in seconds, no pen needed' },
-        { icon: '🎯', title: 'Improve Focus', desc: 'Pay attention to each step, applies to all subjects' },
-        { icon: '🌏', title: 'Global Method', desc: 'Popular in Japan, Korea, China, Malaysia...' },
+        { icon: '🧠', title: 'Engages Both Sides of the Brain', desc: 'Combines logical reasoning with visual-spatial thinking for deeper understanding' },
+        { icon: '⚡', title: 'Builds Mental Calculation Skills', desc: 'Children learn to solve problems in their head, reducing dependence on calculators' },
+        { icon: '🎯', title: 'Improves Focus & Concentration', desc: 'The step-by-step method naturally builds attention skills that help in all subjects' },
+        { icon: '🌏', title: 'Based on Proven Methods', desc: 'Rooted in visual arithmetic techniques used successfully around the world' },
       ],
-      whyTitle: '✨ Why Choose Sorokid?',
-      whySubtitle: 'Parents don\'t need to know Soroban to guide their kids!',
+      whyTitle: '✨ Designed for Busy Families',
+      whySubtitle: 'No teaching experience required—the app guides your child through every lesson',
       whyPoints: [
-        '✓ Step-by-step visual guidance',
-        '✓ Gamified - kids learn willingly',
-        '✓ Track: consistency, speed, accuracy',
+        '✓ Kids learn independently with clear instructions',
+        '✓ Game-based approach keeps them engaged',
+        '✓ Track progress anytime from your phone',
       ],
     }
   };

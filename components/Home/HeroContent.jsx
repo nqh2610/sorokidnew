@@ -32,18 +32,18 @@ export default function HeroContent() {
       ],
     },
     en: {
-      badge: 'Japanese Soroban Method',
-      title1: 'Mental Math',
-      title2: 'Super Fast Calculation',
-      title3: 'Learn while playing!',
-      description: 'Soroban learning app for elementary students.',
-      highlight: ' From fearing math to loving it in just weeks!',
-      cta: 'Sign Up Now',
+      badge: 'Trusted by 12,000+ families worldwide',
+      title1: 'Build Math Confidence',
+      title2: 'That Lasts',
+      title3: 'Mental math made simple—through visual learning kids actually enjoy.',
+      description: 'Sorokid helps children ages 4-12 develop strong mental math skills using a proven visual method.',
+      highlight: 'Join thousands of families building math confidence at home.',
+      cta: 'Start Free Trial',
       benefits: [
-        { icon: "👨‍👩‍👧", text: "Easy for parents to guide" },
-        { icon: "🎮", text: "Fun like playing games" },
-        { icon: "⏰", text: "Flexible schedule" },
-        { icon: "📈", text: "See daily progress" }
+        { icon: "📚", text: "Self-paced learning" },
+        { icon: "👁️", text: "Visual method" },
+        { icon: "⏱️", text: "10 min/day" },
+        { icon: "📊", text: "Track progress" }
       ],
     }
   };
