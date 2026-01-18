@@ -323,8 +323,8 @@ export default function DashboardPage() {
 
   // Activity - only from activity API or fallback
   const activityChart = useMemo(() =>
-    activity?.activityChart || fallbackData?.activityChart,
-    [activity?.activityChart, fallbackData?.activityChart]
+    essential?.activityChart || activity?.activityChart || fallbackData?.activityChart || [],
+    [essential?.activityChart, activity?.activityChart, fallbackData?.activityChart]
   );
 
   const progress = useMemo(() =>
@@ -333,13 +333,13 @@ export default function DashboardPage() {
   );
 
   const exercise = useMemo(() =>
-    useFallback ? fallbackData?.exercise : null,
-    [useFallback, fallbackData?.exercise]
+    essential?.exercise || fallbackData?.exercise || null,
+    [essential?.exercise, fallbackData?.exercise]
   );
 
   const compete = useMemo(() =>
-    useFallback ? fallbackData?.compete : null,
-    [useFallback, fallbackData?.compete]
+    essential?.compete || fallbackData?.compete || null,
+    [essential?.compete, fallbackData?.compete]
   );
 
   // Refresh all data
@@ -899,16 +899,20 @@ export default function DashboardPage() {
                     </Suspense>
                   </div>
 
-                  {/* Stats Cards - 🔧 FIX: Always show if activity loaded */}
-                  {activity && (
+                  {/* Stats Cards - 🔧 FIX: Always show with essential data */}
+                  {essential && (
                     <div>
                       <h4 className="font-bold text-gray-700 mb-3 flex items-center gap-2">
                         <span>🎯</span> {t('dashboard.overview')}
                       </h4>
                       <StatsCards 
-                        progress={progress || { completedLessons: activity?.overall?.totalLessons }} 
-                        exercise={exercise || { today: { total: 0 } }} 
-                        compete={compete || {}} 
+                        progress={{ 
+                          completedLessons: essential?.quickStats?.lessonsCompleted || 0,
+                          overallProgress: essential?.quickStats?.progressPercent || 0,
+                          avgAccuracy: 0 // Tính sau nếu cần
+                        }} 
+                        exercise={exercise || { total: 0, accuracy: 0, avgTime: 0 }} 
+                        compete={compete || { totalArenas: 0, top3Count: 0 }} 
                         compact={true} 
                       />
                     </div>

@@ -118,8 +118,43 @@ export async function GET(request) {
     // Tìm next lesson
     const nextLesson = findNextLesson(allLessons, userProgress);
 
+    // 🔧 FIX: Query 7 ngày gần nhất cho Activity Chart
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    sevenDaysAgo.setHours(0, 0, 0, 0);
+    
+    // 🔧 FIX: Query cả Progress VÀ Exercise để hiển thị đầy đủ hoạt động
+    const [recentProgress, recentExercises] = await Promise.all([
+      prisma.progress.findMany({
+        where: {
+          userId,
+          updatedAt: { gte: sevenDaysAgo }
+        },
+        select: {
+          starsEarned: true,
+          completed: true,
+          updatedAt: true
+        },
+        orderBy: { updatedAt: 'desc' }
+      }),
+      prisma.exerciseResult.findMany({
+        where: {
+          userId,
+          createdAt: { gte: sevenDaysAgo }
+        },
+        select: {
+          isCorrect: true,
+          createdAt: true
+        },
+        orderBy: { createdAt: 'desc' }
+      })
+    ]);
+    
+    // Build activity chart - bao gồm cả Progress và Exercise
+    const activityChart = buildActivityChart(recentProgress, recentExercises, sevenDaysAgo);
+
     // === QUERY 4: Quick stats (counts only) ===
-    const [questsReadyCount, achievementCounts] = await Promise.all([
+    const [questsReadyCount, achievementCounts, exerciseStats, correctCount, competeStats] = await Promise.all([
       // Đếm quests có thể claim (completed nhưng chưa claimed)
       prisma.userQuest.count({
         where: {
@@ -131,7 +166,22 @@ export async function GET(request) {
       // Đếm achievements
       prisma.userAchievement.count({
         where: { userId }
-      })
+      }),
+      // 🔧 FIX: Thêm Exercise stats cho StatsCards - count và avg timeTaken
+      prisma.exerciseResult.aggregate({
+        where: { userId },
+        _count: true,
+        _avg: { timeTaken: true }
+      }).catch(() => ({ _count: 0, _avg: { timeTaken: 0 } })),
+      // 🔧 FIX: Đếm số câu đúng để tính accuracy
+      prisma.exerciseResult.count({
+        where: { userId, isCorrect: true }
+      }).catch(() => 0),
+      // 🔧 FIX: Thêm Compete stats cho StatsCards
+      prisma.competeResult.aggregate({
+        where: { userId },
+        _count: true
+      }).catch(() => ({ _count: 0 })) // Graceful fallback
     ]);
 
     // Tính quick stats từ progress đã có
@@ -162,7 +212,19 @@ export async function GET(request) {
         achievementProgress: `${achievementCounts}/${totalAchievements}`
       },
       // 🚀 TỐI ƯU: Include progress để Dashboard không cần gọi stats API
-      progress: progressByLevel
+      progress: progressByLevel,
+      // 🔧 FIX: Thêm activityChart cho biểu đồ 7 ngày
+      activityChart,
+      // 🔧 FIX: Thêm exercise và compete stats cho StatsCards
+      exercise: {
+        total: exerciseStats._count || 0,
+        accuracy: exerciseStats._count > 0 ? Math.round((correctCount / exerciseStats._count) * 100) : 0,
+        avgTime: Math.round(exerciseStats._avg?.timeTaken || 0)
+      },
+      compete: {
+        totalArenas: competeStats._count || 0,
+        top3Count: 0 // Tính sau nếu cần
+      }
     };
 
     // 🔧 TỐI ƯU: Cache 45s - cân bằng giữa performance và freshness
@@ -305,4 +367,57 @@ function calculateProgressByLevel(lessons, progress) {
     lessons: allLessons,
     byLevel
   };
+}
+
+/**
+ * 🔧 Build Activity Chart - 7 ngày gần nhất
+ * Bao gồm cả Progress (học bài) và Exercise (luyện tập)
+ */
+function buildActivityChart(progress, exercises, startDate) {
+  // Initialize all 7 days
+  const chart = [];
+  const dayNames = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  
+  for (let i = 0; i < 7; i++) {
+    const date = new Date(startDate);
+    date.setDate(date.getDate() + i);
+    
+    const isToday = date.getTime() === today.getTime();
+    
+    chart.push({
+      day: dayNames[date.getDay()],
+      date: date.toISOString().split('T')[0],
+      stars: 0,
+      lessons: 0,
+      exercises: 0, // 🔧 Thêm đếm exercises
+      isToday
+    });
+  }
+
+  // Fill in Progress data
+  progress.forEach(p => {
+    const date = new Date(p.updatedAt).toISOString().split('T')[0];
+    const dayData = chart.find(d => d.date === date);
+    
+    if (dayData) {
+      dayData.stars += p.starsEarned || 0;
+      if (p.completed) dayData.lessons += 1;
+    }
+  });
+
+  // 🔧 FIX: Fill in Exercise data
+  exercises.forEach(e => {
+    const date = new Date(e.createdAt).toISOString().split('T')[0];
+    const dayData = chart.find(d => d.date === date);
+    
+    if (dayData) {
+      dayData.exercises += 1;
+      // Mỗi câu đúng = 1 sao để hiển thị trên biểu đồ
+      if (e.isCorrect) dayData.stars += 1;
+    }
+  });
+
+  return chart;
 }

@@ -12,8 +12,8 @@ export default function ProgressByLevel({ progress, compact = false, showLessonN
   const byLevel = progress?.byLevel || {};
   const levels = Object.keys(byLevel).sort((a, b) => parseInt(a) - parseInt(b));
 
-  // Tính số bài học (level) đã hoàn thành
-  const completedLevels = levels.filter(levelId => byLevel[levelId].progress === 100).length;
+  // Tính số bài học (level) đã hoàn thành (>= 100% vì có thể có dữ liệu dư)
+  const completedLevels = levels.filter(levelId => byLevel[levelId].progress >= 100).length;
   const totalLevels = levels.length;
 
   const levelColors = [
