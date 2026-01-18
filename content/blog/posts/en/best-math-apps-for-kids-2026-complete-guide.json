@@ -20,8 +20,8 @@
   "status": "published",
   "publishedAt": "2026-01-18T10:00:00.000Z",
   "createdAt": "2026-01-18",
-  "image": "/blog/best-math-apps.jpg",
-  "imageAlt": "Parent and child looking at math app on tablet",
+  "image": "/blog/best-math-apps-for-kids-2026-complete-guide.jpg",
+  "imageAlt": "Prodigy kid in suit is taking notes sitting at desk in university classroom with chalkboard covered with formulas in background. Modern education and talanted children concept.",
   "readingTime": 18,
   "author": {
     "name": "Michelle Rodriguez",
@@ -210,13 +210,55 @@
       },
       {
         "type": "table",
-        "headers": ["App", "Age Range", "Engagement", "Learning", "Price", "Parent Involvement"],
+        "headers": [
+          "App",
+          "Age Range",
+          "Engagement",
+          "Learning",
+          "Price",
+          "Parent Involvement"
+        ],
         "rows": [
-          ["Prodigy", "6-12", "⭐⭐⭐⭐⭐", "⭐⭐⭐", "Free (upsells)", "Low"],
-          ["Sorokid", "4-12", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐", "Free trial + sub", "Low"],
-          ["IXL", "5-18", "⭐⭐", "⭐⭐⭐⭐", "Subscription", "Medium"],
-          ["Khan Academy", "2-8", "⭐⭐⭐⭐", "⭐⭐⭐⭐", "Free", "Low"],
-          ["DragonBox", "4-9", "⭐⭐⭐⭐", "⭐⭐⭐⭐", "One-time", "Low"]
+          [
+            "Prodigy",
+            "6-12",
+            "⭐⭐⭐⭐⭐",
+            "⭐⭐⭐",
+            "Free (upsells)",
+            "Low"
+          ],
+          [
+            "Sorokid",
+            "4-12",
+            "⭐⭐⭐⭐",
+            "⭐⭐⭐⭐⭐",
+            "Free trial + sub",
+            "Low"
+          ],
+          [
+            "IXL",
+            "5-18",
+            "⭐⭐",
+            "⭐⭐⭐⭐",
+            "Subscription",
+            "Medium"
+          ],
+          [
+            "Khan Academy",
+            "2-8",
+            "⭐⭐⭐⭐",
+            "⭐⭐⭐⭐",
+            "Free",
+            "Low"
+          ],
+          [
+            "DragonBox",
+            "4-9",
+            "⭐⭐⭐⭐",
+            "⭐⭐⭐⭐",
+            "One-time",
+            "Low"
+          ]
         ]
       },
       {
@@ -330,5 +372,6 @@
     "metaTitle": "Best Math Apps for Kids 2026: Complete Parent's Guide & Comparison | Sorokid",
     "metaDescription": "Honest comparison of 20+ math apps tested with real kids. Find the best math app for your child—no sponsored content, just real parent experience.",
     "keywords": "best math app for kids, math app comparison, prodigy vs IXL, khan academy alternative, mental math app, educational math games, math learning app 2026"
-  }
+  },
+  "updatedAt": "2026-01-18"
 }

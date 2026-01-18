@@ -48,6 +48,14 @@ function StatusBadge({ status }) {
       </span>
     );
   }
+  if (status === 'scheduled') {
+    return (
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-500/20 text-blue-400 border border-blue-500/30">
+        <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+        Scheduled
+      </span>
+    );
+  }
   return (
     <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-500/20 text-amber-400 border border-amber-500/30">
       <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
@@ -63,6 +71,7 @@ function StatsCard({ label, value, color = 'purple', onClick, active }) {
     emerald: 'from-emerald-500/20 to-emerald-600/10 border-emerald-500/30 text-emerald-400',
     amber: 'from-amber-500/20 to-amber-600/10 border-amber-500/30 text-amber-400',
     red: 'from-red-500/20 to-red-600/10 border-red-500/30 text-red-400',
+    blue: 'from-blue-500/20 to-blue-600/10 border-blue-500/30 text-blue-400',
   };
 
   const baseClass = `bg-gradient-to-br ${colors[color]} border rounded-xl p-4`;
@@ -83,12 +92,22 @@ function StatsCard({ label, value, color = 'purple', onClick, active }) {
 export default function AdminBlogPage() {
   const [posts, setPosts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [stats, setStats] = useState({ total: 0, draft: 0, published: 0, missingImages: 0 });
+  const [stats, setStats] = useState({ total: 0, draft: 0, published: 0, scheduled: 0, missingImages: 0 });
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(null);
   const [toast, setToast] = useState(null);
   const [uploadLoading, setUploadLoading] = useState(false);
   const [uploadErrors, setUploadErrors] = useState(null); // For error modal
+  
+  // Unsplash Modal State
+  const [unsplashModal, setUnsplashModal] = useState({ open: false, post: null });
+  const [unsplashSearch, setUnsplashSearch] = useState('');
+  const [unsplashPhotos, setUnsplashPhotos] = useState([]);
+  const [unsplashLoading, setUnsplashLoading] = useState(false);
+  const [unsplashDownloading, setUnsplashDownloading] = useState(null);
+
+  // Language Filter
+  const [langFilter, setLangFilter] = useState('vi'); // 'vi' | 'en'
 
   // Filters
   const [statusFilter, setStatusFilter] = useState('all');
@@ -110,6 +129,7 @@ export default function AdminBlogPage() {
         status: statusFilter,
         sortBy,
         sortOrder,
+        lang: langFilter,
       });
       if (categoryFilter) params.append('category', categoryFilter);
       if (search) params.append('search', search);
@@ -124,27 +144,27 @@ export default function AdminBlogPage() {
 
       setPosts(data.posts || []);
       setCategories(data.categories || []);
-      setStats(data.stats || { total: 0, draft: 0, published: 0, missingImages: 0 });
+      setStats(data.stats || { total: 0, draft: 0, published: 0, scheduled: 0, missingImages: 0 });
     } catch (error) {
       console.error('Error fetching posts:', error);
       setToast({ type: 'error', message: 'Không thể tải danh sách bài viết' });
     } finally {
       setLoading(false);
     }
-  }, [statusFilter, categoryFilter, sortBy, sortOrder, search, imageFilter]);
+  }, [statusFilter, categoryFilter, sortBy, sortOrder, search, imageFilter, langFilter]);
 
   useEffect(() => {
     fetchPosts();
   }, [fetchPosts]);
 
   // Publish post
-  const handlePublish = async (slug) => {
+  const handlePublish = async (slug, scheduledAt = null) => {
     try {
       setActionLoading(slug);
       const res = await fetch('/api/admin/blog/publish', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug }),
+        body: JSON.stringify({ slug, lang: langFilter, scheduledAt }),
       });
       const data = await res.json();
 
@@ -152,7 +172,10 @@ export default function AdminBlogPage() {
         throw new Error(data.error);
       }
 
-      setToast({ type: 'success', message: `Đã publish bài viết "${data.post.title}"` });
+      const message = scheduledAt 
+        ? `Đã lên lịch bài viết "${data.post.title}"` 
+        : `Đã publish bài viết "${data.post.title}"`;
+      setToast({ type: 'success', message });
       fetchPosts();
     } catch (error) {
       setToast({ type: 'error', message: error.message || 'Không thể publish bài viết' });
@@ -168,7 +191,7 @@ export default function AdminBlogPage() {
       const res = await fetch('/api/admin/blog/unpublish', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug }),
+        body: JSON.stringify({ slug, lang: langFilter }),
       });
       const data = await res.json();
 
@@ -215,6 +238,7 @@ export default function AdminBlogPage() {
       setUploadLoading(true);
       const formData = new FormData();
       formData.append('file', file);
+      formData.append('lang', langFilter); // Truyền ngôn ngữ hiện tại
 
       const res = await fetch('/api/admin/blog/upload-post', {
         method: 'POST',
@@ -239,7 +263,7 @@ export default function AdminBlogPage() {
 
       setToast({ 
         type: 'success', 
-        message: `✅ Upload thành công: "${data.post.title}" (Draft)` 
+        message: `✅ Upload thành công: "${data.post.title}" (${langFilter === 'en' ? 'English' : 'Tiếng Việt'} - Draft)` 
       });
       fetchPosts();
     } catch (error) {
@@ -255,6 +279,125 @@ export default function AdminBlogPage() {
       const text = uploadErrors.errors.join('\n');
       navigator.clipboard.writeText(text);
       setToast({ type: 'success', message: 'Đã copy danh sách lỗi!' });
+    }
+  };
+
+  // ========== UNSPLASH FUNCTIONS ==========
+  
+  // Map category sang keyword tiếng Anh cho Unsplash
+  const categoryKeywordMap = {
+    'goc-chia-se-giao-vien': 'teacher classroom teaching',
+    'huong-dan-soroban': 'abacus math learning',
+    'soroban-cho-phu-huynh': 'parent child studying',
+    'phat-trien-tu-duy': 'brain thinking child',
+    'ky-nang-hoc-tap': 'student studying homework',
+    'tin-tuc-giao-duc': 'education school children',
+    // English categories
+    'math-learning-tips': 'kids math learning',
+    'parenting-education': 'parent child education',
+    'child-development': 'child development brain',
+  };
+
+  // Mở modal Unsplash với auto-suggest từ category
+  const openUnsplashModal = (post) => {
+    setUnsplashModal({ open: true, post });
+    
+    // Ưu tiên dùng keyword từ category mapping
+    let defaultKeyword = categoryKeywordMap[post.category] || 'children learning math';
+    
+    // Nếu là bài tiếng Anh, thử extract keyword từ title
+    if (langFilter === 'en' && post.title) {
+      const englishWords = post.title
+        .toLowerCase()
+        .replace(/[^\w\s]/g, '')
+        .split(' ')
+        .filter(w => w.length > 4 && !['about', 'their', 'which', 'these', 'there', 'would', 'could', 'should'].includes(w))
+        .slice(0, 3)
+        .join(' ');
+      if (englishWords) defaultKeyword = englishWords;
+    }
+    
+    setUnsplashSearch(defaultKeyword);
+    searchUnsplash(defaultKeyword);
+  };
+
+  // Search ảnh từ Unsplash
+  const searchUnsplash = async (query) => {
+    if (!query) return;
+    
+    try {
+      setUnsplashLoading(true);
+      const res = await fetch(`/api/admin/blog/unsplash?query=${encodeURIComponent(query)}&perPage=12`);
+      const data = await res.json();
+      
+      if (data.error) {
+        if (data.needsConfig) {
+          setToast({ type: 'warning', message: 'Cần cấu hình UNSPLASH_ACCESS_KEY trong .env' });
+        } else {
+          setToast({ type: 'error', message: data.error });
+        }
+        return;
+      }
+      
+      setUnsplashPhotos(data.photos || []);
+    } catch (error) {
+      setToast({ type: 'error', message: 'Không thể tìm ảnh từ Unsplash' });
+    } finally {
+      setUnsplashLoading(false);
+    }
+  };
+
+  // Download ảnh và cập nhật bài viết
+  const downloadAndSetImage = async (photo) => {
+    const post = unsplashModal.post;
+    if (!post) return;
+    
+    try {
+      setUnsplashDownloading(photo.id);
+      
+      // 1. Download ảnh về server
+      const downloadRes = await fetch('/api/admin/blog/unsplash', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          photoId: photo.id,
+          imageUrl: photo.urls.regular, // 1080px quality
+          downloadLink: photo.downloadLink,
+          slug: post.slug,
+          altText: photo.description || post.title,
+        }),
+      });
+      
+      const downloadData = await downloadRes.json();
+      if (downloadData.error) {
+        throw new Error(downloadData.error);
+      }
+      
+      // 2. Cập nhật bài viết với ảnh mới
+      const updateRes = await fetch('/api/admin/blog/update-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          slug: post.slug,
+          image: downloadData.image.path,
+          imageAlt: downloadData.image.altText,
+          lang: langFilter,
+        }),
+      });
+      
+      const updateData = await updateRes.json();
+      if (updateData.error) {
+        throw new Error(updateData.error);
+      }
+      
+      setToast({ type: 'success', message: `✅ Đã cập nhật ảnh cho "${post.title}"` });
+      setUnsplashModal({ open: false, post: null });
+      fetchPosts(); // Refresh list
+      
+    } catch (error) {
+      setToast({ type: 'error', message: error.message || 'Không thể tải ảnh' });
+    } finally {
+      setUnsplashDownloading(null);
     }
   };
 
@@ -375,10 +518,43 @@ export default function AdminBlogPage() {
         </div>
       </div>
 
+      {/* Language Tabs */}
+      <div className="flex gap-2 mb-6">
+        <button
+          onClick={() => { setLangFilter('vi'); setCategoryFilter(''); setCurrentPage(1); }}
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium transition-all ${
+            langFilter === 'vi'
+              ? 'bg-gradient-to-r from-purple-600 to-purple-500 text-white shadow-lg shadow-purple-500/25'
+              : 'bg-slate-800 text-slate-400 hover:text-white border border-slate-700 hover:border-purple-500/50'
+          }`}
+        >
+          <span>🇻🇳</span>
+          Tiếng Việt
+        </button>
+        <button
+          onClick={() => { setLangFilter('en'); setCategoryFilter(''); setCurrentPage(1); }}
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium transition-all ${
+            langFilter === 'en'
+              ? 'bg-gradient-to-r from-purple-600 to-purple-500 text-white shadow-lg shadow-purple-500/25'
+              : 'bg-slate-800 text-slate-400 hover:text-white border border-slate-700 hover:border-purple-500/50'
+          }`}
+        >
+          <span>🇺🇸</span>
+          English
+        </button>
+      </div>
+
       {/* Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-8">
         <StatsCard label="Tổng bài viết" value={stats.total} color="purple" />
         <StatsCard label="Đã xuất bản" value={stats.published} color="emerald" />
+        <StatsCard 
+          label="Đã lên lịch" 
+          value={stats.scheduled || 0} 
+          color="blue"
+          onClick={() => setStatusFilter(statusFilter === 'scheduled' ? 'all' : 'scheduled')}
+          active={statusFilter === 'scheduled'}
+        />
         <StatsCard label="Bản nháp" value={stats.draft} color="amber" />
         <StatsCard
           label="Thiếu ảnh"
@@ -411,6 +587,7 @@ export default function AdminBlogPage() {
           >
             <option value="all">Tất cả trạng thái</option>
             <option value="published">Published</option>
+            <option value="scheduled">Scheduled</option>
             <option value="draft">Draft</option>
           </select>
 
@@ -503,18 +680,22 @@ export default function AdminBlogPage() {
                       )}
                       {/* Image status warning badge */}
                       {(post.imageStatus === 'missing' || post.imageStatus === 'broken') && (
-                        <div className="absolute top-0.5 right-0.5 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center" title={post.imageStatus === 'broken' ? 'Ảnh bị lỗi' : 'Thiếu ảnh'}>
+                        <button 
+                          onClick={(e) => { e.preventDefault(); openUnsplashModal(post); }}
+                          className="absolute top-0.5 right-0.5 w-5 h-5 bg-red-500 hover:bg-purple-500 rounded-full flex items-center justify-center transition-colors" 
+                          title="Click để chọn ảnh từ Unsplash"
+                        >
                           <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 9v2m0 4h.01" />
                           </svg>
-                        </div>
+                        </button>
                       )}
                     </div>
                     {/* Info */}
                     <div className="flex-1 min-w-0">
                       <h3 className="text-white font-medium text-sm line-clamp-2 mb-1">{post.title}</h3>
                       <div className="flex flex-wrap items-center gap-2 text-xs">
-                        <StatusBadge status={post.status} />
+                        <StatusBadge status={post.displayStatus || post.status} />
                         <span className="text-slate-500">{getCategoryName(post.category)}</span>
                       </div>
                     </div>
@@ -522,7 +703,20 @@ export default function AdminBlogPage() {
                   {/* Mobile Actions */}
                   <div className="flex items-center justify-end gap-2 mt-3 pt-3 border-t border-slate-700/50">
                     <span className="text-xs text-slate-500 mr-auto">{formatDate(post.createdAt)}</span>
-                    {post.status === 'draft' ? (
+                    
+                    {/* Unsplash button */}
+                    <button
+                      onClick={() => openUnsplashModal(post)}
+                      className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${
+                        post.imageStatus === 'missing' || post.imageStatus === 'broken'
+                          ? 'bg-red-500/20 text-red-400 hover:bg-red-500/30'
+                          : 'bg-purple-500/20 text-purple-400 hover:bg-purple-500/30'
+                      }`}
+                    >
+                      📷 {post.imageStatus === 'missing' ? 'Thêm ảnh' : 'Đổi ảnh'}
+                    </button>
+                    
+                    {(post.displayStatus || post.status) === 'draft' ? (
                       <button
                         onClick={() => handlePublish(post.slug)}
                         disabled={actionLoading === post.slug}
@@ -530,6 +724,10 @@ export default function AdminBlogPage() {
                       >
                         {actionLoading === post.slug ? '...' : 'Publish'}
                       </button>
+                    ) : (post.displayStatus || post.status) === 'scheduled' ? (
+                      <span className="px-3 py-1.5 text-xs font-medium bg-blue-500/20 text-blue-400 rounded-lg">
+                        📅 {formatDate(post.publishedAt)}
+                      </span>
                     ) : (
                       <button
                         onClick={() => handleUnpublish(post.slug)}
@@ -539,9 +737,9 @@ export default function AdminBlogPage() {
                         {actionLoading === post.slug ? '...' : 'Unpublish'}
                       </button>
                     )}
-                    {post.status === 'published' && (
+                    {(post.displayStatus || post.status) === 'published' && (
                       <a
-                        href={`/blog/${post.slug}`}
+                        href={langFilter === 'en' ? `/en/blog/${post.slug}` : `/blog/${post.slug}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="px-3 py-1.5 text-xs font-medium bg-slate-700 text-slate-300 rounded-lg hover:bg-slate-600 transition-colors"
@@ -588,11 +786,15 @@ export default function AdminBlogPage() {
                           )}
                           {/* Image status warning badge */}
                           {(post.imageStatus === 'missing' || post.imageStatus === 'broken') && (
-                            <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center shadow-lg" title={post.imageStatus === 'broken' ? 'Ảnh bị lỗi' : 'Thiếu ảnh'}>
+                            <button 
+                              onClick={() => openUnsplashModal(post)}
+                              className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 hover:bg-purple-500 rounded-full flex items-center justify-center shadow-lg transition-colors" 
+                              title="Click để chọn ảnh từ Unsplash"
+                            >
                               <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 9v2m0 4h.01" />
                               </svg>
-                            </div>
+                            </button>
                           )}
                         </div>
                       </td>
@@ -621,7 +823,12 @@ export default function AdminBlogPage() {
 
                     {/* Status */}
                     <td className="px-4 py-4 text-center">
-                      <StatusBadge status={post.status} />
+                      <StatusBadge status={post.displayStatus || post.status} />
+                      {(post.displayStatus || post.status) === 'scheduled' && post.publishedAt && (
+                        <div className="text-xs text-blue-400 mt-1">
+                          📅 {formatDate(post.publishedAt)}
+                        </div>
+                      )}
                     </td>
 
                     {/* Created Date */}
@@ -634,6 +841,21 @@ export default function AdminBlogPage() {
                     {/* Actions */}
                     <td className="px-4 py-4">
                       <div className="flex items-center justify-center gap-2">
+                        {/* Unsplash - Chọn ảnh */}
+                        <button
+                          onClick={() => openUnsplashModal(post)}
+                          className={`p-2 rounded-lg transition-colors ${
+                            post.imageStatus === 'missing' || post.imageStatus === 'broken'
+                              ? 'text-red-400 hover:text-red-300 hover:bg-red-500/20'
+                              : 'text-slate-400 hover:text-purple-400 hover:bg-purple-500/20'
+                          }`}
+                          title={post.imageStatus === 'missing' ? 'Thiếu ảnh - Click để chọn từ Unsplash' : 'Đổi ảnh từ Unsplash'}
+                        >
+                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </button>
+
                         {/* Preview */}
                         <Link
                           href={`/admin/blog/${post.slug}`}
@@ -647,7 +869,7 @@ export default function AdminBlogPage() {
                         </Link>
 
                         {/* Publish / Unpublish */}
-                        {post.status === 'draft' ? (
+                        {(post.displayStatus || post.status) === 'draft' ? (
                           <button
                             onClick={() => handlePublish(post.slug)}
                             disabled={actionLoading === post.slug}
@@ -665,6 +887,12 @@ export default function AdminBlogPage() {
                               </svg>
                             )}
                           </button>
+                        ) : (post.displayStatus || post.status) === 'scheduled' ? (
+                          <span className="p-2 text-blue-400" title="Đã lên lịch">
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                          </span>
                         ) : (
                           <button
                             onClick={() => handleUnpublish(post.slug)}
@@ -686,9 +914,9 @@ export default function AdminBlogPage() {
                         )}
 
                         {/* View on site (only published) */}
-                        {post.status === 'published' && (
+                        {(post.displayStatus || post.status) === 'published' && (
                           <a
-                            href={`/blog/${post.slug}`}
+                            href={langFilter === 'en' ? `/en/blog/${post.slug}` : `/blog/${post.slug}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="p-2 text-slate-400 hover:text-white hover:bg-slate-600 rounded-lg transition-colors"
@@ -815,6 +1043,146 @@ export default function AdminBlogPage() {
           </div>
         </div>
       </div>
+
+      {/* Unsplash Image Picker Modal */}
+      {unsplashModal.open && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-800 rounded-2xl border border-slate-700 max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
+            {/* Modal Header */}
+            <div className="bg-gradient-to-r from-purple-600/20 to-blue-600/20 border-b border-slate-700 px-6 py-4 flex items-center justify-between flex-shrink-0">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white">Chọn ảnh từ Unsplash</h3>
+                  <p className="text-sm text-slate-400 line-clamp-1">
+                    Cho bài: {unsplashModal.post?.title}
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setUnsplashModal({ open: false, post: null })}
+                className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Search Bar */}
+            <div className="px-6 py-4 border-b border-slate-700 flex-shrink-0">
+              <div className="flex gap-3">
+                <input
+                  type="text"
+                  value={unsplashSearch}
+                  onChange={(e) => setUnsplashSearch(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && searchUnsplash(unsplashSearch)}
+                  placeholder="Tìm ảnh: children, math, learning, education..."
+                  className="flex-1 px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                />
+                <button
+                  onClick={() => searchUnsplash(unsplashSearch)}
+                  disabled={unsplashLoading}
+                  className="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg font-medium transition-colors disabled:opacity-50 flex items-center gap-2"
+                >
+                  {unsplashLoading ? (
+                    <>
+                      <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Đang tìm...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                      Tìm kiếm
+                    </>
+                  )}
+                </button>
+              </div>
+              <p className="text-xs text-slate-500 mt-2">
+                💡 Gợi ý: children learning, kids math, education, classroom, happy kids, studying
+              </p>
+            </div>
+
+            {/* Photos Grid */}
+            <div className="flex-1 overflow-y-auto p-6">
+              {unsplashLoading ? (
+                <div className="flex items-center justify-center py-12">
+                  <div className="w-10 h-10 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              ) : unsplashPhotos.length === 0 ? (
+                <div className="text-center py-12 text-slate-400">
+                  <svg className="w-16 h-16 mx-auto mb-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <p>Nhập từ khóa và nhấn Tìm kiếm để tìm ảnh</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {unsplashPhotos.map(photo => (
+                    <div
+                      key={photo.id}
+                      className="group relative aspect-video rounded-lg overflow-hidden bg-slate-700 cursor-pointer hover:ring-2 hover:ring-purple-500 transition-all"
+                      onClick={() => downloadAndSetImage(photo)}
+                    >
+                      <img
+                        src={photo.urls.small}
+                        alt={photo.description || 'Unsplash photo'}
+                        className="w-full h-full object-cover"
+                      />
+                      {/* Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                        <div className="text-white text-xs">
+                          <p className="font-medium">📷 {photo.user.name}</p>
+                        </div>
+                      </div>
+                      {/* Downloading indicator */}
+                      {unsplashDownloading === photo.id && (
+                        <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
+                          <div className="text-center">
+                            <svg className="w-8 h-8 animate-spin text-purple-400 mx-auto mb-2" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            <span className="text-white text-sm">Đang tải...</span>
+                          </div>
+                        </div>
+                      )}
+                      {/* Select button */}
+                      <button
+                        className="absolute top-2 right-2 w-8 h-8 bg-purple-600 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center hover:bg-purple-500"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          downloadAndSetImage(photo);
+                        }}
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="px-6 py-3 border-t border-slate-700 bg-slate-800/50 flex-shrink-0">
+              <p className="text-xs text-slate-500 text-center">
+                Photos by <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">Unsplash</a> • Free to use
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

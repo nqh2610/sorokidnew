@@ -20,8 +20,8 @@
   "status": "published",
   "publishedAt": "2026-01-19T07:16:00.000Z",
   "createdAt": "2025-12-25",
-  "image": "/blog/be-dem-ngon-tay.jpg",
-  "imageAlt": "Bé châu Á đếm trên ngón tay khi làm bài",
+  "image": "/blog/con-dem-tren-ngon-tay-co-sao-khong.jpg",
+  "imageAlt": "Young adult man is drawing in notebook having fun with happy child at home sitting at table with laptop together. Indoor activities and family concept.",
   "readingTime": 12,
   "categoryOrder": 1,
   "order": 25,
@@ -361,5 +361,6 @@
     "type": "Article",
     "datePublished": "2026-02-14",
     "author": "Chị Hà My"
-  }
+  },
+  "updatedAt": "2026-01-18"
 }

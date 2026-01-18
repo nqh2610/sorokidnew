@@ -1,48 +1,65 @@
 {
   "seo": {
     "home": {
-      "title": "Sorokid - Mental Math App for Kids | Build Math Confidence at Home",
-      "description": "Help your child build lightning-fast mental math skills through games they actually want to play. Visual learning, no teaching required. Free 7-day trial.",
-      "h1": "Math Confidence Starts Here",
+      "title": "Mental Math App for Kids | Fun Math Games That Build Confidence | Sorokid",
+      "description": "Help your child build mental math skills through games they actually enjoy. Self-paced visual learning for ages 4-12. No teaching required. Start your free 7-day trial.",
+      "h1": "Build Math Confidence That Lasts",
       "keywords": [
-        "mental math app for kids",
-        "math games for children",
-        "learn mental math",
-        "math confidence",
-        "visual math learning"
+        "mental math for kids",
+        "math app for kids",
+        "mental math games for kids",
+        "best math app for kids",
+        "fun math games for kids",
+        "math learning app",
+        "gamified math for kids",
+        "how to make math fun for kids",
+        "math confidence for kids",
+        "visual math learning",
+        "self-paced math for kids",
+        "math practice app",
+        "number sense for kids",
+        "brain games for kids"
       ]
     },
     "pricing": {
-      "title": "Sorokid Pricing - Affordable Math Learning Plans",
-      "description": "Start free, upgrade when you're ready. Affordable plans that give your child unlimited access to all lessons and features.",
+      "title": "Sorokid Pricing - Affordable Mental Math Learning for Kids",
+      "description": "Start free, upgrade when ready. Affordable plans for unlimited math lessons, games, and progress tracking. Cancel anytime.",
       "h1": "Simple, Transparent Pricing",
       "keywords": [
-        "sorokid pricing",
         "math app subscription",
         "affordable math learning",
-        "kids math app cost"
+        "kids math app cost",
+        "mental math app pricing",
+        "math tutoring alternative",
+        "homeschool math program cost"
       ]
     },
     "blog": {
-      "title": "Sorokid Blog - Math Tips for Parents",
-      "description": "Practical tips and insights to help your child build math confidence at home. Expert advice from educators.",
+      "title": "Math Tips for Parents | Help Kids Build Math Confidence | Sorokid Blog",
+      "description": "Practical advice for parents: overcome math anxiety, build mental math skills, make math fun at home. Real stories from families like yours.",
       "h1": "Resources for Parents",
       "keywords": [
-        "math tips for parents",
         "help kids with math",
-        "math learning advice",
+        "math tips for parents",
+        "child struggling with math",
+        "math anxiety in kids",
+        "teach math at home",
+        "mental math for kids",
+        "how to make math fun",
+        "math homework help",
         "build math confidence"
       ]
     },
     "tool": {
-      "title": "Free Classroom Tools - Games, Timers & Activities",
+      "title": "Free Classroom Tools - Games, Timers & Activities for Teachers",
       "description": "Free collection of classroom games and tools: Quiz Show, Spin Wheel, Timer, Group Maker and more. No login required!",
       "h1": "Free Classroom Tools",
       "keywords": [
         "free classroom games",
         "teaching tools",
         "educational games",
-        "classroom activities"
+        "classroom activities",
+        "student engagement activities"
       ]
     }
   }

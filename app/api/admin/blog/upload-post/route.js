@@ -177,8 +177,11 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
-    // Check if post already exists
-    const postsDir = path.join(process.cwd(), 'content', 'blog', 'posts');
+    // Check if post already exists - lấy lang từ formData
+    const lang = formData.get('lang') || 'vi';
+    const postsDir = lang === 'en' 
+      ? path.join(process.cwd(), 'content', 'blog', 'posts', 'en')
+      : path.join(process.cwd(), 'content', 'blog', 'posts');
     const filePath = path.join(postsDir, `${postData.slug}.json`);
     
     try {
@@ -192,6 +195,7 @@ export async function POST(request) {
 
     // Force published to false (draft) for new uploads
     postData.published = false;
+    postData.status = 'draft';
     
     // Set timestamps
     const now = new Date().toISOString().split('T')[0];
@@ -211,13 +215,14 @@ export async function POST(request) {
 
     return NextResponse.json({
       success: true,
-      message: 'Upload thành công! Bài viết đang ở trạng thái Draft.',
+      message: `Upload thành công! Bài viết ${lang === 'en' ? '(English)' : '(Tiếng Việt)'} đang ở trạng thái Draft.`,
       post: {
         title: postData.title,
         slug: postData.slug,
         category: postData.category || 'Chưa phân loại',
         published: false,
         createdAt: postData.createdAt,
+        lang,
       }
     });
 

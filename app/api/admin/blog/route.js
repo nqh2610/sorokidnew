@@ -2,10 +2,11 @@
  * API Admin Blog - Lấy danh sách tất cả bài viết (cả draft và published)
  * GET /api/admin/blog
  * Query params:
- * - status: 'all' | 'draft' | 'published'
+ * - status: 'all' | 'draft' | 'published' | 'scheduled'
  * - category: string (slug)
  * - sortBy: 'createdAt' | 'publishedAt' | 'title'
  * - sortOrder: 'asc' | 'desc'
+ * - lang: 'vi' | 'en' (default: 'vi')
  */
 
 import { NextResponse } from 'next/server';
@@ -15,7 +16,9 @@ import fs from 'fs';
 import path from 'path';
 
 const BLOG_CONTENT_DIR = path.join(process.cwd(), 'content', 'blog', 'posts');
+const BLOG_CONTENT_EN_DIR = path.join(process.cwd(), 'content', 'blog', 'posts', 'en');
 const CATEGORIES_FILE = path.join(process.cwd(), 'content', 'blog', 'categories.json');
+const CATEGORIES_EN_FILE = path.join(process.cwd(), 'content', 'blog', 'categories.en.json');
 const PUBLIC_DIR = path.join(process.cwd(), 'public');
 
 // Kiểm tra ảnh có tồn tại trong thư mục public không
@@ -41,28 +44,34 @@ export async function GET(request) {
     const sortOrder = searchParams.get('sortOrder') || 'desc';
     const search = searchParams.get('search');
     const imageFilter = searchParams.get('imageFilter'); // 'all' | 'missing' | 'valid'
+    const lang = searchParams.get('lang') || 'vi'; // 'vi' | 'en'
+
+    // Chọn đúng thư mục và file categories theo ngôn ngữ
+    const contentDir = lang === 'en' ? BLOG_CONTENT_EN_DIR : BLOG_CONTENT_DIR;
+    const categoriesFile = lang === 'en' ? CATEGORIES_EN_FILE : CATEGORIES_FILE;
 
     // Đọc categories
     let categories = [];
     try {
-      const catData = fs.readFileSync(CATEGORIES_FILE, 'utf-8');
+      const catData = fs.readFileSync(categoriesFile, 'utf-8');
       categories = JSON.parse(catData).categories;
     } catch (e) {
       console.error('Error reading categories:', e);
     }
 
     // Đọc tất cả posts
-    if (!fs.existsSync(BLOG_CONTENT_DIR)) {
-      return NextResponse.json({ posts: [], categories, stats: { total: 0, draft: 0, published: 0 } });
+    if (!fs.existsSync(contentDir)) {
+      return NextResponse.json({ posts: [], categories, stats: { total: 0, draft: 0, published: 0, scheduled: 0 } });
     }
 
-    const files = fs.readdirSync(BLOG_CONTENT_DIR);
+    const files = fs.readdirSync(contentDir);
+    const now = new Date();
     
     let posts = files
       .filter(file => file.endsWith('.json'))
       .map(file => {
         try {
-          const data = fs.readFileSync(path.join(BLOG_CONTENT_DIR, file), 'utf-8');
+          const data = fs.readFileSync(path.join(contentDir, file), 'utf-8');
           const post = JSON.parse(data);
           // Không trả về content đầy đủ để giảm payload
           const { content, faq, cta, ...postWithoutContent } = post;
@@ -75,24 +84,40 @@ export async function GET(request) {
             imageStatus = 'broken'; // Có đường dẫn nhưng file không tồn tại
           }
 
-          return { ...postWithoutContent, imageStatus };
+          // Xác định trạng thái thực (published, draft, scheduled)
+          let displayStatus = postWithoutContent.status || 'draft';
+          if (displayStatus === 'scheduled' || (postWithoutContent.publishedAt && new Date(postWithoutContent.publishedAt) > now)) {
+            displayStatus = 'scheduled';
+          }
+          
+          return { 
+            ...postWithoutContent, 
+            imageStatus, 
+            displayStatus,
+            lang 
+          };
         } catch (e) {
           return null;
         }
       })
       .filter(Boolean);
 
-    // Tính stats
+    // Tính stats - dựa theo displayStatus (bao gồm scheduled)
     const stats = {
       total: posts.length,
-      draft: posts.filter(p => p.status === 'draft').length,
-      published: posts.filter(p => p.status === 'published').length,
+      draft: posts.filter(p => p.displayStatus === 'draft').length,
+      published: posts.filter(p => p.displayStatus === 'published').length,
+      scheduled: posts.filter(p => p.displayStatus === 'scheduled').length,
       missingImages: posts.filter(p => p.imageStatus === 'missing' || p.imageStatus === 'broken').length,
     };
 
-    // Filter theo status
+    // Filter theo status (dùng displayStatus cho scheduled)
     if (status !== 'all') {
-      posts = posts.filter(p => p.status === status);
+      if (status === 'scheduled') {
+        posts = posts.filter(p => p.displayStatus === 'scheduled');
+      } else {
+        posts = posts.filter(p => p.displayStatus === status);
+      }
     }
 
     // Filter theo category

@@ -20,8 +20,8 @@
   "status": "published",
   "publishedAt": "2026-01-18T12:00:00.000Z",
   "createdAt": "2026-01-18",
-  "image": "/blog/child-concentration.jpg",
-  "imageAlt": "Child focused on learning activity",
+  "image": "/blog/how-to-improve-childs-concentration-proven-methods.jpg",
+  "imageAlt": "Captured in a metropolitan Atlanta, Georgia primary school, seated amongst his classmates, this photograph depicts a young Asian-American schoolboy, who was in the process of drawing with a pencil on a piece of white paper atop a table that had been covered by a layer of removable brown paper. Note how focused and intent he was on creating his artwork, seemingly oblivious to all the classroom goings-on that surrounded him. It is important to know that objects, including pencils, crayons, paper, etc., are known as fomites, and act as transmitters of illnesses. ",
   "readingTime": 16,
   "author": {
     "name": "David Chen",
@@ -167,11 +167,23 @@
       },
       {
         "type": "table",
-        "headers": ["Age", "Recommended Sleep"],
+        "headers": [
+          "Age",
+          "Recommended Sleep"
+        ],
         "rows": [
-          ["5-6 years", "10-13 hours"],
-          ["7-8 years", "9-12 hours"],
-          ["9-12 years", "9-11 hours"]
+          [
+            "5-6 years",
+            "10-13 hours"
+          ],
+          [
+            "7-8 years",
+            "9-12 hours"
+          ],
+          [
+            "9-12 years",
+            "9-11 hours"
+          ]
         ]
       },
       {
@@ -303,5 +315,6 @@
     "metaTitle": "How to Improve Your Child's Concentration: 10 Proven Methods | Sorokid",
     "metaDescription": "Struggling with a child who can't focus? 10 research-backed methods that actually work—from a dad who tried everything. Practical tips for ages 5-12.",
     "keywords": "improve child concentration, focus activities for kids, child can't concentrate, attention span kids, help child focus homework, concentration exercises children"
-  }
+  },
+  "updatedAt": "2026-01-18"
 }

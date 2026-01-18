@@ -1,7 +1,7 @@
 /**
  * API Admin Blog - Unpublish bài viết
  * POST /api/admin/blog/unpublish
- * Body: { slug: string }
+ * Body: { slug: string, lang?: 'vi' | 'en' }
  */
 
 import { NextResponse } from 'next/server';
@@ -11,6 +11,7 @@ import fs from 'fs';
 import path from 'path';
 
 const BLOG_CONTENT_DIR = path.join(process.cwd(), 'content', 'blog', 'posts');
+const BLOG_CONTENT_EN_DIR = path.join(process.cwd(), 'content', 'blog', 'posts', 'en');
 
 export async function POST(request) {
   try {
@@ -20,13 +21,15 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { slug } = await request.json();
+    const { slug, lang = 'vi' } = await request.json();
 
     if (!slug) {
       return NextResponse.json({ error: 'Slug is required' }, { status: 400 });
     }
 
-    const filePath = path.join(BLOG_CONTENT_DIR, `${slug}.json`);
+    // Chọn thư mục dựa theo ngôn ngữ
+    const contentDir = lang === 'en' ? BLOG_CONTENT_EN_DIR : BLOG_CONTENT_DIR;
+    const filePath = path.join(contentDir, `${slug}.json`);
 
     if (!fs.existsSync(filePath)) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 });
@@ -51,6 +54,7 @@ export async function POST(request) {
         title: post.title,
         status: post.status,
         publishedAt: post.publishedAt,
+        lang,
       }
     });
   } catch (error) {
