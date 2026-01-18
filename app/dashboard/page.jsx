@@ -118,8 +118,8 @@ export default function DashboardPage() {
       
       if (data.success) {
         setEssential(data);
-        // 🔧 FIX: KHÔNG gọi fetchSecondaryData ở đây nữa
-        // Sẽ trigger từ useEffect riêng khi essential loaded
+        // � TỐI ƯU: Essential API đã có progress, không cần gọi fallback nữa
+        // Chỉ gọi fallback khi essential thật sự fail
       } else {
         throw new Error('Essential API failed');
       }
@@ -328,8 +328,8 @@ export default function DashboardPage() {
   );
 
   const progress = useMemo(() =>
-    useFallback ? fallbackData?.progress : null,
-    [useFallback, fallbackData?.progress]
+    essential?.progress || fallbackData?.progress || activity?.progress || null,
+    [essential?.progress, fallbackData?.progress, activity?.progress]
   );
 
   const exercise = useMemo(() =>
@@ -480,8 +480,8 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50">
-      {/* Unified TopBar */}
-      <TopBar showStats={true} />
+      {/* 🚀 TỐI ƯU: Truyền userData để TopBar không cần fetch API riêng */}
+      <TopBar showStats={true} userData={user} userTier={user?.tier} />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8">
         {/* 🎯 TIẾP TỤC HỌC - CTA CHÍNH */}
@@ -899,8 +899,8 @@ export default function DashboardPage() {
                     </Suspense>
                   </div>
 
-                  {/* Stats Cards */}
-                  {(activity?.thisWeek || progress) && (
+                  {/* Stats Cards - 🔧 FIX: Always show if activity loaded */}
+                  {activity && (
                     <div>
                       <h4 className="font-bold text-gray-700 mb-3 flex items-center gap-2">
                         <span>🎯</span> {t('dashboard.overview')}
@@ -914,14 +914,14 @@ export default function DashboardPage() {
                     </div>
                   )}
 
-                  {/* Progress by Level - Hiển thị tên bài học - 🚀 PERF: Lazy loaded */}
-                  {progress && (
+                  {/* Progress by Level - 🔧 FIX: Use activity.progress directly */}
+                  {(progress || activity?.progress) && (
                     <div>
                       <h4 className="font-bold text-gray-700 mb-3 flex items-center gap-2">
                         <span>📚</span> {t('dashboard.progressByLevel')}
                       </h4>
                       <Suspense fallback={<div className="h-24 bg-gray-100 rounded-lg animate-pulse" />}>
-                        <ProgressByLevel progress={progress} compact={true} showLessonNames={true} />
+                        <ProgressByLevel progress={progress || activity?.progress} compact={true} showLessonNames={true} />
                       </Suspense>
                     </div>
                   )}
@@ -1001,7 +1001,8 @@ function LevelCardWithModal({ user, t }) {
             <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               {getLevelDisplayName()}
             </div>
-            <TrialDaysBadge />
+            {/* 🚀 TỐI ƯU: Truyền trialInfo từ essential để không cần fetch API riêng */}
+            <TrialDaysBadge trialInfo={user?.trialInfo} userTier={user?.actualTier} />
             <div className="mt-3">
               <div className="flex justify-between text-sm text-gray-600 mb-1">
                 <span>{t('dashboard.levelProgress')}</span>

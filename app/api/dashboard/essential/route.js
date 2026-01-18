@@ -141,6 +141,9 @@ export async function GET(request) {
     // Tổng số achievements (hardcode hoặc cache)
     const totalAchievements = 30; // Hoặc query 1 lần và cache lâu
 
+    // 🚀 TỐI ƯU: Tính progress by level ngay tại đây để không cần gọi stats API
+    const progressByLevel = calculateProgressByLevel(allLessons, userProgress);
+
     const response = {
       success: true,
       user: {
@@ -157,7 +160,9 @@ export async function GET(request) {
         progressPercent: totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0,
         questsReady: questsReadyCount,
         achievementProgress: `${achievementCounts}/${totalAchievements}`
-      }
+      },
+      // 🚀 TỐI ƯU: Include progress để Dashboard không cần gọi stats API
+      progress: progressByLevel
     };
 
     // 🔧 TỐI ƯU: Cache 45s - cân bằng giữa performance và freshness
@@ -225,4 +230,79 @@ function findNextLesson(lessons, progress) {
 
   // Đã hoàn thành tất cả
   return { isCompleted: true };
+}
+
+/**
+ * 🚀 TỐI ƯU: Tính progress by level để gộp vào essential response
+ * Giảm 1 API call (không cần gọi stats nữa)
+ * 
+ * Format output phải khớp với ProgressByLevel component:
+ * { lessons: [...], byLevel: { 1: { progress: 100, ... }, ... } }
+ */
+function calculateProgressByLevel(lessons, progress) {
+  // Group lessons by level
+  const levelMap = new Map();
+  
+  lessons.forEach(lesson => {
+    if (!levelMap.has(lesson.levelId)) {
+      levelMap.set(lesson.levelId, { 
+        total: 0, 
+        completed: 0, 
+        stars: 0,
+        lessons: []
+      });
+    }
+    const levelData = levelMap.get(lesson.levelId);
+    levelData.total++;
+    levelData.lessons.push({
+      levelId: lesson.levelId,
+      lessonId: lesson.lessonId,
+      title: lesson.title
+    });
+  });
+
+  // Count completed lessons and stars per level
+  const progressMap = new Map();
+  progress.forEach(p => {
+    progressMap.set(`${p.levelId}-${p.lessonId}`, p);
+    if (levelMap.has(p.levelId) && p.completed) {
+      levelMap.get(p.levelId).completed++;
+      levelMap.get(p.levelId).stars += (p.starsEarned || 0);
+    }
+  });
+
+  // Mark completed lessons
+  levelMap.forEach((levelData, levelId) => {
+    levelData.lessons.forEach(lesson => {
+      const key = `${lesson.levelId}-${lesson.lessonId}`;
+      const prog = progressMap.get(key);
+      lesson.completed = prog?.completed || false;
+      lesson.starsEarned = prog?.starsEarned || 0;
+    });
+  });
+
+  // Build byLevel object (format expected by ProgressByLevel component)
+  const byLevel = {};
+  const allLessons = [];
+  
+  levelMap.forEach((data, levelId) => {
+    const percent = data.total > 0 ? Math.round((data.completed / data.total) * 100) : 0;
+    byLevel[levelId] = {
+      total: data.total,
+      completed: data.completed,
+      progress: percent,
+      starsEarned: data.stars,
+      maxStars: data.total * 3
+    };
+    
+    // Add lessons to flat array
+    data.lessons.forEach(lesson => {
+      allLessons.push(lesson);
+    });
+  });
+
+  return {
+    lessons: allLessons,
+    byLevel
+  };
 }

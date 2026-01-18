@@ -7,18 +7,27 @@ import LocalizedLink from '@/components/LocalizedLink/LocalizedLink';
 
 /**
  * Component hiển thị số ngày dùng thử còn lại
- * Tự fetch data từ API, không phụ thuộc vào parent
+ * 🚀 TỐI ƯU: Nhận props từ parent nếu có, không thì tự fetch
  * 
  * Không hiện nếu:
  * - User đã mua gói (tier !== 'free')
  * - User không có trial (trialExpiresAt = null)
  */
-export default function TrialDaysBadge() {
+export default function TrialDaysBadge({ trialInfo: propTrialInfo = null, userTier: propTier = null }) {
   const { t } = useI18n();
-  const [trialInfo, setTrialInfo] = useState(null);
-  const [userTier, setUserTier] = useState(null);
+  const [trialInfo, setTrialInfo] = useState(propTrialInfo);
+  const [userTier, setUserTier] = useState(propTier);
+
+  // 🚀 TỐI ƯU: Cập nhật từ props nếu có
+  useEffect(() => {
+    if (propTrialInfo) setTrialInfo(propTrialInfo);
+    if (propTier) setUserTier(propTier);
+  }, [propTrialInfo, propTier]);
 
   useEffect(() => {
+    // 🚀 TỐI ƯU: Chỉ fetch nếu không có props từ parent
+    if (propTrialInfo !== null) return;
+    
     const fetchTrialInfo = async () => {
       try {
         const res = await fetch('/api/test-trial');
@@ -37,7 +46,7 @@ export default function TrialDaysBadge() {
     };
 
     fetchTrialInfo();
-  }, []);
+  }, [propTrialInfo]);
 
   // Không hiện gì nếu:
   // 1. Không có trial info

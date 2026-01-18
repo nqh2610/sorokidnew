@@ -1,21 +1,18 @@
 'use client';
 
-import { useI18n } from '@/lib/i18n/I18nContext';
-
 /**
- * ProgressByLevel - Learning progress by each lesson (Level = Lesson)
+ * ProgressByLevel - Tiến độ học tập theo từng bài học (Level = Bài học)
  * 
- * Structure:
- * - Level (1-18) = Lesson
- * - Lesson within Level = Section/Part of that lesson
+ * Cấu trúc:
+ * - Level (1-18) = Bài học
+ * - Lesson trong Level = Mục/Phần của bài học đó
  */
 export default function ProgressByLevel({ progress, compact = false, showLessonNames = false }) {
-  const { t, translateLevelName } = useI18n();
   const lessons = progress?.lessons || [];
   const byLevel = progress?.byLevel || {};
   const levels = Object.keys(byLevel).sort((a, b) => parseInt(a) - parseInt(b));
 
-  // Calculate completed lessons (levels)
+  // Tính số bài học (level) đã hoàn thành
   const completedLevels = levels.filter(levelId => byLevel[levelId].progress === 100).length;
   const totalLevels = levels.length;
 
@@ -27,17 +24,26 @@ export default function ProgressByLevel({ progress, compact = false, showLessonN
     'from-orange-400 to-red-500'
   ];
 
-  // Display by lesson with completion %
-  if (showLessonNames && levels.length > 0) {
+  // 🔧 FIX: Hiển thị message khi không có data
+  if (levels.length === 0) {
+    return (
+      <div className="bg-gray-50 rounded-xl p-4 text-center text-gray-500 text-sm">
+        <span>📊</span> Chưa có dữ liệu tiến độ. Hãy bắt đầu học để xem tiến độ!
+      </div>
+    );
+  }
+
+  // Hiển thị theo từng bài học với % hoàn thành
+  if (showLessonNames) {
     const overallProgress = totalLevels > 0 ? Math.round((completedLevels / totalLevels) * 100) : 0;
 
     return (
       <div className="space-y-4">
-        {/* Overall progress bar - 18 lessons */}
+        {/* Thanh tiến độ tổng quan - 18 bài học */}
         <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 border border-purple-100">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-700">{t('dashboard.progressByLevelDetail.totalProgress')}</span>
-            <span className="text-sm font-bold text-purple-600">{completedLevels}/{totalLevels} {t('dashboard.progressByLevelDetail.lessonsCount')}</span>
+            <span className="text-sm font-medium text-gray-700">Tổng tiến độ</span>
+            <span className="text-sm font-bold text-purple-600">{completedLevels}/{totalLevels} bài học</span>
           </div>
           <div className="h-3 bg-white rounded-full overflow-hidden shadow-inner">
             <div 
@@ -53,11 +59,11 @@ export default function ProgressByLevel({ progress, compact = false, showLessonN
           </div>
         </div>
 
-        {/* Lesson list with completion % for each */}
+        {/* Danh sách bài học với % hoàn thành từng bài */}
         <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
           {levels.map((levelId, index) => {
             const levelData = byLevel[levelId];
-            // Limit progress to max 100%
+            // Giới hạn progress max 100%
             const safeProgress = Math.min(levelData.progress || 0, 100);
             const isComplete = safeProgress === 100;
             const colorClass = levelColors[index % levelColors.length];
@@ -100,10 +106,10 @@ export default function ProgressByLevel({ progress, compact = false, showLessonN
                     <div className={`text-sm font-medium truncate ${
                       isComplete ? 'text-green-700' : 'text-gray-700'
                     }`}>
-                      {translateLevelName(levelId, levelData.name)}
+                      {levelData.name}
                     </div>
                     <div className="text-xs text-gray-400">
-                      {levelData.completed}/{levelData.total} {t('dashboard.progressByLevelDetail.parts')} • ⭐ {levelData.maxStars || 18} {t('dashboard.progressByLevelDetail.stars')}
+                      {levelData.completed}/{levelData.total} phần • ⭐ {levelData.maxStars || 18} sao
                     </div>
                   </div>
                   
@@ -122,18 +128,18 @@ export default function ProgressByLevel({ progress, compact = false, showLessonN
     );
   }
 
-  // Fallback: Display by level (old style)
+  // Fallback: Hiển thị theo level (như cũ)
   if (levels.length === 0) {
     return compact ? null : (
       <div className="bg-white rounded-2xl sm:rounded-3xl p-6 shadow-xl">
         <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
           <span className="text-2xl">📈</span>
-          {t('dashboard.progressByLevelDetail.title')}
+          Tiến độ học tập
         </h3>
         <div className="text-center py-8 text-gray-500">
           <div className="text-4xl mb-3">📚</div>
-          <p>{t('dashboard.progressByLevelDetail.noProgress')}</p>
-          <p className="text-sm text-gray-400 mt-1">{t('dashboard.progressByLevelDetail.startLearning')}</p>
+          <p>Chưa có tiến độ học tập</p>
+          <p className="text-sm text-gray-400 mt-1">Bắt đầu học để theo dõi tiến độ!</p>
         </div>
       </div>
     );
@@ -151,7 +157,7 @@ export default function ProgressByLevel({ progress, compact = false, showLessonN
             <div key={levelId} className="space-y-1">
               <div className="flex items-center justify-between text-sm">
                 <span className="flex items-center gap-1">
-                  <span className="font-medium text-gray-700">{translateLevelName(levelId, levelData.name)}</span>
+                  <span className="font-medium text-gray-700">{levelData.name}</span>
                 </span>
                 <span className="text-gray-500">{safeProgress}%</span>
               </div>
@@ -173,10 +179,10 @@ export default function ProgressByLevel({ progress, compact = false, showLessonN
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg sm:text-xl font-bold text-gray-800 flex items-center gap-2">
           <span className="text-2xl">📈</span>
-          {t('dashboard.progressByLevelDetail.title')}
+          Tiến độ học tập
         </h3>
         <div className="text-sm text-gray-500">
-          {completedLevels}/{totalLevels} {t('dashboard.progressByLevelDetail.lessonsCount')}
+          {completedLevels}/{totalLevels} bài học
         </div>
       </div>
 
@@ -191,12 +197,12 @@ export default function ProgressByLevel({ progress, compact = false, showLessonN
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="font-bold text-gray-700 text-sm sm:text-base">
-                    {t('dashboard.progressByLevelDetail.lesson')} {levelId}: {translateLevelName(levelId, levelData.name)}
+                    Bài {levelId}: {levelData.name}
                   </span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
                   <span className="text-gray-500">
-                    {levelData.completed}/{levelData.total} {t('dashboard.progressByLevelDetail.parts')}
+                    {levelData.completed}/{levelData.total} phần
                   </span>
                   <span className={`font-bold ${
                     safeProgress === 100 ? 'text-green-500' : 'text-gray-700'
@@ -219,12 +225,12 @@ export default function ProgressByLevel({ progress, compact = false, showLessonN
                 </div>
               </div>
 
-              {/* Stats summary */}
+              {/* Stats nhỏ */}
               <div className="flex gap-4 text-xs text-gray-400">
-                <span>⭐ {levelData.totalStars}/{levelData.maxStars || 18} {t('dashboard.progressByLevelDetail.stars')}</span>
-                <span>🎯 {levelData.avgAccuracy}% {t('dashboard.progressByLevelDetail.accurate')}</span>
+                <span>⭐ {levelData.totalStars}/{levelData.maxStars || 18} sao</span>
+                <span>🎯 {levelData.avgAccuracy}% chính xác</span>
                 {levelData.totalTime > 0 && (
-                  <span>⏱️ {Math.round(levelData.totalTime / 60)} {t('dashboard.progressByLevelDetail.minutes')}</span>
+                  <span>⏱️ {Math.round(levelData.totalTime / 60)} phút</span>
                 )}
               </div>
             </div>

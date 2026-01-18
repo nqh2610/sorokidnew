@@ -10,11 +10,11 @@ import { getLevelInfo, translateLevelName } from '@/lib/gamification';
 import { useI18n } from '@/lib/i18n/I18nContext';
 import { LocalizedLink } from '@/components/LocalizedLink';
 
-export default function TopBar({ showStats = true }) {
+export default function TopBar({ showStats = true, userData = null, userTier: propTier = null }) {
   const { t } = useI18n();
   const { data: session } = useSession();
-  const [userStats, setUserStats] = useState(null);
-  const [userTier, setUserTier] = useState('free');
+  const [userStats, setUserStats] = useState(userData);
+  const [userTier, setUserTier] = useState(propTier || 'free');
   const [showDropdown, setShowDropdown] = useState(false);
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
   const dropdownRef = useRef(null);
@@ -45,11 +45,20 @@ export default function TopBar({ showStats = true }) {
     };
   }, [showDropdown]);
 
+  // 🚀 TỐI ƯU: Cập nhật state từ props nếu có (từ parent component)
   useEffect(() => {
-    if (session?.user) {
+    if (userData) {
+      setUserStats(userData);
+      if (propTier) setUserTier(propTier);
+    }
+  }, [userData, propTier]);
+
+  useEffect(() => {
+    if (session?.user && !userData) {
+      // 🚀 TỐI ƯU: Chỉ fetch nếu không có userData từ props
       fetchUserStats();
     }
-  }, [session]);
+  }, [session, userData]);
 
   // 🔄 OPTIMISTIC UPDATE: Update local state từ event, KHÔNG fetch server
   useEffect(() => {

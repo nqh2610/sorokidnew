@@ -57,14 +57,13 @@ export async function GET(request) {
         },
         orderBy: { updatedAt: 'desc' }
       }),
-      // User stats
+      // User stats - 🔧 FIX: Only select fields that exist in schema
       prisma.user.findUnique({
         where: { id: userId },
         select: {
           streak: true,
-          longestStreak: true,
           totalStars: true,
-          lastLoginDate: true
+          updatedAt: true
         }
       }),
       // All progress for overall stats
@@ -101,8 +100,8 @@ export async function GET(request) {
       activityChart,
       streakInfo: {
         current: user?.streak || 0,
-        longest: user?.longestStreak || 0,
-        lastActive: user?.lastLoginDate
+        longest: user?.streak || 0, // 🔧 FIX: Use streak as longest (field doesn't exist in schema)
+        lastActive: user?.updatedAt
       },
       thisWeek: {
         starsEarned: thisWeekStars,
