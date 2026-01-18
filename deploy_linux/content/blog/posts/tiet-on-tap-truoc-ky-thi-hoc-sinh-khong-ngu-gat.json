@@ -1,0 +1,255 @@
+{
+  "slug": "tiet-on-tap-truoc-ky-thi-hoc-sinh-khong-ngu-gat",
+  "title": "Tiết ôn tập trước kỳ thi – làm sao để học sinh không ngủ gật",
+  "description": "Tiết ôn tập thường nhàm chán: thầy đọc, trò chép. Tôi đã thay đổi cách ôn tập bằng trò chơi và học sinh nhớ bài lâu hơn hẳn.",
+  "category": "goc-chia-se-giao-vien",
+  "keywords": [
+    "trò chơi ôn tập",
+    "ôn bài cuối tiết",
+    "ôn thi vui",
+    "game ôn tập",
+    "học sinh nhớ bài lâu"
+  ],
+  "status": "published",
+  "publishedAt": "2026-02-02T10:45:00.000Z",
+  "createdAt": "2025-12-26",
+  "image": "/blog/tiet-on-tap-vui.jpg",
+  "imageAlt": "Học sinh hào hứng tham gia trò chơi ôn tập trước kỳ thi",
+  "readingTime": 6,
+  "categoryOrder": 1,
+  "order": 10,
+  "author": {
+    "name": "Cô Hồng Nhung",
+    "role": "Giáo viên THPT",
+    "experience": "13 năm kinh nghiệm"
+  },
+  "translations": {
+    "en": "tit-n-tp-trc-k-thi-lm-sao-hc-sinh-khng-ng-gt"
+  },
+  "content": {
+    "intro": "Tiết ôn tập trước thi. Tôi đọc lại kiến thức quan trọng, học sinh chép. Nhìn xuống lớp: có em ngủ gật, có em nhìn ra cửa sổ, có em chép mà không hiểu gì. Tôi biết có gì đó không đúng. Và tôi đã thay đổi.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vấn đề của tiết ôn tập truyền thống"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tiết ôn tập thường là:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Thầy đọc lại kiến thức quan trọng",
+          "Học sinh ghi chép vào vở",
+          "Làm một số bài tập mẫu",
+          "Hỏi: \"Ai còn thắc mắc gì không?\" (Im lặng)",
+          "Hết giờ"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Học sinh thụ động. Kiến thức đi vào tai này, ra tai kia. Ngày hôm sau kiểm tra, nhiều em như chưa học gì."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách ôn tập mới của tôi"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tôi không đọc lại kiến thức. Thay vào đó, tôi tổ chức các hoạt động để học sinh tự ôn:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Vòng quay câu hỏi (15 phút)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tôi chuẩn bị 20-30 câu hỏi ôn tập, nhập vào Chiếc Nón Kỳ Diệu. Chia lớp thành 4-5 đội."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Quay chọn câu hỏi ngẫu nhiên",
+          "Quay tiếp chọn đội trả lời",
+          "Trả lời đúng: +10 điểm",
+          "Trả lời sai: đội khác có thể cướp",
+          "Ghi điểm lên bảng"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Học sinh hào hứng vì thi đua. Và để trả lời được, các em phải thực sự nhớ bài."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Bốc thăm chủ đề (10 phút)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhập các chủ đề ôn tập vào Bốc Thăm. Mỗi đội bốc một chủ đề, có 2 phút để tổng hợp kiến thức, rồi trình bày 1 phút."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cách này buộc học sinh phải tự hệ thống lại kiến thức, không phải chỉ nghe thụ động."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Đua vịt (5 phút)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cuối tiết, dùng Đua Vịt Sông Nước để xác định đội chiến thắng chung cuộc. Đội nào tích lũy được nhiều điểm nhất sẽ được \"đua\" với tên đội."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hoặc đơn giản hơn: tất cả các đội đều đua, ai thắng nhận phần thưởng (điểm cộng, vỗ tay...)."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Mẹo: Tôi không cho phần thưởng vật chất. Chỉ điểm cộng nhỏ (0.5 điểm) hoặc lời khen. Học sinh vẫn rất hào hứng."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cấu trúc tiết ôn tập mới"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**5 phút: Chia đội, giới thiệu luật chơi**",
+          "**15 phút: Vòng quay câu hỏi**",
+          "**10 phút: Bốc thăm chủ đề + trình bày**",
+          "**5 phút: Tổng kết điểm + Đua vịt xác định nhà vô địch**",
+          "**5 phút: Tôi chốt kiến thức quan trọng nhất**"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết quả"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Học sinh tập trung 100%** – Không ai ngủ gật khi đang thi đua",
+          "**Nhớ bài lâu hơn** – Tự trả lời, tự tổng hợp → kiến thức in sâu hơn",
+          "**Phát hiện lỗ hổng** – Câu nào nhiều đội sai, tôi biết cần nhấn mạnh lại",
+          "**Không khí vui vẻ** – Học sinh ra khỏi tiết ôn tập với nụ cười, không phải nặng nề"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Một học sinh từng nói: 'Cô ơi, lần sau ôn tập cô cho chơi game nữa nhé. Em nhớ bài hơn khi chơi.' Đó là kết quả tôi muốn."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Những lưu ý quan trọng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Câu hỏi phải bám sát nội dung thi** – Chơi vui nhưng phải ôn đúng",
+          "**Có phần tổng kết của giáo viên** – Cuối tiết, tôi vẫn chốt lại 5-10 điểm quan trọng nhất",
+          "**Không để thi đua quá căng** – Nếu học sinh tranh cãi gay gắt, cần điều chỉnh",
+          "**Mọi đội đều có cơ hội** – Câu hỏi có độ khó khác nhau để đội nào cũng có thể trả lời được"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "So sánh trước và sau"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Mức độ tập trung**: 40% → 95%",
+          "**Học sinh ngủ gật**: 5-10 em → 0 em",
+          "**Nhớ bài sau tiết ôn**: Hôm sau quên nhiều → Hôm sau vẫn nhớ",
+          "**Cảm giác của học sinh**: 'Chán' → 'Vui, muốn học tiếp'"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tiết ôn tập không nhất thiết phải nhàm chán. Với cách tổ chức phù hợp, học sinh vừa vui vừa nhớ bài."
+      },
+      {
+        "type": "paragraph",
+        "text": "Bạn không cần chuẩn bị gì phức tạp. Chỉ cần bộ câu hỏi ôn tập và vài công cụ online miễn phí. Thử một lần xem kết quả thế nào."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Có mất nhiều thời gian chuẩn bị không?",
+      "answer": "Chỉ cần chuẩn bị bộ câu hỏi (có thể dùng lại câu hỏi cũ). Công cụ thì có sẵn, mở ra là dùng được."
+    },
+    {
+      "question": "Học sinh cấp nào cũng thích chơi game ôn tập?",
+      "answer": "Có. Từ tiểu học đến THPT đều thích. Chỉ cần điều chỉnh độ khó câu hỏi và cách tổ chức cho phù hợp."
+    },
+    {
+      "question": "Nếu không có thời gian chơi game, ôn kiểu nào?",
+      "answer": "Ít nhất dùng vòng quay câu hỏi. Chỉ 10 phút, học sinh vẫn tập trung hơn là nghe giảng thụ động."
+    },
+    {
+      "question": "Có cần thưởng vật chất không?",
+      "answer": "Không cần. Điểm cộng nhỏ, lời khen, hoặc chỉ danh hiệu 'Đội chiến thắng' là đủ."
+    }
+  ],
+  "cta": {
+    "text": "Thử tổ chức tiết ôn tập kiểu mới với Chiếc Nón Kỳ Diệu và Bốc Thăm. Miễn phí hoàn toàn.",
+    "buttonText": "Xem công cụ",
+    "buttonLink": "/tool"
+  },
+  "seo": {
+    "title": "Tiết ôn tập trước kỳ thi – làm sao để học sinh không ngủ gật",
+    "description": "Tiết ôn tập thường nhàm chán: thầy đọc, trò chép. Tôi đã thay đổi cách ôn tập bằng trò chơi và học sinh nhớ bài lâu hơn hẳn.",
+    "keywords": "trò chơi ôn tập, ôn bài cuối tiết, ôn thi vui, game ôn tập, học sinh nhớ bài lâu"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-28",
+    "author": "Cô Hồng Nhung"
+  },
+  "relatedTools": [
+    {
+      "name": "Chiếc Nón Kỳ Diệu",
+      "slug": "chiec-non-ky-dieu",
+      "description": "Vòng quay câu hỏi ôn tập"
+    },
+    {
+      "name": "Bốc Thăm",
+      "slug": "boc-tham",
+      "description": "Bốc thăm chủ đề ôn tập"
+    },
+    {
+      "name": "Đua Vịt Sông Nước",
+      "slug": "dua-thu-hoat-hinh",
+      "description": "Game xác định đội thắng cuộc"
+    },
+    {
+      "name": "Đồng Hồ Bấm Giờ",
+      "slug": "dong-ho-bam-gio",
+      "description": "Bấm giờ từng hoạt động"
+    }
+  ],
+  "relatedPosts": [
+    "game-trong-lop-hoc-tu-hoai-nghi-den-khong-the-thieu",
+    "5-hoat-dong-khoi-dong-dau-gio-khong-can-chuan-bi",
+    "chiec-non-ky-dieu-goi-hoc-sinh-cong-bang"
+  ]
+}

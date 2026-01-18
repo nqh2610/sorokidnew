@@ -1,0 +1,159 @@
+{
+  "slug": "day-con-toan-khong-can-giao-vien",
+  "title": "Mình không đủ tiền cho con học thêm – nhưng con vẫn học tốt",
+  "description": "Học thêm đắt quá. Mình tìm cách khác để con vẫn có nền tảng toán tốt mà không tốn kém.",
+  "category": "cach-giup-con-hoc-toan-nhe-nhang",
+  "keywords": [
+    "học toán không cần gia sư",
+    "tự dạy con toán",
+    "tiết kiệm chi phí học thêm",
+    "con học tốt không cần học thêm",
+    "app học toán giá rẻ",
+    "cách dạy con khi ít tiền",
+    "phụ huynh tự kèm con",
+    "học toán miễn phí",
+    "tài liệu học toán online",
+    "không có tiền cho con học thêm",
+    "con giỏi toán không cần gia sư",
+    "thay thế gia sư bằng app"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-25T12:28:00.000Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/con-tu-hoc.jpg",
+  "imageAlt": "Bé châu Á tự học ở nhà với sách và tablet",
+  "readingTime": 13,
+  "categoryOrder": 4,
+  "order": 13,
+  "author": {
+    "name": "Chị Hà",
+    "role": "Mẹ bé Tuấn – lớp 3"
+  },
+  "translations": {
+    "en": "mnh-khng-tin-cho-con-hc-thm-nhng-con-vn-hc-tt"
+  },
+  "content": {
+    "intro": "Gia sư 200-300k/buổi. Học thêm 1-2 triệu/tháng. Thu nhập gia đình mình có hạn. Mình không đủ khả năng. Nhưng mình vẫn muốn con có nền tảng toán tốt.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình từng tự ti"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thấy bạn bè cho con học thêm đủ nơi, mình cảm thấy thiếu thốn. \"Sao mình không cho con được như người ta?\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Rồi mình tự hỏi: học thêm có phải cách duy nhất không?"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình tìm cách khác"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. App học tập:** Sorokid 200-300k/tháng, rẻ hơn một buổi gia sư. Con học mỗi ngày, hiệu quả không kém."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. YouTube:** Nhiều kênh dạy toán miễn phí. Mình chọn lọc video cho con xem."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Tự kèm 15 phút/ngày:** Mình không giỏi toán, nhưng toán lớp 1-2 mình còn biết. Mình kèm được."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Tiền không quyết định tất cả. Có nhiều cách để con học tốt mà không tốn kém."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết quả"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình học lớp 3, điểm toán 8-9. Không học thêm ngày nào. Chỉ có Sorokid và mẹ kèm."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không còn tự ti nữa. Mình biết mình đang làm tốt nhất có thể."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lời khuyên cho phụ huynh ít tiền"
+      },
+      {
+        "type": "paragraph",
+        "text": "- Không cần so sánh với người khác.\n- Dùng app học tập giá rẻ thay gia sư.\n- Tự kèm con 15 phút/ngày, đều đặn.\n- Tận dụng tài liệu miễn phí trên mạng."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Con bạn không cần học thêm đắt tiền để giỏi toán. Con cần sự quan tâm và phương pháp đúng."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "App học có thay thế được gia sư không?",
+      "answer": "Với toán cơ bản tiểu học, app có thể thay thế hoặc bổ sung tốt. Gia sư cần thiết hơn khi con yếu nghiêm trọng, cần được giải đáp trực tiếp, hoặc cần luyện chuyên sâu cho thi cử."
+    },
+    {
+      "question": "Tự kèm con có khó không?",
+      "answer": "Toán tiểu học không quá khó với người lớn. Quan trọng là kiên nhẫn, đều đặn. Nếu phần nào không biết, tra Google hoặc để app dạy. Bạn không cần biết hết, chỉ cần đồng hành cùng con."
+    },
+    {
+      "question": "So với gia sư, app có hiệu quả không?",
+      "answer": "Hiệu quả nếu con tự giác và dùng đều đặn. App dạy bài bản, có lộ trình rõ ràng. Điểm yếu là không trả lời câu hỏi trực tiếp như gia sư. Nhưng nhiều app hiện đại đã có giải thích chi tiết khi con sai."
+    },
+    {
+      "question": "Tài liệu miễn phí trên mạng có đáng tin không?",
+      "answer": "Có nhiều kênh YouTube và website chất lượng. Nhưng cần chọn lọc – tìm kênh có review tốt, nội dung bài bản. Miễn phí không có nghĩa là kém chất lượng, nhưng cũng không phải cái nào cũng tốt."
+    },
+    {
+      "question": "Không có tiền mua tablet cho con học, làm sao?",
+      "answer": "Nhiều app có phiên bản web, dùng được trên máy tính. Hoặc dùng điện thoại của bố mẹ. Nếu không có thiết bị, có thể in bài tập từ mạng, dùng flashcard tự làm. Cách nào cũng được nếu đều đặn."
+    },
+    {
+      "question": "Con học không có ai kèm, có tự giác được không?",
+      "answer": "Ban đầu cần bố mẹ tạo thói quen: học đúng giờ, đều đặn. Sau 2-3 tuần, con quen thì sẽ tự giác hơn. App có game hóa (điểm, huy hiệu) cũng giúp tạo động lực cho con."
+    },
+    {
+      "question": "Tự kèm con 15 phút mỗi ngày có đủ không?",
+      "answer": "Đủ nếu đều đặn và chất lượng. 15 phút tập trung 100% tốt hơn 1 tiếng vừa học vừa làm việc khác. Quan trọng là con tiếp thu được, không phải ngồi lâu."
+    },
+    {
+      "question": "Con bạn bè học thêm nhiều, con mình không học có bị thua thiệt?",
+      "answer": "Không nhất thiết. Quan trọng là con học đều đặn và hiểu bài. Nhiều trẻ học thêm nhiều nhưng không tiến bộ vì quá tải. Con bạn học ít nhưng chất lượng, kết quả có thể tốt hơn."
+    },
+    {
+      "question": "App nào giá rẻ mà chất lượng?",
+      "answer": "Sorokid khoảng 200-300k/tháng, rẻ hơn 1 buổi gia sư nhưng con học được cả tháng. Khan Academy miễn phí hoàn toàn (tiếng Anh). Cần thử bản miễn phí trước khi quyết định mua."
+    },
+    {
+      "question": "Mình tự ti vì không cho con học thêm như người ta, phải làm sao?",
+      "answer": "Đừng so sánh. Mỗi gia đình có hoàn cảnh khác nhau. Tiền không quyết định tất cả – sự quan tâm và phương pháp đúng quan trọng hơn. Con bạn có thể học tốt mà không cần học thêm đắt tiền."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid chi phí chỉ bằng một buổi gia sư, nhưng con học được cả tháng.",
+    "buttonText": "Dùng thử miễn phí",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Mình không đủ tiền cho con học thêm – nhưng con vẫn học tốt",
+    "description": "Học thêm đắt quá. Mình tìm cách khác để con vẫn có nền tảng toán tốt mà không tốn kém.",
+    "keywords": "học toán không cần gia sư, tự dạy con toán, tiết kiệm chi phí học thêm"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-02",
+    "author": "Chị Hà - Mẹ bé Tuấn lớp 3"
+  }
+}

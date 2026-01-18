@@ -37,82 +37,59 @@ export async function GET(request) {
     }
 
     // Query certificates and user progress
-    const [allCertificates, userCertificates, userProgress] = await Promise.all([
+    // Schema có Certificate (đã cấp) và CertificateProgress (tiến độ)
+    const [earnedCertificates, certificateProgress] = await Promise.all([
+      // Certificate đã cấp cho user này
       prisma.certificate.findMany({
-        orderBy: { id: 'asc' }
-      }),
-      prisma.userCertificate.findMany({
         where: { userId },
-        include: { certificate: true }
+        orderBy: { issuedAt: 'desc' }
       }),
-      // Get all progress to calculate level completion
-      prisma.progress.findMany({
-        where: { userId },
-        select: {
-          levelId: true,
-          lessonId: true,
-          completed: true
-        }
+      // Tiến độ certificate của user
+      prisma.certificateProgress.findMany({
+        where: { userId }
       })
     ]);
 
-    // Count lessons per level
-    const levelLessonCounts = await prisma.lesson.groupBy({
-      by: ['levelId'],
-      _count: { lessonId: true }
+    // Map tiến độ certificate theo certType
+    const progressMap = new Map();
+    certificateProgress.forEach(cp => {
+      progressMap.set(cp.certType, cp);
     });
 
-    const lessonCountMap = new Map();
-    levelLessonCounts.forEach(lc => {
-      lessonCountMap.set(lc.levelId, lc._count.lessonId);
-    });
+    // Format earned certificates (đã cấp)
+    const earned = earnedCertificates.map(cert => ({
+      id: cert.id,
+      certType: cert.certType,
+      recipientName: cert.recipientName,
+      honorTitle: cert.honorTitle,
+      isExcellent: cert.isExcellent,
+      code: cert.code,
+      issuedAt: cert.issuedAt,
+      isEarned: true,
+      progress: 100
+    }));
 
-    // Calculate level completion
-    const completedByLevel = new Map();
-    userProgress.forEach(p => {
-      if (p.completed) {
-        const current = completedByLevel.get(p.levelId) || 0;
-        completedByLevel.set(p.levelId, current + 1);
-      }
-    });
+    // Format in-progress certificates
+    const inProgress = certificateProgress
+      .filter(cp => !cp.isCompleted)
+      .map(cp => ({
+        id: cp.id,
+        certType: cp.certType,
+        totalRequired: cp.totalRequired,
+        totalCompleted: cp.totalCompleted,
+        percentComplete: cp.percentComplete,
+        isEarned: false,
+        progress: Math.round(cp.percentComplete)
+      }));
 
-    // Map earned certificates
-    const earnedIds = new Set(userCertificates.map(uc => uc.certificateId));
-
-    // Format certificates
-    const formattedCertificates = allCertificates.map(cert => {
-      const isEarned = earnedIds.has(cert.id);
-      const userCert = userCertificates.find(uc => uc.certificateId === cert.id);
-      
-      // Calculate progress for this certificate
-      let progress = 0;
-      if (cert.levelId) {
-        const completed = completedByLevel.get(cert.levelId) || 0;
-        const total = lessonCountMap.get(cert.levelId) || 1;
-        progress = isEarned ? 100 : Math.round((completed / total) * 100);
-      }
-
-      return {
-        id: cert.id,
-        name: cert.name,
-        description: cert.description,
-        levelId: cert.levelId,
-        image: cert.image,
-        isEarned,
-        earnedAt: userCert?.earnedAt || null,
-        certificateId: userCert?.certificateId,
-        progress
-      };
-    });
-
-    // Split by status
-    const earned = formattedCertificates.filter(c => c.isEarned);
-    const inProgress = formattedCertificates.filter(c => !c.isEarned);
-    
-    // Next certificate to earn
+    // Next certificate to earn (highest progress)
     const nextCertificate = inProgress.length > 0 
       ? inProgress.reduce((max, c) => c.progress > max.progress ? c : max, inProgress[0])
       : null;
+
+    // Định nghĩa các loại certificate có trong hệ thống
+    const CERT_TYPES = ['basic', 'intermediate', 'advanced', 'expert'];
+    const totalCertificates = CERT_TYPES.length;
 
     const response = {
       success: true,
@@ -121,8 +98,10 @@ export async function GET(request) {
       nextCertificate,
       stats: {
         totalEarned: earned.length,
-        totalCertificates: allCertificates.length,
-        percentComplete: Math.round((earned.length / allCertificates.length) * 100)
+        totalCertificates,
+        percentComplete: totalCertificates > 0 
+          ? Math.round((earned.length / totalCertificates) * 100) 
+          : 0
       }
     };
 

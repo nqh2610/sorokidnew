@@ -1,0 +1,154 @@
+{
+  "home": {
+    "badge": "Japanese Soroban Method",
+    "hero": {
+      "title": "Teach Your Kids Soroban at Home",
+      "title1": "Mental Math",
+      "title2": "Super Fast Calculation",
+      "title3": "Learn while playing!",
+      "subtitle": "Parents don't need to know Soroban - we guide every step",
+      "description": "Visual step-by-step guidance. Kids learn on their own. Gamified experience that makes children WANT to practice every day.",
+      "cta": "Sign Up Now",
+      "ctaSecondary": "See How It Works",
+      "appDesc": "Soroban learning app for elementary students.",
+      "highlight": "From fearing math to loving it in just weeks!",
+      "benefit1": "Easy for parents to guide",
+      "benefit2": "Fun like playing games",
+      "benefit3": "Flexible schedule",
+      "benefit4": "See daily progress"
+    },
+    "features": {
+      "title": "Why Kids Love Learning with Sorokid?",
+      "subtitle": "Designed specially for elementary students with a simple, engaging interface",
+      "gameified": {
+        "title": "Learn Like Playing Games",
+        "description": "Points, stars, diamonds... make mental math practice as fun as their favorite games!"
+      },
+      "lessons": {
+        "title": "Engaging Lessons",
+        "description": "From basic to advanced using Japanese Soroban method. Easy to understand, remember, and apply."
+      },
+      "speed": {
+        "title": "Faster Reflexes",
+        "description": "Varied exercises help kids calculate faster and more accurately every day. See results in 2 weeks!"
+      },
+      "compete": {
+        "title": "Fun Competition",
+        "description": "Leaderboards, tournaments with friends. Motivation soars when there's competition!"
+      },
+      "quest": {
+        "title": "Daily Quests",
+        "description": "Daily quests help kids maintain self-learning habits. Complete = earn rewards!"
+      },
+      "report": {
+        "title": "Detailed Reports",
+        "description": "Parents track progress clearly: speed, accuracy, and daily study time."
+      }
+    },
+    "soroban": {
+      "title": "What is Soroban?",
+      "desc": "Soroban is the Japanese abacus with over 400 years of history. Kids learning Soroban can visualize the abacus in their mind and calculate as fast as a calculator without pen and paper.",
+      "benefit1Title": "Brain Development",
+      "benefit1Desc": "Activates both left brain (logic) and right brain (visual)",
+      "benefit2Title": "Super Fast Mental Math",
+      "benefit2Desc": "Add/subtract 2-3 digit numbers in seconds, no pen needed",
+      "benefit3Title": "Improve Focus",
+      "benefit3Desc": "Pay attention to each step, applies to all subjects",
+      "benefit4Title": "Global Method",
+      "benefit4Desc": "Popular in Japan, Korea, China, Malaysia...",
+      "whyTitle": "Why Choose Sorokid?",
+      "whySubtitle": "You don't need to know Soroban to help your kids learn!",
+      "why1": "Step-by-step visual guidance",
+      "why2": "Gamified - kids learn willingly",
+      "why3": "Track: consistency, speed, accuracy",
+      "demoTitle": "Try the Virtual Abacus!",
+      "demoDesc": "Click on beads to move them up/down"
+    },
+    "roadmap": {
+      "title": "Scientific Learning Roadmap",
+      "subtitle": "From zero to calculating as fast as a calculator!",
+      "step1": "Learn Theory",
+      "step1Desc": "Get familiar with Soroban abacus through engaging lessons",
+      "step2": "Practice",
+      "step2Desc": "Train with exercises from easy to hard",
+      "step3": "Drill",
+      "step3Desc": "Increase speed and accuracy through drills",
+      "step4": "Compete",
+      "step4Desc": "Challenge yourself, rank with friends"
+    },
+    "progress": {
+      "title": "Parents Can Track Progress Easily",
+      "subtitle": "Our system automatically tracks your child's improvement through every lesson.",
+      "speed": "Calculation Speed",
+      "speedDesc": "Time to complete each exercise",
+      "accuracy": "Accuracy",
+      "accuracyDesc": "Correct answer rate",
+      "diligence": "Consistency",
+      "diligenceDesc": "Consecutive study days (streak)",
+      "achievement": "Achievements",
+      "achievementDesc": "Badges, levels, experience points",
+      "rewardTitle": "Reward System",
+      "star": "Stars",
+      "starDesc": "Earned when completing lessons",
+      "diamond": "Diamonds",
+      "diamondDesc": "Special rewards",
+      "badge": "Badges",
+      "badgeDesc": "For outstanding achievements",
+      "rank": "Ranks",
+      "rankDesc": "Level up by earning points"
+    },
+    "userTypes": {
+      "title": "Who Should Use Sorokid?",
+      "subtitle": "Perfect for anyone who wants kids to excel in mental math",
+      "student": {
+        "title": "Students 6-12 years old",
+        "desc": "Learn through fun games, earn rewards for completing lessons, compete with friends. Confident to raise hands in class!"
+      },
+      "parent": {
+        "title": "Parents",
+        "desc": "An effective tool for learning at home. Track your child's daily progress - no tutoring centers needed."
+      },
+      "teacher": {
+        "title": "Teachers",
+        "desc": "Modern teaching tools, auto-grading assignments. Personalized for each student's ability."
+      }
+    },
+    "highlights": {
+      "title": "Kids Love It, Parents Rest Easy",
+      "subtitle": "Designed to make kids want to learn every day",
+      "design": "Eye-catching Design",
+      "designDesc": "Bright, cute colors - kids love it at first sight",
+      "anywhere": "Learn Anywhere",
+      "anywhereDesc": "Phone, tablet, laptop - works on any device",
+      "virtual": "Built-in Virtual Abacus",
+      "virtualDesc": "Abacus built into the app, ready to practice instantly",
+      "athome": "Learn at Home",
+      "athomeDesc": "Kids learn comfortably in their familiar home environment"
+    },
+    "finalCta": {
+      "title": "Just 15 mins/day - Mental Math Genius Within Reach!",
+      "subtitle": "Over 10,000 students improved their mental math in 3 months. Ready for your child?",
+      "register": "Sign Up Free",
+      "login": "Have an account? Login"
+    },
+    "stats": {
+      "students": "Students",
+      "lessons": "Lessons",
+      "exercises": "Exercises",
+      "parents": "Happy Parents"
+    },
+    "testimonials": {
+      "title": "What Parents Say About Sorokid"
+    },
+    "blog": {
+      "title": "Tips for Parents",
+      "description": "Practical guidance to help parents support their children's math journey effectively",
+      "viewAll": "View All Articles"
+    },
+    "cta": {
+      "title": "Start Your Child's Soroban Journey Today",
+      "description": "Free 7-day trial. No credit card required.",
+      "button": "Sign Up Free"
+    }
+  }
+}

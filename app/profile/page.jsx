@@ -37,7 +37,8 @@ export default function ProfilePage() {
     if (status === 'unauthenticated') {
       router.push(localizeUrl('/login'));
     }
-  }, [status, router, localizeUrl]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]); // 🔧 FIX: Chỉ depend on status để tránh re-run
 
   useEffect(() => {
     if (session?.user) {

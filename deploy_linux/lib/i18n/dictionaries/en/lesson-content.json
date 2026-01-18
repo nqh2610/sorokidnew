@@ -1,0 +1,1700 @@
+{
+  "db": {
+    "levels": {
+      "1": {
+        "name": "Getting Started",
+        "description": "Explore the abacus!"
+      },
+      "2": {
+        "name": "Easy Addition",
+        "description": "Basic addition!"
+      },
+      "3": {
+        "name": "Small Friends +",
+        "description": "Add with Small Friends!"
+      },
+      "4": {
+        "name": "Small Friends -",
+        "description": "Subtract with Small Friends!"
+      },
+      "5": {
+        "name": "Big Friends +",
+        "description": "Add with Big Friends!"
+      },
+      "6": {
+        "name": "Big Friends -",
+        "description": "Subtract with Big Friends!"
+      },
+      "7": {
+        "name": "Combined",
+        "description": "Small + Big Friends!"
+      },
+      "8": {
+        "name": "2-Digit",
+        "description": "2-digit add/sub!"
+      },
+      "9": {
+        "name": "3-Digit",
+        "description": "3-digit add/sub!"
+      },
+      "10": {
+        "name": "4-Digit",
+        "description": "4-digit add/sub!"
+      },
+      "11": {
+        "name": "Basic Multiply",
+        "description": "Single digit multiplication!"
+      },
+      "12": {
+        "name": "Advanced Multiply",
+        "description": "2-digit multiplication!"
+      },
+      "13": {
+        "name": "Basic Division",
+        "description": "Simple division!"
+      },
+      "14": {
+        "name": "Advanced Division",
+        "description": "Large number division!"
+      },
+      "15": {
+        "name": "Mental Math 1",
+        "description": "Basic mental math!"
+      },
+      "16": {
+        "name": "Mental Math 2",
+        "description": "Advanced mental math!"
+      },
+      "17": {
+        "name": "Speed",
+        "description": "Speed training!"
+      },
+      "18": {
+        "name": "Flash",
+        "description": "Flash Anzan!"
+      }
+    },
+    "lessons": {
+      "1-1": {
+        "title": "🎒 Discover Soroban",
+        "description": "Get to know the magical Soroban abacus"
+      },
+      "1-2": {
+        "title": "🔢 Numbers 1-4: Earth Beads",
+        "description": "Learn to create 1, 2, 3, 4 with Earth beads"
+      },
+      "1-3": {
+        "title": "⭐ Numbers 5-9: Heaven Bead Shines",
+        "description": "Learn to use Heaven bead for 5-9"
+      },
+      "1-4": {
+        "title": "🔟 Numbers 10-99: Two Columns",
+        "description": "Learn 2-digit number representation"
+      },
+      "2-1": {
+        "title": "➕ Add 1-2 (Simple)",
+        "description": "Add when you have enough Earth beads"
+      },
+      "2-2": {
+        "title": "➕ Add with Heaven Bead",
+        "description": "Add when result is 5 or more"
+      },
+      "2-3": {
+        "title": "➕ Easy Addition Practice",
+        "description": "Review and practice simple addition"
+      },
+      "3-1": {
+        "title": "🤝 Meet Small Friends",
+        "description": "Learn pairs that add up to 5"
+      },
+      "3-2": {
+        "title": "➕ Add using Small Friends",
+        "description": "Apply Small Friends for addition"
+      },
+      "3-3": {
+        "title": "🏋️ Small Friends Add Practice",
+        "description": "Master addition with Small Friends"
+      },
+      "4-1": {
+        "title": "➖ Simple Subtraction",
+        "description": "Subtract when you have enough beads"
+      },
+      "4-2": {
+        "title": "➖ Subtract using Small Friends",
+        "description": "Apply Small Friends for subtraction"
+      },
+      "4-3": {
+        "title": "🏋️ Small Friends Sub Practice",
+        "description": "Master subtraction with Small Friends"
+      },
+      "4-4": {
+        "title": "🎯 MIX Add/Sub Small Friends",
+        "description": "Combined add/sub with Small Friends"
+      },
+      "5-1": {
+        "title": "🤝 Meet Big Friends",
+        "description": "Learn pairs that add up to 10"
+      },
+      "5-2": {
+        "title": "➕ Add using Big Friends",
+        "description": "Add by carrying to tens column"
+      },
+      "5-3": {
+        "title": "🏋️ Big Friends Add Practice",
+        "description": "Master addition with Big Friends"
+      },
+      "6-1": {
+        "title": "➖ Subtract using Big Friends",
+        "description": "Subtract by borrowing from tens"
+      },
+      "6-2": {
+        "title": "➖ Advanced Tens Subtraction",
+        "description": "Practice borrowing from tens"
+      },
+      "6-3": {
+        "title": "🏋️ Big Friends Sub Practice",
+        "description": "Master subtraction with Big Friends"
+      },
+      "6-4": {
+        "title": "🎯 MIX Add/Sub Big Friends",
+        "description": "Combined add/sub with Big Friends"
+      },
+      "7-1": {
+        "title": "🎯 Combined Addition",
+        "description": "Combine Small and Big Friends for addition"
+      },
+      "7-2": {
+        "title": "🎯 Combined Subtraction",
+        "description": "Combine Small and Big Friends for subtraction"
+      },
+      "7-3": {
+        "title": "🏋️ Combined Add/Sub Practice",
+        "description": "Practice all formulas together"
+      },
+      "7-4": {
+        "title": "📝 Basic Add/Sub Review",
+        "description": "Review all Level 1-7 formulas"
+      },
+      "8-1": {
+        "title": "📝 Add 2 Numbers (No Carry)",
+        "description": "Add two numbers without carrying"
+      },
+      "8-2": {
+        "title": "📝 Add 2 Numbers (With Carry)",
+        "description": "Add two numbers with carrying"
+      },
+      "8-3": {
+        "title": "📝 Subtract 2-Digit Numbers",
+        "description": "Subtract two 2-digit numbers"
+      },
+      "9-1": {
+        "title": "💯 Numbers 100-999",
+        "description": "Represent 3-digit numbers on Soroban"
+      },
+      "9-2": {
+        "title": "➕ Add 3-Digit Numbers",
+        "description": "Add two 3-digit numbers"
+      },
+      "9-3": {
+        "title": "➖ Subtract 3-Digit Numbers",
+        "description": "Subtract two 3-digit numbers"
+      },
+      "10-1": {
+        "title": "🔢 Numbers 1000-9999",
+        "description": "Represent 4-digit numbers on Soroban"
+      },
+      "10-2": {
+        "title": "➕ Add 4-Digit Numbers",
+        "description": "Add 4-digit numbers"
+      },
+      "10-3": {
+        "title": "➖ Subtract 4-Digit Numbers",
+        "description": "Subtract 4-digit numbers"
+      },
+      "10-4": {
+        "title": "📝 Large Numbers Review",
+        "description": "Review 2-4 digit add/sub"
+      },
+      "11-1": {
+        "title": "✖️ Multiplication Concept",
+        "description": "Understand multiplication on Soroban"
+      },
+      "11-2": {
+        "title": "✖️ Multiply by 2, 3, 4",
+        "description": "Practice multiplying by small numbers"
+      },
+      "11-3": {
+        "title": "✖️ Multiply by 5, 6, 7",
+        "description": "Multiply by larger numbers"
+      },
+      "12-1": {
+        "title": "✖️ Multiply by 8, 9",
+        "description": "Complete multiplication table"
+      },
+      "12-2": {
+        "title": "✖️ 2-Digit Multiplication",
+        "description": "Multiply large numbers"
+      },
+      "12-3": {
+        "title": "✖️ Multiplication Practice",
+        "description": "Combined multiplication exercises"
+      },
+      "13-1": {
+        "title": "➗ Division Concept",
+        "description": "Understand division and divisibility"
+      },
+      "13-2": {
+        "title": "➗ Divide by 2, 3, 4",
+        "description": "Practice dividing by small numbers"
+      },
+      "13-3": {
+        "title": "➗ Divide by 5, 6, 7",
+        "description": "Divide by larger numbers"
+      },
+      "14-1": {
+        "title": "➗ Divide by 8, 9",
+        "description": "Complete division table"
+      },
+      "14-2": {
+        "title": "➗ 2-Digit Division",
+        "description": "Divide large numbers"
+      },
+      "14-3": {
+        "title": "➗ Division Practice",
+        "description": "Combined division exercises"
+      },
+      "14-4": {
+        "title": "🎯 MIX Multiply/Divide",
+        "description": "Combined multiplication and division"
+      },
+      "15-1": {
+        "title": "🧠 Basic Mental Add/Sub",
+        "description": "Mental add/sub with single digits. Anzan foundation."
+      },
+      "15-2": {
+        "title": "✖️ Basic Mental Multiply",
+        "description": "Mental multiply with times tables 2-5"
+      },
+      "15-3": {
+        "title": "➗ Basic Mental Division",
+        "description": "Mental division by 2, 3, 4, 5"
+      },
+      "15-4": {
+        "title": "🎯 Mixed 4 Operations",
+        "description": "Mental math with all 4 operations"
+      },
+      "16-1": {
+        "title": "🧠 Advanced Mental Add/Sub",
+        "description": "Mental 2-digit add/sub"
+      },
+      "16-2": {
+        "title": "✖️ Advanced Mental Multiply",
+        "description": "Mental multiply with times tables 6-9"
+      },
+      "16-3": {
+        "title": "➗ Advanced Mental Division",
+        "description": "Mental division by 6-9"
+      },
+      "16-4": {
+        "title": "🎯 Mixed 4 Operations Advanced",
+        "description": "Advanced mental math challenge"
+      },
+      "17-1": {
+        "title": "⚡ Speed Add/Sub",
+        "description": "Timed mental add/sub. Build quick reflexes!"
+      },
+      "17-2": {
+        "title": "⚡ Speed Multiply",
+        "description": "Timed multiplication. Memorize = fast!"
+      },
+      "17-3": {
+        "title": "⚡ Speed Division",
+        "description": "Timed division. Division is reverse multiplication!"
+      },
+      "17-4": {
+        "title": "⚡ Speed Mixed",
+        "description": "Timed all 4 operations. Quick thinking challenge!"
+      },
+      "18-1": {
+        "title": "🧠 Quick Number Memory",
+        "description": "Remember 1-2 digit numbers quickly. Memory warmup!"
+      },
+      "18-2": {
+        "title": "🧠 Add 2-3 Numbers",
+        "description": "See 2-3 numbers, add in head. Flash Anzan begins!"
+      },
+      "18-3": {
+        "title": "🧠 Mixed Add/Sub",
+        "description": "3-4 numbers with subtraction. Mental add/sub practice!"
+      },
+      "18-4": {
+        "title": "🧠 Fast Flash Anzan",
+        "description": "4-5 numbers at 0.8-1 second speed. Reflex challenge!"
+      },
+      "18-5": {
+        "title": "🔥 Super Speed Flash Anzan",
+        "description": "5-7 numbers at 0.5-0.7 second. Professional level!"
+      }
+    },
+    "quests": {
+      "12e6b36d-958a-4310-8b6c-a4282341b526": {
+        "title": "📖 Learn New Lesson",
+        "description": "Complete 1 lesson today"
+      },
+      "1754d0fe-98fc-41bf-b6e1-95b81de82969": {
+        "title": "👑 Complete Program",
+        "description": "Complete all 18 levels"
+      },
+      "178a5de6-6432-4041-ad9d-6ae8776f6618": {
+        "title": "🎖️ Resilient Warrior",
+        "description": "Study 14 days in a row (2 weeks)"
+      },
+      "1b659a1c-1e19-4dab-aea6-c6f682357fe8": {
+        "title": "🎯 High Accuracy",
+        "description": "Get 5 correct answers in a row"
+      },
+      "21f04697-b80f-439c-bfa9-d67d275421a6": {
+        "title": "💪 Diligent Practice",
+        "description": "Complete 15 exercises today"
+      },
+      "27dd6f79-1f39-4399-b5fc-cc12f370e229": {
+        "title": "🔥 Persistent Flame",
+        "description": "Study 5 days in a row"
+      },
+      "4be2017c-68e0-4e56-a33d-7add72dfccd8": {
+        "title": "🧠 Mental Math Master",
+        "description": "Get 50 correct answers (total)"
+      },
+      "76cec951-1687-4238-9f42-61494e860568": {
+        "title": "🏆 Champion",
+        "description": "Get 10 perfect exercises this week"
+      },
+      "9737f655-8d48-4224-b4e3-296168383146": {
+        "title": "📚 Study Week",
+        "description": "Complete 3 lessons this week"
+      },
+      "9ea7900b-69af-439c-a211-25850ed3601a": {
+        "title": "🏋️ Athlete",
+        "description": "Complete 40 exercises this week"
+      },
+      "a420b80a-5af4-4dd8-af64-81f2ffc5cccb": {
+        "title": "🌅 Morning Warm-up",
+        "description": "Complete 5 practice exercises"
+      },
+      "fe2158f8-d457-461c-8d4e-6d6033ef44c3": {
+        "title": "🌟 Learning Star",
+        "description": "Complete 3 levels"
+      }
+    },
+    "achievements": {
+      "094a4ef2-688a-4c4a-b93a-d1d5cfd82ba1": {
+        "name": "⚔️ Soroban Warrior",
+        "description": "Complete 50 exercises"
+      },
+      "14149bed-6252-48ce-a7bf-def6caf75cf9": {
+        "name": "⚡ Little Lightning",
+        "description": "Complete 1 exercise in under 3 seconds"
+      },
+      "19790820-f051-42c8-bde3-fd32cb922a92": {
+        "name": "💪 Trainee Warrior",
+        "description": "Complete 20 exercises"
+      },
+      "25978449-6a13-45a8-803e-934f35b6a0d7": {
+        "name": "🔥🔥 Blazing Fire",
+        "description": "Study 7 days in a row - A week without break!"
+      },
+      "28c4833a-c3ef-42b3-8bd5-90838353eb59": {
+        "name": "🥈 Silver Warrior",
+        "description": "Participate in 25 competitions"
+      },
+      "2e39fa3b-42d9-484a-8754-507b260a7091": {
+        "name": "✋ First Five Fingers",
+        "description": "Complete 5 exercises - Master the 5 Earth beads"
+      },
+      "2ecf1ff5-7ca4-441a-b769-b7c3e54589b6": {
+        "name": "🏆 Arena Champion",
+        "description": "Rank 1st in 5 competitions"
+      },
+      "38c742e6-f8d4-44f3-8c4d-f25219842a17": {
+        "name": "🔥 Little Flame",
+        "description": "Study 3 days in a row"
+      },
+      "39e7cfef-3d23-4319-8c01-4e274d707881": {
+        "name": "📖 Soroban Disciple",
+        "description": "Complete 5 lessons - You've started the Soroban journey"
+      },
+      "3b845cba-7893-4a88-ad10-9fede81d234c": {
+        "name": "💎 Flawless Diamond",
+        "description": "Get 100% accuracy in 50 exercises"
+      },
+      "4b50fca2-6822-4938-8920-0d27be6dfa5b": {
+        "name": "🐉 Training Dragon",
+        "description": "Complete 200 exercises"
+      },
+      "4c4dcc86-dd6b-498e-87a4-d62a2b9e49e3": {
+        "name": "🥷 Math Ninja",
+        "description": "Complete 100 exercises"
+      },
+      "5d02a3e3-52aa-4aaf-b3b6-eb937bd46713": {
+        "name": "👑 Arena King",
+        "description": "Rank 1st in 20 competitions"
+      },
+      "5d3c82a9-6432-4183-af66-4089741c527f": {
+        "name": "🎯 First Shot",
+        "description": "Get 100% accuracy in 1 exercise"
+      },
+      "5ec15a91-0429-4d14-9f9b-fe14ab4b3d73": {
+        "name": "🎊 Pioneer",
+        "description": "One of the first 100 users"
+      },
+      "64ec83b9-5cb7-4366-a33f-f5a6636f5576": {
+        "name": "🎂 Happy Birthday",
+        "description": "Log in on your birthday"
+      },
+      "6623ee2a-8a48-4bf2-b373-68b03096d8e8": {
+        "name": "🌪️ Soroban Storm",
+        "description": "Complete 20 exercises in 1 minute"
+      },
+      "6f8d23df-745a-4406-a712-0e453f4b3442": {
+        "name": "⭐ Perfect Three Stars",
+        "description": "Get 3 stars in 5 lessons"
+      },
+      "778b1e1b-0276-4b72-bb44-3a8549843ac2": {
+        "name": "🦄 SoroKids Legend",
+        "description": "Unlock all achievements - You are legendary!"
+      },
+      "83d0cbbb-010d-49c1-916b-629c6e553c1e": {
+        "name": "🏛️ Abacus Doctor",
+        "description": "Complete all lessons - You are a Soroban master!"
+      },
+      "857d790f-f686-49ea-ad20-e8dd92e69837": {
+        "name": "👨‍🏫 Mental Math Master",
+        "description": "Complete 30 lessons - You can teach others"
+      },
+      "883e88cb-864c-4984-acec-c83022cd7d2a": {
+        "name": "☀️ Persistent Sun",
+        "description": "Study 14 days in a row - Two weeks of dedication!"
+      },
+      "8f892dab-f8b1-4e52-ad52-59aaa02c5a01": {
+        "name": "✨ Super Sonic",
+        "description": "Complete 50 exercises in 5 mins with 95% accuracy"
+      },
+      "99e251d4-4e37-4d12-8389-f1a6f376cfcb": {
+        "name": "🎓 Soroban Bachelor",
+        "description": "Complete 20 lessons - You've graduated basic course"
+      },
+      "9a9efcb9-2be2-489e-ad30-3009f352cc65": {
+        "name": "🌋 Practice Mythology",
+        "description": "Complete 500 exercises - Unmatched persistence!"
+      },
+      "a7e27792-dab5-4bb0-863f-2eb5c3de0e78": {
+        "name": "📚 Young Scholar",
+        "description": "Complete 10 lessons - Your knowledge is growing"
+      },
+      "b4bbdcb6-5078-4e31-b7e7-4ce8b4cd701a": {
+        "name": "⭐ Persistence Legend",
+        "description": "Study 100 days in a row - You are a legend!"
+      },
+      "c0af9a24-b7e3-4e2b-8996-c848178730e3": {
+        "name": "🎮 Arena Rookie",
+        "description": "Join your first competition"
+      },
+      "c7ac1446-5cb0-480a-b8e6-9a6da5f117fb": {
+        "name": "🌱 Soroban Seed",
+        "description": "Complete first lesson - Journey of a thousand miles begins with one step"
+      },
+      "c82edabf-0ba0-4ff7-98ab-f994d771fe10": {
+        "name": "🚀 Math Rocket",
+        "description": "Complete 10 exercises in a row under 5 seconds each"
+      },
+      "c931e05d-593e-49e1-bdc8-f3774de0f9d5": {
+        "name": "🌟 Rising Star",
+        "description": "Get 3 stars in 15 lessons"
+      },
+      "d4a2bad0-ee5c-43e5-89cd-3373ab3ea82f": {
+        "name": "🥇 Gold Warrior",
+        "description": "Participate in 50 competitions"
+      },
+      "d96126f9-1170-470f-86d5-8679d555635a": {
+        "name": "🎯 Eagle Eye",
+        "description": "Get 100% accuracy in 10 exercises"
+      },
+      "dfc3eea3-c296-49cf-9b22-cbe179c56e49": {
+        "name": "💫 Soroban Superstar",
+        "description": "Get 3 stars in all lessons"
+      },
+      "e1f4ec9a-5ffd-428b-b579-ac181185ba06": {
+        "name": "👁️ Soroban Divine Eye",
+        "description": "Get 100% accuracy in 100 exercises - Nothing escapes you!"
+      },
+      "e3d98bbe-691f-4695-8fa6-557c25cb0b35": {
+        "name": "🌙 Learning Eclipse",
+        "description": "Study 30 days in a row - A month without rest!"
+      },
+      "e50f402a-7003-4e70-824f-36892b9695c8": {
+        "name": "🏹 Hundred Hits Archer",
+        "description": "Get 100% accuracy in 25 exercises"
+      },
+      "ef6474fc-3317-47a8-8f97-887cab28e1b2": {
+        "name": "🏅 Bronze Warrior",
+        "description": "Participate in 10 competitions"
+      },
+      "f96613a6-12b7-4f7e-a8cc-0e98914b8f51": {
+        "name": "🌈 Perfect Collection",
+        "description": "Unlock 20 other achievements"
+      }
+    },
+    "shopItems": {
+      "2865a464-48b3-48db-96dd-05efa1fe5c6a": {
+        "name": "Ninja Avatar",
+        "description": "Unique ninja avatar"
+      },
+      "2de03f8b-764d-493f-bb46-46b89d0e6943": {
+        "name": "Tropical Forest Theme",
+        "description": "Cool green forest interface"
+      },
+      "2f4a4349-6238-4138-bdc8-dedda44b48ed": {
+        "name": "Robot Avatar",
+        "description": "High-tech robot avatar"
+      },
+      "356a05e1-d1a0-42fe-9cbb-6750eb133d53": {
+        "name": "Double Stars",
+        "description": "Get double stars for 1 hour"
+      },
+      "61c8a707-3cba-427b-a58b-4a778eb420ab": {
+        "name": "Hints",
+        "description": "5 hints"
+      },
+      "ad4c1894-7c2a-4f86-a8ce-d4f7d982dd51": {
+        "name": "Smart Hints",
+        "description": "Get hints while practicing"
+      },
+      "e52cedb2-8828-4d66-9099-21a6415b2912": {
+        "name": "Princess Avatar",
+        "description": "Beautiful princess avatar"
+      },
+      "f327adbb-5221-4f98-b93b-976eb5266cc4": {
+        "name": "Dark Theme",
+        "description": "Eye-friendly dark interface"
+      },
+      "f5337186-4f2c-4ef3-9b1f-6801cf4b4a3a": {
+        "name": "Extra Time",
+        "description": "Add 30 seconds to practice"
+      }
+    },
+    "notifications": {
+      "achievementUnlocked": "Achievement unlocked!",
+      "newAchievement": "You unlocked \"{name}\"!",
+      "questCompleted": "Quest completed!",
+      "questCompletedDesc": "You completed \"{title}\"! Claim your reward!"
+    },
+    "sorobanGuide": {
+      "columns": {
+        "0": "Hun.M",
+        "1": "Ten.M",
+        "2": "Million",
+        "3": "Hun.T",
+        "4": "Ten.T",
+        "5": "Thous.",
+        "6": "Hund.",
+        "7": "Tens",
+        "8": "Units"
+      },
+      "columnLabels": {
+        "Trăm triệu": "Hun.M",
+        "Chục triệu": "Ten.M",
+        "Triệu": "Million",
+        "Trăm nghìn": "Hun.T",
+        "Chục nghìn": "Ten.T",
+        "Nghìn": "Thous.",
+        "Trăm": "Hund.",
+        "Chục": "Tens",
+        "Đơn vị": "Units",
+        "Đ.vị": "Units"
+      },
+      "actions": {
+        "setNumber": "Set number {n}",
+        "slideEarthUp": "{col}: Slide {n} Earth bead(s) UP (+{n})",
+        "slideEarthDown": "{col}: Slide {n} Earth bead(s) DOWN (-{n})",
+        "slideHeavenDown": "{col}: Slide Heaven bead DOWN (+5)",
+        "slideHeavenUp": "{col}: Slide Heaven bead UP (-5)",
+        "keepZero": "{col} stays 0",
+        "carryOne": "{col}: Slide 1 Earth bead UP (+1 carry)",
+        "borrowOne": "{col}: Slide 1 Earth bead DOWN (-1 borrow)"
+      },
+      "rules": {
+        "smallFriend": "Small Friend rule: +{n} = +5 -{comp} (Small Friend of {n} is {comp})",
+        "smallFriendSub": "Small Friend rule: -{n} = -5 +{comp} (Small Friend of {n} is {comp})",
+        "bigFriend": "Big Friend rule: +{n} = +10 -{comp}",
+        "bigFriendSub": "Big Friend rule: -{n} = -10 +{comp}",
+        "bigFriendOf": "Big Friend of {n} is {comp}"
+      },
+      "steps": {
+        "result": "Result"
+      }
+    },
+    "practiceQuestions": {
+      "smallFriendOf": "What is the Small Friend of {n}?",
+      "bigFriendOf": "What is the Big Friend of {n}?",
+      "plusEquals": "{a} + ? = {b}",
+      "patterns": {
+        "Bạn nhỏ của (\\d+) là mấy\\?": "What is the Small Friend of $1?",
+        "Bạn lớn của (\\d+) là mấy\\?": "What is the Big Friend of $1?",
+        "(\\d+) \\+ \\? = (\\d+)": "$1 + ? = $2",
+        "(\\d+) - \\? = (\\d+)": "$1 - ? = $2",
+        "Tạo số (\\d+)": "Create number $1",
+        "Tạo số (\\d+) trên Soroban": "Create $1 on Soroban",
+        "Số nào đang hiển thị\\?": "What number is showing?",
+        "Đọc số trên Soroban": "Read the number on Soroban"
+      }
+    },
+    "lessonContent": {
+      "1-1": {
+        "theory": [
+          "🔴 Heaven bead (bead above the bar) has value = 5",
+          "🟡 Earth beads (beads below the bar) have value = 1",
+          "📏 Beads are only counted when touching the bar",
+          "👆 Push Heaven bead down = add 5, push up = subtract 5",
+          "👇 Push Earth bead up = add 1, push down = subtract 1"
+        ],
+        "practice": [
+          "Try pushing 1 Earth bead up to the bar to make number 1!",
+          "Push 2 Earth beads up to the bar to make number 2!",
+          "Push 3 Earth beads up to the bar to make number 3!",
+          "Push 4 Earth beads up to the bar to make number 4!",
+          "Push Heaven bead down to the bar to make number 5!"
+        ]
+      },
+      "1-2": {
+        "theory": [
+          "🟡 **Earth beads** are the 4 beads below the bar",
+          "🔢 Each Earth bead has value = **1**",
+          "📏 Push Earth beads **up** to the bar = add that value",
+          "📏 Push Earth beads **down** away from bar = subtract that value",
+          "✨ Numbers 1-4 only use Earth beads"
+        ],
+        "practice": [
+          "Create number 1 on the Soroban!",
+          "Create number 2 on the Soroban!",
+          "Create number 3 on the Soroban!",
+          "Create number 4 on the Soroban!",
+          "Calculate: 1 + 1 = ?",
+          "Calculate: 2 + 1 = ?",
+          "Calculate: 1 + 2 = ?",
+          "Calculate: 2 + 2 = ?"
+        ]
+      },
+      "1-3": {
+        "theory": [
+          "🔴 **Heaven bead** is the single bead above the bar",
+          "⭐ Heaven bead has value = **5**",
+          "📏 Push Heaven bead **down** to bar = add 5",
+          "📏 Push Heaven bead **up** away from bar = subtract 5",
+          "💡 Number 5 = only Heaven bead touching bar",
+          "💡 Numbers 6-9 = Heaven bead + Earth beads"
+        ],
+        "practice": [
+          "Create number 5 using Heaven bead!",
+          "Create number 6 = Heaven (5) + 1 Earth!",
+          "Create number 7 = Heaven (5) + 2 Earth!",
+          "Create number 8 = Heaven (5) + 3 Earth!",
+          "Create number 9 = Heaven (5) + 4 Earth!"
+        ]
+      },
+      "1-4": {
+        "theory": [
+          "🔟 Numbers 10-99 use **two columns**",
+          "📍 Right column = **Units** (ones place)",
+          "📍 Left column = **Tens** (tens place)",
+          "💡 Number 10 = 1 Earth bead in Tens column",
+          "💡 Number 23 = 2 in Tens + 3 in Units"
+        ],
+        "practice": [
+          "Create number 10 on Soroban!",
+          "Create number 15 on Soroban!",
+          "Create number 23 on Soroban!",
+          "Create number 47 on Soroban!",
+          "Create number 99 on Soroban!"
+        ]
+      },
+      "2-1": {
+        "theory": [
+          "✨ Addition = Push more beads toward the bar",
+          "👆 1+1: Have 1 bead, push 1 more = 2 beads",
+          "👆 2+1: Have 2 beads, push 1 more = 3 beads",
+          "👆 1+2: Have 1 bead, push 2 more = 3 beads",
+          "💡 Only works when you have enough Earth beads to push!"
+        ]
+      },
+      "2-2": {
+        "theory": [
+          "🔴 When result ≥ 5, use the Heaven bead",
+          "👇 0+5: Push Heaven bead down = 5",
+          "👇 5+1: Already have Heaven, push 1 Earth = 6",
+          "👇 5+2: Already have Heaven, push 2 Earth = 7",
+          "💡 Heaven bead helps represent numbers 5-9!"
+        ]
+      },
+      "2-3": {
+        "theory": [
+          "📝 Review the 2 addition rules:",
+          "1️⃣ Enough Earth beads → Push more Earth beads up",
+          "2️⃣ Need ≥5 → Push Heaven bead down",
+          "⚡ Calculate quickly and accurately!",
+          "🎯 Goal: 10 calculations in 2 minutes"
+        ]
+      },
+      "3-1": {
+        "theory": [
+          "🌟 SMALL FRIENDS are two numbers that add up to 5",
+          "👫 1 and 4 are Small Friends (1+4=5)",
+          "👫 2 and 3 are Small Friends (2+3=5)",
+          "💡 When not enough Earth beads to add, use Small Friends!",
+          "🎯 Formula: +N = +5 - Small Friend of N"
+        ]
+      },
+      "3-2": {
+        "theory": [
+          "🎯 When out of Earth beads, use Small Friends formula:",
+          "➕ +4 = Push Heaven down, remove 1 Earth (+5-1)",
+          "➕ +3 = Push Heaven down, remove 2 Earth (+5-2)",
+          "➕ +2 = Push Heaven down, remove 3 Earth (+5-3)",
+          "➕ +1 = Push Heaven down, remove 4 Earth (+5-4)"
+        ]
+      },
+      "3-3": {
+        "theory": [
+          "⚡ Quick tips:",
+          "📌 See +4 when have 1,2,3 Earth → Push Heaven, remove 1",
+          "📌 See +3 when have 2,3,4 Earth → Push Heaven, remove 2",
+          "📌 See +2 when have 3,4 Earth → Push Heaven, remove 3",
+          "🎯 Goal: React instantly, no thinking needed!"
+        ]
+      },
+      "4-1": {
+        "theory": [
+          "✨ Subtraction = Push beads away from the bar",
+          "👇 Subtract Earth beads: Push Earth beads down (away from bar)",
+          "👆 Subtract Heaven bead: Push Heaven bead up (away from bar)",
+          "🔢 Example: 4-2 = Have 4 Earth, push 2 down = 2 left",
+          "💡 Only works when you have enough beads to remove!"
+        ]
+      },
+      "4-2": {
+        "theory": [
+          "🎯 When not enough Earth beads to subtract, use Small Friends:",
+          "➖ -4 = Push Heaven up, add 1 Earth (-5+1)",
+          "➖ -3 = Push Heaven up, add 2 Earth (-5+2)",
+          "➖ -2 = Push Heaven up, add 3 Earth (-5+3)",
+          "➖ -1 = Push Heaven up, add 4 Earth (-5+4)"
+        ]
+      },
+      "4-3": {
+        "theory": [
+          "⚡ Quick tips:",
+          "📌 See -4 when have Heaven → Push Heaven up, add 1 Earth",
+          "📌 See -3 when have Heaven → Push Heaven up, add 2 Earth",
+          "📌 See -2 when have Heaven → Push Heaven up, add 3 Earth",
+          "📌 See -1 when have Heaven → Push Heaven up, add 4 Earth",
+          "🎯 Goal: Automatic reflex!"
+        ]
+      },
+      "4-4": {
+        "theory": [
+          "🎯 **REVIEW: SMALL FRIENDS ADD & SUBTRACT**",
+          "",
+          "📚 **SMALL FRIENDS FORMULA:**",
+          "🔹 Small Friend of 1 is 4 (1 + 4 = 5)",
+          "🔹 Small Friend of 2 is 3 (2 + 3 = 5)",
+          "🔹 Small Friend of 3 is 2 (3 + 2 = 5)",
+          "🔹 Small Friend of 4 is 1 (4 + 1 = 5)",
+          "",
+          "✨ **TO ADD:** Borrow 5, return Small Friend",
+          "✨ **TO SUBTRACT:** Add Small Friend, return 5",
+          "",
+          "💡 **TIP:** Remember pairs: (1,4), (2,3)"
+        ]
+      },
+      "5-1": {
+        "theory": [
+          "🌟 BIG FRIENDS are two numbers that add up to 10",
+          "👫 1 and 9 are Big Friends (1+9=10)",
+          "👫 2 and 8 are Big Friends (2+8=10)",
+          "👫 3 and 7 are Big Friends (3+7=10)",
+          "👫 4 and 6 are Big Friends (4+6=10)",
+          "👫 5 and 5 are Big Friends (5+5=10)"
+        ]
+      },
+      "5-2": {
+        "theory": [
+          "🎯 When adding goes past 9, carry to tens column!",
+          "➕ +9 = Add 1 ten, subtract Big Friend of 9 (+10-1)",
+          "➕ +8 = Add 1 ten, subtract Big Friend of 8 (+10-2)",
+          "➕ +7 = Add 1 ten, subtract Big Friend of 7 (+10-3)",
+          "💡 Formula: +N = +10 - Big Friend of N"
+        ]
+      },
+      "5-3": {
+        "theory": [
+          "⚡ Quick tips:",
+          "📌 See +9 → Carry to tens, remove 1",
+          "📌 See +8 → Carry to tens, remove 2",
+          "📌 See +7 → Carry to tens, remove 3",
+          "📌 See +6 → Carry to tens, remove 4",
+          "🎯 Practice until it becomes automatic!"
+        ]
+      },
+      "6-1": {
+        "theory": [
+          "🎯 When not enough beads to subtract, borrow from tens!",
+          "➖ -9 = Borrow 1 ten, add Big Friend of 9 (-10+1)",
+          "➖ -8 = Borrow 1 ten, add Big Friend of 8 (-10+2)",
+          "➖ -7 = Borrow 1 ten, add Big Friend of 7 (-10+3)",
+          "💡 Formula: -N = -10 + Big Friend of N"
+        ]
+      },
+      "6-2": {
+        "theory": [
+          "🎯 Subtracting across ten - special cases:",
+          "📌 11-9 = 11 - 10 + 1 = 2 (borrow ten, add 1)",
+          "📌 12-8 = 12 - 10 + 2 = 4 (borrow ten, add 2)",
+          "📌 13-7 = 13 - 10 + 3 = 6 (borrow ten, add 3)",
+          "💡 Remember: -N = -10 + (10 - N)"
+        ]
+      },
+      "6-3": {
+        "theory": [
+          "⚡ Quick tips:",
+          "📌 See -9 → Borrow ten, add 1",
+          "📌 See -8 → Borrow ten, add 2",
+          "📌 See -7 → Borrow ten, add 3",
+          "📌 See -6 → Borrow ten, add 4",
+          "🎯 Practice until it becomes automatic!"
+        ]
+      },
+      "6-4": {
+        "theory": [
+          "🎯 **REVIEW: BIG FRIENDS ADD & SUBTRACT**",
+          "",
+          "📚 **BIG FRIENDS FORMULA:**",
+          "🔹 Big Friend of 1 is 9 (1 + 9 = 10)",
+          "🔹 Big Friend of 2 is 8 (2 + 8 = 10)",
+          "🔹 Big Friend of 3 is 7 (3 + 7 = 10)",
+          "🔹 Big Friend of 4 is 6 (4 + 6 = 10)",
+          "🔹 Big Friend of 5 is 5 (5 + 5 = 10)",
+          "",
+          "✨ **TO ADD:** Borrow 10, return Big Friend",
+          "✨ **TO SUBTRACT:** Add Big Friend, return 10",
+          "",
+          "💡 **TIP:** Remember pairs: (1,9), (2,8), (3,7), (4,6), (5,5)"
+        ]
+      },
+      "7-1": {
+        "theory": [
+          "🎯 **COMBINED ADD: SMALL FRIENDS + BIG FRIENDS**",
+          "",
+          "📚 **WHEN TO USE COMBINED:**",
+          "   When adding crosses BOTH 5 AND 10",
+          "",
+          "✨ **EXAMPLE: 6 + 8 = ?**",
+          "   Step 1: 6 cannot directly add 8",
+          "   Step 2: Need to borrow 10 → Add 1 (tens column)",
+          "   Step 3: Return Big Friend of 8 = 2 → But 6 can't subtract 2",
+          "   Step 4: Use combined: Subtract 5, add Small Friend of 2 = 3",
+          "   Result: 14",
+          "",
+          "💡 **TIP:** When can't subtract Big Friend, subtract 5 then add Small Friend"
+        ]
+      },
+      "7-2": {
+        "theory": [
+          "🎯 **COMBINED SUBTRACT: SMALL FRIENDS + BIG FRIENDS**",
+          "",
+          "📚 **WHEN TO USE COMBINED:**",
+          "   When subtracting but can't add Big Friend directly",
+          "",
+          "✨ **EXAMPLE: 12 - 8 = ?**",
+          "   Step 1: 2 cannot subtract 8",
+          "   Step 2: Borrow 10 → Subtract 1 (tens column)",
+          "   Step 3: Add Big Friend of 8 = 2 → But can't add 2",
+          "   Step 4: Use combined: Add 5, subtract Small Friend of 2 = 3",
+          "   Result: 4",
+          "",
+          "💡 **TIP:** Subtract 8 = subtract 10, add 5, subtract 3 (Small Friend of 2)"
+        ]
+      },
+      "7-3": {
+        "theory": [
+          "🏋️ **ADD/SUBTRACT PRACTICE SUMMARY**",
+          "",
+          "📚 **FORMULA SUMMARY:**",
+          "",
+          "🔹 **ADDITION:**",
+          "   • Simple add: Push beads directly",
+          "   • Small Friends add: Subtract 5, add Small Friend",
+          "   • Big Friends add: Add 10, subtract Big Friend",
+          "   • Combined add: Add 10, subtract 5, add Small Friend",
+          "",
+          "🔹 **SUBTRACTION:**",
+          "   • Simple subtract: Push beads away directly",
+          "   • Small Friends subtract: Add 5, subtract Small Friend",
+          "   • Big Friends subtract: Subtract 10, add Big Friend",
+          "   • Combined subtract: Subtract 10, add 5, subtract Small Friend",
+          "",
+          "💡 **TIP:** Practice often for natural reflexes!"
+        ]
+      },
+      "7-4": {
+        "theory": [
+          "🏆 **REVIEW: BASIC ADD/SUBTRACT**",
+          "",
+          "📚 **FORMULAS LEARNED:**",
+          "",
+          "🔹 **Small Friends (sum = 5):**",
+          "   (1,4), (2,3), (3,2), (4,1)",
+          "",
+          "🔹 **Big Friends (sum = 10):**",
+          "   (1,9), (2,8), (3,7), (4,6), (5,5)",
+          "",
+          "🔹 **Combined Small + Big Friends:**",
+          "   Apply when crossing both 5 and 10",
+          "",
+          "✨ **GENERAL RULES:**",
+          "   • Add: Borrow larger number, return Friend",
+          "   • Subtract: Add Friend, return larger number",
+          "",
+          "💡 **QUICK STRATEGY:**",
+          "   Look at number → Identify which formula → Execute"
+        ]
+      },
+      "8-1": {
+        "theory": [
+          "📏 Always calculate from RIGHT to LEFT (units first)",
+          "🔢 Example: 23+15",
+          "📝 Step 1: Units column: 3+5 = 8",
+          "📝 Step 2: Tens column: 2+1 = 3",
+          "✅ Result: 23+15 = 38"
+        ]
+      },
+      "8-2": {
+        "theory": [
+          "📏 When units column ≥ 10, carry to tens!",
+          "🔢 Example: 28+35",
+          "📝 Step 1: Units column: 8+5 = 13 (write 3, carry 1)",
+          "📝 Step 2: Tens column: 2+3+1 = 6",
+          "✅ Result: 28+35 = 63"
+        ]
+      },
+      "8-3": {
+        "theory": [
+          "📏 Subtraction also goes RIGHT to LEFT",
+          "🔢 Example: 56-23 (no borrowing)",
+          "📝 Units: 6-3 = 3, Tens: 5-2 = 3 → 33",
+          "🔢 Example: 72-48 (with borrowing)",
+          "📝 Units: 2<8, borrow 1 ten → 12-8 = 4",
+          "📝 Tens: 7-1-4 = 2 → Result: 24"
+        ]
+      },
+      "9-1": {
+        "theory": [
+          "📍 Column 1 (right): Units (1-9)",
+          "📍 Column 2: Tens (10-90)",
+          "📍 Column 3: Hundreds (100-900)",
+          "🔢 Example: 456 = 4 hundreds + 5 tens + 6 units",
+          "💡 Read and push from LEFT to RIGHT!"
+        ]
+      },
+      "9-2": {
+        "theory": [
+          "📏 Still calculate from RIGHT to LEFT",
+          "🔢 Example: 234+156",
+          "📝 Units: 4+6 = 10 (write 0, carry 1)",
+          "📝 Tens: 3+5+1 = 9",
+          "📝 Hundreds: 2+1 = 3",
+          "✅ Result: 234+156 = 390"
+        ]
+      },
+      "9-3": {
+        "theory": [
+          "📏 Subtract large numbers: careful when borrowing!",
+          "🔢 Example: 543-217",
+          "📝 Units: 3-7 → borrow: 13-7 = 6",
+          "📝 Tens: 4-1-1 = 2",
+          "📝 Hundreds: 5-2 = 3",
+          "✅ Result: 543-217 = 326"
+        ]
+      },
+      "10-1": {
+        "theory": [
+          "📍 Column 4: Thousands (1000-9000)",
+          "🔢 Example: 2345 = 2 thousand + 3 hundred + 4 tens + 5 units",
+          "💡 Soroban can calculate very large numbers!",
+          "🎯 Each column works the same way",
+          "✨ Apply all formulas learned!"
+        ]
+      },
+      "10-2": {
+        "theory": [
+          "📏 Rule unchanged: RIGHT to LEFT",
+          "🔢 Example: 2345+1234",
+          "📝 Units: 5+4 = 9",
+          "📝 Tens: 4+3 = 7",
+          "📝 Hundreds: 3+2 = 5",
+          "📝 Thousands: 2+1 = 3",
+          "✅ Result: 2345+1234 = 3579"
+        ]
+      },
+      "10-3": {
+        "theory": [
+          "📏 Subtract large numbers: careful when borrowing!",
+          "🔢 Example: 5432-2345",
+          "💡 When borrowing across multiple places, subtract step by step",
+          "🎯 Practice often to master!",
+          "✨ Be patient and accurate!"
+        ]
+      },
+      "10-4": {
+        "theory": [
+          "🏆 **REVIEW: LARGE NUMBER ADD/SUBTRACT**",
+          "",
+          "📚 **SKILLS LEARNED:**",
+          "",
+          "🔹 **2-digit numbers:** 10-99",
+          "   Apply formulas for each place",
+          "",
+          "🔹 **3-digit numbers:** 100-999",
+          "   Process units → tens → hundreds",
+          "",
+          "🔹 **4-digit numbers:** 1000-9999",
+          "   Process sequentially from right to left",
+          "",
+          "✨ **PRINCIPLES:**",
+          "   • Align columns",
+          "   • Process each place with formulas",
+          "   • Carry to next place",
+          "",
+          "💡 **TIP:** Break large numbers into easier parts"
+        ]
+      },
+      "11-1": {
+        "theory": [
+          "✖️ **MULTIPLICATION ON SOROBAN - TIMES TABLES 2, 3**",
+          "",
+          "📚 **MULTIPLICATION PRINCIPLES:**",
+          "🔹 Place multiplicand on the right",
+          "🔹 Multiply each digit from left to right",
+          "🔹 Add partial products to correct positions",
+          "",
+          "✨ **TIMES TABLE 2:**",
+          "   2×1=2, 2×2=4, 2×3=6, 2×4=8, 2×5=10",
+          "   2×6=12, 2×7=14, 2×8=16, 2×9=18",
+          "",
+          "✨ **TIMES TABLE 3:**",
+          "   3×1=3, 3×2=6, 3×3=9, 3×4=12, 3×5=15",
+          "   3×6=18, 3×7=21, 3×8=24, 3×9=27",
+          "",
+          "💡 **TIP:** Memorize times tables for faster calculation!"
+        ]
+      },
+      "11-2": {
+        "theory": [
+          "✖️ **SOROBAN MULTIPLICATION - TIMES TABLES 4, 5, 6**",
+          "",
+          "📚 **2-DIGIT MULTIPLICATION TECHNIQUE:**",
+          "🔹 **EXAMPLE: 45 × 6**",
+          "   Step 1: Set 45 on Soroban",
+          "   Step 2: 4 × 6 = 24 → Place in result position",
+          "   Step 3: 5 × 6 = 30 → Add to result",
+          "   Step 4: 240 + 30 = 270",
+          "   Result: 270",
+          "",
+          "✨ **TIMES TABLE 5:**",
+          "   5×1=5, 5×2=10, 5×3=15, 5×4=20, 5×5=25",
+          "   5×6=30, 5×7=35, 5×8=40, 5×9=45",
+          "",
+          "💡 **TIP:** Multiply by 5 = multiply by 10 then divide by 2"
+        ]
+      },
+      "11-3": {
+        "theory": [
+          "✖️ **PRACTICE - TIMES TABLES 7, 8, 9**",
+          "",
+          "📚 **QUICK MULTIPLICATION TECHNIQUES:**",
+          "🔹 **Multiply by 9:**",
+          "   9 × n = 10 × n - n",
+          "   Example: 9 × 7 = 70 - 7 = 63",
+          "",
+          "🔹 **Multiply by 8:**",
+          "   8 × n = 10 × n - 2 × n",
+          "   Example: 8 × 6 = 60 - 12 = 48",
+          "",
+          "✨ **TIMES TABLE 9:**",
+          "   9×1=9, 9×2=18, 9×3=27, 9×4=36, 9×5=45",
+          "   9×6=54, 9×7=63, 9×8=72, 9×9=81",
+          "",
+          "💡 **TIP:** Sum of digits in 9's products always = 9"
+        ]
+      },
+      "11-4": {
+        "theory": [
+          "🎯 **MULTIPLICATION & DIVISION PRACTICE MIX**",
+          "",
+          "📚 **MULTIPLICATION:**",
+          "🔹 Multiply digit by digit",
+          "🔹 Add partial products to correct positions",
+          "🔹 Multiply from left to right",
+          "",
+          "📚 **DIVISION:**",
+          "🔹 Divide from the highest place",
+          "🔹 Get quotient, subtract product",
+          "🔹 Bring down next digit if needed",
+          "",
+          "✨ **MULTIPLY-DIVIDE RELATIONSHIP:**",
+          "   a × b = c  ↔  c ÷ b = a  ↔  c ÷ a = b",
+          "",
+          "💡 **TIP:** Check division by multiplying back"
+        ]
+      },
+      "12-1": {
+        "theory": [
+          "✖️ **2-DIGIT × 2-DIGIT MULTIPLICATION**",
+          "",
+          "📚 **METHOD:**",
+          "🔹 **EXAMPLE: 23 × 14**",
+          "   Step 1: 23 × 10 = 230",
+          "   Step 2: 23 × 4 = 92",
+          "   Step 3: 230 + 92 = 322",
+          "   Result: 322",
+          "",
+          "🔹 **ON SOROBAN:**",
+          "   1. Set 23 at starting position",
+          "   2. Multiply by 1 (tens of 14): 23 × 1 = 23 → place in tens",
+          "   3. Multiply by 4 (units of 14): 23 × 4 = 92 → add",
+          "   4. Total: 230 + 92 = 322",
+          "",
+          "💡 **TIP:** Break into simpler multiplications"
+        ]
+      },
+      "12-2": {
+        "theory": [
+          "✖️ **ADVANCED - 3-DIGIT NUMBERS**",
+          "",
+          "📚 **METHOD:**",
+          "🔹 **EXAMPLE: 123 × 4**",
+          "   Step 1: 1 × 4 = 4 → hundreds position = 400",
+          "   Step 2: 2 × 4 = 8 → tens position = 80",
+          "   Step 3: 3 × 4 = 12 → units position = 12",
+          "   Result: 400 + 80 + 12 = 492",
+          "",
+          "✨ **NOTES:**",
+          "   • Multiply from left to right",
+          "   • Place results in correct position",
+          "   • Add carefully",
+          "",
+          "💡 **TIP:** Estimate result first to verify"
+        ]
+      },
+      "12-3": {
+        "theory": [
+          "✖️ **COMPREHENSIVE MULTIPLICATION PRACTICE**",
+          "",
+          "📚 **TYPES LEARNED:**",
+          "🔹 **1-digit × 1-digit:** Use times tables",
+          "🔹 **2-digit × 1-digit:** Multiply each digit, add results",
+          "🔹 **2-digit × 2-digit:** Break apart, multiply parts",
+          "🔹 **3-digit × 1-digit:** Same as 2-digit",
+          "",
+          "✨ **QUICK CHECK STRATEGY:**",
+          "   • Even × anything = Even",
+          "   • Odd × Odd = Odd",
+          "   • Last digit × last digit gives last digit of result",
+          "",
+          "💡 **TIP:** Practice 10 problems daily to master!"
+        ]
+      },
+      "13-1": {
+        "theory": [
+          "➗ **DIVISION ON SOROBAN - DIVIDING BY 2, 3, 4, 5**",
+          "",
+          "📚 **DIVISION PRINCIPLES:**",
+          "🔹 Place dividend on the left",
+          "🔹 Divide from highest place",
+          "🔹 Get quotient, subtract product, bring down next digit",
+          "",
+          "🔹 **EXAMPLE: 42 ÷ 6**",
+          "   Step 1: 42 ÷ 6 = ?",
+          "   Step 2: 4 ÷ 6 won't work → take 42",
+          "   Step 3: 42 ÷ 6 = 7",
+          "   Check: 7 × 6 = 42 ✓",
+          "   Result: 7",
+          "",
+          "💡 **TIP:** Division = reverse multiplication. Check by multiplying!"
+        ]
+      },
+      "13-2": {
+        "theory": [
+          "➗ **SOROBAN DIVISION - DIVIDING BY 6, 7**",
+          "",
+          "📚 **2-DIGIT DIVISION TECHNIQUE:**",
+          "🔹 **EXAMPLE: 84 ÷ 7**",
+          "   Step 1: 8 ÷ 7 = 1 remainder 1",
+          "   Step 2: Place 1 in result position",
+          "   Step 3: 8 - 7 = 1 → remaining is 14",
+          "   Step 4: 14 ÷ 7 = 2",
+          "   Result: 12",
+          "   Check: 12 × 7 = 84 ✓",
+          "",
+          "✨ **DIVISION TABLE FOR 7:**",
+          "   7÷7=1, 14÷7=2, 21÷7=3, 28÷7=4, 35÷7=5",
+          "   42÷7=6, 49÷7=7, 56÷7=8, 63÷7=9",
+          "",
+          "💡 **TIP:** Know times tables 6, 7 for faster division!"
+        ]
+      },
+      "13-3": {
+        "theory": [
+          "➗ **DIVISION PRACTICE - COMPREHENSIVE**",
+          "",
+          "📚 **DIVISION STEPS:**",
+          "🔹 **Step 1:** Look at dividend",
+          "🔹 **Step 2:** Estimate quotient",
+          "🔹 **Step 3:** Calculate product and subtract",
+          "🔹 **Step 4:** Bring down next digit (if any)",
+          "🔹 **Step 5:** Repeat until done",
+          "",
+          "✨ **EXAMPLE: 156 ÷ 6**",
+          "   15 ÷ 6 = 2 remainder 3 → quotient = 2",
+          "   15 - 12 = 3 → remaining 36",
+          "   36 ÷ 6 = 6 → quotient = 6",
+          "   Result: 26",
+          "   Check: 26 × 6 = 156 ✓",
+          "",
+          "💡 **TIP:** Practice to become fluent!"
+        ]
+      },
+      "13-4": {
+        "theory": [
+          "➗ **REVIEW: MULTIPLICATION & DIVISION**",
+          "",
+          "📚 **MULTIPLICATION:**",
+          "🔹 Multiply digit by digit",
+          "🔹 Add partial products to correct positions",
+          "🔹 Multiply from left to right",
+          "",
+          "📚 **DIVISION:**",
+          "🔹 Divide from highest place",
+          "🔹 Get quotient, subtract product",
+          "🔹 Bring down next digit if needed",
+          "",
+          "✨ **MULTIPLY-DIVIDE RELATIONSHIP:**",
+          "   a × b = c  ↔  c ÷ b = a  ↔  c ÷ a = b",
+          "",
+          "💡 **TIP:** Check division by multiplying back"
+        ]
+      },
+      "14-1": {
+        "theory": [
+          "➗ **DIVIDING BY 8, 9 - ADVANCED**",
+          "",
+          "📚 **DIVIDING BY 8 TECHNIQUE:**",
+          "🔹 **Recognition:** Number divisible by 8 when last 3 digits divisible by 8",
+          "",
+          "✨ **DIVISION TABLE FOR 8:**",
+          "   8÷8=1, 16÷8=2, 24÷8=3, 32÷8=4, 40÷8=5",
+          "   48÷8=6, 56÷8=7, 64÷8=8, 72÷8=9",
+          "",
+          "📚 **DIVIDING BY 9 TECHNIQUE:**",
+          "🔹 **Recognition:** Number divisible by 9 when digit sum divisible by 9",
+          "   Example: 81 → 8 + 1 = 9 → divisible by 9",
+          "",
+          "✨ **DIVISION TABLE FOR 9:**",
+          "   9÷9=1, 18÷9=2, 27÷9=3, 36÷9=4, 45÷9=5",
+          "   54÷9=6, 63÷9=7, 72÷9=8, 81÷9=9",
+          "",
+          "💡 **TIP:** Use divisibility rules for quick checks!"
+        ]
+      },
+      "14-2": {
+        "theory": [
+          "➗ **DIVIDING 2-DIGIT NUMBERS - ADVANCED**",
+          "",
+          "📚 **LONG DIVISION METHOD:**",
+          "🔹 **EXAMPLE: 144 ÷ 12**",
+          "   Step 1: 14 ÷ 12 = 1 remainder 2",
+          "   Step 2: Place 1, subtract 12 → remaining 24",
+          "   Step 3: 24 ÷ 12 = 2",
+          "   Result: 12",
+          "   Check: 12 × 12 = 144 ✓",
+          "",
+          "✨ **STRATEGY:**",
+          "   • Compare first 2 digits with divisor",
+          "   • If smaller → take 3 digits",
+          "   • Estimate quotient carefully",
+          "",
+          "💡 **TIP:** Go slow for accuracy, then speed up!"
+        ]
+      },
+      "14-3": {
+        "theory": [
+          "➗ **COMPREHENSIVE DIVISION PRACTICE**",
+          "",
+          "📚 **DIVISION TYPES SUMMARY:**",
+          "🔹 **1-digit divisor:** Use division tables",
+          "🔹 **2-digit divisor:** Long division, step by step",
+          "🔹 **With remainder:** Note remainder if any",
+          "",
+          "✨ **CHECK FORMULA:**",
+          "   Dividend = Quotient × Divisor + Remainder",
+          "",
+          "✨ **DIVISIBILITY RECOGNITION:**",
+          "   • Divisible by 2: last digit even",
+          "   • Divisible by 5: last digit 0 or 5",
+          "   • Divisible by 3: digit sum divisible by 3",
+          "   • Divisible by 9: digit sum divisible by 9",
+          "",
+          "💡 **TIP:** Multiply-divide relationship helps quick checks!"
+        ]
+      },
+      "14-4": {
+        "theory": [
+          "🎯 **REVIEW: MULTIPLY & DIVIDE ON SOROBAN**",
+          "",
+          "📚 **MULTIPLICATION:**",
+          "🔹 Multiply digit by digit",
+          "🔹 Add partial products to correct positions",
+          "🔹 Multiply from left to right",
+          "",
+          "📚 **DIVISION:**",
+          "🔹 Divide from highest place",
+          "🔹 Get quotient, subtract product",
+          "🔹 Bring down next digit if needed",
+          "",
+          "✨ **MULTIPLY-DIVIDE RELATIONSHIP:**",
+          "   a × b = c  ↔  c ÷ b = a  ↔  c ÷ a = b",
+          "",
+          "💡 **TIP:** Check division result by multiplying back"
+        ]
+      },
+      "15-1": {
+        "theory": [
+          "🧠 **BASIC MENTAL MATH - ANZAN**",
+          "",
+          "📚 **WHAT IS ANZAN?**",
+          "- Anzan = mental math using virtual Soroban in your mind",
+          "- Visualize the abacus in your brain",
+          "- Move beads in your imagination",
+          "",
+          "⚡ **STEP 1: MENTAL ADDITION**",
+          "- Visualize first number on Soroban",
+          "- Imagine pushing more beads",
+          "- Read result from mental image",
+          "",
+          "⚡ **STEP 2: MENTAL SUBTRACTION**",
+          "- Visualize first number",
+          "- Imagine removing beads",
+          "- Read result",
+          "",
+          "🎯 **GOAL:** Add/subtract 1-9 within 10 seconds, 100% accuracy"
+        ]
+      },
+      "15-2": {
+        "theory": [
+          "✖️ **BASIC MENTAL MULTIPLICATION**",
+          "",
+          "📚 **TIMES TABLES TO MEMORIZE:**",
+          "- Times 2: 2, 4, 6, 8, 10, 12, 14, 16, 18",
+          "- Times 3: 3, 6, 9, 12, 15, 18, 21, 24, 27",
+          "- Times 4: 4, 8, 12, 16, 20, 24, 28, 32, 36",
+          "- Times 5: 5, 10, 15, 20, 25, 30, 35, 40, 45",
+          "",
+          "⚡ **MULTIPLY BY 5 TRICK:**",
+          "- Multiply by 5 = divide by 2, multiply by 10",
+          "- Example: 8 × 5 = 8 ÷ 2 × 10 = 4 × 10 = 40",
+          "",
+          "⚡ **MULTIPLY BY 4 TRICK:**",
+          "- Multiply by 4 = multiply by 2, then by 2 again",
+          "- Example: 7 × 4 = 7 × 2 × 2 = 14 × 2 = 28",
+          "",
+          "🎯 **GOAL:** Answer within 8 seconds, instant recall"
+        ]
+      },
+      "15-3": {
+        "theory": [
+          "➗ **BASIC MENTAL DIVISION**",
+          "",
+          "📚 **PRINCIPLES:**",
+          "- Division is reverse multiplication",
+          "- a ÷ b = c means b × c = a",
+          "- Know times tables → divide quickly",
+          "",
+          "⚡ **DIVIDE BY 2 TRICK:**",
+          "- Halve the number",
+          "- Example: 18 ÷ 2 = 9 (half of 18)",
+          "",
+          "⚡ **DIVIDE BY 5 TRICK:**",
+          "- Multiply by 2, divide by 10",
+          "- Example: 35 ÷ 5 = 35 × 2 ÷ 10 = 70 ÷ 10 = 7",
+          "",
+          "🎯 **GOAL:** Answer within 10 seconds, link to times tables"
+        ]
+      },
+      "15-4": {
+        "theory": [
+          "🎯 **MIXED 4 OPERATIONS**",
+          "",
+          "📚 **SKILLS NEEDED:**",
+          "- Recognize operation quickly",
+          "- Switch thinking flexibly",
+          "- Don't confuse operations",
+          "",
+          "⚡ **STRATEGY:**",
+          "1. Read operation sign carefully",
+          "2. Choose appropriate method",
+          "3. Calculate quickly, double-check",
+          "",
+          "🏆 **CHALLENGE:**",
+          "- Get 12/15 correct",
+          "- Average 8 seconds per problem"
+        ]
+      },
+      "16-1": {
+        "theory": [
+          "🧠 **ADVANCED MENTAL ADD/SUBTRACT - 2-DIGIT NUMBERS**",
+          "",
+          "📚 **SPLITTING TECHNIQUE:**",
+          "- Split into tens and units",
+          "- Example: 45 + 28 = (40+20) + (5+8) = 60 + 13 = 73",
+          "",
+          "⚡ **QUICK ADDITION TRICK:**",
+          "- Round up then subtract back",
+          "- Example: 67 + 28 = 67 + 30 - 2 = 97 - 2 = 95",
+          "",
+          "⚡ **QUICK SUBTRACTION TRICK:**",
+          "- Subtract in parts",
+          "- Example: 83 - 47 = 83 - 40 - 7 = 43 - 7 = 36",
+          "",
+          "🎯 **GOAL:** 2-digit calculations in 12 seconds, >90% accuracy"
+        ]
+      },
+      "16-2": {
+        "theory": [
+          "✖️ **ADVANCED MENTAL MULTIPLICATION**",
+          "",
+          "📚 **TIMES TABLES 6-9:**",
+          "- Times 6: 6, 12, 18, 24, 30, 36, 42, 48, 54",
+          "- Times 7: 7, 14, 21, 28, 35, 42, 49, 56, 63",
+          "- Times 8: 8, 16, 24, 32, 40, 48, 56, 64, 72",
+          "- Times 9: 9, 18, 27, 36, 45, 54, 63, 72, 81",
+          "",
+          "⚡ **MULTIPLY BY 9 TRICK:**",
+          "- Multiply by 10, subtract the number",
+          "- Example: 7 × 9 = 7 × 10 - 7 = 70 - 7 = 63",
+          "",
+          "⚡ **2-DIGIT × 1-DIGIT:**",
+          "- Split: 23 × 4 = (20 × 4) + (3 × 4) = 80 + 12 = 92",
+          "",
+          "🎯 **GOAL:** Times 6-9: 8 sec, 2-digit × 1-digit: 12 sec"
+        ]
+      },
+      "16-3": {
+        "theory": [
+          "➗ **ADVANCED MENTAL DIVISION**",
+          "",
+          "📚 **DIVIDING BY 6-9:**",
+          "- Use reverse times tables",
+          "- Example: 56 ÷ 7 = ? → 7 × ? = 56 → 7 × 8 = 56 → Answer: 8",
+          "",
+          "⚡ **DIVIDING 2-3 DIGIT NUMBERS:**",
+          "- Split into divisible parts",
+          "- Example: 96 ÷ 8 = (80 + 16) ÷ 8 = 10 + 2 = 12",
+          "",
+          "⚡ **DIVIDE BY 9 TRICK:**",
+          "- Check digit sum",
+          "- Example: 81 ÷ 9 = 9 (because 8+1=9, divisible by 9)",
+          "",
+          "🎯 **GOAL:** Divide by 6-9: 10 sec, large numbers: 15 sec"
+        ]
+      },
+      "16-4": {
+        "theory": [
+          "🎯 **ADVANCED MIXED 4 OPERATIONS**",
+          "",
+          "📚 **COMBINED SKILLS:**",
+          "- Add/subtract 2-digit numbers",
+          "- Multiply with times tables 6-9",
+          "- Divide 2-3 digit numbers",
+          "- Switch flexibly",
+          "",
+          "⚡ **TACTICS:**",
+          "1. Look at operation sign first",
+          "2. Estimate result",
+          "3. Calculate precisely",
+          "4. Quick check",
+          "",
+          "🏆 **FINAL GOAL:**",
+          "- Get 13/15 correct",
+          "- Average 10 seconds per problem",
+          "- Ready for Level 17!"
+        ]
+      },
+      "17-1": {
+        "theory": [
+          "⚡ **SPEED ADD/SUBTRACT**",
+          "",
+          "You've mastered mental math in Level 15-16. Now it's time to **speed up**!",
+          "",
+          "🎯 **GOALS:**",
+          "- 1-digit numbers: Answer within **8 seconds**",
+          "- 2-digit numbers: Answer within **12 seconds**",
+          "- Automatic reflex, no thinking needed",
+          "",
+          "💡 **SPEED TIPS:**",
+          "- Visualize the abacus instantly in your mind",
+          "- 5 is the \"anchor point\" - add/subtract through 5 is faster",
+          "- Practice 5-10 minutes daily to build reflexes"
+        ]
+      },
+      "17-2": {
+        "theory": [
+          "⚡ **SPEED MULTIPLICATION**",
+          "",
+          "Times tables must be **memorized like reflexes**!",
+          "",
+          "🎯 **GOALS:**",
+          "- Times 2-5: Answer within **5 seconds**",
+          "- Times 6-9: Answer within **8 seconds**",
+          "- 2-digit × 1-digit: **10 seconds**",
+          "",
+          "💡 **QUICK MULTIPLICATION TRICKS:**",
+          "- Multiply by 9: Take 10 minus (9×7 = 70-7 = 63)",
+          "- Multiply by 5: Divide by 2, × 10 (5×8 = 8÷2×10 = 40)",
+          "- Multiply by 11: Split number (11×12 = 12+120 = 132)"
+        ]
+      },
+      "17-3": {
+        "theory": [
+          "⚡ **SPEED DIVISION**",
+          "",
+          "Division is **reverse multiplication**. Know times tables = divide fast!",
+          "",
+          "🎯 **GOALS:**",
+          "- Divide by 2-5: Answer within **6 seconds**",
+          "- Divide by 6-9: Answer within **10 seconds**",
+          "- 2-3 digit ÷ 1-digit: **12 seconds**",
+          "",
+          "💡 **QUICK DIVISION TRICKS:**",
+          "- Divide by 2: Halve (48÷2 = 24)",
+          "- Divide by 5: × 2, ÷ 10 (45÷5 = 45×2÷10 = 9)",
+          "- Think reverse: 56÷7 = ? → 7×? = 56 → 8"
+        ]
+      },
+      "17-4": {
+        "theory": [
+          "⚡ **MIXED SPEED OPERATIONS**",
+          "",
+          "Ultimate challenge: **Quick switching** between operations!",
+          "",
+          "🎯 **GOALS:**",
+          "- Recognize operation in **1 second**",
+          "- Switch brain instantly",
+          "- Answer correctly within time limit",
+          "",
+          "💡 **STRATEGY:**",
+          "- Read operation sign FIRST",
+          "- Apply appropriate technique immediately",
+          "- Don't panic - calm = faster"
+        ]
+      },
+      "18-1": {
+        "theory": [
+          "🧠 **FLASH ANZAN - QUICK NUMBER MEMORY**",
+          "",
+          "**Flash Anzan** starts with simple number memory!",
+          "",
+          "🎯 **THIS EXERCISE:**",
+          "- Number appears for **2 seconds** (decreasing to 1 second)",
+          "- Then disappears",
+          "- You type the number you just saw",
+          "",
+          "💡 **MEMORY TIPS:**",
+          "- Visualize number on Soroban",
+          "- Focus 100% when number appears",
+          "- Say number silently in your head to reinforce"
+        ]
+      },
+      "18-2": {
+        "theory": [
+          "🧠 **FLASH ANZAN - ADDING 2-3 NUMBERS**",
+          "",
+          "This is the first step of **real Flash Anzan**!",
+          "",
+          "🎯 **HOW IT WORKS:**",
+          "- Numbers appear one by one (1.5 seconds each)",
+          "- ADD UP in your head as you watch",
+          "- Enter the TOTAL when finished",
+          "",
+          "💡 **EXAMPLE: 3, 5, 2**",
+          "- Number 1: See 3 → Remember 3",
+          "- Number 2: See 5 → 3+5=8 → Remember 8",
+          "- Number 3: See 2 → 8+2=10 → Enter 10"
+        ]
+      },
+      "18-3": {
+        "theory": [
+          "🧠 **FLASH ANZAN - MIXED ADD/SUBTRACT**",
+          "",
+          "Now with **negative numbers** = subtraction!",
+          "",
+          "🎯 **RULES:**",
+          "- Positive number (5): Add to total",
+          "- Negative number (-3): Subtract from total",
+          "- Visualize: Push beads UP (add) or DOWN (subtract)",
+          "",
+          "💡 **EXAMPLE: 5, 3, -2**",
+          "- See 5 → Remember 5",
+          "- See 3 → 5+3=8",
+          "- See -2 → 8-2=6 → Enter 6"
+        ]
+      },
+      "18-4": {
+        "theory": [
+          "🧠 **FLASH ANZAN - HIGH SPEED**",
+          "",
+          "This is the **challenge** level!",
+          "",
+          "🎯 **CHALLENGE:**",
+          "- 4-5 numbers flashing consecutively",
+          "- Each number shows for only **0.8-1 second**",
+          "- Has negative numbers (subtraction)",
+          "",
+          "💡 **TECHNIQUE:**",
+          "- Don't read the number - SEE THE IMAGE on the abacus",
+          "- Move beads in your head with each number",
+          "- Read result from final mental image"
+        ]
+      },
+      "18-5": {
+        "theory": [
+          "🔥 **FLASH ANZAN - PROFESSIONAL LEVEL**",
+          "",
+          "Welcome to the **peak of Flash Anzan**!",
+          "",
+          "🏆 **CHALLENGE:**",
+          "- 5-7 numbers flashing super fast",
+          "- Each number shows for only **0.5-0.7 seconds**",
+          "- Has 2-digit numbers and negatives",
+          "",
+          "🧠 **THIS IS PEAK SKILL:**",
+          "- Brain processes like a \"computer\"",
+          "- No more thinking - just SEE and KNOW",
+          "- Persistent practice will get you there!",
+          "",
+          "⭐ **TIPS FOR SUPERSTARS:**",
+          "- Breathe evenly, don't stress",
+          "- Look at center of screen",
+          "- Trust yourself - your brain remembers!"
+        ]
+      }
+    }
+  }
+}

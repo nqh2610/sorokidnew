@@ -49,15 +49,19 @@ export default function DashboardPage() {
   const localizeUrl = useLocalizedUrl();
   
   // 🔧 Xóa cookie profile_just_completed và refresh session sau khi vào dashboard
+  // 🔧 FIX: Chỉ chạy 1 lần khi mount, dùng ref để track
+  const profileCookieCheckedRef = useRef(false);
   useEffect(() => {
+    if (profileCookieCheckedRef.current) return;
+    profileCookieCheckedRef.current = true;
+    
     // Xóa cookie bằng cách set maxAge = 0
     if (document.cookie.includes('profile_just_completed')) {
       document.cookie = 'profile_just_completed=; path=/; max-age=0';
-      
       // Refresh session để cập nhật JWT token với isProfileComplete = true
       update();
     }
-  }, [update]);
+  }, []); // 🔧 FIX: Empty deps - chỉ run 1 lần
   
   // === PROGRESSIVE STATE ===
   // Phase 1: Essential (critical path)
@@ -84,12 +88,29 @@ export default function DashboardPage() {
 
   // 🚀 PERF: AbortController để cancel requests khi unmount
   const activityAbortRef = useRef(null);
+  
+  // 🔧 FIX: Dùng ref để track fetch state - tránh stale closure
+  const fetchingRef = useRef({
+    essential: false,
+    quests: false,
+    certificates: false,
+    achievements: false,
+    activity: false
+  });
+  
+  // 🔧 FIX: Track xem đã load chưa - tránh duplicate calls
+  const initialLoadRef = useRef(false);
+  const secondaryLoadedRef = useRef(false);
 
   // Hook hiệu ứng nhận thưởng
   const { showReward, RewardPopupComponent } = useRewardPopup();
 
   // === PHASE 1: ESSENTIAL DATA (Critical Path) ===
   const fetchEssential = useCallback(async () => {
+    // 🔧 FIX: Guard với ref thay vì state
+    if (fetchingRef.current.essential) return;
+    fetchingRef.current.essential = true;
+    
     try {
       setEssentialLoading(true);
       const response = await fetch('/api/dashboard/essential');
@@ -97,8 +118,8 @@ export default function DashboardPage() {
       
       if (data.success) {
         setEssential(data);
-        // Trigger secondary loads sau khi essential done
-        fetchSecondaryData();
+        // 🔧 FIX: KHÔNG gọi fetchSecondaryData ở đây nữa
+        // Sẽ trigger từ useEffect riêng khi essential loaded
       } else {
         throw new Error('Essential API failed');
       }
@@ -108,27 +129,19 @@ export default function DashboardPage() {
       fetchFallbackData();
     } finally {
       setEssentialLoading(false);
+      fetchingRef.current.essential = false;
     }
   }, []);
 
   // === PHASE 2: SECONDARY DATA (Staggered để giảm spike) ===
-  // 🔧 TỐI ƯU: Staggered loading - không gây spike lên server
-  const fetchSecondaryData = useCallback(() => {
-    // Load quests ngay (nhẹ nhất)
-    fetchQuests();
-    // Load certificates sau 300ms 
-    setTimeout(() => fetchCertificates(), 300);
-    // Achievements load sau 600ms
-    setTimeout(() => fetchAchievements(), 600);
-  }, []);
-
-  const fetchQuests = async () => {
-    if (quests || questsLoading) return;
+  // 🔧 FIX: Dùng ref guard để tránh duplicate calls
+  const fetchQuests = useCallback(async () => {
+    if (fetchingRef.current.quests) return;
+    fetchingRef.current.quests = true;
+    
     try {
       setQuestsLoading(true);
-      const response = await fetch('/api/dashboard/quests', {
-        cache: 'no-store'
-      });
+      const response = await fetch('/api/dashboard/quests');
       const data = await response.json();
       if (data.success) {
         setQuests(data);
@@ -137,11 +150,14 @@ export default function DashboardPage() {
       console.error('[Dashboard] Quests fetch error:', error);
     } finally {
       setQuestsLoading(false);
+      fetchingRef.current.quests = false;
     }
-  };
+  }, []);
 
-  const fetchCertificates = async () => {
-    if (certificates || certificatesLoading) return;
+  const fetchCertificates = useCallback(async () => {
+    if (fetchingRef.current.certificates) return;
+    fetchingRef.current.certificates = true;
+    
     try {
       setCertificatesLoading(true);
       const response = await fetch('/api/dashboard/certificates');
@@ -153,11 +169,14 @@ export default function DashboardPage() {
       console.error('[Dashboard] Certificates fetch error:', error);
     } finally {
       setCertificatesLoading(false);
+      fetchingRef.current.certificates = false;
     }
-  };
+  }, []);
 
-  const fetchAchievements = async () => {
-    if (achievements || achievementsLoading) return;
+  const fetchAchievements = useCallback(async () => {
+    if (fetchingRef.current.achievements) return;
+    fetchingRef.current.achievements = true;
+    
     try {
       setAchievementsLoading(true);
       const response = await fetch('/api/dashboard/achievements');
@@ -169,12 +188,14 @@ export default function DashboardPage() {
       console.error('[Dashboard] Achievements fetch error:', error);
     } finally {
       setAchievementsLoading(false);
+      fetchingRef.current.achievements = false;
     }
-  };
+  }, []);
 
   // === PHASE 3: ACTIVITY (Load on expand) ===
-  const fetchActivity = async () => {
-    if (activity || activityLoading) return;
+  const fetchActivity = useCallback(async () => {
+    if (fetchingRef.current.activity) return;
+    fetchingRef.current.activity = true;
 
     // 🚀 PERF: Cancel previous request if any
     if (activityAbortRef.current) {
@@ -197,8 +218,9 @@ export default function DashboardPage() {
       console.error('[Dashboard] Activity fetch error:', error);
     } finally {
       setActivityLoading(false);
+      fetchingRef.current.activity = false;
     }
-  };
+  }, []);
 
   // === FALLBACK: OLD API ===
   const fetchFallbackData = async () => {
@@ -221,10 +243,16 @@ export default function DashboardPage() {
   };
 
   // === EFFECTS ===
+  // 🔧 FIX: Initial load - chỉ chạy 1 lần khi authenticated
   useEffect(() => {
     if (status === 'unauthenticated') {
       router.push(localizeUrl('/login'));
-    } else if (status === 'authenticated') {
+      return;
+    }
+    
+    // 🔧 FIX: Guard để chỉ fetch 1 lần
+    if (status === 'authenticated' && !initialLoadRef.current) {
+      initialLoadRef.current = true;
       fetchEssential();
     }
 
@@ -234,15 +262,35 @@ export default function DashboardPage() {
         activityAbortRef.current.abort();
       }
     };
-  }, [status, router, fetchEssential, localizeUrl]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]); // 🔧 FIX: Chỉ depend on status để tránh re-run
+
+  // 🔧 FIX: Load secondary data SAU KHI essential loaded - dùng ref track
+  useEffect(() => {
+    // 🔧 FIX: Dùng ref để đảm bảo chỉ load 1 lần
+    if (secondaryLoadedRef.current) return;
+    if (essential && !useFallback) {
+      secondaryLoadedRef.current = true;
+      // Staggered loading để không gây spike
+      fetchQuests();
+      const certTimeout = setTimeout(fetchCertificates, 300);
+      const achieveTimeout = setTimeout(fetchAchievements, 600);
+      
+      return () => {
+        clearTimeout(certTimeout);
+        clearTimeout(achieveTimeout);
+      };
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [essential ? true : false]); // 🔧 FIX: Boolean dependency thay vì object
 
   // Load activity when expanding stats - chỉ chạy 1 lần khi mở
   useEffect(() => {
-    if (showDetailedStats && !activity && !activityLoading) {
+    if (showDetailedStats && !activity) {
       fetchActivity();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showDetailedStats]); // Chỉ depend on showDetailedStats để tránh loop
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showDetailedStats]); // Chỉ depend on showDetailedStats
 
   // === DATA HELPERS - 🚀 PERF: useMemo để tránh recalculate mỗi render ===
   const user = useMemo(() =>
@@ -296,6 +344,17 @@ export default function DashboardPage() {
 
   // Refresh all data
   const refreshData = useCallback(() => {
+    // 🔧 FIX: Reset refs để cho phép fetch lại
+    initialLoadRef.current = false;
+    secondaryLoadedRef.current = false;
+    fetchingRef.current = {
+      essential: false,
+      quests: false,
+      certificates: false,
+      achievements: false,
+      activity: false
+    };
+    
     setEssential(null);
     setQuests(null);
     setAchievements(null);

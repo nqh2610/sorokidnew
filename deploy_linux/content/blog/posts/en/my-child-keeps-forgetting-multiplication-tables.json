@@ -1,0 +1,336 @@
+{
+  "slug": "my-child-keeps-forgetting-multiplication-tables",
+  "title": "My Daughter Kept Forgetting Her Times Tables – Until We Tried This Approach",
+  "description": "We'd practiced 7×8 hundreds of times, but it still wouldn't stick. Here's why traditional memorization failed my daughter and the surprising method that finally made multiplication click.",
+  "category": "parents-helping-with-math",
+  "keywords": [
+    "multiplication tables",
+    "times tables won't stick",
+    "forgetting multiplication facts",
+    "memorizing multiplication",
+    "child can't remember times tables",
+    "multiplication fluency",
+    "7x8 won't stick",
+    "soroban multiplication",
+    "spaced repetition math",
+    "times tables tips",
+    "multiplication anxiety",
+    "making times tables stick"
+  ],
+  "status": "scheduled",
+  "publishedAt": "2026-01-28T09:33:13.684Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/con-quen-bang-cuu-chuong.jpg",
+  "imageAlt": "Child practicing multiplication tables",
+  "readingTime": 14,
+  "author": {
+    "name": "Stephanie Howard",
+    "role": "Mother & After-School Tutor"
+  },
+  "translations": {
+    "vi": "con-hay-quen-bang-cuu-chuong"
+  },
+  "content": {
+    "intro": "'What's 7 times 8?' I asked my daughter Mia for what felt like the hundredth time that week. She stared at the ceiling, lips moving slightly, fingers twitching. After ten seconds: '54? No wait... 56.' It was 56. She'd gotten it right. But the next day, she'd forgotten again. We'd been practicing times tables for six months. We'd used flashcards, songs, apps, worksheets, rewards, games—everything the internet suggested. Some facts stuck. Others, like that stubborn 7×8, just wouldn't stay. I was frustrated. Mia was demoralized. What were we doing wrong? What I eventually discovered changed not just how we approached multiplication, but how I understood memory and learning itself.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Times Table Struggle"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mia's third-grade teacher had sent home a note: 'Mia needs to work on multiplication fact fluency at home. She's falling behind in math because she's still counting to solve multiplication problems.' The implication was clear: we weren't doing our job as parents. So we doubled down on practice."
+      },
+      {
+        "type": "paragraph",
+        "text": "Every night, flashcards. Every car ride, times tables songs. Every spare moment, multiplication apps. And some facts did stick—the easy ones. 2s, 5s, 10s were fine. Even 3s and 4s eventually solidified. But 6s, 7s, and 8s? They'd seem solid one day and vanish the next."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Multiplication Tables Are So Hard"
+      },
+      {
+        "type": "paragraph",
+        "text": "I started researching, and what I learned helped me understand our struggle:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "100 facts is genuinely a lot (10×10 table)",
+          "Many facts sound similar and cause interference (6×8=48 vs 6×9=54)",
+          "Unlike counting or addition, multiplication has no intuitive pattern for some facts",
+          "Rote memorization without understanding creates fragile knowledge",
+          "Inconsistent practice lets facts fade before they're truly cemented"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "That last point hit me hard. We'd practice intensely for a few days, then get busy and skip a week. The facts that seemed solid would crumble. It was like filling a bucket with holes."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Problem With How We Were Teaching"
+      },
+      {
+        "type": "paragraph",
+        "text": "Our approach was pure rote memorization: repeat the fact over and over until it sticks. This works for some children, but for Mia, it created problems:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Facts memorized in isolation didn't connect to any understanding",
+          "Without understanding, similar facts got confused constantly",
+          "The pressure and frustration made memory worse, not better",
+          "Boring repetition led to disengagement and resistance"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "I realized we weren't building knowledge—we were cramming for a test that never ended. And Mia's brain was treating these facts as temporary information, not permanent knowledge."
+      },
+      {
+        "type": "callout",
+        "style": "warning",
+        "text": "The trickiest facts for most children: 6×7, 6×8, 7×8, and 8×8. Research shows these cause the most errors and take the longest to memorize. They deserve special attention."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Finally Worked"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Building on Known Facts"
+      },
+      {
+        "type": "paragraph",
+        "text": "Instead of treating each fact as isolated, I taught Mia to use facts she already knew. For 6×7, she'd think: '5×7 is 35, plus one more 7 is 42.' For 8×7, she'd think: '8×5 is 40, plus 8×2 is 16, total 56.' Suddenly, she had strategies instead of just hoping she'd remember."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Using Patterns and Relationships"
+      },
+      {
+        "type": "paragraph",
+        "text": "I taught her patterns that made facts memorable:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "9s pattern: The digits always sum to 9 (9×7=63, and 6+3=9)",
+          "Commutative property: 6×8 equals 8×6, so she only needs to remember half the facts",
+          "Doubles: 7×8 is the same as 7×7 plus one more 7",
+          "Near-squares: 6×8 is close to 7×7 (49), just one 7 less (49-7=42)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Visual and Physical Models"
+      },
+      {
+        "type": "paragraph",
+        "text": "I realized Mia needed to see what multiplication meant, not just memorize symbols. We used arrays (rows and columns of objects), area models, and eventually—the breakthrough—the soroban. The physical manipulation of beads transformed abstract facts into something her hands and eyes could understand."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Spaced Repetition"
+      },
+      {
+        "type": "paragraph",
+        "text": "Instead of cramming all facts at once, we adopted spaced repetition: reviewing each fact at increasing intervals. A new fact gets reviewed on Day 1, Day 3, Day 7, Day 14, Day 30. This builds long-term memory instead of short-term cramming."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Making It Meaningful"
+      },
+      {
+        "type": "paragraph",
+        "text": "We connected multiplication to real life constantly. 'We have 7 people coming to your party and each needs 8 party favors. How many do we need?' 'There are 6 rows of cookies with 8 cookies in each row.' Context creates memory hooks that abstract facts don't."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Soroban Surprise"
+      },
+      {
+        "type": "paragraph",
+        "text": "The biggest shift came when we introduced the soroban. I was skeptical at first—how would moving beads help with multiplication? But the effect was remarkable. The soroban gave Mia a physical way to understand what multiplication really means: groups of groups. She could see and feel 7×8 as seven groups of eight beads."
+      },
+      {
+        "type": "paragraph",
+        "text": "More importantly, the soroban built automaticity through physical repetition. After weeks of moving beads, her fingers knew the patterns. And when fingers know patterns, the brain follows. Eventually, she could visualize the bead movements without touching anything—mental multiplication that came from physical practice."
+      },
+      {
+        "type": "callout",
+        "style": "success",
+        "text": "The soroban doesn't teach multiplication facts through memorization—it builds them through physical patterns. The hands train the brain in a way flashcards can't."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Our Practice Schedule That Actually Worked"
+      },
+      {
+        "type": "paragraph",
+        "text": "We settled on a sustainable schedule that finally moved the needle:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Daily: 5-10 minutes of mixed facts review, focusing on weakest areas",
+          "Weekly: Introduce 1-2 new facts (no more—quality over quantity)",
+          "Monthly: Quick assessment to identify gaps and adjust focus",
+          "Always: Keep it short, positive, and pressure-free"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The key insight: consistency beats intensity. Five minutes every day is far more effective than 30 minutes once a week. The brain needs regular reinforcement to move facts from short-term to long-term memory."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Handling the Hard Facts"
+      },
+      {
+        "type": "paragraph",
+        "text": "For those stubborn facts (6×7, 6×8, 7×8), we created specific strategies:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "6×7=42: 'Six times seven equals forty-two' has a rhythm when you say it fast",
+          "6×8=48: 'Six and eight went to the store, bought forty-eight and came back for more'",
+          "7×8=56: '5, 6, 7, 8' (56=7×8) - the numbers are in sequence!",
+          "8×8=64: 'I ate and ate until I was sick on the floor' (8×8=64)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Silly? Absolutely. Effective? Surprisingly so. Memory loves stories and patterns more than raw repetition."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Turning Point"
+      },
+      {
+        "type": "paragraph",
+        "text": "About two months into our new approach, something shifted. I asked Mia '7 times 8' and the answer came instantly: '56.' No ceiling-staring. No finger-twitching. Just... automatic. 'How did you get that so fast?' I asked. She shrugged. 'I just know it now.' Those four words were worth every minute of our journey."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Where Mia Is Now"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mia is in fifth grade now. Her multiplication facts are solid—truly solid, not temporarily memorized. More importantly, she understands what multiplication means, so she can apply it flexibly to new situations. Her teacher recently commented that Mia is now one of the strongest math students in the class. The same child who 'needed to work on fact fluency.'"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "For Parents in the Frustration Phase"
+      },
+      {
+        "type": "paragraph",
+        "text": "If your child keeps forgetting their times tables despite practice, the problem probably isn't effort—it's approach. Rote memorization without understanding creates knowledge that crumbles under pressure. But when you combine understanding (what multiplication means), strategies (patterns and relationships), physical tools (like the soroban), and consistent practice (spaced repetition), facts stick for good."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Long Game"
+      },
+      {
+        "type": "paragraph",
+        "text": "Multiplication fluency isn't about speed-drilling until facts stick through sheer repetition. It's about building a web of understanding where each fact connects to others. When Mia knows that 7×8 relates to 7×7+7 and 8×7 and 56=8×7, she's not holding one fragile fact—she's holding a network of connected knowledge. That network doesn't crumble."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What grade should kids know multiplication tables?",
+        "answer": "By end of third grade (US), most students should have multiplication facts memorized. But many take longer, and that's okay if they're making progress. Focus on building solid understanding rather than rushing through for the sake of timelines."
+      },
+      {
+        "question": "Are songs and rhymes effective for times tables?",
+        "answer": "For some children, yes—musical memory is powerful. But be aware that some kids memorize the song without being able to use facts flexibly. Combine songs with understanding-based approaches for best results."
+      },
+      {
+        "question": "Should I use flashcards for multiplication?",
+        "answer": "They can help, but don't make them stressful. Mix easy facts with challenging ones to build confidence. Keep sessions short. And use flashcards alongside understanding-based approaches, not as the only method."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid builds multiplication fluency through physical practice with the soroban—creating lasting automaticity that doesn't fade. When facts are built through hands and eyes, they stick.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "faq": [
+    {
+      "question": "Why does my child keep forgetting multiplication facts they just learned?",
+      "answer": "Most likely because they're being memorized through rote repetition without understanding. Facts memorized in isolation, without connections to meaning or other facts, sit in short-term memory and fade quickly. Building understanding and using spaced repetition creates lasting memory."
+    },
+    {
+      "question": "By what age should my child know their times tables?",
+      "answer": "By end of third grade (US), most students should have basic multiplication facts memorized. However, many children take longer, and that's okay if they're making steady progress. Focus on building solid understanding rather than rushing to meet arbitrary timelines."
+    },
+    {
+      "question": "Which multiplication facts are hardest to remember?",
+      "answer": "Research consistently shows 6×7, 6×8, 7×8, and 8×8 cause the most difficulty. These facts deserve extra attention with multiple strategies: mnemonics, patterns, and physical tools. Make sure simpler facts are solid before tackling these challenging ones."
+    },
+    {
+      "question": "Do flashcards work for learning times tables?",
+      "answer": "They can help, but shouldn't be the only approach. Flashcards work best when combined with understanding-based methods, kept short and stress-free, and mixed with easy facts to build confidence. Pure flashcard drilling without understanding often fails."
+    },
+    {
+      "question": "How does the soroban help with multiplication memorization?",
+      "answer": "The soroban builds multiplication understanding through physical manipulation—children can see and feel what '7 groups of 8' actually means. The physical patterns become automatic through practice, creating muscle memory that supports mental calculation. It builds understanding and automaticity simultaneously."
+    },
+    {
+      "question": "Is daily practice necessary for times tables?",
+      "answer": "Yes, consistency is more important than intensity. Five minutes of daily practice is far more effective than 30 minutes once a week. The brain needs regular reinforcement to move facts from short-term to long-term memory. Short, frequent sessions work best."
+    },
+    {
+      "question": "Are multiplication songs and rhymes effective?",
+      "answer": "For some children, yes—musical memory is powerful. However, some kids memorize songs without being able to use facts flexibly in math problems. Best results come from combining songs with understanding-based approaches so children can access facts in multiple ways."
+    },
+    {
+      "question": "What's spaced repetition and does it help?",
+      "answer": "Spaced repetition means reviewing facts at increasing intervals: Day 1, Day 3, Day 7, Day 14, Day 30. This technique is proven to build long-term memory more effectively than cramming. It works because each review strengthens the memory trace just before it would fade."
+    },
+    {
+      "question": "Should I focus on understanding or memorization?",
+      "answer": "Both—they support each other. Understanding creates hooks for memory and strategies for when memory fails. Memorization (automaticity) frees mental energy for complex problem-solving. The goal is facts that are both understood and automatic."
+    },
+    {
+      "question": "How can I make times tables practice less frustrating?",
+      "answer": "Keep sessions short (5-10 minutes), mix easy facts with challenging ones, use games and physical tools instead of only worksheets, celebrate progress rather than perfection, and never use math practice as punishment. Positive associations support memory; stress impairs it."
+    }
+  ],
+  "cta": {
+    "text": "Help your child build multiplication facts that actually stick. Sorokid's soroban-based approach creates understanding and automaticity together—so times tables become permanent knowledge, not temporary memorization.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "My Daughter Kept Forgetting Her Times Tables – Until We Tried This Approach | Sorokid",
+    "metaDescription": "We'd practiced 7×8 hundreds of times but it wouldn't stick. Here's why traditional memorization failed and the surprising method that finally made multiplication click.",
+    "keywords": "multiplication tables, times tables won't stick, forgetting multiplication facts, child can't remember times tables, soroban multiplication, making times tables stick"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-03",
+    "author": "Stephanie Howard"
+  },
+  "postId": "con-hay-quen-bang-cuu-chuong"
+}

@@ -1,0 +1,391 @@
+{
+  "slug": "quy-tac-ban-cua-5-soroban",
+  "title": "Quy tắc 'Bạn của 5' trong Soroban – Bí quyết cộng trừ nhanh",
+  "description": "Bạn của 5 là quy tắc quan trọng nhất khi học Soroban. Hiểu được nó, con sẽ vượt qua rào cản lớn nhất của phép cộng trừ.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "bạn của 5 soroban",
+    "quy tắc bạn 5",
+    "công thức bạn 5 soroban",
+    "cách cộng có nhớ soroban"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-27T14:04:38.532Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/hoc-quy-tac-ban-cua-5.jpg",
+  "imageAlt": "Trẻ em châu Á học quy tắc bạn của 5 trên Soroban",
+  "readingTime": 7,
+  "categoryOrder": 1,
+  "order": 7,
+  "translations": {
+    "en": "soroban-5-complement-rule"
+  },
+  "content": {
+    "intro": "Khi con học Soroban, sẽ đến lúc gặp bài như 3 + 4. Có 3 hạt đất đang áp, muốn cộng 4 nhưng chỉ còn 1 hạt đất trống. Làm sao? Đây là lúc cần \"Bạn của 5\" – quy tắc quan trọng nhất trong Soroban.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bạn của 5 là gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Bạn của 5\" là các cặp số cộng lại bằng 5:"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Số",
+          "Bạn của nó",
+          "Tổng"
+        ],
+        "rows": [
+          [
+            "1",
+            "4",
+            "1 + 4 = 5"
+          ],
+          [
+            "2",
+            "3",
+            "2 + 3 = 5"
+          ],
+          [
+            "3",
+            "2",
+            "3 + 2 = 5"
+          ],
+          [
+            "4",
+            "1",
+            "4 + 1 = 5"
+          ]
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Mẹo nhớ: 1-4, 2-3 là hai cặp bạn. Gộp lại bằng 5."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Khi nào dùng Bạn của 5?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dùng khi muốn cộng/trừ mà không đủ hạt đất, nhưng vẫn trong phạm vi 0-9 của 1 cột."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Trường hợp CỘNG"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi muốn cộng X mà không đủ hạt đất → Gạt hạt trời xuống (cộng 5), đồng thời bỏ bạn của X."
+      },
+      {
+        "type": "paragraph",
+        "text": "Công thức: +X = +5 - (5-X)"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Trường hợp TRỪ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi muốn trừ X mà không đủ hạt đất để trừ → Gạt hạt trời lên (trừ 5), đồng thời cộng bạn của X."
+      },
+      {
+        "type": "paragraph",
+        "text": "Công thức: -X = -5 + (5-X)"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ cộng với Bạn của 5"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Ví dụ: 3 + 4 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tình huống:** Đang có 3 hạt đất áp thanh ngang. Muốn cộng 4, nhưng chỉ còn 1 hạt đất trống."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cách làm:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bạn của 4 là 1 (vì 4 + 1 = 5)",
+          "Gạt hạt trời xuống (cộng 5)",
+          "Đồng thời gạt 1 hạt đất xuống (trừ 1)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** 3 + 5 - 1 = 7. Trên Soroban: hạt trời áp + 2 hạt đất áp = 5 + 2 = 7. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Ví dụ: 2 + 3 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tình huống:** Có 2 hạt đất, cần cộng 3, nhưng chỉ còn 2 hạt trống."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cách làm:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bạn của 3 là 2 (vì 3 + 2 = 5)",
+          "Gạt hạt trời xuống (cộng 5)",
+          "Đồng thời gạt 2 hạt đất xuống (trừ 2)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** 2 + 5 - 2 = 5. Trên Soroban: chỉ có hạt trời áp = 5. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bảng cộng với Bạn của 5"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Phép tính",
+          "Bạn của số cộng",
+          "Động tác"
+        ],
+        "rows": [
+          [
+            "3 + 4",
+            "Bạn của 4 = 1",
+            "+5, -1 = Hạt trời xuống, 1 hạt đất xuống"
+          ],
+          [
+            "4 + 4",
+            "Bạn của 4 = 1",
+            "+5, -1 = Hạt trời xuống, 1 hạt đất xuống"
+          ],
+          [
+            "2 + 3",
+            "Bạn của 3 = 2",
+            "+5, -2 = Hạt trời xuống, 2 hạt đất xuống"
+          ],
+          [
+            "3 + 3",
+            "Bạn của 3 = 2",
+            "+5, -2 = Hạt trời xuống, 2 hạt đất xuống"
+          ],
+          [
+            "4 + 3",
+            "Bạn của 3 = 2",
+            "+5, -2 = Hạt trời xuống, 2 hạt đất xuống"
+          ],
+          [
+            "2 + 4",
+            "Bạn của 4 = 1",
+            "+5, -1 = Hạt trời xuống, 1 hạt đất xuống"
+          ],
+          [
+            "1 + 4",
+            "Bạn của 4 = 1",
+            "+5, -1 = Hạt trời xuống, 1 hạt đất xuống"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ trừ với Bạn của 5"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Ví dụ: 7 - 3 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tình huống:** Đang có 5 + 2 = 7 (hạt trời + 2 hạt đất). Muốn trừ 3, nhưng chỉ có 2 hạt đất."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cách làm:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bạn của 3 là 2 (vì 3 + 2 = 5)",
+          "Gạt hạt trời lên (trừ 5)",
+          "Đồng thời gạt 2 hạt đất lên (cộng 2)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** 7 - 5 + 2 = 4. Trên Soroban: 4 hạt đất áp = 4. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Ví dụ: 6 - 4 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tình huống:** Có 5 + 1 = 6. Muốn trừ 4, nhưng chỉ có 1 hạt đất."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cách làm:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bạn của 4 là 1",
+          "Gạt hạt trời lên (trừ 5)",
+          "Đồng thời gạt 1 hạt đất lên (cộng 1)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** 6 - 5 + 1 = 2. Trên Soroban: 2 hạt đất = 2. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bảng trừ với Bạn của 5"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Phép tính",
+          "Bạn của số trừ",
+          "Động tác"
+        ],
+        "rows": [
+          [
+            "6 - 4",
+            "Bạn của 4 = 1",
+            "-5, +1 = Hạt trời lên, 1 hạt đất lên"
+          ],
+          [
+            "6 - 3",
+            "Bạn của 3 = 2",
+            "-5, +2 = Hạt trời lên, 2 hạt đất lên"
+          ],
+          [
+            "6 - 2",
+            "Bạn của 2 = 3",
+            "-5, +3 = Hạt trời lên, 3 hạt đất lên"
+          ],
+          [
+            "7 - 4",
+            "Bạn của 4 = 1",
+            "-5, +1 = Hạt trời lên, 1 hạt đất lên"
+          ],
+          [
+            "7 - 3",
+            "Bạn của 3 = 2",
+            "-5, +2 = Hạt trời lên, 2 hạt đất lên"
+          ],
+          [
+            "8 - 4",
+            "Bạn của 4 = 1",
+            "-5, +1 = Hạt trời lên, 1 hạt đất lên"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mẹo nhớ nhanh"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Cộng không đủ hạt đất:** Mượn hạt trời (cộng 5), trả lại bạn (trừ bạn)",
+          "**Trừ không đủ hạt đất:** Trả hạt trời (trừ 5), lấy lại bạn (cộng bạn)",
+          "**Thuộc 2 cặp:** 1-4 và 2-3. Chỉ có 4 số cần nhớ!"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Bạn của 5 là quy tắc khó nhất với trẻ mới học. Cho con luyện nhiều, đừng vội. Khi thành thạo quy tắc này, 70% khó khăn đã qua."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con luyện Bạn của 5 trên Sorokid. App có chế độ luyện riêng quy tắc này, giúp con nhớ nhanh và đúng."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Tại sao gọi là 'Bạn của 5'?",
+      "answer": "Vì mỗi số từ 1-4 có một 'bạn' cộng lại bằng 5. Như 1 bạn với 4, 2 bạn với 3. Khi thiếu hạt, ta 'mượn' hạt trời (5) và 'trả' bằng bạn."
+    },
+    {
+      "question": "Con hay quên bạn của mỗi số, phải làm sao?",
+      "answer": "Chỉ cần nhớ 2 cặp: 1-4 và 2-3. Có 4 số thôi! Hoặc tính nhanh: Bạn của X = 5 - X. Luyện nhiều 1-2 tuần sẽ thành phản xạ."
+    },
+    {
+      "question": "Khi nào dùng Bạn của 5, khi nào dùng Bạn của 10?",
+      "answer": "Bạn của 5: Khi thiếu hạt đất nhưng kết quả vẫn trong 0-9. Bạn của 10: Khi kết quả vượt quá 9 (cần sang cột bên trái)."
+    },
+    {
+      "question": "Luyện Bạn của 5 bao lâu?",
+      "answer": "Khoảng 1-2 tuần nếu luyện mỗi ngày 15-20 phút. Đây là quy tắc khó nhất với trẻ mới học. Khi con làm đúng mà không cần suy nghĩ = đã thuần thục."
+    },
+    {
+      "question": "Công thức Bạn của 5 khi cộng là gì?",
+      "answer": "Khi cộng X mà không đủ hạt đất: +X = +5 - (5-X). Nghĩa là: Gạt hạt trời xuống (cộng 5), đồng thời gạt bạn của X xuống (trừ bạn)."
+    },
+    {
+      "question": "Công thức Bạn của 5 khi trừ là gì?",
+      "answer": "Khi trừ X mà không đủ hạt đất để trừ: -X = -5 + (5-X). Nghĩa là: Gạt hạt trời lên (trừ 5), đồng thời gạt bạn của X lên (cộng bạn)."
+    },
+    {
+      "question": "Con làm đúng nhưng rất chậm, có sao không?",
+      "answer": "Không sao. Giai đoạn đầu cần ĐÚNG trước, NHANH sau. Luyện đều đặn, tốc độ sẽ tăng tự nhiên. Ép nhanh khi chưa thuần thục sẽ dễ sai."
+    },
+    {
+      "question": "Tại sao 3+4 cần Bạn của 5 mà 1+3 không cần?",
+      "answer": "Vì 1+3=4, vẫn đủ hạt đất (có 1, cộng 3, cần 4 hạt, chỉ có 3 hạt trống → đủ). Còn 3+4=7, có 3 hạt, cộng 4 cần 7, nhưng chỉ còn 1 hạt trống → thiếu → dùng Bạn của 5."
+    },
+    {
+      "question": "Có app nào luyện riêng Bạn của 5 không?",
+      "answer": "Sorokid có chế độ luyện riêng quy tắc Bạn của 5 với hình ảnh trực quan, giúp con hiểu tại sao cần gạt hạt trời và trừ bạn."
+    },
+    {
+      "question": "Sau Bạn của 5 thì học gì tiếp?",
+      "answer": "Học Bạn của 10 – xử lý khi kết quả vượt quá 9 (sang hàng chục). Bạn của 10 phức tạp hơn vì liên quan đến 2 cột."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có bài tập luyện Bạn của 5 với hình ảnh trực quan, giúp con hiểu tại sao cần mượn hạt trời và nhớ lâu.",
+    "buttonText": "Cho con luyện thử miễn phí 7 ngày",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Quy tắc 'Bạn của 5' trong Soroban – Bí quyết cộng trừ nhanh",
+    "description": "Bạn của 5 là quy tắc quan trọng nhất khi học Soroban. Hiểu được nó, con sẽ vượt qua rào cản lớn nhất của phép cộng trừ.",
+    "keywords": "bạn của 5 soroban, quy tắc bạn 5, công thức bạn 5 soroban, cách cộng có nhớ soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-27T14:04:38.532Z",
+    "author": "Chị Hồng Nhung"
+  }
+}

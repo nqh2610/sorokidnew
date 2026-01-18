@@ -1,0 +1,249 @@
+{
+  "slug": "10-minutes-a-day-what-parents-should-do",
+  "title": "10 Minutes a Day: What Parents Should Actually Do During Math Time",
+  "description": "A minute-by-minute guide to making the most of short daily math practice sessions.",
+  "category": "stress-free-math-learning",
+  "keywords": [
+    "10 minute math",
+    "daily math routine",
+    "parent involvement",
+    "effective practice"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-17T15:33:13.665Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/10-phut-kem-con-hoc-toan.jpg",
+  "imageAlt": "Parent and child during 10-minute math session",
+  "readingTime": 5,
+  "author": {
+    "name": "Sarah Martinez",
+    "role": "Education Consultant"
+  },
+  "translations": {
+    "vi": "10-phut-moi-ngay-phu-huynh-nen-lam-gi-khi-con-hoc-toan"
+  },
+  "content": {
+    "intro": "You've committed to 10 minutes of daily math practice. Now what? Here's exactly what those 10 minutes should look like – for you and your child.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The 10-Minute Framework"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Minute",
+          "Child Does",
+          "Parent Does"
+        ],
+        "rows": [
+          [
+            "0-1",
+            "Gets settled, opens app/materials",
+            "Ensures device is ready, says \"Let's go!\""
+          ],
+          [
+            "1-3",
+            "Warm-up (easy problems)",
+            "Gets coffee/does own thing nearby"
+          ],
+          [
+            "3-8",
+            "Main practice",
+            "Available but not hovering"
+          ],
+          [
+            "8-10",
+            "Cool-down or challenge",
+            "Wraps up own activity"
+          ],
+          [
+            "After",
+            "Closes app, reports how it went",
+            "\"Nice work! High five!\""
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Your Role: The Framework"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Before:** Set up device, eliminate distractions",
+          "**During:** Be present (same room), not hovering (not watching every problem)",
+          "**After:** Brief encouragement, move on with the day"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "If you're actively teaching or correcting during these 10 minutes, you're doing too much. The app teaches; you provide the structure."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to Do with Your 8 \"Free\" Minutes"
+      },
+      {
+        "type": "paragraph",
+        "text": "While they practice, you can:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Drink your coffee",
+          "Check emails",
+          "Prep breakfast/dinner",
+          "Read a few pages",
+          "Do your own stretching/exercise"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Just stay in the same room. Your presence matters without your attention on every problem."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Conversation Scripts"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Starting"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"It's math time – 10 minutes!\"",
+          "\"Ready? Let's see what level you get today.\"",
+          "\"Timer starts... go!\""
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "If They're Struggling"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"Take a breath, try again.\"",
+          "\"You've done harder ones before.\"",
+          "\"It's okay to get some wrong – that's how you learn.\""
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Finishing"
+      },
+      {
+        "type": "list",
+        "items": [
+          "\"Nice! Done for today.\"",
+          "\"Good work showing up!\"",
+          "\"What level did you reach?\" (if they want to share)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "When the Timer Goes Off"
+      },
+      {
+        "type": "paragraph",
+        "text": "Stop. Even mid-problem. This is crucial. Why?"
+      },
+      {
+        "type": "list",
+        "items": [
+          "It teaches them to focus (limited time = urgency)",
+          "It prevents practice from dragging on",
+          "It leaves them wanting a bit more (positive association)",
+          "It builds trust (10 minutes means 10 minutes)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Weekly Check-In (5 Minutes)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Once a week, spend 5 minutes:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Looking at their progress dashboard",
+          "Asking what felt easy or hard",
+          "Celebrating any milestones",
+          "Adjusting difficulty if needed"
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "What if they finish early?",
+        "answer": "Great! They can stop early or do a bonus challenge. Don't force them to fill time. Finishing early = reward for efficiency."
+      },
+      {
+        "question": "What if 10 minutes isn't enough for their homework?",
+        "answer": "The 10 minutes is for skill practice, not homework completion. Homework is separate. But consistent practice makes homework faster over time."
+      },
+      {
+        "question": "Should I review what they did?",
+        "answer": "A quick glance at the progress report is fine. Don't go through every problem. Trust the app's feedback system."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid is designed for 10-15 minute sessions – the perfect daily practice.",
+      "buttonText": "Start Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "faq": [
+    {
+      "question": "What will I learn from this article?",
+      "answer": "This article covers A minute-by-minute guide to making the most of short daily math practice sessions.."
+    },
+    {
+      "question": "Is this advice suitable for all ages?",
+      "answer": "The strategies discussed are primarily designed for children ages 5-12, but many principles can be adapted for different age groups."
+    },
+    {
+      "question": "How long does it take to see results?",
+      "answer": "Results vary by child, but most parents notice improvements within 2-4 weeks of consistent practice."
+    },
+    {
+      "question": "Do I need special materials or equipment?",
+      "answer": "Most activities can be done with everyday items. For Soroban-specific learning, the Sorokid app provides a virtual abacus."
+    },
+    {
+      "question": "Can I use these methods alongside school curriculum?",
+      "answer": "Absolutely! These approaches are designed to complement, not replace, what children learn at school."
+    }
+  ],
+  "cta": {
+    "text": "Ready to help your child build math confidence? Sorokid offers interactive lessons, games, and progress tracking designed for busy families.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "10 Minutes a Day: What Parents Should Actually Do During Math Time | Sorokid",
+    "metaDescription": "A minute-by-minute guide to making the most of short daily math practice sessions.",
+    "keywords": "10 minute math, daily math routine, parent involvement, effective practice"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-03",
+    "author": "Sarah Martinez"
+  },
+  "postId": "10-phut-moi-ngay-phu-huynh-nen-lam-gi-khi-con-hoc-toan"
+}

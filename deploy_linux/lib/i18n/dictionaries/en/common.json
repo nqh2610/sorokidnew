@@ -1,0 +1,73 @@
+{
+  "common": {
+    "brand": "Sorokid",
+    "tagline": "Learn Soroban - Develop Thinking Skills",
+    "login": "Login",
+    "register": "Sign Up",
+    "logout": "Logout",
+    "home": "Home",
+    "learn": "Learn",
+    "practice": "Practice",
+    "compete": "Compete",
+    "adventure": "Adventure",
+    "leaderboard": "Leaderboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "dashboard": "Dashboard",
+    "blog": "Blog",
+    "tool": "Toolbox",
+    "pricing": "Pricing",
+    "free": "Free",
+    "premium": "Premium",
+    "tryNow": "Try Now",
+    "startLearning": "Start Learning",
+    "viewAll": "View All",
+    "readMore": "Read More",
+    "share": "Share",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "lessonNotFound": "Lesson not found",
+    "success": "Success",
+    "minutes": "min",
+    "seconds": "sec",
+    "points": "points",
+    "level": "level",
+    "language": "Language",
+    "switchLang": "Switch Language"
+  },
+  "avatar": {
+    "selectAvatar": "Choose Avatar",
+    "defaultAvatar": "Default Avatar",
+    "useDefaultAvatar": "Use default avatar",
+    "saving": "Saving..."
+  },
+  "errors": {
+    "404": {
+      "title": "Page Not Found",
+      "description": "The page you're looking for doesn't exist or has been moved.",
+      "backHome": "Back to Home",
+      "tryOther": "Or try these pages:"
+    },
+    "500": {
+      "title": "Oops! Something went wrong",
+      "description": "Don't worry, try refreshing the page or go back home!",
+      "retry": "Try Again"
+    }
+  },
+  "errorBoundary": {
+    "title": "Oops! Something went wrong",
+    "message": "Don't worry, try refreshing the page or come back later!",
+    "detailDev": "Error Details (Development)",
+    "retry": "Try Again",
+    "goBack": "Go Back"
+  },
+  "toast": {
+    "levelUp": "LEVEL UP!",
+    "close": "Close",
+    "closeNotification": "Close notification"
+  }
+}

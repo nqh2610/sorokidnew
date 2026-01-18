@@ -95,7 +95,8 @@ export default function AutoPracticePage() {
     // Redirect đến Practice page
     router.replace(localizeUrl('/practice'));
     
-  }, [status, router, localizeUrl, searchParams]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status, searchParams]); // 🔧 FIX: Loại bỏ router, localizeUrl
 
   // Loading state
   if (loading && !error) {

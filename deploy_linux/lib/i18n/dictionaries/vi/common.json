@@ -1,0 +1,73 @@
+{
+  "common": {
+    "brand": "Sorokid",
+    "tagline": "Học Soroban - Phát triển tư duy",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "logout": "Đăng xuất",
+    "home": "Trang chủ",
+    "learn": "Học",
+    "practice": "Luyện tập",
+    "compete": "Thi đấu",
+    "adventure": "Phiêu lưu",
+    "leaderboard": "Bảng xếp hạng",
+    "profile": "Hồ sơ",
+    "settings": "Cài đặt",
+    "dashboard": "Bảng điều khiển",
+    "blog": "Blog",
+    "tool": "Toolbox",
+    "pricing": "Bảng giá",
+    "free": "Miễn phí",
+    "premium": "Premium",
+    "tryNow": "Dùng thử ngay",
+    "startLearning": "Bắt đầu học",
+    "viewAll": "Xem tất cả",
+    "readMore": "Đọc thêm",
+    "share": "Chia sẻ",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "close": "Đóng",
+    "loading": "Đang tải...",
+    "error": "Có lỗi xảy ra",
+    "lessonNotFound": "Không tìm thấy bài học",
+    "success": "Thành công",
+    "minutes": "phút",
+    "seconds": "giây",
+    "points": "điểm",
+    "level": "cấp độ",
+    "language": "Ngôn ngữ",
+    "switchLang": "Đổi ngôn ngữ"
+  },
+  "avatar": {
+    "selectAvatar": "Chọn Avatar",
+    "defaultAvatar": "Avatar mặc định",
+    "useDefaultAvatar": "Sử dụng avatar mặc định",
+    "saving": "Đang lưu..."
+  },
+  "errors": {
+    "404": {
+      "title": "Không tìm thấy trang",
+      "description": "Trang bạn đang tìm không tồn tại hoặc đã bị di chuyển.",
+      "backHome": "Về trang chủ",
+      "tryOther": "Hay thử các trang này nhé:"
+    },
+    "500": {
+      "title": "Ối! Có lỗi xảy ra",
+      "description": "Đừng lo, hãy thử tải lại trang hoặc quay về trang chủ nhé!",
+      "retry": "Thử lại"
+    }
+  },
+  "errorBoundary": {
+    "title": "Ối! Có lỗi xảy ra",
+    "message": "Đừng lo, hãy thử tải lại trang hoặc quay lại sau nhé!",
+    "detailDev": "Chi tiết lỗi (Development)",
+    "retry": "Thử lại",
+    "goBack": "Quay lại"
+  },
+  "toast": {
+    "levelUp": "LÊN CẤP!",
+    "close": "Đóng",
+    "closeNotification": "Đóng thông báo"
+  }
+}

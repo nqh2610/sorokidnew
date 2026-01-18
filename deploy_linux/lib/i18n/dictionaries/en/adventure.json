@@ -1,0 +1,892 @@
+{
+  "adventureScreen": {
+    "title": "Adventure",
+    "subtitle": "Treasure Quest",
+    "treasureQuest": "Treasure Quest",
+    "findTreasure": "Find Treasure",
+    "knowledgeTreasure": "Knowledge Treasure",
+    "selectZone": "Select Zone",
+    "locked": "Locked",
+    "starsRequired": "Need {stars} stars to unlock",
+    "stages": {
+      "stage_1": {
+        "name": "🎒 Explore Soroban",
+        "description": "Get to know the magical abacus"
+      },
+      "stage_2": {
+        "name": "🔢 Numbers 1-4: Earth Beads",
+        "description": "Create numbers 1-4 with Earth beads"
+      },
+      "stage_3": {
+        "name": "⭐ Numbers 5-9: Heaven Bead",
+        "description": "Use Heaven bead for numbers 5-9"
+      },
+      "stage_4": {
+        "name": "🔟 Numbers 10-99: Two columns",
+        "description": "Represent 2-digit numbers"
+      },
+      "stage_5": {
+        "name": "👹 Village Boss - Number Challenge",
+        "description": "Practice Create Number • Beginner • 8 correct"
+      },
+      "stage_6": {
+        "name": "➕ Add with enough beads",
+        "description": "Add when you have enough Earth beads"
+      },
+      "stage_7": {
+        "name": "➕ Add with Heaven Bead",
+        "description": "Add when result is 5 or more"
+      },
+      "stage_8": {
+        "name": "🏋️ Easy Addition Practice",
+        "description": "Review and reinforce addition"
+      },
+      "stage_9": {
+        "name": "👹 Simple Addition Boss",
+        "description": "Practice basic Addition • 8 correct"
+      },
+      "stage_10": {
+        "name": "🤝 Meet Small Friends",
+        "description": "Learn pairs that sum to 5"
+      },
+      "stage_11": {
+        "name": "➕ Add using Small Friends",
+        "description": "Apply Small Friends when out of Earth beads"
+      },
+      "stage_12": {
+        "name": "🏋️ Small Friends Add Practice",
+        "description": "Master addition with Small Friends"
+      },
+      "stage_13": {
+        "name": "🏆 Green Forest Arena",
+        "description": "Compete Addition (Small Friends) • 10 questions • 7+ correct"
+      },
+      "stage_14": {
+        "name": "➖ Simple Subtraction",
+        "description": "Subtract when you have enough beads"
+      },
+      "stage_15": {
+        "name": "➖ Subtract using Small Friends",
+        "description": "Apply Small Friends when short of beads"
+      },
+      "stage_16": {
+        "name": "🏋️ Small Friends Sub Practice",
+        "description": "Master subtraction with Small Friends"
+      },
+      "stage_17": {
+        "name": "👹 Subtraction Boss",
+        "description": "Practice Subtraction (Small Friends) • 10 correct"
+      },
+      "stage_18": {
+        "name": "🎯 MIX Add Sub Small Friends",
+        "description": "Combine add & sub with Small Friends"
+      },
+      "stage_19": {
+        "name": "🏆 Valley Arena",
+        "description": "Compete Add Sub Mix • Beginner • 10 questions • 6+ correct"
+      },
+      "stage_20": {
+        "name": "🤝 Meet Big Friends",
+        "description": "Learn pairs that sum to 10"
+      },
+      "stage_21": {
+        "name": "➕ Add using Big Friends",
+        "description": "Add by carrying to tens column"
+      },
+      "stage_22": {
+        "name": "🏋️ Big Friends Add Practice",
+        "description": "Master addition with Big Friends"
+      },
+      "stage_23": {
+        "name": "👹 Add Across 10 Boss",
+        "description": "Practice Addition • Apprentice • 8 correct"
+      },
+      "stage_24": {
+        "name": "➖ Subtract using Big Friends",
+        "description": "Subtract by borrowing from tens"
+      },
+      "stage_25": {
+        "name": "➖ Advanced Tens Subtraction",
+        "description": "Practice borrowing from tens"
+      },
+      "stage_26": {
+        "name": "🏋️ Big Friends Sub Practice",
+        "description": "Master subtraction with Big Friends"
+      },
+      "stage_27": {
+        "name": "🎯 MIX Add Sub Big Friends",
+        "description": "Combine add & sub with Big Friends"
+      },
+      "stage_28": {
+        "name": "🏆 Green Hill Arena",
+        "description": "Compete Add Sub Mix • Apprentice • 10 questions • 7+ correct"
+      },
+      "stage_29": {
+        "name": "🎯 Combined Addition",
+        "description": "Combine Small Friends + Big Friends for addition"
+      },
+      "stage_30": {
+        "name": "🎯 Combined Subtraction",
+        "description": "Combine borrowing and Small Friends for subtraction"
+      },
+      "stage_31": {
+        "name": "🏋️ Total Add Sub Review",
+        "description": "Practice combining all formulas"
+      },
+      "stage_32": {
+        "name": "📝 Add Sub Basics Review",
+        "description": "Complete review Level 1-7"
+      },
+      "stage_33": {
+        "name": "👹 Combined Boss",
+        "description": "Practice Add Sub Mix • Apprentice • 8 correct"
+      },
+      "stage_34": {
+        "name": "🏆 Combination Tower Arena",
+        "description": "Compete Add Sub Mix • Apprentice • 15 questions • 10+ correct"
+      },
+      "stage_35": {
+        "name": "📝 Add 2 numbers no carry",
+        "description": "Add two numbers without carrying"
+      },
+      "stage_36": {
+        "name": "📝 Add 2 numbers with carry",
+        "description": "Add two numbers with carry to tens"
+      },
+      "stage_37": {
+        "name": "📝 Subtract 2-digit",
+        "description": "Subtract two 2-digit numbers"
+      },
+      "stage_38": {
+        "name": "👹 2-Digit Boss",
+        "description": "Practice Add Sub Mix • Journeyman • 8 correct"
+      },
+      "stage_39": {
+        "name": "💯 Numbers 100-999",
+        "description": "Represent 3-digit numbers on Soroban"
+      },
+      "stage_40": {
+        "name": "➕ Add 3-digit",
+        "description": "Add two 3-digit numbers"
+      },
+      "stage_41": {
+        "name": "➖ Subtract 3-digit",
+        "description": "Subtract two 3-digit numbers"
+      },
+      "stage_42": {
+        "name": "🏆 3-Digit Arena",
+        "description": "Compete Add Sub Mix • Journeyman • 10 questions • 7+ correct"
+      },
+      "stage_43": {
+        "name": "🔢 Numbers 1000-9999",
+        "description": "Represent 4-digit numbers on Soroban"
+      },
+      "stage_44": {
+        "name": "➕ Add 4-digit",
+        "description": "Add 4-digit numbers"
+      },
+      "stage_45": {
+        "name": "➖ Subtract 4-digit",
+        "description": "Subtract 4-digit numbers"
+      },
+      "stage_46": {
+        "name": "📝 Large Number Review",
+        "description": "Review add sub with 2-4 digit numbers"
+      },
+      "stage_47": {
+        "name": "👹 Large Number Boss",
+        "description": "Practice Add Sub Mix • Expert • 12 correct"
+      },
+      "stage_48": {
+        "name": "🏆 Kingdom Arena",
+        "description": "Compete Add Sub Mix • Expert • 15 questions • 10+ correct"
+      },
+      "stage_49": {
+        "name": "🧠 Basic Mental Math",
+        "description": "Anzan foundation - 1-digit mental calculation"
+      },
+      "stage_50": {
+        "name": "🧠 Mental 1-Digit Add Practice",
+        "description": "Mental Math • 1-digit • Addition • 6 correct"
+      },
+      "stage_51": {
+        "name": "🏆 Mental 1-Digit Add Arena",
+        "description": "Compete Mental • 1-digit • Add • 8 questions • 5+ correct"
+      },
+      "stage_52": {
+        "name": "🧠 Mental 1-Digit Sub Practice",
+        "description": "Mental Math • 1-digit • Subtraction • 6 correct"
+      },
+      "stage_53": {
+        "name": "🏆 Mental 1-Digit Sub Arena",
+        "description": "Compete Mental • 1-digit • Sub • 8 questions • 5+ correct"
+      },
+      "stage_54": {
+        "name": "🧠 Mental 1-Digit Mix Practice",
+        "description": "Mental Math • 1-digit • Add Sub Mix • 8 correct"
+      },
+      "stage_55": {
+        "name": "🏆 Mental 1-Digit Mix Arena",
+        "description": "Compete Mental • 1-digit • Mix • 10 questions • 6+ correct"
+      },
+      "stage_56": {
+        "name": "🧠 Advanced Mental Math",
+        "description": "Anzan advanced - 2-digit mental calculation"
+      },
+      "stage_57": {
+        "name": "🧠 Mental 2-Digit Add Practice",
+        "description": "Mental Math • 2-digit • Addition • 6 correct"
+      },
+      "stage_58": {
+        "name": "🏆 Mental 2-Digit Add Arena",
+        "description": "Compete Mental • 2-digit • Add • 8 questions • 5+ correct"
+      },
+      "stage_59": {
+        "name": "🧠 Mental 2-Digit Sub Practice",
+        "description": "Mental Math • 2-digit • Subtraction • 6 correct"
+      },
+      "stage_60": {
+        "name": "🏆 Mental 2-Digit Sub Arena",
+        "description": "Compete Mental • 2-digit • Sub • 8 questions • 5+ correct"
+      },
+      "stage_61": {
+        "name": "🧠 Mental 2-Digit Mix Practice",
+        "description": "Mental Math • 2-digit • Add Sub Mix • 8 correct"
+      },
+      "stage_62": {
+        "name": "🏆 Mental 2-Digit Mix Arena",
+        "description": "Compete Mental • 2-digit • Mix • 10 questions • 6+ correct"
+      },
+      "stage_63": {
+        "name": "⚡ Speed Add Sub",
+        "description": "Mental calculation with time limits"
+      },
+      "stage_64": {
+        "name": "⚡ Speed 3-Digit Practice",
+        "description": "Practice Add Sub Mix • Journeyman • 15 correct"
+      },
+      "stage_65": {
+        "name": "🏆 Speed 3-Digit Arena",
+        "description": "Compete Add Sub Mix • Journeyman • 12 questions • 8+ correct"
+      },
+      "stage_66": {
+        "name": "⚡ Speed 4-Digit Practice",
+        "description": "Practice Add Sub Mix • Expert • 20 correct"
+      },
+      "stage_67": {
+        "name": "🏆 Speed 4-Digit Arena",
+        "description": "Compete Add Sub Mix • Expert • 15 questions • 10+ correct"
+      },
+      "stage_68": {
+        "name": "⚡ Quick Number Memory",
+        "description": "Memorize 1-2 digit numbers shown quickly"
+      },
+      "stage_69": {
+        "name": "⚡ Add 2-3 Numbers Fast",
+        "description": "See 2-3 consecutive numbers, sum them up"
+      },
+      "stage_70": {
+        "name": "⚡ Flash 1-Digit Add Practice",
+        "description": "Flash Anzan • 1-digit • Candle • Addition • 5 correct"
+      },
+      "stage_71": {
+        "name": "🏆 Flash 1-Digit Add Arena",
+        "description": "Compete Flash • 1-digit • Add • 8 questions • 5+ correct"
+      },
+      "stage_72": {
+        "name": "⚡ Quick Mixed Add Sub",
+        "description": "3-4 numbers with subtraction"
+      },
+      "stage_73": {
+        "name": "⚡ Flash 1-Digit Sub Practice",
+        "description": "Flash Anzan • 1-digit • Candle • Subtraction • 5 correct"
+      },
+      "stage_74": {
+        "name": "🏆 Flash 1-Digit Sub Arena",
+        "description": "Compete Flash • 1-digit • Sub • 8 questions • 5+ correct"
+      },
+      "stage_75": {
+        "name": "⚡ Flash 1-Digit Mix Practice",
+        "description": "Flash Anzan • 1-digit • Candle • Mix • 6 correct"
+      },
+      "stage_76": {
+        "name": "🏆 Flash 1-Digit Mix Arena",
+        "description": "Compete Flash • 1-digit • Mix • 10 questions • 6+ correct"
+      },
+      "stage_77": {
+        "name": "⚡ Fast Flash Anzan",
+        "description": "4-5 numbers at 0.8-1 second speed"
+      },
+      "stage_78": {
+        "name": "🔥 Super Speed Flash",
+        "description": "5-7 numbers at 0.5-0.7 second speed"
+      },
+      "stage_79": {
+        "name": "⚡ Flash 2-Digit Add Practice",
+        "description": "Flash Anzan • 2-digit • Moon • Addition • 5 correct"
+      },
+      "stage_80": {
+        "name": "🏆 Flash 2-Digit Add Arena",
+        "description": "Compete Flash • 2-digit • Add • 8 questions • 5+ correct"
+      },
+      "stage_81": {
+        "name": "⚡ Flash 2-Digit Sub Practice",
+        "description": "Flash Anzan • 2-digit • Moon • Subtraction • 5 correct"
+      },
+      "stage_82": {
+        "name": "🏆 Flash 2-Digit Sub Arena",
+        "description": "Compete Flash • 2-digit • Sub • 8 questions • 5+ correct"
+      },
+      "stage_83": {
+        "name": "⚡ Flash 2-Digit Mix Practice",
+        "description": "Flash Anzan • 2-digit • Moon • Mix • 6 correct"
+      },
+      "stage_84": {
+        "name": "🏆 Flash 2-Digit Mix Arena",
+        "description": "Compete Flash • 2-digit • Mix • 10 questions • 6+ correct"
+      },
+      "stage_85": {
+        "name": "👑 FINAL BOSS - Add Sub Ultimate",
+        "description": "Compete Add Sub Mix • Expert • 20 questions • 14+ correct"
+      },
+      "stage_86": {
+        "name": "👑 FINAL BOSS - Mental Math Ultimate",
+        "description": "Compete Mental • 2-digit • Mix • 15 questions • 10+ correct"
+      },
+      "stage_87": {
+        "name": "👑 FINAL BOSS - Flash Ultimate",
+        "description": "Compete Flash • 2-digit • Mix • 12 questions • 8+ correct"
+      },
+      "stage_88": {
+        "name": "🏅 TREASURE - ADD & SUB CERTIFICATE",
+        "description": "Receive the Add & Sub Mental Math Certificate!"
+      },
+      "stage_89": {
+        "name": "✖️ Multiplication Concept",
+        "description": "Multiplication principles on Soroban, tables 2-3"
+      },
+      "stage_90": {
+        "name": "✖️ Multiply by 2, 3, 4",
+        "description": "Practice multiplying with small numbers"
+      },
+      "stage_91": {
+        "name": "✖️ Multiply by 5, 6, 7",
+        "description": "Multiplying with larger numbers"
+      },
+      "stage_92": {
+        "name": "✖️ Basic Multiplication Practice",
+        "description": "Practice Multiplication • Beginner • 8 correct"
+      },
+      "stage_93": {
+        "name": "🏆 Basic Multiplication Arena",
+        "description": "Compete Multiplication • Beginner • 8 questions • 5+ correct"
+      },
+      "stage_94": {
+        "name": "✖️ Multiply by 8, 9",
+        "description": "Complete the multiplication table"
+      },
+      "stage_95": {
+        "name": "✖️ 2-digit Multiplication",
+        "description": "Multiply large numbers by 1 digit"
+      },
+      "stage_96": {
+        "name": "🏋️ Multiplication Review",
+        "description": "Comprehensive multiplication practice"
+      },
+      "stage_97": {
+        "name": "✖️ Advanced Multiplication Practice",
+        "description": "Practice Multiplication • Apprentice • 10 correct"
+      },
+      "stage_98": {
+        "name": "🏆 Multiplication Cave Arena",
+        "description": "Compete Multiplication • Apprentice • 10 questions • 6+ correct"
+      },
+      "stage_99": {
+        "name": "➗ Division Concept",
+        "description": "Understanding division and exact division"
+      },
+      "stage_100": {
+        "name": "➗ Divide by 2, 3, 4",
+        "description": "Practice dividing with small numbers"
+      },
+      "stage_101": {
+        "name": "➗ Divide by 5, 6, 7",
+        "description": "Dividing with larger numbers"
+      },
+      "stage_102": {
+        "name": "➗ Basic Division Practice",
+        "description": "Practice Division • Beginner • 8 correct"
+      },
+      "stage_103": {
+        "name": "🏆 Basic Division Arena",
+        "description": "Compete Division • Beginner • 8 questions • 5+ correct"
+      },
+      "stage_104": {
+        "name": "➗ Divide by 8, 9",
+        "description": "Complete the division table"
+      },
+      "stage_105": {
+        "name": "➗ 2-digit Division",
+        "description": "Divide large numbers by 1 digit"
+      },
+      "stage_106": {
+        "name": "🏋️ Division Review",
+        "description": "Comprehensive division practice"
+      },
+      "stage_107": {
+        "name": "🎯 MIX Multiply & Divide",
+        "description": "Combine multiplication and division"
+      },
+      "stage_108": {
+        "name": "➗ Advanced Division Practice",
+        "description": "Practice Division • Apprentice • 10 correct"
+      },
+      "stage_109": {
+        "name": "🏆 Division Lake Arena",
+        "description": "Compete Division • Apprentice • 10 questions • 6+ correct"
+      },
+      "stage_110": {
+        "name": "⚔️ Mul Div Mix Practice",
+        "description": "Practice Mul Div Mix • Apprentice • 12 correct"
+      },
+      "stage_111": {
+        "name": "🏆 Mul Div Mix Arena",
+        "description": "Compete Mul Div Mix • Apprentice • 10 questions • 6+ correct"
+      },
+      "stage_112": {
+        "name": "⚔️ All 4 Operations Practice",
+        "description": "Practice All 4 Ops • Apprentice • 12 correct"
+      },
+      "stage_113": {
+        "name": "🏆 Four Operations Arena",
+        "description": "Compete All 4 Ops • Apprentice • 15 questions • 9+ correct"
+      },
+      "stage_114": {
+        "name": "✖️ Basic Mental Multiplication",
+        "description": "Mental calculate times tables 2-5"
+      },
+      "stage_115": {
+        "name": "➗ Basic Mental Division",
+        "description": "Mental calculate division by 2-5"
+      },
+      "stage_116": {
+        "name": "🧠 Basic Mental Mul Div Practice",
+        "description": "Practice Mul Div Mix • Beginner • 6 correct"
+      },
+      "stage_117": {
+        "name": "🏆 Basic Mental Mul Div Arena",
+        "description": "Compete Mul Div • Beginner • 8 questions • 5+ correct"
+      },
+      "stage_118": {
+        "name": "✖️ Advanced Mental Multiplication",
+        "description": "Tables 6-9 and 2-digit multiplication"
+      },
+      "stage_119": {
+        "name": "➗ Advanced Mental Division",
+        "description": "Division by 6-9 and 2-3 digit numbers"
+      },
+      "stage_120": {
+        "name": "🧠 Advanced Mental Mul Div Practice",
+        "description": "Practice Mul Div Mix • Apprentice • 8 correct"
+      },
+      "stage_121": {
+        "name": "🏆 Advanced Mental Mul Div Arena",
+        "description": "Compete Mul Div • Apprentice • 10 questions • 6+ correct"
+      },
+      "stage_122": {
+        "name": "⚡ Speed Multiplication",
+        "description": "Fast mental times tables"
+      },
+      "stage_123": {
+        "name": "⚡ Speed Division",
+        "description": "Mental division with time limit"
+      },
+      "stage_124": {
+        "name": "⚡ Speed Mul Div 3-Digit Practice",
+        "description": "Practice Mul Div Mix • Journeyman • 10 correct"
+      },
+      "stage_125": {
+        "name": "🏆 Speed Mul Div 3-Digit Arena",
+        "description": "Compete Mul Div Mix • Journeyman • 15 questions • 10+ correct"
+      },
+      "stage_126": {
+        "name": "⚡ Speed Mul Div 4-Digit Practice",
+        "description": "Practice Mul Div Mix • Expert • 12 correct"
+      },
+      "stage_127": {
+        "name": "🏆 Speed Mul Div Arena",
+        "description": "Compete Mul Div Mix • Expert • 20 questions • 12+ correct"
+      },
+      "stage_128": {
+        "name": "🎯 Basic 4 Operations Mix",
+        "description": "Mental all 4 operations alternating"
+      },
+      "stage_129": {
+        "name": "🎯 Advanced 4 Operations Mix",
+        "description": "Mental all 4 ops with 2-digit numbers"
+      },
+      "stage_130": {
+        "name": "⚡ Speed 4 Operations Mix",
+        "description": "All 4 operations with time limit"
+      },
+      "stage_131": {
+        "name": "🎯 4 Operations 3-Digit Practice",
+        "description": "Practice All 4 Ops • Journeyman • 12 correct"
+      },
+      "stage_132": {
+        "name": "🏆 4 Operations 3-Digit Arena",
+        "description": "Compete All 4 Ops • Journeyman • 20 questions • 12+ correct"
+      },
+      "stage_133": {
+        "name": "🎯 4 Operations 4-Digit Practice",
+        "description": "Practice All 4 Ops • Expert • 15 correct"
+      },
+      "stage_134": {
+        "name": "🏆 4 Operations Ultimate Arena",
+        "description": "Compete All 4 Ops • Expert • 25 questions • 15+ correct"
+      },
+      "stage_135": {
+        "name": "👑 FINAL BOSS - 4 Operations Battle",
+        "description": "Compete All 4 Ops • Expert • 25 questions • 18+ correct"
+      },
+      "stage_136": {
+        "name": "👑 FINAL BOSS - Mental Math 4 Ops",
+        "description": "Compete Mental • Apprentice • Mix • 15 questions • 10+ correct"
+      },
+      "stage_137": {
+        "name": "👑 FINAL BOSS - Flash Supreme",
+        "description": "Compete Flash • 2-digit • Mix • 12 questions • 8+ correct"
+      },
+      "stage_138": {
+        "name": "🏆 SUPREME TREASURE - COMPLETE CERTIFICATE",
+        "description": "Receive the Complete Soroban Certificate!"
+      }
+    },
+    "completed": "Completed",
+    "complete": "complete",
+    "start": "Start",
+    "continue": "Continue",
+    "boss": "Boss",
+    "reward": "Reward",
+    "victory": "Victory!",
+    "defeat": "Defeat",
+    "play": "PLAY!",
+    "playAgain": "Play again",
+    "loading": "Loading...",
+    "days": "days",
+    "stars": "stars",
+    "diamonds": "diamonds",
+    "prev": "Prev",
+    "next": "Next",
+    "swipeToChangeZone": "Swipe left/right to change zone",
+    "addSub": "Add Sub",
+    "mulDiv": "Mul Div",
+    "tapToClose": "Tap to close",
+    "cuSoro": "Cu Soro",
+    "minimizeSoro": "Minimize Soro",
+    "readMessage": "Read",
+    "stageCompleted": "⭐ Completed ⭐",
+    "stageLocked": "🔒 Stage locked",
+    "completeToUnlock": "Complete previous stages to unlock this one!",
+    "understood": "Got it! 👍",
+    "close": "Close",
+    "logout": "Log out",
+    "logoutConfirm": "Log out?",
+    "logoutMessage": "Are you sure you want to log out?",
+    "cancel": "Cancel",
+    "level": "Level",
+    "dashboard": "Dashboard",
+    "learn": "Learn",
+    "practice": "Practice",
+    "compete": "Compete",
+    "profile": "Profile",
+    "certificate": "Certificate",
+    "admin": "Admin",
+    "exploreWorld": "Explore the magical Soroban world!",
+    "exploreSoroban": "Explore Soroban!",
+    "continueBtn": "Continue",
+    "startAdventure": "Start adventure",
+    "skip": "Skip",
+    "advanced": "Advanced",
+    "basic": "Basic",
+    "trial": "Trial",
+    "free": "Free",
+    "footerText": "Learn mental math with Soroban abacus",
+    "zoneCompleteMsg": "Amazing! You've conquered {zoneName}! 🌟",
+    "welcomeToZone": "Welcome to {zoneName}! Let's start exploring!",
+    "continueJourney": "Continue your journey in {zoneName}! {remaining} challenges are waiting!",
+    "firstWelcome": "Hoo hoo! Welcome to Abacus Village! This is where every journey begins.",
+    "stageLockedMsg": "Hmm... this gate won't open yet. Complete previous challenges first!",
+    "stageCompletedMsg": "You've conquered this place! Want to try again for more practice?",
+    "lessonMsg": "Explore the secrets hidden inside! Soro will go with you!",
+    "bossMsg": "A big challenge awaits! Focus and use all your strength!",
+    "treasureMsg": "The treasure of knowledge awaits! Let's conquer it!",
+    "readyMsg": "Ready for a new challenge? Soro believes in you!",
+    "newJourneyAwaits": "Welcome to {zoneName}! A new journey awaits you!",
+    "zoneLocked": {
+      "title": "Not your turn for this zone yet!",
+      "prevZone": "previous zone",
+      "newZone": "new zone",
+      "later": "Later",
+      "goBack": "Go back! 🎯",
+      "msg80": "Oh, you're almost done! Just {remaining} more challenges at {prevZone} and you can explore {currentZone}! Owl Soro believes in you! 💪✨",
+      "msg50": "Hoo hoo! You're doing great at {prevZone}! Just {remaining} more challenges. Complete them, and {currentZone} with wonders will welcome you! 🌟",
+      "msgStarted": "Hey there! {currentZone} is waiting for you to conquer {prevZone} first! Just {remaining} more challenges. Don't worry, Owl Soro will accompany you! 🦉💕",
+      "msgNotStarted": "Wait a moment! {currentZone} is waiting for you to complete {prevZone} first! Each zone has fun lessons - follow the order so you don't miss anything! 🗺️✨"
+    },
+    "zoneIntro": {
+      "showAll": "Show all",
+      "start": "Start! ⚡",
+      "exploreNow": "Explore now! 🚀"
+    },
+    "zones": {
+      "village": {
+        "name": "Stage 1: Starter Village",
+        "subtitle": "Getting to know Soroban",
+        "description": "Get familiar with the Soroban abacus - the magical calculating tool!",
+        "storyIntro": "Hoo hoo! Welcome to the Magical Abacus Village! I'm Owl Soro, and I'll guide you to find the Knowledge Treasure! First, let's learn how to use the Soroban - a magical tool for super fast calculations! 🦉✨",
+        "storyComplete": "Hoo hoo! Excellent! You've mastered how to use Soroban! Now let's enter the Addition Forest - where numbers are waiting to be combined! 🌟"
+      },
+      "forest": {
+        "name": "Stage 2: Addition Forest",
+        "subtitle": "Learn addition & Small Friends",
+        "description": "Learn addition and the Small Friends trick (sum of 5)!",
+        "storyIntro": "Welcome to Addition Forest! 🌲 Here, numbers love being combined together. You'll learn the \"Small Friends\" trick - a magical addition formula with sum of 5! Are you ready?",
+        "storyComplete": "Fantastic! You've conquered Addition Forest and learned the Small Friends trick! Ahead is Subtraction Valley - where you'll learn how to make numbers smaller. Let's go! 🏔️"
+      },
+      "valley": {
+        "name": "Stage 3: Subtraction Valley",
+        "subtitle": "Learn subtraction & Small Friends",
+        "description": "Learn subtraction and Small Friends for subtraction!",
+        "storyIntro": "Hoo hoo! You've arrived at Subtraction Valley! 🏔️ In this land, you'll learn how to make numbers smaller with subtraction. The Small Friends trick will help you here too! Let's explore!",
+        "storyComplete": "Excellent! You've conquered Subtraction Valley! Ahead is Big Friends Hill - hiding important secrets about the number 10. The journey is getting exciting! 🌟"
+      },
+      "hill": {
+        "name": "Stage 4: Big Friends Hill",
+        "subtitle": "Secret of 10",
+        "description": "Learn the Big Friends formula - the key to calculating across 10!",
+        "storyIntro": "Welcome to Big Friends Hill! ⭐ This is where the most important secret lies: The Big Friends Formula - the key to calculating across 10! Once you master Big Friends, you can solve any calculation!",
+        "storyComplete": "Magnificent! You've mastered the Big Friends formula! This is a crucial milestone in your journey. Now head to the Combination Tower - where Small Friends and Big Friends will join forces! 🏛️"
+      },
+      "tower": {
+        "name": "Stage 5: Combination Tower",
+        "subtitle": "Small Friends + Big Friends",
+        "description": "Combine Small Friends and Big Friends to solve any calculation!",
+        "storyIntro": "Hoo hoo! You've climbed to Combination Tower! 🏛️ Here, Small Friends and Big Friends will unite into a powerful force! When these two friends work together, no calculation is too difficult!",
+        "storyComplete": "Amazing! You've mastered the combination of Small Friends and Big Friends! Now head to the City of Big Numbers - where you'll conquer 2 and 3 digit numbers! 🏙️"
+      },
+      "city-numbers": {
+        "name": "Stage 6: City of Big Numbers",
+        "subtitle": "2-3 digit numbers",
+        "description": "Conquer addition and subtraction with 2 and 3 digit numbers!",
+        "storyIntro": "Welcome to the City of Big Numbers! 🏙️ Here, 2 and 3 digit numbers live. You'll learn to add and subtract with tens and hundreds - essential skills for every mathematician!",
+        "storyComplete": "Excellent! You've mastered the City of Big Numbers! Now enter the Kingdom of Thousands - where 4-digit numbers await the young hero! 👑"
+      },
+      "kingdom": {
+        "name": "Stage 7: Kingdom of Thousands",
+        "subtitle": "4 digit numbers",
+        "description": "Conquer addition and subtraction with 4 digit numbers - the pinnacle of big numbers!",
+        "storyIntro": "Hoo hoo! You've arrived at the Kingdom of Thousands! 🏰 This is the kingdom of mighty thousand-numbers. Only the truly skilled can conquer this place. Are you ready for the challenge?",
+        "storyComplete": "Magnificent! You've become a master of the Kingdom of Thousands! But the journey doesn't end - the Wisdom Tower awaits you to learn the extraordinary skill: MENTAL MATH! 🧠"
+      },
+      "mental-tower": {
+        "name": "Stage 8: Wisdom Tower (1 Digit)",
+        "subtitle": "Basic Mental Math",
+        "description": "Train Anzan - mental calculation with 1-digit numbers!",
+        "storyIntro": "Welcome to the Wisdom Tower! 🧠 This is where you learn the magical skill: MENTAL MATH (Anzan)! Instead of using a physical abacus, you'll imagine the Soroban in your head. Let's start with 1-digit numbers!",
+        "storyComplete": "Extraordinary! You've mastered 1-digit mental math! Now challenge the Advanced Wisdom Tower - 2-digit mental math. Do you dare? ⚡"
+      },
+      "mental-tower-advanced": {
+        "name": "Stage 9: Wisdom Tower (2 Digits)",
+        "subtitle": "Advanced Mental Math",
+        "description": "Mental calculation with 2-digit numbers - a higher realm!",
+        "storyIntro": "Hoo hoo! Advanced Wisdom Tower! 🧠⚡ This is a higher realm of mental math. You'll calculate mentally with 2-digit numbers - only those with special intellect can do this!",
+        "storyComplete": "Outstanding! You've reached the 2-digit mental math realm! Ahead is the Speed Temple - testing your reflexes and speed! Ready? 🏃‍♂️"
+      },
+      "speed-temple": {
+        "name": "Stage 10: Speed Temple",
+        "subtitle": "Time Challenge",
+        "description": "Calculate with time limits - testing your reflexes! (Max 4 digits)",
+        "storyIntro": "Speed Temple - where your reflex limits are tested!",
+        "storyComplete": "Fast as lightning! You're ready for Candle Peak!"
+      },
+      "flash-peak-candle": {
+        "name": "Stage 11: Candle Peak",
+        "subtitle": "Flash 1 Digit",
+        "description": "Flash Anzan Candle level - 1-digit numbers!",
+        "storyIntro": "Candle Peak - Flash Anzan with 1-digit numbers!",
+        "storyComplete": "Excellent! You've conquered Flash 1 digit. Moon Peak awaits!"
+      },
+      "flash-peak-moon": {
+        "name": "Stage 12: Moon Peak",
+        "subtitle": "Flash 2 Digits",
+        "description": "Flash Anzan Moon level - 2-digit numbers super fast!",
+        "storyIntro": "Moon Peak - Flash Anzan with 2-digit numbers super fast!",
+        "storyComplete": "LEGENDARY! You've conquered Flash Anzan! Treasure Castle awaits!"
+      },
+      "treasure-castle": {
+        "name": "DESTINATION: Treasure Castle",
+        "subtitle": "Receive Certificate!",
+        "description": "Defeat 3 Final Bosses to receive the Add & Sub Certificate!",
+        "storyIntro": "🎊 Welcome to Treasure Castle - the destination of the Add & Sub journey!",
+        "storyComplete": "🎉🏆 CONGRATULATIONS! You've earned the TREASURE and ADD & SUB MENTAL MATH CERTIFICATE! 🏆🎉"
+      },
+      "mul-forest": {
+        "name": "Stage 1: Multiplication Forest",
+        "subtitle": "Learn multiplication",
+        "description": "Get familiar with multiplication on Soroban!",
+        "storyIntro": "Hoo hoo! Welcome to Multiplication Forest! 🌲 Here, you'll learn the art of multiplication - when numbers multiply into larger numbers! Multiplication on Soroban is amazing!",
+        "storyComplete": "Excellent! You've mastered basic multiplication! Ahead is Division Cliff - a new challenge awaits! 🏔️"
+      },
+      "div-cliff": {
+        "name": "Stage 2: Division Cliff",
+        "subtitle": "Learn division",
+        "description": "Conquer division on Soroban!",
+        "storyIntro": "Welcome to Division Cliff! 🏔️ Division is the art of splitting numbers into equal parts. Let's explore the mysterious world of division!",
+        "storyComplete": "Fantastic! You've conquered Division Cliff! Ahead is the Mix Tower - where multiplication and division combine! 🏛️"
+      },
+      "mix-tower": {
+        "name": "Stage 3: Mix Tower",
+        "subtitle": "Multiply ÷ Divide",
+        "description": "Combine multiplication and division fluently!",
+        "storyIntro": "Hoo hoo! You've arrived at Mix Tower! 🏛️ Here, multiplication and division will randomly appear. Use all your skills to conquer this challenge!",
+        "storyComplete": "Amazing! You've conquered Mix Tower! The Complete Certificate awaits at Master Peak! 🏆"
+      },
+      "master-peak": {
+        "name": "Stage 4: Master Peak",
+        "subtitle": "All 4 operations",
+        "description": "Challenge all 4 operations: Addition, Subtraction, Multiplication, Division!",
+        "storyIntro": "Welcome to Master Peak! ⛰️ This is the final challenge - where all 4 operations combine. You've come a long way, let's conquer this peak together!",
+        "storyComplete": "Incredible! You've conquered Master Peak! You truly are a Soroban Master! 🎓"
+      },
+      "grand-castle": {
+        "name": "Stage 5: Grand Castle",
+        "subtitle": "Complete Certificate",
+        "description": "Receive the Complete Soroban Certificate - mastery of all operations!",
+        "storyIntro": "Congratulations! Welcome to Grand Castle! 🏰 The Complete Soroban Certificate awaits you here. You've conquered the entire Treasure Quest!",
+        "storyComplete": "Hoo hoo! Congratulations Soroban Master! You've earned the Complete Certificate - the highest recognition of Soroban mastery! 🎉🏆"
+      },
+      "cave-multiply": {
+        "name": "Stage 1: Multiplication Cave",
+        "subtitle": "Times Tables",
+        "description": "Learn times tables and multiplication on Soroban!",
+        "storyIntro": "Multiplication Cave - where you learn to multiply numbers many times!",
+        "storyComplete": "Amazing! You've mastered multiplication. Division Lake awaits!"
+      },
+      "lake-divide-basic": {
+        "name": "Stage 2: Basic Division Lake",
+        "subtitle": "Divide by 2-7",
+        "description": "Learn basic division - dividing by small numbers!",
+        "storyIntro": "Basic Division Lake - where you learn to divide numbers into parts!",
+        "storyComplete": "Great! You've mastered basic division. Advanced Division Lake awaits!"
+      },
+      "lake-divide-advanced": {
+        "name": "Stage 3: Advanced Division Lake",
+        "subtitle": "2-digit Division",
+        "description": "Divide by 8-9 and divide large numbers!",
+        "storyIntro": "Advanced Division Lake - challenge with larger numbers!",
+        "storyComplete": "Excellent! You've mastered Multiply and Divide. Four Operations Arena awaits!"
+      },
+      "arena-four": {
+        "name": "Stage 4: Four Operations Arena",
+        "subtitle": "All 4 Operations",
+        "description": "Practice and compete with all 4 operations!",
+        "storyIntro": "Four Operations Arena - challenge for champions!",
+        "storyComplete": "You've conquered Four Operations! Mental Math Tower awaits!"
+      },
+      "mental-muldiv": {
+        "name": "Stage 5: Mental Math Tower",
+        "subtitle": "Anzan Mul Div",
+        "description": "Mental calculation for Multiply & Divide without abacus!",
+        "storyIntro": "Mental Math Tower - train Anzan for Multiply & Divide!",
+        "storyComplete": "Extraordinary! You can mentally calculate Mul Div. Speed Temple awaits!"
+      },
+      "speed-muldiv": {
+        "name": "Stage 6: Speed Temple",
+        "subtitle": "Super Speed Mul Div",
+        "description": "Multiply and divide with time limits! (Max 4 digits)",
+        "storyIntro": "Speed Temple - test your Mul Div speed!",
+        "storyComplete": "Fast as lightning! Mixed Peak awaits!"
+      },
+      "mixed-peak": {
+        "name": "Stage 7: Mixed Peak",
+        "subtitle": "Perfect 4 Operations",
+        "description": "Mixed 4 operations at the highest level! (Max 4 digits)",
+        "storyIntro": "Mixed Peak - where 4 operations blend perfectly!",
+        "storyComplete": "Perfect! You're ready for the Supreme Castle!"
+      },
+      "supreme-castle": {
+        "name": "DESTINATION: Supreme Castle",
+        "subtitle": "Complete Certificate!",
+        "description": "Defeat 3 Final Bosses to receive the Complete Certificate!",
+        "storyIntro": "👑 Welcome to Supreme Castle - the pinnacle of Soroban!",
+        "storyComplete": "🎉👑🏆 CONGRATULATIONS! You've earned the COMPLETE SOROBAN CERTIFICATE! You are a MASTER! 🏆👑🎉"
+      }
+    },
+    "modes": {
+      "create": "Create Number",
+      "addition": "Addition",
+      "subtraction": "Subtraction",
+      "addSubMixed": "Add & Sub",
+      "multiplication": "Multiplication",
+      "division": "Division",
+      "mulDiv": "Mul & Div",
+      "mixed": "All Operations",
+      "mentalMath": "Mental Math",
+      "flashAnzan": "Flash Anzan"
+    },
+    "difficulties": {
+      "1": "Beginner",
+      "2": "Apprentice",
+      "3": "Journeyman",
+      "4": "Expert",
+      "5": "Master"
+    },
+    "flashLevels": {
+      "1": "Candle",
+      "2": "Moon",
+      "3": "Sun",
+      "4": "Star"
+    },
+    "practiceDesc": "Practice {mode} • {difficulty} • {correct} correct",
+    "competeDesc": "Compete {mode} • {correct}/{total} correct"
+  },
+  "adventure": {
+    "levelRequiresTier": "Level {level} requires {tier} plan or higher",
+    "modeRequiresTier": "Mode {mode} requires {tier} plan or higher",
+    "difficultyRequiresTier": "Difficulty {difficulty} requires {tier} plan or higher"
+  },
+  "adventureGame": {
+    "skip": "Skip",
+    "startNow": "Start! ⚡",
+    "exploreNow": "Explore Now! 🚀",
+    "unlocked": "You've unlocked a new achievement!",
+    "newAchievement": "New Achievement",
+    "congratulations": "Congratulations!",
+    "claimReward": "Claim Reward! 🎁",
+    "zoneLockedTitle": "Zone Locked 🔒",
+    "zoneLockedMsg": "Complete previous zones to unlock this area!",
+    "understood": "Got it! 👍",
+    "loadingTreasure": "Opening Treasure Chest...",
+    "loadingPreparing": "Soro Owl is preparing your journey!"
+  },
+  "adventureCert": {
+    "addSubTitle": "🏅 Addition & Subtraction Certificate",
+    "addSubSubtitle": "Mental Math Master",
+    "addSubDesc": "Conquered the Addition & Subtraction journey on Soroban",
+    "completeTitle": "👑 Complete Certificate",
+    "completeSubtitle": "Soroban Master",
+    "completeDesc": "Conquered the entire Soroban journey",
+    "explorer": "Explorer",
+    "congrats": "Congratulations",
+    "viewCert": "View Certificate",
+    "opening": "Opening..."
+  },
+  "narrative": {
+    "skip": "Skip",
+    "showAll": "Show all",
+    "next": "Next →",
+    "start": "Start! ✨",
+    "startAdventure": "Start Adventure!"
+  }
+}

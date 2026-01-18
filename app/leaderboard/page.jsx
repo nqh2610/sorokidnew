@@ -30,7 +30,8 @@ export default function LeaderboardPage() {
     } else if (status === 'authenticated') {
       fetchLeaderboard();
     }
-  }, [status, router, localizeUrl]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]); // 🔧 FIX: Chỉ depend on status để tránh re-fetch
 
   const fetchLeaderboard = async () => {
     try {

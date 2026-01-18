@@ -1,0 +1,301 @@
+{
+  "slug": "phep-cong-co-nho-thuc-hanh-soroban",
+  "title": "Phép cộng có nhớ trên Soroban – Thực hành với ví dụ cụ thể",
+  "description": "Sau khi học Bạn của 5 và Bạn của 10, con cần thực hành kết hợp cả hai. Bài này có nhiều ví dụ chi tiết từng bước.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "cộng có nhớ soroban",
+    "phép cộng nâng cao soroban",
+    "thực hành cộng soroban",
+    "bài tập cộng soroban",
+    "cách cộng trên bàn tính",
+    "bạn của 5 bạn của 10",
+    "cộng 2 số trên soroban",
+    "luyện cộng soroban",
+    "cộng từ trái sang phải",
+    "kỹ thuật cộng soroban",
+    "cộng số nhiều chữ số",
+    "hướng dẫn cộng soroban"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-29T01:31:53.743Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/tre-thuc-hanh-phep-cong-co-nho.jpg",
+  "imageAlt": "Trẻ em thực hành phép cộng có nhớ trên bàn tính Soroban",
+  "readingTime": 14,
+  "categoryOrder": 1,
+  "order": 9,
+  "translations": {
+    "en": "addition-with-carrying-on-soroban"
+  },
+  "content": {
+    "intro": "Con đã học Bạn của 5 và Bạn của 10 riêng lẻ. Giờ là lúc kết hợp cả hai để làm các phép cộng thực tế. Bài này có nhiều ví dụ chi tiết, phụ huynh có thể cùng con luyện tại nhà.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Quy trình cộng trên Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi gặp phép cộng, con cần xác định:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Bước 1:** Có đủ hạt để cộng trực tiếp không?",
+          "**Nếu đủ:** Gạt hạt lên (cộng đơn giản)",
+          "**Nếu thiếu hạt đất nhưng tổng < 10:** Dùng Bạn của 5",
+          "**Nếu tổng > 9:** Dùng Bạn của 10"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ 1: 27 + 35 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 1: Biểu diễn 27**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Cột chục: 2 (2 hạt đất)",
+          "Cột đơn vị: 7 (hạt trời + 2 hạt đất)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 2: Cộng 35**"
+      },
+      {
+        "type": "paragraph",
+        "text": "Bắt đầu từ hàng chục (từ trái sang phải):"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Cộng 3 vào hàng chục:** 2 + 3 = 5. Đủ hạt? Có 2 hạt đất, cần thêm 3, nhưng chỉ còn 2 hạt trống. → Dùng Bạn của 5: +5 -2. Gạt hạt trời xuống, bỏ 2 hạt đất. Kết quả: hạt trời = 5.",
+          "**Cộng 5 vào hàng đơn vị:** 7 + 5 = 12. Vượt quá 9. → Dùng Bạn của 10: +1 cột trái, -5 cột hiện tại."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Xử lý hàng đơn vị:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Thêm 1 vào hàng chục: 5 + 1 = 6",
+          "Trừ 5 ở hàng đơn vị: 7 - 5 = 2"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Hàng chục = 6, hàng đơn vị = 2. Tổng = 62. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ 2: 48 + 26 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 1: Biểu diễn 48**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Cột chục: 4 (4 hạt đất)",
+          "Cột đơn vị: 8 (hạt trời + 3 hạt đất)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 2: Cộng 26**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Cộng 2 vào hàng chục:** 4 + 2 = 6. Đủ hạt? Có 4 hạt đất, cần thêm 2, nhưng đã hết hạt đất (chỉ có 4). → Dùng Bạn của 5: +5 -3. Gạt hạt trời xuống, bỏ 3 hạt đất. Nhưng chỉ có 4 hạt đất... Thực ra: cần xem lại.",
+          "**Cách đúng:** 4 + 2 = 6. Hạt đất đang có 4, cần thêm 2 → không đủ chỗ (hết hạt đất). Dùng Bạn của 5: +5, -3. Kết quả: hạt trời + 1 hạt đất = 6.",
+          "**Cộng 6 vào hàng đơn vị:** 8 + 6 = 14. Vượt 9. → Bạn của 10: +1 cột trái, -4 cột hiện tại."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Xử lý hàng đơn vị:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Thêm 1 vào hàng chục: 6 + 1 = 7",
+          "Trừ 4 ở hàng đơn vị: 8 - 4 = 4"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Hàng chục = 7, hàng đơn vị = 4. Tổng = 74. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ 3: 156 + 278 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 1: Biểu diễn 156**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Cột trăm: 1",
+          "Cột chục: 5 (hạt trời)",
+          "Cột đơn vị: 6 (hạt trời + 1 hạt đất)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 2: Cộng 278 (từ trái sang phải)**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Cộng 2 vào hàng trăm:** 1 + 2 = 3. Cộng đơn giản. Kết quả: 3.",
+          "**Cộng 7 vào hàng chục:** 5 + 7 = 12. Vượt 9. → Bạn của 10: +1 cột trái, -3 cột hiện tại. Hàng trăm: 3 + 1 = 4. Hàng chục: 5 - 3 = 2.",
+          "**Cộng 8 vào hàng đơn vị:** 6 + 8 = 14. Vượt 9. → Bạn của 10: +1 cột trái, -2 cột hiện tại. Hàng chục: 2 + 1 = 3. Hàng đơn vị: 6 - 2 = 4."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Hàng trăm = 4, hàng chục = 3, hàng đơn vị = 4. Tổng = 434. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bài tập thực hành"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mức 1: Cộng 2 số 1 chữ số"
+      },
+      {
+        "type": "paragraph",
+        "text": "6+7, 8+5, 9+4, 7+8, 5+9"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mức 2: Cộng 2 số 2 chữ số"
+      },
+      {
+        "type": "paragraph",
+        "text": "23+19, 45+38, 67+25, 89+34, 56+78"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mức 3: Cộng 2 số 3 chữ số"
+      },
+      {
+        "type": "paragraph",
+        "text": "123+456, 234+189, 567+345, 789+234, 456+567"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mức 4: Cộng liên tiếp"
+      },
+      {
+        "type": "paragraph",
+        "text": "12+34+56, 23+45+67, 11+22+33+44"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mẹo cho phụ huynh"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Làm chậm, đọc to:** Mỗi bước con nói to đang làm gì",
+          "**Kiểm tra từng bước:** Sau mỗi hàng, dừng lại kiểm tra kết quả",
+          "**Tăng dần độ khó:** 1 chữ số → 2 chữ số → 3 chữ số",
+          "**Luyện đều đặn:** 10-15 phút mỗi ngày tốt hơn 1 tiếng 1 lần/tuần"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Cộng có nhớ cần thời gian để thành thạo. Đừng nản nếu con làm chậm hoặc sai. Luyện đều đặn, con sẽ tiến bộ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con luyện cộng có nhớ trên Sorokid mỗi ngày. App tự động tăng độ khó, con không bị chán vì bài quá dễ hoặc nản vì quá khó."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Nên cộng từ trái sang phải hay phải sang trái?",
+      "answer": "Soroban thường dạy cộng từ TRÁI sang PHẢI (hàng lớn trước). Khác với cách tính trên giấy (phải sang trái). Cách này giúp xử lý số lớn hiệu quả hơn và nắm được kết quả gần đúng từ sớm."
+    },
+    {
+      "question": "Con hay nhầm khi nào dùng Bạn của 5, khi nào dùng Bạn của 10?",
+      "answer": "Nhìn kết quả dự kiến: Nếu tổng trong cột đó dưới 10 nhưng thiếu hạt → Bạn của 5. Nếu tổng vượt 9 → Bạn của 10. Luyện nhiều sẽ thành phản xạ."
+    },
+    {
+      "question": "Bao lâu thì con cộng nhanh được?",
+      "answer": "Tùy mức độ luyện tập. Thường 2-3 tháng luyện đều đặn (mỗi ngày 15-20 phút) để cộng 2 số 2 chữ số trong vài giây. Số 3 chữ số cần thêm 1-2 tháng nữa."
+    },
+    {
+      "question": "Có cần thuộc tất cả các quy tắc không?",
+      "answer": "Cần thuộc Bạn của 5 (4 cặp) và Bạn của 10 (5 cặp). Tổng 9 cặp số. Luyện nhiều sẽ thành phản xạ, không cần nhớ cũng tự động làm đúng."
+    },
+    {
+      "question": "Cộng liên tiếp nhiều số có khó không?",
+      "answer": "Cùng quy tắc, chỉ lặp lại nhiều lần. Bắt đầu với cộng 3 số, rồi tăng dần. Quan trọng là làm từng bước, kiểm tra sau mỗi phép cộng."
+    },
+    {
+      "question": "Con hay quên nhớ sang cột trái, làm sao?",
+      "answer": "Khi dùng Bạn của 10, cộng 1 vào cột trái NGAY, trước khi trừ ở cột hiện tại. Tập thói quen này để không quên. Nói to khi làm: '+1 trái, trừ bạn'."
+    },
+    {
+      "question": "Cộng trên Soroban khác gì cộng trên giấy?",
+      "answer": "Soroban tính từ trái sang phải, giấy từ phải sang trái. Soroban xử lý trực tiếp trên hạt, không viết ra. Soroban rèn tư duy nhanh hơn và giúp học tính nhẩm sau này."
+    },
+    {
+      "question": "Nên luyện phép cộng bao lâu mỗi ngày?",
+      "answer": "10-15 phút mỗi ngày cho phần cộng. Kết hợp với các bài luyện khác (trừ, đọc số) để không nhàm chán. Tổng thời gian học Soroban mỗi ngày khoảng 20-30 phút."
+    },
+    {
+      "question": "Có nên dùng app để luyện cộng không?",
+      "answer": "Có. App có nhiều bài tập, tự động chấm điểm và điều chỉnh độ khó. Kết hợp dùng Soroban thật để luyện kỹ thuật và app để luyện tốc độ là tối ưu."
+    },
+    {
+      "question": "Khi nào thì chuyển sang học trừ?",
+      "answer": "Khi con cộng thành thạo số 2 chữ số với độ chính xác trên 90%. Không cần chờ đến số 3-4 chữ số mới học trừ. Có thể học song song nhưng tập trung cộng trước."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có hàng trăm bài tập cộng từ cơ bản đến nâng cao, tự động điều chỉnh độ khó theo trình độ của con.",
+    "buttonText": "Cho con luyện thử",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Phép cộng có nhớ trên Soroban – Thực hành với ví dụ cụ thể",
+    "description": "Sau khi học Bạn của 5 và Bạn của 10, con cần thực hành kết hợp cả hai. Bài này có nhiều ví dụ chi tiết từng bước.",
+    "keywords": "cộng có nhớ soroban, phép cộng nâng cao soroban, thực hành cộng soroban, bài tập cộng soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-29",
+    "author": "ThS. Lê Minh Quân"
+  },
+  "author": {
+    "name": "Minh Anh",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
+}

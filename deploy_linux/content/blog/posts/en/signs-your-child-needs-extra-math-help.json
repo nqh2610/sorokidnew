@@ -1,0 +1,249 @@
+{
+  "slug": "signs-your-child-needs-extra-math-help",
+  "title": "Signs Your Child Needs Extra Math Help (And What to Do)",
+  "description": "How to recognize when struggles are normal vs. when intervention is needed.",
+  "category": "math-struggles",
+  "keywords": [
+    "math help",
+    "learning difficulties",
+    "math intervention",
+    "math tutoring"
+  ],
+  "status": "scheduled",
+  "publishedAt": "2026-02-11T01:33:13.709Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/me-lo-lang-ve-con.jpg",
+  "imageAlt": "Parent recognizing child needs extra help",
+  "readingTime": 7,
+  "author": {
+    "name": "Maria Gonzalez",
+    "role": "Learning Specialist"
+  },
+  "translations": {
+    "vi": "dau-hieu-con-can-ho-tro-them-ve-toan"
+  },
+  "content": {
+    "intro": "Every kid struggles sometimes. But how do you know when it's normal developmental bumps versus a sign that extra help is needed?",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Normal Struggles vs. Warning Signs"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Normal Struggles",
+          "Warning Signs"
+        ],
+        "rows": [
+          [
+            "Occasional difficulty with new concepts",
+            "Persistent difficulty despite repeated instruction"
+          ],
+          [
+            "Errors when tired or rushed",
+            "Errors even when rested and taking time"
+          ],
+          [
+            "Forgetting facts sometimes",
+            "Never retaining facts despite practice"
+          ],
+          [
+            "Finding some topics harder",
+            "Struggling with nearly all math"
+          ],
+          [
+            "Temporary frustration",
+            "Chronic avoidance or anxiety"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Specific Warning Signs by Grade"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Kindergarten - 1st Grade"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Can't count to 20 reliably",
+          "Doesn't understand \"more\" and \"less\"",
+          "Can't recognize numbers 0-9",
+          "No progress with basic addition facts"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2nd - 3rd Grade"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Still counting on fingers for basic facts",
+          "Can't understand place value",
+          "Persistent number reversal",
+          "Unable to tell time"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4th - 5th Grade"
+      },
+      {
+        "type": "list",
+        "items": [
+          "No multiplication fact fluency",
+          "Doesn't understand fractions at all",
+          "Can't do multi-step word problems",
+          "Significant gap from peers"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "warning",
+        "text": "The earlier intervention happens, the better the outcome. Don't \"wait and see\" if multiple warning signs are present."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to Do"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Step 1: Talk to the Teacher"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ask: \"How is my child doing compared to grade-level expectations? Do you have concerns?\""
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Step 2: Request Evaluation"
+      },
+      {
+        "type": "paragraph",
+        "text": "Schools must evaluate if you request in writing. This identifies learning disabilities and qualifies for services."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Step 3: Get Outside Support"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Tutoring (1:1 makes the biggest difference)",
+          "Learning apps designed for remediation",
+          "Educational therapy if there's a diagnosed issue"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Step 4: Address Emotional Component"
+      },
+      {
+        "type": "paragraph",
+        "text": "By the time kids need extra help, they often have anxiety too. Addressing the emotional piece matters as much as the academic piece."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What Extra Help Looks Like"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Need",
+          "Appropriate Support"
+        ],
+        "rows": [
+          [
+            "Skill gaps",
+            "Targeted tutoring or remediation apps"
+          ],
+          [
+            "Learning disability",
+            "Specialized instruction, IEP accommodations"
+          ],
+          [
+            "Math anxiety",
+            "Counseling + low-pressure practice"
+          ],
+          [
+            "Executive function issues",
+            "Structured support, explicit strategies"
+          ]
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "Will my child be labeled if I get them evaluated?",
+        "answer": "Evaluation provides information and opens doors to help. The \"label\" gives access to services. It's not negative – it's a pathway to support."
+      },
+      {
+        "question": "How much does tutoring cost?",
+        "answer": "Varies widely: $30-$100/hour private tutoring, $10-$30/month for quality apps. Group tutoring is cheaper. Schools sometimes provide free intervention."
+      },
+      {
+        "question": "Can I help at home instead of getting outside help?",
+        "answer": "For mild gaps, yes. For significant struggles, home support usually isn't enough. Professional help has training you don't have."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid can supplement intervention by building foundational skills through daily practice.",
+      "buttonText": "Try Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "faq": [
+    {
+      "question": "What will I learn from this article?",
+      "answer": "This article covers How to recognize when struggles are normal vs. when intervention is needed.."
+    },
+    {
+      "question": "Is this advice suitable for all ages?",
+      "answer": "The strategies discussed are primarily designed for children ages 5-12, but many principles can be adapted for different age groups."
+    },
+    {
+      "question": "How long does it take to see results?",
+      "answer": "Results vary by child, but most parents notice improvements within 2-4 weeks of consistent practice."
+    },
+    {
+      "question": "Do I need special materials or equipment?",
+      "answer": "Most activities can be done with everyday items. For Soroban-specific learning, the Sorokid app provides a virtual abacus."
+    },
+    {
+      "question": "Can I use these methods alongside school curriculum?",
+      "answer": "Absolutely! These approaches are designed to complement, not replace, what children learn at school."
+    }
+  ],
+  "cta": {
+    "text": "Ready to help your child build math confidence? Sorokid offers interactive lessons, games, and progress tracking designed for busy families.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "Signs Your Child Needs Extra Math Help (And What to Do) | Sorokid",
+    "metaDescription": "How to recognize when struggles are normal vs. when intervention is needed.",
+    "keywords": "math help, learning difficulties, math intervention, math tutoring"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-06-15",
+    "author": "Maria Gonzalez"
+  },
+  "postId": "dau-hieu-con-can-ho-tro-them-ve-toan"
+}

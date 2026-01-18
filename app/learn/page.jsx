@@ -132,7 +132,8 @@ export default function LearnPage() {
     if (status === 'unauthenticated') {
       router.push(localizeUrl('/login'));
     }
-  }, [status, router, localizeUrl]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]); // 🔧 FIX: Chỉ depend on status
 
   // Fetch levels từ database (re-fetch when locale changes to re-translate)
   useEffect(() => {

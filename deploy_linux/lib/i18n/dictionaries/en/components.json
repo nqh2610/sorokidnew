@@ -1,0 +1,146 @@
+{
+  "topbar": {
+    "vip": "VIP",
+    "advanced": "Advanced",
+    "basic": "Basic",
+    "free": "Free",
+    "days": "days",
+    "stars": "stars",
+    "diamonds": "diamonds",
+    "logout": "Log Out",
+    "logoutConfirm": "Log Out?",
+    "logoutMessage": "Are you sure you want to log out?",
+    "cancel": "Cancel",
+    "dashboard": "Dashboard",
+    "learn": "Learn",
+    "practice": "Practice",
+    "compete": "Compete",
+    "profile": "Profile",
+    "certificate": "Certificate",
+    "admin": "Admin",
+    "level": "Level"
+  },
+  "footer": {
+    "tagline": "Learn math fast, fun like playing games",
+    "toolbox": "Teacher Toolbox",
+    "copyright": "Learn mental math with Soroban abacus",
+    "description": "The #1 Soroban & mental math app for elementary students.",
+    "products": "Products",
+    "support": "Support",
+    "legal": "Legal",
+    "connect": "Connect",
+    "learnSoroban": "Learn Soroban",
+    "teacherToolbox": "Teacher Toolbox",
+    "helpCenter": "Help Center",
+    "contact": "Contact Us",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy"
+  },
+  "quest": {
+    "title": "Quests",
+    "dailyQuests": "Today's Quests",
+    "allCompleted": "You've completed all quests!",
+    "waiting": "waiting",
+    "claimReward": "Claim Reward",
+    "moreQuests": "more quests"
+  },
+  "sorobanWidget": {
+    "open": "Open Soroban Abacus",
+    "title": "Soroban Abacus",
+    "close": "Close abacus",
+    "hint": "Red bead = 5, Yellow bead = 1. Click to move beads!",
+    "result": "Result",
+    "reset": "Reset",
+    "hintBtn": "Hint",
+    "tenThousand": "10K",
+    "thousand": "1K",
+    "hundred": "100",
+    "ten": "10",
+    "unit": "1",
+    "instructions": "How to Use",
+    "clickToMove": "Click bead to move",
+    "redBead": "Red bead = 5 units",
+    "yellowBead": "Yellow bead = 1 unit",
+    "columns": [
+      "Ten K",
+      "Thousands",
+      "Hundreds",
+      "Tens",
+      "Units"
+    ],
+    "howToUse": "How to Use",
+    "heaven5": "Heaven bead column {col}",
+    "earthBead": "Bead {bead} column {col}"
+  },
+  "sound": {
+    "title": "Sound",
+    "description": "Enable/disable sound effects",
+    "mute": "Mute sound",
+    "unmute": "Unmute sound",
+    "off": "Off",
+    "on": "On",
+    "themes": {
+      "adventure": "🗺️ Adventure",
+      "battle": "⚔️ Battle",
+      "victory": "🏆 Victory",
+      "relaxing": "🌙 Relaxing"
+    }
+  },
+  "rewards": {
+    "excellent": "Excellent!",
+    "wonderful": "Wonderful!",
+    "greatJob": "Great job!",
+    "keepTrying": "Keep trying!",
+    "congratulations": "🎊 Congratulations! 🎊",
+    "reward": "Reward"
+  },
+  "reward": {
+    "badgeUnlocked": "New badge unlocked!",
+    "newBadge": "New Badge",
+    "congratulations": "Congratulations!",
+    "claimReward": "Claim Reward!",
+    "completed": "Completed!",
+    "time": "Time",
+    "accuracy": "Accuracy",
+    "continueJourney": "Continue Journey!"
+  },
+  "achievementPopup": {
+    "addSubCert": "Soroban Addition & Subtraction Certificate",
+    "completeCert": "Complete Soroban Certificate"
+  },
+  "trialBadge": {
+    "trialRemaining": "Trial {hours}h {minutes}m left",
+    "upgradeNow": "Upgrade now!",
+    "lastDay": "Last day of trial",
+    "viewPlans": "View plans",
+    "trialDays": "Trial {days} days left"
+  },
+  "pwa": {
+    "installed": "Sorokid App installed!",
+    "thanks": "Thank you 💜",
+    "downloadApp": "Download Sorokid App",
+    "learnAnytime": "Learn Soroban anytime",
+    "learnAnytimeAnywhere": "Learn Soroban anytime anywhere",
+    "install": "Install",
+    "installApp": "Install App",
+    "iosTitle": "Install on iPhone/iPad:",
+    "androidTitle": "Install on Android:",
+    "iosStep1": "1. Tap the",
+    "share": "Share",
+    "button": "button",
+    "iosStep2": "2. Select",
+    "addToHome": "Add to Home Screen",
+    "androidStep1": "1. Tap",
+    "menuIcon": "⋮",
+    "topRight": "at top right",
+    "androidStep2": "2. Select",
+    "installAppOption": "Install app",
+    "gotIt": "Got it ✓"
+  },
+  "blog": {
+    "all": "All",
+    "categories": "Blog categories",
+    "scrollLeft": "Scroll left",
+    "scrollRight": "Scroll right"
+  }
+}

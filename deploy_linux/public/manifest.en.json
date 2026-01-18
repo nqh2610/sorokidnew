@@ -1,0 +1,118 @@
+{
+  "name": "Sorokid - Best Soroban & Mental Math App",
+  "short_name": "Sorokid",
+  "description": "The best Soroban and Mental Math learning app for children. Learn through play, play to learn!",
+  "start_url": "/en",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#f59e0b",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "kids", "games"],
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Sorokid Home Screen"
+    },
+    {
+      "src": "/screenshots/learn.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Step-by-step Soroban Learning"
+    },
+    {
+      "src": "/screenshots/practice.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Practice with Games"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Learn Soroban",
+      "short_name": "Learn",
+      "description": "Start learning Soroban",
+      "url": "/en/learn",
+      "icons": [{ "src": "/icons/learn-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Practice",
+      "short_name": "Practice",
+      "description": "Practice your skills",
+      "url": "/en/practice",
+      "icons": [{ "src": "/icons/practice-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Adventure",
+      "short_name": "Game",
+      "description": "Adventure Mode",
+      "url": "/en/adventure",
+      "icons": [{ "src": "/icons/adventure-96x96.png", "sizes": "96x96" }]
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.sorokid.app",
+      "id": "com.sorokid.app"
+    }
+  ],
+  "prefer_related_applications": false
+}

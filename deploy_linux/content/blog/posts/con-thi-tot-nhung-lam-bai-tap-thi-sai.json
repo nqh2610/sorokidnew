@@ -1,0 +1,161 @@
+{
+  "slug": "con-thi-tot-nhung-lam-bai-tap-thi-sai",
+  "title": "Con thi thì tốt, làm bài tập thì sai – mình từng không hiểu",
+  "description": "Kiểm tra được 9 điểm. Bài tập về nhà sai lung tung. Mình tưởng con cố tình, hóa ra không phải.",
+  "category": "con-gap-kho-khan-hoc-toan",
+  "keywords": [
+    "con làm bài tập sai",
+    "thi tốt bài tập kém",
+    "tập trung khi làm bài",
+    "môi trường học ở nhà",
+    "con mất tập trung",
+    "bài tập về nhà sai nhiều",
+    "tạo không gian học tập",
+    "con kiểm tra giỏi bài tập dở",
+    "trẻ cẩu thả khi làm bài",
+    "giúp con tập trung ở nhà",
+    "thói quen kiểm tra bài",
+    "con mệt sau khi đi học"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-23T03:28:00.000Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-lam-bai-tap.jpg",
+  "imageAlt": "Bé gái châu Á nhìn bài tập về nhà với vẻ bối rối dù vừa thi tốt",
+  "readingTime": 12,
+  "categoryOrder": 2,
+  "order": 17,
+  "translations": {
+    "en": "con-thi-th-tt-lm-bi-tp-th-sai-mnh-tng-khng-hiu"
+  },
+  "content": {
+    "intro": "Bài kiểm tra con được 9 điểm, mình vui lắm. Tối về kiểm tra bài tập: sai 4/10 câu. Mình bối rối: \"Con có thể làm đúng mà, sao bài tập lại sai?\"",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình từng nghĩ con cẩu thả"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Con không tập trung! Con làm qua loa!\" – Mình la. Con cúi đầu. Không khí căng thẳng."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình quan sát kỹ hơn"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ở lớp, con tập trung vì có cô giáo, có bạn, có áp lực kiểm tra."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ở nhà, con mệt sau cả ngày học. Có TV, có tiếng ồn. Con mất tập trung."
+      },
+      {
+        "type": "paragraph",
+        "text": "Không phải con không biết làm. Con không có điều kiện tập trung."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Môi trường ảnh hưởng lớn đến kết quả. Cùng một con, nhưng ở lớp và ở nhà là khác nhau."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình thay đổi"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Tạo không gian yên tĩnh:** Con làm bài ở phòng riêng. Tắt TV. Không ai làm phiền."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Cho con nghỉ trước:** Về nhà nghỉ 30 phút, ăn nhẹ, rồi mới làm bài."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Kiểm tra lại:** Dạy con thói quen xem lại bài trước khi kết thúc."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bây giờ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Bài tập về nhà ít sai hơn. Con cũng ít bị la hơn. Không khí gia đình dễ chịu hơn."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Trước khi trách con, hãy xem môi trường học ở nhà có phù hợp không."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Vì sao con làm tốt ở lớp nhưng kém ở nhà?",
+      "answer": "Môi trường khác nhau. Ở lớp có cô giáo, có bạn bè, có áp lực kiểm tra. Ở nhà con mệt, có TV, có tiếng ồn – dễ mất tập trung. Cần tạo điều kiện tương tự ở nhà."
+    },
+    {
+      "question": "Làm sao tạo môi trường học tốt ở nhà?",
+      "answer": "Không gian riêng, yên tĩnh. Tắt TV và điện thoại. Có đủ ánh sáng. Bàn ghế phù hợp chiều cao con. Cho con nghỉ ngơi 20-30 phút sau khi đi học về trước khi làm bài."
+    },
+    {
+      "question": "Con có cẩu thả hay thực sự mất tập trung?",
+      "answer": "Hai điều khác nhau. Cẩu thả là biết nhưng không chịu làm kỹ. Mất tập trung là không đủ điều kiện để tập trung. Quan sát con: nếu con có vẻ mệt mỏi, đó là mất tập trung, không phải cẩu thả."
+    },
+    {
+      "question": "Có nên la con khi bài tập sai nhiều?",
+      "answer": "Không nên. La mắng tạo áp lực và ác cảm với việc học. Thay vào đó, tìm hiểu nguyên nhân: con mệt? Môi trường ồn? Bài quá khó? Giải quyết nguyên nhân gốc."
+    },
+    {
+      "question": "Nên cho con làm bài tập lúc nào?",
+      "answer": "Sau khi con nghỉ ngơi và ăn nhẹ. Thường 30-60 phút sau khi về nhà. Tránh làm bài khi con vừa về (mệt) hoặc sát giờ ngủ (buồn ngủ)."
+    },
+    {
+      "question": "Làm sao dạy con thói quen kiểm tra bài?",
+      "answer": "Dạy con 3 bước: Làm xong → Đọc lại đề → Kiểm tra đáp án. Ban đầu cùng con làm, sau đó để con tự làm. Khen khi con nhớ kiểm tra, dù vẫn có sai sót."
+    },
+    {
+      "question": "Con chỉ tập trung khi có người ngồi cạnh, có sao không?",
+      "answer": "Ban đầu là bình thường. Dần dần rút lui: ngồi cạnh → ngồi xa hơn → ở phòng khác nhưng thỉnh thoảng qua xem. Mục tiêu là con tự làm được mà không cần giám sát."
+    },
+    {
+      "question": "Bài tập về nhà nên làm trong bao lâu?",
+      "answer": "Tùy lớp. Lớp 1-2: 15-30 phút. Lớp 3-4: 30-45 phút. Lớp 5: 45-60 phút. Nếu con mất quá lâu, có thể bài quá nhiều hoặc con cần hỗ trợ."
+    },
+    {
+      "question": "Con làm bài tập nhanh nhưng sai nhiều, phải làm sao?",
+      "answer": "Đặt mục tiêu ĐÚNG trước, NHANH sau. Nói với con: 'Không cần làm nhanh, làm đúng là được.' Thưởng khi con làm đúng, không thưởng khi con làm nhanh."
+    },
+    {
+      "question": "Sorokid có giúp con tập trung hơn không?",
+      "answer": "Có. Sorokid có bài học ngắn (5-10 phút), có tương tác và phản hồi ngay. Phù hợp với trẻ khó tập trung lâu. Con hoàn thành bài ngắn, được khen, có động lực tiếp tục."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid giúp con tập trung với bài học ngắn, có tương tác.",
+    "buttonText": "Cho con thử",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Con thi thì tốt, làm bài tập thì sai – mình từng không hiểu",
+    "description": "Kiểm tra được 9 điểm. Bài tập về nhà sai lung tung. Mình tưởng con cố tình, hóa ra không phải.",
+    "keywords": "con làm bài tập sai, thi tốt bài tập kém, tập trung khi làm bài"
+  },
+  "schema": {
+    "type": "Article",
+    "headline": "Con thi thì tốt, làm bài tập thì sai – mình từng không hiểu",
+    "datePublished": "2026-02-11",
+    "dateModified": "2026-01-17",
+    "author": "Minh Anh"
+  },
+  "author": {
+    "name": "Minh Anh",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
+}

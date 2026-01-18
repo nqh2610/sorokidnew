@@ -1,0 +1,438 @@
+{
+  "slug": "con-ght-ton-ch-thch-c-sch-mnh-tng-lo-con-lch",
+  "title": "My Daughter Reads All Day But Hates Math: A Mother's Journey From Worry to Wisdom",
+  "description": "She devours books, writes beautiful stories, earns constant praise from her literature teacher. But open a math textbook? Tears, complaints, 'This is boring.' I feared her 'imbalanced' skills until I learned how to make math click for humanities-minded children.",
+  "category": "math-struggles",
+  "keywords": [
+    "child hates math loves reading",
+    "math for literature lovers",
+    "humanities child math struggle",
+    "verbal learner math strategies",
+    "balance reading and math",
+    "child resistant to math",
+    "make math interesting readers",
+    "literary math connections",
+    "word problem strategies",
+    "right brain math learning",
+    "creative children math approach",
+    "story-based math learning"
+  ],
+  "status": "scheduled",
+  "publishedAt": "2026-02-09T05:33:13.707Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-doc-sach.jpg",
+  "imageAlt": "Child who loves reading learning math through story-based approaches",
+  "readingTime": 14,
+  "author": {
+    "name": "Mrs. Amanda Roberts",
+    "role": "Mother and Former English Teacher"
+  },
+  "translations": {
+    "vi": "con-ghet-toan-chi-thich-doc-sach"
+  },
+  "content": {
+    "intro": "My daughter would read from morning until night if I let her. Her teachers praise her writing. Her vocabulary amazes other parents. But put a math worksheet in front of her and everything changes: sighing, complaining, 'This is too hard,' 'This is so boring.' I spent years worrying she was 'imbalanced'—gifted in language, deficient in math. What I eventually learned changed everything: she wasn't bad at math. She was learning the wrong way for her brain.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Failed Approach: Forcing Balance"
+      },
+      {
+        "type": "paragraph",
+        "text": "When I noticed my daughter's math resistance, my first instinct was to force more math into her life."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What I Tried"
+      },
+      {
+        "type": "list",
+        "items": [
+          "'You must finish math homework before reading any books'",
+          "More math worksheets—if she's struggling, she needs more practice, right?",
+          "Restricting reading time to 'balance' with math time",
+          "Comparing her to math-loving children: 'See how Tommy enjoys math?'"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What Happened"
+      },
+      {
+        "type": "list",
+        "items": [
+          "She rushed through math sloppily just to get to her books",
+          "More worksheets meant more resistance, not more learning",
+          "Restricting reading made her resent math even more",
+          "Comparisons damaged her confidence: 'I'm just not a math person'"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "warning",
+        "text": "The forcing approach backfired completely. I wasn't creating balance—I was creating math anxiety and damaging our relationship. She started hiding from me when it was homework time."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Realization: WHY She Loved Reading"
+      },
+      {
+        "type": "paragraph",
+        "text": "I finally asked myself a different question. Instead of 'How do I make her like math?' I asked 'WHY does she love reading so much?'"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What Reading Offered Her"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Stories**: Characters she cared about, plots that engaged her",
+          "**Context**: Everything happened for a reason within a narrative",
+          "**Imagination**: She could visualize scenes in her mind",
+          "**Emotional connection**: She felt something when reading",
+          "**Agency**: She chose books that interested her"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What Math Offered Her"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Abstract numbers with no story",
+          "Isolated problems with no context",
+          "Nothing to visualize or imagine",
+          "No emotional engagement whatsoever",
+          "No choice—just assigned worksheets"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The contrast was obvious once I saw it. Math, as presented, offered nothing that engaged her brain. This wasn't a math deficiency—it was a presentation problem."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The New Approach: Math That Speaks Her Language"
+      },
+      {
+        "type": "paragraph",
+        "text": "I stopped trying to change my daughter. Instead, I changed how math was presented."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 1: Story-Based Math"
+      },
+      {
+        "type": "paragraph",
+        "text": "Instead of '24 ÷ 6 = ?', I presented:"
+      },
+      {
+        "type": "paragraph",
+        "text": "'Princess Elena has 24 magic crystals to distribute equally among her 6 guardians. How many crystals does each guardian receive?'"
+      },
+      {
+        "type": "paragraph",
+        "text": "Same math. Completely different engagement. She cared about Princess Elena. She wanted to solve the problem."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 2: Math in Books She Loved"
+      },
+      {
+        "type": "paragraph",
+        "text": "I found math everywhere in her favorite stories:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Harry Potter: How many Galleons did Harry have after buying supplies?",
+          "Percy Jackson: If the quest took 12 days, and they're halfway done...",
+          "Narnia: If Turkish Delight costs this much, how many pieces with this budget?"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "She was suddenly doing math eagerly—within contexts she already loved."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 3: Writing About Math"
+      },
+      {
+        "type": "paragraph",
+        "text": "Since she loved writing, I invited her to write about math concepts. 'Explain division to a younger child using a story.' 'Write a mystery where the detective uses multiplication to solve the case.'"
+      },
+      {
+        "type": "paragraph",
+        "text": "The act of writing about math forced deep processing—and she enjoyed the writing part enough to engage with the math part."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 4: Visual and Verbal Together"
+      },
+      {
+        "type": "paragraph",
+        "text": "Verbal learners often struggle with pure visual math. I helped her verbalize math processes:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "'Talk me through your thinking'",
+          "'Explain this problem out loud before solving'",
+          "'Tell a story about what's happening in this equation'"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Giving her permission to use language—her strength—in math reduced the foreign feeling of number work."
+      },
+      {
+        "type": "table",
+        "caption": "Before vs. After: Same Problems, Different Framing",
+        "headers": [
+          "Traditional Presentation",
+          "Story-Based Presentation",
+          "Her Response"
+        ],
+        "rows": [
+          [
+            "What is 48 ÷ 8?",
+            "8 friends found 48 seashells. Share fairly?",
+            "Engaged, solved quickly"
+          ],
+          [
+            "5 × 7 = ?",
+            "5 rows of 7 wizard books in the library",
+            "Visualized, answered easily"
+          ],
+          [
+            "Solve: 156 - 89",
+            "Dragon had 156 gold coins, spent 89 on a spell",
+            "Created story continuation"
+          ],
+          [
+            "Find the pattern: 2,4,8,16",
+            "Magic beans doubled each day. Day 5?",
+            "Drew pictures, found answer"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Unexpected Discovery: She Was Good at Math"
+      },
+      {
+        "type": "paragraph",
+        "text": "Six months into the new approach, something surprising emerged: my daughter was actually quite good at math. Once the barrier of presentation was removed, her logical thinking—which she used for analyzing stories—transferred to mathematical reasoning."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Skills She Already Had From Reading"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Pattern recognition**: Identifying story themes = identifying mathematical patterns",
+          "**Sequential reasoning**: Following plots = following multi-step problems",
+          "**Logical deduction**: Predicting story outcomes = deducing mathematical solutions",
+          "**Attention to detail**: Noticing text clues = catching problem details"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Her reading wasn't making her bad at math. The skills were transferable—she just needed a bridge between the two."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Addressing the 'Imbalanced' Fear"
+      },
+      {
+        "type": "paragraph",
+        "text": "Many parents worry about children being 'too literary' or 'too mathematical.' But this binary thinking is problematic."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What I Learned"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Strength isn't weakness**: Loving reading doesn't cause math weakness",
+          "**Learning styles exist**: Some children need verbal/story-based approaches",
+          "**Interest can be created**: Presentation matters more than subject",
+          "**Skills transfer**: Reading skills actually support mathematical thinking",
+          "**The real enemy is anxiety**: Fear of math damages performance more than 'imbalance'"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "insight",
+        "text": "The goal isn't to make a reading-lover into a math-lover. The goal is to remove barriers so they can use their natural intelligence for math without resistance. Tolerance of math is a perfectly acceptable outcome."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Practical Tips for Parents"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Stop Forcing, Start Connecting"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Don't restrict reading as punishment for math avoidance",
+          "Find math in books your child already loves",
+          "Use their interests as context for math problems",
+          "Let them write or tell stories about math"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Change the Presentation"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Convert abstract problems into story problems",
+          "Use characters and contexts your child cares about",
+          "Allow verbal processing—talking through problems",
+          "Make math visual with drawings and diagrams"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Build Confidence Gradually"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Start with problems they can definitely solve",
+          "Praise effort and strategy, not just correct answers",
+          "Never say 'This is easy'—it increases pressure",
+          "Let them see you make mathematical mistakes and recover"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Separate Identity From Performance"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Never say 'You're just not a math person'",
+          "Challenge 'I'm bad at math' statements directly",
+          "Share stories of literary people who used math well",
+          "Emphasize that struggling is part of learning, not a character flaw"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Where We Are Now"
+      },
+      {
+        "type": "paragraph",
+        "text": "My daughter still prefers reading to math—that hasn't changed. But her relationship with math has transformed:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "She no longer dreads math homework",
+          "She solves word problems confidently (story-based problems are her strength!)",
+          "She doesn't identify as 'bad at math' anymore",
+          "She sometimes creates math problems for her younger brother—using stories, of course",
+          "Her math grades are now above average"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "She didn't need more math drills. She needed math that spoke her language."
+      },
+      {
+        "type": "callout",
+        "style": "success",
+        "text": "The biggest victory wasn't better grades—it was hearing her say 'Math is okay. I can do it.' For a child who once cried at the sight of numbers, that's everything."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Is it normal for children who love reading to dislike math?",
+      "answer": "Yes, it's very common. Reading-lovers often struggle with how math is presented—abstract, decontextualized, non-narrative. This isn't a deficiency; it's a learning style mismatch. Story-based math presentation often solves the problem completely."
+    },
+    {
+      "question": "Should I restrict reading time to force more math practice?",
+      "answer": "No—this typically backfires. Restricting reading creates resentment toward math ('I can't read because of stupid math'). Instead, use their reading interest to make math more engaging. Find math in their favorite books. Let them write stories involving math."
+    },
+    {
+      "question": "Is my child 'imbalanced' if they prefer reading to math?",
+      "answer": "The 'imbalance' framing is misleading. Having strengths isn't a problem. Reading skills actually support mathematical thinking—pattern recognition, sequential reasoning, attention to detail. The goal isn't equal passion; it's removing barriers so natural intelligence applies to math."
+    },
+    {
+      "question": "How can I make math more appealing to a bookworm?",
+      "answer": "Present math through stories and contexts they care about. Convert abstract problems into narratives with characters. Find math in books they already love. Let them write about math concepts. Allow verbal processing—talking through problems. Use their verbal strengths rather than fighting against them."
+    },
+    {
+      "question": "Will my reading-focused child struggle in math throughout school?",
+      "answer": "Not necessarily. Many literary-minded children excel at word problems once they engage with math. The skills used for reading—logical deduction, pattern recognition, sequential thinking—transfer to mathematics. The barrier is usually presentation, not ability."
+    },
+    {
+      "question": "Should I be worried if my child says 'I'm not a math person'?",
+      "answer": "Yes—this fixed mindset belief limits performance. Challenge it directly: 'Math people aren't born; they're developed. You haven't found your math approach yet.' Share examples of writers and artists who used math. Emphasize that struggle means learning is happening, not that ability is lacking."
+    },
+    {
+      "question": "What books combine stories and math for reluctant math learners?",
+      "answer": "Look for 'math adventure' books like Bedtime Math, The Number Devil, Murderous Maths series, and Sir Cumference books. Also use any book they love and create math problems within its world—Harry Potter economics, Percy Jackson quest calculations, etc."
+    },
+    {
+      "question": "How long does it take to change a child's attitude toward math?",
+      "answer": "Attitude changes happen gradually over months, not days. You may see reduced resistance within weeks of changing presentation, but genuine confidence takes longer. Consistency is key—maintain the story-based, low-pressure approach even when progress seems slow."
+    },
+    {
+      "question": "Should I hire a math tutor for my reading-focused child?",
+      "answer": "A tutor can help, but only if they understand verbal learners. A tutor who just does more worksheets will likely fail. Look for tutors who use stories, word problems, and verbal explanation. Interview them specifically about their approach to literary-minded students."
+    },
+    {
+      "question": "Is it okay if my child just 'tolerates' math rather than loves it?",
+      "answer": "Absolutely. Not every child will love math, just as not every child loves reading. The goal is competence without anxiety. If your child can do math confidently and sees it as a useful skill rather than a dreaded enemy, you've succeeded—regardless of whether they'd choose math for fun."
+    }
+  ],
+  "cta": {
+    "text": "Help your reader discover that math can be engaging too. Sorokid uses story-based approaches and visual learning that resonate with verbal learners—making math feel less foreign.",
+    "buttonText": "Try Story-Based Math",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "Child Loves Reading But Hates Math: A Parent's Guide | Sorokid",
+    "metaDescription": "Why reading-lovers often struggle with math and how to change it. Story-based strategies that help verbal learners engage with mathematics without resistance.",
+    "keywords": "child hates math loves reading, math for literature lovers, verbal learner math strategies, story-based math learning, humanities child math approach, make math interesting readers"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-08",
+    "author": "Mrs. Amanda Roberts"
+  },
+  "postId": "con-ghet-toan-chi-thich-doc-sach"
+}

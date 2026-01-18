@@ -1,0 +1,345 @@
+{
+  "slug": "phep-tru-co-muon-soroban",
+  "title": "Phép trừ có mượn trên Soroban – Thực hành chi tiết",
+  "description": "Phép trừ có mượn ngược lại với cộng có nhớ. Khi cột hiện tại không đủ trừ, cần mượn từ cột bên trái.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "trừ có mượn soroban",
+    "phép trừ nâng cao soroban",
+    "trừ mượn hàng chục soroban",
+    "bài tập trừ soroban",
+    "cách trừ trên bàn tính",
+    "luyện trừ soroban",
+    "trừ liên tiếp soroban",
+    "kỹ thuật trừ soroban",
+    "mượn qua nhiều cột soroban",
+    "hướng dẫn trừ soroban",
+    "trừ số có số 0 soroban",
+    "so sánh cộng trừ soroban"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-29T01:32:21.604Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/tre-hoc-phep-tru-co-muon.jpg",
+  "imageAlt": "Trẻ em học phép trừ có mượn trên bàn tính Soroban",
+  "readingTime": 14,
+  "categoryOrder": 1,
+  "order": 11,
+  "translations": {
+    "en": "subtraction-with-borrowing-on-soroban"
+  },
+  "content": {
+    "intro": "Nếu cộng có nhớ là \"thêm 1 cột trái, trừ bạn\", thì trừ có mượn là \"bớt 1 cột trái, cộng bạn\". Hiểu ngược lại, con sẽ làm được phép trừ.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Quy trình trừ trên Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi gặp phép trừ, con cần xác định:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Bước 1:** Có đủ hạt để trừ trực tiếp không?",
+          "**Nếu đủ:** Gạt hạt xuống (trừ đơn giản)",
+          "**Nếu thiếu hạt đất nhưng có hạt trời:** Dùng Bạn của 5 (trừ)",
+          "**Nếu cột hiện tại không đủ:** Dùng Bạn của 10 (mượn cột trái)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ 1: 52 - 27 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 1: Biểu diễn 52**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Cột chục: 5 (hạt trời)",
+          "Cột đơn vị: 2 (2 hạt đất)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 2: Trừ 27 (từ trái sang phải)**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Trừ 2 ở hàng chục:** 5 - 2 = 3. Đang có hạt trời (5), trừ 2 không đủ hạt đất. → Dùng Bạn của 5 (trừ): -5 +3. Gạt hạt trời lên, thêm 3 hạt đất. Kết quả: 3 hạt đất.",
+          "**Trừ 7 ở hàng đơn vị:** 2 - 7 = âm. Không đủ! → Dùng Bạn của 10 (mượn): -1 cột trái, +3 cột hiện tại."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Xử lý hàng đơn vị:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bớt 1 từ hàng chục: 3 - 1 = 2",
+          "Cộng 3 vào hàng đơn vị: 2 + 3 = 5"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Hàng chục = 2, hàng đơn vị = 5. Tổng = 25. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ 2: 83 - 48 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 1: Biểu diễn 83**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Cột chục: 8 (hạt trời + 3 hạt đất)",
+          "Cột đơn vị: 3 (3 hạt đất)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 2: Trừ 48**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Trừ 4 ở hàng chục:** 8 - 4 = 4. Đang có 8 (= 5 + 3), trừ 4: có 3 hạt đất, trừ 4 không đủ. → Dùng Bạn của 5: -5 +1. Gạt hạt trời lên, thêm 1 hạt đất. Kết quả: 4 hạt đất.",
+          "**Trừ 8 ở hàng đơn vị:** 3 - 8 = âm. → Dùng Bạn của 10: -1 cột trái, +2 cột hiện tại."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Xử lý hàng đơn vị:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bớt 1 từ hàng chục: 4 - 1 = 3",
+          "Cộng 2 vào hàng đơn vị: 3 + 2 = 5"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Hàng chục = 3, hàng đơn vị = 5. Tổng = 35. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ 3: 400 - 156 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 1: Biểu diễn 400**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Cột trăm: 4",
+          "Cột chục: 0",
+          "Cột đơn vị: 0"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 2: Trừ 156**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Trừ 1 ở hàng trăm:** 4 - 1 = 3. Trừ đơn giản. Kết quả: 3.",
+          "**Trừ 5 ở hàng chục:** 0 - 5 = âm. → Dùng Bạn của 10: -1 cột trái, +5 cột hiện tại. Hàng trăm: 3 - 1 = 2. Hàng chục: 0 + 5 = 5.",
+          "**Trừ 6 ở hàng đơn vị:** 0 - 6 = âm. → Dùng Bạn của 10: -1 cột trái, +4 cột hiện tại. Hàng chục: 5 - 1 = 4. Hàng đơn vị: 0 + 4 = 4."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Hàng trăm = 2, hàng chục = 4, hàng đơn vị = 4. Tổng = 244. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Trường hợp đặc biệt: Mượn liên tiếp"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ví dụ: 300 - 5 = ?"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Hàng đơn vị: 0 - 5 = âm. Cần mượn.",
+          "Hàng chục: 0, không có gì để mượn! Cần mượn tiếp từ hàng trăm."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cách làm:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bớt 1 từ hàng trăm: 3 - 1 = 2",
+          "Hàng chục nhận 10: 0 + 10 = 10. Nhưng 1 cột chỉ biểu diễn 0-9, nên: hàng chục = 10 - 1 = 9 (mượn tiếp cho đơn vị)",
+          "Hàng đơn vị: 0 + 10 - 5 = 5"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** 300 - 5 = 295. ✓"
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Mượn liên tiếp (qua nhiều cột 0) là trường hợp khó. Cần luyện riêng các bài như 100-1, 200-5, 1000-7."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bài tập thực hành"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mức 1: Trừ đơn giản"
+      },
+      {
+        "type": "paragraph",
+        "text": "15-7, 12-8, 14-6, 13-9, 11-5"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mức 2: Trừ 2 số 2 chữ số"
+      },
+      {
+        "type": "paragraph",
+        "text": "42-18, 63-27, 81-35, 54-29, 72-48"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mức 3: Trừ với số có nhiều số 0"
+      },
+      {
+        "type": "paragraph",
+        "text": "100-23, 200-56, 300-78, 500-123, 1000-456"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "So sánh cộng có nhớ và trừ có mượn"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "",
+          "Cộng có nhớ",
+          "Trừ có mượn"
+        ],
+        "rows": [
+          [
+            "Khi nào dùng",
+            "Tổng > 9",
+            "Không đủ để trừ"
+          ],
+          [
+            "Cột bên trái",
+            "+1 (thêm)",
+            "-1 (bớt)"
+          ],
+          [
+            "Cột hiện tại",
+            "- Bạn của số cộng",
+            "+ Bạn của số trừ"
+          ],
+          [
+            "Ví dụ",
+            "7+6: +1 trái, -4 hiện tại",
+            "13-6: -1 trái, +4 hiện tại"
+          ]
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Trừ có mượn ngược hoàn toàn với cộng có nhớ. Nếu con đã vững cộng, học trừ sẽ dễ hơn nhiều."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con luyện trừ có mượn trên Sorokid. App có chế độ luyện riêng phép trừ, giúp con không nhầm với cộng."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Con hay nhầm cộng và trừ, phải làm sao?",
+      "answer": "Luyện riêng từng phép tính. Khi thuần thục mới trộn lẫn. Hoặc nhắc con: Cộng thì THÊM ở trái, trừ thì BỚT ở trái. Thực hành nhiều sẽ thành phản xạ."
+    },
+    {
+      "question": "Tại sao trừ trên Soroban khác với trừ trên giấy?",
+      "answer": "Soroban tính từ trái sang phải (hàng lớn trước). Giấy tính phải sang trái. Cách Soroban giúp não xử lý số lớn hiệu quả hơn và rèn tính nhẩm."
+    },
+    {
+      "question": "Mượn liên tiếp qua nhiều cột 0 rất khó, làm sao?",
+      "answer": "Đây là trường hợp khó nhất. Cho con luyện riêng các bài 100-1, 200-3, 1000-5. Làm chậm, từng bước một. Khi quen sẽ nhanh hơn."
+    },
+    {
+      "question": "Trừ có mượn khó hơn cộng có nhớ không?",
+      "answer": "Tương đương. Nếu đã vững cộng, học trừ sẽ nhanh hơn vì quy tắc ngược lại. Chỉ cần đảo: thêm ↔ bớt, +1 trái ↔ -1 trái."
+    },
+    {
+      "question": "Bao lâu thì con trừ nhanh được?",
+      "answer": "Tương tự cộng, khoảng 2-3 tháng luyện đều đặn. Nếu con đã vững cộng, học trừ sẽ nhanh hơn, có thể 1-2 tháng."
+    },
+    {
+      "question": "Có nên học cộng và trừ song song không?",
+      "answer": "Nên học cộng trước, vững rồi mới sang trừ. Khi đã biết cả hai, có thể luyện xen kẽ để rèn phản xạ chuyển đổi giữa cộng và trừ."
+    },
+    {
+      "question": "Làm sao kiểm tra kết quả trừ?",
+      "answer": "Cộng ngược lại: Kết quả + số trừ = số bị trừ. Ví dụ: 52-27=25 → Kiểm tra: 25+27=52. Đây là cách tốt để con tự kiểm tra."
+    },
+    {
+      "question": "Con hay quên cộng bạn vào cột hiện tại sau khi mượn?",
+      "answer": "Nói to khi làm: '-1 trái, cộng bạn'. Tập thói quen làm theo thứ tự: 1) Bớt 1 cột trái, 2) Cộng bạn vào cột hiện tại. Dần dần sẽ tự động."
+    },
+    {
+      "question": "Trừ số có nhiều chữ số 0 (như 1000-5) có mẹo gì không?",
+      "answer": "Mượn qua mỗi cột 0 biến thành 9. Ví dụ: 1000-5: cột nghìn giảm 1 → 0, các cột 0 biến thành 9, cột cuối: 10-5=5. Kết quả: 995. Luyện riêng dạng này."
+    },
+    {
+      "question": "Nên luyện trừ bao lâu mỗi ngày?",
+      "answer": "10-15 phút cho phần trừ. Kết hợp với cộng để rèn khả năng chuyển đổi. Tổng thời gian học Soroban khoảng 20-30 phút mỗi ngày là phù hợp."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có bài tập trừ từ cơ bản đến nâng cao, với gợi ý từng bước khi con gặp khó.",
+    "buttonText": "Cho con luyện thử",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Phép trừ có mượn trên Soroban – Thực hành chi tiết",
+    "description": "Phép trừ có mượn ngược lại với cộng có nhớ. Khi cột hiện tại không đủ trừ, cần mượn từ cột bên trái.",
+    "keywords": "trừ có mượn soroban, phép trừ nâng cao soroban, trừ mượn hàng chục soroban, bài tập trừ soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-29",
+    "author": "ThS. Lê Minh Quân"
+  },
+  "author": {
+    "name": "Minh Anh",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
+}

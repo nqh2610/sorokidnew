@@ -1,0 +1,463 @@
+{
+  "slug": "how-to-read-numbers-on-soroban",
+  "title": "Reading Numbers on the Soroban: The Complete Visual Guide for Parents Who Never Learned",
+  "description": "When my son started soroban, I had no idea how to read those beads. After 6 months of learning alongside him, here's the simple system that lets any parent help their child—even with zero prior knowledge.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban numbers",
+    "reading abacus",
+    "soroban basics",
+    "abacus number representation",
+    "how to read soroban",
+    "soroban bead values",
+    "heaven earth beads",
+    "soroban place value",
+    "japanese abacus reading",
+    "soroban for beginners",
+    "parent soroban guide",
+    "soroban number system"
+  ],
+  "status": "scheduled",
+  "publishedAt": "2026-02-01T07:33:13.692Z",
+  "createdAt": "2025-12-31",
+  "image": "/blog/tre-bieu-dien-so-tren-soroban.jpg",
+  "imageAlt": "Numbers represented on soroban beads",
+  "readingTime": 14,
+  "author": {
+    "name": "David Mitchell",
+    "role": "Engineer & Father of Three"
+  },
+  "translations": {
+    "vi": "cach-bieu-dien-so-tren-soroban"
+  },
+  "content": {
+    "intro": "When my 7-year-old started soroban, I felt completely useless. He'd show me his homework, beads in some mysterious configuration, and I'd smile and nod—having no clue if it was right. 'That's great, buddy!' I'd say, secretly hoping he hadn't just shown me the mathematical equivalent of gibberish. After months of feeling helpless, I decided to learn the system properly. Turns out, reading a soroban is far simpler than it looks—and once you understand it, you can actually HELP your child. This guide is everything I wish someone had explained to me on day one.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Soroban Anatomy: What You're Looking At"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before reading numbers, let's identify the parts of the soroban:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**The Frame**: The rectangular outer border holding everything together",
+          "**The Beam (Reckoning Bar)**: The horizontal bar dividing the soroban into upper and lower sections",
+          "**Rods (Columns)**: Vertical wires or rods running through the frame—each represents a place value",
+          "**Heaven Beads (Upper Beads)**: One bead above the beam on each rod—worth 5 each",
+          "**Earth Beads (Lower Beads)**: Four beads below the beam on each rod—worth 1 each",
+          "**Unit Dots**: Small dots on the beam marking every third rod (ones, thousands, millions)"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Why 'heaven' and 'earth'? In Japanese tradition, the top represents heaven (ten - 天), the bottom represents earth (chi - 地). It's poetic, but for practical purposes, just remember: top bead = 5, bottom beads = 1 each."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Golden Rule: Count Only What Touches the Beam"
+      },
+      {
+        "type": "paragraph",
+        "text": "This is the fundamental principle that unlocks everything:"
+      },
+      {
+        "type": "callout",
+        "style": "warning",
+        "text": "ONLY beads touching the reckoning beam count. Beads pushed AWAY from the beam equal zero. A heaven bead pushed DOWN toward the beam = 5. Each earth bead pushed UP toward the beam = 1."
+      },
+      {
+        "type": "paragraph",
+        "text": "Think of the beam as a 'counting line.' Beads cross this line to be counted. Beads away from the line don't exist mathematically."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Reading Single Digits: 0 Through 9"
+      },
+      {
+        "type": "paragraph",
+        "text": "Let's walk through every single digit on one rod:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Zero (0)"
+      },
+      {
+        "type": "paragraph",
+        "text": "All beads away from the beam. Heaven bead pushed up. Earth beads pushed down. Nothing touches the counting line. This is the 'cleared' or 'reset' position."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "One Through Four (1-4)"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**1**: One earth bead touching the beam (heaven bead stays up)",
+          "**2**: Two earth beads touching the beam",
+          "**3**: Three earth beads touching the beam",
+          "**4**: All four earth beads touching the beam"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Five (5)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Here's where it changes: Only the heaven bead touches the beam (pushed down). All earth beads are pushed away (down). One bead showing = 5. This is efficient because you don't need five individual beads to show '5.'"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Six Through Nine (6-9)"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**6**: Heaven bead down (5) + one earth bead up (1) = 6",
+          "**7**: Heaven bead down (5) + two earth beads up (2) = 7",
+          "**8**: Heaven bead down (5) + three earth beads up (3) = 8",
+          "**9**: Heaven bead down (5) + four earth beads up (4) = 9"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "insight",
+        "text": "Notice: you can never show '10' on a single rod. Maximum is 9 (5+4). This perfectly mirrors our base-10 number system—when you reach 10, you 'carry' to the next rod."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Reading Multi-Digit Numbers: Place Value"
+      },
+      {
+        "type": "paragraph",
+        "text": "Each rod represents a place value, just like written numbers. The key: identify which rod is the 'ones' place first."
+      },
+      {
+        "type": "paragraph",
+        "text": "Standard convention:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Rightmost rod being used**: Ones (units)",
+          "**Next rod left**: Tens",
+          "**Next rod left**: Hundreds",
+          "**Next rod left**: Thousands",
+          "**Continue pattern**: Ten-thousands, hundred-thousands, millions..."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Many sorobans have small dots on the beam marking every third rod (ones, thousands, millions). These help you quickly identify place values."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Example: Reading 247"
+      },
+      {
+        "type": "paragraph",
+        "text": "On three rods, from left to right:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**First rod (hundreds)**: Shows 2 (two earth beads up)",
+          "**Second rod (tens)**: Shows 4 (four earth beads up)",
+          "**Third rod (ones)**: Shows 7 (heaven bead down + two earth beads up)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Reading left to right: 2-4-7 = 247. Just like reading a written number!"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Example: Reading 5,082"
+      },
+      {
+        "type": "paragraph",
+        "text": "On four rods, from left to right:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**First rod (thousands)**: Shows 5 (heaven bead down only)",
+          "**Second rod (hundreds)**: Shows 0 (all beads away from beam)",
+          "**Third rod (tens)**: Shows 8 (heaven bead down + three earth beads up)",
+          "**Fourth rod (ones)**: Shows 2 (two earth beads up)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Reading: 5-0-8-2 = 5,082. The zero rod is crucial—don't skip it!"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Common Parent Mistakes (I Made Them All)"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mistake 1: Counting ALL Beads"
+      },
+      {
+        "type": "paragraph",
+        "text": "I originally counted every bead I could see. Wrong! Only beads TOUCHING the beam count. The rest are in 'storage' position."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mistake 2: Thinking Heaven Bead = 1"
+      },
+      {
+        "type": "paragraph",
+        "text": "It looks like just one bead, so I assumed it was worth 1. Nope—the heaven bead is worth 5. This is what makes the soroban efficient."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mistake 3: Reading Right to Left"
+      },
+      {
+        "type": "paragraph",
+        "text": "I thought you'd read the beads from right to left (starting at ones). Actually, read left to right, just like reading any number. The rightmost active rod is still the ones place, but you verbalize left to right."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mistake 4: Combining Beads Across Rods"
+      },
+      {
+        "type": "paragraph",
+        "text": "Each rod is completely separate. I once thought '2 beads here plus 3 beads there = 5.' No! Rod 1 showing 2 and Rod 2 showing 3 means '23' (if those are tens and ones) or some other two-digit number—not 5."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mistake 5: Ignoring Zero Columns"
+      },
+      {
+        "type": "paragraph",
+        "text": "When a rod shows zero (all beads away from beam), it's tempting to skip it. Don't! '3-0-5' is 305, very different from '35.'"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Practice Exercises: Test Yourself"
+      },
+      {
+        "type": "paragraph",
+        "text": "Can you read these configurations?"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Single rod**: Heaven bead down, three earth beads up → (Answer: 8)",
+          "**Single rod**: No heaven bead, four earth beads up → (Answer: 4)",
+          "**Single rod**: Heaven bead down, no earth beads → (Answer: 5)",
+          "**Single rod**: All beads away from beam → (Answer: 0)",
+          "**Two rods**: Left shows 6, right shows 3 → (Answer: 63)",
+          "**Three rods**: Left shows 1, middle shows 0, right shows 7 → (Answer: 107)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why This Matters for Helping Your Child"
+      },
+      {
+        "type": "paragraph",
+        "text": "Once you can read the soroban, you can:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Check their work**: Is that answer actually showing 47 or 74?",
+          "**Spot mistakes quickly**: 'I think you meant to show 6, but I'm seeing 8'",
+          "**Help when they're stuck**: Instead of guessing, you can actually see where they went wrong",
+          "**Practice together**: Call out numbers and have them set them, then verify",
+          "**Build their confidence**: Kids love when parents understand what they're learning"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "success",
+        "text": "My son's face lit up the first time I said, 'Wait, that's 56, not 65—check your tens rod.' He couldn't believe I actually understood what he was doing. Worth every minute I spent learning."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Advanced: Reading Decimals"
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban can represent decimals too. The convention:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Designate a 'decimal point' rod**: Usually the one with a dot",
+          "**Rods to the right of decimal**: Tenths, hundredths, thousandths...",
+          "**Rods to the left of decimal**: Ones, tens, hundreds..."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "So if the 'decimal' rod is in the middle, a soroban showing '3' on the ones, '1' on the tenths, '4' on the hundredths would be 3.14."
+      },
+      {
+        "type": "paragraph",
+        "text": "Most beginners don't need decimals—focus on whole numbers first."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The 5-Minute Parent Challenge"
+      },
+      {
+        "type": "paragraph",
+        "text": "Here's my challenge to you: spend just 5 minutes with your child's soroban (or the app) learning to read numbers. Try these steps:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Step 1**: Clear the soroban (all beads away from beam)",
+          "**Step 2**: Set 5 on one rod (push heaven bead down)",
+          "**Step 3**: Set 3 on another rod (push three earth beads up)",
+          "**Step 4**: Read what you made: 53 (or 35, depending on rod positions)",
+          "**Step 5**: Have your child quiz you—they'll love being the teacher!"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Five minutes. That's all it takes to go from 'I have no idea' to 'I can actually help.'"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "FAQ: Parent Questions About Reading Soroban"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What if there's no bead at the beam?"
+      },
+      {
+        "type": "paragraph",
+        "text": "That rod shows zero. All beads pushed away from the beam = 0 for that place value. Don't skip it when reading multi-digit numbers."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "How do I know which rod is ones vs. tens?"
+      },
+      {
+        "type": "paragraph",
+        "text": "The rightmost rod being used is always ones. Look for the unit dot on the beam—many sorobans mark every third rod. When in doubt, ask your child which rod they designated as ones."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Can a single rod show more than 9?"
+      },
+      {
+        "type": "paragraph",
+        "text": "No. Maximum per rod is 9 (heaven bead 5 + four earth beads 4 = 9). This mirrors our base-10 system—when you hit 10, you carry to the next rod."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What if there's no bead at the beam?",
+        "answer": "That rod shows zero. All beads pushed away from the beam = 0 for that place value. Don't skip it when reading multi-digit numbers."
+      },
+      {
+        "question": "How do I know which rod is ones vs. tens?",
+        "answer": "The rightmost rod being used is always ones. Look for the unit dot on the beam—many sorobans mark every third rod. When in doubt, ask your child which rod they designated as ones."
+      },
+      {
+        "question": "Can a single rod show more than 9?",
+        "answer": "No. Maximum per rod is 9 (heaven bead 5 + four earth beads 4 = 9). This mirrors our base-10 system—when you hit 10, you carry to the next rod."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Want to practice reading and setting numbers? Sorokid has guided exercises that let you learn alongside your child.",
+      "buttonText": "Try Free",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "faq": [
+    {
+      "question": "How do I read numbers on a soroban?",
+      "answer": "Count only beads touching the beam. The heaven bead (above beam) equals 5. Each earth bead (below beam) equals 1. Add them together for that rod's value. Read multi-digit numbers left to right, with the rightmost rod being ones."
+    },
+    {
+      "question": "What is the heaven bead worth on a soroban?",
+      "answer": "The heaven bead (the single bead above the beam) is worth 5 when pushed down toward the beam. When pushed away from the beam, it contributes zero to the value."
+    },
+    {
+      "question": "What are earth beads worth on a soroban?",
+      "answer": "Each earth bead (the four beads below the beam) is worth 1 when pushed up toward the beam. Maximum value from earth beads alone is 4. Combined with the heaven bead, maximum per rod is 9."
+    },
+    {
+      "question": "Why can't a single soroban rod show 10?",
+      "answer": "Maximum per rod is 9 (heaven bead = 5, plus four earth beads = 4). This mirrors our base-10 number system. When you reach 10, you 'carry' to the next rod—just like in written arithmetic."
+    },
+    {
+      "question": "How do I identify the ones place on a soroban?",
+      "answer": "The rightmost rod being used is always the ones place. Many sorobans have small dots on the beam marking the ones rod (and every third rod for thousands, millions). Ask your child which rod they designated if unsure."
+    },
+    {
+      "question": "What do the dots on the soroban beam mean?",
+      "answer": "The dots mark unit positions—typically the ones rod and every third rod after (thousands, millions). They help you quickly identify place values when working with larger numbers."
+    },
+    {
+      "question": "How do I represent zero on a soroban?",
+      "answer": "Zero is shown when all beads on a rod are pushed away from the beam—heaven bead up, earth beads down. Nothing touches the counting line. This is also called the 'cleared' position."
+    },
+    {
+      "question": "Can parents learn to read soroban even without experience?",
+      "answer": "Absolutely! The system is simpler than it looks. Most parents can learn to read numbers in 5-10 minutes. Understanding the basics lets you check your child's work and help when they're stuck."
+    },
+    {
+      "question": "What's the most common mistake parents make reading soroban?",
+      "answer": "Counting all visible beads instead of only beads touching the beam. Remember: beads away from the beam equal zero. Only count what's at the counting line."
+    },
+    {
+      "question": "Can soroban represent decimal numbers?",
+      "answer": "Yes. You designate one rod as the decimal point. Rods to the right become tenths, hundredths, etc. Rods to the left remain ones, tens, hundreds. Most beginners focus on whole numbers first."
+    }
+  ],
+  "cta": {
+    "text": "Ready to understand what your child is learning? Sorokid includes parent guides and practice exercises so you can learn the soroban system alongside your child—no prior experience needed.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "How to Read Numbers on Soroban: Complete Visual Guide for Parents | Sorokid",
+    "metaDescription": "Learn to read soroban numbers in 5 minutes. This visual guide explains heaven and earth beads, place values, and common mistakes—so you can actually help your child.",
+    "keywords": "soroban numbers, reading abacus, soroban basics, abacus number representation, how to read soroban, soroban bead values, heaven earth beads, soroban place value"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-28",
+    "author": "David Mitchell"
+  },
+  "postId": "cach-bieu-dien-so-tren-soroban"
+}

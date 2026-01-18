@@ -431,7 +431,8 @@ export default function LessonPage() {
     if (status === 'unauthenticated') {
       router.push(localizeUrl('/login'));
     }
-  }, [status, router, localizeUrl]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]); // 🔧 FIX: Chỉ depend on status
 
   // 🔒 TIER CHECK: Fetch tier và kiểm tra quyền truy cập
   useEffect(() => {

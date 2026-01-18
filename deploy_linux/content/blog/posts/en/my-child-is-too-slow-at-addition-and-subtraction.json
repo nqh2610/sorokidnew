@@ -1,0 +1,222 @@
+{
+  "slug": "my-child-is-too-slow-at-addition-and-subtraction",
+  "title": "My Child Is Too Slow at Addition and Subtraction – How to Speed Up",
+  "description": "Practical strategies to improve basic arithmetic fluency without causing stress or rushing.",
+  "category": "math-struggles",
+  "keywords": [
+    "slow addition",
+    "slow subtraction",
+    "math fluency",
+    "basic arithmetic"
+  ],
+  "status": "scheduled",
+  "publishedAt": "2026-02-09T01:33:13.706Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/be-lam-bai-cham.jpg",
+  "imageAlt": "Child practicing basic math facts",
+  "readingTime": 6,
+  "author": {
+    "name": "Mark Robinson",
+    "role": "Math Intervention Specialist"
+  },
+  "translations": {
+    "vi": "con-tinh-cong-tru-cham-qua"
+  },
+  "content": {
+    "intro": "Your child can do 8+7. It just takes them 10 seconds. By the time they calculate one problem, other kids are done with three. Here's how to build faster fluency.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Basic Facts Need to Be Fast"
+      },
+      {
+        "type": "paragraph",
+        "text": "When basic facts are slow, everything downstream suffers:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Multi-digit calculations take forever",
+          "Working memory gets overloaded",
+          "Word problems become impossible",
+          "Math becomes exhausting",
+          "Confidence drops"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Fluency with basic facts is the foundation. It's like reading – you need to recognize words automatically to focus on comprehension."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What's Slowing Your Child Down"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "If They...",
+          "They Probably..."
+        ],
+        "rows": [
+          [
+            "Count on fingers for everything",
+            "Haven't internalized number relationships"
+          ],
+          [
+            "Start from 1 every time",
+            "Don't use counting-on strategy"
+          ],
+          [
+            "Get inconsistent answers",
+            "Don't have facts memorized"
+          ],
+          [
+            "Take same time for 2+1 and 8+7",
+            "Process all facts the same way"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Building Speed the Right Way"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Ensure Understanding First"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before drilling speed, make sure they understand what addition and subtraction mean. Use objects, drawings, number lines."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Teach Strategies, Not Just Facts"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Doubles: 6+6=12, 7+7=14 (easy anchors)",
+          "Doubles plus one: 6+7=6+6+1=13",
+          "Make 10: 8+5 = 8+2+3 = 10+3 = 13",
+          "Subtract from 10: 15-8 = 10-8+5 = 2+5 = 7"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Focus on Fewer Facts at a Time"
+      },
+      {
+        "type": "paragraph",
+        "text": "Don't practice all 100+ facts at once. Master 2-3 new facts at a time. Then add more."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Practice Daily, Briefly"
+      },
+      {
+        "type": "paragraph",
+        "text": "5 minutes daily beats 30 minutes weekly. Consistency builds automaticity."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Use Games, Not Just Drills"
+      },
+      {
+        "type": "paragraph",
+        "text": "Card games, dice games, math video games – anything that gets repetition without feeling like work."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "The goal is automaticity – answering without conscious thought. Like how you don't think about spelling your name, you just write it. Math facts should feel the same."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Realistic Timeline"
+      },
+      {
+        "type": "paragraph",
+        "text": "With consistent daily practice:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Noticeable improvement: 2-4 weeks",
+          "Solid fluency with most facts: 2-3 months",
+          "Full automaticity: 4-6 months"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Be patient. Building neural pathways takes time, but it's permanent once established."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Are timed tests helpful or harmful?",
+        "answer": "It depends on the child. For some, timed practice is motivating. For anxious kids, it's counterproductive. Read your child – if timed tests cause tears, stop using them."
+      },
+      {
+        "question": "My child still uses fingers. Should I stop them?",
+        "answer": "Not forcibly. Fingers are a legitimate tool. But encourage strategies (doubles, make 10) that reduce finger dependence. The goal is to eventually not need fingers, but don't make fingers \"wrong.\""
+      },
+      {
+        "question": "What if they've already \"learned\" facts but are slow?",
+        "answer": "They've learned but not internalized. They need more practice with those specific facts. Use flashcards, games, or apps that target weak facts specifically."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "SoroKid builds basic fact fluency through adaptive practice – targeting exactly the facts your child needs to work on.",
+      "buttonText": "Start Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "faq": [
+    {
+      "question": "What will I learn from this article?",
+      "answer": "This article covers Practical strategies to improve basic arithmetic fluency without causing stress or rushing.."
+    },
+    {
+      "question": "Is this advice suitable for all ages?",
+      "answer": "The strategies discussed are primarily designed for children ages 5-12, but many principles can be adapted for different age groups."
+    },
+    {
+      "question": "How long does it take to see results?",
+      "answer": "Results vary by child, but most parents notice improvements within 2-4 weeks of consistent practice."
+    },
+    {
+      "question": "Do I need special materials or equipment?",
+      "answer": "Most activities can be done with everyday items. For Soroban-specific learning, the Sorokid app provides a virtual abacus."
+    },
+    {
+      "question": "Can I use these methods alongside school curriculum?",
+      "answer": "Absolutely! These approaches are designed to complement, not replace, what children learn at school."
+    }
+  ],
+  "cta": {
+    "text": "Ready to help your child build math confidence? Sorokid offers interactive lessons, games, and progress tracking designed for busy families.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "My Child Is Too Slow at Addition and Subtraction – How to Speed Up | Sorokid",
+    "metaDescription": "Practical strategies to improve basic arithmetic fluency without causing stress or rushing.",
+    "keywords": "slow addition, slow subtraction, math fluency, basic arithmetic"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-29",
+    "author": "Mark Robinson"
+  },
+  "postId": "con-tinh-cong-tru-cham-qua"
+}

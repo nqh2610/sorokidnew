@@ -241,14 +241,11 @@ export async function middleware(request) {
         pathname === route || pathname.startsWith(route + '/')
       );
       
-      console.log('[MW DEBUG] pathname:', pathname, 'routeHasOwnEnFile:', routeHasOwnEnFile);
+      // 🚀 Removed console.log in production for better performance
       
       if (!routeHasOwnEnFile) {
         const pathWithoutEn = removeLocalePrefix(pathname);
         rewriteUrl = new URL(pathWithoutEn, request.url);
-        console.log('[MW DEBUG] REWRITING to:', pathWithoutEn);
-      } else {
-        console.log('[MW DEBUG] SKIPPING rewrite - route has own EN file');
       }
     }
   }
@@ -354,16 +351,13 @@ export async function middleware(request) {
 export const config = {
   matcher: [
     /*
-     * 🔧 TỐI ƯU SHARED HOST: Chỉ match page routes, KHÔNG match:
-     * - api (API routes - self-handled)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - _next/data (ISR data files)
-     * - favicon.ico (favicon file)
-     * - public folder files (images, fonts, assets)
-     * - health check
-     * - manifest, robots, sitemap
+     * 🔧 TỐI ƯU: Chỉ match page routes
+     * 
+     * EXCLUDE:
+     * - api/* (API routes)
+     * - _next/* (ALL Next.js internal: static, image, data, webpack chunks)
+     * - Static files by extension
      */
-    '/((?!api|_next/static|_next/image|_next/data|favicon.ico|manifest\\.json|robots\\.txt|sitemap\\.xml|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf|otf|mp3|mp4|pdf)$).*)',
+    '/((?!api|_next|favicon\\.ico|manifest\\.json|robots\\.txt|sitemap|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf|otf|mp3|mp4|pdf|js|css|json)$).*)',
   ],
 };

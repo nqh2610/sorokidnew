@@ -1,0 +1,133 @@
+{
+  "certificate": {
+    "title": "Chứng chỉ Sorokid",
+    "subtitle": "Hoàn thành lộ trình để nhận chứng chỉ công nhận năng lực",
+    "requirementsMet": "Yêu cầu đạt",
+    "certificates": "Chứng chỉ",
+    "earnedCertificates": "Chứng chỉ đã nhận",
+    "addSubCert": "Chứng chỉ Cộng Trừ",
+    "completeCert": "Chứng chỉ Toàn Diện",
+    "issuedOn": "Cấp ngày",
+    "viewCertificate": "Xem chứng chỉ",
+    "roadmap": "Lộ trình chứng chỉ",
+    "claimSuccess": "🎉 Chúc mừng! Bạn đã nhận được chứng chỉ!",
+    "error": "Có lỗi xảy ra",
+    "needTier": "Cần gói",
+    "claimed": "Đã nhận",
+    "completed": "hoàn thành",
+    "totalProgress": "Tiến độ tổng",
+    "detailedRoadmap": "Lộ trình chi tiết",
+    "requirements": "yêu cầu",
+    "nextTasks": "Việc cần làm tiếp theo",
+    "moreTasks": "việc khác...",
+    "alreadyCompleted": "Bạn đã hoàn thành chứng chỉ này!",
+    "viewAbove": "Xem chứng chỉ ở phần trên",
+    "upgradeToUnlock": "Nâng cấp để mở khóa",
+    "claimNow": "Nhận chứng chỉ ngay!",
+    "remainingRequirements": "Hoàn thành {count} yêu cầu còn lại để nhận chứng chỉ",
+    "prereqLabel": "Chứng chỉ tiên quyết",
+    "lessonsLabel": "Học",
+    "practiceLabel": "Luyện tập",
+    "competeLabel": "Thi đấu",
+    "mentalMathLabel": "Siêu Trí Tuệ",
+    "flashAnzanLabel": "Tia Chớp",
+    "accuracyLabel": "Độ chính xác",
+    "prereqRequirement": "Yêu cầu tiên quyết",
+    "has": "Đã có",
+    "notHas": "Chưa có",
+    "completeLessons": "Hoàn thành phần Học",
+    "practiceModes": "Luyện tập các mode",
+    "competeModes": "Thi đấu các mode",
+    "difficultyLevel": "Cấp độ",
+    "eachMode": "mỗi mode",
+    "correctAnswers": "bài đúng",
+    "achieve": "Đạt",
+    "correctPerRound": "câu đúng mỗi lượt",
+    "correct": "bài đúng",
+    "levelAndAbove": "Cấp độ {level}+ trở lên",
+    "totalAccuracy": "Độ chính xác tổng",
+    "points": "Điểm",
+    "modes": {
+      "addition": "Cộng",
+      "subtraction": "Trừ",
+      "addSubMixed": "Cộng Trừ",
+      "multiplication": "Nhân",
+      "division": "Chia",
+      "mulDiv": "Nhân Chia",
+      "mixed": "Tứ Phép"
+    },
+    "flashLevels": {
+      "1": "Ánh Nến",
+      "2": "Ánh Trăng",
+      "3": "Tia Chớp",
+      "4": "Sao Băng",
+      "5": "Big Bang"
+    },
+    "descriptions": {
+      "prereqAddSub": "Cần có Chứng chỉ Cộng Trừ trước",
+      "lessons": "Hoàn thành tất cả bài học yêu cầu",
+      "practice": "Luyện tập các chế độ yêu cầu",
+      "compete": "Thi đấu các chế độ yêu cầu",
+      "mentalMath": "Siêu Trí Tuệ: {minCorrect} bài đúng (Cộng Trừ nhẩm)",
+      "flashAnzan": "Tia Chớp: {minCorrect} bài đúng",
+      "accuracy": "Duy trì độ chính xác {minAccuracy}%"
+    },
+    "todoTexts": {
+      "prereq": "Hoàn thành {certName} trước",
+      "lessons": "Hoàn thành {remaining} bài còn lại ({details})",
+      "practice": "Luyện tập {modes} (cấp {difficulty}+, {minCorrect} bài đúng)",
+      "mentalMath": "Siêu Trí Tuệ: Làm đúng thêm {remaining} bài",
+      "flashAnzan": "Tia Chớp: Làm đúng thêm {remaining} bài (level {level}+)",
+      "compete": "Thi đấu {modes} (đạt {minCorrect}+ câu đúng)",
+      "accuracy": "Nâng độ chính xác lên {required}% (hiện tại: {current}%)",
+      "streak": "Duy trì streak {required} ngày (hiện tại: {current} ngày)"
+    },
+    "certNames": {
+      "addSub": "Chứng chỉ Cộng Trừ",
+      "complete": "Chứng chỉ Toàn Diện"
+    },
+    "honorTitles": {
+      "addSub": "Thành thạo Cộng Trừ",
+      "complete": "Soroban Master"
+    },
+    "progress": {
+      "levelCert": "Chứng chỉ Level {level}",
+      "completed": "Đã hoàn thành",
+      "view": "Xem",
+      "needPremium": "Cần nâng cấp Premium",
+      "lessons": "Bài học",
+      "accuracyRequired": "Độ chính xác (yêu cầu {percent}%)",
+      "claimCert": "Nhận chứng chỉ",
+      "lessonsRemaining": "Còn {count} bài học nữa",
+      "needAccuracy": "Cần đạt độ chính xác {percent}%"
+    },
+    "display": {
+      "title": "CHỨNG CHỈ",
+      "subtitle": "Hoàn thành khóa học Soroban",
+      "certify": "Chứng nhận",
+      "excellentCompletion": "Đã hoàn thành xuất sắc",
+      "withLessons": "với {count} bài học",
+      "totalStars": "Tổng sao",
+      "accuracy": "Độ chính xác",
+      "issuedDate": "Ngày cấp",
+      "certCode": "Mã chứng chỉ",
+      "verifyAt": "Xác thực tại",
+      "download": "Tải về",
+      "share": "Chia sẻ"
+    }
+  },
+  "tier": {
+    "free": "Miễn Phí",
+    "basic": "Cơ Bản",
+    "advanced": "Nâng Cao",
+    "vip": "VIP"
+  },
+  "tierBadge": {
+    "advanced": "Nâng cao",
+    "premium": "Premium",
+    "basic": "Cơ bản",
+    "free": "Miễn phí",
+    "viewPlans": "Xem các gói học",
+    "trialDays": "🎁 Học thử còn {days} ngày"
+  }
+}

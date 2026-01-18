@@ -120,12 +120,12 @@ export async function GET(request) {
 
     // === QUERY 4: Quick stats (counts only) ===
     const [questsReadyCount, achievementCounts] = await Promise.all([
-      // Đếm quests có thể claim
+      // Đếm quests có thể claim (completed nhưng chưa claimed)
       prisma.userQuest.count({
         where: {
           userId,
           completed: true,
-          claimed: false
+          claimedAt: null  // Field đúng trong schema là claimedAt, không phải claimed
         }
       }),
       // Đếm achievements

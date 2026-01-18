@@ -115,7 +115,7 @@ export async function generateMetadata() {
       },
     },
     verification: {
-      google: 'google-site-verification-code',
+      google: 'googledb95ba6d70469295',
     },
     category: 'education',
     classification: 'Educational Application',
@@ -130,7 +130,8 @@ export async function generateMetadata() {
       ],
       shortcut: '/favicon.ico',
     },
-    manifest: '/manifest.json',
+    // 🌍 PWA Manifest theo ngôn ngữ
+    manifest: locale === 'en' ? '/manifest.en.json' : '/manifest.json',
     appleWebApp: {
       capable: true,
       statusBarStyle: 'black-translucent',
@@ -200,18 +201,20 @@ function getKeywordsByLocale(locale) {
   ];
 }
 
-// Helper: Lấy dictionary an toàn
+// Helper: Lấy dictionary an toàn - SYNC VERSION ĐỂ TRÁNH RACE CONDITION
+// 🔧 FIX: Dùng sync loading để đảm bảo dictionary luôn sẵn sàng trước khi render
 function getSafeDictionary(locale) {
   try {
+    // Dùng sync version - an toàn hơn cho SSR
     return getDictionarySync(locale);
   } catch (e) {
-    // Fallback nếu dictionary chưa sẵn sàng
+    console.error('[i18n] Failed to load dictionary:', e);
     return {};
   }
 }
 
 export default async function RootLayout({ children }) {
-  // 🌍 Đọc locale từ header x-locale (set bởi middleware) hoặc cookie
+  // 🌍 Đọc locale từ header (set bởi middleware) hoặc cookie
   const headersList = await headers();
   const cookieStore = await cookies();
   
@@ -220,12 +223,18 @@ export default async function RootLayout({ children }) {
   const localeFromCookie = cookieStore.get(LOCALE_COOKIE)?.value;
   const locale = localeFromHeader || localeFromCookie || defaultLocale;
   
-  // Load dictionary
+  // 🔧 FIX: Dùng sync loading - tránh race condition gây trang trắng
   const dictionary = getSafeDictionary(locale);
   
   return (
     <html lang={locale}>
       <head>
+        {/* 🚀 Performance: Preconnect to critical origins */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />

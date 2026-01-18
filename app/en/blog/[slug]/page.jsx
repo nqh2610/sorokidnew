@@ -41,7 +41,15 @@ export async function generateMetadata({ params }) {
     title: post.title + ' | SoroKid Blog',
     description: post.description,
     keywords: post.keywords,
-    alternates: { canonical: BASE_URL + '/en/blog/' + params.slug },
+    alternates: { 
+      canonical: BASE_URL + '/en/blog/' + params.slug,
+      // 🌍 Hreflang for multilingual SEO
+      languages: {
+        'vi': BASE_URL + '/blog/' + params.slug,
+        'en': BASE_URL + '/en/blog/' + params.slug,
+        'x-default': BASE_URL + '/blog/' + params.slug,
+      },
+    },
     robots: { index: true, follow: true },
     openGraph: {
       title: post.title,

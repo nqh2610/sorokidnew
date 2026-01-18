@@ -1,0 +1,621 @@
+{
+  "slug": "soroban-abacus-structure-explained",
+  "title": "Soroban Abacus Structure Explained: A Complete Parent's Guide to Parts, Beads, and How It Works",
+  "description": "Understand every part of the soroban abacus with this comprehensive guide. From heaven beads to earth beads, frames to rods – everything you need to know to help your child succeed.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban structure",
+    "soroban parts",
+    "abacus anatomy",
+    "how soroban works",
+    "soroban beads explained",
+    "japanese abacus parts",
+    "soroban heaven bead earth bead",
+    "soroban rods columns",
+    "soroban beam",
+    "soroban for beginners",
+    "buy soroban guide",
+    "physical vs virtual soroban"
+  ],
+  "status": "scheduled",
+  "publishedAt": "2026-02-03T05:33:13.695Z",
+  "createdAt": "2025-12-30",
+  "image": "/blog/tre-chau-a-hoc-soroban-tai-nha.jpg",
+  "imageAlt": "Diagram of soroban abacus parts and structure",
+  "readingTime": 14,
+  "author": {
+    "name": "Jennifer Chen",
+    "role": "Architect & Mother of Three"
+  },
+  "translations": {
+    "vi": "cau-tao-ban-tinh-soroban"
+  },
+  "content": {
+    "intro": "As an architect, I appreciate elegant design. When I first held a soroban – the Japanese abacus my daughter brought home from her after-school program – I was immediately struck by its beautiful simplicity. What looks like just beads on rods is actually a masterpiece of mathematical engineering, refined over centuries for speed and efficiency. Before my three kids started learning soroban calculations, I spent time understanding the tool itself. That knowledge made me a better teacher and helped my children progress faster. In this guide, I'll share everything I learned about soroban structure, from the obvious parts to the subtle design choices that make this tool so effective.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Understanding Structure Matters"
+      },
+      {
+        "type": "paragraph",
+        "text": "You might think: why bother learning about the soroban's parts? Just teach the calculations! But here's what I discovered: children who understand their tools use them better. When my son Marcus knew why the beam existed, he instinctively used it as a reference point. When my daughter Lily understood bead values, she stopped counting and started seeing numbers."
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "The soroban's design isn't arbitrary – every element serves a specific purpose. Understanding these purposes transforms a child from a bead-mover to a true calculator."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Seven Essential Parts of a Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "Every soroban, whether a $10 plastic model or a $200 competition-grade instrument, contains these seven fundamental components."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**1. Frame:** The outer border holding everything together",
+          "**2. Rods (columns):** Vertical bars where beads slide up and down",
+          "**3. Beam (reckoning bar):** The horizontal divider in the middle",
+          "**4. Upper beads (heaven beads):** One bead above the beam per rod, worth 5",
+          "**5. Lower beads (earth beads):** Four beads below the beam per rod, worth 1 each",
+          "**6. Unit rod markers:** Dots indicating place value positions",
+          "**7. Clearing mechanism:** (on some models) A button to reset all beads"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Let me explain each component in detail, including insights I gained from researching Japanese soroban design principles."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Frame: More Than Just a Border"
+      },
+      {
+        "type": "paragraph",
+        "text": "The frame does more than hold the soroban together. Its design affects usability in subtle but important ways."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Material:** Wood frames (traditional) feel warmer and provide better grip. Plastic frames (modern) are lighter and more durable for children",
+          "**Width:** Wider frames are easier to hold but heavier. Children's sorobans have narrower frames",
+          "**Corners:** Rounded corners prevent injury during enthusiastic practice sessions",
+          "**Finish:** Smooth finish allows the soroban to slide easily on desk surfaces"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Marcus dropped his soroban countless times. The sturdy plastic frame survived every fall. I'm glad we didn't invest in an expensive wooden model for his first year!"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Rods: Vertical Highways for Numbers"
+      },
+      {
+        "type": "paragraph",
+        "text": "Each rod represents a place value – ones, tens, hundreds, thousands, and so on. The number of rods determines how large a number the soroban can display."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**13 rods:** Beginner model, handles numbers up to 9,999,999,999,999 (13 digits)",
+          "**17 rods:** Standard size, most common for students",
+          "**21 rods:** Advanced model for complex calculations",
+          "**23+ rods:** Competition and professional grade"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "For children under 10, a 13 or 17 rod soroban is plenty. Don't buy more rods than necessary – extra columns can be distracting for beginners."
+      },
+      {
+        "type": "paragraph",
+        "text": "The rod material matters for speed. Metal rods allow beads to slide smoothly. Bamboo rods (traditional) create slight friction that some users prefer for control. My kids prefer metal rods for their speed."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Beam: The Critical Reference Point"
+      },
+      {
+        "type": "paragraph",
+        "text": "The beam (also called the reckoning bar or counting bar) is perhaps the most important structural element. It divides the soroban into upper and lower sections and serves as the reference point for all calculations."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Position:** Runs horizontally across all rods, roughly one-quarter down from the top",
+          "**Function:** Beads touching the beam are 'counted' – beads away from the beam are 'cleared'",
+          "**Design:** Slightly raised to prevent beads from accidentally sliding across",
+          "**Markers:** Often contains unit rod dots for place value identification"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "I taught my kids this fundamental rule: 'Beads at the beam count. Beads away from the beam don't.' This simple phrase eliminated confusion about which beads to count when reading numbers."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Heaven Beads: The Upper Realm"
+      },
+      {
+        "type": "paragraph",
+        "text": "Each rod has one bead above the beam, traditionally called the 'heaven bead' (ten-dama in Japanese). This single bead is worth 5 when pushed down to touch the beam."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Value:** Worth 5 when touching the beam (pushed down)",
+          "**Value:** Worth 0 when away from the beam (pushed up)",
+          "**Movement:** Pushed down with index finger to add 5",
+          "**Movement:** Pushed up with index finger to subtract 5"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "The heaven bead's value of 5 is what makes the soroban so efficient. Instead of needing 9 identical beads to represent any digit, the soroban needs only 5 (1 heaven + 4 earth)."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lily initially wanted to call it the 'five bead' which is honestly more intuitive. Whatever name you use, make sure your child understands: heaven bead at the beam = 5."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Earth Beads: The Lower Foundation"
+      },
+      {
+        "type": "paragraph",
+        "text": "Below the beam sit four beads per rod, traditionally called 'earth beads' (ichi-dama in Japanese). Each earth bead is worth 1 when pushed up to touch the beam."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Quantity:** 4 beads per rod below the beam",
+          "**Value:** Each worth 1 when touching the beam (pushed up)",
+          "**Value:** Worth 0 when away from the beam (pushed down)",
+          "**Movement:** Pushed up with thumb to add value",
+          "**Movement:** Pushed down with index finger to subtract value"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The combination of 1 heaven bead (worth 5) and 4 earth beads (worth 1 each) means each rod can represent any digit from 0 to 9. This is the mathematical genius of the soroban design."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How Beads Combine to Show Numbers 0-9"
+      },
+      {
+        "type": "paragraph",
+        "text": "Let me illustrate exactly how each digit appears on a single rod. Understanding this is essential before any calculation."
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Number",
+          "Heaven Bead",
+          "Earth Beads",
+          "Total Value"
+        ],
+        "rows": [
+          [
+            "0",
+            "Up (away)",
+            "None at beam",
+            "0"
+          ],
+          [
+            "1",
+            "Up (away)",
+            "1 at beam",
+            "1"
+          ],
+          [
+            "2",
+            "Up (away)",
+            "2 at beam",
+            "2"
+          ],
+          [
+            "3",
+            "Up (away)",
+            "3 at beam",
+            "3"
+          ],
+          [
+            "4",
+            "Up (away)",
+            "4 at beam",
+            "4"
+          ],
+          [
+            "5",
+            "Down (at beam)",
+            "None at beam",
+            "5"
+          ],
+          [
+            "6",
+            "Down (at beam)",
+            "1 at beam",
+            "5+1=6"
+          ],
+          [
+            "7",
+            "Down (at beam)",
+            "2 at beam",
+            "5+2=7"
+          ],
+          [
+            "8",
+            "Down (at beam)",
+            "3 at beam",
+            "5+3=8"
+          ],
+          [
+            "9",
+            "Down (at beam)",
+            "4 at beam",
+            "5+4=9"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "I printed this table and posted it next to our practice area. Within a week, all three kids could read any number instantly."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Unit Rod Markers: The Hidden Navigation System"
+      },
+      {
+        "type": "paragraph",
+        "text": "Look closely at your soroban's beam. You'll notice small dots or marks on certain rods. These are unit rod markers, and they're crucial for place value."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Position:** Usually marked every third rod from the designated ones column",
+          "**Purpose:** Helps locate the ones place instantly, especially in large numbers",
+          "**Usage:** When setting a number, identify the ones column first, then work left",
+          "**Variations:** Some sorobans mark every rod differently; some only mark the center"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Teach your child to always start from a marked rod. This prevents the common mistake of accidentally being 'one column off' when reading large numbers."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Soroban vs. Chinese Abacus: Key Differences"
+      },
+      {
+        "type": "paragraph",
+        "text": "Parents often confuse the Japanese soroban with the Chinese abacus (suanpan). While related, they're distinctly different tools."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Chinese abacus:** 2 heaven beads + 5 earth beads per rod",
+          "**Japanese soroban:** 1 heaven bead + 4 earth beads per rod",
+          "**Chinese design:** Can represent 0-15 per column (useful for historical currency)",
+          "**Soroban design:** Represents exactly 0-9 per column (optimized for decimal math)",
+          "**Speed:** Soroban is faster due to fewer bead movements required"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The soroban evolved from the Chinese abacus when Japanese mathematicians realized the extra beads were redundant for base-10 calculations. The streamlined design allows for faster operation."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Choosing the Right Soroban: Size Guide"
+      },
+      {
+        "type": "paragraph",
+        "text": "If you're buying a physical soroban, size matters – but bigger isn't always better."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**For ages 4-6:** 13 rods, smaller beads, lightweight plastic frame",
+          "**For ages 7-10:** 13-17 rods, standard bead size, plastic or wood frame",
+          "**For ages 11+:** 17-21 rods, standard or competition-size beads",
+          "**For adults:** 17-23 rods based on intended use"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "My youngest (age 5 when she started) used a smaller 13-rod plastic soroban. My oldest (age 9) used a standard 17-rod model. The size difference mattered for their hand comfort."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Soroban Materials: Plastic vs. Wood"
+      },
+      {
+        "type": "paragraph",
+        "text": "The eternal debate: should you buy plastic or wood? Here's my practical assessment after our family owned both."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Plastic advantages:** Affordable ($10-20), durable, lightweight, easy to clean, good for beginners",
+          "**Plastic disadvantages:** Can feel 'cheap,' beads may be noisier, less smooth operation",
+          "**Wood advantages:** Beautiful, satisfying feel, smoother bead movement, traditional experience",
+          "**Wood disadvantages:** Expensive ($30-100+), heavier, can be damaged if dropped, requires care"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "My recommendation: Start with plastic. If your child shows sustained interest after 6 months, consider upgrading to wood as a special reward."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Physical vs. Virtual Soroban: The Modern Debate"
+      },
+      {
+        "type": "paragraph",
+        "text": "Many parents ask: do I even need a physical soroban when apps exist? Having used both extensively with my kids, here's my honest assessment."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Physical soroban advantages:** Tactile feedback, no screen time, builds fine motor skills, traditional experience",
+          "**Physical soroban disadvantages:** Must carry it, can be lost/broken, no progress tracking",
+          "**Virtual soroban advantages:** Always available, tracks progress, interactive lessons, gamification",
+          "**Virtual soroban disadvantages:** Screen time, lacks tactile element, may feel less 'real'"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Our family's solution: We started with a physical soroban for the first month to build tactile familiarity. Then we transitioned to the Sorokid app for daily practice while keeping the physical soroban for 'serious study sessions.'"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bead Shapes and Their Purpose"
+      },
+      {
+        "type": "paragraph",
+        "text": "You might notice soroban beads aren't perfectly round – they're diamond-shaped (bicone). This design is intentional."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Diamond shape:** Points allow precise finger contact, enabling faster manipulation",
+          "**Flat surfaces:** Provide stability when beads are at rest, preventing accidental movement",
+          "**Edge definition:** Sharp edges help fingers distinguish individual beads by touch",
+          "**Material:** Smooth finish reduces friction for speed; slight texture improves grip"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "As my kids improved, they began appreciating the bead shape. Marcus said, 'Round beads would be so hard to move fast!' He was right – the bicone design enables the rapid finger movements of advanced users."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bead Colors: Do They Matter?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Traditional sorobans have single-color beads (usually brown or black). Modern learning sorobans often use multiple colors. Does color matter?"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Traditional (single color):** Forces reliance on position and touch, better for developing mental math",
+          "**Learning (multi-color):** Heaven beads often different from earth beads, helps beginners distinguish values",
+          "**Alternating colors:** Some models alternate rod colors to aid place value recognition",
+          "**My recommendation:** Start with color-coded, transition to single-color as skills develop"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Proper Soroban Positioning"
+      },
+      {
+        "type": "paragraph",
+        "text": "How you position the soroban affects comfort and speed. Here's the optimal setup I developed with my kids."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Angle:** Flat on the desk, or tilted very slightly (5-10 degrees) toward the user",
+          "**Distance:** About forearm's length from the body",
+          "**Height:** Elbows should be relaxed, not raised, when fingers reach the beads",
+          "**Stability:** Place on a non-slip surface or use a desk mat"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Lily kept pushing her soroban around the desk during practice. A simple rubber shelf liner underneath solved the problem completely."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Clearing Position: Starting Fresh"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before any calculation, the soroban must be 'cleared' – all beads away from the beam. This is the zero position."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Heaven beads:** All pushed UP (away from beam)",
+          "**Earth beads:** All pushed DOWN (away from beam)",
+          "**Quick clear technique:** Tilt soroban toward you, let gravity pull earth beads down",
+          "**Clearing button:** Some models have a button that mechanically clears all beads"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "I taught my kids to clear aggressively between problems. A clean start prevents errors from lingering beads."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Caring for Your Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "A well-maintained soroban lasts for years. Here's how we care for ours."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Cleaning:** Wipe with a soft, dry cloth weekly. For deeper cleaning, slightly damp cloth",
+          "**Storage:** Keep in a case or pouch when not in use. Avoid extreme temperatures",
+          "**Repair:** Loose beads can often be tightened with a drop of wood glue on the rod ends",
+          "**Replacement:** Beads rarely break, but rods can bend. Straighten gently or replace if necessary"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why the Design Works: Mathematical Elegance"
+      },
+      {
+        "type": "paragraph",
+        "text": "As I studied the soroban's structure, I came to appreciate its mathematical elegance. Every design choice serves calculation efficiency."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Minimal beads:** Only 5 beads per rod (1+4) to represent all 10 digits, minimizing movement",
+          "**Binary-like encoding:** Heaven bead acts as a '5 flag,' making mental processing efficient",
+          "**Column layout:** Perfect for understanding place value visually and physically",
+          "**Beam reference:** Creates unambiguous 'counted' vs 'not counted' distinction"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "The soroban's design is so efficient that it remained the fastest calculation method until electronic calculators. Even today, skilled soroban users can outpace calculator operators on mental math."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Teaching Structure Before Calculation"
+      },
+      {
+        "type": "paragraph",
+        "text": "Based on my experience teaching three children, I strongly recommend teaching structure first. Here's my suggested sequence."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Day 1-2:** Name every part, play with beads freely, establish 'beam rule'",
+          "**Day 3-4:** Practice clearing, setting numbers 1-4 (earth beads only)",
+          "**Day 5-6:** Introduce heaven bead, practice numbers 5-9",
+          "**Day 7+:** Begin simple addition only after structure is mastered"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "This investment in structural understanding paid off enormously. My kids never confused which beads to count or which finger to use – they understood WHY the rules existed."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do I need to buy an expensive soroban?",
+        "answer": "No. A basic $10-15 plastic soroban works perfectly for learning. Premium wooden models ($30-100+) feel nicer but won't help your child learn faster. Start affordable and upgrade later if interest persists."
+      },
+      {
+        "question": "What's the dot on some rods for?",
+        "answer": "Those are unit rod markers. They help locate the ones place quickly, especially in large numbers. Usually marked every third rod, they serve as reference points for place value."
+      },
+      {
+        "question": "Why are some beads different colors?",
+        "answer": "Learning sorobans often use colors to help beginners distinguish heaven beads from earth beads. Traditional sorobans are single-colored. Either works for learning – color-coded can be helpful initially."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Ready to see the soroban in action? Try our interactive virtual soroban and guided lessons free.",
+      "buttonText": "Try Free Demo",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "faq": [
+    {
+      "question": "What are the main parts of a soroban abacus?",
+      "answer": "The soroban has seven essential parts: the frame (outer border), rods (vertical columns), beam (horizontal divider), heaven beads (one per rod above beam, worth 5), earth beads (four per rod below beam, worth 1 each), unit rod markers (dots for place value), and sometimes a clearing mechanism."
+    },
+    {
+      "question": "How many beads does a soroban have per column?",
+      "answer": "Each column (rod) has exactly 5 beads: 1 heaven bead above the beam worth 5, and 4 earth beads below the beam each worth 1. This allows any digit from 0-9 to be represented on a single rod."
+    },
+    {
+      "question": "What is the difference between a soroban and a Chinese abacus?",
+      "answer": "The Japanese soroban has 1 heaven bead and 4 earth beads per rod (5 total), while the Chinese abacus (suanpan) has 2 heaven beads and 5 earth beads (7 total). The soroban's streamlined design allows for faster calculations in base-10 mathematics."
+    },
+    {
+      "question": "What is the beam on a soroban?",
+      "answer": "The beam (also called reckoning bar) is the horizontal divider that separates heaven beads from earth beads. Beads touching the beam are 'counted' while beads away from the beam represent zero. It's the critical reference point for all calculations."
+    },
+    {
+      "question": "Should I buy a physical soroban or use a virtual app?",
+      "answer": "Both have advantages. Physical sorobans provide tactile feedback and no screen time. Virtual sorobans (like Sorokid) offer progress tracking, interactive lessons, and are always available. Many families start physical, then use apps for daily practice."
+    },
+    {
+      "question": "What size soroban is best for children?",
+      "answer": "For ages 4-6, a 13-rod lightweight plastic soroban is ideal. For ages 7-10, a 13-17 rod standard model works well. Children don't need more rods than necessary – extra columns can be distracting for beginners."
+    },
+    {
+      "question": "Why are soroban beads diamond-shaped?",
+      "answer": "The bicone (diamond) shape is intentional. The pointed edges allow precise finger contact for faster manipulation, flat surfaces provide stability at rest, and sharp edges help fingers distinguish individual beads by touch."
+    },
+    {
+      "question": "How do I clear a soroban before calculations?",
+      "answer": "To clear (reset to zero): push all heaven beads UP away from the beam, and all earth beads DOWN away from the beam. A quick method is to tilt the soroban toward you, letting gravity pull earth beads down, then manually push heaven beads up."
+    },
+    {
+      "question": "What do the numbers 0-9 look like on a soroban?",
+      "answer": "0: all beads away from beam. 1-4: only earth beads at beam. 5: only heaven bead at beam. 6-9: heaven bead plus 1-4 earth beads at beam. For example, 7 = heaven bead (5) + 2 earth beads (2) = 7."
+    },
+    {
+      "question": "How should I position a soroban for practice?",
+      "answer": "Place the soroban flat on a desk or tilted slightly (5-10 degrees) toward you, about forearm's length away. Elbows should be relaxed when reaching the beads. Use a non-slip surface or mat to prevent the soroban from sliding during practice."
+    }
+  ],
+  "cta": {
+    "text": "Ready to help your child master the soroban? Sorokid offers interactive lessons, virtual soroban practice, and progress tracking designed for busy families.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "Soroban Abacus Structure Explained: Complete Parent's Guide | Sorokid",
+    "metaDescription": "Understand every part of the soroban abacus with this comprehensive guide. From heaven beads to earth beads, frames to rods – everything you need to know.",
+    "keywords": "soroban structure, soroban parts, abacus anatomy, how soroban works, soroban beads explained, japanese abacus parts, soroban heaven bead earth bead"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-24",
+    "author": "Jennifer Chen"
+  },
+  "postId": "cau-tao-ban-tinh-soroban"
+}

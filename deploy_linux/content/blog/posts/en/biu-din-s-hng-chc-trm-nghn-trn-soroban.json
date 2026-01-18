@@ -1,0 +1,446 @@
+{
+  "slug": "biu-din-s-hng-chc-trm-nghn-trn-soroban",
+  "title": "Representing Multi-Digit Numbers on Soroban: Tens, Hundreds, Thousands",
+  "description": "Complete guide to representing 2, 3, and 4-digit numbers on the soroban. Learn place value columns, reading large numbers, and building number sense with tips from an elementary school principal dad.",
+  "category": "soroban-for-parents",
+  "keywords": [
+    "soroban place value",
+    "multi-digit numbers soroban",
+    "soroban tens hundreds",
+    "reading large numbers abacus",
+    "soroban column positions",
+    "abacus place value teaching",
+    "soroban thousands column",
+    "number representation soroban",
+    "soroban digit positions",
+    "teaching place value abacus",
+    "soroban multi-digit reading",
+    "abacus number system"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-17T15:33:13.688Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/hoc-so-hang-chuc-tram-soroban.jpg",
+  "imageAlt": "Child learning to represent tens and hundreds on soroban",
+  "readingTime": 14,
+  "author": {
+    "name": "Kevin Rodriguez",
+    "role": "Elementary School Principal & Father of Two"
+  },
+  "translations": {
+    "vi": "bieu-dien-so-hang-chuc-tram-soroban"
+  },
+  "content": {
+    "intro": "As an elementary school principal, I've observed countless children struggle with place value - the concept that a digit's position determines its value. When I introduced soroban to my own two children, I witnessed something remarkable: place value stopped being abstract. On the soroban, each column IS a place value, physically separated and visually distinct. This article will show you how the soroban represents multi-digit numbers and why it's such a powerful tool for building number sense.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Fundamental Principle: Each Column = One Place Value"
+      },
+      {
+        "type": "paragraph",
+        "text": "On the soroban, every vertical rod (column) represents exactly one place value position. This mirrors our written number system perfectly, but makes it physical and visible."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Rightmost column: Ones (units) - values 0-9",
+          "Second column from right: Tens - values 0-90 (in steps of 10)",
+          "Third column from right: Hundreds - values 0-900 (in steps of 100)",
+          "Fourth column from right: Thousands - values 0-9000 (in steps of 1000)",
+          "Pattern continues: Ten thousands, Hundred thousands, Millions..."
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "This is identical to how we write numbers: rightmost digit is smallest place value, leftmost is largest. The soroban simply makes each position a separate physical column."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Identifying the Ones Column (Unit Rod)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before representing any number, you need to identify which column is the ones place. Most sorobans have visual markers to help:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "A dot or mark on the beam at regular intervals (every 3rd rod)",
+          "A different colored bead on certain rods",
+          "A slightly wider gap every 3 columns",
+          "On unmarked sorobans, simply designate the rightmost rod as ones"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The marked rods typically indicate ones, thousands, millions (every 3rd position) - these marks help when working with large numbers, making it easier to read values like 1,234,567."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Reading Two-Digit Numbers (10-99)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Two-digit numbers use two columns: tens and ones. Let's practice reading some examples:"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Tens Column",
+          "Ones Column",
+          "Number",
+          "How to Read"
+        ],
+        "rows": [
+          [
+            "2 beads",
+            "5 beads",
+            "25",
+            "Twenty-five"
+          ],
+          [
+            "4 beads",
+            "7 beads (5+2)",
+            "47",
+            "Forty-seven"
+          ],
+          [
+            "8 beads (5+3)",
+            "3 beads",
+            "83",
+            "Eighty-three"
+          ],
+          [
+            "1 bead",
+            "0 beads",
+            "10",
+            "Ten"
+          ],
+          [
+            "9 beads (5+4)",
+            "9 beads (5+4)",
+            "99",
+            "Ninety-nine"
+          ]
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Remember: each column shows 0-9 using the same rules you learned for single digits. A heaven bead (top) = 5, each earth bead (bottom) = 1. This never changes regardless of which column you're in."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Reading Three-Digit Numbers (100-999)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Three-digit numbers add the hundreds column. The pattern remains exactly the same - you're just reading one more column."
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Hundreds",
+          "Tens",
+          "Ones",
+          "Number"
+        ],
+        "rows": [
+          [
+            "3",
+            "5",
+            "7",
+            "357"
+          ],
+          [
+            "1",
+            "0",
+            "0",
+            "100"
+          ],
+          [
+            "4",
+            "2",
+            "8",
+            "428"
+          ],
+          [
+            "7 (5+2)",
+            "0",
+            "5",
+            "705"
+          ],
+          [
+            "9 (5+4)",
+            "9 (5+4)",
+            "9 (5+4)",
+            "999"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Reading Four-Digit Numbers (1000-9999)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Four-digit numbers include thousands. This is where the marked rods become helpful - the thousands position often has a visual indicator."
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Thousands",
+          "Hundreds",
+          "Tens",
+          "Ones",
+          "Number"
+        ],
+        "rows": [
+          [
+            "2",
+            "4",
+            "6",
+            "8",
+            "2,468"
+          ],
+          [
+            "1",
+            "0",
+            "0",
+            "0",
+            "1,000"
+          ],
+          [
+            "5",
+            "5",
+            "5",
+            "5",
+            "5,555"
+          ],
+          [
+            "3",
+            "0",
+            "7",
+            "2",
+            "3,072"
+          ],
+          [
+            "9 (5+4)",
+            "9 (5+4)",
+            "9 (5+4)",
+            "9 (5+4)",
+            "9,999"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Critical Concept: Zero Columns"
+      },
+      {
+        "type": "paragraph",
+        "text": "One of the most important aspects of multi-digit numbers is representing zero in middle positions. On the soroban, a zero column has all beads away from the beam - no earth beads up, heaven bead up."
+      },
+      {
+        "type": "list",
+        "items": [
+          "105 = 1 in hundreds, 0 in tens (empty column), 5 in ones",
+          "3,007 = 3 in thousands, 0 in hundreds, 0 in tens, 7 in ones",
+          "1,050 = 1 in thousands, 0 in hundreds, 5 in tens, 0 in ones"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "warning",
+        "text": "Common mistake: Children sometimes skip zero columns when reading numbers. 305 is NOT 35. On the soroban, the empty tens column is visually obvious - this helps prevent the error."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Setting Multi-Digit Numbers: Step-by-Step"
+      },
+      {
+        "type": "paragraph",
+        "text": "When setting (entering) a multi-digit number on the soroban, work from LEFT to RIGHT - largest place value first. This matches how we read and say numbers."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Example: Setting 3,472"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Step 1: Clear soroban (all beads away from beam)",
+          "Step 2: Set 3 in thousands column (push up 3 earth beads)",
+          "Step 3: Set 4 in hundreds column (push up 4 earth beads)",
+          "Step 4: Set 7 in tens column (push down heaven bead, push up 2 earth beads)",
+          "Step 5: Set 2 in ones column (push up 2 earth beads)",
+          "Step 6: Verify by reading back: 3,472"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Place Value Understanding Matters"
+      },
+      {
+        "type": "paragraph",
+        "text": "In my experience as a school principal, place value confusion is the root cause of many math struggles. Children who don't truly understand place value often:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Make carrying/borrowing errors because they don't understand what's being moved",
+          "Struggle with multiplication by 10, 100 (should be trivial with place value understanding)",
+          "Have difficulty with decimals (which are just place value continued right of the decimal)",
+          "Can't estimate effectively because they don't grasp number magnitude",
+          "Struggle with word problems involving 'how many tens' or 'how many hundreds'"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The soroban addresses all of these by making place value physical and visible."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Practice Exercises: Number Recognition"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Level 1: Two-Digit Numbers"
+      },
+      {
+        "type": "paragraph",
+        "text": "Set these numbers and verify: 23, 45, 67, 89, 10, 30, 50, 70, 90, 11, 55, 99"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Level 2: Three-Digit Numbers"
+      },
+      {
+        "type": "paragraph",
+        "text": "Set these numbers and verify: 123, 456, 789, 100, 505, 330, 707, 999, 101, 210"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Level 3: Four-Digit Numbers with Zeros"
+      },
+      {
+        "type": "paragraph",
+        "text": "Set these numbers (watch the zeros!): 1,000, 2,005, 3,050, 4,500, 1,001, 5,050, 7,007, 8,080"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Teaching Tips for Parents"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Start with physical counting: 'How many columns have beads?' before asking for the number",
+          "Emphasize zero columns: Point out and name them explicitly",
+          "Connect to written numbers: Write the number, then set it, then read from soroban",
+          "Use real-world examples: 'Our car trip is 347 kilometers - show me that number'",
+          "Practice with Sorokid's number recognition games for immediate feedback",
+          "Gradually increase digit count as each level becomes comfortable"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Multi-digit number representation is fundamental to all higher soroban work. Take time to build this foundation solidly. When your child can instantly read and set any 4-digit number, they're ready for multi-digit arithmetic."
+      }
+    ],
+    "faq": [
+      {
+        "question": "How do I know which column is the ones place?",
+        "answer": "Most sorobans have visual markers (dots, different colored beads, or wider gaps) every third column to indicate ones, thousands, millions positions. If your soroban is unmarked, simply designate the rightmost column as ones. Consistency is what matters - always use the same column as your starting point."
+      },
+      {
+        "question": "What if my child keeps skipping zero columns when reading numbers?",
+        "answer": "This is common and indicates the zero concept needs reinforcement. Practice specifically with numbers containing zeros: 105, 207, 3,050. Have your child point to each column as they read, even empty ones. On the soroban, the empty column is visible - teach them to 'read' it as zero."
+      },
+      {
+        "question": "Should I teach place value with soroban or regular methods first?",
+        "answer": "They work best together. The soroban makes place value visible and tangible, while written numbers provide the symbolic representation. Use both: write a number, set it on soroban, read it back. This multi-modal approach strengthens understanding from multiple angles."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Practice multi-digit number recognition with guided exercises and instant feedback.",
+      "buttonText": "Try Number Practice",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "faq": [
+    {
+      "question": "How does the soroban represent place value?",
+      "answer": "Each column on the soroban represents one place value position. The rightmost column is ones, next is tens, then hundreds, thousands, and so on. Each column can show 0-9 using the same bead rules (heaven bead = 5, earth beads = 1 each). This physical separation makes place value visible and tangible."
+    },
+    {
+      "question": "How do I read multi-digit numbers on the soroban?",
+      "answer": "Read from left to right, just like written numbers. Read each column's value based on its position: the leftmost non-zero column gives the largest place value, and you combine all columns. For example, if the thousands column shows 3, hundreds shows 4, tens shows 0, and ones shows 7, the number is 3,407."
+    },
+    {
+      "question": "How do I set a multi-digit number on the soroban?",
+      "answer": "Work from left to right (largest to smallest place value). First clear the soroban, then set each digit in its proper column starting from the leftmost digit. For 2,534: set 2 in thousands, 5 in hundreds, 3 in tens, 4 in ones. Verify by reading back."
+    },
+    {
+      "question": "How do I represent zero in the middle of a number on soroban?",
+      "answer": "Zero is represented by an empty column - all beads away from the beam (earth beads down, heaven bead up). For 305, the tens column would be empty while hundreds shows 3 and ones shows 5. The visible empty column helps children understand placeholder zeros."
+    },
+    {
+      "question": "What do the marked rods on a soroban indicate?",
+      "answer": "Marked rods (dots, different colored beads, or wider gaps) typically appear every third column, indicating ones, thousands, and millions positions. These marks help when working with large numbers, making it easier to identify columns and read values like 1,234,567 without counting columns."
+    },
+    {
+      "question": "Why is the soroban good for teaching place value?",
+      "answer": "The soroban makes place value physical and visible. Each column IS a place value, physically separated and distinct. Children can see that 305 has an empty tens column while 350 does not. This tangible representation helps build genuine number sense that transfers to written math."
+    },
+    {
+      "question": "At what age should children learn multi-digit numbers on soroban?",
+      "answer": "After children master single-digit representation (0-9), typically around age 5-7, they can begin learning two-digit numbers. Progress to three and four digits as each level becomes comfortable. Most children can work with four-digit numbers within 2-3 months of starting multi-digit practice."
+    },
+    {
+      "question": "What are common mistakes when learning multi-digit soroban representation?",
+      "answer": "Common mistakes include: skipping zero columns when reading (reading 305 as 35), confusing column positions, setting numbers right-to-left instead of left-to-right, and not clearing the soroban before setting new numbers. The Sorokid app provides immediate feedback to catch and correct these errors."
+    },
+    {
+      "question": "How large can numbers get on a soroban?",
+      "answer": "Standard sorobans have 13-23 columns, allowing numbers up to trillions (13 columns) or more. Each additional column adds another place value. For children's learning, 4-6 digit numbers are typically sufficient and match elementary school curriculum."
+    },
+    {
+      "question": "How do I practice multi-digit number recognition with my child?",
+      "answer": "Start with two-digit numbers until comfortable, then progress to three and four digits. Mix numbers with zeros to reinforce placeholder concept. Use real-world examples ('show me your age,' 'show me our house number'). The Sorokid app includes progressive number recognition exercises with instant feedback."
+    }
+  ],
+  "cta": {
+    "text": "Help your child master place value through hands-on soroban practice. Sorokid offers progressive lessons from single digits to multi-digit numbers, with visual feedback that makes learning intuitive. Build the number sense foundation that supports all future math success.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "Multi-Digit Numbers on Soroban: Tens, Hundreds, Thousands Guide | Sorokid",
+    "metaDescription": "Learn to represent 2, 3, and 4-digit numbers on the soroban. Complete guide to place value columns, reading large numbers, and building number sense from an elementary school principal dad.",
+    "keywords": "soroban place value, multi-digit numbers soroban, soroban tens hundreds, reading large numbers abacus, soroban column positions, abacus place value teaching, soroban thousands, number representation soroban, teaching place value abacus, soroban multi-digit reading"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-20",
+    "author": "Kevin Rodriguez"
+  },
+  "postId": "bieu-dien-so-hang-chuc-tram-soroban"
+}

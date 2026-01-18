@@ -1,0 +1,169 @@
+{
+  "slug": "con-hoc-toan-gioi-nhung-khong-thich-toan",
+  "title": "Con học toán giỏi nhưng không thích toán – Có sao không?",
+  "description": "Con mình điểm toán cao nhưng hay nói ghét toán. Mình lo quá nên tìm hiểu.",
+  "category": "con-gap-kho-khan-hoc-toan",
+  "keywords": [
+    "con giỏi toán nhưng ghét toán",
+    "không thích toán",
+    "tạo hứng thú học toán",
+    "con học vì điểm không vì thích",
+    "burn out khi học toán",
+    "giỏi nhưng không có đam mê",
+    "cách tạo hứng thú với toán",
+    "toán trong đời sống thực",
+    "học toán qua game",
+    "giảm áp lực điểm số",
+    "con chán học toán",
+    "nuôi dưỡng đam mê học tập"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-21T12:25:00.000Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/gioi-nhung-khong-thich.jpg",
+  "imageAlt": "Bé châu Á với vẻ mặt chán nản khi học toán",
+  "readingTime": 12,
+  "categoryOrder": 2,
+  "order": 23,
+  "translations": {
+    "en": "con-hc-ton-gii-nhng-khng-thch-ton-c-sao-khng"
+  },
+  "content": {
+    "intro": "\"Con ghét toán!\" – Con mình hay nói vậy. Nhưng điểm kiểm tra toán luôn 9-10. Mình không hiểu tại sao.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tại sao lại có mâu thuẫn này?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình tìm hiểu và nhận ra: **giỏi ≠ thích**."
+      },
+      {
+        "type": "paragraph",
+        "text": "Con có thể:\n- Làm được vì bị ép.\n- Làm tốt vì thông minh.\n- Nhưng trong lòng không có hứng thú."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Nguyên nhân phổ biến"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. **Học để điểm số, không phải để hiểu**\n   - Con học vì áp lực, không phải tò mò."
+      },
+      {
+        "type": "paragraph",
+        "text": "2. **Bài tập nhàm chán**\n   - Cùng dạng, lặp đi lặp lại.\n   - Không có gì mới, không thú vị."
+      },
+      {
+        "type": "paragraph",
+        "text": "3. **Không thấy toán có ích**\n   - \"Học toán để làm gì?\" – Con không biết câu trả lời."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Giỏi mà không thích thì lâu dài sẽ burn out. Cần giúp con tìm lại hứng thú."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách mình giúp con"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Cho con thấy toán trong đời thực**\n- Đi siêu thị: \"Con tính xem mua 3 hộp sữa hết bao nhiêu?\"\n- Nấu ăn: \"Con chia đều cho 4 người nhé.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Dùng app có game**\n- Biến toán thành trò chơi.\n- Con chinh phục level thay vì làm bài tập."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Giảm áp lực điểm số**\n- \"Con làm đúng bao nhiêu cũng được.\"\n- Khen nỗ lực, không chỉ kết quả."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết quả"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình giờ vẫn giỏi toán, nhưng không còn nói ghét nữa. Thậm chí còn hay khoe bài làm."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Hứng thú có thể được tạo ra. Đừng để con giỏi mà không thích – đó là sự lãng phí."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Con giỏi rồi có cần học thêm không?",
+      "answer": "Không cần ép. Nhưng nên tạo cơ hội để con khám phá những gì thú vị hơn trong toán."
+    },
+    {
+      "question": "Làm sao biết con thực sự thích toán?",
+      "answer": "Khi con tự hỏi câu hỏi về toán, tự tìm bài để làm, đó là dấu hiệu tốt."
+    },
+    {
+      "question": "Giỏi mà không thích có sao không?",
+      "answer": "Ngắn hạn không sao, nhưng lâu dài có thể dẫn đến burn out. Con học vì áp lực thay vì hứng thú, động lực không bền vững."
+    },
+    {
+      "question": "Làm sao tạo hứng thú cho con đã giỏi toán?",
+      "answer": "Cho con thấy toán ứng dụng thực tế, cho chơi game logic/toán học thú vị, giới thiệu những bài toán hay, câu đố thay vì bài tập lặp đi lặp lại."
+    },
+    {
+      "question": "Con giỏi toán nhưng học vì bố mẹ ép, có hại không?",
+      "answer": "Có. Con có thể đạt điểm cao nhưng mất niềm vui học tập, ảnh hưởng tâm lý lâu dài. Nên điều chỉnh cách tiếp cận."
+    },
+    {
+      "question": "Có nên giảm bớt bài tập toán cho con giỏi?",
+      "answer": "Có thể giảm bài tập nhàm chán, thay bằng những thử thách thú vị hơn phù hợp với trình độ con."
+    },
+    {
+      "question": "Con nói ghét toán nhưng điểm cao, tin lời nào?",
+      "answer": "Tin cảm xúc của con. Điểm cao có thể do con thông minh hoặc bị ép, không phản ánh hứng thú thực sự."
+    },
+    {
+      "question": "Làm sao để con thấy toán có ích?",
+      "answer": "Áp dụng toán vào tình huống thực: tính tiền khi mua sắm, đo đạc khi nấu ăn, lập kế hoạch tiết kiệm tiền mừng tuổi..."
+    },
+    {
+      "question": "Con giỏi toán nhưng thích môn khác, có nên định hướng con theo toán?",
+      "answer": "Không nên ép. Hãy để con phát triển theo sở thích và thế mạnh tự nhiên. Giỏi toán là lợi thế, nhưng không nhất thiết phải theo ngành toán."
+    },
+    {
+      "question": "Dấu hiệu nào cho thấy con sắp burn out với toán?",
+      "answer": "Con hay than mệt, chán, né tránh làm bài dù làm được, điểm bắt đầu giảm dù khả năng không thay đổi, mất hứng thú với mọi thứ liên quan đến học tập."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid biến toán thành trò chơi, giúp con thích học hơn.",
+    "buttonText": "Thử ngay miễn phí",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Con học toán giỏi nhưng không thích toán – Có sao không?",
+    "description": "Con mình điểm toán cao nhưng hay nói ghét toán. Mình lo quá nên tìm hiểu.",
+    "keywords": "con giỏi toán nhưng ghét toán, không thích toán, tạo hứng thú học toán, burn out khi học, học vì điểm"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-30",
+    "author": {
+      "@type": "Person",
+      "name": "Minh Anh",
+      "description": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy",
+      "url": "https://sorokid.com/blog"
+    }
+  },
+  "author": {
+    "name": "Minh Anh",
+    "role": "Mẹ của 2 bé",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
+}

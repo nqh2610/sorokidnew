@@ -1,10 +1,14 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { cache } from '@/lib/cache';
 import { ADVENTURE_ZONES, GUIDE_CHARACTER, getGreeting, getGuideMessage } from '@/config/adventure.config';
 
 export const dynamic = 'force-dynamic';
+
+// 🔧 FIX: Cache adventure progress 60s
+const ADVENTURE_CACHE_TTL = 60000;
 
 /**
  * GET /api/adventure/progress
@@ -19,30 +23,37 @@ export async function GET(request) {
     }
 
     const userId = session.user.id;
+    
+    // 🔧 FIX: Check cache first
+    const cacheKey = `adventure:${userId}`;
+    const cached = cache.get(cacheKey);
+    if (cached) {
+      return NextResponse.json(cached);
+    }
 
-    // Lấy tất cả dữ liệu cần thiết từ DB có sẵn
-    const [user, progress, exerciseResults, competeResults, certificates] = await Promise.all([
-      // Thông tin user
+    // 🔧 FIX: Chia queries thành 2 batches để không chiếm hết connection pool
+    // Batch 1: User + Progress (2 queries)
+    const [user, progress] = await Promise.all([
       prisma.user.findUnique({
         where: { id: userId },
         select: { name: true, tier: true, level: true, totalStars: true, avatar: true }
       }),
-      // Tiến độ học (Progress table)
       prisma.progress.findMany({
         where: { userId, completed: true },
         select: { levelId: true, lessonId: true, starsEarned: true, completedAt: true }
-      }),
-      // Kết quả luyện tập (ExerciseResult table)
+      })
+    ]);
+    
+    // Batch 2: Exercise + Compete + Certificates (3 queries)
+    const [exerciseResults, competeResults, certificates] = await Promise.all([
       prisma.exerciseResult.findMany({
         where: { userId },
         select: { exerciseType: true, difficulty: true, isCorrect: true, createdAt: true }
       }),
-      // Kết quả thi đấu (CompeteResult table)
       prisma.competeResult.findMany({
         where: { userId },
         select: { arenaId: true, correct: true, stars: true, createdAt: true }
       }),
-      // Chứng chỉ đã nhận
       prisma.certificate.findMany({
         where: { userId },
         select: { certType: true, issuedAt: true }
@@ -78,7 +89,7 @@ export async function GET(request) {
       ? ADVENTURE_ZONES.find(z => z.id === currentZone)?.story.intro 
       : getGuideMessage('complete');
 
-    return NextResponse.json({
+    const response = {
       success: true,
       user: {
         name: user?.name,
@@ -102,7 +113,12 @@ export async function GET(request) {
         currentMessage: guideMessage
       },
       certificates: certificates.map(c => c.certType)
-    });
+    };
+    
+    // 🔧 FIX: Cache response
+    cache.set(cacheKey, response, ADVENTURE_CACHE_TTL);
+
+    return NextResponse.json(response);
 
   } catch (error) {
     console.error('Error fetching adventure progress:', error);

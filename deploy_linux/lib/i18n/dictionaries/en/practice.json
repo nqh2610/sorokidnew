@@ -1,0 +1,315 @@
+{
+  "practiceScreen": {
+    "title": "Practice",
+    "auto": "Auto Mode",
+    "custom": "Custom",
+    "selectLevel": "Select Level",
+    "selectOperation": "Select Operation",
+    "addition": "Addition",
+    "subtraction": "Subtraction",
+    "multiplication": "Multiplication",
+    "division": "Division",
+    "mixed": "Mixed",
+    "start": "Start",
+    "questionsCount": "Questions",
+    "timeLimit": "Time Limit",
+    "seconds": "seconds",
+    "noLimit": "No Limit",
+    "result": "Result",
+    "correct": "Correct",
+    "wrong": "Wrong",
+    "accuracy": "Accuracy",
+    "time": "Time",
+    "playAgain": "Play Again",
+    "backToMenu": "Back to Menu",
+    "modes": {
+      "addition": "Super Addition",
+      "subtraction": "Super Subtraction",
+      "addSubMixed": "Add/Sub Mix",
+      "multiplication": "Super Multiply",
+      "division": "Super Division",
+      "mulDiv": "Mul/Div Mix",
+      "mixed": "All Four Operations",
+      "mentalMath": "Super Mind",
+      "flashAnzan": "Flash Anzan"
+    },
+    "mentalSubModes": {
+      "addition": "Addition",
+      "subtraction": "Subtraction",
+      "multiplication": "Multiplication",
+      "division": "Division",
+      "addSubMixed": "Add/Sub",
+      "mulDiv": "Mul/Div",
+      "mixed": "All"
+    },
+    "stats": {
+      "stars": "Stars",
+      "correct": "Correct",
+      "wrong": "Wrong",
+      "combo": "Combo"
+    },
+    "level": "Level",
+    "multiplierPoints": "x{n} POINTS!",
+    "difficulty": {
+      "1": "Novice",
+      "2": "Warrior",
+      "3": "Hero",
+      "4": "Master",
+      "5": "Legend",
+      "6": "Super Legend"
+    },
+    "speedTiers": {
+      "godlike": [
+        "GODLIKE!",
+        "SUPER FAST!",
+        "UNBELIEVABLE!",
+        "TOP OF THE TOP!"
+      ],
+      "fast": [
+        "LIGHTNING FAST!",
+        "LIGHT SPEED!",
+        "SUPER SPEED!",
+        "SPEED MONSTER!"
+      ],
+      "good": [
+        "EXCELLENT!",
+        "WONDERFUL!",
+        "GREAT JOB!",
+        "AWESOME!"
+      ],
+      "normal": [
+        "CORRECT!",
+        "ACCURATE!",
+        "GOOD JOB!",
+        "NICE!"
+      ]
+    },
+    "streakMessages": {
+      "3": "COMBO x3!",
+      "5": "UNSTOPPABLE!",
+      "7": "DOMINATING!",
+      "10": "LEGENDARY!"
+    },
+    "tiers": {
+      "free": "Free",
+      "basic": "Basic",
+      "advanced": "Advanced",
+      "vip": "VIP"
+    },
+    "flashLevels": {
+      "anhNen": {
+        "name": "Candlelight",
+        "subtitle": "Soft flickering glow",
+        "tagline": "Warm start"
+      },
+      "anhTrang": {
+        "name": "Moonlight",
+        "subtitle": "Mystical night glow",
+        "tagline": "Steady progress"
+      },
+      "tiaChop": {
+        "name": "Lightning",
+        "subtitle": "Quick flash",
+        "tagline": "Fast as lightning!"
+      },
+      "saoBang": {
+        "name": "Shooting Star",
+        "subtitle": "Blazing moment",
+        "tagline": "🔥 SUPER SPEED 🔥"
+      },
+      "bigBang": {
+        "name": "BIG BANG",
+        "subtitle": "Universe creation explosion",
+        "tagline": "💥 COSMIC EXPLOSION 💥"
+      },
+      "sieuBigBang": {
+        "name": "SUPER BIG BANG",
+        "subtitle": "Peak of speed",
+        "tagline": "🌌 SUPER UNIVERSE 🌌"
+      }
+    },
+    "flashRanks": {
+      "1": "Novice",
+      "2": "Warrior",
+      "3": "Hero",
+      "4": "Legend",
+      "5": "GOD",
+      "6": "DIVINE"
+    },
+    "flashDigits": {
+      "1": "1 digit",
+      "2": "2 digits",
+      "3": "3 digits"
+    },
+    "flashOperations": {
+      "addition": {
+        "name": "Addition",
+        "description": "Addition only"
+      },
+      "mixed": {
+        "name": "Add/Sub Mix",
+        "description": "Alternating add and subtract"
+      }
+    },
+    "praiseMessages": [
+      {
+        "emoji": "🎉",
+        "title": "EXCELLENT!",
+        "msg": "You're amazing! Your answer is completely correct!"
+      },
+      {
+        "emoji": "🌟",
+        "title": "WONDERFUL!",
+        "msg": "Your memory is extraordinary!"
+      },
+      {
+        "emoji": "🏆",
+        "title": "SUPER AWESOME!",
+        "msg": "You calculate as fast as a computer!"
+      },
+      {
+        "emoji": "👏",
+        "title": "GREAT JOB!",
+        "msg": "You got it right! Keep up the great work!"
+      },
+      {
+        "emoji": "🚀",
+        "title": "LIGHTNING FAST!",
+        "msg": "Your calculation speed is impressive!"
+      }
+    ],
+    "encourageMessages": [
+      {
+        "emoji": "💪",
+        "title": "KEEP GOING!",
+        "msg": "Don't worry, mistakes are the best way to learn!"
+      },
+      {
+        "emoji": "🌈",
+        "title": "DON'T GIVE UP!",
+        "msg": "Every attempt is a step forward!"
+      },
+      {
+        "emoji": "⭐",
+        "title": "ALMOST THERE!",
+        "msg": "You just need a bit more practice!"
+      },
+      {
+        "emoji": "🎯",
+        "title": "TRY AGAIN!",
+        "msg": "Focus more, you can do it!"
+      }
+    ],
+    "flashSetup": {
+      "digits": {
+        "title": "CHOOSE DIGITS",
+        "subtitle": "Select number difficulty",
+        "icon": "🔢"
+      },
+      "operation": {
+        "title": "CHOOSE OPERATION",
+        "subtitle": "Select calculation type",
+        "icon": "➕"
+      },
+      "speed": {
+        "title": "CHOOSE SPEED",
+        "subtitle": "Faster → Harder → More rewards!",
+        "icon": "⚡"
+      }
+    },
+    "resultGrades": {
+      "S": {
+        "text": "EXCELLENT!",
+        "msg": "You're amazing! Almost perfect!",
+        "stars": 4
+      },
+      "A": {
+        "text": "GREAT JOB!",
+        "msg": "You did very well! Keep it up!",
+        "stars": 3
+      },
+      "B": {
+        "text": "GOOD!",
+        "msg": "You're improving! Keep trying!",
+        "stars": 2
+      },
+      "D": {
+        "text": "PRACTICE!",
+        "msg": "Try again! Every mistake is a lesson!",
+        "stars": 1
+      }
+    },
+    "ui": {
+      "pressEnter": "Press {key} to continue",
+      "correct": "Correct",
+      "questions": "questions",
+      "keepItUp": "Keep it up!",
+      "youDidGreat": "You did great!",
+      "defaultPraise": "You're amazing!",
+      "gradeMessages": {
+        "S": "You're a superstar! 🌟",
+        "A": "Excellent work! 💪",
+        "B": "Nice job! 👍",
+        "C": "Keep practicing! 📚"
+      },
+      "modeRequiresUpgrade": "Mode {mode} requires {tier} plan or higher",
+      "selectMode": "SELECT MODE",
+      "selectDifficulty": "SELECT DIFFICULTY",
+      "locked": "LOCKED",
+      "unlockWith": "Unlock with {tier} plan",
+      "back": "Back",
+      "backToMenu": "Back to Menu",
+      "nextProblem": "Next Problem",
+      "checkAnswer": "Check Answer",
+      "showAnswer": "Show Answer",
+      "tryAgain": "Try Again",
+      "startFlash": "Start Flash",
+      "readyGo": "Ready... Go!",
+      "watchCarefully": "Watch carefully!",
+      "enterAnswer": "Enter your answer",
+      "submit": "Submit",
+      "loading": "Loading...",
+      "preparing": "Preparing...",
+      "selectOperation": "Select Operation",
+      "mentalMath": "Mental Math",
+      "flashAnzan": "Flash Anzan",
+      "practice": "Practice",
+      "backToPractice": "Back to practice",
+      "backToHome": "Back to home",
+      "lightSpeedRace": "LIGHT SPEED RACE",
+      "lightSpeedSubtitle": "From Candlelight to Super Big Bang!",
+      "lightSpeedPath": "🕯️ → 🌙 → ⚡ → ☄️ → 💥 → 🌌",
+      "digits": "Digits",
+      "digitsCount": "{n} digits",
+      "operation": "Operation",
+      "speed": "Speed",
+      "quantity": "Quantity",
+      "speedPerNum": "{n}s/num",
+      "numbers": "{n} numbers",
+      "focusHigh": "High concentration",
+      "addCumulative": "Add cumulatively",
+      "focus": "FOCUS!",
+      "whatIsResult": "WHAT IS THE RESULT?",
+      "enterYourResult": "Enter your calculation result",
+      "accuracy": "Accuracy",
+      "total": "Total",
+      "passed": "Passed! Need ≥70% to unlock next level",
+      "notPassed": "Not passed! Need ≥70% to pass (current: {accuracy}%)",
+      "notPassedAccuracy": "Not passed! Need ≥70% accuracy to pass (current: {accuracy}%)",
+      "readyForHigherChallenge": "Ready for a higher challenge?",
+      "createNumber": "Create number",
+      "comboBonus": "Combo = x2 Bonus!",
+      "canYouReachSuperBigBang": "Can you reach SUPER BIG BANG?",
+      "secPerNum": "{n}s/num",
+      "numCount": "{n} numbers",
+      "confirm": "CONFIRM",
+      "pressEnterToSubmit": "Press Enter to submit answer",
+      "skip": "Skip",
+      "answer": "Answer",
+      "finish": "Finish",
+      "next": "Next",
+      "wrong": "Wrong",
+      "skipped": "Skipped"
+    }
+  }
+}

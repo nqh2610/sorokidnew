@@ -145,32 +145,12 @@ const nextConfig = {
     },
   },
 
-  // 🔧 WEBPACK OPTIMIZATIONS
+  // 🔧 WEBPACK CONFIG - Sử dụng Next.js defaults
+  // ⚠️ Custom splitChunks có thể gây 404 errors và chunk mismatch
+  // Chỉ giữ lại minimal config nếu cần
   webpack: (config, { isServer }) => {
-    // Chỉ apply cho client bundle
-    if (!isServer) {
-      // Tối ưu chunk splitting
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        minSize: 20000,
-        maxSize: 244000, // ~240KB per chunk (tối ưu cho HTTP/2)
-        cacheGroups: {
-          // Vendor chunk cho các libraries ổn định
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-            priority: 10,
-          },
-          // Common chunk cho code dùng chung
-          common: {
-            minChunks: 2,
-            priority: 5,
-            reuseExistingChunk: true,
-          },
-        },
-      };
-    }
+    // Giữ nguyên defaults của Next.js
+    // Next.js đã tối ưu splitChunks rất tốt rồi
     return config;
   },
 }

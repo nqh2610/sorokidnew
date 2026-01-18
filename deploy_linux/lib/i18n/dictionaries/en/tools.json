@@ -1,0 +1,931 @@
+{
+  "tool": {
+    "title": "Teacher Toolbox",
+    "subtitle": "Free Classroom Games Collection",
+    "description": "All active learning tools in one place. 100% free, no login required.",
+    "saveBookmark": "Save Bookmark",
+    "share": "Share",
+    "categories": {
+      "all": "All Tools",
+      "teambuilding": "Fun & Team Building",
+      "competition": "Competition & Scoring",
+      "random": "Random & Fair Selection",
+      "organize": "Class Organization",
+      "review": "Review & Quiz Games",
+      "individual": "Individual Practice"
+    },
+    "tools": {
+      "spinWheel": {
+        "name": "Spin Wheel",
+        "description": "Random name picker for calling on students"
+      },
+      "animalRace": {
+        "name": "Animal Race",
+        "description": "Cute animated team competition"
+      },
+      "flashAnzan": {
+        "name": "Flash Anzan",
+        "description": "Mental math training with flashing numbers"
+      },
+      "timer": {
+        "name": "Timer",
+        "description": "Countdown timer for classroom activities"
+      },
+      "groupMaker": {
+        "name": "Group Maker",
+        "description": "Auto-divide students into fair groups"
+      },
+      "randomPicker": {
+        "name": "Random Picker",
+        "description": "Pick randomly from any list"
+      },
+      "soroban": {
+        "name": "Virtual Soroban",
+        "description": "Digital abacus for projection"
+      },
+      "luckyLight": {
+        "name": "Lucky Light",
+        "description": "Fun team building activity"
+      },
+      "millionaire": {
+        "name": "Quiz Show",
+        "description": "Who Wants to Be a Millionaire style game"
+      },
+      "raceGame": {
+        "name": "Race Game",
+        "description": "Point-based team competition board"
+      },
+      "dice": {
+        "name": "3D Dice",
+        "description": "Roll dice for decisions and rewards"
+      },
+      "crossword": {
+        "name": "Crossword Puzzle",
+        "description": "Vocabulary and knowledge review game"
+      }
+    }
+  },
+  "toolbox": {
+    "title": "Teacher Toolbox",
+    "subtitle": "Popular classroom games and tools",
+    "saveBookmark": "Save Bookmark",
+    "shareTitle": "Teacher Toolbox - SoroKid",
+    "shareText": "Free collection of classroom games!",
+    "sorokidIntro": "Personalized Soroban teaching tool for each student",
+    "explore": "Explore",
+    "openTool": "Open Tool",
+    "playNow": "Play Now!",
+    "comingSoon": "Coming Soon",
+    "toast": {
+      "installed": "✅ Already installed!",
+      "saveHint": "⭐ Press {shortcut} to save!",
+      "copied": "✅ Link copied!"
+    },
+    "categories": {
+      "all": "All Tools",
+      "teambuilding": "Fun & Team Building",
+      "competition": "Competition & Scoring",
+      "random": "Random & Fair",
+      "organize": "Class Organization",
+      "review": "Review Games",
+      "individual": "Individual Practice"
+    },
+    "badges": {
+      "hot": "🔥 HOT",
+      "new": "✨ NEW",
+      "flash": "⚡ FLASH",
+      "fun": "🌊 FUN",
+      "exciting": "🎰 EXCITING",
+      "classic": "🧮 CLASSIC",
+      "lucky": "🍀 LUCKY",
+      "comingSoon": "🕐 COMING SOON",
+      "gameShow": "🏆 GAME SHOW",
+      "competition": "🏆 COMPETE",
+      "3d": "✨ 3D"
+    },
+    "tools": {
+      "spinWheel": {
+        "name": "Magic Wheel",
+        "description": "Random student picker, fair selection"
+      },
+      "animalRace": {
+        "name": "Duck Race",
+        "description": "Fun animated race for the class"
+      },
+      "flashAnzan": {
+        "name": "Flash ZAN",
+        "description": "Mental math training with Soroban & Anzan"
+      },
+      "timer": {
+        "name": "Timer",
+        "description": "Clear countdown with sound alerts"
+      },
+      "groupMaker": {
+        "name": "Group Maker",
+        "description": "Random groups with team leader selection"
+      },
+      "randomPicker": {
+        "name": "Random Picker",
+        "description": "Draw names, questions, or prizes"
+      },
+      "soroban": {
+        "name": "Virtual Soroban",
+        "description": "Digital abacus for student practice"
+      },
+      "luckyLight": {
+        "name": "Lucky Light",
+        "description": "Random selection with green-red lights"
+      },
+      "millionaire": {
+        "name": "Quiz Show",
+        "description": "Review game with 50:50 lifelines"
+      },
+      "raceGame": {
+        "name": "Amazing Race",
+        "description": "Visual competition board for motivation"
+      },
+      "dice": {
+        "name": "3D Dice",
+        "description": "3D dice for projector, easy to see"
+      },
+      "crossword": {
+        "name": "Crossword Puzzle",
+        "description": "Create puzzles based on lesson topics"
+      }
+    },
+    "sorobanTool": {
+      "value": "Value"
+    },
+    "flashZan": {
+      "settings": "Exercise Settings",
+      "operation": "Operation",
+      "add": "Add",
+      "addSubtract": "Add & Subtract",
+      "digits": "Digits",
+      "oneDigit": "1 digit (1-9)",
+      "twoDigit": "2 digits (10-99)",
+      "count": "Count",
+      "speed": "Speed",
+      "fast": "0.1s (Fast)",
+      "slow": "5s (Slow)",
+      "start": "START FLASH!",
+      "fullscreenHint": "Auto fullscreen",
+      "escHint": "Press",
+      "exit": "Exit",
+      "complete": "COMPLETE!",
+      "flashedNumbers": "Flashed {count} numbers",
+      "showAnswer": "SHOW ANSWER",
+      "retry": "Try Again",
+      "toSettings": "Settings",
+      "total": "{count} numbers total",
+      "hide": "Hide",
+      "tapToPause": "Tap to pause",
+      "spaceOrClickPause": "Press Space or Click to pause",
+      "paused": "PAUSED",
+      "tapToContinue": "Tap to continue",
+      "spaceOrClickContinue": "Space/Click to continue"
+    },
+    "millionaire": {
+      "title": "Who Wants to Be a Millionaire",
+      "quickStart": "Quick Play (15 sample questions)",
+      "quickStartDesc": "Standard Game Show format",
+      "start": "START",
+      "questions": "Questions",
+      "sample": "Sample",
+      "ai": "AI",
+      "delete": "Clear",
+      "soundOn": "Sound On",
+      "soundOff": "Sound Off",
+      "inputPlaceholder": "Question | A | B | C | D | Answer (A/B/C/D)\n\nEx: Capital of Vietnam?|Hanoi|HCM|Da Nang|Hue|A\n\n💡 Auto-detects |, ;, Tab delimiters",
+      "errors": "Errors:",
+      "errorLine": "Line {line}: {reason}",
+      "moreErrors": "...+{count} more errors",
+      "invalidAnswer": "Answer \"{answer}\" is invalid (must be A/B/C/D)",
+      "missingAnswer": "Missing correct answer (A/B/C/D)",
+      "notEnoughParts": "Only {count} parts (need 6: Question|A|B|C|D|Answer)",
+      "gameShowMode": "GAME SHOW",
+      "gameShowDesc": "Standard format with prize ladder & lifelines",
+      "playAll": "PLAY ALL",
+      "playAllDesc": "Play all questions, unlimited",
+      "needMoreQuestions": "Play all questions (need 15 for Game Show)",
+      "questionCount": "{count} questions",
+      "backToToolbox": "← Toolbox",
+      "exit": "Exit",
+      "questionNum": "Q {current}/{total}",
+      "correct": "✓",
+      "lockAnswer": "✓ LOCK ANSWER",
+      "waitingResult": "Waiting for result...",
+      "correctAnswer": "🎉 CORRECT!",
+      "wrongAnswer": "❌ Answer: {answer}",
+      "result": "🏁 RESULT",
+      "next": "➡️ NEXT",
+      "audienceResult": "AUDIENCE POLL",
+      "phoneHints": {
+        "confident1": "Definitely {letter}!",
+        "confident2": "I think it's {letter}!",
+        "confident3": "{letter} for sure!",
+        "unsure1": "Maybe {letter}...",
+        "unsure2": "Hmm, {letter}?",
+        "unsure3": "I guess {letter}..."
+      },
+      "resultScreen": {
+        "champion": "MILLIONAIRE!",
+        "excellent": "EXCELLENT!",
+        "tryHarder": "KEEP TRYING!",
+        "correctCount": "{score}/{total} correct",
+        "playAgain": "🔄 Play Again",
+        "newSetup": "📝 New Setup",
+        "gameShow": "🎬 Game Show",
+        "playAllMode": "📋 Play All"
+      },
+      "aiPrompt": {
+        "title": "🤖 AI Prompt for Quiz Questions",
+        "subtitle": "Copy this prompt and paste into ChatGPT, Gemini, Claude...",
+        "copyPrompt": "📋 Copy Prompt",
+        "close": "Close",
+        "copied": "✅ Prompt copied! Paste into ChatGPT/Gemini/Claude",
+        "promptContent": "Create multiple choice quiz questions for \"Who Wants to Be a Millionaire\" game with topic: [INSERT TOPIC HERE]\n\nREQUIREMENTS:\n1. Create 15 questions (or your desired number)\n2. Increasing difficulty: 5 easy → 5 medium → 5 hard questions\n3. Each question has 4 answers A, B, C, D\n4. Only ONE correct answer\n5. Each question MUST end with ?\n6. Questions should be concise: MAX 25 words\n7. Answers should be short: MAX 6-8 words each\n8. Correct answer MUST be 100% accurate, not controversial\n\n⚠️ FORBIDDEN ANSWER TYPES:\n- DON'T use answers like \"Both A and B\", \"A and C are correct\"\n- DON'T use answers like \"All of the above\"/\"None of the above\"\n- DON'T have one answer reference another answer\n- Each answer must be an INDEPENDENT, CLEAR choice\n\nOUTPUT FORMAT (IMPORTANT):\nQuestion?|Answer A|Answer B|Answer C|Answer D|Correct letter\n\nEXAMPLE:\nWhat is the capital of France?|Paris|London|Berlin|Rome|A\nWhat is the tallest mountain?|K2|Mount Everest|Kilimanjaro|Mont Blanc|B\nWhat is 1 + 1?|1|2|3|4|B\n\n🔍 DOUBLE CHECK - VERIFY EACH QUESTION (REQUIRED):\nAfter creating, verify EACH question with this format:\n\nQ1: [Question summary]\n- Correct answer: [X] - [Answer content]\n- Why correct: [Brief explanation]\n- Are wrong answers independent? ✓/✗\n- Could any other answer also be correct? ✓ No / ✗ Yes\n\nQ2: ... (similar)\n\n⚠️ IF errors found during double check:\n- Fix the question or answers\n- Verify again\n\nNOTES:\n- Each question MUST end with ?\n- Correct answer must be ACCURATE, verifiable\n- Questions should be CONCISE, CLEAR, not ambiguous\n- Answers should be SHORT (1-8 words), avoid long sentences\n- Use | to separate parts\n- End each line with correct answer letter (A, B, C or D)\n- One question per line\n- Don't number the questions"
+      },
+      "sampleQuestions": "What is the capital of France?|Paris|London|Berlin|Rome|A\nWhat is the tallest mountain in the world?|K2|Mount Everest|Kilimanjaro|Mont Blanc|B\n1 + 1 = ?|1|2|3|4|B\nWhat is the longest river in the world?|Amazon|Nile|Yangtze|Mississippi|B\nWho wrote Romeo and Juliet?|Charles Dickens|William Shakespeare|Mark Twain|Jane Austen|B\nWhat is the national flower of Japan?|Rose|Tulip|Cherry Blossom|Lotus|C\nHow many continents are there?|5|6|7|8|C\nWhat currency is used in Japan?|Dollar|Euro|Yen|Pound|C\nWho was the first US President?|Abraham Lincoln|George Washington|Thomas Jefferson|John Adams|B\nWhat is the largest country by area?|China|USA|Canada|Russia|D\nWhat ocean is the largest?|Atlantic|Pacific|Indian|Arctic|B\nIn what year did World War II end?|1943|1945|1947|1950|B\nWho painted the Mona Lisa?|Van Gogh|Picasso|Leonardo da Vinci|Michelangelo|C\nWhat is the largest mammal?|Elephant|Blue Whale|Giraffe|Hippo|B\nWhat is the Great Barrier Reef made of?|Rocks|Sand|Coral|Shells|C",
+      "prizeLevels": [
+        "$200",
+        "$400",
+        "$600",
+        "$1K",
+        "$2K",
+        "$3K",
+        "$6K",
+        "$10K",
+        "$14K",
+        "$22K",
+        "$30K",
+        "$40K",
+        "$60K",
+        "$85K",
+        "$150K"
+      ],
+      "zeroPrize": "$0",
+      "toast": {
+        "restoreGame": "🔄 Restoring previous game",
+        "noValidQuestions": "❌ No valid questions!",
+        "errorAtLine": "❌ Error at line {line}: {reason}"
+      }
+    },
+    "timer": {
+      "presets": {
+        "30s": "30s",
+        "1min": "1 min",
+        "2min": "2 min",
+        "3min": "3 min",
+        "5min": "5 min",
+        "10min": "10 min",
+        "15min": "15 min",
+        "30min": "30 min",
+        "1hr": "1 hour",
+        "2hr": "2 hours"
+      },
+      "soundModes": {
+        "none": {
+          "label": "🔇 Off",
+          "description": "No sound"
+        },
+        "bell": {
+          "label": "🔔 Bell",
+          "description": "Alert when time is up"
+        },
+        "tick": {
+          "label": "⏱️ Fast tick",
+          "description": "Tick every second"
+        },
+        "clock": {
+          "label": "🕐 Classic clock",
+          "description": "Slow tick-tock"
+        },
+        "digital": {
+          "label": "📟 Digital beep",
+          "description": "Electronic beep"
+        },
+        "metronome": {
+          "label": "🎼 Metronome",
+          "description": "Steady 60 BPM"
+        },
+        "alpha": {
+          "label": "🧠 Alpha (10Hz)",
+          "description": "Relaxed alertness"
+        },
+        "beta_low": {
+          "label": "🎯 Low Beta (14Hz)",
+          "description": "Study focus"
+        },
+        "beta_high": {
+          "label": "⚡ High Beta (20Hz)",
+          "description": "Deep concentration"
+        },
+        "gamma": {
+          "label": "🚀 Gamma (40Hz)",
+          "description": "Peak focus, memory"
+        },
+        "theta": {
+          "label": "💭 Theta (6Hz)",
+          "description": "Creativity, deep learning"
+        },
+        "delta": {
+          "label": "😴 Delta (2Hz)",
+          "description": "Deep relaxation"
+        },
+        "focus_mix": {
+          "label": "🎧 Focus Mix",
+          "description": "Alpha + Beta combined"
+        },
+        "study_boost": {
+          "label": "📚 Study Boost",
+          "description": "Beta 18Hz + pink noise"
+        },
+        "rain": {
+          "label": "🌧️ Light rain",
+          "description": "Relaxing rain"
+        },
+        "rain_heavy": {
+          "label": "⛈️ Heavy rain",
+          "description": "Strong rainfall"
+        },
+        "thunder": {
+          "label": "🌩️ Thunder",
+          "description": "Rain + distant thunder"
+        },
+        "ocean": {
+          "label": "🌊 Ocean waves",
+          "description": "Gentle waves"
+        },
+        "stream": {
+          "label": "💧 Stream",
+          "description": "Flowing water"
+        },
+        "forest": {
+          "label": "🌲 Forest",
+          "description": "Birds, wind in leaves"
+        },
+        "night": {
+          "label": "🌙 Summer night",
+          "description": "Crickets, fireflies"
+        },
+        "fire": {
+          "label": "🔥 Campfire",
+          "description": "Crackling fire"
+        },
+        "wind": {
+          "label": "💨 Gentle wind",
+          "description": "Soft breeze"
+        },
+        "cafe": {
+          "label": "☕ Cafe",
+          "description": "Light noise, creative"
+        },
+        "library": {
+          "label": "📚 Library",
+          "description": "Quiet, focused"
+        },
+        "office": {
+          "label": "🏢 Office",
+          "description": "Keyboards, printers"
+        },
+        "classroom": {
+          "label": "🏫 Classroom",
+          "description": "Chalkboard, papers"
+        },
+        "space": {
+          "label": "🚀 Space",
+          "description": "Drone ambient"
+        },
+        "underwater": {
+          "label": "🐠 Underwater",
+          "description": "Bubbles, waves"
+        },
+        "heartbeat": {
+          "label": "💓 Heartbeat",
+          "description": "Relaxing 70 BPM"
+        },
+        "heartbeat_fast": {
+          "label": "💗 Fast heart",
+          "description": "Exciting 120 BPM"
+        },
+        "urgent": {
+          "label": "⚡ Urgent",
+          "description": "Deadline pressure"
+        },
+        "countdown": {
+          "label": "⏰ Countdown",
+          "description": "Increasing beeps"
+        },
+        "game": {
+          "label": "🎮 Game show",
+          "description": "Fun, competitive"
+        },
+        "suspense": {
+          "label": "🎬 Suspense",
+          "description": "Thrilling movie"
+        },
+        "drum": {
+          "label": "🥁 Drums",
+          "description": "Steady drum beat"
+        },
+        "meditation": {
+          "label": "🧘 Om Meditation",
+          "description": "Om 136Hz frequency"
+        },
+        "singing_bowl": {
+          "label": "🔔 Singing bowl",
+          "description": "Tibetan bowl"
+        },
+        "chimes": {
+          "label": "🎐 Wind chimes",
+          "description": "Gentle chimes"
+        },
+        "temple": {
+          "label": "⛩️ Temple",
+          "description": "Temple bells"
+        },
+        "breathing": {
+          "label": "🌬️ Breathing",
+          "description": "4-7-8 breathing guide"
+        },
+        "drone_om": {
+          "label": "🕉️ Om Drone",
+          "description": "Continuous Om"
+        }
+      },
+      "tabs": {
+        "basic": "🔔 Basic",
+        "brainwave": "🧠 Brainwave",
+        "nature": "🌿 Nature",
+        "ambient": "🏠 Ambient",
+        "rhythm": "🥁 Rhythm",
+        "meditation": "🧘 Meditation"
+      },
+      "ui": {
+        "timeSettings": "Time Settings",
+        "hours": "Hours",
+        "minutes": "Minutes",
+        "seconds": "Seconds",
+        "quickSelect": "Quick Select",
+        "soundMode": "🔊 Sound Mode",
+        "currentSound": "Selected:",
+        "turnOff": "✕ Off",
+        "start": "▶️ START",
+        "continue": "▶️ Continue",
+        "pause": "⏸️ Pause",
+        "reset": "🔄 Reset",
+        "timeUp": "⏰ TIME'S UP!",
+        "brainwaveHint": "💡 Use headphones 🎧 for best effect"
+      },
+      "tips": {
+        "title": "💡",
+        "study": "📚 Study:",
+        "studyDesc": "Brainwave Beta (14-20Hz) + headphones",
+        "test": "✍️ Test:",
+        "testDesc": "Urgent, Game show",
+        "relax": "😌 Relax:",
+        "relaxDesc": "Nature, Meditation"
+      }
+    },
+    "crossword": {
+      "createTitle": "Create Crossword Puzzle",
+      "createSubtitle": "Enter vertical keyword and hint questions",
+      "topicLabel": "Topic / Theme Question",
+      "topicPlaceholder": "E.g.: Vietnamese Geography or What city is the capital?",
+      "topicHint": "Topic or hint question to help students guess the keyword",
+      "keywordLabel": "Vertical Keyword",
+      "keywordNote": "(supports UNACCENTED letters only)",
+      "keywordPlaceholder": "E.g.: HANOI, VIETNAM, MATH...",
+      "needQuestions": "Need {count} questions containing:",
+      "questionNum": "Q{num}",
+      "questionsLabel": "Hint Questions List",
+      "questionsNote": "(answers in UNACCENTED letters)",
+      "questionsPlaceholder": "One question per line: Question | ANSWER",
+      "viewSample": "View Sample",
+      "createWithAI": "Create with AI",
+      "clearAll": "Clear All",
+      "startGame": "Start Game",
+      "readyToPlay": "Ready to play!",
+      "needFix": "Need to fix errors",
+      "missingInfo": "Missing information",
+      "noKeyword": "No vertical keyword entered",
+      "noQuestions": "No hint questions entered",
+      "keywordMismatch": "Keyword \"{kw}\" has {kwLen} letters but you entered {qLen} questions",
+      "missingQuestions": "Missing {count} questions (need to add questions containing: {chars})",
+      "checkQuestions": "Check each question:",
+      "extraQuestion": "Extra (keyword only has {count} letters)",
+      "missingChar": "Missing letter [{char}]",
+      "suggestion": "Suggestion: Change answer to one containing [{char}] or edit keyword",
+      "notEntered": "Question not entered...",
+      "needChar": "Need letter [{char}]",
+      "errorLine": "Line {num}: {reason}",
+      "missingAnswer": "Missing answer after separator",
+      "missingQuestion": "Missing question before separator",
+      "keywordLengthError": "Keyword has {kwLen} letters but there are {qLen} questions. Number of letters in keyword must equal number of questions!",
+      "answerMissingChar": "Q{num}: Answer \"{answer}\" doesn't contain letter \"{char}\"",
+      "enterKeywordQuestion": "Please enter keyword question!",
+      "enterVerticalKeyword": "Please enter vertical keyword!",
+      "needAtLeast2": "Need at least 2 questions!",
+      "back": "Back",
+      "playAgain": "Play again",
+      "showKeyword": "Keyword",
+      "showAll": "All",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "fullscreen": "Fullscreen",
+      "exitFullscreen": "Exit fullscreen",
+      "opened": "Opened",
+      "clickToOpen": "Click to open answer",
+      "clickQuestion": "Click: open question | Hold: reveal answer",
+      "enterAnswer": "Enter answer...",
+      "reveal": "Reveal",
+      "wrongTryAgain": "Wrong! Try again...",
+      "guessKeyword": "Guess keyword...",
+      "correct": "Correct!",
+      "revealAll": "Reveal all",
+      "remaining": "Click number to reveal answer ({count} remaining)",
+      "aiPromptTitle": "AI Prompt for Crossword Questions",
+      "aiPromptSubtitle": "Copy this prompt and paste into ChatGPT, Gemini, Claude...",
+      "copyPrompt": "Copy Prompt",
+      "close": "Close",
+      "copiedPrompt": "Copied prompt! Paste into ChatGPT/Gemini/Claude",
+      "aiPromptContent": "Create a crossword puzzle for topic: [INSERT TOPIC HERE]\n\nREQUIREMENTS:\n1. Create 1 KEYWORD (5-8 letters, UPPERCASE)\n2. Create hint questions EQUAL to the number of letters in keyword\n3. ⚠️ IMPORTANT: Answer 1 MUST contain letter 1 of keyword, answer 2 MUST contain letter 2... in exact order\n4. All answers in UPPERCASE, NO SPACES\n5. Each question MUST end with ?\n6. Questions should be concise: MAX 25 words\n7. Answers should be short: 5-12 characters (1-2 words joined)\n8. Correct answers MUST be 100% accurate, not controversial\n\nOUTPUT FORMAT:\nTopic question: [Question to guess the keyword?]\nKeyword: [KEYWORD]\n\nQuestion list (one per line):\nQuestion 1? | ANSWER 1\nQuestion 2? | ANSWER 2\n...\n\nEXAMPLE with keyword \"PARIS\" (5 letters P-A-R-I-S):\nWhat famous tower is in this city? | LOUVRE (has letter based on keyword position)\nThe river flowing through this city? | SEINE\n...\n\n⚠️ REQUIRED CHECK (before output):\nFor each question, confirm answer contains the corresponding letter:\n- Q1: Does answer have [letter 1 of keyword]? ✓\n- Q2: Does answer have [letter 2 of keyword]? ✓\n- ... (check all)\n\nIMPORTANT NOTES:\n- Each question MUST end with ?\n- Correct answer must be ACCURATE, verifiable\n- Answers should be UPPERCASE, JOINED, SHORT",
+      "noSeparatorFound": "No separator found (| or :)",
+      "correctRow": "CORRECT!",
+      "wrongRow": "WRONG!",
+      "tryAgainHint": "Try again!",
+      "keywordCorrect": "🎉 CORRECT!",
+      "sampleTopic": "What city is known as the City of Light?",
+      "sampleKeyword": "PARIS",
+      "sampleQuestions": "The large gray mammal with a trunk | ELEPHANT\nThe frozen water on polar regions | ICECAP\nStripes animal like a horse | ZEBRA\nA container for cooking rice | RICECOOKER\nThe closest star to Earth | SUN"
+    },
+    "randomPicker": {
+      "listTitle": "Pick List",
+      "show": "Show",
+      "hide": "Hide",
+      "showList": "Show list",
+      "hideList": "Hide list (keep secret)",
+      "placeholder": "Enter one item per line\n\nExample:\nMinh\nLan\nHung\nMai\nTuan",
+      "itemCount": "{count} items",
+      "noItems": "No items yet",
+      "clearAll": "Clear all",
+      "settings": "Settings",
+      "sound": "Sound",
+      "reset": "Reset",
+      "pickButton": "PICK!",
+      "spinning": "Spinning...",
+      "tips": "Tips for use:",
+      "tipName": "Pick names - Call on students",
+      "tipQuestion": "Pick questions - Random exercises",
+      "tipPrize": "Pick prizes - Random rewards",
+      "tipTopic": "Pick topics - Choose lesson content",
+      "readyTitle": "Ready to pick!",
+      "readyDesc": "Pick names • Pick questions • Pick prizes • Pick topics",
+      "readyHint": "Enter list on the left and press button to start",
+      "secretSpin": "Secret pick in progress...",
+      "spinningNumbers": "Spinning...",
+      "resultTitle": "PICK RESULT",
+      "congratulations": "Congratulations!",
+      "refresh": "Refresh",
+      "pickAgain": "Pick again!",
+      "secretList": "Secret list",
+      "itemsHidden": "{count} items hidden"
+    },
+    "groupMaker": {
+      "studentList": "Student List",
+      "placeholder": "Enter one name per line:\nMinh\nLan\nHung\nMai\nTuan",
+      "studentCount": "{count} students",
+      "noNames": "No names yet",
+      "clearAll": "Clear all",
+      "divideMethod": "Divide Method",
+      "byGroup": "By number of groups",
+      "byGroupDesc": "Divide into N groups",
+      "byPerson": "By persons per group",
+      "byPersonDesc": "Each group has N persons",
+      "settings": "Settings",
+      "groupCount": "Number of groups:",
+      "personsPerGroup": "Persons per group:",
+      "willHaveGroups": "→ Will have about {count} groups",
+      "autoLeader": "Auto-select team leader",
+      "reset": "Reset",
+      "divideButton": "DIVIDE GROUPS!",
+      "dividing": "Dividing...",
+      "readyTitle": "Ready to divide!",
+      "readyDesc": "Enter student list and press button to start",
+      "shuffling": "Shuffling & dividing...",
+      "resultTitle": "Result: {count} groups",
+      "totalStudents": "Total {count} students",
+      "groupNumber": "Group {num}",
+      "personCount": "{count} persons",
+      "teamLeader": "Team Leader",
+      "reshuffleButton": "Reshuffle randomly"
+    },
+    "spinWheel": {
+      "mode": "Mode",
+      "textMode": "Name",
+      "numberMode": "Number",
+      "textModeTooltip": "Enter list of names",
+      "numberModeTooltip": "Random number spin",
+      "inputList": "Input List",
+      "placeholder": "One name per line...\nExample:\nMinh\nLan\nHung",
+      "itemCount": "{count} items",
+      "noItems": "No items yet",
+      "clearAll": "Clear",
+      "numberRange": "Number Range",
+      "from": "From",
+      "to": "To",
+      "numbersInRange": "({count} numbers)",
+      "afterSpin": "After spin:",
+      "remove": "Remove",
+      "keep": "Keep",
+      "settings": "Settings",
+      "removeAfterSpin": "Remove after spin",
+      "sound": "Sound",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "spinButton": "SPIN!",
+      "spinning": "Spinning...",
+      "result": "RESULT",
+      "congratsResult": "Congratulations! Result is:",
+      "askRemove": "Do you want to remove this result from the wheel?",
+      "removeAndContinue": "Remove & continue",
+      "keepResult": "Keep",
+      "okContinue": "OK, spin again",
+      "playAgain": "Play again",
+      "spinAgain": "Spin again!",
+      "remaining": "Remaining: {count}",
+      "remainingCount": "Remaining:",
+      "reset": "Reset",
+      "removedResult": "Removed: {item}",
+      "allPicked": "All items picked!",
+      "resetList": "Reset list",
+      "emptyWheel": "Empty wheel",
+      "emptyText": "Enter list to start",
+      "emptyNumber": "Set number range",
+      "emptyTextHint": "Each line is one item on the wheel",
+      "emptyNumberHint": "Enter from and to numbers to spin",
+      "addItemsHint": "Enter list on the left to start"
+    },
+    "luckyLight": {
+      "press": "PRESS!",
+      "pressToStart": "Press to start!",
+      "settings": "Settings",
+      "lightMode": "Light mode",
+      "twoLights": "2 lights",
+      "threeLights": "3 lights",
+      "probability": "Probability",
+      "green": "Green",
+      "yellow": "Yellow",
+      "red": "Red",
+      "safeLabel": "Safe",
+      "challengeLabel": "Challenge",
+      "punishLabel": "Punish",
+      "showProbability": "Show probability",
+      "sound": "Sound",
+      "safe": "SAFE!",
+      "safeDesc": "Lucky! You escaped!",
+      "challenge": "CHALLENGE!",
+      "challengeDesc": "Answer a question to escape!",
+      "punished": "PUNISHED!",
+      "punishedDesc": "Oh no! You got punished!",
+      "resultGreen": "GREEN! You're lucky!",
+      "resultYellow": "YELLOW! Try again!",
+      "resultRed": "RED! Maybe next time!",
+      "pressAgain": "Press again to retry",
+      "playAgain": "Play again"
+    },
+    "raceGame": {
+      "title": "Epic Race",
+      "subtitle": "Score competition • Who leads?",
+      "setup": "Setup",
+      "race": "Race",
+      "mode": "Mode",
+      "individual": "Individual",
+      "team": "Team",
+      "characterType": "Character Type",
+      "cars": "Cars",
+      "animals": "Animals",
+      "people": "People",
+      "rockets": "Rockets",
+      "quickStart": "Quick start:",
+      "numParticipants": "Number of participants:",
+      "createDefault": "Create default names",
+      "nameList": "Name list",
+      "nameListOptional": "(or leave empty for default)",
+      "namePlaceholder": "Group 1\nGroup 2\nGroup 3\n...\n\nOr student names:\nJohn Doe\nJane Smith",
+      "nameHint": "One name per line • Copy-paste from Excel • Leave empty = use \"Group 1, 2, 3...\"",
+      "selectIcon": "Select icon:",
+      "startRace": "START RACE!",
+      "settings": "Settings",
+      "resetBtn": "Reset",
+      "finish": "Finish",
+      "search": "Search...",
+      "ranking": "Ranking",
+      "order": "Order",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "select": "Select",
+      "hide": "Hide",
+      "show": "Show",
+      "points": "pts",
+      "randomCall": "Random call",
+      "lock": "Lock",
+      "unlock": "Unlock",
+      "undo": "Undo",
+      "notFound": "Not found \"{query}\"",
+      "dialogCancel": "Cancel",
+      "dialogConfirm": "Confirm",
+      "dialogUnderstood": "Got it",
+      "notEnoughPeople": "Not enough participants",
+      "needAtLeast2": "Need at least 2 participants to start!",
+      "tooMany": "Too many",
+      "max100": "Maximum 100 players!",
+      "resetScores": "Reset scores?",
+      "resetScoresDesc": "All scores will be reset to 0. Player list remains.",
+      "backToSetup": "Back to setup?",
+      "backToSetupDesc": "Score data will be saved. You can continue later.",
+      "newRace": "New race?",
+      "newRaceDesc": "All current data will be deleted and cannot be recovered.",
+      "raceResult": "RACE RESULT",
+      "leaderboard": "Leaderboard:",
+      "continue": "Continue",
+      "newGame": "New game",
+      "group": "Group"
+    },
+    "animalRace": {
+      "title": "ANIMAL RACE",
+      "subtitle": "Enter racer names • One name per line",
+      "list": "List",
+      "ready": "Ready",
+      "needMin": "Need ≥2",
+      "duplicateWarning": "Duplicate names:",
+      "tooMany": "Too many! Display will be very small.",
+      "veryMany": "Super crowded! Display will be tiny.",
+      "more": "more",
+      "speed": "Speed:",
+      "verySlow": "Very slow",
+      "slow": "Slow",
+      "normal": "Normal",
+      "fast": "Fast",
+      "turbo": "Turbo",
+      "animalType": "Animal:",
+      "soundOn": "ON",
+      "soundOff": "OFF",
+      "needMore": "Need {count} {animal} more",
+      "startRace": "RACE {count} {animal}!",
+      "tip": "Has obstacles 🪨🪵, fatigue when leading, cramps & live commentary!",
+      "rotateDevice": "Rotate device",
+      "rotateHint": "Please rotate to landscape mode for best racing experience",
+      "animals": {
+        "duck": {
+          "name": "Duck",
+          "plural": "ducks"
+        },
+        "turtle": {
+          "name": "Turtle",
+          "plural": "turtles"
+        },
+        "crab": {
+          "name": "Crab",
+          "plural": "crabs"
+        },
+        "fish": {
+          "name": "Pufferfish",
+          "plural": "pufferfish"
+        },
+        "snail": {
+          "name": "Snail",
+          "plural": "snails"
+        }
+      },
+      "sounds": {
+        "duck": {
+          "sound": "Quack quack!",
+          "goSound": "QUACK!"
+        },
+        "turtle": {
+          "sound": "Slow and steady!",
+          "goSound": "PLOP!"
+        },
+        "crab": {
+          "sound": "Pinch pinch!",
+          "goSound": "SNAP!"
+        },
+        "fish": {
+          "sound": "Blub blub!",
+          "goSound": "POOF!"
+        },
+        "snail": {
+          "sound": "Take it easy...",
+          "goSound": "SLURP!"
+        }
+      },
+      "actions": {
+        "duck": "swim",
+        "turtle": "crawl",
+        "crab": "scuttle",
+        "fish": "swim",
+        "snail": "slide"
+      },
+      "raceUI": {
+        "happeningNow": "HAPPENING NOW!",
+        "champion": "CHAMPION!",
+        "leaderboard": "Leaderboard",
+        "raceAgain": "Race Again!",
+        "start": "START",
+        "goBack": "← Back",
+        "raceTime": "Race Time"
+      },
+      "events": {
+        "hitRock": "HIT A ROCK!",
+        "struggling": "STRUGGLING!",
+        "collision": "OUCH!",
+        "speedBoost": "TURBO MODE!",
+        "slowDown": "SLOWING DOWN!",
+        "cramp": "CRAMP!",
+        "recovery": "RECOVERING!",
+        "fishGuide": "FISH GUIDE!",
+        "fishNaughty": "FISH TROUBLE!",
+        "lucky": "LUCKY!",
+        "dodged": "DODGED!"
+      }
+    }
+  },
+  "toolLayout": {
+    "back": "Back",
+    "breadcrumb": "Teacher Toolbox",
+    "teacherToolbox": "Teacher Toolbox",
+    "fullscreen": "Fullscreen",
+    "fullscreenTitle": "Fullscreen - Press ESC to exit",
+    "fullscreenHintPrefix": "Press",
+    "fullscreenHintSuffix": "to display larger",
+    "exitEsc": "Exit (ESC)",
+    "exit": "Exit",
+    "toExit": "to exit",
+    "loading": "Loading...",
+    "preparing": "Preparing tool...",
+    "pleaseWait": "Please wait a moment..."
+  },
+  "groupPicker": {
+    "toolName": "Group Maker & Random Picker",
+    "studentList": "Student List",
+    "placeholder": "Enter one name per line:\nExample:\nJohn\nEmma\nMike\nSarah\nDavid",
+    "studentCount": "{count} students",
+    "noStudents": "No names yet",
+    "clearAll": "Clear all",
+    "mode": "Mode",
+    "pickOne": "Pick 1 person",
+    "pickOneDesc": "Randomly select 1 student",
+    "divideGroups": "Divide groups",
+    "divideGroupsDesc": "Split into random groups",
+    "groupSettings": "Group settings",
+    "groupCount": "Number of groups",
+    "autoLeader": "Auto-select group leader",
+    "reset": "Reset",
+    "processing": "Processing...",
+    "pickButton": "PICK!",
+    "divideButton": "DIVIDE!",
+    "readyToPick": "Ready to pick!",
+    "readyToDivide": "Ready to divide!",
+    "enterListAndStart": "Enter the list and press button to start",
+    "dividingGroups": "Dividing groups...",
+    "personSelected": "The selected person is:",
+    "pickAgain": "Pick again",
+    "groupResult": "Result: {count} groups",
+    "totalStudents": "Total {count} students",
+    "groupLabel": "Group {id}",
+    "memberCount": "{count} members",
+    "leader": "Leader",
+    "reshuffleGroups": "Reshuffle groups"
+  },
+  "soundSettings": {
+    "title": "Sound Settings",
+    "soundOn": "Sound on",
+    "soundOff": "Sound off",
+    "sound": "Sound",
+    "music": "Background music",
+    "musicVolume": "Music volume",
+    "sfxVolume": "Sound effects volume",
+    "musicTheme": "Music theme",
+    "testSound": "Test sound",
+    "themes": {
+      "adventure": "Adventure",
+      "battle": "Battle",
+      "victory": "Victory",
+      "calm": "Relaxing"
+    }
+  },
+  "dice": {
+    "loading": "Loading...",
+    "rolling": "ROLLING...",
+    "roll": "ROLL",
+    "colors": {
+      "white": "White",
+      "red": "Red",
+      "blue": "Blue",
+      "green": "Green",
+      "yellow": "Yellow"
+    }
+  }
+}

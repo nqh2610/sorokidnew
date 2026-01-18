@@ -38,9 +38,16 @@ export async function generateMetadata({ searchParams }) {
       description: 'Những bài viết hữu ích giúp phụ huynh đồng hành cùng con học toán một cách nhẹ nhàng, hiệu quả.',
       type: 'website',
       url: page > 1 ? `https://sorokid.com/blog?page=${page}` : 'https://sorokid.com/blog',
+      locale: 'vi_VN',
     },
     alternates: {
       canonical: page > 1 ? `https://sorokid.com/blog?page=${page}` : 'https://sorokid.com/blog',
+      // 🌍 Hreflang cho blog index
+      languages: {
+        'vi': 'https://sorokid.com/blog',
+        'en': 'https://sorokid.com/en/blog',
+        'x-default': 'https://sorokid.com/blog',
+      },
     },
     robots: page > 1 ? { index: true, follow: true } : undefined,
   };

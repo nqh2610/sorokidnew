@@ -1,0 +1,315 @@
+{
+  "practiceScreen": {
+    "title": "Luyện tập",
+    "auto": "Tự động",
+    "custom": "Tùy chỉnh",
+    "selectLevel": "Chọn cấp độ",
+    "selectOperation": "Chọn phép tính",
+    "addition": "Cộng",
+    "subtraction": "Trừ",
+    "multiplication": "Nhân",
+    "division": "Chia",
+    "mixed": "Hỗn hợp",
+    "start": "Bắt đầu",
+    "questionsCount": "Số câu hỏi",
+    "timeLimit": "Giới hạn thời gian",
+    "seconds": "giây",
+    "noLimit": "Không giới hạn",
+    "result": "Kết quả",
+    "correct": "Đúng",
+    "wrong": "Sai",
+    "accuracy": "Độ chính xác",
+    "time": "Thời gian",
+    "playAgain": "Chơi lại",
+    "backToMenu": "Về menu",
+    "modes": {
+      "addition": "Siêu Cộng",
+      "subtraction": "Siêu Trừ",
+      "addSubMixed": "Cộng Trừ Mix",
+      "multiplication": "Siêu Nhân",
+      "division": "Siêu Chia",
+      "mulDiv": "Nhân Chia Mix",
+      "mixed": "Tứ Phép Thần",
+      "mentalMath": "Siêu Trí Tuệ",
+      "flashAnzan": "Tia Chớp"
+    },
+    "mentalSubModes": {
+      "addition": "Cộng",
+      "subtraction": "Trừ",
+      "multiplication": "Nhân",
+      "division": "Chia",
+      "addSubMixed": "Cộng Trừ",
+      "mulDiv": "Nhân Chia",
+      "mixed": "Tất Cả"
+    },
+    "stats": {
+      "stars": "Sao",
+      "correct": "Đúng",
+      "wrong": "Sai",
+      "combo": "Combo"
+    },
+    "level": "Cấp độ",
+    "multiplierPoints": "x{n} ĐIỂM!",
+    "difficulty": {
+      "1": "Tập Sự",
+      "2": "Chiến Binh",
+      "3": "Dũng Sĩ",
+      "4": "Cao Thủ",
+      "5": "Huyền Thoại",
+      "6": "Siêu Huyền Thoại"
+    },
+    "speedTiers": {
+      "godlike": [
+        "THẦN TỐC!",
+        "SIÊU NHANH!",
+        "KHÔNG THỂ TIN!",
+        "ĐỈNH CỦA ĐỈNH!"
+      ],
+      "fast": [
+        "NHANH NHƯ CHỚP!",
+        "TỐC ĐỘ ÁNH SÁNG!",
+        "SIÊU TỐC!",
+        "QUÁI VẬT TỐC ĐỘ!"
+      ],
+      "good": [
+        "XUẤT SẮC!",
+        "TUYỆT VỜI!",
+        "GIỎI LẮM!",
+        "CỪ KHÔI!"
+      ],
+      "normal": [
+        "ĐÚNG RỒI!",
+        "CHÍNH XÁC!",
+        "TỐT LẮM!",
+        "HAY LẮM!"
+      ]
+    },
+    "streakMessages": {
+      "3": "COMBO x3!",
+      "5": "UNSTOPPABLE!",
+      "7": "DOMINATING!",
+      "10": "LEGENDARY!"
+    },
+    "tiers": {
+      "free": "Miễn Phí",
+      "basic": "Cơ Bản",
+      "advanced": "Nâng Cao",
+      "vip": "VIP"
+    },
+    "flashLevels": {
+      "anhNen": {
+        "name": "Ánh Nến",
+        "subtitle": "Lung linh dịu dàng",
+        "tagline": "Khởi đầu ấm áp"
+      },
+      "anhTrang": {
+        "name": "Ánh Trăng",
+        "subtitle": "Huyền ảo đêm thanh",
+        "tagline": "Bước tiếp vững chắc"
+      },
+      "tiaChop": {
+        "name": "Tia Chớp",
+        "subtitle": "Lóe sáng chớp nhoáng",
+        "tagline": "Nhanh như chớp!"
+      },
+      "saoBang": {
+        "name": "Sao Băng",
+        "subtitle": "Vụt sáng khoảnh khắc",
+        "tagline": "🔥 SIÊU TỐC 🔥"
+      },
+      "bigBang": {
+        "name": "BIG BANG",
+        "subtitle": "Vụ nổ khai sinh vũ trụ",
+        "tagline": "💥 VỤ NỔ VŨ TRỤ 💥"
+      },
+      "sieuBigBang": {
+        "name": "SIÊU BIG BANG",
+        "subtitle": "Đỉnh cao tốc độ",
+        "tagline": "🌌 SIÊU VŨ TRỤ 🌌"
+      }
+    },
+    "flashRanks": {
+      "1": "Tập Sự",
+      "2": "Chiến Binh",
+      "3": "Dũng Sĩ",
+      "4": "Huyền Thoại",
+      "5": "THẦN",
+      "6": "THẦN THÁNH"
+    },
+    "flashDigits": {
+      "1": "1 chữ số",
+      "2": "2 chữ số",
+      "3": "3 chữ số"
+    },
+    "flashOperations": {
+      "addition": {
+        "name": "Phép Cộng",
+        "description": "Chỉ có phép cộng"
+      },
+      "mixed": {
+        "name": "Cộng Trừ Mix",
+        "description": "Xen kẽ cộng và trừ"
+      }
+    },
+    "praiseMessages": [
+      {
+        "emoji": "🎉",
+        "title": "XUẤT SẮC!",
+        "msg": "Bạn giỏi quá! Đáp án hoàn toàn chính xác!"
+      },
+      {
+        "emoji": "🌟",
+        "title": "TUYỆT VỜI!",
+        "msg": "Trí nhớ của bạn thật phi thường!"
+      },
+      {
+        "emoji": "🏆",
+        "title": "SIÊU ĐỈNH!",
+        "msg": "Bạn tính nhẩm nhanh như máy tính!"
+      },
+      {
+        "emoji": "👏",
+        "title": "GIỎI LẮM!",
+        "msg": "Bạn làm đúng rồi! Tiếp tục phát huy nhé!"
+      },
+      {
+        "emoji": "🚀",
+        "title": "THẦN TỐC!",
+        "msg": "Tốc độ tính toán của bạn thật ấn tượng!"
+      }
+    ],
+    "encourageMessages": [
+      {
+        "emoji": "💪",
+        "title": "CỐ LÊN NÀO!",
+        "msg": "Đừng lo, sai là cách học tốt nhất!"
+      },
+      {
+        "emoji": "🌈",
+        "title": "ĐỪNG BỎ CUỘC!",
+        "msg": "Mỗi lần thử là một bước tiến bộ!"
+      },
+      {
+        "emoji": "⭐",
+        "title": "GẦN ĐÚNG RỒI!",
+        "msg": "Bạn cần luyện tập thêm một chút!"
+      },
+      {
+        "emoji": "🎯",
+        "title": "THỬ LẠI NHÉ!",
+        "msg": "Tập trung hơn, bạn sẽ làm được!"
+      }
+    ],
+    "flashSetup": {
+      "digits": {
+        "title": "CHỌN SỐ CHỮ SỐ",
+        "subtitle": "Chọn độ khó của các số",
+        "icon": "🔢"
+      },
+      "operation": {
+        "title": "CHỌN PHÉP TOÁN",
+        "subtitle": "Chọn loại phép tính",
+        "icon": "➕"
+      },
+      "speed": {
+        "title": "CHỌN TỐC ĐỘ",
+        "subtitle": "Càng nhanh → Càng khó → Càng nhiều thưởng!",
+        "icon": "⚡"
+      }
+    },
+    "resultGrades": {
+      "S": {
+        "text": "XUẤT SẮC!",
+        "msg": "Bạn thật tuyệt vời! Gần như hoàn hảo!",
+        "stars": 4
+      },
+      "A": {
+        "text": "GIỎI LẮM!",
+        "msg": "Bạn làm rất tốt! Cố thêm chút nữa!",
+        "stars": 3
+      },
+      "B": {
+        "text": "KHÁ TỐT!",
+        "msg": "Bạn đang tiến bộ! Cố gắng thêm nhé!",
+        "stars": 2
+      },
+      "D": {
+        "text": "LUYỆN TẬP!",
+        "msg": "Thử lại nhé! Mỗi lần sai là một bài học!",
+        "stars": 1
+      }
+    },
+    "ui": {
+      "pressEnter": "Nhấn {key} để tiếp tục",
+      "correct": "Đúng",
+      "questions": "câu",
+      "keepItUp": "Cố lên nhé!",
+      "youDidGreat": "Bạn làm rất tốt!",
+      "defaultPraise": "Bạn giỏi quá!",
+      "gradeMessages": {
+        "S": "Bạn là siêu sao! 🌟",
+        "A": "Làm tốt lắm! 💪",
+        "B": "Không tồi! 👍",
+        "C": "Luyện tập thêm nhé! 📚"
+      },
+      "modeRequiresUpgrade": "Chế độ {mode} yêu cầu gói {tier} trở lên",
+      "selectMode": "CHỌN CHẾ ĐỘ",
+      "selectDifficulty": "CHỌN ĐỘ KHÓ",
+      "locked": "BỊ KHÓA",
+      "unlockWith": "Mở khóa với gói {tier}",
+      "back": "Quay lại",
+      "backToMenu": "Về Menu",
+      "nextProblem": "Câu tiếp theo",
+      "checkAnswer": "Kiểm tra",
+      "showAnswer": "Xem đáp án",
+      "tryAgain": "Thử lại",
+      "startFlash": "Bắt đầu Flash",
+      "readyGo": "Sẵn sàng... Bắt đầu!",
+      "watchCarefully": "Quan sát kỹ nhé!",
+      "enterAnswer": "Nhập đáp án của bạn",
+      "submit": "Gửi",
+      "loading": "Đang tải...",
+      "preparing": "Đang chuẩn bị...",
+      "selectOperation": "Chọn Phép Tính",
+      "mentalMath": "Siêu Trí Tuệ",
+      "flashAnzan": "Tia Chớp",
+      "practice": "Luyện Tập",
+      "backToPractice": "Về trang luyện tập",
+      "backToHome": "Về trang chủ",
+      "lightSpeedRace": "CUỘC ĐUA ÁNH SÁNG",
+      "lightSpeedSubtitle": "Từ Ánh Nến đến Siêu Big Bang!",
+      "lightSpeedPath": "🕯️ → 🌙 → ⚡ → ☄️ → 💥 → 🌌",
+      "digits": "Chữ số",
+      "digitsCount": "{n} chữ số",
+      "operation": "Phép toán",
+      "speed": "Tốc độ",
+      "quantity": "Số lượng",
+      "speedPerNum": "{n}s/số",
+      "numbers": "{n} số",
+      "focusHigh": "Tập trung cao độ",
+      "addCumulative": "Cộng dồn từng số",
+      "focus": "TẬP TRUNG!",
+      "whatIsResult": "KẾT QUẢ LÀ BAO NHIÊU?",
+      "enterYourResult": "Nhập kết quả phép tính của bạn",
+      "accuracy": "Độ chính xác",
+      "total": "Tổng cộng",
+      "passed": "Đã qua màn! Cần ≥70% để mở khóa màn tiếp theo",
+      "notPassed": "Chưa đạt! Cần ≥70% để qua màn (hiện tại: {accuracy}%)",
+      "notPassedAccuracy": "Chưa đạt! Cần ≥70% chính xác để qua màn (hiện tại: {accuracy}%)",
+      "readyForHigherChallenge": "Sẵn sàng thử thách cao hơn?",
+      "createNumber": "Tạo số",
+      "comboBonus": "Combo = x2 Bonus!",
+      "canYouReachSuperBigBang": "Bạn có thể chạm tới SIÊU BIG BANG không?",
+      "secPerNum": "{n}s/số",
+      "numCount": "{n} số",
+      "confirm": "XÁC NHẬN",
+      "pressEnterToSubmit": "Nhấn Enter để gửi đáp án",
+      "skip": "Bỏ qua",
+      "answer": "Trả lời",
+      "finish": "Kết thúc",
+      "next": "Tiếp",
+      "wrong": "Sai",
+      "skipped": "Bỏ qua"
+    }
+  }
+}

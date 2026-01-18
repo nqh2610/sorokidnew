@@ -1,0 +1,231 @@
+{
+  "pricing": {
+    "title": "Chọn gói học phù hợp",
+    "subtitle": "Bắt đầu miễn phí, nâng cấp khi cần",
+    "monthly": "Theo tháng",
+    "yearly": "Theo năm",
+    "savePercent": "Tiết kiệm {percent}%",
+    "free": {
+      "title": "Miễn phí",
+      "price": "0đ",
+      "period": "mãi mãi",
+      "description": "Trải nghiệm cơ bản",
+      "features": [
+        "5 bài học đầu tiên",
+        "Bài tập cơ bản",
+        "Toolbox giáo viên",
+        "Hỗ trợ cộng đồng"
+      ],
+      "cta": "Bắt đầu miễn phí"
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "{price}đ",
+      "period": "/tháng",
+      "description": "Toàn bộ tính năng",
+      "features": [
+        "Tất cả bài học",
+        "Tất cả bài tập",
+        "Phiêu lưu & Thi đấu",
+        "Chứng chỉ hoàn thành",
+        "Theo dõi tiến độ chi tiết",
+        "Không quảng cáo",
+        "Hỗ trợ ưu tiên"
+      ],
+      "cta": "Nâng cấp ngay"
+    },
+    "faq": {
+      "title": "Câu hỏi thường gặp",
+      "items": [
+        {
+          "question": "Có thể hủy bất cứ lúc nào không?",
+          "answer": "Có, bạn có thể hủy gói Premium bất cứ lúc nào. Tài khoản sẽ tiếp tục hoạt động đến hết chu kỳ thanh toán."
+        },
+        {
+          "question": "Gói miễn phí có hạn chế gì?",
+          "answer": "Gói miễn phí cho phép truy cập 5 bài học đầu tiên và các bài tập cơ bản. Để mở khóa toàn bộ nội dung, bạn cần nâng cấp Premium."
+        },
+        {
+          "question": "Có hỗ trợ thanh toán nào?",
+          "answer": "Chúng tôi hỗ trợ thanh toán qua thẻ ngân hàng, ví điện tử (MoMo, ZaloPay) và chuyển khoản ngân hàng."
+        }
+      ]
+    }
+  },
+  "pricingPage": {
+    "badge": "Trả 1 lần • Dùng trọn đời",
+    "heroTitle1": "Học Soroban",
+    "heroTitle2": "mọi lúc, mọi nơi",
+    "heroSubtitle": "Phương pháp tính nhẩm Nhật Bản giúp bé phát triển tư duy toán học & khả năng tập trung",
+    "centerCost": "Trung tâm thu phí",
+    "centerCostValue": "1-3 triệu/tháng",
+    "hereCost": "Tại đây: Trả 1 lần, dùng trọn đời",
+    "safePayment": "Thanh toán an toàn",
+    "instantActivation": "Kích hoạt ngay",
+    "zaloSupport": "Hỗ trợ qua Zalo",
+    "mostPopular": "🔥 Phổ biến nhất",
+    "freeForever": "Miễn phí mãi mãi",
+    "oneTimePayment": "Thanh toán 1 lần",
+    "yourCurrentPlan": "Gói bạn đang dùng",
+    "difference": "Phần chênh lệch",
+    "processing": "Đang xử lý...",
+    "currentPlan": "Gói hiện tại",
+    "lowerPlan": "Gói thấp hơn",
+    "upgrade": "Nâng cấp",
+    "buyNow": "Mua ngay",
+    "featureDetails": "Chi tiết tính năng",
+    "comparePlans": "So sánh các gói",
+    "swipeToSee": "Vuốt để xem thêm",
+    "feature": "Tính năng",
+    "faqTitle": "Các câu hỏi thường gặp",
+    "comparison": {
+      "learning": {
+        "name": "Học",
+        "basicLessons": "Bài học cơ bản (Cấp 1-5)",
+        "addSubLessons": "Bài học Cộng/Trừ (Cấp 6-10)",
+        "mulDivLessons": "Bài học Nhân/Chia (Cấp 11-18)"
+      },
+      "practice": {
+        "name": "Luyện tập",
+        "addSub": "Cộng & Trừ",
+        "addSubMix": "Cộng/Trừ Hỗn hợp",
+        "mulDiv": "Nhân & Chia",
+        "fourOps": "Bốn phép tính"
+      },
+      "compete": {
+        "name": "Thi đấu",
+        "online": "Thi đấu Online",
+        "mentalMath": "Siêu trí tuệ",
+        "flashAnzan": "Flash Anzan",
+        "leaderboard": "Bảng xếp hạng"
+      },
+      "certificate": {
+        "name": "Chứng chỉ",
+        "addSub": "Chứng chỉ Sorokid Cộng/Trừ",
+        "complete": "Chứng chỉ Sorokid Hoàn thành"
+      },
+      "gamification": {
+        "name": "Game hóa",
+        "dailyQuests": "Nhiệm vụ hàng ngày",
+        "achievements": "Hệ thống thành tựu",
+        "shop": "Cửa hàng vật phẩm"
+      },
+      "level12": "Cấp 1-2",
+      "level13": "Cấp 1-3",
+      "allLevels": "Tất cả cấp"
+    },
+    "faq": {
+      "paymentSafe": {
+        "question": "Thanh toán có an toàn không?",
+        "answer": "Chúng tôi sử dụng các cổng thanh toán uy tín để đảm bảo an toàn tuyệt đối cho giao dịch của bạn."
+      },
+      "activation": {
+        "question": "Kích hoạt gói như thế nào?",
+        "answer": "Sau khi thanh toán thành công, gói sẽ được kích hoạt ngay lập tức và bạn có thể sử dụng tất cả tính năng."
+      },
+      "lifetime": {
+        "question": "Gói có hết hạn không?",
+        "answer": "Không! Bạn chỉ cần thanh toán 1 lần và dùng trọn đời, không có phí hàng tháng hay phí ẩn."
+      },
+      "upgrade": {
+        "question": "Có thể nâng cấp sau được không?",
+        "answer": "Có! Bạn có thể nâng cấp từ Basic lên Advanced bất cứ lúc nào và chỉ cần trả phần chênh lệch."
+      }
+    },
+    "benefits": {
+      "badge": "Lợi ích thực sự",
+      "title": "Tại sao chọn",
+      "brain": {
+        "title": "Phát triển não bộ",
+        "content": "Kích hoạt cả 2 bán cầu não, tăng khả năng tập trung và ghi nhớ"
+      },
+      "speed": {
+        "title": "Tính nhẩm siêu tốc",
+        "content": "Bé có thể tính các phép tính phức tạp chỉ trong vài giây"
+      },
+      "fun": {
+        "title": "Học mà chơi",
+        "content": "Game hóa việc học giúp bé không bao giờ chán"
+      }
+    },
+    "cta": {
+      "title1": "Sẵn sàng bắt đầu",
+      "title2": "hành trình Soroban?",
+      "description": "Học Soroban không chỉ giúp tính nhanh hơn mà còn phát triển tư duy logic, trí nhớ và khả năng tập trung cho con.",
+      "button": "Bắt đầu học ngay"
+    },
+    "modal": {
+      "scanQR": "Quét mã QR để thanh toán",
+      "confirmingPayment": "Đang xác nhận thanh toán...",
+      "waitingPayment": "Đang chờ thanh toán",
+      "systemChecking": "Hệ thống đang kiểm tra...",
+      "autoConfirm": "Sau khi chuyển, hệ thống sẽ tự động xác nhận",
+      "transferDetails": "Thông tin chuyển khoản",
+      "bank": "Ngân hàng",
+      "accountNumber": "Số tài khoản",
+      "accountName": "Tên tài khoản",
+      "amount": "Số tiền",
+      "content": "Nội dung CK",
+      "iHaveTransferred": "Tôi đã chuyển khoản",
+      "notReceived": "Chưa nhận được thanh toán. Hệ thống sẽ tự động kiểm tra lại...",
+      "connectionError": "Lỗi kết nối. Vui lòng đợi..."
+    }
+  },
+  "payment": {
+    "scanQR": "Quét mã QR để thanh toán",
+    "success": "Thanh toán thành công!",
+    "activating": "Đang kích hoạt gói {tier}...",
+    "expired": "Đơn hàng đã hết hạn",
+    "createNewOrder": "Vui lòng tạo đơn hàng mới để tiếp tục thanh toán.",
+    "close": "Đóng",
+    "qrAlt": "QR Code thanh toán",
+    "bankInfo": "Thông tin chuyển khoản",
+    "bank": "Ngân hàng",
+    "accountNumber": "Số tài khoản",
+    "accountName": "Chủ tài khoản",
+    "content": "Nội dung CK",
+    "orderCode": "Mã đơn hàng",
+    "checking": "Đang kiểm tra...",
+    "iHavePaid": "Tôi đã thanh toán",
+    "expiresIn15": "Đơn hàng hết hạn sau 15 phút",
+    "successTitle": "Thanh toán thành công!",
+    "planActivated": "Gói đã kích hoạt",
+    "activated": "Đã kích hoạt",
+    "confirmed": "Giao dịch đã được xác nhận thành công",
+    "unlocked": "Tất cả tính năng đã được mở khóa",
+    "lifetime": "Sử dụng trọn đời - Không giới hạn thời gian",
+    "startLearning": "Bắt đầu học ngay",
+    "thanks": "Cảm ơn bạn đã tin tưởng SoroKid! 💜"
+  },
+  "softUpgrade": {
+    "practiceGreat": "Luyện tập thật tuyệt! 🎯",
+    "battleExcellent": "Trận đấu xuất sắc! ⚔️",
+    "lessonComplete": "Bài học hoàn thành! 📚",
+    "streakImpressive": "Chuỗi ngày ấn tượng! 🔥",
+    "levelUp": "Lên cấp rồi! 🚀",
+    "doingGreat": "Bạn đang làm rất tốt!",
+    "unlockMoreLevels": "Mở khóa thêm cấp độ và chế độ đặc biệt",
+    "upgradeFor18Levels": "Nâng cấp để trải nghiệm đầy đủ 18 level",
+    "stars": "sao",
+    "exploreMore": "Khám phá thêm",
+    "freeRemaining": "Còn {count} {type} miễn phí nữa!",
+    "level": "level",
+    "lesson": "bài",
+    "unlockAll": "Mở khóa tất cả",
+    "viewMoreContent": "Xem thêm nhiều nội dung hơn",
+    "achievementForUpgraded": "Thành tích này dành cho các bạn đã nâng cấp gói học tập",
+    "learnMore": "Tìm hiểu",
+    "progressingFast": "Bạn đang tiến bộ rất nhanh! 🚀",
+    "challengeYourself": "Thử thách bản thân với các cấp độ khó hơn",
+    "exploreFlashAnzan": "Khám phá Flash Anzan và Siêu Trí Tuệ",
+    "lessonCompleteAwesome": "Tuyệt vời! Bài học hoàn thành! 🎉",
+    "moreLessonsAwaiting": "Còn nhiều bài học thú vị đang chờ bạn",
+    "excellentTop3": "Xuất sắc! Bạn vào Top 3! 🏆",
+    "wellDone": "Làm tốt lắm! 👏",
+    "trySpecialModes": "Thử các chế độ thi đấu đặc biệt",
+    "explore": "Khám phá",
+    "basicPackage": "Gói Cơ Bản",
+    "advancedPackage": "Gói Nâng Cao",
+    "unlockWith": "Mở khóa với {tier}"
+  }
+}

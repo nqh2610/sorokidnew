@@ -1,0 +1,260 @@
+{
+  "slug": "con-hoc-toan-tot-o-truong-nhung-ve-nha-khong-lam-duoc",
+  "title": "Con học toán tốt ở trường nhưng về nhà quên sạch – Vì sao và cách khắc phục",
+  "description": "Cô giáo khen con tiếp thu nhanh. Nhưng tối về ôn bài, con ngồi như 'mất trí'. Mình từng nghĩ con giả vờ, hóa ra đó là cách não trẻ hoạt động.",
+  "category": "con-gap-kho-khan-hoc-toan",
+  "keywords": [
+    "con quên bài nhanh",
+    "học tốt ở trường kém ở nhà",
+    "con không nhớ bài",
+    "cách giúp con nhớ bài lâu",
+    "đường cong lãng quên",
+    "ôn tập hiệu quả"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-30T11:30:00.000Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/dau-hieu-con-hoc-soroban-dung.jpg",
+  "imageAlt": "Bé về nhà ôn lại bài đã học ở trường",
+  "readingTime": 8,
+  "categoryOrder": 2,
+  "order": 18,
+  "author": {
+    "name": "Chị Phương",
+    "role": "Mẹ bé lớp 2"
+  },
+  "translations": {
+    "en": "con-hc-ton-tt-trng-nhng-v-nh-qun-sch-v-sao-v-cch-khc-phc"
+  },
+  "content": {
+    "intro": "\"Hôm nay cô dạy gì con?\" – \"Phép nhân 4 mẹ ạ!\" – \"Vậy 4 x 6 bằng mấy?\" – Con im lặng. Mắt con nhìn lên trần nhà, suy nghĩ mãi. \"Con... con quên rồi mẹ ơi.\" Mình sốc. Cô giáo vừa nhắn tin khen con tiếp thu nhanh. Mới học xong buổi sáng, buổi tối con đã quên? Mình từng nghĩ con giả vờ, con không chịu học. Nhưng sau khi tìm hiểu, mình mới biết: đó là cách não trẻ hoạt động, và mình đã ôn bài sai cách.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Hiểu Bài Không Có Nghĩa Là Nhớ Bài"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây là sai lầm lớn nhất của mình: nghĩ rằng con hiểu tức là con nhớ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Thực tế, có 3 bước trong học tập:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Hiểu**: Con tiếp thu thông tin, hiểu ngay lúc đó",
+          "**Nhớ**: Thông tin được lưu vào bộ nhớ dài hạn",
+          "**Áp dụng**: Con có thể dùng kiến thức để giải bài"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Cô dạy trên lớp, con hiểu ngay lúc đó (bước 1). Nhưng nếu không ôn tập, thông tin sẽ biến mất trước khi kịp lưu vào bộ nhớ dài hạn."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "\"Đường Cong Lãng Quên\" - Thứ Mình Ước Gì Biết Sớm Hơn"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình tìm hiểu và biết đến \"Đường cong lãng quên\" của nhà tâm lý học Ebbinghaus. Nghiên cứu cho thấy:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Sau 20 phút: quên 40% thông tin mới học",
+          "Sau 1 giờ: quên 50%",
+          "Sau 24 giờ: quên 70%",
+          "Sau 1 tuần: quên gần 80%"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Nghĩa là: Con học buổi sáng, buổi tối đã quên gần hết. Đó là **bình thường**, không phải con dốt hay con không chịu học."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Khi biết điều này, mình hết trách con. Con không giả vờ. Não con đang hoạt động đúng cách - và mình cần giúp con ôn tập đúng thời điểm."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tại Sao Ở Trường Con Làm Được, Về Nhà Lại Không?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ngoài đường cong lãng quên, còn có các yếu tố khác:"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Môi trường học khác nhau**"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ở lớp: yên tĩnh, có cô giáo, có bạn bè - tạo không khí tập trung. Ở nhà: TV, điện thoại, em nhỏ chạy quanh, bố mẹ nói chuyện - não con bị phân tán."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Có người hướng dẫn vs tự làm**"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ở lớp: cô hỏi, con trả lời. Cô gợi ý khi con quên. Ở nhà: con phải tự nhớ lại mà không ai gợi ý. Khó hơn nhiều."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Áp lực từ bố mẹ**"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Sao vừa học xong mà quên rồi?\" - Câu này mình hay nói. Nó tạo áp lực, làm con lo lắng, não con \"đơ\" luôn. Càng căng thẳng, con càng khó nhớ."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách Mình Thay Đổi"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sau khi hiểu vấn đề, mình áp dụng phương pháp \"ôn tập ngắt quãng\"."
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Ôn ngay sau khi học (trong 24 giờ)**"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con về nhà, nghỉ 30 phút ăn uống. Sau đó ngồi ôn lại 10-15 phút. Không cần làm nhiều - chỉ cần nhắc lại kiến thức vừa học."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình hỏi: \"Hôm nay cô dạy gì?\" Con kể lại. Mình hỏi thêm vài câu. Nếu con quên, mình gợi ý nhẹ thay vì la mắng."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Ôn lại sau 1 ngày**"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ngày hôm sau, dành 5 phút nhắc lại. \"Hôm qua con học gì?\" Lần này con thường nhớ tốt hơn."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Ôn lại sau 1 tuần**"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cuối tuần, ôn tổng hợp 15-20 phút. Mình dùng app có bài tập để con không chán. Con làm bài, có điểm số, có phản hồi ngay."
+      },
+      {
+        "type": "paragraph",
+        "text": "**4. Tạo môi trường học tập yên tĩnh**"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình tắt TV khi con học. Điện thoại để xa. Em nhỏ có bố trông. 15 phút tập trung còn hơn 1 tiếng vừa học vừa bị gián đoạn."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Theo nghiên cứu, nếu ôn tập trong vòng 24 tiếng, tỷ lệ nhớ lâu tăng gấp 3 lần. Đừng đợi đến cuối tuần mới ôn!"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết Quả Sau 1 Tháng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con bắt đầu nhớ bài tốt hơn. Buổi tối hỏi lại, con trả lời được mà không cần suy nghĩ lâu."
+      },
+      {
+        "type": "paragraph",
+        "text": "Điểm kiểm tra cũng cải thiện: từ 7-8 lên 8-9. Không phải vì con thông minh hơn, mà vì kiến thức đã được lưu vào bộ nhớ dài hạn."
+      },
+      {
+        "type": "paragraph",
+        "text": "Quan trọng hơn: mình hết trách con. Mình biết quên là bình thường. Việc của mình là giúp con ôn tập đúng cách, không phải la mắng."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lời Khuyên Cho Phụ Huynh"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. **Đừng trách con khi con quên:** Đó là cách não hoạt động. Thay vì la, hãy giúp con ôn lại."
+      },
+      {
+        "type": "paragraph",
+        "text": "2. **Ôn ngay, đừng đợi:** Ôn trong 24 giờ đầu tiên hiệu quả nhất. Càng để lâu, con càng quên nhiều."
+      },
+      {
+        "type": "paragraph",
+        "text": "3. **Ôn ít, nhưng đều:** 15 phút mỗi ngày tốt hơn 2 tiếng cuối tuần. Não cần lặp lại nhiều lần để ghi nhớ."
+      },
+      {
+        "type": "paragraph",
+        "text": "4. **Tạo môi trường tập trung:** Tắt TV, để xa điện thoại. 15 phút yên tĩnh đáng giá hơn 1 tiếng bị gián đoạn."
+      },
+      {
+        "type": "paragraph",
+        "text": "5. **Dùng công cụ hỗ trợ:** App học tập có bài tập theo từng ngày, giúp con ôn đều đặn mà không chán."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Con quên bài không phải vì con dốt. Con chỉ cần được ôn tập đúng cách. Hiểu điều này, bạn sẽ bớt lo lắng và giúp con hiệu quả hơn."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Ôn bao lâu thì con nhớ được?",
+      "answer": "Theo phương pháp ôn tập ngắt quãng: ôn ngay trong 24h, ôn lại sau 1 ngày, sau 1 tuần, sau 1 tháng. Sau 4 lần như vậy, kiến thức sẽ lưu vào bộ nhớ dài hạn."
+    },
+    {
+      "question": "Con không chịu ôn bài thì sao?",
+      "answer": "Biến thành trò chơi. Dùng app có điểm số, huy hiệu, level. Thi đố với bố mẹ. Khen thưởng khi con hoàn thành. Con sẽ hứng thú hơn."
+    },
+    {
+      "question": "Ôn bài buổi sáng hay buổi tối tốt hơn?",
+      "answer": "Tốt nhất là ôn ngay sau khi về nhà (chiều/tối). Buổi sáng có thể nhắc lại nhanh 5 phút trước khi đi học. Quan trọng là ôn trong vòng 24h sau khi học."
+    },
+    {
+      "question": "Con học nhiều môn, không đủ thời gian ôn?",
+      "answer": "Mỗi môn chỉ cần 10-15 phút ôn lại. Ưu tiên môn vừa học trong ngày. Cuối tuần ôn tổng hợp các môn đã học trong tuần."
+    },
+    {
+      "question": "App nào giúp con ôn tập hiệu quả?",
+      "answer": "Sorokid có hệ thống bài tập theo ngày, giúp con ôn tập đều đặn. Có điểm số, level để tạo động lực. Bố mẹ có thể theo dõi tiến độ mà không cần ngồi kèm."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid giúp con ôn tập mỗi ngày với bài tập tự động theo tiến độ. Con học đều đặn, bố mẹ theo dõi được mà không cần ngồi kèm.",
+    "buttonText": "Cho con thử miễn phí",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Con Học Tốt Ở Trường Nhưng Về Nhà Quên Sạch - Nguyên Nhân Và Cách Khắc Phục",
+    "description": "Giải thích khoa học về 'đường cong lãng quên' và cách giúp con nhớ bài lâu hơn. Phương pháp ôn tập ngắt quãng hiệu quả từ kinh nghiệm phụ huynh.",
+    "keywords": [
+      "con quên bài nhanh",
+      "cách giúp con nhớ bài",
+      "ôn tập hiệu quả",
+      "đường cong lãng quên"
+    ]
+  },
+  "schema": {
+    "type": "Article",
+    "headline": "Con học toán tốt ở trường nhưng về nhà quên sạch – Vì sao và cách khắc phục",
+    "author": "Chị Phương - Mẹ bé lớp 2",
+    "datePublished": "2025-12-30",
+    "dateModified": "2025-12-30"
+  }
+}

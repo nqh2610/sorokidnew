@@ -38,9 +38,11 @@ export async function GET(request) {
     }
 
     // Query quests and user quests
-    const [dailyQuests, userQuests] = await Promise.all([
-      prisma.dailyQuest.findMany({
-        orderBy: { id: 'asc' }
+    // Model đúng là "quest" không phải "dailyQuest"
+    const [allQuests, userQuests] = await Promise.all([
+      prisma.quest.findMany({
+        where: { isActive: true },
+        orderBy: { createdAt: 'desc' }
       }),
       prisma.userQuest.findMany({
         where: { userId }
@@ -54,25 +56,22 @@ export async function GET(request) {
     });
 
     // Format quests - ĐÚNG FORMAT cho QuestList component
-    const formattedQuests = dailyQuests.map(quest => {
+    const formattedQuests = allQuests.map(quest => {
       const userQuest = userQuestMap.get(quest.id);
       const isCompleted = userQuest?.completed || false;
-      const isClaimed = userQuest?.claimed || false;
+      // Schema dùng claimedAt (DateTime?), không phải claimed (Boolean)
+      const isClaimed = userQuest?.claimedAt != null;
       
       return {
         id: quest.id,
         title: quest.title,
         description: quest.description,
         type: quest.type,
-        // QuestList cần 'target' không phải 'targetValue'
-        target: quest.targetValue,
-        targetValue: quest.targetValue,
-        // QuestList cần 'stars' và 'diamonds' không phải 'reward'
-        stars: quest.rewardType === 'stars' ? quest.reward : 0,
-        diamonds: quest.rewardType === 'diamonds' ? quest.reward : 0,
-        reward: quest.reward,
-        rewardType: quest.rewardType,
-        icon: quest.icon,
+        category: quest.category,
+        requirement: quest.requirement,
+        // Schema có stars và diamonds trực tiếp
+        stars: quest.stars,
+        diamonds: quest.diamonds,
         progress: userQuest?.progress || 0,
         completed: isCompleted,
         claimed: isClaimed,

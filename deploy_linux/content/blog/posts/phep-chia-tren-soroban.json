@@ -1,0 +1,387 @@
+{
+  "slug": "phep-chia-tren-soroban",
+  "title": "Phép chia trên Soroban – Hướng dẫn chi tiết cho phụ huynh",
+  "description": "Phép chia là phép tính khó nhất trên Soroban. Bài này hướng dẫn cách chia cơ bản với ví dụ từng bước.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "phép chia soroban",
+    "chia trên bàn tính soroban",
+    "cách chia soroban",
+    "chia có dư soroban",
+    "luyện chia soroban",
+    "kỹ thuật chia soroban",
+    "ước lượng thương soroban",
+    "hướng dẫn chia soroban",
+    "bài tập chia soroban",
+    "chia 2 chữ số soroban",
+    "xử lý ước lượng sai",
+    "chia số lớn soroban"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-31T03:14:35.250Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/tre-hoc-phep-chia-soroban.jpg",
+  "imageAlt": "Trẻ em học phép chia trên bàn tính Soroban",
+  "readingTime": 14,
+  "categoryOrder": 1,
+  "order": 13,
+  "translations": {
+    "en": "division-on-soroban"
+  },
+  "content": {
+    "intro": "Phép chia là phép tính khó nhất trên Soroban. Con cần thuộc bảng cửu chương và thành thạo phép trừ trước khi học chia. Bài này hướng dẫn cách chia cơ bản.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Yêu cầu trước khi học chia"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Thuộc bảng cửu chương:** Đặc biệt cần biết nghịch đảo (84 ÷ 7 = ? nghĩa là 7 × ? = 84)",
+          "**Thành thạo phép trừ:** Vì chia = trừ nhiều lần",
+          "**Thành thạo phép nhân:** Để kiểm tra kết quả"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Phép chia là phép tính cuối cùng học trên Soroban. Không nên vội, đảm bảo con vững các phép tính khác trước."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Nguyên tắc chia trên Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chia trên Soroban thực chất là TRỪ NHIỀU LẦN và ĐẾM số lần trừ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Quy trình:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đặt số bị chia ở bên phải Soroban",
+          "Số chia nhớ trong đầu hoặc đặt riêng",
+          "Ước lượng thương (kết quả), đặt ở bên trái số bị chia",
+          "Nhân thương × số chia, trừ vào số bị chia",
+          "Lặp lại cho đến khi số bị chia = 0 hoặc còn dư"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ 1: 84 ÷ 7 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 1: Setup**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Số chia: 7 (nhớ trong đầu)",
+          "Đặt 84 ở cột 7-8: Cột 7 = 8, cột 8 = 4",
+          "Thương sẽ đặt ở cột 5-6"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 2: Ước lượng thương đầu tiên**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Nhìn 84, chia cho 7",
+          "8 ÷ 7 = 1 (lấy phần nguyên)",
+          "Đặt 1 vào cột 5"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 3: Trừ (1 × 7 = 7)**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Trừ 7 từ 8: 8 - 7 = 1",
+          "Cột 7 bây giờ = 1",
+          "Số bị chia còn: 14"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 4: Tiếp tục chia 14 ÷ 7**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "14 ÷ 7 = 2",
+          "Đặt 2 vào cột 6",
+          "Trừ 14: 14 - 14 = 0"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Cột 5 = 1, cột 6 = 2. Thương = 12. ✓"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kiểm tra: 12 × 7 = 84. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ 2: 156 ÷ 12 = ?"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 1: Setup**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Số chia: 12",
+          "Đặt 156 ở cột 6-7-8"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 2: Ước lượng thương**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "15 ÷ 12 = 1 (lấy phần nguyên)",
+          "Đặt 1 vào cột 4"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 3: Trừ (1 × 12 = 12)**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Trừ 12 từ 15: 15 - 12 = 3",
+          "Số bị chia còn: 36"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 4: Tiếp tục chia 36 ÷ 12**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "36 ÷ 12 = 3",
+          "Đặt 3 vào cột 5",
+          "Trừ 36: 36 - 36 = 0"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Thương = 13. ✓"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kiểm tra: 13 × 12 = 156. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ví dụ 3: 100 ÷ 7 = ? (chia có dư)"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 1: Setup**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Số chia: 7",
+          "Đặt 100"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bước 2: Ước lượng và trừ**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "10 ÷ 7 = 1 → Đặt 1, trừ 7 → Còn 30",
+          "30 ÷ 7 = 4 → Đặt 4, trừ 28 → Còn 2"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Kết quả:** Thương = 14, dư = 2."
+      },
+      {
+        "type": "paragraph",
+        "text": "Kiểm tra: 14 × 7 + 2 = 98 + 2 = 100. ✓"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Xử lý khi ước lượng sai"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đôi khi ước lượng thương bị sai. Có 2 trường hợp:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Ước lượng QUÁ LỚN"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ví dụ: 45 ÷ 7. Ước lượng 4 ÷ 7 = ?, nghĩ rằng = 7. Nhưng 7 × 7 = 49 > 45."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cách xử lý:** Giảm thương xuống 1. Thử 6: 6 × 7 = 42 < 45. OK!"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Ước lượng QUÁ NHỎ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ví dụ: 63 ÷ 7. Ước lượng 6 ÷ 7 = 0. Nhưng 63 ÷ 7 = 9, không phải 0."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cách xử lý:** Xét thêm chữ số tiếp theo (63 ÷ 7 = 9)."
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Ước lượng sai là bình thường khi mới học. Quan trọng là biết cách điều chỉnh."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bài tập thực hành"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mức 1: Chia hết, 1 chữ số"
+      },
+      {
+        "type": "paragraph",
+        "text": "36÷6, 49÷7, 72÷8, 81÷9, 56÷7"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mức 2: Chia hết, 2 chữ số"
+      },
+      {
+        "type": "paragraph",
+        "text": "84÷7, 96÷8, 144÷12, 169÷13, 225÷15"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Mức 3: Chia có dư"
+      },
+      {
+        "type": "paragraph",
+        "text": "50÷7, 100÷9, 67÷8, 123÷11, 200÷13"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mẹo chia nhanh"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Thuộc nghịch đảo bảng cửu chương:** 63 ÷ 7 = ? là hỏi 7 × ? = 63",
+          "**Ước lượng nhanh:** Nhìn 1-2 chữ số đầu của số bị chia",
+          "**Kiểm tra bằng nhân:** Thương × số chia + dư = số bị chia",
+          "**Luyện từ dễ đến khó:** Chia hết trước, chia có dư sau"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Phép chia khó nhất trong 4 phép tính. Đừng nản, cho con luyện từ từ. Khi thành thạo, con có thể chia số 3-4 chữ số trong vài giây!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con luyện chia trên Sorokid. App có chế độ gợi ý khi con ước lượng sai, giúp con tự điều chỉnh."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Phép chia có khó hơn phép nhân không?",
+      "answer": "Có. Chia yêu cầu ước lượng (đoán thương) và điều chỉnh khi sai. Nhân thì biết chắc kết quả từ bảng cửu chương. Chia cần kỹ năng phán đoán thêm."
+    },
+    {
+      "question": "Con hay ước lượng sai, phải làm sao?",
+      "answer": "Bình thường khi mới học. Luyện nhiều sẽ quen. Quan trọng là biết khi nào sai (quá lớn/nhỏ) và cách điều chỉnh: tăng hoặc giảm thương 1 đơn vị."
+    },
+    {
+      "question": "Chia trên Soroban khác chia trên giấy như thế nào?",
+      "answer": "Giấy: viết ra từng bước. Soroban: trừ trực tiếp, kết quả thay đổi tức thì. Soroban rèn tư duy nhanh hơn và giúp học tính nhẩm."
+    },
+    {
+      "question": "Bao lâu thì con chia thành thạo?",
+      "answer": "6-12 tháng để chia số 2-3 chữ số thành thạo, tùy mức độ luyện tập. Đây là kỹ năng nâng cao cần kiên nhẫn."
+    },
+    {
+      "question": "Có nên học chia trước khi thành thạo nhân?",
+      "answer": "Không nên. Chia cần thuộc nghịch đảo bảng cửu chương (7 × ? = 84) và thành thạo trừ. Nên học nhân và trừ vững trước."
+    },
+    {
+      "question": "Làm sao kiểm tra kết quả chia?",
+      "answer": "Nhân ngược lại: Thương × số chia + dư = số bị chia. Ví dụ: 100÷7=14 dư 2 → Kiểm tra: 14×7+2=98+2=100."
+    },
+    {
+      "question": "Chia có dư có khó hơn chia hết không?",
+      "answer": "Tương tự, chỉ khác ở cuối không chia hết được nữa. Số còn lại trên bàn tính chính là số dư. Bắt đầu với chia hết, quen rồi mới sang chia có dư."
+    },
+    {
+      "question": "Vị trí đặt thương ở đâu?",
+      "answer": "Thương đặt bên trái số bị chia, cách 1-2 cột. Khi chia xong, số bị chia biến mất (hoặc còn dư), chỉ còn thương ở bên trái."
+    },
+    {
+      "question": "Khi nào biết ước lượng quá lớn?",
+      "answer": "Khi nhân thương với số chia ra kết quả LỚN HƠN số đang xét. Ví dụ: 45÷7, ước 7, nhưng 7×7=49>45 → giảm xuống 6."
+    },
+    {
+      "question": "Nên luyện chia bao lâu mỗi ngày?",
+      "answer": "10-15 phút cho phần chia. Vì chia khó, cần kiên nhẫn và không ép nhiều. Kết hợp ôn lại nhân và trừ để củng cố kỹ năng nền tảng."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có bài tập phép chia với gợi ý từng bước, giúp con tự tin hơn khi gặp phép chia khó.",
+    "buttonText": "Cho con luyện thử",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Phép chia trên Soroban – Hướng dẫn chi tiết cho phụ huynh",
+    "description": "Phép chia là phép tính khó nhất trên Soroban. Bài này hướng dẫn cách chia cơ bản với ví dụ từng bước.",
+    "keywords": "phép chia soroban, chia trên bàn tính soroban, cách chia soroban, chia có dư soroban"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-31",
+    "author": "ThS. Phạm Thanh Tùng"
+  },
+  "author": {
+    "name": "Minh Anh",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "pricing": {
+    "title": "Choose Your Plan",
+    "subtitle": "Start free, upgrade when ready",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "savePercent": "Save {percent}%",
+    "free": {
+      "title": "Free",
+      "price": "$0",
+      "period": "forever",
+      "description": "Get started for free",
+      "features": [
+        "First 5 lessons",
+        "Basic exercises",
+        "Teacher Toolbox",
+        "Community support"
+      ],
+      "cta": "Start Free"
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "${price}",
+      "period": "/month",
+      "description": "Unlock everything",
+      "features": [
+        "All lessons",
+        "All exercises",
+        "Adventure & Competition",
+        "Completion certificates",
+        "Detailed progress tracking",
+        "No ads",
+        "Priority support"
+      ],
+      "cta": "Upgrade Now"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "Can I cancel anytime?",
+          "answer": "Yes, you can cancel your Premium subscription anytime. Your account will remain active until the end of the billing period."
+        },
+        {
+          "question": "What are the free plan limitations?",
+          "answer": "The free plan includes the first 5 lessons and basic exercises. Upgrade to Premium to unlock all content."
+        },
+        {
+          "question": "What payment methods do you accept?",
+          "answer": "We accept credit/debit cards, PayPal, and local payment methods for Vietnam users."
+        }
+      ]
+    }
+  },
+  "pricingPage": {
+    "badge": "Pay once • Use forever",
+    "heroTitle1": "Learn Soroban",
+    "heroTitle2": "anytime, anywhere",
+    "heroSubtitle": "Japanese mental math method helps kids develop mathematical thinking and focus",
+    "centerCost": "Learning center cost",
+    "centerCostValue": "$50-150/month",
+    "hereCost": "Here: Pay once, use forever",
+    "safePayment": "Secure payment",
+    "instantActivation": "Instant activation",
+    "zaloSupport": "Support via Zalo",
+    "mostPopular": "🔥 Most Popular",
+    "freeForever": "Free forever",
+    "oneTimePayment": "One-time payment",
+    "yourCurrentPlan": "Your current plan",
+    "difference": "Difference",
+    "processing": "Processing...",
+    "currentPlan": "Current plan",
+    "lowerPlan": "Lower plan",
+    "upgrade": "Upgrade",
+    "buyNow": "Buy Now",
+    "featureDetails": "Feature details",
+    "comparePlans": "Compare Plans",
+    "swipeToSee": "Swipe to see more",
+    "feature": "Feature",
+    "faqTitle": "Frequently Asked Questions",
+    "comparison": {
+      "learning": {
+        "name": "Learning",
+        "basicLessons": "Basic Lessons (Level 1-5)",
+        "addSubLessons": "Add/Sub Lessons (Level 6-10)",
+        "mulDivLessons": "Mul/Div Lessons (Level 11-18)"
+      },
+      "practice": {
+        "name": "Practice",
+        "addSub": "Addition & Subtraction",
+        "addSubMix": "Add/Sub Mix",
+        "mulDiv": "Multiplication & Division",
+        "fourOps": "Four Operations"
+      },
+      "compete": {
+        "name": "Competition",
+        "online": "Online Competition",
+        "mentalMath": "Super Mind (Mental Math)",
+        "flashAnzan": "Flash Anzan",
+        "leaderboard": "Leaderboard"
+      },
+      "certificate": {
+        "name": "Certificates",
+        "addSub": "Sorokid Add/Sub Certificate",
+        "complete": "Sorokid Complete Certificate"
+      },
+      "gamification": {
+        "name": "Gamification",
+        "dailyQuests": "Daily quests",
+        "achievements": "Achievement system",
+        "shop": "Item shop"
+      },
+      "level12": "Level 1-2",
+      "level13": "Level 1-3",
+      "allLevels": "All levels"
+    },
+    "faq": {
+      "paymentSafe": {
+        "question": "Is payment secure?",
+        "answer": "We use trusted payment gateways to ensure absolute security for your transactions."
+      },
+      "activation": {
+        "question": "How do I activate my plan?",
+        "answer": "After successful payment, your plan will be activated immediately and you can use all features."
+      },
+      "lifetime": {
+        "question": "Does the plan expire?",
+        "answer": "No! You only pay once and use forever, no monthly fees or hidden charges."
+      },
+      "upgrade": {
+        "question": "Can I upgrade later?",
+        "answer": "Yes! You can upgrade from Basic to Advanced anytime and only pay the difference."
+      }
+    },
+    "benefits": {
+      "badge": "Real benefits",
+      "title": "Why choose",
+      "brain": {
+        "title": "Brain development",
+        "content": "Train both hemispheres of the brain, improve focus and memory"
+      },
+      "speed": {
+        "title": "Fast mental math",
+        "content": "Kids can calculate complex problems in just seconds"
+      },
+      "fun": {
+        "title": "Learn while playing",
+        "content": "Gamified learning keeps kids engaged and never bored"
+      }
+    },
+    "cta": {
+      "title1": "Ready to start",
+      "title2": "your Soroban journey?",
+      "description": "Learning Soroban not only helps calculate faster but also develops logical thinking, memory and focus for your child.",
+      "button": "Start Learning"
+    },
+    "modal": {
+      "scanQR": "Scan QR code to pay",
+      "confirmingPayment": "Confirming payment...",
+      "waitingPayment": "Waiting for payment",
+      "systemChecking": "System checking...",
+      "autoConfirm": "After transfer, system will auto-confirm",
+      "transferDetails": "Transfer details",
+      "bank": "Bank",
+      "accountNumber": "Account number",
+      "accountName": "Account name",
+      "amount": "Amount",
+      "content": "Transfer content",
+      "iHaveTransferred": "I have transferred",
+      "notReceived": "Payment not received. System will auto-check again...",
+      "connectionError": "Connection error. Please wait..."
+    }
+  },
+  "payment": {
+    "scanQR": "Scan QR code to pay",
+    "success": "Payment successful!",
+    "activating": "Activating {tier} plan...",
+    "expired": "Order has expired",
+    "createNewOrder": "Please create a new order to continue.",
+    "close": "Close",
+    "qrAlt": "Payment QR Code",
+    "bankInfo": "Bank Transfer Details",
+    "bank": "Bank",
+    "accountNumber": "Account Number",
+    "accountName": "Account Holder",
+    "content": "Transfer Reference",
+    "orderCode": "Order ID",
+    "checking": "Checking...",
+    "iHavePaid": "I've paid",
+    "expiresIn15": "Order expires in 15 minutes",
+    "successTitle": "Payment Successful!",
+    "planActivated": "Plan Activated",
+    "activated": "Activated",
+    "confirmed": "Transaction confirmed successfully",
+    "unlocked": "All features have been unlocked",
+    "lifetime": "Lifetime access - Use forever",
+    "startLearning": "Start Learning Now",
+    "thanks": "Thank you for choosing SoroKid! 💜"
+  },
+  "softUpgrade": {
+    "practiceGreat": "Great practice! 🎯",
+    "battleExcellent": "Excellent battle! ⚔️",
+    "lessonComplete": "Lesson complete! 📚",
+    "streakImpressive": "Impressive streak! 🔥",
+    "levelUp": "Level up! 🚀",
+    "doingGreat": "You are doing great!",
+    "unlockMoreLevels": "Unlock more levels and special modes",
+    "upgradeFor18Levels": "Upgrade to experience all 18 levels",
+    "stars": "stars",
+    "exploreMore": "Explore more",
+    "freeRemaining": "Only {count} free {type} left!",
+    "level": "level",
+    "lesson": "lesson",
+    "unlockAll": "Unlock all",
+    "viewMoreContent": "View more content",
+    "achievementForUpgraded": "This achievement is for upgraded members",
+    "learnMore": "Learn More",
+    "progressingFast": "You are progressing fast! 🚀",
+    "challengeYourself": "Challenge yourself with harder levels",
+    "exploreFlashAnzan": "Explore Flash Anzan and Mental Math",
+    "lessonCompleteAwesome": "Awesome! Lesson complete! 🎉",
+    "moreLessonsAwaiting": "More exciting lessons awaiting you",
+    "excellentTop3": "Excellent! You made Top 3! 🏆",
+    "wellDone": "Well done! 👏",
+    "trySpecialModes": "Try special competition modes",
+    "explore": "Explore",
+    "basicPackage": "Basic Plan",
+    "advancedPackage": "Advanced Plan",
+    "unlockWith": "Unlock with {tier}"
+  }
+}

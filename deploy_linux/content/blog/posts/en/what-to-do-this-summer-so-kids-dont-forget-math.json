@@ -1,0 +1,239 @@
+{
+  "slug": "what-to-do-this-summer-so-kids-dont-forget-math",
+  "title": "What to Do This Summer So Kids Don't Forget Math",
+  "description": "Prevent summer slide without turning vacation into school. Practical low-effort strategies.",
+  "category": "stress-free-math-learning",
+  "keywords": [
+    "summer slide",
+    "summer math practice",
+    "prevent learning loss",
+    "summer learning"
+  ],
+  "status": "scheduled",
+  "publishedAt": "2026-01-21T05:33:13.672Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/be-hoc-he.jpg",
+  "imageAlt": "Child doing light math practice during summer",
+  "readingTime": 6,
+  "author": {
+    "name": "David Thompson",
+    "role": "Education Writer"
+  },
+  "translations": {
+    "vi": "he-nay-cho-con-hoc-gi-de-khong-quen-toan"
+  },
+  "content": {
+    "intro": "Studies show students lose 2+ months of math skills over summer. But turning vacation into \"school at home\" backfires. Here's the balance.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Summer Slide is Real"
+      },
+      {
+        "type": "paragraph",
+        "text": "Research shows:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Students lose 2-2.5 months of math computation skills on average",
+          "Teachers spend 4-6 weeks in fall re-teaching",
+          "The loss compounds year over year",
+          "Lower-income students often lose more due to less access"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "But here's the good news: even minimal summer practice (15-20 min, 3-4x/week) prevents most of the loss."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Goal: Maintenance, Not Growth"
+      },
+      {
+        "type": "paragraph",
+        "text": "Summer isn't the time to push ahead. It's about not falling behind. Lower your expectations (and theirs). Just keep the engine running."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Strategies That Work"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Reduced Frequency"
+      },
+      {
+        "type": "paragraph",
+        "text": "School year: daily. Summer: 3-4x per week. Less pressure, still effective."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Keep Sessions Short"
+      },
+      {
+        "type": "paragraph",
+        "text": "10-15 minutes max. It's summer. Don't make them resent math right before a new school year."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Use Apps, Not Workbooks"
+      },
+      {
+        "type": "paragraph",
+        "text": "Workbooks feel like homework. Apps feel like screen time. Same practice, different vibe."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Real-World Math"
+      },
+      {
+        "type": "paragraph",
+        "text": "Summer provides opportunities:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Calculate road trip distances",
+          "Budget vacation spending money",
+          "Measure ingredients for BBQ/cooking",
+          "Count days until events",
+          "Compare prices at amusement parks"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Make It Part of the Routine"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Math after breakfast on Monday, Wednesday, Friday\" is easier to maintain than random \"we should do some math today.\""
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What About Vacation Weeks?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Going somewhere for a week or two? Options:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bring the tablet – 10 minutes on the beach won't ruin vacation",
+          "Take a full break – one week off won't cause major slide",
+          "Do only real-world math – travel provides natural practice"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Summer Schedule Template"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Day",
+          "Practice?"
+        ],
+        "rows": [
+          [
+            "Monday",
+            "✅ 15 min app practice"
+          ],
+          [
+            "Tuesday",
+            "Free day"
+          ],
+          [
+            "Wednesday",
+            "✅ 15 min app practice"
+          ],
+          [
+            "Thursday",
+            "Free day"
+          ],
+          [
+            "Friday",
+            "✅ 15 min app practice OR real-world math activity"
+          ],
+          [
+            "Weekend",
+            "Free"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "That's 45 minutes total per week. Enough to maintain, not enough to feel like school."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Should I advance to next year's material?",
+        "answer": "Generally no. Review and maintain current year skills. Let school introduce new content with proper instruction."
+      },
+      {
+        "question": "What if my child is already behind?",
+        "answer": "Summer can be catch-up time, but go slow. 4-5x per week of slightly longer sessions. Don't try to cram a year into two months."
+      },
+      {
+        "question": "My child attends summer programs – is that enough?",
+        "answer": "Maybe! If the program includes academic components, you might not need additional practice. Check what they're doing."
+      }
+    ],
+    "cta": {
+      "type": "soft",
+      "text": "Keep math skills sharp this summer with SoroKid's engaging, low-pressure practice.",
+      "buttonText": "Start Free Trial",
+      "buttonUrl": "/pricing"
+    }
+  },
+  "faq": [
+    {
+      "question": "What will I learn from this article?",
+      "answer": "This article covers Prevent summer slide without turning vacation into school. Practical low-effort strategies.."
+    },
+    {
+      "question": "Is this advice suitable for all ages?",
+      "answer": "The strategies discussed are primarily designed for children ages 5-12, but many principles can be adapted for different age groups."
+    },
+    {
+      "question": "How long does it take to see results?",
+      "answer": "Results vary by child, but most parents notice improvements within 2-4 weeks of consistent practice."
+    },
+    {
+      "question": "Do I need special materials or equipment?",
+      "answer": "Most activities can be done with everyday items. For Soroban-specific learning, the Sorokid app provides a virtual abacus."
+    },
+    {
+      "question": "Can I use these methods alongside school curriculum?",
+      "answer": "Absolutely! These approaches are designed to complement, not replace, what children learn at school."
+    }
+  ],
+  "cta": {
+    "text": "Ready to help your child build math confidence? Sorokid offers interactive lessons, games, and progress tracking designed for busy families.",
+    "buttonText": "Start Free Trial",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "What to Do This Summer So Kids Don't Forget Math | Sorokid",
+    "metaDescription": "Prevent summer slide without turning vacation into school. Practical low-effort strategies.",
+    "keywords": "summer slide, summer math practice, prevent learning loss, summer learning"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-06-15",
+    "author": "David Thompson"
+  },
+  "postId": "he-nay-cho-con-hoc-gi-de-khong-quen-toan"
+}

@@ -1,0 +1,356 @@
+{
+  "slug": "he-nay-cho-con-hoc-gi-de-khong-quen-toan",
+  "title": "Hè này cho con học gì để không quên toán? – Mình chọn cách nhẹ nhàng",
+  "description": "3 tháng hè, con chơi thả ga. Đến năm học mới quên sạch. Mình tìm cách duy trì mà không áp lực.",
+  "category": "cach-giup-con-hoc-toan-nhe-nhang",
+  "keywords": [
+    "học hè cho bé",
+    "không quên toán kỳ nghỉ",
+    "duy trì học hè",
+    "summer slide",
+    "con quên kiến thức sau hè",
+    "học toán mùa hè",
+    "10 phút học hè",
+    "toán trong đời sống",
+    "hè không áp lực",
+    "duy trì kiến thức hè",
+    "cho con học gì trong hè",
+    "sorokid học hè"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-26T03:21:00.000Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-hoc-he.jpg",
+  "imageAlt": "Bé gái châu Á học toán hè với sách bài tập và nụ cười thoải mái",
+  "readingTime": 12,
+  "categoryOrder": 4,
+  "order": 18,
+  "translations": {
+    "en": "what-to-do-this-summer-so-kids-dont-forget-math"
+  },
+  "content": {
+    "intro": "Năm ngoái, 3 tháng hè con chơi thoải mái. Vào năm học mới, con quên gần hết. Cô giáo phải dạy lại từ đầu. Mình hối hận: \"Sao mình không cho con ôn chút nào?\" Năm nay mình quyết tâm làm khác – và kết quả bất ngờ lắm.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Bài học đau thương từ năm ngoái"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kết thúc lớp 1, con mình cộng trừ trong 20 ngon lành. Mình nghĩ: \"Hè cho con nghỉ xả hơi, năm sau học tiếp.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "3 tháng hè: con chơi game, xem TV, đi chơi. Không đụng đến sách vở."
+      },
+      {
+        "type": "paragraph",
+        "text": "Đầu năm lớp 2: Cô giáo cho làm bài kiểm tra. Con mình... 13 + 9 phải đếm ngón tay. Quên sạch bảng cộng."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình sốc. 3 tháng trước con làm phép này trong 2 giây, giờ mất 30 giây."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Nếu bạn cũng từng trải qua – hoặc đang lo hè này con sẽ quên – mình hiểu. Đây là nỗi lo có thật và có cơ sở khoa học."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "\"Summer Slide\" là gì?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Summer Slide (hiện tượng trượt hè) là thuật ngữ giáo dục, chỉ việc trẻ mất kiến thức trong kỳ nghỉ dài."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Nghiên cứu cho thấy:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Toán là môn ảnh hưởng nặng nhất**: Trẻ có thể lùi 2-3 tháng kiến thức toán",
+          "**Không phải con lười**: Não trẻ cần lặp lại để củng cố. Không lặp lại = quên",
+          "**Càng nghỉ lâu càng lùi xa**: 1 tuần không sao, 3 tháng thì vấn đề",
+          "**Trẻ giỏi cũng bị ảnh hưởng**: Không phải chỉ trẻ yếu mới quên"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây là cơ chế não bộ, không phải lỗi của trẻ."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mình không muốn ép con học hè"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình tin: hè là để nghỉ ngơi. Con học cả năm, cần thời gian thư giãn, chơi với bạn, đi du lịch."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không muốn con cảm thấy hè cũng như năm học – bài tập, áp lực, deadline."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhưng mình cũng không muốn con quên hết và phải học lại từ đầu."
+      },
+      {
+        "type": "paragraph",
+        "text": "Vậy giải pháp là gì?"
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Giải pháp: Học ÍT nhưng ĐỀU. 10 phút mỗi ngày, không làm mất vui chơi mà vẫn duy trì kiến thức. Đây là chiến lược \"bảo trì\" thay vì \"đào tạo\"."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kế hoạch hè của mình (chi tiết)"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Sorokid 10 phút mỗi sáng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thời điểm: sau khi ăn sáng, trước khi đi chơi."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tại sao buổi sáng?"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Não tỉnh táo nhất",
+          "Xong rồi thoải mái chơi cả ngày",
+          "Không lo \"tối phải học\" làm mất hứng chơi"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "10 phút đủ để: ôn 5-10 bài cộng trừ, làm 1 game tính nhẩm, giữ não hoạt động."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Toán trong đời sống"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không gọi là \"học\", mà tạo tình huống dùng toán thực tế:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Đi siêu thị**: \"Con tính giúp mẹ: bánh 25 nghìn, sữa 18 nghìn, tổng bao nhiêu?\"",
+          "**Chia đồ ăn**: \"Có 12 cái kẹo, chia đều cho 4 người, mỗi người mấy cái?\"",
+          "**Đếm tiền lẻ**: Con giữ tiền lẻ, đếm và quản lý",
+          "**Board game có số**: Cờ tỷ phú, Uno, các game đếm điểm"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Con không biết mình đang \"học toán\". Con chỉ biết mình đang chơi."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Sách toán ở thư viện"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình đưa con đi thư viện mỗi tuần, cho con tự chọn sách. Mình \"giới thiệu\" sách toán có hình đẹp, có câu đố:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Sách câu đố toán có hình",
+          "Truyện tranh về số",
+          "Sách dạng \"Tìm khác biệt\" có đếm số",
+          "Sách mê cung kết hợp tính toán"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Con đọc chơi, không áp lực. Nhưng não vẫn tiếp xúc với số."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Ngày nghỉ hoàn toàn"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mỗi tuần mình cho con nghỉ 1-2 ngày hoàn toàn. Ngày đi chơi xa, sinh nhật bạn, họp mặt gia đình – không học gì cả."
+      },
+      {
+        "type": "paragraph",
+        "text": "Điều này quan trọng: con cần biết hè vẫn là hè. Không phải năm học kéo dài."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lịch trình mẫu 1 tuần"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Thứ 2**: 10 phút Sorokid + đi siêu thị (tính tiền)",
+          "**Thứ 3**: 10 phút Sorokid + board game tối",
+          "**Thứ 4**: 10 phút Sorokid + thư viện (chọn sách)",
+          "**Thứ 5**: 10 phút Sorokid",
+          "**Thứ 6**: 10 phút Sorokid + chia đồ ăn bữa tối",
+          "**Thứ 7**: NGHỈ – đi chơi",
+          "**Chủ nhật**: NGHỈ – họp mặt gia đình"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Tổng thời gian \"học\" trong tuần: khoảng 50-60 phút. Nhưng thực ra con không cảm thấy đang học."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết quả đầu năm học mới"
+      },
+      {
+        "type": "paragraph",
+        "text": "Vào năm học mới, cô giáo cho làm bài kiểm tra đầu vào. Kết quả con mình:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Không quên gì**: Con vẫn tính nhanh như cuối năm trước",
+          "**Còn tiến bộ hơn**: Sorokid giúp con tính nhẩm nhanh hơn trước hè",
+          "**Tự tin**: Con không lo lắng khi làm bài, không phải \"ôn lại từ đầu\"",
+          "**Cô giáo khen**: \"Con này hè vẫn giữ được kiến thức tốt lắm\""
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Quan trọng nhất: con vẫn có hè vui. Vẫn đi chơi, vẫn xem phim, vẫn chơi với bạn. Chỉ bớt 10 phút mỗi ngày."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "So sánh: Không học hè vs Học nhẹ nhàng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Không học hè**: Quên 2-3 tháng kiến thức, đầu năm phải học lại, stress cả con lẫn mẹ",
+          "**Học nhẹ nhàng (10 phút/ngày)**: Giữ nguyên kiến thức, còn tiến bộ, không stress, hè vẫn vui"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Đầu tư 10 phút/ngày → Tiết kiệm 1-2 tháng học lại đầu năm. Đáng lắm."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lời khuyên cho phụ huynh"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Bắt đầu từ tuần đầu nghỉ hè**: Đừng để đến tháng cuối mới học",
+          "**10 phút đủ rồi**: Không cần nhiều, cần đều",
+          "**Buổi sáng tốt nhất**: Xong rồi thoải mái chơi",
+          "**Đừng gọi là \"học\"**: Gọi là \"chơi game\", \"giúp mẹ tính tiền\"",
+          "**Cho con nghỉ 1-2 ngày/tuần**: Hè vẫn phải là hè",
+          "**Dùng app thay bài giấy**: Trẻ thích game hơn bài tập"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết luận: Hè không cần học nhiều"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình không muốn biến hè thành năm học 2.0. Mình chỉ muốn \"bảo trì\" để con không quên."
+      },
+      {
+        "type": "paragraph",
+        "text": "10 phút mỗi ngày đủ để không quên và còn tiến bộ. Con vẫn có hè vui. Ba mẹ không stress."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Hè không cần học nhiều. 10 phút/ngày đủ để không quên và còn tiến bộ. Đừng để summer slide làm con mất đi những gì đã học được cả năm."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Nghỉ hè hoàn toàn có sao không?",
+      "answer": "Con có thể quên khá nhiều (summer slide). Duy trì 10-15 phút/ngày giúp không mất kiến thức."
+    },
+    {
+      "question": "Nên học gì trong hè?",
+      "answer": "Tập trung ôn luyện cơ bản, không học trước chương trình. App như Sorokid phù hợp vì có thể học mọi lúc."
+    },
+    {
+      "question": "Summer slide là gì?",
+      "answer": "Hiện tượng trẻ quên kiến thức sau kỳ nghỉ hè. Nghiên cứu cho thấy trẻ có thể quên 2-3 tháng kiến thức toán."
+    },
+    {
+      "question": "10 phút/ngày có đủ để duy trì kiến thức không?",
+      "answer": "Đủ. Quan trọng là đều đặn mỗi ngày. 10 phút/ngày hiệu quả hơn 1 tiếng/tuần."
+    },
+    {
+      "question": "Có nên cho con học trước chương trình trong hè?",
+      "answer": "Không nên. Hè là để nghỉ ngơi và ôn lại. Học trước có thể làm con chán khi vào năm học."
+    },
+    {
+      "question": "Toán trong đời sống là gì?",
+      "answer": "Cho con tính tiền khi đi siêu thị, đếm đồ khi dọn nhà, chơi board game có số. Học mà không thấy đang học."
+    },
+    {
+      "question": "Con không chịu học trong hè, làm sao?",
+      "answer": "Dùng app có game, rút ngắn còn 5 phút, tạo phần thưởng nhỏ. Đặt mục tiêu: \"Học xong mới đi chơi\"."
+    },
+    {
+      "question": "Có nên cho con đi học thêm trong hè?",
+      "answer": "Không bắt buộc. Nếu con học tốt, 10 phút/ngày ở nhà là đủ. Hè cần thời gian nghỉ ngơi."
+    },
+    {
+      "question": "Bao lâu trước năm học nên tăng cường học?",
+      "answer": "2 tuần trước khai giảng, có thể tăng lên 15-20 phút/ngày để con quen lại với việc học."
+    },
+    {
+      "question": "Sách toán nào phù hợp cho hè?",
+      "answer": "Sách toán có hình, có câu đố, sách toán tư duy. Tránh sách bài tập nặng. Con đọc chơi, không phải học căng."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid giúp con duy trì học toán cả hè chỉ với 10 phút/ngày.",
+    "buttonText": "Bắt đầu ngay",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Hè này cho con học gì để không quên toán? – Mình chọn cách nhẹ nhàng",
+    "description": "3 tháng hè, con chơi thả ga. Đến năm học mới quên sạch. Mình tìm cách duy trì mà không áp lực.",
+    "keywords": "học hè cho bé, không quên toán kỳ nghỉ, duy trì học hè"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-17",
+    "author": "Chị Ngọc Bích"
+  },
+  "author": {
+    "name": "Chị Ngọc Bích",
+    "bio": "Mẹ của bé gái 7 tuổi tại Nha Trang, tìm cách cho con học hè nhẹ nhàng mà vẫn tiến bộ"
+  }
+}

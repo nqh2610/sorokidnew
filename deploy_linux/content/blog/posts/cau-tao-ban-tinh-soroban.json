@@ -1,0 +1,280 @@
+{
+  "slug": "cau-tao-ban-tinh-soroban",
+  "title": "Cấu tạo bàn tính Soroban – Hướng dẫn chi tiết từng bộ phận cho phụ huynh",
+  "description": "Giải thích đầy đủ cấu tạo bàn tính Soroban: khung, thanh ngang, thanh dọc, hạt trời, hạt đất, dấu chấm. Kèm bảng so sánh Soroban vs Suanpan và cách chọn mua.",
+  "category": "soroban-cho-phu-huynh",
+  "keywords": [
+    "cấu tạo soroban",
+    "bàn tính soroban gồm những gì",
+    "các bộ phận soroban",
+    "hạt trời hạt đất soroban",
+    "thanh ngang soroban",
+    "soroban vs suanpan",
+    "mua bàn tính soroban",
+    "soroban cho trẻ em",
+    "bàn tính nhật bản",
+    "japanese abacus",
+    "cách đọc soroban",
+    "hướng dẫn soroban cơ bản"
+  ],
+  "status": "published",
+  "publishedAt": "2025-12-25T02:37:59.356Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/tre-chau-a-hoc-soroban-tai-nha.jpg",
+  "imageAlt": "Trẻ em châu Á đang học Soroban với bàn tính tại nhà",
+  "readingTime": 12,
+  "categoryOrder": 1,
+  "order": 2,
+  "author": {
+    "name": "Chị Hương Giang",
+    "role": "Mẹ bé Bo – lớp 1"
+  },
+  "translations": {
+    "en": "soroban-abacus-structure-explained"
+  },
+  "content": {
+    "intro": "Khi con bắt đầu học Soroban, mình cũng tò mò: \"Cái bàn tính này hoạt động thế nào?\" Nhìn đống hạt lên xuống mà không hiểu gì cả. Sau khi tìm hiểu, mình thấy thực ra cấu tạo rất đơn giản – chỉ cần 5 phút là phụ huynh nắm được.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Tổng quan bàn tính Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban là bàn tính Nhật Bản, phát triển từ bàn tính Trung Quốc (Suanpan). Điểm khác biệt lớn nhất: Soroban chỉ có 1 hạt trên và 4 hạt dưới, trong khi bàn tính Trung Quốc có 2 hạt trên và 5 hạt dưới."
+      },
+      {
+        "type": "paragraph",
+        "text": "Thiết kế gọn gàng này giúp trẻ thao tác nhanh hơn, ít nhầm lẫn hơn."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Các bộ phận của Soroban"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Khung (Frame)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Phần bao quanh bên ngoài, thường làm bằng gỗ hoặc nhựa. Khung giữ cho các thanh dọc và hạt cố định. Soroban chất lượng tốt có khung chắc chắn, không bị cong vênh."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. Thanh ngang (Beam/Reckoning Bar)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thanh nằm ngang chia bàn tính thành 2 phần: phần trên và phần dưới. Đây là ranh giới quan trọng nhất để đọc số."
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Phần trên thanh ngang:** Chứa 1 hạt (gọi là hạt trời - heaven bead)",
+          "**Phần dưới thanh ngang:** Chứa 4 hạt (gọi là hạt đất - earth beads)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Thanh dọc (Rods)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Các thanh chạy dọc xuyên qua hạt. Mỗi thanh dọc đại diện cho một hàng số:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Thanh ngoài cùng bên phải: Hàng đơn vị",
+          "Thanh kế tiếp sang trái: Hàng chục",
+          "Tiếp theo: Hàng trăm, nghìn, chục nghìn..."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban tiêu chuẩn có 13-23 thanh dọc, đủ để tính các số rất lớn."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Hạt (Beads)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây là phần quan trọng nhất. Mỗi thanh dọc có 5 hạt:"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Loại hạt",
+          "Số lượng",
+          "Giá trị",
+          "Vị trí"
+        ],
+        "rows": [
+          [
+            "Hạt trời (Heaven)",
+            "1 hạt",
+            "= 5",
+            "Phía trên thanh ngang"
+          ],
+          [
+            "Hạt đất (Earth)",
+            "4 hạt",
+            "= 1 mỗi hạt",
+            "Phía dưới thanh ngang"
+          ]
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "info",
+        "text": "Quy tắc đơn giản: Hạt trên = 5, Hạt dưới = 1. Chỉ cần nhớ điều này là đọc được số trên Soroban."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. Dấu chấm đánh dấu (Unit Dots)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Trên thanh ngang có các dấu chấm nhỏ, thường cách nhau 3 thanh dọc. Dấu chấm này giúp:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Xác định vị trí hàng đơn vị (thường là dấu chấm ngoài cùng bên phải)",
+          "Phân tách hàng nghìn, triệu... để đọc số dễ hơn",
+          "Tránh nhầm lẫn khi tính số lớn"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách đọc số trên Soroban"
+      },
+      {
+        "type": "paragraph",
+        "text": "Quy tắc đọc: Chỉ đếm những hạt ÁP SÁT thanh ngang."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Hạt trời gạt xuống (áp thanh ngang) = cộng 5",
+          "Hạt đất gạt lên (áp thanh ngang) = cộng số hạt đó",
+          "Hạt không áp thanh ngang = không tính"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Ví dụ: Trên 1 thanh dọc, nếu hạt trời gạt xuống + 2 hạt đất gạt lên → giá trị = 5 + 2 = 7."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Nên chọn Soroban như thế nào?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi mua Soroban cho con, mình lưu ý mấy điểm:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Hạt trượt êm:** Không quá chặt (khó gạt) cũng không quá lỏng (tự trôi)",
+          "**Kích thước phù hợp:** Soroban 13 cột cho trẻ mới học, 17-23 cột cho trẻ lớn hơn",
+          "**Có nút reset:** Để đưa tất cả hạt về 0 nhanh chóng",
+          "**Dấu chấm rõ ràng:** Giúp con xác định hàng đơn vị dễ dàng"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Có cần mua Soroban thật không?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ban đầu mình cũng phân vân. Sau khi tìm hiểu, mình thấy:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Giai đoạn đầu:** Nên có Soroban thật để con cảm nhận được xúc giác, nghe tiếng hạt chạm",
+          "**Giai đoạn luyện tập:** Có thể kết hợp với app để luyện nhiều hơn",
+          "**Giai đoạn tính nhẩm:** Không cần bàn tính nữa – tính trong đầu"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Mình cho con dùng Sorokid để luyện tập hàng ngày. App mô phỏng Soroban giống như thật, con có thể luyện bất cứ lúc nào mà không cần mang theo bàn tính."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Hiểu cấu tạo Soroban giúp phụ huynh hỗ trợ con tốt hơn. Khi con hỏi \"hạt này là gì?\", mình có thể giải thích được thay vì... Google."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Soroban có bao nhiêu hạt tổng cộng?",
+      "answer": "Mỗi thanh dọc có 5 hạt: 1 hạt trời (giá trị 5) và 4 hạt đất (giá trị 1 mỗi hạt). Soroban tiêu chuẩn 13 cột có 65 hạt, loại 17 cột có 85 hạt, loại 23 cột có 115 hạt."
+    },
+    {
+      "question": "Soroban khác bàn tính Trung Quốc (Suanpan) như thế nào?",
+      "answer": "Soroban (Nhật) có 1 hạt trên + 4 hạt dưới. Suanpan (Trung Quốc) có 2 hạt trên + 5 hạt dưới. Soroban gọn hơn, thao tác nhanh hơn, ít nhầm lẫn hơn. Vì vậy Soroban phổ biến hơn trong giáo dục hiện đại."
+    },
+    {
+      "question": "Nên mua Soroban loại nào cho trẻ mới học?",
+      "answer": "Loại 13-17 cột, hạt trượt êm (không quá chặt/lỏng), có nút reset, dấu chấm đánh dấu rõ ràng. Giá khoảng 100-200k là đủ cho người mới. Không cần mua loại đắt."
+    },
+    {
+      "question": "Hạt trời và hạt đất là gì?",
+      "answer": "Hạt trời (heaven bead) là hạt phía trên thanh ngang, có giá trị = 5. Hạt đất (earth beads) là 4 hạt phía dưới thanh ngang, mỗi hạt có giá trị = 1."
+    },
+    {
+      "question": "Dấu chấm trên thanh ngang dùng để làm gì?",
+      "answer": "Dấu chấm (unit dots) giúp xác định vị trí hàng đơn vị, hàng nghìn, hàng triệu. Thường cách nhau 3 cột. Giúp đọc số lớn dễ hơn và tránh nhầm lẫn khi tính toán."
+    },
+    {
+      "question": "Có thể học Soroban mà không cần bàn tính thật không?",
+      "answer": "Giai đoạn đầu (1-2 tháng) nên có bàn tính thật để con cảm nhận xúc giác. Sau đó có thể kết hợp với app để luyện tập thêm. Giai đoạn tính nhẩm thì không cần bàn tính nữa."
+    },
+    {
+      "question": "Tại sao Soroban chỉ có 1 hạt trên mà không phải 2 như bàn tính Trung Quốc?",
+      "answer": "Thiết kế 1 hạt trên + 4 hạt dưới đủ để biểu diễn số 0-9 (5+4=9). Bàn tính Trung Quốc có thêm hạt dư để tính hệ thập lục phân (cũ). Soroban tối ưu cho hệ thập phân hiện đại."
+    },
+    {
+      "question": "Soroban làm bằng gỗ hay nhựa tốt hơn?",
+      "answer": "Cả hai đều được. Soroban gỗ bền hơn, tiếng hạt chạm hay hơn. Soroban nhựa nhẹ hơn, rẻ hơn, phù hợp trẻ nhỏ. Quan trọng nhất là hạt trượt êm, không quá chặt/lỏng."
+    },
+    {
+      "question": "Nút reset trên Soroban hoạt động thế nào?",
+      "answer": "Nhấn nút reset sẽ đưa tất cả hạt về vị trí 0 (hạt trời lên trên, hạt đất xuống dưới). Giúp tiết kiệm thời gian khi bắt đầu phép tính mới thay vì gạt từng hạt."
+    },
+    {
+      "question": "Trẻ mấy tuổi có thể bắt đầu học Soroban?",
+      "answer": "Thường từ 4-5 tuổi khi trẻ đã nhận biết số 0-9. Quan trọng là trẻ phải có khả năng tập trung 10-15 phút. Học sớm quá khi chưa sẵn sàng có thể khiến trẻ chán."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid có bàn tính Soroban ảo giống như thật, giúp con luyện tập mọi lúc mọi nơi mà không cần mang theo bàn tính.",
+    "buttonText": "Cho con thử học miễn phí 7 ngày",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Cấu tạo bàn tính Soroban – Hướng dẫn chi tiết từng bộ phận cho phụ huynh",
+    "description": "Giải thích đầy đủ cấu tạo bàn tính Soroban: khung, thanh ngang, thanh dọc, hạt trời, hạt đất. Kèm bảng so sánh Soroban vs Suanpan và cách chọn mua.",
+    "keywords": "cấu tạo soroban, bàn tính soroban, hạt trời hạt đất, soroban vs suanpan"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2025-12-25T02:37:59.356Z",
+    "author": "Chị Hương Giang"
+  }
+}

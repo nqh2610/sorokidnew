@@ -1,11 +1,15 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { cache } from '@/lib/cache';
 import { GAME_STAGES, GAME_ZONES } from '@/config/adventure-stages-addsub.config';
 import { GAME_STAGES_MULDIV, GAME_ZONES_MULDIV } from '@/config/adventure-stages-muldiv.config';
 
 export const dynamic = 'force-dynamic';
+
+// 🔧 FIX: Cache game progress 45s
+const GAME_PROGRESS_CACHE_TTL = 45000;
 
 /**
  * GET /api/adventure/game-progress
@@ -26,45 +30,52 @@ export async function GET(request) {
     // 🚀 PERF: Chỉ trả về debug info khi có query param hoặc dev mode
     const { searchParams } = new URL(request.url);
     const showDebug = isDev || searchParams.get('debug') === 'true';
+    const forceRefresh = searchParams.get('refresh') === '1';
 
     if (isDev) console.log('🎮 Adventure API called for user:', userId);
+    
+    // 🔧 FIX: Check cache first
+    const cacheKey = `game-progress:${userId}`;
+    if (!forceRefresh) {
+      const cached = cache.get(cacheKey);
+      if (cached) {
+        return NextResponse.json(cached);
+      }
+    }
 
-    // Lấy dữ liệu từ DB
+    // 🔧 FIX: Chia queries thành 2 batches để không chiếm hết pool (limit 5)
     let user, lessonProgress, exerciseResults, competeResults, certificates;
     try {
-      [user, lessonProgress, exerciseResults, competeResults, certificates] = await Promise.all([
-      // Thông tin user
-      prisma.user.findUnique({
-        where: { id: userId },
-        select: { name: true, tier: true, level: true, totalStars: true, avatar: true, diamonds: true, streak: true, trialExpiresAt: true }
-      }),
+      // Batch 1: User + Lesson progress (2 queries)
+      [user, lessonProgress] = await Promise.all([
+        prisma.user.findUnique({
+          where: { id: userId },
+          select: { name: true, tier: true, level: true, totalStars: true, avatar: true, diamonds: true, streak: true, trialExpiresAt: true }
+        }),
+        prisma.progress.findMany({
+          where: { userId },
+          select: { levelId: true, lessonId: true, completed: true, starsEarned: true, completedAt: true }
+        })
+      ]);
       
-      // Tiến độ học từng lesson - lấy tất cả, check completed trong code
-      prisma.progress.findMany({
-        where: { userId },
-        select: { levelId: true, lessonId: true, completed: true, starsEarned: true, completedAt: true }
-      }),
+      // Batch 2: Exercise + Compete + Certificates (3 queries)
+      [exerciseResults, competeResults, certificates] = await Promise.all([
+        prisma.exerciseResult.findMany({
+          where: { userId },
+          select: { id: true, exerciseType: true, difficulty: true, isCorrect: true, createdAt: true },
+          orderBy: { createdAt: 'desc' }
+        }),
+        prisma.competeResult.findMany({
+          where: { userId },
+          select: { id: true, arenaId: true, correct: true, stars: true, createdAt: true },
+          orderBy: { createdAt: 'desc' }
+        }),
+        prisma.certificate.findMany({
+          where: { userId },
+          select: { certType: true, issuedAt: true }
+        })
+      ]);
       
-      // Kết quả luyện tập
-      prisma.exerciseResult.findMany({
-        where: { userId },
-        select: { id: true, exerciseType: true, difficulty: true, isCorrect: true, createdAt: true },
-        orderBy: { createdAt: 'desc' }
-      }),
-      
-      // Kết quả thi đấu
-      prisma.competeResult.findMany({
-        where: { userId },
-        select: { id: true, arenaId: true, correct: true, stars: true, createdAt: true },
-        orderBy: { createdAt: 'desc' }
-      }),
-      
-      // Chứng chỉ
-      prisma.certificate.findMany({
-        where: { userId },
-        select: { certType: true, issuedAt: true }
-      })
-    ]);
       if (isDev) console.log('📊 DB Data loaded:', { lessons: lessonProgress.length, exercises: exerciseResults.length, compete: competeResults.length });
     } catch (dbError) {
       console.error('❌ DB Error:', dbError);
@@ -260,6 +271,9 @@ export async function GET(request) {
         }
       };
     }
+    
+    // 🔧 FIX: Cache response
+    cache.set(cacheKey, response, GAME_PROGRESS_CACHE_TTL);
 
     return NextResponse.json(response);
 

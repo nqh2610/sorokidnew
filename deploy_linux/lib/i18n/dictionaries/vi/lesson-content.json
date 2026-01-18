@@ -1,0 +1,592 @@
+{
+  "db": {
+    "levels": {
+      "1": {
+        "name": "Làm quen",
+        "description": "Khám phá bàn tính!"
+      },
+      "2": {
+        "name": "Cộng dễ",
+        "description": "Cộng số cơ bản!"
+      },
+      "3": {
+        "name": "Bạn nhỏ +",
+        "description": "Cộng dùng Bạn nhỏ!"
+      },
+      "4": {
+        "name": "Bạn nhỏ -",
+        "description": "Trừ dùng Bạn nhỏ!"
+      },
+      "5": {
+        "name": "Bạn lớn +",
+        "description": "Cộng dùng Bạn lớn!"
+      },
+      "6": {
+        "name": "Bạn lớn -",
+        "description": "Trừ dùng Bạn lớn!"
+      },
+      "7": {
+        "name": "Kết hợp",
+        "description": "Bạn nhỏ + Bạn lớn!"
+      },
+      "8": {
+        "name": "Số 2 chữ số",
+        "description": "Cộng trừ 2 chữ số!"
+      },
+      "9": {
+        "name": "Số 3 chữ số",
+        "description": "Cộng trừ 3 chữ số!"
+      },
+      "10": {
+        "name": "Số 4 chữ số",
+        "description": "Cộng trừ 4 chữ số!"
+      },
+      "11": {
+        "name": "Nhân cơ bản",
+        "description": "Nhân số đơn giản!"
+      },
+      "12": {
+        "name": "Nhân nâng cao",
+        "description": "Nhân số 2 chữ số!"
+      },
+      "13": {
+        "name": "Chia cơ bản",
+        "description": "Chia số đơn giản!"
+      },
+      "14": {
+        "name": "Chia nâng cao",
+        "description": "Chia số lớn!"
+      },
+      "15": {
+        "name": "Nhẩm 1",
+        "description": "Tính nhẩm cơ bản!"
+      },
+      "16": {
+        "name": "Nhẩm 2",
+        "description": "Tính nhẩm nâng cao!"
+      },
+      "17": {
+        "name": "Tia Sét",
+        "description": "Luyện tốc độ!"
+      },
+      "18": {
+        "name": "Tia Chớp",
+        "description": "Flash Anzan!"
+      }
+    },
+    "lessons": {
+      "1-1": {
+        "title": "🎒 Khám phá Soroban",
+        "description": "Làm quen với bàn tính thần kỳ Soroban"
+      },
+      "1-2": {
+        "title": "🔢 Số 1-4: Các hạt Đất",
+        "description": "Học cách tạo số 1, 2, 3, 4 bằng hạt Đất"
+      },
+      "1-3": {
+        "title": "⭐ Số 5-9: Hạt Trời tỏa sáng",
+        "description": "Học cách dùng hạt Trời cho số 5-9"
+      },
+      "1-4": {
+        "title": "🔟 Số 10-99: Hai cột",
+        "description": "Học cách biểu diễn số có 2 chữ số"
+      },
+      "2-1": {
+        "title": "➕ Cộng 1-2 (Đơn giản)",
+        "description": "Cộng khi đủ hạt Đất để dùng"
+      },
+      "2-2": {
+        "title": "➕ Cộng có dùng hạt Trời",
+        "description": "Cộng khi kết quả là 5 trở lên"
+      },
+      "2-3": {
+        "title": "➕ Luyện Cộng dễ",
+        "description": "Ôn tập và luyện cộng đơn giản"
+      },
+      "3-1": {
+        "title": "🤝 Gặp gỡ Bạn nhỏ",
+        "description": "Học các cặp số cộng lại bằng 5"
+      },
+      "3-2": {
+        "title": "➕ Cộng dùng Bạn nhỏ",
+        "description": "Áp dụng Bạn nhỏ để cộng"
+      },
+      "3-3": {
+        "title": "🏋️ Luyện Cộng Bạn nhỏ",
+        "description": "Thành thạo cộng với Bạn nhỏ"
+      },
+      "4-1": {
+        "title": "➖ Trừ đơn giản",
+        "description": "Trừ khi đủ hạt để bớt"
+      },
+      "4-2": {
+        "title": "➖ Trừ dùng Bạn nhỏ",
+        "description": "Áp dụng Bạn nhỏ để trừ"
+      },
+      "4-3": {
+        "title": "🏋️ Luyện Trừ Bạn nhỏ",
+        "description": "Thành thạo trừ với Bạn nhỏ"
+      },
+      "4-4": {
+        "title": "🎯 MIX Cộng/Trừ Bạn nhỏ",
+        "description": "Kết hợp cộng trừ với Bạn nhỏ"
+      },
+      "5-1": {
+        "title": "🤝 Gặp gỡ Bạn lớn",
+        "description": "Học các cặp số cộng lại bằng 10"
+      },
+      "5-2": {
+        "title": "➕ Cộng dùng Bạn lớn",
+        "description": "Cộng bằng cách nhớ sang cột chục"
+      },
+      "5-3": {
+        "title": "🏋️ Luyện Cộng Bạn lớn",
+        "description": "Thành thạo cộng với Bạn lớn"
+      },
+      "6-1": {
+        "title": "➖ Trừ dùng Bạn lớn",
+        "description": "Trừ bằng cách mượn từ cột chục"
+      },
+      "6-2": {
+        "title": "➖ Trừ hàng chục nâng cao",
+        "description": "Luyện mượn từ hàng chục"
+      },
+      "6-3": {
+        "title": "🏋️ Luyện Trừ Bạn lớn",
+        "description": "Thành thạo trừ với Bạn lớn"
+      },
+      "6-4": {
+        "title": "🎯 MIX Cộng/Trừ Bạn lớn",
+        "description": "Kết hợp cộng trừ với Bạn lớn"
+      },
+      "7-1": {
+        "title": "🎯 Cộng kết hợp",
+        "description": "Kết hợp Bạn nhỏ và Bạn lớn để cộng"
+      },
+      "7-2": {
+        "title": "🎯 Trừ kết hợp",
+        "description": "Kết hợp Bạn nhỏ và Bạn lớn để trừ"
+      },
+      "7-3": {
+        "title": "🏋️ Luyện Cộng/Trừ kết hợp",
+        "description": "Luyện tất cả công thức cùng lúc"
+      },
+      "7-4": {
+        "title": "📝 Ôn tập Cộng/Trừ cơ bản",
+        "description": "Ôn lại toàn bộ công thức Level 1-7"
+      },
+      "8-1": {
+        "title": "📝 Cộng 2 số (Không nhớ)",
+        "description": "Cộng hai số không nhớ"
+      },
+      "8-2": {
+        "title": "📝 Cộng 2 số (Có nhớ)",
+        "description": "Cộng hai số có nhớ"
+      },
+      "8-3": {
+        "title": "📝 Trừ số 2 chữ số",
+        "description": "Trừ hai số có 2 chữ số"
+      },
+      "9-1": {
+        "title": "💯 Số 100-999",
+        "description": "Biểu diễn số 3 chữ số trên Soroban"
+      },
+      "9-2": {
+        "title": "➕ Cộng số 3 chữ số",
+        "description": "Cộng hai số có 3 chữ số"
+      },
+      "9-3": {
+        "title": "➖ Trừ số 3 chữ số",
+        "description": "Trừ hai số có 3 chữ số"
+      },
+      "10-1": {
+        "title": "🔢 Số 1000-9999",
+        "description": "Biểu diễn số 4 chữ số trên Soroban"
+      },
+      "10-2": {
+        "title": "➕ Cộng số 4 chữ số",
+        "description": "Cộng các số có 4 chữ số"
+      },
+      "10-3": {
+        "title": "➖ Trừ số 4 chữ số",
+        "description": "Trừ các số có 4 chữ số"
+      },
+      "10-4": {
+        "title": "📝 Ôn tập số lớn",
+        "description": "Ôn lại cộng trừ số 2-4 chữ số"
+      },
+      "11-1": {
+        "title": "✖️ Khái niệm nhân",
+        "description": "Hiểu phép nhân trên Soroban"
+      },
+      "11-2": {
+        "title": "✖️ Nhân với 2, 3, 4",
+        "description": "Luyện nhân với số nhỏ"
+      },
+      "11-3": {
+        "title": "✖️ Nhân với 5, 6, 7",
+        "description": "Nhân với số lớn hơn"
+      },
+      "12-1": {
+        "title": "✖️ Nhân với 8, 9",
+        "description": "Hoàn thành bảng cửu chương"
+      },
+      "12-2": {
+        "title": "✖️ Nhân số 2 chữ số",
+        "description": "Nhân các số lớn"
+      },
+      "12-3": {
+        "title": "✖️ Luyện Nhân",
+        "description": "Tổng hợp bài tập nhân"
+      },
+      "13-1": {
+        "title": "➗ Khái niệm chia",
+        "description": "Hiểu phép chia và chia hết"
+      },
+      "13-2": {
+        "title": "➗ Chia cho 2, 3, 4",
+        "description": "Luyện chia cho số nhỏ"
+      },
+      "13-3": {
+        "title": "➗ Chia cho 5, 6, 7",
+        "description": "Chia cho số lớn hơn"
+      },
+      "14-1": {
+        "title": "➗ Chia cho 8, 9",
+        "description": "Hoàn thành bảng chia"
+      },
+      "14-2": {
+        "title": "➗ Chia số 2 chữ số",
+        "description": "Chia các số lớn"
+      },
+      "14-3": {
+        "title": "➗ Luyện Chia",
+        "description": "Tổng hợp bài tập chia"
+      },
+      "14-4": {
+        "title": "🎯 MIX Nhân/Chia",
+        "description": "Kết hợp nhân và chia"
+      },
+      "15-1": {
+        "title": "🧠 Nhẩm Cộng/Trừ cơ bản",
+        "description": "Tính nhẩm cộng trừ số đơn. Nền móng Anzan."
+      },
+      "15-2": {
+        "title": "✖️ Nhẩm Nhân cơ bản",
+        "description": "Tính nhẩm nhân với bảng cửu chương 2-5"
+      },
+      "15-3": {
+        "title": "➗ Nhẩm Chia cơ bản",
+        "description": "Tính nhẩm chia cho 2, 3, 4, 5"
+      },
+      "15-4": {
+        "title": "🎯 Mix 4 phép tính",
+        "description": "Tính nhẩm với cả 4 phép tính"
+      },
+      "16-1": {
+        "title": "🧠 Nhẩm Cộng/Trừ nâng cao",
+        "description": "Tính nhẩm cộng trừ số 2 chữ số"
+      },
+      "16-2": {
+        "title": "✖️ Nhẩm Nhân nâng cao",
+        "description": "Tính nhẩm nhân với bảng cửu chương 6-9"
+      },
+      "16-3": {
+        "title": "➗ Nhẩm Chia nâng cao",
+        "description": "Tính nhẩm chia cho 6-9"
+      },
+      "16-4": {
+        "title": "🎯 Mix 4 phép tính nâng cao",
+        "description": "Thử thách tính nhẩm nâng cao"
+      },
+      "17-1": {
+        "title": "⚡ Tốc độ Cộng/Trừ",
+        "description": "Tính nhẩm cộng trừ có bấm giờ. Rèn phản xạ nhanh!"
+      },
+      "17-2": {
+        "title": "⚡ Tốc độ Nhân",
+        "description": "Tính nhẩm nhân có bấm giờ. Thuộc lòng = nhanh!"
+      },
+      "17-3": {
+        "title": "⚡ Tốc độ Chia",
+        "description": "Tính nhẩm chia có bấm giờ. Chia là nhân ngược!"
+      },
+      "17-4": {
+        "title": "⚡ Tốc độ Mix",
+        "description": "Tất cả phép tính có bấm giờ. Thử thách tư duy nhanh!"
+      },
+      "18-1": {
+        "title": "🧠 Nhớ số nhanh",
+        "description": "Ghi nhớ số 1-2 chữ số nhanh. Khởi động trí nhớ!"
+      },
+      "18-2": {
+        "title": "🧠 Cộng 2-3 số",
+        "description": "Xem 2-3 số, cộng trong đầu. Bắt đầu Flash Anzan!"
+      },
+      "18-3": {
+        "title": "🧠 Cộng/Trừ hỗn hợp",
+        "description": "3-4 số có trừ. Rèn cộng trừ trong đầu!"
+      },
+      "18-4": {
+        "title": "🧠 Flash Anzan nhanh",
+        "description": "4-5 số với tốc độ 0.8-1 giây. Thử thách phản xạ!"
+      },
+      "18-5": {
+        "title": "🔥 Flash Anzan siêu tốc",
+        "description": "5-7 số với tốc độ 0.5-0.7 giây. Cấp độ chuyên nghiệp!"
+      }
+    },
+    "quests": {
+      "12e6b36d-958a-4310-8b6c-a4282341b526": {
+        "title": "📖 Học bài mới",
+        "description": "Hoàn thành 1 bài học hôm nay"
+      },
+      "1754d0fe-98fc-41bf-b6e1-95b81de82969": {
+        "title": "👑 Hoàn thành chương trình",
+        "description": "Hoàn thành cả 18 cấp độ"
+      },
+      "178a5de6-6432-4041-ad9d-6ae8776f6618": {
+        "title": "🎖️ Chiến binh kiên trì",
+        "description": "Học liên tục 14 ngày (2 tuần)"
+      },
+      "1b659a1c-1e19-4dab-aea6-c6f682357fe8": {
+        "title": "🎯 Độ chính xác cao",
+        "description": "Trả lời đúng 5 câu liên tiếp"
+      },
+      "21f04697-b80f-439c-bfa9-d67d275421a6": {
+        "title": "💪 Siêng năng luyện tập",
+        "description": "Hoàn thành 15 bài tập trong ngày"
+      },
+      "27dd6f79-1f39-4399-b5fc-cc12f370e229": {
+        "title": "🔥 Ngọn lửa kiên trì",
+        "description": "Học liên tục 5 ngày"
+      },
+      "4be2017c-68e0-4e56-a33d-7add72dfccd8": {
+        "title": "🧠 Bậc thầy tính nhẩm",
+        "description": "Trả lời đúng 50 câu (tổng cộng)"
+      },
+      "76cec951-1687-4238-9f42-61494e860568": {
+        "title": "🏆 Nhà vô địch",
+        "description": "Trả lời đúng 10 câu trong tuần"
+      },
+      "9737f655-8d48-4224-b4e3-296168383146": {
+        "title": "📚 Tuần học tập",
+        "description": "Hoàn thành 3 bài học trong tuần"
+      },
+      "9ea7900b-69af-439c-a211-25850ed3601a": {
+        "title": "🏋️ Vận động viên",
+        "description": "Hoàn thành 40 bài tập trong tuần"
+      },
+      "a420b80a-5af4-4dd8-af64-81f2ffc5cccb": {
+        "title": "🌅 Khởi động buổi sáng",
+        "description": "Làm 5 bài tập luyện tập"
+      },
+      "fe2158f8-d457-461c-8d4e-6d6033ef44c3": {
+        "title": "🌟 Ngôi sao học tập",
+        "description": "Hoàn thành 3 cấp độ"
+      }
+    },
+    "achievements": {
+      "094a4ef2-688a-4c4a-b93a-d1d5cfd82ba1": {
+        "name": "⚔️ Kiếm sĩ Soroban",
+        "description": "Hoàn thành 50 bài tập"
+      },
+      "14149bed-6252-48ce-a7bf-def6caf75cf9": {
+        "name": "⚡ Tia chớp nhỏ",
+        "description": "Hoàn thành 1 bài tập trong dưới 3 giây"
+      },
+      "19790820-f051-42c8-bde3-fd32cb922a92": {
+        "name": "💪 Chiến binh tập sự",
+        "description": "Hoàn thành 20 bài tập"
+      },
+      "25978449-6a13-45a8-803e-934f35b6a0d7": {
+        "name": "🔥🔥 Lửa bùng cháy",
+        "description": "Học liên tục 7 ngày - Một tuần không nghỉ!"
+      },
+      "28c4833a-c3ef-42b3-8bd5-90838353eb59": {
+        "name": "🥈 Chiến binh Bạc",
+        "description": "Tham gia 25 trận đấu"
+      },
+      "2e39fa3b-42d9-484a-8754-507b260a7091": {
+        "name": "✋ Năm ngón tay đầu tiên",
+        "description": "Hoàn thành 5 bài tập - Làm chủ 5 hạt dưới của Soroban"
+      },
+      "2ecf1ff5-7ca4-441a-b769-b7c3e54589b6": {
+        "name": "🏆 Nhà vô địch đấu trường",
+        "description": "Đạt hạng 1 trong 5 trận đấu"
+      },
+      "38c742e6-f8d4-44f3-8c4d-f25219842a17": {
+        "name": "🔥 Ngọn lửa nhỏ",
+        "description": "Học liên tục 3 ngày"
+      },
+      "39e7cfef-3d23-4319-8c01-4e274d707881": {
+        "name": "📖 Đệ tử Soroban",
+        "description": "Hoàn thành 5 bài học - Bạn đã bắt đầu hành trình Soroban"
+      },
+      "3b845cba-7893-4a88-ad10-9fede81d234c": {
+        "name": "💎 Kim cương hoàn hảo",
+        "description": "Đạt độ chính xác 100% trong 50 bài tập"
+      },
+      "4b50fca2-6822-4938-8920-0d27be6dfa5b": {
+        "name": "🐉 Rồng luyện công",
+        "description": "Hoàn thành 200 bài tập"
+      },
+      "4c4dcc86-dd6b-498e-87a4-d62a2b9e49e3": {
+        "name": "🥷 Ninja Toán học",
+        "description": "Hoàn thành 100 bài tập"
+      },
+      "5d02a3e3-52aa-4aaf-b3b6-eb937bd46713": {
+        "name": "👑 Bá chủ đấu trường",
+        "description": "Đạt hạng 1 trong 20 trận đấu"
+      },
+      "5d3c82a9-6432-4183-af66-4089741c527f": {
+        "name": "🎯 Phát súng đầu tiên",
+        "description": "Đạt độ chính xác 100% trong 1 bài tập"
+      },
+      "5ec15a91-0429-4d14-9f9b-fe14ab4b3d73": {
+        "name": "🎊 Người tiên phong",
+        "description": "Là một trong 100 người dùng đầu tiên"
+      },
+      "64ec83b9-5cb7-4366-a33f-f5a6636f5576": {
+        "name": "🎂 Sinh nhật vui vẻ",
+        "description": "Đăng nhập vào ngày sinh nhật của bạn"
+      },
+      "6623ee2a-8a48-4bf2-b373-68b03096d8e8": {
+        "name": "🌪️ Cơn bão Soroban",
+        "description": "Hoàn thành 20 bài tập trong 1 phút"
+      },
+      "6f8d23df-745a-4406-a712-0e453f4b3442": {
+        "name": "⭐ Ba sao hoàn hảo",
+        "description": "Đạt 3 sao trong 5 bài học"
+      },
+      "778b1e1b-0276-4b72-bb44-3a8549843ac2": {
+        "name": "🦄 Huyền thoại SoroKids",
+        "description": "Mở khóa tất cả thành tựu - Bạn là huyền thoại!"
+      },
+      "83d0cbbb-010d-49c1-916b-629c6e553c1e": {
+        "name": "🏛️ Tiến sĩ bàn tính",
+        "description": "Hoàn thành tất cả bài học - Bạn là bậc thầy Soroban!"
+      },
+      "857d790f-f686-49ea-ad20-e8dd92e69837": {
+        "name": "👨‍🏫 Thầy dạy tính nhẩm",
+        "description": "Hoàn thành 30 bài học - Bạn có thể dạy người khác rồi"
+      },
+      "883e88cb-864c-4984-acec-c83022cd7d2a": {
+        "name": "☀️ Mặt trời kiên trì",
+        "description": "Học liên tục 14 ngày - Hai tuần không nghỉ!"
+      },
+      "8f892dab-f8b1-4e52-ad52-59aaa02c5a01": {
+        "name": "✨ Siêu tốc độ",
+        "description": "Hoàn thành 50 bài tập trong 5 phút với 95% chính xác"
+      },
+      "99e251d4-4e37-4d12-8389-f1a6f376cfcb": {
+        "name": "🎓 Cử nhân Soroban",
+        "description": "Hoàn thành 20 bài học - Bạn đã tốt nghiệp khóa cơ bản"
+      },
+      "9a9efcb9-2be2-489e-ad30-3009f352cc65": {
+        "name": "🌋 Thần thoại luyện tập",
+        "description": "Hoàn thành 500 bài tập - Không ai sánh được sự kiên trì của bạn!"
+      },
+      "a7e27792-dab5-4bb0-863f-2eb5c3de0e78": {
+        "name": "📚 Học sinh chăm chỉ",
+        "description": "Hoàn thành 10 bài học - Kiến thức đang lớn dần"
+      },
+      "b4bbdcb6-5078-4e31-b7e7-4ce8b4cd701a": {
+        "name": "⭐ Huyền thoại kiên trì",
+        "description": "Học liên tục 100 ngày - Bạn là huyền thoại!"
+      },
+      "c0af9a24-b7e3-4e2b-8996-c848178730e3": {
+        "name": "🎮 Tân binh đấu trường",
+        "description": "Tham gia trận đấu đầu tiên"
+      },
+      "c7ac1446-5cb0-480a-b8e6-9a6da5f117fb": {
+        "name": "🌱 Hạt giống Soroban",
+        "description": "Hoàn thành bài học đầu tiên - Vạn sự khởi đầu nan"
+      },
+      "c82edabf-0ba0-4ff7-98ab-f994d771fe10": {
+        "name": "🚀 Tên lửa toán học",
+        "description": "Hoàn thành 10 bài tập liên tiếp dưới 5 giây mỗi bài"
+      },
+      "c931e05d-593e-49e1-bdc8-f3774de0f9d5": {
+        "name": "🌟 Ngôi sao đang lên",
+        "description": "Đạt 3 sao trong 15 bài học"
+      },
+      "d4a2bad0-ee5c-43e5-89cd-3373ab3ea82f": {
+        "name": "🥇 Chiến binh Vàng",
+        "description": "Tham gia 50 trận đấu"
+      },
+      "d96126f9-1170-470f-86d5-8679d555635a": {
+        "name": "🎯 Mắt đại bàng",
+        "description": "Đạt độ chính xác 100% trong 10 bài tập"
+      },
+      "dfc3eea3-c296-49cf-9b22-cbe179c56e49": {
+        "name": "💫 Siêu sao Soroban",
+        "description": "Đạt 3 sao trong tất cả bài học"
+      },
+      "e1f4ec9a-5ffd-428b-b579-ac181185ba06": {
+        "name": "👁️ Thần nhãn Soroban",
+        "description": "Đạt độ chính xác 100% trong 100 bài tập - Không gì qua được mắt bạn!"
+      },
+      "e3d98bbe-691f-4695-8fa6-557c25cb0b35": {
+        "name": "🌙 Nhật thực học tập",
+        "description": "Học liên tục 30 ngày - Một tháng không nghỉ!"
+      },
+      "e50f402a-7003-4e70-824f-36892b9695c8": {
+        "name": "🏹 Cung thủ bách phát",
+        "description": "Đạt độ chính xác 100% trong 25 bài tập"
+      },
+      "ef6474fc-3317-47a8-8f97-887cab28e1b2": {
+        "name": "🏅 Chiến binh Đồng",
+        "description": "Tham gia 10 trận đấu"
+      },
+      "f96613a6-12b7-4f7e-a8cc-0e98914b8f51": {
+        "name": "🌈 Bộ sưu tập hoàn hảo",
+        "description": "Mở khóa 20 thành tựu khác"
+      }
+    },
+    "shopItems": {
+      "2865a464-48b3-48db-96dd-05efa1fe5c6a": {
+        "name": "Avatar Ninja",
+        "description": "Avatar độc đáo hình ninja"
+      },
+      "2de03f8b-764d-493f-bb46-46b89d0e6943": {
+        "name": "Theme Rừng nhiệt đới",
+        "description": "Giao diện xanh mát rừng xanh"
+      },
+      "2f4a4349-6238-4138-bdc8-dedda44b48ed": {
+        "name": "Avatar Robot",
+        "description": "Avatar robot công nghệ cao"
+      },
+      "356a05e1-d1a0-42fe-9cbb-6750eb133d53": {
+        "name": "Nhân đôi sao",
+        "description": "Nhận gấp đôi sao trong 1 giờ"
+      },
+      "61c8a707-3cba-427b-a58b-4a778eb420ab": {
+        "name": "Gợi ý",
+        "description": "5 lượt gợi ý"
+      },
+      "ad4c1894-7c2a-4f86-a8ce-d4f7d982dd51": {
+        "name": "Gợi ý thông minh",
+        "description": "Nhận gợi ý khi làm bài"
+      },
+      "e52cedb2-8828-4d66-9099-21a6415b2912": {
+        "name": "Avatar Công chúa",
+        "description": "Avatar công chúa xinh đẹp"
+      },
+      "f327adbb-5221-4f98-b93b-976eb5266cc4": {
+        "name": "Theme Tối",
+        "description": "Giao diện tối bảo vệ mắt"
+      },
+      "f5337186-4f2c-4ef3-9b1f-6801cf4b4a3a": {
+        "name": "Thêm thời gian",
+        "description": "Thêm 30 giây khi luyện tập"
+      }
+    },
+    "notifications": {
+      "achievementUnlocked": "Mở khóa thành tựu!",
+      "newAchievement": "Bạn đã mở khóa \"{name}\"!",
+      "questCompleted": "Hoàn thành nhiệm vụ!",
+      "questCompletedDesc": "Bạn đã hoàn thành \"{title}\"! Nhận thưởng ngay!"
+    }
+  }
+}

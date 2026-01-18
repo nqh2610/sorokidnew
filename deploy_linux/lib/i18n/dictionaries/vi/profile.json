@@ -1,0 +1,82 @@
+{
+  "profilePage": {
+    "logoutTitle": "Đăng xuất?",
+    "logoutMessage": "Bạn có chắc chắn muốn đăng xuất khỏi tài khoản không?",
+    "streak": "Ngày liên tiếp",
+    "totalStars": "Tổng sao",
+    "diamonds": "Kim cương",
+    "edit": "Sửa",
+    "sections": {
+      "learning": "HỌC TẬP",
+      "account": "TÀI KHOẢN",
+      "admin": "QUẢN TRỊ"
+    },
+    "menu": {
+      "learn": "Học Soroban",
+      "upgrade": "Nâng cấp tài khoản",
+      "certificate": "Chứng chỉ",
+      "editProfile": "Chỉnh sửa hồ sơ",
+      "admin": "Trang quản trị"
+    },
+    "unlockFeatures": "Mở khóa tất cả tính năng!"
+  },
+  "leaderboardPage": {
+    "title": "Bảng xếp hạng",
+    "subtitle": "Top học sinh xuất sắc",
+    "noData": "Chưa có dữ liệu",
+    "startPractice": "Hãy bắt đầu luyện tập để xuất hiện trên bảng xếp hạng!"
+  },
+  "editProfile": {
+    "title": "Chỉnh sửa hồ sơ",
+    "tabs": {
+      "profile": "Hồ sơ",
+      "password": "Mật khẩu"
+    },
+    "fields": {
+      "fullName": "Họ và tên",
+      "phone": "Số điện thoại",
+      "username": "Tên đăng nhập",
+      "email": "Email",
+      "currentPassword": "Mật khẩu hiện tại",
+      "newPassword": "Mật khẩu mới",
+      "confirmPassword": "Xác nhận mật khẩu mới"
+    },
+    "placeholders": {
+      "fullName": "Nhập họ và tên đầy đủ",
+      "currentPassword": "Nhập mật khẩu hiện tại",
+      "newPassword": "Nhập mật khẩu mới (ít nhất 6 ký tự)",
+      "confirmPassword": "Nhập lại mật khẩu mới"
+    },
+    "hints": {
+      "nameOnCertificate": "Họ và tên sẽ hiển thị trên chứng chỉ khi bạn đạt được",
+      "phoneFormat": "Số điện thoại Việt Nam (VD: 0901234567)",
+      "usernameReadOnly": "Tên đăng nhập không thể thay đổi",
+      "emailReadOnly": "Email không thể thay đổi"
+    },
+    "errors": {
+      "nameRequired": "Vui lòng nhập họ tên",
+      "nameMinLength": "Họ tên phải có ít nhất 2 ký tự",
+      "invalidPhone": "Số điện thoại không hợp lệ (VD: 0901234567)",
+      "currentPasswordRequired": "Vui lòng nhập mật khẩu hiện tại",
+      "newPasswordRequired": "Vui lòng nhập mật khẩu mới",
+      "passwordMinLength": "Mật khẩu mới phải có ít nhất 6 ký tự",
+      "passwordMismatch": "Mật khẩu xác nhận không khớp"
+    },
+    "passwordStrength": {
+      "tooShort": "Quá ngắn",
+      "medium": "Trung bình",
+      "good": "Tốt",
+      "strong": "Rất mạnh"
+    },
+    "passwordMatch": "Mật khẩu khớp",
+    "profileSaved": "Cập nhật hồ sơ thành công!",
+    "passwordChanged": "Đổi mật khẩu thành công!",
+    "saving": "Đang lưu...",
+    "processing": "Đang xử lý...",
+    "saveChanges": "Lưu thay đổi",
+    "changePassword": "Đổi mật khẩu",
+    "googleAccount": "Tài khoản Google",
+    "googleNoPassword": "Bạn đang đăng nhập bằng Google nên không có mật khẩu để thay đổi.",
+    "backToProfile": "Quay lại trang hồ sơ"
+  }
+}

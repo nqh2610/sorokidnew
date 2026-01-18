@@ -1,0 +1,154 @@
+{
+  "home": {
+    "badge": "Phương pháp Soroban từ Nhật Bản",
+    "hero": {
+      "title": "Cho Con Học Soroban Tại Nhà",
+      "title1": "Toán tư duy",
+      "title2": "Tính nhẩm siêu nhanh",
+      "title3": "Học mà chơi, chơi mà học!",
+      "subtitle": "Phụ huynh không cần biết Soroban vẫn kèm con được",
+      "description": "Hướng dẫn từng bước bằng hình ảnh. Con tự học, tự tiến bộ. Game hóa - con TỰ GIÁC muốn học mỗi ngày.",
+      "cta": "Đăng ký ngay",
+      "ctaSecondary": "Xem cách hoạt động",
+      "appDesc": "Ứng dụng học toán Soroban dành cho học sinh tiểu học.",
+      "highlight": "Từ sợ toán thành yêu toán chỉ sau vài tuần!",
+      "benefit1": "Ba mẹ dễ dàng kèm con",
+      "benefit2": "Vui như chơi game",
+      "benefit3": "Linh hoạt thời gian",
+      "benefit4": "Thấy rõ tiến bộ từng ngày"
+    },
+    "features": {
+      "title": "Tại sao trẻ thích học cùng Sorokid?",
+      "subtitle": "Sorokid được thiết kế đặc biệt cho học sinh tiểu học với giao diện đơn giản, sắc nét",
+      "gameified": {
+        "title": "Học như chơi game",
+        "description": "Điểm thưởng, sao, kim cương... khiến việc luyện tính nhẩm thú vị như chơi game yêu thích!"
+      },
+      "lessons": {
+        "title": "Bài học sinh động",
+        "description": "Từ cơ bản đến nâng cao theo phương pháp Soroban Nhật Bản. Dễ hiểu, dễ nhớ, dễ áp dụng."
+      },
+      "speed": {
+        "title": "Phản xạ nhanh hơn",
+        "description": "Bài tập đa dạng giúp bé tính toán nhanh và chính xác hơn mỗi ngày. Kết quả thấy rõ sau 2 tuần!"
+      },
+      "compete": {
+        "title": "Thi đua vui vẻ",
+        "description": "Bảng xếp hạng, giải đấu với bạn bè. Động lực học tập tăng vọt khi có đối thủ!"
+      },
+      "quest": {
+        "title": "Nhiệm vụ mỗi ngày",
+        "description": "Quest hằng ngày giúp bé duy trì thói quen tự học. Hoàn thành = nhận thưởng!"
+      },
+      "report": {
+        "title": "Báo cáo chi tiết",
+        "description": "Ba mẹ nắm rõ con học đến đâu: tốc độ, độ chính xác, thời gian học mỗi ngày."
+      }
+    },
+    "soroban": {
+      "title": "Soroban là gì?",
+      "desc": "Soroban là bàn tính Nhật Bản được hơn 400 năm lịch sử. Trẻ học Soroban sẽ hình dung bàn tính trong đầu và tính nhẩm nhanh như máy tính mà không cần giấy bút.",
+      "benefit1Title": "Phát triển não bộ",
+      "benefit1Desc": "Kích hoạt cả não trái (logic) và não phải (hình ảnh)",
+      "benefit2Title": "Tính nhẩm siêu nhanh",
+      "benefit2Desc": "Cộng trừ 2-3 chữ số trong vài giây, không cần giấy bút",
+      "benefit3Title": "Rèn tập trung",
+      "benefit3Desc": "Chú ý từng bước, áp dụng vào mọi môn học",
+      "benefit4Title": "Phương pháp toàn cầu",
+      "benefit4Desc": "Phổ biến tại Nhật, Hàn, Trung Quốc, Malaysia...",
+      "whyTitle": "Tại sao chọn Sorokid?",
+      "whySubtitle": "Phụ huynh không cần biết Soroban vẫn kèm con học được!",
+      "why1": "Hướng dẫn từng bước bằng hình ảnh",
+      "why2": "Game hóa - con tự giác học",
+      "why3": "Theo dõi: chăm chỉ, tốc độ, chính xác",
+      "demoTitle": "Thử ngay bàn tính ảo!",
+      "demoDesc": "Click vào các hạt để di chuyển lên/xuống"
+    },
+    "roadmap": {
+      "title": "Lộ trình học tập khoa học",
+      "subtitle": "Từ chưa biết gì đến tính nhẩm nhanh như máy tính!",
+      "step1": "Học lý thuyết",
+      "step1Desc": "Làm quen với bàn tính Soroban qua bài học sinh động",
+      "step2": "Thực hành",
+      "step2Desc": "Luyện tập với bài tập từ dễ đến khó",
+      "step3": "Luyện tập",
+      "step3Desc": "Tăng tốc độ và độ chính xác qua các bài luyện",
+      "step4": "Thi đấu",
+      "step4Desc": "Thử thách bản thân, xếp hạng cùng bạn bè"
+    },
+    "progress": {
+      "title": "Phụ huynh yên tâm theo dõi con",
+      "subtitle": "Hệ thống tự động đánh giá và đo lường sự tiến bộ của học sinh qua từng bài học.",
+      "speed": "Tốc độ tính toán",
+      "speedDesc": "Đo thời gian hoàn thành mỗi bài",
+      "accuracy": "Độ chính xác",
+      "accuracyDesc": "Tỷ lệ trả lời đúng",
+      "diligence": "Tính chăm chỉ",
+      "diligenceDesc": "Số ngày học liên tiếp (streak)",
+      "achievement": "Thành tích",
+      "achievementDesc": "Huy hiệu, level, điểm kinh nghiệm",
+      "rewardTitle": "Hệ thống phần thưởng",
+      "star": "Sao",
+      "starDesc": "Nhận khi hoàn thành bài học",
+      "diamond": "Kim cương",
+      "diamondDesc": "Phần thưởng đặc biệt",
+      "badge": "Huy hiệu",
+      "badgeDesc": "Đạt thành tích nổi bật",
+      "rank": "Cấp bậc",
+      "rankDesc": "Thăng cấp khi tích điểm"
+    },
+    "userTypes": {
+      "title": "Ai nên dùng Sorokid?",
+      "subtitle": "Phù hợp với mọi người muốn con giỏi toán tư duy",
+      "student": {
+        "title": "Học sinh 6-12 tuổi",
+        "desc": "Học qua game thú vị, nhận thưởng khi hoàn thành bài, thi đua cùng bạn bè. Tự tin giơ tay phát biểu!"
+      },
+      "parent": {
+        "title": "Phụ huynh",
+        "desc": "Công cụ kèm con tự học tại nhà hiệu quả. Biết con tiến bộ từng ngày, không cần đưa đón đi học thêm."
+      },
+      "teacher": {
+        "title": "Giáo viên",
+        "desc": "Công cụ dạy học hiện đại, giao bài - chấm điểm tự động. Cá nhân hóa theo năng lực từng học sinh."
+      }
+    },
+    "highlights": {
+      "title": "Con học vui, ba mẹ an tâm",
+      "subtitle": "Thiết kế để bé yêu thích học mỗi ngày",
+      "design": "Giao diện bắt mắt",
+      "designDesc": "Màu sắc tươi sáng, dễ thương - bé thích ngay từ cái nhìn đầu tiên",
+      "anywhere": "Học mọi lúc mọi nơi",
+      "anywhereDesc": "Điện thoại, máy tính bảng, laptop - thiết bị nào cũng được",
+      "virtual": "Bàn tính ảo tích hợp",
+      "virtualDesc": "Bàn tính có sẵn trong ứng dụng, bé mở lên là tập được ngay",
+      "athome": "Học ngay tại nhà",
+      "athomeDesc": "Con học thoải mái trong không gian quen thuộc của gia đình"
+    },
+    "finalCta": {
+      "title": "Chỉ 15 phút mỗi ngày - Thần đồng tính nhẩm trong tầm tay!",
+      "subtitle": "Hơn 10.000 học sinh đã tính nhẩm nhanh hơn sau 3 tháng. Sẵn sàng cho con bạn chưa?",
+      "register": "Đăng ký miễn phí",
+      "login": "Đã có tài khoản? Đăng nhập"
+    },
+    "stats": {
+      "students": "Học sinh",
+      "lessons": "Bài học",
+      "exercises": "Bài tập",
+      "parents": "Phụ huynh tin dùng"
+    },
+    "testimonials": {
+      "title": "Phụ huynh nói gì về Sorokid?"
+    },
+    "blog": {
+      "title": "Chia sẻ cho phụ huynh",
+      "description": "Kinh nghiệm thực tế giúp ba mẹ đồng hành cùng con học toán – nhẹ nhàng, hiệu quả",
+      "viewAll": "Xem tất cả bài viết"
+    },
+    "cta": {
+      "title": "Bắt đầu hành trình Soroban cùng con ngay hôm nay",
+      "description": "Miễn phí 7 ngày dùng thử. Không cần thẻ tín dụng.",
+      "button": "Đăng ký miễn phí"
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "slug": "con-tinh-toan-can-than-nhung-hay-doc-nham-de-bai",
+  "title": "Con tính toán cẩn thận nhưng hay đọc nhầm đề bài",
+  "description": "Bài kiểm tra về, mình tưởng con tính sai. Hóa ra con đọc nhầm đề.",
+  "category": "con-gap-kho-khan-hoc-toan",
+  "keywords": [
+    "con đọc nhầm đề",
+    "sai vì đọc đề",
+    "rèn đọc hiểu đề toán",
+    "con mất điểm oan vì đọc nhầm",
+    "lỗi sơ ý khi làm bài",
+    "cách đọc đề kỹ hơn",
+    "gạch chân từ khóa trong đề",
+    "kiểm tra lại đề trước khi nộp",
+    "con vội vàng khi đọc đề",
+    "rèn tập trung đọc đề",
+    "con hay nhầm số trong đề",
+    "kỹ năng làm bài kiểm tra"
+  ],
+  "status": "published",
+  "publishedAt": "2026-01-23T12:35:00.000Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/doc-nham-de.jpg",
+  "imageAlt": "Bé châu Á đang đọc đề bài với vẻ tập trung",
+  "readingTime": 12,
+  "categoryOrder": 2,
+  "order": 22,
+  "translations": {
+    "en": "con-tnh-ton-cn-thn-nhng-hay-c-nhm-bi"
+  },
+  "content": {
+    "intro": "\"Con ơi, sao bài này sai?\" – \"À, con đọc nhầm là 45 thành 54.\" Chuyện này xảy ra với con mình hoài.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Đọc nhầm đề – vấn đề phổ biến"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhiều trẻ tính toán tốt nhưng mất điểm vì:\n- Đọc nhầm số.\n- Hiểu sai yêu cầu bài.\n- Bỏ sót điều kiện."
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây không phải lỗi kém toán. Đây là lỗi đọc hiểu và tập trung."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Nguyên nhân"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. **Vội vàng**\n   - Con muốn làm nhanh → đọc lướt → bỏ sót."
+      },
+      {
+        "type": "paragraph",
+        "text": "2. **Mất tập trung**\n   - Đọc bằng mắt mà não đang nghĩ chuyện khác."
+      },
+      {
+        "type": "paragraph",
+        "text": "3. **Đề bài dài, nhiều chữ**\n   - Đề càng dài, càng dễ bỏ sót chi tiết."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "Đừng la con khi con đọc nhầm đề. Đó là kỹ năng cần rèn, không phải lỗi cố ý."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Cách mình rèn cho con"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Đọc to đề bài**\n- Đọc to giúp não xử lý kỹ hơn.\n- Áp dụng cho bài kiểm tra ở nhà."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Gạch chân từ khóa**\n- Gạch chân: số, hỏi gì, điều kiện.\n- Giúp con không bỏ sót."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Kiểm tra lại đề sau khi làm xong**\n- Đọc lại đề, đối chiếu với đáp án.\n- Phát hiện lỗi trước khi nộp."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kết quả"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mình giờ có thói quen gạch chân đề. Lỗi đọc nhầm giảm hẳn."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Luyện Soroban cũng giúp cải thiện tập trung. Con quen tập trung → đọc đề kỹ hơn."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Con hay đọc nhầm số, sửa thế nào?",
+      "answer": "Yêu cầu con viết lại các số quan trọng ra giấy nháp trước khi tính."
+    },
+    {
+      "question": "Có app nào rèn đọc hiểu đề không?",
+      "answer": "Một số app toán có bài toán có lời văn. Luyện nhiều con sẽ quen."
+    },
+    {
+      "question": "Đọc nhầm đề có phải do mắt kém không?",
+      "answer": "Có thể. Nếu con hay nhầm số (45 thành 54, 6 thành 9), nên đưa con đi khám mắt. Nhưng thường là do vội vàng và thiếu tập trung."
+    },
+    {
+      "question": "Con đọc nhầm đề có phải vì đề dài quá không?",
+      "answer": "Đề dài khiến con dễ bỏ sót chi tiết. Dạy con kỹ năng gạch chân từ khóa và tóm tắt đề trước khi làm."
+    },
+    {
+      "question": "Làm sao để con đọc đề chậm lại?",
+      "answer": "Yêu cầu con đọc đề to lên (đọc thành tiếng). Khi đọc to, con tự động chậm lại và não xử lý kỹ hơn."
+    },
+    {
+      "question": "Con đọc đúng nhưng nhớ sai khi làm bài, khác gì với đọc nhầm?",
+      "answer": "Đọc nhầm là nhìn sai ngay từ đầu. Nhớ sai là đọc đúng nhưng quên khi làm. Cách sửa: viết ra giấy nháp ngay sau khi đọc."
+    },
+    {
+      "question": "Gạch chân đề có giúp không?",
+      "answer": "Rất giúp. Gạch chân số liệu, từ khóa, và câu hỏi. Con sẽ tập trung vào thông tin quan trọng và không bỏ sót."
+    },
+    {
+      "question": "Con kiểm tra lại vẫn không phát hiện lỗi đọc nhầm?",
+      "answer": "Dạy con đọc lại ĐỀ (không chỉ đáp án) sau khi làm xong. Đối chiếu đề với bài làm để phát hiện nhầm lẫn."
+    },
+    {
+      "question": "Luyện Soroban có giúp con bớt đọc nhầm đề không?",
+      "answer": "Gián tiếp có. Soroban rèn tập trung, khi tập trung tốt hơn, con sẽ đọc đề kỹ hơn, ít sai sót."
+    },
+    {
+      "question": "Con hay đọc nhầm ở những loại đề nào?",
+      "answer": "Thường ở đề dài, đề có nhiều số gần giống nhau (45 và 54), đề có điều kiện phụ dễ bỏ sót. Cần luyện riêng các dạng này."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid giúp con rèn tập trung, giảm lỗi sơ suất.",
+    "buttonText": "Thử ngay miễn phí",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "title": "Con tính toán cẩn thận nhưng hay đọc nhầm đề bài",
+    "description": "Bài kiểm tra về, mình tưởng con tính sai. Hóa ra con đọc nhầm đề.",
+    "keywords": "con đọc nhầm đề, sai vì đọc đề, rèn đọc hiểu đề toán, lỗi sơ ý làm bài, gạch chân từ khóa"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-20",
+    "author": {
+      "@type": "Person",
+      "name": "Minh Anh",
+      "description": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy",
+      "url": "https://sorokid.com/blog"
+    }
+  },
+  "author": {
+    "name": "Minh Anh",
+    "role": "Mẹ của 2 bé",
+    "bio": "Mẹ của 2 bé, đang đồng hành cùng con học toán tư duy"
+  }
+}

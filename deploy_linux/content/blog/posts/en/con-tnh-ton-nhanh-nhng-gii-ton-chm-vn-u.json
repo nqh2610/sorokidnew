@@ -1,0 +1,411 @@
+{
+  "slug": "con-tnh-ton-nhanh-nhng-gii-ton-chm-vn-u",
+  "title": "My Son Calculates Instantly But Freezes on Word Problems: The Missing Skill No One Talks About",
+  "description": "He can mentally add 47 + 38 in seconds. But show him 'An has 47 marbles, Binh gives him 38 more. How many does An have?' and he's completely lost. I discovered calculation and problem comprehension are two entirely different skills—and here's how to build both.",
+  "category": "math-struggles",
+  "keywords": [
+    "fast calculator slow problem solving",
+    "word problem struggles children",
+    "math comprehension skills",
+    "reading math problems help",
+    "computational vs conceptual math",
+    "word problem strategies kids",
+    "understanding math questions",
+    "math reading comprehension",
+    "translate word problems math",
+    "problem solving elementary math",
+    "soroban word problems",
+    "mental math application"
+  ],
+  "status": "scheduled",
+  "publishedAt": "2026-02-10T07:33:13.708Z",
+  "createdAt": "2025-12-25",
+  "image": "/blog/be-giai-toan-do.jpg",
+  "imageAlt": "Child reading word problem carefully to understand what math operation to use",
+  "readingTime": 14,
+  "author": {
+    "name": "Mr. David Kim",
+    "role": "Parent and Former Math Tutor"
+  },
+  "translations": {
+    "vi": "con-hoc-toan-tot-nhung-giai-toan-do-cham"
+  },
+  "content": {
+    "intro": "My son trained Soroban for two years. He could mentally calculate 47 + 38 faster than I could type it into a calculator. I was proud—until his first word problem test came back with disappointing marks. The problem: 'An has 47 marbles. Binh gives him 38 more. How many marbles does An have now?' He hadn't solved it. 'But you know 47 + 38!' I said. He looked confused: 'But how was I supposed to know I should add?' That day I learned that calculation speed and problem comprehension are completely different skills—and excelling at one doesn't automatically mean mastery of the other.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understanding the Two Skills"
+      },
+      {
+        "type": "paragraph",
+        "text": "Many parents (myself included) conflate calculation ability with mathematical understanding. But these are distinct:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Skill 1: Computational Fluency"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Executing arithmetic operations accurately and quickly",
+          "Knowing procedures: carrying, borrowing, multiplication tables",
+          "Speed and automaticity in number manipulation",
+          "What Soroban and flash card drills develop"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Skill 2: Problem Comprehension"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Understanding what a problem is asking",
+          "Identifying relevant information vs. distractors",
+          "Recognizing which operation to apply",
+          "Translating words into mathematical setup"
+        ]
+      },
+      {
+        "type": "callout",
+        "style": "insight",
+        "text": "Think of it like language: Skill 1 is spelling and grammar (mechanics). Skill 2 is reading comprehension (understanding meaning). A child can spell every word correctly but still not understand what a paragraph means."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Fast Calculators Often Struggle With Word Problems"
+      },
+      {
+        "type": "paragraph",
+        "text": "Children who develop strong calculation skills may paradoxically struggle with word problems because:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Training Focused on Execution, Not Setup"
+      },
+      {
+        "type": "paragraph",
+        "text": "Soroban, flash cards, and math drills give the operation: '47 + 38 = ?' The child just executes. Word problems require identifying the operation—a step these children never practiced."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Speed Becomes the Metric"
+      },
+      {
+        "type": "paragraph",
+        "text": "When we celebrate calculation speed, children learn to value quick answers. Word problems require slowing down, reading carefully, thinking before computing. This feels 'wrong' to speed-trained children."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Reading Skills May Lag"
+      },
+      {
+        "type": "paragraph",
+        "text": "If parents invested time in math drills but less in reading development, word problem comprehension naturally suffers. Math word problems are fundamentally reading comprehension tasks first."
+      },
+      {
+        "type": "table",
+        "caption": "Computational Fluency vs. Problem Comprehension",
+        "headers": [
+          "Aspect",
+          "Computational Fluency",
+          "Problem Comprehension"
+        ],
+        "rows": [
+          [
+            "Input Given",
+            "Operation specified (47 + 38)",
+            "Situation described (story)"
+          ],
+          [
+            "Child's Task",
+            "Execute the operation",
+            "Determine which operation to use"
+          ],
+          [
+            "Key Skill",
+            "Speed and accuracy",
+            "Reading and reasoning"
+          ],
+          [
+            "Training Method",
+            "Drills, flashcards, Soroban",
+            "Varied word problems, discussion"
+          ],
+          [
+            "My Son",
+            "Excellent ✓",
+            "Needed development ✗"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Solution: Building Problem Comprehension"
+      },
+      {
+        "type": "paragraph",
+        "text": "Once I understood the gap, I worked systematically to develop my son's problem comprehension—without abandoning his calculation strength."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 1: Read First, Compute Later"
+      },
+      {
+        "type": "paragraph",
+        "text": "I trained him to approach word problems in stages:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Read the whole problem** without reaching for a pencil",
+          "**Retell the problem** in his own words",
+          "**Identify the question**: What exactly are we finding?",
+          "**Determine the operation**: Do we combine, separate, compare?",
+          "**Only then** set up and calculate"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "He resisted at first—'But I can solve it fast!' I explained that rushing into calculation without understanding is like running before knowing the destination."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 2: Key Word Awareness (With Caution)"
+      },
+      {
+        "type": "paragraph",
+        "text": "I taught him to notice words that often signal operations:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Addition signals**: 'altogether,' 'total,' 'combined,' 'in all,' 'more'",
+          "**Subtraction signals**: 'left,' 'remaining,' 'difference,' 'fewer,' 'less than'",
+          "**Multiplication signals**: 'each,' 'every,' 'groups of,' 'times as many'",
+          "**Division signals**: 'shared equally,' 'split,' 'per,' 'each got'"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "But I warned him: key words are clues, not guarantees. 'How many more does she have?' might suggest subtraction, but context determines the actual operation. He must understand the situation, not just scan for words."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 3: Draw It Out"
+      },
+      {
+        "type": "paragraph",
+        "text": "Visual representation bridges words and operations:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "'An has 47 marbles' → Draw a box labeled 'An: 47'",
+          "'Binh gives him 38 more' → Draw an arrow adding 38 to An's box",
+          "'How many does An have now?' → The question is the total in An's box"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Visual diagrams make the operation obvious. My son went from 'I don't know what to do' to 'Oh, I see—I need to add!' when he drew problems first."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 4: Write Number Sentences Before Calculating"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before computing, I asked him to write the mathematical setup: '47 + 38 = ?'"
+      },
+      {
+        "type": "paragraph",
+        "text": "This intermediate step—between reading and calculating—focuses attention on understanding rather than computation. If he can write the correct number sentence, the calculation (his strength) handles the rest."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Strategy 5: Varied Problem Types"
+      },
+      {
+        "type": "paragraph",
+        "text": "I realized he'd seen mostly 'result unknown' problems (47 + 38 = ?). But word problems come in many structures:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Result unknown**: An has 47, gets 38 more. How many now? (47 + 38 = ?)",
+          "**Change unknown**: An has 47, then has 85. How many did he get? (47 + ? = 85)",
+          "**Start unknown**: An got 38 marbles and now has 85. How many did he start with? (? + 38 = 85)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Exposing him to all three structures developed flexible understanding, not just pattern matching."
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Practice with problems that use the same numbers but require different operations. '47 + 38' and '47 - 38' problems force children to read carefully rather than assuming all problems with those numbers are the same."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The Transformation"
+      },
+      {
+        "type": "paragraph",
+        "text": "Three months of comprehension-focused practice produced dramatic results:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Before"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Calculation speed: Excellent",
+          "Word problem accuracy: 40-50%",
+          "Approach: Grab numbers, guess operation, calculate fast",
+          "Frustration level: High (why was he 'bad' at something he was 'good' at?)"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "After"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Calculation speed: Still excellent",
+          "Word problem accuracy: 85-90%",
+          "Approach: Read carefully, visualize, set up, then calculate",
+          "Confidence: High (he understood his 'fast calculator' skill was still valuable)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "His calculation speed didn't decrease—it just became part of a complete problem-solving process."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Advice for Parents of Fast Calculators"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Celebrate the Calculation Skill"
+      },
+      {
+        "type": "paragraph",
+        "text": "Fast calculation IS valuable—it just isn't complete math skill. Acknowledge the strength while developing the missing piece."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Add Comprehension Practice Early"
+      },
+      {
+        "type": "paragraph",
+        "text": "Don't wait until word problems become a crisis. While developing calculation fluency, also practice reading and interpreting math situations—even orally at first."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Slow Down to Speed Up"
+      },
+      {
+        "type": "paragraph",
+        "text": "It feels counterintuitive to tell a fast calculator to slow down. But taking time to understand before computing ultimately produces faster, more accurate solutions."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Connect Reading and Math"
+      },
+      {
+        "type": "paragraph",
+        "text": "Word problem success depends on reading skills. Invest in reading comprehension—it pays dividends across all subjects, including math."
+      },
+      {
+        "type": "callout",
+        "style": "success",
+        "text": "My son's story has a happy ending: he now combines his calculation speed with genuine problem understanding. His mental math makes him faster than peers once he knows what to calculate. The Soroban training wasn't wasted—it just needed to be complemented with comprehension skills."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Why can my child calculate quickly but struggle with word problems?",
+      "answer": "Calculation and problem comprehension are different skills. Calculation training (drills, Soroban, flashcards) gives the operation to execute. Word problems require identifying which operation to use—a separate skill that needs separate practice."
+    },
+    {
+      "question": "What's the difference between computational fluency and problem comprehension?",
+      "answer": "Computational fluency is executing operations accurately and quickly—knowing how to add, subtract, multiply, divide. Problem comprehension is understanding what a problem asks, identifying relevant information, and recognizing which operation to apply. Both are needed for complete math skill."
+    },
+    {
+      "question": "Should we stop Soroban training if word problems are weak?",
+      "answer": "No! Calculation speed is valuable. Add comprehension practice alongside Soroban, don't replace it. Your child's calculation strength becomes more powerful when paired with understanding of when to use it."
+    },
+    {
+      "question": "How do I teach my child to understand word problems?",
+      "answer": "Use a structured approach: read the whole problem first, retell it in own words, identify what's being asked, determine the operation, then calculate. Visual drawing helps many children. Practice varied problem types, not just 'result unknown' problems."
+    },
+    {
+      "question": "Are keyword strategies helpful for word problems?",
+      "answer": "Keywords can be useful clues ('altogether' often means add, 'remaining' often means subtract), but they're not reliable rules. Some problems use misleading keywords. Teach keywords as clues while emphasizing that understanding the situation matters most."
+    },
+    {
+      "question": "Why does my fast calculator rush through word problems?",
+      "answer": "Speed-trained children learn that quick answers are valued. Word problems require the opposite: slowing down, reading carefully, thinking before computing. They may feel 'wrong' when they can't immediately calculate, causing them to grab numbers and guess operations."
+    },
+    {
+      "question": "What are the different word problem structures I should practice?",
+      "answer": "Three main structures: result unknown (47 + 38 = ?), change unknown (47 + ? = 85), and start unknown (? + 38 = 85). Children who only see result-unknown problems don't develop flexible understanding. Vary the structures to build genuine comprehension."
+    },
+    {
+      "question": "How long does it take to improve word problem skills?",
+      "answer": "With consistent practice (15-20 minutes daily focused on comprehension, not just calculation), most children show significant improvement within 2-3 months. The key is practicing the understanding process, not just solving more problems."
+    },
+    {
+      "question": "Does reading ability affect word problem performance?",
+      "answer": "Absolutely. Word problems are reading comprehension tasks first, math tasks second. Children with strong calculation but weak reading will struggle with word problems. Investing in reading skills improves math performance on word-based assessments."
+    },
+    {
+      "question": "How do I know if my child has a comprehension gap vs. calculation gap?",
+      "answer": "Give your child the same problem two ways: as pure calculation (47 + 38 = ?) and as a word problem. If calculation is strong but word problem version fails, the gap is comprehension, not calculation. Focus practice accordingly."
+    }
+  ],
+  "cta": {
+    "text": "Build both calculation speed AND problem comprehension. Sorokid combines mental math training with varied word problem practice—developing complete mathematical thinkers.",
+    "buttonText": "Develop Complete Math Skills",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "Fast Calculator But Slow Problem Solver: The Missing Skill | Sorokid",
+    "metaDescription": "Why children who calculate quickly often struggle with word problems—and how to develop the problem comprehension skills that complete their mathematical ability.",
+    "keywords": "fast calculator slow word problems, math comprehension skills, word problem strategies kids, computational vs conceptual math, translate word problems math, mental math application"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-02-01",
+    "author": "Mr. David Kim"
+  },
+  "postId": "con-hoc-toan-tot-nhung-giai-toan-do-cham"
+}

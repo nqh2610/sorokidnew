@@ -99,7 +99,8 @@ export default function AutoCompetePage() {
     // Redirect to Compete page
     router.replace(localizeUrl('/compete'));
     
-  }, [status, router, localizeUrl, searchParams, t]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status, searchParams]); // 🔧 FIX: Loại bỏ router, localizeUrl, t
 
   // Loading state
   if (loading && !error) {

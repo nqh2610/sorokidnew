@@ -1,0 +1,295 @@
+{
+  "slug": "my-child-struggles-with-borrowing-in-subtraction",
+  "title": "My Child Keeps Getting Subtraction with Borrowing Wrong – From 70% Errors to 10%",
+  "description": "Subtraction with borrowing was my daughter's nightmare for months. 52-28 = 36? I thought she was bad at math. Turns out she just wasn't taught the right way.",
+  "category": "math-struggles",
+  "keywords": [
+    "borrowing subtraction",
+    "regrouping subtraction",
+    "subtraction with regrouping",
+    "child wrong subtraction",
+    "teach borrowing subtraction",
+    "kid forgets to borrow",
+    "how to teach borrowing",
+    "subtraction grade 2",
+    "soroban subtraction",
+    "visual subtraction method",
+    "base ten blocks subtraction",
+    "subtraction error types"
+  ],
+  "status": "scheduled",
+  "publishedAt": "2026-02-09T03:33:13.707Z",
+  "createdAt": "2026-02-01",
+  "image": "/blog/tranh-sai-lam-hoc-soroban.jpg",
+  "imageAlt": "Child learning subtraction with borrowing using visual aids",
+  "readingTime": 10,
+  "author": {
+    "name": "Anna",
+    "role": "Mom of 2nd grader"
+  },
+  "translations": {
+    "vi": "con-hay-lam-sai-phep-tru-co-nho"
+  },
+  "content": {
+    "intro": "\"What's 52 minus 28?\" – \"36!\" My daughter answered without hesitation. I looked again: 52 - 28 = 24, not 36. She was off by 12! This kept happening for six months straight. She could do addition with carrying perfectly, but subtraction with borrowing? 70% wrong. I thought she was bad at math. But after researching, I realized: she's not bad at math, she just wasn't taught the right way.",
+    "sections": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why Is Subtraction with Borrowing Harder Than Addition?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Many parents assume: if they can add, they can subtract. But it's not that simple."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Addition with carrying:** Child adds two numbers, if over 10, they \"carry 1\" to the left column. Simple logic: have extra, move it over."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Subtraction with borrowing:** Child must \"borrow\" from the left column, then \"pay back\" after calculating. Opposite logic: not enough, go borrow."
+      },
+      {
+        "type": "paragraph",
+        "text": "The problem: the brain is used to \"carrying\", now it must do \"borrowing\" – the opposite concept. Very easy to mix up."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Common Errors My Child Made"
+      },
+      {
+        "type": "paragraph",
+        "text": "I sat and watched her work, discovering these errors:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Error 1: Subtracting in Reverse"
+      },
+      {
+        "type": "paragraph",
+        "text": "52 - 28: She sees 2 < 8, doesn't know to borrow, so she does 8 - 2 = 6. Gets 36 instead of 24."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Error 2: Borrowing But Forgetting to Reduce"
+      },
+      {
+        "type": "paragraph",
+        "text": "She knows to borrow 1 from tens so 2 becomes 12. 12 - 8 = 4, correct. But for the tens column, she still does 5 - 2 = 3 (forgot to subtract the 1 she borrowed). Gets 34 instead of 24."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Error 3: Borrowing When Not Needed"
+      },
+      {
+        "type": "paragraph",
+        "text": "For problems that don't need borrowing like 56 - 23, she still borrows because \"it feels familiar.\" Gets wrong answer."
+      },
+      {
+        "type": "callout",
+        "style": "empathy",
+        "text": "I realized: She doesn't understand the essence of borrowing. She's just following a procedure without knowing why. When you don't understand, you make mistakes."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "How I Retaught Her From Scratch"
+      },
+      {
+        "type": "paragraph",
+        "text": "I decided to abandon the old method and start over with a visual approach."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Step 1: Use Real Objects So She Can 'See' Borrowing"
+      },
+      {
+        "type": "paragraph",
+        "text": "I took 52 candies: 5 bags (10 candies each) and 2 loose candies. Said to her: \"Mom wants to take 28 candies. Can you help?\""
+      },
+      {
+        "type": "paragraph",
+        "text": "She looked at the 2 loose candies and said: \"There's not enough for 8, Mom.\" I asked: \"So what do we do?\" She thought then said: \"We have to open a bag.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "That's it! She just discovered \"borrowing\" naturally on her own."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Step 2: Mark When Borrowing"
+      },
+      {
+        "type": "paragraph",
+        "text": "I taught her: Every time you borrow, write a small dot above the number you borrowed from. When calculating that column, see the dot = remember to subtract 1 more."
+      },
+      {
+        "type": "paragraph",
+        "text": "Example: 52 - 28\n- Ones place: 2 < 8 → borrow 1, write dot above 5\n- 12 - 8 = 4 ✓\n- Tens place: see dot → 5 - 1 - 2 = 2 ✓\n- Result: 24 ✓"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Step 3: Say 'Borrow 1' Out Loud"
+      },
+      {
+        "type": "paragraph",
+        "text": "I had her say \"Borrow 1!\" out loud every time she needed to borrow. The brain remembers through sound, helping her not forget."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Step 4: Practice Consistently with Immediate Feedback"
+      },
+      {
+        "type": "paragraph",
+        "text": "Every day she did 10 subtraction with borrowing problems. The key was immediate feedback: right means know it's right, wrong means know to fix it. I let her use an app for automatic grading – more convenient than me checking each problem."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Using Soroban So She Can 'See' Numbers"
+      },
+      {
+        "type": "paragraph",
+        "text": "Besides the method above, I also had her learn Soroban. With the abacus, she can \"see\" numbers visually."
+      },
+      {
+        "type": "paragraph",
+        "text": "When doing 52 - 28 on Soroban:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "She represents 52 on the abacus",
+          "Subtract 8 from ones place: not enough beads → must borrow 1 from tens",
+          "Move 1 bead down from tens, add 10 beads to ones",
+          "Now have 12 beads in ones, subtract 8 → 4 left",
+          "Continue subtracting 2 from tens: 4 - 2 = 2",
+          "Result: 24"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Borrowing\" becomes clear when she sees herself moving beads. No longer abstract."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Results After 3 Weeks"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Week 1:** Still getting 50% wrong, but understood the concept."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Week 2:** About 30% errors. She started feeling more confident."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Week 3:** Only 10% errors. And more importantly, when she makes mistakes, she knows where to look to fix them."
+      },
+      {
+        "type": "paragraph",
+        "text": "On a 15-minute class test, she got a 9/10. Teacher's note: \"Clear improvement, subtraction with borrowing done well.\""
+      },
+      {
+        "type": "callout",
+        "style": "tip",
+        "text": "Tip: Don't give too many problems at once. 10 problems/day, but consistently. Persist for 2-3 weeks and you'll see results."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What I Learned"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Don't assume they understand:** Following a procedure doesn't mean understanding. Ask: \"Why did you do this step?\" to check."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Visual is more important than theory:** Young children learn with eyes, with hands. Use candies, use abacus, use images – much more effective than explaining with words."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Immediate feedback helps learn faster:** When kids know they're wrong immediately, they can fix it. If they finish the whole worksheet and then find out it's wrong, they don't know where they went wrong."
+      },
+      {
+        "type": "paragraph",
+        "text": "**4. Patience is key:** 3 weeks is not long. Don't expect changes after 2-3 days."
+      },
+      {
+        "type": "callout",
+        "style": "reassurance",
+        "text": "Subtraction with borrowing is genuinely difficult. Many 3rd-4th graders still get it wrong. But with the right teaching method and consistent practice, any child can master it."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "What grade do kids learn subtraction with borrowing?",
+      "answer": "Usually 2nd grade, first semester. But many kids still struggle into 3rd-4th grade if not taught correctly from the start."
+    },
+    {
+      "question": "Does Soroban help with subtraction with borrowing?",
+      "answer": "Yes. Soroban helps kids 'see' borrowing visually through the beads. They understand the concept instead of just following a procedure."
+    },
+    {
+      "question": "My child subtracts in reverse (8-2 instead of borrowing). What do I do?",
+      "answer": "Use real objects so they understand: not enough means borrow. Ask: 'You have 2 candies, Mom wants 8. What do you do?' They'll realize they need to borrow more."
+    },
+    {
+      "question": "How do I help my child remember to 'pay back' after borrowing?",
+      "answer": "Teach them to mark a dot above the number they borrowed from. When calculating that column, see dot = subtract 1 more. Saying 'Borrow 1' out loud also helps the brain remember."
+    },
+    {
+      "question": "How long until my child stops making borrowing errors?",
+      "answer": "Usually 2-4 weeks with consistent daily practice of 10-15 minutes. The key is understanding the concept, not just memorizing the procedure."
+    },
+    {
+      "question": "Why does my child borrow when they don't need to?",
+      "answer": "They're applying the rule without understanding. Go back to the basic question: 'Is the top number big enough to subtract the bottom number?' If yes, no borrowing needed."
+    },
+    {
+      "question": "Borrowing across zeros is a nightmare. Any tips?",
+      "answer": "Practice 'chaining' – when borrowing from a zero, you need to borrow from the next place first. Use manipulatives: 400 = 3 hundreds + 10 tens = 3 hundreds + 9 tens + 10 ones."
+    },
+    {
+      "question": "Should I teach an alternative method if standard doesn't work?",
+      "answer": "Yes. The number line method (count up from smaller to larger) is excellent. Some kids find it more intuitive than the standard algorithm."
+    },
+    {
+      "question": "How many practice problems per day is enough?",
+      "answer": "10 problems per day is enough for elementary kids. Quality and consistency matter more than quantity. Daily practice beats weekend cramming."
+    },
+    {
+      "question": "My child gets frustrated with subtraction. How do I keep them motivated?",
+      "answer": "Break into smaller chunks, celebrate small wins, use visual tools. An app with immediate feedback and rewards can help – kids see progress and stay motivated."
+    }
+  ],
+  "cta": {
+    "text": "Sorokid has subtraction with borrowing exercises with visual aids. Kids 'see' borrowing through the abacus – understanding the concept instead of just memorizing steps.",
+    "buttonText": "Try Free",
+    "buttonLink": "/register"
+  },
+  "seo": {
+    "metaTitle": "My Child Struggles with Borrowing in Subtraction – From 70% Errors to 10% | Sorokid",
+    "metaDescription": "Real story about helping a 2nd grader master subtraction with borrowing. Visual methods that make borrowing click – from 70% errors to just 10% in 3 weeks.",
+    "keywords": "borrowing subtraction, subtraction with regrouping, child wrong subtraction, teach borrowing method"
+  },
+  "schema": {
+    "type": "Article",
+    "datePublished": "2026-01-20",
+    "author": "Anna"
+  },
+  "postId": "con-hay-lam-sai-phep-tru-co-nho"
+}

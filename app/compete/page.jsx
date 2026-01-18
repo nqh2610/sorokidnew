@@ -489,7 +489,8 @@ function CompetePageContent() {
 
   useEffect(() => {
     if (status === 'unauthenticated') router.push(localizeUrl('/login'));
-  }, [status, router, localizeUrl]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]); // 🔧 FIX: Chỉ depend on status
 
   // 🎮 GAME MODE: Đọc game mode info từ sessionStorage (từ Adventure Map)
   // ⚠️ QUAN TRỌNG: useEffect này phải chạy TRƯỚC useEffect xử lý URL params
